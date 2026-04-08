@@ -51,28 +51,28 @@
 
 ## Implementation Details
 
-- Import the existing tracked harness source from sibling repos by consuming the phase-1 manifest metadata. Keep the declared tracked generated fixtures under `tests/<library>/tests/harness-source/generated/**/*` exactly where phase 1 projected them.
-- Copy `dependents.json` and `relevant_cves.json` byte-for-byte from the sibling repos for every library in this batch.
-- Fixed import scope by library:
-- `libarchive`: `safe/tests`, `safe/debian/tests`, `safe/scripts`, `safe/generated/api_inventory.json`, `safe/generated/cve_matrix.json`, `safe/generated/link_compat_manifest.json`, `safe/generated/original_build_contract.json`, `safe/generated/original_package_metadata.json`, `safe/generated/original_c_build`, `safe/generated/original_link_objects`, `safe/generated/original_pkgconfig/libarchive.pc`, `safe/generated/pkgconfig/libarchive.pc`, `safe/generated/rust_test_manifest.json`, `safe/generated/test_manifest.json`, `original/libarchive-3.7.2`
-- `libbz2`: `safe/tests`, `safe/debian/tests`, `safe/scripts`, `original`
-- `liblzma`: `safe/tests`, `safe/docker`, `safe/scripts`
-- `libsdl`: `safe/tests`, `safe/debian/tests`, `safe/generated/dependent_regression_manifest.json`, `safe/generated/noninteractive_test_list.json`, `safe/generated/original_test_port_map.json`, `safe/generated/perf_workload_manifest.json`, `safe/generated/perf_thresholds.json`, `safe/generated/reports/perf-baseline-vs-safe.json`, `safe/generated/reports/perf-waivers.md`, `original/test`
-- `libsodium`: `safe/tests`, `safe/docker`
-- `libzstd`: `safe/tests`, `safe/debian/tests`, `safe/docker`, `safe/scripts`, `original/libzstd-1.5.5+dfsg2`
-- `liblzma` is the key normalization case. Keep tracked dependent smoke sources from `safe/tests/dependents/**/*`, but do not import generated output under `safe/tests/generated/**/*`.
-- Preserve package-smoke assets under `tests/<library>/tests/package/debian-tests/**/*` when they exist in the imported source. `libarchive`, `libbz2`, and `libzstd` are the explicit cases in this batch.
-- Libraries that already ship `safe/docker/**/*` or `safe/scripts/**/*` should be rewritten only as far as needed to fit the validator `Dockerfile` and shared entrypoint contract.
-- Fixed batch rewrites:
-- `libarchive` must consume the copied validator-owned `tests/libarchive/tests/harness-source/generated/**/*` artifacts rather than reading from sibling `safe/generated/**/*`
-- `libarchive` must rewrite any original-oracle or generated-build assumption so helper binaries compile from copied `original/libarchive-3.7.2/**/*` sources plus copied generated artifacts inside validator-owned scratch only
+- Import the existing tracked harness source from sibling repos by consuming the phase-1 `validator.import_roots`, `validator.import_excludes`, and `validator.runtime_fixture_paths` metadata, and keep the declared tracked generated fixtures under `tests/<library>/tests/harness-source/generated/**/*` exactly where phase 1 projected them. Phase 5 may rewrite consumers to those validator-owned paths, but it must not silently drop, rediscover, or regenerate those tracked generated inputs.
+- Copy `dependents.json` and `relevant_cves.json` byte-for-byte from the sibling repos for every library in this batch; those JSON fixtures are preserved inputs, not regenerated validator outputs.
+- The phase-5 imports are fixed by library:
+- `libarchive` must consume only `safe/tests`, `safe/debian/tests`, `safe/scripts`, `safe/generated/api_inventory.json`, `safe/generated/cve_matrix.json`, `safe/generated/link_compat_manifest.json`, `safe/generated/original_build_contract.json`, `safe/generated/original_package_metadata.json`, `safe/generated/original_c_build`, `safe/generated/original_link_objects`, `safe/generated/original_pkgconfig/libarchive.pc`, `safe/generated/pkgconfig/libarchive.pc`, `safe/generated/rust_test_manifest.json`, `safe/generated/test_manifest.json`, and `original/libarchive-3.7.2`
+- `libbz2` must consume only `safe/tests`, `safe/debian/tests`, `safe/scripts`, and `original`
+- `liblzma` must consume only `safe/tests`, `safe/docker`, and `safe/scripts`
+- `libsdl` must consume only `safe/tests`, `safe/debian/tests`, `safe/generated/dependent_regression_manifest.json`, `safe/generated/noninteractive_test_list.json`, `safe/generated/original_test_port_map.json`, `safe/generated/perf_workload_manifest.json`, `safe/generated/perf_thresholds.json`, `safe/generated/reports/perf-baseline-vs-safe.json`, `safe/generated/reports/perf-waivers.md`, and `original/test`
+- `libsodium` must consume only `safe/tests` and `safe/docker`
+- `libzstd` must consume only `safe/tests`, `safe/debian/tests`, `safe/docker`, `safe/scripts`, and `original/libzstd-1.5.5+dfsg2`
+- `liblzma` is the key normalization case in this batch: keep the tracked dependent smoke sources from `safe/tests/dependents/**/*`, but do not import generated output under `safe/tests/generated/**/*`; those artifacts must be regenerated by validator at runtime.
+- Libraries in this batch that already ship tracked package-smoke assets under `safe/debian/tests/**/*` must preserve them under `tests/<library>/tests/package/debian-tests/**/*` rather than dropping them during import; `libarchive`, `libbz2`, and `libzstd` are the explicit cases in this phase.
+- Libraries that already ship `safe/docker/**/*` or `safe/scripts/**/*` should have those scripts rewritten only as far as needed to fit the validator `tests/<library>/Dockerfile` and shared entrypoint contract.
+- The batch-specific rewrites are fixed too:
+- `libarchive` must rewrite every retained consumer of sibling `safe/generated/**/*` to read the copied validator-owned artifacts under `tests/libarchive/tests/harness-source/generated/**/*`. That includes the tracked manifests, preserved original-built object inventory, generated `original_c_build/**/*` headers, and both copied pkg-config contracts; no phase-5 script or test may look back into the sibling repo for those files.
+- `libarchive` must rewrite any current original-oracle or generated-build assumptions so helper binaries compile from copied `original/libarchive-3.7.2/**/*` sources plus the copied `tests/libarchive/tests/harness-source/generated/**/*` artifacts inside validator-owned scratch space only
 - `libbz2` must use copied upstream samples, headers, and source files from `original/**/*` rather than any sibling build output
-- `liblzma` must not add any undeclared `original/**/*` dependency
-- `libsdl` must consume the copied validator-owned `tests/libsdl/tests/harness-source/generated/**/*` artifacts, including the preserved perf manifests and report inputs
-- `libsdl` must compile copied `original/test/**/*` sources and fixtures against the installed package surface
-- `libsodium` must not add any undeclared `original/**/*` dependency
+- `liblzma` must not add any undeclared `original/**/*` dependency; the final validator harness must run only from copied `safe/tests/**/*`, `safe/docker/**/*`, and `safe/scripts/**/*` assets
+- `libsdl` must rewrite every retained consumer of sibling `safe/generated/**/*` to read the copied validator-owned artifacts under `tests/libsdl/tests/harness-source/generated/**/*`, including `dependent_regression_manifest.json`, `noninteractive_test_list.json`, `original_test_port_map.json`, the perf manifests, and the tracked perf report and waiver files
+- `libsdl` must compile copied `original/test/**/*` sources and fixtures against the installed package surface rather than a sibling build tree, and any validator-owned helper translated from the current `safe/tests/**/*` sources must use only those copied original-test assets plus the copied `tests/libsdl/tests/harness-source/generated/**/*` fixtures
+- `libsodium` must not add any undeclared `original/**/*` dependency; the final validator harness must stay within the copied `safe/tests/**/*` and `safe/docker/**/*` trees
 - `libzstd` must rewrite any current expectation of `safe/out/**/*` or non-imported build directories to validator-owned scratch while keeping all copied upstream tests and corpora under validator control
-- Remove any runtime source-build logic from the final archive and system harnesses so containers exercise installed packages, not ad hoc source builds.
+- Remove any runtime source-build logic from the final archive/system harnesses so the validator containers exercise installed packages, not ad hoc source builds.
 
 ## Verification Phases
 
@@ -221,7 +221,7 @@ PY
 
 - Each archive, compression, and system library passes original and safe runs.
 - The declared tracked generated sibling artifacts for `libarchive` and `libsdl` are imported into validator-owned `tests/*/tests/harness-source/generated/**/*` paths and consumed from there.
-- `liblzma` keeps `safe/tests/generated` excluded.
+- `liblzma` keeps `safe/tests/generated` excluded from imports and regenerates those excluded artifacts at validator runtime.
 - Shared Dockerfile and entrypoint delegation is preserved, preserved fixture JSON stays byte-identical, and validator-authored glue remains mode-blind.
 
 ## Git Commit Requirement

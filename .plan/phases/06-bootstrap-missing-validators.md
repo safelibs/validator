@@ -47,43 +47,38 @@
 
 ## Implementation Details
 
-- Use the `source-debian-original` build mode from phase 1 to build replacement `.deb` packages from the imported upstream and Debian source trees for these five libraries.
-- The staged build copy under `.work/` must receive the exact validator-only version suffix `+validatorbootstrap1`.
+- Use the `source-debian-original` build mode from phase 1 to build replacement `.deb` packages from the imported upstream/Debian source trees for these five libraries. The staged build copy under `.work/` must receive the exact validator-only version suffix `+validatorbootstrap1` so safe-mode package installation is observable and auditable.
 - Use `tools/import_port_assets.py` plus the phase-1 `validator.build_root`, `validator.import_roots`, `validator.import_excludes`, and `validator.runtime_fixture_paths` metadata to project the selected upstream and Debian test subsets into validator-owned paths before writing each bootstrap harness.
-- Create validator-owned `tests/<library>/Dockerfile`, `docker-entrypoint.sh`, and `tests/run.sh` for each bootstrap library.
-- Source material by library:
-- `glib`: `debian/tests`, `tests/`, `glib/tests/`, `gio/tests/`, `gobject/tests/`, `fuzzing/`
-- `libcurl`: `debian/tests`, `tests/`, `tests/data`, local server helpers, and hermetic subsets of `runtests.pl`
+- Create validator-owned `tests/<library>/Dockerfile`, `docker-entrypoint.sh`, and `tests/run.sh` for each bootstrap library. The source material comes from:
+- `glib`: `debian/tests`, `tests/`, `glib/tests/`, `gio/tests/`, `gobject/tests/`, and `fuzzing/`
+- `libcurl`: `debian/tests`, `tests/`, `tests/data`, local server helpers, and upstream `runtests.pl` subsets that can run hermetically inside Docker
 - `libgcrypt`: `tests/` plus Debian control metadata for required packages
 - `libjansson`: `test/bin`, `test/run-suites`, `test/suites`, `test/scripts`, and `test/ossfuzz`
 - `libuv`: `test/` and Debian package metadata
-- Every bootstrap harness must still use the same shared Dockerfile and entrypoint contract as mature libraries. Bootstrap-specific mode branching is not allowed in library-local files.
-- Generate new validator-owned `tests/<library>/tests/fixtures/dependents.json` fixtures from existing source and local package metadata because sibling repos do not provide them.
-- The bootstrap `dependents.json` schema is fixed:
-- top-level keys exactly `schema_version`, `library`, `generated_at_utc`, `ubuntu_release`, `provenance`, and `dependents`
-- `schema_version = 1`
-- `library` equals the current library name
-- `generated_at_utc` is a non-empty UTC timestamp string
-- `ubuntu_release = "24.04"`
-- `provenance` contains exactly `source_paths`, `package_metadata_commands`, and `selection_policy`, each a non-empty list of non-empty strings
-- every dependent entry contains exactly `package`, `source_package`, `selection_reason`, `dependency_relationships`, `smoke_test`, `notes`, and `evidence`
-- `dependency_relationships` contains exactly `compile_time`, `runtime`, and `autopkgtest`
-- `smoke_test` contains exactly `kind`, `command`, and `expected_exit_code`, where `kind` is one of `cli`, `autopkgtest`, or `library-provided-script`
-- `evidence` contains exactly `source_paths`, `package_metadata`, `autopkgtest_references`, and `selection_commands`
-- `source_paths` and `selection_commands` must be non-empty for every dependent
-- keep at least one dependent entry per bootstrap library and check each generated fixture into git for later phases to consume
-- Generate `tests/<library>/tests/fixtures/relevant_cves.json` from Debian patch names, changelog references, and tracked upstream regression or fuzz inputs when possible.
-- The bootstrap `relevant_cves.json` schema is fixed:
-- top-level keys exactly `schema_version`, `library`, `generated_at_utc`, `provenance`, `selection_policy`, `relevant_cves`, and `reviewed_but_excluded`
-- `schema_version = 1`
-- `library` equals the current library name
-- `generated_at_utc` is a non-empty UTC timestamp string
-- `selection_policy` is a non-empty list of non-empty strings
-- `provenance` contains exactly `source_paths`, `debian_references`, `upstream_regression_inputs`, and `notes`
-- every retained CVE entry contains exactly `id`, `summary`, `why_relevant_to_rust`, `evidence`, and `porting_actions`
-- every excluded entry contains exactly `id` and `reason`
-- if `relevant_cves` is empty, `provenance.notes` must explicitly explain why
-- Record bootstrap safe runs as `replacement_provenance=bootstrap-original-source`. That distinction belongs in results and the site, not in the tests themselves.
+- Each bootstrap harness must still use the same phase-2 Dockerfile and shared-entrypoint contract as mature libraries; bootstrap-specific mode branching is not allowed in library-local files.
+- For these libraries only, generate new validator-owned `tests/<library>/tests/fixtures/dependents.json` from existing source and local package metadata because the sibling repos do not already provide one. Use one fixed bootstrap schema so later phases and reviewers do not infer structure from mature repos:
+- exact top-level keys: `schema_version`, `library`, `generated_at_utc`, `ubuntu_release`, `provenance`, and `dependents`
+- `schema_version` is fixed to `1`, `library` must equal the current library name, `generated_at_utc` must be a non-empty UTC timestamp string, and `ubuntu_release` must be the non-empty string `24.04`
+- `provenance` must contain exactly `source_paths`, `package_metadata_commands`, and `selection_policy`, and each value must be a non-empty list of non-empty strings
+- every item in `dependents` must contain exactly `package`, `source_package`, `selection_reason`, `dependency_relationships`, `smoke_test`, `notes`, and `evidence`
+- `package`, `source_package`, and `selection_reason` must each be non-empty strings, and `notes` must be a list of non-empty strings that may be empty only when the fixture has nothing extra to record
+- `dependency_relationships` must contain exactly `compile_time`, `runtime`, and `autopkgtest`, each as a list of non-empty package or autopkgtest dependency strings
+- `smoke_test` must contain exactly `kind`, `command`, and `expected_exit_code`, where `kind` is one of `cli`, `autopkgtest`, or `library-provided-script`, `command` is a non-empty string, and `expected_exit_code` is an integer
+- every `evidence` mapping must contain exactly `source_paths`, `package_metadata`, `autopkgtest_references`, and `selection_commands`
+- `evidence.source_paths`, `evidence.package_metadata`, `evidence.autopkgtest_references`, and `evidence.selection_commands` must each be lists of non-empty strings; `source_paths` and `selection_commands` are required to be non-empty for every dependent, and `autopkgtest_references` must be non-empty whenever `dependency_relationships.autopkgtest` is non-empty
+- derive candidate dependent packages from Debian metadata and locally available Ubuntu package indexes, select deterministic installable dependents that can be exercised noninteractively inside Ubuntu 24.04 Docker, prefer packages already covered by Debian autopkgtest metadata or simple CLI smoke entrypoints over GUI-only dependents, keep at least one dependent entry per bootstrap library, and check the resulting fixture into git so later phases consume it as an existing artifact
+- Generate `tests/<library>/tests/fixtures/relevant_cves.json` from existing Debian patch names, changelog references, and tracked upstream regression/fuzz inputs when possible. Use one fixed bootstrap schema even when no relevant CVEs are retained:
+- exact top-level keys: `schema_version`, `library`, `generated_at_utc`, `provenance`, `selection_policy`, `relevant_cves`, and `reviewed_but_excluded`
+- `schema_version` is fixed to `1`, `library` must equal the current library name, and `generated_at_utc` must be a non-empty UTC timestamp string
+- `selection_policy` must be a non-empty list of non-empty strings describing the deterministic filtering rules that produced the file
+- `provenance` must contain exactly `source_paths`, `debian_references`, `upstream_regression_inputs`, and `notes`; each value must be a list of non-empty strings, `source_paths` must be non-empty in every file, and `notes` must be non-empty whenever `relevant_cves` is empty
+- every item in `relevant_cves` must contain exactly `id`, `summary`, `why_relevant_to_rust`, `evidence`, and `porting_actions`
+- `id`, `summary`, and `why_relevant_to_rust` must each be non-empty strings
+- every `evidence` mapping must contain exactly `source_paths`, `debian_references`, and `upstream_inputs`, each as a list of non-empty strings, and at least one of those three lists must be non-empty for every retained CVE
+- `porting_actions` must be a non-empty list of non-empty strings
+- every item in `reviewed_but_excluded` must contain exactly `id` and `reason`, and both values must be non-empty strings
+- if no relevant entries exist, `relevant_cves` must be an explicit empty list and `provenance.notes` must explain why the reviewed Debian or upstream inputs did not yield a retained entry
+- Record bootstrap safe runs as `replacement_provenance=bootstrap-original-source`; that distinction belongs in results and the site, not in the tests themselves.
 
 ## Verification Phases
 

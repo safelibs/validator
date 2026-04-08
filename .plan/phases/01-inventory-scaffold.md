@@ -115,6 +115,7 @@
   - a new `source-debian-original` mode for bootstrap repos that resolves the source tree from `validator.build_root`, stages a writable copy under `.work/`, applies the exact validator-only Debian revision suffix `+validatorbootstrap1`, installs build-deps from Debian metadata, and emits `.deb` files to a requested output directory
 - Implement `tools/import_port_assets.py` to copy only manifest-declared harness source artifacts from staged sibling repos into validator-owned destinations. It must consume `validator.import_roots`, `validator.import_excludes`, and `validator.runtime_fixture_paths` directly, reject undeclared sibling-repo paths, normalize path variations like `safe/test/**/*` versus `safe/tests/**/*`, project top-level `dependents.json` and `relevant_cves.json` into `tests/<library>/tests/fixtures/`, project `test-original.sh` into `tests/<library>/tests/harness-source/original-test-script.sh`, project `safe/tests/package/**/*` into `tests/<library>/tests/package/**/*`, project the remaining `safe/tests/**/*` or `safe/test/**/*` into `tests/<library>/tests/upstream/**/*`, project `safe/debian/tests/**/*` into `tests/<library>/tests/package/debian-tests/**/*`, project `safe/scripts/**/*` into `tests/<library>/tests/harness-source/scripts/**/*`, project `safe/docker/**/*` into `tests/<library>/tests/harness-source/docker/**/*`, project `safe/generated/**/*` into `tests/<library>/tests/harness-source/generated/**/*`, project `safe/vendor/**/*` into `tests/<library>/tests/harness-source/vendor/**/*`, project imported Debian control files into `tests/<library>/tests/harness-source/debian/control`, project bootstrap `original/debian/tests/**/*` into `tests/<library>/tests/upstream/debian-tests/**/*`, project every other declared `original/**` import root into `tests/<library>/tests/upstream/<path relative to original/>`, keep `validator.runtime_fixture_paths` as an explicit but currently empty list-valued contract, and explicitly exclude transient inputs such as `.git/`, `.pc/`, `node_modules/`, `*.deb`, `safe/dist/`, and generated logs.
 - `Makefile` should define at least `unit`, `inventory`, `stage-ports`, `build-safe`, and `clean` now; later phases extend it.
+- Create `.gitignore` as part of the root scaffold. It must ignore `.work/`, `artifacts/`, `site/`, and other local scratch outputs while keeping checked-in site sources, fixtures, and validator-owned test assets tracked.
 
 ## Verification Phases
 
@@ -496,6 +497,7 @@ rg -n 'import_roots|import_excludes|harness-source|debian-tests|runtime_fixture_
 - `repositories.yml` becomes the exact checked-in import and build contract for all 23 libraries, including fixed pinned entries, build roots, ordered import roots, ordered excludes, and empty runtime fixture lists.
 - Non-destructive staging, import, and build tooling works against both local sibling repos and authenticated GitHub clones.
 - The phase proves all required build modes and asset-projection rules before later harness phases depend on them.
+- `.gitignore` protects scratch and rendered-output roots without hiding checked-in source, fixture, or harness files.
 
 ## Git Commit Requirement
 

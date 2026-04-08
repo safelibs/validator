@@ -587,3 +587,5 @@ phases:
       - scripts/publish-public.sh
       - README.md
       - Makefile
+      - .git/config
+      - safelibs/validator public GitHub repository

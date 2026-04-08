@@ -54,37 +54,31 @@
 - Normalize the notable path and layout exceptions in this batch:
 - `libtiff` imports from `safe/test/**/*`, not `safe/tests/**/*`
 - `libvips` already has a reusable dependent-suite subtree under `safe/tests/dependents/**/*`, but validator must keep only the imported dependent and upstream wrappers plus the vendored `pyvips` snapshot rather than the sibling repo’s full safe crate
-- `libpng` currently hard-codes original and safe image assembly in one shell script and must be split into validator `Dockerfile` + shared entrypoint + `tests/run.sh`
-- `libexif` is untagged in `apt-repo` but already has mature validator artifacts, so it must stay in the existing-harness path rather than the bootstrap path
-- Preserve existing fixture JSON by byte-identical copies from the sibling repos and drive imports strictly from the phase-1 manifest metadata.
-- Fixed import scope by library:
-- `libexif`: `safe/tests`, `original/libexif`, `original/test`, `original/contrib/examples`
-- `libjpeg-turbo`: `safe/tests`, `safe/debian/tests`, `safe/scripts`, `original/testimages`
-- `libpng`: `safe/tests`, `original/tests`, `original/contrib/pngsuite`, `original/contrib/testpngs`, `original/png.h`, `original/pngconf.h`, `original/pngtest.png`
-- `libtiff`: `safe/test`, `safe/scripts`, `original/test`
-- `libvips`: `safe/tests/dependents`, `safe/tests/upstream`, `safe/vendor/pyvips-3.1.1`, `original/test`, `original/examples`
-- `libwebp`: `safe/tests`, `original/examples`, `original/tests/public_api_test.c`
-- Preserve package-smoke assets under `tests/<library>/tests/package/debian-tests/**/*` when they exist in the imported source. `libjpeg-turbo` is the explicit case in this batch.
-- Fixed batch rewrites:
-- `libexif` rewrites any expectation of `original/libexif/.libs/**/*` or `original/test/*.o` so copied source files compile against installed package headers and libraries
-- `libjpeg-turbo` uses only copied `original/testimages/**/*` samples and never depends on safe-side stage directories outside the validator tree
-- `libpng` replaces current safe-stage and original-stage logic with validator-owned copies of the declared original headers, scripts, and sample corpora
-- `libtiff` rewrites all expectations of `original/build/**/*` and `original/build-step2/**/*` to use installed-package tools plus copied `original/test/**/*` fixtures
-- `libvips` is intentionally narrowed to one exact runtime-only contract
-- keep only the imported dependent-suite sources, imported upstream seed files, vendored `pyvips` snapshot, and copied upstream `test/**/*` and `examples/**/*` assets
-- discard sibling-only build-source inputs including `safe/tests/abi_layout.rs`, `safe/tests/init_version_smoke.rs`, `safe/tests/operation_registry.rs`, `safe/tests/ops_advanced.rs`, `safe/tests/ops_core.rs`, `safe/tests/runtime_io.rs`, `safe/tests/security.rs`, `safe/tests/security/**/*`, `safe/tests/threading.rs`, `safe/tests/introspection/**/*`, `safe/tests/link_compat/**/*`, all `safe/scripts/**/*`, and upstream seed files `run-meson-suite.sh`, `run-fuzz-suite.sh`, `meson-tests.txt`, and `fuzz-targets.txt`
-- rewrite `tests/libvips/tests/upstream/manifest.json` to exactly:
-- `wrappers: {"shell": "run-shell-suite.sh", "pytest": "run-pytest-suite.sh"}`
-- `standalone_shell_tests: ["test/test_thumbnail.sh"]`
-- `python_requirements: ["pyvips==3.1.1"]`
-- no `safe_build_dir_env`, `meson_tests`, or `fuzz_targets`
-- rewrite `tests/libvips/tests/upstream/run-shell-suite.sh` and `run-pytest-suite.sh` into zero-argument runtime wrappers that operate entirely inside the validator tree and target installed packages
-- create `tests/libvips/tests/upstream/test/variables.sh` from the copied `original/test/variables.sh.in` contract with fixed installed-binary and copied-fixture bindings
-- rewrite the dependent suite under `tests/libvips/tests/dependents/**/*` to drop `build_and_install_safe_libvips`, `prepare_extracted_prefix`, `verify_packaged_prefix`, and every `build-check*` reference
-- the final libvips runtime harness must not invoke Meson, Cargo, or `dpkg-buildpackage` inside the validator container
-- `libwebp` compiles copied `original/tests/public_api_test.c` against installed packages and copied `original/examples/**/*` fixtures
-- Remove any runtime source-build paths from the media harnesses. Original mode must rely on distro packages in the image. Safe mode must rely on prebuilt replacement `.deb` packages mounted at `/safedebs`.
-- Every harness must use `/safedebs` replacement installs and `VALIDATOR_TRACE` handling only through the shared phase-2 entrypoint contract.
+- `libpng` currently hard-codes original and safe image assembly in one shell script and needs to be split cleanly into validator `Dockerfile` + shared entrypoint + `tests/run.sh`
+- `libexif` is untagged in `apt-repo` but already has mature validator artifacts, so it must be handled like an existing-harness library, not a bootstrap library
+- Preserve existing fixture JSON by byte-identical copies from the sibling repos, preserve regression assets exactly, and drive imports from the phase-1 `validator.import_roots`, `validator.import_excludes`, and `validator.runtime_fixture_paths` metadata so the checked-in validator tree is the only runtime build context.
+- The phase-4 imports are fixed by library:
+- `libexif` must consume only `safe/tests`, `original/libexif`, `original/test`, and `original/contrib/examples`
+- `libjpeg-turbo` must consume only `safe/tests`, `safe/debian/tests`, `safe/scripts`, and `original/testimages`
+- `libpng` must consume only `safe/tests`, `original/tests`, `original/contrib/pngsuite`, `original/contrib/testpngs`, `original/png.h`, `original/pngconf.h`, and `original/pngtest.png`
+- `libtiff` must consume only `safe/test`, `safe/scripts`, and `original/test`
+- `libvips` must consume only `safe/tests/dependents`, `safe/tests/upstream`, `safe/vendor/pyvips-3.1.1`, `original/test`, and `original/examples`
+- `libwebp` must consume only `safe/tests`, `original/examples`, and `original/tests/public_api_test.c`
+- Libraries in this batch that already ship tracked package-smoke assets under `safe/debian/tests/**/*` must preserve them under `tests/<library>/tests/package/debian-tests/**/*` rather than dropping them during import; `libjpeg-turbo` is the explicit case in this phase.
+- The batch-specific rewrites are fixed too:
+- `libexif` must rewrite any current expectation of `original/libexif/.libs/**/*` or `original/test/*.o` so copied source files compile against installed package headers and libraries instead
+- `libjpeg-turbo` must use copied `original/testimages/**/*` samples only and must not depend on safe-side stage directories outside the validator tree
+- `libpng` must replace the current safe-stage and original-stage logic with validator-owned copies of the declared original headers, scripts, and sample corpora
+- `libtiff` must rewrite all current expectations of `original/build/**/*` and `original/build-step2/**/*` to use installed-package tools plus copied `original/test/**/*` fixtures
+- `libvips` must intentionally narrow the sibling harness into one exact runtime-only validator contract. Keep only the imported dependent-suite sources, the imported upstream seed files, the vendored `tests/harness-source/vendor/pyvips-3.1.1/**/*` snapshot, and the copied `tests/upstream/test/**/*` and `tests/upstream/examples/**/*` assets. Discard the sibling-only build-source inputs `safe/tests/abi_layout.rs`, `safe/tests/init_version_smoke.rs`, `safe/tests/operation_registry.rs`, `safe/tests/ops_advanced.rs`, `safe/tests/ops_core.rs`, `safe/tests/runtime_io.rs`, `safe/tests/security.rs`, `safe/tests/security/**/*`, `safe/tests/threading.rs`, `safe/tests/introspection/**/*`, `safe/tests/link_compat/**/*`, all `safe/scripts/**/*`, and the imported upstream seed files `tests/libvips/tests/upstream/run-meson-suite.sh`, `tests/libvips/tests/upstream/run-fuzz-suite.sh`, `tests/libvips/tests/upstream/meson-tests.txt`, and `tests/libvips/tests/upstream/fuzz-targets.txt`.
+- `libvips` must rewrite `tests/libvips/tests/upstream/manifest.json` into a validator-owned runtime manifest with exactly `wrappers: {"shell": "run-shell-suite.sh", "pytest": "run-pytest-suite.sh"}`, exactly `standalone_shell_tests: ["test/test_thumbnail.sh"]`, and exactly `python_requirements: ["pyvips==3.1.1"]`. The final manifest must not retain `safe_build_dir_env`, `meson_tests`, or `fuzz_targets`.
+- `libvips` must rewrite `tests/libvips/tests/upstream/run-shell-suite.sh` and `tests/libvips/tests/upstream/run-pytest-suite.sh` into zero-argument runtime wrappers. They must operate entirely inside the validator tree, assume libvips is already installed in the container, read copied upstream fixtures from `tests/libvips/tests/upstream/test/**/*`, source vendored `pyvips` from `tests/libvips/tests/harness-source/vendor/pyvips-3.1.1`, and never reference sibling `original/`, `build-check/`, `build-check-install/`, or `VIPS_SAFE_BUILD_DIR` state.
+- `libvips` must create `tests/libvips/tests/upstream/test/variables.sh` from the copied `original/test/variables.sh.in` template contract. The generated file must bind `test_images` to `/validator/tests/libvips/tests/upstream/test/test-suite/images`, `image` to `sample.jpg` under that directory, `tmp` to a `/tmp` scratch directory, and `vips`, `vipsthumbnail`, and `vipsheader` to installed binaries discovered from `PATH`. The validator runtime shell regression is the safe-local thumbnail smoke stored at `tests/libvips/tests/upstream/test/test_thumbnail.sh`, and it must source that generated `variables.sh`.
+- `libvips` must place the rewritten dependent suite under `tests/libvips/tests/dependents/**/*`, but `run-suite.sh` and `lib.sh` must drop `build_and_install_safe_libvips`, `prepare_extracted_prefix`, `verify_packaged_prefix`, and every `build-check*` reference. They may install dependent-application prerequisites and build or run the dependent applications, but all libvips validation must target the already-installed package surface inside the container.
+- `libvips` runtime harness must not invoke Meson, Cargo, or `dpkg-buildpackage` inside the validator container
+- `libwebp` must compile copied `original/tests/public_api_test.c` against installed packages and copied `original/examples/**/*` fixtures rather than sibling-repo paths
+- Remove any runtime source-build paths from the imported media harnesses. Original mode must rely on distro packages in the image, and safe mode must rely on prebuilt replacement `.deb` packages mounted at `/safedebs`.
+- Ensure every harness uses `/safedebs` replacement installs and `VALIDATOR_TRACE` handling only through the phase-2 shared entrypoint contract and that every library-local `tests/run.sh` is implementation-blind.
 
 ## Verification Phases
 
@@ -182,6 +176,8 @@ for forbidden_key in ["safe_build_dir_env", "meson_tests", "fuzz_targets"]:
 variables = Path("tests/libvips/tests/upstream/test/variables.sh").read_text()
 for token in [
     "/validator/tests/libvips/tests/upstream/test/test-suite/images",
+    "sample.jpg",
+    "/tmp",
     "command -v vips",
     "command -v vipsthumbnail",
     "command -v vipsheader",
@@ -191,6 +187,9 @@ for token in [
 for token in ["@abs_top_srcdir@", "@abs_top_builddir@", "/tools/vips", "VIPS_SAFE_BUILD_DIR"]:
     if token in variables:
         raise SystemExit(f"libvips variables.sh kept build-tree token: {token}")
+thumbnail_smoke = Path("tests/libvips/tests/upstream/test/test_thumbnail.sh").read_text()
+if "variables.sh" not in thumbnail_smoke:
+    raise SystemExit("libvips thumbnail smoke does not source generated variables.sh")
 forbidden_libvips_paths = [
     Path("tests/libvips/tests/abi_layout.rs"),
     Path("tests/libvips/tests/init_version_smoke.rs"),
@@ -280,8 +279,8 @@ PY
 ## Success Criteria
 
 - Each media and imaging library passes original and safe runs.
-- Special path and layout cases are normalized into the common validator contract.
-- `libvips` is narrowed to the fixed runtime-only contract from the source plan.
+- Special path and layout cases are normalized into the common validator contract, including the shared Dockerfile and entrypoint delegate pattern.
+- `libvips` is narrowed to the fixed runtime-only contract from the source plan, including the exact manifest rewrite and the generated `tests/libvips/tests/upstream/test/variables.sh` bindings for `test_images`, `image`, `tmp`, and installed `vips` binaries.
 - Preserved fixture JSON remains byte-identical to the sibling repo copies and validator-authored glue remains mode-blind.
 
 ## Git Commit Requirement
