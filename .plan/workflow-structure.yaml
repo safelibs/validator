@@ -7,585 +7,319 @@ phases:
     type: implement
     bounce_target: null
     required_preexisting_inputs:
-      - README.md
-      - /home/yans/safelibs/apt-repo/README.md
-      - /home/yans/safelibs/apt-repo/repositories.yml
-      - /home/yans/safelibs/apt-repo/tools/build_site.py
-      - /home/yans/safelibs/apt-repo/tests/test_build_site.py
-      - /home/yans/safelibs/port-libvips/.plan/workflow-structure.yaml
-      - /home/yans/safelibs/port-cjson
-      - /home/yans/safelibs/port-giflib
-      - /home/yans/safelibs/port-glib
-      - /home/yans/safelibs/port-libarchive
-      - /home/yans/safelibs/port-libbz2
-      - /home/yans/safelibs/port-libcsv
-      - /home/yans/safelibs/port-libcurl
-      - /home/yans/safelibs/port-libexif
-      - /home/yans/safelibs/port-libgcrypt
-      - /home/yans/safelibs/port-libjansson
-      - /home/yans/safelibs/port-libjpeg-turbo
-      - /home/yans/safelibs/port-libjson
-      - /home/yans/safelibs/port-liblzma
-      - /home/yans/safelibs/port-libpng
-      - /home/yans/safelibs/port-libsdl
-      - /home/yans/safelibs/port-libsodium
-      - /home/yans/safelibs/port-libtiff
-      - /home/yans/safelibs/port-libuv
-      - /home/yans/safelibs/port-libvips
-      - /home/yans/safelibs/port-libwebp
-      - /home/yans/safelibs/port-libxml
-      - /home/yans/safelibs/port-libyaml
-      - /home/yans/safelibs/port-libzstd
+      - ".plan/plan.md"
+      - ".plan/findings.md"
+      - ".plan/goal.md"
+      - ".plan/plan-before-cleanup.md"
+      - "stale generated workflow artifacts under `.plan/phases/*.md` and `.plan/workflow-structure.yaml`, plus any existing worktree `workflow.yaml`, for reference only"
+      - "README.md"
+      - "/home/yans/safelibs/apt-repo/repositories.yml"
+      - "/home/yans/safelibs/apt-repo/tools/build_site.py"
+      - "/home/yans/safelibs/apt-repo/tests/test_build_site.py"
+      - "sibling `port-*` clone sources under `/home/yans/safelibs/`"
+      - "authenticated GitHub access for private `port-*` repos, provided by an existing local login or an effective token from `GH_TOKEN` or `SAFELIBS_REPO_TOKEN`"
   - order: 2
     id: check_01_inventory_scaffold_smoke
     type: check
     bounce_target: impl_01_inventory_scaffold
     required_preexisting_inputs:
-      - inventory/github-repo-list.json
-      - inventory/github-port-repos.json
-      - repositories.yml
-      - Makefile
-      - tools/inventory.py
-      - tools/stage_port_repos.py
-      - tools/build_safe_debs.py
-      - tools/import_port_assets.py
-      - unit/test_inventory.py
-      - unit/test_stage_port_repos.py
-      - unit/test_build_safe_debs.py
-      - unit/test_import_port_assets.py
-      - /home/yans/safelibs
+      - ".gitignore"
+      - "Makefile"
+      - "inventory/"
+      - "repositories.yml"
+      - "tools/"
+      - "unit/"
+      - "/home/yans/safelibs/apt-repo/repositories.yml"
+      - "sibling `port-*` clone sources under `/home/yans/safelibs/`"
+      - "authenticated GitHub access for private `port-*` repos, provided by an existing local login or an effective token from `GH_TOKEN` or `SAFELIBS_REPO_TOKEN`"
   - order: 3
     id: check_01_inventory_scaffold_review
     type: check
     bounce_target: impl_01_inventory_scaffold
     required_preexisting_inputs:
-      - inventory/github-repo-list.json
-      - inventory/github-port-repos.json
-      - repositories.yml
-      - tools/inventory.py
-      - tools/stage_port_repos.py
-      - tools/build_safe_debs.py
-      - tools/import_port_assets.py
-      - unit/test_inventory.py
-      - /home/yans/safelibs/apt-repo/repositories.yml
+      - "inventory/github-repo-list.json"
+      - "inventory/github-port-repos.json"
+      - "repositories.yml"
+      - "/home/yans/safelibs/apt-repo/repositories.yml"
   - order: 4
-    id: impl_02_shared_matrix_reporting
+    id: impl_02_shared_runner_reporting
     type: implement
     bounce_target: null
     required_preexisting_inputs:
-      - README.md
-      - Makefile
-      - repositories.yml
-      - tools/stage_port_repos.py
-      - tools/build_safe_debs.py
-      - /home/yans/safelibs/website/package.json
-      - /home/yans/safelibs/website/scripts/build.mjs
-      - /home/yans/safelibs/website/.github/workflows/deploy.yml
+      - ".gitignore"
+      - "Makefile"
+      - "inventory/"
+      - "repositories.yml"
+      - "tools/"
+      - "unit/"
+      - "README.md"
+      - "/home/yans/safelibs/website/package.json"
+      - "/home/yans/safelibs/website/scripts/build.mjs"
+      - "/home/yans/safelibs/website/.github/workflows/deploy.yml"
   - order: 5
-    id: check_02_shared_matrix_reporting_smoke
+    id: check_02_shared_runner_smoke
     type: check
-    bounce_target: impl_02_shared_matrix_reporting
+    bounce_target: impl_02_shared_runner_reporting
     required_preexisting_inputs:
-      - test.sh
-      - tools/run_matrix.py
-      - tools/render_site.py
-      - tools/build_safe_debs.py
-      - unit/test_run_matrix.py
-      - unit/test_render_site.py
-      - tests/_shared/common.sh
-      - tests/_shared/install_safe_debs.sh
-      - tests/_shared/entrypoint.sh
-      - site-src/index.html.template
-      - site-src/library.html.template
-      - site-src/styles.css
-      - site-src/script.js
-      - scripts/verify-site.sh
+      - "repositories.yml"
+      - "test.sh"
+      - "tools/run_matrix.py"
+      - "tools/render_site.py"
+      - "scripts/verify-site.sh"
+      - "tests/_shared/"
+      - "unit/test_run_matrix.py"
+      - "unit/test_render_site.py"
+      - "unit/fixtures/demo-manifest.yml"
+      - "unit/fixtures/demo-debs/"
+      - "unit/fixtures/demo-tests/"
+      - "unit/fixtures/demo-failure-manifest.yml"
+      - "unit/fixtures/demo-failure-debs/"
+      - "unit/fixtures/demo-failure-tests/"
   - order: 6
-    id: check_02_shared_matrix_reporting_review
+    id: check_02_shared_runner_review
     type: check
-    bounce_target: impl_02_shared_matrix_reporting
+    bounce_target: impl_02_shared_runner_reporting
     required_preexisting_inputs:
-      - Makefile
-      - test.sh
-      - tools/run_matrix.py
-      - tools/render_site.py
-      - tools/build_safe_debs.py
-      - tests/_shared/common.sh
-      - tests/_shared/install_safe_debs.sh
-      - tests/_shared/entrypoint.sh
-      - site-src/index.html.template
-      - site-src/library.html.template
-      - site-src/styles.css
-      - site-src/script.js
-      - scripts/verify-site.sh
+      - "repositories.yml"
+      - "test.sh"
+      - "tools/run_matrix.py"
+      - "tools/render_site.py"
+      - "scripts/verify-site.sh"
+      - "tests/_shared/"
+      - "unit/test_run_matrix.py"
+      - "unit/test_render_site.py"
+      - "unit/fixtures/demo-manifest.yml"
+      - "unit/fixtures/demo-debs/"
+      - "unit/fixtures/demo-tests/"
+      - "unit/fixtures/demo-failure-manifest.yml"
+      - "unit/fixtures/demo-failure-debs/"
+      - "unit/fixtures/demo-failure-tests/"
   - order: 7
-    id: impl_03_text_data_validators
+    id: impl_03_data_text_validators
     type: implement
     bounce_target: null
     required_preexisting_inputs:
-      - repositories.yml
-      - test.sh
-      - tools/import_port_assets.py
-      - tools/stage_port_repos.py
-      - tools/build_safe_debs.py
-      - tools/run_matrix.py
-      - tools/render_site.py
-      - scripts/verify-site.sh
-      - tests/_shared/common.sh
-      - tests/_shared/install_safe_debs.sh
-      - tests/_shared/entrypoint.sh
-      - /home/yans/safelibs/port-cjson
-      - /home/yans/safelibs/port-cjson/dependents.json
-      - /home/yans/safelibs/port-cjson/relevant_cves.json
-      - /home/yans/safelibs/port-giflib
-      - /home/yans/safelibs/port-giflib/dependents.json
-      - /home/yans/safelibs/port-giflib/relevant_cves.json
-      - /home/yans/safelibs/port-libcsv
-      - /home/yans/safelibs/port-libcsv/dependents.json
-      - /home/yans/safelibs/port-libcsv/relevant_cves.json
-      - /home/yans/safelibs/port-libjson
-      - /home/yans/safelibs/port-libjson/dependents.json
-      - /home/yans/safelibs/port-libjson/relevant_cves.json
-      - /home/yans/safelibs/port-libxml
-      - /home/yans/safelibs/port-libxml/dependents.json
-      - /home/yans/safelibs/port-libxml/relevant_cves.json
-      - /home/yans/safelibs/port-libyaml
-      - /home/yans/safelibs/port-libyaml/dependents.json
-      - /home/yans/safelibs/port-libyaml/relevant_cves.json
+      - ".gitignore"
+      - "Makefile"
+      - "inventory/"
+      - "repositories.yml"
+      - "tools/"
+      - "unit/"
+      - "test.sh"
+      - "scripts/verify-site.sh"
+      - "tests/_shared/"
+      - "staged tag-backed inputs for `cjson`, `libcsv`, `libjson`, `libxml`, and `libyaml` as defined in `repositories.yml`"
   - order: 8
-    id: check_03_text_data_matrix
+    id: check_03_data_text_matrix
     type: check
-    bounce_target: impl_03_text_data_validators
+    bounce_target: impl_03_data_text_validators
     required_preexisting_inputs:
-      - repositories.yml
-      - test.sh
-      - tools/stage_port_repos.py
-      - tools/run_matrix.py
-      - tools/build_safe_debs.py
-      - tools/render_site.py
-      - scripts/verify-site.sh
-      - tests/_shared/common.sh
-      - tests/_shared/install_safe_debs.sh
-      - tests/_shared/entrypoint.sh
-      - tests/cjson
-      - tests/giflib
-      - tests/libcsv
-      - tests/libjson
-      - tests/libxml
-      - tests/libyaml
-      - /home/yans/safelibs/port-cjson
-      - /home/yans/safelibs/port-giflib
-      - /home/yans/safelibs/port-libcsv
-      - /home/yans/safelibs/port-libjson
-      - /home/yans/safelibs/port-libxml
-      - /home/yans/safelibs/port-libyaml
+      - "repositories.yml"
+      - "tools/"
+      - "test.sh"
+      - "scripts/verify-site.sh"
+      - "tests/_shared/"
+      - "tests/cjson/"
+      - "tests/libcsv/"
+      - "tests/libjson/"
+      - "tests/libxml/"
+      - "tests/libyaml/"
+      - "sibling `port-*` clone sources under `/home/yans/safelibs/`"
+      - "authenticated GitHub access for private `port-*` repos, provided by an existing local login or an effective token from `GH_TOKEN` or `SAFELIBS_REPO_TOKEN`"
   - order: 9
-    id: check_03_text_data_review
+    id: check_03_data_text_review
     type: check
-    bounce_target: impl_03_text_data_validators
+    bounce_target: impl_03_data_text_validators
     required_preexisting_inputs:
-      - tests/cjson
-      - tests/giflib
-      - tests/libcsv
-      - tests/libjson
-      - tests/libxml
-      - tests/libyaml
-      - tests/_shared/entrypoint.sh
-      - /home/yans/safelibs/port-cjson/dependents.json
-      - /home/yans/safelibs/port-cjson/relevant_cves.json
-      - /home/yans/safelibs/port-giflib/dependents.json
-      - /home/yans/safelibs/port-giflib/relevant_cves.json
-      - /home/yans/safelibs/port-libcsv/dependents.json
-      - /home/yans/safelibs/port-libcsv/relevant_cves.json
-      - /home/yans/safelibs/port-libjson/dependents.json
-      - /home/yans/safelibs/port-libjson/relevant_cves.json
-      - /home/yans/safelibs/port-libxml/dependents.json
-      - /home/yans/safelibs/port-libxml/relevant_cves.json
-      - /home/yans/safelibs/port-libyaml/dependents.json
-      - /home/yans/safelibs/port-libyaml/relevant_cves.json
+      - "repositories.yml"
+      - "tools/"
+      - "test.sh"
+      - "scripts/verify-site.sh"
+      - "tests/_shared/"
+      - "tests/cjson/"
+      - "tests/libcsv/"
+      - "tests/libjson/"
+      - "tests/libxml/"
+      - "tests/libyaml/"
+      - "sibling `port-*` clone sources under `/home/yans/safelibs/`"
+      - "authenticated GitHub access for private `port-*` repos, provided by an existing local login or an effective token from `GH_TOKEN` or `SAFELIBS_REPO_TOKEN`"
   - order: 10
     id: impl_04_media_validators
     type: implement
     bounce_target: null
     required_preexisting_inputs:
-      - repositories.yml
-      - test.sh
-      - tools/import_port_assets.py
-      - tools/stage_port_repos.py
-      - tools/build_safe_debs.py
-      - tools/run_matrix.py
-      - tools/render_site.py
-      - scripts/verify-site.sh
-      - tests/_shared/common.sh
-      - tests/_shared/install_safe_debs.sh
-      - tests/_shared/entrypoint.sh
-      - /home/yans/safelibs/port-libexif
-      - /home/yans/safelibs/port-libexif/dependents.json
-      - /home/yans/safelibs/port-libexif/relevant_cves.json
-      - /home/yans/safelibs/port-libjpeg-turbo
-      - /home/yans/safelibs/port-libjpeg-turbo/dependents.json
-      - /home/yans/safelibs/port-libjpeg-turbo/relevant_cves.json
-      - /home/yans/safelibs/port-libpng
-      - /home/yans/safelibs/port-libpng/dependents.json
-      - /home/yans/safelibs/port-libpng/relevant_cves.json
-      - /home/yans/safelibs/port-libtiff
-      - /home/yans/safelibs/port-libtiff/dependents.json
-      - /home/yans/safelibs/port-libtiff/relevant_cves.json
-      - /home/yans/safelibs/port-libvips
-      - /home/yans/safelibs/port-libvips/dependents.json
-      - /home/yans/safelibs/port-libvips/relevant_cves.json
-      - /home/yans/safelibs/port-libwebp
-      - /home/yans/safelibs/port-libwebp/dependents.json
-      - /home/yans/safelibs/port-libwebp/relevant_cves.json
+      - ".gitignore"
+      - "Makefile"
+      - "inventory/"
+      - "repositories.yml"
+      - "tools/"
+      - "unit/"
+      - "test.sh"
+      - "scripts/verify-site.sh"
+      - "tests/_shared/"
+      - "tests/cjson/"
+      - "tests/libcsv/"
+      - "tests/libjson/"
+      - "tests/libxml/"
+      - "tests/libyaml/"
+      - "staged tag-backed inputs for `giflib`, `libexif`, `libjpeg-turbo`, `libpng`, `libsdl`, `libtiff`, `libvips`, and `libwebp` as defined in `repositories.yml`"
   - order: 11
     id: check_04_media_matrix
     type: check
     bounce_target: impl_04_media_validators
     required_preexisting_inputs:
-      - repositories.yml
-      - test.sh
-      - tools/stage_port_repos.py
-      - tools/run_matrix.py
-      - tools/build_safe_debs.py
-      - tools/render_site.py
-      - scripts/verify-site.sh
-      - tests/_shared/common.sh
-      - tests/_shared/install_safe_debs.sh
-      - tests/_shared/entrypoint.sh
-      - tests/libexif
-      - tests/libjpeg-turbo
-      - tests/libpng
-      - tests/libtiff
-      - tests/libvips
-      - tests/libwebp
-      - /home/yans/safelibs/port-libexif
-      - /home/yans/safelibs/port-libjpeg-turbo
-      - /home/yans/safelibs/port-libpng
-      - /home/yans/safelibs/port-libtiff
-      - /home/yans/safelibs/port-libvips
-      - /home/yans/safelibs/port-libwebp
+      - "repositories.yml"
+      - "tools/"
+      - "test.sh"
+      - "scripts/verify-site.sh"
+      - "tests/_shared/"
+      - "tests/giflib/"
+      - "tests/libexif/"
+      - "tests/libjpeg-turbo/"
+      - "tests/libpng/"
+      - "tests/libsdl/"
+      - "tests/libtiff/"
+      - "tests/libvips/"
+      - "tests/libwebp/"
+      - "sibling `port-*` clone sources under `/home/yans/safelibs/`"
+      - "authenticated GitHub access for private `port-*` repos, provided by an existing local login or an effective token from `GH_TOKEN` or `SAFELIBS_REPO_TOKEN`"
   - order: 12
     id: check_04_media_review
     type: check
     bounce_target: impl_04_media_validators
     required_preexisting_inputs:
-      - tests/libexif
-      - tests/libjpeg-turbo
-      - tests/libpng
-      - tests/libtiff
-      - tests/libvips
-      - tests/libwebp
-      - tests/_shared/entrypoint.sh
-      - /home/yans/safelibs/port-libexif/dependents.json
-      - /home/yans/safelibs/port-libexif/relevant_cves.json
-      - /home/yans/safelibs/port-libjpeg-turbo/dependents.json
-      - /home/yans/safelibs/port-libjpeg-turbo/relevant_cves.json
-      - /home/yans/safelibs/port-libpng/dependents.json
-      - /home/yans/safelibs/port-libpng/relevant_cves.json
-      - /home/yans/safelibs/port-libtiff/dependents.json
-      - /home/yans/safelibs/port-libtiff/relevant_cves.json
-      - /home/yans/safelibs/port-libvips/dependents.json
-      - /home/yans/safelibs/port-libvips/relevant_cves.json
-      - /home/yans/safelibs/port-libwebp/dependents.json
-      - /home/yans/safelibs/port-libwebp/relevant_cves.json
+      - "repositories.yml"
+      - "tools/"
+      - "test.sh"
+      - "scripts/verify-site.sh"
+      - "tests/_shared/"
+      - "tests/giflib/"
+      - "tests/libexif/"
+      - "tests/libjpeg-turbo/"
+      - "tests/libpng/"
+      - "tests/libsdl/"
+      - "tests/libtiff/"
+      - "tests/libvips/"
+      - "tests/libwebp/"
+      - "sibling `port-*` clone sources under `/home/yans/safelibs/`"
+      - "authenticated GitHub access for private `port-*` repos, provided by an existing local login or an effective token from `GH_TOKEN` or `SAFELIBS_REPO_TOKEN`"
   - order: 13
-    id: impl_05_archive_system_validators
+    id: impl_05_system_archive_validators
     type: implement
     bounce_target: null
     required_preexisting_inputs:
-      - repositories.yml
-      - test.sh
-      - tools/import_port_assets.py
-      - tools/stage_port_repos.py
-      - tools/build_safe_debs.py
-      - tools/run_matrix.py
-      - tools/render_site.py
-      - scripts/verify-site.sh
-      - tests/_shared/common.sh
-      - tests/_shared/install_safe_debs.sh
-      - tests/_shared/entrypoint.sh
-      - /home/yans/safelibs/port-libarchive
-      - /home/yans/safelibs/port-libarchive/dependents.json
-      - /home/yans/safelibs/port-libarchive/relevant_cves.json
-      - /home/yans/safelibs/port-libbz2
-      - /home/yans/safelibs/port-libbz2/dependents.json
-      - /home/yans/safelibs/port-libbz2/relevant_cves.json
-      - /home/yans/safelibs/port-liblzma
-      - /home/yans/safelibs/port-liblzma/dependents.json
-      - /home/yans/safelibs/port-liblzma/relevant_cves.json
-      - /home/yans/safelibs/port-libsdl
-      - /home/yans/safelibs/port-libsdl/dependents.json
-      - /home/yans/safelibs/port-libsdl/relevant_cves.json
-      - /home/yans/safelibs/port-libsodium
-      - /home/yans/safelibs/port-libsodium/dependents.json
-      - /home/yans/safelibs/port-libsodium/relevant_cves.json
-      - /home/yans/safelibs/port-libzstd
-      - /home/yans/safelibs/port-libzstd/dependents.json
-      - /home/yans/safelibs/port-libzstd/relevant_cves.json
+      - ".gitignore"
+      - "Makefile"
+      - "inventory/"
+      - "repositories.yml"
+      - "tools/"
+      - "unit/"
+      - "test.sh"
+      - "scripts/verify-site.sh"
+      - "tests/_shared/"
+      - "tests/cjson/"
+      - "tests/libcsv/"
+      - "tests/libjson/"
+      - "tests/libxml/"
+      - "tests/libyaml/"
+      - "tests/giflib/"
+      - "tests/libexif/"
+      - "tests/libjpeg-turbo/"
+      - "tests/libpng/"
+      - "tests/libsdl/"
+      - "tests/libtiff/"
+      - "tests/libvips/"
+      - "tests/libwebp/"
+      - "staged tag-backed inputs for `libarchive`, `libbz2`, `liblzma`, `libsodium`, `libuv`, and `libzstd` as defined in `repositories.yml`"
   - order: 14
-    id: check_05_archive_system_matrix
+    id: check_05_system_archive_matrix
     type: check
-    bounce_target: impl_05_archive_system_validators
+    bounce_target: impl_05_system_archive_validators
     required_preexisting_inputs:
-      - repositories.yml
-      - test.sh
-      - tools/stage_port_repos.py
-      - tools/run_matrix.py
-      - tools/build_safe_debs.py
-      - tools/render_site.py
-      - scripts/verify-site.sh
-      - tests/_shared/common.sh
-      - tests/_shared/install_safe_debs.sh
-      - tests/_shared/entrypoint.sh
-      - tests/libarchive
-      - tests/libbz2
-      - tests/liblzma
-      - tests/libsdl
-      - tests/libsodium
-      - tests/libzstd
-      - /home/yans/safelibs/port-libarchive
-      - /home/yans/safelibs/port-libbz2
-      - /home/yans/safelibs/port-liblzma
-      - /home/yans/safelibs/port-libsdl
-      - /home/yans/safelibs/port-libsodium
-      - /home/yans/safelibs/port-libzstd
+      - "repositories.yml"
+      - "tools/"
+      - "test.sh"
+      - "scripts/verify-site.sh"
+      - "tests/_shared/"
+      - "tests/libarchive/"
+      - "tests/libbz2/"
+      - "tests/liblzma/"
+      - "tests/libsodium/"
+      - "tests/libuv/"
+      - "tests/libzstd/"
+      - "sibling `port-*` clone sources under `/home/yans/safelibs/`"
+      - "authenticated GitHub access for private `port-*` repos, provided by an existing local login or an effective token from `GH_TOKEN` or `SAFELIBS_REPO_TOKEN`"
   - order: 15
-    id: check_05_archive_system_review
+    id: check_05_system_archive_review
     type: check
-    bounce_target: impl_05_archive_system_validators
+    bounce_target: impl_05_system_archive_validators
     required_preexisting_inputs:
-      - tests/libarchive
-      - tests/libbz2
-      - tests/liblzma
-      - tests/libsdl
-      - tests/libsodium
-      - tests/libzstd
-      - tests/_shared/entrypoint.sh
-      - /home/yans/safelibs/port-libarchive/dependents.json
-      - /home/yans/safelibs/port-libarchive/relevant_cves.json
-      - /home/yans/safelibs/port-libbz2/dependents.json
-      - /home/yans/safelibs/port-libbz2/relevant_cves.json
-      - /home/yans/safelibs/port-liblzma/dependents.json
-      - /home/yans/safelibs/port-liblzma/relevant_cves.json
-      - /home/yans/safelibs/port-libsdl/dependents.json
-      - /home/yans/safelibs/port-libsdl/relevant_cves.json
-      - /home/yans/safelibs/port-libsodium/dependents.json
-      - /home/yans/safelibs/port-libsodium/relevant_cves.json
-      - /home/yans/safelibs/port-libzstd/dependents.json
-      - /home/yans/safelibs/port-libzstd/relevant_cves.json
+      - "repositories.yml"
+      - "tools/"
+      - "test.sh"
+      - "scripts/verify-site.sh"
+      - "tests/_shared/"
+      - "tests/libarchive/"
+      - "tests/libbz2/"
+      - "tests/liblzma/"
+      - "tests/libsodium/"
+      - "tests/libuv/"
+      - "tests/libzstd/"
+      - "sibling `port-*` clone sources under `/home/yans/safelibs/`"
+      - "authenticated GitHub access for private `port-*` repos, provided by an existing local login or an effective token from `GH_TOKEN` or `SAFELIBS_REPO_TOKEN`"
   - order: 16
-    id: impl_06_bootstrap_missing_validators
+    id: impl_06_ci_pages_publish
     type: implement
     bounce_target: null
     required_preexisting_inputs:
-      - repositories.yml
-      - Makefile
-      - test.sh
-      - tools/import_port_assets.py
-      - tools/stage_port_repos.py
-      - tools/build_safe_debs.py
-      - tools/run_matrix.py
-      - tools/render_site.py
-      - scripts/verify-site.sh
-      - tests/_shared/common.sh
-      - tests/_shared/install_safe_debs.sh
-      - tests/_shared/entrypoint.sh
-      - /home/yans/safelibs/port-glib/original
-      - /home/yans/safelibs/port-libcurl/original
-      - /home/yans/safelibs/port-libgcrypt/original/libgcrypt20-1.10.3
-      - /home/yans/safelibs/port-libjansson/original/jansson-2.14
-      - /home/yans/safelibs/port-libuv/original
+      - ".gitignore"
+      - "README.md"
+      - "Makefile"
+      - "inventory/"
+      - "repositories.yml"
+      - "tools/"
+      - "test.sh"
+      - "scripts/verify-site.sh"
+      - "tests/"
+      - "unit/"
+      - ".plan/plan.md"
+      - ".plan/findings.md"
+      - ".plan/goal.md"
+      - ".plan/plan-before-cleanup.md"
+      - "stale generated workflow artifacts under `.plan/phases/*.md` and `.plan/workflow-structure.yaml`"
+      - "any existing worktree `workflow.yaml`"
+      - "/home/yans/safelibs/apt-repo/.github/workflows/ci.yml"
+      - "/home/yans/safelibs/apt-repo/.github/workflows/pages.yml"
+      - "/home/yans/safelibs/apt-repo/scripts/verify-in-ubuntu-docker.sh"
+      - "/home/yans/safelibs/website/.github/workflows/deploy.yml"
+      - "authenticated GitHub access with permission to inspect private `port-*` repos and create `safelibs/validator`, provided by an existing local login or by `GH_TOKEN` or `SAFELIBS_REPO_TOKEN`"
   - order: 17
-    id: check_06_bootstrap_matrix
+    id: check_06_full_matrix
     type: check
-    bounce_target: impl_06_bootstrap_missing_validators
+    bounce_target: impl_06_ci_pages_publish
     required_preexisting_inputs:
-      - repositories.yml
-      - test.sh
-      - tools/stage_port_repos.py
-      - tools/run_matrix.py
-      - tools/build_safe_debs.py
-      - tools/render_site.py
-      - scripts/verify-site.sh
-      - tests/_shared/common.sh
-      - tests/_shared/install_safe_debs.sh
-      - tests/_shared/entrypoint.sh
-      - tests/glib
-      - tests/libcurl
-      - tests/libgcrypt
-      - tests/libjansson
-      - tests/libuv
-      - /home/yans/safelibs/port-glib
-      - /home/yans/safelibs/port-libcurl
-      - /home/yans/safelibs/port-libgcrypt
-      - /home/yans/safelibs/port-libjansson
-      - /home/yans/safelibs/port-libuv
+      - "repositories.yml"
+      - "tools/"
+      - "test.sh"
+      - "scripts/verify-site.sh"
+      - "tests/"
+      - "unit/"
+      - "sibling `port-*` clone sources under `/home/yans/safelibs/`"
+      - "authenticated GitHub access for private `port-*` repos, provided by an existing local login or an effective token from `GH_TOKEN` or `SAFELIBS_REPO_TOKEN`"
   - order: 18
-    id: check_06_bootstrap_review
+    id: check_06_release_review
     type: check
-    bounce_target: impl_06_bootstrap_missing_validators
+    bounce_target: impl_06_ci_pages_publish
     required_preexisting_inputs:
-      - repositories.yml
-      - test.sh
-      - tools/run_matrix.py
-      - tools/build_safe_debs.py
-      - tests/_shared/entrypoint.sh
-      - tests/glib
-      - tests/libcurl
-      - tests/libgcrypt
-      - tests/libjansson
-      - tests/libuv
-  - order: 19
-    id: impl_07_ci_pages_publish
-    type: implement
-    bounce_target: null
-    required_preexisting_inputs:
-      - README.md
-      - Makefile
-      - inventory/github-repo-list.json
-      - inventory/github-port-repos.json
-      - repositories.yml
-      - test.sh
-      - tools/stage_port_repos.py
-      - tools/build_safe_debs.py
-      - tools/run_matrix.py
-      - tools/render_site.py
-      - scripts/verify-site.sh
-      - unit/test_inventory.py
-      - unit/test_stage_port_repos.py
-      - unit/test_build_safe_debs.py
-      - unit/test_import_port_assets.py
-      - unit/test_run_matrix.py
-      - unit/test_render_site.py
-      - tests/_shared/common.sh
-      - tests/_shared/install_safe_debs.sh
-      - tests/_shared/entrypoint.sh
-      - tests/cjson
-      - tests/giflib
-      - tests/glib
-      - tests/libarchive
-      - tests/libbz2
-      - tests/libcsv
-      - tests/libcurl
-      - tests/libexif
-      - tests/libgcrypt
-      - tests/libjansson
-      - tests/libjpeg-turbo
-      - tests/libjson
-      - tests/liblzma
-      - tests/libpng
-      - tests/libsdl
-      - tests/libsodium
-      - tests/libtiff
-      - tests/libuv
-      - tests/libvips
-      - tests/libwebp
-      - tests/libxml
-      - tests/libyaml
-      - tests/libzstd
-      - /home/yans/safelibs/port-cjson
-      - /home/yans/safelibs/port-giflib
-      - /home/yans/safelibs/port-glib
-      - /home/yans/safelibs/port-libarchive
-      - /home/yans/safelibs/port-libbz2
-      - /home/yans/safelibs/port-libcsv
-      - /home/yans/safelibs/port-libcurl
-      - /home/yans/safelibs/port-libexif
-      - /home/yans/safelibs/port-libgcrypt
-      - /home/yans/safelibs/port-libjansson
-      - /home/yans/safelibs/port-libjpeg-turbo
-      - /home/yans/safelibs/port-libjson
-      - /home/yans/safelibs/port-liblzma
-      - /home/yans/safelibs/port-libpng
-      - /home/yans/safelibs/port-libsdl
-      - /home/yans/safelibs/port-libsodium
-      - /home/yans/safelibs/port-libtiff
-      - /home/yans/safelibs/port-libuv
-      - /home/yans/safelibs/port-libvips
-      - /home/yans/safelibs/port-libwebp
-      - /home/yans/safelibs/port-libxml
-      - /home/yans/safelibs/port-libyaml
-      - /home/yans/safelibs/port-libzstd
-      - /home/yans/safelibs/apt-repo/.github/workflows/ci.yml
-      - /home/yans/safelibs/apt-repo/.github/workflows/pages.yml
-      - /home/yans/safelibs/apt-repo/scripts/verify-in-ubuntu-docker.sh
-      - /home/yans/safelibs/website/.github/workflows/deploy.yml
-  - order: 20
-    id: check_07_full_matrix
-    type: check
-    bounce_target: impl_07_ci_pages_publish
-    required_preexisting_inputs:
-      - repositories.yml
-      - test.sh
-      - tools/stage_port_repos.py
-      - tools/run_matrix.py
-      - tools/build_safe_debs.py
-      - tools/render_site.py
-      - scripts/verify-site.sh
-      - unit/test_inventory.py
-      - unit/test_stage_port_repos.py
-      - unit/test_build_safe_debs.py
-      - unit/test_import_port_assets.py
-      - unit/test_run_matrix.py
-      - unit/test_render_site.py
-      - tests/_shared/common.sh
-      - tests/_shared/install_safe_debs.sh
-      - tests/_shared/entrypoint.sh
-      - tests/cjson
-      - tests/giflib
-      - tests/glib
-      - tests/libarchive
-      - tests/libbz2
-      - tests/libcsv
-      - tests/libcurl
-      - tests/libexif
-      - tests/libgcrypt
-      - tests/libjansson
-      - tests/libjpeg-turbo
-      - tests/libjson
-      - tests/liblzma
-      - tests/libpng
-      - tests/libsdl
-      - tests/libsodium
-      - tests/libtiff
-      - tests/libuv
-      - tests/libvips
-      - tests/libwebp
-      - tests/libxml
-      - tests/libyaml
-      - tests/libzstd
-      - /home/yans/safelibs/port-cjson
-      - /home/yans/safelibs/port-giflib
-      - /home/yans/safelibs/port-glib
-      - /home/yans/safelibs/port-libarchive
-      - /home/yans/safelibs/port-libbz2
-      - /home/yans/safelibs/port-libcsv
-      - /home/yans/safelibs/port-libcurl
-      - /home/yans/safelibs/port-libexif
-      - /home/yans/safelibs/port-libgcrypt
-      - /home/yans/safelibs/port-libjansson
-      - /home/yans/safelibs/port-libjpeg-turbo
-      - /home/yans/safelibs/port-libjson
-      - /home/yans/safelibs/port-liblzma
-      - /home/yans/safelibs/port-libpng
-      - /home/yans/safelibs/port-libsdl
-      - /home/yans/safelibs/port-libsodium
-      - /home/yans/safelibs/port-libtiff
-      - /home/yans/safelibs/port-libuv
-      - /home/yans/safelibs/port-libvips
-      - /home/yans/safelibs/port-libwebp
-      - /home/yans/safelibs/port-libxml
-      - /home/yans/safelibs/port-libyaml
-      - /home/yans/safelibs/port-libzstd
-  - order: 21
-    id: check_07_release_publish_review
-    type: check
-    bounce_target: impl_07_ci_pages_publish
-    required_preexisting_inputs:
-      - .github/workflows/ci.yml
-      - .github/workflows/pages.yml
-      - scripts/publish-public.sh
-      - README.md
-      - Makefile
-      - .git/config
-      - safelibs/validator public GitHub repository
+      - ".github/workflows/ci.yml"
+      - ".github/workflows/pages.yml"
+      - ".plan/"
+      - "workflow.yaml"
+      - "README.md"
+      - "Makefile"
+      - "scripts/publish-public.sh"
+      - "repositories.yml"
+      - "tools/"
+      - "public GitHub repo `safelibs/validator`"
+      - "local `origin` remote reconciled to `safelibs/validator`"
+      - "authenticated GitHub access with permission to inspect private `port-*` repos and create `safelibs/validator`, provided by an existing local login or by `GH_TOKEN` or `SAFELIBS_REPO_TOKEN`"
