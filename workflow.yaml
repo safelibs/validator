@@ -10,23 +10,23 @@ phases:
   prompt: |-
     {% raw %}
     Role: Software engineer implementing phase `impl_01_inventory_scaffold`.
-    
+
     Work from repository root `/home/yans/safelibs/validator`. This prompt is self-contained. Use `.plan/workflow-structure.yaml` as the authoritative source for phase order, phase IDs, phase types, and fixed `bounce_target` values. Keep the workflow topology fixed: do not invent, rename, or reorder phase IDs, phase types, verifier phases, or bounce targets. Consume or update existing artifacts listed below in place. Do not refetch, recollect, rediscover, or regenerate checked-in or already-prepared artifacts from scratch when they already exist.
     The explicit verifier phases for this implement phase are `check_01_inventory_scaffold_smoke`, `check_01_inventory_scaffold_review`; each verifier remains an explicit top-level `check` phase and uses its fixed `bounce_target: impl_01_inventory_scaffold`.
-    
+
     Source Phase File
     `.plan/phases/01-inventory-scaffold.md`
-    
+
     **Phase Name**
-    
+
     `inventory-scaffold`
-    
+
     **Implement Phase ID**
-    
+
     `impl_01_inventory_scaffold`
-    
+
     **Preexisting Inputs**
-    
+
     - `.plan/plan.md`
     - `.plan/findings.md`
     - `.plan/goal.md`
@@ -38,9 +38,9 @@ phases:
     - `/home/yans/safelibs/apt-repo/tests/test_build_site.py`
     - sibling `port-*` clone sources under `/home/yans/safelibs/`
     - authenticated GitHub access for private `port-*` repos, provided by an existing local login or an effective token from `GH_TOKEN` or `SAFELIBS_REPO_TOKEN`
-    
+
     **New Outputs**
-    
+
     - `.gitignore`
     - `Makefile`
     - `inventory/github-repo-list.json`
@@ -59,16 +59,16 @@ phases:
     - `unit/test_build_safe_debs.py`
     - `unit/test_import_port_assets.py`
     - `unit/test_verify_imported_assets.py`
-    
+
     **File Changes**
-    
+
     - Create `.gitignore` and `Makefile`.
     - Create the checked-in inventory artifacts `inventory/github-repo-list.json`, `inventory/github-port-repos.json`, and `repositories.yml`.
     - Create shared auth, inventory, staging, safe-build, import, and fidelity-verification tooling under `tools/`.
     - Create hermetic unit coverage for inventory, staging, safe-build, import, and fidelity verification under `unit/`.
-    
+
     **Implementation Details**
-    
+
     - Treat the currently checked-in generated workflow artifacts under `.plan/phases/*.md` and `.plan/workflow-structure.yaml`, plus any existing worktree `workflow.yaml`, as stale reference inputs during phases 01 through 05.
     - Do not rewrite, rename, delete, or stage changes to those generated workflow artifacts in this phase; only phase 06 may replace the generated workflow file set.
     - Phase 01 is the only phase allowed to query live GitHub state to define scope.
@@ -156,18 +156,18 @@ phases:
     - `unit/test_verify_imported_assets.py` must cover file imports, directory imports, extra-file detection under `tests/tagged-port`, extra-file detection under `tests/fixtures` and `tests/harness-source`, and harness-source or fixture drift.
     - Use global import exclusions for `.git/`, `.pc/`, `__pycache__/`, `node_modules/`, `.libs/`, `build/`, `build-*`, `.checker-build*`, `config.log`, `config.status`, `*.deb`, `*.ddeb`, and `*.udeb`. Keep this list tool-owned instead of copying it into `validator.import_excludes`.
     - Create `Makefile` targets for at least `unit`, `inventory`, `stage-ports`, `build-safe`, `import-assets`, and `clean`.
-    
+
     **Success Criteria**
-    
+
     - Both `check_01_inventory_scaffold_smoke` and `check_01_inventory_scaffold_review` pass.
     - Scope is selected only from live `refs/tags/<library>/04-test` tags during phase 01, and later phases can consume the checked-in `inventory/github-repo-list.json`, `inventory/github-port-repos.json`, and `repositories.yml` without rediscovering scope.
     - `repositories.yml` preserves the copied `apt-repo` `archive` mapping, exact `validator.imports`, all-empty `validator.import_excludes`, and the required uniform fixture mappings on every entry.
     - The staging flow fetches an exact missing tag from the manifest GitHub remote instead of inheriting a local-path `origin`, `tools/build_safe_debs.py` leaves staged checkouts clean, and `tools/verify_imported_assets.py` rejects content drift or extra files under `tests/fixtures/`, `tests/harness-source/`, and `tests/tagged-port/`.
     - No stale hard-coded library list, wrong `inventory.tag_probe_rule`, wrong `04-test` ref, no-op `--verify-scope`, reintroduced publication-tag contract, or non-hermetic phase-01 `unit/` test remains.
-    
+
     **Git Commit Requirement**
-    
-    
+
+
     Commit all phase work to git before yielding.
     Leave exactly one new commit atop the incoming branch state before yielding so every verifier that runs `git diff --check HEAD^ HEAD` reviews the full phase diff rather than only the tail of a multi-commit stack.
     {% endraw %}
@@ -177,15 +177,15 @@ phases:
   prompt: |-
     {% raw %}
     Reviewer role: verification agent for `check_01_inventory_scaffold_smoke` reviewing `impl_01_inventory_scaffold`.
-    
+
     Work from repository root `/home/yans/safelibs/validator`. Review only. Do not modify files. This prompt is self-contained. Use `.plan/workflow-structure.yaml` as the authoritative source for phase order, phase IDs, phase types, and fixed `bounce_target` values. Use the existing workspace artifacts in place. Do not refetch, recollect, rediscover, or regenerate checked-in or already-prepared artifacts from scratch while checking. The fixed bounce target for this check is `impl_01_inventory_scaffold`.
-    
+
     Phase Name
     `inventory-scaffold`
-    
+
     Source Phase File
     `.plan/phases/01-inventory-scaffold.md`
-    
+
     Preexisting Inputs
     - .gitignore
     - Makefile
@@ -196,12 +196,12 @@ phases:
     - /home/yans/safelibs/apt-repo/repositories.yml
     - sibling `port-*` clone sources under `/home/yans/safelibs/`
     - authenticated GitHub access for private `port-*` repos, provided by an existing local login or an effective token from `GH_TOKEN` or `SAFELIBS_REPO_TOKEN`
-    
+
     Specific Things To Verify
     - verify hermetic phase-01 unit coverage, live `04-test` scope selection, clean local and remote tag staging, exact-tag fetch behavior, non-mutating build coverage, and tag-rooted asset imports.
     - Run the verifier definition below exactly as written and treat any non-zero exit code, failing assertion, missing file, or mismatch as failure.
     - Confirm the relevant success criteria for `impl_01_inventory_scaffold` remain satisfied in the current workspace.
-    
+
     Verification Phase Definition
     - `check_01_inventory_scaffold_smoke`
       - type: `check`
@@ -265,16 +265,16 @@ phases:
         - `test -f .work/check01/imported/tests/libuv/tests/tagged-port/safe/test-extra/run-regressions.c`
         - `cmp -s .work/check01/imported/tests/libexif/tests/fixtures/relevant_cves.json .work/check01/ports/libexif/relevant_cves.json`
         - `cmp -s .work/check01/imported/tests/libuv/tests/fixtures/dependents.json .work/check01/ports/libuv/dependents.json`
-    
+
     Relevant Success Criteria
     **Success Criteria**
-    
+
     - Both `check_01_inventory_scaffold_smoke` and `check_01_inventory_scaffold_review` pass.
     - Scope is selected only from live `refs/tags/<library>/04-test` tags during phase 01, and later phases can consume the checked-in `inventory/github-repo-list.json`, `inventory/github-port-repos.json`, and `repositories.yml` without rediscovering scope.
     - `repositories.yml` preserves the copied `apt-repo` `archive` mapping, exact `validator.imports`, all-empty `validator.import_excludes`, and the required uniform fixture mappings on every entry.
     - The staging flow fetches an exact missing tag from the manifest GitHub remote instead of inheriting a local-path `origin`, `tools/build_safe_debs.py` leaves staged checkouts clean, and `tools/verify_imported_assets.py` rejects content drift or extra files under `tests/fixtures/`, `tests/harness-source/`, and `tests/tagged-port/`.
     - No stale hard-coded library list, wrong `inventory.tag_probe_rule`, wrong `04-test` ref, no-op `--verify-scope`, reintroduced publication-tag contract, or non-hermetic phase-01 `unit/` test remains.
-    
+
     End with exactly one verdict line:
     VERDICT: PASS
     or
@@ -286,26 +286,26 @@ phases:
   prompt: |-
     {% raw %}
     Reviewer role: verification agent for `check_01_inventory_scaffold_review` reviewing `impl_01_inventory_scaffold`.
-    
+
     Work from repository root `/home/yans/safelibs/validator`. Review only. Do not modify files. This prompt is self-contained. Use `.plan/workflow-structure.yaml` as the authoritative source for phase order, phase IDs, phase types, and fixed `bounce_target` values. Use the existing workspace artifacts in place. Do not refetch, recollect, rediscover, or regenerate checked-in or already-prepared artifacts from scratch while checking. The fixed bounce target for this check is `impl_01_inventory_scaffold`.
-    
+
     Phase Name
     `inventory-scaffold`
-    
+
     Source Phase File
     `.plan/phases/01-inventory-scaffold.md`
-    
+
     Preexisting Inputs
     - inventory/github-repo-list.json
     - inventory/github-port-repos.json
     - repositories.yml
     - /home/yans/safelibs/apt-repo/repositories.yml
-    
+
     Specific Things To Verify
     - review the checked-in 19-library tagged snapshot, filtered inventory schema and ordering, fixed `inventory.tag_probe_rule`, preserved `archive` metadata, copied `apt-repo` build metadata, uniform fixture mappings, exact per-library `validator.imports`, all-empty `validator.import_excludes`, and the absence of the obsolete publication-tag model.
     - Run the verifier definition below exactly as written and treat any non-zero exit code, failing assertion, missing file, or mismatch as failure.
     - Confirm the relevant success criteria for `impl_01_inventory_scaffold` remain satisfied in the current workspace.
-    
+
     Verification Phase Definition
     - `check_01_inventory_scaffold_review`
       - type: `check`
@@ -318,7 +318,7 @@ phases:
           from pathlib import Path
           import json
           import yaml
-    
+
           raw = json.loads(Path("inventory/github-repo-list.json").read_text())
           filtered = json.loads(Path("inventory/github-port-repos.json").read_text())
           manifest = yaml.safe_load(Path("repositories.yml").read_text())
@@ -344,7 +344,7 @@ phases:
           tag_probe_rule = inventory["tag_probe_rule"]
           if "{library}" not in tag_probe_rule:
               raise SystemExit(f"tag_probe_rule must contain {'{library}'}: {tag_probe_rule!r}")
-    
+
           expected_names = [
               "cjson",
               "giflib",
@@ -392,7 +392,7 @@ phases:
               raise SystemExit(f"manifest repositories must be sorted by library: {manifest_names}")
           if manifest_names != expected_names:
               raise SystemExit(f"manifest scope mismatch: {manifest_names}")
-    
+
           required_filtered_keys = {"library", "nameWithOwner", "url", "default_branch", "tag_ref"}
           for row in filtered:
               if set(row) != required_filtered_keys:
@@ -406,7 +406,7 @@ phases:
               expected_tag = tag_probe_rule.format(library=row["library"])
               if row["tag_ref"] != expected_tag:
                   raise SystemExit(f"{row['library']} tag_ref mismatch: {row['tag_ref']}")
-    
+
           apt_entries = {entry["name"]: entry for entry in apt_manifest["repositories"]}
           non_apt_expected = {"libexif", "libuv"}
           for entry in manifest["repositories"]:
@@ -445,7 +445,7 @@ phases:
                       raise SystemExit(f"{name} build mismatch: {build}")
               else:
                   raise SystemExit(f"unexpected non-apt entry: {name}")
-    
+
           expected_imports = {
               "cjson": [
                   "safe/tests",
@@ -593,22 +593,22 @@ phases:
               actual_paths = by_name[name]["validator"]["imports"]
               if actual_paths != expected_paths:
                   raise SystemExit(f"{name} validator.imports mismatch: {actual_paths!r}")
-    
+
           if Path("inventory/non-apt-ref-status.json").exists():
               raise SystemExit("inventory/non-apt-ref-status.json must not exist")
           if "glib" in manifest_names or "libc6" in manifest_names or "libcurl" in manifest_names or "libgcrypt" in manifest_names or "libjansson" in manifest_names:
               raise SystemExit("out-of-scope untagged libraries leaked into the manifest")
           PY
-    
+
     Relevant Success Criteria
     **Success Criteria**
-    
+
     - Both `check_01_inventory_scaffold_smoke` and `check_01_inventory_scaffold_review` pass.
     - Scope is selected only from live `refs/tags/<library>/04-test` tags during phase 01, and later phases can consume the checked-in `inventory/github-repo-list.json`, `inventory/github-port-repos.json`, and `repositories.yml` without rediscovering scope.
     - `repositories.yml` preserves the copied `apt-repo` `archive` mapping, exact `validator.imports`, all-empty `validator.import_excludes`, and the required uniform fixture mappings on every entry.
     - The staging flow fetches an exact missing tag from the manifest GitHub remote instead of inheriting a local-path `origin`, `tools/build_safe_debs.py` leaves staged checkouts clean, and `tools/verify_imported_assets.py` rejects content drift or extra files under `tests/fixtures/`, `tests/harness-source/`, and `tests/tagged-port/`.
     - No stale hard-coded library list, wrong `inventory.tag_probe_rule`, wrong `04-test` ref, no-op `--verify-scope`, reintroduced publication-tag contract, or non-hermetic phase-01 `unit/` test remains.
-    
+
     End with exactly one verdict line:
     VERDICT: PASS
     or
@@ -620,23 +620,23 @@ phases:
   prompt: |-
     {% raw %}
     Role: Software engineer implementing phase `impl_02_shared_runner_reporting`.
-    
+
     Work from repository root `/home/yans/safelibs/validator`. This prompt is self-contained. Use `.plan/workflow-structure.yaml` as the authoritative source for phase order, phase IDs, phase types, and fixed `bounce_target` values. Keep the workflow topology fixed: do not invent, rename, or reorder phase IDs, phase types, verifier phases, or bounce targets. Consume or update existing artifacts listed below in place. Do not refetch, recollect, rediscover, or regenerate checked-in or already-prepared artifacts from scratch when they already exist.
     The explicit verifier phases for this implement phase are `check_02_shared_runner_smoke`, `check_02_shared_runner_review`; each verifier remains an explicit top-level `check` phase and uses its fixed `bounce_target: impl_02_shared_runner_reporting`.
-    
+
     Source Phase File
     `.plan/phases/02-shared-runner-reporting.md`
-    
+
     **Phase Name**
-    
+
     `shared-runner-reporting`
-    
+
     **Implement Phase ID**
-    
+
     `impl_02_shared_runner_reporting`
-    
+
     **Preexisting Inputs**
-    
+
     - `.gitignore`
     - `Makefile`
     - `inventory/`
@@ -647,9 +647,9 @@ phases:
     - `/home/yans/safelibs/website/package.json`
     - `/home/yans/safelibs/website/scripts/build.mjs`
     - `/home/yans/safelibs/website/.github/workflows/deploy.yml`
-    
+
     **New Outputs**
-    
+
     - `test.sh`
     - `tools/run_matrix.py`
     - `tools/render_site.py`
@@ -665,15 +665,15 @@ phases:
     - `unit/fixtures/demo-failure-debs/demo-pass/*.deb`
     - `unit/fixtures/demo-failure-debs/demo-fail/*.deb`
     - `unit/fixtures/demo-failure-tests/**`
-    
+
     **File Changes**
-    
+
     - Create the shared matrix entrypoints `test.sh`, `tools/run_matrix.py`, `tools/render_site.py`, and `scripts/verify-site.sh`.
     - Create the validator-owned shared runtime scripts `tests/_shared/install_safe_debs.sh` and `tests/_shared/run_library_tests.sh`.
     - Create runner and renderer unit coverage plus the self-contained demo and aggregate-failure fixtures under `unit/fixtures/`.
-    
+
     **Implementation Details**
-    
+
     - Treat the currently checked-in generated workflow artifacts under `.plan/phases/*.md` and `.plan/workflow-structure.yaml`, plus any existing worktree `workflow.yaml`, as stale reference inputs during phases 01 through 05.
     - Do not rewrite, rename, delete, or stage changes to those generated workflow artifacts in this phase; only phase 06 may replace the generated workflow file set.
     - `test.sh` must be a thin CLI wrapper over `tools/run_matrix.py`. It must support:
@@ -713,18 +713,18 @@ phases:
     - Add small self-contained demo fixtures under `unit/fixtures/`, including a checked-in dummy safe-deb tree at `unit/fixtures/demo-debs/demo/*.deb`, so phase 02 can exercise the shared runner and renderer without depending on real port staging.
     - Add a second self-contained failure fixture under `unit/fixtures/demo-failure-*` with exactly two libraries, `demo-fail` then `demo-pass`, so phase 02 can prove the matrix continues through a failing library and returns one aggregate non-zero exit only after both libraries and both modes are attempted.
     - `unit/test_run_matrix.py` must cover both the accepted matrix-root safe-deb layout (`unit/fixtures/demo-debs/<library>/*.deb`), rejection of a single-library leaf passed directly as `--safe-deb-root`, and the aggregate-failure fixture that verifies continuation plus one final non-zero exit status.
-    
+
     **Success Criteria**
-    
+
     - Both `check_02_shared_runner_smoke` and `check_02_shared_runner_review` pass.
     - `test.sh` and `tools/run_matrix.py` preserve the fixed aggregate matrix contract, emit complete result JSON for every attempted run, and return one non-zero exit only after the requested matrix finishes when any run failed.
     - Safe-mode runs execute under `bash -x`, capture `safe.cast`, and mount safe `.deb` packages only from the matrix-root layout `<safe-deb-root>/<library>/*.deb` as `/safedebs`.
     - `tests/_shared/run_library_tests.sh` exports `VALIDATOR_LIBRARY`, `VALIDATOR_LIBRARY_ROOT`, and `VALIDATOR_TAGGED_ROOT`, dispatches to `tests/<library>/tests/run.sh`, and never exports `VALIDATOR_MODE`.
     - The rendered site matches the matrix results and referenced artifact paths exactly, and the demo plus aggregate-failure fixtures stay self-contained.
-    
+
     **Git Commit Requirement**
-    
-    
+
+
     Commit all phase work to git before yielding.
     Leave exactly one new commit atop the incoming branch state before yielding so every verifier that runs `git diff --check HEAD^ HEAD` reviews the full phase diff rather than only the tail of a multi-commit stack.
     {% endraw %}
@@ -734,15 +734,15 @@ phases:
   prompt: |-
     {% raw %}
     Reviewer role: verification agent for `check_02_shared_runner_smoke` reviewing `impl_02_shared_runner_reporting`.
-    
+
     Work from repository root `/home/yans/safelibs/validator`. Review only. Do not modify files. This prompt is self-contained. Use `.plan/workflow-structure.yaml` as the authoritative source for phase order, phase IDs, phase types, and fixed `bounce_target` values. Use the existing workspace artifacts in place. Do not refetch, recollect, rediscover, or regenerate checked-in or already-prepared artifacts from scratch while checking. The fixed bounce target for this check is `impl_02_shared_runner_reporting`.
-    
+
     Phase Name
     `shared-runner-reporting`
-    
+
     Source Phase File
     `.plan/phases/02-shared-runner-reporting.md`
-    
+
     Preexisting Inputs
     - repositories.yml
     - test.sh
@@ -758,12 +758,12 @@ phases:
     - unit/fixtures/demo-failure-manifest.yml
     - unit/fixtures/demo-failure-debs/
     - unit/fixtures/demo-failure-tests/
-    
+
     Specific Things To Verify
     - verify the shared matrix runner, aggregate-failure contract, result schema, safe-mode trace capture, and static-site renderer before library-specific harnesses exist.
     - Run the verifier definition below exactly as written and treat any non-zero exit code, failing assertion, missing file, or mismatch as failure.
     - Confirm the relevant success criteria for `impl_02_shared_runner_reporting` remain satisfied in the current workspace.
-    
+
     Verification Phase Definition
     - `check_02_shared_runner_smoke`
       - type: `check`
@@ -789,7 +789,7 @@ phases:
           python3 - <<'PY'
           from pathlib import Path
           import yaml
-    
+
           expected = [entry["name"] for entry in yaml.safe_load(Path("repositories.yml").read_text())["repositories"]]
           actual = Path(".work/check02/libraries.txt").read_text().splitlines()
           if actual != expected:
@@ -799,7 +799,7 @@ phases:
           python3 - <<'PY'
           from pathlib import Path
           import json
-    
+
           failure_root = Path(".work/check02/failure-artifacts/results")
           fail_original = json.loads((failure_root / "demo-fail" / "original.json").read_text())
           pass_original = json.loads((failure_root / "demo-pass" / "original.json").read_text())
@@ -815,16 +815,16 @@ phases:
         - `find .work/check02/artifacts/casts -name 'safe.cast' | grep -q .`
         - `find .work/check02/failure-artifacts/casts -name 'safe.cast' | grep -q .`
         - `test -f .work/check02/site/index.html`
-    
+
     Relevant Success Criteria
     **Success Criteria**
-    
+
     - Both `check_02_shared_runner_smoke` and `check_02_shared_runner_review` pass.
     - `test.sh` and `tools/run_matrix.py` preserve the fixed aggregate matrix contract, emit complete result JSON for every attempted run, and return one non-zero exit only after the requested matrix finishes when any run failed.
     - Safe-mode runs execute under `bash -x`, capture `safe.cast`, and mount safe `.deb` packages only from the matrix-root layout `<safe-deb-root>/<library>/*.deb` as `/safedebs`.
     - `tests/_shared/run_library_tests.sh` exports `VALIDATOR_LIBRARY`, `VALIDATOR_LIBRARY_ROOT`, and `VALIDATOR_TAGGED_ROOT`, dispatches to `tests/<library>/tests/run.sh`, and never exports `VALIDATOR_MODE`.
     - The rendered site matches the matrix results and referenced artifact paths exactly, and the demo plus aggregate-failure fixtures stay self-contained.
-    
+
     End with exactly one verdict line:
     VERDICT: PASS
     or
@@ -836,15 +836,15 @@ phases:
   prompt: |-
     {% raw %}
     Reviewer role: verification agent for `check_02_shared_runner_review` reviewing `impl_02_shared_runner_reporting`.
-    
+
     Work from repository root `/home/yans/safelibs/validator`. Review only. Do not modify files. This prompt is self-contained. Use `.plan/workflow-structure.yaml` as the authoritative source for phase order, phase IDs, phase types, and fixed `bounce_target` values. Use the existing workspace artifacts in place. Do not refetch, recollect, rediscover, or regenerate checked-in or already-prepared artifacts from scratch while checking. The fixed bounce target for this check is `impl_02_shared_runner_reporting`.
-    
+
     Phase Name
     `shared-runner-reporting`
-    
+
     Source Phase File
     `.plan/phases/02-shared-runner-reporting.md`
-    
+
     Preexisting Inputs
     - repositories.yml
     - test.sh
@@ -860,12 +860,12 @@ phases:
     - unit/fixtures/demo-failure-manifest.yml
     - unit/fixtures/demo-failure-debs/
     - unit/fixtures/demo-failure-tests/
-    
+
     Specific Things To Verify
     - review the shared runner CLI, the exact `--safe-deb-root` contract, the result schema, the shared entrypoint contract, aggregate-failure behavior, and site-verification invariants using fresh demo runs.
     - Run the verifier definition below exactly as written and treat any non-zero exit code, failing assertion, missing file, or mismatch as failure.
     - Confirm the relevant success criteria for `impl_02_shared_runner_reporting` remain satisfied in the current workspace.
-    
+
     Verification Phase Definition
     - `check_02_shared_runner_review`
       - type: `check`
@@ -884,7 +884,7 @@ phases:
           python3 - <<'PY'
           from pathlib import Path
           import json
-    
+
           safe_results = list(Path(".work/check02-review/artifacts/results").glob("*/safe.json"))
           if len(safe_results) != 1:
               raise SystemExit(f"expected exactly one demo safe result, found {safe_results}")
@@ -901,22 +901,22 @@ phases:
           }
           if set(safe_result) < required:
               raise SystemExit(f"result schema mismatch: {set(safe_result)}")
-    
+
           run_matrix = Path("tools/run_matrix.py").read_text()
           if "bash -x" not in run_matrix:
               raise SystemExit("safe-mode bash -x trace missing")
-    
+
           demo_deb_root = Path("unit/fixtures/demo-debs")
           demo_deb_dirs = sorted(path.name for path in demo_deb_root.iterdir() if path.is_dir())
           if demo_deb_dirs != ["demo"]:
               raise SystemExit(f"demo safe-deb root must use per-library subdirectories, found {demo_deb_dirs}")
           if not list((demo_deb_root / "demo").glob("*.deb")):
               raise SystemExit("demo safe-deb root must contain .deb files under unit/fixtures/demo-debs/demo/")
-    
+
           install_script = Path("tests/_shared/install_safe_debs.sh").read_text()
           if "/safedebs" not in install_script:
               raise SystemExit("safe-deb installer must target /safedebs")
-    
+
           shared_runner = Path("tests/_shared/run_library_tests.sh").read_text()
           if "set -euo pipefail" not in shared_runner:
               raise SystemExit("shared test runner must be strict-shell")
@@ -938,7 +938,7 @@ phases:
           python3 - <<'PY'
           from pathlib import Path
           import json
-    
+
           failure_root = Path(".work/check02-review/failure-artifacts/results")
           expected = {
               ("demo-fail", "original"),
@@ -961,16 +961,16 @@ phases:
         - `find .work/check02-review/artifacts/casts -name 'safe.cast' | grep -q .`
         - `find .work/check02-review/failure-artifacts/casts -name 'safe.cast' | grep -q .`
         - `test -f .work/check02-review/site/index.html`
-    
+
     Relevant Success Criteria
     **Success Criteria**
-    
+
     - Both `check_02_shared_runner_smoke` and `check_02_shared_runner_review` pass.
     - `test.sh` and `tools/run_matrix.py` preserve the fixed aggregate matrix contract, emit complete result JSON for every attempted run, and return one non-zero exit only after the requested matrix finishes when any run failed.
     - Safe-mode runs execute under `bash -x`, capture `safe.cast`, and mount safe `.deb` packages only from the matrix-root layout `<safe-deb-root>/<library>/*.deb` as `/safedebs`.
     - `tests/_shared/run_library_tests.sh` exports `VALIDATOR_LIBRARY`, `VALIDATOR_LIBRARY_ROOT`, and `VALIDATOR_TAGGED_ROOT`, dispatches to `tests/<library>/tests/run.sh`, and never exports `VALIDATOR_MODE`.
     - The rendered site matches the matrix results and referenced artifact paths exactly, and the demo plus aggregate-failure fixtures stay self-contained.
-    
+
     End with exactly one verdict line:
     VERDICT: PASS
     or
@@ -982,23 +982,23 @@ phases:
   prompt: |-
     {% raw %}
     Role: Software engineer implementing phase `impl_03_data_text_validators`.
-    
+
     Work from repository root `/home/yans/safelibs/validator`. This prompt is self-contained. Use `.plan/workflow-structure.yaml` as the authoritative source for phase order, phase IDs, phase types, and fixed `bounce_target` values. Keep the workflow topology fixed: do not invent, rename, or reorder phase IDs, phase types, verifier phases, or bounce targets. Consume or update existing artifacts listed below in place. Do not refetch, recollect, rediscover, or regenerate checked-in or already-prepared artifacts from scratch when they already exist.
     The explicit verifier phases for this implement phase are `check_03_data_text_matrix`, `check_03_data_text_review`; each verifier remains an explicit top-level `check` phase and uses its fixed `bounce_target: impl_03_data_text_validators`.
-    
+
     Source Phase File
     `.plan/phases/03-data-text-validators.md`
-    
+
     **Phase Name**
-    
+
     `data-text-validators`
-    
+
     **Implement Phase ID**
-    
+
     `impl_03_data_text_validators`
-    
+
     **Preexisting Inputs**
-    
+
     - `.gitignore`
     - `Makefile`
     - `inventory/`
@@ -1009,23 +1009,23 @@ phases:
     - `scripts/verify-site.sh`
     - `tests/_shared/`
     - staged tag-backed inputs for `cjson`, `libcsv`, `libjson`, `libxml`, and `libyaml` as defined in `repositories.yml`
-    
+
     **New Outputs**
-    
+
     - `tests/cjson/**`
     - `tests/libcsv/**`
     - `tests/libjson/**`
     - `tests/libxml/**`
     - `tests/libyaml/**`
-    
+
     **File Changes**
-    
+
     - Create validator-owned test trees for `cjson`, `libcsv`, `libjson`, `libxml`, and `libyaml`.
     - Within each library tree, create `Dockerfile`, `docker-entrypoint.sh`, and executable `tests/run.sh`.
     - Populate `tests/<library>/tests/fixtures/`, `tests/<library>/tests/harness-source/`, and `tests/<library>/tests/tagged-port/` only through `tools/import_port_assets.py`.
-    
+
     **Implementation Details**
-    
+
     - Treat the currently checked-in generated workflow artifacts under `.plan/phases/*.md` and `.plan/workflow-structure.yaml`, plus any existing worktree `workflow.yaml`, as stale reference inputs during phases 01 through 05.
     - Do not rewrite, rename, delete, or stage changes to those generated workflow artifacts in this phase; only phase 06 may replace the generated workflow file set.
     - This phase covers:
@@ -1060,17 +1060,17 @@ phases:
         - fixed `tests/run.sh` target: compile and run the copied upstream C tests under `tests/tagged-port/original/tests` and the copied examples under `tests/tagged-port/original/examples` against installed libyaml packages, while using copied package-smoke inputs from `tests/tagged-port/safe/debian/tests` and copied fixture sources from `tests/tagged-port/safe/tests/fixtures` only. It must not cargo-test the imported Rust tree.
     - The tests must remain implementation-blind. They may validate behavior and package presence, but they must not branch on `safe` versus `original`, and they must not depend on a mode-specific environment variable because none is part of the shared runner contract.
     - Preserve the manifest-declared build mode. In this batch, `libcsv` must keep its checked-in-artifact path instead of rebuilding packages.
-    
+
     **Success Criteria**
-    
+
     - Both `check_03_data_text_matrix` and `check_03_data_text_review` pass.
     - Every library in this batch has validator-owned `Dockerfile`, `docker-entrypoint.sh`, and executable `tests/run.sh`, with imported fixtures and mirrored tag inputs preserved byte-for-byte under `tests/<library>/tests/`.
     - Every `docker-entrypoint.sh` reuses `tests/_shared/install_safe_debs.sh` and `tests/_shared/run_library_tests.sh`, and no library harness branches on run mode or reads `VALIDATOR_MODE`.
     - `tools/verify_imported_assets.py` passes against freshly staged manifest refs, `libcsv` keeps `checkout-artifacts`, and each `tests/run.sh` reflects the exact fixed runtime bullet for its library.
-    
+
     **Git Commit Requirement**
-    
-    
+
+
     Commit all phase work to git before yielding.
     Leave exactly one new commit atop the incoming branch state before yielding so every verifier that runs `git diff --check HEAD^ HEAD` reviews the full phase diff rather than only the tail of a multi-commit stack.
     {% endraw %}
@@ -1080,15 +1080,15 @@ phases:
   prompt: |-
     {% raw %}
     Reviewer role: verification agent for `check_03_data_text_matrix` reviewing `impl_03_data_text_validators`.
-    
+
     Work from repository root `/home/yans/safelibs/validator`. Review only. Do not modify files. This prompt is self-contained. Use `.plan/workflow-structure.yaml` as the authoritative source for phase order, phase IDs, phase types, and fixed `bounce_target` values. Use the existing workspace artifacts in place. Do not refetch, recollect, rediscover, or regenerate checked-in or already-prepared artifacts from scratch while checking. The fixed bounce target for this check is `impl_03_data_text_validators`.
-    
+
     Phase Name
     `data-text-validators`
-    
+
     Source Phase File
     `.plan/phases/03-data-text-validators.md`
-    
+
     Preexisting Inputs
     - repositories.yml
     - tools/
@@ -1102,12 +1102,12 @@ phases:
     - tests/libyaml/
     - sibling `port-*` clone sources under `/home/yans/safelibs/`
     - authenticated GitHub access for private `port-*` repos, provided by an existing local login or an effective token from `GH_TOKEN` or `SAFELIBS_REPO_TOKEN`
-    
+
     Specific Things To Verify
     - verify the data/text batch in both modes with imported tag-backed fixtures and validator-owned harnesses.
     - Run the verifier definition below exactly as written and treat any non-zero exit code, failing assertion, missing file, or mismatch as failure.
     - Confirm the relevant success criteria for `impl_03_data_text_validators` remain satisfied in the current workspace.
-    
+
     Verification Phase Definition
     - `check_03_data_text_matrix`
       - type: `check`
@@ -1121,15 +1121,15 @@ phases:
         - `python3 tools/render_site.py --results-root .work/check03/artifacts/results --artifacts-root .work/check03/artifacts --output-root .work/check03/site`
         - `bash scripts/verify-site.sh --config repositories.yml --results-root .work/check03/artifacts/results --site-root .work/check03/site`
         - `for lib in cjson libcsv libjson libxml libyaml; do test -f .work/check03/artifacts/results/$lib/original.json && test -f .work/check03/artifacts/results/$lib/safe.json && test -f .work/check03/artifacts/casts/$lib/safe.cast; done`
-    
+
     Relevant Success Criteria
     **Success Criteria**
-    
+
     - Both `check_03_data_text_matrix` and `check_03_data_text_review` pass.
     - Every library in this batch has validator-owned `Dockerfile`, `docker-entrypoint.sh`, and executable `tests/run.sh`, with imported fixtures and mirrored tag inputs preserved byte-for-byte under `tests/<library>/tests/`.
     - Every `docker-entrypoint.sh` reuses `tests/_shared/install_safe_debs.sh` and `tests/_shared/run_library_tests.sh`, and no library harness branches on run mode or reads `VALIDATOR_MODE`.
     - `tools/verify_imported_assets.py` passes against freshly staged manifest refs, `libcsv` keeps `checkout-artifacts`, and each `tests/run.sh` reflects the exact fixed runtime bullet for its library.
-    
+
     End with exactly one verdict line:
     VERDICT: PASS
     or
@@ -1141,15 +1141,15 @@ phases:
   prompt: |-
     {% raw %}
     Reviewer role: verification agent for `check_03_data_text_review` reviewing `impl_03_data_text_validators`.
-    
+
     Work from repository root `/home/yans/safelibs/validator`. Review only. Do not modify files. This prompt is self-contained. Use `.plan/workflow-structure.yaml` as the authoritative source for phase order, phase IDs, phase types, and fixed `bounce_target` values. Use the existing workspace artifacts in place. Do not refetch, recollect, rediscover, or regenerate checked-in or already-prepared artifacts from scratch while checking. The fixed bounce target for this check is `impl_03_data_text_validators`.
-    
+
     Phase Name
     `data-text-validators`
-    
+
     Source Phase File
     `.plan/phases/03-data-text-validators.md`
-    
+
     Preexisting Inputs
     - repositories.yml
     - tools/
@@ -1163,12 +1163,12 @@ phases:
     - tests/libyaml/
     - sibling `port-*` clone sources under `/home/yans/safelibs/`
     - authenticated GitHub access for private `port-*` repos, provided by an existing local login or an effective token from `GH_TOKEN` or `SAFELIBS_REPO_TOKEN`
-    
+
     Specific Things To Verify
     - review imported-asset fidelity, shared-entrypoint usage, the fixed per-library runtime contract from `Fixed Library Contract`, and the batch build-mode rules.
     - Run the verifier definition below exactly as written and treat any non-zero exit code, failing assertion, missing file, or mismatch as failure.
     - Confirm the relevant success criteria for `impl_03_data_text_validators` remain satisfied in the current workspace.
-    
+
     Verification Phase Definition
     - `check_03_data_text_review`
       - type: `check`
@@ -1184,7 +1184,7 @@ phases:
           python3 - <<'PY'
           from pathlib import Path
           import yaml
-    
+
           manifest = yaml.safe_load(Path("repositories.yml").read_text())
           by_name = {entry["name"]: entry for entry in manifest["repositories"]}
           if by_name["libcsv"]["build"]["mode"] != "checkout-artifacts":
@@ -1195,7 +1195,7 @@ phases:
         - |
           python3 - <<'PY'
           from pathlib import Path
-    
+
           required_tokens = {
               "cjson": [
                   "VALIDATOR_TAGGED_ROOT",
@@ -1242,15 +1242,15 @@ phases:
                   if token in text:
                       raise SystemExit(f"{lib} run.sh kept forbidden build-tree token: {token}")
           PY
-    
+
     Relevant Success Criteria
     **Success Criteria**
-    
+
     - Both `check_03_data_text_matrix` and `check_03_data_text_review` pass.
     - Every library in this batch has validator-owned `Dockerfile`, `docker-entrypoint.sh`, and executable `tests/run.sh`, with imported fixtures and mirrored tag inputs preserved byte-for-byte under `tests/<library>/tests/`.
     - Every `docker-entrypoint.sh` reuses `tests/_shared/install_safe_debs.sh` and `tests/_shared/run_library_tests.sh`, and no library harness branches on run mode or reads `VALIDATOR_MODE`.
     - `tools/verify_imported_assets.py` passes against freshly staged manifest refs, `libcsv` keeps `checkout-artifacts`, and each `tests/run.sh` reflects the exact fixed runtime bullet for its library.
-    
+
     End with exactly one verdict line:
     VERDICT: PASS
     or
@@ -1262,23 +1262,23 @@ phases:
   prompt: |-
     {% raw %}
     Role: Software engineer implementing phase `impl_04_media_validators`.
-    
+
     Work from repository root `/home/yans/safelibs/validator`. This prompt is self-contained. Use `.plan/workflow-structure.yaml` as the authoritative source for phase order, phase IDs, phase types, and fixed `bounce_target` values. Keep the workflow topology fixed: do not invent, rename, or reorder phase IDs, phase types, verifier phases, or bounce targets. Consume or update existing artifacts listed below in place. Do not refetch, recollect, rediscover, or regenerate checked-in or already-prepared artifacts from scratch when they already exist.
     The explicit verifier phases for this implement phase are `check_04_media_matrix`, `check_04_media_review`; each verifier remains an explicit top-level `check` phase and uses its fixed `bounce_target: impl_04_media_validators`.
-    
+
     Source Phase File
     `.plan/phases/04-media-validators.md`
-    
+
     **Phase Name**
-    
+
     `media-validators`
-    
+
     **Implement Phase ID**
-    
+
     `impl_04_media_validators`
-    
+
     **Preexisting Inputs**
-    
+
     - `.gitignore`
     - `Makefile`
     - `inventory/`
@@ -1294,9 +1294,9 @@ phases:
     - `tests/libxml/`
     - `tests/libyaml/`
     - staged tag-backed inputs for `giflib`, `libexif`, `libjpeg-turbo`, `libpng`, `libsdl`, `libtiff`, `libvips`, and `libwebp` as defined in `repositories.yml`
-    
+
     **New Outputs**
-    
+
     - `tests/giflib/**`
     - `tests/libexif/**`
     - `tests/libjpeg-turbo/**`
@@ -1305,15 +1305,15 @@ phases:
     - `tests/libtiff/**`
     - `tests/libvips/**`
     - `tests/libwebp/**`
-    
+
     **File Changes**
-    
+
     - Create validator-owned test trees for `giflib`, `libexif`, `libjpeg-turbo`, `libpng`, `libsdl`, `libtiff`, `libvips`, and `libwebp`.
     - Within each library tree, create `Dockerfile`, `docker-entrypoint.sh`, and executable `tests/run.sh`.
     - Populate each library's fixtures, harness-source files, and mirrored tagged inputs only through `tools/import_port_assets.py`.
-    
+
     **Implementation Details**
-    
+
     - Treat the currently checked-in generated workflow artifacts under `.plan/phases/*.md` and `.plan/workflow-structure.yaml`, plus any existing worktree `workflow.yaml`, as stale reference inputs during phases 01 through 05.
     - Do not rewrite, rename, delete, or stage changes to those generated workflow artifacts in this phase; only phase 06 may replace the generated workflow file set.
     - This phase covers:
@@ -1357,17 +1357,17 @@ phases:
         - fixed `tests/run.sh` target: translate the imported harness into an installed-package-only matrix that preserves its direct package-surface probes, tool smokes, and dependent runtime cases, compiling `tests/tagged-port/original/tests/public_api_test.c` and using `tests/tagged-port/original/examples/test.webp` plus `tests/tagged-port/original/examples/test_ref.ppm` together with the copied C drivers under `tests/tagged-port/safe/tests/c`.
     - The tests in this batch must remain implementation-blind and must not read any explicit safe/original mode selector from the shared runner contract.
     - Preserve tracked generated or vendor inputs when present. In particular, `libsdl` and `libvips` must carry forward their manifest-declared generated/vendor imports rather than regenerating them in validator.
-    
+
     **Success Criteria**
-    
+
     - Both `check_04_media_matrix` and `check_04_media_review` pass.
     - Every library in this batch has validator-owned `Dockerfile`, `docker-entrypoint.sh`, and executable `tests/run.sh`, with fixtures, harness-source files, and mirrored tagged inputs preserved under `tests/<library>/tests/`.
     - The batch keeps `libexif` as a mature tagged `safe-debian` import, preserves `libpng` as `checkout-artifacts`, preserves `libvips` as explicit `docker`, and carries forward generated/vendor imports such as `safe/generated/noninteractive_test_list.json` and `safe/vendor/pyvips-3.1.1`.
     - Every entrypoint reuses the shared install and dispatch scripts, no harness branches on run mode, and each `tests/run.sh` reflects the exact fixed runtime bullet for its library.
-    
+
     **Git Commit Requirement**
-    
-    
+
+
     Commit all phase work to git before yielding.
     Leave exactly one new commit atop the incoming branch state before yielding so every verifier that runs `git diff --check HEAD^ HEAD` reviews the full phase diff rather than only the tail of a multi-commit stack.
     {% endraw %}
@@ -1377,15 +1377,15 @@ phases:
   prompt: |-
     {% raw %}
     Reviewer role: verification agent for `check_04_media_matrix` reviewing `impl_04_media_validators`.
-    
+
     Work from repository root `/home/yans/safelibs/validator`. Review only. Do not modify files. This prompt is self-contained. Use `.plan/workflow-structure.yaml` as the authoritative source for phase order, phase IDs, phase types, and fixed `bounce_target` values. Use the existing workspace artifacts in place. Do not refetch, recollect, rediscover, or regenerate checked-in or already-prepared artifacts from scratch while checking. The fixed bounce target for this check is `impl_04_media_validators`.
-    
+
     Phase Name
     `media-validators`
-    
+
     Source Phase File
     `.plan/phases/04-media-validators.md`
-    
+
     Preexisting Inputs
     - repositories.yml
     - tools/
@@ -1402,12 +1402,12 @@ phases:
     - tests/libwebp/
     - sibling `port-*` clone sources under `/home/yans/safelibs/`
     - authenticated GitHub access for private `port-*` repos, provided by an existing local login or an effective token from `GH_TOKEN` or `SAFELIBS_REPO_TOKEN`
-    
+
     Specific Things To Verify
     - verify the media batch in both modes, including mature tagged `libexif` and the special docker/check-out-artifacts paths.
     - Run the verifier definition below exactly as written and treat any non-zero exit code, failing assertion, missing file, or mismatch as failure.
     - Confirm the relevant success criteria for `impl_04_media_validators` remain satisfied in the current workspace.
-    
+
     Verification Phase Definition
     - `check_04_media_matrix`
       - type: `check`
@@ -1421,15 +1421,15 @@ phases:
         - `python3 tools/render_site.py --results-root .work/check04/artifacts/results --artifacts-root .work/check04/artifacts --output-root .work/check04/site`
         - `bash scripts/verify-site.sh --config repositories.yml --results-root .work/check04/artifacts/results --site-root .work/check04/site`
         - `for lib in giflib libexif libjpeg-turbo libpng libsdl libtiff libvips libwebp; do test -f .work/check04/artifacts/results/$lib/original.json && test -f .work/check04/artifacts/results/$lib/safe.json && test -f .work/check04/artifacts/casts/$lib/safe.cast; done`
-    
+
     Relevant Success Criteria
     **Success Criteria**
-    
+
     - Both `check_04_media_matrix` and `check_04_media_review` pass.
     - Every library in this batch has validator-owned `Dockerfile`, `docker-entrypoint.sh`, and executable `tests/run.sh`, with fixtures, harness-source files, and mirrored tagged inputs preserved under `tests/<library>/tests/`.
     - The batch keeps `libexif` as a mature tagged `safe-debian` import, preserves `libpng` as `checkout-artifacts`, preserves `libvips` as explicit `docker`, and carries forward generated/vendor imports such as `safe/generated/noninteractive_test_list.json` and `safe/vendor/pyvips-3.1.1`.
     - Every entrypoint reuses the shared install and dispatch scripts, no harness branches on run mode, and each `tests/run.sh` reflects the exact fixed runtime bullet for its library.
-    
+
     End with exactly one verdict line:
     VERDICT: PASS
     or
@@ -1441,15 +1441,15 @@ phases:
   prompt: |-
     {% raw %}
     Reviewer role: verification agent for `check_04_media_review` reviewing `impl_04_media_validators`.
-    
+
     Work from repository root `/home/yans/safelibs/validator`. Review only. Do not modify files. This prompt is self-contained. Use `.plan/workflow-structure.yaml` as the authoritative source for phase order, phase IDs, phase types, and fixed `bounce_target` values. Use the existing workspace artifacts in place. Do not refetch, recollect, rediscover, or regenerate checked-in or already-prepared artifacts from scratch while checking. The fixed bounce target for this check is `impl_04_media_validators`.
-    
+
     Phase Name
     `media-validators`
-    
+
     Source Phase File
     `.plan/phases/04-media-validators.md`
-    
+
     Preexisting Inputs
     - repositories.yml
     - tools/
@@ -1466,12 +1466,12 @@ phases:
     - tests/libwebp/
     - sibling `port-*` clone sources under `/home/yans/safelibs/`
     - authenticated GitHub access for private `port-*` repos, provided by an existing local login or an effective token from `GH_TOKEN` or `SAFELIBS_REPO_TOKEN`
-    
+
     Specific Things To Verify
     - review imported-asset fidelity, generated/vendor imports, the fixed per-library runtime contract from `Fixed Library Contract`, and the batch build-mode rules.
     - Run the verifier definition below exactly as written and treat any non-zero exit code, failing assertion, missing file, or mismatch as failure.
     - Confirm the relevant success criteria for `impl_04_media_validators` remain satisfied in the current workspace.
-    
+
     Verification Phase Definition
     - `check_04_media_review`
       - type: `check`
@@ -1487,7 +1487,7 @@ phases:
           python3 - <<'PY'
           from pathlib import Path
           import yaml
-    
+
           manifest = yaml.safe_load(Path("repositories.yml").read_text())
           by_name = {entry["name"]: entry for entry in manifest["repositories"]}
           if by_name["libpng"]["build"]["mode"] != "checkout-artifacts":
@@ -1505,7 +1505,7 @@ phases:
         - |
           python3 - <<'PY'
           from pathlib import Path
-    
+
           required_tokens = {
               "giflib": [
                   "VALIDATOR_TAGGED_ROOT",
@@ -1573,15 +1573,15 @@ phases:
                   if token in text:
                       raise SystemExit(f"{lib} run.sh kept forbidden build-tree token: {token}")
           PY
-    
+
     Relevant Success Criteria
     **Success Criteria**
-    
+
     - Both `check_04_media_matrix` and `check_04_media_review` pass.
     - Every library in this batch has validator-owned `Dockerfile`, `docker-entrypoint.sh`, and executable `tests/run.sh`, with fixtures, harness-source files, and mirrored tagged inputs preserved under `tests/<library>/tests/`.
     - The batch keeps `libexif` as a mature tagged `safe-debian` import, preserves `libpng` as `checkout-artifacts`, preserves `libvips` as explicit `docker`, and carries forward generated/vendor imports such as `safe/generated/noninteractive_test_list.json` and `safe/vendor/pyvips-3.1.1`.
     - Every entrypoint reuses the shared install and dispatch scripts, no harness branches on run mode, and each `tests/run.sh` reflects the exact fixed runtime bullet for its library.
-    
+
     End with exactly one verdict line:
     VERDICT: PASS
     or
@@ -1593,23 +1593,23 @@ phases:
   prompt: |-
     {% raw %}
     Role: Software engineer implementing phase `impl_05_system_archive_validators`.
-    
+
     Work from repository root `/home/yans/safelibs/validator`. This prompt is self-contained. Use `.plan/workflow-structure.yaml` as the authoritative source for phase order, phase IDs, phase types, and fixed `bounce_target` values. Keep the workflow topology fixed: do not invent, rename, or reorder phase IDs, phase types, verifier phases, or bounce targets. Consume or update existing artifacts listed below in place. Do not refetch, recollect, rediscover, or regenerate checked-in or already-prepared artifacts from scratch when they already exist.
     The explicit verifier phases for this implement phase are `check_05_system_archive_matrix`, `check_05_system_archive_review`; each verifier remains an explicit top-level `check` phase and uses its fixed `bounce_target: impl_05_system_archive_validators`.
-    
+
     Source Phase File
     `.plan/phases/05-system-archive-validators.md`
-    
+
     **Phase Name**
-    
+
     `system-archive-validators`
-    
+
     **Implement Phase ID**
-    
+
     `impl_05_system_archive_validators`
-    
+
     **Preexisting Inputs**
-    
+
     - `.gitignore`
     - `Makefile`
     - `inventory/`
@@ -1633,24 +1633,24 @@ phases:
     - `tests/libvips/`
     - `tests/libwebp/`
     - staged tag-backed inputs for `libarchive`, `libbz2`, `liblzma`, `libsodium`, `libuv`, and `libzstd` as defined in `repositories.yml`
-    
+
     **New Outputs**
-    
+
     - `tests/libarchive/**`
     - `tests/libbz2/**`
     - `tests/liblzma/**`
     - `tests/libsodium/**`
     - `tests/libuv/**`
     - `tests/libzstd/**`
-    
+
     **File Changes**
-    
+
     - Create validator-owned test trees for `libarchive`, `libbz2`, `liblzma`, `libsodium`, `libuv`, and `libzstd`.
     - Within each library tree, create `Dockerfile`, `docker-entrypoint.sh`, and executable `tests/run.sh`.
     - Populate each library's fixtures, harness-source files, and mirrored tagged inputs only through `tools/import_port_assets.py`.
-    
+
     **Implementation Details**
-    
+
     - Treat the currently checked-in generated workflow artifacts under `.plan/phases/*.md` and `.plan/workflow-structure.yaml`, plus any existing worktree `workflow.yaml`, as stale reference inputs during phases 01 through 05.
     - Do not rewrite, rename, delete, or stage changes to those generated workflow artifacts in this phase; only phase 06 may replace the generated workflow file set.
     - This phase covers:
@@ -1687,17 +1687,17 @@ phases:
         - fixed `tests/run.sh` target: translate the imported harness into an installed-package-only matrix that runs the copied dependent suite described by `tests/tagged-port/safe/tests/dependents/dependent_matrix.toml`, the copied C API drivers under `tests/tagged-port/safe/tests/capi`, the copied link-compat and whitebox suites under `tests/tagged-port/safe/tests/link-compat` and `tests/tagged-port/safe/tests/ported`, and the copied upstream corpus under `tests/tagged-port/original/libzstd-1.5.5+dfsg2`, using only copied helpers under `tests/tagged-port/safe/docker` and `tests/tagged-port/safe/scripts` plus installed packages.
     - The tests in this batch must remain implementation-blind and must not read any explicit safe/original mode selector from the shared runner contract.
     - Do not add any validator logic for out-of-scope untagged repos in this phase.
-    
+
     **Success Criteria**
-    
+
     - Both `check_05_system_archive_matrix` and `check_05_system_archive_review` pass.
     - Every library in this batch has validator-owned `Dockerfile`, `docker-entrypoint.sh`, and executable `tests/run.sh`, with fixtures, harness-source files, and mirrored tagged inputs preserved under `tests/<library>/tests/`.
     - `libuv` stays pinned to `refs/tags/libuv/04-test` as a mature tagged `safe-debian` import, `liblzma` keeps its split import contract without `safe/tests/generated`, and no out-of-scope untagged repo logic reappears.
     - Every entrypoint reuses the shared install and dispatch scripts, no harness branches on run mode, and each `tests/run.sh` reflects the exact fixed runtime bullet for its library.
-    
+
     **Git Commit Requirement**
-    
-    
+
+
     Commit all phase work to git before yielding.
     Leave exactly one new commit atop the incoming branch state before yielding so every verifier that runs `git diff --check HEAD^ HEAD` reviews the full phase diff rather than only the tail of a multi-commit stack.
     {% endraw %}
@@ -1707,15 +1707,15 @@ phases:
   prompt: |-
     {% raw %}
     Reviewer role: verification agent for `check_05_system_archive_matrix` reviewing `impl_05_system_archive_validators`.
-    
+
     Work from repository root `/home/yans/safelibs/validator`. Review only. Do not modify files. This prompt is self-contained. Use `.plan/workflow-structure.yaml` as the authoritative source for phase order, phase IDs, phase types, and fixed `bounce_target` values. Use the existing workspace artifacts in place. Do not refetch, recollect, rediscover, or regenerate checked-in or already-prepared artifacts from scratch while checking. The fixed bounce target for this check is `impl_05_system_archive_validators`.
-    
+
     Phase Name
     `system-archive-validators`
-    
+
     Source Phase File
     `.plan/phases/05-system-archive-validators.md`
-    
+
     Preexisting Inputs
     - repositories.yml
     - tools/
@@ -1730,12 +1730,12 @@ phases:
     - tests/libzstd/
     - sibling `port-*` clone sources under `/home/yans/safelibs/`
     - authenticated GitHub access for private `port-*` repos, provided by an existing local login or an effective token from `GH_TOKEN` or `SAFELIBS_REPO_TOKEN`
-    
+
     Specific Things To Verify
     - verify the remaining tagged libraries in both modes, including mature tagged `libuv`.
     - Run the verifier definition below exactly as written and treat any non-zero exit code, failing assertion, missing file, or mismatch as failure.
     - Confirm the relevant success criteria for `impl_05_system_archive_validators` remain satisfied in the current workspace.
-    
+
     Verification Phase Definition
     - `check_05_system_archive_matrix`
       - type: `check`
@@ -1749,15 +1749,15 @@ phases:
         - `python3 tools/render_site.py --results-root .work/check05/artifacts/results --artifacts-root .work/check05/artifacts --output-root .work/check05/site`
         - `bash scripts/verify-site.sh --config repositories.yml --results-root .work/check05/artifacts/results --site-root .work/check05/site`
         - `for lib in libarchive libbz2 liblzma libsodium libuv libzstd; do test -f .work/check05/artifacts/results/$lib/original.json && test -f .work/check05/artifacts/results/$lib/safe.json && test -f .work/check05/artifacts/casts/$lib/safe.cast; done`
-    
+
     Relevant Success Criteria
     **Success Criteria**
-    
+
     - Both `check_05_system_archive_matrix` and `check_05_system_archive_review` pass.
     - Every library in this batch has validator-owned `Dockerfile`, `docker-entrypoint.sh`, and executable `tests/run.sh`, with fixtures, harness-source files, and mirrored tagged inputs preserved under `tests/<library>/tests/`.
     - `libuv` stays pinned to `refs/tags/libuv/04-test` as a mature tagged `safe-debian` import, `liblzma` keeps its split import contract without `safe/tests/generated`, and no out-of-scope untagged repo logic reappears.
     - Every entrypoint reuses the shared install and dispatch scripts, no harness branches on run mode, and each `tests/run.sh` reflects the exact fixed runtime bullet for its library.
-    
+
     End with exactly one verdict line:
     VERDICT: PASS
     or
@@ -1769,15 +1769,15 @@ phases:
   prompt: |-
     {% raw %}
     Reviewer role: verification agent for `check_05_system_archive_review` reviewing `impl_05_system_archive_validators`.
-    
+
     Work from repository root `/home/yans/safelibs/validator`. Review only. Do not modify files. This prompt is self-contained. Use `.plan/workflow-structure.yaml` as the authoritative source for phase order, phase IDs, phase types, and fixed `bounce_target` values. Use the existing workspace artifacts in place. Do not refetch, recollect, rediscover, or regenerate checked-in or already-prepared artifacts from scratch while checking. The fixed bounce target for this check is `impl_05_system_archive_validators`.
-    
+
     Phase Name
     `system-archive-validators`
-    
+
     Source Phase File
     `.plan/phases/05-system-archive-validators.md`
-    
+
     Preexisting Inputs
     - repositories.yml
     - tools/
@@ -1792,12 +1792,12 @@ phases:
     - tests/libzstd/
     - sibling `port-*` clone sources under `/home/yans/safelibs/`
     - authenticated GitHub access for private `port-*` repos, provided by an existing local login or an effective token from `GH_TOKEN` or `SAFELIBS_REPO_TOKEN`
-    
+
     Specific Things To Verify
     - review imported-asset fidelity, `libuv`'s mature-tagged import contract, `liblzma`'s split test-import contract, the fixed per-library runtime contract from `Fixed Library Contract`, and batch completeness.
     - Run the verifier definition below exactly as written and treat any non-zero exit code, failing assertion, missing file, or mismatch as failure.
     - Confirm the relevant success criteria for `impl_05_system_archive_validators` remain satisfied in the current workspace.
-    
+
     Verification Phase Definition
     - `check_05_system_archive_review`
       - type: `check`
@@ -1813,12 +1813,12 @@ phases:
           python3 - <<'PY'
           from pathlib import Path
           import yaml
-    
+
           manifest = yaml.safe_load(Path("repositories.yml").read_text())
           names = [entry["name"] for entry in manifest["repositories"]]
           if "glib" in names or "libc6" in names or "libcurl" in names or "libgcrypt" in names or "libjansson" in names:
               raise SystemExit("out-of-scope untagged libraries must not reappear")
-    
+
           by_name = {entry["name"]: entry for entry in manifest["repositories"]}
           if by_name["libuv"]["ref"] != "refs/tags/libuv/04-test":
               raise SystemExit("libuv must be pinned to refs/tags/libuv/04-test")
@@ -1839,7 +1839,7 @@ phases:
         - |
           python3 - <<'PY'
           from pathlib import Path
-    
+
           required_tokens = {
               "libarchive": [
                   "VALIDATOR_TAGGED_ROOT",
@@ -1895,15 +1895,15 @@ phases:
                   if token in text:
                       raise SystemExit(f"{lib} run.sh kept forbidden build-tree token: {token}")
           PY
-    
+
     Relevant Success Criteria
     **Success Criteria**
-    
+
     - Both `check_05_system_archive_matrix` and `check_05_system_archive_review` pass.
     - Every library in this batch has validator-owned `Dockerfile`, `docker-entrypoint.sh`, and executable `tests/run.sh`, with fixtures, harness-source files, and mirrored tagged inputs preserved under `tests/<library>/tests/`.
     - `libuv` stays pinned to `refs/tags/libuv/04-test` as a mature tagged `safe-debian` import, `liblzma` keeps its split import contract without `safe/tests/generated`, and no out-of-scope untagged repo logic reappears.
     - Every entrypoint reuses the shared install and dispatch scripts, no harness branches on run mode, and each `tests/run.sh` reflects the exact fixed runtime bullet for its library.
-    
+
     End with exactly one verdict line:
     VERDICT: PASS
     or
@@ -1915,23 +1915,23 @@ phases:
   prompt: |-
     {% raw %}
     Role: Software engineer implementing phase `impl_06_ci_pages_publish`.
-    
+
     Work from repository root `/home/yans/safelibs/validator`. This prompt is self-contained. Use `.plan/workflow-structure.yaml` as the authoritative source for phase order, phase IDs, phase types, and fixed `bounce_target` values. Keep the workflow topology fixed: do not invent, rename, or reorder phase IDs, phase types, verifier phases, or bounce targets. Consume or update existing artifacts listed below in place. Do not refetch, recollect, rediscover, or regenerate checked-in or already-prepared artifacts from scratch when they already exist.
     The explicit verifier phases for this implement phase are `check_06_full_matrix`, `check_06_release_review`; each verifier remains an explicit top-level `check` phase and uses its fixed `bounce_target: impl_06_ci_pages_publish`.
-    
+
     Source Phase File
     `.plan/phases/06-ci-pages-publish.md`
-    
+
     **Phase Name**
-    
+
     `ci-pages-publish`
-    
+
     **Implement Phase ID**
-    
+
     `impl_06_ci_pages_publish`
-    
+
     **Preexisting Inputs**
-    
+
     - `.gitignore`
     - `README.md`
     - `Makefile`
@@ -1953,9 +1953,9 @@ phases:
     - `/home/yans/safelibs/apt-repo/scripts/verify-in-ubuntu-docker.sh`
     - `/home/yans/safelibs/website/.github/workflows/deploy.yml`
     - authenticated GitHub access with permission to inspect private `port-*` repos and create `safelibs/validator`, provided by an existing local login or by `GH_TOKEN` or `SAFELIBS_REPO_TOKEN`
-    
+
     **New Outputs**
-    
+
     - `.github/workflows/ci.yml`
     - `.github/workflows/pages.yml`
     - `.plan/workflow-structure.yaml`
@@ -1969,18 +1969,18 @@ phases:
     - `scripts/publish-public.sh`
     - updated `README.md`
     - public GitHub repo `safelibs/validator`
-    
+
     **File Changes**
-    
+
     - Create `.github/workflows/ci.yml` and `.github/workflows/pages.yml`.
     - Rewrite `.plan/workflow-structure.yaml` and the six kept phase documents under `.plan/phases/`.
     - Create tracked `workflow.yaml` and `scripts/publish-public.sh`.
     - Update `README.md` and `Makefile`.
     - Delete `.plan/phases/02-shared-matrix-reporting.md`, `.plan/phases/03-text-data-validators.md`, `.plan/phases/05-archive-system-validators.md`, `.plan/phases/06-bootstrap-missing-validators.md`, and `.plan/phases/07-ci-pages-publish.md`.
     - Create or reuse the public GitHub repo `safelibs/validator` and reconcile `origin`.
-    
+
     **Implementation Details**
-    
+
     - Every workflow job or script step that may touch private `port-*` repos must use the shared auth contract:
       - set both `GH_TOKEN` and `SAFELIBS_REPO_TOKEN` from `${{ secrets.SAFELIBS_REPO_TOKEN }}` in GitHub Actions before invoking `gh`, `tools/inventory.py`, or `tools/stage_port_repos.py`
       - let the tools perform git access through token-authenticated HTTPS URLs derived from `github_repo`
@@ -2046,18 +2046,18 @@ phases:
     - Update `Makefile` so `publish-public` wraps `scripts/publish-public.sh`.
     - Update `README.md` from the current vision-only text to an operator guide that documents prerequisites, local commands, artifact locations, the private-repo auth contract (`GH_TOKEN` or `SAFELIBS_REPO_TOKEN`), optional `--source-root`, the exact optional `--safe-deb-root` layout `<safe-deb-root>/<library>/*.deb`, `make publish-public`, and Pages publication.
     - Do not add any source-ref publication or tag-push tooling in this phase.
-    
+
     **Success Criteria**
-    
+
     - Both `check_06_full_matrix` and `check_06_release_review` pass.
     - CI and Pages workflows enforce the shared private-repo auth contract, keep `unit-tests` hermetic and secret-free, gate secret-requiring jobs through `preflight`, preserve aggregate matrix behavior, and publish Pages before `report-status` fails on a non-zero `matrix_exit_code`.
     - `scripts/publish-public.sh`, `README.md`, and `Makefile` reflect the operator contract for local runs, exact `<safe-deb-root>/<library>/*.deb` layout, remote-tag verification, public-repo publication, and Pages deployment.
     - `.plan/workflow-structure.yaml`, the six kept phase docs, and `workflow.yaml` all encode the same tagged-only six-phase contract, exact verifier wiring, exact phase batches, exact `validator.imports` and `tests/<library>/tests/run.sh` runtime bullets, and no stale seven-phase or out-of-scope library content.
     - The final repository leaves no obsolete generated workflow file in the worktree or index, does not reintroduce publication-tag tooling, and leaves `origin` advertising `refs/heads/main` at local `HEAD`.
-    
+
     **Git Commit Requirement**
-    
-    
+
+
     Commit all phase work to git before yielding.
     Leave exactly one new commit atop the incoming branch state before yielding so every verifier that runs `git diff --check HEAD^ HEAD` reviews the full phase diff rather than only the tail of a multi-commit stack.
     {% endraw %}
@@ -2067,15 +2067,15 @@ phases:
   prompt: |-
     {% raw %}
     Reviewer role: verification agent for `check_06_full_matrix` reviewing `impl_06_ci_pages_publish`.
-    
+
     Work from repository root `/home/yans/safelibs/validator`. Review only. Do not modify files. This prompt is self-contained. Use `.plan/workflow-structure.yaml` as the authoritative source for phase order, phase IDs, phase types, and fixed `bounce_target` values. Use the existing workspace artifacts in place. Do not refetch, recollect, rediscover, or regenerate checked-in or already-prepared artifacts from scratch while checking. The fixed bounce target for this check is `impl_06_ci_pages_publish`.
-    
+
     Phase Name
     `ci-pages-publish`
-    
+
     Source Phase File
     `.plan/phases/06-ci-pages-publish.md`
-    
+
     Preexisting Inputs
     - repositories.yml
     - tools/
@@ -2085,12 +2085,12 @@ phases:
     - unit/
     - sibling `port-*` clone sources under `/home/yans/safelibs/`
     - authenticated GitHub access for private `port-*` repos, provided by an existing local login or an effective token from `GH_TOKEN` or `SAFELIBS_REPO_TOKEN`
-    
+
     Specific Things To Verify
     - run the full validator locally against the checked-in tagged scope, render the site, and verify the full output set plus imported-asset fidelity across all selected libraries.
     - Run the verifier definition below exactly as written and treat any non-zero exit code, failing assertion, missing file, or mismatch as failure.
     - Confirm the relevant success criteria for `impl_06_ci_pages_publish` remain satisfied in the current workspace.
-    
+
     Verification Phase Definition
     - `check_06_full_matrix`
       - type: `check`
@@ -2104,16 +2104,16 @@ phases:
         - `python3 tools/render_site.py --results-root artifacts/results --artifacts-root artifacts --output-root site`
         - `bash scripts/verify-site.sh --config repositories.yml --results-root artifacts/results --site-root site`
         - `python3 tools/verify_imported_assets.py --config repositories.yml --port-root .work/check06/ports --tests-root tests`
-    
+
     Relevant Success Criteria
     **Success Criteria**
-    
+
     - Both `check_06_full_matrix` and `check_06_release_review` pass.
     - CI and Pages workflows enforce the shared private-repo auth contract, keep `unit-tests` hermetic and secret-free, gate secret-requiring jobs through `preflight`, preserve aggregate matrix behavior, and publish Pages before `report-status` fails on a non-zero `matrix_exit_code`.
     - `scripts/publish-public.sh`, `README.md`, and `Makefile` reflect the operator contract for local runs, exact `<safe-deb-root>/<library>/*.deb` layout, remote-tag verification, public-repo publication, and Pages deployment.
     - `.plan/workflow-structure.yaml`, the six kept phase docs, and `workflow.yaml` all encode the same tagged-only six-phase contract, exact verifier wiring, exact phase batches, exact `validator.imports` and `tests/<library>/tests/run.sh` runtime bullets, and no stale seven-phase or out-of-scope library content.
     - The final repository leaves no obsolete generated workflow file in the worktree or index, does not reintroduce publication-tag tooling, and leaves `origin` advertising `refs/heads/main` at local `HEAD`.
-    
+
     End with exactly one verdict line:
     VERDICT: PASS
     or
@@ -2125,15 +2125,15 @@ phases:
   prompt: |-
     {% raw %}
     Reviewer role: verification agent for `check_06_release_review` reviewing `impl_06_ci_pages_publish`.
-    
+
     Work from repository root `/home/yans/safelibs/validator`. Review only. Do not modify files. This prompt is self-contained. Use `.plan/workflow-structure.yaml` as the authoritative source for phase order, phase IDs, phase types, and fixed `bounce_target` values. Use the existing workspace artifacts in place. Do not refetch, recollect, rediscover, or regenerate checked-in or already-prepared artifacts from scratch while checking. The fixed bounce target for this check is `impl_06_ci_pages_publish`.
-    
+
     Phase Name
     `ci-pages-publish`
-    
+
     Source Phase File
     `.plan/phases/06-ci-pages-publish.md`
-    
+
     Preexisting Inputs
     - .github/workflows/ci.yml
     - .github/workflows/pages.yml
@@ -2147,12 +2147,12 @@ phases:
     - public GitHub repo `safelibs/validator`
     - local `origin` remote reconciled to `safelibs/validator`
     - authenticated GitHub access with permission to inspect private `port-*` repos and create `safelibs/validator`, provided by an existing local login or by `GH_TOKEN` or `SAFELIBS_REPO_TOKEN`
-    
+
     Specific Things To Verify
     - review CI/Pages workflows, README and Makefile operator contracts, public-repo publication logic, enforced public visibility and `origin` reconciliation, remote-tag reachability checks, and the final generated workflow artifacts so `workflow.yaml` and the kept phase docs carry the same tagged-only six-phase contract.
     - Run the verifier definition below exactly as written and treat any non-zero exit code, failing assertion, missing file, or mismatch as failure.
     - Confirm the relevant success criteria for `impl_06_ci_pages_publish` remain satisfied in the current workspace.
-    
+
     Verification Phase Definition
     - `check_06_release_review`
       - type: `check`
@@ -2168,14 +2168,14 @@ phases:
           import re
           import subprocess
           import yaml
-    
+
           def workflow_on(doc, name):
               if "on" in doc:
                   return doc["on"]
               if True in doc:
                   return doc[True]
               raise SystemExit(f"{name} workflow missing trigger block")
-    
+
           def needs_list(job):
               needs = job.get("needs", [])
               if needs is None:
@@ -2183,7 +2183,7 @@ phases:
               if isinstance(needs, str):
                   return [needs]
               return list(needs)
-    
+
           def job_text(job):
               chunks = [yaml.safe_dump(job, sort_keys=True)]
               for step in job.get("steps", []):
@@ -2195,7 +2195,7 @@ phases:
                   if step.get("with") is not None:
                       chunks.append(yaml.safe_dump(step["with"], sort_keys=True))
               return "\n".join(chunks)
-    
+
           ci_text = Path(".github/workflows/ci.yml").read_text()
           pages_text = Path(".github/workflows/pages.yml").read_text()
           readme_text = Path("README.md").read_text()
@@ -2446,7 +2446,7 @@ phases:
                   stderr=subprocess.DEVNULL,
               ).returncode == 0:
                   raise SystemExit(f"obsolete generated file still tracked: {path}")
-    
+
           structure_phases = [
               (phase["id"], phase["type"], phase.get("bounce_target"))
               for phase in workflow_structure["phases"]
@@ -2459,7 +2459,7 @@ phases:
               raise SystemExit(f"workflow structure mismatch: {structure_phases}")
           if rendered_phases != expected_phases:
               raise SystemExit(f"rendered workflow mismatch: {rendered_phases}")
-    
+
           rendered_phase_map = {phase["id"]: phase for phase in workflow_rendered["phases"]}
           phase_doc_texts = {
               name: (Path(".plan/phases") / name).read_text()
@@ -2517,7 +2517,7 @@ phases:
               for library in libraries:
                   if library not in prompt:
                       raise SystemExit(f"{phase_id} prompt missing scoped library {library}")
-    
+
           combined_phase_docs = "\n".join(phase_doc_texts[name] for name in expected_phase_docs)
           required_generated_tokens = [
               "inventory.tag_probe_rule",
@@ -2539,7 +2539,7 @@ phases:
                   raise SystemExit(f"workflow.yaml missing required contract token: {required}")
               if required not in combined_phase_docs:
                   raise SystemExit(f"phase docs missing required contract token: {required}")
-    
+
           for forbidden in [
               "impl_02_shared_matrix_reporting",
               "shared-matrix-reporting",
@@ -2565,7 +2565,7 @@ phases:
                       raise SystemExit(f"workflow.yaml still scopes forbidden library token: {forbidden_token}")
                   if forbidden_token in combined_phase_docs:
                       raise SystemExit(f"phase docs still scope forbidden library token: {forbidden_token}")
-    
+
           for forbidden_yaml_token in [
               "parallel_groups" + ":",
               "include" + ":",
@@ -2579,7 +2579,7 @@ phases:
                   raise SystemExit(f".plan/workflow-structure.yaml unexpectedly contains {forbidden_yaml_token}")
               if forbidden_yaml_token in workflow_text:
                   raise SystemExit(f"workflow.yaml unexpectedly contains {forbidden_yaml_token}")
-    
+
           for required in [
               "publish-public:",
               "unit:",
@@ -2637,7 +2637,7 @@ phases:
           import os
           import re
           import subprocess
-    
+
           repo = json.loads(
               subprocess.check_output(
                   ["gh", "repo", "view", "safelibs/validator", "--json", "visibility,nameWithOwner,url"],
@@ -2649,7 +2649,7 @@ phases:
               raise SystemExit(f"unexpected published repo target: {repo}")
           if str(repo["visibility"]).upper() != "PUBLIC":
               raise SystemExit(f"safelibs/validator must be public, found {repo['visibility']}")
-    
+
           origin = subprocess.check_output(["git", "remote", "get-url", "origin"], text=True).strip()
           allowed_patterns = [
               r"git@github\.com:safelibs/validator(?:\.git)?",
@@ -2658,7 +2658,7 @@ phases:
           ]
           if not any(re.fullmatch(pattern, origin) for pattern in allowed_patterns):
               raise SystemExit(f"origin must point to safelibs/validator, found {origin!r}")
-    
+
           remote_line = subprocess.check_output(
               ["git", "ls-remote", "--heads", "origin", "main"],
               text=True,
@@ -2673,16 +2673,16 @@ phases:
           if remote_sha != local_sha:
               raise SystemExit(f"origin main must match local HEAD: {remote_sha} != {local_sha}")
           PY
-    
+
     Relevant Success Criteria
     **Success Criteria**
-    
+
     - Both `check_06_full_matrix` and `check_06_release_review` pass.
     - CI and Pages workflows enforce the shared private-repo auth contract, keep `unit-tests` hermetic and secret-free, gate secret-requiring jobs through `preflight`, preserve aggregate matrix behavior, and publish Pages before `report-status` fails on a non-zero `matrix_exit_code`.
     - `scripts/publish-public.sh`, `README.md`, and `Makefile` reflect the operator contract for local runs, exact `<safe-deb-root>/<library>/*.deb` layout, remote-tag verification, public-repo publication, and Pages deployment.
     - `.plan/workflow-structure.yaml`, the six kept phase docs, and `workflow.yaml` all encode the same tagged-only six-phase contract, exact verifier wiring, exact phase batches, exact `validator.imports` and `tests/<library>/tests/run.sh` runtime bullets, and no stale seven-phase or out-of-scope library content.
     - The final repository leaves no obsolete generated workflow file in the worktree or index, does not reintroduce publication-tag tooling, and leaves `origin` advertising `refs/heads/main` at local `HEAD`.
-    
+
     End with exactly one verdict line:
     VERDICT: PASS
     or
