@@ -1,0 +1,547 @@
+archive:
+  suite: noble
+  component: main
+  origin: SafeLibs
+  label: SafeLibs
+  description: Memory-safe drop-in replacements packaged by SafeLibs for Ubuntu 24.04
+  homepage: https://github.com/safelibs/apt-repo
+  base_url: https://safelibs.github.io/apt-repo/
+  key_name: safelibs
+  pin_priority: 1001
+  image: ubuntu:24.04
+  install_packages:
+  - ca-certificates
+  - file
+  - git
+  - jq
+  - python3
+  - rsync
+  - xz-utils
+inventory:
+  verified_at: '2026-04-12T15:47:20Z'
+  gh_repo_list_command: gh repo list safelibs --limit 200 --json name,nameWithOwner,isPrivate,url,defaultBranchRef
+  tag_probe_rule: refs/tags/{library}/04-test
+  raw_snapshot: inventory/github-repo-list.json
+  filtered_snapshot: inventory/github-port-repos.json
+  goal_repo_family: repos-*
+  verified_repo_family: port-*
+repositories:
+- name: cjson
+  github_repo: safelibs/port-cjson
+  ref: refs/tags/cjson/04-test
+  build:
+    mode: safe-debian
+    artifact_globs:
+    - '*.deb'
+  validator:
+    sibling_repo: port-cjson
+    imports:
+    - safe/tests
+    - safe/scripts
+    - original/tests
+    - original/fuzzing
+    - original/test.c
+    - original/cJSON.h
+    - original/cJSON_Utils.h
+    import_excludes: []
+  fixtures:
+    dependents:
+      source: copy-staged-root
+    relevant_cves:
+      source: copy-staged-root
+- name: giflib
+  github_repo: safelibs/port-giflib
+  ref: refs/tags/giflib/04-test
+  build:
+    mode: safe-debian
+    artifact_globs:
+    - '*.deb'
+  validator:
+    sibling_repo: port-giflib
+    imports:
+    - safe/tests
+    - original/tests
+    - original/pic
+    - original/gif_lib.h
+    import_excludes: []
+  fixtures:
+    dependents:
+      source: copy-staged-root
+    relevant_cves:
+      source: copy-staged-root
+- name: libarchive
+  github_repo: safelibs/port-libarchive
+  ref: refs/tags/libarchive/04-test
+  build:
+    mode: safe-debian
+    packages:
+    - clang
+    - lld
+    setup: "export DEB_BUILD_OPTIONS=\"${DEB_BUILD_OPTIONS:+$DEB_BUILD_OPTIONS }nostrip\
+      \ noautodbgsym\"\npython3 - <<'PY'\nfrom pathlib import Path\n\nbuild_rs = Path(\"\
+      safe/build.rs\")\nneedle = '        println!(\"cargo:rustc-cdylib-link-arg=-Wl,--export-dynamic-symbol=archive_set_error\"\
+      );\\n'\ntext = build_rs.read_text()\nif needle not in text:\n    raise SystemExit(f\"\
+      missing expected link export line in {build_rs}\")\nbuild_rs.write_text(text.replace(needle,\
+      \ \"\"))\n\nrules = Path(\"safe/debian/rules\")\ncargo_build = \"cargo build\
+      \ --release\"\ncargo_rustc = \"cargo rustc --release -- -Clinker=clang -Clink-arg=-fuse-ld=lld\"\
+      \nrules_text = rules.read_text()\nif cargo_build not in rules_text:\n    raise\
+      \ SystemExit(f\"missing expected cargo build line in {rules}\")\nrules.write_text(rules_text.replace(cargo_build,\
+      \ cargo_rustc, 1))\nPY\n"
+    artifact_globs:
+    - '*.deb'
+  validator:
+    sibling_repo: port-libarchive
+    imports:
+    - safe/tests
+    - safe/debian/tests
+    - safe/scripts
+    - safe/generated/api_inventory.json
+    - safe/generated/cve_matrix.json
+    - safe/generated/link_compat_manifest.json
+    - safe/generated/original_build_contract.json
+    - safe/generated/original_package_metadata.json
+    - safe/generated/original_c_build
+    - safe/generated/original_link_objects
+    - safe/generated/original_pkgconfig/libarchive.pc
+    - safe/generated/pkgconfig/libarchive.pc
+    - safe/generated/rust_test_manifest.json
+    - safe/generated/test_manifest.json
+    - original/libarchive-3.7.2
+    import_excludes: []
+  fixtures:
+    dependents:
+      source: copy-staged-root
+    relevant_cves:
+      source: copy-staged-root
+- name: libbz2
+  github_repo: safelibs/port-libbz2
+  ref: refs/tags/libbz2/04-test
+  build:
+    mode: safe-debian
+    setup: "python3 - <<'PY'\nfrom pathlib import Path\nimport shutil\n\nrepo_root\
+      \ = Path(\".\")\ncopies = {\n    \"original/bzip2.c\": \"safe/bzip2.c\",\n \
+      \   \"original/bzip2recover.c\": \"safe/bzip2recover.c\",\n    \"original/bzdiff\"\
+      : \"safe/bzdiff\",\n    \"original/bzgrep\": \"safe/bzgrep\",\n    \"original/bzmore\"\
+      : \"safe/bzmore\",\n    \"original/bzip2.1\": \"safe/bzip2.1\",\n    \"original/bzgrep.1\"\
+      : \"safe/bzgrep.1\",\n    \"original/bzmore.1\": \"safe/bzmore.1\",\n    \"\
+      original/bzdiff.1\": \"safe/bzdiff.1\",\n    \"original/manual.xml\": \"safe/manual.xml\"\
+      ,\n    \"original/entities.xml\": \"safe/entities.xml\",\n    \"original/manual.html\"\
+      : \"safe/manual.html\",\n    \"original/manual.pdf\": \"safe/manual.pdf\",\n\
+      \    \"original/manual.ps\": \"safe/manual.ps\",\n    \"original/debian/bzexe\"\
+      : \"safe/debian/bzexe\",\n    \"original/debian/bzexe.1\": \"safe/debian/bzexe.1\"\
+      ,\n    \"original/debian/bzip2-doc.docs\": \"safe/debian/bzip2-doc.docs\",\n\
+      \    \"original/debian/bzip2-doc.doc-base\": \"safe/debian/bzip2-doc.doc-base\"\
+      ,\n    \"original/debian/bzip2-doc.info\": \"safe/debian/bzip2-doc.info\",\n\
+      }\n\nfor source_rel, dest_rel in copies.items():\n    source = repo_root / source_rel\n\
+      \    dest = repo_root / dest_rel\n    if not source.exists():\n        raise\
+      \ SystemExit(f\"missing required staged asset: {source}\")\n    dest.parent.mkdir(parents=True,\
+      \ exist_ok=True)\n    shutil.copy2(source, dest)\nPY\n"
+    artifact_globs:
+    - '*.deb'
+  validator:
+    sibling_repo: port-libbz2
+    imports:
+    - safe/tests
+    - safe/debian/tests
+    - safe/scripts
+    - original
+    import_excludes: []
+  fixtures:
+    dependents:
+      source: copy-staged-root
+    relevant_cves:
+      source: copy-staged-root
+- name: libcsv
+  github_repo: safelibs/port-libcsv
+  ref: refs/tags/libcsv/04-test
+  build:
+    mode: checkout-artifacts
+    workdir: .
+    artifact_globs:
+    - '*.deb'
+  validator:
+    sibling_repo: port-libcsv
+    imports:
+    - safe/tests
+    - safe/debian/tests
+    - original/examples
+    - original/test_csv.c
+    - original/csv.h
+    import_excludes: []
+  fixtures:
+    dependents:
+      source: copy-staged-root
+    relevant_cves:
+      source: copy-staged-root
+- name: libexif
+  github_repo: safelibs/port-libexif
+  ref: refs/tags/libexif/04-test
+  build:
+    mode: safe-debian
+    artifact_globs:
+    - '*.deb'
+  validator:
+    sibling_repo: port-libexif
+    imports:
+    - safe/tests
+    - original/libexif
+    - original/test
+    - original/contrib/examples
+    import_excludes: []
+  fixtures:
+    dependents:
+      source: copy-staged-root
+    relevant_cves:
+      source: copy-staged-root
+- name: libjpeg-turbo
+  github_repo: safelibs/port-libjpeg-turbo
+  ref: refs/tags/libjpeg-turbo/04-test
+  build:
+    mode: safe-debian
+    artifact_globs:
+    - '*.deb'
+  validator:
+    sibling_repo: port-libjpeg-turbo
+    imports:
+    - safe/tests
+    - safe/debian/tests
+    - safe/scripts
+    - original/testimages
+    import_excludes: []
+  fixtures:
+    dependents:
+      source: copy-staged-root
+    relevant_cves:
+      source: copy-staged-root
+- name: libjson
+  github_repo: safelibs/port-libjson
+  ref: refs/tags/libjson/04-test
+  verify_packages:
+  - libjson-c5
+  - libjson-c-dev
+  build:
+    workdir: .
+    packages:
+    - build-essential
+    - cargo
+    - cmake
+    - debhelper
+    - dpkg-dev
+    - fakeroot
+    - pkg-config
+    - rustc
+    command: "safe/tools/build-debs.sh \\\n  --workspace \"$SAFEAPTREPO_SOURCE\" \\\
+      \n  --out \"$SAFEAPTREPO_OUTPUT\"\n"
+    artifact_globs:
+    - '*.deb'
+  validator:
+    sibling_repo: port-libjson
+    imports:
+    - safe/tests
+    - safe/debian/tests
+    import_excludes: []
+  fixtures:
+    dependents:
+      source: copy-staged-root
+    relevant_cves:
+      source: copy-staged-root
+- name: liblzma
+  github_repo: safelibs/port-liblzma
+  ref: refs/tags/liblzma/04-test
+  build:
+    mode: safe-debian
+    setup: "python3 - <<'PY'\nfrom pathlib import Path\n\ncargo_toml = Path(\"safe/Cargo.toml\"\
+      )\nold = 'crate-type = [\"cdylib\", \"staticlib\", \"rlib\"]\\n'\nnew = 'crate-type\
+      \ = [\"staticlib\", \"rlib\"]\\n'\ntext = cargo_toml.read_text()\nif old not\
+      \ in text:\n    raise SystemExit(f\"missing expected crate-type declaration\
+      \ in {cargo_toml}\")\ncargo_toml.write_text(text.replace(old, new, 1))\nPY\n"
+    artifact_globs:
+    - '*.deb'
+  validator:
+    sibling_repo: port-liblzma
+    imports:
+    - safe/docker
+    - safe/scripts
+    - safe/tests/dependents
+    - safe/tests/extra
+    - safe/tests/upstream
+    import_excludes: []
+  fixtures:
+    dependents:
+      source: copy-staged-root
+    relevant_cves:
+      source: copy-staged-root
+- name: libpng
+  github_repo: safelibs/port-libpng
+  ref: refs/tags/libpng/04-test
+  verify_packages:
+  - libpng16-16t64
+  - libpng-dev
+  - libpng-tools
+  build:
+    mode: checkout-artifacts
+    workdir: .
+    artifact_globs:
+    - '*.deb'
+  validator:
+    sibling_repo: port-libpng
+    imports:
+    - safe/tests
+    - original/tests
+    - original/contrib/pngsuite
+    - original/contrib/testpngs
+    - original/png.h
+    - original/pngconf.h
+    - original/pngtest.png
+    import_excludes: []
+  fixtures:
+    dependents:
+      source: copy-staged-root
+    relevant_cves:
+      source: copy-staged-root
+- name: libsdl
+  github_repo: safelibs/port-libsdl
+  ref: refs/tags/libsdl/04-test
+  build:
+    mode: safe-debian
+    artifact_globs:
+    - '*.deb'
+  validator:
+    sibling_repo: port-libsdl
+    imports:
+    - safe/tests
+    - safe/debian/tests
+    - safe/generated/dependent_regression_manifest.json
+    - safe/generated/noninteractive_test_list.json
+    - safe/generated/original_test_port_map.json
+    - safe/generated/perf_workload_manifest.json
+    - safe/generated/perf_thresholds.json
+    - safe/generated/reports/perf-baseline-vs-safe.json
+    - safe/generated/reports/perf-waivers.md
+    - safe/upstream-tests
+    - original/test
+    import_excludes: []
+  fixtures:
+    dependents:
+      source: copy-staged-root
+    relevant_cves:
+      source: copy-staged-root
+- name: libsodium
+  github_repo: safelibs/port-libsodium
+  ref: refs/tags/libsodium/04-test
+  build:
+    mode: safe-debian
+    packages:
+    - autoconf
+    - automake
+    - libtool
+    setup: "(\n  cd original\n  if [ -f Makefile ]; then\n    make distclean || true\n\
+      \  fi\n  autoreconf -ivf\n  ./configure --disable-static\n  make -j\"$(nproc)\"\
+      \n)\n"
+    artifact_globs:
+    - '*.deb'
+  validator:
+    sibling_repo: port-libsodium
+    imports:
+    - safe/tests
+    - safe/docker
+    import_excludes: []
+  fixtures:
+    dependents:
+      source: copy-staged-root
+    relevant_cves:
+      source: copy-staged-root
+- name: libtiff
+  github_repo: safelibs/port-libtiff
+  ref: refs/tags/libtiff/04-test
+  build:
+    mode: safe-debian
+    rustup_toolchain: stable-x86_64-unknown-linux-gnu
+    setup: "python3 - <<'PY'\nfrom pathlib import Path\n\nrules = Path(\"safe/debian/rules\"\
+      )\nreplacements = {\n    \"export CARGO_HOME := /home/yans/.cargo\\n\": \"export\
+      \ CARGO_HOME := $(HOME)/.cargo\\n\",\n    \"export RUSTUP_HOME := /home/yans/.rustup\\\
+      n\": \"export RUSTUP_HOME := $(HOME)/.rustup\\n\",\n}\n\ntext = rules.read_text()\n\
+      for old, new in replacements.items():\n    if old not in text:\n        raise\
+      \ SystemExit(f\"missing expected line in {rules}: {old.strip()}\")\n    text\
+      \ = text.replace(old, new, 1)\nrules.write_text(text)\nPY\n"
+    artifact_globs:
+    - '*.deb'
+  validator:
+    sibling_repo: port-libtiff
+    imports:
+    - safe/test
+    - safe/scripts
+    - original/test
+    import_excludes: []
+  fixtures:
+    dependents:
+      source: copy-staged-root
+    relevant_cves:
+      source: copy-staged-root
+- name: libuv
+  github_repo: safelibs/port-libuv
+  ref: refs/tags/libuv/04-test
+  build:
+    mode: safe-debian
+    artifact_globs:
+    - '*.deb'
+  validator:
+    sibling_repo: port-libuv
+    imports:
+    - safe/docker
+    - safe/include
+    - safe/prebuilt
+    - safe/scripts
+    - safe/test
+    - safe/test-extra
+    import_excludes: []
+  fixtures:
+    dependents:
+      source: copy-staged-root
+    relevant_cves:
+      source: copy-staged-root
+- name: libvips
+  github_repo: safelibs/port-libvips
+  ref: refs/tags/libvips/04-test
+  build:
+    mode: docker
+    workdir: .
+    rustup_toolchain: 1.78
+    packages:
+    - build-essential
+    - devscripts
+    - dpkg-dev
+    - equivs
+    - fakeroot
+    command: "cd safe\nmk-build-deps -i -r -t \"apt-get -y --no-install-recommends\"\
+      \ debian/control\ncd ..\nrm -rf build-check build-check-install\nmeson setup\
+      \ build-check original --prefix \"$SAFEAPTREPO_SOURCE/build-check-install\"\n\
+      meson compile -C build-check\nmeson install -C build-check\ncp -a build-check-install/lib/\"\
+      $(dpkg-architecture -qDEB_HOST_MULTIARCH)\"/libvips*.so* \\\n  build-check-install/lib/\n\
+      cd safe\nexport DEB_BUILD_OPTIONS=\"${DEB_BUILD_OPTIONS:+$DEB_BUILD_OPTIONS\
+      \ }nocheck\"\ndpkg-buildpackage -us -uc -b\ncp -v ../*.deb \"$SAFEAPTREPO_OUTPUT\"\
+      /\n"
+    artifact_globs:
+    - '*.deb'
+  validator:
+    sibling_repo: port-libvips
+    imports:
+    - safe/tests/dependents
+    - safe/tests/upstream
+    - safe/vendor/pyvips-3.1.1
+    - original/test
+    - original/examples
+    import_excludes: []
+  fixtures:
+    dependents:
+      source: copy-staged-root
+    relevant_cves:
+      source: copy-staged-root
+- name: libwebp
+  github_repo: safelibs/port-libwebp
+  ref: refs/tags/libwebp/04-test
+  build:
+    mode: safe-debian
+    artifact_globs:
+    - '*.deb'
+  validator:
+    sibling_repo: port-libwebp
+    imports:
+    - safe/tests
+    - original/examples
+    - original/tests/public_api_test.c
+    import_excludes: []
+  fixtures:
+    dependents:
+      source: copy-staged-root
+    relevant_cves:
+      source: copy-staged-root
+- name: libxml
+  github_repo: safelibs/port-libxml
+  ref: refs/tags/libxml/04-test
+  build:
+    mode: safe-debian
+    artifact_globs:
+    - '*.deb'
+  validator:
+    sibling_repo: port-libxml
+    imports:
+    - safe/tests
+    - safe/debian/tests
+    - safe/scripts
+    - original
+    import_excludes: []
+  fixtures:
+    dependents:
+      source: copy-staged-root
+    relevant_cves:
+      source: copy-staged-root
+- name: libyaml
+  github_repo: safelibs/port-libyaml
+  ref: refs/tags/libyaml/04-test
+  build:
+    mode: safe-debian
+    artifact_globs:
+    - '*.deb'
+  validator:
+    sibling_repo: port-libyaml
+    imports:
+    - safe/tests
+    - safe/debian/tests
+    - safe/scripts
+    - original/include
+    - original/tests
+    - original/examples
+    import_excludes: []
+  fixtures:
+    dependents:
+      source: copy-staged-root
+    relevant_cves:
+      source: copy-staged-root
+- name: libzstd
+  github_repo: safelibs/port-libzstd
+  ref: refs/tags/libzstd/04-test
+  verify_packages:
+  - libzstd1
+  - libzstd-dev
+  - zstd
+  build:
+    workdir: .
+    rustup_toolchain: 1.94.0
+    packages:
+    - build-essential
+    - cargo
+    - cmake
+    - curl
+    - debhelper
+    - dh-package-notes
+    - dpkg-dev
+    - fakeroot
+    - help2man
+    - less
+    - liblz4-dev
+    - liblzma-dev
+    - python3
+    - rustc
+    - zlib1g-dev
+    command: 'bash safe/scripts/build-deb.sh
+
+      cp -v safe/out/*.deb "$SAFEAPTREPO_OUTPUT"/
+
+      '
+    artifact_globs:
+    - '*.deb'
+  validator:
+    sibling_repo: port-libzstd
+    imports:
+    - safe/tests
+    - safe/debian/tests
+    - safe/docker
+    - safe/scripts
+    - original/libzstd-1.5.5+dfsg2
+    import_excludes: []
+  fixtures:
+    dependents:
+      source: copy-staged-root
+    relevant_cves:
+      source: copy-staged-root

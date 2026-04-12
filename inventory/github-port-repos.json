@@ -1,0 +1,135 @@
+[
+  {
+    "library": "cjson",
+    "nameWithOwner": "safelibs/port-cjson",
+    "url": "https://github.com/safelibs/port-cjson",
+    "default_branch": "main",
+    "tag_ref": "refs/tags/cjson/04-test"
+  },
+  {
+    "library": "giflib",
+    "nameWithOwner": "safelibs/port-giflib",
+    "url": "https://github.com/safelibs/port-giflib",
+    "default_branch": "main",
+    "tag_ref": "refs/tags/giflib/04-test"
+  },
+  {
+    "library": "libarchive",
+    "nameWithOwner": "safelibs/port-libarchive",
+    "url": "https://github.com/safelibs/port-libarchive",
+    "default_branch": "main",
+    "tag_ref": "refs/tags/libarchive/04-test"
+  },
+  {
+    "library": "libbz2",
+    "nameWithOwner": "safelibs/port-libbz2",
+    "url": "https://github.com/safelibs/port-libbz2",
+    "default_branch": "main",
+    "tag_ref": "refs/tags/libbz2/04-test"
+  },
+  {
+    "library": "libcsv",
+    "nameWithOwner": "safelibs/port-libcsv",
+    "url": "https://github.com/safelibs/port-libcsv",
+    "default_branch": "main",
+    "tag_ref": "refs/tags/libcsv/04-test"
+  },
+  {
+    "library": "libexif",
+    "nameWithOwner": "safelibs/port-libexif",
+    "url": "https://github.com/safelibs/port-libexif",
+    "default_branch": "main",
+    "tag_ref": "refs/tags/libexif/04-test"
+  },
+  {
+    "library": "libjpeg-turbo",
+    "nameWithOwner": "safelibs/port-libjpeg-turbo",
+    "url": "https://github.com/safelibs/port-libjpeg-turbo",
+    "default_branch": "main",
+    "tag_ref": "refs/tags/libjpeg-turbo/04-test"
+  },
+  {
+    "library": "libjson",
+    "nameWithOwner": "safelibs/port-libjson",
+    "url": "https://github.com/safelibs/port-libjson",
+    "default_branch": "main",
+    "tag_ref": "refs/tags/libjson/04-test"
+  },
+  {
+    "library": "liblzma",
+    "nameWithOwner": "safelibs/port-liblzma",
+    "url": "https://github.com/safelibs/port-liblzma",
+    "default_branch": "main",
+    "tag_ref": "refs/tags/liblzma/04-test"
+  },
+  {
+    "library": "libpng",
+    "nameWithOwner": "safelibs/port-libpng",
+    "url": "https://github.com/safelibs/port-libpng",
+    "default_branch": "main",
+    "tag_ref": "refs/tags/libpng/04-test"
+  },
+  {
+    "library": "libsdl",
+    "nameWithOwner": "safelibs/port-libsdl",
+    "url": "https://github.com/safelibs/port-libsdl",
+    "default_branch": "main",
+    "tag_ref": "refs/tags/libsdl/04-test"
+  },
+  {
+    "library": "libsodium",
+    "nameWithOwner": "safelibs/port-libsodium",
+    "url": "https://github.com/safelibs/port-libsodium",
+    "default_branch": "main",
+    "tag_ref": "refs/tags/libsodium/04-test"
+  },
+  {
+    "library": "libtiff",
+    "nameWithOwner": "safelibs/port-libtiff",
+    "url": "https://github.com/safelibs/port-libtiff",
+    "default_branch": "main",
+    "tag_ref": "refs/tags/libtiff/04-test"
+  },
+  {
+    "library": "libuv",
+    "nameWithOwner": "safelibs/port-libuv",
+    "url": "https://github.com/safelibs/port-libuv",
+    "default_branch": "main",
+    "tag_ref": "refs/tags/libuv/04-test"
+  },
+  {
+    "library": "libvips",
+    "nameWithOwner": "safelibs/port-libvips",
+    "url": "https://github.com/safelibs/port-libvips",
+    "default_branch": "main",
+    "tag_ref": "refs/tags/libvips/04-test"
+  },
+  {
+    "library": "libwebp",
+    "nameWithOwner": "safelibs/port-libwebp",
+    "url": "https://github.com/safelibs/port-libwebp",
+    "default_branch": "main",
+    "tag_ref": "refs/tags/libwebp/04-test"
+  },
+  {
+    "library": "libxml",
+    "nameWithOwner": "safelibs/port-libxml",
+    "url": "https://github.com/safelibs/port-libxml",
+    "default_branch": "main",
+    "tag_ref": "refs/tags/libxml/04-test"
+  },
+  {
+    "library": "libyaml",
+    "nameWithOwner": "safelibs/port-libyaml",
+    "url": "https://github.com/safelibs/port-libyaml",
+    "default_branch": "main",
+    "tag_ref": "refs/tags/libyaml/04-test"
+  },
+  {
+    "library": "libzstd",
+    "nameWithOwner": "safelibs/port-libzstd",
+    "url": "https://github.com/safelibs/port-libzstd",
+    "default_branch": "main",
+    "tag_ref": "refs/tags/libzstd/04-test"
+  }
+]

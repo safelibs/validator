@@ -1,0 +1,7 @@
+.work/
+.coverage
+.mypy_cache/
+.pytest_cache/
+.juvenal-state.json
+__pycache__/
+*.pyc
