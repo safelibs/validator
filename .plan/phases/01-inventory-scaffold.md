@@ -11,9 +11,6 @@
 **Preexisting Inputs**
 
 - `.plan/plan.md`
-- `.plan/findings.md`
-- `.plan/goal.md`
-- `.plan/plan-before-cleanup.md`
 - stale generated workflow artifacts under `.plan/phases/*.md` and `.plan/workflow-structure.yaml`, plus any existing worktree `workflow.yaml`, for reference only
 - `README.md`
 - `/home/yans/safelibs/apt-repo/repositories.yml`

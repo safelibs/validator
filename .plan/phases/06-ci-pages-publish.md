@@ -21,9 +21,6 @@
 - `tests/`
 - `unit/`
 - `.plan/plan.md`
-- `.plan/findings.md`
-- `.plan/goal.md`
-- `.plan/plan-before-cleanup.md`
 - stale generated workflow artifacts under `.plan/phases/*.md` and `.plan/workflow-structure.yaml`
 - any existing worktree `workflow.yaml`
 - `/home/yans/safelibs/apt-repo/.github/workflows/ci.yml`
