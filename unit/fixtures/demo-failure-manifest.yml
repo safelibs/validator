@@ -1,0 +1,46 @@
+archive:
+  image: ubuntu:24.04
+  install_packages: []
+inventory:
+  verified_at: '2026-04-12T00:00:00Z'
+  gh_repo_list_command: gh repo list safelibs --limit 200 --json name,nameWithOwner,isPrivate,url,defaultBranchRef
+  tag_probe_rule: refs/tags/{library}/04-test
+  raw_snapshot: inventory/github-repo-list.json
+  filtered_snapshot: inventory/github-port-repos.json
+  goal_repo_family: repos-*
+  verified_repo_family: port-*
+repositories:
+  - name: demo-fail
+    github_repo: safelibs/port-demo-fail
+    ref: refs/tags/demo-fail/04-test
+    build:
+      mode: safe-debian
+      artifact_globs:
+        - '*.deb'
+    validator:
+      sibling_repo: port-demo-fail
+      imports:
+        - safe/tests
+      import_excludes: []
+    fixtures:
+      dependents:
+        source: copy-staged-root
+      relevant_cves:
+        source: copy-staged-root
+  - name: demo-pass
+    github_repo: safelibs/port-demo-pass
+    ref: refs/tags/demo-pass/04-test
+    build:
+      mode: safe-debian
+      artifact_globs:
+        - '*.deb'
+    validator:
+      sibling_repo: port-demo-pass
+      imports:
+        - safe/tests
+      import_excludes: []
+    fixtures:
+      dependents:
+        source: copy-staged-root
+      relevant_cves:
+        source: copy-staged-root
