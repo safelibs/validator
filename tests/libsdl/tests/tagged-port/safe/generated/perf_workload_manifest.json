@@ -1,0 +1,79 @@
+{
+  "schema_version": 2,
+  "phase_id": "impl_phase_09_performance",
+  "workloads": [
+    {
+      "workload_id": "surface_create_fill_convert_blit",
+      "subsystem": "video_surface",
+      "driver_sources": [
+        "original/test/testsprite2.c",
+        "original/test/testspriteminimal.c",
+        "original/test/testyuv.c",
+        "original/test/testautomation_surface.c"
+      ],
+      "resource_paths": [
+        "original/test/sample.bmp",
+        "original/test/axis.bmp",
+        "original/test/button.bmp"
+      ],
+      "warmup_loops": 8,
+      "timed_loops": 240,
+      "description": "Exercise repeated surface creation, fill, pixel conversion, and scaled blit paths against the upstream sample bitmaps."
+    },
+    {
+      "workload_id": "renderer_queue_copy_texture_upload",
+      "subsystem": "render",
+      "driver_sources": [
+        "original/test/testrendercopyex.c",
+        "original/test/testrendertarget.c",
+        "original/test/teststreaming.c"
+      ],
+      "resource_paths": [
+        "original/test/sample.bmp",
+        "original/test/testgles2_sdf_img_normal.bmp"
+      ],
+      "warmup_loops": 4,
+      "timed_loops": 120,
+      "description": "Drive software renderer copy pressure with repeated texture upload/update and many queued render-copy commands."
+    },
+    {
+      "workload_id": "audio_stream_convert_resample_wave",
+      "subsystem": "audio",
+      "driver_sources": [
+        "original/test/loopwave.c",
+        "original/test/loopwavequeue.c",
+        "original/test/testresample.c",
+        "original/test/testautomation_audio.c"
+      ],
+      "resource_paths": [
+        "original/test/sample.wav"
+      ],
+      "warmup_loops": 2,
+      "timed_loops": 48,
+      "description": "Stress SDL_LoadWAV_RW plus SDL_AudioStream format conversion and resampling using the checked-in upstream sample wave."
+    },
+    {
+      "workload_id": "event_queue_throughput",
+      "subsystem": "events",
+      "driver_sources": [
+        "original/test/testautomation_events.c"
+      ],
+      "resource_paths": [],
+      "warmup_loops": 16,
+      "timed_loops": 320,
+      "description": "Measure custom-event enqueue and dequeue throughput with fixed-size batches under the SDL events subsystem."
+    },
+    {
+      "workload_id": "controller_mapping_guid",
+      "subsystem": "input",
+      "driver_sources": [
+        "original/test/testgamecontroller.c",
+        "original/test/controllermap.c"
+      ],
+      "resource_paths": [],
+      "warmup_loops": 4,
+      "timed_loops": 256,
+      "description": "Cover controller mapping lookup and GUID string formatting over a pre-seeded Linux mapping set."
+    }
+  ]
+}

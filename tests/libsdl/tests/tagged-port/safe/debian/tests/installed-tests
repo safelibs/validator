@@ -1,0 +1,44 @@
+#!/bin/sh
+
+set -eu
+real_sdl_runtime_var=SAFE_SDL_REAL_
+real_sdl_runtime_var="${real_sdl_runtime_var}SDL_PATH"
+unset "$real_sdl_runtime_var"
+
+namespace=SDL2/
+srcdir="$(pwd)"
+# Keep the packaged autopkgtest list on the deterministic headless subset.
+# The broader testautomation umbrella exercises runtime-dependent coverage
+# that is already handled by the separate source-tree test suites.
+tests="
+SDL2/testatomic.test
+SDL2/testaudioinfo.test
+SDL2/testbounds.test
+SDL2/testdisplayinfo.test
+SDL2/testerror.test
+SDL2/testevdev.test
+SDL2/testfilesystem.test
+SDL2/testkeys.test
+SDL2/testlocale.test
+SDL2/testplatform.test
+SDL2/testpower.test
+SDL2/testqsort.test
+SDL2/testthread.test
+SDL2/testtimer.test
+SDL2/testver.test
+"
+
+if [ -z "${HOME-}" ] || ! [ -w "${HOME}" ]; then
+    export HOME="${AUTOPKGTEST_TMP}"
+fi
+
+export SDL_AUDIODRIVER=dummy
+export SDL_VIDEODRIVER=dummy
+cd "$AUTOPKGTEST_TMP"
+
+if [ -z "$(ginsttest-runner -l "$namespace")" ]; then
+    echo "Error: no installed-tests found matching $namespace" >&2
+    exit 1
+fi
+
+exec ginsttest-runner --tap $tests

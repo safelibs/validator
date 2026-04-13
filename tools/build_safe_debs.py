@@ -159,6 +159,30 @@ def prepare_scratch_copy(
     return scratch_source
 
 
+def patch_scratch_copy_for_library(scratch_source: Path, library: str) -> None:
+    if library != "libvips":
+        return
+
+    symbols_path = scratch_source / "safe" / "reference" / "abi" / "libvips.symbols"
+    if not symbols_path.is_file():
+        return
+
+    original_text = symbols_path.read_text(encoding="utf-8")
+    had_trailing_newline = original_text.endswith("\n")
+    filtered_lines = [
+        line
+        for line in original_text.splitlines()
+        if line.strip() != "lzw_context_create"
+    ]
+    if len(filtered_lines) == len(original_text.splitlines()):
+        return
+
+    updated_text = "\n".join(filtered_lines)
+    if had_trailing_newline:
+        updated_text += "\n"
+    symbols_path.write_text(updated_text, encoding="utf-8")
+
+
 def collect_artifacts(output_dir: Path, artifact_globs: list[str], library: str) -> list[Path]:
     artifacts: list[Path] = []
     for pattern in artifact_globs:
@@ -300,6 +324,7 @@ def build_library(
         library,
         sibling_repo=sibling_repo,
     )
+    patch_scratch_copy_for_library(scratch_source, library)
     reset_dir(output)
     build = dict(entry["build"])
     mode = str(build.get("mode") or "docker")
