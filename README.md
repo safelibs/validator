@@ -21,3 +21,9 @@ The CI of this repository:
 - reports the results
 - records an asciicinema of the safe version runs (tests should run with `bash -x` for viewability)
 - publishes a github pages of the result (if on main branch)
+
+## Failures
+
+Not all the tests might pass on the safe version (in case of rust translation errors, for example).
+This is expected.
+Such failures should be pointed out in the test case results page.
