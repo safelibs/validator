@@ -27,3 +27,9 @@ The CI of this repository:
 Not all the tests might pass on the safe version (in case of rust translation errors, for example).
 This is expected.
 Such failures should be pointed out in the test case results page.
+
+## Errata
+
+- No changes can be made to either the original library or the safe library; both must be used as is.
+- The tests cannot check whether they are running against the original or safe library. Doing so is forbidden.
+- The tests must check functionality, not security.
