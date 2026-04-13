@@ -1,0 +1,58 @@
+#!/bin/sh
+# autopkgtest check: Build and run a program against libxml2, to verify that the
+# headers and pkg-config file are installed correctly
+# (C) 2012 Canonical Ltd.
+# Author: Daniel Holbach <daniel.holbach@ubuntu.com>
+
+set -e
+
+WORKDIR=$(mktemp -d)
+trap "rm -rf $WORKDIR" 0 INT QUIT ABRT PIPE TERM
+cd $WORKDIR
+cat <<EOF > xmltest.c
+#include <libxml/parser.h>
+
+int
+main(void)
+{
+
+    xmlNodePtr n;
+    xmlDocPtr doc;
+    xmlNodePtr cur;
+
+    doc = xmlNewDoc(BAD_CAST "1.0");
+    n = xmlNewNode(NULL, BAD_CAST "root");
+    xmlNodeSetContent(n, BAD_CAST "content");
+    xmlDocSetRootElement(doc, n);
+
+    cur = xmlDocGetRootElement(doc);
+    if (xmlStrcmp(cur->name, (const xmlChar *) "root"))
+        return (1);
+    xmlFreeDoc(doc);
+    return (0);
+
+}
+EOF
+
+gcc -o xmltest xmltest.c `pkg-config --cflags --libs libxml-2.0`
+echo "build: OK"
+[ -x xmltest ]
+./xmltest
+echo "run: OK"
+
+gcc -o xmltest-xml2-config xmltest.c `xml2-config --cflags --libs`
+[ -x xmltest-xml2-config ]
+./xmltest-xml2-config
+echo "xml2-config: OK"
+
+XML2CONF=$(dpkg-query -L libxml2-dev | grep -E '/usr/lib/.*/xml2Conf\.sh$' | head -n1)
+[ -n "$XML2CONF" ]
+. "$XML2CONF"
+gcc -o xmltest-xml2conf xmltest.c $XML2_INCLUDEDIR $XML2_LIBDIR $XML2_LIBS
+[ -x xmltest-xml2conf ]
+./xmltest-xml2conf
+echo "xml2Conf.sh: OK"
+
+xmlcatalog --create "$WORKDIR/catalog.xml" >/dev/null
+xmllint --version >/dev/null 2>&1
+echo "utils: OK"

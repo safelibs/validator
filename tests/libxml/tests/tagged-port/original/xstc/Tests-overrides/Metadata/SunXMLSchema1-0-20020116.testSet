@@ -1,0 +1,1168 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testSet contributor="Sun" name="Sun2002-01-16" xmlns="TestSuite" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="TestSuite AnnotatedTSSchema.xsd" xmlns:xlink="http://www.w3.org/1999/xlink">
+	<testGroup name="Sun-idc001.nogen">
+		<annotation>
+			<documentation>ID Constranints. Very naive test of identity constraint</documentation>
+		</annotation>
+		<schemaTest name="idc001.nogen">
+			<schemaDocument xlink:href="./suntest/SunTestsAll/idc001.nogen.xsd"/>
+			<expected validity="valid"/>
+			<current status="accepted" date="2002-01-16"/>
+		</schemaTest>
+		<instanceTest name="idc001.nogen.n00">
+			<instanceDocument xlink:href="./suntest/SunTestsAll/idc001.nogen.n00.xml"/>
+			<expected validity="invalid"/>
+			<current status="accepted" date="2002-01-16"/>
+		</instanceTest>
+		<instanceTest name="idc001.nogen.v00">
+			<instanceDocument xlink:href="./suntest/SunTestsAll/idc001.nogen.v00.xml"/>
+			<expected validity="valid"/>
+			<current status="accepted" date="2002-01-16"/>
+		</instanceTest>
+		<instanceTest name="idc001.nogen.v01">
+			<instanceDocument xlink:href="./suntest/SunTestsAll/idc001.nogen.v01.xml"/>
+			<expected validity="valid"/>
+			<current status="accepted" date="2002-01-16"/>
+		</instanceTest>
+	</testGroup>
+	<testGroup name="Sun-idc002.e">
+		<annotation>
+			<documentation>ID Constranints. Reference to an undeclared key</documentation>
+		</annotation>
+		<schemaTest name="idc002.e">
+			<schemaDocument xlink:href="./suntest/SunTestsAll/idc002.e.xsd"/>
+			<expected validity="invalid"/>
+			<current status="accepted" date="2002-01-16"/>
+		</schemaTest>
+	</testGroup>
+	<testGroup name="Sun-idc002b.e">
+		<annotation>
+			<documentation>ID Constranints. Reference to an undeclared key in an undeclared namespace</documentation>
+		</annotation>
+		<schemaTest name="idc002b.e">
+			<schemaDocument xlink:href="./suntest/SunTestsAll/idc002b.e.xsd"/>
+			<expected validity="invalid"/>
+			<current status="accepted" date="2002-01-16"/>
+		</schemaTest>
+	</testGroup>
+	<testGroup name="Sun-idc003.e">
+		<annotation>
+			<documentation>ID Constranints. Reference to non-key constraint.</documentation>
+		</annotation>
+		<schemaTest name="idc003.e">
+			<schemaDocument xlink:href="./suntest/SunTestsAll/idc003.e.xsd"/>
+			<expected validity="invalid"/>
+			<current status="accepted" date="2002-01-16"/>
+		</schemaTest>
+	</testGroup>
+	<testGroup name="Sun-idc004.nogen">
+		<annotation>
+			<documentation>ID Constranints.</documentation>
+		</annotation>
+		<schemaTest name="idc004.nogen">
+			<schemaDocument xlink:href="./suntest/SunTestsAll/idc004.nogen.xsd"/>
+			<expected validity="valid"/>
+			<current status="accepted" date="2002-01-16"/>
+		</schemaTest>
+		<instanceTest name="idc004.nogen.n00">
+			<instanceDocument xlink:href="./suntest/SunTestsAll/idc004.nogen.n00.xml"/>
+			<expected validity="invalid"/>
+			<current status="accepted" date="2002-01-16"/>
+		</instanceTest>
+		<instanceTest name="idc004.nogen.n01">
+			<instanceDocument xlink:href="./suntest/SunTestsAll/idc004.nogen.n01.xml"/>
+			<expected validity="invalid"/>
+			<current status="accepted" date="2002-01-16"/>
+		</instanceTest>
+		<instanceTest name="idc004.nogen.n02">
+			<instanceDocument xlink:href="./suntest/SunTestsAll/idc004.nogen.n02.xml"/>
+			<expected validity="invalid"/>
+			<current status="accepted" date="2002-01-16"/>
+		</instanceTest>
+		<instanceTest name="idc004.nogen.n03">
+			<instanceDocument xlink:href="./suntest/SunTestsAll/idc004.nogen.n03.xml"/>
+			<expected validity="invalid"/>
+			<current status="accepted" date="2002-01-16"/>
+		</instanceTest>
+		<instanceTest name="idc004.nogen.v00">
+			<instanceDocument xlink:href="./suntest/SunTestsAll/idc004.nogen.v00.xml"/>
+			<expected validity="valid"/>
+			<current status="accepted" date="2002-01-16"/>
+		</instanceTest>
+	</testGroup>
+	<testGroup name="Sun-idc004a.e">
+		<annotation>
+			<documentation>ID Constraints. Key/keyref field size mismatch.</documentation>
+		</annotation>
+		<schemaTest name="idc004a.e">
+			<schemaDocument xlink:href="./suntest/SunTestsAll/idc004a.e.xsd"/>
+			<expected validity="invalid"/>
+			<current status="accepted" date="2002-01-16"/>
+		</schemaTest>
+	</testGroup>
+	<testGroup name="Sun-idc005.nogen">
+		<annotation>
+			<documentation>ID Constraints. Very naive test of identity constraint.</documentation>
+		</annotation>
+		<schemaTest name="idc005.nogen">
+			<schemaDocument xlink:href="./suntest/SunTestsAll/idc005.nogen.xsd"/>
+			<expected validity="valid"/>
+			<current status="accepted" date="2002-01-16"/>
+		</schemaTest>
+		<instanceTest name="idc005.nogen.n00">
+			<instanceDocument xlink:href="./suntest/SunTestsAll/idc005.nogen.n00.xml"/>
+			<expected validity="invalid"/>
+			<current status="accepted" date="2002-01-16"/>
+		</instanceTest>
+		<instanceTest name="idc005.nogen.n01">
+			<instanceDocument xlink:href="./suntest/SunTestsAll/idc005.nogen.n01.xml"/>
+			<expected validity="invalid"/>
+			<current status="accepted" date="2002-01-16"/>
+		</instanceTest>
+		<instanceTest name="idc005.nogen.v00">
+			<instanceDocument xlink:href="./suntest/SunTestsAll/idc005.nogen.v00.xml"/>
+			<expected validity="valid"/>
+			<current status="accepted" date="2002-01-16"/>
+		</instanceTest>
+	</testGroup>
+	<testGroup name="Sun-idc006.nogen">
+		<annotation>
+			<documentation>ID Constraints. XPath engine test: ".//a/*/b" and use of "." for both selector and field.</documentation>
+		</annotation>
+		<schemaTest name="idc006.nogen">
+			<schemaDocument xlink:href="./suntest/SunTestsAll/idc006.nogen.xsd"/>
+			<expected validity="valid"/>
+			<current status="accepted" date="2002-01-16"/>
+		</schemaTest>
+		<instanceTest name="idc006.nogen.n00">
+			<instanceDocument xlink:href="./suntest/SunTestsAll/idc006.nogen.n00.xml"/>
+			<expected validity="invalid"/>
+			<current status="accepted" date="2002-01-16"/>
+		</instanceTest>
+		<instanceTest name="idc006.nogen.n01">
+			<instanceDocument xlink:href="./suntest/SunTestsAll/idc006.nogen.n01.xml"/>
+			<expected validity="invalid"/>
+			<current status="accepted" date="2002-01-16"/>
+		</instanceTest>
+		<instanceTest name="idc006.nogen.v00">
+			<instanceDocument xlink:href="./suntest/SunTestsAll/idc006.nogen.v00.xml"/>
+			<expected validity="valid"/>
+			<current status="accepted" date="2002-01-16"/>
+		</instanceTest>
+	</testGroup>
+	<testGroup name="Sun-xsd001">
+		<annotation>
+			<documentation>- use of elementFormDefault="unqualified" - unusual minOccurs/maxOccurs (3 and 7 respectively) - complexType with simpleContent, and restriction. - simpleType within restriction.</documentation>
+		</annotation>
+		<schemaTest name="xsd001">
+			<schemaDocument xlink:href="./suntest/SunTestsAll/xsd001.xsd"/>
+			<expected validity="valid"/>
+			<current status="accepted" date="2002-01-16"/>
+		</schemaTest>
+		<instanceTest name="xsd001.n00">
+			<instanceDocument xlink:href="./suntest/SunTestsAll/xsd001.n00.xml"/>
+			<expected validity="invalid"/>
+			<current status="accepted" date="2002-01-16"/>
+		</instanceTest>
+		<instanceTest name="xsd001.n01">
+			<instanceDocument xlink:href="./suntest/SunTestsAll/xsd001.n01.xml"/>
+			<expected validity="invalid"/>
+			<current status="accepted" date="2002-01-16"/>
+		</instanceTest>
+		<instanceTest name="xsd001.n02">
+			<instanceDocument xlink:href="./suntest/SunTestsAll/xsd001.n02.xml"/>
+			<expected validity="invalid"/>
+			<current status="accepted" date="2002-01-16"/>
+		</instanceTest>
+		<instanceTest name="xsd001.n03">
+			<instanceDocument xlink:href="./suntest/SunTestsAll/xsd001.n03.xml"/>
+			<expected validity="invalid"/>
+			<current status="accepted" date="2002-01-16"/>
+		</instanceTest>
+		<instanceTest name="xsd001.n04">
+			<instanceDocument xlink:href="./suntest/SunTestsAll/xsd001.n04.xml"/>
+			<expected validity="invalid"/>
+			<current status="accepted" date="2002-01-16"/>
+		</instanceTest>
+		<instanceTest name="xsd001.n05">
+			<instanceDocument xlink:href="./suntest/SunTestsAll/xsd001.n05.xml"/>
+			<expected validity="invalid"/>
+			<current status="accepted" date="2002-01-16"/>
+		</instanceTest>
+		<instanceTest name="xsd001.n06">
+			<instanceDocument xlink:href="./suntest/SunTestsAll/xsd001.n06.xml"/>
+			<expected validity="invalid"/>
+			<current status="accepted" date="2002-01-16"/>
+		</instanceTest>
+		<instanceTest name="xsd001.n07">
+			<instanceDocument xlink:href="./suntest/SunTestsAll/xsd001.n07.xml"/>
+			<expected validity="invalid"/>
+			<current status="accepted" date="2002-01-16"/>
+		</instanceTest>
+		<instanceTest name="xsd001.v00">
+			<instanceDocument xlink:href="./suntest/SunTestsAll/xsd001.v00.xml"/>
+			<expected validity="valid"/>
+			<current status="accepted" date="2002-01-16"/>
+		</instanceTest>
+		<instanceTest name="xsd001.v01">
+			<instanceDocument xlink:href="./suntest/SunTestsAll/xsd001.v01.xml"/>
+			<expected validity="valid"/>
+			<current status="accepted" date="2002-01-16"/>
+		</instanceTest>
+		<instanceTest name="xsd001.v02">
+			<instanceDocument xlink:href="./suntest/SunTestsAll/xsd001.v02.xml"/>
+			<expected validity="valid"/>
+			<current status="accepted" date="2002-01-16"/>
+		</instanceTest>
+		<instanceTest name="xsd001.v03">
+			<instanceDocument xlink:href="./suntest/SunTestsAll/xsd001.v03.xml"/>
+			<expected validity="valid"/>
+			<current status="accepted" date="2002-01-16"/>
+		</instanceTest>
+	</testGroup>
+	<testGroup name="Sun-xsd002">
+		<annotation>
+			<documentation>- use of elementFormDefault="unqualified" - use of elementFormDefault and form attribute. - implicit use of "ur-type" as the content model of element.</documentation>
+		</annotation>
+		<schemaTest name="xsd002">
+			<schemaDocument xlink:href="./suntest/SunTestsAll/xsd002.xsd"/>
+			<expected validity="valid"/>
+			<current status="accepted" date="2002-01-16"/>
+		</schemaTest>
+		<instanceTest name="xsd002.n00">
+			<instanceDocument xlink:href="./suntest/SunTestsAll/xsd002.n00.xml"/>
+			<expected validity="invalid"/>
+			<current status="accepted" date="2002-01-16"/>
+		</instanceTest>
+		<instanceTest name="xsd002.n01">
+			<instanceDocument xlink:href="./suntest/SunTestsAll/xsd002.n01.xml"/>
+			<expected validity="invalid"/>
+			<current status="accepted" date="2002-01-16"/>
+		</instanceTest>
+		<instanceTest name="xsd002.n02">
+			<instanceDocument xlink:href="./suntest/SunTestsAll/xsd002.n02.xml"/>
+			<expected validity="invalid"/>
+			<current status="accepted" date="2002-01-16"/>
+		</instanceTest>
+		<instanceTest name="xsd002.v00">
+			<instanceDocument xlink:href="./suntest/SunTestsAll/xsd002.v00.xml"/>
+			<expected validity="valid"/>
+			<current status="accepted" date="2002-01-16"/>
+		</instanceTest>
+		<instanceTest name="xsd002.v01">
+			<instanceDocument xlink:href="./suntest/SunTestsAll/xsd002.v01.xml"/>
+			<expected validity="valid"/>
+			<current status="accepted" date="2002-01-16"/>
+		</instanceTest>
+	</testGroup>
+	<testGroup name="Sun-xsd003-1.e">
+		<annotation>
+			<documentation>Element redefinition. Unable to redefine element.</documentation>
+		</annotation>
+		<schemaTest name="xsd003-1.e">
+			<schemaDocument xlink:href="./suntest/SunTestsAll/xsd003-1.e.xsd"/>
+			<expected validity="invalid"/>
+			<current status="accepted" date="2002-01-16"/>
+		</schemaTest>
+	</testGroup>
+	<testGroup name="Sun-xsd003-2.e">
+		<annotation>
+			<documentation>Element redefinition. Unable to redefine element.</documentation>
+		</annotation>
+		<schemaTest name="xsd003-2.e">
+			<schemaDocument xlink:href="./suntest/SunTestsAll/xsd003-2.e.xsd"/>
+			<expected validity="invalid"/>
+			<current status="accepted" date="2002-01-16"/>
+		</schemaTest>
+	</testGroup>
+	<testGroup name="Sun-xsd003a">
+		<annotation>
+			<documentation>Element redefinition. Test without redefinition.</documentation>
+		</annotation>
+		<schemaTest name="xsd003a">
+			<schemaDocument xlink:href="./suntest/SunTestsAll/xsd003a.xsd"/>
+			<expected validity="valid"/>
+			<current status="accepted" date="2002-01-16"/>
+		</schemaTest>
+		<instanceTest name="xsd003a.v00">
+			<instanceDocument xlink:href="./suntest/SunTestsAll/xsd003a.v00.xml"/>
+			<expected validity="valid"/>
+			<current status="accepted" date="2002-01-16"/>
+		</instanceTest>
+	</testGroup>
+	<testGroup name="Sun-xsd003b">
+		<annotation>
+			<documentation>Element redefinition. Test with redefinition with self-reference.</documentation>
+		</annotation>
+		<schemaTest name="xsd003b">
+			<schemaDocument xlink:href="./suntest/SunTestsAll/xsd003b.xsd"/>
+			<expected validity="valid"/>
+			<current status="accepted" date="2002-01-16"/>
+		</schemaTest>
+		<instanceTest name="xsd003b.n00">
+			<instanceDocument xlink:href="./suntest/SunTestsAll/xsd003b.n00.xml"/>
+			<expected validity="invalid"/>
+			<current status="accepted" date="2002-01-16"/>
+		</instanceTest>
+		<instanceTest name="xsd003b.n01">
+			<instanceDocument xlink:href="./suntest/SunTestsAll/xsd003b.n01.xml"/>
+			<expected validity="invalid"/>
+			<current status="accepted" date="2002-01-16"/>
+		</instanceTest>
+		<instanceTest name="xsd003b.v00">
+			<instanceDocument xlink:href="./suntest/SunTestsAll/xsd003b.v00.xml"/>
+			<expected validity="valid"/>
+			<current status="accepted" date="2002-01-16"/>
+		</instanceTest>
+		<instanceTest name="xsd003b.v01">
+			<instanceDocument xlink:href="./suntest/SunTestsAll/xsd003b.v01.xml"/>
+			<expected validity="valid"/>
+			<current status="accepted" date="2002-01-16"/>
+		</instanceTest>
+	</testGroup>
+	<testGroup name="Sun-xsd004">
+		<annotation>
+			<documentation>Use of three different type of any element with different @namespace.</documentation>
+		</annotation>
+		<schemaTest name="xsd004">
+			<schemaDocument xlink:href="./suntest/SunTestsAll/xsd004.xsd"/>
+			<expected validity="valid"/>
+			<current status="accepted" date="2002-01-16"/>
+		</schemaTest>
+		<instanceTest name="xsd004.n00">
+			<instanceDocument xlink:href="./suntest/SunTestsAll/xsd004.n00.xml"/>
+			<expected validity="invalid"/>
+			<current status="accepted" date="2002-01-16"/>
+		</instanceTest>
+		<instanceTest name="xsd004.n01">
+			<instanceDocument xlink:href="./suntest/SunTestsAll/xsd004.n01.xml"/>
+			<expected validity="invalid"/>
+			<current status="accepted" date="2002-01-16"/>
+		</instanceTest>
+		<instanceTest name="xsd004.n02">
+			<instanceDocument xlink:href="./suntest/SunTestsAll/xsd004.n02.xml"/>
+			<expected validity="invalid"/>
+			<current status="accepted" date="2002-01-16"/>
+		</instanceTest>
+		<instanceTest name="xsd004.n03">
+			<instanceDocument xlink:href="./suntest/SunTestsAll/xsd004.n03.xml"/>
+			<expected validity="invalid"/>
+			<current status="accepted" date="2002-01-16"/>
+		</instanceTest>
+		<instanceTest name="xsd004.n04">
+			<instanceDocument xlink:href="./suntest/SunTestsAll/xsd004.n04.xml"/>
+			<expected validity="invalid"/>
+			<current status="accepted" date="2002-01-16"/>
+		</instanceTest>
+		<instanceTest name="xsd004.n05">
+			<instanceDocument xlink:href="./suntest/SunTestsAll/xsd004.n05.xml"/>
+			<expected validity="invalid"/>
+			<current status="accepted" date="2002-01-16"/>
+		</instanceTest>
+		<instanceTest name="xsd004.n06">
+			<instanceDocument xlink:href="./suntest/SunTestsAll/xsd004.n06.xml"/>
+			<expected validity="invalid"/>
+			<current status="accepted" date="2002-01-16"/>
+		</instanceTest>
+		<instanceTest name="xsd004.n07">
+			<instanceDocument xlink:href="./suntest/SunTestsAll/xsd004.n07.xml"/>
+			<expected validity="invalid"/>
+			<current status="accepted" date="2002-01-16"/>
+		</instanceTest>
+		<instanceTest name="xsd004.n08">
+			<instanceDocument xlink:href="./suntest/SunTestsAll/xsd004.n08.xml"/>
+			<expected validity="invalid"/>
+			<current status="accepted" date="2002-01-16"/>
+		</instanceTest>
+		<instanceTest name="xsd004.n09">
+			<instanceDocument xlink:href="./suntest/SunTestsAll/xsd004.n09.xml"/>
+			<expected validity="invalid"/>
+			<current status="accepted" date="2002-01-16"/>
+		</instanceTest>
+		<instanceTest name="xsd004.n10">
+			<instanceDocument xlink:href="./suntest/SunTestsAll/xsd004.n10.xml"/>
+			<expected validity="invalid"/>
+			<current status="accepted" date="2002-01-16"/>
+		</instanceTest>
+		<instanceTest name="xsd004.n11">
+			<instanceDocument xlink:href="./suntest/SunTestsAll/xsd004.n11.xml"/>
+			<expected validity="invalid"/>
+			<current status="accepted" date="2002-01-16"/>
+		</instanceTest>
+		<instanceTest name="xsd004.n12">
+			<instanceDocument xlink:href="./suntest/SunTestsAll/xsd004.n12.xml"/>
+			<expected validity="invalid"/>
+			<current status="accepted" date="2002-01-16"/>
+		</instanceTest>
+		<instanceTest name="xsd004.v00">
+			<instanceDocument xlink:href="./suntest/SunTestsAll/xsd004.v00.xml"/>
+			<expected validity="valid"/>
+			<current status="accepted" date="2002-01-16"/>
+		</instanceTest>
+	</testGroup>
+	<testGroup name="Sun-xsd005">
+		<annotation>
+			<documentation>Complex type derivation.</documentation>
+		</annotation>
+		<schemaTest name="xsd005">
+			<schemaDocument xlink:href="./suntest/SunTestsAll/xsd005.xsd"/>
+			<expected validity="valid"/>
+			<current status="accepted" date="2002-01-16"/>
+		</schemaTest>
+		<instanceTest name="xsd005.n00">
+			<instanceDocument xlink:href="./suntest/SunTestsAll/xsd005.n00.xml"/>
+			<expected validity="invalid"/>
+			<current status="accepted" date="2002-01-16"/>
+		</instanceTest>
+		<instanceTest name="xsd005.n01">
+			<instanceDocument xlink:href="./suntest/SunTestsAll/xsd005.n01.xml"/>
+			<expected validity="invalid"/>
+			<current status="accepted" date="2002-01-16"/>
+		</instanceTest>
+		<instanceTest name="xsd005.n02">
+			<instanceDocument xlink:href="./suntest/SunTestsAll/xsd005.n02.xml"/>
+			<expected validity="invalid"/>
+			<current status="accepted" date="2002-01-16"/>
+		</instanceTest>
+		<instanceTest name="xsd005.n03">
+			<instanceDocument xlink:href="./suntest/SunTestsAll/xsd005.n03.xml"/>
+			<expected validity="invalid"/>
+			<current status="accepted" date="2002-01-16"/>
+		</instanceTest>
+		<instanceTest name="xsd005.n04">
+			<instanceDocument xlink:href="./suntest/SunTestsAll/xsd005.n04.xml"/>
+			<expected validity="invalid"/>
+			<current status="accepted" date="2002-01-16"/>
+		</instanceTest>
+		<instanceTest name="xsd005.n05">
+			<instanceDocument xlink:href="./suntest/SunTestsAll/xsd005.n05.xml"/>
+			<expected validity="invalid"/>
+			<current status="accepted" date="2002-01-16"/>
+		</instanceTest>
+		<instanceTest name="xsd005.n06">
+			<instanceDocument xlink:href="./suntest/SunTestsAll/xsd005.n06.xml"/>
+			<expected validity="invalid"/>
+			<current status="accepted" date="2002-01-16"/>
+		</instanceTest>
+		<instanceTest name="xsd005.v00">
+			<instanceDocument xlink:href="./suntest/SunTestsAll/xsd005.v00.xml"/>
+			<expected validity="valid"/>
+			<current status="accepted" date="2002-01-16"/>
+		</instanceTest>
+	</testGroup>
+	<testGroup name="Sun-xsd006">
+		<annotation>
+			<documentation>minOccurs/maxOccurs. Various combinations.</documentation>
+		</annotation>
+		<schemaTest name="xsd006">
+			<schemaDocument xlink:href="./suntest/SunTestsAll/xsd006.xsd"/>
+			<expected validity="valid"/>
+			<current status="accepted" date="2002-01-16"/>
+		</schemaTest>
+		<instanceTest name="xsd006.n00">
+			<instanceDocument xlink:href="./suntest/SunTestsAll/xsd006.n00.xml"/>
+			<expected validity="invalid"/>
+			<current status="accepted" date="2002-01-16"/>
+		</instanceTest>
+		<instanceTest name="xsd006.n01">
+			<instanceDocument xlink:href="./suntest/SunTestsAll/xsd006.n01.xml"/>
+			<expected validity="invalid"/>
+			<current status="accepted" date="2002-01-16"/>
+		</instanceTest>
+		<instanceTest name="xsd006.n02">
+			<instanceDocument xlink:href="./suntest/SunTestsAll/xsd006.n02.xml"/>
+			<expected validity="invalid"/>
+			<current status="accepted" date="2002-01-16"/>
+		</instanceTest>
+		<instanceTest name="xsd006.n03">
+			<instanceDocument xlink:href="./suntest/SunTestsAll/xsd006.n03.xml"/>
+			<expected validity="invalid"/>
+			<current status="accepted" date="2002-01-16"/>
+		</instanceTest>
+		<instanceTest name="xsd006.n04">
+			<instanceDocument xlink:href="./suntest/SunTestsAll/xsd006.n04.xml"/>
+			<expected validity="invalid"/>
+			<current status="accepted" date="2002-01-16"/>
+		</instanceTest>
+		<instanceTest name="xsd006.n05">
+			<instanceDocument xlink:href="./suntest/SunTestsAll/xsd006.n05.xml"/>
+			<expected validity="invalid"/>
+			<current status="accepted" date="2002-01-16"/>
+		</instanceTest>
+		<instanceTest name="xsd006.n06">
+			<instanceDocument xlink:href="./suntest/SunTestsAll/xsd006.n06.xml"/>
+			<expected validity="invalid"/>
+			<current status="accepted" date="2002-01-16"/>
+		</instanceTest>
+		<instanceTest name="xsd006.n07">
+			<instanceDocument xlink:href="./suntest/SunTestsAll/xsd006.n07.xml"/>
+			<expected validity="invalid"/>
+			<current status="accepted" date="2002-01-16"/>
+		</instanceTest>
+		<instanceTest name="xsd006.n08">
+			<instanceDocument xlink:href="./suntest/SunTestsAll/xsd006.n08.xml"/>
+			<expected validity="invalid"/>
+			<current status="accepted" date="2002-01-16"/>
+		</instanceTest>
+		<instanceTest name="xsd006.n09">
+			<instanceDocument xlink:href="./suntest/SunTestsAll/xsd006.n09.xml"/>
+			<expected validity="invalid"/>
+			<current status="accepted" date="2002-01-16"/>
+		</instanceTest>
+		<instanceTest name="xsd006.n10">
+			<instanceDocument xlink:href="./suntest/SunTestsAll/xsd006.n10.xml"/>
+			<expected validity="invalid"/>
+			<current status="accepted" date="2002-01-16"/>
+		</instanceTest>
+		<instanceTest name="xsd006.v00">
+			<instanceDocument xlink:href="./suntest/SunTestsAll/xsd006.v00.xml"/>
+			<expected validity="valid"/>
+			<current status="accepted" date="2002-01-16"/>
+		</instanceTest>
+	</testGroup>
+	<testGroup name="Sun-xsd008">
+		<annotation>
+			<documentation>Abstract element and element substitution group.</documentation>
+		</annotation>
+		<schemaTest name="xsd008">
+			<schemaDocument xlink:href="./suntest/SunTestsAll/xsd008.xsd"/>
+			<expected validity="valid"/>
+			<current status="accepted" date="2002-01-16"/>
+		</schemaTest>
+		<instanceTest name="xsd008.n00">
+			<instanceDocument xlink:href="./suntest/SunTestsAll/xsd008.n00.xml"/>
+			<expected validity="invalid"/>
+			<current status="accepted" date="2002-01-16"/>
+		</instanceTest>
+		<instanceTest name="xsd008.n01">
+			<instanceDocument xlink:href="./suntest/SunTestsAll/xsd008.n01.xml"/>
+			<expected validity="invalid"/>
+			<current status="accepted" date="2002-01-16"/>
+		</instanceTest>
+		<instanceTest name="xsd008.n02">
+			<instanceDocument xlink:href="./suntest/SunTestsAll/xsd008.n02.xml"/>
+			<expected validity="invalid"/>
+			<current status="accepted" date="2002-01-16"/>
+		</instanceTest>
+		<instanceTest name="xsd008.v00">
+			<instanceDocument xlink:href="./suntest/SunTestsAll/xsd008.v00.xml"/>
+			<expected validity="valid"/>
+			<current status="accepted" date="2002-01-16"/>
+		</instanceTest>
+	</testGroup>
+	<testGroup name="Sun-xsd011">
+		<annotation>
+			<documentation>Nillable.</documentation>
+		</annotation>
+		<schemaTest name="xsd011">
+			<schemaDocument xlink:href="./suntest/SunTestsAll/xsd011.xsd"/>
+			<expected validity="valid"/>
+			<current status="accepted" date="2002-01-16"/>
+		</schemaTest>
+		<instanceTest name="xsd011.n00">
+			<instanceDocument xlink:href="./suntest/SunTestsAll/xsd011.n00.xml"/>
+			<expected validity="invalid"/>
+			<current status="accepted" date="2002-01-16"/>
+		</instanceTest>
+		<instanceTest name="xsd011.n01">
+			<instanceDocument xlink:href="./suntest/SunTestsAll/xsd011.n01.xml"/>
+			<expected validity="invalid"/>
+			<current status="accepted" date="2002-01-16"/>
+		</instanceTest>
+		<instanceTest name="xsd011.n02">
+			<instanceDocument xlink:href="./suntest/SunTestsAll/xsd011.n02.xml"/>
+			<expected validity="invalid"/>
+			<current status="accepted" date="2002-01-16"/>
+		</instanceTest>
+		<instanceTest name="xsd011.n03">
+			<instanceDocument xlink:href="./suntest/SunTestsAll/xsd011.n03.xml"/>
+			<expected validity="invalid"/>
+			<current status="accepted" date="2002-01-16"/>
+		</instanceTest>
+		<instanceTest name="xsd011.n04">
+			<instanceDocument xlink:href="./suntest/SunTestsAll/xsd011.n04.xml"/>
+			<expected validity="invalid"/>
+			<current status="accepted" date="2002-01-16"/>
+		</instanceTest>
+		<instanceTest name="xsd011.v00">
+			<instanceDocument xlink:href="./suntest/SunTestsAll/xsd011.v00.xml"/>
+			<expected validity="invalid"/>
+			<current status="accepted" date="2002-01-16"/>
+		</instanceTest>
+	</testGroup>
+	<testGroup name="Sun-xsd012">
+		<annotation>
+			<documentation>Mixed content model.</documentation>
+		</annotation>
+		<schemaTest name="xsd012">
+			<schemaDocument xlink:href="./suntest/SunTestsAll/xsd012.xsd"/>
+			<expected validity="valid"/>
+			<current status="accepted" date="2002-01-16"/>
+		</schemaTest>
+		<instanceTest name="xsd012.n00">
+			<instanceDocument xlink:href="./suntest/SunTestsAll/xsd012.n00.xml"/>
+			<expected validity="invalid"/>
+			<current status="accepted" date="2002-01-16"/>
+		</instanceTest>
+		<instanceTest name="xsd012.v00">
+			<instanceDocument xlink:href="./suntest/SunTestsAll/xsd012.v00.xml"/>
+			<expected validity="valid"/>
+			<current status="accepted" date="2002-01-16"/>
+		</instanceTest>
+	</testGroup>
+	<testGroup name="Sun-xsd013.e">
+		<annotation>
+			<documentation>Reference to undeclared element.</documentation>
+		</annotation>
+		<schemaTest name="xsd013.e">
+			<schemaDocument xlink:href="./suntest/SunTestsAll/xsd013.e.xsd"/>
+			<expected validity="invalid"/>
+			<current status="accepted" date="2002-01-16"/>
+		</schemaTest>
+	</testGroup>
+	<testGroup name="Sun-xsd014.e">
+		<annotation>
+			<documentation>Reference to undeclared element.</documentation>
+		</annotation>
+		<schemaTest name="xsd014.e">
+			<schemaDocument xlink:href="./suntest/SunTestsAll/xsd014.e.xsd"/>
+			<expected validity="invalid"/>
+			<current status="accepted" date="2002-01-16"/>
+		</schemaTest>
+	</testGroup>
+	<testGroup name="Sun-xsd015.e">
+		<annotation>
+			<documentation>Reference to undeclared type (it may be simple or complex).</documentation>
+		</annotation>
+		<schemaTest name="xsd015.e">
+			<schemaDocument xlink:href="./suntest/SunTestsAll/xsd015.e.xsd"/>
+			<expected validity="invalid"/>
+			<current status="accepted" date="2002-01-16"/>
+		</schemaTest>
+	</testGroup>
+	<testGroup name="Sun-xsd016.e">
+		<annotation>
+			<documentation>Reference to undeclared type (it may be simple or complex).</documentation>
+		</annotation>
+		<schemaTest name="xsd016.e">
+			<schemaDocument xlink:href="./suntest/SunTestsAll/xsd016.e.xsd"/>
+			<expected validity="invalid"/>
+			<current status="accepted" date="2002-01-16"/>
+		</schemaTest>
+	</testGroup>
+	<testGroup name="Sun-xsd017.e">
+		<annotation>
+			<documentation>Reference to undeclared complex type.</documentation>
+		</annotation>
+		<schemaTest name="xsd017.e">
+			<schemaDocument xlink:href="./suntest/SunTestsAll/xsd017.e.xsd"/>
+			<expected validity="invalid"/>
+			<current status="accepted" date="2002-01-16"/>
+		</schemaTest>
+	</testGroup>
+	<testGroup name="Sun-xsd018.e">
+		<annotation>
+			<documentation>Reference to undeclared complex type.</documentation>
+		</annotation>
+		<schemaTest name="xsd018.e">
+			<schemaDocument xlink:href="./suntest/SunTestsAll/xsd018.e.xsd"/>
+			<expected validity="invalid"/>
+			<current status="accepted" date="2002-01-16"/>
+		</schemaTest>
+	</testGroup>
+	<testGroup name="Sun-xsd019.e">
+		<annotation>
+			<documentation>Reference to undeclared simple type.</documentation>
+		</annotation>
+		<schemaTest name="xsd019.e">
+			<schemaDocument xlink:href="./suntest/SunTestsAll/xsd019.e.xsd"/>
+			<expected validity="invalid"/>
+			<current status="accepted" date="2002-01-16"/>
+		</schemaTest>
+	</testGroup>
+	<testGroup name="Sun-xsd020.e">
+		<annotation>
+			<documentation>Reference to undeclared simple type.</documentation>
+		</annotation>
+		<schemaTest name="xsd020.e">
+			<schemaDocument xlink:href="./suntest/SunTestsAll/xsd020.e.xsd"/>
+			<expected validity="invalid"/>
+			<current status="accepted" date="2002-01-16"/>
+		</schemaTest>
+	</testGroup>
+	<testGroup name="Sun-xsd020-2.e">
+		<annotation>
+			<documentation>Reference to undeclared attribute.</documentation>
+		</annotation>
+		<schemaTest name="xsd020-2.e">
+			<schemaDocument xlink:href="./suntest/SunTestsAll/xsd020-2.e.xsd"/>
+			<expected validity="invalid"/>
+			<current status="accepted" date="2002-01-16"/>
+		</schemaTest>
+	</testGroup>
+	<testGroup name="Sun-xsd020-3.e">
+		<annotation>
+			<documentation>Reference to undeclared model group.</documentation>
+		</annotation>
+		<schemaTest name="xsd020-3.e">
+			<schemaDocument xlink:href="./suntest/SunTestsAll/xsd020-3.e.xsd"/>
+			<expected validity="invalid"/>
+			<current status="accepted" date="2002-01-16"/>
+		</schemaTest>
+	</testGroup>
+	<testGroup name="Sun-xsd020-4.e">
+		<annotation>
+			<documentation>Reference to undeclared attribute group.</documentation>
+		</annotation>
+		<schemaTest name="xsd020-4.e">
+			<schemaDocument xlink:href="./suntest/SunTestsAll/xsd020-4.e.xsd"/>
+			<expected validity="invalid"/>
+			<current status="accepted" date="2002-01-16"/>
+		</schemaTest>
+	</testGroup>
+	<testGroup name="Sun-xsd021">
+		<annotation>
+			<documentation>anyOtherAttribute.</documentation>
+		</annotation>
+		<schemaTest name="xsd021">
+			<schemaDocument xlink:href="./suntest/SunTestsAll/xsd021.xsd"/>
+			<expected validity="valid"/>
+			<current status="accepted" date="2002-01-16"/>
+		</schemaTest>
+		<instanceTest name="xsd021.n00">
+			<instanceDocument xlink:href="./suntest/SunTestsAll/xsd021.n00.xml"/>
+			<expected validity="invalid"/>
+			<current status="accepted" date="2002-01-16"/>
+		</instanceTest>
+		<instanceTest name="xsd021.n01">
+			<instanceDocument xlink:href="./suntest/SunTestsAll/xsd021.n01.xml"/>
+			<expected validity="invalid"/>
+			<current status="accepted" date="2002-01-16"/>
+		</instanceTest>
+		<instanceTest name="xsd021.n02">
+			<instanceDocument xlink:href="./suntest/SunTestsAll/xsd021.n02.xml"/>
+			<expected validity="invalid"/>
+			<current status="accepted" date="2002-01-16"/>
+		</instanceTest>
+		<instanceTest name="xsd021.n03">
+			<instanceDocument xlink:href="./suntest/SunTestsAll/xsd021.n03.xml"/>
+			<expected validity="invalid"/>
+			<current status="accepted" date="2002-01-16"/>
+		</instanceTest>
+		<instanceTest name="xsd021.n04">
+			<instanceDocument xlink:href="./suntest/SunTestsAll/xsd021.n04.xml"/>
+			<expected validity="invalid"/>
+			<current status="accepted" date="2002-01-16"/>
+		</instanceTest>
+		<instanceTest name="xsd021.n05">
+			<instanceDocument xlink:href="./suntest/SunTestsAll/xsd021.n05.xml"/>
+			<expected validity="invalid"/>
+			<current status="accepted" date="2002-01-16"/>
+		</instanceTest>
+		<instanceTest name="xsd021.n06">
+			<instanceDocument xlink:href="./suntest/SunTestsAll/xsd021.n06.xml"/>
+			<expected validity="invalid"/>
+			<current status="accepted" date="2002-01-16"/>
+		</instanceTest>
+		<instanceTest name="xsd021.n07">
+			<instanceDocument xlink:href="./suntest/SunTestsAll/xsd021.n07.xml"/>
+			<expected validity="invalid"/>
+			<current status="accepted" date="2002-01-16"/>
+		</instanceTest>
+		<instanceTest name="xsd021.n08">
+			<instanceDocument xlink:href="./suntest/SunTestsAll/xsd021.n08.xml"/>
+			<expected validity="invalid"/>
+			<current status="accepted" date="2002-01-16"/>
+		</instanceTest>
+		<instanceTest name="xsd021.n09">
+			<instanceDocument xlink:href="./suntest/SunTestsAll/xsd021.n09.xml"/>
+			<expected validity="invalid"/>
+			<current status="accepted" date="2002-01-16"/>
+		</instanceTest>
+		<instanceTest name="xsd021.n10">
+			<instanceDocument xlink:href="./suntest/SunTestsAll/xsd021.n10.xml"/>
+			<expected validity="invalid"/>
+			<current status="accepted" date="2002-01-16"/>
+		</instanceTest>
+		<instanceTest name="xsd021.n11">
+			<instanceDocument xlink:href="./suntest/SunTestsAll/xsd021.n11.xml"/>
+			<expected validity="invalid"/>
+			<current status="accepted" date="2002-01-16"/>
+		</instanceTest>
+		<instanceTest name="xsd021.v00">
+			<instanceDocument xlink:href="./suntest/SunTestsAll/xsd021.v00.xml"/>
+			<expected validity="valid"/>
+			<current status="accepted" date="2002-01-16"/>
+		</instanceTest>
+	</testGroup>
+	<testGroup name="Sun-xsd022">
+		<annotation>
+			<documentation>Simple type. Various forms of forward reference to the simple type.</documentation>
+		</annotation>
+		<schemaTest name="xsd022">
+			<schemaDocument xlink:href="./suntest/SunTestsAll/xsd022.xsd"/>
+			<expected validity="valid"/>
+			<current status="accepted" date="2002-01-16"/>
+		</schemaTest>
+		<instanceTest name="xsd022.n00">
+			<instanceDocument xlink:href="./suntest/SunTestsAll/xsd022.n00.xml"/>
+			<expected validity="invalid"/>
+			<current status="accepted" date="2002-01-16"/>
+		</instanceTest>
+		<instanceTest name="xsd022.v00">
+			<instanceDocument xlink:href="./suntest/SunTestsAll/xsd022.v00.xml"/>
+			<expected validity="valid"/>
+			<current status="accepted" date="2002-01-16"/>
+		</instanceTest>
+	</testGroup>
+	<testGroup name="Sun-xsd023.e">
+		<annotation>
+			<documentation>Simple type. Recursive definition.</documentation>
+		</annotation>
+		<schemaTest name="xsd023.e">
+			<schemaDocument xlink:href="./suntest/SunTestsAll/xsd023.e.xsd"/>
+			<expected validity="invalid"/>
+			<current status="accepted" date="2002-01-16"/>
+		</schemaTest>
+	</testGroup>
+	<testGroup name="Sun-xsiType1">
+		<annotation>
+			<documentation>Simple type.</documentation>
+		</annotation>
+		<schemaTest name="xsiType1">
+			<schemaDocument xlink:href="./suntest/SunTestsAll/xsiType1.xsd"/>
+			<expected validity="valid"/>
+			<current status="accepted" date="2002-01-16"/>
+		</schemaTest>
+		<instanceTest name="xsiType1.v1">
+			<instanceDocument xlink:href="./suntest/SunTestsAll/xsiType1.v1.xml"/>
+			<expected validity="valid"/>
+			<current status="accepted" date="2002-01-16"/>
+		</instanceTest>
+		<instanceTest name="xsiType1.n1">
+			<instanceDocument xlink:href="./suntest/SunTestsAll/xsiType1.n1.xml"/>
+			<expected validity="invalid"/>
+			<current status="accepted" date="2002-01-16"/>
+		</instanceTest>
+	</testGroup>
+	<testGroup name="Sun-xsiType-block-1">
+		<annotation>
+			<documentation>Test block attribute (1) - use block="extension" at the B type. This should exclude all types that uses extension.</documentation>
+		</annotation>
+		<schemaTest name="xsiType-block-1">
+			<schemaDocument xlink:href="./suntest/SunTestsAll/xsiType-block-1.xsd"/>
+			<expected validity="valid"/>
+			<current status="accepted" date="2002-01-16"/>
+		</schemaTest>
+		<instanceTest name="xsiType-block-1.v1">
+			<instanceDocument xlink:href="./suntest/SunTestsAll/xsiType-block-1.v1.xml"/>
+			<expected validity="valid"/>
+			<current status="accepted" date="2002-01-16"/>
+		</instanceTest>
+		<instanceTest name="xsiType-block-1.n1">
+			<instanceDocument xlink:href="./suntest/SunTestsAll/xsiType-block-1.n1.xml"/>
+			<expected validity="invalid"/>
+			<current status="accepted" date="2002-01-16"/>
+		</instanceTest>
+		<instanceTest name="xsiType-block-1.n2">
+			<instanceDocument xlink:href="./suntest/SunTestsAll/xsiType-block-1.n2.xml"/>
+			<expected validity="invalid"/>
+			<current status="accepted" date="2002-01-16"/>
+		</instanceTest>
+		<instanceTest name="xsiType-block-1.n3">
+			<instanceDocument xlink:href="./suntest/SunTestsAll/xsiType-block-1.n3.xml"/>
+			<expected validity="invalid"/>
+			<current status="accepted" date="2002-01-16"/>
+		</instanceTest>
+		<instanceTest name="xsiType-block-1.n4">
+			<instanceDocument xlink:href="./suntest/SunTestsAll/xsiType-block-1.n4.xml"/>
+			<expected validity="invalid"/>
+			<current status="accepted" date="2002-01-16"/>
+		</instanceTest>
+	</testGroup>
+	<testGroup name="Sun-xsiType-block-2">
+		<annotation>
+			<documentation>Test block attribute (2) - use block="extension" as the blockDefault attribute. This should achieve the same result as the previous test case.</documentation>
+		</annotation>
+		<schemaTest name="xsiType-block-2">
+			<schemaDocument xlink:href="./suntest/SunTestsAll/xsiType-block-2.xsd"/>
+			<expected validity="valid"/>
+			<current status="accepted" date="2002-01-16"/>
+		</schemaTest>
+		<instanceTest name="xsiType-block-2.v1">
+			<instanceDocument xlink:href="./suntest/SunTestsAll/xsiType-block-2.v1.xml"/>
+			<expected validity="valid"/>
+			<current status="accepted" date="2002-01-16"/>
+		</instanceTest>
+		<instanceTest name="xsiType-block-2.n1">
+			<instanceDocument xlink:href="./suntest/SunTestsAll/xsiType-block-2.n1.xml"/>
+			<expected validity="invalid"/>
+			<current status="accepted" date="2002-01-16"/>
+		</instanceTest>
+		<instanceTest name="xsiType-block-2.n2">
+			<instanceDocument xlink:href="./suntest/SunTestsAll/xsiType-block-2.n2.xml"/>
+			<expected validity="invalid"/>
+			<current status="accepted" date="2002-01-16"/>
+		</instanceTest>
+		<instanceTest name="xsiType-block-2.n3">
+			<instanceDocument xlink:href="./suntest/SunTestsAll/xsiType-block-2.n3.xml"/>
+			<expected validity="invalid"/>
+			<current status="accepted" date="2002-01-16"/>
+		</instanceTest>
+		<instanceTest name="xsiType-block-2.n4">
+			<instanceDocument xlink:href="./suntest/SunTestsAll/xsiType-block-2.n4.xml"/>
+			<expected validity="invalid"/>
+			<current status="accepted" date="2002-01-16"/>
+		</instanceTest>
+	</testGroup>
+	<testGroup name="Sun-xsiType-block-3">
+		<annotation>
+			<documentation>Test block attribute (3) - use block="extension" for the child2 element. child2 has no block constraint. - see if @block for element is working as expected.</documentation>
+		</annotation>
+		<schemaTest name="xsiType-block-3">
+			<schemaDocument xlink:href="./suntest/SunTestsAll/xsiType-block-3.xsd"/>
+			<expected validity="valid"/>
+			<current status="accepted" date="2002-01-16"/>
+		</schemaTest>
+		<instanceTest name="xsiType-block-3.v1">
+			<instanceDocument xlink:href="./suntest/SunTestsAll/xsiType-block-3.v1.xml"/>
+			<expected validity="valid"/>
+			<current status="accepted" date="2002-01-16"/>
+		</instanceTest>
+		<instanceTest name="xsiType-block-3.n1">
+			<instanceDocument xlink:href="./suntest/SunTestsAll/xsiType-block-3.n1.xml"/>
+			<expected validity="invalid"/>
+			<current status="accepted" date="2002-01-16"/>
+		</instanceTest>
+		<instanceTest name="xsiType-block-3.n2">
+			<instanceDocument xlink:href="./suntest/SunTestsAll/xsiType-block-3.n2.xml"/>
+			<expected validity="invalid"/>
+			<current status="accepted" date="2002-01-16"/>
+		</instanceTest>
+		<instanceTest name="xsiType-block-3.n3">
+			<instanceDocument xlink:href="./suntest/SunTestsAll/xsiType-block-3.n3.xml"/>
+			<expected validity="invalid"/>
+			<current status="accepted" date="2002-01-16"/>
+		</instanceTest>
+		<instanceTest name="xsiType-block-3.n4">
+			<instanceDocument xlink:href="./suntest/SunTestsAll/xsiType-block-3.n4.xml"/>
+			<expected validity="invalid"/>
+			<current status="accepted" date="2002-01-16"/>
+		</instanceTest>
+	</testGroup>
+	<testGroup name="Sun-xsiType-block-4">
+		<annotation>
+			<documentation>Test block attribute (4) - use block="extension" for the child2 element. child2 has no block constraint. - use block="restriction" for the Dr type. - see if @block for element and @block for types interacts as expected.</documentation>
+		</annotation>
+		<schemaTest name="xsiType-block-4">
+			<schemaDocument xlink:href="./suntest/SunTestsAll/xsiType-block-4.xsd"/>
+			<expected validity="valid"/>
+			<current status="accepted" date="2002-01-16"/>
+		</schemaTest>
+		<instanceTest name="xsiType-block-4.v1">
+			<instanceDocument xlink:href="./suntest/SunTestsAll/xsiType-block-4.v1.xml"/>
+			<expected validity="valid"/>
+			<current status="accepted" date="2002-01-16"/>
+		</instanceTest>
+		<instanceTest name="xsiType-block-4.n1">
+			<instanceDocument xlink:href="./suntest/SunTestsAll/xsiType-block-4.n1.xml"/>
+			<expected validity="valid"/>
+			<current status="accepted" date="2002-01-16"/>
+		</instanceTest>
+		<instanceTest name="xsiType-block-4.n2">
+			<instanceDocument xlink:href="./suntest/SunTestsAll/xsiType-block-4.n2.xml"/>
+			<expected validity="invalid"/>
+			<current status="accepted" date="2002-01-16"/>
+		</instanceTest>
+		<instanceTest name="xsiType-block-4.n3">
+			<instanceDocument xlink:href="./suntest/SunTestsAll/xsiType-block-4.n3.xml"/>
+			<expected validity="valid"/>
+			<current status="accepted" date="2002-01-16"/>
+		</instanceTest>
+		<instanceTest name="xsiType-block-4.n4">
+			<instanceDocument xlink:href="./suntest/SunTestsAll/xsiType-block-4.n4.xml"/>
+			<expected validity="invalid"/>
+			<current status="accepted" date="2002-01-16"/>
+		</instanceTest>
+	</testGroup>
+	<testGroup name="Sun-type-and-subst-1">
+		<annotation>
+			<documentation>No block attribute is specified. Just test that the substitution group and the type hierarchy is OK. The substitution group hierarchy mirrors the complex type hierarchy.</documentation>
+		</annotation>
+		<schemaTest name="type-and-subst-1">
+			<schemaDocument xlink:href="./suntest/SunTestsAll/type-and-subst-1.xsd"/>
+			<expected validity="valid"/>
+			<current status="accepted" date="2002-01-16"/>
+		</schemaTest>
+		<instanceTest name="type-and-subst-1.v1">
+			<instanceDocument xlink:href="./suntest/SunTestsAll/type-and-subst-1.v1.xml"/>
+			<expected validity="valid"/>
+			<current status="accepted" date="2002-01-16"/>
+		</instanceTest>
+		<instanceTest name="type-and-subst-1.v2">
+			<instanceDocument xlink:href="./suntest/SunTestsAll/type-and-subst-1.v2.xml"/>
+			<expected validity="valid"/>
+			<current status="accepted" date="2002-01-16"/>
+		</instanceTest>
+		<instanceTest name="type-and-subst-1.n1">
+			<instanceDocument xlink:href="./suntest/SunTestsAll/type-and-subst-1.n1.xml"/>
+			<expected validity="invalid"/>
+			<current status="accepted" date="2002-01-16"/>
+		</instanceTest>
+		<instanceTest name="type-and-subst-1.n2">
+			<instanceDocument xlink:href="./suntest/SunTestsAll/type-and-subst-1.n2.xml"/>
+			<expected validity="invalid"/>
+			<current status="accepted" date="2002-01-16"/>
+		</instanceTest>
+		<instanceTest name="type-and-subst-1.n3">
+			<instanceDocument xlink:href="./suntest/SunTestsAll/type-and-subst-1.n3.xml"/>
+			<expected validity="invalid"/>
+			<current status="accepted" date="2002-01-16"/>
+		</instanceTest>
+		<instanceTest name="type-and-subst-1.n4">
+			<instanceDocument xlink:href="./suntest/SunTestsAll/type-and-subst-1.n4.xml"/>
+			<expected validity="invalid"/>
+			<current status="accepted" date="2002-01-16"/>
+		</instanceTest>
+		<instanceTest name="type-and-subst-1.n5">
+			<instanceDocument xlink:href="./suntest/SunTestsAll/type-and-subst-1.n5.xml"/>
+			<expected validity="invalid"/>
+			<current status="accepted" date="2002-01-16"/>
+		</instanceTest>
+		<instanceTest name="type-and-subst-1.n6">
+			<instanceDocument xlink:href="./suntest/SunTestsAll/type-and-subst-1.n6.xml"/>
+			<expected validity="invalid"/>
+			<current status="accepted" date="2002-01-16"/>
+		</instanceTest>
+		<instanceTest name="type-and-subst-1.n7">
+			<instanceDocument xlink:href="./suntest/SunTestsAll/type-and-subst-1.n7.xml"/>
+			<expected validity="invalid"/>
+			<current status="accepted" date="2002-01-16"/>
+		</instanceTest>
+		<instanceTest name="type-and-subst-1.n8">
+			<instanceDocument xlink:href="./suntest/SunTestsAll/type-and-subst-1.n8.xml"/>
+			<expected validity="invalid"/>
+			<current status="accepted" date="2002-01-16"/>
+		</instanceTest>
+		<instanceTest name="type-and-subst-1.n9">
+			<instanceDocument xlink:href="./suntest/SunTestsAll/type-and-subst-1.n9.xml"/>
+			<expected validity="invalid"/>
+			<current status="accepted" date="2002-01-16"/>
+		</instanceTest>
+		<instanceTest name="type-and-subst-1.n10">
+			<instanceDocument xlink:href="./suntest/SunTestsAll/type-and-subst-1.n10.xml"/>
+			<expected validity="invalid"/>
+			<current status="accepted" date="2002-01-16"/>
+		</instanceTest>
+		<instanceTest name="type-and-subst-1.n11">
+			<instanceDocument xlink:href="./suntest/SunTestsAll/type-and-subst-1.n11.xml"/>
+			<expected validity="invalid"/>
+			<current status="accepted" date="2002-01-16"/>
+		</instanceTest>
+		<instanceTest name="type-and-subst-1.n12">
+			<instanceDocument xlink:href="./suntest/SunTestsAll/type-and-subst-1.n12.xml"/>
+			<expected validity="invalid"/>
+			<current status="accepted" date="2002-01-16"/>
+		</instanceTest>
+		<instanceTest name="type-and-subst-1.n13">
+			<instanceDocument xlink:href="./suntest/SunTestsAll/type-and-subst-1.n13.xml"/>
+			<expected validity="invalid"/>
+			<current status="accepted" date="2002-01-16"/>
+		</instanceTest>
+		<instanceTest name="type-and-subst-1.n14">
+			<instanceDocument xlink:href="./suntest/SunTestsAll/type-and-subst-1.n14.xml"/>
+			<expected validity="invalid"/>
+			<current status="accepted" date="2002-01-16"/>
+		</instanceTest>
+		<instanceTest name="type-and-subst-1.n15">
+			<instanceDocument xlink:href="./suntest/SunTestsAll/type-and-subst-1.n15.xml"/>
+			<expected validity="invalid"/>
+			<current status="accepted" date="2002-01-16"/>
+		</instanceTest>
+		<instanceTest name="type-and-subst-1.n16">
+			<instanceDocument xlink:href="./suntest/SunTestsAll/type-and-subst-1.n16.xml"/>
+			<expected validity="invalid"/>
+			<current status="accepted" date="2002-01-16"/>
+		</instanceTest>
+		<instanceTest name="type-and-subst-1.n17">
+			<instanceDocument xlink:href="./suntest/SunTestsAll/type-and-subst-1.n17.xml"/>
+			<expected validity="invalid"/>
+			<current status="accepted" date="2002-01-16"/>
+		</instanceTest>
+		<instanceTest name="type-and-subst-1.n18">
+			<instanceDocument xlink:href="./suntest/SunTestsAll/type-and-subst-1.n18.xml"/>
+			<expected validity="invalid"/>
+			<current status="accepted" date="2002-01-16"/>
+		</instanceTest>
+		<instanceTest name="type-and-subst-1.n19">
+			<instanceDocument xlink:href="./suntest/SunTestsAll/type-and-subst-1.n19.xml"/>
+			<expected validity="invalid"/>
+			<current status="accepted" date="2002-01-16"/>
+		</instanceTest>
+		<instanceTest name="type-and-subst-1.n20">
+			<instanceDocument xlink:href="./suntest/SunTestsAll/type-and-subst-1.n20.xml"/>
+			<expected validity="invalid"/>
+			<current status="accepted" date="2002-01-16"/>
+		</instanceTest>
+		<instanceTest name="type-and-subst-1.n21">
+			<instanceDocument xlink:href="./suntest/SunTestsAll/type-and-subst-1.n21.xml"/>
+			<expected validity="invalid"/>
+			<current status="accepted" date="2002-01-16"/>
+		</instanceTest>
+		<instanceTest name="type-and-subst-1.n22">
+			<instanceDocument xlink:href="./suntest/SunTestsAll/type-and-subst-1.n22.xml"/>
+			<expected validity="invalid"/>
+			<current status="accepted" date="2002-01-16"/>
+		</instanceTest>
+		<instanceTest name="type-and-subst-1.n23">
+			<instanceDocument xlink:href="./suntest/SunTestsAll/type-and-subst-1.n23.xml"/>
+			<expected validity="invalid"/>
+			<current status="accepted" date="2002-01-16"/>
+		</instanceTest>
+		<instanceTest name="type-and-subst-1.n24">
+			<instanceDocument xlink:href="./suntest/SunTestsAll/type-and-subst-1.n24.xml"/>
+			<expected validity="invalid"/>
+			<current status="accepted" date="2002-01-16"/>
+		</instanceTest>
+		<instanceTest name="type-and-subst-1.n25">
+			<instanceDocument xlink:href="./suntest/SunTestsAll/type-and-subst-1.n25.xml"/>
+			<expected validity="invalid"/>
+			<current status="accepted" date="2002-01-16"/>
+		</instanceTest>
+		<instanceTest name="type-and-subst-1.n26">
+			<instanceDocument xlink:href="./suntest/SunTestsAll/type-and-subst-1.n26.xml"/>
+			<expected validity="invalid"/>
+			<current status="accepted" date="2002-01-16"/>
+		</instanceTest>
+		<instanceTest name="type-and-subst-1.n27">
+			<instanceDocument xlink:href="./suntest/SunTestsAll/type-and-subst-1.n27.xml"/>
+			<expected validity="invalid"/>
+			<current status="accepted" date="2002-01-16"/>
+		</instanceTest>
+		<instanceTest name="type-and-subst-1.n28">
+			<instanceDocument xlink:href="./suntest/SunTestsAll/type-and-subst-1.n28.xml"/>
+			<expected validity="invalid"/>
+			<current status="accepted" date="2002-01-16"/>
+		</instanceTest>
+		<instanceTest name="type-and-subst-1.n29">
+			<instanceDocument xlink:href="./suntest/SunTestsAll/type-and-subst-1.n29.xml"/>
+			<expected validity="invalid"/>
+			<current status="accepted" date="2002-01-16"/>
+		</instanceTest>
+		<instanceTest name="type-and-subst-1.n30">
+			<instanceDocument xlink:href="./suntest/SunTestsAll/type-and-subst-1.n30.xml"/>
+			<expected validity="invalid"/>
+			<current status="accepted" date="2002-01-16"/>
+		</instanceTest>
+		<instanceTest name="type-and-subst-1.n31">
+			<instanceDocument xlink:href="./suntest/SunTestsAll/type-and-subst-1.n31.xml"/>
+			<expected validity="invalid"/>
+			<current status="accepted" date="2002-01-16"/>
+		</instanceTest>
+		<instanceTest name="type-and-subst-1.n32">
+			<instanceDocument xlink:href="./suntest/SunTestsAll/type-and-subst-1.n32.xml"/>
+			<expected validity="invalid"/>
+			<current status="accepted" date="2002-01-16"/>
+		</instanceTest>
+	</testGroup>
+</testSet>

@@ -16,7 +16,7 @@ import tempfile
 import termios
 import time
 import uuid
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any, Iterable, TextIO
@@ -36,8 +36,8 @@ CAST_ROWS = 40
 
 @dataclass
 class LibraryState:
-    image_tag: str | None = None
-    image_error: str | None = None
+    image_tags: dict[str, str] = field(default_factory=dict)
+    image_errors: dict[str, str] = field(default_factory=dict)
     safe_deb_dir: Path | None = None
     safe_deb_error: str | None = None
 
@@ -234,7 +234,12 @@ def shared_root(repo_root: Path) -> Path:
     return shared
 
 
-def prepare_build_context(repo_root: Path, tests_root: Path, library: str) -> tuple[Path, Path]:
+def prepare_build_context(
+    repo_root: Path,
+    tests_root: Path,
+    port_root: Path | None,
+    library: str,
+) -> tuple[Path, Path]:
     library = validate_library_name(library)
     library_root = tests_root / library
     if not library_root.is_dir():
@@ -248,15 +253,23 @@ def prepare_build_context(repo_root: Path, tests_root: Path, library: str) -> tu
     try:
         shutil.copytree(shared_root(repo_root), tempdir / "_shared")
         shutil.copytree(library_root, tempdir / library)
+        if port_root is None:
+            (tempdir / "port").mkdir()
+        else:
+            staged_port = port_root / library
+            if not staged_port.is_dir():
+                raise ValidatorError(f"missing staged port repo for {library}: {staged_port}")
+            shutil.copytree(staged_port, tempdir / "port")
     except Exception:
         shutil.rmtree(tempdir, ignore_errors=True)
         raise
     return tempdir, tempdir / library / "Dockerfile"
 
 
-def image_tag_for(library: str) -> str:
+def image_tag_for(library: str, *, variant: str) -> str:
     library = validate_library_name(library)
-    safe_name = "".join(char if char.isalnum() else "-" for char in library).strip("-") or "library"
+    suffix = f"{library}-{variant}"
+    safe_name = "".join(char if char.isalnum() else "-" for char in suffix).strip("-") or "library"
     return f"validator-{safe_name}-{uuid.uuid4().hex[:12]}"
 
 
@@ -264,22 +277,31 @@ def ensure_library_image(
     *,
     repo_root: Path,
     tests_root: Path,
+    port_root: Path | None,
     library: str,
     state: LibraryState,
     log_path: Path,
+    variant: str = "shared",
+    build_args: dict[str, str] | None = None,
 ) -> str:
-    if state.image_tag is not None:
-        return state.image_tag
-    if state.image_error is not None:
-        raise ValidatorError(state.image_error)
+    if variant in state.image_tags:
+        return state.image_tags[variant]
+    if variant in state.image_errors:
+        raise ValidatorError(state.image_errors[variant])
 
-    context_root, dockerfile = prepare_build_context(repo_root, tests_root, library)
-    tag = image_tag_for(library)
+    context_root, dockerfile = prepare_build_context(repo_root, tests_root, port_root, library)
+    tag = image_tag_for(library, variant=variant)
+    build_arg_items = sorted((build_args or {}).items())
     try:
         exit_code = run_logged(
             [
                 "docker",
                 "build",
+                *[
+                    option
+                    for name, value in build_arg_items
+                    for option in ("--build-arg", f"{name}={value}")
+                ],
                 "--tag",
                 tag,
                 "--file",
@@ -292,42 +314,40 @@ def ensure_library_image(
         shutil.rmtree(context_root, ignore_errors=True)
 
     if exit_code != 0:
-        state.image_error = f"docker build failed for {library}"
-        raise ValidatorError(state.image_error)
+        state.image_errors[variant] = f"docker build failed for {library}"
+        raise ValidatorError(state.image_errors[variant])
 
-    state.image_tag = tag
+    state.image_tags[variant] = tag
     return tag
 
 
 def cleanup_library_images(states: dict[str, LibraryState]) -> list[str]:
     errors: list[str] = []
     for library, state in states.items():
-        if state.image_tag is None:
-            continue
-
-        try:
-            completed = subprocess.run(
-                ["docker", "image", "rm", "--force", state.image_tag],
-                check=False,
-                capture_output=True,
-                text=True,
+        for variant, image_tag in list(state.image_tags.items()):
+            try:
+                completed = subprocess.run(
+                    ["docker", "image", "rm", "--force", image_tag],
+                    check=False,
+                    capture_output=True,
+                    text=True,
+                )
+            except OSError as exc:
+                errors.append(
+                    f"failed to remove docker image for {library} ({image_tag}): "
+                    f"{type(exc).__name__}: {exc}"
+                )
+                del state.image_tags[variant]
+                continue
+            details = "\n".join(
+                part.strip() for part in (completed.stdout or "", completed.stderr or "") if part.strip()
             )
-        except OSError as exc:
-            errors.append(
-                f"failed to remove docker image for {library} ({state.image_tag}): "
-                f"{type(exc).__name__}: {exc}"
-            )
-            state.image_tag = None
-            continue
-        details = "\n".join(
-            part.strip() for part in (completed.stdout or "", completed.stderr or "") if part.strip()
-        )
-        if completed.returncode != 0 and "No such image" not in details:
-            errors.append(
-                f"failed to remove docker image for {library} ({state.image_tag}): "
-                f"{details or f'exit {completed.returncode}'}"
-            )
-        state.image_tag = None
+            if completed.returncode != 0 and "No such image" not in details:
+                errors.append(
+                    f"failed to remove docker image for {library} ({image_tag}): "
+                    f"{details or f'exit {completed.returncode}'}"
+                )
+            del state.image_tags[variant]
     return errors
 
 
@@ -406,12 +426,20 @@ def run_library_mode(
     error_message: str | None = None
 
     try:
+        image_variant = "shared"
+        image_build_args: dict[str, str] = {}
+        if library == "libxml":
+            image_variant = mode
+            image_build_args["VALIDATOR_TEST_MODE"] = mode
         image_tag = ensure_library_image(
             repo_root=repo_root,
             tests_root=tests_root,
+            port_root=port_root,
             library=library,
             state=state,
             log_path=log_path,
+            variant=image_variant,
+            build_args=image_build_args,
         )
 
         command = ["docker", "run", "--rm"]

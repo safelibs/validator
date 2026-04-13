@@ -1,0 +1,2 @@
+./test/schemas/issue40_0.xsd:6: element any: Schemas parser error : Element '{http://www.w3.org/2001/XMLSchema}any': The content model of element declaration '{aaa_ns}aaa' is not deterministic.
+./test/schemas/issue40_0.xsd:6: element any: Schemas parser error : Element '{http://www.w3.org/2001/XMLSchema}any': The content model of complex type definition '{aaa_ns}(NULL)' is not deterministic.

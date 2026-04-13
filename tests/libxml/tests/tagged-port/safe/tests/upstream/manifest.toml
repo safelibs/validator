@@ -1,0 +1,499 @@
+version = 1
+ordered_subsets = [
+  "foundation",
+  "tree-io",
+  "parser",
+  "xpath-valid",
+  "cli-shell",
+  "performance",
+  "schema",
+  "python-bindings",
+  "fuzz-smoke",
+]
+all = [
+  "foundation",
+  "tree-io",
+  "parser",
+  "xpath-valid",
+  "cli-shell",
+  "performance",
+  "schema",
+  "python-bindings",
+  "fuzz-smoke",
+]
+
+[[entry]]
+name = "runtest"
+subsets = ["foundation"]
+runner = "helper_binary"
+binary = "runtest"
+cwd = "original"
+argv = []
+env = {}
+
+[[entry]]
+name = "testrecurse"
+subsets = ["foundation"]
+runner = "helper_binary"
+binary = "testrecurse"
+cwd = "original"
+argv = []
+env = {}
+
+[[entry]]
+name = "testapi"
+subsets = ["foundation"]
+runner = "helper_binary"
+binary = "testapi"
+cwd = "original"
+argv = ["-q"]
+env = {}
+
+[[entry]]
+name = "testchar"
+subsets = ["foundation"]
+runner = "helper_binary"
+binary = "testchar"
+cwd = "original"
+argv = []
+env = {}
+
+[[entry]]
+name = "testdict"
+subsets = ["foundation"]
+runner = "helper_binary"
+binary = "testdict"
+cwd = "original"
+argv = []
+env = {}
+
+[[entry]]
+name = "runxmlconf"
+subsets = ["foundation"]
+runner = "helper_binary"
+binary = "runxmlconf"
+cwd = "original"
+argv = []
+env = {}
+
+[[entry]]
+name = "makefile-tests"
+subsets = ["foundation"]
+runner = "makefile_tests"
+cwd = "original"
+argv = ["make", "-f", "Makefile.tests", "check"]
+env = {}
+
+[[entry]]
+name = "Threadtests"
+subsets = ["foundation"]
+runner = "helper_binary"
+binary = "testThreads"
+cwd = "original"
+argv = []
+env = {}
+
+[[entry]]
+name = "URItests"
+subsets = ["tree-io"]
+runner = "helper_binary"
+binary = "testURI"
+cwd = "original"
+argv = []
+env = {}
+
+[[entry]]
+name = "example-gjobread"
+subsets = ["tree-io"]
+runner = "helper_binary"
+binary = "gjobread"
+cwd = "original/example"
+argv = ["gjobs.xml"]
+env = {}
+
+[[entry]]
+name = "doc-examples"
+subsets = ["tree-io"]
+runner = "doc_examples"
+cwd = "original/doc/examples"
+argv = []
+env = {}
+
+[[entry]]
+name = "XMLtests"
+subsets = ["parser"]
+runner = "target_body"
+target = "XMLtests"
+cwd = "original"
+argv = []
+env = {}
+compare = "result-directory diff against original/result"
+
+[[entry]]
+name = "XMLenttests"
+subsets = ["parser"]
+runner = "target_body"
+target = "XMLenttests"
+cwd = "original"
+argv = []
+env = {}
+compare = "result-directory diff against original/result"
+
+[[entry]]
+name = "NStests"
+subsets = ["parser"]
+runner = "target_body"
+target = "NStests"
+cwd = "original"
+argv = []
+env = {}
+compare = "result-directory diff against original/result/namespaces"
+
+[[entry]]
+name = "IDtests"
+subsets = ["parser"]
+runner = "target_body"
+target = "IDtests"
+cwd = "original"
+argv = []
+env = {}
+compare = "result-directory diff against original/result/valid"
+
+[[entry]]
+name = "Errtests"
+subsets = ["parser"]
+runner = "target_body"
+target = "Errtests"
+cwd = "original"
+argv = []
+env = {}
+compare = "stderr diff against original/result/errors"
+
+[[entry]]
+name = "Readertests"
+subsets = ["parser"]
+runner = "target_body"
+target = "Readertests"
+cwd = "original"
+argv = []
+env = {}
+compare = "reader output diff against original/result"
+
+[[entry]]
+name = "SAXtests"
+subsets = ["parser"]
+runner = "target_body"
+target = "SAXtests"
+cwd = "original"
+argv = []
+env = {}
+compare = "safe-side port of original/Makefile.am SAXtests body"
+
+[[entry]]
+name = "XMLPushtests"
+subsets = ["parser"]
+runner = "target_body"
+target = "XMLPushtests"
+cwd = "original"
+argv = []
+env = {}
+compare = "result-directory diff against original/result"
+
+[[entry]]
+name = "HTMLtests"
+subsets = ["parser"]
+runner = "target_body"
+target = "HTMLtests"
+cwd = "original"
+argv = []
+env = {}
+compare = "result/HTML diff against original/result/HTML"
+
+[[entry]]
+name = "HTMLPushtests"
+subsets = ["parser"]
+runner = "target_body"
+target = "HTMLPushtests"
+cwd = "original"
+argv = []
+env = {}
+compare = "result/HTML diff against original/result/HTML"
+
+[[entry]]
+name = "SVGtests"
+subsets = ["parser"]
+runner = "target_body"
+target = "SVGtests"
+cwd = "original"
+argv = []
+env = {}
+compare = "result/svg diff against original/result"
+
+[[entry]]
+name = "testlimits"
+subsets = ["parser"]
+runner = "helper_binary"
+binary = "testlimits"
+cwd = "original"
+argv = ["-quiet"]
+env = {}
+
+[[entry]]
+name = "testReader"
+subsets = ["parser"]
+runner = "helper_binary"
+binary = "testReader"
+cwd = "original"
+argv = ["--count", "./test/valid/REC-xml-19980210.xml"]
+env = {}
+
+[[entry]]
+name = "Validtests"
+subsets = ["xpath-valid"]
+runner = "target_body"
+target = "Validtests"
+cwd = "original"
+argv = []
+env = {}
+compare = "result/valid diff against original/result/valid"
+
+[[entry]]
+name = "Patterntests"
+subsets = ["xpath-valid"]
+runner = "target_body"
+target = "Patterntests"
+cwd = "original"
+argv = []
+env = {}
+compare = "result/pattern diff against original/result/pattern"
+
+[[entry]]
+name = "XPathtests"
+subsets = ["xpath-valid"]
+runner = "target_body"
+target = "XPathtests"
+cwd = "original"
+argv = []
+env = {}
+compare = "result/XPath diff against original/result/XPath"
+
+[[entry]]
+name = "XPtrtests"
+subsets = ["xpath-valid"]
+runner = "target_body"
+target = "XPtrtests"
+cwd = "original"
+argv = []
+env = {}
+compare = "result/XPointer diff against original/result/XPointer"
+
+[[entry]]
+name = "XIncludetests"
+subsets = ["xpath-valid"]
+runner = "target_body"
+target = "XIncludetests"
+cwd = "original"
+argv = []
+env = {}
+compare = "xinclude suite outputs diff against checked-in corpus"
+
+[[entry]]
+name = "C14Ntests"
+subsets = ["xpath-valid"]
+runner = "target_body"
+target = "C14Ntests"
+cwd = "original"
+argv = []
+env = {}
+compare = "result/c14n diff against original/result/c14n"
+
+[[entry]]
+name = "Regexptests"
+subsets = ["xpath-valid"]
+runner = "target_body"
+target = "Regexptests"
+cwd = "original"
+argv = []
+env = {}
+compare = "regexp output diff against original/result"
+
+[[entry]]
+name = "Automatatests"
+subsets = ["xpath-valid"]
+runner = "target_body"
+target = "Automatatests"
+cwd = "original"
+argv = []
+env = {}
+compare = "automata output diff against original/result"
+
+[[entry]]
+name = "ModuleTests"
+subsets = ["xpath-valid"]
+runner = "target_body"
+target = "ModuleTests"
+cwd = "original"
+argv = []
+env = {}
+compare = "module load output diff against original helper dso run"
+
+[[entry]]
+name = "Scripttests"
+subsets = ["cli-shell"]
+runner = "target_body"
+target = "Scripttests"
+cwd = "original"
+argv = []
+env = {}
+compare = "safe-side port of original Scripttests shell loops"
+
+[[entry]]
+name = "Catatests"
+subsets = ["cli-shell"]
+runner = "target_body"
+target = "Catatests"
+cwd = "original"
+argv = []
+env = {}
+compare = "safe-side port of original Catatests catalog loops"
+
+[[entry]]
+name = "Timingtests"
+subsets = ["performance"]
+runner = "target_body"
+target = "Timingtests"
+cwd = "original"
+argv = []
+env = {}
+compare = "timing/memory checks against staged xmllint"
+
+[[entry]]
+name = "VTimingtests"
+subsets = ["performance"]
+runner = "target_body"
+target = "VTimingtests"
+cwd = "original"
+argv = []
+env = {}
+compare = "timing/memory checks against staged xmllint --valid"
+
+[[entry]]
+name = "PinnedRelaxAddressBook"
+subsets = ["schema"]
+runner = "target_body"
+target = "PinnedRelaxAddressBook"
+cwd = "original"
+argv = []
+env = {}
+compare = "testRelax --noout ./test/relaxng/tutorA.rng ./test/relaxng/addressBook.rng against original-linked helper"
+
+[[entry]]
+name = "Schemastests"
+subsets = ["schema"]
+runner = "target_body"
+target = "Schemastests"
+cwd = "original"
+argv = []
+env = {}
+compare = "schema xmllint output diff against original-linked xmllint"
+
+[[entry]]
+name = "Relaxtests"
+subsets = ["schema"]
+runner = "target_body"
+target = "Relaxtests"
+cwd = "original"
+argv = []
+env = {}
+compare = "Relax-NG xmllint output diff against original-linked xmllint"
+
+[[entry]]
+name = "Schematrontests"
+subsets = ["schema"]
+runner = "target_body"
+target = "Schematrontests"
+cwd = "original"
+argv = []
+env = {}
+compare = "schematron xmllint output diff against original-linked xmllint"
+
+[[entry]]
+name = "schema-python-regressions"
+subsets = ["schema", "python-bindings"]
+runner = "python_script"
+script = "safe/tests/regressions/schema-python/schema_python_regressions.py"
+cwd = "safe/target/upstream-logs"
+argv = []
+env = {}
+
+[[entry]]
+name = "python-tests"
+subsets = ["python-bindings"]
+runner = "python_tests"
+cwd = "original/python/tests"
+argv = []
+env = {}
+
+[[entry]]
+name = "xmlconf-driver"
+subsets = ["python-bindings"]
+runner = "python_script"
+script = "safe/tests/upstream/xmlconf_driver.py"
+cwd = "safe/target/upstream-logs"
+argv = []
+env = {}
+
+[[entry]]
+name = "xinclude-driver"
+subsets = ["python-bindings"]
+runner = "python_script"
+script = "safe/tests/upstream/xinclude_driver.py"
+cwd = "safe/target/upstream-logs"
+argv = []
+env = {}
+
+[[entry]]
+name = "relaxng-suite1"
+subsets = ["python-bindings"]
+runner = "python_script"
+script = "safe/tests/upstream/relaxng_suite1.py"
+cwd = "safe/target/upstream-logs"
+argv = []
+env = {}
+
+[[entry]]
+name = "relaxng-suite2"
+subsets = ["python-bindings"]
+runner = "python_script"
+script = "safe/tests/upstream/relaxng_suite2.py"
+cwd = "safe/target/upstream-logs"
+argv = []
+env = {}
+
+[[entry]]
+name = "xsddata-suite"
+subsets = ["python-bindings"]
+runner = "python_script"
+script = "safe/tests/upstream/xsddata_suite.py"
+cwd = "safe/target/upstream-logs"
+argv = []
+env = {}
+
+[[entry]]
+name = "xstc-runner"
+subsets = ["python-bindings"]
+runner = "shell_script"
+script = "safe/tests/upstream/run_xstc.sh"
+cwd = "original/xstc"
+argv = []
+env = {}
+
+[[entry]]
+name = "fuzz-tests"
+subsets = ["fuzz-smoke"]
+runner = "target_body"
+target = "fuzz-tests"
+cwd = "original/fuzz"
+argv = []
+env = {}
+compare = "safe-side equivalent of original/fuzz/Makefile.am tests target"
