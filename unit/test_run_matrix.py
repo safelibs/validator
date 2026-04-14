@@ -313,6 +313,43 @@ class RunMatrixTests(unittest.TestCase):
         )
         self.assertIn("validator-demo-port-root", commands[0])
 
+    def test_safe_mode_reuses_shared_image_variant_for_libxml(self) -> None:
+        root = self.run_root()
+        artifact_root = root / "artifacts"
+        repo_root = Path(__file__).resolve().parents[1]
+        manifest = {
+            "archive": {"image": "ubuntu:24.04"},
+            "inventory": {"verified_at": "2026-04-12T00:00:00Z"},
+            "repositories": [{"name": "libxml"}],
+        }
+
+        with mock.patch(
+            "tools.run_matrix.ensure_library_image",
+            return_value="validator-libxml-shared",
+        ) as ensure_image, mock.patch(
+            "tools.run_matrix.ensure_safe_deb_dir",
+            return_value=root / "debs" / "libxml",
+        ), mock.patch(
+            "tools.run_matrix.run_logged",
+            return_value=0,
+        ):
+            result = run_matrix.run_library_mode(
+                manifest=manifest,
+                repo_root=repo_root,
+                tests_root=repo_root / "tests",
+                artifact_root=artifact_root,
+                port_root=None,
+                safe_deb_root=root / "safe-debs",
+                record_casts=False,
+                library="libxml",
+                mode="safe",
+                state=run_matrix.LibraryState(),
+            )
+
+        self.assertEqual(result["status"], "passed")
+        self.assertEqual(ensure_image.call_args.kwargs["variant"], "shared")
+        self.assertNotIn("build_args", ensure_image.call_args.kwargs)
+
 
 if __name__ == "__main__":
     unittest.main()

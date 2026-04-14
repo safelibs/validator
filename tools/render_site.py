@@ -68,7 +68,7 @@ def validate_artifact_relative_path(
     return target
 
 
-def load_results(results_root: Path) -> list[dict[str, Any]]:
+def load_results(results_root: Path, *, artifacts_root: Path) -> list[dict[str, Any]]:
     if not results_root.is_dir():
         raise ValidatorError(f"results root does not exist: {results_root}")
 
@@ -80,13 +80,13 @@ def load_results(results_root: Path) -> list[dict[str, Any]]:
         validate_artifact_relative_path(
             payload["log_path"],
             field_name="log_path",
-            artifacts_root=results_root.parent,
+            artifacts_root=artifacts_root,
             source_path=path,
         )
         validate_artifact_relative_path(
             payload["cast_path"],
             field_name="cast_path",
-            artifacts_root=results_root.parent,
+            artifacts_root=artifacts_root,
             source_path=path,
         )
         results.append(payload)
@@ -225,7 +225,7 @@ def build_parser() -> argparse.ArgumentParser:
 
 def main(argv: list[str] | None = None) -> int:
     args = build_parser().parse_args(argv)
-    results = load_results(args.results_root)
+    results = load_results(args.results_root, artifacts_root=args.artifacts_root)
     site_rows = build_site_rows(results, output_root=args.output_root, artifacts_root=args.artifacts_root)
 
     args.output_root.mkdir(parents=True, exist_ok=True)

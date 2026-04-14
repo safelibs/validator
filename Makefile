@@ -10,7 +10,7 @@ DEST ?= .
 .PHONY: unit inventory stage-ports build-safe import-assets clean
 
 unit:
-	$(PYTHON) -m unittest unit.test_inventory unit.test_stage_port_repos unit.test_build_safe_debs unit.test_import_port_assets unit.test_verify_imported_assets -v
+	$(PYTHON) -m unittest unit.test_inventory unit.test_stage_port_repos unit.test_build_safe_debs unit.test_import_port_assets unit.test_verify_imported_assets unit.test_run_matrix unit.test_render_site -v
 
 inventory:
 	mkdir -p inventory

@@ -453,11 +453,6 @@ def run_library_mode(
     error_message: str | None = None
 
     try:
-        image_variant = "shared"
-        image_build_args: dict[str, str] = {}
-        if library == "libxml":
-            image_variant = mode
-            image_build_args["VALIDATOR_TEST_MODE"] = mode
         image_tag = ensure_library_image(
             repo_root=repo_root,
             tests_root=tests_root,
@@ -465,14 +460,11 @@ def run_library_mode(
             library=library,
             state=state,
             log_path=log_path,
-            variant=image_variant,
-            build_args=image_build_args,
+            variant="shared",
         )
 
         command = ["docker", "run", "--rm"]
         cast_path: Path | None = None
-        # Safe-mode runs must execute through bash -x so the captured cast shows the trace.
-        trace_shell = "bash -x"
         if mode == "safe":
             safe_deb_dir = ensure_safe_deb_dir(
                 manifest=manifest,
@@ -498,6 +490,7 @@ def run_library_mode(
         command.extend(
             [
                 image_tag,
+                # Safe-mode traces run under bash -x so casts show the executed commands.
                 "bash",
                 "-x",
                 f"/validator/tests/{library}/docker-entrypoint.sh",
@@ -508,10 +501,12 @@ def run_library_mode(
         if exit_code != 0:
             status = "failed"
     except ValidatorError as exc:
+        exit_code = 1
         status = "failed"
         error_message = str(exc)
         append_log(log_path, f"{error_message}\n")
     except Exception as exc:  # pragma: no cover - defensive fallback
+        exit_code = 1
         status = "failed"
         error_message = f"{type(exc).__name__}: {exc}"
         append_log(log_path, f"{error_message}\n")

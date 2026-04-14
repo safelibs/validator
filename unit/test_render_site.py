@@ -107,6 +107,35 @@ class RenderSiteTests(unittest.TestCase):
         self.assertIn("../artifacts/logs/demo/original.log", html_text)
         self.assertIn("../artifacts/casts/demo/safe.cast", html_text)
 
+    def test_load_results_accepts_explicit_artifacts_root(self) -> None:
+        separate_results_root = self.root / "results-only"
+        target = separate_results_root / "demo" / "safe.json"
+        target.parent.mkdir(parents=True, exist_ok=True)
+        (self.artifacts_root / "logs" / "demo").mkdir(parents=True, exist_ok=True)
+        (self.artifacts_root / "logs" / "demo" / "safe.log").write_text("log\n")
+        target.write_text(
+            json.dumps(
+                {
+                    "library": "demo",
+                    "mode": "safe",
+                    "status": "passed",
+                    "started_at": "2026-04-12T00:00:00Z",
+                    "finished_at": "2026-04-12T00:00:01Z",
+                    "duration_seconds": 1.0,
+                    "log_path": "logs/demo/safe.log",
+                    "cast_path": None,
+                }
+            )
+        )
+
+        results = render_site.load_results(
+            separate_results_root,
+            artifacts_root=self.artifacts_root,
+        )
+
+        self.assertEqual(len(results), 1)
+        self.assertEqual(results[0]["library"], "demo")
+
     def test_render_site_rejects_missing_required_result_field_even_with_extra_fields(self) -> None:
         target = self.results_root / "demo" / "safe.json"
         target.parent.mkdir(parents=True, exist_ok=True)
@@ -231,6 +260,64 @@ class RenderSiteTests(unittest.TestCase):
 
         self.assertNotEqual(completed.returncode, 0)
         self.assertIn("artifact-root-relative", completed.stderr + completed.stdout)
+
+    def test_verify_site_accepts_explicit_artifacts_root(self) -> None:
+        repo_root = Path(__file__).resolve().parents[1]
+        manifest_path = self.root / "manifest.yml"
+        manifest_path.write_text("repositories:\n  - name: demo\n")
+
+        separate_results_root = self.root / "results-only"
+        target = separate_results_root / "demo" / "safe.json"
+        target.parent.mkdir(parents=True, exist_ok=True)
+        (self.artifacts_root / "logs" / "demo").mkdir(parents=True, exist_ok=True)
+        (self.artifacts_root / "logs" / "demo" / "safe.log").write_text("log\n")
+        target.write_text(
+            json.dumps(
+                {
+                    "library": "demo",
+                    "mode": "safe",
+                    "status": "passed",
+                    "started_at": "2026-04-12T00:00:00Z",
+                    "finished_at": "2026-04-12T00:00:01Z",
+                    "duration_seconds": 1.0,
+                    "log_path": "logs/demo/safe.log",
+                    "cast_path": None,
+                }
+            )
+        )
+
+        site_root = self.root / "site"
+        render_site.main(
+            [
+                "--results-root",
+                str(separate_results_root),
+                "--artifacts-root",
+                str(self.artifacts_root),
+                "--output-root",
+                str(site_root),
+            ]
+        )
+
+        completed = subprocess.run(
+            [
+                "bash",
+                str(repo_root / "scripts" / "verify-site.sh"),
+                "--config",
+                str(manifest_path),
+                "--results-root",
+                str(separate_results_root),
+                "--artifacts-root",
+                str(self.artifacts_root),
+                "--site-root",
+                str(site_root),
+            ],
+            cwd=repo_root,
+            capture_output=True,
+            text=True,
+            check=False,
+        )
+
+        self.assertEqual(completed.returncode, 0, completed.stderr + completed.stdout)
 
 
 if __name__ == "__main__":

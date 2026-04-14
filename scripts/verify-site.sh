@@ -4,6 +4,7 @@ set -euo pipefail
 config=
 results_root=
 site_root=
+artifacts_root=
 
 while (($# > 0)); do
   case "$1" in
@@ -13,6 +14,10 @@ while (($# > 0)); do
       ;;
     --results-root)
       results_root=$2
+      shift 2
+      ;;
+    --artifacts-root)
+      artifacts_root=$2
       shift 2
       ;;
     --site-root)
@@ -27,11 +32,11 @@ while (($# > 0)); do
 done
 
 if [[ -z "$config" || -z "$results_root" || -z "$site_root" ]]; then
-  echo "usage: verify-site.sh --config <manifest> --results-root <dir> --site-root <dir>" >&2
+  echo "usage: verify-site.sh --config <manifest> --results-root <dir> [--artifacts-root <dir>] --site-root <dir>" >&2
   exit 1
 fi
 
-python3 - "$config" "$results_root" "$site_root" <<'PY'
+python3 - "$config" "$results_root" "$site_root" "$artifacts_root" <<'PY'
 from __future__ import annotations
 
 import json
@@ -45,7 +50,8 @@ import yaml
 config_path = Path(sys.argv[1])
 results_root = Path(sys.argv[2])
 site_root = Path(sys.argv[3])
-artifacts_root = results_root.parent
+artifacts_root_arg = sys.argv[4]
+artifacts_root = Path(artifacts_root_arg) if artifacts_root_arg else results_root.parent
 artifacts_root_resolved = artifacts_root.resolve()
 
 manifest = yaml.safe_load(config_path.read_text())
