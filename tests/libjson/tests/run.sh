@@ -1,6 +1,8 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
+source /validator/tests/_shared/runtime_helpers.sh
+
 readonly tagged_root=${VALIDATOR_TAGGED_ROOT:?}
 readonly work_root=$(mktemp -d)
 readonly include_root="$work_root/include"
@@ -23,6 +25,13 @@ cleanup() {
   rm -rf "$work_root"
 }
 trap cleanup EXIT
+
+validator_require_dir "$tagged_root/safe/tests/foundation"
+validator_require_dir "$tagged_root/safe/tests/package"
+validator_require_dir "$tagged_root/safe/tests/security"
+validator_require_dir "$tagged_root/safe/tests/upstream"
+validator_require_dir "$tagged_root/safe/debian/tests"
+validator_require_file "$tagged_root/safe/debian/tests/unit-test"
 
 detect_multiarch() {
   local triplet=""

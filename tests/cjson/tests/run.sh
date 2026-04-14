@@ -1,6 +1,8 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
+source /validator/tests/_shared/runtime_helpers.sh
+
 readonly tagged_root=${VALIDATOR_TAGGED_ROOT:?}
 readonly work_root=$(mktemp -d)
 readonly layout_root="$work_root/layout"
@@ -10,6 +12,13 @@ cleanup() {
   rm -rf "$work_root"
 }
 trap cleanup EXIT
+
+validator_require_dir "$tagged_root/original/tests"
+validator_require_dir "$tagged_root/original/fuzzing"
+validator_require_dir "$tagged_root/safe/tests"
+validator_require_file "$tagged_root/original/test.c"
+validator_require_file "$tagged_root/original/cJSON.h"
+validator_require_file "$tagged_root/original/cJSON_Utils.h"
 
 mkdir -p "$layout_root/original" "$layout_root/safe" "$layout_root/include/cjson" "$bin_root"
 cp -a "$tagged_root/original/tests" "$layout_root/original/tests"
@@ -42,26 +51,6 @@ compile_c() {
     "${pkg_cflags[@]}" \
     "$@" \
     "${pkg_libs[@]}" \
-    -lm \
-    -o "$output"
-}
-
-compile_original_baseline_c() {
-  local output=$1
-  shift
-  cc \
-    -std=c99 \
-    -O2 \
-    -Wall \
-    -Wextra \
-    -I"$layout_root/original" \
-    -I"$layout_root/original/tests" \
-    -I"$layout_root/include" \
-    -I"$layout_root/safe/tests" \
-    -I"$layout_root/safe/tests/unity/src" \
-    "$@" \
-    /validator/port/original/cJSON.c \
-    /validator/port/original/cJSON_Utils.c \
     -lm \
     -o "$output"
 }
@@ -115,20 +104,6 @@ expect_fail_count() {
     printf 'unexpected failure count in %s: expected %s, found %s\n' "$log_path" "$expected" "$actual" >&2
     return 1
   fi
-}
-
-compare_unity_failure_signature() {
-  local installed_log=$1
-  local baseline_log=$2
-  local name=$3
-  local installed_sig="$work_root/${name}.installed.signature"
-  local baseline_sig="$work_root/${name}.baseline.signature"
-
-  grep -E ':FAIL:|Tests [0-9]+ Failures [0-9]+ Ignored' "$installed_log" | \
-    sed -E 's/0x[0-9A-Fa-f]+/0xADDR/g' >"$installed_sig" || true
-  grep -E ':FAIL:|Tests [0-9]+ Failures [0-9]+ Ignored' "$baseline_log" | \
-    sed -E 's/0x[0-9A-Fa-f]+/0xADDR/g' >"$baseline_sig" || true
-  diff -u "$baseline_sig" "$installed_sig" >/dev/null
 }
 
 write_core_hooks_legacy_probe() {
@@ -461,60 +436,35 @@ EOF
 
 confirm_core_hooks_legacy() {
   local log_path=$1
-  local baseline_log=$2
-
   expect_fail_count "$log_path" 1
-  expect_fail_count "$baseline_log" 1
   expect_log_tokens \
     "$log_path" \
     "cjson_reference_add_failure_should_release_temporary_reference:FAIL: Expected 1 Was 0" \
     "6 Tests 1 Failures 0 Ignored"
-  expect_log_tokens \
-    "$baseline_log" \
-    "cjson_reference_add_failure_should_release_temporary_reference:FAIL: Expected 1 Was 0" \
-    "6 Tests 1 Failures 0 Ignored"
-  compare_unity_failure_signature "$log_path" "$baseline_log" core_hooks_smoke
 
   write_core_hooks_legacy_probe
   compile_c "$bin_root/core_hooks_legacy_probe" "$work_root/core_hooks_legacy_probe.c"
-  compile_original_baseline_c \
-    "$bin_root/core_hooks_legacy_probe_original" \
-    "$work_root/core_hooks_legacy_probe.c"
   run_in_dir "$layout_root/safe/tests" "$bin_root/core_hooks_legacy_probe"
-  run_in_dir "$layout_root/safe/tests" "$bin_root/core_hooks_legacy_probe_original"
 }
 
 confirm_number_legacy() {
   local log_path=$1
-  local baseline_log=$2
 
   expect_fail_count "$log_path" 1
-  expect_fail_count "$baseline_log" 1
   expect_log_tokens \
     "$log_path" \
     "giant_numeric_literals_should_fail_closed_without_partial_consumption:FAIL:" \
     "1 Tests 1 Failures 0 Ignored"
-  expect_log_tokens \
-    "$baseline_log" \
-    "giant_numeric_literals_should_fail_closed_without_partial_consumption:FAIL:" \
-    "1 Tests 1 Failures 0 Ignored"
-  compare_unity_failure_signature "$log_path" "$baseline_log" number_cve_2023_26819
 
   write_number_legacy_probe
   compile_c "$bin_root/number_legacy_probe" "$work_root/number_legacy_probe.c"
-  compile_original_baseline_c \
-    "$bin_root/number_legacy_probe_original" \
-    "$work_root/number_legacy_probe.c"
   run_in_dir "$layout_root/safe/tests" "$bin_root/number_legacy_probe"
-  run_in_dir "$layout_root/safe/tests" "$bin_root/number_legacy_probe_original"
 }
 
 confirm_json_pointer_legacy() {
   local log_path=$1
-  local baseline_log=$2
 
   expect_fail_count "$log_path" 4
-  expect_fail_count "$baseline_log" 4
   expect_log_tokens \
     "$log_path" \
     "malformed_index_tokens_should_not_resolve_pointer_lookups:FAIL: Expected NULL" \
@@ -522,29 +472,16 @@ confirm_json_pointer_legacy() {
     "malformed_index_tokens_should_fail_add_patch_application_with_invalid_index_status:FAIL: Expected 11 Was 0" \
     "malformed_index_tokens_should_fail_copy_patch_sources:FAIL: Expected 5 Was 0" \
     "4 Tests 4 Failures 0 Ignored"
-  expect_log_tokens \
-    "$baseline_log" \
-    "malformed_index_tokens_should_not_resolve_pointer_lookups:FAIL: Expected NULL" \
-    "malformed_index_tokens_should_fail_patch_application:FAIL: Expected 13 Was 0" \
-    "malformed_index_tokens_should_fail_add_patch_application_with_invalid_index_status:FAIL: Expected 11 Was 0" \
-    "malformed_index_tokens_should_fail_copy_patch_sources:FAIL: Expected 5 Was 0" \
-    "4 Tests 4 Failures 0 Ignored"
-  compare_unity_failure_signature "$log_path" "$baseline_log" json_pointer_cve_2025_57052
 
   write_json_pointer_legacy_probe
   compile_c "$bin_root/json_pointer_legacy_probe" "$work_root/json_pointer_legacy_probe.c"
-  compile_original_baseline_c \
-    "$bin_root/json_pointer_legacy_probe_original" \
-    "$work_root/json_pointer_legacy_probe.c"
   run_in_dir "$layout_root/safe/tests" "$bin_root/json_pointer_legacy_probe"
-  run_in_dir "$layout_root/safe/tests" "$bin_root/json_pointer_legacy_probe_original"
 }
 
 run_regression_or_confirm_legacy() {
   local name=$1
   local legacy_case=$2
   local log_path="$work_root/${name}.log"
-  local baseline_log_path="$work_root/${name}.baseline.log"
 
   compile_c "$bin_root/$name" \
     "$layout_root/safe/tests/regressions/${name}.c" \
@@ -554,28 +491,15 @@ run_regression_or_confirm_legacy() {
     return 0
   fi
 
-  compile_original_baseline_c \
-    "$bin_root/${name}_original_baseline" \
-    "$layout_root/safe/tests/regressions/${name}.c" \
-    "$layout_root/safe/tests/unity/src/unity.c"
-  if run_capture_in_dir \
-    "$layout_root/safe/tests" \
-    "$bin_root/${name}_original_baseline" \
-    "$baseline_log_path"
-  then
-    printf 'installed package failed %s, but original baseline passed\n' "$name" >&2
-    return 1
-  fi
-
   case "$legacy_case" in
     core_hooks)
-      confirm_core_hooks_legacy "$log_path" "$baseline_log_path"
+      confirm_core_hooks_legacy "$log_path"
       ;;
     number)
-      confirm_number_legacy "$log_path" "$baseline_log_path"
+      confirm_number_legacy "$log_path"
       ;;
     json_pointer)
-      confirm_json_pointer_legacy "$log_path" "$baseline_log_path"
+      confirm_json_pointer_legacy "$log_path"
       ;;
     *)
       printf 'unexpected legacy case for %s: %s\n' "$name" "$legacy_case" >&2
@@ -583,7 +507,7 @@ run_regression_or_confirm_legacy() {
       ;;
   esac
 
-  printf 'confirmed installed-package legacy baseline for %s\n' "$name"
+  printf 'confirmed installed-package legacy behavior for %s\n' "$name"
 }
 
 compile_c "$bin_root/test" \

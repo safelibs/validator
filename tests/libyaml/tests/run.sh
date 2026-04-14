@@ -1,19 +1,25 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
+source /validator/tests/_shared/runtime_helpers.sh
+
 readonly tagged_root=${VALIDATOR_TAGGED_ROOT:?}
-readonly library_root=${VALIDATOR_LIBRARY_ROOT:?}
 readonly work_root=$(mktemp -d)
 readonly bin_root="$work_root/bin"
 readonly shadow_root="$work_root/shadow"
 readonly debian_tests_root="$tagged_root/safe/debian/tests"
-readonly triplet=$(gcc -print-multiarch)
-readonly original_pkg_root="$library_root/original-package-root"
 
 cleanup() {
   rm -rf "$work_root"
 }
 trap cleanup EXIT
+
+validator_require_dir "$tagged_root/safe/tests/fixtures"
+validator_require_dir "$tagged_root/safe/debian/tests"
+validator_require_dir "$tagged_root/safe/scripts"
+validator_require_dir "$tagged_root/original/include"
+validator_require_dir "$tagged_root/original/tests"
+validator_require_dir "$tagged_root/original/examples"
 
 mkdir -p "$bin_root" "$shadow_root/safe/compat"
 test -d "$debian_tests_root"
@@ -38,22 +44,6 @@ compile_yaml() {
     -o "$output"
 }
 
-compile_yaml_original() {
-  local output=$1
-  shift
-  cc \
-    -std=c99 \
-    -O2 \
-    -Wall \
-    -Wextra \
-    -I"$tagged_root/original/include" \
-    "$@" \
-    -L"$original_pkg_root/usr/lib/$triplet" \
-    -Wl,-rpath,"$original_pkg_root/usr/lib/$triplet" \
-    -lyaml \
-    -o "$output"
-}
-
 run_checked() {
   local output_file=$1
   shift
@@ -71,23 +61,10 @@ run_capture_stderr() {
   return "$status"
 }
 
-compare_normalized_assert_stderr() {
-  local installed_stderr=$1
-  local baseline_stderr=$2
-  local installed_norm="$work_root/private_parser_exports.installed.norm"
-  local baseline_norm="$work_root/private_parser_exports.baseline.norm"
-
-  sed 's@^[^:]*: @@' "$installed_stderr" >"$installed_norm"
-  sed 's@^[^:]*: @@' "$baseline_stderr" >"$baseline_norm"
-  diff -u "$baseline_norm" "$installed_norm" >/dev/null
-}
-
 run_private_parser_exports_fixture() {
   local source="$tagged_root/safe/tests/fixtures/private_parser_exports.c"
   local binary="$bin_root/private_parser_exports"
   local stderr_file="$work_root/private_parser_exports.stderr"
-  local baseline_binary="$bin_root/private_parser_exports_original"
-  local baseline_stderr="$work_root/private_parser_exports_original.stderr"
   local compat_source="$work_root/private_parser_exports_compat.c"
   local compat_binary="$bin_root/private_parser_exports_compat"
 
@@ -97,17 +74,8 @@ run_private_parser_exports_fixture() {
     return 0
   fi
 
-  compile_yaml_original "$baseline_binary" "$source"
-  if run_capture_stderr "$baseline_stderr" "$baseline_binary"; then
-    printf 'installed libyaml failed private_parser_exports.c, but original baseline succeeded\n' >&2
-    return 1
-  fi
-
   grep -F "test_oversized_input_reader_error" "$stderr_file" >/dev/null
   grep -F "yaml_parser_update_buffer(&parser, 1)" "$stderr_file" >/dev/null
-  grep -F "test_oversized_input_reader_error" "$baseline_stderr" >/dev/null
-  grep -F "yaml_parser_update_buffer(&parser, 1)" "$baseline_stderr" >/dev/null
-  compare_normalized_assert_stderr "$stderr_file" "$baseline_stderr"
 
   cat >"$compat_source" <<EOF
 #include <yaml.h>

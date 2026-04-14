@@ -1,6 +1,8 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
+source /validator/tests/_shared/runtime_helpers.sh
+
 readonly tagged_root=${VALIDATOR_TAGGED_ROOT:?}
 readonly work_root=$(mktemp -d)
 readonly layout_root="$work_root/layout"
@@ -11,6 +13,12 @@ cleanup() {
   rm -rf "$work_root"
 }
 trap cleanup EXIT
+
+validator_require_dir "$tagged_root/original/examples"
+validator_require_dir "$tagged_root/safe/tests/c"
+validator_require_dir "$tagged_root/safe/debian/tests"
+validator_require_file "$tagged_root/original/test_csv.c"
+validator_require_file "$tagged_root/original/csv.h"
 
 mkdir -p "$layout_root/original" "$layout_root/safe" "$bin_root" "$data_root"
 mkdir -p "$layout_root/safe/debian"
