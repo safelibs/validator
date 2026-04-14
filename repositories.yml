@@ -18,7 +18,7 @@ archive:
   - rsync
   - xz-utils
 inventory:
-  verified_at: '2026-04-12T15:47:20Z'
+  verified_at: '2026-04-14T06:09:48Z'
   gh_repo_list_command: gh repo list safelibs --limit 200 --json name,nameWithOwner,isPrivate,url,defaultBranchRef
   tag_probe_rule: refs/tags/{library}/04-test
   raw_snapshot: inventory/github-repo-list.json

@@ -34,12 +34,39 @@ CAST_COLUMNS = 120
 CAST_ROWS = 40
 
 
-@dataclass
+@dataclass(init=False)
 class LibraryState:
     image_tags: dict[str, str] = field(default_factory=dict)
     image_errors: dict[str, str] = field(default_factory=dict)
     safe_deb_dir: Path | None = None
     safe_deb_error: str | None = None
+
+    def __init__(
+        self,
+        *,
+        image_tags: dict[str, str] | None = None,
+        image_errors: dict[str, str] | None = None,
+        safe_deb_dir: Path | None = None,
+        safe_deb_error: str | None = None,
+        image_tag: str | None = None,
+    ) -> None:
+        self.image_tags = dict(image_tags or {})
+        if image_tag is not None and "shared" not in self.image_tags:
+            self.image_tags["shared"] = image_tag
+        self.image_errors = dict(image_errors or {})
+        self.safe_deb_dir = safe_deb_dir
+        self.safe_deb_error = safe_deb_error
+
+    @property
+    def image_tag(self) -> str | None:
+        return self.image_tags.get("shared")
+
+    @image_tag.setter
+    def image_tag(self, value: str | None) -> None:
+        if value is None:
+            self.image_tags.pop("shared", None)
+            return
+        self.image_tags["shared"] = value
 
 
 @dataclass

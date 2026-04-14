@@ -107,6 +107,31 @@ class BuildSafeDebsTests(unittest.TestCase):
         self.assertIn("dpkg-buildpackage -us -uc -b", commands[0][-1])
         self.assertTrue(fake_run.call_args.kwargs["capture_output"])
 
+    def test_patch_scratch_copy_for_libvips_removes_incompatible_symbol_from_scratch_only(self) -> None:
+        scratch_source = self.workspace / "build-safe" / "libvips" / "source"
+        symbols_path = scratch_source / "safe" / "reference" / "abi" / "libvips.symbols"
+        symbols_path.parent.mkdir(parents=True, exist_ok=True)
+        original_text = "VIPS_8.15 {\nkeep_symbol\nlzw_context_create\n}\n"
+        symbols_path.write_text(original_text, encoding="utf-8")
+
+        build_safe_debs.patch_scratch_copy_for_library(scratch_source, "libvips")
+
+        self.assertEqual(
+            symbols_path.read_text(encoding="utf-8"),
+            "VIPS_8.15 {\nkeep_symbol\n}\n",
+        )
+
+    def test_patch_scratch_copy_for_library_ignores_other_libraries(self) -> None:
+        scratch_source = self.workspace / "build-safe" / "libdemo" / "source"
+        symbols_path = scratch_source / "safe" / "reference" / "abi" / "libvips.symbols"
+        symbols_path.parent.mkdir(parents=True, exist_ok=True)
+        original_text = "keep_symbol\nlzw_context_create\n"
+        symbols_path.write_text(original_text, encoding="utf-8")
+
+        build_safe_debs.patch_scratch_copy_for_library(scratch_source, "libdemo")
+
+        self.assertEqual(symbols_path.read_text(encoding="utf-8"), original_text)
+
     def test_checkout_artifacts_copies_declared_debs(self) -> None:
         artifacts = build_safe_debs.build_library(
             self.manifest(

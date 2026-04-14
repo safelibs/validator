@@ -152,6 +152,19 @@ class RunMatrixTests(unittest.TestCase):
         )
         self.assertIsNone(states["demo"].image_tag)
 
+    def test_library_state_legacy_image_tag_property_maps_to_shared_variant(self) -> None:
+        state = run_matrix.LibraryState(image_tags={"safe": "validator-demo-safe"})
+
+        self.assertIsNone(state.image_tag)
+
+        state.image_tag = "validator-demo-shared"
+        self.assertEqual(state.image_tags["shared"], "validator-demo-shared")
+        self.assertEqual(state.image_tag, "validator-demo-shared")
+
+        state.image_tag = None
+        self.assertNotIn("shared", state.image_tags)
+        self.assertIsNone(state.image_tag)
+
     def test_main_cleans_up_cached_images_after_running_matrix(self) -> None:
         root = self.run_root()
         artifact_root = root / "artifacts"

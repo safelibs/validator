@@ -167,6 +167,8 @@ def patch_scratch_copy_for_library(scratch_source: Path, library: str) -> None:
     if not symbols_path.is_file():
         return
 
+    # The tagged libvips port can still carry an upstream-only symbol entry that
+    # breaks safe-package assembly; patch only the disposable scratch copy.
     original_text = symbols_path.read_text(encoding="utf-8")
     had_trailing_newline = original_text.endswith("\n")
     filtered_lines = [
