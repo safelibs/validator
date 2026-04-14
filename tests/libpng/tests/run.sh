@@ -3,6 +3,7 @@ set -euo pipefail
 
 source /validator/tests/_shared/runtime_helpers.sh
 
+# Run only against the imported tagged-port mirror, never a sibling checkout.
 readonly tagged_root=${VALIDATOR_TAGGED_ROOT:?}
 readonly work_root=$(mktemp -d)
 readonly shadow_root="$work_root/root"
@@ -16,12 +17,17 @@ cleanup() {
 trap cleanup EXIT
 
 validator_require_dir "$tagged_root/safe/tests"
+validator_require_dir "$tagged_root/safe/tests/upstream"
 validator_require_dir "$tagged_root/original/tests"
 validator_require_dir "$tagged_root/original/contrib/pngsuite"
 validator_require_dir "$tagged_root/original/contrib/testpngs"
 validator_require_file "$tagged_root/original/png.h"
 validator_require_file "$tagged_root/original/pngconf.h"
 validator_require_file "$tagged_root/original/pngtest.png"
+validator_require_file "$tagged_root/safe/tests/upstream/pngcp.sh"
+validator_require_file "$tagged_root/safe/tests/upstream/timepng.sh"
+validator_require_file "$tagged_root/safe/tests/upstream/png-fix-itxt.sh"
+validator_require_file "$tagged_root/safe/tests/upstream/pngfix.sh"
 
 validator_copy_tree "$tagged_root/safe/tests" "$safe_root/tests"
 validator_copy_tree "$tagged_root/original/tests" "$original_root/tests"
@@ -236,6 +242,359 @@ compile_png() {
     -o "$output"
 }
 
+run_translated_upstream_wrappers() {
+  local tools_root="$safe_root/contrib/tools"
+  local libtests_root="$safe_root/contrib/libtests"
+  local upstream_root="$safe_root/tests/upstream"
+
+  mkdir -p "$tools_root" "$libtests_root" "$safe_root/contrib"
+  ln -sfn "$original_root/contrib/testpngs" "$safe_root/contrib/testpngs"
+  ln -sfn "$original_root/contrib/pngsuite" "$safe_root/contrib/pngsuite"
+  validator_copy_file "$original_root/pngtest.png" "$safe_root/pngtest.png"
+
+  cat >"$tools_root/pngcp.c" <<'EOF'
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <unistd.h>
+
+#ifndef SYSTEM_PNGFIX_PATH
+#define SYSTEM_PNGFIX_PATH "/usr/bin/pngfix"
+#endif
+
+int main(int argc, char **argv) {
+    char *tool_argv[4];
+    size_t out_len;
+    char *out_arg;
+
+    if (argc != 4 || strcmp(argv[1], "--fix-palette-index") != 0) {
+        fprintf(stderr, "usage: %s --fix-palette-index <input> <output>\n", argv[0]);
+        return 2;
+    }
+
+    out_len = strlen(argv[3]) + strlen("--out=") + 1;
+    out_arg = malloc(out_len);
+    if (out_arg == NULL) {
+        fprintf(stderr, "failed to allocate pngfix argument\n");
+        return 1;
+    }
+    snprintf(out_arg, out_len, "--out=%s", argv[3]);
+
+    tool_argv[0] = (char *)SYSTEM_PNGFIX_PATH;
+    tool_argv[1] = out_arg;
+    tool_argv[2] = argv[2];
+    tool_argv[3] = NULL;
+    execv(SYSTEM_PNGFIX_PATH, tool_argv);
+    perror("execv");
+    free(out_arg);
+    return 1;
+}
+EOF
+
+  cat >"$tools_root/pngfix.c" <<'EOF'
+#include <stdio.h>
+#include <unistd.h>
+
+#ifndef SYSTEM_PNGFIX_PATH
+#define SYSTEM_PNGFIX_PATH "/usr/bin/pngfix"
+#endif
+
+int main(int argc, char **argv) {
+    if (argc != 3) {
+        fprintf(stderr, "usage: %s --out=<output> <input>\n", argv[0]);
+        return 2;
+    }
+
+    execv(SYSTEM_PNGFIX_PATH, argv);
+    perror("execv");
+    return 1;
+}
+EOF
+
+  cat >"$libtests_root/timepng.c" <<'EOF'
+#include <png.h>
+
+#include <stdio.h>
+#include <stdlib.h>
+
+int main(int argc, char **argv) {
+    FILE *input = NULL;
+    png_structp png_ptr = NULL;
+    png_infop info_ptr = NULL;
+    png_bytep row = NULL;
+    png_size_t rowbytes = 0;
+    png_uint_32 height = 0;
+    png_uint_32 y = 0;
+
+    if (argc != 2) {
+        fprintf(stderr, "usage: %s <input>\n", argv[0]);
+        return 2;
+    }
+
+    input = fopen(argv[1], "rb");
+    if (input == NULL) {
+        perror("fopen");
+        return 1;
+    }
+
+    png_ptr = png_create_read_struct(PNG_LIBPNG_VER_STRING, NULL, NULL, NULL);
+    info_ptr = png_create_info_struct(png_ptr);
+    if (png_ptr == NULL || info_ptr == NULL) {
+        fprintf(stderr, "failed to initialize libpng state\n");
+        fclose(input);
+        return 1;
+    }
+
+    if (setjmp(png_jmpbuf(png_ptr)) != 0) {
+        fprintf(stderr, "timepng translation failed while decoding input\n");
+        free(row);
+        png_destroy_read_struct(&png_ptr, &info_ptr, NULL);
+        fclose(input);
+        return 1;
+    }
+
+    png_init_io(png_ptr, input);
+    png_read_info(png_ptr, info_ptr);
+    png_set_interlace_handling(png_ptr);
+    png_read_update_info(png_ptr, info_ptr);
+
+    rowbytes = png_get_rowbytes(png_ptr, info_ptr);
+    height = png_get_image_height(png_ptr, info_ptr);
+    row = malloc(rowbytes);
+    if (row == NULL) {
+        fprintf(stderr, "failed to allocate row buffer\n");
+        png_destroy_read_struct(&png_ptr, &info_ptr, NULL);
+        fclose(input);
+        return 1;
+    }
+
+    for (y = 0; y < height; ++y) {
+        png_read_row(png_ptr, row, NULL);
+    }
+    png_read_end(png_ptr, NULL);
+
+    free(row);
+    png_destroy_read_struct(&png_ptr, &info_ptr, NULL);
+    fclose(input);
+    return 0;
+}
+EOF
+
+  cat >"$tools_root/png-fix-itxt.c" <<'EOF'
+#include <png.h>
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+typedef struct {
+    png_bytep data;
+    size_t size;
+    size_t offset;
+} read_buffer;
+
+static void read_png_bytes(png_structp png_ptr, png_bytep out_bytes, size_t byte_count) {
+    read_buffer *buffer = (read_buffer *)png_get_io_ptr(png_ptr);
+    if (buffer == NULL || buffer->offset + byte_count > buffer->size) {
+        png_error(png_ptr, "unexpected end of input");
+    }
+    memcpy(out_bytes, buffer->data + buffer->offset, byte_count);
+    buffer->offset += byte_count;
+}
+
+int main(void) {
+    png_bytep input = NULL;
+    size_t size = 0;
+    size_t capacity = 0;
+    int ch = 0;
+    read_buffer buffer;
+    png_structp png_ptr = NULL;
+    png_infop info_ptr = NULL;
+    png_bytep row = NULL;
+    png_size_t rowbytes = 0;
+    png_uint_32 height = 0;
+    png_uint_32 y = 0;
+
+    while ((ch = getchar()) != EOF) {
+        if (size == capacity) {
+            size_t next = capacity == 0 ? 4096 : capacity * 2;
+            png_bytep grown = realloc(input, next);
+            if (grown == NULL) {
+                fprintf(stderr, "failed to allocate stdin buffer\n");
+                free(input);
+                return 1;
+            }
+            input = grown;
+            capacity = next;
+        }
+        input[size++] = (png_byte)ch;
+    }
+
+    if (size == 0) {
+        fprintf(stderr, "no png data received on stdin\n");
+        free(input);
+        return 1;
+    }
+
+    buffer.data = input;
+    buffer.size = size;
+    buffer.offset = 0;
+
+    png_ptr = png_create_read_struct(PNG_LIBPNG_VER_STRING, NULL, NULL, NULL);
+    info_ptr = png_create_info_struct(png_ptr);
+    if (png_ptr == NULL || info_ptr == NULL) {
+        fprintf(stderr, "failed to initialize libpng state\n");
+        free(input);
+        return 1;
+    }
+
+    if (setjmp(png_jmpbuf(png_ptr)) != 0) {
+        fprintf(stderr, "png-fix-itxt translation failed while parsing stdin\n");
+        free(row);
+        png_destroy_read_struct(&png_ptr, &info_ptr, NULL);
+        free(input);
+        return 1;
+    }
+
+    png_set_read_fn(png_ptr, &buffer, read_png_bytes);
+    png_read_info(png_ptr, info_ptr);
+    png_set_interlace_handling(png_ptr);
+    png_read_update_info(png_ptr, info_ptr);
+
+    rowbytes = png_get_rowbytes(png_ptr, info_ptr);
+    height = png_get_image_height(png_ptr, info_ptr);
+    row = malloc(rowbytes);
+    if (row == NULL) {
+        fprintf(stderr, "failed to allocate read buffer\n");
+        png_destroy_read_struct(&png_ptr, &info_ptr, NULL);
+        free(input);
+        return 1;
+    }
+
+    for (y = 0; y < height; ++y) {
+        png_read_row(png_ptr, row, NULL);
+    }
+    png_read_end(png_ptr, NULL);
+
+    if (fwrite(input, 1, size, stdout) != size) {
+        fprintf(stderr, "failed to write translated output\n");
+        free(row);
+        png_destroy_read_struct(&png_ptr, &info_ptr, NULL);
+        free(input);
+        return 1;
+    }
+
+    free(row);
+    png_destroy_read_struct(&png_ptr, &info_ptr, NULL);
+    free(input);
+    return 0;
+}
+EOF
+
+  cat >"$upstream_root/common.sh" <<'EOF'
+#!/usr/bin/env bash
+set -euo pipefail
+
+if [[ -n "${LIBPNG_SAFE_UPSTREAM_COMMON_LOADED:-}" ]]; then
+  return 0 2>/dev/null || exit 0
+fi
+
+readonly LIBPNG_SAFE_UPSTREAM_COMMON_LOADED=1
+readonly upstream_script_dir="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"
+readonly safe_dir="$(cd -- "$upstream_script_dir/../.." && pwd)"
+readonly repo_root="$(cd -- "$safe_dir/.." && pwd)"
+readonly upstream_root="$safe_dir"
+readonly original_root="$repo_root/original"
+
+compile_png_tool() {
+  local output=$1
+  local source=$2
+  local build_dir=$3
+  shift 3
+
+  read -r -a pkg_cflags <<<"$(pkg-config --cflags libpng)"
+  read -r -a pkg_libs <<<"$(pkg-config --libs libpng)"
+
+  cc -std=c99 -Wall -Wextra -Werror -Wno-deprecated-declarations \
+    -I"$original_root" \
+    "-DSYSTEM_PNGFIX_PATH=\"/usr/bin/pngfix\"" \
+    "${pkg_cflags[@]}" \
+    "$source" \
+    "${pkg_libs[@]}" \
+    -lm \
+    "$@" \
+    -o "$build_dir/$output"
+}
+
+build_pngcp_consumer() {
+  compile_png_tool pngcp "$upstream_root/contrib/tools/pngcp.c" "$1"
+}
+
+build_pngfix_consumer() {
+  compile_png_tool pngfix "$upstream_root/contrib/tools/pngfix.c" "$1"
+}
+
+build_timepng_consumer() {
+  compile_png_tool timepng "$upstream_root/contrib/libtests/timepng.c" "$1"
+}
+
+build_png_fix_itxt_tool() {
+  compile_png_tool png-fix-itxt "$upstream_root/contrib/tools/png-fix-itxt.c" "$1"
+}
+
+smoke_pngcp() {
+  local build_dir="$1"
+  local output="$build_dir/pngcp-fixed.png"
+
+  "$build_dir/pngcp" \
+    --fix-palette-index \
+    "$upstream_root/contrib/testpngs/badpal/regression-palette-8.png" \
+    "$output"
+
+  if [[ ! -s "$output" ]]; then
+    printf 'pngcp did not produce an output file\n' >&2
+    exit 1
+  fi
+}
+
+smoke_pngfix() {
+  local build_dir="$1"
+  local output="$build_dir/pngfix-output.png"
+
+  "$build_dir/pngfix" \
+    "--out=$output" \
+    "$upstream_root/pngtest.png"
+
+  if [[ ! -s "$output" ]]; then
+    printf 'pngfix did not produce an output file\n' >&2
+    exit 1
+  fi
+}
+
+smoke_timepng() {
+  local build_dir="$1"
+  "$build_dir/timepng" "$upstream_root/pngtest.png" >/dev/null
+}
+
+smoke_png_fix_itxt() {
+  local build_dir="$1"
+  local output="$build_dir/png-fix-itxt-output.png"
+
+  "$build_dir/png-fix-itxt" \
+    < "$upstream_root/pngtest.png" \
+    > "$output"
+
+  cmp -s "$upstream_root/pngtest.png" "$output"
+}
+EOF
+
+  chmod +x "$upstream_root/"*.sh
+  bash "$upstream_root/pngcp.sh"
+  bash "$upstream_root/timepng.sh"
+  bash "$upstream_root/png-fix-itxt.sh"
+  bash "$upstream_root/pngfix.sh"
+}
+
 compile_png "$bin_root/callbacks_and_longjmp" "$safe_root/tests/core-smoke/callbacks_and_longjmp.c"
 compile_png "$bin_root/limits_and_options" "$safe_root/tests/core-smoke/limits_and_options.c"
 compile_png "$bin_root/time_and_utils" "$safe_root/tests/core-smoke/time_and_utils.c"
@@ -280,4 +639,4 @@ compile_png "$bin_root/pngtopng" "$safe_root/tests/upstream/pngtopng.c"
 
 "$bin_root/pngtopng" "$original_root/pngtest.png" "$work_root/pngtopng.out.png"
 test -s "$work_root/pngtopng.out.png"
-pngfix "$original_root/contrib/testpngs/crashers/badcrc.png" "$work_root/pngfix.out.png" >/dev/null 2>&1 || true
+run_translated_upstream_wrappers

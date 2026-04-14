@@ -3,6 +3,7 @@ set -euo pipefail
 
 source /validator/tests/_shared/runtime_helpers.sh
 
+# Run only against the imported tagged-port mirror, never a sibling checkout.
 readonly tagged_root=${VALIDATOR_TAGGED_ROOT:?}
 readonly library_root=${VALIDATOR_LIBRARY_ROOT:?}
 readonly work_root=$(mktemp -d)
