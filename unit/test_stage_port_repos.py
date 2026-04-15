@@ -29,6 +29,30 @@ def create_remote_repo(root: Path, name: str, *, tag_after_clone: bool) -> tuple
     return remote, work
 
 
+def create_libvips_remote_repo(root: Path) -> tuple[Path, Path]:
+    remote = root / "libvips.git"
+    work = root / "libvips-work"
+    run_git(["init", "--bare", str(remote)], cwd=root)
+    init_repo(work)
+    (work / "safe" / "debian").mkdir(parents=True, exist_ok=True)
+    (work / "safe" / "debian" / "control").write_text("Source: libvips\n")
+    (work / "safe" / "include" / "vips").mkdir(parents=True, exist_ok=True)
+    (work / "safe" / "include" / "vips" / "vips.h").write_text("#define VIPS_VERSION \"8.15.1\"\n")
+    (work / "safe" / "reference" / "pkgconfig").mkdir(parents=True, exist_ok=True)
+    (work / "safe" / "reference" / "pkgconfig" / "vips.pc").write_text(
+        "prefix=/tmp/build-check-install\nincludedir=${prefix}/include\nlibdir=${prefix}/lib\n"
+    )
+    (work / "safe" / "reference" / "pkgconfig" / "vips-cpp.pc").write_text(
+        "prefix=/tmp/build-check-install\nincludedir=${prefix}/include\nlibdir=${prefix}/lib\n"
+    )
+    commit_all(work, "initial")
+    run_git(["remote", "add", "origin", str(remote)], cwd=work)
+    run_git(["push", "origin", "HEAD:refs/heads/main"], cwd=work)
+    run_git(["tag", "libvips/04-test"], cwd=work)
+    run_git(["push", "origin", "refs/tags/libvips/04-test"], cwd=work)
+    return remote, work
+
+
 class StagePortReposTests(unittest.TestCase):
     def test_stage_from_source_root_uses_local_tags_and_exact_remote_fetch_for_missing_tags(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:
@@ -258,6 +282,49 @@ class StagePortReposTests(unittest.TestCase):
                 )
 
             self.assertTrue((dest_root / "libdemo" / "safe" / "tests" / "smoke.txt").is_file())
+
+    def test_stage_from_remote_materializes_libvips_build_check_install(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            tmp_path = Path(tmp)
+            workspace = tmp_path / "workspace"
+            dest_root = tmp_path / "staged"
+            remote, _ = create_libvips_remote_repo(tmp_path)
+            config_path = tmp_path / "repositories.yml"
+            write_manifest(
+                config_path,
+                [repository_entry("libvips", imports=["build-check-install"])],
+            )
+
+            with mock.patch("tools.github_auth.github_git_url", return_value=str(remote)):
+                stage_port_repos.main(
+                    [
+                        "--config",
+                        str(config_path),
+                        "--workspace",
+                        str(workspace),
+                        "--dest-root",
+                        str(dest_root),
+                        "--libraries",
+                        "libvips",
+                    ]
+                )
+
+            reference_root = dest_root / "libvips" / "build-check-install"
+            self.assertEqual(
+                (reference_root / "include" / "vips" / "vips.h").read_text(),
+                "#define VIPS_VERSION \"8.15.1\"\n",
+            )
+            self.assertEqual(
+                (reference_root / "lib" / "pkgconfig" / "vips.pc").read_text(),
+                "prefix=${pcfiledir}/../..\nincludedir=${prefix}/include\nlibdir=${prefix}/lib\n",
+            )
+            self.assertTrue((reference_root / "lib" / "libvips.so.42.17.1").is_file())
+            self.assertTrue((reference_root / "lib" / "libvips-cpp.so.42.17.1").is_file())
+            self.assertTrue((reference_root / "lib" / "libvips.so.42").is_symlink())
+            self.assertEqual(
+                (reference_root / "lib" / "libvips.so.42").readlink().as_posix(),
+                "libvips.so.42.17.1",
+            )
 
     def test_stage_fails_when_sibling_repo_is_missing(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:

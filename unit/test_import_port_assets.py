@@ -292,6 +292,86 @@ class ImportPortAssetsTests(unittest.TestCase):
             "int uv_original(void) { return 0; }\n",
         )
 
+    def test_import_library_assets_supports_libvips_build_check_install_override(self) -> None:
+        stage_repo = self.port_root / "libvips"
+        init_repo(stage_repo)
+        (stage_repo / "safe" / "debian").mkdir(parents=True, exist_ok=True)
+        (stage_repo / "safe" / "debian" / "control").write_text("Source: libvips\n")
+        (stage_repo / "dependents.json").write_text('{"vips": true}\n')
+        (stage_repo / "relevant_cves.json").write_text("[]\n")
+        (stage_repo / "test-original.sh").write_text("#!/bin/sh\n")
+        commit_all(stage_repo, "initial")
+
+        (stage_repo / "build-check-install" / "include" / "vips" / "vips.h").parent.mkdir(
+            parents=True,
+            exist_ok=True,
+        )
+        (stage_repo / "build-check-install" / "include" / "vips" / "vips.h").write_text(
+            "#define VIPS_VERSION \"8.15.1\"\n"
+        )
+        (stage_repo / "build-check-install" / "lib" / "pkgconfig").mkdir(
+            parents=True,
+            exist_ok=True,
+        )
+        (stage_repo / "build-check-install" / "lib" / "pkgconfig" / "vips.pc").write_text(
+            "prefix=${pcfiledir}/../..\n"
+        )
+        (stage_repo / "build-check-install" / "lib" / "pkgconfig" / "vips-cpp.pc").write_text(
+            "prefix=${pcfiledir}/../..\n"
+        )
+        (stage_repo / "build-check-install" / "lib" / "libvips.so.42.17.1").write_bytes(b"vips")
+        (stage_repo / "build-check-install" / "lib" / "libvips-cpp.so.42.17.1").write_bytes(
+            b"vips-cpp"
+        )
+
+        manifest = {
+            "archive": {"suite": "noble"},
+            "inventory": {"tag_probe_rule": "refs/tags/{library}/04-test"},
+            "repositories": [
+                repository_entry(
+                    "libvips",
+                    imports=["build-check-install"],
+                )
+            ],
+        }
+
+        import_port_assets.import_library_assets(
+            manifest,
+            library="libvips",
+            port_root=self.port_root,
+            workspace=self.workspace,
+            dest_root=self.dest_root,
+        )
+
+        tests_root = self.dest_root / "tests" / "libvips" / "tests"
+        self.assertEqual(
+            (
+                tests_root / "tagged-port" / "build-check-install" / "include" / "vips" / "vips.h"
+            ).read_text(),
+            "#define VIPS_VERSION \"8.15.1\"\n",
+        )
+        self.assertEqual(
+            (
+                tests_root
+                / "tagged-port"
+                / "build-check-install"
+                / "lib"
+                / "pkgconfig"
+                / "vips.pc"
+            ).read_text(),
+            "prefix=${pcfiledir}/../..\n",
+        )
+        self.assertEqual(
+            (
+                tests_root
+                / "tagged-port"
+                / "build-check-install"
+                / "lib"
+                / "libvips.so.42.17.1"
+            ).read_bytes(),
+            b"vips",
+        )
+
     def test_import_library_assets_requires_libuv_build_output_for_prebuilt_override(self) -> None:
         stage_repo = self.port_root / "libuv"
         init_repo(stage_repo)

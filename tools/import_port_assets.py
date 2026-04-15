@@ -48,6 +48,29 @@ def _expand_mapped_import(
     return []
 
 
+def _expand_workspace_import(
+    repo_root: Path,
+    *,
+    source_path: str,
+    dest_path: str,
+) -> list[tuple[str, Path]]:
+    repo_source = repo_root / source_path
+    if repo_source.is_dir():
+        dest_prefix = dest_path.rstrip("/")
+        return [
+            (
+                f"{dest_prefix}/{candidate.relative_to(repo_source).as_posix()}",
+                candidate,
+            )
+            for candidate in sorted(repo_source.rglob("*"))
+            if candidate.is_file()
+            and not is_excluded_import_path(candidate.relative_to(repo_source).as_posix())
+        ]
+    if repo_source.is_file():
+        return [(dest_path.rstrip("/"), repo_source)]
+    return []
+
+
 def _libuv_prebuilt_runtime_archive(workspace: Path) -> Path:
     return (
         workspace / "build-safe" / "libuv" / "source" / "safe" / "target" / "release" / "libuv.a"
@@ -124,6 +147,20 @@ def _resolve_libuv_import_sources(
     return []
 
 
+def _resolve_libvips_import_sources(
+    repo_root: Path,
+    *,
+    import_path: str,
+) -> list[tuple[str, Path]]:
+    if import_path == "build-check-install":
+        return _expand_workspace_import(
+            repo_root,
+            source_path="build-check-install",
+            dest_path="build-check-install",
+        )
+    return []
+
+
 def resolve_import_sources(
     repo_root: Path,
     imports: list[str],
@@ -146,6 +183,11 @@ def resolve_import_sources(
                 tracked_set,
                 import_path=import_path,
                 workspace=workspace,
+            )
+        elif library == "libvips":
+            matches = _resolve_libvips_import_sources(
+                repo_root,
+                import_path=import_path,
             )
         if not matches:
             matches = _expand_mapped_import(

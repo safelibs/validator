@@ -138,6 +138,7 @@ VALIDATOR_IMPORTS = {
         "safe/tests/link_compat",
         "safe/tests/upstream",
         "safe/vendor/pyvips-3.1.1",
+        "build-check-install",
         "original/test",
         "original/examples",
     ],

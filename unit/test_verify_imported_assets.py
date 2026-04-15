@@ -320,6 +320,90 @@ class VerifyImportedAssetsTests(unittest.TestCase):
                 tests_root=dest_root / "tests",
             )
 
+    def test_verify_supports_libvips_build_check_install_override(self) -> None:
+        compat_root = self.root / "libvips-compat"
+        workspace = compat_root / "workspace"
+        port_root = compat_root / "ports"
+        dest_root = compat_root / "dest"
+        stage_repo = port_root / "libvips"
+        init_repo(stage_repo)
+        (stage_repo / "safe" / "debian").mkdir(parents=True, exist_ok=True)
+        (stage_repo / "safe" / "debian" / "control").write_text("Source: libvips\n")
+        (stage_repo / "dependents.json").write_text('{"vips": true}\n')
+        (stage_repo / "relevant_cves.json").write_text("[]\n")
+        (stage_repo / "test-original.sh").write_text("#!/bin/sh\n")
+        commit_all(stage_repo, "initial")
+
+        (stage_repo / "build-check-install" / "include" / "vips" / "vips.h").parent.mkdir(
+            parents=True,
+            exist_ok=True,
+        )
+        (stage_repo / "build-check-install" / "include" / "vips" / "vips.h").write_text(
+            "#define VIPS_VERSION \"8.15.1\"\n"
+        )
+        (stage_repo / "build-check-install" / "lib" / "pkgconfig").mkdir(
+            parents=True,
+            exist_ok=True,
+        )
+        (stage_repo / "build-check-install" / "lib" / "pkgconfig" / "vips.pc").write_text(
+            "prefix=${pcfiledir}/../..\n"
+        )
+        (stage_repo / "build-check-install" / "lib" / "pkgconfig" / "vips-cpp.pc").write_text(
+            "prefix=${pcfiledir}/../..\n"
+        )
+        (stage_repo / "build-check-install" / "lib" / "libvips.so.42.17.1").write_bytes(b"vips")
+        (stage_repo / "build-check-install" / "lib" / "libvips-cpp.so.42.17.1").write_bytes(
+            b"vips-cpp"
+        )
+
+        manifest = {
+            "archive": {"suite": "noble"},
+            "inventory": {"tag_probe_rule": "refs/tags/{library}/04-test"},
+            "repositories": [
+                repository_entry(
+                    "libvips",
+                    imports=["build-check-install"],
+                )
+            ],
+        }
+
+        import_port_assets.import_library_assets(
+            manifest,
+            library="libvips",
+            port_root=port_root,
+            workspace=workspace,
+            dest_root=dest_root,
+        )
+
+        verify_imported_assets.verify_library_assets(
+            manifest,
+            library="libvips",
+            port_root=port_root,
+            workspace=workspace,
+            tests_root=dest_root / "tests",
+        )
+
+        (
+            dest_root
+            / "tests"
+            / "libvips"
+            / "tests"
+            / "tagged-port"
+            / "build-check-install"
+            / "lib"
+            / "pkgconfig"
+            / "vips.pc"
+        ).write_text("drift\n")
+
+        with self.assertRaisesRegex(ValidatorError, "content drift detected"):
+            verify_imported_assets.verify_library_assets(
+                manifest,
+                library="libvips",
+                port_root=port_root,
+                workspace=workspace,
+                tests_root=dest_root / "tests",
+            )
+
 
 if __name__ == "__main__":
     unittest.main()
