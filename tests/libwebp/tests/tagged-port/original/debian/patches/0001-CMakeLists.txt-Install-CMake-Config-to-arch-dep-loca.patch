@@ -1,0 +1,25 @@
+From: Boyuan Yang <byang@debian.org>
+Date: Thu, 14 Sep 2023 22:16:03 -0400
+Subject: CMakeLists.txt: Install CMake Config to arch-dep location
+
+Forwarded: no
+
+---
+ CMakeLists.txt | 4 ++++
+ 1 file changed, 4 insertions(+)
+
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+index ad5e14c..b064722 100644
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -736,6 +736,10 @@ install(
+   LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
+   RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR})
+ set(ConfigPackageLocation ${CMAKE_INSTALL_DATADIR}/${PROJECT_NAME}/cmake/)
++# Debian-specific: Install CMake Config files to arch-dep location instead
++# Ref: https://cmake.org/cmake/help/latest/guide/using-dependencies/index.html#id6
++set(ConfigPackageLocation ${CMAKE_INSTALL_LIBDIR}/cmake/${PROJECT_NAME}/)
++
+ install(EXPORT ${PROJECT_NAME}Targets NAMESPACE ${PROJECT_NAME}::
+         DESTINATION ${ConfigPackageLocation})
+ 

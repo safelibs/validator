@@ -81,6 +81,68 @@ class InventoryTests(unittest.TestCase):
             ],
         )
 
+    def test_load_manifest_defaults_missing_execution_strategy_to_container_image(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            config_path = Path(tmp) / "repositories.yml"
+            write_manifest(
+                config_path,
+                [
+                    {
+                        "name": "libdemo",
+                        "github_repo": "safelibs/port-libdemo",
+                        "ref": "refs/tags/libdemo/04-test",
+                        "build": {"mode": "safe-debian", "artifact_globs": ["*.deb"]},
+                        "validator": {
+                            "sibling_repo": "port-libdemo",
+                            "imports": ["safe/tests"],
+                            "import_excludes": [],
+                        },
+                        "fixtures": {
+                            "dependents": {"source": "copy-staged-root"},
+                            "relevant_cves": {"source": "copy-staged-root"},
+                        },
+                    }
+                ],
+            )
+
+            manifest = inventory.load_manifest(config_path)
+
+            self.assertEqual(
+                manifest["repositories"][0]["validator"]["execution_strategy"],
+                inventory.DEFAULT_EXECUTION_STRATEGY,
+            )
+
+    def test_load_manifest_accepts_host_harness_execution_strategy(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            config_path = Path(tmp) / "repositories.yml"
+            write_manifest(
+                config_path,
+                [
+                    repository_entry(
+                        "libdemo",
+                        imports=["safe/tests"],
+                        execution_strategy="host-harness",
+                    )
+                ],
+            )
+
+            manifest = inventory.load_manifest(config_path)
+
+            self.assertEqual(
+                manifest["repositories"][0]["validator"]["execution_strategy"],
+                "host-harness",
+            )
+
+    def test_load_manifest_rejects_unknown_execution_strategy(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            config_path = Path(tmp) / "repositories.yml"
+            entry = repository_entry("libdemo", imports=["safe/tests"])
+            entry["validator"]["execution_strategy"] = "bare-metal"
+            write_manifest(config_path, [entry])
+
+            with self.assertRaisesRegex(ValidatorError, "validator.execution_strategy must be one of"):
+                inventory.load_manifest(config_path)
+
     def test_merge_apt_repo_metadata_copies_apt_fields_and_non_apt_defaults(self) -> None:
         apt_manifest = {
             "archive": {"suite": "noble"},
@@ -91,6 +153,7 @@ class InventoryTests(unittest.TestCase):
                     "ref": "refs/tags/cjson/04-test",
                     "verify_packages": ["libcjson1"],
                     "build": {"mode": "safe-debian", "artifact_globs": ["*.deb"]},
+                    "validator": {"execution_strategy": "host-harness"},
                 }
             ],
         }
@@ -122,6 +185,7 @@ class InventoryTests(unittest.TestCase):
         cjson = manifest["repositories"][0]
         self.assertEqual(cjson["verify_packages"], ["libcjson1"])
         self.assertEqual(cjson["build"], {"mode": "safe-debian", "artifact_globs": ["*.deb"]})
+        self.assertEqual(cjson["validator"]["execution_strategy"], "host-harness")
         self.assertEqual(cjson["validator"]["imports"], inventory.VALIDATOR_IMPORTS["cjson"])
         self.assertEqual(cjson["validator"]["import_excludes"], [])
         self.assertEqual(cjson["fixtures"]["dependents"]["source"], "copy-staged-root")
@@ -129,7 +193,23 @@ class InventoryTests(unittest.TestCase):
         libexif = manifest["repositories"][1]
         self.assertEqual(libexif["github_repo"], "safelibs/port-libexif")
         self.assertEqual(libexif["build"], {"mode": "safe-debian", "artifact_globs": ["*.deb"]})
+        self.assertEqual(
+            libexif["validator"]["execution_strategy"],
+            inventory.DEFAULT_EXECUTION_STRATEGY,
+        )
         self.assertEqual(libexif["validator"]["imports"], inventory.VALIDATOR_IMPORTS["libexif"])
+
+    def test_repositories_yml_validator_imports_stay_aligned_with_inventory_map(self) -> None:
+        manifest = inventory.load_manifest(Path(__file__).resolve().parents[1] / "repositories.yml")
+        manifest_libraries = [entry["name"] for entry in manifest["repositories"]]
+        inventory_libraries = list(inventory.VALIDATOR_IMPORTS)
+        manifest_imports = {
+            str(entry["name"]): list(entry["validator"]["imports"])
+            for entry in manifest["repositories"]
+        }
+
+        self.assertEqual(manifest_libraries, inventory_libraries)
+        self.assertEqual(manifest_imports, inventory.VALIDATOR_IMPORTS)
 
     def test_merge_apt_repo_metadata_rejects_unsupported_tagged_repo(self) -> None:
         apt_manifest = {

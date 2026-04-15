@@ -1,0 +1,35 @@
+From: Masahiro Hanada <hanada@atmark-techno.com>
+Date: Thu, 14 Sep 2023 19:37:24 +0900
+Subject: Fix next is invalid pointer when WebPSafeMalloc fails
+Origin: https://github.com/webmproject/libwebp/commit/dce8397fec159c9edfeec7c6388cb81428c87ed8
+
+When WebPSafeMalloc fails on VP8LHuffmanTablesAllocate,
+next is not initialized to NULL.
+VP8LHuffmanTablesDeallocate uses next to know the following nodes.
+A patch fixes this issue.
+
+Change-Id: I144ae84cd97e5bca227018ef1afa95361267902c
+---
+ src/utils/huffman_utils.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/src/utils/huffman_utils.c b/src/utils/huffman_utils.c
+index cf73abd437d0..6a791e6aaa52 100644
+--- a/src/utils/huffman_utils.c
++++ b/src/utils/huffman_utils.c
+@@ -267,11 +267,11 @@ int VP8LHuffmanTablesAllocate(int size, HuffmanTables* huffman_tables) {
+   // Have 'segment' point to the first segment for now, 'root'.
+   HuffmanTablesSegment* const root = &huffman_tables->root;
+   huffman_tables->curr_segment = root;
++  root->next = NULL;
+   // Allocate root.
+   root->start = (HuffmanCode*)WebPSafeMalloc(size, sizeof(*root->start));
+   if (root->start == NULL) return 0;
+   root->curr_table = root->start;
+-  root->next = NULL;
+   root->size = size;
+   return 1;
+ }
+-- 
+2.40.1
+

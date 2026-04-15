@@ -97,7 +97,8 @@ class ImportPortAssetsTests(unittest.TestCase):
         library_root = self.dest_root / "tests" / "libdemo"
         (library_root / "Dockerfile").write_text("FROM ubuntu:24.04\n")
         (library_root / "docker-entrypoint.sh").write_text("#!/bin/sh\n")
-        (library_root / "tests" / "stale.txt").write_text("stale\n")
+        (library_root / "tests" / "run.sh").write_text("#!/bin/sh\n")
+        (library_root / "tests" / "tagged-port" / "stale.txt").write_text("stale\n")
 
         import_port_assets.import_library_assets(
             self.manifest,
@@ -109,7 +110,8 @@ class ImportPortAssetsTests(unittest.TestCase):
 
         self.assertEqual((library_root / "Dockerfile").read_text(), "FROM ubuntu:24.04\n")
         self.assertEqual((library_root / "docker-entrypoint.sh").read_text(), "#!/bin/sh\n")
-        self.assertFalse((library_root / "tests" / "stale.txt").exists())
+        self.assertEqual((library_root / "tests" / "run.sh").read_text(), "#!/bin/sh\n")
+        self.assertFalse((library_root / "tests" / "tagged-port" / "stale.txt").exists())
         self.assertTrue((library_root / "tests" / "fixtures" / "dependents.json").is_file())
 
     def test_import_library_assets_supports_libuv_source_overrides(self) -> None:
@@ -146,8 +148,23 @@ class ImportPortAssetsTests(unittest.TestCase):
         (stage_repo / "safe" / "tests" / "harness" / "uv-safe-run-tests.c").write_text(
             "int run_regressions(void) { return 0; }\n"
         )
+        (stage_repo / "safe" / "tests" / "dependents" / "manifest.json").parent.mkdir(
+            parents=True, exist_ok=True
+        )
+        (stage_repo / "safe" / "tests" / "dependents" / "manifest.json").write_text("{}\n")
+        (stage_repo / "safe" / "tests" / "dependents" / "common.sh").write_text("#!/bin/sh\n")
+        (stage_repo / "safe" / "tests" / "dependents" / "probes" / "http.sh").parent.mkdir(
+            parents=True, exist_ok=True
+        )
+        (stage_repo / "safe" / "tests" / "dependents" / "probes" / "http.sh").write_text(
+            "#!/bin/sh\n"
+        )
         (stage_repo / "safe" / "include" / "uv.h").parent.mkdir(parents=True, exist_ok=True)
         (stage_repo / "safe" / "include" / "uv.h").write_text("#define UV_VERSION 1\n")
+        (stage_repo / "original" / "README.md").parent.mkdir(parents=True, exist_ok=True)
+        (stage_repo / "original" / "README.md").write_text("original source\n")
+        (stage_repo / "original" / "src" / "uv.c").parent.mkdir(parents=True, exist_ok=True)
+        (stage_repo / "original" / "src" / "uv.c").write_text("int uv_original(void) { return 0; }\n")
         (stage_repo / "dependents.json").write_text('{"uv": true}\n')
         (stage_repo / "relevant_cves.json").write_text("[]\n")
         (stage_repo / "test-original.sh").write_text("#!/bin/sh\n")
@@ -187,6 +204,8 @@ class ImportPortAssetsTests(unittest.TestCase):
                         "safe/scripts",
                         "safe/test",
                         "safe/test-extra",
+                        "safe/tests/dependents",
+                        "original",
                     ],
                 )
             ],
@@ -240,6 +259,38 @@ class ImportPortAssetsTests(unittest.TestCase):
             ).read_text(),
             "int fs_readlink_proc_self(void) { return 0; }\n",
         )
+        self.assertEqual(
+            (
+                tests_root / "tagged-port" / "safe" / "tests" / "dependents" / "manifest.json"
+            ).read_text(),
+            "{}\n",
+        )
+        self.assertEqual(
+            (
+                tests_root / "tagged-port" / "safe" / "tests" / "dependents" / "common.sh"
+            ).read_text(),
+            "#!/bin/sh\n",
+        )
+        self.assertEqual(
+            (
+                tests_root
+                / "tagged-port"
+                / "safe"
+                / "tests"
+                / "dependents"
+                / "probes"
+                / "http.sh"
+            ).read_text(),
+            "#!/bin/sh\n",
+        )
+        self.assertEqual(
+            (tests_root / "tagged-port" / "original" / "README.md").read_text(),
+            "original source\n",
+        )
+        self.assertEqual(
+            (tests_root / "tagged-port" / "original" / "src" / "uv.c").read_text(),
+            "int uv_original(void) { return 0; }\n",
+        )
 
     def test_import_library_assets_requires_libuv_build_output_for_prebuilt_override(self) -> None:
         stage_repo = self.port_root / "libuv"
@@ -291,6 +342,8 @@ class ImportPortAssetsTests(unittest.TestCase):
                         "safe/scripts",
                         "safe/test",
                         "safe/test-extra",
+                        "safe/tests/dependents",
+                        "original",
                     ],
                 )
             ],

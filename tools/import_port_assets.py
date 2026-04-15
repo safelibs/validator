@@ -183,20 +183,26 @@ def import_library_assets(
         raise ValidatorError(f"missing staged checkout for {library}: {stage_repo}")
 
     tests_root = library_tests_root(dest_root, library)
-    reset_dir(tests_root)
+    tests_root.mkdir(parents=True, exist_ok=True)
+    fixtures_root = tests_root / "fixtures"
+    harness_root = tests_root / "harness-source"
+    tagged_root = tests_root / "tagged-port"
+    reset_dir(fixtures_root)
+    reset_dir(harness_root)
+    reset_dir(tagged_root)
 
-    copy_file(stage_repo / "dependents.json", tests_root / "fixtures" / "dependents.json")
+    copy_file(stage_repo / "dependents.json", fixtures_root / "dependents.json")
     copy_file(
         stage_repo / "relevant_cves.json",
-        tests_root / "fixtures" / "relevant_cves.json",
+        fixtures_root / "relevant_cves.json",
     )
     copy_file(
         stage_repo / "test-original.sh",
-        tests_root / "harness-source" / "original-test-script.sh",
+        harness_root / "original-test-script.sh",
     )
     copy_file(
         stage_repo / "safe" / "debian" / "control",
-        tests_root / "harness-source" / "debian" / "control",
+        harness_root / "debian" / "control",
     )
 
     for relative_path, source_path in resolve_import_sources(
@@ -205,7 +211,7 @@ def import_library_assets(
         library=library,
         workspace=workspace,
     ):
-        copy_file(source_path, tests_root / "tagged-port" / relative_path)
+        copy_file(source_path, tagged_root / relative_path)
 
 
 def build_parser() -> argparse.ArgumentParser:

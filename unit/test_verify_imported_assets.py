@@ -166,8 +166,23 @@ class VerifyImportedAssetsTests(unittest.TestCase):
         (stage_repo / "safe" / "tests" / "harness" / "uv-safe-run-tests.c").write_text(
             "int run_regressions(void) { return 0; }\n"
         )
+        (stage_repo / "safe" / "tests" / "dependents" / "manifest.json").parent.mkdir(
+            parents=True, exist_ok=True
+        )
+        (stage_repo / "safe" / "tests" / "dependents" / "manifest.json").write_text("{}\n")
+        (stage_repo / "safe" / "tests" / "dependents" / "common.sh").write_text("#!/bin/sh\n")
+        (stage_repo / "safe" / "tests" / "dependents" / "probes" / "http.sh").parent.mkdir(
+            parents=True, exist_ok=True
+        )
+        (stage_repo / "safe" / "tests" / "dependents" / "probes" / "http.sh").write_text(
+            "#!/bin/sh\n"
+        )
         (stage_repo / "safe" / "include" / "uv.h").parent.mkdir(parents=True, exist_ok=True)
         (stage_repo / "safe" / "include" / "uv.h").write_text("#define UV_VERSION 1\n")
+        (stage_repo / "original" / "README.md").parent.mkdir(parents=True, exist_ok=True)
+        (stage_repo / "original" / "README.md").write_text("original source\n")
+        (stage_repo / "original" / "src" / "uv.c").parent.mkdir(parents=True, exist_ok=True)
+        (stage_repo / "original" / "src" / "uv.c").write_text("int uv_original(void) { return 0; }\n")
         (stage_repo / "dependents.json").write_text('{"uv": true}\n')
         (stage_repo / "relevant_cves.json").write_text("[]\n")
         (stage_repo / "test-original.sh").write_text("#!/bin/sh\n")
@@ -207,6 +222,8 @@ class VerifyImportedAssetsTests(unittest.TestCase):
                         "safe/scripts",
                         "safe/test",
                         "safe/test-extra",
+                        "safe/tests/dependents",
+                        "original",
                     ],
                 )
             ],
@@ -226,6 +243,60 @@ class VerifyImportedAssetsTests(unittest.TestCase):
             port_root=port_root,
             workspace=workspace,
             tests_root=dest_root / "tests",
+        )
+        self.assertTrue(
+            (
+                dest_root
+                / "tests"
+                / "libuv"
+                / "tests"
+                / "tagged-port"
+                / "safe"
+                / "tests"
+                / "dependents"
+                / "manifest.json"
+            ).is_file()
+        )
+        self.assertTrue(
+            (
+                dest_root
+                / "tests"
+                / "libuv"
+                / "tests"
+                / "tagged-port"
+                / "original"
+                / "src"
+                / "uv.c"
+            ).is_file()
+        )
+
+        (
+            dest_root
+            / "tests"
+            / "libuv"
+            / "tests"
+            / "tagged-port"
+            / "safe"
+            / "tests"
+            / "dependents"
+            / "manifest.json"
+        ).write_text("{\"drift\": true}\n")
+
+        with self.assertRaisesRegex(ValidatorError, "content drift detected"):
+            verify_imported_assets.verify_library_assets(
+                manifest,
+                library="libuv",
+                port_root=port_root,
+                workspace=workspace,
+                tests_root=dest_root / "tests",
+            )
+
+        import_port_assets.import_library_assets(
+            manifest,
+            library="libuv",
+            port_root=port_root,
+            workspace=workspace,
+            dest_root=dest_root,
         )
 
         (

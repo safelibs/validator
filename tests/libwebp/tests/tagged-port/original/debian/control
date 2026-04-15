@@ -1,0 +1,131 @@
+Source: libwebp
+Section: libs
+Priority: optional
+Maintainer: Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>
+XSBC-Original-Maintainer: Jeff Breidenbach <jab@debian.org>
+Rules-Requires-Root: no
+Build-Depends:
+ cmake,
+ debhelper-compat (= 13),
+ libgif-dev,
+ libglut-dev,
+ libjpeg-dev,
+ libpng-dev,
+ libtiff-dev <!pkg.libwebp.notiff>,
+ pkg-config,
+Standards-Version: 4.6.2
+Vcs-Browser: https://salsa.debian.org/debian/libwebp
+Vcs-Git: https://salsa.debian.org/debian/libwebp.git
+Homepage: https://developers.google.com/speed/webp/
+
+Package: libwebp-dev
+Section: libdevel
+Architecture: any
+Multi-Arch: same
+Depends:
+ libwebp7 (= ${binary:Version}),
+ libwebpdemux2 (= ${binary:Version}),
+ libwebpmux3 (= ${binary:Version}),
+ libwebpdecoder3 (= ${binary:Version}),
+ libsharpyuv-dev,
+ ${misc:Depends},
+Description: Lossy compression of digital photographic images
+ Image Compression format, based on the VP8 codec.
+ WebP uses the modern VP8 compression format to deliver efficient
+ compression of images for the web. More than 30% extra gain over
+ optimized JPEG, for same quality, is not unusual.
+
+Package: libwebp7
+Architecture: any
+Multi-Arch: same
+Pre-Depends:
+ ${misc:Pre-Depends},
+Depends:
+ ${misc:Depends},
+ ${shlibs:Depends},
+Description: Lossy compression of digital photographic images
+ Image Compression format, based on the VP8 codec.
+ WebP uses the modern VP8 compression format to deliver efficient
+ compression of images for the web. More than 30% extra gain over
+ optimized JPEG, for same quality, is not unusual.
+
+Package: libwebpdemux2
+Architecture: any
+Multi-Arch: same
+Pre-Depends:
+ ${misc:Pre-Depends},
+Depends:
+ ${misc:Depends},
+ ${shlibs:Depends},
+Description: Lossy compression of digital photographic images.
+ Image Compression format, based on the VP8 codec.
+ WebP uses the modern VP8 compression format to deliver efficient
+ compression of images for the web. More than 30% extra gain over
+ optimized JPEG, for same quality, is not unusual.
+
+Package: libwebpmux3
+Architecture: any
+Multi-Arch: same
+Pre-Depends:
+ ${misc:Pre-Depends},
+Depends:
+ ${misc:Depends},
+ ${shlibs:Depends},
+Description: Lossy compression of digital photographic images
+ Image Compression format, based on the VP8 codec.
+ WebP uses the modern VP8 compression format to deliver efficient
+ compression of images for the web. More than 30% extra gain over
+ optimized JPEG, for same quality, is not unusual.
+
+Package: libwebpdecoder3
+Architecture: any
+Multi-Arch: same
+Pre-Depends:
+ ${misc:Pre-Depends},
+Depends:
+ ${misc:Depends},
+ ${shlibs:Depends},
+Description: Library for the WebP graphics format (decode only)
+ This package provides the decoder functions for the WebP
+ graphics format as a shared library.
+
+Package: libsharpyuv0
+Architecture: any
+Multi-Arch: same
+Pre-Depends:
+ ${misc:Pre-Depends},
+Depends:
+ ${misc:Depends},
+ ${shlibs:Depends},
+Description: Library for sharp RGB to YUV conversion
+ This library provides the function to convert RGB to YUV420 using
+ a downsampling algorithm that minimizes artefacts caused by chroma
+ subsampling.
+ .
+ This package provides the shared library files.
+
+Package: libsharpyuv-dev
+Section: libdevel
+Architecture: any
+Multi-Arch: same
+Depends:
+ libsharpyuv0 (= ${binary:Version}),
+ ${misc:Depends},
+Description: Library for sharp RGB to YUV conversion (development files)
+ This library provides the function to convert RGB to YUV420 using
+ a downsampling algorithm that minimizes artefacts caused by chroma
+ subsampling.
+ .
+ This package provides the development files.
+
+Package: webp
+Section: graphics
+Architecture: any
+Depends:
+ ${misc:Depends},
+ ${shlibs:Depends},
+Description: Lossy compression of digital photographic images
+ Image Compression format, based on the VP8 codec.
+ WebP uses the modern VP8 compression format to deliver efficient
+ compression of images for the web. More than 30% extra gain over
+ optimized JPEG, for same quality, is not unusual.

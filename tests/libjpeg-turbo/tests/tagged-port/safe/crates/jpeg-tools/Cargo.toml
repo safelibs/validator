@@ -1,0 +1,13 @@
+[package]
+name = "jpeg-tools"
+version.workspace = true
+edition.workspace = true
+publish.workspace = true
+
+[lib]
+path = "src/lib.rs"
+
+[dependencies]
+jpeg-core = { path = "../jpeg-core" }
+libjpeg-abi = { path = "../libjpeg-abi" }
+libturbojpeg-abi = { path = "../libturbojpeg-abi" }

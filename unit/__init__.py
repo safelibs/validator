@@ -86,6 +86,7 @@ def repository_entry(
     name: str,
     *,
     imports: list[str],
+    execution_strategy: str = "container-image",
     build: dict[str, Any] | None = None,
     verify_packages: list[str] | None = None,
 ) -> dict[str, Any]:
@@ -96,6 +97,7 @@ def repository_entry(
         "build": copy.deepcopy(build or {"mode": "safe-debian", "artifact_globs": ["*.deb"]}),
         "validator": {
             "sibling_repo": f"port-{name}",
+            "execution_strategy": execution_strategy,
             "imports": list(imports),
             "import_excludes": [],
         },

@@ -35,6 +35,7 @@ repositories:
     - '*.deb'
   validator:
     sibling_repo: port-cjson
+    execution_strategy: container-image
     imports:
     - safe/tests
     - safe/scripts
@@ -58,11 +59,10 @@ repositories:
     - '*.deb'
   validator:
     sibling_repo: port-giflib
+    execution_strategy: container-image
     imports:
-    - safe/tests
-    - original/tests
-    - original/pic
-    - original/gif_lib.h
+    - safe
+    - original
     import_excludes: []
   fixtures:
     dependents:
@@ -91,6 +91,7 @@ repositories:
     - '*.deb'
   validator:
     sibling_repo: port-libarchive
+    execution_strategy: container-image
     imports:
     - safe/tests
     - safe/debian/tests
@@ -140,6 +141,7 @@ repositories:
     - '*.deb'
   validator:
     sibling_repo: port-libbz2
+    execution_strategy: container-image
     imports:
     - safe/tests
     - safe/debian/tests
@@ -161,12 +163,10 @@ repositories:
     - '*.deb'
   validator:
     sibling_repo: port-libcsv
+    execution_strategy: container-image
     imports:
-    - safe/tests
-    - safe/debian/tests
-    - original/examples
-    - original/test_csv.c
-    - original/csv.h
+    - safe
+    - original
     import_excludes: []
   fixtures:
     dependents:
@@ -182,6 +182,7 @@ repositories:
     - '*.deb'
   validator:
     sibling_repo: port-libexif
+    execution_strategy: container-image
     imports:
     - safe/tests
     - original/libexif
@@ -202,11 +203,10 @@ repositories:
     - '*.deb'
   validator:
     sibling_repo: port-libjpeg-turbo
+    execution_strategy: container-image
     imports:
-    - safe/tests
-    - safe/debian/tests
-    - safe/scripts
-    - original/testimages
+    - safe
+    - original
     import_excludes: []
   fixtures:
     dependents:
@@ -236,9 +236,11 @@ repositories:
     - '*.deb'
   validator:
     sibling_repo: port-libjson
+    execution_strategy: container-image
     imports:
     - safe/tests
     - safe/debian/tests
+    - original
     import_excludes: []
   fixtures:
     dependents:
@@ -259,12 +261,14 @@ repositories:
     - '*.deb'
   validator:
     sibling_repo: port-liblzma
+    execution_strategy: container-image
     imports:
     - safe/docker
     - safe/scripts
     - safe/tests/dependents
     - safe/tests/extra
     - safe/tests/upstream
+    - original
     import_excludes: []
   fixtures:
     dependents:
@@ -285,14 +289,10 @@ repositories:
     - '*.deb'
   validator:
     sibling_repo: port-libpng
+    execution_strategy: container-image
     imports:
     - safe/tests
-    - original/tests
-    - original/contrib/pngsuite
-    - original/contrib/testpngs
-    - original/png.h
-    - original/pngconf.h
-    - original/pngtest.png
+    - original
     import_excludes: []
   fixtures:
     dependents:
@@ -308,18 +308,10 @@ repositories:
     - '*.deb'
   validator:
     sibling_repo: port-libsdl
+    execution_strategy: container-image
     imports:
-    - safe/tests
-    - safe/debian/tests
-    - safe/generated/dependent_regression_manifest.json
-    - safe/generated/noninteractive_test_list.json
-    - safe/generated/original_test_port_map.json
-    - safe/generated/perf_workload_manifest.json
-    - safe/generated/perf_thresholds.json
-    - safe/generated/reports/perf-baseline-vs-safe.json
-    - safe/generated/reports/perf-waivers.md
-    - safe/upstream-tests
-    - original/test
+    - safe
+    - original
     import_excludes: []
   fixtures:
     dependents:
@@ -342,9 +334,12 @@ repositories:
     - '*.deb'
   validator:
     sibling_repo: port-libsodium
+    execution_strategy: container-image
     imports:
     - safe/tests
     - safe/docker
+    - safe/tools
+    - original
     import_excludes: []
   fixtures:
     dependents:
@@ -368,6 +363,7 @@ repositories:
     - '*.deb'
   validator:
     sibling_repo: port-libtiff
+    execution_strategy: container-image
     imports:
     - safe/test
     - safe/scripts
@@ -387,6 +383,7 @@ repositories:
     - '*.deb'
   validator:
     sibling_repo: port-libuv
+    execution_strategy: container-image
     imports:
     - safe/docker
     - safe/include
@@ -394,6 +391,8 @@ repositories:
     - safe/scripts
     - safe/test
     - safe/test-extra
+    - safe/tests/dependents
+    - original
     import_excludes: []
   fixtures:
     dependents:
@@ -425,8 +424,13 @@ repositories:
     - '*.deb'
   validator:
     sibling_repo: port-libvips
+    execution_strategy: container-image
     imports:
+    - safe/debian/changelog
+    - safe/reference
+    - safe/scripts
     - safe/tests/dependents
+    - safe/tests/link_compat
     - safe/tests/upstream
     - safe/vendor/pyvips-3.1.1
     - original/test
@@ -446,10 +450,10 @@ repositories:
     - '*.deb'
   validator:
     sibling_repo: port-libwebp
+    execution_strategy: container-image
     imports:
     - safe/tests
-    - original/examples
-    - original/tests/public_api_test.c
+    - original
     import_excludes: []
   fixtures:
     dependents:
@@ -465,6 +469,7 @@ repositories:
     - '*.deb'
   validator:
     sibling_repo: port-libxml
+    execution_strategy: container-image
     imports:
     - safe/tests
     - safe/debian/tests
@@ -485,13 +490,10 @@ repositories:
     - '*.deb'
   validator:
     sibling_repo: port-libyaml
+    execution_strategy: container-image
     imports:
-    - safe/tests
-    - safe/debian/tests
-    - safe/scripts
-    - original/include
-    - original/tests
-    - original/examples
+    - safe
+    - original
     import_excludes: []
   fixtures:
     dependents:
@@ -533,11 +535,9 @@ repositories:
     - '*.deb'
   validator:
     sibling_repo: port-libzstd
+    execution_strategy: container-image
     imports:
-    - safe/tests
-    - safe/debian/tests
-    - safe/docker
-    - safe/scripts
+    - safe
     - original/libzstd-1.5.5+dfsg2
     import_excludes: []
   fixtures:

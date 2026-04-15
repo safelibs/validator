@@ -35,6 +35,8 @@ REQUIRED_INVENTORY_KEYS = {
     "goal_repo_family",
     "verified_repo_family",
 }
+DEFAULT_EXECUTION_STRATEGY = "container-image"
+VALID_EXECUTION_STRATEGIES = {"container-image", "host-harness"}
 VALIDATOR_IMPORTS = {
     "cjson": [
         "safe/tests",
@@ -46,10 +48,8 @@ VALIDATOR_IMPORTS = {
         "original/cJSON_Utils.h",
     ],
     "giflib": [
-        "safe/tests",
-        "original/tests",
-        "original/pic",
-        "original/gif_lib.h",
+        "safe",
+        "original",
     ],
     "libarchive": [
         "safe/tests",
@@ -75,11 +75,8 @@ VALIDATOR_IMPORTS = {
         "original",
     ],
     "libcsv": [
-        "safe/tests",
-        "safe/debian/tests",
-        "original/examples",
-        "original/test_csv.c",
-        "original/csv.h",
+        "safe",
+        "original",
     ],
     "libexif": [
         "safe/tests",
@@ -88,14 +85,13 @@ VALIDATOR_IMPORTS = {
         "original/contrib/examples",
     ],
     "libjpeg-turbo": [
-        "safe/tests",
-        "safe/debian/tests",
-        "safe/scripts",
-        "original/testimages",
+        "safe",
+        "original",
     ],
     "libjson": [
         "safe/tests",
         "safe/debian/tests",
+        "original",
     ],
     "liblzma": [
         "safe/docker",
@@ -103,32 +99,21 @@ VALIDATOR_IMPORTS = {
         "safe/tests/dependents",
         "safe/tests/extra",
         "safe/tests/upstream",
+        "original",
     ],
     "libpng": [
         "safe/tests",
-        "original/tests",
-        "original/contrib/pngsuite",
-        "original/contrib/testpngs",
-        "original/png.h",
-        "original/pngconf.h",
-        "original/pngtest.png",
+        "original",
     ],
     "libsdl": [
-        "safe/tests",
-        "safe/debian/tests",
-        "safe/generated/dependent_regression_manifest.json",
-        "safe/generated/noninteractive_test_list.json",
-        "safe/generated/original_test_port_map.json",
-        "safe/generated/perf_workload_manifest.json",
-        "safe/generated/perf_thresholds.json",
-        "safe/generated/reports/perf-baseline-vs-safe.json",
-        "safe/generated/reports/perf-waivers.md",
-        "safe/upstream-tests",
-        "original/test",
+        "safe",
+        "original",
     ],
     "libsodium": [
         "safe/tests",
         "safe/docker",
+        "safe/tools",
+        "original",
     ],
     "libtiff": [
         "safe/test",
@@ -142,9 +127,15 @@ VALIDATOR_IMPORTS = {
         "safe/scripts",
         "safe/test",
         "safe/test-extra",
+        "safe/tests/dependents",
+        "original",
     ],
     "libvips": [
+        "safe/debian/changelog",
+        "safe/reference",
+        "safe/scripts",
         "safe/tests/dependents",
+        "safe/tests/link_compat",
         "safe/tests/upstream",
         "safe/vendor/pyvips-3.1.1",
         "original/test",
@@ -152,8 +143,7 @@ VALIDATOR_IMPORTS = {
     ],
     "libwebp": [
         "safe/tests",
-        "original/examples",
-        "original/tests/public_api_test.c",
+        "original",
     ],
     "libxml": [
         "safe/tests",
@@ -162,18 +152,11 @@ VALIDATOR_IMPORTS = {
         "original",
     ],
     "libyaml": [
-        "safe/tests",
-        "safe/debian/tests",
-        "safe/scripts",
-        "original/include",
-        "original/tests",
-        "original/examples",
+        "safe",
+        "original",
     ],
     "libzstd": [
-        "safe/tests",
-        "safe/debian/tests",
-        "safe/docker",
-        "safe/scripts",
+        "safe",
         "original/libzstd-1.5.5+dfsg2",
     ],
 }
@@ -188,6 +171,24 @@ def load_yaml_mapping(path: Path) -> dict[str, Any]:
     if not isinstance(data, dict):
         raise ValidatorError(f"{path} must contain a YAML mapping")
     return data
+
+
+def normalize_execution_strategy(value: Any, *, context: str) -> str:
+    if value is None:
+        return DEFAULT_EXECUTION_STRATEGY
+    strategy = str(value).strip()
+    if strategy not in VALID_EXECUTION_STRATEGIES:
+        choices = ", ".join(sorted(VALID_EXECUTION_STRATEGIES))
+        raise ValidatorError(f"{context} must be one of: {choices}")
+    return strategy
+
+
+def validator_execution_strategy_for(entry: dict[str, Any]) -> str:
+    validator = entry.get("validator")
+    context = f"{entry.get('name', '<unknown>')} validator.execution_strategy"
+    if isinstance(validator, dict):
+        return normalize_execution_strategy(validator.get("execution_strategy"), context=context)
+    return DEFAULT_EXECUTION_STRATEGY
 
 
 def load_manifest(
@@ -229,8 +230,14 @@ def load_manifest(
                 f"{path} repository #{index} build must define artifact_globs"
             )
 
+        validator = entry.get("validator")
+        if isinstance(validator, dict):
+            validator["execution_strategy"] = normalize_execution_strategy(
+                validator.get("execution_strategy"),
+                context=f"{path} repository #{index} validator.execution_strategy",
+            )
+
         if require_validator:
-            validator = entry.get("validator")
             fixtures = entry.get("fixtures")
             if not isinstance(validator, dict):
                 raise ValidatorError(f"{path} repository #{index} must define validator")
@@ -378,6 +385,11 @@ def merge_apt_repo_metadata(
 
         repository["validator"] = {
             "sibling_repo": f"port-{library}",
+            "execution_strategy": (
+                validator_execution_strategy_for(apt_entry)
+                if library in apt_entries
+                else DEFAULT_EXECUTION_STRATEGY
+            ),
             "imports": validator_imports_for(library),
             "import_excludes": [],
         }

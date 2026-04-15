@@ -83,6 +83,36 @@ python3 tools/stage_port_repos.py \
   --dest-root .work/ports
 ```
 
+Refresh and verify checked-in imported mirrors. When `libuv` is in scope, the full-manifest stage is not enough by itself: restage `libuv` from the local sibling clone immediately afterward so `.work/build-safe/libuv/source/safe/target/release/libuv.a` is present for the `safe/prebuilt` import contract.
+
+```bash
+python3 tools/stage_port_repos.py \
+  --config repositories.yml \
+  --workspace .work \
+  --dest-root .work/ports
+
+python3 tools/stage_port_repos.py \
+  --config repositories.yml \
+  --source-root /home/yans/safelibs \
+  --workspace .work \
+  --dest-root .work/ports \
+  --libraries libuv
+
+for library in giflib libcsv libjpeg-turbo libjson liblzma libpng libsdl libsodium libuv libvips libwebp libyaml libzstd; do
+  python3 tools/import_port_assets.py \
+    --config repositories.yml \
+    --library "$library" \
+    --port-root .work/ports \
+    --workspace .work \
+    --dest-root .
+done
+
+python3 tools/verify_imported_assets.py \
+  --config repositories.yml \
+  --port-root .work/ports \
+  --tests-root tests
+```
+
 Run the matrix and capture artifacts:
 
 ```bash

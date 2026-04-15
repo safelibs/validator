@@ -1,0 +1,12 @@
+prefix=/usr
+exec_prefix=${prefix}
+libdir=/usr/lib/x86_64-linux-gnu
+includedir=/usr/include
+
+Name: libjpeg
+Description: A SIMD-accelerated JPEG codec that provides the libjpeg API
+Version: 2.1.5
+Libs: -L${libdir} -ljpeg
+# The multiarch jconfig.h lives under /usr/include/x86_64-linux-gnu, which native
+# Debian toolchains already search by default.
+Cflags: -I${includedir}
