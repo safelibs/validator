@@ -43,6 +43,22 @@ class StagePortReposTests(unittest.TestCase):
 
             libuv_remote, libuv_work = create_remote_repo(tmp_path, "libuv", tag_after_clone=True)
             run_git(["clone", str(libuv_remote), str(source_root / "port-libuv")], cwd=tmp_path)
+            (
+                source_root
+                / "port-libuv"
+                / "safe"
+                / "target"
+                / "release"
+                / "libuv.a"
+            ).parent.mkdir(parents=True, exist_ok=True)
+            (
+                source_root
+                / "port-libuv"
+                / "safe"
+                / "target"
+                / "release"
+                / "libuv.a"
+            ).write_bytes(b"runtime-support\n")
             run_git(["tag", "libuv/04-test"], cwd=libuv_work)
             run_git(["push", "origin", "refs/tags/libuv/04-test"], cwd=libuv_work)
             self.assertFalse(
@@ -136,6 +152,84 @@ class StagePortReposTests(unittest.TestCase):
                 stage_port_repos.local_ref_exists(dest_root / "libuv", "refs/tags/libuv/04-test")
             )
             self.assertTrue((dest_root / "libuv" / "safe" / "debian" / "control").is_file())
+            self.assertEqual(
+                (
+                    workspace
+                    / "build-safe"
+                    / "libuv"
+                    / "source"
+                    / "safe"
+                    / "target"
+                    / "release"
+                    / "libuv.a"
+                ).read_bytes(),
+                b"runtime-support\n",
+            )
+
+    def test_stage_from_source_root_materializes_libuv_prebuilt_runtime_archive(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            tmp_path = Path(tmp)
+            source_root = tmp_path / "source"
+            source_root.mkdir()
+            workspace = tmp_path / "workspace"
+            dest_root = tmp_path / "staged"
+
+            remote, work = create_remote_repo(tmp_path, "libuv", tag_after_clone=False)
+            run_git(["clone", str(remote), str(source_root / "port-libuv")], cwd=tmp_path)
+            (
+                source_root
+                / "port-libuv"
+                / "safe"
+                / "target"
+                / "release"
+                / "libuv.a"
+            ).parent.mkdir(parents=True, exist_ok=True)
+            (
+                source_root
+                / "port-libuv"
+                / "safe"
+                / "target"
+                / "release"
+                / "libuv.a"
+            ).write_bytes(b"runtime-support\n")
+            (work / "safe" / "target" / "release").mkdir(parents=True, exist_ok=True)
+            (work / "safe" / "target" / "release" / "libuv.a").write_bytes(b"tracked-copy\n")
+
+            config_path = tmp_path / "repositories.yml"
+            write_manifest(
+                config_path,
+                [repository_entry("libuv", imports=["safe/prebuilt"])],
+            )
+
+            with mock.patch("tools.github_auth.github_git_url", return_value=str(remote)):
+                stage_port_repos.main(
+                    [
+                        "--config",
+                        str(config_path),
+                        "--workspace",
+                        str(workspace),
+                        "--dest-root",
+                        str(dest_root),
+                        "--source-root",
+                        str(source_root),
+                        "--libraries",
+                        "libuv",
+                    ]
+                )
+
+            self.assertEqual(
+                (
+                    workspace
+                    / "build-safe"
+                    / "libuv"
+                    / "source"
+                    / "safe"
+                    / "target"
+                    / "release"
+                    / "libuv.a"
+                ).read_bytes(),
+                b"runtime-support\n",
+            )
 
     def test_stage_from_remote_without_source_root(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:

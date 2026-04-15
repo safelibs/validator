@@ -59,6 +59,20 @@ def checkout_ref(dest_repo: Path, ref: str) -> None:
     github_auth.run_git(["git", "-C", str(dest_repo), "checkout", "--detach", ref])
 
 
+def stage_libuv_prebuilt_runtime_archive(sibling_repo: Path, workspace: Path) -> None:
+    source_archive = sibling_repo / "safe" / "target" / "release" / "libuv.a"
+    if not source_archive.is_file():
+        raise ValidatorError(
+            f"missing libuv prebuilt runtime support archive in sibling repo: {source_archive}"
+        )
+
+    dest_archive = (
+        workspace / "build-safe" / "libuv" / "source" / "safe" / "target" / "release" / "libuv.a"
+    )
+    dest_archive.parent.mkdir(parents=True, exist_ok=True)
+    shutil.copy2(source_archive, dest_archive)
+
+
 def stage_repository(
     entry: dict[str, object],
     *,
@@ -73,6 +87,7 @@ def stage_repository(
     remove_existing_checkout(dest_repo)
 
     try:
+        sibling_repo: Path | None = None
         if source_root is not None:
             sibling_repo = source_root / str(entry["validator"]["sibling_repo"])
             if not sibling_repo.exists():
@@ -88,6 +103,9 @@ def stage_repository(
 
     if not local_ref_exists(dest_repo, ref):
         raise ValidatorError(f"unable to stage {library}: missing checked out ref {ref}")
+
+    if library == "libuv" and sibling_repo is not None:
+        stage_libuv_prebuilt_runtime_archive(sibling_repo, workspace)
 
 
 def build_parser() -> argparse.ArgumentParser:

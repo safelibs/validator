@@ -1,0 +1,330 @@
+{
+  "generated_at": "2026-04-09T05:02:56-07:00",
+  "ubuntu_release": "24.04.3 LTS (noble)",
+  "libuv_source_package": "libuv1",
+  "libuv_runtime_package": "libuv1t64",
+  "selection_policy": {
+    "scope": "Non-exhaustive but deliberately diverse sample of Ubuntu 24.04 packages that use libuv at build time and/or runtime.",
+    "notes": [
+      "Binary-package runtime use was identified from apt metadata showing direct Depends on libuv1t64, or for Node.js from the libnode109 runtime library used by the nodejs executable.",
+      "Compile-time use was identified from source-package Build-Depends on libuv1-dev.",
+      "runtime_functionality_basis is marked explicit when package metadata or local docs stated the libuv-backed behavior directly, mixed when the package role and dependency graph were needed to interpret the exact runtime role, and none when the Ubuntu binary package did not directly carry libuv at runtime."
+    ]
+  },
+  "selected_dependents_count": 16,
+  "dependents": [
+    {
+      "software_name": "Node.js",
+      "category": "language runtime",
+      "binary_package": "libnode109",
+      "source_package": "nodejs",
+      "related_packages": [
+        "nodejs"
+      ],
+      "version": "18.19.1+dfsg-6ubuntu5",
+      "dependency_kind": "build_and_runtime",
+      "build_depends_excerpt": "libuv1-dev (>= 1.43.0~), libuv1-dev:native",
+      "runtime_depends_excerpt": "libuv1t64 (>= 1.44.1)",
+      "runtime_dependency_path": [
+        "nodejs",
+        "libnode109",
+        "libuv1t64"
+      ],
+      "runtime_functionality": "Core event loop plus non-blocking timers, TCP/DNS, child-process, and standard-I/O plumbing in the Node.js runtime.",
+      "runtime_functionality_basis": "explicit",
+      "basis_notes": [
+        "The runtime library package directly depends on libuv1t64.",
+        "The package description describes Node.js as an event-driven, non-blocking I/O runtime."
+      ]
+    },
+    {
+      "software_name": "Neovim",
+      "category": "editor",
+      "binary_package": "neovim",
+      "source_package": "neovim",
+      "version": "0.9.5-6ubuntu2",
+      "dependency_kind": "build_and_runtime",
+      "build_depends_excerpt": "libuv1-dev, lua-luv-dev (>= 1.43.0)",
+      "runtime_depends_excerpt": "libuv1t64 (>= 1.34.2), lua-luv (>= 1.48.0-2)",
+      "runtime_dependency_path": [
+        "neovim",
+        "libuv1t64"
+      ],
+      "runtime_functionality": "Platform and I/O facilities, including async job control, timers, and plugin or terminal communication.",
+      "runtime_functionality_basis": "explicit",
+      "basis_notes": [
+        "The binary package directly depends on libuv1t64 and lua-luv.",
+        "Local Neovim help text says: \"Platform and I/O facilities are built upon libuv.\""
+      ]
+    },
+    {
+      "software_name": "BIND 9",
+      "category": "DNS server",
+      "binary_package": "bind9",
+      "source_package": "bind9",
+      "version": "1:9.18.39-0ubuntu0.24.04.3",
+      "dependency_kind": "build_and_runtime",
+      "build_depends_excerpt": "libuv1-dev (>= 1.40.0)",
+      "runtime_depends_excerpt": "libuv1t64 (>= 1.40.0)",
+      "runtime_dependency_path": [
+        "bind9",
+        "libuv1t64"
+      ],
+      "runtime_functionality": "Authoritative and recursive DNS server socket I/O, timers, and other asynchronous server-loop work.",
+      "runtime_functionality_basis": "mixed",
+      "basis_notes": [
+        "The binary package directly depends on libuv1t64 and the source package directly build-depends on libuv1-dev.",
+        "The BIND 9 Administrator Reference Manual states that the libuv asynchronous I/O library must be available for the target platform."
+      ]
+    },
+    {
+      "software_name": "Knot Resolver",
+      "category": "DNS resolver",
+      "binary_package": "knot-resolver",
+      "source_package": "knot-resolver",
+      "version": "5.7.2-1",
+      "dependency_kind": "build_and_runtime",
+      "build_depends_excerpt": "libuv1-dev",
+      "runtime_depends_excerpt": "libuv1t64 (>= 1.7.0)",
+      "runtime_dependency_path": [
+        "knot-resolver",
+        "libuv1t64"
+      ],
+      "runtime_functionality": "Caching DNSSEC-validating resolver daemon socket I/O and timers for the resolver workers.",
+      "runtime_functionality_basis": "mixed",
+      "basis_notes": [
+        "The binary package directly depends on libuv1t64 and the source package directly build-depends on libuv1-dev.",
+        "The exact libuv-backed subsystem is inferred from the package's resolver-daemon role plus the direct runtime dependency."
+      ]
+    },
+    {
+      "software_name": "ttyd",
+      "category": "web terminal tool",
+      "binary_package": "ttyd",
+      "source_package": "ttyd",
+      "version": "1.7.4-1build2",
+      "dependency_kind": "runtime_only",
+      "build_depends_excerpt": null,
+      "runtime_depends_excerpt": "libwebsockets-evlib-uv, libuv1t64 (>= 1.4.2)",
+      "runtime_dependency_path": [
+        "ttyd",
+        "libuv1t64"
+      ],
+      "runtime_functionality": "Browser terminal sharing, especially the WebSocket-driven terminal event loop and I/O path.",
+      "runtime_functionality_basis": "mixed",
+      "basis_notes": [
+        "The binary package directly depends on both libuv1t64 and libwebsockets-evlib-uv.",
+        "The source package does not directly build-depend on libuv1-dev, so the libuv role is primarily visible in the runtime dependency graph."
+      ]
+    },
+    {
+      "software_name": "luv for Lua",
+      "category": "language binding",
+      "binary_package": "lua-luv",
+      "source_package": "lua-luv",
+      "version": "1.48.0-2-2build1",
+      "dependency_kind": "build_and_runtime",
+      "build_depends_excerpt": "libuv1-dev",
+      "runtime_depends_excerpt": "libuv1t64 (>= 1.48.0)",
+      "runtime_dependency_path": [
+        "lua-luv",
+        "libuv1t64"
+      ],
+      "runtime_functionality": "Exposes libuv event loops, networking, file-system, process, and timer primitives to Lua code.",
+      "runtime_functionality_basis": "explicit",
+      "basis_notes": [
+        "The package description identifies this as libuv bindings for Lua."
+      ]
+    },
+    {
+      "software_name": "Luv for OCaml",
+      "category": "language binding",
+      "binary_package": "libluv-ocaml",
+      "source_package": "ocaml-luv",
+      "version": "0.5.12-2build3",
+      "dependency_kind": "build_and_runtime",
+      "build_depends_excerpt": "libuv1-dev (>= 1.40.0)",
+      "runtime_depends_excerpt": "libuv1t64 (>= 1.44.1)",
+      "runtime_dependency_path": [
+        "libluv-ocaml",
+        "libuv1t64"
+      ],
+      "runtime_functionality": "Exposes libuv asynchronous I/O, event loops, multiprocessing, threading, and general OS APIs to OCaml code.",
+      "runtime_functionality_basis": "explicit",
+      "basis_notes": [
+        "The package description explicitly calls this an OCaml binding to libuv and lists the main runtime capabilities it exposes."
+      ]
+    },
+    {
+      "software_name": "uvloop",
+      "category": "Python event loop",
+      "binary_package": "python3-uvloop",
+      "source_package": "uvloop",
+      "version": "0.19.0+ds1-2.1",
+      "dependency_kind": "build_and_runtime",
+      "build_depends_excerpt": "libuv1-dev",
+      "runtime_depends_excerpt": "libuv1t64 (>= 1.30.1)",
+      "runtime_dependency_path": [
+        "python3-uvloop",
+        "libuv1t64"
+      ],
+      "runtime_functionality": "Drop-in asyncio event loop implementation for Python.",
+      "runtime_functionality_basis": "explicit",
+      "basis_notes": [
+        "The package description explicitly says uvloop is implemented on top of libuv."
+      ]
+    },
+    {
+      "software_name": "R fs package",
+      "category": "R package",
+      "binary_package": "r-cran-fs",
+      "source_package": "r-cran-fs",
+      "version": "1.6.3+dfsg-1build2",
+      "dependency_kind": "build_and_runtime",
+      "build_depends_excerpt": "libuv1-dev",
+      "runtime_depends_excerpt": "libuv1t64 (>= 1.18.0)",
+      "runtime_dependency_path": [
+        "r-cran-fs",
+        "libuv1t64"
+      ],
+      "runtime_functionality": "Cross-platform file-system operations exposed to R code.",
+      "runtime_functionality_basis": "explicit",
+      "basis_notes": [
+        "The package description explicitly says the file-system interface is built on top of libuv."
+      ]
+    },
+    {
+      "software_name": "R httpuv package",
+      "category": "R package",
+      "binary_package": "r-cran-httpuv",
+      "source_package": "r-cran-httpuv",
+      "version": "1.6.14+dfsg-1build2",
+      "dependency_kind": "build_and_runtime",
+      "build_depends_excerpt": "libuv1-dev",
+      "runtime_depends_excerpt": "libuv1t64 (>= 1.18.0)",
+      "runtime_dependency_path": [
+        "r-cran-httpuv",
+        "libuv1t64"
+      ],
+      "runtime_functionality": "HTTP and WebSocket server support inside R sessions.",
+      "runtime_functionality_basis": "explicit",
+      "basis_notes": [
+        "The package description explicitly says httpuv is built on top of libuv and http-parser."
+      ]
+    },
+    {
+      "software_name": "MoarVM",
+      "category": "virtual machine",
+      "binary_package": "moarvm",
+      "source_package": "moarvm",
+      "version": "2022.12+dfsg-1build2",
+      "dependency_kind": "build_and_runtime",
+      "build_depends_excerpt": "libuv1-dev",
+      "runtime_depends_excerpt": "libuv1t64 (>= 1.30.1)",
+      "runtime_dependency_path": [
+        "moarvm",
+        "libuv1t64"
+      ],
+      "runtime_functionality": "Asynchronous sockets, timers, processes, and related concurrency support for Rakudo and NQP.",
+      "runtime_functionality_basis": "explicit",
+      "basis_notes": [
+        "The package description explicitly lists asynchronous sockets, timers, and processes among MoarVM's runtime capabilities."
+      ]
+    },
+    {
+      "software_name": "H2O libuv library",
+      "category": "HTTP library",
+      "binary_package": "libh2o0.13t64",
+      "source_package": "h2o",
+      "version": "2.2.5+dfsg2-8.1ubuntu3",
+      "dependency_kind": "build_and_runtime",
+      "build_depends_excerpt": "libuv1-dev",
+      "runtime_depends_excerpt": "libuv1t64 (>= 1.4.2)",
+      "runtime_dependency_path": [
+        "libh2o0.13t64",
+        "libuv1t64"
+      ],
+      "runtime_functionality": "Embeddable H2O HTTP library variant compiled with libuv for HTTP/1.x and HTTP/2 server work.",
+      "runtime_functionality_basis": "explicit",
+      "basis_notes": [
+        "The package description explicitly identifies this binary as the H2O library compiled with libuv."
+      ]
+    },
+    {
+      "software_name": "libraft",
+      "category": "consensus library",
+      "binary_package": "libraft0",
+      "source_package": "raft",
+      "version": "0.22.0-1build2",
+      "dependency_kind": "build_and_runtime",
+      "build_depends_excerpt": "libuv1-dev",
+      "runtime_depends_excerpt": "libuv1t64 (>= 1.4.2)",
+      "runtime_dependency_path": [
+        "libraft0",
+        "libuv1t64"
+      ],
+      "runtime_functionality": "Networking RPC I/O, timers, and other asynchronous event-loop work inside the Raft consensus engine.",
+      "runtime_functionality_basis": "mixed",
+      "basis_notes": [
+        "The package description explicitly says the library is fully asynchronous and defines pluggable I/O for networking and disk persistence.",
+        "The libuv-specific role is inferred from the direct runtime dependency on libuv1t64."
+      ]
+    },
+    {
+      "software_name": "dqlite",
+      "category": "replicated database library",
+      "binary_package": "libdqlite0",
+      "source_package": "dqlite",
+      "version": "1.16.0-5build2",
+      "dependency_kind": "build_and_runtime",
+      "build_depends_excerpt": "libuv1-dev (>= 1.8.0~)",
+      "runtime_depends_excerpt": "libraft0 (>= 0.20), libuv1t64 (>= 1.8.0~)",
+      "runtime_dependency_path": [
+        "libdqlite0",
+        "libuv1t64"
+      ],
+      "runtime_functionality": "Replication, cluster messaging, and automatic failover in the distributed SQLite engine.",
+      "runtime_functionality_basis": "mixed",
+      "basis_notes": [
+        "The package description explicitly says dqlite extends SQLite with a network protocol and automatic failover.",
+        "The exact libuv-backed subsystem is inferred from the direct libuv dependency plus the asynchronous raft-based architecture."
+      ]
+    },
+    {
+      "software_name": "libstorj",
+      "category": "storage transfer library",
+      "binary_package": "libstorj0t64",
+      "source_package": "libstorj",
+      "version": "1.0.3-1.3build3",
+      "dependency_kind": "build_and_runtime",
+      "build_depends_excerpt": "libuv1-dev",
+      "runtime_depends_excerpt": "libuv1t64 (>= 1.4.2)",
+      "runtime_dependency_path": [
+        "libstorj0t64",
+        "libuv1t64"
+      ],
+      "runtime_functionality": "Asynchronous encrypted file transfer on the Storj network, including concurrent shard requests, progress updates, and cancellation.",
+      "runtime_functionality_basis": "explicit",
+      "basis_notes": [
+        "The package description explicitly identifies this as an asynchronous C library for file transfer on the Storj network."
+      ]
+    },
+    {
+      "software_name": "gevent",
+      "category": "Python networking library",
+      "binary_package": "python3-gevent",
+      "source_package": "python-gevent",
+      "version": "24.2.1-0.1ubuntu2",
+      "dependency_kind": "build_only",
+      "build_depends_excerpt": "libuv1-dev",
+      "runtime_depends_excerpt": null,
+      "runtime_dependency_path": [],
+      "runtime_functionality": null,
+      "runtime_functionality_basis": "none",
+      "basis_notes": [
+        "The source package build-depends on libuv1-dev.",
+        "The shipped binary package does not directly depend on libuv1t64; it depends on libev4t64 instead, so no direct libuv-backed runtime functionality is documented in the Ubuntu binary package."
+      ]
+    }
+  ]
+}
