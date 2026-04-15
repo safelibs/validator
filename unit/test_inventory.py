@@ -211,6 +211,42 @@ class InventoryTests(unittest.TestCase):
         self.assertEqual(manifest_libraries, inventory_libraries)
         self.assertEqual(manifest_imports, inventory.VALIDATOR_IMPORTS)
 
+    def test_phase_1_frozen_import_contract_matches_manifest_and_inventory(self) -> None:
+        manifest = inventory.load_manifest(Path(__file__).resolve().parents[1] / "repositories.yml")
+        manifest_imports = {
+            str(entry["name"]): list(entry["validator"]["imports"])
+            for entry in manifest["repositories"]
+            if entry["name"] in inventory.PHASE_1_FROZEN_IMPORTS
+        }
+        inventory_imports = {
+            library: inventory.VALIDATOR_IMPORTS[library]
+            for library in inventory.PHASE_1_FROZEN_IMPORTS
+        }
+
+        self.assertEqual(inventory_imports, inventory.PHASE_1_FROZEN_IMPORTS)
+        self.assertEqual(manifest_imports, inventory.PHASE_1_FROZEN_IMPORTS)
+
+    def test_validate_phase_1_frozen_imports_rejects_inventory_drift(self) -> None:
+        with mock.patch.dict(
+            inventory.VALIDATOR_IMPORTS,
+            {
+                "cjson": [*inventory.VALIDATOR_IMPORTS["cjson"], "safe/new-phase-path"],
+            },
+            clear=False,
+        ):
+            with self.assertRaisesRegex(ValidatorError, "phase-1 frozen validator.imports drift"):
+                inventory.validate_phase_1_frozen_imports()
+
+    def test_load_manifest_rejects_phase_1_frozen_import_drift(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            config_path = Path(tmp) / "repositories.yml"
+            entry = repository_entry("cjson", imports=list(inventory.PHASE_1_FROZEN_IMPORTS["cjson"]))
+            entry["validator"]["imports"].append("safe/new-phase-path")
+            write_manifest(config_path, [entry])
+
+            with self.assertRaisesRegex(ValidatorError, "phase-1 frozen contract"):
+                inventory.load_manifest(config_path)
+
     def test_merge_apt_repo_metadata_rejects_unsupported_tagged_repo(self) -> None:
         apt_manifest = {
             "archive": {"suite": "noble"},

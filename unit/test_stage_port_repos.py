@@ -6,6 +6,7 @@ from pathlib import Path
 from unittest import mock
 
 from tools import ValidatorError
+from tools import inventory
 from tools import stage_port_repos
 from tools import github_auth
 from unit import commit_all, init_repo, repository_entry, run_git, write_manifest
@@ -96,7 +97,10 @@ class StagePortReposTests(unittest.TestCase):
             write_manifest(
                 config_path,
                 [
-                    repository_entry("libexif", imports=["safe/tests"]),
+                    repository_entry(
+                        "libexif",
+                        imports=list(inventory.PHASE_1_FROZEN_IMPORTS["libexif"]),
+                    ),
                     repository_entry("libuv", imports=["safe/tests"]),
                 ],
             )

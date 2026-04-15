@@ -161,6 +161,57 @@ VALIDATOR_IMPORTS = {
         "original/libzstd-1.5.5+dfsg2",
     ],
 }
+PHASE_1_FROZEN_IMPORTS = {
+    "cjson": [
+        "safe/tests",
+        "safe/scripts",
+        "original/tests",
+        "original/fuzzing",
+        "original/test.c",
+        "original/cJSON.h",
+        "original/cJSON_Utils.h",
+    ],
+    "libarchive": [
+        "safe/tests",
+        "safe/debian/tests",
+        "safe/scripts",
+        "safe/generated/api_inventory.json",
+        "safe/generated/cve_matrix.json",
+        "safe/generated/link_compat_manifest.json",
+        "safe/generated/original_build_contract.json",
+        "safe/generated/original_package_metadata.json",
+        "safe/generated/original_c_build",
+        "safe/generated/original_link_objects",
+        "safe/generated/original_pkgconfig/libarchive.pc",
+        "safe/generated/pkgconfig/libarchive.pc",
+        "safe/generated/rust_test_manifest.json",
+        "safe/generated/test_manifest.json",
+        "original/libarchive-3.7.2",
+    ],
+    "libbz2": [
+        "safe/tests",
+        "safe/debian/tests",
+        "safe/scripts",
+        "original",
+    ],
+    "libexif": [
+        "safe/tests",
+        "original/libexif",
+        "original/test",
+        "original/contrib/examples",
+    ],
+    "libtiff": [
+        "safe/test",
+        "safe/scripts",
+        "original/test",
+    ],
+    "libxml": [
+        "safe/tests",
+        "safe/debian/tests",
+        "safe/scripts",
+        "original",
+    ],
+}
 
 
 def iso_utc_now() -> str:
@@ -192,12 +243,26 @@ def validator_execution_strategy_for(entry: dict[str, Any]) -> str:
     return DEFAULT_EXECUTION_STRATEGY
 
 
+def validate_phase_1_frozen_imports() -> None:
+    drifted = [
+        library
+        for library, expected_imports in PHASE_1_FROZEN_IMPORTS.items()
+        if VALIDATOR_IMPORTS.get(library) != expected_imports
+    ]
+    if drifted:
+        raise ValidatorError(
+            "phase-1 frozen validator.imports drift detected for: "
+            + ", ".join(sorted(drifted))
+        )
+
+
 def load_manifest(
     path: Path,
     *,
     require_inventory: bool = True,
     require_validator: bool = True,
 ) -> dict[str, Any]:
+    validate_phase_1_frozen_imports()
     data = load_yaml_mapping(path)
     archive = data.get("archive")
     repositories = data.get("repositories")
@@ -248,6 +313,11 @@ def load_manifest(
             if not isinstance(imports, list) or not imports:
                 raise ValidatorError(
                     f"{path} repository #{index} validator.imports must be a non-empty list"
+                )
+            expected_frozen_imports = PHASE_1_FROZEN_IMPORTS.get(name)
+            if expected_frozen_imports is not None and list(imports) != expected_frozen_imports:
+                raise ValidatorError(
+                    f"{path} repository #{index} validator.imports for {name} must stay on the phase-1 frozen contract"
                 )
             if validator.get("import_excludes") != []:
                 raise ValidatorError(
@@ -355,6 +425,7 @@ def merge_apt_repo_metadata(
     raw_snapshot: str = "inventory/github-repo-list.json",
     filtered_snapshot: str = "inventory/github-port-repos.json",
 ) -> dict[str, Any]:
+    validate_phase_1_frozen_imports()
     apt_entries = {entry["name"]: entry for entry in apt_manifest["repositories"]}
     repositories: list[dict[str, Any]] = []
     for row in filtered_rows:
