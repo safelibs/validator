@@ -352,6 +352,10 @@ class VerifyImportedAssetsTests(unittest.TestCase):
             "prefix=${pcfiledir}/../..\n"
         )
         (stage_repo / "build-check-install" / "lib" / "libvips.so.42.17.1").write_bytes(b"vips")
+        (stage_repo / "build-check-install" / "lib" / "libvips.so.42").symlink_to(
+            "libvips.so.42.17.1"
+        )
+        (stage_repo / "build-check-install" / "lib" / "libvips.so").symlink_to("libvips.so.42")
         (stage_repo / "build-check-install" / "lib" / "libvips-cpp.so.42.17.1").write_bytes(
             b"vips-cpp"
         )
@@ -396,6 +400,36 @@ class VerifyImportedAssetsTests(unittest.TestCase):
         ).write_text("drift\n")
 
         with self.assertRaisesRegex(ValidatorError, "content drift detected"):
+            verify_imported_assets.verify_library_assets(
+                manifest,
+                library="libvips",
+                port_root=port_root,
+                workspace=workspace,
+                tests_root=dest_root / "tests",
+            )
+
+        import_port_assets.import_library_assets(
+            manifest,
+            library="libvips",
+            port_root=port_root,
+            workspace=workspace,
+            dest_root=dest_root,
+        )
+
+        symlink_path = (
+            dest_root
+            / "tests"
+            / "libvips"
+            / "tests"
+            / "tagged-port"
+            / "build-check-install"
+            / "lib"
+            / "libvips.so.42"
+        )
+        symlink_path.unlink()
+        symlink_path.write_bytes(b"not-a-symlink\n")
+
+        with self.assertRaisesRegex(ValidatorError, "file identity drift detected"):
             verify_imported_assets.verify_library_assets(
                 manifest,
                 library="libvips",

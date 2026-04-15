@@ -96,6 +96,11 @@ def ensure_parent(path: Path) -> None:
 
 def copy_file(source: Path, dest: Path) -> None:
     ensure_parent(dest)
+    if dest.is_symlink() or dest.is_file():
+        dest.unlink()
+    if source.is_symlink():
+        dest.symlink_to(source.readlink())
+        return
     shutil.copy2(source, dest)
 
 

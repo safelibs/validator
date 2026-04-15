@@ -19,6 +19,12 @@ def compare_file(source: Path, dest: Path, description: str) -> None:
         raise ValidatorError(f"missing source file for {description}: {source}")
     if not dest.exists():
         raise ValidatorError(f"missing imported file for {description}: {dest}")
+    if source.is_symlink() != dest.is_symlink():
+        raise ValidatorError(f"file identity drift detected for {description}: {dest}")
+    if source.is_symlink():
+        if source.readlink() != dest.readlink():
+            raise ValidatorError(f"file identity drift detected for {description}: {dest}")
+        return
     if not filecmp.cmp(source, dest, shallow=False):
         raise ValidatorError(f"content drift detected for {description}: {dest}")
 

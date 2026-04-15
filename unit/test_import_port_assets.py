@@ -320,6 +320,10 @@ class ImportPortAssetsTests(unittest.TestCase):
             "prefix=${pcfiledir}/../..\n"
         )
         (stage_repo / "build-check-install" / "lib" / "libvips.so.42.17.1").write_bytes(b"vips")
+        (stage_repo / "build-check-install" / "lib" / "libvips.so.42").symlink_to(
+            "libvips.so.42.17.1"
+        )
+        (stage_repo / "build-check-install" / "lib" / "libvips.so").symlink_to("libvips.so.42")
         (stage_repo / "build-check-install" / "lib" / "libvips-cpp.so.42.17.1").write_bytes(
             b"vips-cpp"
         )
@@ -370,6 +374,25 @@ class ImportPortAssetsTests(unittest.TestCase):
                 / "libvips.so.42.17.1"
             ).read_bytes(),
             b"vips",
+        )
+        self.assertTrue(
+            (
+                tests_root
+                / "tagged-port"
+                / "build-check-install"
+                / "lib"
+                / "libvips.so.42"
+            ).is_symlink()
+        )
+        self.assertEqual(
+            (
+                tests_root
+                / "tagged-port"
+                / "build-check-install"
+                / "lib"
+                / "libvips.so.42"
+            ).readlink().as_posix(),
+            "libvips.so.42.17.1",
         )
 
     def test_import_library_assets_requires_libuv_build_output_for_prebuilt_override(self) -> None:
