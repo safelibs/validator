@@ -8,11 +8,7 @@ jobs:
   preflight:
     runs-on: ubuntu-24.04
     env:
-      GH_TOKEN: ${{ secrets.SAFELIBS_REPO_TOKEN }}
-      SAFELIBS_REPO_TOKEN: ${{ secrets.SAFELIBS_REPO_TOKEN }}
-    outputs:
-      has_repo_token: ${{ steps.probe.outputs.has_repo_token }}
-      remote_tags_ok: ${{ steps.probe.outputs.remote_tags_ok }}
+      GH_TOKEN: ${{ github.token }}
     steps:
       - uses: actions/checkout@v4
 
@@ -21,18 +17,8 @@ jobs:
           sudo apt-get update
           sudo apt-get install -y --no-install-recommends python3-yaml
 
-      - id: probe
-        name: Probe private tag reachability
-        run: |
-          if [ -n "${GH_TOKEN:-}" ] || [ -n "${SAFELIBS_REPO_TOKEN:-}" ]; then
-            echo "has_repo_token=true" >>"$GITHUB_OUTPUT"
-            python3 tools/inventory.py --config repositories.yml --check-remote-tags
-            echo "remote_tags_ok=true" >>"$GITHUB_OUTPUT"
-          else
-            echo "has_repo_token=false" >>"$GITHUB_OUTPUT"
-            echo "remote_tags_ok=false" >>"$GITHUB_OUTPUT"
-            echo "Skipping remote tag reachability checks because no effective repository token is available."
-          fi
+      - name: Check remote tag reachability
+        run: python3 tools/inventory.py --config repositories.yml --check-remote-tags
 
   unit-tests:
     runs-on: ubuntu-24.04
@@ -48,14 +34,12 @@ jobs:
         run: python3 -m unittest discover -s unit -v
 
   matrix-smoke:
-    if: ${{ needs.preflight.outputs.has_repo_token == 'true' && needs.preflight.outputs.remote_tags_ok == 'true' }}
     needs:
       - preflight
       - unit-tests
     runs-on: ubuntu-24.04
     env:
-      GH_TOKEN: ${{ secrets.SAFELIBS_REPO_TOKEN }}
-      SAFELIBS_REPO_TOKEN: ${{ secrets.SAFELIBS_REPO_TOKEN }}
+      GH_TOKEN: ${{ github.token }}
     steps:
       - name: Reset gated workspace
         run: rm -rf .work/ports artifacts site
@@ -76,14 +60,13 @@ jobs:
           bash test.sh --config repositories.yml --tests-root tests --port-root .work/ports --artifact-root artifacts --mode both --record-casts --library giflib --library libpng --library libjson --library libvips --library libuv
 
   full-matrix:
-    if: ${{ needs.preflight.outputs.has_repo_token == 'true' && needs.preflight.outputs.remote_tags_ok == 'true' && github.event_name == 'push' && github.ref == 'refs/heads/main' }}
+    if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/main' }}
     needs:
       - preflight
       - unit-tests
     runs-on: ubuntu-24.04
     env:
-      GH_TOKEN: ${{ secrets.SAFELIBS_REPO_TOKEN }}
-      SAFELIBS_REPO_TOKEN: ${{ secrets.SAFELIBS_REPO_TOKEN }}
+      GH_TOKEN: ${{ github.token }}
     steps:
       - name: Reset gated workspace
         run: rm -rf .work/ports artifacts site

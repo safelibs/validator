@@ -6,7 +6,7 @@ import subprocess
 from pathlib import Path
 from urllib.parse import quote
 
-from tools import ValidatorError, run
+from tools import run
 
 
 def effective_github_token(env: dict[str, str] | None = None) -> str:
@@ -36,18 +36,11 @@ def effective_github_token(env: dict[str, str] | None = None) -> str:
 def github_git_url(
     github_repo: str,
     env: dict[str, str] | None = None,
-    *,
-    allow_interactive_fallback: bool = False,
 ) -> str:
     token = effective_github_token(env)
     if token:
         return f"https://x-access-token:{quote(token, safe='')}@github.com/{github_repo}.git"
-    if allow_interactive_fallback:
-        return f"git@github.com:{github_repo}.git"
-    raise ValidatorError(
-        f"no non-interactive GitHub credential available for {github_repo}; "
-        "set GH_TOKEN or SAFELIBS_REPO_TOKEN, or log in with gh"
-    )
+    return f"https://github.com/{github_repo}.git"
 
 
 def git_env(

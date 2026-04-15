@@ -561,20 +561,11 @@ class GithubAuthTests(unittest.TestCase):
 
         self.assertEqual(fake_run.call_args.kwargs["env"]["GH_PROMPT_DISABLED"], "1")
 
-    def test_github_git_url_requires_non_interactive_auth_by_default(self) -> None:
-        with mock.patch("tools.github_auth.shutil.which", return_value=None):
-            with self.assertRaisesRegex(ValidatorError, "no non-interactive GitHub credential available"):
-                github_auth.github_git_url("safelibs/port-cjson", {})
-
-    def test_github_git_url_uses_ssh_fallback_only_when_allowed(self) -> None:
+    def test_github_git_url_falls_back_to_anonymous_https_without_token(self) -> None:
         with mock.patch("tools.github_auth.shutil.which", return_value=None):
             self.assertEqual(
-                github_auth.github_git_url(
-                    "safelibs/port-cjson",
-                    {},
-                    allow_interactive_fallback=True,
-                ),
-                "git@github.com:safelibs/port-cjson.git",
+                github_auth.github_git_url("safelibs/port-cjson", {}),
+                "https://github.com/safelibs/port-cjson.git",
             )
 
     def test_github_git_url_uses_gh_auth_token_when_available(self) -> None:

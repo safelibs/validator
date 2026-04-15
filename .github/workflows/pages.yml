@@ -15,8 +15,7 @@ jobs:
   build:
     runs-on: ubuntu-24.04
     env:
-      GH_TOKEN: ${{ secrets.SAFELIBS_REPO_TOKEN }}
-      SAFELIBS_REPO_TOKEN: ${{ secrets.SAFELIBS_REPO_TOKEN }}
+      GH_TOKEN: ${{ github.token }}
     outputs:
       matrix_exit_code: ${{ steps.matrix-result.outputs.matrix_exit_code }}
     steps:
@@ -24,13 +23,6 @@ jobs:
         run: rm -rf .work/ports artifacts site
 
       - uses: actions/checkout@v4
-
-      - name: Validate deployment secrets
-        run: |
-          if [ -z "${GH_TOKEN:-}" ] && [ -z "${SAFELIBS_REPO_TOKEN:-}" ]; then
-            echo "Missing required repository secret: SAFELIBS_REPO_TOKEN" >&2
-            false
-          fi
 
       - name: Install host dependencies
         run: |
