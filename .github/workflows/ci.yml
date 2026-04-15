@@ -1,0 +1,139 @@
+name: ci
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  preflight:
+    runs-on: ubuntu-24.04
+    env:
+      GH_TOKEN: ${{ secrets.SAFELIBS_REPO_TOKEN }}
+      SAFELIBS_REPO_TOKEN: ${{ secrets.SAFELIBS_REPO_TOKEN }}
+    outputs:
+      has_repo_token: ${{ steps.probe.outputs.has_repo_token }}
+      remote_tags_ok: ${{ steps.probe.outputs.remote_tags_ok }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install host dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y --no-install-recommends python3-yaml
+
+      - id: probe
+        name: Probe private tag reachability
+        run: |
+          if [ -n "${GH_TOKEN:-}" ] || [ -n "${SAFELIBS_REPO_TOKEN:-}" ]; then
+            echo "has_repo_token=true" >>"$GITHUB_OUTPUT"
+            python3 tools/inventory.py --config repositories.yml --check-remote-tags
+            echo "remote_tags_ok=true" >>"$GITHUB_OUTPUT"
+          else
+            echo "has_repo_token=false" >>"$GITHUB_OUTPUT"
+            echo "remote_tags_ok=false" >>"$GITHUB_OUTPUT"
+            echo "Skipping remote tag reachability checks because no effective repository token is available."
+          fi
+
+  unit-tests:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install host dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y --no-install-recommends python3-yaml
+
+      - name: Run unit tests
+        run: python3 -m unittest discover -s unit -v
+
+  matrix-smoke:
+    if: ${{ needs.preflight.outputs.has_repo_token == 'true' && needs.preflight.outputs.remote_tags_ok == 'true' }}
+    needs:
+      - preflight
+      - unit-tests
+    runs-on: ubuntu-24.04
+    env:
+      GH_TOKEN: ${{ secrets.SAFELIBS_REPO_TOKEN }}
+      SAFELIBS_REPO_TOKEN: ${{ secrets.SAFELIBS_REPO_TOKEN }}
+    steps:
+      - name: Reset gated workspace
+        run: rm -rf .work/ports artifacts site
+
+      - uses: actions/checkout@v4
+
+      - name: Install host dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y --no-install-recommends python3-yaml
+
+      - name: Stage smoke libraries
+        run: |
+          python3 tools/stage_port_repos.py --config repositories.yml --workspace .work --dest-root .work/ports --libraries giflib libpng libjson libvips libuv
+
+      - name: Run smoke matrix
+        run: |
+          bash test.sh --config repositories.yml --tests-root tests --port-root .work/ports --artifact-root artifacts --mode both --record-casts --library giflib --library libpng --library libjson --library libvips --library libuv
+
+  full-matrix:
+    if: ${{ needs.preflight.outputs.has_repo_token == 'true' && needs.preflight.outputs.remote_tags_ok == 'true' && github.event_name == 'push' && github.ref == 'refs/heads/main' }}
+    needs:
+      - preflight
+      - unit-tests
+    runs-on: ubuntu-24.04
+    env:
+      GH_TOKEN: ${{ secrets.SAFELIBS_REPO_TOKEN }}
+      SAFELIBS_REPO_TOKEN: ${{ secrets.SAFELIBS_REPO_TOKEN }}
+    steps:
+      - name: Reset gated workspace
+        run: rm -rf .work/ports artifacts site
+
+      - uses: actions/checkout@v4
+
+      - name: Install host dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y --no-install-recommends python3-yaml
+
+      - name: Stage full manifest
+        run: |
+          python3 tools/stage_port_repos.py --config repositories.yml --workspace .work --dest-root .work/ports
+
+      - name: Run full matrix
+        run: |
+          set +e
+          bash test.sh --config repositories.yml --tests-root tests --port-root .work/ports --artifact-root artifacts --mode both --record-casts
+          matrix_exit_code=$?
+          echo "matrix_exit_code=$matrix_exit_code" >>"$GITHUB_ENV"
+          exit 0
+
+      - name: Render site
+        if: ${{ always() }}
+        run: |
+          python3 tools/render_site.py --results-root artifacts/results --artifacts-root artifacts --output-root site
+
+      - name: Verify site
+        if: ${{ always() }}
+        run: |
+          bash scripts/verify-site.sh --config repositories.yml --results-root artifacts/results --site-root site
+
+      - name: Upload artifacts
+        if: ${{ always() }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: artifacts
+          path: artifacts
+
+      - name: Upload site
+        if: ${{ always() }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: site
+          path: site
+
+      - name: Fail after uploads when the aggregate matrix failed
+        if: ${{ always() }}
+        run: |
+          if [ "${matrix_exit_code:-0}" -ne 0 ]; then
+            exit "$matrix_exit_code"
+          fi

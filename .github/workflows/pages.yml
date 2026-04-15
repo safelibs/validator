@@ -1,0 +1,98 @@
+name: pages
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+jobs:
+  build:
+    runs-on: ubuntu-24.04
+    env:
+      GH_TOKEN: ${{ secrets.SAFELIBS_REPO_TOKEN }}
+      SAFELIBS_REPO_TOKEN: ${{ secrets.SAFELIBS_REPO_TOKEN }}
+    outputs:
+      matrix_exit_code: ${{ steps.matrix-result.outputs.matrix_exit_code }}
+    steps:
+      - name: Reset gated workspace
+        run: rm -rf .work/ports artifacts site
+
+      - uses: actions/checkout@v4
+
+      - name: Validate deployment secrets
+        run: |
+          if [ -z "${GH_TOKEN:-}" ] && [ -z "${SAFELIBS_REPO_TOKEN:-}" ]; then
+            echo "Missing required repository secret: SAFELIBS_REPO_TOKEN" >&2
+            false
+          fi
+
+      - name: Install host dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y --no-install-recommends python3-yaml
+
+      - name: Check remote tag reachability
+        run: |
+          python3 tools/inventory.py --config repositories.yml --check-remote-tags
+
+      - name: Stage full manifest
+        run: |
+          python3 tools/stage_port_repos.py --config repositories.yml --workspace .work --dest-root .work/ports
+
+      - id: matrix-result
+        name: Run full matrix
+        run: |
+          set +e
+          bash test.sh --config repositories.yml --tests-root tests --port-root .work/ports --artifact-root artifacts --mode both --record-casts
+          matrix_exit_code=$?
+          echo "matrix_exit_code=$matrix_exit_code" >>"$GITHUB_OUTPUT"
+          echo "matrix_exit_code=$matrix_exit_code" >>"$GITHUB_ENV"
+          exit 0
+
+      - name: Render site
+        run: |
+          python3 tools/render_site.py --results-root artifacts/results --artifacts-root artifacts --output-root site
+
+      - name: Verify site
+        run: |
+          bash scripts/verify-site.sh --config repositories.yml --results-root artifacts/results --site-root site
+
+      - name: Configure Pages
+        uses: actions/configure-pages@v5
+
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: site
+
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    needs:
+      - build
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Deploy Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
+
+  report-status:
+    if: ${{ always() && needs.build.result == 'success' && needs.deploy.result == 'success' }}
+    needs:
+      - build
+      - deploy
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Fail after deployment when the aggregate matrix failed
+        run: |
+          matrix_exit_code='${{ needs.build.outputs.matrix_exit_code }}'
+          if [ "${matrix_exit_code}" != "0" ]; then
+            exit 1
+          fi

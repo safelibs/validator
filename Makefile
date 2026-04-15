@@ -7,10 +7,10 @@ RAW_INVENTORY ?= inventory/github-repo-list.json
 FILTERED_INVENTORY ?= inventory/github-port-repos.json
 DEST ?= .
 
-.PHONY: unit inventory stage-ports build-safe import-assets clean
+.PHONY: unit inventory stage-ports build-safe import-assets publish-public clean
 
 unit:
-	$(PYTHON) -m unittest unit.test_inventory unit.test_stage_port_repos unit.test_build_safe_debs unit.test_import_port_assets unit.test_verify_imported_assets unit.test_run_matrix unit.test_render_site -v
+	$(PYTHON) -m unittest discover -s unit -v
 
 inventory:
 	mkdir -p inventory
@@ -27,6 +27,9 @@ build-safe:
 import-assets:
 	@test -n "$(LIBRARY)" || (echo "LIBRARY is required" >&2; exit 1)
 	$(PYTHON) tools/import_port_assets.py --config $(CONFIG) --library $(LIBRARY) --port-root $(DEST_ROOT) --workspace $(WORKSPACE) --dest-root $(DEST)
+
+publish-public:
+	bash scripts/publish-public.sh
 
 clean:
 	rm -rf $(WORKSPACE)

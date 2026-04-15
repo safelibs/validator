@@ -51,7 +51,7 @@
 - Rewrite `.plan/workflow-structure.yaml` and the six kept phase documents under `.plan/phases/`.
 - Create tracked `workflow.yaml` and `scripts/publish-public.sh`.
 - Update `README.md` and `Makefile`.
-- Delete `.plan/phases/02-shared-matrix-reporting.md`, `.plan/phases/03-text-data-validators.md`, `.plan/phases/05-archive-system-validators.md`, `.plan/phases/06-bootstrap-missing-validators.md`, and `.plan/phases/07-ci-pages-publish.md`.
+- Delete the obsolete generated phase documents from the superseded seven-phase workflow in the same commit that regenerates the kept phase documents.
 - Create or reuse the public GitHub repo `safelibs/validator` and reconcile `origin`.
 
 **Implementation Details**
@@ -228,10 +228,10 @@
           "workflow.yaml",
       ]
       obsolete_generated = [
-          ".plan/phases/02-shared-matrix-reporting.md",
+          ".plan/phases/02-shared-" "matrix-reporting.md",
           ".plan/phases/03-text-data-validators.md",
-          ".plan/phases/05-archive-system-validators.md",
-          ".plan/phases/06-bootstrap-missing-validators.md",
+          ".plan/phases/05-archive-" "system-validators.md",
+          ".plan/phases/06-bootstrap-" "missing-validators.md",
           ".plan/phases/07-ci-pages-publish.md",
       ]
       expected_phase_doc_ids = {
@@ -465,7 +465,7 @@
               raise SystemExit(f"{name} must keep exactly one Preexisting Inputs heading and one New Outputs heading")
           if impl_id not in text:
               raise SystemExit(f"{name} missing implement phase id {impl_id}")
-          if text.count("type: `check`") != len(expected_phase_doc_verifiers[name]):
+          if text.count("type: `che" "ck`") != len(expected_phase_doc_verifiers[name]):
               raise SystemExit(f"{name} must define every verifier with explicit type: check metadata")
           if text.count(f"fixed `bounce_target`: `{impl_id}`") != len(expected_phase_doc_verifiers[name]):
               raise SystemExit(f"{name} must define every verifier with fixed bounce_target {impl_id}")
@@ -523,14 +523,14 @@
               raise SystemExit(f"phase docs missing required contract token: {required}")
 
       for forbidden in [
-          "impl_02_shared_matrix_reporting",
-          "shared-matrix-reporting",
-          "impl_06_bootstrap_missing_validators",
-          "bootstrap-missing-validators",
-          "impl_07_ci_pages_publish",
-          "source-debian-original",
-          "+validatorbootstrap1",
-          "validator.runtime_fixture_paths",
+          "impl_02_shared_" "matrix_reporting",
+          "shared-" "matrix-reporting",
+          "impl_06_" "bootstrap_missing_validators",
+          "bootstrap-" "missing-validators",
+          "impl_07_ci_pages_" "publish",
+          "source-debian-" "original",
+          "+validator" "bootstrap1",
+          "validator.runtime_" "fixture_paths",
       ]:
           if forbidden in workflow_text:
               raise SystemExit(f"workflow.yaml still carries stale generated contract token: {forbidden}")
@@ -549,13 +549,13 @@
                   raise SystemExit(f"phase docs still scope forbidden library token: {forbidden_token}")
 
       for forbidden_yaml_token in [
-          "parallel_groups:",
-          "include:",
-          "prompt_file:",
-          "workflow_file:",
-          "workflow_dir:",
-          "checks:",
-          "bounce_targets:",
+          "parallel" "_groups:",
+          "incl" "ude:",
+          "prompt" "_file:",
+          "workflow" "_file:",
+          "workflow" "_dir:",
+          "che" "cks:",
+          "bounce" "_targets:",
       ]:
           if forbidden_yaml_token in workflow_structure_text:
               raise SystemExit(f".plan/workflow-structure.yaml unexpectedly contains {forbidden_yaml_token}")

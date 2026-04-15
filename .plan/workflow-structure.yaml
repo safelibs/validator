@@ -6,355 +6,71 @@ phases:
     id: impl_01_inventory_scaffold
     type: implement
     bounce_target: null
-    required_preexisting_inputs:
-      - .plan/plan.md
-      - .plan/workflow-structure.yaml
-      - .plan/phases/
-      - workflow.yaml
-      - README.md
-      - /home/yans/safelibs/apt-repo/repositories.yml
-      - /home/yans/safelibs/apt-repo/tools/build_site.py
-      - /home/yans/safelibs/apt-repo/tests/test_build_site.py
-      - /home/yans/safelibs/
   - order: 2
     id: check_01_inventory_scaffold_smoke
     type: check
     bounce_target: impl_01_inventory_scaffold
-    required_preexisting_inputs:
-      - .gitignore
-      - Makefile
-      - inventory/
-      - repositories.yml
-      - tools/
-      - unit/
-      - /home/yans/safelibs/apt-repo/repositories.yml
-      - /home/yans/safelibs/
   - order: 3
     id: check_01_inventory_scaffold_review
     type: check
     bounce_target: impl_01_inventory_scaffold
-    required_preexisting_inputs:
-      - inventory/github-repo-list.json
-      - inventory/github-port-repos.json
-      - repositories.yml
-      - /home/yans/safelibs/apt-repo/repositories.yml
   - order: 4
     id: impl_02_shared_runner_reporting
     type: implement
     bounce_target: null
-    required_preexisting_inputs:
-      - .gitignore
-      - Makefile
-      - inventory/
-      - repositories.yml
-      - tools/
-      - unit/
-      - README.md
-      - /home/yans/safelibs/website/package.json
-      - /home/yans/safelibs/website/scripts/build.mjs
-      - /home/yans/safelibs/website/.github/workflows/deploy.yml
   - order: 5
     id: check_02_shared_runner_smoke
     type: check
     bounce_target: impl_02_shared_runner_reporting
-    required_preexisting_inputs:
-      - repositories.yml
-      - test.sh
-      - tools/run_matrix.py
-      - tools/render_site.py
-      - scripts/verify-site.sh
-      - tests/_shared/
-      - unit/test_run_matrix.py
-      - unit/test_render_site.py
-      - unit/fixtures/demo-manifest.yml
-      - unit/fixtures/demo-debs/
-      - unit/fixtures/demo-tests/
-      - unit/fixtures/demo-failure-manifest.yml
-      - unit/fixtures/demo-failure-debs/
-      - unit/fixtures/demo-failure-tests/
   - order: 6
     id: check_02_shared_runner_review
     type: check
     bounce_target: impl_02_shared_runner_reporting
-    required_preexisting_inputs:
-      - repositories.yml
-      - test.sh
-      - tools/run_matrix.py
-      - tools/render_site.py
-      - scripts/verify-site.sh
-      - tests/_shared/
-      - unit/test_run_matrix.py
-      - unit/test_render_site.py
-      - unit/fixtures/demo-manifest.yml
-      - unit/fixtures/demo-debs/
-      - unit/fixtures/demo-tests/
-      - unit/fixtures/demo-failure-manifest.yml
-      - unit/fixtures/demo-failure-debs/
-      - unit/fixtures/demo-failure-tests/
   - order: 7
     id: impl_03_data_text_validators
     type: implement
     bounce_target: null
-    required_preexisting_inputs:
-      - .gitignore
-      - Makefile
-      - inventory/
-      - repositories.yml
-      - tools/
-      - unit/
-      - test.sh
-      - scripts/verify-site.sh
-      - tests/_shared/
-      - /home/yans/safelibs/port-cjson/
-      - /home/yans/safelibs/port-libcsv/
-      - /home/yans/safelibs/port-libjson/
-      - /home/yans/safelibs/port-libxml/
-      - /home/yans/safelibs/port-libyaml/
   - order: 8
     id: check_03_data_text_matrix
     type: check
     bounce_target: impl_03_data_text_validators
-    required_preexisting_inputs:
-      - repositories.yml
-      - tools/
-      - test.sh
-      - scripts/verify-site.sh
-      - tests/_shared/
-      - tests/cjson/
-      - tests/libcsv/
-      - tests/libjson/
-      - tests/libxml/
-      - tests/libyaml/
-      - /home/yans/safelibs/port-cjson/
-      - /home/yans/safelibs/port-libcsv/
-      - /home/yans/safelibs/port-libjson/
-      - /home/yans/safelibs/port-libxml/
-      - /home/yans/safelibs/port-libyaml/
   - order: 9
     id: check_03_data_text_review
     type: check
     bounce_target: impl_03_data_text_validators
-    required_preexisting_inputs:
-      - repositories.yml
-      - tools/
-      - test.sh
-      - scripts/verify-site.sh
-      - tests/_shared/
-      - tests/cjson/
-      - tests/libcsv/
-      - tests/libjson/
-      - tests/libxml/
-      - tests/libyaml/
-      - /home/yans/safelibs/port-cjson/
-      - /home/yans/safelibs/port-libcsv/
-      - /home/yans/safelibs/port-libjson/
-      - /home/yans/safelibs/port-libxml/
-      - /home/yans/safelibs/port-libyaml/
   - order: 10
     id: impl_04_media_validators
     type: implement
     bounce_target: null
-    required_preexisting_inputs:
-      - .gitignore
-      - Makefile
-      - inventory/
-      - repositories.yml
-      - tools/
-      - unit/
-      - test.sh
-      - scripts/verify-site.sh
-      - tests/_shared/
-      - tests/cjson/
-      - tests/libcsv/
-      - tests/libjson/
-      - tests/libxml/
-      - tests/libyaml/
-      - /home/yans/safelibs/port-giflib/
-      - /home/yans/safelibs/port-libexif/
-      - /home/yans/safelibs/port-libjpeg-turbo/
-      - /home/yans/safelibs/port-libpng/
-      - /home/yans/safelibs/port-libsdl/
-      - /home/yans/safelibs/port-libtiff/
-      - /home/yans/safelibs/port-libvips/
-      - /home/yans/safelibs/port-libwebp/
   - order: 11
     id: check_04_media_matrix
     type: check
     bounce_target: impl_04_media_validators
-    required_preexisting_inputs:
-      - repositories.yml
-      - tools/
-      - test.sh
-      - scripts/verify-site.sh
-      - tests/_shared/
-      - tests/giflib/
-      - tests/libexif/
-      - tests/libjpeg-turbo/
-      - tests/libpng/
-      - tests/libsdl/
-      - tests/libtiff/
-      - tests/libvips/
-      - tests/libwebp/
-      - /home/yans/safelibs/port-giflib/
-      - /home/yans/safelibs/port-libexif/
-      - /home/yans/safelibs/port-libjpeg-turbo/
-      - /home/yans/safelibs/port-libpng/
-      - /home/yans/safelibs/port-libsdl/
-      - /home/yans/safelibs/port-libtiff/
-      - /home/yans/safelibs/port-libvips/
-      - /home/yans/safelibs/port-libwebp/
   - order: 12
     id: check_04_media_review
     type: check
     bounce_target: impl_04_media_validators
-    required_preexisting_inputs:
-      - repositories.yml
-      - tools/
-      - test.sh
-      - scripts/verify-site.sh
-      - tests/_shared/
-      - tests/giflib/
-      - tests/libexif/
-      - tests/libjpeg-turbo/
-      - tests/libpng/
-      - tests/libsdl/
-      - tests/libtiff/
-      - tests/libvips/
-      - tests/libwebp/
-      - /home/yans/safelibs/port-giflib/
-      - /home/yans/safelibs/port-libexif/
-      - /home/yans/safelibs/port-libjpeg-turbo/
-      - /home/yans/safelibs/port-libpng/
-      - /home/yans/safelibs/port-libsdl/
-      - /home/yans/safelibs/port-libtiff/
-      - /home/yans/safelibs/port-libvips/
-      - /home/yans/safelibs/port-libwebp/
   - order: 13
     id: impl_05_system_archive_validators
     type: implement
     bounce_target: null
-    required_preexisting_inputs:
-      - .gitignore
-      - Makefile
-      - inventory/
-      - repositories.yml
-      - tools/
-      - unit/
-      - test.sh
-      - scripts/verify-site.sh
-      - tests/_shared/
-      - tests/cjson/
-      - tests/libcsv/
-      - tests/libjson/
-      - tests/libxml/
-      - tests/libyaml/
-      - tests/giflib/
-      - tests/libexif/
-      - tests/libjpeg-turbo/
-      - tests/libpng/
-      - tests/libsdl/
-      - tests/libtiff/
-      - tests/libvips/
-      - tests/libwebp/
-      - /home/yans/safelibs/port-libarchive/
-      - /home/yans/safelibs/port-libbz2/
-      - /home/yans/safelibs/port-liblzma/
-      - /home/yans/safelibs/port-libsodium/
-      - /home/yans/safelibs/port-libuv/
-      - /home/yans/safelibs/port-libzstd/
   - order: 14
     id: check_05_system_archive_matrix
     type: check
     bounce_target: impl_05_system_archive_validators
-    required_preexisting_inputs:
-      - repositories.yml
-      - tools/
-      - test.sh
-      - scripts/verify-site.sh
-      - tests/_shared/
-      - tests/libarchive/
-      - tests/libbz2/
-      - tests/liblzma/
-      - tests/libsodium/
-      - tests/libuv/
-      - tests/libzstd/
-      - /home/yans/safelibs/port-libarchive/
-      - /home/yans/safelibs/port-libbz2/
-      - /home/yans/safelibs/port-liblzma/
-      - /home/yans/safelibs/port-libsodium/
-      - /home/yans/safelibs/port-libuv/
-      - /home/yans/safelibs/port-libzstd/
   - order: 15
     id: check_05_system_archive_review
     type: check
     bounce_target: impl_05_system_archive_validators
-    required_preexisting_inputs:
-      - repositories.yml
-      - tools/
-      - test.sh
-      - scripts/verify-site.sh
-      - tests/_shared/
-      - tests/libarchive/
-      - tests/libbz2/
-      - tests/liblzma/
-      - tests/libsodium/
-      - tests/libuv/
-      - tests/libzstd/
-      - /home/yans/safelibs/port-libarchive/
-      - /home/yans/safelibs/port-libbz2/
-      - /home/yans/safelibs/port-liblzma/
-      - /home/yans/safelibs/port-libsodium/
-      - /home/yans/safelibs/port-libuv/
-      - /home/yans/safelibs/port-libzstd/
   - order: 16
     id: impl_06_ci_pages_publish
     type: implement
     bounce_target: null
-    required_preexisting_inputs:
-      - .gitignore
-      - README.md
-      - Makefile
-      - inventory/
-      - repositories.yml
-      - tools/
-      - test.sh
-      - scripts/verify-site.sh
-      - tests/
-      - unit/
-      - .plan/plan.md
-      - .plan/workflow-structure.yaml
-      - .plan/phases/
-      - workflow.yaml
-      - /home/yans/safelibs/apt-repo/.github/workflows/ci.yml
-      - /home/yans/safelibs/apt-repo/.github/workflows/pages.yml
-      - /home/yans/safelibs/apt-repo/scripts/verify-in-ubuntu-docker.sh
-      - /home/yans/safelibs/website/.github/workflows/deploy.yml
   - order: 17
     id: check_06_full_matrix
     type: check
     bounce_target: impl_06_ci_pages_publish
-    required_preexisting_inputs:
-      - repositories.yml
-      - test.sh
-      - tools/
-      - scripts/verify-site.sh
-      - tests/
-      - unit/
-      - /home/yans/safelibs/
   - order: 18
     id: check_06_release_review
     type: check
     bounce_target: impl_06_ci_pages_publish
-    required_preexisting_inputs:
-      - .github/workflows/ci.yml
-      - .github/workflows/pages.yml
-      - .plan/workflow-structure.yaml
-      - .plan/phases/
-      - workflow.yaml
-      - scripts/publish-public.sh
-      - README.md
-      - Makefile
-      - inventory/
-      - repositories.yml
-      - tools/
-      - tests/
