@@ -46,7 +46,7 @@ This repository stages tagged `port-*` repositories, runs the validator matrix a
 
 - Ubuntu or another host with `bash`, `git`, `python3`, Docker, and the Python `yaml` module available.
 - Optional local sibling clones under `/home/yans/safelibs` when you want `tools/stage_port_repos.py --source-root /home/yans/safelibs` to clone from local sources before fetching missing tags.
-- `gh` authenticated if you want to run `make inventory` or `make publish-public`.
+- `gh` authenticated if you want to run `make inventory`.
 
 The `port-*` repositories are public, so `tools/inventory.py` and `tools/stage_port_repos.py` work without credentials. When `GH_TOKEN` (or the legacy `SAFELIBS_REPO_TOKEN` fallback) is set, or the caller has an authenticated `gh` session, the tools use it to raise GitHub API and git rate limits — otherwise they fall back to anonymous `https://github.com/...` URLs.
 
@@ -126,25 +126,6 @@ Each library leaf is mounted into the runtime container as `/safedebs`, so every
 - `artifacts/logs/<library>/*.log`: captured run logs.
 - `artifacts/casts/<library>/safe.cast`: safe-mode terminal capture when `--record-casts` is enabled.
 - `site/`: rendered static report for local review or GitHub Pages publication.
-
-#### Publication
-
-`make publish-public` wraps `scripts/publish-public.sh`:
-
-```bash
-make publish-public
-```
-
-That script:
-
-- resolves auth through `GH_TOKEN`, then `SAFELIBS_REPO_TOKEN`, then the local `gh` session (required because the script may need to create the repo and push),
-- runs `python3 tools/inventory.py --config repositories.yml --check-remote-tags`,
-- creates `safelibs/validator` with `gh repo create safelibs/validator --public` when needed,
-- verifies `gh repo view safelibs/validator --json visibility,nameWithOwner,url` reports a public repository,
-- reconciles `origin`,
-- and pushes local `main`.
-
-After publication, `git remote get-url origin` should resolve to `safelibs/validator`, and GitHub Pages deployment is driven by `.github/workflows/pages.yml` on pushes to `main` or manual `workflow_dispatch`.
 
 #### GitHub Pages
 
