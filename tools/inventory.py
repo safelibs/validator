@@ -135,6 +135,7 @@ VALIDATOR_IMPORTS = {
         "safe/reference",
         "safe/scripts",
         "safe/tests/dependents",
+        "safe/tests/introspection",
         "safe/tests/link_compat",
         "safe/tests/upstream",
         "safe/vendor/pyvips-3.1.1",
