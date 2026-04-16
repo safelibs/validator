@@ -434,6 +434,15 @@ def ensure_safe_deb_dir(
         raise ValidatorError("safe mode requires either --safe-deb-root or --port-root")
 
     output_dir = artifact_path(artifact_root, "debs", library)
+    existing_debs = sorted(output_dir.glob("*.deb"))
+    if existing_debs:
+        append_log(
+            log_path,
+            f"Reusing existing safe debs for {library} from {output_dir}\n",
+        )
+        state.safe_deb_dir = output_dir
+        return output_dir
+
     workspace = artifact_root / ".workspace"
     append_log(log_path, f"Building safe debs for {library} into {output_dir}\n")
     try:

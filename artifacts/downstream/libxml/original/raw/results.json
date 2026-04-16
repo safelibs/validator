@@ -23,7 +23,7 @@
     {
       "id": "libvirt-daemon",
       "marker": "libvirt-daemon",
-      "line": 21
+      "line": 24
     },
     {
       "id": "postgresql-16",

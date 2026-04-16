@@ -412,7 +412,9 @@ repositories:
     - dpkg-dev
     - equivs
     - fakeroot
-    command: "cd safe\nmk-build-deps -i -r -t \"apt-get -y --no-install-recommends\"\
+    command: "cd safe\nmk-build-deps -i -r -t \"apt-get -o Acquire::ForceIPv4=true\
+      \ -o Acquire::Retries=10 -o Acquire::http::Timeout=60 -o Acquire::https::Timeout=60\
+      \ -o Acquire::http::Pipeline-Depth=0 -y --no-install-recommends\"\
       \ debian/control\ncd ..\nrm -rf build-check build-check-install\nmeson setup\
       \ build-check original --prefix \"$SAFEAPTREPO_SOURCE/build-check-install\"\n\
       meson compile -C build-check\nmeson install -C build-check\ncp -a build-check-install/lib/\"\

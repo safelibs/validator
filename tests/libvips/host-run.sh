@@ -122,17 +122,38 @@ prepare_safe_packages() {
   done
 }
 
-patch_safe_reference_for_prebuilt_packages() {
-  python3 - "${HARNESS_ROOT}/safe/reference/abi/libvips.symbols" <<'PY'
-import sys
+patch_safe_apt_retries() {
+  python3 - "${HARNESS_ROOT}/safe/tests/dependents/lib.sh" <<'PY'
 from pathlib import Path
+import sys
 
 path = Path(sys.argv[1])
 text = path.read_text(encoding="utf-8")
-lines = text.splitlines()
-filtered = [line for line in lines if line.strip() != "lzw_context_create"]
-if len(filtered) != len(lines):
-    path.write_text("\n".join(filtered) + ("\n" if text.endswith("\n") else ""), encoding="utf-8")
+needle = "set -euo pipefail\n\n"
+injection = """set -euo pipefail
+
+apt-get() {
+  local mirror="${VALIDATOR_APT_MIRROR:-http://azure.archive.ubuntu.com/ubuntu}"
+  local source_file
+  for source_file in /etc/apt/sources.list /etc/apt/sources.list.d/*.sources; do
+    [[ -e "${source_file}" ]] || continue
+    sed -i -E "s#http://([a-z]{2}\\.)?archive\\.ubuntu\\.com/ubuntu#${mirror}#g; s#http://security\\.ubuntu\\.com/ubuntu#${mirror}#g" "${source_file}"
+  done
+  command apt-get \\
+    -o Acquire::ForceIPv4=true \\
+    -o Acquire::Retries=10 \\
+    -o Acquire::http::Timeout=60 \\
+    -o Acquire::https::Timeout=60 \\
+    -o Acquire::http::Pipeline-Depth=0 \\
+    "$@"
+}
+
+"""
+if injection in text:
+    raise SystemExit(0)
+if needle not in text:
+    raise SystemExit(f"missing shell strict-mode header in {path}")
+path.write_text(text.replace(needle, injection, 1), encoding="utf-8")
 PY
 }
 
@@ -489,7 +510,7 @@ run_safe_mode() {
     finalize_imported_summary "${status}" "${failure_mode}"
     return "${status}"
   fi
-  if patch_safe_reference_for_prebuilt_packages; then
+  if patch_safe_apt_retries; then
     status=0
   else
     status=$?

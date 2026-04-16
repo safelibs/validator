@@ -318,6 +318,30 @@ class RunMatrixTests(unittest.TestCase):
         )
         self.assertIn("validator-demo-port-root", commands[0])
 
+    def test_safe_mode_reuses_existing_artifact_debs_before_rebuilding(self) -> None:
+        root = self.run_root()
+        artifact_root = root / "artifacts"
+        port_root = root / "ports"
+        output = artifact_root / "debs" / "demo"
+        output.mkdir(parents=True)
+        (output / "demo-safe_1.0_all.deb").write_text("fixture deb\n")
+        state = run_matrix.LibraryState()
+
+        with mock.patch("tools.run_matrix.build_safe_debs.build_library") as build_library:
+            resolved = run_matrix.ensure_safe_deb_dir(
+                manifest={"repositories": [{"name": "demo"}]},
+                library="demo",
+                port_root=port_root,
+                artifact_root=artifact_root,
+                safe_deb_root=None,
+                state=state,
+                log_path=artifact_root / "logs" / "demo" / "safe.log",
+            )
+
+        self.assertEqual(resolved, output)
+        self.assertEqual(state.safe_deb_dir, output)
+        build_library.assert_not_called()
+
     def test_safe_mode_reuses_shared_image_variant_for_libxml(self) -> None:
         root = self.run_root()
         artifact_root = root / "artifacts"

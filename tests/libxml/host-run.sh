@@ -54,28 +54,41 @@ Path(sys.argv[2]).write_text(json.dumps(config, indent=2) + "\n", encoding="utf-
 PY
 }
 
-patch_safe_kdoctools_smoke() {
+patch_imported_apt_retries() {
   python3 - "${HARNESS_ROOT}/test-original.sh" <<'PY'
 import sys
 from pathlib import Path
 
 path = Path(sys.argv[1])
 text = path.read_text(encoding="utf-8")
-needle = """  meinproc5 --output /tmp/kdoctools/out.html /tmp/kdoctools/index.docbook >/tmp/kdoctools.stdout 2>/tmp/kdoctools.log
-  require_nonempty_file /tmp/kdoctools/out.html
-  require_contains /tmp/kdoctools/out.html "KDoc Smoke"
-  require_contains /tmp/kdoctools/out.html "Hello from DocBook."
+needle = """set -euo pipefail
+
+export LANG=C.UTF-8
 """
-replacement = """  xmllint --noout /tmp/kdoctools/index.docbook >/tmp/kdoctools.stdout 2>/tmp/kdoctools.log
-  cat > /tmp/kdoctools/out.html <<'HTML'
-<html><body><h1>KDoc Smoke</h1><p>Hello from DocBook.</p></body></html>
-HTML
-  require_nonempty_file /tmp/kdoctools/out.html
-  require_contains /tmp/kdoctools/out.html "KDoc Smoke"
-  require_contains /tmp/kdoctools/out.html "Hello from DocBook."
+replacement = """set -euo pipefail
+
+apt-get() {
+  local mirror="${VALIDATOR_APT_MIRROR:-http://azure.archive.ubuntu.com/ubuntu}"
+  local source_file
+  for source_file in /etc/apt/sources.list /etc/apt/sources.list.d/*.sources; do
+    [[ -e "${source_file}" ]] || continue
+    sed -i -E "s#http://([a-z]{2}\\.)?archive\\.ubuntu\\.com/ubuntu#${mirror}#g; s#http://security\\.ubuntu\\.com/ubuntu#${mirror}#g" "${source_file}"
+  done
+  command apt-get \\
+    -o Acquire::ForceIPv4=true \\
+    -o Acquire::Retries=10 \\
+    -o Acquire::http::Timeout=60 \\
+    -o Acquire::https::Timeout=60 \\
+    -o Acquire::http::Pipeline-Depth=0 \\
+    "$@"
+}
+
+export LANG=C.UTF-8
 """
+if replacement in text:
+    raise SystemExit(0)
 if needle not in text:
-    raise SystemExit(f"missing expected kdoctools smoke body in {path}")
+    raise SystemExit(f"missing expected container script header in {path}")
 path.write_text(text.replace(needle, replacement, 1), encoding="utf-8")
 PY
 }
@@ -234,15 +247,15 @@ PY
   if [[ "${MODE}" == "safe" ]]; then
     export LIBXML_PACKAGE_MODE="safe"
     export LIBXML_PREBUILT_DEBS_DIR="${HARNESS_ROOT}/safe/dist"
-    if ! patch_safe_kdoctools_smoke; then
-      status=$?
-      failure_mode="setup"
-      finalize_summary "${status}" "${failure_mode}"
-      return "${status}"
-    fi
   else
     export LIBXML_PACKAGE_MODE="original"
     unset LIBXML_PREBUILT_DEBS_DIR
+  fi
+  if ! patch_imported_apt_retries; then
+    status=$?
+    failure_mode="setup"
+    finalize_summary "${status}" "${failure_mode}"
+    return "${status}"
   fi
 
   if run_captured ./test-original.sh; then

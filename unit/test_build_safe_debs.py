@@ -99,38 +99,14 @@ class BuildSafeDebsTests(unittest.TestCase):
         self.assertNotIn("/home/yans/safelibs/port-libdemo", scratch_linker.read_text())
         self.assertIn("/home/yans/safelibs/port-libdemo", (self.stage_repo / "safe" / "tools" / "cc-linker.sh").read_text())
         self.assertIn("Acquire::ForceIPv4=true", commands[0][-1])
-        self.assertIn("Acquire::Retries=3", commands[0][-1])
-        self.assertIn("Acquire::http::Timeout=30", commands[0][-1])
-        self.assertIn("Acquire::https::Timeout=30", commands[0][-1])
+        self.assertIn("Acquire::Retries=10", commands[0][-1])
+        self.assertIn("Acquire::http::Timeout=60", commands[0][-1])
+        self.assertIn("Acquire::https::Timeout=60", commands[0][-1])
+        self.assertIn("Acquire::http::Pipeline-Depth=0", commands[0][-1])
         self.assertIn('mk-build-deps -i -r -t "apt-get -o Acquire::ForceIPv4=true', commands[0][-1])
-        self.assertNotIn('mk-build-deps -i -r -t "apt-get -o Acquire::ForceIPv4=true -o Acquire::Retries=3 -o Acquire::http::Timeout=30 -o Acquire::https::Timeout=30 install', commands[0][-1])
+        self.assertNotIn('mk-build-deps -i -r -t "apt-get -o Acquire::ForceIPv4=true -o Acquire::Retries=10 -o Acquire::http::Timeout=60 -o Acquire::https::Timeout=60 -o Acquire::http::Pipeline-Depth=0 install', commands[0][-1])
         self.assertIn("dpkg-buildpackage -us -uc -b", commands[0][-1])
         self.assertTrue(fake_run.call_args.kwargs["capture_output"])
-
-    def test_patch_scratch_copy_for_libvips_removes_incompatible_symbol_from_scratch_only(self) -> None:
-        scratch_source = self.workspace / "build-safe" / "libvips" / "source"
-        symbols_path = scratch_source / "safe" / "reference" / "abi" / "libvips.symbols"
-        symbols_path.parent.mkdir(parents=True, exist_ok=True)
-        original_text = "VIPS_8.15 {\nkeep_symbol\nlzw_context_create\n}\n"
-        symbols_path.write_text(original_text, encoding="utf-8")
-
-        build_safe_debs.patch_scratch_copy_for_library(scratch_source, "libvips")
-
-        self.assertEqual(
-            symbols_path.read_text(encoding="utf-8"),
-            "VIPS_8.15 {\nkeep_symbol\n}\n",
-        )
-
-    def test_patch_scratch_copy_for_library_ignores_other_libraries(self) -> None:
-        scratch_source = self.workspace / "build-safe" / "libdemo" / "source"
-        symbols_path = scratch_source / "safe" / "reference" / "abi" / "libvips.symbols"
-        symbols_path.parent.mkdir(parents=True, exist_ok=True)
-        original_text = "keep_symbol\nlzw_context_create\n"
-        symbols_path.write_text(original_text, encoding="utf-8")
-
-        build_safe_debs.patch_scratch_copy_for_library(scratch_source, "libdemo")
-
-        self.assertEqual(symbols_path.read_text(encoding="utf-8"), original_text)
 
     def test_checkout_artifacts_copies_declared_debs(self) -> None:
         artifacts = build_safe_debs.build_library(
@@ -171,6 +147,50 @@ class BuildSafeDebsTests(unittest.TestCase):
             )
 
         self.assertIn("./build.sh", commands[0][-1])
+
+    def test_libxml_build_patch_restores_hash_scan_iteration_semantics(self) -> None:
+        scratch = self.root / "libxml-scratch"
+        hash_path = scratch / "safe" / "src" / "foundation" / "hash.rs"
+        hash_path.parent.mkdir(parents=True)
+        hash_path.write_text(
+            """fn xmlHashScanFull() {
+                if nb != table_ref.nbElems {
+                    if iter == bucket {
+                        if !hash_entry_valid(bucket) {
+                            iter = ::core::ptr::null_mut::<xmlHashEntry>();
+                        } else if hash_entry_next(bucket) != next {
+                            iter = bucket;
+                        } else {
+                            iter = next;
+                        }
+                    } else {
+                        iter = next;
+                    }
+                } else {
+                    iter = next;
+                }
+}
+""",
+            encoding="utf-8",
+        )
+
+        build_safe_debs.patch_scratch_copy_for_library("libxml", scratch)
+
+        patched = hash_path.read_text(encoding="utf-8")
+        self.assertIn("if nb != table_ref.nbElems", patched)
+        self.assertNotIn("} else if hash_entry_next(bucket) != next {", patched)
+        self.assertIn(
+            """                        if !hash_entry_valid(bucket) {
+                            iter = ::core::ptr::null_mut::<xmlHashEntry>();
+                        }
+                        if hash_entry_next(bucket) != next {
+                            iter = bucket;
+                        } else {
+                            iter = next;
+                        }
+""",
+            patched,
+        )
 
     def test_omitted_mode_defaults_to_docker(self) -> None:
         commands: list[list[str]] = []
