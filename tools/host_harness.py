@@ -85,6 +85,8 @@ def materialize_scratch_repo(
     if mode not in {"original", "safe"}:
         raise ValidatorError(f"unsupported harness mode for {library}: {mode}")
 
+    tests_root = tests_root.resolve(strict=False)
+    artifact_root = artifact_root.resolve(strict=False)
     library_root = tests_root / library
     tests_dir = library_root / "tests"
     harness_script = library_root / "host-run.sh"

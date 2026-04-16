@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import json
+import os
 import subprocess
 import tempfile
 import unittest
@@ -359,6 +360,7 @@ class RunMatrixTests(unittest.TestCase):
         root = self.run_root()
         artifact_root = root / "artifacts"
         fixture_root = FIXTURES / "demo-host-harness-tests" / "demo-host"
+        repo_root = Path(__file__).resolve().parents[1]
         real_run_logged = run_matrix.run_logged
         docker_builds: list[list[str]] = []
 
@@ -396,16 +398,19 @@ class RunMatrixTests(unittest.TestCase):
             "tools.run_matrix.cleanup_library_images",
             return_value=[],
         ):
+            old_cwd = Path.cwd()
+            os.chdir(repo_root)
+            self.addCleanup(os.chdir, old_cwd)
             exit_code = run_matrix.main(
                 [
                     "--config",
-                    str(FIXTURES / "demo-host-harness-manifest.yml"),
+                    "unit/fixtures/demo-host-harness-manifest.yml",
                     "--tests-root",
-                    str(FIXTURES / "demo-host-harness-tests"),
+                    "unit/fixtures/demo-host-harness-tests",
                     "--artifact-root",
                     str(artifact_root),
                     "--safe-deb-root",
-                    str(FIXTURES / "demo-host-harness-debs"),
+                    "unit/fixtures/demo-host-harness-debs",
                     "--mode",
                     "both",
                     "--record-casts",
