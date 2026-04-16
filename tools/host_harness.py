@@ -307,16 +307,23 @@ def write_summary(*, summary_path: Path, payload: dict[str, Any]) -> None:
         "artifacts": normalized_artifacts,
     }
 
+    setup_stage_failure = not selected_dependents and expected_dependents > 0
     if "notes" in payload:
         notes = payload["notes"]
         if isinstance(notes, str):
             if not notes.strip():
                 raise ValidatorError("notes must not be empty")
             normalized["notes"] = notes
-        elif isinstance(notes, list) and all(isinstance(item, str) and item.strip() for item in notes):
+        elif (
+            isinstance(notes, list)
+            and notes
+            and all(isinstance(item, str) and item.strip() for item in notes)
+        ):
             normalized["notes"] = list(notes)
         else:
             raise ValidatorError("notes must be a non-empty string or a list of non-empty strings")
+    elif setup_stage_failure:
+        raise ValidatorError("notes are required for setup-stage failures")
 
     ensure_parent(summary_path)
     write_json(summary_path, normalized)

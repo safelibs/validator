@@ -8,6 +8,7 @@ from pathlib import Path
 from unittest import mock
 
 from tools import ValidatorError
+from tools.host_harness import write_summary
 from tools import run_matrix
 
 
@@ -496,6 +497,36 @@ class RunMatrixTests(unittest.TestCase):
             (fixture_root / "tests" / "tagged-port" / "safe" / "marker.txt").read_text(),
             "safe-marker\n",
         )
+
+    def test_write_summary_requires_notes_for_setup_stage_failure(self) -> None:
+        root = self.run_root()
+        summary_path = root / "artifacts" / "downstream" / "demo-host" / "safe" / "summary.json"
+        payload = {
+            "summary_version": 1,
+            "library": "demo-host",
+            "mode": "safe",
+            "status": "failed",
+            "report_format": "imported-log-marker",
+            "expected_dependents": 3,
+            "selected_dependents": [],
+            "passed_dependents": [],
+            "failed_dependents": [],
+            "warned_dependents": [],
+            "skipped_dependents": [],
+            "artifacts": {},
+        }
+
+        with self.assertRaisesRegex(ValidatorError, "notes are required for setup-stage failures"):
+            write_summary(summary_path=summary_path, payload=payload)
+
+        payload["notes"] = "setup failed before the first workload marker"
+        write_summary(summary_path=summary_path, payload=payload)
+
+        summary = json.loads(summary_path.read_text())
+        self.assertEqual(summary["status"], "failed")
+        self.assertEqual(summary["expected_dependents"], 3)
+        self.assertEqual(summary["selected_dependents"], [])
+        self.assertEqual(summary["notes"], payload["notes"])
 
 
 if __name__ == "__main__":
