@@ -46,6 +46,8 @@ class RunMatrixTests(unittest.TestCase):
 
         self.assertEqual(original["status"], "passed")
         self.assertEqual(safe["status"], "passed")
+        self.assertEqual(original["execution_strategy"], "container-image")
+        self.assertEqual(safe["execution_strategy"], "container-image")
         self.assertIsNone(original["cast_path"])
         self.assertEqual(safe["cast_path"], "casts/demo/safe.cast")
         self.assertTrue((artifact_root / safe["cast_path"]).is_file())
@@ -302,6 +304,7 @@ class RunMatrixTests(unittest.TestCase):
 
         self.assertEqual(result["status"], "passed")
         self.assertEqual(result["cast_path"], "casts/demo/safe.cast")
+        self.assertEqual(result["execution_strategy"], "container-image")
         build_library.assert_called_once()
         self.assertEqual(state.safe_deb_dir, expected_output)
         self.assertEqual(len(commands), 1)
@@ -347,8 +350,152 @@ class RunMatrixTests(unittest.TestCase):
             )
 
         self.assertEqual(result["status"], "passed")
+        self.assertEqual(result["execution_strategy"], "container-image")
         self.assertEqual(ensure_image.call_args.kwargs["variant"], "shared")
         self.assertNotIn("build_args", ensure_image.call_args.kwargs)
+
+    def test_host_harness_strategy_materializes_scratch_repo_and_propagates_summary(self) -> None:
+        root = self.run_root()
+        artifact_root = root / "artifacts"
+        fixture_root = FIXTURES / "demo-host-harness-tests" / "demo-host"
+        real_run_logged = run_matrix.run_logged
+        docker_builds: list[list[str]] = []
+
+        def fake_run_logged(
+            args: list[str],
+            *,
+            log_path: Path,
+            cast_path: Path | None = None,
+            cwd: Path | None = None,
+            env: dict[str, str] | None = None,
+        ) -> int:
+            if args[:2] == ["docker", "build"]:
+                docker_builds.append(args)
+                dockerfile = Path(args[args.index("--file") + 1])
+                context_root = Path(args[-1])
+                self.assertTrue(dockerfile.is_file())
+                self.assertIn("VALIDATOR_BASELINE_FIXTURE=demo-host-baseline", dockerfile.read_text())
+                self.assertTrue((context_root / "_shared" / "install_safe_debs.sh").is_file())
+                self.assertTrue((context_root / "demo-host" / "host-run.sh").is_file())
+                log_path.parent.mkdir(parents=True, exist_ok=True)
+                with log_path.open("a", encoding="utf-8") as handle:
+                    handle.write("$ stub docker build\n")
+                return 0
+            return real_run_logged(
+                args,
+                log_path=log_path,
+                cast_path=cast_path,
+                cwd=cwd,
+                env=env,
+            )
+
+        with mock.patch("tools.run_matrix.run_logged", side_effect=fake_run_logged), mock.patch(
+            "tools.run_matrix.cleanup_library_images",
+            return_value=[],
+        ):
+            exit_code = run_matrix.main(
+                [
+                    "--config",
+                    str(FIXTURES / "demo-host-harness-manifest.yml"),
+                    "--tests-root",
+                    str(FIXTURES / "demo-host-harness-tests"),
+                    "--artifact-root",
+                    str(artifact_root),
+                    "--safe-deb-root",
+                    str(FIXTURES / "demo-host-harness-debs"),
+                    "--mode",
+                    "both",
+                    "--record-casts",
+                ]
+            )
+
+        self.assertEqual(exit_code, 0)
+        self.assertEqual(len(docker_builds), 1)
+
+        original = json.loads((artifact_root / "results" / "demo-host" / "original.json").read_text())
+        safe = json.loads((artifact_root / "results" / "demo-host" / "safe.json").read_text())
+        original_summary_path = artifact_root / original["downstream_summary_path"]
+        safe_summary_path = artifact_root / safe["downstream_summary_path"]
+        original_summary = json.loads(original_summary_path.read_text())
+        safe_summary = json.loads(safe_summary_path.read_text())
+
+        self.assertEqual(original["status"], "passed")
+        self.assertEqual(safe["status"], "passed")
+        self.assertEqual(original["execution_strategy"], "host-harness")
+        self.assertEqual(safe["execution_strategy"], "host-harness")
+        self.assertEqual(original["downstream_summary_path"], "downstream/demo-host/original/summary.json")
+        self.assertEqual(safe["downstream_summary_path"], "downstream/demo-host/safe/summary.json")
+        self.assertIsNone(original["cast_path"])
+        self.assertEqual(safe["cast_path"], "casts/demo-host/safe.cast")
+        self.assertTrue((artifact_root / safe["cast_path"]).is_file())
+        self.assertTrue((artifact_root / safe["log_path"]).is_file())
+
+        self.assertEqual(original_summary["report_format"], "validator-wrapper-baseline")
+        self.assertEqual(original_summary["expected_dependents"], 2)
+        self.assertEqual(
+            original_summary["selected_dependents"],
+            ["baseline-image", "scratch-git-index"],
+        )
+        self.assertEqual(
+            original_summary["passed_dependents"],
+            ["baseline-image", "scratch-git-index"],
+        )
+        self.assertEqual(
+            original_summary["artifacts"]["raw_results"],
+            "downstream/demo-host/original/raw/results.json",
+        )
+        self.assertEqual(
+            safe_summary["report_format"],
+            "imported-log-marker",
+        )
+        self.assertEqual(safe_summary["expected_dependents"], 1)
+        self.assertEqual(safe_summary["selected_dependents"], ["safe-deb-fixture"])
+        self.assertEqual(safe_summary["passed_dependents"], ["safe-deb-fixture"])
+        self.assertEqual(
+            safe_summary["artifacts"]["raw_results"],
+            "downstream/demo-host/safe/raw/results.json",
+        )
+
+        original_scratch = artifact_root / ".workspace" / "host-harness" / "demo-host" / "original" / "repo"
+        safe_scratch = artifact_root / ".workspace" / "host-harness" / "demo-host" / "safe" / "repo"
+        self.assertTrue((original_scratch / "test-original.sh").is_file())
+        self.assertTrue((original_scratch / "safe" / "debian" / "control").is_file())
+        self.assertTrue((original_scratch / "original" / "marker.txt").is_file())
+        self.assertTrue((original_scratch / "safe" / "marker.txt").is_file())
+        self.assertTrue((original_scratch / "build-check-install" / "marker.txt").is_file())
+        self.assertEqual(
+            subprocess.run(
+                ["git", "ls-files", "--error-unmatch", "build-check-install/marker.txt"],
+                cwd=original_scratch,
+                check=False,
+                text=True,
+                capture_output=True,
+            ).returncode,
+            0,
+        )
+        self.assertIn(
+            "scratch-mutated:original",
+            (original_scratch / "build-check-install" / "marker.txt").read_text(),
+        )
+        self.assertIn(
+            "scratch-mutated:safe",
+            (safe_scratch / "build-check-install" / "marker.txt").read_text(),
+        )
+        staged_debs = sorted(path.name for path in (safe_scratch / "safe" / "dist").glob("*.deb"))
+        self.assertEqual(staged_debs, ["demo-host-safe-marker_1.0_all.deb"])
+
+        self.assertEqual(
+            (fixture_root / "tests" / "tagged-port" / "build-check-install" / "marker.txt").read_text(),
+            "build-check-install-marker\n",
+        )
+        self.assertEqual(
+            (fixture_root / "tests" / "tagged-port" / "original" / "marker.txt").read_text(),
+            "original-marker\n",
+        )
+        self.assertEqual(
+            (fixture_root / "tests" / "tagged-port" / "safe" / "marker.txt").read_text(),
+            "safe-marker\n",
+        )
 
 
 if __name__ == "__main__":

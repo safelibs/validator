@@ -1,0 +1,9 @@
+Source: demo-host-safe
+Section: misc
+Priority: optional
+Maintainer: Demo Host Harness <demo@example.invalid>
+Standards-Version: 4.6.2
+
+Package: demo-host-safe
+Architecture: any
+Description: demo host harness safe package fixture

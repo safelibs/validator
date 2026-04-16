@@ -26,7 +26,8 @@ if __package__ in {None, ""}:
 
 from tools import ValidatorError, ensure_parent, select_repositories, write_json
 from tools import build_safe_debs
-from tools.inventory import load_manifest
+from tools.host_harness import materialize_scratch_repo, write_summary
+from tools.inventory import load_manifest, validator_execution_strategy_for
 
 
 MODE_ORDER = {"original": 0, "safe": 1}
@@ -82,6 +83,15 @@ class MatrixArgs:
     list_libraries: bool
 
 
+@dataclass
+class StrategyOutcome:
+    exit_code: int
+    cast_path: Path | None = None
+    error_message: str | None = None
+    downstream_summary_path: Path | None = None
+    summary_status: str | None = None
+
+
 def iso_utc_now() -> str:
     return datetime.now(timezone.utc).replace(microsecond=0).isoformat().replace("+00:00", "Z")
 
@@ -132,10 +142,18 @@ def set_pty_size(fd: int, *, rows: int, cols: int) -> None:
     fcntl.ioctl(fd, termios.TIOCSWINSZ, winsize)
 
 
-def stream_process(args: list[str], log_handle: TextIO) -> int:
+def stream_process(
+    args: list[str],
+    log_handle: TextIO,
+    *,
+    cwd: Path | None = None,
+    env: dict[str, str] | None = None,
+) -> int:
     try:
         process = subprocess.Popen(
             args,
+            cwd=cwd,
+            env=env,
             stdout=subprocess.PIPE,
             stderr=subprocess.STDOUT,
             text=True,
@@ -154,7 +172,14 @@ def stream_process(args: list[str], log_handle: TextIO) -> int:
     return process.wait()
 
 
-def stream_process_with_cast(args: list[str], log_handle: TextIO, cast_path: Path) -> int:
+def stream_process_with_cast(
+    args: list[str],
+    log_handle: TextIO,
+    cast_path: Path,
+    *,
+    cwd: Path | None = None,
+    env: dict[str, str] | None = None,
+) -> int:
     ensure_parent(cast_path)
     with cast_path.open("w", encoding="utf-8") as cast_handle:
         cast_header = {
@@ -173,7 +198,14 @@ def stream_process_with_cast(args: list[str], log_handle: TextIO, cast_path: Pat
 
         try:
             try:
-                process = subprocess.Popen(args, stdin=slave_fd, stdout=slave_fd, stderr=slave_fd)
+                process = subprocess.Popen(
+                    args,
+                    cwd=cwd,
+                    env=env,
+                    stdin=slave_fd,
+                    stdout=slave_fd,
+                    stderr=slave_fd,
+                )
             except OSError as exc:
                 log_handle.write(f"{type(exc).__name__}: {exc}\n")
                 log_handle.flush()
@@ -218,14 +250,16 @@ def run_logged(
     *,
     log_path: Path,
     cast_path: Path | None = None,
+    cwd: Path | None = None,
+    env: dict[str, str] | None = None,
 ) -> int:
     ensure_parent(log_path)
     with log_path.open("a", encoding="utf-8") as log_handle:
         log_handle.write(f"$ {shell_join(args)}\n")
         log_handle.flush()
         if cast_path is not None:
-            return stream_process_with_cast(args, log_handle, cast_path)
-        return stream_process(args, log_handle)
+            return stream_process_with_cast(args, log_handle, cast_path, cwd=cwd, env=env)
+        return stream_process(args, log_handle, cwd=cwd, env=env)
 
 
 def validate_matrix_safe_deb_root(root: Path) -> None:
@@ -422,6 +456,191 @@ def ensure_safe_deb_dir(
     return output_dir
 
 
+def repository_entry_for(manifest: dict[str, Any], library: str) -> dict[str, Any]:
+    library = validate_library_name(library)
+    for entry in manifest.get("repositories", []):
+        if str(entry.get("name")) == library:
+            return entry
+    raise ValidatorError(f"missing repository entry for {library} in manifest")
+
+
+def normalize_downstream_summary(summary_path: Path) -> tuple[str | None, str | None]:
+    try:
+        payload = json.loads(summary_path.read_text())
+    except FileNotFoundError:
+        return None, f"missing downstream summary: {summary_path}"
+    except json.JSONDecodeError as exc:
+        return None, f"invalid downstream summary JSON at {summary_path}: {exc}"
+
+    if not isinstance(payload, dict):
+        return None, f"downstream summary payload must be a JSON object: {summary_path}"
+
+    try:
+        write_summary(summary_path=summary_path, payload=payload)
+    except ValidatorError as exc:
+        return None, str(exc)
+
+    normalized = json.loads(summary_path.read_text())
+    status = normalized.get("status")
+    if status not in {"passed", "failed"}:
+        return None, f"downstream summary status must be passed or failed: {summary_path}"
+    return str(status), None
+
+
+def run_container_image_strategy(
+    *,
+    manifest: dict[str, Any],
+    repo_root: Path,
+    tests_root: Path,
+    artifact_root: Path,
+    port_root: Path | None,
+    safe_deb_root: Path | None,
+    record_casts: bool,
+    library: str,
+    mode: str,
+    state: LibraryState,
+    log_path: Path,
+    cast_candidate: Path,
+) -> StrategyOutcome:
+    image_tag = ensure_library_image(
+        repo_root=repo_root,
+        tests_root=tests_root,
+        port_root=port_root,
+        library=library,
+        state=state,
+        log_path=log_path,
+        variant="shared",
+    )
+
+    command = ["docker", "run", "--rm"]
+    cast_path: Path | None = None
+    if mode == "safe":
+        safe_deb_dir = ensure_safe_deb_dir(
+            manifest=manifest,
+            library=library,
+            port_root=port_root,
+            artifact_root=artifact_root,
+            safe_deb_root=safe_deb_root,
+            state=state,
+            log_path=log_path,
+        )
+        command.extend(
+            [
+                "--mount",
+                f"type=bind,src={safe_deb_dir.resolve()},dst=/safedebs,readonly",
+            ]
+        )
+        if record_casts:
+            command.append("-t")
+            cast_path = cast_candidate
+
+    command.extend(
+        [
+            image_tag,
+            # Safe-mode traces run under bash -x so casts show the executed commands.
+            "bash",
+            "-x",
+            f"/validator/tests/{library}/docker-entrypoint.sh",
+        ]
+    )
+    return StrategyOutcome(
+        exit_code=run_logged(command, log_path=log_path, cast_path=cast_path),
+        cast_path=cast_path,
+    )
+
+
+def run_host_harness_strategy(
+    *,
+    manifest: dict[str, Any],
+    repo_root: Path,
+    tests_root: Path,
+    artifact_root: Path,
+    port_root: Path | None,
+    safe_deb_root: Path | None,
+    record_casts: bool,
+    library: str,
+    mode: str,
+    state: LibraryState,
+    log_path: Path,
+    cast_candidate: Path,
+) -> StrategyOutcome:
+    resolved_safe_deb_dir: Path | None = None
+    if mode == "safe":
+        resolved_safe_deb_dir = ensure_safe_deb_dir(
+            manifest=manifest,
+            library=library,
+            port_root=port_root,
+            artifact_root=artifact_root,
+            safe_deb_root=safe_deb_root,
+            state=state,
+            log_path=log_path,
+        )
+
+    prepared = materialize_scratch_repo(
+        tests_root=tests_root,
+        artifact_root=artifact_root,
+        library=library,
+        mode=mode,
+        safe_deb_dir=resolved_safe_deb_dir,
+    )
+
+    env = os.environ.copy()
+    env.update(
+        {
+            "VALIDATOR_LIBRARY": library,
+            "VALIDATOR_MODE": mode,
+            "VALIDATOR_HARNESS_ROOT": str(prepared.repo_root.resolve()),
+            "VALIDATOR_DOWNSTREAM_DIR": str(prepared.downstream_dir.resolve()),
+            "VALIDATOR_ARTIFACT_ROOT": str(artifact_root.resolve()),
+        }
+    )
+
+    if mode == "safe":
+        if prepared.safe_deb_dir is None:
+            return StrategyOutcome(
+                exit_code=1,
+                error_message=f"safe mode scratch repo is missing safe/dist for {library}",
+            )
+        env["VALIDATOR_SAFE_DEB_DIR"] = str(prepared.safe_deb_dir.resolve())
+        cast_path = cast_candidate if record_casts else None
+    else:
+        baseline_image = ensure_library_image(
+            repo_root=repo_root,
+            tests_root=tests_root,
+            port_root=port_root,
+            library=library,
+            state=state,
+            log_path=log_path,
+            variant="baseline",
+        )
+        env["VALIDATOR_BASELINE_IMAGE"] = baseline_image
+        cast_path = None
+
+    exit_code = run_logged(
+        ["bash", "-x", str(prepared.harness_script)],
+        log_path=log_path,
+        cast_path=cast_path,
+        cwd=prepared.repo_root,
+        env=env,
+    )
+
+    summary_path = prepared.downstream_dir / "summary.json"
+    summary_status, summary_error = normalize_downstream_summary(summary_path)
+    if summary_error is not None:
+        return StrategyOutcome(
+            exit_code=exit_code or 1,
+            cast_path=cast_path,
+            error_message=summary_error,
+        )
+
+    return StrategyOutcome(
+        exit_code=exit_code,
+        cast_path=cast_path,
+        downstream_summary_path=summary_path,
+        summary_status=summary_status,
+    )
+
+
 def run_library_mode(
     *,
     manifest: dict[str, Any],
@@ -434,8 +653,11 @@ def run_library_mode(
     library: str,
     mode: str,
     state: LibraryState,
+    repository: dict[str, Any] | None = None,
 ) -> dict[str, Any]:
     library = validate_library_name(library)
+    repository = repository or repository_entry_for(manifest, library)
+    execution_strategy = validator_execution_strategy_for(repository)
     log_path = artifact_path(artifact_root, "logs", library, f"{mode}.log")
     result_path = artifact_path(artifact_root, "results", library, f"{mode}.json")
     cast_candidate = artifact_path(artifact_root, "casts", library, "safe.cast")
@@ -451,54 +673,51 @@ def run_library_mode(
     exit_code = 0
     status = "passed"
     error_message: str | None = None
+    downstream_summary_path: Path | None = None
+    outcome: StrategyOutcome | None = None
 
     try:
-        image_tag = ensure_library_image(
-            repo_root=repo_root,
-            tests_root=tests_root,
-            port_root=port_root,
-            library=library,
-            state=state,
-            log_path=log_path,
-            variant="shared",
-        )
-
-        command = ["docker", "run", "--rm"]
-        cast_path: Path | None = None
-        if mode == "safe":
-            safe_deb_dir = ensure_safe_deb_dir(
+        if execution_strategy == "container-image":
+            outcome = run_container_image_strategy(
                 manifest=manifest,
+                repo_root=repo_root,
+                tests_root=tests_root,
+                artifact_root=artifact_root,
                 library=library,
                 port_root=port_root,
-                artifact_root=artifact_root,
                 safe_deb_root=safe_deb_root,
+                record_casts=record_casts,
+                mode=mode,
                 state=state,
                 log_path=log_path,
+                cast_candidate=cast_candidate,
             )
-            command.extend(
-                [
-                    "--mount",
-                    f"type=bind,src={safe_deb_dir.resolve()},dst=/safedebs,readonly",
-                ]
+        elif execution_strategy == "host-harness":
+            outcome = run_host_harness_strategy(
+                manifest=manifest,
+                repo_root=repo_root,
+                tests_root=tests_root,
+                artifact_root=artifact_root,
+                library=library,
+                port_root=port_root,
+                safe_deb_root=safe_deb_root,
+                record_casts=record_casts,
+                mode=mode,
+                state=state,
+                log_path=log_path,
+                cast_candidate=cast_candidate,
             )
-            if record_casts:
-                command.append("-t")
-                cast_path = cast_candidate
         else:
-            cast_path = None
+            raise ValidatorError(f"unsupported execution strategy for {library}: {execution_strategy}")
 
-        command.extend(
-            [
-                image_tag,
-                # Safe-mode traces run under bash -x so casts show the executed commands.
-                "bash",
-                "-x",
-                f"/validator/tests/{library}/docker-entrypoint.sh",
-            ]
-        )
-
-        exit_code = run_logged(command, log_path=log_path, cast_path=cast_path)
-        if exit_code != 0:
+        exit_code = outcome.exit_code
+        downstream_summary_path = outcome.downstream_summary_path
+        if outcome.error_message is not None or exit_code != 0:
+            status = "failed"
+            error_message = outcome.error_message
+            if outcome.error_message is not None:
+                append_log(log_path, f"{outcome.error_message}\n")
+        if outcome.summary_status == "failed":
             status = "failed"
     except ValidatorError as exc:
         exit_code = 1
@@ -515,12 +734,13 @@ def run_library_mode(
     duration_seconds = round(time.monotonic() - started, 3)
     cast_rel = (
         artifact_relative_path(cast_candidate, artifact_root)
-        if mode == "safe" and record_casts and cast_candidate.is_file()
+        if outcome is not None and outcome.cast_path is not None and outcome.cast_path.is_file()
         else None
     )
     result = {
         "library": library,
         "mode": mode,
+        "execution_strategy": execution_strategy,
         "status": status,
         "started_at": started_at,
         "finished_at": finished_at,
@@ -531,6 +751,11 @@ def run_library_mode(
     }
     if error_message is not None:
         result["error"] = error_message
+    if downstream_summary_path is not None:
+        result["downstream_summary_path"] = artifact_relative_path(
+            downstream_summary_path,
+            artifact_root,
+        )
     return result
 
 
@@ -600,6 +825,7 @@ def main(argv: list[str] | None = None) -> int:
                     library=library,
                     mode=mode,
                     state=states[library],
+                    repository=repository_entry_for(manifest, library),
                 )
                 result_path = args.artifact_root / "results" / library / f"{mode}.json"
                 write_json(result_path, result)

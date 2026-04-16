@@ -111,6 +111,22 @@ def repository_entry(
     return entry
 
 
+def host_harness_repository_entry(
+    name: str,
+    *,
+    imports: list[str],
+    build: dict[str, Any] | None = None,
+    verify_packages: list[str] | None = None,
+) -> dict[str, Any]:
+    return repository_entry(
+        name,
+        imports=imports,
+        execution_strategy="host-harness",
+        build=build,
+        verify_packages=verify_packages,
+    )
+
+
 def write_manifest(
     path: Path,
     repositories: list[dict[str, Any]],
