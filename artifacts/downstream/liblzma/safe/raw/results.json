@@ -23,62 +23,62 @@
     {
       "id": "dpkg",
       "marker": "dpkg",
-      "line": 27
+      "line": 24
     },
     {
       "id": "apt",
       "marker": "apt",
-      "line": 41
+      "line": 38
     },
     {
       "id": "python3.12",
       "marker": "python3.12",
-      "line": 43
+      "line": 40
     },
     {
       "id": "libxml2",
       "marker": "libxml2",
-      "line": 45
+      "line": 42
     },
     {
       "id": "libtiff6",
       "marker": "libtiff6",
-      "line": 47
+      "line": 44
     },
     {
       "id": "squashfs-tools",
       "marker": "squashfs-tools",
-      "line": 49
+      "line": 46
     },
     {
       "id": "kmod",
       "marker": "kmod",
-      "line": 51
+      "line": 48
     },
     {
       "id": "gdb",
       "marker": "gdb",
-      "line": 53
+      "line": 50
     },
     {
       "id": "libarchive13t64",
       "marker": "libarchive13t64",
-      "line": 55
+      "line": 52
     },
     {
       "id": "libarchive-tools",
       "marker": "libarchive-tools",
-      "line": 57
+      "line": 54
     },
     {
       "id": "mariadb-plugin-provider-lzma",
       "marker": "mariadb-plugin-provider-lzma",
-      "line": 59
+      "line": 56
     },
     {
       "id": "libboost-iostreams1.83.0",
       "marker": "libboost-iostreams1.83.0",
-      "line": 61
+      "line": 58
     }
   ],
   "workloads": [

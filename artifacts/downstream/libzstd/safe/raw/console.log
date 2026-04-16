@@ -1,6 +1,9 @@
 #0 building with "default" instance using docker driver
 
 #1 [internal] load build definition from Dockerfile
+#1 DONE 0.0s
+
+#1 [internal] load build definition from Dockerfile
 #1 transferring dockerfile: 1.52kB done
 #1 DONE 0.0s
 
@@ -25,31 +28,16 @@
 #7 CACHED
 
 #8 [4/5] COPY . /opt/libzstd-matrix
-#8 DONE 0.0s
+#8 CACHED
 
 #9 [5/5] RUN chmod 0755         /opt/libzstd-matrix/safe/docker/dependents/entrypoint.sh         /opt/libzstd-matrix/safe/scripts/check-dependent-compile-compat.sh &&     pkg_dir=/opt/libzstd-matrix/safe/out/deb/default/packages &&     shopt -s nullglob &&     lib_debs=("$pkg_dir"/libzstd1_*.deb) &&     dev_debs=("$pkg_dir"/libzstd-dev_*.deb) &&     cli_debs=("$pkg_dir"/zstd_*.deb) &&     [[ ${#lib_debs[@]} -eq 1 && ${#dev_debs[@]} -eq 1 && ${#cli_debs[@]} -eq 1 ]] &&     dpkg --unpack "${dev_debs[0]}" "${cli_debs[0]}" "${lib_debs[0]}" &&     dpkg --configure libzstd1 zstd libzstd-dev
-#9 0.184 Selecting previously unselected package libzstd-dev:amd64.
-#9 0.225 (Reading database ... 20973 files and directories currently installed.)
-#9 0.225 Preparing to unpack .../libzstd-dev_1.5.5+dfsg2-2build1.1+safelibs1_amd64.deb ...
-#9 0.227 Unpacking libzstd-dev:amd64 (1.5.5+dfsg2-2build1.1+safelibs1) ...
-#9 0.285 Preparing to unpack .../zstd_1.5.5+dfsg2-2build1.1+safelibs1_amd64.deb ...
-#9 0.290 Unpacking zstd (1.5.5+dfsg2-2build1.1+safelibs1) over (1.5.5+dfsg2-2build1.1) ...
-#9 0.344 Preparing to unpack .../libzstd1_1.5.5+dfsg2-2build1.1+safelibs1_amd64.deb ...
-#9 0.351 Unpacking libzstd1:amd64 (1.5.5+dfsg2-2build1.1+safelibs1) over (1.5.5+dfsg2-2build1.1) ...
-#9 0.379 Processing triggers for man-db (2.12.0-4build2) ...
-#9 0.457 Processing triggers for libc-bin (2.39-0ubuntu8.7) ...
-#9 0.537 Setting up libzstd1:amd64 (1.5.5+dfsg2-2build1.1+safelibs1) ...
-#9 0.561 Setting up zstd (1.5.5+dfsg2-2build1.1+safelibs1) ...
-#9 0.580 Setting up libzstd-dev:amd64 (1.5.5+dfsg2-2build1.1+safelibs1) ...
-#9 0.600 Processing triggers for libc-bin (2.39-0ubuntu8.7) ...
-#9 DONE 0.7s
+#9 CACHED
 
 #10 exporting to image
-#10 exporting layers
-#10 exporting layers 0.1s done
+#10 exporting layers done
 #10 writing image sha256:e7addc1dd5aa062d1e7b60580e2bbd01e2da968252975a5a2955e3d241bc28e4 done
 #10 naming to docker.io/library/safelibs-libzstd-dependents:ubuntu24.04 done
-#10 DONE 0.1s
+#10 DONE 0.0s
 [phase6] built dependent image safelibs-libzstd-dependents:ubuntu24.04 from ubuntu:24.04
 [phase6] staged image context under /home/yans/safelibs/validator/artifacts/.workspace/host-harness/libzstd/safe/repo/safe/out/dependents/image-context
 
@@ -130,8 +118,8 @@ At subvol subvol
 1 block
 
 == zarchive (zarchive-tools) ==
-Adding a.txt
 Adding sub/b.txt
+Adding a.txt
 /a.txt
 /sub
 /sub/b.txt

@@ -35,122 +35,122 @@
     {
       "id": "compile:apt",
       "marker": "compiled apt:",
-      "line": 57
+      "line": 45
     },
     {
       "id": "compile:dpkg",
       "marker": "compiled dpkg:",
-      "line": 58
+      "line": 46
     },
     {
       "id": "compile:rsync",
       "marker": "compiled rsync:",
-      "line": 59
+      "line": 47
     },
     {
       "id": "compile:systemd",
       "marker": "compiled systemd:",
-      "line": 60
+      "line": 48
     },
     {
       "id": "compile:libarchive",
       "marker": "compiled libarchive:",
-      "line": 61
+      "line": 49
     },
     {
       "id": "compile:btrfs-progs",
       "marker": "compiled btrfs-progs:",
-      "line": 62
+      "line": 50
     },
     {
       "id": "compile:squashfs-tools",
       "marker": "compiled squashfs-tools:",
-      "line": 63
+      "line": 51
     },
     {
       "id": "compile:qemu",
       "marker": "compiled qemu:",
-      "line": 64
+      "line": 52
     },
     {
       "id": "compile:curl",
       "marker": "compiled curl:",
-      "line": 65
+      "line": 53
     },
     {
       "id": "compile:tiff",
       "marker": "compiled tiff:",
-      "line": 66
+      "line": 54
     },
     {
       "id": "compile:rpm",
       "marker": "compiled rpm:",
-      "line": 67
+      "line": 55
     },
     {
       "id": "compile:zarchive",
       "marker": "compiled zarchive:",
-      "line": 68
+      "line": 56
     },
     {
       "id": "runtime:apt",
       "marker": "== apt (libapt-pkg6.0t64) ==",
-      "line": 71
+      "line": 59
     },
     {
       "id": "runtime:dpkg",
       "marker": "== dpkg (dpkg) ==",
-      "line": 76
+      "line": 64
     },
     {
       "id": "runtime:rsync",
       "marker": "== rsync (rsync) ==",
-      "line": 78
+      "line": 66
     },
     {
       "id": "runtime:systemd",
       "marker": "== systemd (libsystemd-shared) ==",
-      "line": 80
+      "line": 68
     },
     {
       "id": "runtime:libarchive",
       "marker": "== libarchive (libarchive13t64) ==",
-      "line": 82
+      "line": 70
     },
     {
       "id": "runtime:btrfs-progs",
       "marker": "== btrfs-progs (btrfs-progs) ==",
-      "line": 84
+      "line": 72
     },
     {
       "id": "runtime:squashfs-tools",
       "marker": "== squashfs-tools (squashfs-tools) ==",
-      "line": 88
+      "line": 76
     },
     {
       "id": "runtime:qemu",
       "marker": "== qemu (qemu-utils) ==",
-      "line": 90
+      "line": 78
     },
     {
       "id": "runtime:curl",
       "marker": "== curl (libcurl4t64) ==",
-      "line": 92
+      "line": 80
     },
     {
       "id": "runtime:tiff",
       "marker": "== tiff (libtiff6) ==",
-      "line": 94
+      "line": 82
     },
     {
       "id": "runtime:rpm",
       "marker": "== rpm (rpm) ==",
-      "line": 96
+      "line": 84
     },
     {
       "id": "runtime:zarchive",
       "marker": "== zarchive (zarchive-tools) ==",
-      "line": 132
+      "line": 120
     }
   ],
   "workloads": [
