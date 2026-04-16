@@ -1,4 +1,4 @@
-/tmp/tmp.R1AryYJ0Yu/root/original/test/test_descriptors.c:12: warning: "_GNU_SOURCE" redefined
+/tmp/tmp.C6aKB6rYMd/root/original/test/test_descriptors.c:12: warning: "_GNU_SOURCE" redefined
    12 | #define _GNU_SOURCE
       | 
 <command-line>: note: this is the location of the previous definition
