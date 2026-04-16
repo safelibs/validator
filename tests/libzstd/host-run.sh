@@ -529,11 +529,26 @@ IMAGE_CONTEXT_ROOT="${DEPENDENT_ROOT}/image-context"
 LOG_ROOT="${DEPENDENT_ROOT}/logs"
 COMPILE_ROOT="${DEPENDENT_ROOT}/compile-compat"
 IMAGE_METADATA_FILE="${IMAGE_CONTEXT_ROOT}/metadata.env"
-DEPENDENT_IMAGE='safelibs-libzstd-dependents:ubuntu24.04'
 DEPENDENT_BASE_IMAGE='ubuntu:24.04'
 
 source "${SAFE_ROOT}/scripts/phase6-common.sh"
 phase6_require_phase4_inputs "$0"
+
+dependent_image_fingerprint() {
+  {
+    printf '%s\n' "${DEPENDENT_BASE_IMAGE}"
+    sha256sum \
+      "${REPO_ROOT}/dependents.json" \
+      "${SAFE_ROOT}/docker/dependents/Dockerfile" \
+      "${SAFE_ROOT}/docker/dependents/entrypoint.sh" \
+      "${SAFE_ROOT}/scripts/check-dependent-compile-compat.sh" \
+      "${SAFE_ROOT}/out/deb/default/metadata.env" \
+      "${PHASE6_DEB_PACKAGE_DIR}"/*.deb
+    find "${SAFE_ROOT}/tests/dependents" -type f -print0 | sort -z | xargs -0 sha256sum
+  } | sha256sum | cut -c1-16
+}
+
+DEPENDENT_IMAGE="safelibs-libzstd-dependents:$(dependent_image_fingerprint)"
 
 rm -rf "${IMAGE_CONTEXT_ROOT}"
 install -d \
@@ -561,11 +576,44 @@ DEPENDENT_IMAGE='${DEPENDENT_IMAGE}'
 DEPENDENT_BASE_IMAGE='${DEPENDENT_BASE_IMAGE}'
 EOF2
 
-docker build \
-  --build-arg "BASE_IMAGE=${DEPENDENT_BASE_IMAGE}" \
-  --file "${SAFE_ROOT}/docker/dependents/Dockerfile" \
-  --tag "${DEPENDENT_IMAGE}" \
-  "${IMAGE_CONTEXT_ROOT}"
+build_dependent_image() {
+  local cache_mode=${1:-}
+  local -a build_args=(
+    docker build
+  )
+
+  if [[ "${cache_mode}" == "--no-cache" ]]; then
+    build_args+=(--no-cache)
+  fi
+
+  build_args+=(
+    --build-arg "BASE_IMAGE=${DEPENDENT_BASE_IMAGE}"
+    --file "${SAFE_ROOT}/docker/dependents/Dockerfile"
+    --tag "${DEPENDENT_IMAGE}"
+    "${IMAGE_CONTEXT_ROOT}"
+  )
+  "${build_args[@]}"
+}
+
+preflight_dependent_image() {
+  local log_path="${IMAGE_CONTEXT_ROOT}/preflight-libarchive.log"
+  docker run --rm \
+    --privileged \
+    --tmpfs /run \
+    --tmpfs /run/lock \
+    "${DEPENDENT_IMAGE}" \
+    runtime libarchive >"${log_path}" 2>&1
+}
+
+build_dependent_image
+if ! preflight_dependent_image; then
+  phase6_log "dependent image ${DEPENDENT_IMAGE} failed libarchive preflight; rebuilding without Docker layer cache"
+  build_dependent_image --no-cache
+  if ! preflight_dependent_image; then
+    cat "${IMAGE_CONTEXT_ROOT}/preflight-libarchive.log" >&2
+    exit 1
+  fi
+fi
 
 phase6_log "built dependent image ${DEPENDENT_IMAGE} from ${DEPENDENT_BASE_IMAGE}"
 phase6_log "staged image context under ${IMAGE_CONTEXT_ROOT}"
