@@ -5,3 +5,7 @@
 .juvenal-state.json
 __pycache__/
 *.pyc
+artifacts/.workspace/
+artifacts/casts/
+artifacts/logs/
+artifacts/results/
