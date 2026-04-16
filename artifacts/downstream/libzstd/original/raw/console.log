@@ -1,44 +1,44 @@
 paramgrill: 7 public parameter profiles passed across 1 iteration(s)
 external_matchfinder: compression-core parameter tests passed
-/tmp/tmp.ycdFJLQV4v/original/libzstd-1.5.5+dfsg2/README.md :  10934 ->    4814 - /tmp/tmp.ycdFJLQV4v/original/libzstd-1.5.5+dfsg2/README.md.zst 
-/tmp/tmp.ycdFJLQV4v/original/libzstd-1.5.5+dfsg2/README.md.zst :   4814 ->   10934 
-/tmp/tmp.ycdFJLQV4v/original/libzstd-1.5.5+dfsg2/README.md.zst correctly decoded (in memory). 
+/tmp/tmp.pYfjf5sPBZ/original/libzstd-1.5.5+dfsg2/README.md :  10934 ->    4814 - /tmp/tmp.pYfjf5sPBZ/original/libzstd-1.5.5+dfsg2/README.md.zst 
+/tmp/tmp.pYfjf5sPBZ/original/libzstd-1.5.5+dfsg2/README.md.zst :   4814 ->   10934 
+/tmp/tmp.pYfjf5sPBZ/original/libzstd-1.5.5+dfsg2/README.md.zst correctly decoded (in memory). 
 zstreamtest: public streaming API checks passed (8 cases)
 poolTests: public multithread correctness tests passed
-/tmp/tmp.ycdFJLQV4v/original/libzstd-1.5.5+dfsg2/tests/regression/result.c: In function 'result_get_error_string':
-/tmp/tmp.ycdFJLQV4v/original/libzstd-1.5.5+dfsg2/tests/regression/result.c:28:1: warning: control reaches end of non-void function [-Wreturn-type]
+/tmp/tmp.pYfjf5sPBZ/original/libzstd-1.5.5+dfsg2/tests/regression/result.c: In function 'result_get_error_string':
+/tmp/tmp.pYfjf5sPBZ/original/libzstd-1.5.5+dfsg2/tests/regression/result.c:28:1: warning: control reaches end of non-void function [-Wreturn-type]
    28 | }
       | ^
-using offline regression cache at /tmp/tmp.ycdFJLQV4v/offline-regression-cache
+using offline regression cache at /tmp/tmp.pYfjf5sPBZ/offline-regression-cache
 Data,                             Config,                           Method,                           Total compressed size
 silesia.tar,                      level -5,                         compress simple,                  8649
 silesia.tar,                      level -3,                         compress simple,                  7733
 silesia.tar,                      level -1,                         compress simple,                  7033
-silesia.tar,                      level 0,                          compress simple,                  5429
-silesia.tar,                      level 1,                          compress simple,                  5599
-silesia.tar,                      level 3,                          compress simple,                  5429
+silesia.tar,                      level 0,                          compress simple,                  5430
+silesia.tar,                      level 1,                          compress simple,                  5598
+silesia.tar,                      level 3,                          compress simple,                  5430
 silesia.tar,                      level 4,                          compress simple,                  5408
 silesia.tar,                      level 5,                          compress simple,                  5303
 silesia.tar,                      level 6,                          compress simple,                  5232
-silesia.tar,                      level 7,                          compress simple,                  5212
+silesia.tar,                      level 7,                          compress simple,                  5211
 silesia.tar,                      level 9,                          compress simple,                  5204
 silesia.tar,                      level 13,                         compress simple,                  5173
-silesia.tar,                      level 16,                         compress simple,                  5123
-silesia.tar,                      level 19,                         compress simple,                  5111
-github.tar,                       level -5,                         compress simple,                  9684
-github.tar,                       level -3,                         compress simple,                  8749
-github.tar,                       level -1,                         compress simple,                  8008
-github.tar,                       level 0,                          compress simple,                  6653
-github.tar,                       level 1,                          compress simple,                  7024
-github.tar,                       level 3,                          compress simple,                  6653
-github.tar,                       level 4,                          compress simple,                  6599
-github.tar,                       level 5,                          compress simple,                  6192
-github.tar,                       level 6,                          compress simple,                  6045
-github.tar,                       level 7,                          compress simple,                  5973
-github.tar,                       level 9,                          compress simple,                  5860
-github.tar,                       level 13,                         compress simple,                  5846
-github.tar,                       level 16,                         compress simple,                  5626
-github.tar,                       level 19,                         compress simple,                  5613
+silesia.tar,                      level 16,                         compress simple,                  5122
+silesia.tar,                      level 19,                         compress simple,                  5109
+github.tar,                       level -5,                         compress simple,                  9802
+github.tar,                       level -3,                         compress simple,                  8739
+github.tar,                       level -1,                         compress simple,                  8004
+github.tar,                       level 0,                          compress simple,                  6625
+github.tar,                       level 1,                          compress simple,                  7033
+github.tar,                       level 3,                          compress simple,                  6625
+github.tar,                       level 4,                          compress simple,                  6574
+github.tar,                       level 5,                          compress simple,                  6202
+github.tar,                       level 6,                          compress simple,                  6049
+github.tar,                       level 7,                          compress simple,                  5975
+github.tar,                       level 9,                          compress simple,                  5864
+github.tar,                       level 13,                         compress simple,                  5853
+github.tar,                       level 16,                         compress simple,                  5635
+github.tar,                       level 19,                         compress simple,                  5620
 silesia,                          level -5,                         compress cctx,                    8773
 silesia,                          level -3,                         compress cctx,                    7754
 silesia,                          level -1,                         compress cctx,                    7090
@@ -57,18 +57,18 @@ silesia,                          no source size,                   compress cct
 silesia.tar,                      level -5,                         compress cctx,                    8649
 silesia.tar,                      level -3,                         compress cctx,                    7733
 silesia.tar,                      level -1,                         compress cctx,                    7033
-silesia.tar,                      level 0,                          compress cctx,                    5429
-silesia.tar,                      level 1,                          compress cctx,                    5599
-silesia.tar,                      level 3,                          compress cctx,                    5429
+silesia.tar,                      level 0,                          compress cctx,                    5430
+silesia.tar,                      level 1,                          compress cctx,                    5598
+silesia.tar,                      level 3,                          compress cctx,                    5430
 silesia.tar,                      level 4,                          compress cctx,                    5408
 silesia.tar,                      level 5,                          compress cctx,                    5303
 silesia.tar,                      level 6,                          compress cctx,                    5232
-silesia.tar,                      level 7,                          compress cctx,                    5212
+silesia.tar,                      level 7,                          compress cctx,                    5211
 silesia.tar,                      level 9,                          compress cctx,                    5204
 silesia.tar,                      level 13,                         compress cctx,                    5173
-silesia.tar,                      level 16,                         compress cctx,                    5123
-silesia.tar,                      level 19,                         compress cctx,                    5111
-silesia.tar,                      no source size,                   compress cctx,                    5429
+silesia.tar,                      level 16,                         compress cctx,                    5122
+silesia.tar,                      level 19,                         compress cctx,                    5109
+silesia.tar,                      no source size,                   compress cctx,                    5430
 github,                           level -5,                         compress cctx,                    10164
 github,                           level -5 with dict,               compress cctx,                    10126
 github,                           level -3,                         compress cctx,                    9094
@@ -99,36 +99,36 @@ github,                           level 19,                         compress cct
 github,                           level 19 with dict,               compress cctx,                    5887
 github,                           no source size,                   compress cctx,                    6858
 github,                           no source size with dict,         compress cctx,                    6972
-github.tar,                       level -5,                         compress cctx,                    9684
-github.tar,                       level -5 with dict,               compress cctx,                    9687
-github.tar,                       level -3,                         compress cctx,                    8749
-github.tar,                       level -3 with dict,               compress cctx,                    8757
-github.tar,                       level -1,                         compress cctx,                    8008
-github.tar,                       level -1 with dict,               compress cctx,                    8008
-github.tar,                       level 0,                          compress cctx,                    6653
-github.tar,                       level 0 with dict,                compress cctx,                    6652
-github.tar,                       level 1,                          compress cctx,                    7024
-github.tar,                       level 1 with dict,                compress cctx,                    7028
-github.tar,                       level 3,                          compress cctx,                    6653
-github.tar,                       level 3 with dict,                compress cctx,                    6652
-github.tar,                       level 4,                          compress cctx,                    6599
-github.tar,                       level 4 with dict,                compress cctx,                    6598
-github.tar,                       level 5,                          compress cctx,                    6192
-github.tar,                       level 5 with dict,                compress cctx,                    6201
-github.tar,                       level 6,                          compress cctx,                    6045
-github.tar,                       level 6 with dict,                compress cctx,                    6048
-github.tar,                       level 7,                          compress cctx,                    5973
+github.tar,                       level -5,                         compress cctx,                    9802
+github.tar,                       level -5 with dict,               compress cctx,                    9763
+github.tar,                       level -3,                         compress cctx,                    8739
+github.tar,                       level -3 with dict,               compress cctx,                    8740
+github.tar,                       level -1,                         compress cctx,                    8004
+github.tar,                       level -1 with dict,               compress cctx,                    8001
+github.tar,                       level 0,                          compress cctx,                    6625
+github.tar,                       level 0 with dict,                compress cctx,                    6636
+github.tar,                       level 1,                          compress cctx,                    7033
+github.tar,                       level 1 with dict,                compress cctx,                    7037
+github.tar,                       level 3,                          compress cctx,                    6625
+github.tar,                       level 3 with dict,                compress cctx,                    6636
+github.tar,                       level 4,                          compress cctx,                    6574
+github.tar,                       level 4 with dict,                compress cctx,                    6589
+github.tar,                       level 5,                          compress cctx,                    6202
+github.tar,                       level 5 with dict,                compress cctx,                    6205
+github.tar,                       level 6,                          compress cctx,                    6049
+github.tar,                       level 6 with dict,                compress cctx,                    6054
+github.tar,                       level 7,                          compress cctx,                    5975
 github.tar,                       level 7 with dict,                compress cctx,                    5979
-github.tar,                       level 9,                          compress cctx,                    5860
-github.tar,                       level 9 with dict,                compress cctx,                    5864
-github.tar,                       level 13,                         compress cctx,                    5846
-github.tar,                       level 13 with dict,               compress cctx,                    5844
-github.tar,                       level 16,                         compress cctx,                    5626
-github.tar,                       level 16 with dict,               compress cctx,                    5633
-github.tar,                       level 19,                         compress cctx,                    5613
-github.tar,                       level 19 with dict,               compress cctx,                    5631
-github.tar,                       no source size,                   compress cctx,                    6653
-github.tar,                       no source size with dict,         compress cctx,                    6652
+github.tar,                       level 9,                          compress cctx,                    5864
+github.tar,                       level 9 with dict,                compress cctx,                    5868
+github.tar,                       level 13,                         compress cctx,                    5853
+github.tar,                       level 13 with dict,               compress cctx,                    5855
+github.tar,                       level 16,                         compress cctx,                    5635
+github.tar,                       level 16 with dict,               compress cctx,                    5641
+github.tar,                       level 19,                         compress cctx,                    5620
+github.tar,                       level 19 with dict,               compress cctx,                    5639
+github.tar,                       no source size,                   compress cctx,                    6625
+github.tar,                       no source size with dict,         compress cctx,                    6636
 silesia,                          level -5,                         zstdcli,                          8781
 silesia,                          level -3,                         zstdcli,                          7762
 silesia,                          level -1,                         zstdcli,                          7098
@@ -153,25 +153,25 @@ silesia,                          explicit params,                  zstdcli,    
 silesia.tar,                      level -5,                         zstdcli,                          8653
 silesia.tar,                      level -3,                         zstdcli,                          7737
 silesia.tar,                      level -1,                         zstdcli,                          7037
-silesia.tar,                      level 0,                          zstdcli,                          5433
-silesia.tar,                      level 1,                          zstdcli,                          5603
-silesia.tar,                      level 3,                          zstdcli,                          5433
+silesia.tar,                      level 0,                          zstdcli,                          5434
+silesia.tar,                      level 1,                          zstdcli,                          5602
+silesia.tar,                      level 3,                          zstdcli,                          5434
 silesia.tar,                      level 4,                          zstdcli,                          5412
 silesia.tar,                      level 5,                          zstdcli,                          5307
 silesia.tar,                      level 6,                          zstdcli,                          5236
-silesia.tar,                      level 7,                          zstdcli,                          5216
+silesia.tar,                      level 7,                          zstdcli,                          5215
 silesia.tar,                      level 9,                          zstdcli,                          5208
 silesia.tar,                      level 13,                         zstdcli,                          5177
-silesia.tar,                      level 16,                         zstdcli,                          5127
-silesia.tar,                      level 19,                         zstdcli,                          5115
+silesia.tar,                      level 16,                         zstdcli,                          5126
+silesia.tar,                      level 19,                         zstdcli,                          5113
 silesia.tar,                      no source size,                   zstdcli,                          5430
-silesia.tar,                      long distance mode,               zstdcli,                          5438
-silesia.tar,                      multithreaded,                    zstdcli,                          5433
-silesia.tar,                      multithreaded long distance mode, zstdcli,                          5438
-silesia.tar,                      small window log,                 zstdcli,                          7083
-silesia.tar,                      small hash log,                   zstdcli,                          6058
+silesia.tar,                      long distance mode,               zstdcli,                          5439
+silesia.tar,                      multithreaded,                    zstdcli,                          5434
+silesia.tar,                      multithreaded long distance mode, zstdcli,                          5439
+silesia.tar,                      small window log,                 zstdcli,                          7084
+silesia.tar,                      small hash log,                   zstdcli,                          6095
 silesia.tar,                      small chain log,                  zstdcli,                          5446
-silesia.tar,                      explicit params,                  zstdcli,                          5356
+silesia.tar,                      explicit params,                  zstdcli,                          5357
 github,                           level -5,                         zstdcli,                          10172
 github,                           level -5 with dict,               zstdcli,                          10364
 github,                           level -3,                         zstdcli,                          9102
@@ -207,43 +207,43 @@ github,                           small window log,                 zstdcli,    
 github,                           small hash log,                   zstdcli,                          9130
 github,                           small chain log,                  zstdcli,                          7133
 github,                           explicit params,                  zstdcli,                          6540
-github.tar,                       level -5,                         zstdcli,                          9688
-github.tar,                       level -5 with dict,               zstdcli,                          9691
-github.tar,                       level -3,                         zstdcli,                          8753
-github.tar,                       level -3 with dict,               zstdcli,                          8755
-github.tar,                       level -1,                         zstdcli,                          8012
-github.tar,                       level -1 with dict,               zstdcli,                          8012
-github.tar,                       level 0,                          zstdcli,                          6657
-github.tar,                       level 0 with dict,                zstdcli,                          6698
-github.tar,                       level 1,                          zstdcli,                          7028
-github.tar,                       level 1 with dict,                zstdcli,                          7067
-github.tar,                       level 3,                          zstdcli,                          6657
-github.tar,                       level 3 with dict,                zstdcli,                          6698
-github.tar,                       level 4,                          zstdcli,                          6603
-github.tar,                       level 4 with dict,                zstdcli,                          6723
-github.tar,                       level 5,                          zstdcli,                          6196
-github.tar,                       level 5 with dict,                zstdcli,                          6533
-github.tar,                       level 6,                          zstdcli,                          6049
-github.tar,                       level 6 with dict,                zstdcli,                          6443
-github.tar,                       level 7,                          zstdcli,                          5977
-github.tar,                       level 7 with dict,                zstdcli,                          6427
-github.tar,                       level 9,                          zstdcli,                          5864
-github.tar,                       level 9 with dict,                zstdcli,                          6150
-github.tar,                       level 13,                         zstdcli,                          5850
-github.tar,                       level 13 with dict,               zstdcli,                          5911
-github.tar,                       level 16,                         zstdcli,                          5630
-github.tar,                       level 16 with dict,               zstdcli,                          5898
-github.tar,                       level 19,                         zstdcli,                          5617
-github.tar,                       level 19 with dict,               zstdcli,                          5868
-github.tar,                       no source size,                   zstdcli,                          6650
-github.tar,                       no source size with dict,         zstdcli,                          6697
-github.tar,                       long distance mode,               zstdcli,                          6547
-github.tar,                       multithreaded,                    zstdcli,                          6657
-github.tar,                       multithreaded long distance mode, zstdcli,                          6547
-github.tar,                       small window log,                 zstdcli,                          13246
-github.tar,                       small hash log,                   zstdcli,                          9258
-github.tar,                       small chain log,                  zstdcli,                          6902
-github.tar,                       explicit params,                  zstdcli,                          6310
+github.tar,                       level -5,                         zstdcli,                          9806
+github.tar,                       level -5 with dict,               zstdcli,                          9767
+github.tar,                       level -3,                         zstdcli,                          8743
+github.tar,                       level -3 with dict,               zstdcli,                          8744
+github.tar,                       level -1,                         zstdcli,                          8008
+github.tar,                       level -1 with dict,               zstdcli,                          8005
+github.tar,                       level 0,                          zstdcli,                          6629
+github.tar,                       level 0 with dict,                zstdcli,                          6666
+github.tar,                       level 1,                          zstdcli,                          7037
+github.tar,                       level 1 with dict,                zstdcli,                          7062
+github.tar,                       level 3,                          zstdcli,                          6629
+github.tar,                       level 3 with dict,                zstdcli,                          6666
+github.tar,                       level 4,                          zstdcli,                          6578
+github.tar,                       level 4 with dict,                zstdcli,                          6722
+github.tar,                       level 5,                          zstdcli,                          6206
+github.tar,                       level 5 with dict,                zstdcli,                          6520
+github.tar,                       level 6,                          zstdcli,                          6053
+github.tar,                       level 6 with dict,                zstdcli,                          6439
+github.tar,                       level 7,                          zstdcli,                          5979
+github.tar,                       level 7 with dict,                zstdcli,                          6426
+github.tar,                       level 9,                          zstdcli,                          5868
+github.tar,                       level 9 with dict,                zstdcli,                          6146
+github.tar,                       level 13,                         zstdcli,                          5857
+github.tar,                       level 13 with dict,               zstdcli,                          5906
+github.tar,                       level 16,                         zstdcli,                          5639
+github.tar,                       level 16 with dict,               zstdcli,                          5893
+github.tar,                       level 19,                         zstdcli,                          5624
+github.tar,                       level 19 with dict,               zstdcli,                          5865
+github.tar,                       no source size,                   zstdcli,                          6624
+github.tar,                       no source size with dict,         zstdcli,                          6665
+github.tar,                       long distance mode,               zstdcli,                          6520
+github.tar,                       multithreaded,                    zstdcli,                          6629
+github.tar,                       multithreaded long distance mode, zstdcli,                          6520
+github.tar,                       small window log,                 zstdcli,                          13238
+github.tar,                       small hash log,                   zstdcli,                          9053
+github.tar,                       small chain log,                  zstdcli,                          6915
+github.tar,                       explicit params,                  zstdcli,                          6319
 silesia,                          level -5,                         advanced one pass,                8773
 silesia,                          level -3,                         advanced one pass,                7754
 silesia,                          level -1,                         advanced one pass,                7090
@@ -269,25 +269,25 @@ silesia,                          explicit params,                  advanced one
 silesia.tar,                      level -5,                         advanced one pass,                8649
 silesia.tar,                      level -3,                         advanced one pass,                7733
 silesia.tar,                      level -1,                         advanced one pass,                7033
-silesia.tar,                      level 0,                          advanced one pass,                5429
-silesia.tar,                      level 1,                          advanced one pass,                5599
-silesia.tar,                      level 3,                          advanced one pass,                5429
+silesia.tar,                      level 0,                          advanced one pass,                5430
+silesia.tar,                      level 1,                          advanced one pass,                5598
+silesia.tar,                      level 3,                          advanced one pass,                5430
 silesia.tar,                      level 4,                          advanced one pass,                5408
 silesia.tar,                      level 5,                          advanced one pass,                5303
 silesia.tar,                      level 6,                          advanced one pass,                5232
-silesia.tar,                      level 7,                          advanced one pass,                5212
+silesia.tar,                      level 7,                          advanced one pass,                5211
 silesia.tar,                      level 9,                          advanced one pass,                5204
 silesia.tar,                      level 13,                         advanced one pass,                5173
-silesia.tar,                      level 16,                         advanced one pass,                5123
-silesia.tar,                      level 19,                         advanced one pass,                5111
-silesia.tar,                      no source size,                   advanced one pass,                5429
-silesia.tar,                      long distance mode,               advanced one pass,                5434
-silesia.tar,                      multithreaded,                    advanced one pass,                5429
-silesia.tar,                      multithreaded long distance mode, advanced one pass,                5434
-silesia.tar,                      small window log,                 advanced one pass,                7079
-silesia.tar,                      small hash log,                   advanced one pass,                6054
+silesia.tar,                      level 16,                         advanced one pass,                5122
+silesia.tar,                      level 19,                         advanced one pass,                5109
+silesia.tar,                      no source size,                   advanced one pass,                5430
+silesia.tar,                      long distance mode,               advanced one pass,                5435
+silesia.tar,                      multithreaded,                    advanced one pass,                5430
+silesia.tar,                      multithreaded long distance mode, advanced one pass,                5435
+silesia.tar,                      small window log,                 advanced one pass,                7080
+silesia.tar,                      small hash log,                   advanced one pass,                6091
 silesia.tar,                      small chain log,                  advanced one pass,                5442
-silesia.tar,                      explicit params,                  advanced one pass,                5359
+silesia.tar,                      explicit params,                  advanced one pass,                5360
 github,                           level -5,                         advanced one pass,                10164
 github,                           level -5 with dict,               advanced one pass,                10356
 github,                           level -3,                         advanced one pass,                9094
@@ -325,43 +325,43 @@ github,                           small window log,                 advanced one
 github,                           small hash log,                   advanced one pass,                9122
 github,                           small chain log,                  advanced one pass,                7125
 github,                           explicit params,                  advanced one pass,                6546
-github.tar,                       level -5,                         advanced one pass,                9684
-github.tar,                       level -5 with dict,               advanced one pass,                9687
-github.tar,                       level -3,                         advanced one pass,                8749
-github.tar,                       level -3 with dict,               advanced one pass,                8751
-github.tar,                       level -1,                         advanced one pass,                8008
-github.tar,                       level -1 with dict,               advanced one pass,                8008
-github.tar,                       level 0,                          advanced one pass,                6653
-github.tar,                       level 0 with dict,                advanced one pass,                6694
-github.tar,                       level 1,                          advanced one pass,                7024
-github.tar,                       level 1 with dict,                advanced one pass,                7063
-github.tar,                       level 3,                          advanced one pass,                6653
-github.tar,                       level 3 with dict,                advanced one pass,                6694
-github.tar,                       level 4,                          advanced one pass,                6599
+github.tar,                       level -5,                         advanced one pass,                9802
+github.tar,                       level -5 with dict,               advanced one pass,                9763
+github.tar,                       level -3,                         advanced one pass,                8739
+github.tar,                       level -3 with dict,               advanced one pass,                8740
+github.tar,                       level -1,                         advanced one pass,                8004
+github.tar,                       level -1 with dict,               advanced one pass,                8001
+github.tar,                       level 0,                          advanced one pass,                6625
+github.tar,                       level 0 with dict,                advanced one pass,                6662
+github.tar,                       level 1,                          advanced one pass,                7033
+github.tar,                       level 1 with dict,                advanced one pass,                7058
+github.tar,                       level 3,                          advanced one pass,                6625
+github.tar,                       level 3 with dict,                advanced one pass,                6662
+github.tar,                       level 4,                          advanced one pass,                6574
 github.tar,                       level 4 with dict,                advanced one pass,                6439
-github.tar,                       level 5,                          advanced one pass,                6192
-github.tar,                       level 5 with dict,                advanced one pass,                6294
-github.tar,                       level 6,                          advanced one pass,                6045
-github.tar,                       level 6 with dict,                advanced one pass,                6176
-github.tar,                       level 7,                          advanced one pass,                5973
-github.tar,                       level 7 with dict,                advanced one pass,                6146
-github.tar,                       level 9,                          advanced one pass,                5860
-github.tar,                       level 9 with dict,                advanced one pass,                6146
-github.tar,                       level 13,                         advanced one pass,                5846
-github.tar,                       level 13 with dict,               advanced one pass,                5907
-github.tar,                       level 16,                         advanced one pass,                5626
-github.tar,                       level 16 with dict,               advanced one pass,                5894
-github.tar,                       level 19,                         advanced one pass,                5613
-github.tar,                       level 19 with dict,               advanced one pass,                5864
-github.tar,                       no source size,                   advanced one pass,                6653
-github.tar,                       no source size with dict,         advanced one pass,                6694
-github.tar,                       long distance mode,               advanced one pass,                6543
-github.tar,                       multithreaded,                    advanced one pass,                6653
-github.tar,                       multithreaded long distance mode, advanced one pass,                6543
-github.tar,                       small window log,                 advanced one pass,                13242
-github.tar,                       small hash log,                   advanced one pass,                9254
-github.tar,                       small chain log,                  advanced one pass,                6898
-github.tar,                       explicit params,                  advanced one pass,                6313
+github.tar,                       level 5,                          advanced one pass,                6202
+github.tar,                       level 5 with dict,                advanced one pass,                6284
+github.tar,                       level 6,                          advanced one pass,                6049
+github.tar,                       level 6 with dict,                advanced one pass,                6172
+github.tar,                       level 7,                          advanced one pass,                5975
+github.tar,                       level 7 with dict,                advanced one pass,                6141
+github.tar,                       level 9,                          advanced one pass,                5864
+github.tar,                       level 9 with dict,                advanced one pass,                6142
+github.tar,                       level 13,                         advanced one pass,                5853
+github.tar,                       level 13 with dict,               advanced one pass,                5902
+github.tar,                       level 16,                         advanced one pass,                5635
+github.tar,                       level 16 with dict,               advanced one pass,                5889
+github.tar,                       level 19,                         advanced one pass,                5620
+github.tar,                       level 19 with dict,               advanced one pass,                5861
+github.tar,                       no source size,                   advanced one pass,                6625
+github.tar,                       no source size with dict,         advanced one pass,                6662
+github.tar,                       long distance mode,               advanced one pass,                6516
+github.tar,                       multithreaded,                    advanced one pass,                6625
+github.tar,                       multithreaded long distance mode, advanced one pass,                6516
+github.tar,                       small window log,                 advanced one pass,                13234
+github.tar,                       small hash log,                   advanced one pass,                9049
+github.tar,                       small chain log,                  advanced one pass,                6911
+github.tar,                       explicit params,                  advanced one pass,                6322
 silesia,                          level -5,                         advanced one pass small out,      8773
 silesia,                          level -3,                         advanced one pass small out,      7754
 silesia,                          level -1,                         advanced one pass small out,      7090
@@ -387,25 +387,25 @@ silesia,                          explicit params,                  advanced one
 silesia.tar,                      level -5,                         advanced one pass small out,      8649
 silesia.tar,                      level -3,                         advanced one pass small out,      7733
 silesia.tar,                      level -1,                         advanced one pass small out,      7033
-silesia.tar,                      level 0,                          advanced one pass small out,      5429
-silesia.tar,                      level 1,                          advanced one pass small out,      5599
-silesia.tar,                      level 3,                          advanced one pass small out,      5429
+silesia.tar,                      level 0,                          advanced one pass small out,      5430
+silesia.tar,                      level 1,                          advanced one pass small out,      5598
+silesia.tar,                      level 3,                          advanced one pass small out,      5430
 silesia.tar,                      level 4,                          advanced one pass small out,      5408
 silesia.tar,                      level 5,                          advanced one pass small out,      5303
 silesia.tar,                      level 6,                          advanced one pass small out,      5232
-silesia.tar,                      level 7,                          advanced one pass small out,      5212
+silesia.tar,                      level 7,                          advanced one pass small out,      5211
 silesia.tar,                      level 9,                          advanced one pass small out,      5204
 silesia.tar,                      level 13,                         advanced one pass small out,      5173
-silesia.tar,                      level 16,                         advanced one pass small out,      5123
-silesia.tar,                      level 19,                         advanced one pass small out,      5111
-silesia.tar,                      no source size,                   advanced one pass small out,      5429
-silesia.tar,                      long distance mode,               advanced one pass small out,      5434
-silesia.tar,                      multithreaded,                    advanced one pass small out,      5429
-silesia.tar,                      multithreaded long distance mode, advanced one pass small out,      5434
-silesia.tar,                      small window log,                 advanced one pass small out,      7079
-silesia.tar,                      small hash log,                   advanced one pass small out,      6054
+silesia.tar,                      level 16,                         advanced one pass small out,      5122
+silesia.tar,                      level 19,                         advanced one pass small out,      5109
+silesia.tar,                      no source size,                   advanced one pass small out,      5430
+silesia.tar,                      long distance mode,               advanced one pass small out,      5435
+silesia.tar,                      multithreaded,                    advanced one pass small out,      5430
+silesia.tar,                      multithreaded long distance mode, advanced one pass small out,      5435
+silesia.tar,                      small window log,                 advanced one pass small out,      7080
+silesia.tar,                      small hash log,                   advanced one pass small out,      6091
 silesia.tar,                      small chain log,                  advanced one pass small out,      5442
-silesia.tar,                      explicit params,                  advanced one pass small out,      5359
+silesia.tar,                      explicit params,                  advanced one pass small out,      5360
 github,                           level -5,                         advanced one pass small out,      10164
 github,                           level -5 with dict,               advanced one pass small out,      10356
 github,                           level -3,                         advanced one pass small out,      9094
@@ -443,43 +443,43 @@ github,                           small window log,                 advanced one
 github,                           small hash log,                   advanced one pass small out,      9122
 github,                           small chain log,                  advanced one pass small out,      7125
 github,                           explicit params,                  advanced one pass small out,      6546
-github.tar,                       level -5,                         advanced one pass small out,      9684
-github.tar,                       level -5 with dict,               advanced one pass small out,      9687
-github.tar,                       level -3,                         advanced one pass small out,      8749
-github.tar,                       level -3 with dict,               advanced one pass small out,      8751
-github.tar,                       level -1,                         advanced one pass small out,      8008
-github.tar,                       level -1 with dict,               advanced one pass small out,      8008
-github.tar,                       level 0,                          advanced one pass small out,      6653
-github.tar,                       level 0 with dict,                advanced one pass small out,      6694
-github.tar,                       level 1,                          advanced one pass small out,      7024
-github.tar,                       level 1 with dict,                advanced one pass small out,      7063
-github.tar,                       level 3,                          advanced one pass small out,      6653
-github.tar,                       level 3 with dict,                advanced one pass small out,      6694
-github.tar,                       level 4,                          advanced one pass small out,      6599
+github.tar,                       level -5,                         advanced one pass small out,      9802
+github.tar,                       level -5 with dict,               advanced one pass small out,      9763
+github.tar,                       level -3,                         advanced one pass small out,      8739
+github.tar,                       level -3 with dict,               advanced one pass small out,      8740
+github.tar,                       level -1,                         advanced one pass small out,      8004
+github.tar,                       level -1 with dict,               advanced one pass small out,      8001
+github.tar,                       level 0,                          advanced one pass small out,      6625
+github.tar,                       level 0 with dict,                advanced one pass small out,      6662
+github.tar,                       level 1,                          advanced one pass small out,      7033
+github.tar,                       level 1 with dict,                advanced one pass small out,      7058
+github.tar,                       level 3,                          advanced one pass small out,      6625
+github.tar,                       level 3 with dict,                advanced one pass small out,      6662
+github.tar,                       level 4,                          advanced one pass small out,      6574
 github.tar,                       level 4 with dict,                advanced one pass small out,      6439
-github.tar,                       level 5,                          advanced one pass small out,      6192
-github.tar,                       level 5 with dict,                advanced one pass small out,      6294
-github.tar,                       level 6,                          advanced one pass small out,      6045
-github.tar,                       level 6 with dict,                advanced one pass small out,      6176
-github.tar,                       level 7,                          advanced one pass small out,      5973
-github.tar,                       level 7 with dict,                advanced one pass small out,      6146
-github.tar,                       level 9,                          advanced one pass small out,      5860
-github.tar,                       level 9 with dict,                advanced one pass small out,      6146
-github.tar,                       level 13,                         advanced one pass small out,      5846
-github.tar,                       level 13 with dict,               advanced one pass small out,      5907
-github.tar,                       level 16,                         advanced one pass small out,      5626
-github.tar,                       level 16 with dict,               advanced one pass small out,      5894
-github.tar,                       level 19,                         advanced one pass small out,      5613
-github.tar,                       level 19 with dict,               advanced one pass small out,      5864
-github.tar,                       no source size,                   advanced one pass small out,      6653
-github.tar,                       no source size with dict,         advanced one pass small out,      6694
-github.tar,                       long distance mode,               advanced one pass small out,      6543
-github.tar,                       multithreaded,                    advanced one pass small out,      6653
-github.tar,                       multithreaded long distance mode, advanced one pass small out,      6543
-github.tar,                       small window log,                 advanced one pass small out,      13242
-github.tar,                       small hash log,                   advanced one pass small out,      9254
-github.tar,                       small chain log,                  advanced one pass small out,      6898
-github.tar,                       explicit params,                  advanced one pass small out,      6313
+github.tar,                       level 5,                          advanced one pass small out,      6202
+github.tar,                       level 5 with dict,                advanced one pass small out,      6284
+github.tar,                       level 6,                          advanced one pass small out,      6049
+github.tar,                       level 6 with dict,                advanced one pass small out,      6172
+github.tar,                       level 7,                          advanced one pass small out,      5975
+github.tar,                       level 7 with dict,                advanced one pass small out,      6141
+github.tar,                       level 9,                          advanced one pass small out,      5864
+github.tar,                       level 9 with dict,                advanced one pass small out,      6142
+github.tar,                       level 13,                         advanced one pass small out,      5853
+github.tar,                       level 13 with dict,               advanced one pass small out,      5902
+github.tar,                       level 16,                         advanced one pass small out,      5635
+github.tar,                       level 16 with dict,               advanced one pass small out,      5889
+github.tar,                       level 19,                         advanced one pass small out,      5620
+github.tar,                       level 19 with dict,               advanced one pass small out,      5861
+github.tar,                       no source size,                   advanced one pass small out,      6625
+github.tar,                       no source size with dict,         advanced one pass small out,      6662
+github.tar,                       long distance mode,               advanced one pass small out,      6516
+github.tar,                       multithreaded,                    advanced one pass small out,      6625
+github.tar,                       multithreaded long distance mode, advanced one pass small out,      6516
+github.tar,                       small window log,                 advanced one pass small out,      13234
+github.tar,                       small hash log,                   advanced one pass small out,      9049
+github.tar,                       small chain log,                  advanced one pass small out,      6911
+github.tar,                       explicit params,                  advanced one pass small out,      6322
 silesia,                          level -5,                         advanced streaming,               8773
 silesia,                          level -3,                         advanced streaming,               7754
 silesia,                          level -1,                         advanced streaming,               7090
@@ -505,25 +505,25 @@ silesia,                          explicit params,                  advanced str
 silesia.tar,                      level -5,                         advanced streaming,               8649
 silesia.tar,                      level -3,                         advanced streaming,               7733
 silesia.tar,                      level -1,                         advanced streaming,               7033
-silesia.tar,                      level 0,                          advanced streaming,               5429
-silesia.tar,                      level 1,                          advanced streaming,               5599
-silesia.tar,                      level 3,                          advanced streaming,               5429
+silesia.tar,                      level 0,                          advanced streaming,               5430
+silesia.tar,                      level 1,                          advanced streaming,               5598
+silesia.tar,                      level 3,                          advanced streaming,               5430
 silesia.tar,                      level 4,                          advanced streaming,               5408
 silesia.tar,                      level 5,                          advanced streaming,               5303
 silesia.tar,                      level 6,                          advanced streaming,               5232
-silesia.tar,                      level 7,                          advanced streaming,               5212
+silesia.tar,                      level 7,                          advanced streaming,               5211
 silesia.tar,                      level 9,                          advanced streaming,               5204
 silesia.tar,                      level 13,                         advanced streaming,               5173
-silesia.tar,                      level 16,                         advanced streaming,               5123
-silesia.tar,                      level 19,                         advanced streaming,               5111
+silesia.tar,                      level 16,                         advanced streaming,               5122
+silesia.tar,                      level 19,                         advanced streaming,               5109
 silesia.tar,                      no source size,                   advanced streaming,               5426
-silesia.tar,                      long distance mode,               advanced streaming,               5434
-silesia.tar,                      multithreaded,                    advanced streaming,               5429
-silesia.tar,                      multithreaded long distance mode, advanced streaming,               5434
-silesia.tar,                      small window log,                 advanced streaming,               7098
-silesia.tar,                      small hash log,                   advanced streaming,               6054
+silesia.tar,                      long distance mode,               advanced streaming,               5435
+silesia.tar,                      multithreaded,                    advanced streaming,               5430
+silesia.tar,                      multithreaded long distance mode, advanced streaming,               5435
+silesia.tar,                      small window log,                 advanced streaming,               7099
+silesia.tar,                      small hash log,                   advanced streaming,               6091
 silesia.tar,                      small chain log,                  advanced streaming,               5442
-silesia.tar,                      explicit params,                  advanced streaming,               5359
+silesia.tar,                      explicit params,                  advanced streaming,               5360
 github,                           level -5,                         advanced streaming,               10164
 github,                           level -5 with dict,               advanced streaming,               10356
 github,                           level -3,                         advanced streaming,               9094
@@ -561,40 +561,40 @@ github,                           small window log,                 advanced str
 github,                           small hash log,                   advanced streaming,               9122
 github,                           small chain log,                  advanced streaming,               7125
 github,                           explicit params,                  advanced streaming,               6546
-github.tar,                       level -5,                         advanced streaming,               9684
-github.tar,                       level -5 with dict,               advanced streaming,               9687
-github.tar,                       level -3,                         advanced streaming,               8749
-github.tar,                       level -3 with dict,               advanced streaming,               8751
-github.tar,                       level -1,                         advanced streaming,               8008
-github.tar,                       level -1 with dict,               advanced streaming,               8008
-github.tar,                       level 0,                          advanced streaming,               6653
-github.tar,                       level 0 with dict,                advanced streaming,               6694
-github.tar,                       level 1,                          advanced streaming,               7024
-github.tar,                       level 1 with dict,                advanced streaming,               7063
-github.tar,                       level 3,                          advanced streaming,               6653
-github.tar,                       level 3 with dict,                advanced streaming,               6694
-github.tar,                       level 4,                          advanced streaming,               6599
+github.tar,                       level -5,                         advanced streaming,               9802
+github.tar,                       level -5 with dict,               advanced streaming,               9763
+github.tar,                       level -3,                         advanced streaming,               8739
+github.tar,                       level -3 with dict,               advanced streaming,               8740
+github.tar,                       level -1,                         advanced streaming,               8004
+github.tar,                       level -1 with dict,               advanced streaming,               8001
+github.tar,                       level 0,                          advanced streaming,               6625
+github.tar,                       level 0 with dict,                advanced streaming,               6662
+github.tar,                       level 1,                          advanced streaming,               7033
+github.tar,                       level 1 with dict,                advanced streaming,               7058
+github.tar,                       level 3,                          advanced streaming,               6625
+github.tar,                       level 3 with dict,                advanced streaming,               6662
+github.tar,                       level 4,                          advanced streaming,               6574
 github.tar,                       level 4 with dict,                advanced streaming,               6439
-github.tar,                       level 5,                          advanced streaming,               6192
-github.tar,                       level 5 with dict,                advanced streaming,               6294
-github.tar,                       level 6,                          advanced streaming,               6045
-github.tar,                       level 6 with dict,                advanced streaming,               6176
-github.tar,                       level 7,                          advanced streaming,               5973
-github.tar,                       level 7 with dict,                advanced streaming,               6146
-github.tar,                       level 9,                          advanced streaming,               5860
-github.tar,                       level 9 with dict,                advanced streaming,               6146
-github.tar,                       level 13,                         advanced streaming,               5846
-github.tar,                       level 13 with dict,               advanced streaming,               5907
-github.tar,                       level 16,                         advanced streaming,               5626
-github.tar,                       level 16 with dict,               advanced streaming,               5894
-github.tar,                       level 19,                         advanced streaming,               5613
-github.tar,                       level 19 with dict,               advanced streaming,               5864
-github.tar,                       no source size,                   advanced streaming,               6646
-github.tar,                       no source size with dict,         advanced streaming,               6693
-github.tar,                       long distance mode,               advanced streaming,               6543
-github.tar,                       multithreaded,                    advanced streaming,               6653
-github.tar,                       multithreaded long distance mode, advanced streaming,               6543
-github.tar,                       small window log,                 advanced streaming,               13246
-github.tar,                       small hash log,                   advanced streaming,               9254
-github.tar,                       small chain log,                  advanced streaming,               6898
-github.tar,                       explicit params,                  advanced streaming,               6313
+github.tar,                       level 5,                          advanced streaming,               6202
+github.tar,                       level 5 with dict,                advanced streaming,               6284
+github.tar,                       level 6,                          advanced streaming,               6049
+github.tar,                       level 6 with dict,                advanced streaming,               6172
+github.tar,                       level 7,                          advanced streaming,               5975
+github.tar,                       level 7 with dict,                advanced streaming,               6141
+github.tar,                       level 9,                          advanced streaming,               5864
+github.tar,                       level 9 with dict,                advanced streaming,               6142
+github.tar,                       level 13,                         advanced streaming,               5853
+github.tar,                       level 13 with dict,               advanced streaming,               5902
+github.tar,                       level 16,                         advanced streaming,               5635
+github.tar,                       level 16 with dict,               advanced streaming,               5889
+github.tar,                       level 19,                         advanced streaming,               5620
+github.tar,                       level 19 with dict,               advanced streaming,               5861
+github.tar,                       no source size,                   advanced streaming,               6620
+github.tar,                       no source size with dict,         advanced streaming,               6661
+github.tar,                       long distance mode,               advanced streaming,               6516
+github.tar,                       multithreaded,                    advanced streaming,               6625
+github.tar,                       multithreaded long distance mode, advanced streaming,               6516
+github.tar,                       small window log,                 advanced streaming,               13247
+github.tar,                       small hash log,                   advanced streaming,               9049
+github.tar,                       small chain log,                  advanced streaming,               6911
+github.tar,                       explicit params,                  advanced streaming,               6322

@@ -23,67 +23,67 @@
   "observed_markers": [
     {
       "id": "gimp",
-      "marker": "gimp",
-      "line": 17
+      "marker": "==> gimp",
+      "line": 30
     },
     {
       "id": "imagemagick",
-      "marker": "imagemagick",
+      "marker": "==> imagemagick",
       "line": 32
     },
     {
       "id": "graphicsmagick",
-      "marker": "graphicsmagick",
+      "marker": "==> graphicsmagick",
       "line": 34
     },
     {
       "id": "gdal-bin",
-      "marker": "gdal-bin",
+      "marker": "==> gdal-bin",
       "line": 36
     },
     {
       "id": "poppler-utils",
-      "marker": "poppler-utils",
+      "marker": "==> poppler-utils",
       "line": 38
     },
     {
       "id": "qt6-image-formats-plugins",
-      "marker": "qt6-image-formats-plugins",
+      "marker": "==> qt6-image-formats-plugins",
       "line": 40
     },
     {
       "id": "python3-pil",
-      "marker": "python3-pil",
+      "marker": "==> python3-pil",
       "line": 42
     },
     {
       "id": "netpbm",
-      "marker": "netpbm",
+      "marker": "==> netpbm",
       "line": 44
     },
     {
       "id": "tesseract-ocr",
-      "marker": "tesseract-ocr",
+      "marker": "==> tesseract-ocr",
       "line": 46
     },
     {
       "id": "ghostscript",
-      "marker": "ghostscript",
+      "marker": "==> ghostscript",
       "line": 48
     },
     {
       "id": "libgdk-pixbuf-2.0-0",
-      "marker": "libgdk-pixbuf-2.0-0",
+      "marker": "==> libgdk-pixbuf-2.0-0",
       "line": 50
     },
     {
       "id": "libopencv-imgcodecs406t64",
-      "marker": "libopencv-imgcodecs406t64",
+      "marker": "==> libopencv-imgcodecs406t64",
       "line": 52
     },
     {
       "id": "sane-airscan",
-      "marker": "sane-airscan",
+      "marker": "==> sane-airscan",
       "line": 54
     }
   ],
@@ -91,67 +91,67 @@
     {
       "id": "gimp",
       "status": "passed",
-      "marker": "gimp"
+      "marker": "==> gimp"
     },
     {
       "id": "imagemagick",
       "status": "passed",
-      "marker": "imagemagick"
+      "marker": "==> imagemagick"
     },
     {
       "id": "graphicsmagick",
       "status": "passed",
-      "marker": "graphicsmagick"
+      "marker": "==> graphicsmagick"
     },
     {
       "id": "gdal-bin",
       "status": "passed",
-      "marker": "gdal-bin"
+      "marker": "==> gdal-bin"
     },
     {
       "id": "poppler-utils",
       "status": "passed",
-      "marker": "poppler-utils"
+      "marker": "==> poppler-utils"
     },
     {
       "id": "qt6-image-formats-plugins",
       "status": "passed",
-      "marker": "qt6-image-formats-plugins"
+      "marker": "==> qt6-image-formats-plugins"
     },
     {
       "id": "python3-pil",
       "status": "passed",
-      "marker": "python3-pil"
+      "marker": "==> python3-pil"
     },
     {
       "id": "netpbm",
       "status": "passed",
-      "marker": "netpbm"
+      "marker": "==> netpbm"
     },
     {
       "id": "tesseract-ocr",
       "status": "passed",
-      "marker": "tesseract-ocr"
+      "marker": "==> tesseract-ocr"
     },
     {
       "id": "ghostscript",
       "status": "passed",
-      "marker": "ghostscript"
+      "marker": "==> ghostscript"
     },
     {
       "id": "libgdk-pixbuf-2.0-0",
       "status": "passed",
-      "marker": "libgdk-pixbuf-2.0-0"
+      "marker": "==> libgdk-pixbuf-2.0-0"
     },
     {
       "id": "libopencv-imgcodecs406t64",
       "status": "passed",
-      "marker": "libopencv-imgcodecs406t64"
+      "marker": "==> libopencv-imgcodecs406t64"
     },
     {
       "id": "sane-airscan",
       "status": "passed",
-      "marker": "sane-airscan"
+      "marker": "==> sane-airscan"
     }
   ]
 }

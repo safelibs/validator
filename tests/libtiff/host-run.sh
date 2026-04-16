@@ -161,7 +161,7 @@ config = {
     "report_format": "imported-log-marker",
     "selected_dependents": selected,
     "expected_dependents": len(selected),
-    "markers": [{"id": item, "marker": item} for item in selected],
+    "markers": [{"id": item, "marker": f"==> {item}"} for item in selected],
     "setup_notes": "The libtiff host wrapper failed before launching ./test-original.sh.",
     "pre_marker_notes": (
         "The imported libtiff safe harness failed before the first dependent marker; "
@@ -314,7 +314,7 @@ for lineno, line in enumerate(lines, start=1):
     if next_index >= len(markers):
         break
     marker = markers[next_index]
-    if marker["marker"] in line:
+    if line.strip() == marker["marker"]:
         observed.append({"id": marker["id"], "marker": marker["marker"], "line": lineno})
         next_index += 1
 observed_ids = [item["id"] for item in observed]
