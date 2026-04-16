@@ -115,8 +115,8 @@ At subvol subvol
 1 block
 
 == zarchive (zarchive-tools) ==
-Adding sub/b.txt
 Adding a.txt
+Adding sub/b.txt
 /a.txt
 /sub
 /sub/b.txt
