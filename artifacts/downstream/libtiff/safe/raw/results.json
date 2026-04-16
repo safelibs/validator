@@ -24,67 +24,67 @@
     {
       "id": "gimp",
       "marker": "==> gimp",
-      "line": 30
+      "line": 33
     },
     {
       "id": "imagemagick",
       "marker": "==> imagemagick",
-      "line": 32
+      "line": 35
     },
     {
       "id": "graphicsmagick",
       "marker": "==> graphicsmagick",
-      "line": 34
+      "line": 37
     },
     {
       "id": "gdal-bin",
       "marker": "==> gdal-bin",
-      "line": 36
+      "line": 39
     },
     {
       "id": "poppler-utils",
       "marker": "==> poppler-utils",
-      "line": 38
+      "line": 41
     },
     {
       "id": "qt6-image-formats-plugins",
       "marker": "==> qt6-image-formats-plugins",
-      "line": 40
+      "line": 43
     },
     {
       "id": "python3-pil",
       "marker": "==> python3-pil",
-      "line": 42
+      "line": 45
     },
     {
       "id": "netpbm",
       "marker": "==> netpbm",
-      "line": 44
+      "line": 47
     },
     {
       "id": "tesseract-ocr",
       "marker": "==> tesseract-ocr",
-      "line": 46
+      "line": 49
     },
     {
       "id": "ghostscript",
       "marker": "==> ghostscript",
-      "line": 48
+      "line": 51
     },
     {
       "id": "libgdk-pixbuf-2.0-0",
       "marker": "==> libgdk-pixbuf-2.0-0",
-      "line": 50
+      "line": 53
     },
     {
       "id": "libopencv-imgcodecs406t64",
       "marker": "==> libopencv-imgcodecs406t64",
-      "line": 52
+      "line": 55
     },
     {
       "id": "sane-airscan",
       "marker": "==> sane-airscan",
-      "line": 54
+      "line": 57
     }
   ],
   "workloads": [

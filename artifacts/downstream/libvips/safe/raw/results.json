@@ -23,62 +23,62 @@
     {
       "id": "nip2",
       "marker": "Building and testing nip2",
-      "line": 5686
+      "line": 5689
     },
     {
       "id": "photoqt",
       "marker": "Building and testing photoqt",
-      "line": 14883
+      "line": 14886
     },
     {
       "id": "ruby-vips",
       "marker": "Building and testing ruby-vips",
-      "line": 17618
+      "line": 17621
     },
     {
       "id": "pyvips",
       "marker": "Testing pyvips from the vendored workspace snapshot",
-      "line": 17910
+      "line": 17913
     },
     {
       "id": "php-vips",
       "marker": "Testing php-vips",
-      "line": 17913
+      "line": 17916
     },
     {
       "id": "govips",
       "marker": "Testing govips",
-      "line": 18055
+      "line": 18058
     },
     {
       "id": "lua-vips",
       "marker": "Testing lua-vips",
-      "line": 18069
+      "line": 18072
     },
     {
       "id": "sharp",
       "marker": "Testing sharp",
-      "line": 18090
+      "line": 18093
     },
     {
       "id": "bimg",
       "marker": "Testing bimg",
-      "line": 18101
+      "line": 18104
     },
     {
       "id": "imgproxy",
       "marker": "Testing imgproxy",
-      "line": 18106
+      "line": 18109
     },
     {
       "id": "carrierwave-vips",
       "marker": "Testing carrierwave-vips",
-      "line": 18247
+      "line": 18250
     },
     {
       "id": "sharp-for-go",
       "marker": "Testing sharp-for-go",
-      "line": 18312
+      "line": 18315
     }
   ],
   "workloads": [
