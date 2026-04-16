@@ -18,10 +18,10 @@
 #5 transferring context: 68.01MB 0.4s done
 #5 DONE 0.4s
 
-#6 [2/4] RUN sed 's/^Types: deb$/Types: deb-src/' /etc/apt/sources.list.d/ubuntu.sources       > /etc/apt/sources.list.d/ubuntu-src.sources  && apt-get update  && apt-get install -y --no-install-recommends       build-essential       ca-certificates       cmake       curl       cyrus-admin       cyrus-caldav       cyrus-imapd       dbus-x11       dpkg-dev       kdoctools5       liblzma-dev       libvirt-clients       libvirt-daemon       libxml2-dev       mariadb-client       mariadb-plugin-connect       mariadb-server       netcat-openbsd       ninja-build       openbox       php8.3-cli       php8.3-xml       postgresql-16       procps       python3       python3-lxml       pkg-config       sasl2-bin       xclip       xdotool       xauth       xmlstarlet       xvfb       yelp       yelp-tools       zlib1g-dev  && rm -rf /var/lib/apt/lists/*
+#6 [3/4] COPY . /work
 #6 CACHED
 
-#7 [3/4] COPY . /work
+#7 [2/4] RUN sed 's/^Types: deb$/Types: deb-src/' /etc/apt/sources.list.d/ubuntu.sources       > /etc/apt/sources.list.d/ubuntu-src.sources  && apt-get update  && apt-get install -y --no-install-recommends       build-essential       ca-certificates       cmake       curl       cyrus-admin       cyrus-caldav       cyrus-imapd       dbus-x11       dpkg-dev       kdoctools5       liblzma-dev       libvirt-clients       libvirt-daemon       libxml2-dev       mariadb-client       mariadb-plugin-connect       mariadb-server       netcat-openbsd       ninja-build       openbox       php8.3-cli       php8.3-xml       postgresql-16       procps       python3       python3-lxml       pkg-config       sasl2-bin       xclip       xdotool       xauth       xmlstarlet       xvfb       yelp       yelp-tools       zlib1g-dev  && rm -rf /var/lib/apt/lists/*
 #7 CACHED
 
 #8 [4/4] WORKDIR /work
@@ -38,37 +38,37 @@ Get:1 http://azure.archive.ubuntu.com/ubuntu noble InRelease [256 kB]
 Get:2 http://azure.archive.ubuntu.com/ubuntu noble-updates InRelease [126 kB]
 Get:3 http://azure.archive.ubuntu.com/ubuntu noble-backports InRelease [126 kB]
 Get:4 http://azure.archive.ubuntu.com/ubuntu noble-security InRelease [126 kB]
-Get:5 http://azure.archive.ubuntu.com/ubuntu noble/universe Sources [24.3 MB]
-Get:6 http://azure.archive.ubuntu.com/ubuntu noble/restricted Sources [21.8 kB]
-Get:7 http://azure.archive.ubuntu.com/ubuntu noble/main Sources [1713 kB]
+Get:5 http://azure.archive.ubuntu.com/ubuntu noble/main Sources [1713 kB]
+Get:6 http://azure.archive.ubuntu.com/ubuntu noble/universe Sources [24.3 MB]
+Get:7 http://azure.archive.ubuntu.com/ubuntu noble/restricted Sources [21.8 kB]
 Get:8 http://azure.archive.ubuntu.com/ubuntu noble/multiverse Sources [355 kB]
 Get:9 http://azure.archive.ubuntu.com/ubuntu noble/multiverse amd64 Packages [331 kB]
-Get:10 http://azure.archive.ubuntu.com/ubuntu noble/universe amd64 Packages [19.3 MB]
+Get:10 http://azure.archive.ubuntu.com/ubuntu noble/main amd64 Packages [1808 kB]
 Get:11 http://azure.archive.ubuntu.com/ubuntu noble/restricted amd64 Packages [117 kB]
-Get:12 http://azure.archive.ubuntu.com/ubuntu noble/main amd64 Packages [1808 kB]
-Get:13 http://azure.archive.ubuntu.com/ubuntu noble-updates/main Sources [665 kB]
-Get:14 http://azure.archive.ubuntu.com/ubuntu noble-updates/restricted Sources [98.1 kB]
-Get:15 http://azure.archive.ubuntu.com/ubuntu noble-updates/multiverse Sources [32.6 kB]
-Get:16 http://azure.archive.ubuntu.com/ubuntu noble-updates/universe Sources [695 kB]
-Get:17 http://azure.archive.ubuntu.com/ubuntu noble-updates/main amd64 Packages [2402 kB]
+Get:12 http://azure.archive.ubuntu.com/ubuntu noble/universe amd64 Packages [19.3 MB]
+Get:13 http://azure.archive.ubuntu.com/ubuntu noble-updates/universe Sources [695 kB]
+Get:14 http://azure.archive.ubuntu.com/ubuntu noble-updates/multiverse Sources [32.6 kB]
+Get:15 http://azure.archive.ubuntu.com/ubuntu noble-updates/main Sources [665 kB]
+Get:16 http://azure.archive.ubuntu.com/ubuntu noble-updates/restricted Sources [98.1 kB]
+Get:17 http://azure.archive.ubuntu.com/ubuntu noble-updates/universe amd64 Packages [2156 kB]
 Get:18 http://azure.archive.ubuntu.com/ubuntu noble-updates/restricted amd64 Packages [3752 kB]
-Get:19 http://azure.archive.ubuntu.com/ubuntu noble-updates/universe amd64 Packages [2156 kB]
+Get:19 http://azure.archive.ubuntu.com/ubuntu noble-updates/main amd64 Packages [2402 kB]
 Get:20 http://azure.archive.ubuntu.com/ubuntu noble-updates/multiverse amd64 Packages [38.5 kB]
-Get:21 http://azure.archive.ubuntu.com/ubuntu noble-backports/multiverse Sources [956 B]
-Get:22 http://azure.archive.ubuntu.com/ubuntu noble-backports/universe Sources [16.9 kB]
-Get:23 http://azure.archive.ubuntu.com/ubuntu noble-backports/main Sources [6767 B]
+Get:21 http://azure.archive.ubuntu.com/ubuntu noble-backports/main Sources [6767 B]
+Get:22 http://azure.archive.ubuntu.com/ubuntu noble-backports/multiverse Sources [956 B]
+Get:23 http://azure.archive.ubuntu.com/ubuntu noble-backports/universe Sources [16.9 kB]
 Get:24 http://azure.archive.ubuntu.com/ubuntu noble-backports/main amd64 Packages [49.5 kB]
-Get:25 http://azure.archive.ubuntu.com/ubuntu noble-backports/universe amd64 Packages [36.1 kB]
-Get:26 http://azure.archive.ubuntu.com/ubuntu noble-backports/multiverse amd64 Packages [695 B]
-Get:27 http://azure.archive.ubuntu.com/ubuntu noble-security/multiverse Sources [24.1 kB]
-Get:28 http://azure.archive.ubuntu.com/ubuntu noble-security/restricted Sources [91.0 kB]
-Get:29 http://azure.archive.ubuntu.com/ubuntu noble-security/main Sources [318 kB]
-Get:30 http://azure.archive.ubuntu.com/ubuntu noble-security/universe Sources [459 kB]
-Get:31 http://azure.archive.ubuntu.com/ubuntu noble-security/universe amd64 Packages [1507 kB]
-Get:32 http://azure.archive.ubuntu.com/ubuntu noble-security/restricted amd64 Packages [3581 kB]
-Get:33 http://azure.archive.ubuntu.com/ubuntu noble-security/main amd64 Packages [2025 kB]
-Get:34 http://azure.archive.ubuntu.com/ubuntu noble-security/multiverse amd64 Packages [34.8 kB]
-Fetched 66.6 MB in 2s (35.9 MB/s)
+Get:25 http://azure.archive.ubuntu.com/ubuntu noble-backports/multiverse amd64 Packages [695 B]
+Get:26 http://azure.archive.ubuntu.com/ubuntu noble-backports/universe amd64 Packages [36.1 kB]
+Get:27 http://azure.archive.ubuntu.com/ubuntu noble-security/restricted Sources [91.0 kB]
+Get:28 http://azure.archive.ubuntu.com/ubuntu noble-security/main Sources [318 kB]
+Get:29 http://azure.archive.ubuntu.com/ubuntu noble-security/universe Sources [459 kB]
+Get:30 http://azure.archive.ubuntu.com/ubuntu noble-security/multiverse Sources [24.1 kB]
+Get:31 http://azure.archive.ubuntu.com/ubuntu noble-security/multiverse amd64 Packages [34.8 kB]
+Get:32 http://azure.archive.ubuntu.com/ubuntu noble-security/main amd64 Packages [2025 kB]
+Get:33 http://azure.archive.ubuntu.com/ubuntu noble-security/restricted amd64 Packages [3581 kB]
+Get:34 http://azure.archive.ubuntu.com/ubuntu noble-security/universe amd64 Packages [1507 kB]
+Fetched 66.6 MB in 2s (35.4 MB/s)
 Reading package lists...
 Reading package lists...
 Building dependency tree...

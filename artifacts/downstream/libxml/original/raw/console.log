@@ -29,6 +29,7 @@
 
 #9 exporting to image
 #9 exporting layers done
+#9 writing image sha256:20ec7903bdf19a88c807009c412635f939fb889462006a2f829c922822a0939d
 #9 writing image sha256:20ec7903bdf19a88c807009c412635f939fb889462006a2f829c922822a0939d done
 #9 naming to docker.io/library/libxml-original-test:ubuntu24.04 done
 #9 DONE 0.0s
