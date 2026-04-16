@@ -528,6 +528,176 @@ class RunMatrixTests(unittest.TestCase):
         self.assertEqual(summary["selected_dependents"], [])
         self.assertEqual(summary["notes"], payload["notes"])
 
+    def test_write_summary_rejects_bucket_invariant_violations(self) -> None:
+        root = self.run_root()
+        summary_path = root / "artifacts" / "downstream" / "demo-host" / "safe" / "summary.json"
+        base_payload = {
+            "summary_version": 1,
+            "library": "demo-host",
+            "mode": "safe",
+            "status": "passed",
+            "report_format": "imported-json-results",
+            "expected_dependents": 3,
+            "selected_dependents": ["dep-a", "dep-b", "dep-c"],
+            "passed_dependents": ["dep-a", "dep-b", "dep-c"],
+            "failed_dependents": [],
+            "warned_dependents": [],
+            "skipped_dependents": [],
+            "artifacts": {},
+        }
+        cases = [
+            (
+                "pairwise disjoint",
+                {
+                    "passed_dependents": ["dep-a", "dep-b"],
+                    "failed_dependents": ["dep-b"],
+                    "skipped_dependents": ["dep-c"],
+                },
+                "pairwise disjoint",
+            ),
+            (
+                "preserve order",
+                {
+                    "passed_dependents": ["dep-b", "dep-a", "dep-c"],
+                },
+                "preserve selected_dependents order",
+            ),
+            (
+                "full coverage",
+                {
+                    "passed_dependents": ["dep-a", "dep-c"],
+                },
+                "cover selected_dependents exactly once",
+            ),
+            (
+                "failed status required",
+                {
+                    "status": "passed",
+                    "passed_dependents": ["dep-a"],
+                    "failed_dependents": ["dep-b"],
+                    "skipped_dependents": ["dep-c"],
+                },
+                "status must be failed",
+            ),
+        ]
+
+        for label, updates, message in cases:
+            with self.subTest(label=label):
+                payload = dict(base_payload)
+                payload.update(updates)
+                with self.assertRaisesRegex(ValidatorError, message):
+                    write_summary(summary_path=summary_path, payload=payload)
+
+    def test_write_summary_accepts_representative_imported_failure_shapes(self) -> None:
+        root = self.run_root()
+        cases = [
+            (
+                "imported-report-dir",
+                {
+                    "summary_version": 1,
+                    "library": "demo-report-dir",
+                    "mode": "safe",
+                    "status": "failed",
+                    "report_format": "imported-report-dir",
+                    "expected_dependents": 4,
+                    "selected_dependents": ["row-1", "row-2", "row-3", "row-4"],
+                    "passed_dependents": ["row-1"],
+                    "failed_dependents": ["row-2"],
+                    "warned_dependents": [],
+                    "skipped_dependents": ["row-3", "row-4"],
+                    "artifacts": {
+                        "report_dir": root / "artifacts" / "downstream" / "demo-report-dir" / "safe" / "report",
+                    },
+                    "notes": "Imported report rows stopped after row-1, so row-2 failed and later rows were skipped.",
+                },
+            ),
+            (
+                "imported-json-results",
+                {
+                    "summary_version": 1,
+                    "library": "demo-json-results",
+                    "mode": "safe",
+                    "status": "failed",
+                    "report_format": "imported-json-results",
+                    "expected_dependents": 2,
+                    "selected_dependents": ["json-a", "json-b"],
+                    "passed_dependents": [],
+                    "failed_dependents": ["json-a"],
+                    "warned_dependents": [],
+                    "skipped_dependents": ["json-b"],
+                    "artifacts": {
+                        "raw_results": root / "artifacts" / "downstream" / "demo-json-results" / "safe" / "raw" / "results.json",
+                    },
+                    "notes": "Imported JSON rows failed validation at json-a, so later rows were not normalized.",
+                },
+            ),
+            (
+                "imported-matrix-tsv",
+                {
+                    "summary_version": 1,
+                    "library": "demo-matrix-tsv",
+                    "mode": "safe",
+                    "status": "failed",
+                    "report_format": "imported-matrix-tsv",
+                    "expected_dependents": 3,
+                    "selected_dependents": ["compile:a", "compile:b", "compile:c"],
+                    "passed_dependents": ["compile:a"],
+                    "failed_dependents": ["compile:b"],
+                    "warned_dependents": [],
+                    "skipped_dependents": ["compile:c"],
+                    "artifacts": {
+                        "raw_results": root / "artifacts" / "downstream" / "demo-matrix-tsv" / "safe" / "raw" / "results.tsv",
+                    },
+                    "notes": "The imported TSV stopped after the first row, so compile:b failed and compile:c was skipped.",
+                },
+            ),
+            (
+                "imported-log-marker",
+                {
+                    "summary_version": 1,
+                    "library": "demo-log-marker",
+                    "mode": "safe",
+                    "status": "failed",
+                    "report_format": "imported-log-marker",
+                    "expected_dependents": 3,
+                    "selected_dependents": ["marker-1", "marker-2", "marker-3"],
+                    "passed_dependents": ["marker-1"],
+                    "failed_dependents": ["marker-2"],
+                    "warned_dependents": [],
+                    "skipped_dependents": ["marker-3"],
+                    "artifacts": {
+                        "raw_results": root / "artifacts" / "downstream" / "demo-log-marker" / "safe" / "raw" / "results.json",
+                    },
+                    "notes": "The imported log reached marker-2 before exiting nonzero, so later markers were skipped.",
+                },
+            ),
+        ]
+
+        for report_format, payload in cases:
+            with self.subTest(report_format=report_format):
+                summary_path = (
+                    root
+                    / "artifacts"
+                    / "downstream"
+                    / payload["library"]
+                    / payload["mode"]
+                    / "summary.json"
+                )
+                write_summary(summary_path=summary_path, payload=payload)
+                summary = json.loads(summary_path.read_text())
+                self.assertEqual(summary["report_format"], report_format)
+                self.assertEqual(summary["status"], "failed")
+                self.assertEqual(
+                    summary["passed_dependents"]
+                    + summary["failed_dependents"]
+                    + summary["warned_dependents"]
+                    + summary["skipped_dependents"],
+                    payload["passed_dependents"]
+                    + payload["failed_dependents"]
+                    + payload["warned_dependents"]
+                    + payload["skipped_dependents"],
+                )
+
 
 if __name__ == "__main__":
     unittest.main()
