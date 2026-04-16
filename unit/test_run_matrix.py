@@ -374,10 +374,12 @@ class RunMatrixTests(unittest.TestCase):
                 docker_builds.append(args)
                 dockerfile = Path(args[args.index("--file") + 1])
                 context_root = Path(args[-1])
+                image_tag = args[args.index("--tag") + 1]
                 self.assertTrue(dockerfile.is_file())
                 self.assertIn("VALIDATOR_BASELINE_FIXTURE=demo-host-baseline", dockerfile.read_text())
                 self.assertTrue((context_root / "_shared" / "install_safe_debs.sh").is_file())
                 self.assertTrue((context_root / "demo-host" / "host-run.sh").is_file())
+                self.assertRegex(image_tag, r"^validator-demo-host-baseline-")
                 log_path.parent.mkdir(parents=True, exist_ok=True)
                 with log_path.open("a", encoding="utf-8") as handle:
                     handle.write("$ stub docker build\n")
@@ -455,6 +457,14 @@ class RunMatrixTests(unittest.TestCase):
         self.assertEqual(
             safe_summary["artifacts"]["raw_results"],
             "downstream/demo-host/safe/raw/results.json",
+        )
+        self.assertIn(
+            f"artifact_root={artifact_root}",
+            (artifact_root / "downstream" / "demo-host" / "original" / "raw" / "console.log").read_text(),
+        )
+        self.assertIn(
+            f"artifact_root={artifact_root}",
+            (artifact_root / "downstream" / "demo-host" / "safe" / "raw" / "console.log").read_text(),
         )
 
         original_scratch = artifact_root / ".workspace" / "host-harness" / "demo-host" / "original" / "repo"

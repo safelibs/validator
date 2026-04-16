@@ -3,6 +3,9 @@ set -euo pipefail
 
 test "$VALIDATOR_LIBRARY" = "demo-host"
 test "$PWD" = "$VALIDATOR_HARNESS_ROOT"
+test -d "$VALIDATOR_ARTIFACT_ROOT"
+test "$VALIDATOR_HARNESS_ROOT" = "$VALIDATOR_ARTIFACT_ROOT/.workspace/host-harness/demo-host/$VALIDATOR_MODE/repo"
+test "$VALIDATOR_DOWNSTREAM_DIR" = "$VALIDATOR_ARTIFACT_ROOT/downstream/demo-host/$VALIDATOR_MODE"
 test -d "$VALIDATOR_HARNESS_ROOT/.git"
 test -d "$VALIDATOR_HARNESS_ROOT/.validator"
 test -f "$VALIDATOR_HARNESS_ROOT/dependents.json"
@@ -24,6 +27,7 @@ raw_results="$VALIDATOR_DOWNSTREAM_DIR/raw/results.json"
 
 printf 'pwd=%s\n' "$PWD" >>"$raw_console"
 printf 'mode=%s\n' "$VALIDATOR_MODE" >>"$raw_console"
+printf 'artifact_root=%s\n' "$VALIDATOR_ARTIFACT_ROOT" >>"$raw_console"
 
 printf 'scratch-mutated:%s\n' "$VALIDATOR_MODE" >>"$VALIDATOR_HARNESS_ROOT/build-check-install/marker.txt"
 
