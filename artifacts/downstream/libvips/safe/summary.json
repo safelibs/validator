@@ -19,10 +19,7 @@
     "carrierwave-vips",
     "sharp-for-go"
   ],
-  "passed_dependents": [],
-  "failed_dependents": [],
-  "warned_dependents": [],
-  "skipped_dependents": [
+  "passed_dependents": [
     "nip2",
     "photoqt",
     "ruby-vips",
@@ -36,9 +33,11 @@
     "carrierwave-vips",
     "sharp-for-go"
   ],
+  "failed_dependents": [],
+  "warned_dependents": [],
+  "skipped_dependents": [],
   "artifacts": {
     "console_log": "downstream/libvips/safe/raw/console.log",
     "results_json": "downstream/libvips/safe/raw/results.json"
-  },
-  "notes": "The imported libvips safe harness failed before the first application marker; package verification or extracted-prefix preparation failed before dependent execution."
+  }
 }

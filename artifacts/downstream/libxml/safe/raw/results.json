@@ -3,7 +3,7 @@
   "library": "libxml",
   "mode": "safe",
   "report_format": "imported-log-marker",
-  "exit_code": 139,
+  "exit_code": 0,
   "failure_mode": "command",
   "selected_dependents": [
     "libvirt-daemon",
@@ -69,6 +69,16 @@
       "id": "kdoctools5",
       "marker": "kdoctools5",
       "line": 267
+    },
+    {
+      "id": "yelp-tools",
+      "marker": "yelp-tools",
+      "line": 269
+    },
+    {
+      "id": "llvm-toolchain-18",
+      "marker": "llvm-toolchain-18",
+      "line": 271
     }
   ],
   "workloads": [
@@ -119,17 +129,17 @@
     },
     {
       "id": "kdoctools5",
-      "status": "skipped",
+      "status": "passed",
       "marker": "kdoctools5"
     },
     {
       "id": "yelp-tools",
-      "status": "skipped",
+      "status": "passed",
       "marker": "yelp-tools"
     },
     {
       "id": "llvm-toolchain-18",
-      "status": "skipped",
+      "status": "passed",
       "marker": "llvm-toolchain-18"
     }
   ]

@@ -38,137 +38,137 @@
     {
       "id": "tool:cwebp",
       "marker": "Tool smoke: cwebp",
-      "line": 33
+      "line": 31
     },
     {
       "id": "tool:dwebp",
       "marker": "Tool smoke: dwebp",
-      "line": 35
+      "line": 33
     },
     {
       "id": "tool:gif2webp",
       "marker": "Tool smoke: gif2webp",
-      "line": 37
+      "line": 35
     },
     {
       "id": "tool:img2webp",
       "marker": "Tool smoke: img2webp",
-      "line": 39
+      "line": 37
     },
     {
       "id": "tool:webpinfo",
       "marker": "Tool smoke: webpinfo",
-      "line": 41
+      "line": 39
     },
     {
       "id": "tool:webpmux",
       "marker": "Tool smoke: webpmux",
-      "line": 43
+      "line": 41
     },
     {
       "id": "tool:anim_dump",
       "marker": "Tool smoke: anim_dump",
-      "line": 45
+      "line": 43
     },
     {
       "id": "tool:anim_diff",
       "marker": "Tool smoke: anim_diff",
-      "line": 47
+      "line": 45
     },
     {
       "id": "tool:vwebp",
       "marker": "Tool smoke: vwebp",
-      "line": 49
+      "line": 47
     },
     {
       "id": "pkg-config-libwebp",
       "marker": "Installed surface: pkg-config-libwebp",
-      "line": 51
+      "line": 49
     },
     {
       "id": "pkg-config-libsharpyuv",
       "marker": "Installed surface: pkg-config-libsharpyuv",
-      "line": 53
+      "line": 51
     },
     {
       "id": "pkg-config-libwebpdecoder",
       "marker": "Installed surface: pkg-config-libwebpdecoder",
-      "line": 55
+      "line": 53
     },
     {
       "id": "pkg-config-libwebpdemux",
       "marker": "Installed surface: pkg-config-libwebpdemux",
-      "line": 57
+      "line": 55
     },
     {
       "id": "pkg-config-libwebpmux",
       "marker": "Installed surface: pkg-config-libwebpmux",
-      "line": 59
+      "line": 57
     },
     {
       "id": "cmake-webp",
       "marker": "Installed surface: cmake-webp",
-      "line": 61
+      "line": 59
     },
     {
       "id": "gimp",
       "marker": "GIMP",
-      "line": 63
+      "line": 61
     },
     {
       "id": "pillow",
       "marker": "Pillow",
-      "line": 65
+      "line": 63
     },
     {
       "id": "webkitgtk",
       "marker": "WebKitGTK",
-      "line": 68
+      "line": 66
     },
     {
       "id": "qt6-image-formats-plugins",
       "marker": "Qt 6 Image Formats Plugins",
-      "line": 70
+      "line": 68
     },
     {
       "id": "sdl2-image",
       "marker": "SDL2_image",
-      "line": 72
+      "line": 70
     },
     {
       "id": "libvips",
       "marker": "libvips",
-      "line": 74
+      "line": 72
     },
     {
       "id": "emacs",
       "marker": "GNU Emacs (GTK build)",
-      "line": 76
+      "line": 74
     },
     {
       "id": "shotwell",
       "marker": "Shotwell",
-      "line": 78
+      "line": 76
     },
     {
       "id": "libreoffice",
       "marker": "LibreOffice",
-      "line": 80
+      "line": 78
     },
     {
       "id": "webp-pixbuf-loader",
       "marker": "webp-pixbuf-loader",
-      "line": 82
+      "line": 80
     },
     {
       "id": "sail",
       "marker": "SAIL codecs",
-      "line": 84
+      "line": 82
     },
     {
       "id": "ffmpeg",
       "marker": "FFmpeg libavcodec",
-      "line": 86
+      "line": 84
     }
   ],
   "workloads": [

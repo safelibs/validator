@@ -336,9 +336,10 @@ elif exit_code == 0 and observed_ids == selected_full:
     status = "passed"
 elif not observed_ids:
     selected_for_summary = list(selected_full)
-    skipped = list(selected_full)
+    failed = selected_full[:1]
+    skipped = selected_full[1:]
     notes = normalize_notes(notes, config.get("pre_marker_notes"))
-    status = "passed"
+    status = "failed"
 else:
     if exit_code == 0:
       passed = list(observed_ids)
@@ -348,9 +349,10 @@ else:
       notes = normalize_notes(notes, config.get("missing_marker_notes"))
     else:
       passed = observed_ids[:-1]
-      skipped = selected_full[len(observed_ids) - 1 :]
+      failed = observed_ids[-1:]
+      skipped = selected_full[len(observed_ids) :]
       notes = normalize_notes(notes, config.get("post_marker_failure_notes"))
-    status = "passed"
+    status = "failed"
 
 status_by_workload = {item: "skipped" for item in selected_full}
 for item in passed:

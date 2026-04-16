@@ -3,7 +3,7 @@
   "library": "liblzma",
   "mode": "original",
   "report_format": "imported-log-marker",
-  "exit_code": 1,
+  "exit_code": 0,
   "failure_mode": "command",
   "selected_dependents": [
     "dpkg",
@@ -24,67 +24,122 @@
       "id": "dpkg",
       "marker": "dpkg",
       "line": 24
+    },
+    {
+      "id": "apt",
+      "marker": "apt",
+      "line": 38
+    },
+    {
+      "id": "python3.12",
+      "marker": "python3.12",
+      "line": 40
+    },
+    {
+      "id": "libxml2",
+      "marker": "libxml2",
+      "line": 42
+    },
+    {
+      "id": "libtiff6",
+      "marker": "libtiff6",
+      "line": 44
+    },
+    {
+      "id": "squashfs-tools",
+      "marker": "squashfs-tools",
+      "line": 46
+    },
+    {
+      "id": "kmod",
+      "marker": "kmod",
+      "line": 48
+    },
+    {
+      "id": "gdb",
+      "marker": "gdb",
+      "line": 50
+    },
+    {
+      "id": "libarchive13t64",
+      "marker": "libarchive13t64",
+      "line": 52
+    },
+    {
+      "id": "libarchive-tools",
+      "marker": "libarchive-tools",
+      "line": 54
+    },
+    {
+      "id": "mariadb-plugin-provider-lzma",
+      "marker": "mariadb-plugin-provider-lzma",
+      "line": 56
+    },
+    {
+      "id": "libboost-iostreams1.83.0",
+      "marker": "libboost-iostreams1.83.0",
+      "line": 58
     }
   ],
   "workloads": [
     {
       "id": "dpkg",
-      "status": "skipped",
+      "status": "passed",
       "marker": "dpkg"
     },
     {
       "id": "apt",
-      "status": "skipped",
+      "status": "passed",
       "marker": "apt"
     },
     {
       "id": "python3.12",
-      "status": "skipped",
+      "status": "passed",
       "marker": "python3.12"
     },
     {
       "id": "libxml2",
-      "status": "skipped",
+      "status": "passed",
       "marker": "libxml2"
     },
     {
       "id": "libtiff6",
-      "status": "skipped",
+      "status": "passed",
       "marker": "libtiff6"
     },
     {
       "id": "squashfs-tools",
-      "status": "skipped",
+      "status": "passed",
       "marker": "squashfs-tools"
     },
     {
       "id": "kmod",
-      "status": "skipped",
+      "status": "passed",
       "marker": "kmod"
     },
     {
       "id": "gdb",
-      "status": "skipped",
+      "status": "passed",
       "marker": "gdb"
     },
     {
       "id": "libarchive13t64",
-      "status": "skipped",
+      "status": "passed",
       "marker": "libarchive13t64"
     },
     {
       "id": "libarchive-tools",
-      "status": "skipped",
+      "status": "passed",
       "marker": "libarchive-tools"
     },
     {
       "id": "mariadb-plugin-provider-lzma",
-      "status": "skipped",
+      "status": "passed",
       "marker": "mariadb-plugin-provider-lzma"
     },
     {
       "id": "libboost-iostreams1.83.0",
-      "status": "skipped",
+      "status": "passed",
       "marker": "libboost-iostreams1.83.0"
     }
   ]

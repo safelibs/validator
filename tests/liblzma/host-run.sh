@@ -54,6 +54,75 @@ Path(sys.argv[2]).write_text(json.dumps(config, indent=2) + "\n", encoding="utf-
 PY
 }
 
+prepare_safe_artifact_metadata() {
+  local dist_dir="${HARNESS_ROOT}/safe/dist"
+  local runtime_deb
+  local version
+  local arch
+
+  if [[ "${MODE}" != "safe" ]]; then
+    return 0
+  fi
+
+  shopt -s nullglob
+  local runtime_matches=("${dist_dir}"/liblzma5_*.deb)
+  shopt -u nullglob
+  if [[ ${#runtime_matches[@]} -ne 1 ]]; then
+    printf 'expected exactly one liblzma5 package in %s\n' "${dist_dir}" >&2
+    return 1
+  fi
+
+  runtime_deb="${runtime_matches[0]}"
+  version="$(dpkg-deb -f "${runtime_deb}" Version)"
+  arch="$(dpkg-deb -f "${runtime_deb}" Architecture)"
+
+  # The imported builder treats buildinfo/changes files as freshness sentinels.
+  # The validator prebuilt leaf carries only the packages, so synthesize the
+  # sentinel names to keep the imported flow on the prebuilt path.
+  : >"${dist_dir}/liblzma-safe_${version}_${arch}.buildinfo"
+  : >"${dist_dir}/liblzma-safe_${version}_${arch}.changes"
+}
+
+patch_original_smoke_runner() {
+  python3 - "${HARNESS_ROOT}/safe/scripts/run-dependent-smokes.sh" <<'PY'
+import re
+import sys
+from pathlib import Path
+
+path = Path(sys.argv[1])
+text = path.read_text(encoding="utf-8")
+replacement = r'''build_original_liblzma() {
+  CURRENT_STEP="select original liblzma packages"
+  log_step "Using installed original liblzma packages"
+
+  rm -rf "$TEST_ROOT"
+  mkdir -p "$TEST_ROOT"
+
+  unset LD_LIBRARY_PATH
+  unset PKG_CONFIG_PATH
+  ldconfig
+
+  ACTIVE_LIBLZMA="$(readlink -f "/usr/lib/${MULTIARCH}/liblzma.so.5")"
+  ACTIVE_INCLUDE_ROOT="/usr/include"
+  [[ -n "$ACTIVE_LIBLZMA" && -f "$ACTIVE_LIBLZMA" ]] || die "failed to locate packaged liblzma shared library"
+  assert_exists "$ACTIVE_INCLUDE_ROOT/lzma.h"
+  export_probe_environment
+  cd /
+}
+'''
+updated, count = re.subn(
+    r'build_original_liblzma\(\) \{\n.*?\n\}',
+    replacement,
+    text,
+    count=1,
+    flags=re.S,
+)
+if count != 1:
+    raise SystemExit(f"failed to patch build_original_liblzma in {path}")
+path.write_text(updated, encoding="utf-8")
+PY
+}
+
 finalize_summary() {
   local exit_code=$1
   local failure_mode=$2
@@ -119,9 +188,10 @@ elif exit_code == 0 and observed_ids == selected_full:
     status = "passed"
 elif not observed_ids:
     selected_for_summary = list(selected_full)
-    skipped = list(selected_full)
+    failed = selected_full[:1]
+    skipped = selected_full[1:]
     notes = normalize_notes(notes, config.get("pre_marker_notes"))
-    status = "passed"
+    status = "failed"
 elif exit_code == 0:
     passed = list(observed_ids)
     if len(observed_ids) < len(selected_full):
@@ -131,9 +201,10 @@ elif exit_code == 0:
     status = "failed"
 else:
     passed = observed_ids[:-1]
-    skipped = selected_full[len(observed_ids) - 1 :]
+    failed = observed_ids[-1:]
+    skipped = selected_full[len(observed_ids) :]
     notes = normalize_notes(notes, config.get("post_marker_failure_notes"))
-    status = "passed"
+    status = "failed"
 
 status_by_workload = {item: "skipped" for item in selected_full}
 for item in passed:
@@ -203,6 +274,20 @@ PY
   local failure_mode="command"
   local status=0
   local safe_dir="${HARNESS_ROOT}/safe/dist"
+
+  if ! prepare_safe_artifact_metadata; then
+    status=$?
+    failure_mode="setup"
+    finalize_summary "${status}" "${failure_mode}"
+    return "${status}"
+  fi
+  if ! patch_original_smoke_runner; then
+    status=$?
+    failure_mode="setup"
+    finalize_summary "${status}" "${failure_mode}"
+    return "${status}"
+  fi
+
   if run_captured ./test-original.sh --implementation "${MODE}" --safe-package-dir "${safe_dir}"; then
     status=0
   else

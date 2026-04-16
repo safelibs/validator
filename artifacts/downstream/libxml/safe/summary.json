@@ -28,18 +28,16 @@
     "mariadb-plugin-connect",
     "cyrus-caldav",
     "yelp",
-    "libobt2v5"
-  ],
-  "failed_dependents": [],
-  "warned_dependents": [],
-  "skipped_dependents": [
+    "libobt2v5",
     "kdoctools5",
     "yelp-tools",
     "llvm-toolchain-18"
   ],
+  "failed_dependents": [],
+  "warned_dependents": [],
+  "skipped_dependents": [],
   "artifacts": {
     "console_log": "downstream/libxml/safe/raw/console.log",
     "results_json": "downstream/libxml/safe/raw/results.json"
-  },
-  "notes": "The imported libxml harness stopped after starting a dependent workload."
+  }
 }

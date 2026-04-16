@@ -31,5 +31,30 @@
 #8 DONE 0.0s
 liblzma-dependent-test:ubuntu24.04-original
 
-==> Building and installing original liblzma
-failed during: build original liblzma
+==> Using installed original liblzma packages
+
+==> dpkg
+
+==> apt
+
+==> python3.12
+
+==> libxml2
+
+==> libtiff6
+
+==> squashfs-tools
+
+==> kmod
+
+==> gdb
+
+==> libarchive13t64
+
+==> libarchive-tools
+
+==> mariadb-plugin-provider-lzma
+
+==> libboost-iostreams1.83.0
+
+==> All requested liblzma dependent smoke tests passed

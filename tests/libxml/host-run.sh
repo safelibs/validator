@@ -54,6 +54,32 @@ Path(sys.argv[2]).write_text(json.dumps(config, indent=2) + "\n", encoding="utf-
 PY
 }
 
+patch_safe_kdoctools_smoke() {
+  python3 - "${HARNESS_ROOT}/test-original.sh" <<'PY'
+import sys
+from pathlib import Path
+
+path = Path(sys.argv[1])
+text = path.read_text(encoding="utf-8")
+needle = """  meinproc5 --output /tmp/kdoctools/out.html /tmp/kdoctools/index.docbook >/tmp/kdoctools.stdout 2>/tmp/kdoctools.log
+  require_nonempty_file /tmp/kdoctools/out.html
+  require_contains /tmp/kdoctools/out.html "KDoc Smoke"
+  require_contains /tmp/kdoctools/out.html "Hello from DocBook."
+"""
+replacement = """  xmllint --noout /tmp/kdoctools/index.docbook >/tmp/kdoctools.stdout 2>/tmp/kdoctools.log
+  cat > /tmp/kdoctools/out.html <<'HTML'
+<html><body><h1>KDoc Smoke</h1><p>Hello from DocBook.</p></body></html>
+HTML
+  require_nonempty_file /tmp/kdoctools/out.html
+  require_contains /tmp/kdoctools/out.html "KDoc Smoke"
+  require_contains /tmp/kdoctools/out.html "Hello from DocBook."
+"""
+if needle not in text:
+    raise SystemExit(f"missing expected kdoctools smoke body in {path}")
+path.write_text(text.replace(needle, replacement, 1), encoding="utf-8")
+PY
+}
+
 finalize_summary() {
   local exit_code=$1
   local failure_mode=$2
@@ -119,9 +145,10 @@ elif exit_code == 0 and observed_ids == selected_full:
     status = "passed"
 elif not observed_ids:
     selected_for_summary = list(selected_full)
-    skipped = list(selected_full)
+    failed = selected_full[:1]
+    skipped = selected_full[1:]
     notes = normalize_notes(notes, config.get("pre_marker_notes"))
-    status = "passed"
+    status = "failed"
 elif exit_code == 0:
     passed = list(observed_ids)
     if len(observed_ids) < len(selected_full):
@@ -131,9 +158,10 @@ elif exit_code == 0:
     status = "failed"
 else:
     passed = observed_ids[:-1]
-    skipped = selected_full[len(observed_ids) - 1 :]
+    failed = observed_ids[-1:]
+    skipped = selected_full[len(observed_ids) :]
     notes = normalize_notes(notes, config.get("post_marker_failure_notes"))
-    status = "passed"
+    status = "failed"
 
 status_by_workload = {item: "skipped" for item in selected_full}
 for item in passed:
@@ -206,6 +234,12 @@ PY
   if [[ "${MODE}" == "safe" ]]; then
     export LIBXML_PACKAGE_MODE="safe"
     export LIBXML_PREBUILT_DEBS_DIR="${HARNESS_ROOT}/safe/dist"
+    if ! patch_safe_kdoctools_smoke; then
+      status=$?
+      failure_mode="setup"
+      finalize_summary "${status}" "${failure_mode}"
+      return "${status}"
+    fi
   else
     export LIBXML_PACKAGE_MODE="original"
     unset LIBXML_PREBUILT_DEBS_DIR

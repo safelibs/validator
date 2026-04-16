@@ -16,7 +16,7 @@
 
 #5 [internal] load build context
 #5 transferring context: 67.67MB 0.4s done
-#5 DONE 0.5s
+#5 DONE 0.4s
 
 #6 [2/4] RUN sed 's/^Types: deb$/Types: deb-src/' /etc/apt/sources.list.d/ubuntu.sources       > /etc/apt/sources.list.d/ubuntu-src.sources  && apt-get update  && apt-get install -y --no-install-recommends       build-essential       ca-certificates       cmake       curl       cyrus-admin       cyrus-caldav       cyrus-imapd       dbus-x11       dpkg-dev       kdoctools5       liblzma-dev       libvirt-clients       libvirt-daemon       libxml2-dev       mariadb-client       mariadb-plugin-connect       mariadb-server       netcat-openbsd       ninja-build       openbox       php8.3-cli       php8.3-xml       postgresql-16       procps       python3       python3-lxml       pkg-config       sasl2-bin       xclip       xdotool       xauth       xmlstarlet       xvfb       yelp       yelp-tools       zlib1g-dev  && rm -rf /var/lib/apt/lists/*
 #6 CACHED
@@ -37,38 +37,38 @@
 Get:1 http://archive.ubuntu.com/ubuntu noble InRelease [256 kB]
 Get:2 http://security.ubuntu.com/ubuntu noble-security InRelease [126 kB]
 Get:3 http://archive.ubuntu.com/ubuntu noble-updates InRelease [126 kB]
-Get:4 http://security.ubuntu.com/ubuntu noble-security/multiverse Sources [24.1 kB]
-Get:5 http://archive.ubuntu.com/ubuntu noble-backports InRelease [126 kB]
-Get:6 http://security.ubuntu.com/ubuntu noble-security/restricted Sources [91.0 kB]
-Get:7 http://security.ubuntu.com/ubuntu noble-security/main Sources [318 kB]
-Get:8 http://archive.ubuntu.com/ubuntu noble/main Sources [1713 kB]
+Get:4 http://archive.ubuntu.com/ubuntu noble-backports InRelease [126 kB]
+Get:5 http://archive.ubuntu.com/ubuntu noble/restricted Sources [21.8 kB]
+Get:6 http://archive.ubuntu.com/ubuntu noble/universe Sources [24.3 MB]
+Get:7 http://security.ubuntu.com/ubuntu noble-security/multiverse Sources [24.1 kB]
+Get:8 http://security.ubuntu.com/ubuntu noble-security/main Sources [318 kB]
 Get:9 http://security.ubuntu.com/ubuntu noble-security/universe Sources [459 kB]
-Get:10 http://archive.ubuntu.com/ubuntu noble/multiverse Sources [355 kB]
-Get:11 http://security.ubuntu.com/ubuntu noble-security/restricted amd64 Packages [3566 kB]
-Get:12 http://archive.ubuntu.com/ubuntu noble/restricted Sources [21.8 kB]
-Get:13 http://archive.ubuntu.com/ubuntu noble/universe Sources [24.3 MB]
-Get:14 http://security.ubuntu.com/ubuntu noble-security/multiverse amd64 Packages [34.8 kB]
-Get:15 http://security.ubuntu.com/ubuntu noble-security/universe amd64 Packages [1507 kB]
-Get:16 http://security.ubuntu.com/ubuntu noble-security/main amd64 Packages [2019 kB]
-Get:17 http://archive.ubuntu.com/ubuntu noble/universe amd64 Packages [19.3 MB]
-Get:18 http://archive.ubuntu.com/ubuntu noble/restricted amd64 Packages [117 kB]
-Get:19 http://archive.ubuntu.com/ubuntu noble/main amd64 Packages [1808 kB]
-Get:20 http://archive.ubuntu.com/ubuntu noble/multiverse amd64 Packages [331 kB]
-Get:21 http://archive.ubuntu.com/ubuntu noble-updates/universe Sources [694 kB]
-Get:22 http://archive.ubuntu.com/ubuntu noble-updates/restricted Sources [98.1 kB]
-Get:23 http://archive.ubuntu.com/ubuntu noble-updates/multiverse Sources [32.6 kB]
-Get:24 http://archive.ubuntu.com/ubuntu noble-updates/main Sources [665 kB]
-Get:25 http://archive.ubuntu.com/ubuntu noble-updates/restricted amd64 Packages [3752 kB]
-Get:26 http://archive.ubuntu.com/ubuntu noble-updates/main amd64 Packages [2402 kB]
-Get:27 http://archive.ubuntu.com/ubuntu noble-updates/multiverse amd64 Packages [38.5 kB]
-Get:28 http://archive.ubuntu.com/ubuntu noble-updates/universe amd64 Packages [2156 kB]
+Get:10 http://security.ubuntu.com/ubuntu noble-security/restricted Sources [91.0 kB]
+Get:11 http://security.ubuntu.com/ubuntu noble-security/main amd64 Packages [2019 kB]
+Get:12 http://archive.ubuntu.com/ubuntu noble/multiverse Sources [355 kB]
+Get:13 http://archive.ubuntu.com/ubuntu noble/main Sources [1713 kB]
+Get:14 http://archive.ubuntu.com/ubuntu noble/restricted amd64 Packages [117 kB]
+Get:15 http://archive.ubuntu.com/ubuntu noble/universe amd64 Packages [19.3 MB]
+Get:16 http://archive.ubuntu.com/ubuntu noble/multiverse amd64 Packages [331 kB]
+Get:17 http://archive.ubuntu.com/ubuntu noble/main amd64 Packages [1808 kB]
+Get:18 http://archive.ubuntu.com/ubuntu noble-updates/restricted Sources [98.1 kB]
+Get:19 http://archive.ubuntu.com/ubuntu noble-updates/multiverse Sources [32.6 kB]
+Get:20 http://archive.ubuntu.com/ubuntu noble-updates/universe Sources [694 kB]
+Get:21 http://archive.ubuntu.com/ubuntu noble-updates/main Sources [665 kB]
+Get:22 http://archive.ubuntu.com/ubuntu noble-updates/universe amd64 Packages [2156 kB]
+Get:23 http://archive.ubuntu.com/ubuntu noble-updates/restricted amd64 Packages [3752 kB]
+Get:24 http://security.ubuntu.com/ubuntu noble-security/universe amd64 Packages [1507 kB]
+Get:25 http://archive.ubuntu.com/ubuntu noble-updates/main amd64 Packages [2402 kB]
+Get:26 http://archive.ubuntu.com/ubuntu noble-updates/multiverse amd64 Packages [38.5 kB]
+Get:27 http://archive.ubuntu.com/ubuntu noble-backports/multiverse Sources [956 B]
+Get:28 http://archive.ubuntu.com/ubuntu noble-backports/universe Sources [16.9 kB]
 Get:29 http://archive.ubuntu.com/ubuntu noble-backports/main Sources [6767 B]
-Get:30 http://archive.ubuntu.com/ubuntu noble-backports/multiverse Sources [956 B]
-Get:31 http://archive.ubuntu.com/ubuntu noble-backports/universe Sources [16.9 kB]
+Get:30 http://archive.ubuntu.com/ubuntu noble-backports/main amd64 Packages [49.5 kB]
+Get:31 http://archive.ubuntu.com/ubuntu noble-backports/universe amd64 Packages [36.1 kB]
 Get:32 http://archive.ubuntu.com/ubuntu noble-backports/multiverse amd64 Packages [695 B]
-Get:33 http://archive.ubuntu.com/ubuntu noble-backports/universe amd64 Packages [36.1 kB]
-Get:34 http://archive.ubuntu.com/ubuntu noble-backports/main amd64 Packages [49.5 kB]
-Fetched 66.5 MB in 4s (16.5 MB/s)
+Get:33 http://security.ubuntu.com/ubuntu noble-security/restricted amd64 Packages [3566 kB]
+Get:34 http://security.ubuntu.com/ubuntu noble-security/multiverse amd64 Packages [34.8 kB]
+Fetched 66.5 MB in 3s (22.0 MB/s)
 Reading package lists...
 Reading package lists...
 Building dependency tree...
@@ -160,4 +160,9 @@ Setting up python3-libxml2:amd64 (2.9.14+dfsg-1.3ubuntu3.7+safelibs1) ...
 ==> libobt2v5
 
 ==> kdoctools5
-main: line 518:   914 Segmentation fault      (core dumped) meinproc5 --output /tmp/kdoctools/out.html /tmp/kdoctools/index.docbook > /tmp/kdoctools.stdout 2> /tmp/kdoctools.log
+
+==> yelp-tools
+
+==> llvm-toolchain-18
+
+==> All dependent checks passed

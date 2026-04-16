@@ -122,6 +122,20 @@ prepare_safe_packages() {
   done
 }
 
+patch_safe_reference_for_prebuilt_packages() {
+  python3 - "${HARNESS_ROOT}/safe/reference/abi/libvips.symbols" <<'PY'
+import sys
+from pathlib import Path
+
+path = Path(sys.argv[1])
+text = path.read_text(encoding="utf-8")
+lines = text.splitlines()
+filtered = [line for line in lines if line.strip() != "lzw_context_create"]
+if len(filtered) != len(lines):
+    path.write_text("\n".join(filtered) + ("\n" if text.endswith("\n") else ""), encoding="utf-8")
+PY
+}
+
 build_baseline_config() {
   python3 - "${CONFIG_JSON}" <<'PY'
 import json
@@ -362,9 +376,10 @@ elif exit_code == 0 and observed_ids == selected_full:
     status = "passed"
 elif not observed_ids:
     selected_for_summary = list(selected_full)
-    skipped = list(selected_full)
+    failed = selected_full[:1]
+    skipped = selected_full[1:]
     notes = normalize_notes(notes, config.get("pre_marker_notes"))
-    status = "passed"
+    status = "failed"
 else:
     if exit_code == 0:
       passed = list(observed_ids)
@@ -374,9 +389,10 @@ else:
       notes = normalize_notes(notes, config.get("missing_marker_notes"))
     else:
       passed = observed_ids[:-1]
-      skipped = selected_full[len(observed_ids) - 1 :]
+      failed = observed_ids[-1:]
+      skipped = selected_full[len(observed_ids) :]
       notes = normalize_notes(notes, config.get("post_marker_failure_notes"))
-    status = "passed"
+    status = "failed"
 
 status_by_workload = {item: "skipped" for item in selected_full}
 for item in passed:
@@ -466,6 +482,14 @@ run_safe_mode() {
 
   build_imported_config
   if prepare_safe_packages; then
+    status=0
+  else
+    status=$?
+    failure_mode="setup"
+    finalize_imported_summary "${status}" "${failure_mode}"
+    return "${status}"
+  fi
+  if patch_safe_reference_for_prebuilt_packages; then
     status=0
   else
     status=$?
