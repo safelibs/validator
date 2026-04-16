@@ -1,0 +1,56 @@
+#0 building with "default" instance using docker driver
+
+#1 [internal] load build definition from Dockerfile
+#1 transferring dockerfile: 859B done
+#1 DONE 0.0s
+
+#2 [internal] load metadata for docker.io/library/ubuntu:24.04
+#2 DONE 0.0s
+
+#3 [internal] load .dockerignore
+#3 transferring context: 2B done
+#3 DONE 0.0s
+
+#4 [1/2] FROM docker.io/library/ubuntu:24.04
+#4 DONE 0.0s
+
+#5 [2/2] RUN apt-get update  && apt-get install -y --no-install-recommends       build-essential       ca-certificates       cmake       file       gdal-bin       ghostscript       gimp       graphicsmagick       imagemagick       libgdk-pixbuf-2.0-0       libgdk-pixbuf2.0-bin       libjbig-dev       libjpeg-dev       liblzma-dev       libopencv-dev       libtiff-dev       libtiff-tools       libwebp-dev       libzstd-dev       netpbm       ninja-build       pkg-config       poppler-utils       python3       python3-pil       qt6-base-dev       qt6-image-formats-plugins       sane-airscan       sane-utils       tesseract-ocr       tesseract-ocr-eng       zlib1g-dev  && rm -rf /var/lib/apt/lists/*
+#5 CACHED
+
+#6 exporting to image
+#6 exporting layers done
+#6 writing image sha256:807a56a94f4d49b040bd14cbba5b68645dba6cf47b0aa937930056de20683f3b done
+#6 naming to docker.io/library/libtiff-original-test:ubuntu24.04 done
+#6 DONE 0.0s
+
+==> Installing safe libtiff packages
+
+==> Preparing fixtures
+
+==> gimp
+
+==> imagemagick
+
+==> graphicsmagick
+
+==> gdal-bin
+
+==> poppler-utils
+
+==> qt6-image-formats-plugins
+
+==> python3-pil
+
+==> netpbm
+
+==> tesseract-ocr
+
+==> ghostscript
+
+==> libgdk-pixbuf-2.0-0
+
+==> libopencv-imgcodecs406t64
+
+==> sane-airscan
+
+==> All downstream smoke tests passed

@@ -1,0 +1,34 @@
+{
+  "summary_version": 1,
+  "library": "libvips",
+  "mode": "original",
+  "status": "passed",
+  "report_format": "validator-wrapper-baseline",
+  "expected_dependents": 7,
+  "selected_dependents": [
+    "compile:test_connections",
+    "compile:test_descriptors",
+    "compile:test_timeout_webpsave",
+    "compile:use-vips-func",
+    "run-shell-suite",
+    "run-pytest-suite",
+    "run-dependent-suite"
+  ],
+  "passed_dependents": [
+    "compile:test_connections",
+    "compile:test_descriptors",
+    "compile:test_timeout_webpsave",
+    "compile:use-vips-func",
+    "run-shell-suite",
+    "run-pytest-suite",
+    "run-dependent-suite"
+  ],
+  "failed_dependents": [],
+  "warned_dependents": [],
+  "skipped_dependents": [],
+  "artifacts": {
+    "console_log": "downstream/libvips/original/raw/console.log",
+    "results_json": "downstream/libvips/original/raw/results.json"
+  },
+  "notes": "This original-mode summary mirrors the installed-package baseline from tests/libvips/tests/run.sh rather than the 12-application safe matrix."
+}

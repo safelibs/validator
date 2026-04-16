@@ -1,0 +1,311 @@
+{
+  "schema_version": 1,
+  "library": "libwebp",
+  "mode": "original",
+  "report_format": "imported-log-marker",
+  "exit_code": 0,
+  "failure_mode": "command",
+  "selected_dependents": [
+    "tool:cwebp",
+    "tool:dwebp",
+    "tool:gif2webp",
+    "tool:img2webp",
+    "tool:webpinfo",
+    "tool:webpmux",
+    "tool:anim_dump",
+    "tool:anim_diff",
+    "tool:vwebp",
+    "pkg-config-libwebp",
+    "pkg-config-libsharpyuv",
+    "pkg-config-libwebpdecoder",
+    "pkg-config-libwebpdemux",
+    "pkg-config-libwebpmux",
+    "cmake-webp",
+    "gimp",
+    "pillow",
+    "webkitgtk",
+    "qt6-image-formats-plugins",
+    "sdl2-image",
+    "libvips",
+    "emacs",
+    "shotwell",
+    "libreoffice",
+    "webp-pixbuf-loader",
+    "sail",
+    "ffmpeg"
+  ],
+  "observed_markers": [
+    {
+      "id": "tool:cwebp",
+      "marker": "Tool smoke: cwebp",
+      "line": 33
+    },
+    {
+      "id": "tool:dwebp",
+      "marker": "Tool smoke: dwebp",
+      "line": 35
+    },
+    {
+      "id": "tool:gif2webp",
+      "marker": "Tool smoke: gif2webp",
+      "line": 37
+    },
+    {
+      "id": "tool:img2webp",
+      "marker": "Tool smoke: img2webp",
+      "line": 39
+    },
+    {
+      "id": "tool:webpinfo",
+      "marker": "Tool smoke: webpinfo",
+      "line": 41
+    },
+    {
+      "id": "tool:webpmux",
+      "marker": "Tool smoke: webpmux",
+      "line": 43
+    },
+    {
+      "id": "tool:anim_dump",
+      "marker": "Tool smoke: anim_dump",
+      "line": 45
+    },
+    {
+      "id": "tool:anim_diff",
+      "marker": "Tool smoke: anim_diff",
+      "line": 47
+    },
+    {
+      "id": "tool:vwebp",
+      "marker": "Tool smoke: vwebp",
+      "line": 49
+    },
+    {
+      "id": "pkg-config-libwebp",
+      "marker": "Installed surface: pkg-config-libwebp",
+      "line": 51
+    },
+    {
+      "id": "pkg-config-libsharpyuv",
+      "marker": "Installed surface: pkg-config-libsharpyuv",
+      "line": 53
+    },
+    {
+      "id": "pkg-config-libwebpdecoder",
+      "marker": "Installed surface: pkg-config-libwebpdecoder",
+      "line": 55
+    },
+    {
+      "id": "pkg-config-libwebpdemux",
+      "marker": "Installed surface: pkg-config-libwebpdemux",
+      "line": 57
+    },
+    {
+      "id": "pkg-config-libwebpmux",
+      "marker": "Installed surface: pkg-config-libwebpmux",
+      "line": 59
+    },
+    {
+      "id": "cmake-webp",
+      "marker": "Installed surface: cmake-webp",
+      "line": 61
+    },
+    {
+      "id": "gimp",
+      "marker": "GIMP",
+      "line": 63
+    },
+    {
+      "id": "pillow",
+      "marker": "Pillow",
+      "line": 65
+    },
+    {
+      "id": "webkitgtk",
+      "marker": "WebKitGTK",
+      "line": 68
+    },
+    {
+      "id": "qt6-image-formats-plugins",
+      "marker": "Qt 6 Image Formats Plugins",
+      "line": 70
+    },
+    {
+      "id": "sdl2-image",
+      "marker": "SDL2_image",
+      "line": 72
+    },
+    {
+      "id": "libvips",
+      "marker": "libvips",
+      "line": 74
+    },
+    {
+      "id": "emacs",
+      "marker": "GNU Emacs (GTK build)",
+      "line": 76
+    },
+    {
+      "id": "shotwell",
+      "marker": "Shotwell",
+      "line": 78
+    },
+    {
+      "id": "libreoffice",
+      "marker": "LibreOffice",
+      "line": 80
+    },
+    {
+      "id": "webp-pixbuf-loader",
+      "marker": "webp-pixbuf-loader",
+      "line": 82
+    },
+    {
+      "id": "sail",
+      "marker": "SAIL codecs",
+      "line": 84
+    },
+    {
+      "id": "ffmpeg",
+      "marker": "FFmpeg libavcodec",
+      "line": 86
+    }
+  ],
+  "workloads": [
+    {
+      "id": "tool:cwebp",
+      "status": "passed",
+      "marker": "Tool smoke: cwebp"
+    },
+    {
+      "id": "tool:dwebp",
+      "status": "passed",
+      "marker": "Tool smoke: dwebp"
+    },
+    {
+      "id": "tool:gif2webp",
+      "status": "passed",
+      "marker": "Tool smoke: gif2webp"
+    },
+    {
+      "id": "tool:img2webp",
+      "status": "passed",
+      "marker": "Tool smoke: img2webp"
+    },
+    {
+      "id": "tool:webpinfo",
+      "status": "passed",
+      "marker": "Tool smoke: webpinfo"
+    },
+    {
+      "id": "tool:webpmux",
+      "status": "passed",
+      "marker": "Tool smoke: webpmux"
+    },
+    {
+      "id": "tool:anim_dump",
+      "status": "passed",
+      "marker": "Tool smoke: anim_dump"
+    },
+    {
+      "id": "tool:anim_diff",
+      "status": "passed",
+      "marker": "Tool smoke: anim_diff"
+    },
+    {
+      "id": "tool:vwebp",
+      "status": "passed",
+      "marker": "Tool smoke: vwebp"
+    },
+    {
+      "id": "pkg-config-libwebp",
+      "status": "passed",
+      "marker": "Installed surface: pkg-config-libwebp"
+    },
+    {
+      "id": "pkg-config-libsharpyuv",
+      "status": "passed",
+      "marker": "Installed surface: pkg-config-libsharpyuv"
+    },
+    {
+      "id": "pkg-config-libwebpdecoder",
+      "status": "passed",
+      "marker": "Installed surface: pkg-config-libwebpdecoder"
+    },
+    {
+      "id": "pkg-config-libwebpdemux",
+      "status": "passed",
+      "marker": "Installed surface: pkg-config-libwebpdemux"
+    },
+    {
+      "id": "pkg-config-libwebpmux",
+      "status": "passed",
+      "marker": "Installed surface: pkg-config-libwebpmux"
+    },
+    {
+      "id": "cmake-webp",
+      "status": "passed",
+      "marker": "Installed surface: cmake-webp"
+    },
+    {
+      "id": "gimp",
+      "status": "passed",
+      "marker": "GIMP"
+    },
+    {
+      "id": "pillow",
+      "status": "passed",
+      "marker": "Pillow"
+    },
+    {
+      "id": "webkitgtk",
+      "status": "passed",
+      "marker": "WebKitGTK"
+    },
+    {
+      "id": "qt6-image-formats-plugins",
+      "status": "passed",
+      "marker": "Qt 6 Image Formats Plugins"
+    },
+    {
+      "id": "sdl2-image",
+      "status": "passed",
+      "marker": "SDL2_image"
+    },
+    {
+      "id": "libvips",
+      "status": "passed",
+      "marker": "libvips"
+    },
+    {
+      "id": "emacs",
+      "status": "passed",
+      "marker": "GNU Emacs (GTK build)"
+    },
+    {
+      "id": "shotwell",
+      "status": "passed",
+      "marker": "Shotwell"
+    },
+    {
+      "id": "libreoffice",
+      "status": "passed",
+      "marker": "LibreOffice"
+    },
+    {
+      "id": "webp-pixbuf-loader",
+      "status": "passed",
+      "marker": "webp-pixbuf-loader"
+    },
+    {
+      "id": "sail",
+      "status": "passed",
+      "marker": "SAIL codecs"
+    },
+    {
+      "id": "ffmpeg",
+      "status": "passed",
+      "marker": "FFmpeg libavcodec"
+    }
+  ]
+}

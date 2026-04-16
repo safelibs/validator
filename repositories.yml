@@ -261,7 +261,7 @@ repositories:
     - '*.deb'
   validator:
     sibling_repo: port-liblzma
-    execution_strategy: container-image
+    execution_strategy: host-harness
     imports:
     - safe/docker
     - safe/scripts
@@ -289,7 +289,7 @@ repositories:
     - '*.deb'
   validator:
     sibling_repo: port-libpng
-    execution_strategy: container-image
+    execution_strategy: host-harness
     imports:
     - safe/tests
     - original
@@ -363,7 +363,7 @@ repositories:
     - '*.deb'
   validator:
     sibling_repo: port-libtiff
-    execution_strategy: container-image
+    execution_strategy: host-harness
     imports:
     - safe/test
     - safe/scripts
@@ -383,7 +383,7 @@ repositories:
     - '*.deb'
   validator:
     sibling_repo: port-libuv
-    execution_strategy: container-image
+    execution_strategy: host-harness
     imports:
     - safe/docker
     - safe/include
@@ -424,7 +424,7 @@ repositories:
     - '*.deb'
   validator:
     sibling_repo: port-libvips
-    execution_strategy: container-image
+    execution_strategy: host-harness
     imports:
     - safe/debian/changelog
     - safe/reference
@@ -451,7 +451,7 @@ repositories:
     - '*.deb'
   validator:
     sibling_repo: port-libwebp
-    execution_strategy: container-image
+    execution_strategy: host-harness
     imports:
     - safe/tests
     - original
@@ -470,7 +470,7 @@ repositories:
     - '*.deb'
   validator:
     sibling_repo: port-libxml
-    execution_strategy: container-image
+    execution_strategy: host-harness
     imports:
     - safe/tests
     - safe/debian/tests
@@ -536,7 +536,7 @@ repositories:
     - '*.deb'
   validator:
     sibling_repo: port-libzstd
-    execution_strategy: container-image
+    execution_strategy: host-harness
     imports:
     - safe
     - original/libzstd-1.5.5+dfsg2

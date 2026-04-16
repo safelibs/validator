@@ -1,0 +1,91 @@
+{
+  "schema_version": 1,
+  "library": "liblzma",
+  "mode": "original",
+  "report_format": "imported-log-marker",
+  "exit_code": 1,
+  "failure_mode": "command",
+  "selected_dependents": [
+    "dpkg",
+    "apt",
+    "python3.12",
+    "libxml2",
+    "libtiff6",
+    "squashfs-tools",
+    "kmod",
+    "gdb",
+    "libarchive13t64",
+    "libarchive-tools",
+    "mariadb-plugin-provider-lzma",
+    "libboost-iostreams1.83.0"
+  ],
+  "observed_markers": [
+    {
+      "id": "dpkg",
+      "marker": "dpkg",
+      "line": 24
+    }
+  ],
+  "workloads": [
+    {
+      "id": "dpkg",
+      "status": "skipped",
+      "marker": "dpkg"
+    },
+    {
+      "id": "apt",
+      "status": "skipped",
+      "marker": "apt"
+    },
+    {
+      "id": "python3.12",
+      "status": "skipped",
+      "marker": "python3.12"
+    },
+    {
+      "id": "libxml2",
+      "status": "skipped",
+      "marker": "libxml2"
+    },
+    {
+      "id": "libtiff6",
+      "status": "skipped",
+      "marker": "libtiff6"
+    },
+    {
+      "id": "squashfs-tools",
+      "status": "skipped",
+      "marker": "squashfs-tools"
+    },
+    {
+      "id": "kmod",
+      "status": "skipped",
+      "marker": "kmod"
+    },
+    {
+      "id": "gdb",
+      "status": "skipped",
+      "marker": "gdb"
+    },
+    {
+      "id": "libarchive13t64",
+      "status": "skipped",
+      "marker": "libarchive13t64"
+    },
+    {
+      "id": "libarchive-tools",
+      "status": "skipped",
+      "marker": "libarchive-tools"
+    },
+    {
+      "id": "mariadb-plugin-provider-lzma",
+      "status": "skipped",
+      "marker": "mariadb-plugin-provider-lzma"
+    },
+    {
+      "id": "libboost-iostreams1.83.0",
+      "status": "skipped",
+      "marker": "libboost-iostreams1.83.0"
+    }
+  ]
+}

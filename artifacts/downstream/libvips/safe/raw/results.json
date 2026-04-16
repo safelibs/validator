@@ -1,0 +1,85 @@
+{
+  "schema_version": 1,
+  "library": "libvips",
+  "mode": "safe",
+  "report_format": "imported-log-marker",
+  "exit_code": 1,
+  "failure_mode": "command",
+  "selected_dependents": [
+    "nip2",
+    "photoqt",
+    "ruby-vips",
+    "pyvips",
+    "php-vips",
+    "govips",
+    "lua-vips",
+    "sharp",
+    "bimg",
+    "imgproxy",
+    "carrierwave-vips",
+    "sharp-for-go"
+  ],
+  "observed_markers": [],
+  "workloads": [
+    {
+      "id": "nip2",
+      "status": "skipped",
+      "marker": "Building and testing nip2"
+    },
+    {
+      "id": "photoqt",
+      "status": "skipped",
+      "marker": "Building and testing photoqt"
+    },
+    {
+      "id": "ruby-vips",
+      "status": "skipped",
+      "marker": "Building and testing ruby-vips"
+    },
+    {
+      "id": "pyvips",
+      "status": "skipped",
+      "marker": "Testing pyvips from the vendored workspace snapshot"
+    },
+    {
+      "id": "php-vips",
+      "status": "skipped",
+      "marker": "Testing php-vips"
+    },
+    {
+      "id": "govips",
+      "status": "skipped",
+      "marker": "Testing govips"
+    },
+    {
+      "id": "lua-vips",
+      "status": "skipped",
+      "marker": "Testing lua-vips"
+    },
+    {
+      "id": "sharp",
+      "status": "skipped",
+      "marker": "Testing sharp"
+    },
+    {
+      "id": "bimg",
+      "status": "skipped",
+      "marker": "Testing bimg"
+    },
+    {
+      "id": "imgproxy",
+      "status": "skipped",
+      "marker": "Testing imgproxy"
+    },
+    {
+      "id": "carrierwave-vips",
+      "status": "skipped",
+      "marker": "Testing carrierwave-vips"
+    },
+    {
+      "id": "sharp-for-go",
+      "status": "skipped",
+      "marker": "Testing sharp-for-go"
+    }
+  ]
+}

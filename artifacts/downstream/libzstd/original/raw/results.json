@@ -1,0 +1,137 @@
+{
+  "schema_version": 1,
+  "library": "libzstd",
+  "mode": "original",
+  "report_format": "validator-wrapper-baseline",
+  "exit_code": 0,
+  "failure_mode": "command",
+  "selected_dependents": [
+    "validate-dependent-matrix",
+    "frame_probe",
+    "legacy_decode",
+    "invalid_dictionaries_driver",
+    "bigdict_driver",
+    "paramgrill_driver",
+    "external_matchfinder_driver",
+    "dict_builder_driver",
+    "simple_compression",
+    "simple_decompression",
+    "run_zstreamtest",
+    "run_pooltests",
+    "offline_regression",
+    "dependent-compile:apt",
+    "dependent-compile:dpkg",
+    "dependent-compile:rsync",
+    "dependent-compile:systemd",
+    "dependent-compile:libarchive",
+    "dependent-compile:btrfs-progs",
+    "dependent-compile:squashfs-tools",
+    "dependent-compile:qemu",
+    "dependent-compile:curl",
+    "dependent-compile:tiff",
+    "dependent-compile:rpm",
+    "dependent-compile:zarchive"
+  ],
+  "workloads": [
+    {
+      "id": "validate-dependent-matrix",
+      "status": "passed"
+    },
+    {
+      "id": "frame_probe",
+      "status": "passed"
+    },
+    {
+      "id": "legacy_decode",
+      "status": "passed"
+    },
+    {
+      "id": "invalid_dictionaries_driver",
+      "status": "passed"
+    },
+    {
+      "id": "bigdict_driver",
+      "status": "passed"
+    },
+    {
+      "id": "paramgrill_driver",
+      "status": "passed"
+    },
+    {
+      "id": "external_matchfinder_driver",
+      "status": "passed"
+    },
+    {
+      "id": "dict_builder_driver",
+      "status": "passed"
+    },
+    {
+      "id": "simple_compression",
+      "status": "passed"
+    },
+    {
+      "id": "simple_decompression",
+      "status": "passed"
+    },
+    {
+      "id": "run_zstreamtest",
+      "status": "passed"
+    },
+    {
+      "id": "run_pooltests",
+      "status": "passed"
+    },
+    {
+      "id": "offline_regression",
+      "status": "passed"
+    },
+    {
+      "id": "dependent-compile:apt",
+      "status": "passed"
+    },
+    {
+      "id": "dependent-compile:dpkg",
+      "status": "passed"
+    },
+    {
+      "id": "dependent-compile:rsync",
+      "status": "passed"
+    },
+    {
+      "id": "dependent-compile:systemd",
+      "status": "passed"
+    },
+    {
+      "id": "dependent-compile:libarchive",
+      "status": "passed"
+    },
+    {
+      "id": "dependent-compile:btrfs-progs",
+      "status": "passed"
+    },
+    {
+      "id": "dependent-compile:squashfs-tools",
+      "status": "passed"
+    },
+    {
+      "id": "dependent-compile:qemu",
+      "status": "passed"
+    },
+    {
+      "id": "dependent-compile:curl",
+      "status": "passed"
+    },
+    {
+      "id": "dependent-compile:tiff",
+      "status": "passed"
+    },
+    {
+      "id": "dependent-compile:rpm",
+      "status": "passed"
+    },
+    {
+      "id": "dependent-compile:zarchive",
+      "status": "passed"
+    }
+  ]
+}

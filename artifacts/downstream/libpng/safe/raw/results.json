@@ -1,0 +1,146 @@
+{
+  "schema_version": 1,
+  "library": "libpng",
+  "mode": "safe",
+  "report_format": "imported-log-marker",
+  "exit_code": 0,
+  "failure_mode": "command",
+  "selected_dependents": [
+    "GIMP",
+    "LibreOffice Draw",
+    "Scribus",
+    "WebKitGTK",
+    "GDK Pixbuf",
+    "Cairo",
+    "SDL2_image",
+    "feh",
+    "Netpbm",
+    "XSane",
+    "R png package",
+    "pngquant"
+  ],
+  "observed_markers": [
+    {
+      "id": "GIMP",
+      "marker": "GIMP",
+      "line": 47
+    },
+    {
+      "id": "LibreOffice Draw",
+      "marker": "LibreOffice Draw",
+      "line": 48
+    },
+    {
+      "id": "Scribus",
+      "marker": "Scribus",
+      "line": 49
+    },
+    {
+      "id": "WebKitGTK",
+      "marker": "WebKitGTK",
+      "line": 50
+    },
+    {
+      "id": "GDK Pixbuf",
+      "marker": "GDK Pixbuf",
+      "line": 51
+    },
+    {
+      "id": "Cairo",
+      "marker": "Cairo",
+      "line": 52
+    },
+    {
+      "id": "SDL2_image",
+      "marker": "SDL2_image",
+      "line": 53
+    },
+    {
+      "id": "feh",
+      "marker": "feh",
+      "line": 54
+    },
+    {
+      "id": "Netpbm",
+      "marker": "Netpbm",
+      "line": 55
+    },
+    {
+      "id": "XSane",
+      "marker": "XSane",
+      "line": 57
+    },
+    {
+      "id": "R png package",
+      "marker": "R png package",
+      "line": 58
+    },
+    {
+      "id": "pngquant",
+      "marker": "pngquant",
+      "line": 59
+    }
+  ],
+  "workloads": [
+    {
+      "id": "GIMP",
+      "status": "passed",
+      "marker": "GIMP"
+    },
+    {
+      "id": "LibreOffice Draw",
+      "status": "passed",
+      "marker": "LibreOffice Draw"
+    },
+    {
+      "id": "Scribus",
+      "status": "passed",
+      "marker": "Scribus"
+    },
+    {
+      "id": "WebKitGTK",
+      "status": "passed",
+      "marker": "WebKitGTK"
+    },
+    {
+      "id": "GDK Pixbuf",
+      "status": "passed",
+      "marker": "GDK Pixbuf"
+    },
+    {
+      "id": "Cairo",
+      "status": "passed",
+      "marker": "Cairo"
+    },
+    {
+      "id": "SDL2_image",
+      "status": "passed",
+      "marker": "SDL2_image"
+    },
+    {
+      "id": "feh",
+      "status": "passed",
+      "marker": "feh"
+    },
+    {
+      "id": "Netpbm",
+      "status": "passed",
+      "marker": "Netpbm"
+    },
+    {
+      "id": "XSane",
+      "status": "passed",
+      "marker": "XSane"
+    },
+    {
+      "id": "R png package",
+      "status": "passed",
+      "marker": "R png package"
+    },
+    {
+      "id": "pngquant",
+      "status": "passed",
+      "marker": "pngquant"
+    }
+  ]
+}

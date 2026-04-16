@@ -10,6 +10,7 @@ For each libary `LIBNAME`:
 
 - `tests/LIBNAME/Dockerfile`: defines a docker image that installs LIBNAME and the relevant dependent applications. The "original" version of `LIBNAME` (e.g. from the normal apt repos) is installed.
 - `tests/LIBNAME/docker-entrypoint.sh`: The entrypoint. It should install all replacement debs from `/safedebs/*.deb` (which will be specified with `-v` to `docker run`) if provided, then run the tests and exits cleanly if they all pass.
+- `tests/LIBNAME/host-run.sh`: optional scratch-local host harness wrapper used by the `host-harness` validator strategy for imported prebuilt workflows.
 - `tests/LIBNAME/tests/`: The tests. They should make sure that the libraries work. The tests should not know or depend on which version (safe or original) of the library they're running on. It is a violation to check.
 - `test.sh`: runs all the tests (or a specific `LIBNAME` test if needed)
 
@@ -148,10 +149,12 @@ bash scripts/verify-site.sh \
 ```
 
 Each library leaf is mounted into the runtime container as `/safedebs`, so every `tests/<library>/docker-entrypoint.sh` sees only that library's `.deb` files.
+Libraries marked `validator.execution_strategy: host-harness` instead materialize a scratch repo under `artifacts/.workspace/host-harness/<library>/<mode>/repo`, then execute `tests/<library>/host-run.sh` against that scratch tree with `VALIDATOR_HARNESS_ROOT` set to the scratch repo root.
 
 #### Artifact Locations
 
 - `artifacts/debs/<library>/`: built or copied safe packages for each library.
+- `artifacts/downstream/<library>/<mode>/`: normalized downstream summaries and raw harness logs for host-harness runs.
 - `artifacts/results/<library>/*.json`: one result JSON per attempted matrix run.
 - `artifacts/logs/<library>/*.log`: captured run logs.
 - `artifacts/casts/<library>/safe.cast`: safe-mode terminal capture when `--record-casts` is enabled.
