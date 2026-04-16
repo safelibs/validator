@@ -585,6 +585,8 @@ def run_host_harness_strategy(
     )
 
     env = os.environ.copy()
+    env.pop("VALIDATOR_SAFE_DEB_DIR", None)
+    env.pop("VALIDATOR_BASELINE_IMAGE", None)
     env.update(
         {
             "VALIDATOR_LIBRARY": library,

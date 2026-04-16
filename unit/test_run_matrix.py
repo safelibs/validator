@@ -397,6 +397,13 @@ class RunMatrixTests(unittest.TestCase):
         with mock.patch("tools.run_matrix.run_logged", side_effect=fake_run_logged), mock.patch(
             "tools.run_matrix.cleanup_library_images",
             return_value=[],
+        ), mock.patch.dict(
+            os.environ,
+            {
+                "VALIDATOR_SAFE_DEB_DIR": "stale-safe-dir",
+                "VALIDATOR_BASELINE_IMAGE": "stale-baseline-image",
+            },
+            clear=False,
         ):
             old_cwd = Path.cwd()
             os.chdir(repo_root)
