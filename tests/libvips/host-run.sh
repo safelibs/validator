@@ -10,7 +10,6 @@ readonly CONSOLE_LOG="${RAW_DIR}/console.log"
 readonly RESULTS_JSON="${RAW_DIR}/results.json"
 readonly SUMMARY_JSON="${DOWNSTREAM_DIR}/summary.json"
 readonly CONFIG_JSON="${HARNESS_ROOT}/.validator/${LIBRARY}-${MODE}-config.json"
-readonly WRAPPER_ROOT="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"
 
 mkdir -p "${RAW_DIR}" "${HARNESS_ROOT}/.validator"
 
@@ -89,7 +88,7 @@ EOF
 }
 
 prepare_baseline_launcher() {
-  local source_path="${WRAPPER_ROOT}/tests/run.sh"
+  local source_path="${HARNESS_ROOT}/tests/run.sh"
   local launcher_path="${HARNESS_ROOT}/.validator/libvips-baseline-run.sh"
 
   write_runtime_helpers

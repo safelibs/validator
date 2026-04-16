@@ -94,6 +94,7 @@ def materialize_scratch_repo(
     safe_control = tests_dir / "harness-source" / "debian" / "control"
     dependents_source = tests_dir / "fixtures" / "dependents.json"
     relevant_cves_source = tests_dir / "fixtures" / "relevant_cves.json"
+    baseline_script = tests_dir / "run.sh"
     tagged_port_root = tests_dir / "tagged-port"
 
     required_paths = {
@@ -122,6 +123,8 @@ def materialize_scratch_repo(
     copy_file(safe_control, repo_root / "safe" / "debian" / "control")
     copy_file(dependents_source, repo_root / "dependents.json")
     copy_file(relevant_cves_source, repo_root / "relevant_cves.json")
+    if baseline_script.exists():
+        copy_file(baseline_script, repo_root / "tests" / "run.sh")
     (repo_root / ".validator").mkdir(parents=True, exist_ok=True)
 
     staged_safe_deb_dir: Path | None = None

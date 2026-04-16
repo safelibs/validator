@@ -1,5 +1,5 @@
-/tmp/tmp.NQ3S8TFDCi/root/safe/test/test_directory.c: In function 'test_SubIFD_directrory_handling':
-/tmp/tmp.NQ3S8TFDCi/root/safe/test/test_directory.c:761:26: warning: comparison of integer expressions of different signedness: 'tdir_t' {aka 'unsigned int'} and 'int' [-Wsign-compare]
+/tmp/tmp.uu4JeNGVL1/root/safe/test/test_directory.c: In function 'test_SubIFD_directrory_handling':
+/tmp/tmp.uu4JeNGVL1/root/safe/test/test_directory.c:761:26: warning: comparison of integer expressions of different signedness: 'tdir_t' {aka 'unsigned int'} and 'int' [-Wsign-compare]
   761 |     if (numberOfMainIFDs != N_DIRECTORIES - number_of_sub_IFDs)
       |                          ^~
 TIFFUnlinkDirectory: For TIFFUnlinkDirectory() first directory starts with number 1 and not 0.
@@ -45,8 +45,8 @@ _TIFFCheckDirNumberAndOffset: Warning, TIFF directory 2 has IFD looping to direc
 -- End of test. Closing TIFF file. --
 ---------- Test finished OK -----------
 ==> fax2tiff.sh
- /tmp/tmp.NQ3S8TFDCi/build/tools/fax2tiff -M -o o-fax2tiff.tiff /tmp/tmp.NQ3S8TFDCi/root/safe/test/images/miniswhite-1c-1b.g3
- /tmp/tmp.NQ3S8TFDCi/build/tools/tiffinfo -D o-fax2tiff.tiff
+ /tmp/tmp.uu4JeNGVL1/build/tools/fax2tiff -M -o o-fax2tiff.tiff /tmp/tmp.uu4JeNGVL1/root/safe/test/images/miniswhite-1c-1b.g3
+ /tmp/tmp.uu4JeNGVL1/build/tools/tiffinfo -D o-fax2tiff.tiff
 === TIFF directory 0 ===
 TIFF Directory at offset 0x25ea (9706)
   Image Width: 1728 Image Length: 1734
@@ -67,8 +67,8 @@ TIFF Directory at offset 0x25ea (9706)
   Consecutive Bad Fax Lines: 0
 
 ==> ppm2tiff_pbm.sh
- /tmp/tmp.NQ3S8TFDCi/build/tools/ppm2tiff /tmp/tmp.NQ3S8TFDCi/root/safe/test/images/miniswhite-1c-1b.pbm o-ppm2tiff_pbm.tiff
- /tmp/tmp.NQ3S8TFDCi/build/tools/tiffinfo -D o-ppm2tiff_pbm.tiff
+ /tmp/tmp.uu4JeNGVL1/build/tools/ppm2tiff /tmp/tmp.uu4JeNGVL1/root/safe/test/images/miniswhite-1c-1b.pbm o-ppm2tiff_pbm.tiff
+ /tmp/tmp.uu4JeNGVL1/build/tools/tiffinfo -D o-ppm2tiff_pbm.tiff
 === TIFF directory 0 ===
 TIFF Directory at offset 0xbc6 (3014)
   Image Width: 157 Image Length: 151
@@ -81,8 +81,8 @@ TIFF Directory at offset 0xbc6 (3014)
   Planar Configuration: single image plane
 
 ==> ppm2tiff_pgm.sh
- /tmp/tmp.NQ3S8TFDCi/build/tools/ppm2tiff /tmp/tmp.NQ3S8TFDCi/root/safe/test/images/minisblack-1c-8b.pgm o-ppm2tiff_pgm.tiff
- /tmp/tmp.NQ3S8TFDCi/build/tools/tiffinfo -D o-ppm2tiff_pgm.tiff
+ /tmp/tmp.uu4JeNGVL1/build/tools/ppm2tiff /tmp/tmp.uu4JeNGVL1/root/safe/test/images/minisblack-1c-8b.pgm o-ppm2tiff_pgm.tiff
+ /tmp/tmp.uu4JeNGVL1/build/tools/tiffinfo -D o-ppm2tiff_pgm.tiff
 === TIFF directory 0 ===
 TIFF Directory at offset 0x5d8c (23948)
   Image Width: 157 Image Length: 151
@@ -95,8 +95,8 @@ TIFF Directory at offset 0x5d8c (23948)
   Planar Configuration: single image plane
 
 ==> ppm2tiff_ppm.sh
- /tmp/tmp.NQ3S8TFDCi/build/tools/ppm2tiff /tmp/tmp.NQ3S8TFDCi/root/safe/test/images/rgb-3c-8b.ppm o-ppm2tiff_8b_ppm.tiff
- /tmp/tmp.NQ3S8TFDCi/build/tools/tiffinfo -D o-ppm2tiff_8b_ppm.tiff
+ /tmp/tmp.uu4JeNGVL1/build/tools/ppm2tiff /tmp/tmp.uu4JeNGVL1/root/safe/test/images/rgb-3c-8b.ppm o-ppm2tiff_8b_ppm.tiff
+ /tmp/tmp.uu4JeNGVL1/build/tools/tiffinfo -D o-ppm2tiff_8b_ppm.tiff
 === TIFF directory 0 ===
 TIFF Directory at offset 0x11836 (71734)
   Image Width: 157 Image Length: 151
@@ -108,8 +108,8 @@ TIFF Directory at offset 0x11836 (71734)
   Rows/Strip: 151
   Planar Configuration: single image plane
 
- /tmp/tmp.NQ3S8TFDCi/build/tools/ppm2tiff /tmp/tmp.NQ3S8TFDCi/root/safe/test/images/rgb-3c-16b.ppm o-ppm2tiff_16b_ppm.tiff
- /tmp/tmp.NQ3S8TFDCi/build/tools/tiffinfo -D o-ppm2tiff_16b_ppm.tiff
+ /tmp/tmp.uu4JeNGVL1/build/tools/ppm2tiff /tmp/tmp.uu4JeNGVL1/root/safe/test/images/rgb-3c-16b.ppm o-ppm2tiff_16b_ppm.tiff
+ /tmp/tmp.uu4JeNGVL1/build/tools/tiffinfo -D o-ppm2tiff_16b_ppm.tiff
 === TIFF directory 0 ===
 TIFF Directory at offset 0x22f08 (143112)
   Image Width: 157 Image Length: 151
@@ -122,32 +122,32 @@ TIFF Directory at offset 0x22f08 (143112)
   Planar Configuration: single image plane
 
 ==> testdeflatelaststripextradata.sh
- /tmp/tmp.NQ3S8TFDCi/build/tools/tiffcp -c zip /tmp/tmp.NQ3S8TFDCi/root/safe/test/images/deflate-last-strip-extra-data.tiff o-deflate-last-strip-extra-data.tiff
+ /tmp/tmp.uu4JeNGVL1/build/tools/tiffcp -c zip /tmp/tmp.uu4JeNGVL1/root/safe/test/images/deflate-last-strip-extra-data.tiff o-deflate-last-strip-extra-data.tiff
 TIFFReadDirectory: Warning, Unknown field with tag 33550 (0x830e) encountered.
 TIFFReadDirectory: Warning, Unknown field with tag 33922 (0x8482) encountered.
 TIFFReadDirectory: Warning, Unknown field with tag 34735 (0x87af) encountered.
 TIFFReadDirectory: Warning, Unknown field with tag 34737 (0x87b1) encountered.
- /tmp/tmp.NQ3S8TFDCi/build/tools/tiffcmp o-deflate-last-strip-extra-data.tiff /tmp/tmp.NQ3S8TFDCi/root/safe/test/refs/o-deflate-last-strip-extra-data.tiff
- /tmp/tmp.NQ3S8TFDCi/build/tools/tiffcp -c zip -t -w 256 -l 256 /tmp/tmp.NQ3S8TFDCi/root/safe/test/images/deflate-last-strip-extra-data.tiff o-deflate-last-strip-extra-data-tiled.tiff
+ /tmp/tmp.uu4JeNGVL1/build/tools/tiffcmp o-deflate-last-strip-extra-data.tiff /tmp/tmp.uu4JeNGVL1/root/safe/test/refs/o-deflate-last-strip-extra-data.tiff
+ /tmp/tmp.uu4JeNGVL1/build/tools/tiffcp -c zip -t -w 256 -l 256 /tmp/tmp.uu4JeNGVL1/root/safe/test/images/deflate-last-strip-extra-data.tiff o-deflate-last-strip-extra-data-tiled.tiff
 TIFFReadDirectory: Warning, Unknown field with tag 33550 (0x830e) encountered.
 TIFFReadDirectory: Warning, Unknown field with tag 33922 (0x8482) encountered.
 TIFFReadDirectory: Warning, Unknown field with tag 34735 (0x87af) encountered.
 TIFFReadDirectory: Warning, Unknown field with tag 34737 (0x87b1) encountered.
- /tmp/tmp.NQ3S8TFDCi/build/tools/tiffcmp o-deflate-last-strip-extra-data-tiled.tiff /tmp/tmp.NQ3S8TFDCi/root/safe/test/refs/o-deflate-last-strip-extra-data.tiff
-RowsPerStrip tag appears only in /tmp/tmp.NQ3S8TFDCi/root/safe/test/refs/o-deflate-last-strip-extra-data.tiff
+ /tmp/tmp.uu4JeNGVL1/build/tools/tiffcmp o-deflate-last-strip-extra-data-tiled.tiff /tmp/tmp.uu4JeNGVL1/root/safe/test/refs/o-deflate-last-strip-extra-data.tiff
+RowsPerStrip tag appears only in /tmp/tmp.uu4JeNGVL1/root/safe/test/refs/o-deflate-last-strip-extra-data.tiff
 ==> testfax4.sh
- /tmp/tmp.NQ3S8TFDCi/build/tools/tiffcp -c lzw /tmp/tmp.NQ3S8TFDCi/root/safe/test/images/testfax4.tiff o-testfax4.tiff
- /tmp/tmp.NQ3S8TFDCi/build/tools/tiffcmp o-testfax4.tiff /tmp/tmp.NQ3S8TFDCi/root/safe/test/refs/o-testfax4.tiff
+ /tmp/tmp.uu4JeNGVL1/build/tools/tiffcp -c lzw /tmp/tmp.uu4JeNGVL1/root/safe/test/images/testfax4.tiff o-testfax4.tiff
+ /tmp/tmp.uu4JeNGVL1/build/tools/tiffcmp o-testfax4.tiff /tmp/tmp.uu4JeNGVL1/root/safe/test/refs/o-testfax4.tiff
 ==> tiff2pdf.sh
- /tmp/tmp.NQ3S8TFDCi/build/tools/tiff2pdf /tmp/tmp.NQ3S8TFDCi/root/safe/test/images/miniswhite-1c-1b.tiff > o-tiff2pdf.pdf
+ /tmp/tmp.uu4JeNGVL1/build/tools/tiff2pdf /tmp/tmp.uu4JeNGVL1/root/safe/test/images/miniswhite-1c-1b.tiff > o-tiff2pdf.pdf
 ==> tiff2ps-PS1.sh
- /tmp/tmp.NQ3S8TFDCi/build/tools/tiff2ps -a -p -1 /tmp/tmp.NQ3S8TFDCi/root/safe/test/images/miniswhite-1c-1b.tiff > o-tiff2ps-PS1.ps
+ /tmp/tmp.uu4JeNGVL1/build/tools/tiff2ps -a -p -1 /tmp/tmp.uu4JeNGVL1/root/safe/test/images/miniswhite-1c-1b.tiff > o-tiff2ps-PS1.ps
 ==> tiffcp-lzw-compat.sh
- /tmp/tmp.NQ3S8TFDCi/build/tools/tiffcp -c none /tmp/tmp.NQ3S8TFDCi/root/safe/test/images/quad-lzw-compat.tiff o-tiffcp-lzw-compat.tiff
+ /tmp/tmp.uu4JeNGVL1/build/tools/tiffcp -c none /tmp/tmp.uu4JeNGVL1/root/safe/test/images/quad-lzw-compat.tiff o-tiffcp-lzw-compat.tiff
 LZWPreDecode: Warning, Old-style LZW codes, convert file.
 ==> tiffdump.sh
- /tmp/tmp.NQ3S8TFDCi/build/tools/tiffdump /tmp/tmp.NQ3S8TFDCi/root/safe/test/images/miniswhite-1c-1b.tiff
-/tmp/tmp.NQ3S8TFDCi/root/safe/test/images/miniswhite-1c-1b.tiff:
+ /tmp/tmp.uu4JeNGVL1/build/tools/tiffdump /tmp/tmp.uu4JeNGVL1/root/safe/test/images/miniswhite-1c-1b.tiff
+/tmp/tmp.uu4JeNGVL1/root/safe/test/images/miniswhite-1c-1b.tiff:
 Magic: 0x4d4d <big-endian> Version: 0x2a <ClassicTIFF>
 Directory 0: offset 3028 (0xbd4) next 0 (0)
 ImageWidth (256) SHORT (3) 1<157>
@@ -165,7 +165,7 @@ PageNumber (297) SHORT (3) 2<0 1>
 Software (305) ASCII (2) 65<GraphicsMagick 1.2 unrel ...>
 SampleFormat (339) SHORT (3) 1<1>
 ==> tiffinfo.sh
- /tmp/tmp.NQ3S8TFDCi/build/tools/tiffinfo -c -D -d -j -s  /tmp/tmp.NQ3S8TFDCi/root/safe/test/images/minisblack-1c-16b.tiff
+ /tmp/tmp.uu4JeNGVL1/build/tools/tiffinfo -c -D -d -j -s  /tmp/tmp.uu4JeNGVL1/root/safe/test/images/minisblack-1c-16b.tiff
 === TIFF directory 0 ===
 TIFF Directory at offset 0xb93e (47422)
   Image Width: 157 Image Length: 151
@@ -2307,7 +2307,7 @@ Strip 5:
  ff 5d f8 6a 62 6e 4d 73 d4 8f 89 a1 89 cb 14 d1 02 b2 70 c6 a2 c9 b0 c7
  6b bf
 
- /tmp/tmp.NQ3S8TFDCi/build/tools/tiffinfo   /tmp/tmp.NQ3S8TFDCi/root/safe/test/images/tiff_with_subifd_chain.tif
+ /tmp/tmp.uu4JeNGVL1/build/tools/tiffinfo   /tmp/tmp.uu4JeNGVL1/root/safe/test/images/tiff_with_subifd_chain.tif
 === TIFF directory 0 ===
 TIFF Directory at offset 0x8 (8)
   Image Width: 1024 Image Length: 512

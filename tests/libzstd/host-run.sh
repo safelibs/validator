@@ -10,7 +10,6 @@ readonly CONSOLE_LOG="${RAW_DIR}/console.log"
 readonly RESULTS_JSON="${RAW_DIR}/results.json"
 readonly SUMMARY_JSON="${DOWNSTREAM_DIR}/summary.json"
 readonly CONFIG_JSON="${HARNESS_ROOT}/.validator/${LIBRARY}-${MODE}-config.json"
-readonly WRAPPER_ROOT="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"
 readonly ORIGINAL_ROOT="${HARNESS_ROOT}/original/libzstd-1.5.5+dfsg2"
 readonly SAFE_ROOT="${HARNESS_ROOT}/safe"
 
@@ -73,7 +72,7 @@ EOF
 }
 
 prepare_baseline_launcher() {
-  local source_path="${WRAPPER_ROOT}/tests/run.sh"
+  local source_path="${HARNESS_ROOT}/tests/run.sh"
   local launcher_path="${HARNESS_ROOT}/.validator/libzstd-baseline-run.sh"
 
   write_runtime_helpers
