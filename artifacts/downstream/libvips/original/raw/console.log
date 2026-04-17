@@ -1,6 +1,6 @@
-/tmp/tmp.BxR8LnUPik/root/original/test/test_descriptors.c:12: warning: "_GNU_SOURCE" redefined
+/tmp/tmp.OrByHl1r0Q/root/original/test/test_descriptors.c:12: warning: "_GNU_SOURCE" redefined
    12 | #define _GNU_SOURCE
-      | 
+      |
 <command-line>: note: this is the location of the previous definition
 testing with sample.png
 testing nearest ... ok

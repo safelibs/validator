@@ -6,37 +6,37 @@ Get:1 http://azure.archive.ubuntu.com/ubuntu noble InRelease [256 kB]
 Get:2 http://azure.archive.ubuntu.com/ubuntu noble-updates InRelease [126 kB]
 Get:3 http://azure.archive.ubuntu.com/ubuntu noble-backports InRelease [126 kB]
 Get:4 http://azure.archive.ubuntu.com/ubuntu noble-security InRelease [126 kB]
-Get:5 http://azure.archive.ubuntu.com/ubuntu noble/multiverse Sources [355 kB]
-Get:6 http://azure.archive.ubuntu.com/ubuntu noble/universe Sources [24.3 MB]
-Get:7 http://azure.archive.ubuntu.com/ubuntu noble/main Sources [1713 kB]
-Get:8 http://azure.archive.ubuntu.com/ubuntu noble/restricted Sources [21.8 kB]
-Get:9 http://azure.archive.ubuntu.com/ubuntu noble/main amd64 Packages [1808 kB]
-Get:10 http://azure.archive.ubuntu.com/ubuntu noble/restricted amd64 Packages [117 kB]
-Get:11 http://azure.archive.ubuntu.com/ubuntu noble/multiverse amd64 Packages [331 kB]
-Get:12 http://azure.archive.ubuntu.com/ubuntu noble/universe amd64 Packages [19.3 MB]
-Get:13 http://azure.archive.ubuntu.com/ubuntu noble-updates/universe Sources [695 kB]
+Get:5 http://azure.archive.ubuntu.com/ubuntu noble/restricted Sources [21.8 kB]
+Get:6 http://azure.archive.ubuntu.com/ubuntu noble/multiverse Sources [355 kB]
+Get:7 http://azure.archive.ubuntu.com/ubuntu noble/universe Sources [24.3 MB]
+Get:8 http://azure.archive.ubuntu.com/ubuntu noble/main Sources [1713 kB]
+Get:9 http://azure.archive.ubuntu.com/ubuntu noble/restricted amd64 Packages [117 kB]
+Get:10 http://azure.archive.ubuntu.com/ubuntu noble/multiverse amd64 Packages [331 kB]
+Get:11 http://azure.archive.ubuntu.com/ubuntu noble/universe amd64 Packages [19.3 MB]
+Get:12 http://azure.archive.ubuntu.com/ubuntu noble/main amd64 Packages [1808 kB]
+Get:13 http://azure.archive.ubuntu.com/ubuntu noble-updates/multiverse Sources [32.6 kB]
 Get:14 http://azure.archive.ubuntu.com/ubuntu noble-updates/main Sources [665 kB]
 Get:15 http://azure.archive.ubuntu.com/ubuntu noble-updates/restricted Sources [98.1 kB]
-Get:16 http://azure.archive.ubuntu.com/ubuntu noble-updates/multiverse Sources [32.6 kB]
-Get:17 http://azure.archive.ubuntu.com/ubuntu noble-updates/multiverse amd64 Packages [38.5 kB]
+Get:16 http://azure.archive.ubuntu.com/ubuntu noble-updates/universe Sources [695 kB]
+Get:17 http://azure.archive.ubuntu.com/ubuntu noble-updates/multiverse amd64 Packages [38.4 kB]
 Get:18 http://azure.archive.ubuntu.com/ubuntu noble-updates/restricted amd64 Packages [3752 kB]
-Get:19 http://azure.archive.ubuntu.com/ubuntu noble-updates/universe amd64 Packages [2156 kB]
-Get:20 http://azure.archive.ubuntu.com/ubuntu noble-updates/main amd64 Packages [2402 kB]
+Get:19 http://azure.archive.ubuntu.com/ubuntu noble-updates/main amd64 Packages [2402 kB]
+Get:20 http://azure.archive.ubuntu.com/ubuntu noble-updates/universe amd64 Packages [2156 kB]
 Get:21 http://azure.archive.ubuntu.com/ubuntu noble-backports/main Sources [6767 B]
-Get:22 http://azure.archive.ubuntu.com/ubuntu noble-backports/multiverse Sources [956 B]
-Get:23 http://azure.archive.ubuntu.com/ubuntu noble-backports/universe Sources [16.9 kB]
-Get:24 http://azure.archive.ubuntu.com/ubuntu noble-backports/multiverse amd64 Packages [695 B]
+Get:22 http://azure.archive.ubuntu.com/ubuntu noble-backports/universe Sources [16.9 kB]
+Get:23 http://azure.archive.ubuntu.com/ubuntu noble-backports/multiverse Sources [956 B]
+Get:24 http://azure.archive.ubuntu.com/ubuntu noble-backports/universe amd64 Packages [36.1 kB]
 Get:25 http://azure.archive.ubuntu.com/ubuntu noble-backports/main amd64 Packages [49.5 kB]
-Get:26 http://azure.archive.ubuntu.com/ubuntu noble-backports/universe amd64 Packages [36.1 kB]
+Get:26 http://azure.archive.ubuntu.com/ubuntu noble-backports/multiverse amd64 Packages [695 B]
 Get:27 http://azure.archive.ubuntu.com/ubuntu noble-security/universe Sources [459 kB]
-Get:28 http://azure.archive.ubuntu.com/ubuntu noble-security/restricted Sources [91.0 kB]
-Get:29 http://azure.archive.ubuntu.com/ubuntu noble-security/main Sources [318 kB]
-Get:30 http://azure.archive.ubuntu.com/ubuntu noble-security/multiverse Sources [24.1 kB]
-Get:31 http://azure.archive.ubuntu.com/ubuntu noble-security/main amd64 Packages [2025 kB]
-Get:32 http://azure.archive.ubuntu.com/ubuntu noble-security/universe amd64 Packages [1507 kB]
-Get:33 http://azure.archive.ubuntu.com/ubuntu noble-security/restricted amd64 Packages [3581 kB]
+Get:28 http://azure.archive.ubuntu.com/ubuntu noble-security/multiverse Sources [24.1 kB]
+Get:29 http://azure.archive.ubuntu.com/ubuntu noble-security/restricted Sources [91.0 kB]
+Get:30 http://azure.archive.ubuntu.com/ubuntu noble-security/main Sources [318 kB]
+Get:31 http://azure.archive.ubuntu.com/ubuntu noble-security/restricted amd64 Packages [3581 kB]
+Get:32 http://azure.archive.ubuntu.com/ubuntu noble-security/main amd64 Packages [2025 kB]
+Get:33 http://azure.archive.ubuntu.com/ubuntu noble-security/universe amd64 Packages [1507 kB]
 Get:34 http://azure.archive.ubuntu.com/ubuntu noble-security/multiverse amd64 Packages [34.8 kB]
-Fetched 66.6 MB in 2s (39.2 MB/s)
+Fetched 66.6 MB in 2s (38.5 MB/s)
 Reading package lists...
 Reading package lists...
 Building dependency tree...
@@ -520,37 +520,37 @@ Get:322 http://azure.archive.ubuntu.com/ubuntu noble/universe amd64 neovim-runti
 Get:323 http://azure.archive.ubuntu.com/ubuntu noble/universe amd64 neovim amd64 0.9.5-6ubuntu2 [2233 kB]
 Get:324 http://azure.archive.ubuntu.com/ubuntu noble-updates/main amd64 python3-greenlet amd64 3.0.3-0ubuntu5.1 [154 kB]
 debconf: delaying package configuration, since apt-utils is not installed
-Fetched 374 MB in 10s (38.8 MB/s)
-(Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 4381 files and directories currently installed.)
+Fetched 374 MB in 11s (34.8 MB/s)
+(Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 4381 files and directories currently installed.)
 Preparing to unpack .../dpkg_1.22.6ubuntu6.5_amd64.deb ...
 Unpacking dpkg (1.22.6ubuntu6.5) over (1.22.6ubuntu6.1) ...
 Setting up dpkg (1.22.6ubuntu6.5) ...
-(Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 4381 files and directories currently installed.)
+(Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 4381 files and directories currently installed.)
 Preparing to unpack .../gcc-14-base_14.2.0-4ubuntu2~24.04.1_amd64.deb ...
 Unpacking gcc-14-base:amd64 (14.2.0-4ubuntu2~24.04.1) over (14.2.0-4ubuntu2~24.04) ...
 Setting up gcc-14-base:amd64 (14.2.0-4ubuntu2~24.04.1) ...
-(Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 4381 files and directories currently installed.)
+(Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 4381 files and directories currently installed.)
 Preparing to unpack .../libgcc-s1_14.2.0-4ubuntu2~24.04.1_amd64.deb ...
 Unpacking libgcc-s1:amd64 (14.2.0-4ubuntu2~24.04.1) over (14.2.0-4ubuntu2~24.04) ...
 Setting up libgcc-s1:amd64 (14.2.0-4ubuntu2~24.04.1) ...
-(Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 4381 files and directories currently installed.)
+(Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 4381 files and directories currently installed.)
 Preparing to unpack .../libstdc++6_14.2.0-4ubuntu2~24.04.1_amd64.deb ...
 Unpacking libstdc++6:amd64 (14.2.0-4ubuntu2~24.04.1) over (14.2.0-4ubuntu2~24.04) ...
 Setting up libstdc++6:amd64 (14.2.0-4ubuntu2~24.04.1) ...
-(Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 4381 files and directories currently installed.)
+(Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 4381 files and directories currently installed.)
 Preparing to unpack .../libc6_2.39-0ubuntu8.7_amd64.deb ...
 Unpacking libc6:amd64 (2.39-0ubuntu8.7) over (2.39-0ubuntu8.5) ...
 Setting up libc6:amd64 (2.39-0ubuntu8.7) ...
-(Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 4381 files and directories currently installed.)
+(Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 4381 files and directories currently installed.)
 Preparing to unpack .../libc-bin_2.39-0ubuntu8.7_amd64.deb ...
 Unpacking libc-bin (2.39-0ubuntu8.7) over (2.39-0ubuntu8.5) ...
 Setting up libc-bin (2.39-0ubuntu8.7) ...
-(Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 4381 files and directories currently installed.)
+(Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 4381 files and directories currently installed.)
 Preparing to unpack .../libssl3t64_3.0.13-0ubuntu3.9_amd64.deb ...
 Unpacking libssl3t64:amd64 (3.0.13-0ubuntu3.9) over (3.0.13-0ubuntu3.5) ...
 Setting up libssl3t64:amd64 (3.0.13-0ubuntu3.9) ...
 Selecting previously unselected package libpython3.12-minimal:amd64.
-(Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 4381 files and directories currently installed.)
+(Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 4381 files and directories currently installed.)
 Preparing to unpack .../libpython3.12-minimal_3.12.3-1ubuntu0.12_amd64.deb ...
 Unpacking libpython3.12-minimal:amd64 (3.12.3-1ubuntu0.12) ...
 Selecting previously unselected package libexpat1:amd64.
@@ -563,7 +563,7 @@ Setting up libpython3.12-minimal:amd64 (3.12.3-1ubuntu0.12) ...
 Setting up libexpat1:amd64 (2.6.1-2ubuntu0.4) ...
 Setting up python3.12-minimal (3.12.3-1ubuntu0.12) ...
 Selecting previously unselected package python3-minimal.
-(Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 4700 files and directories currently installed.)
+(Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 4700 files and directories currently installed.)
 Preparing to unpack .../0-python3-minimal_3.12.3-0ubuntu2.1_amd64.deb ...
 Unpacking python3-minimal (3.12.3-0ubuntu2.1) ...
 Selecting previously unselected package media-types.
@@ -599,7 +599,7 @@ Preparing to unpack .../9-libpython3-stdlib_3.12.3-0ubuntu2.1_amd64.deb ...
 Unpacking libpython3-stdlib:amd64 (3.12.3-0ubuntu2.1) ...
 Setting up python3-minimal (3.12.3-0ubuntu2.1) ...
 Selecting previously unselected package python3.
-(Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 5706 files and directories currently installed.)
+(Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 5706 files and directories currently installed.)
 Preparing to unpack .../python3_3.12.3-0ubuntu2.1_amd64.deb ...
 Unpacking python3 (3.12.3-0ubuntu2.1) ...
 Selecting previously unselected package adduser.
@@ -607,7 +607,7 @@ Preparing to unpack .../adduser_3.137ubuntu1_all.deb ...
 Unpacking adduser (3.137ubuntu1) ...
 Setting up adduser (3.137ubuntu1) ...
 Selecting previously unselected package libuv1t64:amd64.
-(Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 5775 files and directories currently installed.)
+(Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 5775 files and directories currently installed.)
 Preparing to unpack .../00-libuv1t64_1.48.0-1.1build1_amd64.deb ...
 Unpacking libuv1t64:amd64 (1.48.0-1.1build1) ...
 Selecting previously unselected package libbsd0:amd64.
@@ -712,12 +712,12 @@ Unpacking perl (5.38.2-3.2ubuntu0.2) ...
 Preparing to unpack .../34-libtasn1-6_4.19.0-3ubuntu0.24.04.2_amd64.deb ...
 Unpacking libtasn1-6:amd64 (4.19.0-3ubuntu0.24.04.2) over (4.19.0-3ubuntu0.24.04.1) ...
 Setting up libtasn1-6:amd64 (4.19.0-3ubuntu0.24.04.2) ...
-(Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 8320 files and directories currently installed.)
+(Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 8320 files and directories currently installed.)
 Preparing to unpack .../libgnutls30t64_3.8.3-1.1ubuntu3.5_amd64.deb ...
 Unpacking libgnutls30t64:amd64 (3.8.3-1.1ubuntu3.5) over (3.8.3-1.1ubuntu3.4) ...
 Setting up libgnutls30t64:amd64 (3.8.3-1.1ubuntu3.5) ...
 Selecting previously unselected package openssl.
-(Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 8320 files and directories currently installed.)
+(Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 8320 files and directories currently installed.)
 Preparing to unpack .../000-openssl_3.0.13-0ubuntu3.9_amd64.deb ...
 Unpacking openssl (3.0.13-0ubuntu3.9) ...
 Selecting previously unselected package ca-certificates.
@@ -1576,8 +1576,8 @@ Setting up libsasl2-modules-db:amd64 (2.1.28+dfsg1-5ubuntu3.1) ...
 Setting up tzdata (2026a-0ubuntu0.24.04.1) ...
 
 Current default time zone: 'Etc/UTC'
-Local time is now:      Fri Apr 17 02:39:51 UTC 2026.
-Universal Time is now:  Fri Apr 17 02:39:51 UTC 2026.
+Local time is now:      Fri Apr 17 03:09:01 UTC 2026.
+Universal Time is now:  Fri Apr 17 03:09:01 UTC 2026.
 Run 'dpkg-reconfigure tzdata' if you wish to change it.
 
 Setting up libcap2-bin (1:2.66-5ubuntu2.2) ...

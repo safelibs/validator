@@ -39,36 +39,36 @@ Get:2 http://azure.archive.ubuntu.com/ubuntu noble-updates InRelease [126 kB]
 Get:3 http://azure.archive.ubuntu.com/ubuntu noble-backports InRelease [126 kB]
 Get:4 http://azure.archive.ubuntu.com/ubuntu noble-security InRelease [126 kB]
 Get:5 http://azure.archive.ubuntu.com/ubuntu noble/main Sources [1713 kB]
-Get:6 http://azure.archive.ubuntu.com/ubuntu noble/multiverse Sources [355 kB]
+Get:6 http://azure.archive.ubuntu.com/ubuntu noble/restricted Sources [21.8 kB]
 Get:7 http://azure.archive.ubuntu.com/ubuntu noble/universe Sources [24.3 MB]
-Get:8 http://azure.archive.ubuntu.com/ubuntu noble/restricted Sources [21.8 kB]
-Get:9 http://azure.archive.ubuntu.com/ubuntu noble/multiverse amd64 Packages [331 kB]
-Get:10 http://azure.archive.ubuntu.com/ubuntu noble/universe amd64 Packages [19.3 MB]
-Get:11 http://azure.archive.ubuntu.com/ubuntu noble/main amd64 Packages [1808 kB]
-Get:12 http://azure.archive.ubuntu.com/ubuntu noble/restricted amd64 Packages [117 kB]
-Get:13 http://azure.archive.ubuntu.com/ubuntu noble-updates/main Sources [665 kB]
-Get:14 http://azure.archive.ubuntu.com/ubuntu noble-updates/universe Sources [695 kB]
-Get:15 http://azure.archive.ubuntu.com/ubuntu noble-updates/multiverse Sources [32.6 kB]
-Get:16 http://azure.archive.ubuntu.com/ubuntu noble-updates/restricted Sources [98.1 kB]
+Get:8 http://azure.archive.ubuntu.com/ubuntu noble/multiverse Sources [355 kB]
+Get:9 http://azure.archive.ubuntu.com/ubuntu noble/main amd64 Packages [1808 kB]
+Get:10 http://azure.archive.ubuntu.com/ubuntu noble/multiverse amd64 Packages [331 kB]
+Get:11 http://azure.archive.ubuntu.com/ubuntu noble/restricted amd64 Packages [117 kB]
+Get:12 http://azure.archive.ubuntu.com/ubuntu noble/universe amd64 Packages [19.3 MB]
+Get:13 http://azure.archive.ubuntu.com/ubuntu noble-updates/multiverse Sources [32.6 kB]
+Get:14 http://azure.archive.ubuntu.com/ubuntu noble-updates/restricted Sources [98.1 kB]
+Get:15 http://azure.archive.ubuntu.com/ubuntu noble-updates/universe Sources [695 kB]
+Get:16 http://azure.archive.ubuntu.com/ubuntu noble-updates/main Sources [665 kB]
 Get:17 http://azure.archive.ubuntu.com/ubuntu noble-updates/main amd64 Packages [2402 kB]
-Get:18 http://azure.archive.ubuntu.com/ubuntu noble-updates/restricted amd64 Packages [3752 kB]
-Get:19 http://azure.archive.ubuntu.com/ubuntu noble-updates/universe amd64 Packages [2156 kB]
-Get:20 http://azure.archive.ubuntu.com/ubuntu noble-updates/multiverse amd64 Packages [38.5 kB]
-Get:21 http://azure.archive.ubuntu.com/ubuntu noble-backports/multiverse Sources [956 B]
-Get:22 http://azure.archive.ubuntu.com/ubuntu noble-backports/universe Sources [16.9 kB]
-Get:23 http://azure.archive.ubuntu.com/ubuntu noble-backports/main Sources [6767 B]
+Get:18 http://azure.archive.ubuntu.com/ubuntu noble-updates/universe amd64 Packages [2156 kB]
+Get:19 http://azure.archive.ubuntu.com/ubuntu noble-updates/multiverse amd64 Packages [38.4 kB]
+Get:20 http://azure.archive.ubuntu.com/ubuntu noble-updates/restricted amd64 Packages [3752 kB]
+Get:21 http://azure.archive.ubuntu.com/ubuntu noble-backports/main Sources [6767 B]
+Get:22 http://azure.archive.ubuntu.com/ubuntu noble-backports/multiverse Sources [956 B]
+Get:23 http://azure.archive.ubuntu.com/ubuntu noble-backports/universe Sources [16.9 kB]
 Get:24 http://azure.archive.ubuntu.com/ubuntu noble-backports/main amd64 Packages [49.5 kB]
 Get:25 http://azure.archive.ubuntu.com/ubuntu noble-backports/universe amd64 Packages [36.1 kB]
 Get:26 http://azure.archive.ubuntu.com/ubuntu noble-backports/multiverse amd64 Packages [695 B]
-Get:27 http://azure.archive.ubuntu.com/ubuntu noble-security/universe Sources [459 kB]
-Get:28 http://azure.archive.ubuntu.com/ubuntu noble-security/main Sources [318 kB]
+Get:27 http://azure.archive.ubuntu.com/ubuntu noble-security/restricted Sources [91.0 kB]
+Get:28 http://azure.archive.ubuntu.com/ubuntu noble-security/universe Sources [459 kB]
 Get:29 http://azure.archive.ubuntu.com/ubuntu noble-security/multiverse Sources [24.1 kB]
-Get:30 http://azure.archive.ubuntu.com/ubuntu noble-security/restricted Sources [91.0 kB]
-Get:31 http://azure.archive.ubuntu.com/ubuntu noble-security/universe amd64 Packages [1507 kB]
-Get:32 http://azure.archive.ubuntu.com/ubuntu noble-security/restricted amd64 Packages [3581 kB]
-Get:33 http://azure.archive.ubuntu.com/ubuntu noble-security/main amd64 Packages [2025 kB]
+Get:30 http://azure.archive.ubuntu.com/ubuntu noble-security/main Sources [318 kB]
+Get:31 http://azure.archive.ubuntu.com/ubuntu noble-security/restricted amd64 Packages [3581 kB]
+Get:32 http://azure.archive.ubuntu.com/ubuntu noble-security/main amd64 Packages [2025 kB]
+Get:33 http://azure.archive.ubuntu.com/ubuntu noble-security/universe amd64 Packages [1507 kB]
 Get:34 http://azure.archive.ubuntu.com/ubuntu noble-security/multiverse amd64 Packages [34.8 kB]
-Fetched 66.6 MB in 2s (38.6 MB/s)
+Fetched 66.6 MB in 2s (38.0 MB/s)
 Reading package lists...
 Reading package lists...
 Building dependency tree...
@@ -85,9 +85,9 @@ Need to get 0 B/1196 kB of archives.
 After this operation, 2002 kB disk space will be freed.
 Get:1 /work/prebuilt-debs/libxml2_2.9.14+dfsg-1.3ubuntu3.7+safelibs1_amd64.deb libxml2 amd64 2.9.14+dfsg-1.3ubuntu3.7+safelibs1 [1196 kB]
 debconf: delaying package configuration, since apt-utils is not installed
-(Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 43202 files and directories currently installed.)
+(Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 43202 files and directories currently installed.)
 Removing libxml2-dev:amd64 (2.9.14+dfsg-1.3ubuntu3.7) ...
-(Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 43144 files and directories currently installed.)
+(Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 43144 files and directories currently installed.)
 Preparing to unpack .../libxml2_2.9.14+dfsg-1.3ubuntu3.7+safelibs1_amd64.deb ...
 Unpacking libxml2:amd64 (2.9.14+dfsg-1.3ubuntu3.7+safelibs1) over (2.9.14+dfsg-1.3ubuntu3.7) ...
 Setting up libxml2:amd64 (2.9.14+dfsg-1.3ubuntu3.7+safelibs1) ...
@@ -104,7 +104,7 @@ After this operation, 18.3 MB of additional disk space will be used.
 Get:1 /work/prebuilt-debs/libxml2-dev_2.9.14+dfsg-1.3ubuntu3.7+safelibs1_amd64.deb libxml2-dev amd64 2.9.14+dfsg-1.3ubuntu3.7+safelibs1 [4328 kB]
 debconf: delaying package configuration, since apt-utils is not installed
 Selecting previously unselected package libxml2-dev:amd64.
-(Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 43139 files and directories currently installed.)
+(Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 43139 files and directories currently installed.)
 Preparing to unpack .../libxml2-dev_2.9.14+dfsg-1.3ubuntu3.7+safelibs1_amd64.deb ...
 Unpacking libxml2-dev:amd64 (2.9.14+dfsg-1.3ubuntu3.7+safelibs1) ...
 Setting up libxml2-dev:amd64 (2.9.14+dfsg-1.3ubuntu3.7+safelibs1) ...
@@ -119,7 +119,7 @@ Need to get 0 B/925 kB of archives.
 After this operation, 3259 kB of additional disk space will be used.
 Get:1 /work/prebuilt-debs/libxml2-utils_2.9.14+dfsg-1.3ubuntu3.7+safelibs1_amd64.deb libxml2-utils amd64 2.9.14+dfsg-1.3ubuntu3.7+safelibs1 [925 kB]
 debconf: delaying package configuration, since apt-utils is not installed
-(Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 43199 files and directories currently installed.)
+(Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 43199 files and directories currently installed.)
 Preparing to unpack .../libxml2-utils_2.9.14+dfsg-1.3ubuntu3.7+safelibs1_amd64.deb ...
 Unpacking libxml2-utils (2.9.14+dfsg-1.3ubuntu3.7+safelibs1) over (2.9.14+dfsg-1.3ubuntu3.7) ...
 Setting up libxml2-utils (2.9.14+dfsg-1.3ubuntu3.7+safelibs1) ...
@@ -134,7 +134,7 @@ Need to get 0 B/136 kB of archives.
 After this operation, 63.5 kB disk space will be freed.
 Get:1 /work/prebuilt-debs/python3-libxml2_2.9.14+dfsg-1.3ubuntu3.7+safelibs1_amd64.deb python3-libxml2 amd64 2.9.14+dfsg-1.3ubuntu3.7+safelibs1 [136 kB]
 debconf: delaying package configuration, since apt-utils is not installed
-(Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 43197 files and directories currently installed.)
+(Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 43197 files and directories currently installed.)
 Preparing to unpack .../python3-libxml2_2.9.14+dfsg-1.3ubuntu3.7+safelibs1_amd64.deb ...
 Unpacking python3-libxml2:amd64 (2.9.14+dfsg-1.3ubuntu3.7+safelibs1) over (2.9.14+dfsg-1.3ubuntu3.7) ...
 Setting up python3-libxml2:amd64 (2.9.14+dfsg-1.3ubuntu3.7+safelibs1) ...
