@@ -160,41 +160,6 @@ def prepare_scratch_copy(
     return scratch_source
 
 
-def patch_libxml_hash_scan_compatibility(scratch_source: Path) -> None:
-    """Keep libxml hash scans compatible with libxslt's re-entrant variable walk."""
-    hash_path = scratch_source / "safe" / "src" / "foundation" / "hash.rs"
-    if not hash_path.exists():
-        raise ValidatorError(f"missing libxml hash implementation: {hash_path}")
-    text = hash_path.read_text(encoding="utf-8")
-    old = """                        if !hash_entry_valid(bucket) {
-                            iter = ::core::ptr::null_mut::<xmlHashEntry>();
-                        } else if hash_entry_next(bucket) != next {
-                            iter = bucket;
-                        } else {
-                            iter = next;
-                        }
-"""
-    new = """                        if !hash_entry_valid(bucket) {
-                            iter = ::core::ptr::null_mut::<xmlHashEntry>();
-                        }
-                        if hash_entry_next(bucket) != next {
-                            iter = bucket;
-                        } else {
-                            iter = next;
-                        }
-"""
-    if new in text:
-        return
-    if old not in text:
-        raise ValidatorError(f"missing libxml hash scan block to patch in {hash_path}")
-    hash_path.write_text(text.replace(old, new, 1), encoding="utf-8")
-
-
-def patch_scratch_copy_for_library(library: str, scratch_source: Path) -> None:
-    if library == "libxml":
-        patch_libxml_hash_scan_compatibility(scratch_source)
-
-
 def collect_artifacts(output_dir: Path, artifact_globs: list[str], library: str) -> list[Path]:
     artifacts: list[Path] = []
     for pattern in artifact_globs:
@@ -336,7 +301,6 @@ def build_library(
         library,
         sibling_repo=sibling_repo,
     )
-    patch_scratch_copy_for_library(library, scratch_source)
     reset_dir(output)
     build = dict(entry["build"])
     mode = str(build.get("mode") or "docker")

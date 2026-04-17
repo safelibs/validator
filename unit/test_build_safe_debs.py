@@ -148,50 +148,6 @@ class BuildSafeDebsTests(unittest.TestCase):
 
         self.assertIn("./build.sh", commands[0][-1])
 
-    def test_libxml_build_patch_restores_hash_scan_iteration_semantics(self) -> None:
-        scratch = self.root / "libxml-scratch"
-        hash_path = scratch / "safe" / "src" / "foundation" / "hash.rs"
-        hash_path.parent.mkdir(parents=True)
-        hash_path.write_text(
-            """fn xmlHashScanFull() {
-                if nb != table_ref.nbElems {
-                    if iter == bucket {
-                        if !hash_entry_valid(bucket) {
-                            iter = ::core::ptr::null_mut::<xmlHashEntry>();
-                        } else if hash_entry_next(bucket) != next {
-                            iter = bucket;
-                        } else {
-                            iter = next;
-                        }
-                    } else {
-                        iter = next;
-                    }
-                } else {
-                    iter = next;
-                }
-}
-""",
-            encoding="utf-8",
-        )
-
-        build_safe_debs.patch_scratch_copy_for_library("libxml", scratch)
-
-        patched = hash_path.read_text(encoding="utf-8")
-        self.assertIn("if nb != table_ref.nbElems", patched)
-        self.assertNotIn("} else if hash_entry_next(bucket) != next {", patched)
-        self.assertIn(
-            """                        if !hash_entry_valid(bucket) {
-                            iter = ::core::ptr::null_mut::<xmlHashEntry>();
-                        }
-                        if hash_entry_next(bucket) != next {
-                            iter = bucket;
-                        } else {
-                            iter = next;
-                        }
-""",
-            patched,
-        )
-
     def test_omitted_mode_defaults_to_docker(self) -> None:
         commands: list[list[str]] = []
         fake_run = self.fake_docker_run(commands, "libdemo-default.deb")
