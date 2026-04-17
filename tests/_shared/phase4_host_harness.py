@@ -1137,7 +1137,7 @@ def libyaml_selected_and_markers() -> tuple[list[str], list[str]]:
         "crystal",
         "libyaml-libyaml-perl",
     ]
-    markers = ["netplan.io", *selected[1:]]
+    markers = ["==> netplan.io", *[f"==> {item}" for item in selected[1:]]]
     return selected, markers
 
 
