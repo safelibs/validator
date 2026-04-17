@@ -23,62 +23,62 @@
     {
       "id": "libvirt-daemon",
       "marker": "==> libvirt-daemon",
-      "line": 43
+      "line": 40
     },
     {
       "id": "postgresql-16",
       "marker": "==> postgresql-16",
-      "line": 45
+      "line": 42
     },
     {
       "id": "php8.3-xml",
       "marker": "==> php8.3-xml",
-      "line": 47
+      "line": 44
     },
     {
       "id": "python3-lxml",
       "marker": "==> python3-lxml",
-      "line": 49
+      "line": 46
     },
     {
       "id": "xmlstarlet",
       "marker": "==> xmlstarlet",
-      "line": 51
+      "line": 48
     },
     {
       "id": "mariadb-plugin-connect",
       "marker": "==> mariadb-plugin-connect",
-      "line": 53
+      "line": 50
     },
     {
       "id": "cyrus-caldav",
       "marker": "==> cyrus-caldav",
-      "line": 55
+      "line": 52
     },
     {
       "id": "yelp",
       "marker": "==> yelp",
-      "line": 57
+      "line": 54
     },
     {
       "id": "libobt2v5",
       "marker": "==> libobt2v5",
-      "line": 59
+      "line": 56
     },
     {
       "id": "kdoctools5",
       "marker": "==> kdoctools5",
-      "line": 61
+      "line": 58
     },
     {
       "id": "yelp-tools",
       "marker": "==> yelp-tools",
-      "line": 63
+      "line": 60
     },
     {
       "id": "llvm-toolchain-18",
       "marker": "==> llvm-toolchain-18",
-      "line": 65
+      "line": 62
     }
   ],
   "workloads": [
