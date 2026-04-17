@@ -9,3 +9,5 @@ artifacts/.workspace/
 artifacts/casts/
 artifacts/logs/
 artifacts/results/
+artifacts/downstream/*/*/raw/console.log
+artifacts/downstream/*/*/raw/results.json

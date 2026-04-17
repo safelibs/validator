@@ -8,7 +8,6 @@ import unittest
 from pathlib import Path
 from unittest import mock
 
-from unit import commit_all, init_repo, run_git
 from tools import ValidatorError
 from tools.host_harness import write_summary
 from tools import run_matrix
@@ -214,51 +213,6 @@ class RunMatrixTests(unittest.TestCase):
         self.assertEqual(exit_code, 0)
         cleanup.assert_called_once()
         self.assertEqual(cleanup.call_args.args[0]["demo"].image_tag, "validator-demo-fake")
-
-    def test_successful_matrix_restores_clean_tracked_raw_downstream_evidence(self) -> None:
-        root = self.run_root()
-        repo_root = root / "repo"
-        init_repo(repo_root)
-        artifact_root = repo_root / "artifacts"
-        raw_dir = artifact_root / "downstream" / "demo" / "safe" / "raw"
-        raw_dir.mkdir(parents=True)
-        console_log = raw_dir / "console.log"
-        results_json = raw_dir / "results.json"
-        console_log.write_text("committed console\n", encoding="utf-8")
-        results_json.write_text('{"exit_code": 0, "marker": "committed"}\n', encoding="utf-8")
-        commit_all(repo_root)
-
-        snapshot = run_matrix.capture_clean_tracked_downstream_raw(repo_root, artifact_root)
-        console_log.write_text("fresh verifier console\n", encoding="utf-8")
-        results_json.write_text('{"exit_code": 0, "marker": "fresh"}\n', encoding="utf-8")
-
-        run_matrix.restore_tracked_downstream_raw(snapshot)
-
-        self.assertEqual(console_log.read_text(encoding="utf-8"), "committed console\n")
-        self.assertEqual(
-            results_json.read_text(encoding="utf-8"),
-            '{"exit_code": 0, "marker": "committed"}\n',
-        )
-        self.assertEqual(
-            run_git(["status", "--porcelain"], cwd=repo_root, capture_output=True).stdout,
-            "",
-        )
-
-    def test_dirty_tracked_raw_downstream_evidence_is_not_snapshotted(self) -> None:
-        root = self.run_root()
-        repo_root = root / "repo"
-        init_repo(repo_root)
-        artifact_root = repo_root / "artifacts"
-        raw_dir = artifact_root / "downstream" / "demo" / "safe" / "raw"
-        raw_dir.mkdir(parents=True)
-        console_log = raw_dir / "console.log"
-        console_log.write_text("committed console\n", encoding="utf-8")
-        commit_all(repo_root)
-        console_log.write_text("user-modified console\n", encoding="utf-8")
-
-        snapshot = run_matrix.capture_clean_tracked_downstream_raw(repo_root, artifact_root)
-
-        self.assertEqual(snapshot, {})
 
     def test_main_rejects_path_traversal_library_names_before_writing_artifacts(self) -> None:
         root = self.run_root()
