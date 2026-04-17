@@ -83,44 +83,37 @@ prepare_safe_artifact_metadata() {
   : >"${dist_dir}/liblzma-safe_${version}_${arch}.changes"
 }
 
-patch_original_smoke_runner() {
-  python3 - "${HARNESS_ROOT}/safe/scripts/run-dependent-smokes.sh" <<'PY'
-import re
-import sys
-from pathlib import Path
+prepare_original_source_tree() {
+  if [[ "${MODE}" != "original" ]]; then
+    return 0
+  fi
 
-path = Path(sys.argv[1])
-text = path.read_text(encoding="utf-8")
-replacement = r'''build_original_liblzma() {
-  CURRENT_STEP="select original liblzma packages"
-  log_step "Using installed original liblzma packages"
+  if [[ ! -f "${HARNESS_ROOT}/original/build-aux/version.sh" ]]; then
+    mkdir -p "${HARNESS_ROOT}/original/build-aux"
+    cat >"${HARNESS_ROOT}/original/build-aux/version.sh" <<'EOF'
+#!/bin/sh
+sed -n 's/LZMA_VERSION_STABILITY_ALPHA/alpha/
+	s/LZMA_VERSION_STABILITY_BETA/beta/
+	s/LZMA_VERSION_STABILITY_STABLE//
+	s/^#define LZMA_VERSION_[MPS][AIT][AJNT][A-Z]* //p' \
+	src/liblzma/api/lzma/version.h \
+	| tr '\n' '|' \
+	| sed 's/|/./; s/|/./; s/|//g' \
+	| tr -d '\r\n'
+EOF
+    chmod +x "${HARNESS_ROOT}/original/build-aux/version.sh"
+  fi
 
-  rm -rf "$TEST_ROOT"
-  mkdir -p "$TEST_ROOT"
+  if [[ -f "${HARNESS_ROOT}/original/config.rpath" && -f "${HARNESS_ROOT}/original/ltmain.sh" ]]; then
+    return 0
+  fi
 
-  unset LD_LIBRARY_PATH
-  unset PKG_CONFIG_PATH
-  ldconfig
-
-  ACTIVE_LIBLZMA="$(readlink -f "/usr/lib/${MULTIARCH}/liblzma.so.5")"
-  ACTIVE_INCLUDE_ROOT="/usr/include"
-  [[ -n "$ACTIVE_LIBLZMA" && -f "$ACTIVE_LIBLZMA" ]] || die "failed to locate packaged liblzma shared library"
-  assert_exists "$ACTIVE_INCLUDE_ROOT/lzma.h"
-  export_probe_environment
-  cd /
-}
-'''
-updated, count = re.subn(
-    r'build_original_liblzma\(\) \{\n.*?\n\}',
-    replacement,
-    text,
-    count=1,
-    flags=re.S,
-)
-if count != 1:
-    raise SystemExit(f"failed to patch build_original_liblzma in {path}")
-path.write_text(updated, encoding="utf-8")
-PY
+  (
+    cd "${HARNESS_ROOT}/original"
+    ./autogen.sh --no-po4a --no-doxygen
+    touch aclocal.m4 configure config.h.in Makefile.in po/Makefile.in.in
+    find . -name Makefile.in -exec touch {} +
+  )
 }
 
 finalize_summary() {
@@ -275,19 +268,22 @@ PY
   local status=0
   local safe_dir="${HARNESS_ROOT}/safe/dist"
 
-  if ! prepare_safe_artifact_metadata; then
+  if prepare_safe_artifact_metadata; then
+    :
+  else
     status=$?
     failure_mode="setup"
     finalize_summary "${status}" "${failure_mode}"
     return "${status}"
   fi
-  if ! patch_original_smoke_runner; then
+  if prepare_original_source_tree; then
+    :
+  else
     status=$?
     failure_mode="setup"
     finalize_summary "${status}" "${failure_mode}"
     return "${status}"
   fi
-
   if run_captured ./test-original.sh --implementation "${MODE}" --safe-package-dir "${safe_dir}"; then
     status=0
   else

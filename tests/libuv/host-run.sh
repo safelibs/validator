@@ -107,48 +107,6 @@ Path(sys.argv[3]).write_text(json.dumps(config, indent=2) + "\n", encoding="utf-
 PY
 }
 
-patch_imported_apt_retries() {
-  python3 - "${HARNESS_ROOT}/test-original.sh" <<'PY'
-import sys
-from pathlib import Path
-
-path = Path(sys.argv[1])
-text = path.read_text(encoding="utf-8")
-needle = """set -euo pipefail
-
-export DEBIAN_FRONTEND=noninteractive
-"""
-replacement = """set -euo pipefail
-
-install -d /usr/local/bin
-cat >/usr/local/bin/apt-get <<'APT'
-#!/usr/bin/env bash
-mirror="${VALIDATOR_APT_MIRROR:-http://azure.archive.ubuntu.com/ubuntu}"
-for source_file in /etc/apt/sources.list /etc/apt/sources.list.d/*.sources; do
-  [[ -e "${source_file}" ]] || continue
-  sed -i -E "s#http://([a-z]{2}\\.)?archive\\.ubuntu\\.com/ubuntu#${mirror}#g; s#http://security\\.ubuntu\\.com/ubuntu#${mirror}#g" "${source_file}"
-done
-exec /usr/bin/apt-get \\
-  -o Acquire::ForceIPv4=true \\
-  -o Acquire::Retries=10 \\
-  -o Acquire::http::Timeout=60 \\
-  -o Acquire::https::Timeout=60 \\
-  -o Acquire::http::Pipeline-Depth=0 \\
-  "$@"
-APT
-chmod 0755 /usr/local/bin/apt-get
-export PATH="/usr/local/bin:${PATH}"
-
-export DEBIAN_FRONTEND=noninteractive
-"""
-if replacement in text:
-    raise SystemExit(0)
-if needle not in text:
-    raise SystemExit(f"missing expected container script header in {path}")
-path.write_text(text.replace(needle, replacement, 1), encoding="utf-8")
-PY
-}
-
 finalize_summary() {
   local exit_code=$1
   local failure_mode=$2
@@ -312,13 +270,6 @@ PY
     fi
   else
     unset LIBUV_SAFE_DEB_DIR
-  fi
-
-  if ! patch_imported_apt_retries; then
-    status=$?
-    failure_mode="setup"
-    finalize_summary "${status}" "${failure_mode}"
-    return "${status}"
   fi
 
   if run_captured ./test-original.sh; then

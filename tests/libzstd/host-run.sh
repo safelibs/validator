@@ -41,7 +41,16 @@ find_exactly_one_deb() {
 }
 
 write_runtime_helpers() {
-  cat >"${HARNESS_ROOT}/.validator/runtime_helpers.sh" <<'EOF'
+  local validator_root="${HARNESS_ROOT}/.validator/validator"
+  local helper_dir="${validator_root}/tests/_shared"
+  local zstd_tests_dir="${validator_root}/tests/libzstd/tests"
+
+  mkdir -p "${helper_dir}" "${zstd_tests_dir}/fixtures"
+  rm -rf "${zstd_tests_dir}/tagged-port" "${zstd_tests_dir}/fixtures/dependents.json"
+  ln -s /work "${zstd_tests_dir}/tagged-port"
+  ln -s /work/dependents.json "${zstd_tests_dir}/fixtures/dependents.json"
+
+  cat >"${helper_dir}/runtime_helpers.sh" <<'EOF'
 #!/usr/bin/env bash
 set -euo pipefail
 
@@ -68,7 +77,7 @@ validator_copy_tree() {
   cp -a "$source" "$dest"
 }
 EOF
-  chmod +x "${HARNESS_ROOT}/.validator/runtime_helpers.sh"
+  chmod +x "${helper_dir}/runtime_helpers.sh"
 }
 
 prepare_baseline_launcher() {
@@ -77,23 +86,8 @@ prepare_baseline_launcher() {
 
   write_runtime_helpers
 
-  python3 - "${source_path}" "${launcher_path}" <<'PY'
-from pathlib import Path
-import sys
-
-source = Path(sys.argv[1])
-dest = Path(sys.argv[2])
-text = source.read_text(encoding="utf-8")
-needle = "source /validator/tests/_shared/runtime_helpers.sh\n"
-replacement = "source /work/.validator/runtime_helpers.sh\n"
-if needle not in text:
-    raise SystemExit(f"missing expected runtime helper source line in {source}")
-text = text.replace(needle, replacement, 1)
-text = text.replace('Path("/validator/tests/libzstd/tests/tagged-port")', 'Path("/work")')
-text = text.replace('"$library_tests_root/fixtures/dependents.json"', '"/work/dependents.json"')
-dest.write_text(text, encoding="utf-8")
-dest.chmod(0o755)
-PY
+  cp -f "${source_path}" "${launcher_path}"
+  chmod +x "${launcher_path}"
 }
 
 build_baseline_config() {
@@ -621,21 +615,6 @@ EOF
   chmod +x "${helper_path}"
 }
 
-patch_test_original() {
-  python3 - "${HARNESS_ROOT}/test-original.sh" <<'PY'
-from pathlib import Path
-import sys
-
-path = Path(sys.argv[1])
-text = path.read_text(encoding="utf-8")
-needle = 'bash "$SAFE_ROOT/scripts/build-dependent-image.sh"\n'
-replacement = 'bash "$REPO_ROOT/.validator/build-dependent-image-from-prebuilt.sh"\n'
-if needle not in text:
-    raise SystemExit(f"missing expected build-dependent-image invocation in {path}")
-path.write_text(text.replace(needle, replacement, 1), encoding="utf-8")
-PY
-}
-
 prepare_safe_mode_layout() {
   prepare_safe_packages_dir
   prepare_install_roots
@@ -643,7 +622,22 @@ prepare_safe_mode_layout() {
   stage_safe_source_tree
   write_metadata_env
   write_build_helper
-  patch_test_original
+}
+
+run_imported_safe_launcher() {
+  bash -c '
+    set -euo pipefail
+
+    bash() {
+      if [[ "$#" -eq 1 && "${SAFE_ROOT:-}/scripts/build-dependent-image.sh" == "$1" ]]; then
+        command bash "${REPO_ROOT}/.validator/build-dependent-image-from-prebuilt.sh"
+      else
+        command bash "$@"
+      fi
+    }
+
+    source ./test-original.sh "$@"
+  ' validator-libzstd-safe "$@"
 }
 
 run_original_mode() {
@@ -663,8 +657,9 @@ run_original_mode() {
   if run_captured \
     docker run --rm -i \
       --mount "type=bind,src=${HARNESS_ROOT},dst=/work" \
+      --mount "type=bind,src=${HARNESS_ROOT}/.validator/validator,dst=/validator,readonly" \
       -e VALIDATOR_TAGGED_ROOT=/work \
-      -e VALIDATOR_LIBRARY_ROOT=/work \
+      -e VALIDATOR_LIBRARY_ROOT=/validator/tests/libzstd \
       "${VALIDATOR_BASELINE_IMAGE:?}" \
       bash /work/.validator/libzstd-baseline-run.sh
   then
@@ -691,7 +686,7 @@ run_safe_mode() {
     return "${status}"
   fi
 
-  if run_captured ./test-original.sh; then
+  if run_captured run_imported_safe_launcher; then
     status=0
   else
     status=$?

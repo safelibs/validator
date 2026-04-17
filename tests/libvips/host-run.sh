@@ -39,7 +39,10 @@ find_exactly_one_deb() {
 }
 
 write_runtime_helpers() {
-  cat >"${HARNESS_ROOT}/.validator/runtime_helpers.sh" <<'EOF'
+  local helper_dir="${HARNESS_ROOT}/.validator/validator/tests/_shared"
+
+  mkdir -p "${helper_dir}"
+  cat >"${helper_dir}/runtime_helpers.sh" <<'EOF'
 #!/usr/bin/env bash
 set -euo pipefail
 
@@ -84,7 +87,7 @@ validator_make_tool_shims() {
   done
 }
 EOF
-  chmod +x "${HARNESS_ROOT}/.validator/runtime_helpers.sh"
+  chmod +x "${helper_dir}/runtime_helpers.sh"
 }
 
 prepare_baseline_launcher() {
@@ -93,20 +96,8 @@ prepare_baseline_launcher() {
 
   write_runtime_helpers
 
-  python3 - "${source_path}" "${launcher_path}" <<'PY'
-from pathlib import Path
-import sys
-
-source = Path(sys.argv[1])
-dest = Path(sys.argv[2])
-text = source.read_text(encoding="utf-8")
-needle = "source /validator/tests/_shared/runtime_helpers.sh\n"
-replacement = "source /work/.validator/runtime_helpers.sh\n"
-if needle not in text:
-    raise SystemExit(f"missing expected runtime helper source line in {source}")
-dest.write_text(text.replace(needle, replacement, 1), encoding="utf-8")
-dest.chmod(0o755)
-PY
+  cp -f "${source_path}" "${launcher_path}"
+  chmod +x "${launcher_path}"
 }
 
 prepare_safe_packages() {
@@ -119,41 +110,6 @@ prepare_safe_packages() {
     fi
     cp -f "${source_path}" "${HARNESS_ROOT}/"
   done
-}
-
-patch_safe_apt_retries() {
-  python3 - "${HARNESS_ROOT}/safe/tests/dependents/lib.sh" <<'PY'
-from pathlib import Path
-import sys
-
-path = Path(sys.argv[1])
-text = path.read_text(encoding="utf-8")
-needle = "set -euo pipefail\n\n"
-injection = """set -euo pipefail
-
-apt-get() {
-  local mirror="${VALIDATOR_APT_MIRROR:-http://azure.archive.ubuntu.com/ubuntu}"
-  local source_file
-  for source_file in /etc/apt/sources.list /etc/apt/sources.list.d/*.sources; do
-    [[ -e "${source_file}" ]] || continue
-    sed -i -E "s#http://([a-z]{2}\\.)?archive\\.ubuntu\\.com/ubuntu#${mirror}#g; s#http://security\\.ubuntu\\.com/ubuntu#${mirror}#g" "${source_file}"
-  done
-  command apt-get \\
-    -o Acquire::ForceIPv4=true \\
-    -o Acquire::Retries=10 \\
-    -o Acquire::http::Timeout=60 \\
-    -o Acquire::https::Timeout=60 \\
-    -o Acquire::http::Pipeline-Depth=0 \\
-    "$@"
-}
-
-"""
-if injection in text:
-    raise SystemExit(0)
-if needle not in text:
-    raise SystemExit(f"missing shell strict-mode header in {path}")
-path.write_text(text.replace(needle, injection, 1), encoding="utf-8")
-PY
 }
 
 build_baseline_config() {
@@ -482,6 +438,7 @@ run_original_mode() {
   if run_captured \
     docker run --rm -i \
       --mount "type=bind,src=${HARNESS_ROOT},dst=/work" \
+      --mount "type=bind,src=${HARNESS_ROOT}/.validator/validator,dst=/validator,readonly" \
       -e VALIDATOR_TAGGED_ROOT=/work \
       -e VALIDATOR_LIBRARY_ROOT=/work \
       "${VALIDATOR_BASELINE_IMAGE:?}" \
@@ -509,15 +466,6 @@ run_safe_mode() {
     finalize_imported_summary "${status}" "${failure_mode}"
     return "${status}"
   fi
-  if patch_safe_apt_retries; then
-    status=0
-  else
-    status=$?
-    failure_mode="setup"
-    finalize_imported_summary "${status}" "${failure_mode}"
-    return "${status}"
-  fi
-
   export LIBVIPS_USE_EXISTING_DEBS=1
   if run_captured ./test-original.sh; then
     status=0

@@ -23,7 +23,10 @@ run_captured() {
 }
 
 write_runtime_helpers() {
-  cat >"${HARNESS_ROOT}/.validator/runtime_helpers.sh" <<'EOF'
+  local helper_dir="${HARNESS_ROOT}/.validator/validator/tests/_shared"
+
+  mkdir -p "${helper_dir}"
+  cat >"${helper_dir}/runtime_helpers.sh" <<'EOF'
 #!/usr/bin/env bash
 set -euo pipefail
 
@@ -68,7 +71,7 @@ validator_make_tool_shims() {
   done
 }
 EOF
-  chmod +x "${HARNESS_ROOT}/.validator/runtime_helpers.sh"
+  chmod +x "${helper_dir}/runtime_helpers.sh"
 }
 
 prepare_baseline_launcher() {
@@ -77,20 +80,8 @@ prepare_baseline_launcher() {
 
   write_runtime_helpers
 
-  python3 - "${source_path}" "${launcher_path}" <<'PY'
-from pathlib import Path
-import sys
-
-source = Path(sys.argv[1])
-dest = Path(sys.argv[2])
-text = source.read_text(encoding="utf-8")
-needle = "source /validator/tests/_shared/runtime_helpers.sh\n"
-replacement = "source /work/.validator/runtime_helpers.sh\n"
-if needle not in text:
-    raise SystemExit(f"missing expected runtime helper source line in {source}")
-dest.write_text(text.replace(needle, replacement, 1), encoding="utf-8")
-dest.chmod(0o755)
-PY
+  cp -f "${source_path}" "${launcher_path}"
+  chmod +x "${launcher_path}"
 }
 
 build_baseline_config() {
@@ -421,6 +412,7 @@ run_original_mode() {
   if run_captured \
     docker run --rm -i \
       --mount "type=bind,src=${HARNESS_ROOT},dst=/work" \
+      --mount "type=bind,src=${HARNESS_ROOT}/.validator/validator,dst=/validator,readonly" \
       -e VALIDATOR_TAGGED_ROOT=/work \
       "${VALIDATOR_BASELINE_IMAGE:?}" \
       bash /work/.validator/libtiff-baseline-run.sh
