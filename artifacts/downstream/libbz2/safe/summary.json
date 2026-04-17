@@ -1,0 +1,45 @@
+{
+  "summary_version": 1,
+  "library": "libbz2",
+  "mode": "safe",
+  "status": "passed",
+  "report_format": "imported-log-marker",
+  "expected_dependents": 13,
+  "selected_dependents": [
+    "libapt-pkg6.0t64",
+    "bzip2",
+    "libpython3.12-stdlib",
+    "php8.3-bz2",
+    "pike8.0-bzip2",
+    "libcompress-raw-bzip2-perl",
+    "mariadb-plugin-provider-bzip2",
+    "gpg",
+    "zip",
+    "unzip",
+    "libarchive13t64",
+    "libfreetype6",
+    "gstreamer1.0-plugins-good"
+  ],
+  "passed_dependents": [
+    "libapt-pkg6.0t64",
+    "bzip2",
+    "libpython3.12-stdlib",
+    "php8.3-bz2",
+    "pike8.0-bzip2",
+    "libcompress-raw-bzip2-perl",
+    "mariadb-plugin-provider-bzip2",
+    "gpg",
+    "zip",
+    "unzip",
+    "libarchive13t64",
+    "libfreetype6",
+    "gstreamer1.0-plugins-good"
+  ],
+  "failed_dependents": [],
+  "warned_dependents": [],
+  "skipped_dependents": [],
+  "artifacts": {
+    "console_log": "downstream/libbz2/safe/raw/console.log",
+    "results_json": "downstream/libbz2/safe/raw/results.json"
+  }
+}

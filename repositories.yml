@@ -35,7 +35,7 @@ repositories:
     - '*.deb'
   validator:
     sibling_repo: port-cjson
-    execution_strategy: container-image
+    execution_strategy: host-harness
     imports:
     - safe/tests
     - safe/scripts
@@ -59,7 +59,7 @@ repositories:
     - '*.deb'
   validator:
     sibling_repo: port-giflib
-    execution_strategy: container-image
+    execution_strategy: host-harness
     imports:
     - safe
     - original
@@ -91,7 +91,7 @@ repositories:
     - '*.deb'
   validator:
     sibling_repo: port-libarchive
-    execution_strategy: container-image
+    execution_strategy: host-harness
     imports:
     - safe/tests
     - safe/debian/tests
@@ -141,7 +141,7 @@ repositories:
     - '*.deb'
   validator:
     sibling_repo: port-libbz2
-    execution_strategy: container-image
+    execution_strategy: host-harness
     imports:
     - safe/tests
     - safe/debian/tests
@@ -163,7 +163,7 @@ repositories:
     - '*.deb'
   validator:
     sibling_repo: port-libcsv
-    execution_strategy: container-image
+    execution_strategy: host-harness
     imports:
     - safe
     - original
@@ -182,7 +182,7 @@ repositories:
     - '*.deb'
   validator:
     sibling_repo: port-libexif
-    execution_strategy: container-image
+    execution_strategy: host-harness
     imports:
     - safe/tests
     - original/libexif
@@ -203,7 +203,7 @@ repositories:
     - '*.deb'
   validator:
     sibling_repo: port-libjpeg-turbo
-    execution_strategy: container-image
+    execution_strategy: host-harness
     imports:
     - safe
     - original
@@ -236,7 +236,7 @@ repositories:
     - '*.deb'
   validator:
     sibling_repo: port-libjson
-    execution_strategy: container-image
+    execution_strategy: host-harness
     imports:
     - safe/tests
     - safe/debian/tests
@@ -308,7 +308,7 @@ repositories:
     - '*.deb'
   validator:
     sibling_repo: port-libsdl
-    execution_strategy: container-image
+    execution_strategy: host-harness
     imports:
     - safe
     - original
@@ -334,7 +334,7 @@ repositories:
     - '*.deb'
   validator:
     sibling_repo: port-libsodium
-    execution_strategy: container-image
+    execution_strategy: host-harness
     imports:
     - safe/tests
     - safe/docker
@@ -494,7 +494,7 @@ repositories:
     - '*.deb'
   validator:
     sibling_repo: port-libyaml
-    execution_strategy: container-image
+    execution_strategy: host-harness
     imports:
     - safe
     - original

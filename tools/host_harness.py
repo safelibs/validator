@@ -3,6 +3,7 @@ from __future__ import annotations
 import json
 import shutil
 import subprocess
+import uuid
 from dataclasses import dataclass
 from pathlib import Path
 from typing import Any
@@ -40,7 +41,9 @@ def _validate_library_name(library: str) -> str:
 
 def _reset_dir(path: Path) -> None:
     if path.exists():
-        shutil.rmtree(path)
+        stale = path.with_name(f"{path.name}.stale-{uuid.uuid4().hex}")
+        path.rename(stale)
+        shutil.rmtree(stale, ignore_errors=True)
     path.mkdir(parents=True, exist_ok=True)
 
 

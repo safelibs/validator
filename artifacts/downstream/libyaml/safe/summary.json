@@ -1,0 +1,43 @@
+{
+  "summary_version": 1,
+  "library": "libyaml",
+  "mode": "safe",
+  "status": "passed",
+  "report_format": "imported-log-marker",
+  "expected_dependents": 12,
+  "selected_dependents": [
+    "libnetplan1",
+    "python3-yaml",
+    "ruby-psych",
+    "php8.3-yaml",
+    "suricata",
+    "stubby",
+    "ser2net",
+    "h2o",
+    "libcamera0.2",
+    "libappstream5",
+    "crystal",
+    "libyaml-libyaml-perl"
+  ],
+  "passed_dependents": [
+    "libnetplan1",
+    "python3-yaml",
+    "ruby-psych",
+    "php8.3-yaml",
+    "suricata",
+    "stubby",
+    "ser2net",
+    "h2o",
+    "libcamera0.2",
+    "libappstream5",
+    "crystal",
+    "libyaml-libyaml-perl"
+  ],
+  "failed_dependents": [],
+  "warned_dependents": [],
+  "skipped_dependents": [],
+  "artifacts": {
+    "console_log": "downstream/libyaml/safe/raw/console.log",
+    "results_json": "downstream/libyaml/safe/raw/results.json"
+  }
+}

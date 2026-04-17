@@ -150,6 +150,10 @@ bash scripts/verify-site.sh \
 
 Each library leaf is mounted into the runtime container as `/safedebs`, so every `tests/<library>/docker-entrypoint.sh` sees only that library's `.deb` files.
 Libraries marked `validator.execution_strategy: host-harness` instead materialize a scratch repo under `artifacts/.workspace/host-harness/<library>/<mode>/repo`, then execute `tests/<library>/host-run.sh` against that scratch tree with `VALIDATOR_HARNESS_ROOT` set to the scratch repo root.
+For the host-harness libraries, safe mode stages validator-built packages into the scratch repo under `safe/dist` and patches only that scratch-local harness copy when an imported downstream script would otherwise rebuild packages.
+Split-mode original baselines run from mirrored launchers under the scratch repo's `.validator/` directory inside `VALIDATOR_BASELINE_IMAGE`.
+
+`libarchive` is the one host-harness library that still needs privileged host support because its imported downstream matrix exercises FUSE-backed archive mounting. Verify it only on a local host where `/dev/fuse` exists and Docker accepts `--device /dev/fuse --cap-add SYS_ADMIN --security-opt apparmor:unconfined`.
 
 #### Artifact Locations
 

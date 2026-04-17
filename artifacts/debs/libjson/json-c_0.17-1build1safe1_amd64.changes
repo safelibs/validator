@@ -1,0 +1,36 @@
+Format: 1.8
+Date: Thu, 02 Apr 2026 00:30:00 -0700
+Source: json-c
+Binary: libjson-c-dev libjson-c5
+Built-For-Profiles: noudeb
+Architecture: amd64
+Version: 0.17-1build1safe1
+Distribution: noble
+Urgency: medium
+Maintainer: Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>
+Changed-By: safelibs contributors <noreply@example.invalid>
+Description:
+ libjson-c-dev - JSON manipulation library - development files
+ libjson-c5 - JSON manipulation library - shared library
+Changes:
+ json-c (0.17-1build1safe1) noble; urgency=medium
+ .
+   * Build and ship the Rust-backed safe wrapper as Debian packages.
+   * Add package-centric installed-artifact smoke coverage for pkg-config and
+     CMake consumers.
+Checksums-Sha1:
+ a4040ee6afd96992fbf7a7aba1502ed04a46105c 8273 json-c_0.17-1build1safe1_amd64.buildinfo
+ ac06fddb416fa7cae3b5815ba3ce8651126e46ff 8623734 libjson-c-dev_0.17-1build1safe1_amd64.deb
+ 6adadcceb7291c39acc6a90d668ad9e31745d079 2887746 libjson-c5-dbgsym_0.17-1build1safe1_amd64.ddeb
+ efadbd8ea836a2edc8c5d5ba57bd4f2668120a3a 457512 libjson-c5_0.17-1build1safe1_amd64.deb
+Checksums-Sha256:
+ ef5151fc9ffd8f439dc8cd107e2f90b8964098117e145b38048255d5ffd1ccba 8273 json-c_0.17-1build1safe1_amd64.buildinfo
+ eaae6738ec572f21df6af2bb1aba0f553467cf04800e1aed528421ecd187b878 8623734 libjson-c-dev_0.17-1build1safe1_amd64.deb
+ c8fd50d18289027c4a5407e234556032b1ff4476a0d2e429c9790c7555f6713b 2887746 libjson-c5-dbgsym_0.17-1build1safe1_amd64.ddeb
+ 33d4f6b02d607aec8ddebdbfaefa66b2eede0a0bb8d454d0102e018ca4f6d429 457512 libjson-c5_0.17-1build1safe1_amd64.deb
+Files:
+ 0242c213809e5a82316ef2cd9ddb4256 8273 libs optional json-c_0.17-1build1safe1_amd64.buildinfo
+ 605c9e46a01e423a518da8929b9856c3 8623734 libdevel optional libjson-c-dev_0.17-1build1safe1_amd64.deb
+ ac5cfe846343f07444974aa9d9406eb3 2887746 debug optional libjson-c5-dbgsym_0.17-1build1safe1_amd64.ddeb
+ 0eaf100d314680d1236ccbe92d19a5ad 457512 libs optional libjson-c5_0.17-1build1safe1_amd64.deb
+Original-Maintainer: Nicolas Mora <babelouest@debian.org>

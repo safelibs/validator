@@ -11,3 +11,7 @@ artifacts/logs/
 artifacts/results/
 artifacts/downstream/*/*/raw/console.log
 artifacts/downstream/*/*/raw/results.json
+artifacts/downstream/*/*/raw/
+artifacts/downstream/*/*/report/
+artifacts/downstream/*/*.stale-*/
+!artifacts/downstream/*/*/summary.json

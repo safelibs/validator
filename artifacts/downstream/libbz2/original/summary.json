@@ -1,0 +1,37 @@
+{
+  "summary_version": 1,
+  "library": "libbz2",
+  "mode": "original",
+  "status": "passed",
+  "report_format": "validator-wrapper-baseline",
+  "expected_dependents": 9,
+  "selected_dependents": [
+    "sample1-decompress",
+    "sample2-decompress",
+    "sample3-decompress",
+    "public_api_test",
+    "debian-test:compress",
+    "debian-test:compare",
+    "debian-test:grep",
+    "debian-test:link-with-shared",
+    "debian-test:bzexe-test"
+  ],
+  "passed_dependents": [
+    "sample1-decompress",
+    "sample2-decompress",
+    "sample3-decompress",
+    "public_api_test",
+    "debian-test:compress",
+    "debian-test:compare",
+    "debian-test:grep",
+    "debian-test:link-with-shared",
+    "debian-test:bzexe-test"
+  ],
+  "failed_dependents": [],
+  "warned_dependents": [],
+  "skipped_dependents": [],
+  "artifacts": {
+    "console_log": "downstream/libbz2/original/raw/console.log",
+    "results_json": "downstream/libbz2/original/raw/results.json"
+  }
+}

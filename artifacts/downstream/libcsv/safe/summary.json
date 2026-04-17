@@ -1,0 +1,23 @@
+{
+  "summary_version": 1,
+  "library": "libcsv",
+  "mode": "safe",
+  "status": "passed",
+  "report_format": "imported-log-marker",
+  "expected_dependents": 2,
+  "selected_dependents": [
+    "readstat",
+    "tellico"
+  ],
+  "passed_dependents": [
+    "readstat",
+    "tellico"
+  ],
+  "failed_dependents": [],
+  "warned_dependents": [],
+  "skipped_dependents": [],
+  "artifacts": {
+    "console_log": "downstream/libcsv/safe/raw/console.log",
+    "results_json": "downstream/libcsv/safe/raw/results.json"
+  }
+}

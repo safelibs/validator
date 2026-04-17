@@ -1,0 +1,27 @@
+{
+  "summary_version": 1,
+  "library": "libexif",
+  "mode": "original",
+  "status": "passed",
+  "report_format": "validator-wrapper-baseline",
+  "expected_dependents": 4,
+  "selected_dependents": [
+    "run-original-test-suite.sh",
+    "run-package-build.sh",
+    "run-cve-regressions.sh",
+    "run-export-compare.sh"
+  ],
+  "passed_dependents": [
+    "run-original-test-suite.sh",
+    "run-package-build.sh",
+    "run-cve-regressions.sh",
+    "run-export-compare.sh"
+  ],
+  "failed_dependents": [],
+  "warned_dependents": [],
+  "skipped_dependents": [],
+  "artifacts": {
+    "console_log": "downstream/libexif/original/raw/console.log",
+    "results_json": "downstream/libexif/original/raw/results.json"
+  }
+}

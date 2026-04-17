@@ -1,0 +1,43 @@
+{
+  "summary_version": 1,
+  "library": "libarchive",
+  "mode": "original",
+  "status": "passed",
+  "report_format": "imported-log-marker",
+  "expected_dependents": 12,
+  "selected_dependents": [
+    "file-roller",
+    "ark",
+    "archivemount",
+    "zathura-cb",
+    "kodi-vfs-libarchive",
+    "gnome-epub-thumbnailer",
+    "libgepub-0.7-0",
+    "libgnome-autoar-0-0",
+    "fwupd",
+    "pacman-package-manager",
+    "libextractor-plugin-archive",
+    "python3-libarchive-c"
+  ],
+  "passed_dependents": [
+    "file-roller",
+    "ark",
+    "archivemount",
+    "zathura-cb",
+    "kodi-vfs-libarchive",
+    "gnome-epub-thumbnailer",
+    "libgepub-0.7-0",
+    "libgnome-autoar-0-0",
+    "fwupd",
+    "pacman-package-manager",
+    "libextractor-plugin-archive",
+    "python3-libarchive-c"
+  ],
+  "failed_dependents": [],
+  "warned_dependents": [],
+  "skipped_dependents": [],
+  "artifacts": {
+    "console_log": "downstream/libarchive/original/raw/console.log",
+    "results_json": "downstream/libarchive/original/raw/results.json"
+  }
+}
