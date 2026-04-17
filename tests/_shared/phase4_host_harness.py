@@ -184,33 +184,6 @@ LIBJSON_SELECTED = [
     "runtime:pd-purest-json",
 ]
 
-LIBJSON_MARKERS = [
-    "compiled dependent=BIND 9 source=bind9",
-    "compiled dependent=FRRouting source=frr",
-    "compiled dependent=Sway source=sway",
-    "compiled dependent=GDAL source=gdal",
-    "compiled dependent=nvme-cli source=nvme-cli",
-    "compiled dependent=ndctl source=ndctl",
-    "compiled dependent=daxctl source=ndctl",
-    "compiled dependent=BlueZ Mesh Daemon source=bluez",
-    "compiled dependent=syslog-ng source=syslog-ng",
-    "compiled dependent=ttyd source=ttyd",
-    "compiled dependent=tlog source=tlog",
-    "compiled dependent=PuREST JSON for Pure Data source=pd-purest-json",
-    "==> Testing BIND 9",
-    "==> Testing FRRouting",
-    "==> Testing Sway",
-    "==> Testing GDAL",
-    "==> Testing nvme-cli",
-    "==> Testing ndctl",
-    "==> Testing daxctl",
-    "==> Testing BlueZ Mesh Daemon",
-    "==> Testing syslog-ng",
-    "==> Testing ttyd",
-    "==> Testing tlog",
-    "==> Testing PuREST JSON for Pure Data",
-]
-
 LIBJPEG_SELECTED = [
     "compile:dcm2niix",
     "compile:krita",
@@ -1119,6 +1092,36 @@ def giflib_selected_and_markers() -> tuple[list[str], list[str]]:
     return selected, markers
 
 
+def libjson_markers(mode: str) -> list[str]:
+    label = "original-source" if mode == "original" else "safe-package"
+    return [
+        f"==> Compiling BIND 9 against {label} json-c",
+        f"==> Compiling FRRouting zebra against {label} json-c",
+        f"==> Compiling Sway against {label} json-c",
+        f"==> Compiling GDAL GeoJSON tools against {label} json-c",
+        f"==> Compiling nvme-cli against {label} json-c",
+        f"==> Compiling ndctl/daxctl against {label} json-c",
+        f"==> Compiling ndctl/daxctl against {label} json-c",
+        f"==> Compiling BlueZ mesh tools against {label} json-c",
+        f"==> Compiling syslog-ng JSON plugin against {label} json-c",
+        f"==> Compiling ttyd against {label} json-c",
+        f"==> Compiling tlog-rec against {label} json-c",
+        f"==> Compiling PuREST JSON externals against {label} json-c",
+        "==> Testing BIND 9",
+        "==> Testing FRRouting",
+        "==> Testing Sway",
+        "==> Testing GDAL",
+        "==> Testing nvme-cli",
+        "==> Testing ndctl",
+        "==> Testing daxctl",
+        "==> Testing BlueZ Mesh Daemon",
+        "==> Testing syslog-ng",
+        "==> Testing ttyd",
+        "==> Testing tlog",
+        "==> Testing PuREST JSON for Pure Data",
+    ]
+
+
 def libyaml_selected_and_markers() -> tuple[list[str], list[str]]:
     selected = [
         "libnetplan1",
@@ -1183,7 +1186,7 @@ def run_log_marker_library(env: HarnessEnv) -> int:
         return status
     if env.library == "libjson":
         selected = list(LIBJSON_SELECTED)
-        markers = list(LIBJSON_MARKERS)
+        markers = libjson_markers(env.mode)
         if env.mode == "original":
             prep_status = prepare_libjson_original_build(env)
             if prep_status != 0:
