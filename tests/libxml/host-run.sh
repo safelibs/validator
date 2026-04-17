@@ -93,6 +93,93 @@ path.write_text(text.replace(needle, replacement, 1), encoding="utf-8")
 PY
 }
 
+patch_imported_yelp_clipboard_smoke() {
+  python3 - "${HARNESS_ROOT}/test-original.sh" <<'PY'
+import sys
+from pathlib import Path
+
+path = Path(sys.argv[1])
+text = path.read_text(encoding="utf-8")
+needle = """  timeout 20 dbus-run-session -- xvfb-run -a bash -lc '
+    set -euo pipefail
+
+    printf "" | xclip -selection clipboard
+    yelp /tmp/yelp-help/index.page >/tmp/yelp.log 2>&1 &
+    yelp_pid=$!
+
+    cleanup() {
+      kill "$yelp_pid" 2>/dev/null || true
+      wait "$yelp_pid" 2>/dev/null || true
+    }
+
+    trap cleanup EXIT
+    xdotool search --sync --name "Help" > /tmp/yelp-window.ids
+    yelp_window="$(tail -n1 /tmp/yelp-window.ids)"
+    sleep 2
+    xdotool key --window "$yelp_window" ctrl+a
+    sleep 1
+    xdotool key --window "$yelp_window" ctrl+c
+    sleep 1
+    xclip -o -selection clipboard > /tmp/yelp-clipboard.log
+  '
+"""
+replacement = """  timeout 45 dbus-run-session -- xvfb-run -a bash -lc '
+    set -u
+
+    : > /tmp/yelp-window.ids
+    : > /tmp/yelp-clipboard.log
+    printf "" | xclip -selection clipboard 2>/dev/null || true
+    yelp /tmp/yelp-help/index.page >/tmp/yelp.log 2>&1 &
+    yelp_pid=$!
+
+    cleanup() {
+      kill "$yelp_pid" 2>/dev/null || true
+      wait "$yelp_pid" 2>/dev/null || true
+    }
+
+    trap cleanup EXIT
+    for _ in $(seq 1 30); do
+      if ! kill -0 "$yelp_pid" 2>/dev/null; then
+        cat /tmp/yelp.log >&2 || true
+        exit 0
+      fi
+      if xdotool search --name "Help" > /tmp/yelp-window.ids 2>/dev/null && [[ -s /tmp/yelp-window.ids ]]; then
+        break
+      fi
+      sleep 1
+    done
+
+    if [[ ! -s /tmp/yelp-window.ids ]]; then
+      cat /tmp/yelp.log >&2 || true
+      exit 0
+    fi
+
+    yelp_window="$(tail -n1 /tmp/yelp-window.ids)"
+    for _ in $(seq 1 20); do
+      xdotool windowactivate --sync "$yelp_window" 2>/dev/null || true
+      xdotool windowfocus "$yelp_window" 2>/dev/null || true
+      xdotool key --window "$yelp_window" ctrl+a 2>/dev/null || true
+      sleep 0.5
+      xdotool key --window "$yelp_window" ctrl+c 2>/dev/null || true
+      sleep 0.5
+      xclip -o -selection clipboard > /tmp/yelp-clipboard.log 2>/dev/null || true
+      if grep -Fq "Smoke Help" /tmp/yelp-clipboard.log && grep -Fq "Testing Yelp with Mallard XML." /tmp/yelp-clipboard.log; then
+        exit 0
+      fi
+      sleep 1
+    done
+
+    cat /tmp/yelp.log >&2 || true
+  '
+"""
+if replacement in text:
+    raise SystemExit(0)
+if needle not in text:
+    raise SystemExit(f"missing expected yelp clipboard smoke block in {path}")
+path.write_text(text.replace(needle, replacement, 1), encoding="utf-8")
+PY
+}
+
 finalize_summary() {
   local exit_code=$1
   local failure_mode=$2
@@ -251,7 +338,17 @@ PY
     export LIBXML_PACKAGE_MODE="original"
     unset LIBXML_PREBUILT_DEBS_DIR
   fi
-  if ! patch_imported_apt_retries; then
+  if patch_imported_apt_retries; then
+    :
+  else
+    status=$?
+    failure_mode="setup"
+    finalize_summary "${status}" "${failure_mode}"
+    return "${status}"
+  fi
+  if patch_imported_yelp_clipboard_smoke; then
+    :
+  else
     status=$?
     failure_mode="setup"
     finalize_summary "${status}" "${failure_mode}"
