@@ -127,6 +127,62 @@ def artifact_path(artifact_root: Path, *parts: str) -> Path:
     return target
 
 
+def _git_capture(repo_root: Path, args: list[str]) -> bytes:
+    try:
+        completed = subprocess.run(
+            ["git", "-C", str(repo_root), *args],
+            check=True,
+            capture_output=True,
+        )
+    except (OSError, subprocess.CalledProcessError):
+        return b""
+    return completed.stdout
+
+
+def capture_clean_tracked_downstream_raw(repo_root: Path, artifact_root: Path) -> dict[Path, bytes]:
+    repo_root = repo_root.resolve(strict=False)
+    artifact_root = artifact_root.resolve(strict=False)
+    try:
+        artifact_rel = artifact_root.relative_to(repo_root)
+    except ValueError:
+        return {}
+
+    downstream_rel = (artifact_rel / "downstream").as_posix()
+    tracked_output = _git_capture(repo_root, ["ls-files", "-z", "--", downstream_rel])
+    if not tracked_output:
+        return {}
+
+    paths: list[Path] = []
+    for raw_item in tracked_output.split(b"\0"):
+        if not raw_item:
+            continue
+        rel_text = raw_item.decode("utf-8", errors="surrogateescape")
+        if rel_text.endswith("/raw/console.log") or rel_text.endswith("/raw/results.json"):
+            paths.append(Path(rel_text))
+    if not paths:
+        return {}
+
+    status_output = _git_capture(
+        repo_root,
+        ["status", "--porcelain=v1", "-z", "--", *[path.as_posix() for path in paths]],
+    )
+    if status_output:
+        return {}
+
+    snapshot: dict[Path, bytes] = {}
+    for rel_path in paths:
+        full_path = repo_root / rel_path
+        if full_path.is_file():
+            snapshot[full_path] = full_path.read_bytes()
+    return snapshot
+
+
+def restore_tracked_downstream_raw(snapshot: dict[Path, bytes]) -> None:
+    for path, content in snapshot.items():
+        ensure_parent(path)
+        path.write_bytes(content)
+
+
 def append_log(log_path: Path, text: str) -> None:
     ensure_parent(log_path)
     with log_path.open("a", encoding="utf-8") as handle:
@@ -820,6 +876,7 @@ def main(argv: list[str] | None = None) -> int:
 
     repo_root = Path(__file__).resolve().parents[1]
     args.artifact_root.mkdir(parents=True, exist_ok=True)
+    tracked_downstream_raw = capture_clean_tracked_downstream_raw(repo_root, args.artifact_root)
     states = {library: LibraryState() for library in libraries}
     any_failed = False
     try:
@@ -849,7 +906,10 @@ def main(argv: list[str] | None = None) -> int:
         if cleanup_errors:
             print("\n".join(cleanup_errors), file=sys.stderr)
 
-    return 1 if any_failed else 0
+    if any_failed:
+        return 1
+    restore_tracked_downstream_raw(tracked_downstream_raw)
+    return 0
 
 
 if __name__ == "__main__":
