@@ -23,62 +23,62 @@
     {
       "id": "GIMP",
       "marker": "GIMP",
-      "line": 44
+      "line": 47
     },
     {
       "id": "LibreOffice Draw",
       "marker": "LibreOffice Draw",
-      "line": 45
+      "line": 48
     },
     {
       "id": "Scribus",
       "marker": "Scribus",
-      "line": 46
+      "line": 49
     },
     {
       "id": "WebKitGTK",
       "marker": "WebKitGTK",
-      "line": 47
+      "line": 50
     },
     {
       "id": "GDK Pixbuf",
       "marker": "GDK Pixbuf",
-      "line": 48
+      "line": 51
     },
     {
       "id": "Cairo",
       "marker": "Cairo",
-      "line": 49
+      "line": 52
     },
     {
       "id": "SDL2_image",
       "marker": "SDL2_image",
-      "line": 50
+      "line": 53
     },
     {
       "id": "feh",
       "marker": "feh",
-      "line": 51
+      "line": 54
     },
     {
       "id": "Netpbm",
       "marker": "Netpbm",
-      "line": 52
+      "line": 55
     },
     {
       "id": "XSane",
       "marker": "XSane",
-      "line": 54
+      "line": 57
     },
     {
       "id": "R png package",
       "marker": "R png package",
-      "line": 55
+      "line": 58
     },
     {
       "id": "pngquant",
       "marker": "pngquant",
-      "line": 56
+      "line": 59
     }
   ],
   "workloads": [
