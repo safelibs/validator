@@ -615,6 +615,31 @@ EOF
   chmod +x "${helper_path}"
 }
 
+patch_safe_launcher() {
+  local launcher_path="${HARNESS_ROOT}/test-original.sh"
+
+  python3 - "${launcher_path}" <<'PY'
+import sys
+from pathlib import Path
+
+launcher_path = Path(sys.argv[1])
+expected = 'bash "$SAFE_ROOT/scripts/build-dependent-image.sh"'
+replacement = 'bash "$REPO_ROOT/.validator/build-dependent-image-from-prebuilt.sh"'
+
+text = launcher_path.read_text(encoding="utf-8")
+if replacement in text:
+    raise SystemExit(0)
+if text.count(expected) != 1:
+    raise SystemExit(
+        f"expected exactly one libzstd dependent-image launcher call in {launcher_path}, "
+        f"found {text.count(expected)}"
+    )
+
+launcher_path.write_text(text.replace(expected, replacement), encoding="utf-8")
+PY
+  chmod +x "${launcher_path}"
+}
+
 prepare_safe_mode_layout() {
   prepare_safe_packages_dir
   prepare_install_roots
@@ -622,22 +647,7 @@ prepare_safe_mode_layout() {
   stage_safe_source_tree
   write_metadata_env
   write_build_helper
-}
-
-run_imported_safe_launcher() {
-  bash -c '
-    set -euo pipefail
-
-    bash() {
-      if [[ "$#" -eq 1 && "${SAFE_ROOT:-}/scripts/build-dependent-image.sh" == "$1" ]]; then
-        command bash "${REPO_ROOT}/.validator/build-dependent-image-from-prebuilt.sh"
-      else
-        command bash "$@"
-      fi
-    }
-
-    source ./test-original.sh "$@"
-  ' validator-libzstd-safe "$@"
+  patch_safe_launcher
 }
 
 run_original_mode() {
@@ -686,7 +696,7 @@ run_safe_mode() {
     return "${status}"
   fi
 
-  if run_captured run_imported_safe_launcher; then
+  if run_captured ./test-original.sh; then
     status=0
   else
     status=$?
