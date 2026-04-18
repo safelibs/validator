@@ -489,6 +489,20 @@ class RenderSiteTests(unittest.TestCase):
         html_text = (site_root / "index.html").read_text()
         self.assertIn('data-proof-library="alpha"', html_text)
         self.assertIn('data-proof-excluded-library="beta"', html_text)
+        self.assertIn('data-proof-total="included_libraries"', html_text)
+        self.assertIn("<strong>1</strong><span>Included libraries</span>", html_text)
+        self.assertIn('data-proof-total="excluded_libraries"', html_text)
+        self.assertIn("<strong>1</strong><span>Excluded libraries</span>", html_text)
+        self.assertIn('data-proof-total="result_runs"', html_text)
+        self.assertIn("<strong>2</strong><span>Result runs</span>", html_text)
+        self.assertIn('data-proof-total="safe_casts"', html_text)
+        self.assertIn("<strong>1</strong><span>Safe casts</span>", html_text)
+        self.assertIn('data-proof-total="safe_workloads"', html_text)
+        self.assertIn("<strong>2</strong><span>Safe workloads</span>", html_text)
+        self.assertIn('data-proof-total="total_workloads"', html_text)
+        self.assertIn("<strong>4</strong><span>Total workloads</span>", html_text)
+        self.assertIn('data-proof-total="report_formats"', html_text)
+        self.assertIn("Report formats: imported-log-marker", html_text)
         self.assertIn("hosted beta exclusion", html_text)
         self.assertNotIn('data-library="beta"', html_text)
         self.assertIn("../artifacts/casts/alpha/safe.cast", html_text)
@@ -569,6 +583,24 @@ class RenderSiteTests(unittest.TestCase):
                 self.assertNotEqual(completed.returncode, 0)
                 self.assertIn(message, completed.stderr + completed.stdout)
         write_json(site_data_path, original_site_data)
+
+    def test_verify_site_rejects_missing_proof_totals_in_html(self) -> None:
+        manifest_path, proof_path, site_root = self.render_with_proof(["alpha"])
+        index_path = site_root / "index.html"
+        html_text = index_path.read_text()
+        index_path.write_text(
+            html_text.replace('data-proof-total="safe_workloads"', 'data-proof-total-missing="safe_workloads"', 1),
+            encoding="utf-8",
+        )
+
+        completed = self.run_verify_site(
+            manifest_path=manifest_path,
+            proof_path=proof_path,
+            site_root=site_root,
+        )
+
+        self.assertNotEqual(completed.returncode, 0)
+        self.assertIn("missing proof total marker", completed.stderr + completed.stdout)
 
     def test_verify_site_rejects_changed_result_hrefs(self) -> None:
         manifest_path, proof_path, site_root = self.render_with_proof(["alpha"])

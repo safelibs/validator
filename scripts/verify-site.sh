@@ -49,6 +49,7 @@ from __future__ import annotations
 import json
 import re
 import sys
+import html
 from pathlib import Path
 
 repo_root = Path(sys.argv[1]).resolve()
@@ -312,6 +313,37 @@ html_rows = set(re.findall(r'data-library="([^"]+)" data-mode="([^"]+)"', html_t
 expected_html_rows = {(row["library"], row["mode"]) for row in expected_rows}
 if html_rows != expected_html_rows:
     fail(f"site index rows mismatch: expected {sorted(expected_html_rows)}, found {sorted(html_rows)}")
+
+proof_totals = site_proof.get("totals")
+if not isinstance(proof_totals, dict):
+    fail("site-data.json proof totals must be an object")
+numeric_total_fields = (
+    "included_libraries",
+    "excluded_libraries",
+    "result_runs",
+    "safe_casts",
+    "safe_workloads",
+    "total_workloads",
+)
+for field_name in numeric_total_fields:
+    marker = f'data-proof-total="{field_name}"'
+    if marker not in html_text:
+        fail(f"missing proof total marker in index.html: {marker}")
+    escaped_value = html.escape(str(proof_totals.get(field_name)))
+    value_pattern = rf'{re.escape(marker)}[^>]*><strong>{re.escape(escaped_value)}</strong>'
+    if re.search(value_pattern, html_text) is None:
+        fail(f"missing proof total value in index.html for {field_name}: {escaped_value}")
+
+format_marker = 'data-proof-total="report_formats"'
+if format_marker not in html_text:
+    fail(f"missing proof total marker in index.html: {format_marker}")
+report_formats = proof_totals.get("report_formats")
+if not isinstance(report_formats, list):
+    fail("proof report_formats total must be a list")
+for report_format in report_formats:
+    escaped_format = html.escape(str(report_format))
+    if escaped_format not in html_text:
+        fail(f"missing proof report format in index.html: {escaped_format}")
 
 for library in included_libraries:
     marker = f'data-proof-library="{library}"'

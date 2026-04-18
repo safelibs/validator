@@ -193,6 +193,25 @@ def render_index(site_rows: list[dict[str, Any]], proof_data: dict[str, Any] | N
 
     proof_section: list[str] = []
     if proof_data is not None:
+        totals = proof_data.get("totals", {})
+        report_formats = totals.get("report_formats", [])
+        if isinstance(report_formats, list):
+            report_format_text = ", ".join(str(item) for item in report_formats)
+            report_format_count = len(report_formats)
+        else:
+            report_format_text = str(report_formats)
+            report_format_count = ""
+        proof_summary = [
+            '        <div class="summary proof-summary">',
+            f'          <div class="summary-card" data-proof-total="included_libraries"><strong>{html.escape(str(totals.get("included_libraries", "")))}</strong><span>Included libraries</span></div>',
+            f'          <div class="summary-card" data-proof-total="excluded_libraries"><strong>{html.escape(str(totals.get("excluded_libraries", "")))}</strong><span>Excluded libraries</span></div>',
+            f'          <div class="summary-card" data-proof-total="result_runs"><strong>{html.escape(str(totals.get("result_runs", "")))}</strong><span>Result runs</span></div>',
+            f'          <div class="summary-card" data-proof-total="safe_casts"><strong>{html.escape(str(totals.get("safe_casts", "")))}</strong><span>Safe casts</span></div>',
+            f'          <div class="summary-card" data-proof-total="safe_workloads"><strong>{html.escape(str(totals.get("safe_workloads", "")))}</strong><span>Safe workloads</span></div>',
+            f'          <div class="summary-card" data-proof-total="total_workloads"><strong>{html.escape(str(totals.get("total_workloads", "")))}</strong><span>Total workloads</span></div>',
+            f'          <div class="summary-card proof-format-card" data-proof-total="report_formats"><strong>{html.escape(str(report_format_count))}</strong><span>Report formats: {html.escape(report_format_text)}</span></div>',
+            "        </div>",
+        ]
         proof_rows: list[str] = []
         for library_entry in proof_data.get("libraries", []):
             library = str(library_entry["library"])
@@ -232,6 +251,7 @@ def render_index(site_rows: list[dict[str, Any]], proof_data: dict[str, Any] | N
         proof_section = [
             '      <section class="proof">',
             "        <h2>Asciinema proof</h2>",
+            *proof_summary,
             "        <table>",
             "          <thead>",
             "            <tr>",
@@ -273,6 +293,8 @@ def render_index(site_rows: list[dict[str, Any]], proof_data: dict[str, Any] | N
             "      .summary { display: flex; gap: 16px; flex-wrap: wrap; margin-top: 20px; }",
             "      .summary-card { min-width: 140px; padding: 14px 18px; border-radius: 18px; background: #e3ece7; }",
             "      .summary-card strong { display: block; font-size: 1.8rem; }",
+            "      .proof-summary { margin-bottom: 18px; }",
+            "      .proof-format-card { flex: 1 1 100%; }",
             "      table { width: 100%; border-collapse: collapse; background: rgba(255, 255, 255, 0.92); border-radius: 22px; overflow: hidden; box-shadow: 0 18px 48px rgba(29, 52, 44, 0.08); }",
             "      .proof table { font-size: 0.95rem; }",
             "      th, td { padding: 16px 18px; text-align: left; border-bottom: 1px solid rgba(22, 34, 31, 0.08); }",
