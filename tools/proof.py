@@ -42,10 +42,10 @@ PROOF_SUMMARY_FIELDS = (
 
 def _load_json_object(path: Path, *, description: str) -> dict[str, Any]:
     try:
-        payload = json.loads(path.read_text())
+        payload = json.loads(path.read_text(), parse_constant=_reject_json_constant)
     except FileNotFoundError as exc:
         raise ValidatorError(f"missing {description}: {path}") from exc
-    except json.JSONDecodeError as exc:
+    except ValueError as exc:
         raise ValidatorError(f"invalid {description} JSON at {path}: {exc}") from exc
     if not isinstance(payload, dict):
         raise ValidatorError(f"{description} must be a JSON object: {path}")
@@ -135,7 +135,12 @@ def _require_string(value: Any, *, field_name: str, source_path: Path) -> str:
 
 
 def _require_nonnegative_number(value: Any, *, field_name: str, source_path: Path) -> int | float:
-    if isinstance(value, bool) or not isinstance(value, (int, float)) or value < 0:
+    if (
+        isinstance(value, bool)
+        or not isinstance(value, (int, float))
+        or not math.isfinite(float(value))
+        or value < 0
+    ):
         raise ValidatorError(f"{field_name} must be a non-negative number in {source_path}")
     return value
 

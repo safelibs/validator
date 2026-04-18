@@ -183,6 +183,7 @@ class ProofTests(unittest.TestCase):
             ("started_at", "", "started_at must be a non-empty string"),
             ("finished_at", 123, "finished_at must be a non-empty string"),
             ("duration_seconds", -1, "duration_seconds must be a non-negative number"),
+            ("duration_seconds", float("nan"), "invalid result JSON|duration_seconds"),
             ("exit_code", 1.2, "exit_code must be an integer"),
         ]
         for field, value, message in mutations:
