@@ -188,8 +188,51 @@ summary_path.write_text(json.dumps(summary_payload, indent=2) + "\n", encoding="
 PY
 }
 
+patch_scratch_harness() {
+  python3 - "${HARNESS_ROOT}/test-original.sh" <<'PY'
+import sys
+from pathlib import Path
+
+script_path = Path(sys.argv[1])
+text = script_path.read_text(encoding="utf-8")
+# Keep the imported Yelp assertion intact: verify text copied from the live window,
+# but retry focus/selection because hosted Xvfb can need more than one attempt.
+old = '''    xdotool search --sync --name "Help" > /tmp/yelp-window.ids
+    yelp_window="$(tail -n1 /tmp/yelp-window.ids)"
+    sleep 2
+    xdotool key --window "$yelp_window" ctrl+a
+    sleep 1
+    xdotool key --window "$yelp_window" ctrl+c
+    sleep 1
+    xclip -o -selection clipboard > /tmp/yelp-clipboard.log
+'''
+new = '''    xdotool search --sync --name "Help" > /tmp/yelp-window.ids
+    yelp_window="$(tail -n1 /tmp/yelp-window.ids)"
+    for attempt in $(seq 1 12); do
+      sleep 1
+      xdotool windowactivate --sync "$yelp_window" 2>/dev/null || true
+      eval "$(xdotool getwindowgeometry --shell "$yelp_window")"
+      xdotool mousemove --window "$yelp_window" "$((WIDTH / 2))" "$((HEIGHT / 2))" click 1 2>/dev/null || true
+      xdotool key --clearmodifiers --window "$yelp_window" ctrl+a
+      sleep 1
+      xdotool key --clearmodifiers --window "$yelp_window" ctrl+c
+      sleep 1
+      xclip -o -selection clipboard > /tmp/yelp-clipboard.log 2>/tmp/yelp-xclip.log || true
+      if grep -q "Smoke Help" /tmp/yelp-clipboard.log \
+          && grep -q "Testing Yelp with Mallard XML." /tmp/yelp-clipboard.log; then
+        break
+      fi
+    done
+'''
+if old not in text:
+    raise SystemExit("libxml scratch Yelp clipboard patch target not found")
+script_path.write_text(text.replace(old, new), encoding="utf-8")
+PY
+}
+
 main() {
   build_config
+  patch_scratch_harness
 
   python3 - "${CONFIG_JSON}" "${MODE}" <<'PY'
 import json
