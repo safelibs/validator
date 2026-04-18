@@ -188,73 +188,8 @@ summary_path.write_text(json.dumps(summary_payload, indent=2) + "\n", encoding="
 PY
 }
 
-patch_scratch_harness() {
-  python3 - "${HARNESS_ROOT}/test-original.sh" <<'PY'
-import sys
-from pathlib import Path
-
-script_path = Path(sys.argv[1])
-text = script_path.read_text(encoding="utf-8")
-old = '''  timeout 20 dbus-run-session -- xvfb-run -a bash -lc '
-    set -euo pipefail
-
-    printf "" | xclip -selection clipboard
-    yelp /tmp/yelp-help/index.page >/tmp/yelp.log 2>&1 &
-    yelp_pid=$!
-
-    cleanup() {
-      kill "$yelp_pid" 2>/dev/null || true
-      wait "$yelp_pid" 2>/dev/null || true
-    }
-
-    trap cleanup EXIT
-    xdotool search --sync --name "Help" > /tmp/yelp-window.ids
-    yelp_window="$(tail -n1 /tmp/yelp-window.ids)"
-    sleep 2
-    xdotool key --window "$yelp_window" ctrl+a
-    sleep 1
-    xdotool key --window "$yelp_window" ctrl+c
-    sleep 1
-    xclip -o -selection clipboard > /tmp/yelp-clipboard.log
-  '
-
-  require_nonempty_file /tmp/yelp-window.ids
-  require_contains /tmp/yelp-clipboard.log "Smoke Help"
-  require_contains /tmp/yelp-clipboard.log "Testing Yelp with Mallard XML."
-'''
-new = '''  xmllint --noout /tmp/yelp-help/index.page
-  timeout 20 dbus-run-session -- xvfb-run -a bash -lc '
-    set -euo pipefail
-
-    yelp /tmp/yelp-help/index.page >/tmp/yelp.log 2>&1 &
-    yelp_pid=$!
-
-    cleanup() {
-      kill "$yelp_pid" 2>/dev/null || true
-      wait "$yelp_pid" 2>/dev/null || true
-    }
-
-    trap cleanup EXIT
-    xdotool search --sync --name "Help" > /tmp/yelp-window.ids
-    yelp_window="$(tail -n1 /tmp/yelp-window.ids)"
-    sleep 2
-    xdotool getwindowname "$yelp_window" > /tmp/yelp-window-title.log
-  '
-
-  require_nonempty_file /tmp/yelp-window.ids
-  require_nonempty_file /tmp/yelp-window-title.log
-  require_contains /tmp/yelp-help/index.page "Smoke Help"
-  require_contains /tmp/yelp-help/index.page "Testing Yelp with Mallard XML."
-'''
-if old not in text:
-    raise SystemExit("libxml scratch yelp smoke patch target not found")
-script_path.write_text(text.replace(old, new), encoding="utf-8")
-PY
-}
-
 main() {
   build_config
-  patch_scratch_harness
 
   python3 - "${CONFIG_JSON}" "${MODE}" <<'PY'
 import json

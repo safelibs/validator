@@ -280,6 +280,28 @@ class ProofTests(unittest.TestCase):
         with self.assertRaisesRegex(ValidatorError, "result path must stay within the artifact root"):
             self.build("alpha")
 
+    def test_result_json_symlink_inside_artifacts_keeps_source_identity(self) -> None:
+        self.write_library("alpha")
+        self.write_library("beta")
+        source_result = self.artifacts_root / "results" / "alpha" / "original.json"
+        target_result = self.artifacts_root / "results" / "beta" / "safe.json"
+        source_result.unlink()
+        source_result.symlink_to(target_result)
+
+        with self.assertRaisesRegex(ValidatorError, "log_path must equal 'logs/alpha/original.log'"):
+            proof.load_result(source_result, artifacts_root=self.artifacts_root)
+
+    def test_downstream_summary_symlink_inside_artifacts_keeps_source_identity(self) -> None:
+        self.write_library("alpha")
+        self.write_library("beta")
+        source_summary = self.artifacts_root / "downstream" / "alpha" / "safe" / "summary.json"
+        target_summary = self.artifacts_root / "downstream" / "beta" / "safe" / "summary.json"
+        source_summary.unlink()
+        source_summary.symlink_to(target_summary)
+
+        with self.assertRaisesRegex(ValidatorError, "summary identity does not match path"):
+            self.build("alpha")
+
     def test_summary_bucket_invariant_failure_is_rejected(self) -> None:
         self.write_library("alpha")
         self.write_summary(

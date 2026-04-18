@@ -152,10 +152,9 @@ def _require_int(value: Any, *, field_name: str, source_path: Path) -> int:
 
 
 def _result_path_identity(path: Path, *, artifacts_root: Path) -> tuple[str, str] | None:
+    absolute_path = path if path.is_absolute() else Path.cwd() / path
     try:
-        relative = path.resolve(strict=False).relative_to(
-            (artifacts_root / "results").resolve(strict=False)
-        )
+        relative = absolute_path.relative_to(artifacts_root.resolve(strict=False) / "results")
     except ValueError:
         return None
     if len(relative.parts) != 2 or relative.suffix != ".json":
@@ -232,10 +231,9 @@ def load_result(path: Path, *, artifacts_root: Path) -> dict[str, Any]:
 
 
 def _summary_path_identity(path: Path, *, artifacts_root: Path) -> tuple[str, str] | None:
+    absolute_path = path if path.is_absolute() else Path.cwd() / path
     try:
-        relative = path.resolve(strict=False).relative_to(
-            (artifacts_root / "downstream").resolve(strict=False)
-        )
+        relative = absolute_path.relative_to(artifacts_root.resolve(strict=False) / "downstream")
     except ValueError:
         return None
     if len(relative.parts) != 3 or relative.parts[2] != "summary.json":
@@ -292,6 +290,12 @@ def _normalize_notes(value: Any, *, source_path: Path) -> str | list[str]:
 
 
 def load_downstream_summary(path: Path, *, artifacts_root: Path) -> dict[str, Any]:
+    _validate_existing_artifact_file_path(
+        path,
+        field_name="downstream summary path",
+        artifacts_root=artifacts_root,
+        source_path=path,
+    )
     payload = _load_json_object(path, description="downstream summary")
 
     allowed_keys = {
@@ -663,7 +667,8 @@ def build_proof(
             assert summary_target is not None
             if not summary_target.is_file():
                 raise ValidatorError(f"missing downstream summary referenced by {result_path}: {summary_target}")
-            summary = load_downstream_summary(summary_target, artifacts_root=artifact_root)
+            summary_source = artifact_root / "downstream" / library / mode / "summary.json"
+            summary = load_downstream_summary(summary_source, artifacts_root=artifact_root)
             _require_result_field(summary, field_name="library", expected_value=library, result_path=summary_target)
             _require_result_field(summary, field_name="mode", expected_value=mode, result_path=summary_target)
             if result["status"] != summary["status"]:
