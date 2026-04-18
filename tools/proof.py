@@ -65,6 +65,25 @@ def _artifact_root_relative(path: Path, *, artifacts_root: Path, source_path: Pa
         raise ValidatorError(f"path is outside artifact root in {source_path}: {path}") from exc
 
 
+def _validate_existing_artifact_file_path(
+    path: Path,
+    *,
+    field_name: str,
+    artifacts_root: Path,
+    source_path: Path,
+) -> None:
+    try:
+        resolved = path.resolve(strict=True)
+    except FileNotFoundError as exc:
+        raise ValidatorError(f"missing {field_name} in {source_path}: {path}") from exc
+    try:
+        resolved.relative_to(artifacts_root.resolve(strict=False))
+    except ValueError as exc:
+        raise ValidatorError(f"{field_name} must stay within the artifact root in {source_path}: {path}") from exc
+    if not resolved.is_file():
+        raise ValidatorError(f"{field_name} must be a file in {source_path}: {path}")
+
+
 def _validate_no_duplicate_strings(values: list[str], *, field_name: str) -> None:
     seen: set[str] = set()
     duplicates: list[str] = []
@@ -140,6 +159,12 @@ def _result_path_identity(path: Path, *, artifacts_root: Path) -> tuple[str, str
 
 
 def load_result(path: Path, *, artifacts_root: Path) -> dict[str, Any]:
+    _validate_existing_artifact_file_path(
+        path,
+        field_name="result path",
+        artifacts_root=artifacts_root,
+        source_path=path,
+    )
     payload = _load_json_object(path, description="result")
     missing = sorted(REQUIRED_RESULT_FIELDS - set(payload))
     if missing:

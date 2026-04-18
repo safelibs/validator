@@ -266,6 +266,19 @@ class ProofTests(unittest.TestCase):
                 source_path=self.root / "source.json",
             )
 
+    def test_result_json_symlink_escape_is_rejected(self) -> None:
+        self.write_library("alpha")
+        outside = self.root / "outside"
+        outside.mkdir()
+        outside_result = outside / "safe.json"
+        original_result = self.artifacts_root / "results" / "alpha" / "safe.json"
+        outside_result.write_text(original_result.read_text())
+        original_result.unlink()
+        original_result.symlink_to(outside_result)
+
+        with self.assertRaisesRegex(ValidatorError, "result path must stay within the artifact root"):
+            self.build("alpha")
+
     def test_summary_bucket_invariant_failure_is_rejected(self) -> None:
         self.write_library("alpha")
         self.write_summary(
