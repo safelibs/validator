@@ -68,13 +68,33 @@ jobs:
           echo "matrix_exit_code=$matrix_exit_code" >>"$GITHUB_ENV"
           exit 0
 
+      - name: Generate hosted proof
+        run: |
+          python3 tools/verify_proof_artifacts.py \
+            --config repositories.yml \
+            --artifact-root artifacts \
+            --exclude-library libarchive \
+            --exclude-note 'libarchive requires a privileged local FUSE host and is verified outside hosted Pages' \
+            --proof-output artifacts/proof/hosted-validator-proof.json \
+            --min-safe-workloads 250 \
+            --min-total-workloads 500
+
       - name: Render site
         run: |
-          python3 tools/render_site.py --results-root artifacts/results --artifacts-root artifacts --output-root site
+          python3 tools/render_site.py \
+            --results-root artifacts/results \
+            --artifacts-root artifacts \
+            --proof-path artifacts/proof/hosted-validator-proof.json \
+            --output-root site
 
       - name: Verify site
         run: |
-          bash scripts/verify-site.sh --config repositories.yml --results-root artifacts/results --site-root site
+          bash scripts/verify-site.sh \
+            --config repositories.yml \
+            --results-root artifacts/results \
+            --artifacts-root artifacts \
+            --proof-path artifacts/proof/hosted-validator-proof.json \
+            --site-root site
 
       - name: Configure Pages
         uses: actions/configure-pages@v5

@@ -126,18 +126,45 @@ bash test.sh \
   --record-casts
 ```
 
-Render and verify the static report:
+Generate the local proof manifest from the captured results, downstream summaries, and safe-mode asciinema casts:
+
+```bash
+python3 tools/verify_proof_artifacts.py \
+  --config repositories.yml \
+  --artifact-root artifacts \
+  --proof-output artifacts/proof/validator-proof.json \
+  --min-safe-workloads 250 \
+  --min-total-workloads 500
+```
+
+Render and verify the proof-aware static report:
 
 ```bash
 python3 tools/render_site.py \
   --results-root artifacts/results \
   --artifacts-root artifacts \
+  --proof-path artifacts/proof/validator-proof.json \
   --output-root site
 
 bash scripts/verify-site.sh \
   --config repositories.yml \
   --results-root artifacts/results \
+  --artifacts-root artifacts \
+  --proof-path artifacts/proof/validator-proof.json \
   --site-root site
+```
+
+For hosted-compatible local checks, exclude `libarchive` explicitly and record the reason in the hosted proof:
+
+```bash
+python3 tools/verify_proof_artifacts.py \
+  --config repositories.yml \
+  --artifact-root artifacts \
+  --exclude-library libarchive \
+  --exclude-note 'libarchive requires a privileged local FUSE host and is verified outside hosted CI' \
+  --proof-output artifacts/proof/hosted-validator-proof.json \
+  --min-safe-workloads 250 \
+  --min-total-workloads 500
 ```
 
 #### Safe Deb Layout
@@ -154,6 +181,7 @@ For the host-harness libraries, safe mode stages validator-built packages into t
 Split-mode original baselines run from mirrored launchers under the scratch repo's `.validator/` directory inside `VALIDATOR_BASELINE_IMAGE`.
 
 `libarchive` is the one host-harness library that still needs privileged host support because its imported downstream matrix exercises FUSE-backed archive mounting. Verify it only on a local host where `/dev/fuse` exists and Docker accepts `--device /dev/fuse --cap-add SYS_ADMIN --security-opt apparmor:unconfined`.
+Hosted CI and Pages intentionally exclude `libarchive` from their full hosted matrix and write that exclusion into `artifacts/proof/hosted-validator-proof.json`. Local final verification should still generate the full 19-library `artifacts/proof/validator-proof.json`, including `libarchive`, after running on a host with the privileged FUSE Docker support above.
 
 #### Artifact Locations
 
@@ -162,8 +190,9 @@ Split-mode original baselines run from mirrored launchers under the scratch repo
 - `artifacts/results/<library>/*.json`: one result JSON per attempted matrix run.
 - `artifacts/logs/<library>/*.log`: captured run logs.
 - `artifacts/casts/<library>/safe.cast`: safe-mode terminal capture when `--record-casts` is enabled.
+- `artifacts/proof/*.json`: generated proof manifests for local and hosted-compatible acceptance.
 - `site/`: rendered static report for local review or GitHub Pages publication.
 
 #### GitHub Pages
 
-The Pages workflow rebuilds the full matrix on `main`, uploads the rendered `site/` output, deploys it with `actions/deploy-pages`, and only then reports aggregate matrix failure through the follow-up `report-status` job. That keeps publication available even when a validator run fails while still surfacing a failing workflow conclusion.
+The Pages workflow rebuilds the hosted-compatible matrix on `main`, excluding `libarchive` with an explicit proof note because hosted runners do not provide the required privileged FUSE setup. It generates `artifacts/proof/hosted-validator-proof.json`, renders with `--proof-path`, verifies the proof-aware site, uploads `site/`, deploys it with `actions/deploy-pages`, and only then reports aggregate matrix failure through the follow-up `report-status` job. That keeps publication available when a validator run reports a dependency failure, but missing or invalid proof blocks publication.

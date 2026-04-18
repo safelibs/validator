@@ -6,9 +6,11 @@
 __pycache__/
 *.pyc
 artifacts/.workspace/
+artifacts/proof/
 artifacts/casts/
 artifacts/logs/
 artifacts/results/
+site/
 artifacts/downstream/*/*/raw/console.log
 artifacts/downstream/*/*/raw/results.json
 artifacts/downstream/*/*/raw/

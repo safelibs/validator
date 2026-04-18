@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import argparse
+import copy
 import html
 import json
 import os
@@ -12,6 +13,7 @@ if __package__ in {None, ""}:
     sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
 from tools import ValidatorError, ensure_parent, write_json
+from tools import proof as proof_tools
 
 
 MODE_ORDER = {"original": 0, "safe": 1}
@@ -49,23 +51,12 @@ def validate_artifact_relative_path(
     artifacts_root: Path,
     source_path: Path,
 ) -> Path | None:
-    if relative_path is None:
-        return None
-    if not isinstance(relative_path, str) or not relative_path:
-        raise ValidatorError(f"{field_name} must be a non-empty artifact-root-relative path in {source_path}")
-    if "\\" in relative_path:
-        raise ValidatorError(f"{field_name} must use artifact-root-relative paths in {source_path}")
-
-    relative = Path(relative_path)
-    if relative.is_absolute() or any(part in {"", ".", ".."} for part in relative.parts):
-        raise ValidatorError(f"{field_name} must be artifact-root-relative in {source_path}")
-
-    target = (artifacts_root / relative).resolve(strict=False)
-    try:
-        target.relative_to(artifacts_root.resolve(strict=False))
-    except ValueError as exc:
-        raise ValidatorError(f"{field_name} must stay within the artifact root in {source_path}") from exc
-    return target
+    return proof_tools.validate_artifact_relative_path(
+        relative_path,
+        field_name=field_name,
+        artifacts_root=artifacts_root,
+        source_path=source_path,
+    )
 
 
 def load_results(results_root: Path, *, artifacts_root: Path) -> list[dict[str, Any]]:
@@ -96,7 +87,86 @@ def load_results(results_root: Path, *, artifacts_root: Path) -> list[dict[str, 
     return sorted(results, key=result_sort_key)
 
 
-def render_index(site_rows: list[dict[str, Any]]) -> str:
+def load_proof(proof_path: Path, *, artifacts_root: Path, output_root: Path) -> dict[str, Any]:
+    proof_path_resolved = proof_path.resolve(strict=False)
+    artifacts_root_resolved = artifacts_root.resolve(strict=False)
+    try:
+        proof_path_resolved.relative_to(artifacts_root_resolved)
+    except ValueError as exc:
+        raise ValidatorError(f"proof path must resolve inside artifact root: {proof_path}") from exc
+
+    try:
+        proof_data = json.loads(proof_path.read_text())
+    except FileNotFoundError as exc:
+        raise ValidatorError(f"missing proof manifest: {proof_path}") from exc
+    except json.JSONDecodeError as exc:
+        raise ValidatorError(f"invalid proof manifest JSON at {proof_path}: {exc}") from exc
+    if not isinstance(proof_data, dict):
+        raise ValidatorError(f"proof manifest must be a JSON object: {proof_path}")
+
+    site_proof = copy.deepcopy(proof_data)
+    libraries = site_proof.get("libraries")
+    if not isinstance(libraries, list):
+        raise ValidatorError(f"proof manifest must contain libraries list: {proof_path}")
+    for library_entry in libraries:
+        if not isinstance(library_entry, dict):
+            raise ValidatorError(f"proof library entries must be objects: {proof_path}")
+        for mode in ("original", "safe"):
+            mode_entry = library_entry.get(mode)
+            if not isinstance(mode_entry, dict):
+                continue
+            cast_path = mode_entry.get("cast_path")
+            if cast_path is None:
+                continue
+            cast_target = validate_artifact_relative_path(
+                cast_path,
+                field_name="cast_path",
+                artifacts_root=artifacts_root,
+                source_path=proof_path,
+            )
+            assert cast_target is not None
+            if not cast_target.is_file():
+                raise ValidatorError(f"proof cast_path does not exist: {cast_path}")
+            mode_entry["cast_href"] = relative_href(
+                output_root=output_root,
+                artifacts_root=artifacts_root,
+                relative_path=cast_path,
+            )
+    return site_proof
+
+
+def _filter_results_for_proof(
+    results: list[dict[str, Any]],
+    *,
+    proof_data: dict[str, Any],
+) -> list[dict[str, Any]]:
+    included = proof_data.get("included_libraries")
+    if not isinstance(included, list) or not all(isinstance(item, str) for item in included):
+        raise ValidatorError("proof included_libraries must be a list of strings")
+    included_set = set(included)
+    if len(included_set) != len(included):
+        raise ValidatorError("proof included_libraries must not contain duplicates")
+
+    filtered: list[dict[str, Any]] = [
+        result
+        for result in results
+        if str(result.get("library")) in included_set
+    ]
+    row_keys = [(str(result.get("library")), str(result.get("mode"))) for result in filtered]
+    expected_keys = {(library, mode) for library in included for mode in MODE_ORDER}
+    actual_keys = set(row_keys)
+    duplicates = sorted(key for key in actual_keys if row_keys.count(key) > 1)
+    if duplicates:
+        raise ValidatorError(f"duplicate result rows for proof libraries: {duplicates}")
+    if actual_keys != expected_keys:
+        raise ValidatorError(
+            f"result rows must cover exactly both modes for proof libraries: "
+            f"expected {sorted(expected_keys)}, found {sorted(actual_keys)}"
+        )
+    return sorted(filtered, key=result_sort_key)
+
+
+def render_index(site_rows: list[dict[str, Any]], proof_data: dict[str, Any] | None = None) -> str:
     total = len(site_rows)
     passed = sum(1 for row in site_rows if row["status"] == "passed")
     failed = total - passed
@@ -121,6 +191,69 @@ def render_index(site_rows: list[dict[str, Any]]) -> str:
             )
         )
 
+    proof_section: list[str] = []
+    if proof_data is not None:
+        proof_rows: list[str] = []
+        for library_entry in proof_data.get("libraries", []):
+            library = str(library_entry["library"])
+            original = library_entry["original"]
+            safe = library_entry["safe"]
+            safe_cast_href = safe.get("cast_href")
+            safe_cast_link = (
+                f'<a href="{html.escape(str(safe_cast_href))}">{html.escape(str(safe["cast_path"]))}</a>'
+                if safe_cast_href is not None
+                else '<span class="muted">n/a</span>'
+            )
+            proof_rows.append(
+                "\n".join(
+                    [
+                        f'      <tr data-proof-library="{html.escape(library)}">',
+                        f"        <td>{html.escape(library)}</td>",
+                        f'        <td class="status status-{html.escape(str(original["status"]))}">{html.escape(str(original["status"]))}</td>',
+                        f'        <td class="status status-{html.escape(str(safe["status"]))}">{html.escape(str(safe["status"]))}</td>',
+                        f"        <td>{safe_cast_link}</td>",
+                        f'        <td>{html.escape(str(safe["cast_events"]))}</td>',
+                        f'        <td>{html.escape(str(original["summary"]["expected_dependents"]))}</td>',
+                        f'        <td>{html.escape(str(safe["summary"]["expected_dependents"]))}</td>',
+                        f'        <td>{html.escape(str(original["summary"]["report_format"]))}</td>',
+                        f'        <td>{html.escape(str(safe["summary"]["report_format"]))}</td>',
+                        "      </tr>",
+                    ]
+                )
+            )
+        exclusion_rows: list[str] = []
+        for exclusion in proof_data.get("excluded_libraries", []):
+            library = str(exclusion["library"])
+            note = str(exclusion["note"])
+            exclusion_rows.append(
+                f'      <p data-proof-excluded-library="{html.escape(library)}">'
+                f'<strong>{html.escape(library)}</strong>: {html.escape(note)}</p>'
+            )
+        proof_section = [
+            '      <section class="proof">',
+            "        <h2>Asciinema proof</h2>",
+            "        <table>",
+            "          <thead>",
+            "            <tr>",
+            "              <th>Library</th>",
+            "              <th>Original</th>",
+            "              <th>Safe</th>",
+            "              <th>Safe cast</th>",
+            "              <th>Events</th>",
+            "              <th>Original workloads</th>",
+            "              <th>Safe workloads</th>",
+            "              <th>Original format</th>",
+            "              <th>Safe format</th>",
+            "            </tr>",
+            "          </thead>",
+            "          <tbody>",
+            *proof_rows,
+            "          </tbody>",
+            "        </table>",
+            *exclusion_rows,
+            "      </section>",
+        ]
+
     return "\n".join(
         [
             "<!doctype html>",
@@ -134,12 +267,14 @@ def render_index(site_rows: list[dict[str, Any]]) -> str:
             "      body { margin: 0; background: linear-gradient(180deg, #f4efe4 0%, #fffdf8 100%); color: #16221f; }",
             "      main { max-width: 960px; margin: 0 auto; padding: 48px 24px 72px; }",
             "      h1 { margin: 0 0 12px; font-size: clamp(2.25rem, 5vw, 3.5rem); }",
+            "      h2 { margin: 36px 0 16px; font-size: 1.7rem; }",
             "      p { line-height: 1.6; }",
             "      .hero { margin-bottom: 32px; padding: 28px; border-radius: 24px; background: rgba(255, 255, 255, 0.85); box-shadow: 0 18px 48px rgba(29, 52, 44, 0.08); }",
             "      .summary { display: flex; gap: 16px; flex-wrap: wrap; margin-top: 20px; }",
             "      .summary-card { min-width: 140px; padding: 14px 18px; border-radius: 18px; background: #e3ece7; }",
             "      .summary-card strong { display: block; font-size: 1.8rem; }",
             "      table { width: 100%; border-collapse: collapse; background: rgba(255, 255, 255, 0.92); border-radius: 22px; overflow: hidden; box-shadow: 0 18px 48px rgba(29, 52, 44, 0.08); }",
+            "      .proof table { font-size: 0.95rem; }",
             "      th, td { padding: 16px 18px; text-align: left; border-bottom: 1px solid rgba(22, 34, 31, 0.08); }",
             "      th { font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.08em; color: #56655f; background: rgba(227, 236, 231, 0.85); }",
             "      tr:last-child td { border-bottom: 0; }",
@@ -151,6 +286,7 @@ def render_index(site_rows: list[dict[str, Any]]) -> str:
             "      @media (max-width: 720px) {",
             "        main { padding: 28px 16px 48px; }",
             "        th, td { padding: 12px; }",
+            "        table { display: block; overflow-x: auto; }",
             "      }",
             "    </style>",
             "  </head>",
@@ -180,6 +316,7 @@ def render_index(site_rows: list[dict[str, Any]]) -> str:
             *rows,
             "        </tbody>",
             "      </table>",
+            *proof_section,
             "    </main>",
             "  </body>",
             "</html>",
@@ -220,18 +357,30 @@ def build_parser() -> argparse.ArgumentParser:
     parser.add_argument("--results-root", required=True, type=Path)
     parser.add_argument("--artifacts-root", required=True, type=Path)
     parser.add_argument("--output-root", required=True, type=Path)
+    parser.add_argument("--proof-path", type=Path)
     return parser
 
 
 def main(argv: list[str] | None = None) -> int:
     args = build_parser().parse_args(argv)
     results = load_results(args.results_root, artifacts_root=args.artifacts_root)
+    proof_data: dict[str, Any] | None = None
+    if args.proof_path is not None:
+        proof_data = load_proof(
+            args.proof_path,
+            artifacts_root=args.artifacts_root,
+            output_root=args.output_root,
+        )
+        results = _filter_results_for_proof(results, proof_data=proof_data)
     site_rows = build_site_rows(results, output_root=args.output_root, artifacts_root=args.artifacts_root)
 
     args.output_root.mkdir(parents=True, exist_ok=True)
-    write_json(args.output_root / "site-data.json", {"results": site_rows})
+    site_data: dict[str, Any] = {"results": site_rows}
+    if proof_data is not None:
+        site_data["proof"] = proof_data
+    write_json(args.output_root / "site-data.json", site_data)
     ensure_parent(args.output_root / "index.html")
-    (args.output_root / "index.html").write_text(render_index(site_rows), encoding="utf-8")
+    (args.output_root / "index.html").write_text(render_index(site_rows, proof_data), encoding="utf-8")
     return 0
 
 
