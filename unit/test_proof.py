@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import json
+import os
 import tempfile
 import unittest
 from pathlib import Path
@@ -216,6 +217,7 @@ class ProofTests(unittest.TestCase):
         cases = [
             ({"version": 1, "width": 120, "height": 40}, [[0.1, "o", "x"]], "version must be 2"),
             ({"version": 2, "width": 120, "height": 40}, ["not json"], "invalid cast event JSON"),
+            ({"version": 2, "width": 120, "height": 40}, ['[NaN, "o", "x"]'], "invalid cast event JSON"),
             ({"version": 2, "width": 120, "height": 40}, [[-0.1, "o", "x"]], "non-negative"),
             ({"version": 2, "width": 120, "height": 40}, [], "at least one output event"),
         ]
@@ -344,6 +346,33 @@ class ProofTests(unittest.TestCase):
         self.write_library("alpha")
         with self.assertRaisesRegex(ValidatorError, "non-empty note"):
             self.build("alpha", excluded_libraries={"alpha": ""})
+
+    def test_cli_rejects_unsafe_proof_output_paths_before_writing(self) -> None:
+        original_cwd = Path.cwd()
+        self.artifacts_root.mkdir(parents=True, exist_ok=True)
+        os.chdir(self.root)
+        self.addCleanup(os.chdir, original_cwd)
+
+        unsafe_outputs = [
+            "artifacts/proof/../proof/traversal-ok.json",
+            "artifacts/proof\\bad.json",
+            "/tmp/proof.json",
+            "artifacts//proof/bad.json",
+            "artifacts/./proof/bad.json",
+        ]
+        for output in unsafe_outputs:
+            with self.subTest(output=output):
+                with self.assertRaisesRegex(ValidatorError, "--proof-output"):
+                    verify_proof_artifacts.main(
+                        [
+                            "--config",
+                            "missing.yml",
+                            "--artifact-root",
+                            "artifacts",
+                            "--proof-output",
+                            output,
+                        ]
+                    )
 
     def test_safe_failures_are_valid_when_artifacts_exist(self) -> None:
         self.write_library("alpha", safe_status="failed")

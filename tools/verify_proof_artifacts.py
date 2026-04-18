@@ -16,7 +16,7 @@ def build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser()
     parser.add_argument("--config", required=True, type=Path)
     parser.add_argument("--artifact-root", required=True, type=Path)
-    parser.add_argument("--proof-output", required=True, type=Path)
+    parser.add_argument("--proof-output", required=True)
     parser.add_argument("--library", action="append")
     parser.add_argument("--exclude-library", action="append", default=[])
     parser.add_argument("--exclude-note")
@@ -36,6 +36,25 @@ def _reject_duplicates(values: list[str], *, field_name: str) -> None:
         raise ValidatorError(f"{field_name} must not contain duplicates: {', '.join(duplicates)}")
 
 
+def _validate_proof_output_path(raw_path: str, *, artifact_root: Path) -> Path:
+    if "\\" in raw_path:
+        raise ValidatorError("--proof-output must not contain backslashes")
+    proof_output = Path(raw_path)
+    if proof_output.is_absolute():
+        raise ValidatorError("--proof-output must be a relative path")
+    parts = raw_path.split("/")
+    if any(part in {"", ".", ".."} for part in parts):
+        raise ValidatorError("--proof-output must not contain empty, '.', or '..' path segments")
+
+    artifact_root_resolved = artifact_root.resolve(strict=False)
+    proof_output_resolved = proof_output.resolve(strict=False)
+    try:
+        proof_output_resolved.relative_to(artifact_root_resolved)
+    except ValueError as exc:
+        raise ValidatorError("--proof-output must resolve inside --artifact-root") from exc
+    return proof_output_resolved
+
+
 def main(argv: list[str] | None = None) -> int:
     args = build_parser().parse_args(argv)
     if args.min_safe_workloads < 0 or args.min_total_workloads < 0:
@@ -47,11 +66,7 @@ def main(argv: list[str] | None = None) -> int:
     _reject_duplicates(args.exclude_library, field_name="--exclude-library")
 
     artifact_root = args.artifact_root.resolve(strict=False)
-    proof_output = args.proof_output.resolve(strict=False)
-    try:
-        proof_output.relative_to(artifact_root)
-    except ValueError as exc:
-        raise ValidatorError("--proof-output must resolve inside --artifact-root") from exc
+    proof_output = _validate_proof_output_path(args.proof_output, artifact_root=artifact_root)
 
     exclude_note = args.exclude_note or ""
     excluded_libraries = {

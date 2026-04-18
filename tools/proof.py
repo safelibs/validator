@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import json
+import math
 from pathlib import Path, PurePosixPath
 from typing import Any
 
@@ -49,6 +50,10 @@ def _load_json_object(path: Path, *, description: str) -> dict[str, Any]:
     if not isinstance(payload, dict):
         raise ValidatorError(f"{description} must be a JSON object: {path}")
     return payload
+
+
+def _reject_json_constant(value: str) -> None:
+    raise ValueError(f"invalid JSON constant: {value}")
 
 
 def _artifact_root_relative(path: Path, *, artifacts_root: Path, source_path: Path) -> str:
@@ -383,8 +388,8 @@ def inspect_cast(cast_path: Path) -> dict[str, Any]:
             if not header_line:
                 raise ValidatorError(f"cast is empty: {cast_path}")
             try:
-                header = json.loads(header_line)
-            except json.JSONDecodeError as exc:
+                header = json.loads(header_line, parse_constant=_reject_json_constant)
+            except ValueError as exc:
                 raise ValidatorError(f"invalid cast header JSON at {cast_path}: {exc}") from exc
             if not isinstance(header, dict):
                 raise ValidatorError(f"cast header must be a JSON object: {cast_path}")
@@ -401,8 +406,8 @@ def inspect_cast(cast_path: Path) -> dict[str, Any]:
             final_timestamp = 0.0
             for line_number, line in enumerate(handle, start=2):
                 try:
-                    event = json.loads(line)
-                except json.JSONDecodeError as exc:
+                    event = json.loads(line, parse_constant=_reject_json_constant)
+                except ValueError as exc:
                     raise ValidatorError(
                         f"invalid cast event JSON at {cast_path}:{line_number}: {exc}"
                     ) from exc
@@ -411,9 +416,11 @@ def inspect_cast(cast_path: Path) -> dict[str, Any]:
                 timestamp, event_type, payload = event
                 if isinstance(timestamp, bool) or not isinstance(timestamp, (int, float)):
                     raise ValidatorError(f"cast event timestamp must be numeric at {cast_path}:{line_number}")
-                if timestamp < 0:
-                    raise ValidatorError(f"cast event timestamp must be non-negative at {cast_path}:{line_number}")
                 timestamp_float = float(timestamp)
+                if not math.isfinite(timestamp_float):
+                    raise ValidatorError(f"cast event timestamp must be finite at {cast_path}:{line_number}")
+                if timestamp_float < 0:
+                    raise ValidatorError(f"cast event timestamp must be non-negative at {cast_path}:{line_number}")
                 if previous_timestamp is not None and timestamp_float < previous_timestamp:
                     raise ValidatorError(f"cast event timestamps must be nondecreasing at {cast_path}:{line_number}")
                 if event_type != "o":
