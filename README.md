@@ -62,6 +62,10 @@ Useful variables:
 - `TESTS_ROOT`: harness root, defaults to `tests`.
 - `ARTIFACT_ROOT`: result and proof root, defaults to `artifacts`.
 - `SITE_ROOT`: rendered site root, defaults to `site`.
+- `PROOF_OUTPUT`: proof path below `ARTIFACT_ROOT`, defaults to
+  `proof/original-validation-proof.json`.
+- `PROOF_PATH`: full proof path shared by proof, site, and site verification
+  targets, defaults to `$(ARTIFACT_ROOT)/$(PROOF_OUTPUT)`.
 - `LIBRARY`: optional single library selection for matrix and proof targets.
 - `LIBRARIES`: optional space-separated library selections for matrix, proof,
   and site verification targets.

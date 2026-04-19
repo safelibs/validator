@@ -4,6 +4,7 @@ TESTS_ROOT ?= tests
 ARTIFACT_ROOT ?= artifacts
 SITE_ROOT ?= site
 PROOF_OUTPUT ?= proof/original-validation-proof.json
+PROOF_PATH ?= $(ARTIFACT_ROOT)/$(PROOF_OUTPUT)
 SMOKE_LIBRARIES ?= cjson libarchive libuv libwebp
 LIBRARIES ?= $(LIBRARY)
 MIN_SOURCE_CASES ?= 0
@@ -26,13 +27,13 @@ matrix-smoke:
 	bash test.sh --config $(CONFIG) --tests-root $(TESTS_ROOT) --artifact-root $(ARTIFACT_ROOT) --record-casts $(foreach library,$(SMOKE_LIBRARIES),--library $(library))
 
 proof:
-	$(PYTHON) tools/verify_proof_artifacts.py --config $(CONFIG) --tests-root $(TESTS_ROOT) --artifact-root $(ARTIFACT_ROOT) --proof-output $(PROOF_OUTPUT) $(LIBRARY_ARGS) $(if $(or $(REQUIRE_CASTS),$(RECORD_CASTS)),--require-casts,) --min-source-cases $(MIN_SOURCE_CASES) --min-usage-cases $(MIN_USAGE_CASES) --min-cases $(MIN_CASES)
+	$(PYTHON) tools/verify_proof_artifacts.py --config $(CONFIG) --tests-root $(TESTS_ROOT) --artifact-root $(ARTIFACT_ROOT) --proof-output $(PROOF_PATH) $(LIBRARY_ARGS) $(if $(or $(REQUIRE_CASTS),$(RECORD_CASTS)),--require-casts,) --min-source-cases $(MIN_SOURCE_CASES) --min-usage-cases $(MIN_USAGE_CASES) --min-cases $(MIN_CASES)
 
 site:
-	$(PYTHON) tools/render_site.py --config $(CONFIG) --tests-root $(TESTS_ROOT) --artifact-root $(ARTIFACT_ROOT) --proof-path $(ARTIFACT_ROOT)/$(PROOF_OUTPUT) --output-root $(SITE_ROOT)
+	$(PYTHON) tools/render_site.py --config $(CONFIG) --tests-root $(TESTS_ROOT) --artifact-root $(ARTIFACT_ROOT) --proof-path $(PROOF_PATH) --output-root $(SITE_ROOT)
 
 verify-site:
-	bash scripts/verify-site.sh --config $(CONFIG) --tests-root $(TESTS_ROOT) --artifacts-root $(ARTIFACT_ROOT) --proof-path $(ARTIFACT_ROOT)/$(PROOF_OUTPUT) --site-root $(SITE_ROOT) $(LIBRARY_ARGS)
+	bash scripts/verify-site.sh --config $(CONFIG) --tests-root $(TESTS_ROOT) --artifacts-root $(ARTIFACT_ROOT) --proof-path $(PROOF_PATH) --site-root $(SITE_ROOT) $(LIBRARY_ARGS)
 
 clean:
 	rm -rf .work $(ARTIFACT_ROOT) $(SITE_ROOT)
