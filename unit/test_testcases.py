@@ -72,7 +72,22 @@ class TestcaseManifestTests(unittest.TestCase):
             ({"command": ["bash", "../run.sh"]}, "path segments"),
             ({"command": ["bash", ".."]}, "path segments"),
             ({"command": ["bash", "-lc", "exec /validator/tests/other/tests/run.sh"]}, "must stay under"),
+            (
+                {"command": ["bash", "LD_LIBRARY_PATH=/validator/tests/demo/lib:/validator/tests/other/lib"]},
+                "must stay under",
+            ),
+            (
+                {
+                    "command": [
+                        "bash",
+                        "-lc",
+                        "LD_LIBRARY_PATH=/validator/tests/demo/lib:/validator/tests/other/lib true",
+                    ]
+                },
+                "must stay under",
+            ),
             ({"command": ["bash", "-lc", "cd ../other && true"]}, "path segments"),
+            ({"command": ["bash", "PATH=/validator/tests/demo/bin:../bin"]}, "path segments"),
             ({"command": ["bash", "-lc", f"printf x >{repo_root / 'out'}"]}, "repository-host"),
             ({"command": ["relative/script.sh"]}, "first element"),
         ]
@@ -101,6 +116,43 @@ class TestcaseManifestTests(unittest.TestCase):
                 with self.subTest(update=update):
                     with self.assertRaisesRegex(ValidatorError, message):
                         testcases.load_testcase_manifest(path, library="demo")
+
+    def test_allows_colon_path_lists_under_selected_library(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp) / "demo"
+            root.mkdir(parents=True)
+            path = root / "testcases.yml"
+            path.write_text(
+                yaml.safe_dump(
+                    {
+                        "schema_version": 1,
+                        "library": "demo",
+                        "apt_packages": ["demo-runtime"],
+                        "testcases": [
+                            {
+                                "id": "source-valid-case",
+                                "title": "Valid title",
+                                "description": "Valid description text",
+                                "kind": "source",
+                                "command": [
+                                    "bash",
+                                    "LD_LIBRARY_PATH=/validator/tests/demo/lib:/validator/tests/demo/lib64",
+                                ],
+                                "timeout_seconds": 1,
+                                "tags": [],
+                            }
+                        ],
+                    },
+                    sort_keys=False,
+                )
+            )
+
+            manifest = testcases.load_testcase_manifest(path, library="demo")
+
+        self.assertEqual(
+            manifest.testcases[0].command[1],
+            "LD_LIBRARY_PATH=/validator/tests/demo/lib:/validator/tests/demo/lib64",
+        )
 
     def test_usage_cases_must_reference_dependent_identifier(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:

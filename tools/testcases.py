@@ -114,8 +114,10 @@ def _iter_command_path_candidates(value: str) -> list[str]:
     for token in COMMAND_PATH_TOKEN_SEPARATORS_RE.split(value):
         if not token:
             continue
-        candidates.extend(part for part in token.split("=") if part)
-    candidates.extend(match.group(0) for match in VALIDATOR_PATH_RE.finditer(value))
+        for assignment_part in token.split("="):
+            candidates.extend(part for part in assignment_part.split(":") if part)
+    for match in VALIDATOR_PATH_RE.finditer(value):
+        candidates.extend(part for part in match.group(0).split(":") if part)
     return candidates
 
 
