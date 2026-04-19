@@ -749,7 +749,7 @@ def build_parser() -> argparse.ArgumentParser:
 
 def parse_args(argv: list[str] | None = None) -> MatrixArgs:
     namespace = build_parser().parse_args(argv)
-    mode = str(namespace.mode or "original")
+    mode = str(namespace.mode)
     if mode != "original":
         raise ValidatorError("--mode accepts only 'original' during the original-only runner phase")
     libraries = dedupe(namespace.library or [])

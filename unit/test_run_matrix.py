@@ -47,10 +47,16 @@ class RunMatrixTests(unittest.TestCase):
         return _fake
 
     def test_accepts_original_mode_only(self) -> None:
-        for mode in ("safe", "both"):
-            with self.subTest(mode=mode):
+        invalid_mode_args = (
+            ["--mode", "safe"],
+            ["--mode", "both"],
+            ["--mode", ""],
+            ["--mode="],
+        )
+        for extra_args in invalid_mode_args:
+            with self.subTest(extra_args=extra_args):
                 with self.assertRaisesRegex(ValidatorError, "original"):
-                    run_matrix.parse_args(["--config", "repositories.yml", "--mode", mode])
+                    run_matrix.parse_args(["--config", "repositories.yml", *extra_args])
 
         args = run_matrix.parse_args(["--config", "repositories.yml"])
         self.assertEqual(args.mode, "original")
