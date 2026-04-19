@@ -4,10 +4,16 @@ ENV DEBIAN_FRONTEND=noninteractive
 
 RUN apt-get update \
  && apt-get install -y --no-install-recommends \
+      libcjson1 \
+      libcjson-dev \
+      bash \
       build-essential \
       ca-certificates \
-      libcjson-dev \
+      coreutils \
+      file \
+      jq \
       pkg-config \
+      python3 \
  && rm -rf /var/lib/apt/lists/*
 
 WORKDIR /validator
@@ -15,8 +21,8 @@ WORKDIR /validator
 COPY _shared/ /validator/tests/_shared/
 COPY cjson/ /validator/tests/cjson/
 
-RUN chmod +x \
-    /validator/tests/_shared/install_safe_debs.sh \
-    /validator/tests/_shared/run_library_tests.sh \
-    /validator/tests/cjson/docker-entrypoint.sh \
-    /validator/tests/cjson/tests/run.sh
+RUN find /validator/tests/_shared -maxdepth 1 -type f -name '*.sh' -exec chmod +x {} + \
+ && chmod +x /validator/tests/cjson/docker-entrypoint.sh /validator/tests/cjson/tests/run.sh \
+ && if [ -d /validator/tests/cjson/tests/cases ]; then \
+      find /validator/tests/cjson/tests/cases -type f -name '*.sh' -exec chmod +x {} +; \
+    fi

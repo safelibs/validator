@@ -4,10 +4,16 @@ ENV DEBIAN_FRONTEND=noninteractive
 
 RUN apt-get update \
  && apt-get install -y --no-install-recommends \
+      libuv1t64 \
+      libuv1-dev \
+      bash \
       build-essential \
+      ca-certificates \
+      coreutils \
+      file \
+      jq \
       pkg-config \
       python3 \
-      libuv1-dev \
  && rm -rf /var/lib/apt/lists/*
 
 WORKDIR /validator
@@ -15,8 +21,8 @@ WORKDIR /validator
 COPY _shared/ /validator/tests/_shared/
 COPY libuv/ /validator/tests/libuv/
 
-RUN chmod +x \
-    /validator/tests/_shared/install_safe_debs.sh \
-    /validator/tests/_shared/run_library_tests.sh \
-    /validator/tests/libuv/docker-entrypoint.sh \
-    /validator/tests/libuv/tests/run.sh
+RUN find /validator/tests/_shared -maxdepth 1 -type f -name '*.sh' -exec chmod +x {} + \
+ && chmod +x /validator/tests/libuv/docker-entrypoint.sh /validator/tests/libuv/tests/run.sh \
+ && if [ -d /validator/tests/libuv/tests/cases ]; then \
+      find /validator/tests/libuv/tests/cases -type f -name '*.sh' -exec chmod +x {} +; \
+    fi

@@ -4,12 +4,17 @@ ENV DEBIAN_FRONTEND=noninteractive
 
 RUN apt-get update \
  && apt-get install -y --no-install-recommends \
+      libsodium23 \
+      libsodium-dev \
+      bash \
       build-essential \
       ca-certificates \
+      coreutils \
       curvedns \
       fastd \
+      file \
+      jq \
       libtoxcore-dev \
-      libsodium-dev \
       libzmq3-dev \
       minisign \
       nix-bin \
@@ -29,8 +34,8 @@ WORKDIR /validator
 COPY _shared/ /validator/tests/_shared/
 COPY libsodium/ /validator/tests/libsodium/
 
-RUN chmod +x \
-    /validator/tests/_shared/install_safe_debs.sh \
-    /validator/tests/_shared/run_library_tests.sh \
-    /validator/tests/libsodium/docker-entrypoint.sh \
-    /validator/tests/libsodium/tests/run.sh
+RUN find /validator/tests/_shared -maxdepth 1 -type f -name '*.sh' -exec chmod +x {} + \
+ && chmod +x /validator/tests/libsodium/docker-entrypoint.sh /validator/tests/libsodium/tests/run.sh \
+ && if [ -d /validator/tests/libsodium/tests/cases ]; then \
+      find /validator/tests/libsodium/tests/cases -type f -name '*.sh' -exec chmod +x {} +; \
+    fi

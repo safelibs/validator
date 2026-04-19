@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-script_dir=$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)
-exec python3 "$script_dir/../_shared/phase4_host_harness.py" libsodium
+cat >&2 <<'EOF'
+host-run.sh is retired for normal validator execution.
+Use the Docker testcase runner: docker-entrypoint.sh <testcase-id> -- <command> [args...].
+EOF
+exit 64

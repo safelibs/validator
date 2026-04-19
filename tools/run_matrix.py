@@ -467,6 +467,7 @@ def cleanup_library_images(states: dict[str, LibraryState]) -> list[str]:
 def _container_command(
     *,
     image_tag: str,
+    library: str,
     testcase: Testcase,
     record_casts: bool,
     status_dir: Path,
@@ -493,8 +494,15 @@ def _container_command(
             image_tag,
             "bash",
             "-lc",
-            "set -euo pipefail\n/validator/tests/_shared/install_override_debs.sh\nexec \"$@\"",
+            (
+                "set -euo pipefail\n"
+                "/validator/tests/_shared/install_override_debs.sh\n"
+                "exec /validator/tests/_shared/run_library_tests.sh \"$@\""
+            ),
             "validator-testcase",
+            library,
+            testcase.id,
+            "--",
             *testcase.command,
         ]
     )
@@ -602,6 +610,7 @@ def run_testcase(
     try:
         command = _container_command(
             image_tag=image_tag,
+            library=library,
             testcase=testcase,
             record_casts=record_casts,
             status_dir=status_dir,

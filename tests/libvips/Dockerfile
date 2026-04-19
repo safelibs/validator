@@ -4,16 +4,21 @@ ENV DEBIAN_FRONTEND=noninteractive
 
 RUN apt-get update \
  && apt-get install -y --no-install-recommends \
+      libvips42t64 \
+      libvips-dev \
+      libvips-tools \
+      gir1.2-vips-8.0 \
+      bash \
       bc \
       build-essential \
       ca-certificates \
-      gir1.2-vips-8.0 \
+      coreutils \
+      file \
       gobject-introspection \
+      jq \
       libffi-dev \
-      libglib2.0-dev \
       libgirepository1.0-dev \
-      libvips-dev \
-      libvips-tools \
+      libglib2.0-dev \
       pkg-config \
       python3 \
       python3-cffi \
@@ -25,8 +30,8 @@ WORKDIR /validator
 COPY _shared/ /validator/tests/_shared/
 COPY libvips/ /validator/tests/libvips/
 
-RUN chmod +x \
-    /validator/tests/_shared/install_safe_debs.sh \
-    /validator/tests/_shared/run_library_tests.sh \
-    /validator/tests/libvips/docker-entrypoint.sh \
-    /validator/tests/libvips/tests/run.sh
+RUN find /validator/tests/_shared -maxdepth 1 -type f -name '*.sh' -exec chmod +x {} + \
+ && chmod +x /validator/tests/libvips/docker-entrypoint.sh /validator/tests/libvips/tests/run.sh \
+ && if [ -d /validator/tests/libvips/tests/cases ]; then \
+      find /validator/tests/libvips/tests/cases -type f -name '*.sh' -exec chmod +x {} +; \
+    fi

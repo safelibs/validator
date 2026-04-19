@@ -1,24 +1,45 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-library=${1:?usage: run_library_tests.sh <library>}
-run_script="/validator/tests/${library}/tests/run.sh"
+usage() {
+  echo "usage: run_library_tests.sh <library> <testcase-id> -- <command> [args...]" >&2
+  exit 64
+}
 
-source /validator/tests/_shared/runtime_helpers.sh
-
-if [[ ! -f "$run_script" ]]; then
-  echo "Missing library test script: $run_script" >&2
-  exit 1
+if (($# < 4)); then
+  usage
 fi
 
-if [[ ! -x "$run_script" ]]; then
-  echo "Library test script is not executable: $run_script" >&2
+library=$1
+shift
+
+testcase_id=$1
+shift
+
+if [[ ${1:-} != "--" ]]; then
+  usage
+fi
+shift
+
+if (($# == 0)); then
+  usage
+fi
+
+if [[ ! $testcase_id =~ ^[a-z0-9][a-z0-9-]{1,78}[a-z0-9]$ ]]; then
+  echo "invalid testcase id: $testcase_id" >&2
+  exit 64
+fi
+
+library_root="/validator/tests/${library}"
+if [[ ! -d "$library_root" ]]; then
+  echo "missing library root: $library_root" >&2
   exit 1
 fi
 
 export VALIDATOR_LIBRARY="$library"
-export VALIDATOR_LIBRARY_ROOT="/validator/tests/${library}"
-export VALIDATOR_TAGGED_ROOT="$VALIDATOR_LIBRARY_ROOT/tests/tagged-port"
-export VALIDATOR_STATUS_DIR="${VALIDATOR_STATUS_DIR:-/validator/status}"
+export VALIDATOR_LIBRARY_ROOT="$library_root"
+export VALIDATOR_TESTCASE_ID="$testcase_id"
+export VALIDATOR_SOURCE_ROOT="$library_root/tests/tagged-port/original"
+export VALIDATOR_FIXTURE_ROOT="$library_root/tests/fixtures"
 
-exec "$run_script"
+exec "$@"
