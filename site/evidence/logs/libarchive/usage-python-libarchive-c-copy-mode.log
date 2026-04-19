@@ -1,4 +1,4 @@
-$ docker run --rm -t --mount type=bind,src=/tmp/validator-status-libarchive-usage-python-libarchive-c-copy-mode-y_mrql6q,dst=/validator/status validator-libarchive-shared-7ebbe46d6625 bash -lc 'set -euo pipefail
+$ docker run --rm -t --mount type=bind,src=/tmp/validator-status-libarchive-usage-python-libarchive-c-copy-mode-wvodsamz,dst=/validator/status validator-libarchive-shared-ee4637c479d9 bash -lc 'set -euo pipefail
 /validator/tests/_shared/install_override_debs.sh
 exec /validator/tests/_shared/run_library_tests.sh "$@"' validator-testcase libarchive usage-python-libarchive-c-copy-mode -- bash /validator/tests/libarchive/tests/cases/usage/usage-python-libarchive-c-copy-mode.sh
 no override packages found; continuing with apt originals

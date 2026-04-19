@@ -1,4 +1,4 @@
-$ docker build --tag validator-libarchive-shared-7ebbe46d6625 --file /tmp/validator-run-matrix-libarchive-28ful492/libarchive/Dockerfile /tmp/validator-run-matrix-libarchive-28ful492
+$ docker build --tag validator-libarchive-shared-ee4637c479d9 --file /tmp/validator-run-matrix-libarchive-d0ucyc7x/libarchive/Dockerfile /tmp/validator-run-matrix-libarchive-d0ucyc7x
 #0 building with "default" instance using docker driver
 
 #1 [internal] load build definition from Dockerfile
@@ -37,5 +37,5 @@ $ docker build --tag validator-libarchive-shared-7ebbe46d6625 --file /tmp/valida
 #11 exporting to image
 #11 exporting layers done
 #11 writing image sha256:4504949718bb2e52e6c378464ba3c849b86b8d5d6f78f09f94f54ec2f55d873d done
-#11 naming to docker.io/library/validator-libarchive-shared-7ebbe46d6625 done
+#11 naming to docker.io/library/validator-libarchive-shared-ee4637c479d9 done
 #11 DONE 0.0s

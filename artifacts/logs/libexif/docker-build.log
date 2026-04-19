@@ -1,4 +1,4 @@
-$ docker build --tag validator-libexif-shared-ef94ee73e673 --file /tmp/validator-run-matrix-libexif-fwcg9de0/libexif/Dockerfile /tmp/validator-run-matrix-libexif-fwcg9de0
+$ docker build --tag validator-libexif-shared-39c8ef2eb766 --file /tmp/validator-run-matrix-libexif-zo_y2fqm/libexif/Dockerfile /tmp/validator-run-matrix-libexif-zo_y2fqm
 #0 building with "default" instance using docker driver
 
 #1 [internal] load build definition from Dockerfile
@@ -37,5 +37,5 @@ $ docker build --tag validator-libexif-shared-ef94ee73e673 --file /tmp/validator
 #11 exporting to image
 #11 exporting layers done
 #11 writing image sha256:0cd944d4dabcea2a4160da41ff2a6b4c63342d0550930d7873286e0a46308cb4 done
-#11 naming to docker.io/library/validator-libexif-shared-ef94ee73e673 done
+#11 naming to docker.io/library/validator-libexif-shared-39c8ef2eb766 done
 #11 DONE 0.0s

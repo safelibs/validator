@@ -1,7 +1,7 @@
-$ docker run --rm -t --mount type=bind,src=/tmp/validator-status-libbz2-debian-sample-parity-tahph5z7,dst=/validator/status validator-libbz2-shared-57db01d4e8b5 bash -lc 'set -euo pipefail
+$ docker run --rm -t --mount type=bind,src=/tmp/validator-status-libbz2-debian-sample-parity-jwatcq4x,dst=/validator/status validator-libbz2-shared-ac27e319c116 bash -lc 'set -euo pipefail
 /validator/tests/_shared/install_override_debs.sh
 exec /validator/tests/_shared/run_library_tests.sh "$@"' validator-testcase libbz2 debian-sample-parity -- bash /validator/tests/libbz2/tests/cases/source/debian-sample-parity.sh
 no override packages found; continuing with apt originals
-98696 /tmp/tmp.VEyMNDtm0b/sample1.out
-212340 /tmp/tmp.VEyMNDtm0b/sample2.out
-120244 /tmp/tmp.VEyMNDtm0b/sample3.out
+98696 /tmp/tmp.V43OJWsytV/sample1.out
+212340 /tmp/tmp.V43OJWsytV/sample2.out
+120244 /tmp/tmp.V43OJWsytV/sample3.out

@@ -1,3 +1,3 @@
-{"version": 2, "width": 120, "height": 40, "timestamp": 1776632601, "env": {"TERM": "xterm-256color", "SHELL": "/bin/bash"}}
-[0.111739, "o", "no override packages found; continuing with apt originals\r\r\n"]
-[0.142583, "o", "stream alpha.txt,beta.txt\r\r\n"]
+{"version": 2, "width": 120, "height": 40, "timestamp": 1776633206, "env": {"TERM": "xterm-256color", "SHELL": "/bin/bash"}}
+[0.107841, "o", "no override packages found; continuing with apt originals\r\r\n"]
+[0.138451, "o", "stream alpha.txt,beta.txt\r\r\n"]

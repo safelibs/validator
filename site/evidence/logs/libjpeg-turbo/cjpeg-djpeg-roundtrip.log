@@ -1,8 +1,8 @@
-$ docker run --rm -t --mount type=bind,src=/tmp/validator-status-libjpeg-turbo-cjpeg-djpeg-roundtrip-mh_f21tp,dst=/validator/status validator-libjpeg-turbo-shared-5c14c003488e bash -lc 'set -euo pipefail
+$ docker run --rm -t --mount type=bind,src=/tmp/validator-status-libjpeg-turbo-cjpeg-djpeg-roundtrip-o41etjij,dst=/validator/status validator-libjpeg-turbo-shared-d001eaa059cf bash -lc 'set -euo pipefail
 /validator/tests/_shared/install_override_debs.sh
 exec /validator/tests/_shared/run_library_tests.sh "$@"' validator-testcase libjpeg-turbo cjpeg-djpeg-roundtrip -- bash /validator/tests/libjpeg-turbo/tests/cases/source/cjpeg-djpeg-roundtrip.sh
 no override packages found; continuing with apt originals
 P6
 2 2
 255
-/tmp/tmp.xsqo88a7wP/a.jpg: JPEG image data, JFIF standard 1.01, aspect ratio, density 1x1, segment length 16, baseline, precision 8, 2x2, components 3
+/tmp/tmp.dQNWvbeTBZ/a.jpg: JPEG image data, JFIF standard 1.01, aspect ratio, density 1x1, segment length 16, baseline, precision 8, 2x2, components 3

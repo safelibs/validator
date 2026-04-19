@@ -1,4 +1,4 @@
-$ docker run --rm -t --mount type=bind,src=/tmp/validator-status-libcsv-usage-readstat-dta-to-csv-gr5829gf,dst=/validator/status validator-libcsv-shared-02323ffb3cf0 bash -lc 'set -euo pipefail
+$ docker run --rm -t --mount type=bind,src=/tmp/validator-status-libcsv-usage-readstat-dta-to-csv-uvk7bdwm,dst=/validator/status validator-libcsv-shared-30f883d8511d bash -lc 'set -euo pipefail
 /validator/tests/_shared/install_override_debs.sh
 exec /validator/tests/_shared/run_library_tests.sh "$@"' validator-testcase libcsv usage-readstat-dta-to-csv -- bash /validator/tests/libcsv/tests/cases/usage/usage-readstat-dta-to-csv.sh
 no override packages found; continuing with apt originals

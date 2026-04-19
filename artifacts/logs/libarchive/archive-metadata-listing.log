@@ -1,10 +1,10 @@
-$ docker run --rm -t --mount type=bind,src=/tmp/validator-status-libarchive-archive-metadata-listing-gv7pw7ew,dst=/validator/status validator-libarchive-shared-7ebbe46d6625 bash -lc 'set -euo pipefail
+$ docker run --rm -t --mount type=bind,src=/tmp/validator-status-libarchive-archive-metadata-listing-4wb_x0_e,dst=/validator/status validator-libarchive-shared-ee4637c479d9 bash -lc 'set -euo pipefail
 /validator/tests/_shared/install_override_debs.sh
 exec /validator/tests/_shared/run_library_tests.sh "$@"' validator-testcase libarchive archive-metadata-listing -- bash /validator/tests/libarchive/tests/cases/source/archive-metadata-listing.sh
 no override packages found; continuing with apt originals
-drwxr-xr-x  0 root   root        0 Apr 19 21:03 ./
--rw-r--r--  0 root   root        7 Apr 19 21:03 ./target.txt
-lrwxrwxrwx  0 root   root        0 Apr 19 21:03 ./link.txt -> target.txt
--rw-r--r--  0 root   root        7 Apr 19 21:03 ./target.txt
-lrwxrwxrwx  0 root   root        0 Apr 19 21:03 ./link.txt -> target.txt
-lrwxrwxrwx  0 root   root        0 Apr 19 21:03 ./link.txt -> target.txt
+drwxr-xr-x  0 root   root        0 Apr 19 21:13 ./
+lrwxrwxrwx  0 root   root        0 Apr 19 21:13 ./link.txt -> target.txt
+-rw-r--r--  0 root   root        7 Apr 19 21:13 ./target.txt
+lrwxrwxrwx  0 root   root        0 Apr 19 21:13 ./link.txt -> target.txt
+-rw-r--r--  0 root   root        7 Apr 19 21:13 ./target.txt
+lrwxrwxrwx  0 root   root        0 Apr 19 21:13 ./link.txt -> target.txt

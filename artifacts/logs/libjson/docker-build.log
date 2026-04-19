@@ -1,4 +1,4 @@
-$ docker build --tag validator-libjson-shared-e82481fa8daa --file /tmp/validator-run-matrix-libjson-x7k495s2/libjson/Dockerfile /tmp/validator-run-matrix-libjson-x7k495s2
+$ docker build --tag validator-libjson-shared-e001ef3849b2 --file /tmp/validator-run-matrix-libjson-ibngvu96/libjson/Dockerfile /tmp/validator-run-matrix-libjson-ibngvu96
 #0 building with "default" instance using docker driver
 
 #1 [internal] load build definition from Dockerfile
@@ -10,7 +10,7 @@ $ docker build --tag validator-libjson-shared-e82481fa8daa --file /tmp/validator
 
 #3 [internal] load .dockerignore
 #3 transferring context: 2B done
-#3 DONE 0.1s
+#3 DONE 0.0s
 
 #4 [1/6] FROM docker.io/library/ubuntu:24.04
 #4 DONE 0.0s
@@ -19,16 +19,16 @@ $ docker build --tag validator-libjson-shared-e82481fa8daa --file /tmp/validator
 #5 transferring context: 907.84kB 0.0s done
 #5 DONE 0.0s
 
-#6 [5/6] COPY libjson/ /validator/tests/libjson/
+#6 [4/6] COPY _shared/ /validator/tests/_shared/
 #6 CACHED
 
-#7 [2/6] RUN apt-get update  && apt-get install -y --no-install-recommends       libjson-c5       libjson-c-dev       gdal-bin       ttyd       curl       bash       build-essential       ca-certificates       cmake       coreutils       file       jq       pkg-config       python3  && rm -rf /var/lib/apt/lists/*
+#7 [3/6] WORKDIR /validator
 #7 CACHED
 
-#8 [3/6] WORKDIR /validator
+#8 [5/6] COPY libjson/ /validator/tests/libjson/
 #8 CACHED
 
-#9 [4/6] COPY _shared/ /validator/tests/_shared/
+#9 [2/6] RUN apt-get update  && apt-get install -y --no-install-recommends       libjson-c5       libjson-c-dev       gdal-bin       ttyd       curl       bash       build-essential       ca-certificates       cmake       coreutils       file       jq       pkg-config       python3  && rm -rf /var/lib/apt/lists/*
 #9 CACHED
 
 #10 [6/6] RUN find /validator/tests/_shared -maxdepth 1 -type f -name '*.sh' -exec chmod +x {} +  && chmod +x /validator/tests/libjson/docker-entrypoint.sh /validator/tests/libjson/tests/run.sh  && if [ -d /validator/tests/libjson/tests/cases ]; then       find /validator/tests/libjson/tests/cases -type f -name '*.sh' -exec chmod +x {} +;     fi
@@ -37,5 +37,5 @@ $ docker build --tag validator-libjson-shared-e82481fa8daa --file /tmp/validator
 #11 exporting to image
 #11 exporting layers done
 #11 writing image sha256:9d9aca5511d3b1822af1178d153509d58b0912a080925cead737c6a530175f05 done
-#11 naming to docker.io/library/validator-libjson-shared-e82481fa8daa done
+#11 naming to docker.io/library/validator-libjson-shared-e001ef3849b2 done
 #11 DONE 0.0s

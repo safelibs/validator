@@ -1,4 +1,4 @@
-$ docker run --rm -t --mount type=bind,src=/tmp/validator-status-libuv-usage-nodejs-stream-pipe-qu7qg78u,dst=/validator/status validator-libuv-shared-7d1db37755a3 bash -lc 'set -euo pipefail
+$ docker run --rm -t --mount type=bind,src=/tmp/validator-status-libuv-usage-nodejs-stream-pipe-_vg1_vge,dst=/validator/status validator-libuv-shared-962b52612ab7 bash -lc 'set -euo pipefail
 /validator/tests/_shared/install_override_debs.sh
 exec /validator/tests/_shared/run_library_tests.sh "$@"' validator-testcase libuv usage-nodejs-stream-pipe -- bash /validator/tests/libuv/tests/cases/usage/usage-nodejs-stream-pipe.sh
 no override packages found; continuing with apt originals

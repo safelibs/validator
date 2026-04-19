@@ -1,4 +1,4 @@
-{"version": 2, "width": 120, "height": 40, "timestamp": 1776632607, "env": {"TERM": "xterm-256color", "SHELL": "/bin/bash"}}
-[0.105105, "o", "no override packages found; continuing with apt originals\r\r\n"]
-[0.111089, "o", "Converted 2 variables and 2 rows in 0.00 seconds\r\r\n"]
-[0.112037, "o", "Converted 2 variables and 2 rows in 0.00 seconds\r\r\n"]
+{"version": 2, "width": 120, "height": 40, "timestamp": 1776633213, "env": {"TERM": "xterm-256color", "SHELL": "/bin/bash"}}
+[0.116565, "o", "no override packages found; continuing with apt originals\r\r\n"]
+[0.122427, "o", "Converted 2 variables and 2 rows in 0.00 seconds\r\r\n"]
+[0.123541, "o", "Converted 2 variables and 2 rows in 0.00 seconds\r\r\n"]

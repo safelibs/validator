@@ -1,4 +1,4 @@
-{"version": 2, "width": 120, "height": 40, "timestamp": 1776632607, "env": {"TERM": "xterm-256color", "SHELL": "/bin/bash"}}
-[0.102374, "o", "no override packages found; continuing with apt originals\r\r\n"]
-[0.108551, "o", "Converted 2 variables and 2 rows in 0.00 seconds\r\r\n"]
-[0.109775, "o", "Converted 2 variables and 2 rows in 0.00 seconds\r\r\n\"name\",\"score\"\r\r\n\"alpha\",42.000000\r\r\n\"beta\",7.000000\r\r\n"]
+{"version": 2, "width": 120, "height": 40, "timestamp": 1776633212, "env": {"TERM": "xterm-256color", "SHELL": "/bin/bash"}}
+[0.103288, "o", "no override packages found; continuing with apt originals\r\r\n"]
+[0.109629, "o", "Converted 2 variables and 2 rows in 0.00 seconds\r\r\n"]
+[0.11089, "o", "Converted 2 variables and 2 rows in 0.00 seconds\r\r\n\"name\",\"score\"\r\r\n\"alpha\",42.000000\r\r\n\"beta\",7.000000\r\r\n"]

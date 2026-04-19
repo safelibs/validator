@@ -1,4 +1,4 @@
-$ docker run --rm -t --mount type=bind,src=/tmp/validator-status-libyaml-usage-python3-yaml-safe-load-c08lsj5y,dst=/validator/status validator-libyaml-shared-b1a04f528c56 bash -lc 'set -euo pipefail
+$ docker run --rm -t --mount type=bind,src=/tmp/validator-status-libyaml-usage-python3-yaml-safe-load-1tglyp05,dst=/validator/status validator-libyaml-shared-7bac22d5e26a bash -lc 'set -euo pipefail
 /validator/tests/_shared/install_override_debs.sh
 exec /validator/tests/_shared/run_library_tests.sh "$@"' validator-testcase libyaml usage-python3-yaml-safe-load -- bash /validator/tests/libyaml/tests/cases/usage/usage-python3-yaml-safe-load.sh
 no override packages found; continuing with apt originals

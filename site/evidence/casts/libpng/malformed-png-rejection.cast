@@ -1,3 +1,3 @@
-{"version": 2, "width": 120, "height": 40, "timestamp": 1776632627, "env": {"TERM": "xterm-256color", "SHELL": "/bin/bash"}}
-[0.10045, "o", "no override packages found; continuing with apt originals\r\r\n"]
-[0.106171, "o", "pngJ ERR 00 libpng Success Success not_a_PNG_(signature) /tmp/tmp.RDmtPOx430/bad.png\r\r\n"]
+{"version": 2, "width": 120, "height": 40, "timestamp": 1776633229, "env": {"TERM": "xterm-256color", "SHELL": "/bin/bash"}}
+[0.107747, "o", "no override packages found; continuing with apt originals\r\r\n"]
+[0.111985, "o", "pngJ ERR 00 libpng Success Success not_a_PNG_(signature) /tmp/tmp.uRyG50cG3X/bad.png\r\r\n"]

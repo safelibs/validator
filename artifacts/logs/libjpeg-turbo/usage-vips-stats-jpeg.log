@@ -1,5 +1,5 @@
-$ docker run --rm -t --mount type=bind,src=/tmp/validator-status-libjpeg-turbo-usage-vips-stats-jpeg-8fljcakj,dst=/validator/status validator-libjpeg-turbo-shared-5c14c003488e bash -lc 'set -euo pipefail
+$ docker run --rm -t --mount type=bind,src=/tmp/validator-status-libjpeg-turbo-usage-vips-stats-jpeg-2g3rw1or,dst=/validator/status validator-libjpeg-turbo-shared-d001eaa059cf bash -lc 'set -euo pipefail
 /validator/tests/_shared/install_override_debs.sh
 exec /validator/tests/_shared/run_library_tests.sh "$@"' validator-testcase libjpeg-turbo usage-vips-stats-jpeg -- bash /validator/tests/libjpeg-turbo/tests/cases/usage/usage-vips-stats-jpeg.sh
 no override packages found; continuing with apt originals
-/tmp/tmp.G6MvYpLizp/stats.v: 10x4 double, 1 band, matrix
+/tmp/tmp.6n8WPlMwGI/stats.v: 10x4 double, 1 band, matrix

@@ -1,4 +1,4 @@
-$ docker build --tag validator-libyaml-shared-b1a04f528c56 --file /tmp/validator-run-matrix-libyaml-gdcyqewz/libyaml/Dockerfile /tmp/validator-run-matrix-libyaml-gdcyqewz
+$ docker build --tag validator-libyaml-shared-7bac22d5e26a --file /tmp/validator-run-matrix-libyaml-d5xjoup7/libyaml/Dockerfile /tmp/validator-run-matrix-libyaml-d5xjoup7
 #0 building with "default" instance using docker driver
 
 #1 [internal] load build definition from Dockerfile
@@ -22,10 +22,10 @@ $ docker build --tag validator-libyaml-shared-b1a04f528c56 --file /tmp/validator
 #6 [4/6] COPY _shared/ /validator/tests/_shared/
 #6 CACHED
 
-#7 [5/6] COPY libyaml/ /validator/tests/libyaml/
+#7 [2/6] RUN apt-get update  && apt-get install -y --no-install-recommends       libyaml-0-2       libyaml-dev       python3-yaml       bash       build-essential       ca-certificates       coreutils       file       jq       pkg-config       python3  && rm -rf /var/lib/apt/lists/*
 #7 CACHED
 
-#8 [2/6] RUN apt-get update  && apt-get install -y --no-install-recommends       libyaml-0-2       libyaml-dev       python3-yaml       bash       build-essential       ca-certificates       coreutils       file       jq       pkg-config       python3  && rm -rf /var/lib/apt/lists/*
+#8 [5/6] COPY libyaml/ /validator/tests/libyaml/
 #8 CACHED
 
 #9 [3/6] WORKDIR /validator
@@ -37,5 +37,5 @@ $ docker build --tag validator-libyaml-shared-b1a04f528c56 --file /tmp/validator
 #11 exporting to image
 #11 exporting layers done
 #11 writing image sha256:f05cbdb76c53d2e9ccf3c35d94100679f6576a096c3083b62e33b43158250bb8 done
-#11 naming to docker.io/library/validator-libyaml-shared-b1a04f528c56 done
+#11 naming to docker.io/library/validator-libyaml-shared-7bac22d5e26a done
 #11 DONE 0.0s

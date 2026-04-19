@@ -1,4 +1,4 @@
-$ docker run --rm -t --mount type=bind,src=/tmp/validator-status-libpng-palette-fixture-handling-sdm4u2sd,dst=/validator/status validator-libpng-shared-9bdb256b5440 bash -lc 'set -euo pipefail
+$ docker run --rm -t --mount type=bind,src=/tmp/validator-status-libpng-palette-fixture-handling-e28klbsn,dst=/validator/status validator-libpng-shared-1e1a481381d3 bash -lc 'set -euo pipefail
 /validator/tests/_shared/install_override_debs.sh
 exec /validator/tests/_shared/run_library_tests.sh "$@"' validator-testcase libpng palette-fixture-handling -- bash /validator/tests/libpng/tests/cases/source/palette-fixture-handling.sh
 no override packages found; continuing with apt originals

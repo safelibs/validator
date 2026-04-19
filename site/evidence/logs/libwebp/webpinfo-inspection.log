@@ -1,4 +1,4 @@
-$ docker run --rm -t --mount type=bind,src=/tmp/validator-status-libwebp-webpinfo-inspection-2_ailqlq,dst=/validator/status validator-libwebp-shared-0e02fa27eb46 bash -lc 'set -euo pipefail
+$ docker run --rm -t --mount type=bind,src=/tmp/validator-status-libwebp-webpinfo-inspection-ja02u_ug,dst=/validator/status validator-libwebp-shared-ebdaa3d46421 bash -lc 'set -euo pipefail
 /validator/tests/_shared/install_override_debs.sh
 exec /validator/tests/_shared/run_library_tests.sh "$@"' validator-testcase libwebp webpinfo-inspection -- bash /validator/tests/libwebp/tests/cases/source/webpinfo-inspection.sh
 no override packages found; continuing with apt originals

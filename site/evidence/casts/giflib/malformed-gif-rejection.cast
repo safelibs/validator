@@ -1,3 +1,3 @@
-{"version": 2, "width": 120, "height": 40, "timestamp": 1776632597, "env": {"TERM": "xterm-256color", "SHELL": "/bin/bash"}}
-[0.106933, "o", "no override packages found; continuing with apt originals\r\r\n"]
-[0.112295, "o", "GIF-LIB undefined error 32768.\r\r\n"]
+{"version": 2, "width": 120, "height": 40, "timestamp": 1776633202, "env": {"TERM": "xterm-256color", "SHELL": "/bin/bash"}}
+[0.104189, "o", "no override packages found; continuing with apt originals\r\r\n"]
+[0.109591, "o", "GIF-LIB undefined error 32768.\r\r\n"]

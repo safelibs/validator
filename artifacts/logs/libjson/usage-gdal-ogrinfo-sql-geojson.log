@@ -1,8 +1,8 @@
-$ docker run --rm -t --mount type=bind,src=/tmp/validator-status-libjson-usage-gdal-ogrinfo-sql-geojson-b5b98zhp,dst=/validator/status validator-libjson-shared-e82481fa8daa bash -lc 'set -euo pipefail
+$ docker run --rm -t --mount type=bind,src=/tmp/validator-status-libjson-usage-gdal-ogrinfo-sql-geojson-wn663xai,dst=/validator/status validator-libjson-shared-e001ef3849b2 bash -lc 'set -euo pipefail
 /validator/tests/_shared/install_override_debs.sh
 exec /validator/tests/_shared/run_library_tests.sh "$@"' validator-testcase libjson usage-gdal-ogrinfo-sql-geojson -- bash /validator/tests/libjson/tests/cases/usage/usage-gdal-ogrinfo-sql-geojson.sh
 no override packages found; continuing with apt originals
-INFO: Open of `/tmp/tmp.EVrxcz7FOq/points.geojson'
+INFO: Open of `/tmp/tmp.BPtYTvRR7k/points.geojson'
       using driver `GeoJSON' successful.
 
 Layer name: points

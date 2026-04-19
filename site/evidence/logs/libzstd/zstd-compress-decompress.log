@@ -1,9 +1,9 @@
-$ docker run --rm -t --mount type=bind,src=/tmp/validator-status-libzstd-zstd-compress-decompress-va3fm9st,dst=/validator/status validator-libzstd-shared-acc4ca4ec272 bash -lc 'set -euo pipefail
+$ docker run --rm -t --mount type=bind,src=/tmp/validator-status-libzstd-zstd-compress-decompress-wfkmp8yp,dst=/validator/status validator-libzstd-shared-b8101b13e294 bash -lc 'set -euo pipefail
 /validator/tests/_shared/install_override_debs.sh
 exec /validator/tests/_shared/run_library_tests.sh "$@"' validator-testcase libzstd zstd-compress-decompress -- bash /validator/tests/libzstd/tests/cases/source/zstd-compress-decompress.sh
 no override packages found; continuing with apt originals
 *** Zstandard CLI (64-bit) v1.5.5, by Yann Collet ***
-/tmp/tmp.N6yzEMRNvl/plain.zst 
+/tmp/tmp.y5VhuFiDOz/plain.zst 
 # Zstandard Frames: 1
 DictID: 0
 Window Size: 13 B (13 B)

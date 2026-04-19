@@ -1,3 +1,3 @@
-{"version": 2, "width": 120, "height": 40, "timestamp": 1776632596, "env": {"TERM": "xterm-256color", "SHELL": "/bin/bash"}}
-[0.105287, "o", "no override packages found; continuing with apt originals\r\r\n"]
-[0.110016, "o", "5400 /tmp/tmp.i86sev3CtU/fire.rgb\r\r\n"]
+{"version": 2, "width": 120, "height": 40, "timestamp": 1776633201, "env": {"TERM": "xterm-256color", "SHELL": "/bin/bash"}}
+[0.114039, "o", "no override packages found; continuing with apt originals\r\r\n"]
+[0.118899, "o", "5400 /tmp/tmp.NCshCnpb1c/fire.rgb\r\r\n"]

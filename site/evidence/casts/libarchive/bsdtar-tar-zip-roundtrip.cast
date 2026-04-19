@@ -1,4 +1,4 @@
-{"version": 2, "width": 120, "height": 40, "timestamp": 1776632599, "env": {"TERM": "xterm-256color", "SHELL": "/bin/bash"}}
-[0.127569, "o", "no override packages found; continuing with apt originals\r\r\n"]
-[0.156352, "o", "./\r\r\n./dir/\r\r\n./b.txt\r\r\n./dir/a.txt\r\r\n"]
-[0.157714, "o", "./\r\r\n./dir/\r\r\n./b.txt\r\r\n./dir/a.txt\r\r\n"]
+{"version": 2, "width": 120, "height": 40, "timestamp": 1776633204, "env": {"TERM": "xterm-256color", "SHELL": "/bin/bash"}}
+[0.123674, "o", "no override packages found; continuing with apt originals\r\r\n"]
+[0.152296, "o", "./\r\r\n./dir/\r\r\n./b.txt\r\r\n./dir/a.txt\r\r\n"]
+[0.153687, "o", "./\r\r\n./dir/\r\r\n./b.txt\r\r\n./dir/a.txt\r\r\n"]

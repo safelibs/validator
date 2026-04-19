@@ -1,6 +1,6 @@
-$ docker run --rm -t --mount type=bind,src=/tmp/validator-status-libvips-c-api-compile-smoke-mi3v1avl,dst=/validator/status validator-libvips-shared-acb49e6c1077 bash -lc 'set -euo pipefail
+$ docker run --rm -t --mount type=bind,src=/tmp/validator-status-libvips-c-api-compile-smoke-ojf4gwou,dst=/validator/status validator-libvips-shared-78a54882adae bash -lc 'set -euo pipefail
 /validator/tests/_shared/install_override_debs.sh
 exec /validator/tests/_shared/run_library_tests.sh "$@"' validator-testcase libvips c-api-compile-smoke -- bash /validator/tests/libvips/tests/cases/source/c-api-compile-smoke.sh
 no override packages found; continuing with apt originals
 width=8 height=8
-/tmp/tmp.AfCl8MyLHK/api.png: 8x8 uchar, 1 band, b-w, pngload
+/tmp/tmp.2ugu1XZU1x/api.png: 8x8 uchar, 1 band, b-w, pngload
