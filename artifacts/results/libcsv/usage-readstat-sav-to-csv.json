@@ -1,0 +1,32 @@
+{
+  "schema_version": 2,
+  "library": "libcsv",
+  "mode": "original",
+  "testcase_id": "usage-readstat-sav-to-csv",
+  "title": "readstat SAV to CSV",
+  "description": "Runs readstat to read an SPSS SAV dataset generated from CSV and emit CSV rows.",
+  "kind": "usage",
+  "client_application": "readstat",
+  "tags": [
+    "usage",
+    "csv"
+  ],
+  "requires": [],
+  "status": "passed",
+  "started_at": "2026-04-19T20:29:13Z",
+  "finished_at": "2026-04-19T20:29:13Z",
+  "duration_seconds": 0.232,
+  "result_path": "results/libcsv/usage-readstat-sav-to-csv.json",
+  "log_path": "logs/libcsv/usage-readstat-sav-to-csv.log",
+  "cast_path": "casts/libcsv/usage-readstat-sav-to-csv.cast",
+  "exit_code": 0,
+  "command": [
+    "bash",
+    "/validator/tests/libcsv/tests/cases/usage/usage-readstat-sav-to-csv.sh"
+  ],
+  "apt_packages": [
+    "libcsv3",
+    "libcsv-dev"
+  ],
+  "override_debs_installed": false
+}

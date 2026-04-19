@@ -1,0 +1,33 @@
+{
+  "schema_version": 2,
+  "library": "libarchive",
+  "mode": "original",
+  "testcase_id": "bsdtar-tar-zip-roundtrip",
+  "title": "bsdtar tar and zip round trip",
+  "description": "Creates tar and zip archives then extracts both with bsdtar.",
+  "kind": "source",
+  "client_application": null,
+  "tags": [
+    "cli",
+    "archive"
+  ],
+  "requires": [],
+  "status": "passed",
+  "started_at": "2026-04-19T20:29:03Z",
+  "finished_at": "2026-04-19T20:29:04Z",
+  "duration_seconds": 0.574,
+  "result_path": "results/libarchive/bsdtar-tar-zip-roundtrip.json",
+  "log_path": "logs/libarchive/bsdtar-tar-zip-roundtrip.log",
+  "cast_path": "casts/libarchive/bsdtar-tar-zip-roundtrip.cast",
+  "exit_code": 0,
+  "command": [
+    "bash",
+    "/validator/tests/libarchive/tests/cases/source/bsdtar-tar-zip-roundtrip.sh"
+  ],
+  "apt_packages": [
+    "libarchive13t64",
+    "libarchive-dev",
+    "libarchive-tools"
+  ],
+  "override_debs_installed": false
+}

@@ -1,2 +1,0 @@
-# Test-only dependencies for the checked-in autopkgtest helper package.
-pytest >= 7, < 8

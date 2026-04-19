@@ -1,2 +1,0 @@
-Tests: minitar
-Depends: build-essential, file, libarchive-dev, pkg-config

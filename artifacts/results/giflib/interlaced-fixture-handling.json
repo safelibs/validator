@@ -1,0 +1,33 @@
+{
+  "schema_version": 2,
+  "library": "giflib",
+  "mode": "original",
+  "testcase_id": "interlaced-fixture-handling",
+  "title": "Interlaced GIF fixture handling",
+  "description": "Converts an interlaced GIF fixture and compares the expected RGB output.",
+  "kind": "source",
+  "client_application": null,
+  "tags": [
+    "cli",
+    "media"
+  ],
+  "requires": [],
+  "status": "passed",
+  "started_at": "2026-04-19T20:28:56Z",
+  "finished_at": "2026-04-19T20:28:57Z",
+  "duration_seconds": 0.591,
+  "result_path": "results/giflib/interlaced-fixture-handling.json",
+  "log_path": "logs/giflib/interlaced-fixture-handling.log",
+  "cast_path": "casts/giflib/interlaced-fixture-handling.cast",
+  "exit_code": 0,
+  "command": [
+    "bash",
+    "/validator/tests/giflib/tests/cases/source/interlaced-fixture-handling.sh"
+  ],
+  "apt_packages": [
+    "libgif7",
+    "libgif-dev",
+    "giflib-tools"
+  ],
+  "override_debs_installed": false
+}

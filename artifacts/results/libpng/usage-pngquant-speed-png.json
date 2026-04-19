@@ -1,0 +1,33 @@
+{
+  "schema_version": 2,
+  "library": "libpng",
+  "mode": "original",
+  "testcase_id": "usage-pngquant-speed-png",
+  "title": "pngquant speed png",
+  "description": "Runs pngquant speed png through libpng on a PNG fixture.",
+  "kind": "usage",
+  "client_application": "pngquant",
+  "tags": [
+    "usage",
+    "image"
+  ],
+  "requires": [],
+  "status": "passed",
+  "started_at": "2026-04-19T20:29:30Z",
+  "finished_at": "2026-04-19T20:29:30Z",
+  "duration_seconds": 0.213,
+  "result_path": "results/libpng/usage-pngquant-speed-png.json",
+  "log_path": "logs/libpng/usage-pngquant-speed-png.log",
+  "cast_path": "casts/libpng/usage-pngquant-speed-png.cast",
+  "exit_code": 0,
+  "command": [
+    "bash",
+    "/validator/tests/libpng/tests/cases/usage/usage-pngquant-speed-png.sh"
+  ],
+  "apt_packages": [
+    "libpng16-16t64",
+    "libpng-dev",
+    "libpng-tools"
+  ],
+  "override_debs_installed": false
+}

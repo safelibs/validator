@@ -1,0 +1,33 @@
+{
+  "schema_version": 2,
+  "library": "libarchive",
+  "mode": "original",
+  "testcase_id": "usage-python-libarchive-c-tar-list",
+  "title": "python-libarchive-c tar list",
+  "description": "Uses python-libarchive-c to list entries from a tar archive through libarchive.",
+  "kind": "usage",
+  "client_application": "python3-libarchive-c",
+  "tags": [
+    "usage",
+    "archive"
+  ],
+  "requires": [],
+  "status": "passed",
+  "started_at": "2026-04-19T20:29:05Z",
+  "finished_at": "2026-04-19T20:29:06Z",
+  "duration_seconds": 0.294,
+  "result_path": "results/libarchive/usage-python-libarchive-c-tar-list.json",
+  "log_path": "logs/libarchive/usage-python-libarchive-c-tar-list.log",
+  "cast_path": "casts/libarchive/usage-python-libarchive-c-tar-list.cast",
+  "exit_code": 0,
+  "command": [
+    "bash",
+    "/validator/tests/libarchive/tests/cases/usage/usage-python-libarchive-c-tar-list.sh"
+  ],
+  "apt_packages": [
+    "libarchive13t64",
+    "libarchive-dev",
+    "libarchive-tools"
+  ],
+  "override_debs_installed": false
+}

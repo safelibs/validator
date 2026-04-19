@@ -1,0 +1,33 @@
+{
+  "schema_version": 2,
+  "library": "giflib",
+  "mode": "original",
+  "testcase_id": "gif2rgb-conversion",
+  "title": "gif2rgb RGB conversion",
+  "description": "Converts a sample GIF to raw RGB bytes and compares the fixture length.",
+  "kind": "source",
+  "client_application": null,
+  "tags": [
+    "cli",
+    "media"
+  ],
+  "requires": [],
+  "status": "passed",
+  "started_at": "2026-04-19T20:28:55Z",
+  "finished_at": "2026-04-19T20:28:56Z",
+  "duration_seconds": 0.605,
+  "result_path": "results/giflib/gif2rgb-conversion.json",
+  "log_path": "logs/giflib/gif2rgb-conversion.log",
+  "cast_path": "casts/giflib/gif2rgb-conversion.cast",
+  "exit_code": 0,
+  "command": [
+    "bash",
+    "/validator/tests/giflib/tests/cases/source/gif2rgb-conversion.sh"
+  ],
+  "apt_packages": [
+    "libgif7",
+    "libgif-dev",
+    "giflib-tools"
+  ],
+  "override_debs_installed": false
+}

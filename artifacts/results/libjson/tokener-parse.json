@@ -1,0 +1,32 @@
+{
+  "schema_version": 2,
+  "library": "libjson",
+  "mode": "original",
+  "testcase_id": "tokener-parse",
+  "title": "json-c tokener parse",
+  "description": "Parses nested JSON through json-c tokener APIs and reads fields.",
+  "kind": "source",
+  "client_application": null,
+  "tags": [
+    "api",
+    "parser"
+  ],
+  "requires": [],
+  "status": "passed",
+  "started_at": "2026-04-19T20:29:21Z",
+  "finished_at": "2026-04-19T20:29:21Z",
+  "duration_seconds": 0.233,
+  "result_path": "results/libjson/tokener-parse.json",
+  "log_path": "logs/libjson/tokener-parse.log",
+  "cast_path": "casts/libjson/tokener-parse.cast",
+  "exit_code": 0,
+  "command": [
+    "bash",
+    "/validator/tests/libjson/tests/cases/source/tokener-parse.sh"
+  ],
+  "apt_packages": [
+    "libjson-c5",
+    "libjson-c-dev"
+  ],
+  "override_debs_installed": false
+}

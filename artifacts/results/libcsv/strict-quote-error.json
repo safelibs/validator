@@ -1,0 +1,32 @@
+{
+  "schema_version": 2,
+  "library": "libcsv",
+  "mode": "original",
+  "testcase_id": "strict-quote-error",
+  "title": "Strict quote error behavior",
+  "description": "Uses strict parser options to reject an unterminated quoted field.",
+  "kind": "source",
+  "client_application": null,
+  "tags": [
+    "api",
+    "negative"
+  ],
+  "requires": [],
+  "status": "passed",
+  "started_at": "2026-04-19T20:29:11Z",
+  "finished_at": "2026-04-19T20:29:11Z",
+  "duration_seconds": 0.247,
+  "result_path": "results/libcsv/strict-quote-error.json",
+  "log_path": "logs/libcsv/strict-quote-error.log",
+  "cast_path": "casts/libcsv/strict-quote-error.cast",
+  "exit_code": 0,
+  "command": [
+    "bash",
+    "/validator/tests/libcsv/tests/cases/source/strict-quote-error.sh"
+  ],
+  "apt_packages": [
+    "libcsv3",
+    "libcsv-dev"
+  ],
+  "override_debs_installed": false
+}

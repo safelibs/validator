@@ -1,0 +1,32 @@
+{
+  "schema_version": 2,
+  "library": "libexif",
+  "mode": "original",
+  "testcase_id": "invalid-data-handling",
+  "title": "Invalid EXIF data handling",
+  "description": "Feeds invalid bytes through ExifLoader and confirms graceful empty handling.",
+  "kind": "source",
+  "client_application": null,
+  "tags": [
+    "api",
+    "negative"
+  ],
+  "requires": [],
+  "status": "passed",
+  "started_at": "2026-04-19T20:29:15Z",
+  "finished_at": "2026-04-19T20:29:15Z",
+  "duration_seconds": 0.216,
+  "result_path": "results/libexif/invalid-data-handling.json",
+  "log_path": "logs/libexif/invalid-data-handling.log",
+  "cast_path": "casts/libexif/invalid-data-handling.cast",
+  "exit_code": 0,
+  "command": [
+    "bash",
+    "/validator/tests/libexif/tests/cases/source/invalid-data-handling.sh"
+  ],
+  "apt_packages": [
+    "libexif12",
+    "libexif-dev"
+  ],
+  "override_debs_installed": false
+}

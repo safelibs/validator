@@ -1,0 +1,33 @@
+{
+  "schema_version": 2,
+  "library": "liblzma",
+  "mode": "original",
+  "testcase_id": "multi-stream-behavior",
+  "title": "xz multi stream behavior",
+  "description": "Concatenates xz streams and verifies decompression preserves both payloads.",
+  "kind": "source",
+  "client_application": null,
+  "tags": [
+    "cli",
+    "stream"
+  ],
+  "requires": [],
+  "status": "passed",
+  "started_at": "2026-04-19T20:29:26Z",
+  "finished_at": "2026-04-19T20:29:26Z",
+  "duration_seconds": 0.251,
+  "result_path": "results/liblzma/multi-stream-behavior.json",
+  "log_path": "logs/liblzma/multi-stream-behavior.log",
+  "cast_path": "casts/liblzma/multi-stream-behavior.cast",
+  "exit_code": 0,
+  "command": [
+    "bash",
+    "/validator/tests/liblzma/tests/cases/source/multi-stream-behavior.sh"
+  ],
+  "apt_packages": [
+    "liblzma5",
+    "liblzma-dev",
+    "xz-utils"
+  ],
+  "override_debs_installed": false
+}

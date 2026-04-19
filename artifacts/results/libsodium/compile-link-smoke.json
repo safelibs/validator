@@ -1,0 +1,32 @@
+{
+  "schema_version": 2,
+  "library": "libsodium",
+  "mode": "original",
+  "testcase_id": "compile-link-smoke",
+  "title": "libsodium compile link smoke",
+  "description": "Compiles a libsodium program and reports the installed library version.",
+  "kind": "source",
+  "client_application": null,
+  "tags": [
+    "api",
+    "compile"
+  ],
+  "requires": [],
+  "status": "passed",
+  "started_at": "2026-04-19T20:29:38Z",
+  "finished_at": "2026-04-19T20:29:39Z",
+  "duration_seconds": 0.234,
+  "result_path": "results/libsodium/compile-link-smoke.json",
+  "log_path": "logs/libsodium/compile-link-smoke.log",
+  "cast_path": "casts/libsodium/compile-link-smoke.cast",
+  "exit_code": 0,
+  "command": [
+    "bash",
+    "/validator/tests/libsodium/tests/cases/source/compile-link-smoke.sh"
+  ],
+  "apt_packages": [
+    "libsodium23",
+    "libsodium-dev"
+  ],
+  "override_debs_installed": false
+}

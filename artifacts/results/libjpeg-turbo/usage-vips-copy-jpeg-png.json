@@ -1,0 +1,36 @@
+{
+  "schema_version": 2,
+  "library": "libjpeg-turbo",
+  "mode": "original",
+  "testcase_id": "usage-vips-copy-jpeg-png",
+  "title": "vips copy jpeg png",
+  "description": "Runs vips copy jpeg png on a JPEG fixture through libjpeg-turbo.",
+  "kind": "usage",
+  "client_application": "vips",
+  "tags": [
+    "usage",
+    "image",
+    "cli"
+  ],
+  "requires": [],
+  "status": "passed",
+  "started_at": "2026-04-19T20:29:20Z",
+  "finished_at": "2026-04-19T20:29:20Z",
+  "duration_seconds": 0.31,
+  "result_path": "results/libjpeg-turbo/usage-vips-copy-jpeg-png.json",
+  "log_path": "logs/libjpeg-turbo/usage-vips-copy-jpeg-png.log",
+  "cast_path": "casts/libjpeg-turbo/usage-vips-copy-jpeg-png.cast",
+  "exit_code": 0,
+  "command": [
+    "bash",
+    "/validator/tests/libjpeg-turbo/tests/cases/usage/usage-vips-copy-jpeg-png.sh"
+  ],
+  "apt_packages": [
+    "libjpeg-turbo8",
+    "libjpeg-turbo8-dev",
+    "libturbojpeg",
+    "libturbojpeg0-dev",
+    "libjpeg-turbo-progs"
+  ],
+  "override_debs_installed": false
+}

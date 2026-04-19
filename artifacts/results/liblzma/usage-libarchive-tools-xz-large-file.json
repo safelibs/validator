@@ -1,0 +1,34 @@
+{
+  "schema_version": 2,
+  "library": "liblzma",
+  "mode": "original",
+  "testcase_id": "usage-libarchive-tools-xz-large-file",
+  "title": "libarchive-tools xz large file",
+  "description": "Runs bsdtar large file on a xz-compressed archive through liblzma.",
+  "kind": "usage",
+  "client_application": "libarchive-tools",
+  "tags": [
+    "usage",
+    "archive",
+    "compression"
+  ],
+  "requires": [],
+  "status": "passed",
+  "started_at": "2026-04-19T20:29:27Z",
+  "finished_at": "2026-04-19T20:29:27Z",
+  "duration_seconds": 0.217,
+  "result_path": "results/liblzma/usage-libarchive-tools-xz-large-file.json",
+  "log_path": "logs/liblzma/usage-libarchive-tools-xz-large-file.log",
+  "cast_path": "casts/liblzma/usage-libarchive-tools-xz-large-file.cast",
+  "exit_code": 0,
+  "command": [
+    "bash",
+    "/validator/tests/liblzma/tests/cases/usage/usage-libarchive-tools-xz-large-file.sh"
+  ],
+  "apt_packages": [
+    "liblzma5",
+    "liblzma-dev",
+    "xz-utils"
+  ],
+  "override_debs_installed": false
+}

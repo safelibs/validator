@@ -1,0 +1,32 @@
+{
+  "schema_version": 2,
+  "library": "cjson",
+  "mode": "original",
+  "testcase_id": "usage-iperf3-json-server-output",
+  "title": "iperf3 server JSON output",
+  "description": "Runs iperf3 with server-output capture and verifies the client JSON includes server-side results.",
+  "kind": "usage",
+  "client_application": "iperf3",
+  "tags": [
+    "usage",
+    "json"
+  ],
+  "requires": [],
+  "status": "passed",
+  "started_at": "2026-04-19T20:28:53Z",
+  "finished_at": "2026-04-19T20:28:54Z",
+  "duration_seconds": 1.502,
+  "result_path": "results/cjson/usage-iperf3-json-server-output.json",
+  "log_path": "logs/cjson/usage-iperf3-json-server-output.log",
+  "cast_path": "casts/cjson/usage-iperf3-json-server-output.cast",
+  "exit_code": 0,
+  "command": [
+    "bash",
+    "/validator/tests/cjson/tests/cases/usage/usage-iperf3-json-server-output.sh"
+  ],
+  "apt_packages": [
+    "libcjson1",
+    "libcjson-dev"
+  ],
+  "override_debs_installed": false
+}

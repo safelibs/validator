@@ -1,0 +1,38 @@
+{
+  "schema_version": 2,
+  "library": "libwebp",
+  "mode": "original",
+  "testcase_id": "usage-ffmpeg-webp-probe",
+  "title": "ffmpeg webp probe",
+  "description": "Probes a WebP fixture with FFmpeg to read stream metadata through libwebp.",
+  "kind": "usage",
+  "client_application": "ffmpeg",
+  "tags": [
+    "usage",
+    "image"
+  ],
+  "requires": [],
+  "status": "passed",
+  "started_at": "2026-04-19T20:29:55Z",
+  "finished_at": "2026-04-19T20:29:56Z",
+  "duration_seconds": 0.236,
+  "result_path": "results/libwebp/usage-ffmpeg-webp-probe.json",
+  "log_path": "logs/libwebp/usage-ffmpeg-webp-probe.log",
+  "cast_path": "casts/libwebp/usage-ffmpeg-webp-probe.cast",
+  "exit_code": 0,
+  "command": [
+    "bash",
+    "/validator/tests/libwebp/tests/cases/usage/usage-ffmpeg-webp-probe.sh"
+  ],
+  "apt_packages": [
+    "libwebp7",
+    "libwebpdemux2",
+    "libwebpmux3",
+    "libwebpdecoder3",
+    "libsharpyuv0",
+    "libwebp-dev",
+    "libsharpyuv-dev",
+    "webp"
+  ],
+  "override_debs_installed": false
+}

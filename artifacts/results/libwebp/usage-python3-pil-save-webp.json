@@ -1,0 +1,39 @@
+{
+  "schema_version": 2,
+  "library": "libwebp",
+  "mode": "original",
+  "testcase_id": "usage-python3-pil-save-webp",
+  "title": "Pillow save webp",
+  "description": "Writes a WebP image with Pillow through libwebp encoding.",
+  "kind": "usage",
+  "client_application": "python3-pil",
+  "tags": [
+    "usage",
+    "image",
+    "python"
+  ],
+  "requires": [],
+  "status": "passed",
+  "started_at": "2026-04-19T20:29:54Z",
+  "finished_at": "2026-04-19T20:29:55Z",
+  "duration_seconds": 0.258,
+  "result_path": "results/libwebp/usage-python3-pil-save-webp.json",
+  "log_path": "logs/libwebp/usage-python3-pil-save-webp.log",
+  "cast_path": "casts/libwebp/usage-python3-pil-save-webp.cast",
+  "exit_code": 0,
+  "command": [
+    "bash",
+    "/validator/tests/libwebp/tests/cases/usage/usage-python3-pil-save-webp.sh"
+  ],
+  "apt_packages": [
+    "libwebp7",
+    "libwebpdemux2",
+    "libwebpmux3",
+    "libwebpdecoder3",
+    "libsharpyuv0",
+    "libwebp-dev",
+    "libsharpyuv-dev",
+    "webp"
+  ],
+  "override_debs_installed": false
+}

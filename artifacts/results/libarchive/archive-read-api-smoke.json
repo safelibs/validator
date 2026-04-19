@@ -1,0 +1,33 @@
+{
+  "schema_version": 2,
+  "library": "libarchive",
+  "mode": "original",
+  "testcase_id": "archive-read-api-smoke",
+  "title": "archive read API smoke",
+  "description": "Compiles and runs a libarchive archive_read API listing program.",
+  "kind": "source",
+  "client_application": null,
+  "tags": [
+    "api",
+    "compile"
+  ],
+  "requires": [],
+  "status": "passed",
+  "started_at": "2026-04-19T20:29:05Z",
+  "finished_at": "2026-04-19T20:29:05Z",
+  "duration_seconds": 0.328,
+  "result_path": "results/libarchive/archive-read-api-smoke.json",
+  "log_path": "logs/libarchive/archive-read-api-smoke.log",
+  "cast_path": "casts/libarchive/archive-read-api-smoke.cast",
+  "exit_code": 0,
+  "command": [
+    "bash",
+    "/validator/tests/libarchive/tests/cases/source/archive-read-api-smoke.sh"
+  ],
+  "apt_packages": [
+    "libarchive13t64",
+    "libarchive-dev",
+    "libarchive-tools"
+  ],
+  "override_debs_installed": false
+}

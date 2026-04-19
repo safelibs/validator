@@ -1,8 +1,0 @@
-{
-  "relevant_cves": [
-    {
-      "id": "CVE-2026-0001",
-      "summary": "Demo host harness fixture CVE"
-    }
-  ]
-}

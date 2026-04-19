@@ -1,0 +1,33 @@
+{
+  "schema_version": 2,
+  "library": "giflib",
+  "mode": "original",
+  "testcase_id": "gifbuild-roundtrip",
+  "title": "gifbuild textual round trip",
+  "description": "Dumps a GIF to textual form and rebuilds an equivalent GIF stream.",
+  "kind": "source",
+  "client_application": null,
+  "tags": [
+    "cli",
+    "roundtrip"
+  ],
+  "requires": [],
+  "status": "passed",
+  "started_at": "2026-04-19T20:28:56Z",
+  "finished_at": "2026-04-19T20:28:56Z",
+  "duration_seconds": 0.492,
+  "result_path": "results/giflib/gifbuild-roundtrip.json",
+  "log_path": "logs/giflib/gifbuild-roundtrip.log",
+  "cast_path": "casts/giflib/gifbuild-roundtrip.cast",
+  "exit_code": 0,
+  "command": [
+    "bash",
+    "/validator/tests/giflib/tests/cases/source/gifbuild-roundtrip.sh"
+  ],
+  "apt_packages": [
+    "libgif7",
+    "libgif-dev",
+    "giflib-tools"
+  ],
+  "override_debs_installed": false
+}

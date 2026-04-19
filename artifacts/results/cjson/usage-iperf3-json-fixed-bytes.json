@@ -1,0 +1,32 @@
+{
+  "schema_version": 2,
+  "library": "cjson",
+  "mode": "original",
+  "testcase_id": "usage-iperf3-json-fixed-bytes",
+  "title": "iperf3 fixed-byte JSON run",
+  "description": "Runs an iperf3 loopback transfer with a fixed byte count and validates the emitted JSON totals.",
+  "kind": "usage",
+  "client_application": "iperf3",
+  "tags": [
+    "usage",
+    "json"
+  ],
+  "requires": [],
+  "status": "passed",
+  "started_at": "2026-04-19T20:28:47Z",
+  "finished_at": "2026-04-19T20:28:48Z",
+  "duration_seconds": 1.436,
+  "result_path": "results/cjson/usage-iperf3-json-fixed-bytes.json",
+  "log_path": "logs/cjson/usage-iperf3-json-fixed-bytes.log",
+  "cast_path": "casts/cjson/usage-iperf3-json-fixed-bytes.cast",
+  "exit_code": 0,
+  "command": [
+    "bash",
+    "/validator/tests/cjson/tests/cases/usage/usage-iperf3-json-fixed-bytes.sh"
+  ],
+  "apt_packages": [
+    "libcjson1",
+    "libcjson-dev"
+  ],
+  "override_debs_installed": false
+}

@@ -1,0 +1,32 @@
+{
+  "schema_version": 2,
+  "library": "libexif",
+  "mode": "original",
+  "testcase_id": "usage-exif-cli-tag-make",
+  "title": "exif CLI make tag",
+  "description": "Runs the exif CLI to read the camera Make tag from a JPEG fixture.",
+  "kind": "usage",
+  "client_application": "exif",
+  "tags": [
+    "usage",
+    "metadata"
+  ],
+  "requires": [],
+  "status": "passed",
+  "started_at": "2026-04-19T20:29:16Z",
+  "finished_at": "2026-04-19T20:29:16Z",
+  "duration_seconds": 0.217,
+  "result_path": "results/libexif/usage-exif-cli-tag-make.json",
+  "log_path": "logs/libexif/usage-exif-cli-tag-make.log",
+  "cast_path": "casts/libexif/usage-exif-cli-tag-make.cast",
+  "exit_code": 0,
+  "command": [
+    "bash",
+    "/validator/tests/libexif/tests/cases/usage/usage-exif-cli-tag-make.sh"
+  ],
+  "apt_packages": [
+    "libexif12",
+    "libexif-dev"
+  ],
+  "override_debs_installed": false
+}

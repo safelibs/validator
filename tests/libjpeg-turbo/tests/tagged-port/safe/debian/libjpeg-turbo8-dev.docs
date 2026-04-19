@@ -1,9 +1,0 @@
-# documentation files staged from committed safe/ sources so the package build
-# remains self-contained under safe/
-README.ijg
-README.md
-libjpeg.txt
-usage.txt
-wizard.txt
-example.txt
-structure.txt

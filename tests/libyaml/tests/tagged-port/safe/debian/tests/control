@@ -1,5 +1,0 @@
-Tests: upstream-tests
-Depends:
- build-essential,
- pkg-config,
- libyaml-dev

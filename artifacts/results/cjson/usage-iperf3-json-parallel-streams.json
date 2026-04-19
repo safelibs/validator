@@ -1,0 +1,32 @@
+{
+  "schema_version": 2,
+  "library": "cjson",
+  "mode": "original",
+  "testcase_id": "usage-iperf3-json-parallel-streams",
+  "title": "iperf3 parallel JSON streams",
+  "description": "Runs an iperf3 loopback test with parallel streams and verifies stream details in JSON output.",
+  "kind": "usage",
+  "client_application": "iperf3",
+  "tags": [
+    "usage",
+    "json"
+  ],
+  "requires": [],
+  "status": "passed",
+  "started_at": "2026-04-19T20:28:48Z",
+  "finished_at": "2026-04-19T20:28:50Z",
+  "duration_seconds": 1.422,
+  "result_path": "results/cjson/usage-iperf3-json-parallel-streams.json",
+  "log_path": "logs/cjson/usage-iperf3-json-parallel-streams.log",
+  "cast_path": "casts/cjson/usage-iperf3-json-parallel-streams.cast",
+  "exit_code": 0,
+  "command": [
+    "bash",
+    "/validator/tests/cjson/tests/cases/usage/usage-iperf3-json-parallel-streams.sh"
+  ],
+  "apt_packages": [
+    "libcjson1",
+    "libcjson-dev"
+  ],
+  "override_debs_installed": false
+}

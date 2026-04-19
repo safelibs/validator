@@ -129,12 +129,12 @@ class GithubAuthTests(unittest.TestCase):
     def test_effective_github_token_prefers_gh_token(self) -> None:
         env = {
             "GH_TOKEN": "preferred-token",
-            "SAFELIBS_REPO_TOKEN": "fallback-token",
+            "VALIDATOR_REPO_TOKEN": "fallback-token",
         }
         self.assertEqual(github_auth.effective_github_token(env), "preferred-token")
 
-    def test_github_git_url_falls_back_to_safelibs_repo_token(self) -> None:
-        env = {"SAFELIBS_REPO_TOKEN": "token:/with?chars"}
+    def test_github_git_url_falls_back_to_validator_repo_token(self) -> None:
+        env = {"VALIDATOR_REPO_TOKEN": "token:/with?chars"}
         self.assertEqual(
             github_auth.github_git_url("example/port-cjson", env),
             "https://x-access-token:token%3A%2Fwith%3Fchars@github.com/example/port-cjson.git",

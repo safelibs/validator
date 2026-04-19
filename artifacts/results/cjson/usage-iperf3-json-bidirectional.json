@@ -1,0 +1,32 @@
+{
+  "schema_version": 2,
+  "library": "cjson",
+  "mode": "original",
+  "testcase_id": "usage-iperf3-json-bidirectional",
+  "title": "iperf3 bidirectional JSON run",
+  "description": "Runs an iperf3 bidirectional loopback test and validates sender and receiver JSON summaries.",
+  "kind": "usage",
+  "client_application": "iperf3",
+  "tags": [
+    "usage",
+    "json"
+  ],
+  "requires": [],
+  "status": "passed",
+  "started_at": "2026-04-19T20:28:51Z",
+  "finished_at": "2026-04-19T20:28:53Z",
+  "duration_seconds": 1.466,
+  "result_path": "results/cjson/usage-iperf3-json-bidirectional.json",
+  "log_path": "logs/cjson/usage-iperf3-json-bidirectional.log",
+  "cast_path": "casts/cjson/usage-iperf3-json-bidirectional.cast",
+  "exit_code": 0,
+  "command": [
+    "bash",
+    "/validator/tests/cjson/tests/cases/usage/usage-iperf3-json-bidirectional.sh"
+  ],
+  "apt_packages": [
+    "libcjson1",
+    "libcjson-dev"
+  ],
+  "override_debs_installed": false
+}

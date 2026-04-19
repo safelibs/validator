@@ -1,0 +1,32 @@
+{
+  "schema_version": 2,
+  "library": "libsodium",
+  "mode": "original",
+  "testcase_id": "usage-libzmq5-curve-capability",
+  "title": "ZeroMQ reports CURVE capability",
+  "description": "Compiles a ZeroMQ capability check that queries libsodium-backed CURVE support.",
+  "kind": "usage",
+  "client_application": "libzmq5",
+  "tags": [
+    "usage",
+    "compile"
+  ],
+  "requires": [],
+  "status": "passed",
+  "started_at": "2026-04-19T20:29:40Z",
+  "finished_at": "2026-04-19T20:29:41Z",
+  "duration_seconds": 0.268,
+  "result_path": "results/libsodium/usage-libzmq5-curve-capability.json",
+  "log_path": "logs/libsodium/usage-libzmq5-curve-capability.log",
+  "cast_path": "casts/libsodium/usage-libzmq5-curve-capability.cast",
+  "exit_code": 0,
+  "command": [
+    "bash",
+    "/validator/tests/libsodium/tests/cases/usage/usage-libzmq5-curve-capability.sh"
+  ],
+  "apt_packages": [
+    "libsodium23",
+    "libsodium-dev"
+  ],
+  "override_debs_installed": false
+}

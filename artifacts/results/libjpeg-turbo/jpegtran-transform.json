@@ -1,0 +1,35 @@
+{
+  "schema_version": 2,
+  "library": "libjpeg-turbo",
+  "mode": "original",
+  "testcase_id": "jpegtran-transform",
+  "title": "jpegtran image transform",
+  "description": "Rotates a JPEG with jpegtran and decodes the transformed image.",
+  "kind": "source",
+  "client_application": null,
+  "tags": [
+    "cli",
+    "transform"
+  ],
+  "requires": [],
+  "status": "passed",
+  "started_at": "2026-04-19T20:29:18Z",
+  "finished_at": "2026-04-19T20:29:18Z",
+  "duration_seconds": 0.22,
+  "result_path": "results/libjpeg-turbo/jpegtran-transform.json",
+  "log_path": "logs/libjpeg-turbo/jpegtran-transform.log",
+  "cast_path": "casts/libjpeg-turbo/jpegtran-transform.cast",
+  "exit_code": 0,
+  "command": [
+    "bash",
+    "/validator/tests/libjpeg-turbo/tests/cases/source/jpegtran-transform.sh"
+  ],
+  "apt_packages": [
+    "libjpeg-turbo8",
+    "libjpeg-turbo8-dev",
+    "libturbojpeg",
+    "libturbojpeg0-dev",
+    "libjpeg-turbo-progs"
+  ],
+  "override_debs_installed": false
+}

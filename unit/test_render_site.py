@@ -182,6 +182,7 @@ class RenderSiteTests(unittest.TestCase):
 
         html_text = (self.site_root / "index.html").read_text()
         self.assertIn("Original Library Validation", html_text)
+        self.assertIn('rel="icon" href="data:,"', html_text)
         self.assertIn('data-library="cjson"', html_text)
         self.assertIn('data-player-cast="evidence/casts/cjson/', html_text)
         self.assertIn('id="search-input"', html_text)
@@ -368,7 +369,7 @@ class RenderSiteTests(unittest.TestCase):
         self.assertNotEqual(completed.returncode, 0)
         self.assertIn("--library must not contain duplicates", completed.stderr + completed.stdout)
 
-    def test_verify_site_rejects_safe_mode_compatibility_arguments(self) -> None:
+    def test_verify_site_rejects_removed_compatibility_arguments(self) -> None:
         self.write_library_artifacts("cjson")
         proof_path = self.write_proof(["cjson"])
         self.render(proof_path)

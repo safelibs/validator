@@ -1,0 +1,34 @@
+{
+  "schema_version": 2,
+  "library": "giflib",
+  "mode": "original",
+  "testcase_id": "usage-giflib-tools-giftext-headers",
+  "title": "giflib-tools giftext headers",
+  "description": "Runs giflib-tools giftext headers on a GIF fixture and checks image metadata.",
+  "kind": "usage",
+  "client_application": "giflib-tools",
+  "tags": [
+    "usage",
+    "cli",
+    "image"
+  ],
+  "requires": [],
+  "status": "passed",
+  "started_at": "2026-04-19T20:28:57Z",
+  "finished_at": "2026-04-19T20:28:58Z",
+  "duration_seconds": 0.871,
+  "result_path": "results/giflib/usage-giflib-tools-giftext-headers.json",
+  "log_path": "logs/giflib/usage-giflib-tools-giftext-headers.log",
+  "cast_path": "casts/giflib/usage-giflib-tools-giftext-headers.cast",
+  "exit_code": 0,
+  "command": [
+    "bash",
+    "/validator/tests/giflib/tests/cases/usage/usage-giflib-tools-giftext-headers.sh"
+  ],
+  "apt_packages": [
+    "libgif7",
+    "libgif-dev",
+    "giflib-tools"
+  ],
+  "override_debs_installed": false
+}

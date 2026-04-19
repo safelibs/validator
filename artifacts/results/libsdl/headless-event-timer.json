@@ -1,0 +1,33 @@
+{
+  "schema_version": 2,
+  "library": "libsdl",
+  "mode": "original",
+  "testcase_id": "headless-event-timer",
+  "title": "Headless event timer behavior",
+  "description": "Runs SDL timer and event APIs under dummy video settings.",
+  "kind": "source",
+  "client_application": null,
+  "tags": [
+    "api",
+    "event"
+  ],
+  "requires": [],
+  "status": "passed",
+  "started_at": "2026-04-19T20:29:32Z",
+  "finished_at": "2026-04-19T20:29:33Z",
+  "duration_seconds": 0.411,
+  "result_path": "results/libsdl/headless-event-timer.json",
+  "log_path": "logs/libsdl/headless-event-timer.log",
+  "cast_path": "casts/libsdl/headless-event-timer.cast",
+  "exit_code": 0,
+  "command": [
+    "bash",
+    "/validator/tests/libsdl/tests/cases/source/headless-event-timer.sh"
+  ],
+  "apt_packages": [
+    "libsdl2-2.0-0",
+    "libsdl2-dev",
+    "libsdl2-tests"
+  ],
+  "override_debs_installed": false
+}

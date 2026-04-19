@@ -1,0 +1,33 @@
+{
+  "schema_version": 2,
+  "library": "libzstd",
+  "mode": "original",
+  "testcase_id": "corrupted-frame-rejection",
+  "title": "zstd corrupted frame rejection",
+  "description": "Requires zstd test mode to fail on a corrupted frame.",
+  "kind": "source",
+  "client_application": null,
+  "tags": [
+    "cli",
+    "negative"
+  ],
+  "requires": [],
+  "status": "passed",
+  "started_at": "2026-04-19T20:30:05Z",
+  "finished_at": "2026-04-19T20:30:06Z",
+  "duration_seconds": 0.194,
+  "result_path": "results/libzstd/corrupted-frame-rejection.json",
+  "log_path": "logs/libzstd/corrupted-frame-rejection.log",
+  "cast_path": "casts/libzstd/corrupted-frame-rejection.cast",
+  "exit_code": 0,
+  "command": [
+    "bash",
+    "/validator/tests/libzstd/tests/cases/source/corrupted-frame-rejection.sh"
+  ],
+  "apt_packages": [
+    "libzstd1",
+    "libzstd-dev",
+    "zstd"
+  ],
+  "override_debs_installed": false
+}

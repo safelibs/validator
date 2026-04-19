@@ -1,0 +1,32 @@
+{
+  "schema_version": 2,
+  "library": "cjson",
+  "mode": "original",
+  "testcase_id": "malformed-number-rejection",
+  "title": "Malformed number rejection",
+  "description": "Requires cJSON to reject incomplete exponent notation in a number token.",
+  "kind": "source",
+  "client_application": null,
+  "tags": [
+    "api",
+    "negative"
+  ],
+  "requires": [],
+  "status": "passed",
+  "started_at": "2026-04-19T20:28:42Z",
+  "finished_at": "2026-04-19T20:28:43Z",
+  "duration_seconds": 0.244,
+  "result_path": "results/cjson/malformed-number-rejection.json",
+  "log_path": "logs/cjson/malformed-number-rejection.log",
+  "cast_path": "casts/cjson/malformed-number-rejection.cast",
+  "exit_code": 0,
+  "command": [
+    "bash",
+    "/validator/tests/cjson/tests/cases/source/malformed-number-rejection.sh"
+  ],
+  "apt_packages": [
+    "libcjson1",
+    "libcjson-dev"
+  ],
+  "override_debs_installed": false
+}

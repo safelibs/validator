@@ -1,10 +1,13 @@
 {
+  "schema_version": 1,
+  "library": "original-demo",
   "dependents": [
     {
       "name": "demo-client",
       "packages": [
         "demo-client-bin"
-      ]
+      ],
+      "description": "Fixture client used by the original-demo usage testcase."
     }
   ]
 }

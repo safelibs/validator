@@ -1,0 +1,32 @@
+{
+  "schema_version": 2,
+  "library": "cjson",
+  "mode": "original",
+  "testcase_id": "usage-iperf3-json-interval-report",
+  "title": "iperf3 interval JSON report",
+  "description": "Runs an iperf3 loopback test with interval reporting and verifies interval objects in JSON output.",
+  "kind": "usage",
+  "client_application": "iperf3",
+  "tags": [
+    "usage",
+    "json"
+  ],
+  "requires": [],
+  "status": "passed",
+  "started_at": "2026-04-19T20:28:50Z",
+  "finished_at": "2026-04-19T20:28:51Z",
+  "duration_seconds": 1.429,
+  "result_path": "results/cjson/usage-iperf3-json-interval-report.json",
+  "log_path": "logs/cjson/usage-iperf3-json-interval-report.log",
+  "cast_path": "casts/cjson/usage-iperf3-json-interval-report.cast",
+  "exit_code": 0,
+  "command": [
+    "bash",
+    "/validator/tests/cjson/tests/cases/usage/usage-iperf3-json-interval-report.sh"
+  ],
+  "apt_packages": [
+    "libcjson1",
+    "libcjson-dev"
+  ],
+  "override_debs_installed": false
+}

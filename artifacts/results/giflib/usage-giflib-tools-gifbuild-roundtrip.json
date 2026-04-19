@@ -1,0 +1,34 @@
+{
+  "schema_version": 2,
+  "library": "giflib",
+  "mode": "original",
+  "testcase_id": "usage-giflib-tools-gifbuild-roundtrip",
+  "title": "giflib-tools gifbuild roundtrip",
+  "description": "Dumps a GIF fixture to gifbuild text and rebuilds it to verify the client can round trip image structure.",
+  "kind": "usage",
+  "client_application": "giflib-tools",
+  "tags": [
+    "usage",
+    "cli",
+    "image"
+  ],
+  "requires": [],
+  "status": "passed",
+  "started_at": "2026-04-19T20:29:01Z",
+  "finished_at": "2026-04-19T20:29:01Z",
+  "duration_seconds": 0.296,
+  "result_path": "results/giflib/usage-giflib-tools-gifbuild-roundtrip.json",
+  "log_path": "logs/giflib/usage-giflib-tools-gifbuild-roundtrip.log",
+  "cast_path": "casts/giflib/usage-giflib-tools-gifbuild-roundtrip.cast",
+  "exit_code": 0,
+  "command": [
+    "bash",
+    "/validator/tests/giflib/tests/cases/usage/usage-giflib-tools-gifbuild-roundtrip.sh"
+  ],
+  "apt_packages": [
+    "libgif7",
+    "libgif-dev",
+    "giflib-tools"
+  ],
+  "override_debs_installed": false
+}

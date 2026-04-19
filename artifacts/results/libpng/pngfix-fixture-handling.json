@@ -1,0 +1,33 @@
+{
+  "schema_version": 2,
+  "library": "libpng",
+  "mode": "original",
+  "testcase_id": "pngfix-fixture-handling",
+  "title": "pngfix fixture handling",
+  "description": "Runs pngfix against a checked-in PNGSuite fixture and validates output.",
+  "kind": "source",
+  "client_application": null,
+  "tags": [
+    "cli",
+    "media"
+  ],
+  "requires": [],
+  "status": "passed",
+  "started_at": "2026-04-19T20:29:28Z",
+  "finished_at": "2026-04-19T20:29:29Z",
+  "duration_seconds": 0.216,
+  "result_path": "results/libpng/pngfix-fixture-handling.json",
+  "log_path": "logs/libpng/pngfix-fixture-handling.log",
+  "cast_path": "casts/libpng/pngfix-fixture-handling.cast",
+  "exit_code": 0,
+  "command": [
+    "bash",
+    "/validator/tests/libpng/tests/cases/source/pngfix-fixture-handling.sh"
+  ],
+  "apt_packages": [
+    "libpng16-16t64",
+    "libpng-dev",
+    "libpng-tools"
+  ],
+  "override_debs_installed": false
+}

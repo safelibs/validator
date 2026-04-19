@@ -1,0 +1,33 @@
+{
+  "schema_version": 2,
+  "library": "libzstd",
+  "mode": "original",
+  "testcase_id": "dictionary-train-use",
+  "title": "zstd dictionary train use",
+  "description": "Trains a small dictionary, compresses with it, and decompresses with it.",
+  "kind": "source",
+  "client_application": null,
+  "tags": [
+    "cli",
+    "dictionary"
+  ],
+  "requires": [],
+  "status": "passed",
+  "started_at": "2026-04-19T20:30:05Z",
+  "finished_at": "2026-04-19T20:30:05Z",
+  "duration_seconds": 0.323,
+  "result_path": "results/libzstd/dictionary-train-use.json",
+  "log_path": "logs/libzstd/dictionary-train-use.log",
+  "cast_path": "casts/libzstd/dictionary-train-use.cast",
+  "exit_code": 0,
+  "command": [
+    "bash",
+    "/validator/tests/libzstd/tests/cases/source/dictionary-train-use.sh"
+  ],
+  "apt_packages": [
+    "libzstd1",
+    "libzstd-dev",
+    "zstd"
+  ],
+  "override_debs_installed": false
+}

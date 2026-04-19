@@ -1,0 +1,41 @@
+$ docker build --tag validator-cjson-shared-21e981415766 --file /tmp/validator-run-matrix-cjson-_s6n_zih/cjson/Dockerfile /tmp/validator-run-matrix-cjson-_s6n_zih
+#0 building with "default" instance using docker driver
+
+#1 [internal] load build definition from Dockerfile
+#1 transferring dockerfile: 824B done
+#1 DONE 0.0s
+
+#2 [internal] load metadata for docker.io/library/ubuntu:24.04
+#2 DONE 0.0s
+
+#3 [internal] load .dockerignore
+#3 transferring context: 2B done
+#3 DONE 0.0s
+
+#4 [1/6] FROM docker.io/library/ubuntu:24.04
+#4 DONE 0.0s
+
+#5 [internal] load build context
+#5 transferring context: 1.12MB 0.0s done
+#5 DONE 0.0s
+
+#6 [2/6] RUN apt-get update  && apt-get install -y --no-install-recommends       libcjson1       libcjson-dev       iperf3       bash       build-essential       ca-certificates       coreutils       file       jq       pkg-config       python3  && rm -rf /var/lib/apt/lists/*
+#6 CACHED
+
+#7 [3/6] WORKDIR /validator
+#7 CACHED
+
+#8 [4/6] COPY _shared/ /validator/tests/_shared/
+#8 CACHED
+
+#9 [5/6] COPY cjson/ /validator/tests/cjson/
+#9 CACHED
+
+#10 [6/6] RUN find /validator/tests/_shared -maxdepth 1 -type f -name '*.sh' -exec chmod +x {} +  && chmod +x /validator/tests/cjson/docker-entrypoint.sh /validator/tests/cjson/tests/run.sh  && if [ -d /validator/tests/cjson/tests/cases ]; then       find /validator/tests/cjson/tests/cases -type f -name '*.sh' -exec chmod +x {} +;     fi
+#10 CACHED
+
+#11 exporting to image
+#11 exporting layers done
+#11 writing image sha256:0f8afd1dba819f85152e4f590c3ed14e94f63128c54a8e8ec8097bb9a8bc0120 done
+#11 naming to docker.io/library/validator-cjson-shared-21e981415766 done
+#11 DONE 0.0s

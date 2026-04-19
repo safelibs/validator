@@ -1,0 +1,33 @@
+{
+  "schema_version": 2,
+  "library": "liblzma",
+  "mode": "original",
+  "testcase_id": "corrupted-stream-rejection",
+  "title": "xz corrupted stream rejection",
+  "description": "Requires xz test mode to fail on a corrupted stream.",
+  "kind": "source",
+  "client_application": null,
+  "tags": [
+    "cli",
+    "negative"
+  ],
+  "requires": [],
+  "status": "passed",
+  "started_at": "2026-04-19T20:29:26Z",
+  "finished_at": "2026-04-19T20:29:26Z",
+  "duration_seconds": 0.213,
+  "result_path": "results/liblzma/corrupted-stream-rejection.json",
+  "log_path": "logs/liblzma/corrupted-stream-rejection.log",
+  "cast_path": "casts/liblzma/corrupted-stream-rejection.cast",
+  "exit_code": 0,
+  "command": [
+    "bash",
+    "/validator/tests/liblzma/tests/cases/source/corrupted-stream-rejection.sh"
+  ],
+  "apt_packages": [
+    "liblzma5",
+    "liblzma-dev",
+    "xz-utils"
+  ],
+  "override_debs_installed": false
+}

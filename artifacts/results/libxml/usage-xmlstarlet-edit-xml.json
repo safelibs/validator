@@ -1,0 +1,35 @@
+{
+  "schema_version": 2,
+  "library": "libxml",
+  "mode": "original",
+  "testcase_id": "usage-xmlstarlet-edit-xml",
+  "title": "xmlstarlet edit xml",
+  "description": "Runs xmlstarlet edit xml behavior through libxml2.",
+  "kind": "usage",
+  "client_application": "xmlstarlet",
+  "tags": [
+    "usage",
+    "xml",
+    "cli"
+  ],
+  "requires": [],
+  "status": "passed",
+  "started_at": "2026-04-19T20:30:00Z",
+  "finished_at": "2026-04-19T20:30:00Z",
+  "duration_seconds": 0.206,
+  "result_path": "results/libxml/usage-xmlstarlet-edit-xml.json",
+  "log_path": "logs/libxml/usage-xmlstarlet-edit-xml.log",
+  "cast_path": "casts/libxml/usage-xmlstarlet-edit-xml.cast",
+  "exit_code": 0,
+  "command": [
+    "bash",
+    "/validator/tests/libxml/tests/cases/usage/usage-xmlstarlet-edit-xml.sh"
+  ],
+  "apt_packages": [
+    "libxml2",
+    "libxml2-dev",
+    "libxml2-utils",
+    "python3-libxml2"
+  ],
+  "override_debs_installed": false
+}

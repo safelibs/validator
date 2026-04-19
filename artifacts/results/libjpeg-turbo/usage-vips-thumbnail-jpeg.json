@@ -1,0 +1,36 @@
+{
+  "schema_version": 2,
+  "library": "libjpeg-turbo",
+  "mode": "original",
+  "testcase_id": "usage-vips-thumbnail-jpeg",
+  "title": "vips thumbnail jpeg",
+  "description": "Runs vipsthumbnail on a JPEG fixture through libjpeg-turbo.",
+  "kind": "usage",
+  "client_application": "vips",
+  "tags": [
+    "usage",
+    "image",
+    "cli"
+  ],
+  "requires": [],
+  "status": "passed",
+  "started_at": "2026-04-19T20:29:20Z",
+  "finished_at": "2026-04-19T20:29:20Z",
+  "duration_seconds": 0.261,
+  "result_path": "results/libjpeg-turbo/usage-vips-thumbnail-jpeg.json",
+  "log_path": "logs/libjpeg-turbo/usage-vips-thumbnail-jpeg.log",
+  "cast_path": "casts/libjpeg-turbo/usage-vips-thumbnail-jpeg.cast",
+  "exit_code": 0,
+  "command": [
+    "bash",
+    "/validator/tests/libjpeg-turbo/tests/cases/usage/usage-vips-thumbnail-jpeg.sh"
+  ],
+  "apt_packages": [
+    "libjpeg-turbo8",
+    "libjpeg-turbo8-dev",
+    "libturbojpeg",
+    "libturbojpeg0-dev",
+    "libjpeg-turbo-progs"
+  ],
+  "override_debs_installed": false
+}

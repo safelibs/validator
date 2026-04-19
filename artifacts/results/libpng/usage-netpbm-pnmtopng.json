@@ -1,0 +1,33 @@
+{
+  "schema_version": 2,
+  "library": "libpng",
+  "mode": "original",
+  "testcase_id": "usage-netpbm-pnmtopng",
+  "title": "netpbm pnmtopng",
+  "description": "Runs netpbm pnmtopng through libpng on a PNG fixture.",
+  "kind": "usage",
+  "client_application": "netpbm",
+  "tags": [
+    "usage",
+    "image"
+  ],
+  "requires": [],
+  "status": "passed",
+  "started_at": "2026-04-19T20:29:31Z",
+  "finished_at": "2026-04-19T20:29:31Z",
+  "duration_seconds": 0.207,
+  "result_path": "results/libpng/usage-netpbm-pnmtopng.json",
+  "log_path": "logs/libpng/usage-netpbm-pnmtopng.log",
+  "cast_path": "casts/libpng/usage-netpbm-pnmtopng.cast",
+  "exit_code": 0,
+  "command": [
+    "bash",
+    "/validator/tests/libpng/tests/cases/usage/usage-netpbm-pnmtopng.sh"
+  ],
+  "apt_packages": [
+    "libpng16-16t64",
+    "libpng-dev",
+    "libpng-tools"
+  ],
+  "override_debs_installed": false
+}

@@ -1,0 +1,32 @@
+{
+  "schema_version": 2,
+  "library": "libexif",
+  "mode": "original",
+  "testcase_id": "usage-exif-cli-ifd-exif",
+  "title": "exif CLI EXIF IFD",
+  "description": "Runs the exif CLI against the EXIF IFD and verifies exposure metadata is decoded.",
+  "kind": "usage",
+  "client_application": "exif",
+  "tags": [
+    "usage",
+    "metadata"
+  ],
+  "requires": [],
+  "status": "passed",
+  "started_at": "2026-04-19T20:29:16Z",
+  "finished_at": "2026-04-19T20:29:17Z",
+  "duration_seconds": 0.186,
+  "result_path": "results/libexif/usage-exif-cli-ifd-exif.json",
+  "log_path": "logs/libexif/usage-exif-cli-ifd-exif.log",
+  "cast_path": "casts/libexif/usage-exif-cli-ifd-exif.cast",
+  "exit_code": 0,
+  "command": [
+    "bash",
+    "/validator/tests/libexif/tests/cases/usage/usage-exif-cli-ifd-exif.sh"
+  ],
+  "apt_packages": [
+    "libexif12",
+    "libexif-dev"
+  ],
+  "override_debs_installed": false
+}

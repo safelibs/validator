@@ -1,0 +1,32 @@
+{
+  "schema_version": 2,
+  "library": "libyaml",
+  "mode": "original",
+  "testcase_id": "parser-emitter-roundtrip",
+  "title": "YAML parser emitter round trip",
+  "description": "Loads YAML into a document and emits it back through libyaml.",
+  "kind": "source",
+  "client_application": null,
+  "tags": [
+    "api",
+    "roundtrip"
+  ],
+  "requires": [],
+  "status": "passed",
+  "started_at": "2026-04-19T20:30:01Z",
+  "finished_at": "2026-04-19T20:30:01Z",
+  "duration_seconds": 0.237,
+  "result_path": "results/libyaml/parser-emitter-roundtrip.json",
+  "log_path": "logs/libyaml/parser-emitter-roundtrip.log",
+  "cast_path": "casts/libyaml/parser-emitter-roundtrip.cast",
+  "exit_code": 0,
+  "command": [
+    "bash",
+    "/validator/tests/libyaml/tests/cases/source/parser-emitter-roundtrip.sh"
+  ],
+  "apt_packages": [
+    "libyaml-0-2",
+    "libyaml-dev"
+  ],
+  "override_debs_installed": false
+}

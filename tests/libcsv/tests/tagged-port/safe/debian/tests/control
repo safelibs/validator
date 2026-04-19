@@ -1,3 +1,0 @@
-Tests: build-examples
-Depends: build-essential, libcsv-dev
-Restrictions: allow-stderr

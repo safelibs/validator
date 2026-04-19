@@ -11,7 +11,7 @@ from tools import run
 
 def effective_github_token(env: dict[str, str] | None = None) -> str:
     source = os.environ if env is None else env
-    for name in ("GH_TOKEN", "SAFELIBS_REPO_TOKEN"):
+    for name in ("GH_TOKEN", "VALIDATOR_REPO_TOKEN"):
         value = source.get(name, "")
         if value.strip():
             return value.strip()

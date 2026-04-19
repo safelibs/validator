@@ -1,0 +1,38 @@
+{
+  "schema_version": 2,
+  "library": "libwebp",
+  "mode": "original",
+  "testcase_id": "usage-vips-webp-resize",
+  "title": "vips webp resize",
+  "description": "Resizes a WebP fixture with vips through libwebp decoding.",
+  "kind": "usage",
+  "client_application": "vips",
+  "tags": [
+    "usage",
+    "image"
+  ],
+  "requires": [],
+  "status": "passed",
+  "started_at": "2026-04-19T20:29:55Z",
+  "finished_at": "2026-04-19T20:29:55Z",
+  "duration_seconds": 0.25,
+  "result_path": "results/libwebp/usage-vips-webp-resize.json",
+  "log_path": "logs/libwebp/usage-vips-webp-resize.log",
+  "cast_path": "casts/libwebp/usage-vips-webp-resize.cast",
+  "exit_code": 0,
+  "command": [
+    "bash",
+    "/validator/tests/libwebp/tests/cases/usage/usage-vips-webp-resize.sh"
+  ],
+  "apt_packages": [
+    "libwebp7",
+    "libwebpdemux2",
+    "libwebpmux3",
+    "libwebpdecoder3",
+    "libsharpyuv0",
+    "libwebp-dev",
+    "libsharpyuv-dev",
+    "webp"
+  ],
+  "override_debs_installed": false
+}

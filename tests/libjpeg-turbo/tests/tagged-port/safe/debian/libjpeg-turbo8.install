@@ -1,2 +1,0 @@
-# Runtime libjpeg shared objects with Debian-compatible soname links.
-usr/lib/*/libjpeg.so.8*

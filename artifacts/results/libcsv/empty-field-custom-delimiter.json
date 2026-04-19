@@ -1,0 +1,32 @@
+{
+  "schema_version": 2,
+  "library": "libcsv",
+  "mode": "original",
+  "testcase_id": "empty-field-custom-delimiter",
+  "title": "Empty fields and custom delimiter",
+  "description": "Checks empty field callbacks while parsing semicolon delimited data.",
+  "kind": "source",
+  "client_application": null,
+  "tags": [
+    "api",
+    "delimiter"
+  ],
+  "requires": [],
+  "status": "passed",
+  "started_at": "2026-04-19T20:29:12Z",
+  "finished_at": "2026-04-19T20:29:12Z",
+  "duration_seconds": 0.218,
+  "result_path": "results/libcsv/empty-field-custom-delimiter.json",
+  "log_path": "logs/libcsv/empty-field-custom-delimiter.log",
+  "cast_path": "casts/libcsv/empty-field-custom-delimiter.cast",
+  "exit_code": 0,
+  "command": [
+    "bash",
+    "/validator/tests/libcsv/tests/cases/source/empty-field-custom-delimiter.sh"
+  ],
+  "apt_packages": [
+    "libcsv3",
+    "libcsv-dev"
+  ],
+  "override_debs_installed": false
+}

@@ -1,0 +1,32 @@
+{
+  "schema_version": 2,
+  "library": "cjson",
+  "mode": "original",
+  "testcase_id": "minify-whitespace",
+  "title": "Minify JSON whitespace behavior",
+  "description": "Checks cJSON minification removes layout whitespace without altering string data.",
+  "kind": "source",
+  "client_application": null,
+  "tags": [
+    "api",
+    "minify"
+  ],
+  "requires": [],
+  "status": "passed",
+  "started_at": "2026-04-19T20:28:42Z",
+  "finished_at": "2026-04-19T20:28:42Z",
+  "duration_seconds": 0.231,
+  "result_path": "results/cjson/minify-whitespace.json",
+  "log_path": "logs/cjson/minify-whitespace.log",
+  "cast_path": "casts/cjson/minify-whitespace.cast",
+  "exit_code": 0,
+  "command": [
+    "bash",
+    "/validator/tests/cjson/tests/cases/source/minify-whitespace.sh"
+  ],
+  "apt_packages": [
+    "libcjson1",
+    "libcjson-dev"
+  ],
+  "override_debs_installed": false
+}

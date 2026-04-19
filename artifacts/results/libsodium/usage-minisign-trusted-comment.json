@@ -1,0 +1,32 @@
+{
+  "schema_version": 2,
+  "library": "libsodium",
+  "mode": "original",
+  "testcase_id": "usage-minisign-trusted-comment",
+  "title": "minisign trusted comment",
+  "description": "Signs a payload with a trusted minisign comment and verifies the signed metadata.",
+  "kind": "usage",
+  "client_application": "minisign",
+  "tags": [
+    "usage",
+    "crypto"
+  ],
+  "requires": [],
+  "status": "passed",
+  "started_at": "2026-04-19T20:29:39Z",
+  "finished_at": "2026-04-19T20:29:39Z",
+  "duration_seconds": 0.225,
+  "result_path": "results/libsodium/usage-minisign-trusted-comment.json",
+  "log_path": "logs/libsodium/usage-minisign-trusted-comment.log",
+  "cast_path": "casts/libsodium/usage-minisign-trusted-comment.cast",
+  "exit_code": 0,
+  "command": [
+    "bash",
+    "/validator/tests/libsodium/tests/cases/usage/usage-minisign-trusted-comment.sh"
+  ],
+  "apt_packages": [
+    "libsodium23",
+    "libsodium-dev"
+  ],
+  "override_debs_installed": false
+}

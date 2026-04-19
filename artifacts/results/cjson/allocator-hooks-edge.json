@@ -1,0 +1,32 @@
+{
+  "schema_version": 2,
+  "library": "cjson",
+  "mode": "original",
+  "testcase_id": "allocator-hooks-edge",
+  "title": "Allocator hook edge behavior",
+  "description": "Installs custom allocator hooks and verifies allocation accounting around deletion.",
+  "kind": "source",
+  "client_application": null,
+  "tags": [
+    "api",
+    "allocator"
+  ],
+  "requires": [],
+  "status": "passed",
+  "started_at": "2026-04-19T20:28:42Z",
+  "finished_at": "2026-04-19T20:28:42Z",
+  "duration_seconds": 0.222,
+  "result_path": "results/cjson/allocator-hooks-edge.json",
+  "log_path": "logs/cjson/allocator-hooks-edge.log",
+  "cast_path": "casts/cjson/allocator-hooks-edge.cast",
+  "exit_code": 0,
+  "command": [
+    "bash",
+    "/validator/tests/cjson/tests/cases/source/allocator-hooks-edge.sh"
+  ],
+  "apt_packages": [
+    "libcjson1",
+    "libcjson-dev"
+  ],
+  "override_debs_installed": false
+}

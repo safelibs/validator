@@ -1,0 +1,32 @@
+{
+  "schema_version": 2,
+  "library": "libexif",
+  "mode": "original",
+  "testcase_id": "usage-exif-cli-maker-note",
+  "title": "exif CLI maker note",
+  "description": "Runs the exif CLI to decode maker-note metadata from a JPEG fixture.",
+  "kind": "usage",
+  "client_application": "exif",
+  "tags": [
+    "usage",
+    "metadata"
+  ],
+  "requires": [],
+  "status": "passed",
+  "started_at": "2026-04-19T20:29:16Z",
+  "finished_at": "2026-04-19T20:29:16Z",
+  "duration_seconds": 0.197,
+  "result_path": "results/libexif/usage-exif-cli-maker-note.json",
+  "log_path": "logs/libexif/usage-exif-cli-maker-note.log",
+  "cast_path": "casts/libexif/usage-exif-cli-maker-note.cast",
+  "exit_code": 0,
+  "command": [
+    "bash",
+    "/validator/tests/libexif/tests/cases/usage/usage-exif-cli-maker-note.sh"
+  ],
+  "apt_packages": [
+    "libexif12",
+    "libexif-dev"
+  ],
+  "override_debs_installed": false
+}

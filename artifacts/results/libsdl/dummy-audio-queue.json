@@ -1,0 +1,33 @@
+{
+  "schema_version": 2,
+  "library": "libsdl",
+  "mode": "original",
+  "testcase_id": "dummy-audio-queue",
+  "title": "Dummy audio queue behavior",
+  "description": "Opens the SDL dummy audio driver and queues sample bytes.",
+  "kind": "source",
+  "client_application": null,
+  "tags": [
+    "api",
+    "audio"
+  ],
+  "requires": [],
+  "status": "passed",
+  "started_at": "2026-04-19T20:29:33Z",
+  "finished_at": "2026-04-19T20:29:33Z",
+  "duration_seconds": 0.398,
+  "result_path": "results/libsdl/dummy-audio-queue.json",
+  "log_path": "logs/libsdl/dummy-audio-queue.log",
+  "cast_path": "casts/libsdl/dummy-audio-queue.cast",
+  "exit_code": 0,
+  "command": [
+    "bash",
+    "/validator/tests/libsdl/tests/cases/source/dummy-audio-queue.sh"
+  ],
+  "apt_packages": [
+    "libsdl2-2.0-0",
+    "libsdl2-dev",
+    "libsdl2-tests"
+  ],
+  "override_debs_installed": false
+}

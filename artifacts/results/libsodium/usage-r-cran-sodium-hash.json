@@ -1,0 +1,32 @@
+{
+  "schema_version": 2,
+  "library": "libsodium",
+  "mode": "original",
+  "testcase_id": "usage-r-cran-sodium-hash",
+  "title": "R sodium hashes data",
+  "description": "Computes a hash with the R sodium package through libsodium.",
+  "kind": "usage",
+  "client_application": "r-cran-sodium",
+  "tags": [
+    "usage",
+    "crypto"
+  ],
+  "requires": [],
+  "status": "passed",
+  "started_at": "2026-04-19T20:29:40Z",
+  "finished_at": "2026-04-19T20:29:40Z",
+  "duration_seconds": 0.265,
+  "result_path": "results/libsodium/usage-r-cran-sodium-hash.json",
+  "log_path": "logs/libsodium/usage-r-cran-sodium-hash.log",
+  "cast_path": "casts/libsodium/usage-r-cran-sodium-hash.cast",
+  "exit_code": 0,
+  "command": [
+    "bash",
+    "/validator/tests/libsodium/tests/cases/usage/usage-r-cran-sodium-hash.sh"
+  ],
+  "apt_packages": [
+    "libsodium23",
+    "libsodium-dev"
+  ],
+  "override_debs_installed": false
+}

@@ -1,0 +1,33 @@
+{
+  "schema_version": 2,
+  "library": "libpng",
+  "mode": "original",
+  "testcase_id": "palette-fixture-handling",
+  "title": "Palette PNG fixture handling",
+  "description": "Checks palette color type handling on a PNGSuite palette fixture.",
+  "kind": "source",
+  "client_application": null,
+  "tags": [
+    "api",
+    "palette"
+  ],
+  "requires": [],
+  "status": "passed",
+  "started_at": "2026-04-19T20:29:29Z",
+  "finished_at": "2026-04-19T20:29:29Z",
+  "duration_seconds": 0.216,
+  "result_path": "results/libpng/palette-fixture-handling.json",
+  "log_path": "logs/libpng/palette-fixture-handling.log",
+  "cast_path": "casts/libpng/palette-fixture-handling.cast",
+  "exit_code": 0,
+  "command": [
+    "bash",
+    "/validator/tests/libpng/tests/cases/source/palette-fixture-handling.sh"
+  ],
+  "apt_packages": [
+    "libpng16-16t64",
+    "libpng-dev",
+    "libpng-tools"
+  ],
+  "override_debs_installed": false
+}

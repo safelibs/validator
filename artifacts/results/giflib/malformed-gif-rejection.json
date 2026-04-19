@@ -1,0 +1,33 @@
+{
+  "schema_version": 2,
+  "library": "giflib",
+  "mode": "original",
+  "testcase_id": "malformed-gif-rejection",
+  "title": "Malformed GIF rejection",
+  "description": "Confirms truncated GIF input is rejected by an installed giflib tool.",
+  "kind": "source",
+  "client_application": null,
+  "tags": [
+    "cli",
+    "negative"
+  ],
+  "requires": [],
+  "status": "passed",
+  "started_at": "2026-04-19T20:28:57Z",
+  "finished_at": "2026-04-19T20:28:57Z",
+  "duration_seconds": 0.667,
+  "result_path": "results/giflib/malformed-gif-rejection.json",
+  "log_path": "logs/giflib/malformed-gif-rejection.log",
+  "cast_path": "casts/giflib/malformed-gif-rejection.cast",
+  "exit_code": 0,
+  "command": [
+    "bash",
+    "/validator/tests/giflib/tests/cases/source/malformed-gif-rejection.sh"
+  ],
+  "apt_packages": [
+    "libgif7",
+    "libgif-dev",
+    "giflib-tools"
+  ],
+  "override_debs_installed": false
+}

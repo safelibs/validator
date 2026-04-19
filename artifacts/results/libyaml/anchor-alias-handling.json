@@ -1,0 +1,32 @@
+{
+  "schema_version": 2,
+  "library": "libyaml",
+  "mode": "original",
+  "testcase_id": "anchor-alias-handling",
+  "title": "YAML anchor alias handling",
+  "description": "Parses YAML events and confirms alias events are reported.",
+  "kind": "source",
+  "client_application": null,
+  "tags": [
+    "api",
+    "alias"
+  ],
+  "requires": [],
+  "status": "passed",
+  "started_at": "2026-04-19T20:30:01Z",
+  "finished_at": "2026-04-19T20:30:02Z",
+  "duration_seconds": 0.228,
+  "result_path": "results/libyaml/anchor-alias-handling.json",
+  "log_path": "logs/libyaml/anchor-alias-handling.log",
+  "cast_path": "casts/libyaml/anchor-alias-handling.cast",
+  "exit_code": 0,
+  "command": [
+    "bash",
+    "/validator/tests/libyaml/tests/cases/source/anchor-alias-handling.sh"
+  ],
+  "apt_packages": [
+    "libyaml-0-2",
+    "libyaml-dev"
+  ],
+  "override_debs_installed": false
+}

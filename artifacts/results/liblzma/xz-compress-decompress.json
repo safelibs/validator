@@ -1,0 +1,33 @@
+{
+  "schema_version": 2,
+  "library": "liblzma",
+  "mode": "original",
+  "testcase_id": "xz-compress-decompress",
+  "title": "xz command round trip",
+  "description": "Compresses and decompresses text with xz command line tools.",
+  "kind": "source",
+  "client_application": null,
+  "tags": [
+    "cli",
+    "roundtrip"
+  ],
+  "requires": [],
+  "status": "passed",
+  "started_at": "2026-04-19T20:29:25Z",
+  "finished_at": "2026-04-19T20:29:25Z",
+  "duration_seconds": 0.219,
+  "result_path": "results/liblzma/xz-compress-decompress.json",
+  "log_path": "logs/liblzma/xz-compress-decompress.log",
+  "cast_path": "casts/liblzma/xz-compress-decompress.cast",
+  "exit_code": 0,
+  "command": [
+    "bash",
+    "/validator/tests/liblzma/tests/cases/source/xz-compress-decompress.sh"
+  ],
+  "apt_packages": [
+    "liblzma5",
+    "liblzma-dev",
+    "xz-utils"
+  ],
+  "override_debs_installed": false
+}

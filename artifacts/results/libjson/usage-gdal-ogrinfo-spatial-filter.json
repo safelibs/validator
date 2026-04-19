@@ -1,0 +1,32 @@
+{
+  "schema_version": 2,
+  "library": "libjson",
+  "mode": "original",
+  "testcase_id": "usage-gdal-ogrinfo-spatial-filter",
+  "title": "GDAL spatial filter over GeoJSON",
+  "description": "Runs ogrinfo with a spatial filter against GeoJSON and verifies the matching feature.",
+  "kind": "usage",
+  "client_application": "gdal",
+  "tags": [
+    "usage",
+    "json"
+  ],
+  "requires": [],
+  "status": "passed",
+  "started_at": "2026-04-19T20:29:24Z",
+  "finished_at": "2026-04-19T20:29:24Z",
+  "duration_seconds": 0.208,
+  "result_path": "results/libjson/usage-gdal-ogrinfo-spatial-filter.json",
+  "log_path": "logs/libjson/usage-gdal-ogrinfo-spatial-filter.log",
+  "cast_path": "casts/libjson/usage-gdal-ogrinfo-spatial-filter.cast",
+  "exit_code": 0,
+  "command": [
+    "bash",
+    "/validator/tests/libjson/tests/cases/usage/usage-gdal-ogrinfo-spatial-filter.sh"
+  ],
+  "apt_packages": [
+    "libjson-c5",
+    "libjson-c-dev"
+  ],
+  "override_debs_installed": false
+}

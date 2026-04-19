@@ -1,0 +1,32 @@
+{
+  "schema_version": 2,
+  "library": "libsodium",
+  "mode": "original",
+  "testcase_id": "usage-minisign-sign-verify",
+  "title": "minisign signs and verifies",
+  "description": "Signs a payload with minisign and verifies it through libsodium-backed signatures.",
+  "kind": "usage",
+  "client_application": "minisign",
+  "tags": [
+    "usage",
+    "crypto"
+  ],
+  "requires": [],
+  "status": "passed",
+  "started_at": "2026-04-19T20:29:39Z",
+  "finished_at": "2026-04-19T20:29:39Z",
+  "duration_seconds": 0.226,
+  "result_path": "results/libsodium/usage-minisign-sign-verify.json",
+  "log_path": "logs/libsodium/usage-minisign-sign-verify.log",
+  "cast_path": "casts/libsodium/usage-minisign-sign-verify.cast",
+  "exit_code": 0,
+  "command": [
+    "bash",
+    "/validator/tests/libsodium/tests/cases/usage/usage-minisign-sign-verify.sh"
+  ],
+  "apt_packages": [
+    "libsodium23",
+    "libsodium-dev"
+  ],
+  "override_debs_installed": false
+}

@@ -1,0 +1,32 @@
+{
+  "schema_version": 2,
+  "library": "libexif",
+  "mode": "original",
+  "testcase_id": "usage-exif-cli-extract-thumbnail",
+  "title": "exif CLI thumbnail extraction",
+  "description": "Runs the exif CLI to extract the embedded JPEG thumbnail from camera metadata.",
+  "kind": "usage",
+  "client_application": "exif",
+  "tags": [
+    "usage",
+    "metadata"
+  ],
+  "requires": [],
+  "status": "passed",
+  "started_at": "2026-04-19T20:29:16Z",
+  "finished_at": "2026-04-19T20:29:16Z",
+  "duration_seconds": 0.201,
+  "result_path": "results/libexif/usage-exif-cli-extract-thumbnail.json",
+  "log_path": "logs/libexif/usage-exif-cli-extract-thumbnail.log",
+  "cast_path": "casts/libexif/usage-exif-cli-extract-thumbnail.cast",
+  "exit_code": 0,
+  "command": [
+    "bash",
+    "/validator/tests/libexif/tests/cases/usage/usage-exif-cli-extract-thumbnail.sh"
+  ],
+  "apt_packages": [
+    "libexif12",
+    "libexif-dev"
+  ],
+  "override_debs_installed": false
+}

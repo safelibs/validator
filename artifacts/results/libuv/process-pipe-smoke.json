@@ -1,0 +1,32 @@
+{
+  "schema_version": 2,
+  "library": "libuv",
+  "mode": "original",
+  "testcase_id": "process-pipe-smoke",
+  "title": "libuv process pipe smoke",
+  "description": "Spawns a process with libuv and reads stdout through a pipe.",
+  "kind": "source",
+  "client_application": null,
+  "tags": [
+    "api",
+    "process"
+  ],
+  "requires": [],
+  "status": "passed",
+  "started_at": "2026-04-19T20:29:46Z",
+  "finished_at": "2026-04-19T20:29:46Z",
+  "duration_seconds": 0.239,
+  "result_path": "results/libuv/process-pipe-smoke.json",
+  "log_path": "logs/libuv/process-pipe-smoke.log",
+  "cast_path": "casts/libuv/process-pipe-smoke.cast",
+  "exit_code": 0,
+  "command": [
+    "bash",
+    "/validator/tests/libuv/tests/cases/source/process-pipe-smoke.sh"
+  ],
+  "apt_packages": [
+    "libuv1t64",
+    "libuv1-dev"
+  ],
+  "override_debs_installed": false
+}

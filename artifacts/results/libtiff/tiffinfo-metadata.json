@@ -1,0 +1,34 @@
+{
+  "schema_version": 2,
+  "library": "libtiff",
+  "mode": "original",
+  "testcase_id": "tiffinfo-metadata",
+  "title": "tiffinfo metadata inspection",
+  "description": "Runs tiffinfo on a checked-in TIFF image and inspects dimensions.",
+  "kind": "source",
+  "client_application": null,
+  "tags": [
+    "cli",
+    "metadata"
+  ],
+  "requires": [],
+  "status": "passed",
+  "started_at": "2026-04-19T20:29:41Z",
+  "finished_at": "2026-04-19T20:29:41Z",
+  "duration_seconds": 0.21,
+  "result_path": "results/libtiff/tiffinfo-metadata.json",
+  "log_path": "logs/libtiff/tiffinfo-metadata.log",
+  "cast_path": "casts/libtiff/tiffinfo-metadata.cast",
+  "exit_code": 0,
+  "command": [
+    "bash",
+    "/validator/tests/libtiff/tests/cases/source/tiffinfo-metadata.sh"
+  ],
+  "apt_packages": [
+    "libtiff6",
+    "libtiffxx6",
+    "libtiff-dev",
+    "libtiff-tools"
+  ],
+  "override_debs_installed": false
+}

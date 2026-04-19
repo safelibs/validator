@@ -1,0 +1,34 @@
+{
+  "schema_version": 2,
+  "library": "libxml",
+  "mode": "original",
+  "testcase_id": "python-binding-smoke",
+  "title": "Python libxml2 binding smoke",
+  "description": "Parses and queries XML through the packaged Python libxml2 binding.",
+  "kind": "source",
+  "client_application": null,
+  "tags": [
+    "python",
+    "binding"
+  ],
+  "requires": [],
+  "status": "passed",
+  "started_at": "2026-04-19T20:29:58Z",
+  "finished_at": "2026-04-19T20:29:58Z",
+  "duration_seconds": 0.219,
+  "result_path": "results/libxml/python-binding-smoke.json",
+  "log_path": "logs/libxml/python-binding-smoke.log",
+  "cast_path": "casts/libxml/python-binding-smoke.cast",
+  "exit_code": 0,
+  "command": [
+    "bash",
+    "/validator/tests/libxml/tests/cases/source/python-binding-smoke.sh"
+  ],
+  "apt_packages": [
+    "libxml2",
+    "libxml2-dev",
+    "libxml2-utils",
+    "python3-libxml2"
+  ],
+  "override_debs_installed": false
+}

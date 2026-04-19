@@ -1,0 +1,33 @@
+{
+  "schema_version": 2,
+  "library": "libbz2",
+  "mode": "original",
+  "testcase_id": "usage-bzip2-concatenated-streams",
+  "title": "bzip2 concatenated streams",
+  "description": "Runs bzip2 client concatenated streams behavior through libbz2.",
+  "kind": "usage",
+  "client_application": "bzip2",
+  "tags": [
+    "usage",
+    "compression"
+  ],
+  "requires": [],
+  "status": "passed",
+  "started_at": "2026-04-19T20:29:10Z",
+  "finished_at": "2026-04-19T20:29:10Z",
+  "duration_seconds": 0.197,
+  "result_path": "results/libbz2/usage-bzip2-concatenated-streams.json",
+  "log_path": "logs/libbz2/usage-bzip2-concatenated-streams.log",
+  "cast_path": "casts/libbz2/usage-bzip2-concatenated-streams.cast",
+  "exit_code": 0,
+  "command": [
+    "bash",
+    "/validator/tests/libbz2/tests/cases/usage/usage-bzip2-concatenated-streams.sh"
+  ],
+  "apt_packages": [
+    "libbz2-1.0",
+    "libbz2-dev",
+    "bzip2"
+  ],
+  "override_debs_installed": false
+}

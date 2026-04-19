@@ -1,0 +1,35 @@
+{
+  "schema_version": 2,
+  "library": "libtiff",
+  "mode": "original",
+  "testcase_id": "usage-python3-pil-thumbnail-tiff",
+  "title": "Pillow thumbnail tiff",
+  "description": "Uses Pillow to run TIFF thumbnail tiff behavior through libtiff.",
+  "kind": "usage",
+  "client_application": "python3-pil",
+  "tags": [
+    "usage",
+    "image",
+    "python"
+  ],
+  "requires": [],
+  "status": "passed",
+  "started_at": "2026-04-19T20:29:43Z",
+  "finished_at": "2026-04-19T20:29:43Z",
+  "duration_seconds": 0.263,
+  "result_path": "results/libtiff/usage-python3-pil-thumbnail-tiff.json",
+  "log_path": "logs/libtiff/usage-python3-pil-thumbnail-tiff.log",
+  "cast_path": "casts/libtiff/usage-python3-pil-thumbnail-tiff.cast",
+  "exit_code": 0,
+  "command": [
+    "bash",
+    "/validator/tests/libtiff/tests/cases/usage/usage-python3-pil-thumbnail-tiff.sh"
+  ],
+  "apt_packages": [
+    "libtiff6",
+    "libtiffxx6",
+    "libtiff-dev",
+    "libtiff-tools"
+  ],
+  "override_debs_installed": false
+}

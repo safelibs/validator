@@ -1,0 +1,33 @@
+{
+  "schema_version": 2,
+  "library": "libpng",
+  "mode": "original",
+  "testcase_id": "read-write-c-api-smoke",
+  "title": "libpng read write C API smoke",
+  "description": "Compiles a libpng program that writes and reads a PNG image.",
+  "kind": "source",
+  "client_application": null,
+  "tags": [
+    "api",
+    "compile"
+  ],
+  "requires": [],
+  "status": "passed",
+  "started_at": "2026-04-19T20:29:29Z",
+  "finished_at": "2026-04-19T20:29:29Z",
+  "duration_seconds": 0.249,
+  "result_path": "results/libpng/read-write-c-api-smoke.json",
+  "log_path": "logs/libpng/read-write-c-api-smoke.log",
+  "cast_path": "casts/libpng/read-write-c-api-smoke.cast",
+  "exit_code": 0,
+  "command": [
+    "bash",
+    "/validator/tests/libpng/tests/cases/source/read-write-c-api-smoke.sh"
+  ],
+  "apt_packages": [
+    "libpng16-16t64",
+    "libpng-dev",
+    "libpng-tools"
+  ],
+  "override_debs_installed": false
+}

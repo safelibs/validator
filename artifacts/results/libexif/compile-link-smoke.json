@@ -1,0 +1,32 @@
+{
+  "schema_version": 2,
+  "library": "libexif",
+  "mode": "original",
+  "testcase_id": "compile-link-smoke",
+  "title": "libexif compile link smoke",
+  "description": "Compiles and runs a small program against the public libexif headers.",
+  "kind": "source",
+  "client_application": null,
+  "tags": [
+    "api",
+    "compile"
+  ],
+  "requires": [],
+  "status": "passed",
+  "started_at": "2026-04-19T20:29:15Z",
+  "finished_at": "2026-04-19T20:29:15Z",
+  "duration_seconds": 0.226,
+  "result_path": "results/libexif/compile-link-smoke.json",
+  "log_path": "logs/libexif/compile-link-smoke.log",
+  "cast_path": "casts/libexif/compile-link-smoke.cast",
+  "exit_code": 0,
+  "command": [
+    "bash",
+    "/validator/tests/libexif/tests/cases/source/compile-link-smoke.sh"
+  ],
+  "apt_packages": [
+    "libexif12",
+    "libexif-dev"
+  ],
+  "override_debs_installed": false
+}

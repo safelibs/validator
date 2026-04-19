@@ -1,0 +1,32 @@
+{
+  "schema_version": 2,
+  "library": "libyaml",
+  "mode": "original",
+  "testcase_id": "compile-link-smoke",
+  "title": "libyaml compile link smoke",
+  "description": "Compiles a minimal program against the public libyaml headers.",
+  "kind": "source",
+  "client_application": null,
+  "tags": [
+    "api",
+    "compile"
+  ],
+  "requires": [],
+  "status": "passed",
+  "started_at": "2026-04-19T20:30:02Z",
+  "finished_at": "2026-04-19T20:30:02Z",
+  "duration_seconds": 0.226,
+  "result_path": "results/libyaml/compile-link-smoke.json",
+  "log_path": "logs/libyaml/compile-link-smoke.log",
+  "cast_path": "casts/libyaml/compile-link-smoke.cast",
+  "exit_code": 0,
+  "command": [
+    "bash",
+    "/validator/tests/libyaml/tests/cases/source/compile-link-smoke.sh"
+  ],
+  "apt_packages": [
+    "libyaml-0-2",
+    "libyaml-dev"
+  ],
+  "override_debs_installed": false
+}

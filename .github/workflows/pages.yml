@@ -32,7 +32,7 @@ jobs:
         run: python3 -m unittest discover -s unit -v
 
       - name: Check testcase manifests
-        run: python3 tools/testcases.py --config repositories.yml --tests-root tests --check-manifest-only
+        run: python3 tools/testcases.py --config repositories.yml --tests-root tests --check --min-source-cases 95 --min-usage-cases 155 --min-cases 250
 
       - name: Run full matrix
         id: matrix

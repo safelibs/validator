@@ -1,0 +1,33 @@
+{
+  "schema_version": 2,
+  "library": "libzstd",
+  "mode": "original",
+  "testcase_id": "streaming-c-api-smoke",
+  "title": "libzstd streaming C API smoke",
+  "description": "Compiles and runs a Zstandard streaming compression smoke program.",
+  "kind": "source",
+  "client_application": null,
+  "tags": [
+    "api",
+    "compile"
+  ],
+  "requires": [],
+  "status": "passed",
+  "started_at": "2026-04-19T20:30:05Z",
+  "finished_at": "2026-04-19T20:30:05Z",
+  "duration_seconds": 0.245,
+  "result_path": "results/libzstd/streaming-c-api-smoke.json",
+  "log_path": "logs/libzstd/streaming-c-api-smoke.log",
+  "cast_path": "casts/libzstd/streaming-c-api-smoke.cast",
+  "exit_code": 0,
+  "command": [
+    "bash",
+    "/validator/tests/libzstd/tests/cases/source/streaming-c-api-smoke.sh"
+  ],
+  "apt_packages": [
+    "libzstd1",
+    "libzstd-dev",
+    "zstd"
+  ],
+  "override_debs_installed": false
+}

@@ -1,0 +1,32 @@
+{
+  "schema_version": 2,
+  "library": "libsodium",
+  "mode": "original",
+  "testcase_id": "usage-python3-nacl-signing",
+  "title": "python3-nacl signing",
+  "description": "Runs python3-nacl signing cryptography through libsodium.",
+  "kind": "usage",
+  "client_application": "python3-nacl",
+  "tags": [
+    "usage",
+    "crypto"
+  ],
+  "requires": [],
+  "status": "passed",
+  "started_at": "2026-04-19T20:29:39Z",
+  "finished_at": "2026-04-19T20:29:40Z",
+  "duration_seconds": 0.239,
+  "result_path": "results/libsodium/usage-python3-nacl-signing.json",
+  "log_path": "logs/libsodium/usage-python3-nacl-signing.log",
+  "cast_path": "casts/libsodium/usage-python3-nacl-signing.cast",
+  "exit_code": 0,
+  "command": [
+    "bash",
+    "/validator/tests/libsodium/tests/cases/usage/usage-python3-nacl-signing.sh"
+  ],
+  "apt_packages": [
+    "libsodium23",
+    "libsodium-dev"
+  ],
+  "override_debs_installed": false
+}

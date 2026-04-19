@@ -1,0 +1,42 @@
+$ docker build --tag validator-libarchive-shared-09ddc8be8396 --file /tmp/validator-run-matrix-libarchive-95xpkcwa/libarchive/Dockerfile /tmp/validator-run-matrix-libarchive-95xpkcwa
+#0 building with "default" instance using docker driver
+
+#1 [internal] load build definition from Dockerfile
+#1 transferring dockerfile: 1.02kB done
+#1 DONE 0.0s
+
+#2 [internal] load metadata for docker.io/library/ubuntu:24.04
+#2 DONE 0.0s
+
+#3 [internal] load .dockerignore
+#3 transferring context:
+#3 transferring context: 2B done
+#3 DONE 0.1s
+
+#4 [1/6] FROM docker.io/library/ubuntu:24.04
+#4 DONE 0.0s
+
+#5 [internal] load build context
+#5 transferring context: 21.93MB 0.1s done
+#5 DONE 0.2s
+
+#6 [2/6] RUN apt-get update  && apt-get install -y --no-install-recommends       libarchive13t64       libarchive-dev       libarchive-tools       python3-libarchive-c       bash       build-essential       bzip2       ca-certificates       coreutils       file       gzip       jq       libacl1-dev       lz4       lzip       lzop       pkg-config       python3       xz-utils       zstd  && rm -rf /var/lib/apt/lists/*
+#6 CACHED
+
+#7 [3/6] WORKDIR /validator
+#7 CACHED
+
+#8 [4/6] COPY _shared/ /validator/tests/_shared/
+#8 CACHED
+
+#9 [5/6] COPY libarchive/ /validator/tests/libarchive/
+#9 CACHED
+
+#10 [6/6] RUN find /validator/tests/_shared -maxdepth 1 -type f -name '*.sh' -exec chmod +x {} +  && chmod +x /validator/tests/libarchive/docker-entrypoint.sh /validator/tests/libarchive/tests/run.sh  && if [ -d /validator/tests/libarchive/tests/cases ]; then       find /validator/tests/libarchive/tests/cases -type f -name '*.sh' -exec chmod +x {} +;     fi
+#10 CACHED
+
+#11 exporting to image
+#11 exporting layers done
+#11 writing image sha256:4504949718bb2e52e6c378464ba3c849b86b8d5d6f78f09f94f54ec2f55d873d done
+#11 naming to docker.io/library/validator-libarchive-shared-09ddc8be8396 0.0s done
+#11 DONE 0.0s

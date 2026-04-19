@@ -1,0 +1,12 @@
+{
+  "schema_version": 2,
+  "library": "libzstd",
+  "mode": "original",
+  "cases": 13,
+  "source_cases": 5,
+  "usage_cases": 8,
+  "passed": 13,
+  "failed": 0,
+  "casts": 13,
+  "duration_seconds": 2.938
+}

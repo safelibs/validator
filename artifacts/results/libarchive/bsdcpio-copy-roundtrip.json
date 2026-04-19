@@ -1,0 +1,33 @@
+{
+  "schema_version": 2,
+  "library": "libarchive",
+  "mode": "original",
+  "testcase_id": "bsdcpio-copy-roundtrip",
+  "title": "bsdcpio copy archive round trip",
+  "description": "Copies files into and out of a newc archive using bsdcpio.",
+  "kind": "source",
+  "client_application": null,
+  "tags": [
+    "cli",
+    "archive"
+  ],
+  "requires": [],
+  "status": "passed",
+  "started_at": "2026-04-19T20:29:04Z",
+  "finished_at": "2026-04-19T20:29:04Z",
+  "duration_seconds": 0.648,
+  "result_path": "results/libarchive/bsdcpio-copy-roundtrip.json",
+  "log_path": "logs/libarchive/bsdcpio-copy-roundtrip.log",
+  "cast_path": "casts/libarchive/bsdcpio-copy-roundtrip.cast",
+  "exit_code": 0,
+  "command": [
+    "bash",
+    "/validator/tests/libarchive/tests/cases/source/bsdcpio-copy-roundtrip.sh"
+  ],
+  "apt_packages": [
+    "libarchive13t64",
+    "libarchive-dev",
+    "libarchive-tools"
+  ],
+  "override_debs_installed": false
+}

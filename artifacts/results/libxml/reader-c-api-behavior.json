@@ -1,0 +1,34 @@
+{
+  "schema_version": 2,
+  "library": "libxml",
+  "mode": "original",
+  "testcase_id": "reader-c-api-behavior",
+  "title": "libxml reader C API behavior",
+  "description": "Compiles a program using xmlTextReader to stream element names.",
+  "kind": "source",
+  "client_application": null,
+  "tags": [
+    "api",
+    "reader"
+  ],
+  "requires": [],
+  "status": "passed",
+  "started_at": "2026-04-19T20:29:58Z",
+  "finished_at": "2026-04-19T20:29:59Z",
+  "duration_seconds": 0.274,
+  "result_path": "results/libxml/reader-c-api-behavior.json",
+  "log_path": "logs/libxml/reader-c-api-behavior.log",
+  "cast_path": "casts/libxml/reader-c-api-behavior.cast",
+  "exit_code": 0,
+  "command": [
+    "bash",
+    "/validator/tests/libxml/tests/cases/source/reader-c-api-behavior.sh"
+  ],
+  "apt_packages": [
+    "libxml2",
+    "libxml2-dev",
+    "libxml2-utils",
+    "python3-libxml2"
+  ],
+  "override_debs_installed": false
+}

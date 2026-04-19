@@ -1,0 +1,32 @@
+{
+  "schema_version": 2,
+  "library": "libsodium",
+  "mode": "original",
+  "testcase_id": "sign-verify",
+  "title": "libsodium sign verify",
+  "description": "Signs a message and verifies the detached signature.",
+  "kind": "source",
+  "client_application": null,
+  "tags": [
+    "api",
+    "crypto"
+  ],
+  "requires": [],
+  "status": "passed",
+  "started_at": "2026-04-19T20:29:38Z",
+  "finished_at": "2026-04-19T20:29:38Z",
+  "duration_seconds": 0.226,
+  "result_path": "results/libsodium/sign-verify.json",
+  "log_path": "logs/libsodium/sign-verify.log",
+  "cast_path": "casts/libsodium/sign-verify.cast",
+  "exit_code": 0,
+  "command": [
+    "bash",
+    "/validator/tests/libsodium/tests/cases/source/sign-verify.sh"
+  ],
+  "apt_packages": [
+    "libsodium23",
+    "libsodium-dev"
+  ],
+  "override_debs_installed": false
+}

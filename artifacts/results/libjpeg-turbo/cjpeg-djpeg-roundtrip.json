@@ -1,0 +1,35 @@
+{
+  "schema_version": 2,
+  "library": "libjpeg-turbo",
+  "mode": "original",
+  "testcase_id": "cjpeg-djpeg-roundtrip",
+  "title": "cjpeg and djpeg round trip",
+  "description": "Encodes a generated PPM image and decodes it back to PPM.",
+  "kind": "source",
+  "client_application": null,
+  "tags": [
+    "cli",
+    "media"
+  ],
+  "requires": [],
+  "status": "passed",
+  "started_at": "2026-04-19T20:29:17Z",
+  "finished_at": "2026-04-19T20:29:18Z",
+  "duration_seconds": 0.239,
+  "result_path": "results/libjpeg-turbo/cjpeg-djpeg-roundtrip.json",
+  "log_path": "logs/libjpeg-turbo/cjpeg-djpeg-roundtrip.log",
+  "cast_path": "casts/libjpeg-turbo/cjpeg-djpeg-roundtrip.cast",
+  "exit_code": 0,
+  "command": [
+    "bash",
+    "/validator/tests/libjpeg-turbo/tests/cases/source/cjpeg-djpeg-roundtrip.sh"
+  ],
+  "apt_packages": [
+    "libjpeg-turbo8",
+    "libjpeg-turbo8-dev",
+    "libturbojpeg",
+    "libturbojpeg0-dev",
+    "libjpeg-turbo-progs"
+  ],
+  "override_debs_installed": false
+}

@@ -60,8 +60,8 @@ class RunMatrixTests(unittest.TestCase):
 
     def test_accepts_original_mode_only(self) -> None:
         invalid_mode_args = (
-            ["--mode", "safe"],
-            ["--mode", "both"],
+            ["--mode", "replacement"],
+            ["--mode", "dual"],
             ["--mode", ""],
             ["--mode="],
         )

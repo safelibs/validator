@@ -1,9 +1,0 @@
-[package]
-name = "libcsv-safe"
-version = "0.1.0"
-edition = "2021"
-
-[lib]
-name = "csv"
-path = "src/lib.rs"
-crate-type = ["cdylib", "staticlib", "rlib"]

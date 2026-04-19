@@ -1,0 +1,34 @@
+{
+  "schema_version": 2,
+  "library": "libzstd",
+  "mode": "original",
+  "testcase_id": "usage-libarchive-tools-zstd-symlink",
+  "title": "libarchive-tools zstd symlink",
+  "description": "Runs bsdtar symlink on a zstd-compressed archive through libzstd.",
+  "kind": "usage",
+  "client_application": "libarchive-tools",
+  "tags": [
+    "usage",
+    "archive",
+    "compression"
+  ],
+  "requires": [],
+  "status": "passed",
+  "started_at": "2026-04-19T20:30:06Z",
+  "finished_at": "2026-04-19T20:30:07Z",
+  "duration_seconds": 0.226,
+  "result_path": "results/libzstd/usage-libarchive-tools-zstd-symlink.json",
+  "log_path": "logs/libzstd/usage-libarchive-tools-zstd-symlink.log",
+  "cast_path": "casts/libzstd/usage-libarchive-tools-zstd-symlink.cast",
+  "exit_code": 0,
+  "command": [
+    "bash",
+    "/validator/tests/libzstd/tests/cases/usage/usage-libarchive-tools-zstd-symlink.sh"
+  ],
+  "apt_packages": [
+    "libzstd1",
+    "libzstd-dev",
+    "zstd"
+  ],
+  "override_debs_installed": false
+}

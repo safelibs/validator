@@ -1,0 +1,32 @@
+{
+  "schema_version": 2,
+  "library": "libcsv",
+  "mode": "original",
+  "testcase_id": "parser-callback-behavior",
+  "title": "Parser callback behavior",
+  "description": "Compiles a parser callback program and checks fields and rows.",
+  "kind": "source",
+  "client_application": null,
+  "tags": [
+    "api",
+    "parser"
+  ],
+  "requires": [],
+  "status": "passed",
+  "started_at": "2026-04-19T20:29:11Z",
+  "finished_at": "2026-04-19T20:29:11Z",
+  "duration_seconds": 0.225,
+  "result_path": "results/libcsv/parser-callback-behavior.json",
+  "log_path": "logs/libcsv/parser-callback-behavior.log",
+  "cast_path": "casts/libcsv/parser-callback-behavior.cast",
+  "exit_code": 0,
+  "command": [
+    "bash",
+    "/validator/tests/libcsv/tests/cases/source/parser-callback-behavior.sh"
+  ],
+  "apt_packages": [
+    "libcsv3",
+    "libcsv-dev"
+  ],
+  "override_debs_installed": false
+}

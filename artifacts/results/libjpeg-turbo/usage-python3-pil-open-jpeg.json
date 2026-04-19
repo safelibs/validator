@@ -1,0 +1,36 @@
+{
+  "schema_version": 2,
+  "library": "libjpeg-turbo",
+  "mode": "original",
+  "testcase_id": "usage-python3-pil-open-jpeg",
+  "title": "Pillow open jpeg",
+  "description": "Uses Pillow to open jpeg through libjpeg-turbo.",
+  "kind": "usage",
+  "client_application": "python3-pil",
+  "tags": [
+    "usage",
+    "image",
+    "python"
+  ],
+  "requires": [],
+  "status": "passed",
+  "started_at": "2026-04-19T20:29:18Z",
+  "finished_at": "2026-04-19T20:29:19Z",
+  "duration_seconds": 0.261,
+  "result_path": "results/libjpeg-turbo/usage-python3-pil-open-jpeg.json",
+  "log_path": "logs/libjpeg-turbo/usage-python3-pil-open-jpeg.log",
+  "cast_path": "casts/libjpeg-turbo/usage-python3-pil-open-jpeg.cast",
+  "exit_code": 0,
+  "command": [
+    "bash",
+    "/validator/tests/libjpeg-turbo/tests/cases/usage/usage-python3-pil-open-jpeg.sh"
+  ],
+  "apt_packages": [
+    "libjpeg-turbo8",
+    "libjpeg-turbo8-dev",
+    "libturbojpeg",
+    "libturbojpeg0-dev",
+    "libjpeg-turbo-progs"
+  ],
+  "override_debs_installed": false
+}

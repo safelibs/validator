@@ -1,0 +1,32 @@
+{
+  "schema_version": 2,
+  "library": "libcsv",
+  "mode": "original",
+  "testcase_id": "usage-readstat-quoted-csv",
+  "title": "readstat quoted CSV fields",
+  "description": "Runs readstat on a quoted CSV field containing a comma and verifies the parsed value survives conversion.",
+  "kind": "usage",
+  "client_application": "readstat",
+  "tags": [
+    "usage",
+    "csv"
+  ],
+  "requires": [],
+  "status": "passed",
+  "started_at": "2026-04-19T20:29:13Z",
+  "finished_at": "2026-04-19T20:29:13Z",
+  "duration_seconds": 0.212,
+  "result_path": "results/libcsv/usage-readstat-quoted-csv.json",
+  "log_path": "logs/libcsv/usage-readstat-quoted-csv.log",
+  "cast_path": "casts/libcsv/usage-readstat-quoted-csv.cast",
+  "exit_code": 0,
+  "command": [
+    "bash",
+    "/validator/tests/libcsv/tests/cases/usage/usage-readstat-quoted-csv.sh"
+  ],
+  "apt_packages": [
+    "libcsv3",
+    "libcsv-dev"
+  ],
+  "override_debs_installed": false
+}

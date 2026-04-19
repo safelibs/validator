@@ -1,0 +1,32 @@
+{
+  "schema_version": 2,
+  "library": "libsodium",
+  "mode": "original",
+  "testcase_id": "key-exchange-randombytes",
+  "title": "libsodium key exchange randombytes",
+  "description": "Creates deterministic keypairs and derives matching key exchange sessions.",
+  "kind": "source",
+  "client_application": null,
+  "tags": [
+    "api",
+    "crypto"
+  ],
+  "requires": [],
+  "status": "passed",
+  "started_at": "2026-04-19T20:29:38Z",
+  "finished_at": "2026-04-19T20:29:38Z",
+  "duration_seconds": 0.265,
+  "result_path": "results/libsodium/key-exchange-randombytes.json",
+  "log_path": "logs/libsodium/key-exchange-randombytes.log",
+  "cast_path": "casts/libsodium/key-exchange-randombytes.cast",
+  "exit_code": 0,
+  "command": [
+    "bash",
+    "/validator/tests/libsodium/tests/cases/source/key-exchange-randombytes.sh"
+  ],
+  "apt_packages": [
+    "libsodium23",
+    "libsodium-dev"
+  ],
+  "override_debs_installed": false
+}

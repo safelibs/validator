@@ -1,0 +1,33 @@
+{
+  "schema_version": 2,
+  "library": "libsdl",
+  "mode": "original",
+  "testcase_id": "installed-test-binary",
+  "title": "Installed SDL test binary",
+  "description": "Runs one packaged SDL installed test binary under dummy drivers.",
+  "kind": "source",
+  "client_application": null,
+  "tags": [
+    "cli",
+    "installed-test"
+  ],
+  "requires": [],
+  "status": "passed",
+  "started_at": "2026-04-19T20:29:33Z",
+  "finished_at": "2026-04-19T20:29:34Z",
+  "duration_seconds": 0.195,
+  "result_path": "results/libsdl/installed-test-binary.json",
+  "log_path": "logs/libsdl/installed-test-binary.log",
+  "cast_path": "casts/libsdl/installed-test-binary.cast",
+  "exit_code": 0,
+  "command": [
+    "bash",
+    "/validator/tests/libsdl/tests/cases/source/installed-test-binary.sh"
+  ],
+  "apt_packages": [
+    "libsdl2-2.0-0",
+    "libsdl2-dev",
+    "libsdl2-tests"
+  ],
+  "override_debs_installed": false
+}

@@ -1,0 +1,33 @@
+{
+  "schema_version": 2,
+  "library": "libzstd",
+  "mode": "original",
+  "testcase_id": "zstd-compress-decompress",
+  "title": "zstd command round trip",
+  "description": "Compresses and decompresses text through the zstd command line.",
+  "kind": "source",
+  "client_application": null,
+  "tags": [
+    "cli",
+    "roundtrip"
+  ],
+  "requires": [],
+  "status": "passed",
+  "started_at": "2026-04-19T20:30:04Z",
+  "finished_at": "2026-04-19T20:30:05Z",
+  "duration_seconds": 0.211,
+  "result_path": "results/libzstd/zstd-compress-decompress.json",
+  "log_path": "logs/libzstd/zstd-compress-decompress.log",
+  "cast_path": "casts/libzstd/zstd-compress-decompress.cast",
+  "exit_code": 0,
+  "command": [
+    "bash",
+    "/validator/tests/libzstd/tests/cases/source/zstd-compress-decompress.sh"
+  ],
+  "apt_packages": [
+    "libzstd1",
+    "libzstd-dev",
+    "zstd"
+  ],
+  "override_debs_installed": false
+}

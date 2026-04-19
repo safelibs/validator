@@ -1,0 +1,47 @@
+$ docker build --tag validator-libwebp-shared-c37a73bd8280 --file /tmp/validator-run-matrix-libwebp-lglt5fcf/libwebp/Dockerfile /tmp/validator-run-matrix-libwebp-lglt5fcf
+#0 building with "default" instance using docker driver
+
+#1 [internal] load build definition from Dockerfile
+#1 DONE 0.0s
+
+#1 [internal] load build definition from Dockerfile
+#1 transferring dockerfile: 1.41kB done
+#1 DONE 0.0s
+
+#2 [internal] load metadata for docker.io/library/ubuntu:24.04
+#2 DONE 0.0s
+
+#3 [internal] load .dockerignore
+#3 transferring context: 2B done
+#3 DONE 0.0s
+
+#4 [1/7] FROM docker.io/library/ubuntu:24.04
+#4 DONE 0.0s
+
+#5 [internal] load build context
+#5 transferring context: 9.44MB 0.0s done
+#5 DONE 0.1s
+
+#6 [2/7] RUN apt-get update  && apt-get install -y --no-install-recommends       libwebp7       libwebpdemux2       libwebpmux3       libwebpdecoder3       libsharpyuv0       libwebp-dev       libsharpyuv-dev       webp       python3-pil       libvips-tools       ffmpeg       libsdl2-image-dev       webp-pixbuf-loader       libgdk-pixbuf2.0-bin       bash       build-essential       ca-certificates       cmake       coreutils       file       jq       libgif-dev       libjpeg-dev       libpng-dev       libtiff-dev       pkg-config       python3  && rm -rf /var/lib/apt/lists/*
+#6 CACHED
+
+#7 [3/7] RUN triplet="$(gcc -print-multiarch)"  && mkdir -p "/validator/tests/libwebp/original-package-root/usr/lib/$triplet"  && cp -a /usr/lib/"$triplet"/libwebp*.so* /validator/tests/libwebp/original-package-root/usr/lib/"$triplet"/
+#7 CACHED
+
+#8 [4/7] WORKDIR /validator
+#8 CACHED
+
+#9 [5/7] COPY _shared/ /validator/tests/_shared/
+#9 CACHED
+
+#10 [6/7] COPY libwebp/ /validator/tests/libwebp/
+#10 CACHED
+
+#11 [7/7] RUN find /validator/tests/_shared -maxdepth 1 -type f -name '*.sh' -exec chmod +x {} +  && chmod +x /validator/tests/libwebp/docker-entrypoint.sh /validator/tests/libwebp/tests/run.sh  && if [ -d /validator/tests/libwebp/tests/cases ]; then       find /validator/tests/libwebp/tests/cases -type f -name '*.sh' -exec chmod +x {} +;     fi
+#11 CACHED
+
+#12 exporting to image
+#12 exporting layers done
+#12 writing image sha256:e22f7aca2ee2dab1ab5c76b205fd92fa3852374902d21b5cdb99400becab0099 done
+#12 naming to docker.io/library/validator-libwebp-shared-c37a73bd8280 done
+#12 DONE 0.0s

@@ -1,0 +1,33 @@
+{
+  "schema_version": 2,
+  "library": "libyaml",
+  "mode": "original",
+  "testcase_id": "usage-python3-yaml-dump",
+  "title": "PyYAML dump",
+  "description": "Runs PyYAML dump behavior through libyaml.",
+  "kind": "usage",
+  "client_application": "python3-yaml",
+  "tags": [
+    "usage",
+    "yaml",
+    "python"
+  ],
+  "requires": [],
+  "status": "passed",
+  "started_at": "2026-04-19T20:30:02Z",
+  "finished_at": "2026-04-19T20:30:03Z",
+  "duration_seconds": 0.222,
+  "result_path": "results/libyaml/usage-python3-yaml-dump.json",
+  "log_path": "logs/libyaml/usage-python3-yaml-dump.log",
+  "cast_path": "casts/libyaml/usage-python3-yaml-dump.cast",
+  "exit_code": 0,
+  "command": [
+    "bash",
+    "/validator/tests/libyaml/tests/cases/usage/usage-python3-yaml-dump.sh"
+  ],
+  "apt_packages": [
+    "libyaml-0-2",
+    "libyaml-dev"
+  ],
+  "override_debs_installed": false
+}

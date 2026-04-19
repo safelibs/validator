@@ -1,0 +1,33 @@
+{
+  "schema_version": 2,
+  "library": "libsdl",
+  "mode": "original",
+  "testcase_id": "surface-blit-pixel-format",
+  "title": "Surface pixel format blit",
+  "description": "Creates RGB surfaces, fills pixels, and blits under SDL software surfaces.",
+  "kind": "source",
+  "client_application": null,
+  "tags": [
+    "api",
+    "surface"
+  ],
+  "requires": [],
+  "status": "passed",
+  "started_at": "2026-04-19T20:29:33Z",
+  "finished_at": "2026-04-19T20:29:33Z",
+  "duration_seconds": 0.378,
+  "result_path": "results/libsdl/surface-blit-pixel-format.json",
+  "log_path": "logs/libsdl/surface-blit-pixel-format.log",
+  "cast_path": "casts/libsdl/surface-blit-pixel-format.cast",
+  "exit_code": 0,
+  "command": [
+    "bash",
+    "/validator/tests/libsdl/tests/cases/source/surface-blit-pixel-format.sh"
+  ],
+  "apt_packages": [
+    "libsdl2-2.0-0",
+    "libsdl2-dev",
+    "libsdl2-tests"
+  ],
+  "override_debs_installed": false
+}

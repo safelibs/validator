@@ -1,0 +1,33 @@
+{
+  "schema_version": 2,
+  "library": "libjson",
+  "mode": "original",
+  "testcase_id": "usage-gdal-ogrinfo-geojson",
+  "title": "GDAL reads GeoJSON",
+  "description": "Runs ogrinfo against a GeoJSON fixture to exercise json-c parsing through GDAL.",
+  "kind": "usage",
+  "client_application": "gdal",
+  "tags": [
+    "usage",
+    "json",
+    "cli"
+  ],
+  "requires": [],
+  "status": "passed",
+  "started_at": "2026-04-19T20:29:22Z",
+  "finished_at": "2026-04-19T20:29:23Z",
+  "duration_seconds": 0.233,
+  "result_path": "results/libjson/usage-gdal-ogrinfo-geojson.json",
+  "log_path": "logs/libjson/usage-gdal-ogrinfo-geojson.log",
+  "cast_path": "casts/libjson/usage-gdal-ogrinfo-geojson.cast",
+  "exit_code": 0,
+  "command": [
+    "bash",
+    "/validator/tests/libjson/tests/cases/usage/usage-gdal-ogrinfo-geojson.sh"
+  ],
+  "apt_packages": [
+    "libjson-c5",
+    "libjson-c-dev"
+  ],
+  "override_debs_installed": false
+}

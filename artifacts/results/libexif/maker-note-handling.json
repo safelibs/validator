@@ -1,0 +1,32 @@
+{
+  "schema_version": 2,
+  "library": "libexif",
+  "mode": "original",
+  "testcase_id": "maker-note-handling",
+  "title": "Maker note data handling",
+  "description": "Finds maker-note bytes in a JPEG fixture through libexif metadata APIs.",
+  "kind": "source",
+  "client_application": null,
+  "tags": [
+    "api",
+    "metadata"
+  ],
+  "requires": [],
+  "status": "passed",
+  "started_at": "2026-04-19T20:29:14Z",
+  "finished_at": "2026-04-19T20:29:15Z",
+  "duration_seconds": 0.25,
+  "result_path": "results/libexif/maker-note-handling.json",
+  "log_path": "logs/libexif/maker-note-handling.log",
+  "cast_path": "casts/libexif/maker-note-handling.cast",
+  "exit_code": 0,
+  "command": [
+    "bash",
+    "/validator/tests/libexif/tests/cases/source/maker-note-handling.sh"
+  ],
+  "apt_packages": [
+    "libexif12",
+    "libexif-dev"
+  ],
+  "override_debs_installed": false
+}

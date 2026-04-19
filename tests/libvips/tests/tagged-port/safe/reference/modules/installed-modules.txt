@@ -1,5 +1,0 @@
-vips-heif
-vips-jxl
-vips-magick
-vips-openslide
-vips-poppler

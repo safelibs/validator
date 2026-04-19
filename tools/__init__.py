@@ -15,7 +15,7 @@ class ValidatorError(RuntimeError):
     """Raised when validator tooling fails."""
 
 
-GLOBAL_IMPORT_EXCLUDED_DIRS = {
+GLOBAL_IMPORT_IGNORED_DIRS = {
     ".git",
     ".libs",
     ".pc",
@@ -23,15 +23,15 @@ GLOBAL_IMPORT_EXCLUDED_DIRS = {
     "build",
     "node_modules",
 }
-GLOBAL_IMPORT_EXCLUDED_DIR_PATTERNS = (
+GLOBAL_IMPORT_IGNORED_DIR_PATTERNS = (
     ".checker-build*",
     "build-*",
 )
-GLOBAL_IMPORT_EXCLUDED_FILES = {
+GLOBAL_IMPORT_IGNORED_FILES = {
     "config.log",
     "config.status",
 }
-GLOBAL_IMPORT_EXCLUDED_FILE_PATTERNS = (
+GLOBAL_IMPORT_IGNORED_FILE_PATTERNS = (
     "*.deb",
     "*.ddeb",
     "*.udeb",
@@ -43,7 +43,7 @@ def redact_secrets(text: str, *, env: dict[str, str] | None = None) -> str:
     redacted = AUTHENTICATED_GITHUB_URL_RE.sub("https://REDACTED@github.com/", text)
     secrets: list[str] = []
     for source in (os.environ, env or {}):
-        for name in ("GH_TOKEN", "SAFELIBS_REPO_TOKEN"):
+        for name in ("GH_TOKEN", "VALIDATOR_REPO_TOKEN"):
             value = str(source.get(name, "")).strip()
             if value and value not in secrets:
                 secrets.append(value)
@@ -165,17 +165,17 @@ def tracked_files(repo_root: Path) -> list[str]:
     return [path for path in output.split("\0") if path]
 
 
-def is_excluded_import_path(relative_path: str) -> bool:
+def is_ignored_import_path(relative_path: str) -> bool:
     path = PurePosixPath(relative_path)
     for part in path.parts[:-1]:
-        if part in GLOBAL_IMPORT_EXCLUDED_DIRS:
+        if part in GLOBAL_IMPORT_IGNORED_DIRS:
             return True
-        if any(fnmatch(part, pattern) for pattern in GLOBAL_IMPORT_EXCLUDED_DIR_PATTERNS):
+        if any(fnmatch(part, pattern) for pattern in GLOBAL_IMPORT_IGNORED_DIR_PATTERNS):
             return True
     name = path.name
-    if name in GLOBAL_IMPORT_EXCLUDED_FILES:
+    if name in GLOBAL_IMPORT_IGNORED_FILES:
         return True
-    return any(fnmatch(name, pattern) for pattern in GLOBAL_IMPORT_EXCLUDED_FILE_PATTERNS)
+    return any(fnmatch(name, pattern) for pattern in GLOBAL_IMPORT_IGNORED_FILE_PATTERNS)
 
 
 def expand_import_paths(repo_root: Path, imports: list[str]) -> list[str]:
@@ -193,9 +193,9 @@ def expand_import_paths(repo_root: Path, imports: list[str]) -> list[str]:
             matches = [
                 candidate
                 for candidate in tracked
-                if candidate.startswith(prefix) and not is_excluded_import_path(candidate)
+                if candidate.startswith(prefix) and not is_ignored_import_path(candidate)
             ]
-        elif import_path in tracked_set and not is_excluded_import_path(import_path):
+        elif import_path in tracked_set and not is_ignored_import_path(import_path):
             matches = [import_path]
 
         if not matches:

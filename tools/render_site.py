@@ -434,6 +434,7 @@ def render_page(
             '    <meta charset="utf-8">',
             '    <meta name="viewport" content="width=device-width, initial-scale=1">',
             f"    <title>{html.escape(title)}</title>",
+            '    <link rel="icon" href="data:,">',
             f'    <link rel="stylesheet" href="{html.escape(css_href)}">',
             f'    <script defer src="{html.escape(js_href)}"></script>',
             "  </head>",

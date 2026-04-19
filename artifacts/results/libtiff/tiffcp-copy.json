@@ -1,0 +1,34 @@
+{
+  "schema_version": 2,
+  "library": "libtiff",
+  "mode": "original",
+  "testcase_id": "tiffcp-copy",
+  "title": "tiffcp copy behavior",
+  "description": "Copies a TIFF fixture and confirms the copied image remains readable.",
+  "kind": "source",
+  "client_application": null,
+  "tags": [
+    "cli",
+    "media"
+  ],
+  "requires": [],
+  "status": "passed",
+  "started_at": "2026-04-19T20:29:41Z",
+  "finished_at": "2026-04-19T20:29:42Z",
+  "duration_seconds": 0.193,
+  "result_path": "results/libtiff/tiffcp-copy.json",
+  "log_path": "logs/libtiff/tiffcp-copy.log",
+  "cast_path": "casts/libtiff/tiffcp-copy.cast",
+  "exit_code": 0,
+  "command": [
+    "bash",
+    "/validator/tests/libtiff/tests/cases/source/tiffcp-copy.sh"
+  ],
+  "apt_packages": [
+    "libtiff6",
+    "libtiffxx6",
+    "libtiff-dev",
+    "libtiff-tools"
+  ],
+  "override_debs_installed": false
+}

@@ -1,0 +1,34 @@
+{
+  "schema_version": 2,
+  "library": "libtiff",
+  "mode": "original",
+  "testcase_id": "c-api-read-write",
+  "title": "libtiff C API read write",
+  "description": "Compiles a libtiff program that writes and reads a small TIFF image.",
+  "kind": "source",
+  "client_application": null,
+  "tags": [
+    "api",
+    "compile"
+  ],
+  "requires": [],
+  "status": "passed",
+  "started_at": "2026-04-19T20:29:42Z",
+  "finished_at": "2026-04-19T20:29:42Z",
+  "duration_seconds": 0.244,
+  "result_path": "results/libtiff/c-api-read-write.json",
+  "log_path": "logs/libtiff/c-api-read-write.log",
+  "cast_path": "casts/libtiff/c-api-read-write.cast",
+  "exit_code": 0,
+  "command": [
+    "bash",
+    "/validator/tests/libtiff/tests/cases/source/c-api-read-write.sh"
+  ],
+  "apt_packages": [
+    "libtiff6",
+    "libtiffxx6",
+    "libtiff-dev",
+    "libtiff-tools"
+  ],
+  "override_debs_installed": false
+}

@@ -1,0 +1,33 @@
+{
+  "schema_version": 2,
+  "library": "libbz2",
+  "mode": "original",
+  "testcase_id": "debian-sample-parity",
+  "title": "Debian sample fixture parity",
+  "description": "Decompresses packaged sample streams and compares them to reference fixtures.",
+  "kind": "source",
+  "client_application": null,
+  "tags": [
+    "cli",
+    "fixture"
+  ],
+  "requires": [],
+  "status": "passed",
+  "started_at": "2026-04-19T20:29:09Z",
+  "finished_at": "2026-04-19T20:29:09Z",
+  "duration_seconds": 0.223,
+  "result_path": "results/libbz2/debian-sample-parity.json",
+  "log_path": "logs/libbz2/debian-sample-parity.log",
+  "cast_path": "casts/libbz2/debian-sample-parity.cast",
+  "exit_code": 0,
+  "command": [
+    "bash",
+    "/validator/tests/libbz2/tests/cases/source/debian-sample-parity.sh"
+  ],
+  "apt_packages": [
+    "libbz2-1.0",
+    "libbz2-dev",
+    "bzip2"
+  ],
+  "override_debs_installed": false
+}

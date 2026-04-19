@@ -1,0 +1,32 @@
+{
+  "schema_version": 2,
+  "library": "cjson",
+  "mode": "original",
+  "testcase_id": "usage-iperf3-json-tcp-throughput",
+  "title": "iperf3 TCP JSON throughput",
+  "description": "Runs an iperf3 loopback TCP test with JSON output and verifies throughput fields emitted by the client.",
+  "kind": "usage",
+  "client_application": "iperf3",
+  "tags": [
+    "usage",
+    "json"
+  ],
+  "requires": [],
+  "status": "passed",
+  "started_at": "2026-04-19T20:28:43Z",
+  "finished_at": "2026-04-19T20:28:44Z",
+  "duration_seconds": 1.426,
+  "result_path": "results/cjson/usage-iperf3-json-tcp-throughput.json",
+  "log_path": "logs/cjson/usage-iperf3-json-tcp-throughput.log",
+  "cast_path": "casts/cjson/usage-iperf3-json-tcp-throughput.cast",
+  "exit_code": 0,
+  "command": [
+    "bash",
+    "/validator/tests/cjson/tests/cases/usage/usage-iperf3-json-tcp-throughput.sh"
+  ],
+  "apt_packages": [
+    "libcjson1",
+    "libcjson-dev"
+  ],
+  "override_debs_installed": false
+}

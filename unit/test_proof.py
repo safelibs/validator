@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import json
+import os
 import tempfile
 import unittest
 from pathlib import Path
@@ -334,6 +335,27 @@ class ProofTests(unittest.TestCase):
         self.assertEqual(exit_code, 0)
         self.assertTrue(absolute_proof_path.is_file())
 
+        old_cwd = Path.cwd()
+        try:
+            os.chdir(self.root)
+            with mock.patch("tools.verify_proof_artifacts.load_manifest", return_value=self.config):
+                exit_code = verify_proof_artifacts.main(
+                    [
+                        "--config",
+                        str(FIXTURES / "original-only-manifest.yml"),
+                        "--tests-root",
+                        str(self.tests_root),
+                        "--artifact-root",
+                        "artifacts",
+                        "--proof-output",
+                        "artifacts/proof/repo-relative-proof.json",
+                    ]
+                )
+        finally:
+            os.chdir(old_cwd)
+        self.assertEqual(exit_code, 0)
+        self.assertTrue((self.artifacts_root / "proof" / "repo-relative-proof.json").is_file())
+
         for output in ("../proof.json", "proof\\bad.json", "/tmp/proof.json", "proof//bad.json", "proof/./bad.json"):
             with self.subTest(output=output):
                 with self.assertRaisesRegex(ValidatorError, "--proof-output"):
@@ -354,6 +376,7 @@ class ProofTests(unittest.TestCase):
     def test_cli_rejects_removed_exclusion_and_compatibility_arguments(self) -> None:
         removed_args = [
             "--exclude-library",
+            "--exclude_library",
             "--exclude-note",
             "--record-casts",
             "--min-total-cases",

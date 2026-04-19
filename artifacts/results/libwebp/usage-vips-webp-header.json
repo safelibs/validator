@@ -1,0 +1,38 @@
+{
+  "schema_version": 2,
+  "library": "libwebp",
+  "mode": "original",
+  "testcase_id": "usage-vips-webp-header",
+  "title": "vips webp header",
+  "description": "Reads WebP image metadata with vips through libwebp.",
+  "kind": "usage",
+  "client_application": "vips",
+  "tags": [
+    "usage",
+    "image"
+  ],
+  "requires": [],
+  "status": "passed",
+  "started_at": "2026-04-19T20:29:55Z",
+  "finished_at": "2026-04-19T20:29:55Z",
+  "duration_seconds": 0.249,
+  "result_path": "results/libwebp/usage-vips-webp-header.json",
+  "log_path": "logs/libwebp/usage-vips-webp-header.log",
+  "cast_path": "casts/libwebp/usage-vips-webp-header.cast",
+  "exit_code": 0,
+  "command": [
+    "bash",
+    "/validator/tests/libwebp/tests/cases/usage/usage-vips-webp-header.sh"
+  ],
+  "apt_packages": [
+    "libwebp7",
+    "libwebpdemux2",
+    "libwebpmux3",
+    "libwebpdecoder3",
+    "libsharpyuv0",
+    "libwebp-dev",
+    "libsharpyuv-dev",
+    "webp"
+  ],
+  "override_debs_installed": false
+}

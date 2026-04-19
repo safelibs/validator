@@ -1,0 +1,33 @@
+{
+  "schema_version": 2,
+  "library": "libsdl",
+  "mode": "original",
+  "testcase_id": "version-query-compile",
+  "title": "SDL version query compile",
+  "description": "Compiles a small SDL program that reports version and platform details.",
+  "kind": "source",
+  "client_application": null,
+  "tags": [
+    "api",
+    "compile"
+  ],
+  "requires": [],
+  "status": "passed",
+  "started_at": "2026-04-19T20:29:32Z",
+  "finished_at": "2026-04-19T20:29:32Z",
+  "duration_seconds": 0.432,
+  "result_path": "results/libsdl/version-query-compile.json",
+  "log_path": "logs/libsdl/version-query-compile.log",
+  "cast_path": "casts/libsdl/version-query-compile.cast",
+  "exit_code": 0,
+  "command": [
+    "bash",
+    "/validator/tests/libsdl/tests/cases/source/version-query-compile.sh"
+  ],
+  "apt_packages": [
+    "libsdl2-2.0-0",
+    "libsdl2-dev",
+    "libsdl2-tests"
+  ],
+  "override_debs_installed": false
+}

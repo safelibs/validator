@@ -1,0 +1,35 @@
+{
+  "schema_version": 2,
+  "library": "libjpeg-turbo",
+  "mode": "original",
+  "testcase_id": "progressive-grayscale-conversion",
+  "title": "Progressive grayscale conversion",
+  "description": "Creates a progressive JPEG and decodes it through grayscale conversion.",
+  "kind": "source",
+  "client_application": null,
+  "tags": [
+    "cli",
+    "colorspace"
+  ],
+  "requires": [],
+  "status": "passed",
+  "started_at": "2026-04-19T20:29:18Z",
+  "finished_at": "2026-04-19T20:29:18Z",
+  "duration_seconds": 0.219,
+  "result_path": "results/libjpeg-turbo/progressive-grayscale-conversion.json",
+  "log_path": "logs/libjpeg-turbo/progressive-grayscale-conversion.log",
+  "cast_path": "casts/libjpeg-turbo/progressive-grayscale-conversion.cast",
+  "exit_code": 0,
+  "command": [
+    "bash",
+    "/validator/tests/libjpeg-turbo/tests/cases/source/progressive-grayscale-conversion.sh"
+  ],
+  "apt_packages": [
+    "libjpeg-turbo8",
+    "libjpeg-turbo8-dev",
+    "libturbojpeg",
+    "libturbojpeg0-dev",
+    "libjpeg-turbo-progs"
+  ],
+  "override_debs_installed": false
+}

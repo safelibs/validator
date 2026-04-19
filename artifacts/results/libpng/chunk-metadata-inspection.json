@@ -1,0 +1,33 @@
+{
+  "schema_version": 2,
+  "library": "libpng",
+  "mode": "original",
+  "testcase_id": "chunk-metadata-inspection",
+  "title": "PNG chunk metadata inspection",
+  "description": "Reads IHDR metadata from a PNG fixture through libpng APIs.",
+  "kind": "source",
+  "client_application": null,
+  "tags": [
+    "api",
+    "metadata"
+  ],
+  "requires": [],
+  "status": "passed",
+  "started_at": "2026-04-19T20:29:29Z",
+  "finished_at": "2026-04-19T20:29:29Z",
+  "duration_seconds": 0.225,
+  "result_path": "results/libpng/chunk-metadata-inspection.json",
+  "log_path": "logs/libpng/chunk-metadata-inspection.log",
+  "cast_path": "casts/libpng/chunk-metadata-inspection.cast",
+  "exit_code": 0,
+  "command": [
+    "bash",
+    "/validator/tests/libpng/tests/cases/source/chunk-metadata-inspection.sh"
+  ],
+  "apt_packages": [
+    "libpng16-16t64",
+    "libpng-dev",
+    "libpng-tools"
+  ],
+  "override_debs_installed": false
+}

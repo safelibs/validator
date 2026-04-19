@@ -1,0 +1,34 @@
+{
+  "schema_version": 2,
+  "library": "libxml",
+  "mode": "original",
+  "testcase_id": "usage-python3-lxml-parse-xml",
+  "title": "python3-lxml parse xml",
+  "description": "Runs python3-lxml parse xml behavior through libxml2.",
+  "kind": "usage",
+  "client_application": "python3-lxml",
+  "tags": [
+    "usage",
+    "xml"
+  ],
+  "requires": [],
+  "status": "passed",
+  "started_at": "2026-04-19T20:29:59Z",
+  "finished_at": "2026-04-19T20:29:59Z",
+  "duration_seconds": 0.224,
+  "result_path": "results/libxml/usage-python3-lxml-parse-xml.json",
+  "log_path": "logs/libxml/usage-python3-lxml-parse-xml.log",
+  "cast_path": "casts/libxml/usage-python3-lxml-parse-xml.cast",
+  "exit_code": 0,
+  "command": [
+    "bash",
+    "/validator/tests/libxml/tests/cases/usage/usage-python3-lxml-parse-xml.sh"
+  ],
+  "apt_packages": [
+    "libxml2",
+    "libxml2-dev",
+    "libxml2-utils",
+    "python3-libxml2"
+  ],
+  "override_debs_installed": false
+}

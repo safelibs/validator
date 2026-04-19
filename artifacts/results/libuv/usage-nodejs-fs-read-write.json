@@ -1,0 +1,32 @@
+{
+  "schema_version": 2,
+  "library": "libuv",
+  "mode": "original",
+  "testcase_id": "usage-nodejs-fs-read-write",
+  "title": "Node.js fs read write",
+  "description": "Runs Node.js fs read write behavior to exercise libuv.",
+  "kind": "usage",
+  "client_application": "nodejs",
+  "tags": [
+    "usage",
+    "event-loop"
+  ],
+  "requires": [],
+  "status": "passed",
+  "started_at": "2026-04-19T20:29:46Z",
+  "finished_at": "2026-04-19T20:29:47Z",
+  "duration_seconds": 0.255,
+  "result_path": "results/libuv/usage-nodejs-fs-read-write.json",
+  "log_path": "logs/libuv/usage-nodejs-fs-read-write.log",
+  "cast_path": "casts/libuv/usage-nodejs-fs-read-write.cast",
+  "exit_code": 0,
+  "command": [
+    "bash",
+    "/validator/tests/libuv/tests/cases/usage/usage-nodejs-fs-read-write.sh"
+  ],
+  "apt_packages": [
+    "libuv1t64",
+    "libuv1-dev"
+  ],
+  "override_debs_installed": false
+}

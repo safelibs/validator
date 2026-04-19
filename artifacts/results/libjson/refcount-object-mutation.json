@@ -1,0 +1,32 @@
+{
+  "schema_version": 2,
+  "library": "libjson",
+  "mode": "original",
+  "testcase_id": "refcount-object-mutation",
+  "title": "Refcount and object mutation",
+  "description": "Exercises json-c reference counting while mutating object members.",
+  "kind": "source",
+  "client_application": null,
+  "tags": [
+    "api",
+    "refcount"
+  ],
+  "requires": [],
+  "status": "passed",
+  "started_at": "2026-04-19T20:29:22Z",
+  "finished_at": "2026-04-19T20:29:22Z",
+  "duration_seconds": 0.227,
+  "result_path": "results/libjson/refcount-object-mutation.json",
+  "log_path": "logs/libjson/refcount-object-mutation.log",
+  "cast_path": "casts/libjson/refcount-object-mutation.cast",
+  "exit_code": 0,
+  "command": [
+    "bash",
+    "/validator/tests/libjson/tests/cases/source/refcount-object-mutation.sh"
+  ],
+  "apt_packages": [
+    "libjson-c5",
+    "libjson-c-dev"
+  ],
+  "override_debs_installed": false
+}

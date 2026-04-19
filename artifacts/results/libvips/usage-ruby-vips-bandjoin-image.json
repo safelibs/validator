@@ -1,0 +1,35 @@
+{
+  "schema_version": 2,
+  "library": "libvips",
+  "mode": "original",
+  "testcase_id": "usage-ruby-vips-bandjoin-image",
+  "title": "ruby-vips bandjoin image",
+  "description": "Uses ruby-vips to run libvips bandjoin image behavior.",
+  "kind": "usage",
+  "client_application": "ruby-vips",
+  "tags": [
+    "usage",
+    "ruby",
+    "image"
+  ],
+  "requires": [],
+  "status": "passed",
+  "started_at": "2026-04-19T20:29:51Z",
+  "finished_at": "2026-04-19T20:29:51Z",
+  "duration_seconds": 0.252,
+  "result_path": "results/libvips/usage-ruby-vips-bandjoin-image.json",
+  "log_path": "logs/libvips/usage-ruby-vips-bandjoin-image.log",
+  "cast_path": "casts/libvips/usage-ruby-vips-bandjoin-image.cast",
+  "exit_code": 0,
+  "command": [
+    "bash",
+    "/validator/tests/libvips/tests/cases/usage/usage-ruby-vips-bandjoin-image.sh"
+  ],
+  "apt_packages": [
+    "libvips42t64",
+    "libvips-dev",
+    "libvips-tools",
+    "gir1.2-vips-8.0"
+  ],
+  "override_debs_installed": false
+}

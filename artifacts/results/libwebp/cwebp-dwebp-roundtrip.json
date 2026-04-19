@@ -1,0 +1,38 @@
+{
+  "schema_version": 2,
+  "library": "libwebp",
+  "mode": "original",
+  "testcase_id": "cwebp-dwebp-roundtrip",
+  "title": "cwebp dwebp round trip",
+  "description": "Encodes a generated PPM image to WebP and decodes it.",
+  "kind": "source",
+  "client_application": null,
+  "tags": [
+    "cli",
+    "media"
+  ],
+  "requires": [],
+  "status": "passed",
+  "started_at": "2026-04-19T20:29:53Z",
+  "finished_at": "2026-04-19T20:29:53Z",
+  "duration_seconds": 0.229,
+  "result_path": "results/libwebp/cwebp-dwebp-roundtrip.json",
+  "log_path": "logs/libwebp/cwebp-dwebp-roundtrip.log",
+  "cast_path": "casts/libwebp/cwebp-dwebp-roundtrip.cast",
+  "exit_code": 0,
+  "command": [
+    "bash",
+    "/validator/tests/libwebp/tests/cases/source/cwebp-dwebp-roundtrip.sh"
+  ],
+  "apt_packages": [
+    "libwebp7",
+    "libwebpdemux2",
+    "libwebpmux3",
+    "libwebpdecoder3",
+    "libsharpyuv0",
+    "libwebp-dev",
+    "libsharpyuv-dev",
+    "webp"
+  ],
+  "override_debs_installed": false
+}

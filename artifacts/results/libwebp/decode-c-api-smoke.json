@@ -1,0 +1,38 @@
+{
+  "schema_version": 2,
+  "library": "libwebp",
+  "mode": "original",
+  "testcase_id": "decode-c-api-smoke",
+  "title": "libwebp C API decode smoke",
+  "description": "Compiles and runs a WebP decode API program against a fixture.",
+  "kind": "source",
+  "client_application": null,
+  "tags": [
+    "api",
+    "compile"
+  ],
+  "requires": [],
+  "status": "passed",
+  "started_at": "2026-04-19T20:29:53Z",
+  "finished_at": "2026-04-19T20:29:54Z",
+  "duration_seconds": 0.219,
+  "result_path": "results/libwebp/decode-c-api-smoke.json",
+  "log_path": "logs/libwebp/decode-c-api-smoke.log",
+  "cast_path": "casts/libwebp/decode-c-api-smoke.cast",
+  "exit_code": 0,
+  "command": [
+    "bash",
+    "/validator/tests/libwebp/tests/cases/source/decode-c-api-smoke.sh"
+  ],
+  "apt_packages": [
+    "libwebp7",
+    "libwebpdemux2",
+    "libwebpmux3",
+    "libwebpdecoder3",
+    "libsharpyuv0",
+    "libwebp-dev",
+    "libsharpyuv-dev",
+    "webp"
+  ],
+  "override_debs_installed": false
+}

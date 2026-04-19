@@ -76,14 +76,6 @@ def repository_entry(
     return entry
 
 
-def host_harness_repository_entry(
-    name: str,
-    *,
-    apt_packages: list[str] | None = None,
-) -> dict[str, Any]:
-    return repository_entry(name, apt_packages=apt_packages)
-
-
 def write_manifest(
     path: Path,
     repositories: list[dict[str, Any]] | None = None,

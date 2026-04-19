@@ -1,0 +1,34 @@
+{
+  "schema_version": 2,
+  "library": "liblzma",
+  "mode": "original",
+  "testcase_id": "usage-libarchive-tools-xz-copy-mode",
+  "title": "libarchive-tools xz copy mode",
+  "description": "Runs bsdtar copy mode on a xz-compressed archive through liblzma.",
+  "kind": "usage",
+  "client_application": "libarchive-tools",
+  "tags": [
+    "usage",
+    "archive",
+    "compression"
+  ],
+  "requires": [],
+  "status": "passed",
+  "started_at": "2026-04-19T20:29:28Z",
+  "finished_at": "2026-04-19T20:29:28Z",
+  "duration_seconds": 0.234,
+  "result_path": "results/liblzma/usage-libarchive-tools-xz-copy-mode.json",
+  "log_path": "logs/liblzma/usage-libarchive-tools-xz-copy-mode.log",
+  "cast_path": "casts/liblzma/usage-libarchive-tools-xz-copy-mode.cast",
+  "exit_code": 0,
+  "command": [
+    "bash",
+    "/validator/tests/liblzma/tests/cases/usage/usage-libarchive-tools-xz-copy-mode.sh"
+  ],
+  "apt_packages": [
+    "liblzma5",
+    "liblzma-dev",
+    "xz-utils"
+  ],
+  "override_debs_installed": false
+}

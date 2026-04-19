@@ -1,0 +1,33 @@
+{
+  "schema_version": 2,
+  "library": "libyaml",
+  "mode": "original",
+  "testcase_id": "usage-python3-yaml-csafe-loader",
+  "title": "PyYAML csafe loader",
+  "description": "Runs PyYAML csafe loader behavior through libyaml.",
+  "kind": "usage",
+  "client_application": "python3-yaml",
+  "tags": [
+    "usage",
+    "yaml",
+    "python"
+  ],
+  "requires": [],
+  "status": "passed",
+  "started_at": "2026-04-19T20:30:03Z",
+  "finished_at": "2026-04-19T20:30:03Z",
+  "duration_seconds": 0.228,
+  "result_path": "results/libyaml/usage-python3-yaml-csafe-loader.json",
+  "log_path": "logs/libyaml/usage-python3-yaml-csafe-loader.log",
+  "cast_path": "casts/libyaml/usage-python3-yaml-csafe-loader.cast",
+  "exit_code": 0,
+  "command": [
+    "bash",
+    "/validator/tests/libyaml/tests/cases/usage/usage-python3-yaml-csafe-loader.sh"
+  ],
+  "apt_packages": [
+    "libyaml-0-2",
+    "libyaml-dev"
+  ],
+  "override_debs_installed": false
+}

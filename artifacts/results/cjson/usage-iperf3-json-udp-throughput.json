@@ -1,0 +1,32 @@
+{
+  "schema_version": 2,
+  "library": "cjson",
+  "mode": "original",
+  "testcase_id": "usage-iperf3-json-udp-throughput",
+  "title": "iperf3 UDP JSON throughput",
+  "description": "Runs an iperf3 loopback UDP test with JSON output and verifies UDP summary fields.",
+  "kind": "usage",
+  "client_application": "iperf3",
+  "tags": [
+    "usage",
+    "json"
+  ],
+  "requires": [],
+  "status": "passed",
+  "started_at": "2026-04-19T20:28:46Z",
+  "finished_at": "2026-04-19T20:28:47Z",
+  "duration_seconds": 1.414,
+  "result_path": "results/cjson/usage-iperf3-json-udp-throughput.json",
+  "log_path": "logs/cjson/usage-iperf3-json-udp-throughput.log",
+  "cast_path": "casts/cjson/usage-iperf3-json-udp-throughput.cast",
+  "exit_code": 0,
+  "command": [
+    "bash",
+    "/validator/tests/cjson/tests/cases/usage/usage-iperf3-json-udp-throughput.sh"
+  ],
+  "apt_packages": [
+    "libcjson1",
+    "libcjson-dev"
+  ],
+  "override_debs_installed": false
+}

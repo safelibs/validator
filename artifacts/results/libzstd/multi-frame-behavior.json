@@ -1,0 +1,33 @@
+{
+  "schema_version": 2,
+  "library": "libzstd",
+  "mode": "original",
+  "testcase_id": "multi-frame-behavior",
+  "title": "zstd multi frame behavior",
+  "description": "Concatenates independent zstd frames and verifies continuous decompression.",
+  "kind": "source",
+  "client_application": null,
+  "tags": [
+    "cli",
+    "stream"
+  ],
+  "requires": [],
+  "status": "passed",
+  "started_at": "2026-04-19T20:30:05Z",
+  "finished_at": "2026-04-19T20:30:05Z",
+  "duration_seconds": 0.227,
+  "result_path": "results/libzstd/multi-frame-behavior.json",
+  "log_path": "logs/libzstd/multi-frame-behavior.log",
+  "cast_path": "casts/libzstd/multi-frame-behavior.cast",
+  "exit_code": 0,
+  "command": [
+    "bash",
+    "/validator/tests/libzstd/tests/cases/source/multi-frame-behavior.sh"
+  ],
+  "apt_packages": [
+    "libzstd1",
+    "libzstd-dev",
+    "zstd"
+  ],
+  "override_debs_installed": false
+}

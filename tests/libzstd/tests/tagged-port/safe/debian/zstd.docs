@@ -1,3 +1,0 @@
-# Preserve the upstream top-level docs copied into the safe-staged source tree.
-CHANGELOG
-*.md

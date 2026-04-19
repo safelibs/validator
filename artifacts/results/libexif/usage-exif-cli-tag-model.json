@@ -1,0 +1,32 @@
+{
+  "schema_version": 2,
+  "library": "libexif",
+  "mode": "original",
+  "testcase_id": "usage-exif-cli-tag-model",
+  "title": "exif CLI model tag",
+  "description": "Runs the exif CLI to read the camera Model tag from a JPEG fixture.",
+  "kind": "usage",
+  "client_application": "exif",
+  "tags": [
+    "usage",
+    "metadata"
+  ],
+  "requires": [],
+  "status": "passed",
+  "started_at": "2026-04-19T20:29:16Z",
+  "finished_at": "2026-04-19T20:29:16Z",
+  "duration_seconds": 0.194,
+  "result_path": "results/libexif/usage-exif-cli-tag-model.json",
+  "log_path": "logs/libexif/usage-exif-cli-tag-model.log",
+  "cast_path": "casts/libexif/usage-exif-cli-tag-model.cast",
+  "exit_code": 0,
+  "command": [
+    "bash",
+    "/validator/tests/libexif/tests/cases/usage/usage-exif-cli-tag-model.sh"
+  ],
+  "apt_packages": [
+    "libexif12",
+    "libexif-dev"
+  ],
+  "override_debs_installed": false
+}

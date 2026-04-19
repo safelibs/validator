@@ -1,0 +1,34 @@
+{
+  "schema_version": 2,
+  "library": "libsdl",
+  "mode": "original",
+  "testcase_id": "usage-python3-pygame-draw-rect",
+  "title": "Pygame draw rect",
+  "description": "Uses Pygame to run SDL draw rect behavior.",
+  "kind": "usage",
+  "client_application": "python3-pygame",
+  "tags": [
+    "usage",
+    "headless",
+    "python"
+  ],
+  "requires": [],
+  "status": "passed",
+  "started_at": "2026-04-19T20:29:36Z",
+  "finished_at": "2026-04-19T20:29:36Z",
+  "duration_seconds": 0.427,
+  "result_path": "results/libsdl/usage-python3-pygame-draw-rect.json",
+  "log_path": "logs/libsdl/usage-python3-pygame-draw-rect.log",
+  "cast_path": "casts/libsdl/usage-python3-pygame-draw-rect.cast",
+  "exit_code": 0,
+  "command": [
+    "bash",
+    "/validator/tests/libsdl/tests/cases/usage/usage-python3-pygame-draw-rect.sh"
+  ],
+  "apt_packages": [
+    "libsdl2-2.0-0",
+    "libsdl2-dev",
+    "libsdl2-tests"
+  ],
+  "override_debs_installed": false
+}

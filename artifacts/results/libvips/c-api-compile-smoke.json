@@ -1,0 +1,34 @@
+{
+  "schema_version": 2,
+  "library": "libvips",
+  "mode": "original",
+  "testcase_id": "c-api-compile-smoke",
+  "title": "libvips C API compile smoke",
+  "description": "Compiles a libvips program that creates and writes an image.",
+  "kind": "source",
+  "client_application": null,
+  "tags": [
+    "api",
+    "compile"
+  ],
+  "requires": [],
+  "status": "passed",
+  "started_at": "2026-04-19T20:29:49Z",
+  "finished_at": "2026-04-19T20:29:50Z",
+  "duration_seconds": 0.415,
+  "result_path": "results/libvips/c-api-compile-smoke.json",
+  "log_path": "logs/libvips/c-api-compile-smoke.log",
+  "cast_path": "casts/libvips/c-api-compile-smoke.cast",
+  "exit_code": 0,
+  "command": [
+    "bash",
+    "/validator/tests/libvips/tests/cases/source/c-api-compile-smoke.sh"
+  ],
+  "apt_packages": [
+    "libvips42t64",
+    "libvips-dev",
+    "libvips-tools",
+    "gir1.2-vips-8.0"
+  ],
+  "override_debs_installed": false
+}

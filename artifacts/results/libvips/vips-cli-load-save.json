@@ -1,0 +1,34 @@
+{
+  "schema_version": 2,
+  "library": "libvips",
+  "mode": "original",
+  "testcase_id": "vips-cli-load-save",
+  "title": "vips CLI load save",
+  "description": "Loads a sample image with vips and saves it to PNG.",
+  "kind": "source",
+  "client_application": null,
+  "tags": [
+    "cli",
+    "media"
+  ],
+  "requires": [],
+  "status": "passed",
+  "started_at": "2026-04-19T20:29:49Z",
+  "finished_at": "2026-04-19T20:29:49Z",
+  "duration_seconds": 0.25,
+  "result_path": "results/libvips/vips-cli-load-save.json",
+  "log_path": "logs/libvips/vips-cli-load-save.log",
+  "cast_path": "casts/libvips/vips-cli-load-save.cast",
+  "exit_code": 0,
+  "command": [
+    "bash",
+    "/validator/tests/libvips/tests/cases/source/vips-cli-load-save.sh"
+  ],
+  "apt_packages": [
+    "libvips42t64",
+    "libvips-dev",
+    "libvips-tools",
+    "gir1.2-vips-8.0"
+  ],
+  "override_debs_installed": false
+}

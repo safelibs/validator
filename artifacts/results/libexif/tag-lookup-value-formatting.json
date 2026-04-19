@@ -1,0 +1,32 @@
+{
+  "schema_version": 2,
+  "library": "libexif",
+  "mode": "original",
+  "testcase_id": "tag-lookup-value-formatting",
+  "title": "Tag lookup and value formatting",
+  "description": "Looks up EXIF tag names and formats initialized entry values.",
+  "kind": "source",
+  "client_application": null,
+  "tags": [
+    "api",
+    "format"
+  ],
+  "requires": [],
+  "status": "passed",
+  "started_at": "2026-04-19T20:29:15Z",
+  "finished_at": "2026-04-19T20:29:15Z",
+  "duration_seconds": 0.223,
+  "result_path": "results/libexif/tag-lookup-value-formatting.json",
+  "log_path": "logs/libexif/tag-lookup-value-formatting.log",
+  "cast_path": "casts/libexif/tag-lookup-value-formatting.cast",
+  "exit_code": 0,
+  "command": [
+    "bash",
+    "/validator/tests/libexif/tests/cases/source/tag-lookup-value-formatting.sh"
+  ],
+  "apt_packages": [
+    "libexif12",
+    "libexif-dev"
+  ],
+  "override_debs_installed": false
+}

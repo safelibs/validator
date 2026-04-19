@@ -1,0 +1,33 @@
+{
+  "schema_version": 2,
+  "library": "libjson",
+  "mode": "original",
+  "testcase_id": "usage-ttyd-loopback-index",
+  "title": "ttyd loopback web session",
+  "description": "Starts ttyd on loopback and requests its web page to exercise json-c through a service-style client.",
+  "kind": "usage",
+  "client_application": "ttyd",
+  "tags": [
+    "usage",
+    "service",
+    "json"
+  ],
+  "requires": [],
+  "status": "passed",
+  "started_at": "2026-04-19T20:29:23Z",
+  "finished_at": "2026-04-19T20:29:23Z",
+  "duration_seconds": 0.249,
+  "result_path": "results/libjson/usage-ttyd-loopback-index.json",
+  "log_path": "logs/libjson/usage-ttyd-loopback-index.log",
+  "cast_path": "casts/libjson/usage-ttyd-loopback-index.cast",
+  "exit_code": 0,
+  "command": [
+    "bash",
+    "/validator/tests/libjson/tests/cases/usage/usage-ttyd-loopback-index.sh"
+  ],
+  "apt_packages": [
+    "libjson-c5",
+    "libjson-c-dev"
+  ],
+  "override_debs_installed": false
+}

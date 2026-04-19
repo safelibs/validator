@@ -1,0 +1,34 @@
+{
+  "schema_version": 2,
+  "library": "libtiff",
+  "mode": "original",
+  "testcase_id": "tiffdump-structure",
+  "title": "tiffdump structure inspection",
+  "description": "Runs tiffdump and checks expected TIFF structural tags are present.",
+  "kind": "source",
+  "client_application": null,
+  "tags": [
+    "cli",
+    "metadata"
+  ],
+  "requires": [],
+  "status": "passed",
+  "started_at": "2026-04-19T20:29:42Z",
+  "finished_at": "2026-04-19T20:29:42Z",
+  "duration_seconds": 0.202,
+  "result_path": "results/libtiff/tiffdump-structure.json",
+  "log_path": "logs/libtiff/tiffdump-structure.log",
+  "cast_path": "casts/libtiff/tiffdump-structure.cast",
+  "exit_code": 0,
+  "command": [
+    "bash",
+    "/validator/tests/libtiff/tests/cases/source/tiffdump-structure.sh"
+  ],
+  "apt_packages": [
+    "libtiff6",
+    "libtiffxx6",
+    "libtiff-dev",
+    "libtiff-tools"
+  ],
+  "override_debs_installed": false
+}

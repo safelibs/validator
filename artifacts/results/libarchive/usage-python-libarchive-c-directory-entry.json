@@ -1,0 +1,33 @@
+{
+  "schema_version": 2,
+  "library": "libarchive",
+  "mode": "original",
+  "testcase_id": "usage-python-libarchive-c-directory-entry",
+  "title": "python-libarchive-c directory entry",
+  "description": "Uses python-libarchive-c to handle directory entries through libarchive.",
+  "kind": "usage",
+  "client_application": "python3-libarchive-c",
+  "tags": [
+    "usage",
+    "archive"
+  ],
+  "requires": [],
+  "status": "passed",
+  "started_at": "2026-04-19T20:29:07Z",
+  "finished_at": "2026-04-19T20:29:07Z",
+  "duration_seconds": 0.243,
+  "result_path": "results/libarchive/usage-python-libarchive-c-directory-entry.json",
+  "log_path": "logs/libarchive/usage-python-libarchive-c-directory-entry.log",
+  "cast_path": "casts/libarchive/usage-python-libarchive-c-directory-entry.cast",
+  "exit_code": 0,
+  "command": [
+    "bash",
+    "/validator/tests/libarchive/tests/cases/usage/usage-python-libarchive-c-directory-entry.sh"
+  ],
+  "apt_packages": [
+    "libarchive13t64",
+    "libarchive-dev",
+    "libarchive-tools"
+  ],
+  "override_debs_installed": false
+}

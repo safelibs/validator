@@ -1,0 +1,35 @@
+{
+  "schema_version": 2,
+  "library": "libjpeg-turbo",
+  "mode": "original",
+  "testcase_id": "malformed-jpeg-handling",
+  "title": "Malformed JPEG input handling",
+  "description": "Requires djpeg to return failure for non-JPEG input bytes.",
+  "kind": "source",
+  "client_application": null,
+  "tags": [
+    "cli",
+    "negative"
+  ],
+  "requires": [],
+  "status": "passed",
+  "started_at": "2026-04-19T20:29:18Z",
+  "finished_at": "2026-04-19T20:29:18Z",
+  "duration_seconds": 0.197,
+  "result_path": "results/libjpeg-turbo/malformed-jpeg-handling.json",
+  "log_path": "logs/libjpeg-turbo/malformed-jpeg-handling.log",
+  "cast_path": "casts/libjpeg-turbo/malformed-jpeg-handling.cast",
+  "exit_code": 0,
+  "command": [
+    "bash",
+    "/validator/tests/libjpeg-turbo/tests/cases/source/malformed-jpeg-handling.sh"
+  ],
+  "apt_packages": [
+    "libjpeg-turbo8",
+    "libjpeg-turbo8-dev",
+    "libturbojpeg",
+    "libturbojpeg0-dev",
+    "libjpeg-turbo-progs"
+  ],
+  "override_debs_installed": false
+}

@@ -1,0 +1,38 @@
+{
+  "schema_version": 2,
+  "library": "libwebp",
+  "mode": "original",
+  "testcase_id": "webpinfo-inspection",
+  "title": "webpinfo inspection",
+  "description": "Inspects a checked-in WebP example through the webpinfo tool.",
+  "kind": "source",
+  "client_application": null,
+  "tags": [
+    "cli",
+    "metadata"
+  ],
+  "requires": [],
+  "status": "passed",
+  "started_at": "2026-04-19T20:29:53Z",
+  "finished_at": "2026-04-19T20:29:53Z",
+  "duration_seconds": 0.198,
+  "result_path": "results/libwebp/webpinfo-inspection.json",
+  "log_path": "logs/libwebp/webpinfo-inspection.log",
+  "cast_path": "casts/libwebp/webpinfo-inspection.cast",
+  "exit_code": 0,
+  "command": [
+    "bash",
+    "/validator/tests/libwebp/tests/cases/source/webpinfo-inspection.sh"
+  ],
+  "apt_packages": [
+    "libwebp7",
+    "libwebpdemux2",
+    "libwebpmux3",
+    "libwebpdecoder3",
+    "libsharpyuv0",
+    "libwebp-dev",
+    "libsharpyuv-dev",
+    "webp"
+  ],
+  "override_debs_installed": false
+}

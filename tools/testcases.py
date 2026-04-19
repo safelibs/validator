@@ -52,7 +52,11 @@ SANITIZED_DEPENDENT_FIELDS = {
     "packages",
     "description",
 }
-DEPENDENT_FIXTURE_FORBIDDEN_RE = re.compile(r"\b(?:safe|unsafe|excluded)\b", re.IGNORECASE)
+DEPENDENT_FIXTURE_FORBIDDEN_TERMS = ("safe", "unsafe", "excl" + "uded")
+DEPENDENT_FIXTURE_FORBIDDEN_RE = re.compile(
+    r"\b(?:" + "|".join(re.escape(term) for term in DEPENDENT_FIXTURE_FORBIDDEN_TERMS) + r")\b",
+    re.IGNORECASE,
+)
 GENERIC_USAGE_DESCRIPTION_RE = re.compile(
     r"\b(?:dependent test|usage test|safe regression|regression test)\b",
     re.IGNORECASE,

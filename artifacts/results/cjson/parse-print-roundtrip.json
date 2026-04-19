@@ -1,0 +1,32 @@
+{
+  "schema_version": 2,
+  "library": "cjson",
+  "mode": "original",
+  "testcase_id": "parse-print-roundtrip",
+  "title": "Parse and print JSON round trip",
+  "description": "Parses and prints representative JSON while preserving expected structure.",
+  "kind": "source",
+  "client_application": null,
+  "tags": [
+    "api",
+    "roundtrip"
+  ],
+  "requires": [],
+  "status": "passed",
+  "started_at": "2026-04-19T20:28:41Z",
+  "finished_at": "2026-04-19T20:28:42Z",
+  "duration_seconds": 0.266,
+  "result_path": "results/cjson/parse-print-roundtrip.json",
+  "log_path": "logs/cjson/parse-print-roundtrip.log",
+  "cast_path": "casts/cjson/parse-print-roundtrip.cast",
+  "exit_code": 0,
+  "command": [
+    "bash",
+    "/validator/tests/cjson/tests/cases/source/parse-print-roundtrip.sh"
+  ],
+  "apt_packages": [
+    "libcjson1",
+    "libcjson-dev"
+  ],
+  "override_debs_installed": false
+}

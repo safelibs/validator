@@ -1,0 +1,33 @@
+{
+  "schema_version": 2,
+  "library": "libarchive",
+  "mode": "original",
+  "testcase_id": "usage-python-libarchive-c-file-roundtrip",
+  "title": "python-libarchive-c file roundtrip",
+  "description": "Uses python-libarchive-c to write and read multiple files through libarchive.",
+  "kind": "usage",
+  "client_application": "python3-libarchive-c",
+  "tags": [
+    "usage",
+    "archive"
+  ],
+  "requires": [],
+  "status": "passed",
+  "started_at": "2026-04-19T20:29:06Z",
+  "finished_at": "2026-04-19T20:29:07Z",
+  "duration_seconds": 0.236,
+  "result_path": "results/libarchive/usage-python-libarchive-c-file-roundtrip.json",
+  "log_path": "logs/libarchive/usage-python-libarchive-c-file-roundtrip.log",
+  "cast_path": "casts/libarchive/usage-python-libarchive-c-file-roundtrip.cast",
+  "exit_code": 0,
+  "command": [
+    "bash",
+    "/validator/tests/libarchive/tests/cases/usage/usage-python-libarchive-c-file-roundtrip.sh"
+  ],
+  "apt_packages": [
+    "libarchive13t64",
+    "libarchive-dev",
+    "libarchive-tools"
+  ],
+  "override_debs_installed": false
+}

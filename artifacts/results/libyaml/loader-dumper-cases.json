@@ -1,0 +1,32 @@
+{
+  "schema_version": 2,
+  "library": "libyaml",
+  "mode": "original",
+  "testcase_id": "loader-dumper-cases",
+  "title": "YAML loader dumper cases",
+  "description": "Loads multiple YAML documents and counts them through libyaml.",
+  "kind": "source",
+  "client_application": null,
+  "tags": [
+    "api",
+    "parser"
+  ],
+  "requires": [],
+  "status": "passed",
+  "started_at": "2026-04-19T20:30:01Z",
+  "finished_at": "2026-04-19T20:30:01Z",
+  "duration_seconds": 0.242,
+  "result_path": "results/libyaml/loader-dumper-cases.json",
+  "log_path": "logs/libyaml/loader-dumper-cases.log",
+  "cast_path": "casts/libyaml/loader-dumper-cases.cast",
+  "exit_code": 0,
+  "command": [
+    "bash",
+    "/validator/tests/libyaml/tests/cases/source/loader-dumper-cases.sh"
+  ],
+  "apt_packages": [
+    "libyaml-0-2",
+    "libyaml-dev"
+  ],
+  "override_debs_installed": false
+}

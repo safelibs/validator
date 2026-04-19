@@ -1,7 +1,0 @@
-# Development headers and the libjpeg static/imported link surfaces.
-usr/include/jpegint.h
-usr/include/j*.h
-usr/include/*/*.h
-usr/lib/*/libjpeg.a
-usr/lib/*/libjpeg.so
-usr/lib/*/pkgconfig/libjpeg.pc

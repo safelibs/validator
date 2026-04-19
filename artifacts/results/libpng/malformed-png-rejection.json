@@ -1,0 +1,33 @@
+{
+  "schema_version": 2,
+  "library": "libpng",
+  "mode": "original",
+  "testcase_id": "malformed-png-rejection",
+  "title": "Malformed PNG rejection",
+  "description": "Requires pngfix to reject bytes that are not a valid PNG file.",
+  "kind": "source",
+  "client_application": null,
+  "tags": [
+    "cli",
+    "negative"
+  ],
+  "requires": [],
+  "status": "passed",
+  "started_at": "2026-04-19T20:29:29Z",
+  "finished_at": "2026-04-19T20:29:30Z",
+  "duration_seconds": 0.197,
+  "result_path": "results/libpng/malformed-png-rejection.json",
+  "log_path": "logs/libpng/malformed-png-rejection.log",
+  "cast_path": "casts/libpng/malformed-png-rejection.cast",
+  "exit_code": 0,
+  "command": [
+    "bash",
+    "/validator/tests/libpng/tests/cases/source/malformed-png-rejection.sh"
+  ],
+  "apt_packages": [
+    "libpng16-16t64",
+    "libpng-dev",
+    "libpng-tools"
+  ],
+  "override_debs_installed": false
+}

@@ -1,0 +1,34 @@
+{
+  "schema_version": 2,
+  "library": "giflib",
+  "mode": "original",
+  "testcase_id": "usage-giflib-tools-giffix-copy",
+  "title": "giflib-tools giffix copy",
+  "description": "Runs giflib-tools giffix copy on a GIF fixture and checks image metadata.",
+  "kind": "usage",
+  "client_application": "giflib-tools",
+  "tags": [
+    "usage",
+    "cli",
+    "image"
+  ],
+  "requires": [],
+  "status": "passed",
+  "started_at": "2026-04-19T20:28:59Z",
+  "finished_at": "2026-04-19T20:29:00Z",
+  "duration_seconds": 0.883,
+  "result_path": "results/giflib/usage-giflib-tools-giffix-copy.json",
+  "log_path": "logs/giflib/usage-giflib-tools-giffix-copy.log",
+  "cast_path": "casts/giflib/usage-giflib-tools-giffix-copy.cast",
+  "exit_code": 0,
+  "command": [
+    "bash",
+    "/validator/tests/giflib/tests/cases/usage/usage-giflib-tools-giffix-copy.sh"
+  ],
+  "apt_packages": [
+    "libgif7",
+    "libgif-dev",
+    "giflib-tools"
+  ],
+  "override_debs_installed": false
+}

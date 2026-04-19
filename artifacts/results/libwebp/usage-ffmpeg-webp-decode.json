@@ -1,0 +1,38 @@
+{
+  "schema_version": 2,
+  "library": "libwebp",
+  "mode": "original",
+  "testcase_id": "usage-ffmpeg-webp-decode",
+  "title": "ffmpeg webp decode",
+  "description": "Decodes a WebP fixture to PNG with FFmpeg through libwebp.",
+  "kind": "usage",
+  "client_application": "ffmpeg",
+  "tags": [
+    "usage",
+    "image"
+  ],
+  "requires": [],
+  "status": "passed",
+  "started_at": "2026-04-19T20:29:55Z",
+  "finished_at": "2026-04-19T20:29:55Z",
+  "duration_seconds": 0.249,
+  "result_path": "results/libwebp/usage-ffmpeg-webp-decode.json",
+  "log_path": "logs/libwebp/usage-ffmpeg-webp-decode.log",
+  "cast_path": "casts/libwebp/usage-ffmpeg-webp-decode.cast",
+  "exit_code": 0,
+  "command": [
+    "bash",
+    "/validator/tests/libwebp/tests/cases/usage/usage-ffmpeg-webp-decode.sh"
+  ],
+  "apt_packages": [
+    "libwebp7",
+    "libwebpdemux2",
+    "libwebpmux3",
+    "libwebpdecoder3",
+    "libsharpyuv0",
+    "libwebp-dev",
+    "libsharpyuv-dev",
+    "webp"
+  ],
+  "override_debs_installed": false
+}

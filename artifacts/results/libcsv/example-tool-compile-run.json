@@ -1,0 +1,32 @@
+{
+  "schema_version": 2,
+  "library": "libcsv",
+  "mode": "original",
+  "testcase_id": "example-tool-compile-run",
+  "title": "Example tool compile and run",
+  "description": "Builds an upstream example tool and runs it against a fixture CSV.",
+  "kind": "source",
+  "client_application": null,
+  "tags": [
+    "api",
+    "example"
+  ],
+  "requires": [],
+  "status": "passed",
+  "started_at": "2026-04-19T20:29:11Z",
+  "finished_at": "2026-04-19T20:29:12Z",
+  "duration_seconds": 0.226,
+  "result_path": "results/libcsv/example-tool-compile-run.json",
+  "log_path": "logs/libcsv/example-tool-compile-run.log",
+  "cast_path": "casts/libcsv/example-tool-compile-run.cast",
+  "exit_code": 0,
+  "command": [
+    "bash",
+    "/validator/tests/libcsv/tests/cases/source/example-tool-compile-run.sh"
+  ],
+  "apt_packages": [
+    "libcsv3",
+    "libcsv-dev"
+  ],
+  "override_debs_installed": false
+}

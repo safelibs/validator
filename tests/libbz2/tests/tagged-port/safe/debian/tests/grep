@@ -1,6 +1,0 @@
-#!/bin/sh
-set -C -e -f -u
-cd "$AUTOPKGTEST_TMP"
-echo Hello > hello
-bzip2 -c hello > hello.bz2
-bzgrep ell hello.bz2

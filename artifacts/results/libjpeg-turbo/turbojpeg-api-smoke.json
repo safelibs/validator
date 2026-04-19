@@ -1,0 +1,35 @@
+{
+  "schema_version": 2,
+  "library": "libjpeg-turbo",
+  "mode": "original",
+  "testcase_id": "turbojpeg-api-smoke",
+  "title": "TurboJPEG API compile smoke",
+  "description": "Compiles and runs a TurboJPEG compression API smoke program.",
+  "kind": "source",
+  "client_application": null,
+  "tags": [
+    "api",
+    "compile"
+  ],
+  "requires": [],
+  "status": "passed",
+  "started_at": "2026-04-19T20:29:18Z",
+  "finished_at": "2026-04-19T20:29:18Z",
+  "duration_seconds": 0.215,
+  "result_path": "results/libjpeg-turbo/turbojpeg-api-smoke.json",
+  "log_path": "logs/libjpeg-turbo/turbojpeg-api-smoke.log",
+  "cast_path": "casts/libjpeg-turbo/turbojpeg-api-smoke.cast",
+  "exit_code": 0,
+  "command": [
+    "bash",
+    "/validator/tests/libjpeg-turbo/tests/cases/source/turbojpeg-api-smoke.sh"
+  ],
+  "apt_packages": [
+    "libjpeg-turbo8",
+    "libjpeg-turbo8-dev",
+    "libturbojpeg",
+    "libturbojpeg0-dev",
+    "libjpeg-turbo-progs"
+  ],
+  "override_debs_installed": false
+}

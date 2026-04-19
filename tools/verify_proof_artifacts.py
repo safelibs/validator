@@ -48,9 +48,16 @@ def _validate_proof_output_path(raw_path: str, *, artifact_root: Path) -> Path:
         raise ValidatorError("--proof-output must not contain empty, '.', or '..' path segments")
 
     artifact_root_resolved = artifact_root.resolve(strict=False)
-    proof_output_resolved = proof_output.resolve(strict=False) if proof_output.is_absolute() else (
-        artifact_root / proof_output
-    ).resolve(strict=False)
+    if proof_output.is_absolute():
+        proof_output_resolved = proof_output.resolve(strict=False)
+    else:
+        cwd_relative_output = proof_output.resolve(strict=False)
+        try:
+            cwd_relative_output.relative_to(artifact_root_resolved)
+        except ValueError:
+            proof_output_resolved = (artifact_root / proof_output).resolve(strict=False)
+        else:
+            proof_output_resolved = cwd_relative_output
     try:
         proof_output_resolved.relative_to(artifact_root_resolved)
     except ValueError as exc:
