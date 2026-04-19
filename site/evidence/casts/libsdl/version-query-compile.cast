@@ -1,3 +1,2 @@
-{"version": 2, "width": 120, "height": 40, "timestamp": 1776639058, "env": {"TERM": "xterm-256color", "SHELL": "/bin/bash"}}
-[0.132922, "o", "no override packages found; continuing with apt originals\r\r\n"]
-[0.314365, "o", "SDL 2.30.0 platform=Linux\r\r\n"]
+{"version": 2, "width": 120, "height": 40, "timestamp": 0, "env": {"TERM": "xterm-256color", "SHELL": "/bin/bash"}}
+[0.0, "o", "no override packages found; continuing with apt originals\r\r\nSDL 2.30.0 platform=Linux\r\r\n"]

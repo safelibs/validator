@@ -1,3 +1,2 @@
-{"version": 2, "width": 120, "height": 40, "timestamp": 1776639048, "env": {"TERM": "xterm-256color", "SHELL": "/bin/bash"}}
-[0.10733, "o", "no override packages found; continuing with apt originals\r\r\n"]
-[0.136341, "o", "held=first object={ \"child\": \"second\" }\r\r\n"]
+{"version": 2, "width": 120, "height": 40, "timestamp": 0, "env": {"TERM": "xterm-256color", "SHELL": "/bin/bash"}}
+[0.0, "o", "no override packages found; continuing with apt originals\r\r\nheld=first object={ \"child\": \"second\" }\r\r\n"]

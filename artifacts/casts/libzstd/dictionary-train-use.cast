@@ -1,6 +1,2 @@
-{"version": 2, "width": 120, "height": 40, "timestamp": 1776639090, "env": {"TERM": "xterm-256color", "SHELL": "/bin/bash"}}
-[0.117129, "o", "no override packages found; continuing with apt originals\r\r\n"]
-[0.21498, "o", "Loading /tmp/tmp.siver2SwKI/samples/s23...       \r"]
-[0.21612, "o", "\r                                                                               \rTrying 5 different sets of parameters\r\r\n"]
-[0.222625, "o", "FASTCOVER parameters incorrect\r\r\nFASTCOVER parameters incorrect\r\r\n\r                                                                               \rk=1024\r\r\nd=8\r\r\nf=20\r\r\nsteps=4\r\r\nsplit=75\r\r\naccel=1\r\r\nSave dictionary of size 1024 into file /tmp/tmp.siver2SwKI/dict \r\r\n"]
-[0.226382, "o", "-rw-r--r-- 1 root root 1024 Apr 19 22:51 /tmp/tmp.siver2SwKI/dict\r\r\n-rw-r--r-- 1 root root   36 Apr 19 22:51 /tmp/tmp.siver2SwKI/msg.zst\r\r\n"]
+{"version": 2, "width": 120, "height": 40, "timestamp": 0, "env": {"TERM": "xterm-256color", "SHELL": "/bin/bash"}}
+[0.0, "o", "no override packages found; continuing with apt originals\r\r\nLoading /tmp/validator-tmp/samples/s23...       \r\r                                                                               \rTrying 5 different sets of parameters\r\r\nFASTCOVER parameters incorrect\r\r\nFASTCOVER parameters incorrect\r\r\n\r                                                                               \rk=1024\r\r\nd=8\r\r\nf=20\r\r\nsteps=4\r\r\nsplit=75\r\r\naccel=1\r\r\nSave dictionary of size 1024 into file /tmp/validator-tmp/dict \r\r\n-rw-r--r-- 1 root root 1024 Jan 01 00:00 /tmp/validator-tmp/dict\r\r\n-rw-r--r-- 1 root root   36 Jan 01 00:00 /tmp/validator-tmp/msg.zst\r\r\n"]

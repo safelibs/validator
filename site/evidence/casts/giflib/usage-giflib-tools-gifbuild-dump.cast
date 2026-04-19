@@ -1,3 +1,2 @@
-{"version": 2, "width": 120, "height": 40, "timestamp": 1776639029, "env": {"TERM": "xterm-256color", "SHELL": "/bin/bash"}}
-[0.10971, "o", "no override packages found; continuing with apt originals\r\r\n"]
-[0.114411, "o", "screen width 40\r\r\nscreen height 40\r\r\nscreen colors 128\r\r\nscreen background 0\r\r\nscreen map\r\r\n\trgb 046 140 093 is 0\r\r\n\trgb 000 255 255 is 1\r\r\n\trgb 000 157 000 is 2\r\r\n\trgb 081 200 086 is 3\r\r\n\trgb 190 190 190 is 4\r\r\n"]
+{"version": 2, "width": 120, "height": 40, "timestamp": 0, "env": {"TERM": "xterm-256color", "SHELL": "/bin/bash"}}
+[0.0, "o", "no override packages found; continuing with apt originals\r\r\nscreen width 40\r\r\nscreen height 40\r\r\nscreen colors 128\r\r\nscreen background 0\r\r\nscreen map\r\r\n\trgb 046 140 093 is 0\r\r\n\trgb 000 255 255 is 1\r\r\n\trgb 000 157 000 is 2\r\r\n\trgb 081 200 086 is 3\r\r\n\trgb 190 190 190 is 4\r\r\n"]

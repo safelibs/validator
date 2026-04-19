@@ -1,4 +1,2 @@
-{"version": 2, "width": 120, "height": 40, "timestamp": 1776639039, "env": {"TERM": "xterm-256color", "SHELL": "/bin/bash"}}
-[0.117142, "o", "no override packages found; continuing with apt originals\r\r\n"]
-[0.123843, "o", "Converted 2 variables and 2 rows in 0.00 seconds\r\r\n"]
-[0.125126, "o", "Converted 2 variables and 2 rows in 0.00 seconds\r\r\n\"name\",\"score\"\r\r\n\"alpha, one\",42.000000\r\r\n\"beta\",\r\r\n"]
+{"version": 2, "width": 120, "height": 40, "timestamp": 0, "env": {"TERM": "xterm-256color", "SHELL": "/bin/bash"}}
+[0.0, "o", "no override packages found; continuing with apt originals\r\r\nConverted 2 variables and 2 rows in 0.00 seconds\r\r\nConverted 2 variables and 2 rows in 0.00 seconds\r\r\n\"name\",\"score\"\r\r\n\"alpha, one\",42.000000\r\r\n\"beta\",\r\r\n"]

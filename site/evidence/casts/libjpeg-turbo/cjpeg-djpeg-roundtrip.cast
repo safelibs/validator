@@ -1,4 +1,2 @@
-{"version": 2, "width": 120, "height": 40, "timestamp": 1776639044, "env": {"TERM": "xterm-256color", "SHELL": "/bin/bash"}}
-[0.109668, "o", "no override packages found; continuing with apt originals\r\r\n"]
-[0.121869, "o", "P6\r\r\n2 2\r\r\n255\r\r\n"]
-[0.123044, "o", "/tmp/tmp.1xxv9CGseJ/a.jpg: JPEG image data, JFIF standard 1.01, aspect ratio, density 1x1, segment length 16, baseline, precision 8, 2x2, components 3\r\r\n"]
+{"version": 2, "width": 120, "height": 40, "timestamp": 0, "env": {"TERM": "xterm-256color", "SHELL": "/bin/bash"}}
+[0.0, "o", "no override packages found; continuing with apt originals\r\r\nP6\r\r\n2 2\r\r\n255\r\r\n/tmp/validator-tmp/a.jpg: JPEG image data, JFIF standard 1.01, aspect ratio, density 1x1, segment length 16, baseline, precision 8, 2x2, components 3\r\r\n"]

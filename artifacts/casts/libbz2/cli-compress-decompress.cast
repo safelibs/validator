@@ -1,3 +1,2 @@
-{"version": 2, "width": 120, "height": 40, "timestamp": 1776639034, "env": {"TERM": "xterm-256color", "SHELL": "/bin/bash"}}
-[0.116139, "o", "no override packages found; continuing with apt originals\r\r\n"]
-[0.121694, "o", "-rw-r--r-- 1 root root 58 Apr 19 22:50 /tmp/tmp.GzeqX0Qzs8/plain.bz2\r\r\n"]
+{"version": 2, "width": 120, "height": 40, "timestamp": 0, "env": {"TERM": "xterm-256color", "SHELL": "/bin/bash"}}
+[0.0, "o", "no override packages found; continuing with apt originals\r\r\n-rw-r--r-- 1 root root 58 Jan 01 00:00 /tmp/validator-tmp/plain.bz2\r\r\n"]

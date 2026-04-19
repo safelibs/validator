@@ -1,4 +1,2 @@
-{"version": 2, "width": 120, "height": 40, "timestamp": 1776639090, "env": {"TERM": "xterm-256color", "SHELL": "/bin/bash"}}
-[0.114642, "o", "no override packages found; continuing with apt originals\r\r\n"]
-[0.120027, "o", "*** Zstandard CLI (64-bit) v1.5.5, by Yann Collet ***\r\r\n"]
-[0.12008, "o", "/tmp/tmp.UXpOAXKwaa/plain.zst \r\r\n# Zstandard Frames: 1\r\r\nDictID: 0\r\r\nWindow Size: 13 B (13 B)\r\r\nCompressed Size: 26 B (26 B)\r\r\nDecompressed Size: 13 B (13 B)\r\r\nRatio: 0.5000\r\r\nCheck: XXH64 ddbf013d\r\r\n\r\r\n"]
+{"version": 2, "width": 120, "height": 40, "timestamp": 0, "env": {"TERM": "xterm-256color", "SHELL": "/bin/bash"}}
+[0.0, "o", "no override packages found; continuing with apt originals\r\r\n*** Zstandard CLI (64-bit) v1.5.5, by Yann Collet ***\r\r\n/tmp/validator-tmp/plain.zst \r\r\n# Zstandard Frames: 1\r\r\nDictID: 0\r\r\nWindow Size: 13 B (13 B)\r\r\nCompressed Size: 26 B (26 B)\r\r\nDecompressed Size: 13 B (13 B)\r\r\nRatio: 0.5000\r\r\nCheck: XXH64 ddbf013d\r\r\n\r\r\n"]

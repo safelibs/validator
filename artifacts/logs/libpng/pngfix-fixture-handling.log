@@ -1,6 +1,6 @@
-$ docker run --rm -t --mount type=bind,src=/tmp/validator-status-libpng-pngfix-fixture-handling-yq0nmef0,dst=/validator/status validator-libpng-shared-ed1d0b568c54 bash -lc 'set -euo pipefail
+$ docker run --rm -t --mount type=bind,src=/tmp/validator-status-libpng-pngfix-fixture-handling,dst=/validator/status validator-libpng-shared bash -lc 'set -euo pipefail
 /validator/tests/_shared/install_override_debs.sh
 exec /validator/tests/_shared/run_library_tests.sh "$@"' validator-testcase libpng pngfix-fixture-handling -- bash /validator/tests/libpng/tests/cases/source/pngfix-fixture-handling.sh
 no override packages found; continuing with apt originals
 IDAT OK  default 12 12 72 3104 /validator/tests/libpng/tests/tagged-port/original/contrib/pngsuite/basn2c08.png
-/tmp/tmp.IzXZ9qkJKB/fixed.png: PNG image data, 32 x 32, 8-bit/color RGB, non-interlaced
+/tmp/validator-tmp/fixed.png: PNG image data, 32 x 32, 8-bit/color RGB, non-interlaced

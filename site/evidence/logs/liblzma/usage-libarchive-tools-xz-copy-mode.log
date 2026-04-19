@@ -1,4 +1,4 @@
-$ docker run --rm -t --mount type=bind,src=/tmp/validator-status-liblzma-usage-libarchive-tools-xz-copy-mode-wh_gmqlz,dst=/validator/status validator-liblzma-shared-6e232ab203ef bash -lc 'set -euo pipefail
+$ docker run --rm -t --mount type=bind,src=/tmp/validator-status-liblzma-usage-libarchive-tools-xz-copy-mode,dst=/validator/status validator-liblzma-shared bash -lc 'set -euo pipefail
 /validator/tests/_shared/install_override_debs.sh
 exec /validator/tests/_shared/run_library_tests.sh "$@"' validator-testcase liblzma usage-libarchive-tools-xz-copy-mode -- bash /validator/tests/liblzma/tests/cases/usage/usage-libarchive-tools-xz-copy-mode.sh
 no override packages found; continuing with apt originals

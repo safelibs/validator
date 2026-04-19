@@ -1,4 +1,4 @@
-$ docker run --rm -t --mount type=bind,src=/tmp/validator-status-libsdl-usage-python3-pygame-event-queue-81xi288c,dst=/validator/status validator-libsdl-shared-7289afecb6b3 bash -lc 'set -euo pipefail
+$ docker run --rm -t --mount type=bind,src=/tmp/validator-status-libsdl-usage-python3-pygame-event-queue,dst=/validator/status validator-libsdl-shared bash -lc 'set -euo pipefail
 /validator/tests/_shared/install_override_debs.sh
 exec /validator/tests/_shared/run_library_tests.sh "$@"' validator-testcase libsdl usage-python3-pygame-event-queue -- bash /validator/tests/libsdl/tests/cases/usage/usage-python3-pygame-event-queue.sh
 no override packages found; continuing with apt originals

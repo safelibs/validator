@@ -1,3 +1,2 @@
-{"version": 2, "width": 120, "height": 40, "timestamp": 1776639080, "env": {"TERM": "xterm-256color", "SHELL": "/bin/bash"}}
-[0.110905, "o", "no override packages found; continuing with apt originals\r\r\n"]
-[0.164187, "o", "saved /tmp/tmp.TTktzg6NOO/out.webp\r\r\n"]
+{"version": 2, "width": 120, "height": 40, "timestamp": 0, "env": {"TERM": "xterm-256color", "SHELL": "/bin/bash"}}
+[0.0, "o", "no override packages found; continuing with apt originals\r\r\nsaved /tmp/validator-tmp/out.webp\r\r\n"]

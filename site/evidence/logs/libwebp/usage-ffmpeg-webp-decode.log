@@ -1,5 +1,5 @@
-$ docker run --rm -t --mount type=bind,src=/tmp/validator-status-libwebp-usage-ffmpeg-webp-decode-ez40ruyj,dst=/validator/status validator-libwebp-shared-811600ce0373 bash -lc 'set -euo pipefail
+$ docker run --rm -t --mount type=bind,src=/tmp/validator-status-libwebp-usage-ffmpeg-webp-decode,dst=/validator/status validator-libwebp-shared bash -lc 'set -euo pipefail
 /validator/tests/_shared/install_override_debs.sh
 exec /validator/tests/_shared/run_library_tests.sh "$@"' validator-testcase libwebp usage-ffmpeg-webp-decode -- bash /validator/tests/libwebp/tests/cases/usage/usage-ffmpeg-webp-decode.sh
 no override packages found; continuing with apt originals
-/tmp/tmp.36mx7Xc0VS/out.png: PNG image data, 4 x 3, 8-bit/color RGB, non-interlaced
+/tmp/validator-tmp/out.png: PNG image data, 4 x 3, 8-bit/color RGB, non-interlaced

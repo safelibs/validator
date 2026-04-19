@@ -1,4 +1,4 @@
-$ docker run --rm -t --mount type=bind,src=/tmp/validator-status-libzstd-multi-frame-behavior-9uph0y39,dst=/validator/status validator-libzstd-shared-146ed76315e8 bash -lc 'set -euo pipefail
+$ docker run --rm -t --mount type=bind,src=/tmp/validator-status-libzstd-multi-frame-behavior,dst=/validator/status validator-libzstd-shared bash -lc 'set -euo pipefail
 /validator/tests/_shared/install_override_debs.sh
 exec /validator/tests/_shared/run_library_tests.sh "$@"' validator-testcase libzstd multi-frame-behavior -- bash /validator/tests/libzstd/tests/cases/source/multi-frame-behavior.sh
 no override packages found; continuing with apt originals

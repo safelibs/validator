@@ -1,3 +1,2 @@
-{"version": 2, "width": 120, "height": 40, "timestamp": 1776639073, "env": {"TERM": "xterm-256color", "SHELL": "/bin/bash"}}
-[0.110404, "o", "no override packages found; continuing with apt originals\r\r\n"]
-[0.16759, "o", "udp-ok\r\r\n"]
+{"version": 2, "width": 120, "height": 40, "timestamp": 0, "env": {"TERM": "xterm-256color", "SHELL": "/bin/bash"}}
+[0.0, "o", "no override packages found; continuing with apt originals\r\r\nudp-ok\r\r\n"]

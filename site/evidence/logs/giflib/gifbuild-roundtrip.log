@@ -1,9 +1,9 @@
-$ docker run --rm -t --mount type=bind,src=/tmp/validator-status-giflib-gifbuild-roundtrip-t7cvh9b6,dst=/validator/status validator-giflib-shared-a85aea2beafc bash -lc 'set -euo pipefail
+$ docker run --rm -t --mount type=bind,src=/tmp/validator-status-giflib-gifbuild-roundtrip,dst=/validator/status validator-giflib-shared bash -lc 'set -euo pipefail
 /validator/tests/_shared/install_override_debs.sh
 exec /validator/tests/_shared/run_library_tests.sh "$@"' validator-testcase giflib gifbuild-roundtrip -- bash /validator/tests/giflib/tests/cases/source/gifbuild-roundtrip.sh
 no override packages found; continuing with apt originals
 
-/tmp/tmp.8F6ghkkscm/rebuilt.gif:
+/tmp/validator-tmp/rebuilt.gif:
 
 	Screen Size - Width = 100, Height = 100.
 	ColorResolution = 3, BitsPerPixel = 3, BackGround = 0, Aspect = 0.

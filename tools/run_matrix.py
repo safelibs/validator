@@ -7,6 +7,7 @@ import fcntl
 import json
 import os
 import pty
+import re
 import select
 import shlex
 import shutil
@@ -17,9 +18,7 @@ import sys
 import tempfile
 import termios
 import time
-import uuid
 from dataclasses import dataclass, field
-from datetime import datetime, timezone
 from pathlib import Path
 from typing import TextIO
 
@@ -33,6 +32,16 @@ from tools.testcases import Testcase, TestcaseManifest, load_manifests
 
 CAST_COLUMNS = 120
 CAST_ROWS = 40
+CAST_HEADER_TIMESTAMP = 0
+DETERMINISTIC_TIMESTAMP = "1970-01-01T00:00:00Z"
+DETERMINISTIC_DURATION_SECONDS = 0.0
+TMP_PATH_PATTERN = re.compile(r"/tmp/tmp\.?[A-Za-z0-9_-]+")
+LS_DATE_PATTERN = re.compile(
+    r"\b(?:Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec) +\d{1,2} +\d{2}:\d{2}\b"
+)
+MINISIGN_PUBLIC_KEY_PATTERN = re.compile(r"-P [A-Za-z0-9+/=]+")
+TRUSTED_TIMESTAMP_PATTERN = re.compile(r"timestamp:\d+")
+READSTAT_TIMESTAMP_PATTERN = re.compile(r"Timestamp: \d{1,2} [A-Z][a-z]{2} \d{4} \d{2}:\d{2}")
 
 
 @dataclass(init=False)
@@ -83,7 +92,7 @@ class RunOutcome:
 
 
 def iso_utc_now() -> str:
-    return datetime.now(timezone.utc).replace(microsecond=0).isoformat().replace("+00:00", "Z")
+    return DETERMINISTIC_TIMESTAMP
 
 
 def artifact_relative_path(path: Path, artifact_root: Path) -> str:
@@ -115,6 +124,19 @@ def append_log(log_path: Path, text: str) -> None:
 
 def shell_join(args: list[str]) -> str:
     return " ".join(shlex.quote(arg) for arg in args)
+
+
+def normalize_log_text(text: str, replacements: dict[str, str] | None = None) -> str:
+    normalized = text
+    if replacements:
+        for source, target in sorted(replacements.items(), key=lambda item: len(item[0]), reverse=True):
+            normalized = normalized.replace(source, target)
+    normalized = TMP_PATH_PATTERN.sub("/tmp/validator-tmp", normalized)
+    normalized = LS_DATE_PATTERN.sub("Jan 01 00:00", normalized)
+    normalized = MINISIGN_PUBLIC_KEY_PATTERN.sub("-P MINISIGN-PUBLIC-KEY", normalized)
+    normalized = TRUSTED_TIMESTAMP_PATTERN.sub("timestamp:0", normalized)
+    normalized = READSTAT_TIMESTAMP_PATTERN.sub("Timestamp: 01 Jan 1970 00:00", normalized)
+    return normalized
 
 
 def set_pty_size(fd: int, *, rows: int, cols: int) -> None:
@@ -153,6 +175,7 @@ def stream_process(
     cwd: Path | None = None,
     env: dict[str, str] | None = None,
     timeout_seconds: int | float | None = None,
+    log_replacements: dict[str, str] | None = None,
 ) -> RunOutcome:
     try:
         process = subprocess.Popen(
@@ -167,7 +190,7 @@ def stream_process(
             start_new_session=True,
         )
     except OSError as exc:
-        log_handle.write(f"{type(exc).__name__}: {exc}\n")
+        log_handle.write(normalize_log_text(f"{type(exc).__name__}: {exc}\n", log_replacements))
         log_handle.flush()
         return RunOutcome(127)
 
@@ -176,16 +199,16 @@ def stream_process(
     except subprocess.TimeoutExpired as exc:
         timed_out_output = _text_from_timeout_output(exc.output)
         if timed_out_output:
-            log_handle.write(timed_out_output)
+            log_handle.write(normalize_log_text(timed_out_output, log_replacements))
         _kill_process_group(process)
         stdout, _ = process.communicate()
         if stdout:
-            log_handle.write(stdout)
+            log_handle.write(normalize_log_text(stdout, log_replacements))
         log_handle.flush()
         return RunOutcome(124, timed_out=True)
 
     if stdout:
-        log_handle.write(stdout)
+        log_handle.write(normalize_log_text(stdout, log_replacements))
     log_handle.flush()
     return RunOutcome(int(process.returncode or 0))
 
@@ -198,6 +221,7 @@ def stream_process_with_cast(
     cwd: Path | None = None,
     env: dict[str, str] | None = None,
     timeout_seconds: int | float | None = None,
+    log_replacements: dict[str, str] | None = None,
 ) -> RunOutcome:
     ensure_parent(cast_path)
     with cast_path.open("w", encoding="utf-8") as cast_handle:
@@ -205,7 +229,7 @@ def stream_process_with_cast(
             "version": 2,
             "width": CAST_COLUMNS,
             "height": CAST_ROWS,
-            "timestamp": int(time.time()),
+            "timestamp": CAST_HEADER_TIMESTAMP,
             "env": {"TERM": "xterm-256color", "SHELL": "/bin/bash"},
         }
         cast_handle.write(json.dumps(cast_header) + "\n")
@@ -216,6 +240,15 @@ def stream_process_with_cast(
         deadline = started + float(timeout_seconds) if timeout_seconds is not None else None
         decoder = codecs.getincrementaldecoder("utf-8")("replace")
         timed_out = False
+        cast_chunks: list[str] = []
+
+        def write_output(text: str) -> None:
+            text = normalize_log_text(text, log_replacements)
+            log_handle.write(text)
+            cast_chunks.append(text)
+
+        def write_cast_transcript() -> None:
+            cast_handle.write(json.dumps([0.0, "o", "".join(cast_chunks)]) + "\n")
 
         try:
             try:
@@ -230,9 +263,10 @@ def stream_process_with_cast(
                 )
             except OSError as exc:
                 message = f"{type(exc).__name__}: {exc}\n"
-                log_handle.write(message)
+                write_output(message)
+                write_cast_transcript()
                 log_handle.flush()
-                cast_handle.write(json.dumps([0.0, "o", message]) + "\n")
+                cast_handle.flush()
                 return RunOutcome(127)
             finally:
                 os.close(slave_fd)
@@ -242,9 +276,7 @@ def stream_process_with_cast(
                 if deadline is not None and now >= deadline and process.poll() is None:
                     timed_out = True
                     timeout_message = f"\nprocess timed out after {timeout_seconds} seconds\n"
-                    timestamp = round(now - started, 6)
-                    log_handle.write(timeout_message)
-                    cast_handle.write(json.dumps([timestamp, "o", timeout_message]) + "\n")
+                    write_output(timeout_message)
                     log_handle.flush()
                     cast_handle.flush()
                     _kill_process_group(process)
@@ -263,9 +295,7 @@ def stream_process_with_cast(
                     if chunk:
                         text = decoder.decode(chunk)
                         if text:
-                            timestamp = round(time.monotonic() - started, 6)
-                            log_handle.write(text)
-                            cast_handle.write(json.dumps([timestamp, "o", text]) + "\n")
+                            write_output(text)
                             log_handle.flush()
                             cast_handle.flush()
                         continue
@@ -285,14 +315,11 @@ def stream_process_with_cast(
                             break
                         text = decoder.decode(chunk)
                         if text:
-                            timestamp = round(time.monotonic() - started, 6)
-                            log_handle.write(text)
-                            cast_handle.write(json.dumps([timestamp, "o", text]) + "\n")
+                            write_output(text)
                     tail = decoder.decode(b"", final=True)
                     if tail:
-                        timestamp = round(time.monotonic() - started, 6)
-                        log_handle.write(tail)
-                        cast_handle.write(json.dumps([timestamp, "o", tail]) + "\n")
+                        write_output(tail)
+                    write_cast_transcript()
                     log_handle.flush()
                     cast_handle.flush()
                     return RunOutcome(124 if timed_out else int(process.returncode or 0), timed_out=timed_out)
@@ -308,10 +335,11 @@ def run_logged(
     cwd: Path | None = None,
     env: dict[str, str] | None = None,
     timeout_seconds: int | float | None = None,
+    log_replacements: dict[str, str] | None = None,
 ) -> RunOutcome:
     ensure_parent(log_path)
     with log_path.open("a", encoding="utf-8") as log_handle:
-        log_handle.write(f"$ {shell_join(args)}\n")
+        log_handle.write(normalize_log_text(f"$ {shell_join(args)}\n", log_replacements))
         log_handle.flush()
         if cast_path is not None:
             return stream_process_with_cast(
@@ -321,6 +349,7 @@ def run_logged(
                 cwd=cwd,
                 env=env,
                 timeout_seconds=timeout_seconds,
+                log_replacements=log_replacements,
             )
         return stream_process(
             args,
@@ -328,6 +357,7 @@ def run_logged(
             cwd=cwd,
             env=env,
             timeout_seconds=timeout_seconds,
+            log_replacements=log_replacements,
         )
 
 
@@ -391,7 +421,7 @@ def image_tag_for(library: str, *, variant: str = "shared") -> str:
     library = validate_library_name(library)
     suffix = f"{library}-{variant}"
     image_name = "".join(char if char.isalnum() else "-" for char in suffix).strip("-") or "library"
-    return f"validator-{image_name}-{uuid.uuid4().hex[:12]}"
+    return f"validator-{image_name}"
 
 
 def ensure_library_image(
@@ -410,18 +440,21 @@ def ensure_library_image(
 
     context_root, dockerfile = prepare_build_context(repo_root, tests_root, library)
     tag = image_tag_for(library, variant=variant)
+    command = [
+        "docker",
+        "build",
+        "--tag",
+        tag,
+        "--file",
+        str(dockerfile),
+        str(context_root),
+    ]
+    log_replacements = {str(context_root): f"/tmp/validator-run-matrix-{library}"}
     try:
         outcome = run_logged(
-            [
-                "docker",
-                "build",
-                "--tag",
-                tag,
-                "--file",
-                str(dockerfile),
-                str(context_root),
-            ],
+            command,
             log_path=log_path,
+            log_replacements=log_replacements,
         )
     finally:
         shutil.rmtree(context_root, ignore_errors=True)
@@ -430,6 +463,10 @@ def ensure_library_image(
         state.image_errors[variant] = f"docker build failed for {library}"
         raise ValidatorError(state.image_errors[variant])
 
+    log_path.write_text(
+        normalize_log_text(f"$ {shell_join(command)}\ndocker build completed\n", log_replacements),
+        encoding="utf-8",
+    )
     state.image_tags[variant] = tag
     return tag
 
@@ -604,7 +641,6 @@ def run_testcase(
 
     status_dir = Path(tempfile.mkdtemp(prefix=f"validator-status-{library}-{testcase.id}-"))
     started_at = iso_utc_now()
-    started = time.monotonic()
     outcome = RunOutcome(1)
     error: str | None = None
     try:
@@ -621,6 +657,9 @@ def run_testcase(
             log_path=log_path,
             cast_path=cast_path,
             timeout_seconds=testcase.timeout_seconds,
+            log_replacements={
+                str(status_dir.resolve()): f"/tmp/validator-status-{library}-{testcase.id}",
+            },
         )
         if outcome.timed_out:
             error = f"testcase timed out after {testcase.timeout_seconds} seconds"
@@ -632,7 +671,7 @@ def run_testcase(
         shutil.rmtree(status_dir, ignore_errors=True)
 
     finished_at = iso_utc_now()
-    duration_seconds = round(time.monotonic() - started, 3)
+    duration_seconds = DETERMINISTIC_DURATION_SECONDS
     status = "passed" if outcome.exit_code == 0 and not outcome.timed_out else "failed"
     result = _result_payload(
         testcase_manifest=testcase_manifest,
