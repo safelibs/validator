@@ -69,6 +69,7 @@ class TestcaseManifestTests(unittest.TestCase):
             ({"id": "BadID"}, "testcase id"),
             ({"command": ["bash", "/validator/tests/other/tests/run.sh"]}, "must stay under"),
             ({"command": ["bash", "../run.sh"]}, "path segments"),
+            ({"command": ["bash", ".."]}, "path segments"),
             ({"command": ["relative/script.sh"]}, "first element"),
         ]
 

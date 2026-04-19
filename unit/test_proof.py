@@ -115,6 +115,10 @@ class ProofTests(unittest.TestCase):
             **kwargs,
         )
 
+    def test_build_proof_requires_tests_root(self) -> None:
+        with self.assertRaises(TypeError):
+            proof.build_proof(self.config, artifact_root=self.artifacts_root)
+
     def test_valid_original_only_proof_generation(self) -> None:
         self.write_library()
 

@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import json
+import shutil
 import subprocess
 import tempfile
 import unittest
@@ -132,6 +133,26 @@ class RunMatrixTests(unittest.TestCase):
             (artifact_root / "results" / "original-demo" / "source-echo-roundtrip.json").read_text()
         )
         self.assertTrue(result["override_debs_installed"])
+
+    def test_override_deb_fixture_is_valid_debian_package(self) -> None:
+        if shutil.which("dpkg-deb") is None:
+            self.skipTest("dpkg-deb is not installed")
+        deb_path = (
+            FIXTURES
+            / "original-override-debs"
+            / "original-demo"
+            / "original-override-marker_1.0_all.deb"
+        )
+
+        completed = subprocess.run(
+            ["dpkg-deb", "--field", str(deb_path), "Package"],
+            check=False,
+            capture_output=True,
+            text=True,
+        )
+
+        self.assertEqual(completed.returncode, 0, completed.stderr + completed.stdout)
+        self.assertEqual(completed.stdout.strip(), "original-override-marker")
 
     def test_aggregate_failure_continues_before_returning_non_zero(self) -> None:
         root = self.run_root()

@@ -104,8 +104,6 @@ def _require_string_list(value: Any, *, field_name: str, path: Path, non_empty: 
 
 
 def _has_path_segment(value: str, segment: str) -> bool:
-    if "/" not in value:
-        return False
     return segment in PurePosixPath(value).parts
 
 
