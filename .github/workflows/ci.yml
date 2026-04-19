@@ -5,7 +5,7 @@ on:
   pull_request:
 
 jobs:
-  validate:
+  preflight:
     runs-on: ubuntu-24.04
     steps:
       - uses: actions/checkout@v4
@@ -15,8 +15,163 @@ jobs:
           sudo apt-get update
           sudo apt-get install -y --no-install-recommends python3-yaml
 
-      - name: Check testcase manifests
-        run: make check-testcases
-
       - name: Run unit tests
-        run: make unit
+        run: python3 -m unittest discover -s unit -v
+
+      - name: Check testcase manifests
+        run: python3 tools/testcases.py --config repositories.yml --tests-root tests --check-manifest-only
+
+  matrix-smoke:
+    needs: preflight
+    runs-on: ubuntu-24.04
+    env:
+      ARTIFACT_ROOT: .work/ci-smoke-artifacts
+      SITE_ROOT: .work/ci-smoke-site
+      PROOF_PATH: .work/ci-smoke-artifacts/proof/original-validation-proof.json
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install host dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y --no-install-recommends python3-yaml
+
+      - name: Run representative matrix
+        run: |
+          set +e
+          bash test.sh \
+            --config repositories.yml \
+            --tests-root tests \
+            --artifact-root "$ARTIFACT_ROOT" \
+            --record-casts \
+            --library cjson \
+            --library libarchive \
+            --library libuv \
+            --library libwebp
+          matrix_exit_code=$?
+          set -e
+          echo "matrix_exit_code=$matrix_exit_code" >> "$GITHUB_ENV"
+
+      - name: Generate proof
+        run: |
+          python3 tools/verify_proof_artifacts.py \
+            --config repositories.yml \
+            --tests-root tests \
+            --artifact-root "$ARTIFACT_ROOT" \
+            --proof-output "$PROOF_PATH" \
+            --library cjson \
+            --library libarchive \
+            --library libuv \
+            --library libwebp \
+            --min-source-cases 20 \
+            --min-usage-cases 32 \
+            --min-cases 52 \
+            --require-casts
+
+      - name: Render site
+        run: |
+          python3 tools/render_site.py \
+            --config repositories.yml \
+            --tests-root tests \
+            --artifact-root "$ARTIFACT_ROOT" \
+            --proof-path "$PROOF_PATH" \
+            --output-root "$SITE_ROOT"
+
+      - name: Verify site
+        run: |
+          bash scripts/verify-site.sh \
+            --config repositories.yml \
+            --tests-root tests \
+            --artifacts-root "$ARTIFACT_ROOT" \
+            --proof-path "$PROOF_PATH" \
+            --site-root "$SITE_ROOT"
+
+      - name: Upload validation artifacts
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: ci-smoke-validation
+          path: |
+            ${{ env.ARTIFACT_ROOT }}
+            ${{ env.SITE_ROOT }}
+
+      - name: Report matrix status
+        if: always()
+        run: |
+          if [ "${matrix_exit_code:-0}" -ne 0 ]; then
+            exit "$matrix_exit_code"
+          fi
+
+  full-matrix:
+    needs: preflight
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    runs-on: ubuntu-24.04
+    env:
+      ARTIFACT_ROOT: .work/ci-full-artifacts
+      SITE_ROOT: .work/ci-full-site
+      PROOF_PATH: .work/ci-full-artifacts/proof/original-validation-proof.json
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install host dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y --no-install-recommends python3-yaml
+
+      - name: Run full matrix
+        run: |
+          set +e
+          bash test.sh \
+            --config repositories.yml \
+            --tests-root tests \
+            --artifact-root "$ARTIFACT_ROOT" \
+            --record-casts
+          matrix_exit_code=$?
+          set -e
+          echo "matrix_exit_code=$matrix_exit_code" >> "$GITHUB_ENV"
+
+      - name: Generate proof
+        run: |
+          python3 tools/verify_proof_artifacts.py \
+            --config repositories.yml \
+            --tests-root tests \
+            --artifact-root "$ARTIFACT_ROOT" \
+            --proof-output "$PROOF_PATH" \
+            --min-source-cases 95 \
+            --min-usage-cases 155 \
+            --min-cases 250 \
+            --require-casts
+
+      - name: Render site
+        run: |
+          python3 tools/render_site.py \
+            --config repositories.yml \
+            --tests-root tests \
+            --artifact-root "$ARTIFACT_ROOT" \
+            --proof-path "$PROOF_PATH" \
+            --output-root "$SITE_ROOT"
+
+      - name: Verify site
+        run: |
+          bash scripts/verify-site.sh \
+            --config repositories.yml \
+            --tests-root tests \
+            --artifacts-root "$ARTIFACT_ROOT" \
+            --proof-path "$PROOF_PATH" \
+            --site-root "$SITE_ROOT"
+
+      - name: Upload validation artifacts
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: ci-full-validation
+          path: |
+            ${{ env.ARTIFACT_ROOT }}
+            ${{ env.SITE_ROOT }}
+
+      - name: Report matrix status
+        if: always()
+        run: |
+          if [ "${matrix_exit_code:-0}" -ne 0 ]; then
+            exit "$matrix_exit_code"
+          fi

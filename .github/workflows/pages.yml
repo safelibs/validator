@@ -12,8 +12,14 @@ permissions:
   id-token: write
 
 jobs:
-  validate:
+  full-matrix:
     runs-on: ubuntu-24.04
+    outputs:
+      matrix_exit_code: ${{ steps.matrix.outputs.matrix_exit_code }}
+    env:
+      ARTIFACT_ROOT: .work/pages-artifacts
+      SITE_ROOT: site
+      PROOF_PATH: .work/pages-artifacts/proof/original-validation-proof.json
     steps:
       - uses: actions/checkout@v4
 
@@ -22,8 +28,92 @@ jobs:
           sudo apt-get update
           sudo apt-get install -y --no-install-recommends python3-yaml
 
-      - name: Check testcase manifests
-        run: make check-testcases
-
       - name: Run unit tests
-        run: make unit
+        run: python3 -m unittest discover -s unit -v
+
+      - name: Check testcase manifests
+        run: python3 tools/testcases.py --config repositories.yml --tests-root tests --check-manifest-only
+
+      - name: Run full matrix
+        id: matrix
+        run: |
+          set +e
+          bash test.sh \
+            --config repositories.yml \
+            --tests-root tests \
+            --artifact-root "$ARTIFACT_ROOT" \
+            --record-casts
+          matrix_exit_code=$?
+          set -e
+          echo "matrix_exit_code=$matrix_exit_code" >> "$GITHUB_OUTPUT"
+
+      - name: Generate proof
+        run: |
+          python3 tools/verify_proof_artifacts.py \
+            --config repositories.yml \
+            --tests-root tests \
+            --artifact-root "$ARTIFACT_ROOT" \
+            --proof-output "$PROOF_PATH" \
+            --min-source-cases 95 \
+            --min-usage-cases 155 \
+            --min-cases 250 \
+            --require-casts
+
+      - name: Render site
+        run: |
+          python3 tools/render_site.py \
+            --config repositories.yml \
+            --tests-root tests \
+            --artifact-root "$ARTIFACT_ROOT" \
+            --proof-path "$PROOF_PATH" \
+            --output-root "$SITE_ROOT"
+
+      - name: Verify site
+        run: |
+          bash scripts/verify-site.sh \
+            --config repositories.yml \
+            --tests-root tests \
+            --artifacts-root "$ARTIFACT_ROOT" \
+            --proof-path "$PROOF_PATH" \
+            --site-root "$SITE_ROOT"
+
+      - uses: actions/configure-pages@v5
+
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: site
+
+  deploy-pages:
+    needs: full-matrix
+    runs-on: ubuntu-24.04
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
+
+  report-status:
+    needs:
+      - full-matrix
+      - deploy-pages
+    if: always()
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Report matrix status
+        run: |
+          if [ "${{ needs.full-matrix.result }}" != "success" ]; then
+            exit 1
+          fi
+          if [ "${{ needs.deploy-pages.result }}" != "success" ]; then
+            exit 1
+          fi
+          matrix_exit_code="${{ needs.full-matrix.outputs.matrix_exit_code }}"
+          if [ -z "$matrix_exit_code" ]; then
+            exit 1
+          fi
+          if [ "$matrix_exit_code" -ne 0 ]; then
+            exit "$matrix_exit_code"
+          fi
