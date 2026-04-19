@@ -1,4 +1,4 @@
-$ docker run --rm -t --mount type=bind,src=/tmp/validator-status-libjpeg-turbo-usage-python3-pil-transpose-jpeg-pbui0atr,dst=/validator/status validator-libjpeg-turbo-shared-d001eaa059cf bash -lc 'set -euo pipefail
+$ docker run --rm -t --mount type=bind,src=/tmp/validator-status-libjpeg-turbo-usage-python3-pil-transpose-jpeg-88_740ct,dst=/validator/status validator-libjpeg-turbo-shared-f728d5e4569d bash -lc 'set -euo pipefail
 /validator/tests/_shared/install_override_debs.sh
 exec /validator/tests/_shared/run_library_tests.sh "$@"' validator-testcase libjpeg-turbo usage-python3-pil-transpose-jpeg -- bash /validator/tests/libjpeg-turbo/tests/cases/usage/usage-python3-pil-transpose-jpeg.sh
 no override packages found; continuing with apt originals

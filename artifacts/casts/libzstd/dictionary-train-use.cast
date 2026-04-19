@@ -1,6 +1,6 @@
-{"version": 2, "width": 120, "height": 40, "timestamp": 1776633264, "env": {"TERM": "xterm-256color", "SHELL": "/bin/bash"}}
-[0.11097, "o", "no override packages found; continuing with apt originals\r\r\n"]
-[0.207961, "o", "Loading /tmp/tmp.1E2IQgBwM6/samples/s23...       \r"]
-[0.209019, "o", "\r                                                                               \rTrying 5 different sets of parameters\r\r\n"]
-[0.214937, "o", "FASTCOVER parameters incorrect\r\r\nFASTCOVER parameters incorrect\r\r\n\r                                                                               \rk=1024\r\r\nd=8\r\r\nf=20\r\r\nsteps=4\r\r\nsplit=75\r\r\naccel=1\r\r\nSave dictionary of size 1024 into file /tmp/tmp.1E2IQgBwM6/dict \r\r\n"]
-[0.218343, "o", "-rw-r--r-- 1 root root 1024 Apr 19 21:14 /tmp/tmp.1E2IQgBwM6/dict\r\r\n-rw-r--r-- 1 root root   36 Apr 19 21:14 /tmp/tmp.1E2IQgBwM6/msg.zst\r\r\n"]
+{"version": 2, "width": 120, "height": 40, "timestamp": 1776634696, "env": {"TERM": "xterm-256color", "SHELL": "/bin/bash"}}
+[0.106985, "o", "no override packages found; continuing with apt originals\r\r\n"]
+[0.204331, "o", "Loading /tmp/tmp.FpuLMuGd4X/samples/s23...       \r"]
+[0.205539, "o", "\r                                                                               \rTrying 5 different sets of parameters\r\r\n"]
+[0.21131, "o", "FASTCOVER parameters incorrect\r\r\nFASTCOVER parameters incorrect\r\r\n\r                                                                               \rk=1024\r\r\nd=8\r\r\nf=20\r\r\nsteps=4\r\r\nsplit=75\r\r\naccel=1\r\r\nSave dictionary of size 1024 into file /tmp/tmp.FpuLMuGd4X/dict \r\r\n"]
+[0.215069, "o", "-rw-r--r-- 1 root root 1024 Apr 19 21:38 /tmp/tmp.FpuLMuGd4X/dict\r\r\n-rw-r--r-- 1 root root   36 Apr 19 21:38 /tmp/tmp.FpuLMuGd4X/msg.zst\r\r\n"]

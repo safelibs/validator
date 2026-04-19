@@ -1,4 +1,4 @@
-$ docker run --rm -t --mount type=bind,src=/tmp/validator-status-libsdl-usage-python3-pygame-image-save-1h0jths4,dst=/validator/status validator-libsdl-shared-3f0f27a99e6e bash -lc 'set -euo pipefail
+$ docker run --rm -t --mount type=bind,src=/tmp/validator-status-libsdl-usage-python3-pygame-image-save-hk6982eq,dst=/validator/status validator-libsdl-shared-bac984b5612e bash -lc 'set -euo pipefail
 /validator/tests/_shared/install_override_debs.sh
 exec /validator/tests/_shared/run_library_tests.sh "$@"' validator-testcase libsdl usage-python3-pygame-image-save -- bash /validator/tests/libsdl/tests/cases/usage/usage-python3-pygame-image-save.sh
 no override packages found; continuing with apt originals
@@ -11,4 +11,4 @@ ALSA lib confmisc.c:1342:(snd_func_refer) error evaluating name
 ALSA lib conf.c:5204:(_snd_config_evaluate) function snd_func_refer returned error: No such file or directory
 ALSA lib conf.c:5727:(snd_config_expand) Evaluate error: No such file or directory
 ALSA lib pcm.c:2721:(snd_pcm_open_noupdate) Unknown PCM default
-saved /tmp/tmp.3pKt1oAP33/out.bmp
+saved /tmp/tmp.tLkzpPgRJq/out.bmp

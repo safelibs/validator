@@ -1,4 +1,4 @@
-$ docker run --rm -t --mount type=bind,src=/tmp/validator-status-libjson-usage-gdal-gdalinfo-json-raster-7wcd3zbm,dst=/validator/status validator-libjson-shared-e001ef3849b2 bash -lc 'set -euo pipefail
+$ docker run --rm -t --mount type=bind,src=/tmp/validator-status-libjson-usage-gdal-gdalinfo-json-raster-zre7fefh,dst=/validator/status validator-libjson-shared-d3a2a6470517 bash -lc 'set -euo pipefail
 /validator/tests/_shared/install_override_debs.sh
 exec /validator/tests/_shared/run_library_tests.sh "$@"' validator-testcase libjson usage-gdal-gdalinfo-json-raster -- bash /validator/tests/libjson/tests/cases/usage/usage-gdal-gdalinfo-json-raster.sh
 no override packages found; continuing with apt originals

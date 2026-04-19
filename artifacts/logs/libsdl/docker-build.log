@@ -1,4 +1,4 @@
-$ docker build --tag validator-libsdl-shared-3f0f27a99e6e --file /tmp/validator-run-matrix-libsdl-369ucqho/libsdl/Dockerfile /tmp/validator-run-matrix-libsdl-369ucqho
+$ docker build --tag validator-libsdl-shared-bac984b5612e --file /tmp/validator-run-matrix-libsdl-o4va1i74/libsdl/Dockerfile /tmp/validator-run-matrix-libsdl-o4va1i74
 #0 building with "default" instance using docker driver
 
 #1 [internal] load build definition from Dockerfile
@@ -19,16 +19,16 @@ $ docker build --tag validator-libsdl-shared-3f0f27a99e6e --file /tmp/validator-
 #5 transferring context: 68.49MB 0.2s done
 #5 DONE 0.2s
 
-#6 [2/6] RUN apt-get update  && apt-get install -y --no-install-recommends       libsdl2-2.0-0       libsdl2-dev       libsdl2-tests       python3-pygame       bash       build-essential       ca-certificates       clang       cmake       coreutils       dbus-x11       file       gnome-desktop-testing       jq       libasound2-dev       libgl1-mesa-dri       libpulse-dev       libsdl2-ttf-dev       pkg-config       python3       xvfb  && rm -rf /var/lib/apt/lists/*
+#6 [5/6] COPY libsdl/ /validator/tests/libsdl/
 #6 CACHED
 
-#7 [3/6] WORKDIR /validator
+#7 [2/6] RUN apt-get update  && apt-get install -y --no-install-recommends       libsdl2-2.0-0       libsdl2-dev       libsdl2-tests       python3-pygame       bash       build-essential       ca-certificates       clang       cmake       coreutils       dbus-x11       file       gnome-desktop-testing       jq       libasound2-dev       libgl1-mesa-dri       libpulse-dev       libsdl2-ttf-dev       pkg-config       python3       xvfb  && rm -rf /var/lib/apt/lists/*
 #7 CACHED
 
-#8 [4/6] COPY _shared/ /validator/tests/_shared/
+#8 [3/6] WORKDIR /validator
 #8 CACHED
 
-#9 [5/6] COPY libsdl/ /validator/tests/libsdl/
+#9 [4/6] COPY _shared/ /validator/tests/_shared/
 #9 CACHED
 
 #10 [6/6] RUN find /validator/tests/_shared -maxdepth 1 -type f -name '*.sh' -exec chmod +x {} +  && chmod +x /validator/tests/libsdl/docker-entrypoint.sh /validator/tests/libsdl/tests/run.sh  && if [ -d /validator/tests/libsdl/tests/cases ]; then       find /validator/tests/libsdl/tests/cases -type f -name '*.sh' -exec chmod +x {} +;     fi
@@ -37,5 +37,5 @@ $ docker build --tag validator-libsdl-shared-3f0f27a99e6e --file /tmp/validator-
 #11 exporting to image
 #11 exporting layers done
 #11 writing image sha256:1e792ebec72ff36cf0ca7cdc7615379bc9e496f65c667db980c27c4e5825e942 done
-#11 naming to docker.io/library/validator-libsdl-shared-3f0f27a99e6e done
+#11 naming to docker.io/library/validator-libsdl-shared-bac984b5612e done
 #11 DONE 0.0s

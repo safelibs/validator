@@ -1,4 +1,4 @@
-$ docker run --rm -t --mount type=bind,src=/tmp/validator-status-libarchive-bsdcpio-copy-roundtrip-fxkta4o2,dst=/validator/status validator-libarchive-shared-ee4637c479d9 bash -lc 'set -euo pipefail
+$ docker run --rm -t --mount type=bind,src=/tmp/validator-status-libarchive-bsdcpio-copy-roundtrip-l6sa423q,dst=/validator/status validator-libarchive-shared-8ce240eb1386 bash -lc 'set -euo pipefail
 /validator/tests/_shared/install_override_debs.sh
 exec /validator/tests/_shared/run_library_tests.sh "$@"' validator-testcase libarchive bsdcpio-copy-roundtrip -- bash /validator/tests/libarchive/tests/cases/source/bsdcpio-copy-roundtrip.sh
 no override packages found; continuing with apt originals

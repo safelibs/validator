@@ -1,5 +1,8 @@
-$ docker build --tag validator-liblzma-shared-c2862a375110 --file /tmp/validator-run-matrix-liblzma-_da0cpoq/liblzma/Dockerfile /tmp/validator-run-matrix-liblzma-_da0cpoq
+$ docker build --tag validator-liblzma-shared-76e5647ea798 --file /tmp/validator-run-matrix-liblzma-1y7fnfi3/liblzma/Dockerfile /tmp/validator-run-matrix-liblzma-1y7fnfi3
 #0 building with "default" instance using docker driver
+
+#1 [internal] load build definition from Dockerfile
+#1 DONE 0.0s
 
 #1 [internal] load build definition from Dockerfile
 #1 transferring dockerfile: 1.03kB done
@@ -37,5 +40,5 @@ $ docker build --tag validator-liblzma-shared-c2862a375110 --file /tmp/validator
 #11 exporting to image
 #11 exporting layers done
 #11 writing image sha256:04178a65541f10e3a62a3993adcf9e41087e4469dbf66d6994276128232f2abd done
-#11 naming to docker.io/library/validator-liblzma-shared-c2862a375110 done
+#11 naming to docker.io/library/validator-liblzma-shared-76e5647ea798 done
 #11 DONE 0.0s

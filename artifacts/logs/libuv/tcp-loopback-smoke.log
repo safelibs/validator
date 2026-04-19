@@ -1,4 +1,4 @@
-$ docker run --rm -t --mount type=bind,src=/tmp/validator-status-libuv-tcp-loopback-smoke-84ctgq6k,dst=/validator/status validator-libuv-shared-962b52612ab7 bash -lc 'set -euo pipefail
+$ docker run --rm -t --mount type=bind,src=/tmp/validator-status-libuv-tcp-loopback-smoke-h_olrkxn,dst=/validator/status validator-libuv-shared-01aaf56fb988 bash -lc 'set -euo pipefail
 /validator/tests/_shared/install_override_debs.sh
 exec /validator/tests/_shared/run_library_tests.sh "$@"' validator-testcase libuv tcp-loopback-smoke -- bash /validator/tests/libuv/tests/cases/source/tcp-loopback-smoke.sh
 no override packages found; continuing with apt originals

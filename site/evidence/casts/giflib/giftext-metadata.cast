@@ -1,3 +1,3 @@
-{"version": 2, "width": 120, "height": 40, "timestamp": 1776633201, "env": {"TERM": "xterm-256color", "SHELL": "/bin/bash"}}
-[0.108429, "o", "no override packages found; continuing with apt originals\r\r\n"]
-[0.113152, "o", "\r\r\n/validator/tests/giflib/tests/tagged-port/original/pic/treescap.gif:\r\r\n\r\r\n\tScreen Size - Width = 40, Height = 40.\r\r\n\tColorResolution = 7, BitsPerPixel = 4, BackGround = 0, Aspect = 0.\r\r\n\tHas Global Color Map.\r\r\n\r\r\n\r\r\nImage #1:\r\r\n\r\r\n\tImage Size - Left = 0, Top = 0, Width = 40, Height = 40.\r\r\n\tImage is Non Interlaced.\r\r\n\tNo Image Color Map.\r\r\n\r\r\nGIF file terminated normally.\r\r\n"]
+{"version": 2, "width": 120, "height": 40, "timestamp": 1776634632, "env": {"TERM": "xterm-256color", "SHELL": "/bin/bash"}}
+[0.116273, "o", "no override packages found; continuing with apt originals\r\r\n"]
+[0.12, "o", "\r\r\n/validator/tests/giflib/tests/tagged-port/original/pic/treescap.gif:\r\r\n\r\r\n\tScreen Size - Width = 40, Height = 40.\r\r\n\tColorResolution = 7, BitsPerPixel = 4, BackGround = 0, Aspect = 0.\r\r\n\tHas Global Color Map.\r\r\n\r\r\n\r\r\nImage #1:\r\r\n\r\r\n\tImage Size - Left = 0, Top = 0, Width = 40, Height = 40.\r\r\n\tImage is Non Interlaced.\r\r\n\tNo Image Color Map.\r\r\n\r\r\nGIF file terminated normally.\r\r\n"]

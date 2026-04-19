@@ -1,4 +1,4 @@
-$ docker run --rm -t --mount type=bind,src=/tmp/validator-status-libjson-refcount-object-mutation-1hc0_43c,dst=/validator/status validator-libjson-shared-e001ef3849b2 bash -lc 'set -euo pipefail
+$ docker run --rm -t --mount type=bind,src=/tmp/validator-status-libjson-refcount-object-mutation-vrz7q1ai,dst=/validator/status validator-libjson-shared-d3a2a6470517 bash -lc 'set -euo pipefail
 /validator/tests/_shared/install_override_debs.sh
 exec /validator/tests/_shared/run_library_tests.sh "$@"' validator-testcase libjson refcount-object-mutation -- bash /validator/tests/libjson/tests/cases/source/refcount-object-mutation.sh
 no override packages found; continuing with apt originals

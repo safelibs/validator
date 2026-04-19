@@ -1,4 +1,4 @@
-$ docker build --tag validator-libpng-shared-1e1a481381d3 --file /tmp/validator-run-matrix-libpng-rhu4j3km/libpng/Dockerfile /tmp/validator-run-matrix-libpng-rhu4j3km
+$ docker build --tag validator-libpng-shared-61fbcd8d8a74 --file /tmp/validator-run-matrix-libpng-9jbuv3w2/libpng/Dockerfile /tmp/validator-run-matrix-libpng-9jbuv3w2
 #0 building with "default" instance using docker driver
 
 #1 [internal] load build definition from Dockerfile
@@ -37,5 +37,5 @@ $ docker build --tag validator-libpng-shared-1e1a481381d3 --file /tmp/validator-
 #11 exporting to image
 #11 exporting layers done
 #11 writing image sha256:f7c585c64d3f71393bfdd6ba4ac55208cdb88f7c512e7372469fa6eae1f7803b done
-#11 naming to docker.io/library/validator-libpng-shared-1e1a481381d3 done
+#11 naming to docker.io/library/validator-libpng-shared-61fbcd8d8a74 done
 #11 DONE 0.0s

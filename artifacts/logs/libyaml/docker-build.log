@@ -1,4 +1,4 @@
-$ docker build --tag validator-libyaml-shared-7bac22d5e26a --file /tmp/validator-run-matrix-libyaml-d5xjoup7/libyaml/Dockerfile /tmp/validator-run-matrix-libyaml-d5xjoup7
+$ docker build --tag validator-libyaml-shared-7d9dc68869fe --file /tmp/validator-run-matrix-libyaml-7qyru5dh/libyaml/Dockerfile /tmp/validator-run-matrix-libyaml-7qyru5dh
 #0 building with "default" instance using docker driver
 
 #1 [internal] load build definition from Dockerfile
@@ -19,16 +19,16 @@ $ docker build --tag validator-libyaml-shared-7bac22d5e26a --file /tmp/validator
 #5 transferring context: 630.72kB done
 #5 DONE 0.0s
 
-#6 [4/6] COPY _shared/ /validator/tests/_shared/
+#6 [2/6] RUN apt-get update  && apt-get install -y --no-install-recommends       libyaml-0-2       libyaml-dev       python3-yaml       bash       build-essential       ca-certificates       coreutils       file       jq       pkg-config       python3  && rm -rf /var/lib/apt/lists/*
 #6 CACHED
 
-#7 [2/6] RUN apt-get update  && apt-get install -y --no-install-recommends       libyaml-0-2       libyaml-dev       python3-yaml       bash       build-essential       ca-certificates       coreutils       file       jq       pkg-config       python3  && rm -rf /var/lib/apt/lists/*
+#7 [5/6] COPY libyaml/ /validator/tests/libyaml/
 #7 CACHED
 
-#8 [5/6] COPY libyaml/ /validator/tests/libyaml/
+#8 [3/6] WORKDIR /validator
 #8 CACHED
 
-#9 [3/6] WORKDIR /validator
+#9 [4/6] COPY _shared/ /validator/tests/_shared/
 #9 CACHED
 
 #10 [6/6] RUN find /validator/tests/_shared -maxdepth 1 -type f -name '*.sh' -exec chmod +x {} +  && chmod +x /validator/tests/libyaml/docker-entrypoint.sh /validator/tests/libyaml/tests/run.sh  && if [ -d /validator/tests/libyaml/tests/cases ]; then       find /validator/tests/libyaml/tests/cases -type f -name '*.sh' -exec chmod +x {} +;     fi
@@ -37,5 +37,5 @@ $ docker build --tag validator-libyaml-shared-7bac22d5e26a --file /tmp/validator
 #11 exporting to image
 #11 exporting layers done
 #11 writing image sha256:f05cbdb76c53d2e9ccf3c35d94100679f6576a096c3083b62e33b43158250bb8 done
-#11 naming to docker.io/library/validator-libyaml-shared-7bac22d5e26a done
+#11 naming to docker.io/library/validator-libyaml-shared-7d9dc68869fe done
 #11 DONE 0.0s

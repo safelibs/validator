@@ -1,3 +1,3 @@
-{"version": 2, "width": 120, "height": 40, "timestamp": 1776633225, "env": {"TERM": "xterm-256color", "SHELL": "/bin/bash"}}
-[0.120768, "o", "no override packages found; continuing with apt originals\r\r\n"]
-[0.125718, "o", "Strms  Blocks   Compressed Uncompressed  Ratio  Check   Filename\r\r\n    1       1         68 B         11 B  6.182  CRC64   /tmp/tmp.eIdonAj20y/plain.xz\r\r\n"]
+{"version": 2, "width": 120, "height": 40, "timestamp": 1776634656, "env": {"TERM": "xterm-256color", "SHELL": "/bin/bash"}}
+[0.125196, "o", "no override packages found; continuing with apt originals\r\r\n"]
+[0.131159, "o", "Strms  Blocks   Compressed Uncompressed  Ratio  Check   Filename\r\r\n    1       1         68 B         11 B  6.182  CRC64   /tmp/tmp.A9PTj3yaKF/plain.xz\r\r\n"]

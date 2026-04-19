@@ -1,5 +1,5 @@
-$ docker run --rm -t --mount type=bind,src=/tmp/validator-status-giflib-usage-giflib-tools-gif2rgb-convert-dzau1e3_,dst=/validator/status validator-giflib-shared-d5efdb63e206 bash -lc 'set -euo pipefail
+$ docker run --rm -t --mount type=bind,src=/tmp/validator-status-giflib-usage-giflib-tools-gif2rgb-convert-vm35jd5l,dst=/validator/status validator-giflib-shared-1091ea2982ab bash -lc 'set -euo pipefail
 /validator/tests/_shared/install_override_debs.sh
 exec /validator/tests/_shared/run_library_tests.sh "$@"' validator-testcase giflib usage-giflib-tools-gif2rgb-convert -- bash /validator/tests/giflib/tests/cases/usage/usage-giflib-tools-gif2rgb-convert.sh
 no override packages found; continuing with apt originals
-4800 /tmp/tmp.8OzNJz9qe9/out.rgb
+4800 /tmp/tmp.1xz7G4lPbo/out.rgb
