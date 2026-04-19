@@ -1,0 +1,23 @@
+$ docker run --rm -t --mount type=bind,src=/tmp/validator-status-libtiff-tiffdump-structure-mo1nefwz,dst=/validator/status validator-libtiff-shared-3b3e0d4017d6 bash -lc 'set -euo pipefail
+/validator/tests/_shared/install_override_debs.sh
+exec /validator/tests/_shared/run_library_tests.sh "$@"' validator-testcase libtiff tiffdump-structure -- bash /validator/tests/libtiff/tests/cases/source/tiffdump-structure.sh
+no override packages found; continuing with apt originals
+/validator/tests/libtiff/tests/tagged-port/original/test/images/minisblack-1c-8b.tiff:
+Magic: 0x4d4d <big-endian> Version: 0x2a <ClassicTIFF>
+Directory 0: offset 23716 (0x5ca4) next 0 (0)
+ImageWidth (256) SHORT (3) 1<157>
+ImageLength (257) SHORT (3) 1<151>
+BitsPerSample (258) SHORT (3) 1<8>
+Compression (259) SHORT (3) 1<1>
+Photometric (262) SHORT (3) 1<1>
+DocumentName (269) ASCII (2) 22<minisblack-1c-8b.tiff\0>
+StripOffsets (273) LONG (4) 3<8 8172 16336>
+SamplesPerPixel (277) SHORT (3) 1<1>
+RowsPerStrip (278) SHORT (3) 1<52>
+StripByteCounts (279) LONG (4) 3<8164 8164 7379>
+PlanarConfig (284) SHORT (3) 1<1>
+PageNumber (297) SHORT (3) 2<0 1>
+Software (305) ASCII (2) 65<GraphicsMagick 1.2 unrel ...>
+SampleFormat (339) SHORT (3) 1<1>
+ImageWidth (256) SHORT (3) 1<157>
+ImageLength (257) SHORT (3) 1<151>

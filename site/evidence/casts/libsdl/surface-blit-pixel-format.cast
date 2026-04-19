@@ -1,0 +1,3 @@
+{"version": 2, "width": 120, "height": 40, "timestamp": 1776622120, "env": {"TERM": "xterm-256color", "SHELL": "/bin/bash"}}
+[0.100426, "o", "no override packages found; continuing with apt originals\r\r\n"]
+[0.283102, "o", "format=SDL_PIXELFORMAT_ABGR8888 bytes=64\r\r\n"]

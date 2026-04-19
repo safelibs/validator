@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>libcsv Validation</title>
+    <link rel="stylesheet" href="../assets/site.css">
+    <script defer src="../assets/player.js"></script>
+  </head>
+  <body data-site-data="../site-data.json">
+    <main>
+      <section class="dashboard" aria-label="Validation dashboard">
+        <h1>libcsv Validation</h1>
+        <div class="metric-grid">
+        <div class="metric" data-proof-total="libraries"><strong>19</strong><span>Libraries</span></div>
+        <div class="metric" data-proof-total="cases"><strong>250</strong><span>Cases</span></div>
+        <div class="metric" data-proof-total="source_cases"><strong>95</strong><span>Source</span></div>
+        <div class="metric" data-proof-total="usage_cases"><strong>155</strong><span>Usage</span></div>
+        <div class="metric" data-proof-total="passed"><strong>250</strong><span>Passed</span></div>
+        <div class="metric" data-proof-total="failed"><strong>0</strong><span>Failed</span></div>
+        <div class="metric" data-proof-total="casts"><strong>250 (100%)</strong><span>Casts</span></div>
+        </div>
+      </section>
+
+      <section class="controls" aria-label="Testcase filters">
+        <label class="search-label">Search <input id="search-input" type="search" autocomplete="off"></label>
+        <label>Status <select id="status-filter"><option value="all">All</option><option value="passed">Passed</option><option value="failed">Failed</option></select></label>
+        <label>Kind <select id="kind-filter"><option value="all">All</option><option value="source">Source</option><option value="usage">Usage</option></select></label>
+      </section>
+      <section class="testcases" aria-label="Testcases">
+        <h2>Testcases</h2>
+
+      </section>
+    </main>
+  </body>
+</html>

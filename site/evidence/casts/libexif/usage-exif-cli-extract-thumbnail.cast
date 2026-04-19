@@ -1,0 +1,4 @@
+{"version": 2, "width": 120, "height": 40, "timestamp": 1776622103, "env": {"TERM": "xterm-256color", "SHELL": "/bin/bash"}}
+[0.106063, "o", "no override packages found; continuing with apt originals\r\r\n"]
+[0.111253, "o", "Wrote file '/tmp/tmp.swU8lHGOlE/thumb.jpg'.\r\r\n"]
+[0.112104, "o", "/tmp/tmp.swU8lHGOlE/thumb.jpg: JPEG image data\r\r\n"]

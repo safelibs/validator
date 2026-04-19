@@ -1,0 +1,52 @@
+$ docker run --rm -t --mount type=bind,src=/tmp/validator-status-libexif-usage-exif-cli-xml-output-wcaucmd0,dst=/validator/status validator-libexif-shared-be41de901577 bash -lc 'set -euo pipefail
+/validator/tests/_shared/install_override_debs.sh
+exec /validator/tests/_shared/run_library_tests.sh "$@"' validator-testcase libexif usage-exif-cli-xml-output -- bash /validator/tests/libexif/tests/cases/usage/usage-exif-cli-xml-output.sh
+no override packages found; continuing with apt originals
+<exif>
+	<Manufacturer>Canon</Manufacturer>
+	<Model>Canon PowerShot S70</Model>
+	<Orientation>Right-top</Orientation>
+	<X-Resolution>180</X-Resolution>
+	<Y-Resolution>180</Y-Resolution>
+	<Resolution_Unit>Inch</Resolution_Unit>
+	<Date_and_Time>2009:10:10 16:42:32</Date_and_Time>
+	<YCbCr_Positioning>Centered</YCbCr_Positioning>
+	<Compression>JPEG compression</Compression>
+	<X-Resolution>180</X-Resolution>
+	<Y-Resolution>180</Y-Resolution>
+	<Resolution_Unit>Inch</Resolution_Unit>
+	<Exposure_Time>1 sec.</Exposure_Time>
+	<F-Number>f/2.8</F-Number>
+	<Exif_Version>Exif Version 2.2</Exif_Version>
+	<Date_and_Time__Original_>2009:10:10 16:42:32</Date_and_Time__Original_>
+	<Date_and_Time__Digitized_>2009:10:10 16:42:32</Date_and_Time__Digitized_>
+	<Components_Configuration>Y Cb Cr -</Components_Configuration>
+	<Compressed_Bits_per_Pixel> 5</Compressed_Bits_per_Pixel>
+	<Shutter_Speed>0.00 EV (1 sec.)</Shutter_Speed>
+	<Aperture>2.97 EV (f/2.8)</Aperture>
+	<Exposure_Bias>0.00 EV</Exposure_Bias>
+	<Maximum_Aperture_Value>2.97 EV (f/2.8)</Maximum_Aperture_Value>
+	<Metering_Mode>Pattern</Metering_Mode>
+	<Flash>Flash did not fire, compulsory flash mode</Flash>
+	<Focal_Length>5.8 mm</Focal_Length>
+	<Maker_Note>904 bytes undefined data</Maker_Note>
+	<User_Comment></User_Comment>
+	<FlashPixVersion>FlashPix Version 1.0</FlashPixVersion>
+	<Color_Space>sRGB</Color_Space>
+	<Pixel_X_Dimension>640</Pixel_X_Dimension>
+	<Pixel_Y_Dimension>480</Pixel_Y_Dimension>
+	<Focal_Plane_X-Resolution>2253.521</Focal_Plane_X-Resolution>
+	<Focal_Plane_Y-Resolution>2253.521</Focal_Plane_Y-Resolution>
+	<Focal_Plane_Resolution_Unit>Inch</Focal_Plane_Resolution_Unit>
+	<Sensing_Method>One-chip color area sensor</Sensing_Method>
+	<File_Source>DSC</File_Source>
+	<Custom_Rendered>Normal process</Custom_Rendered>
+	<Exposure_Mode>Auto exposure</Exposure_Mode>
+	<White_Balance>Auto white balance</White_Balance>
+	<Digital_Zoom_Ratio>1.0000</Digital_Zoom_Ratio>
+	<Scene_Capture_Type>Landscape</Scene_Capture_Type>
+	<Interoperability_Index>R98</Interoperability_Index>
+	<Interoperability_Version>0100</Interoperability_Version>
+	<RelatedImageWidth>640</RelatedImageWidth>
+	<RelatedImageLength>480</RelatedImageLength>
+</exif>

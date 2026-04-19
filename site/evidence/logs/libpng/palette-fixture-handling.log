@@ -1,0 +1,5 @@
+$ docker run --rm -t --mount type=bind,src=/tmp/validator-status-libpng-palette-fixture-handling-m997_vyr,dst=/validator/status validator-libpng-shared-35d09b712ace bash -lc 'set -euo pipefail
+/validator/tests/_shared/install_override_debs.sh
+exec /validator/tests/_shared/run_library_tests.sh "$@"' validator-testcase libpng palette-fixture-handling -- bash /validator/tests/libpng/tests/cases/source/palette-fixture-handling.sh
+no override packages found; continuing with apt originals
+/validator/tests/libpng/tests/tagged-port/original/contrib/pngsuite/basn3p08.png: PNG image data, 32 x 32, 8-bit colormap, non-interlaced

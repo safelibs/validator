@@ -1,0 +1,5 @@
+$ docker run --rm -t --mount type=bind,src=/tmp/validator-status-libuv-usage-nodejs-dns-lookup-0joga22v,dst=/validator/status validator-libuv-shared-3c2b5783eb7b bash -lc 'set -euo pipefail
+/validator/tests/_shared/install_override_debs.sh
+exec /validator/tests/_shared/run_library_tests.sh "$@"' validator-testcase libuv usage-nodejs-dns-lookup -- bash /validator/tests/libuv/tests/cases/usage/usage-nodejs-dns-lookup.sh
+no override packages found; continuing with apt originals
+address=127.0.0.1

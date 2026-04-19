@@ -1,0 +1,5 @@
+$ docker run --rm -t --mount type=bind,src=/tmp/validator-status-libbz2-c-api-buffer-roundtrip-h0sji4k0,dst=/validator/status validator-libbz2-shared-19588c3145a2 bash -lc 'set -euo pipefail
+/validator/tests/_shared/install_override_debs.sh
+exec /validator/tests/_shared/run_library_tests.sh "$@"' validator-testcase libbz2 c-api-buffer-roundtrip -- bash /validator/tests/libbz2/tests/cases/source/c-api-buffer-roundtrip.sh
+no override packages found; continuing with apt originals
+libbz2 api payload repeated

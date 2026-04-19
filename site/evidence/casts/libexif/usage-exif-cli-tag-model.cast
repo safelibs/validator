@@ -1,0 +1,3 @@
+{"version": 2, "width": 120, "height": 40, "timestamp": 1776622103, "env": {"TERM": "xterm-256color", "SHELL": "/bin/bash"}}
+[0.109097, "o", "no override packages found; continuing with apt originals\r\r\n"]
+[0.114661, "o", "EXIF entry 'Model' (0x110, 'Model') exists in IFD '0':\r\r\nTag: 0x110 ('Model')\r\r\n  Format: 2 ('ASCII')\r\r\n  Components: 20\r\r\n  Size: 20\r\r\n  Value: Canon PowerShot S70\r\r\n"]

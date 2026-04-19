@@ -1,0 +1,5 @@
+$ docker run --rm -t --mount type=bind,src=/tmp/validator-status-libsodium-sign-verify-fz439056,dst=/validator/status validator-libsodium-shared-6b44f961c7d4 bash -lc 'set -euo pipefail
+/validator/tests/_shared/install_override_debs.sh
+exec /validator/tests/_shared/run_library_tests.sh "$@"' validator-testcase libsodium sign-verify -- bash /validator/tests/libsodium/tests/cases/source/sign-verify.sh
+no override packages found; continuing with apt originals
+signature=64

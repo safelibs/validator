@@ -1,0 +1,6 @@
+$ docker run --rm -t --mount type=bind,src=/tmp/validator-status-libxml-reader-c-api-behavior-3t7b9sdy,dst=/validator/status validator-libxml-shared-47e2d47d6a99 bash -lc 'set -euo pipefail
+/validator/tests/_shared/install_override_debs.sh
+exec /validator/tests/_shared/run_library_tests.sh "$@"' validator-testcase libxml reader-c-api-behavior -- bash /validator/tests/libxml/tests/cases/source/reader-c-api-behavior.sh
+no override packages found; continuing with apt originals
+element=root
+element=child

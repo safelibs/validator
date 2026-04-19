@@ -1,7 +1,6 @@
 from __future__ import annotations
 
 import json
-import os
 import tempfile
 import unittest
 from pathlib import Path
@@ -10,7 +9,7 @@ from unittest import mock
 from tools import ValidatorError
 from tools import proof
 from tools import verify_proof_artifacts
-from tools.testcases import TestcaseManifest, load_testcase_manifest
+from tools.testcases import load_testcase_manifest
 
 
 FIXTURES = Path(__file__).resolve().parent / "fixtures"
@@ -18,13 +17,19 @@ FIXTURES = Path(__file__).resolve().parent / "fixtures"
 
 def original_demo_config() -> dict[str, object]:
     return {
+        "schema_version": 2,
+        "suite": {
+            "name": "ubuntu-24.04-original-apt",
+            "image": "ubuntu:24.04",
+            "apt_suite": "noble",
+        },
         "libraries": [
             {
                 "name": "original-demo",
                 "apt_packages": ["demo-runtime", "demo-dev"],
                 "testcases": str(FIXTURES / "original-only-tests" / "original-demo" / "testcases.yml"),
             }
-        ]
+        ],
     }
 
 
@@ -41,12 +46,19 @@ class ProofTests(unittest.TestCase):
             library="original-demo",
         )
 
-    def write_cast(self, case_id: str, *, events: list[object] | None = None) -> None:
+    def write_cast(
+        self,
+        case_id: str,
+        *,
+        header: object | str | None = None,
+        events: list[object] | None = None,
+    ) -> None:
         cast_path = self.artifacts_root / "casts" / "original-demo" / f"{case_id}.cast"
         cast_path.parent.mkdir(parents=True, exist_ok=True)
+        header = header if header is not None else {"version": 2, "width": 120, "height": 40}
         events = events if events is not None else [[0.1, "o", f"{case_id}\n"]]
         lines = [
-            json.dumps({"version": 2, "width": 120, "height": 40}),
+            json.dumps(header) if not isinstance(header, str) else header,
             *[json.dumps(event) if not isinstance(event, str) else event for event in events],
         ]
         cast_path.write_text("\n".join(lines) + "\n")
@@ -55,7 +67,7 @@ class ProofTests(unittest.TestCase):
         self,
         case_id: str,
         *,
-        status: str = "passed",
+        status: object = "passed",
         cast: bool = True,
         updates: dict[str, object] | None = None,
     ) -> None:
@@ -98,26 +110,6 @@ class ProofTests(unittest.TestCase):
     def write_library(self, *, cast: bool = True) -> None:
         for testcase in self.case_manifest.testcases:
             self.write_result(testcase.id, cast=cast)
-        self.write_summary(cast=cast)
-
-    def write_summary(self, *, cast: bool = True, updates: dict[str, object] | None = None) -> None:
-        summary_path = self.artifacts_root / "results" / "original-demo" / "summary.json"
-        summary_path.parent.mkdir(parents=True, exist_ok=True)
-        payload: dict[str, object] = {
-            "schema_version": 2,
-            "library": "original-demo",
-            "mode": "original",
-            "cases": 2,
-            "source_cases": 1,
-            "usage_cases": 1,
-            "passed": 2,
-            "failed": 0,
-            "casts": 2 if cast else 0,
-            "duration_seconds": 2.0,
-        }
-        if updates:
-            payload.update(updates)
-        summary_path.write_text(json.dumps(payload, indent=2) + "\n")
 
     def build(self, **kwargs: object) -> dict[str, object]:
         return proof.build_proof(
@@ -127,40 +119,46 @@ class ProofTests(unittest.TestCase):
             **kwargs,
         )
 
-    def test_original_only_proof_options_require_tests_root(self) -> None:
-        with self.assertRaisesRegex(ValidatorError, "tests_root"):
-            proof.build_proof(
-                self.config,
-                artifact_root=self.artifacts_root,
-                record_casts_expected=True,
-            )
-
     def test_valid_original_only_proof_generation(self) -> None:
         self.write_library()
 
-        result = self.build(record_casts_expected=True)
+        result = self.build(require_casts=True)
 
+        self.assertEqual(set(result), {"proof_version", "suite", "totals", "libraries"})
         self.assertEqual(result["proof_version"], 2)
-        self.assertEqual(result["mode"], "original")
-        self.assertEqual(result["included_libraries"], ["original-demo"])
-        self.assertEqual(result["totals"]["cases"], 2)
-        self.assertEqual(result["totals"]["source_cases"], 1)
-        self.assertEqual(result["totals"]["usage_cases"], 1)
-        self.assertEqual(result["totals"]["passed"], 2)
-        self.assertEqual(result["totals"]["failed"], 0)
-        self.assertEqual(result["totals"]["casts"], 2)
-        self.assertEqual(result["libraries"][0]["cases"][0]["cast_events"], 1)
+        self.assertEqual(result["suite"], self.config["suite"])
+        self.assertEqual(
+            result["totals"],
+            {
+                "libraries": 1,
+                "cases": 2,
+                "source_cases": 1,
+                "usage_cases": 1,
+                "passed": 2,
+                "failed": 0,
+                "casts": 2,
+            },
+        )
+        library = result["libraries"][0]
+        self.assertEqual(library["library"], "original-demo")
+        self.assertEqual(library["apt_packages"], ["demo-runtime", "demo-dev"])
+        self.assertEqual(library["totals"]["cases"], 2)
+        self.assertEqual(library["testcases"][0]["title"], "Source echo round trip")
+        self.assertEqual(library["testcases"][0]["mode"], "original")
+        self.assertEqual(library["testcases"][0]["cast_events"], 1)
+        self.assertEqual(library["testcases"][0]["cast_bytes"], len("source-echo-roundtrip\n"))
 
     def test_result_status_must_be_passed_or_failed(self) -> None:
-        for status in ("skipped", "warned", "excluded"):
+        for status in ("skipped", "warned", "excluded", None, "", "errored"):
             with self.subTest(status=status):
-                self.setUp()
                 self.write_library()
                 self.write_result("source-echo-roundtrip", status=status)
                 with self.assertRaisesRegex(ValidatorError, "status must be passed or failed"):
                     self.build()
+                self.tempdir.cleanup()
+                self.setUp()
 
-    def test_result_schema_and_identity_checks_are_enforced(self) -> None:
+    def test_result_schema_identity_and_override_checks_are_enforced(self) -> None:
         mutations = [
             ("schema_version", 1, "schema_version must be 2"),
             ("mode", "replacement", "mode must be original"),
@@ -172,14 +170,36 @@ class ProofTests(unittest.TestCase):
             ("duration_seconds", -1, "duration_seconds must be a non-negative number"),
             ("exit_code", 1.5, "exit_code must be an integer"),
             ("override_debs_installed", "no", "must be a boolean"),
+            ("override_debs_installed", True, "must be false"),
         ]
         for field, value, message in mutations:
             with self.subTest(field=field):
-                self.setUp()
                 self.write_library()
                 self.write_result("source-echo-roundtrip", updates={field: value})
                 with self.assertRaisesRegex(ValidatorError, message):
                     self.build()
+                self.tempdir.cleanup()
+                self.setUp()
+
+    def test_unsupported_result_fields_are_rejected_except_error(self) -> None:
+        self.write_library()
+        self.write_result("source-echo-roundtrip", updates={"unexpected": "value"})
+        with self.assertRaisesRegex(ValidatorError, "unsupported result fields"):
+            self.build()
+
+        self.tempdir.cleanup()
+        self.setUp()
+        self.write_library()
+        self.write_result("source-echo-roundtrip", updates={"error": "command failed"})
+        self.build()
+
+    def test_exact_result_json_set_is_enforced(self) -> None:
+        self.write_library()
+        extra = self.artifacts_root / "results" / "original-demo" / "extra-case.json"
+        extra.write_text("{}\n")
+
+        with self.assertRaisesRegex(ValidatorError, "unexpected extra-case"):
+            self.build()
 
     def test_apt_package_and_testcase_metadata_mismatches_are_rejected(self) -> None:
         cases = [
@@ -189,11 +209,22 @@ class ProofTests(unittest.TestCase):
         ]
         for updates, message in cases:
             with self.subTest(updates=updates):
-                self.setUp()
                 self.write_library()
                 self.write_result("source-echo-roundtrip", updates=updates)
                 with self.assertRaisesRegex(ValidatorError, message):
                     self.build()
+                self.tempdir.cleanup()
+                self.setUp()
+
+        drifted = original_demo_config()
+        drifted["libraries"][0]["apt_packages"] = ["wrong-package"]  # type: ignore[index]
+        self.write_library()
+        with self.assertRaisesRegex(ValidatorError, "apt_packages mismatch"):
+            proof.build_proof(
+                drifted,
+                artifact_root=self.artifacts_root,
+                tests_root=self.tests_root,
+            )
 
     def test_missing_log_and_cast_requirements_are_rejected(self) -> None:
         self.write_library()
@@ -201,72 +232,64 @@ class ProofTests(unittest.TestCase):
         with self.assertRaisesRegex(ValidatorError, "log_path does not exist"):
             self.build()
 
+        self.tempdir.cleanup()
         self.setUp()
         self.write_library(cast=False)
         with self.assertRaisesRegex(ValidatorError, "cast_path is required"):
-            self.build(record_casts_expected=True)
+            self.build(require_casts=True)
 
     def test_cast_validation_rejects_bad_casts(self) -> None:
         cases = [
-            ([[0.1, "i", "x"]], "event type"),
-            ([[-0.1, "o", "x"]], "non-negative"),
-            ([], "at least one output event"),
-            (["not json"], "invalid cast event JSON"),
+            ({"version": 1, "width": 120, "height": 40}, None, "header version"),
+            ("not json", None, "invalid cast header JSON"),
+            ({"version": 2, "width": 0, "height": 40}, None, "header width"),
+            (None, [[0.1, "i", "x"]], "event type"),
+            (None, [[0.2, "o", "x"], [0.1, "o", "y"]], "nondecreasing"),
+            (None, [[0.1, "o", {"not": "text"}]], "payload must be a string"),
+            (None, [], "at least one output event"),
+            (None, ["not json"], "invalid cast event JSON"),
         ]
-        for events, message in cases:
+        for header, events, message in cases:
             with self.subTest(message=message):
-                self.setUp()
                 self.write_library()
-                self.write_cast("source-echo-roundtrip", events=events)
+                kwargs: dict[str, object] = {}
+                if header is not None:
+                    kwargs["header"] = header
+                if events is not None:
+                    kwargs["events"] = events
+                self.write_cast("source-echo-roundtrip", **kwargs)
                 with self.assertRaisesRegex(ValidatorError, message):
                     self.build()
-
-    def test_summary_must_match_case_results(self) -> None:
-        self.write_library()
-        self.write_summary(updates={"passed": 1, "failed": 1})
-
-        with self.assertRaisesRegex(ValidatorError, "summary passed mismatch"):
-            self.build()
-
-    def test_symlink_escape_is_rejected(self) -> None:
-        self.write_library()
-        outside = self.root / "outside"
-        outside.mkdir()
-        outside_result = outside / "source-echo-roundtrip.json"
-        original_result = self.artifacts_root / "results" / "original-demo" / "source-echo-roundtrip.json"
-        outside_result.write_text(original_result.read_text())
-        original_result.unlink()
-        original_result.symlink_to(outside_result)
-
-        with self.assertRaisesRegex(ValidatorError, "result path must stay within the artifact root"):
-            self.build()
+                self.tempdir.cleanup()
+                self.setUp()
 
     def test_proof_validation_does_not_mutate_artifacts(self) -> None:
         self.write_library()
         result_path = self.artifacts_root / "results" / "original-demo" / "source-echo-roundtrip.json"
-        summary_path = self.artifacts_root / "results" / "original-demo" / "summary.json"
+        log_path = self.artifacts_root / "logs" / "original-demo" / "source-echo-roundtrip.log"
+        cast_path = self.artifacts_root / "casts" / "original-demo" / "source-echo-roundtrip.cast"
         before_result = result_path.read_text()
-        before_summary = summary_path.read_text()
+        before_log = log_path.read_text()
+        before_cast = cast_path.read_text()
 
-        self.build()
+        self.build(require_casts=True)
 
         self.assertEqual(result_path.read_text(), before_result)
-        self.assertEqual(summary_path.read_text(), before_summary)
+        self.assertEqual(log_path.read_text(), before_log)
+        self.assertEqual(cast_path.read_text(), before_cast)
 
-    def test_subset_exclusion_and_threshold_checks(self) -> None:
+    def test_subset_and_threshold_checks(self) -> None:
         self.write_library()
 
         subset = self.build(libraries=["original-demo"])
-        self.assertEqual(subset["included_libraries"], ["original-demo"])
+        self.assertEqual(subset["totals"]["libraries"], 1)
 
-        excluded = self.build(excluded_libraries={"original-demo": "hosted elsewhere"})
-        self.assertEqual(excluded["included_libraries"], [])
-        self.assertEqual(excluded["excluded_libraries"], [{"library": "original-demo", "note": "hosted elsewhere"}])
-
-        with self.assertRaisesRegex(ValidatorError, "total case threshold"):
-            self.build(min_total_cases=3)
+        with self.assertRaisesRegex(ValidatorError, "case threshold"):
+            self.build(min_cases=3)
         with self.assertRaisesRegex(ValidatorError, "source case threshold"):
             self.build(min_source_cases=2)
+        with self.assertRaisesRegex(ValidatorError, "usage case threshold"):
+            self.build(min_usage_cases=2)
 
     def test_cli_validates_output_paths_and_writes_proof(self) -> None:
         self.write_library()
@@ -280,13 +303,15 @@ class ProofTests(unittest.TestCase):
                     "--artifact-root",
                     str(self.artifacts_root),
                     "--proof-output",
-                    "proof/proof.json",
+                    "proof/original-validation-proof.json",
                     "--require-casts",
+                    "--min-cases",
+                    "2",
                 ]
             )
 
         self.assertEqual(exit_code, 0)
-        proof_path = self.artifacts_root / "proof" / "proof.json"
+        proof_path = self.artifacts_root / "proof" / "original-validation-proof.json"
         self.assertTrue(proof_path.is_file())
         self.assertEqual(json.loads(proof_path.read_text())["proof_version"], 2)
 
@@ -302,7 +327,6 @@ class ProofTests(unittest.TestCase):
                     str(self.artifacts_root),
                     "--proof-output",
                     str(absolute_proof_path),
-                    "--record-casts",
                     "--min-source-cases",
                     "1",
                 ]
@@ -310,9 +334,6 @@ class ProofTests(unittest.TestCase):
         self.assertEqual(exit_code, 0)
         self.assertTrue(absolute_proof_path.is_file())
 
-        original_cwd = Path.cwd()
-        os.chdir(self.root)
-        self.addCleanup(os.chdir, original_cwd)
         for output in ("../proof.json", "proof\\bad.json", "/tmp/proof.json", "proof//bad.json", "proof/./bad.json"):
             with self.subTest(output=output):
                 with self.assertRaisesRegex(ValidatorError, "--proof-output"):
@@ -330,24 +351,30 @@ class ProofTests(unittest.TestCase):
                             ]
                         )
 
-    def test_duplicate_exclusions_are_rejected_before_config_load(self) -> None:
-        with self.assertRaisesRegex(ValidatorError, "--exclude-library must not contain duplicates"):
-            verify_proof_artifacts.main(
-                [
-                    "--config",
-                    str(self.root / "missing.yml"),
-                    "--tests-root",
-                    str(self.tests_root),
-                    "--artifact-root",
-                    str(self.artifacts_root),
-                    "--proof-output",
-                    "proof/proof.json",
-                    "--exclude-library",
-                    "original-demo",
-                    "--exclude-library",
-                    "original-demo",
-                ]
-            )
+    def test_cli_rejects_removed_exclusion_and_compatibility_arguments(self) -> None:
+        removed_args = [
+            "--exclude-library",
+            "--exclude-note",
+            "--record-casts",
+            "--min-total-cases",
+        ]
+        for argument in removed_args:
+            with self.subTest(argument=argument):
+                with self.assertRaises(SystemExit):
+                    verify_proof_artifacts.main(
+                        [
+                            "--config",
+                            str(FIXTURES / "original-only-manifest.yml"),
+                            "--tests-root",
+                            str(self.tests_root),
+                            "--artifact-root",
+                            str(self.artifacts_root),
+                            "--proof-output",
+                            "proof/proof.json",
+                            argument,
+                            "value",
+                        ]
+                    )
 
 
 if __name__ == "__main__":

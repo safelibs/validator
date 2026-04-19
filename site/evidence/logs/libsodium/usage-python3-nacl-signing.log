@@ -1,0 +1,5 @@
+$ docker run --rm -t --mount type=bind,src=/tmp/validator-status-libsodium-usage-python3-nacl-signing-40773nrb,dst=/validator/status validator-libsodium-shared-6b44f961c7d4 bash -lc 'set -euo pipefail
+/validator/tests/_shared/install_override_debs.sh
+exec /validator/tests/_shared/run_library_tests.sh "$@"' validator-testcase libsodium usage-python3-nacl-signing -- bash /validator/tests/libsodium/tests/cases/usage/usage-python3-nacl-signing.sh
+no override packages found; continuing with apt originals
+payload

@@ -1,0 +1,3 @@
+{"version": 2, "width": 120, "height": 40, "timestamp": 1776622097, "env": {"TERM": "xterm-256color", "SHELL": "/bin/bash"}}
+[0.103497, "o", "no override packages found; continuing with apt originals\r\r\n"]
+[0.107066, "o", "pipe payload\r\r\n"]

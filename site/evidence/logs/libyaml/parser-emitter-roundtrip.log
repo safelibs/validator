@@ -1,0 +1,7 @@
+$ docker run --rm -t --mount type=bind,src=/tmp/validator-status-libyaml-parser-emitter-roundtrip-seerlx4n,dst=/validator/status validator-libyaml-shared-2c52bdb2b54f bash -lc 'set -euo pipefail
+/validator/tests/_shared/install_override_debs.sh
+exec /validator/tests/_shared/run_library_tests.sh "$@"' validator-testcase libyaml parser-emitter-roundtrip -- bash /validator/tests/libyaml/tests/cases/source/parser-emitter-roundtrip.sh
+no override packages found; continuing with apt originals
+name: alpha
+items:
+- one

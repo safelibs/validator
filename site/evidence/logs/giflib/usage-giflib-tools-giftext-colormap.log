@@ -1,0 +1,25 @@
+$ docker run --rm -t --mount type=bind,src=/tmp/validator-status-giflib-usage-giflib-tools-giftext-colormap-ko7172ln,dst=/validator/status validator-giflib-shared-f854defacfbb bash -lc 'set -euo pipefail
+/validator/tests/_shared/install_override_debs.sh
+exec /validator/tests/_shared/run_library_tests.sh "$@"' validator-testcase giflib usage-giflib-tools-giftext-colormap -- bash /validator/tests/giflib/tests/cases/usage/usage-giflib-tools-giftext-colormap.sh
+no override packages found; continuing with apt originals
+
+/validator/tests/giflib/tests/tagged-port/original/pic/treescap.gif:
+
+	Screen Size - Width = 40, Height = 40.
+	ColorResolution = 7, BitsPerPixel = 4, BackGround = 0, Aspect = 0.
+	Has Global Color Map.
+
+	Global Color Map:
+	Sort Flag: off
+  0: 2eh 8ch 5dh     1: 00h ffh ffh     2: 00h 9dh 00h     3: 51h c8h 56h   
+  4: beh beh beh     5: 6eh 6eh 6eh     6: ffh ffh 00h     7: 88h 73h 5fh   
+  8: e7h e7h e7h     9: 00h 99h 66h    10: 00h 00h 00h    11: 00h 00h 00h   
+ 12: 00h 00h 00h    13: 00h 00h 00h    14: 00h 00h 00h    15: 00h 00h 00h   
+
+Image #1:
+
+	Image Size - Left = 0, Top = 0, Width = 40, Height = 40.
+	Image is Non Interlaced.
+	No Image Color Map.
+
+GIF file terminated normally.

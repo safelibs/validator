@@ -1,0 +1,4 @@
+{"version": 2, "width": 120, "height": 40, "timestamp": 1776622136, "env": {"TERM": "xterm-256color", "SHELL": "/bin/bash"}}
+[0.115893, "o", "no override packages found; continuing with apt originals\r\r\n"]
+[0.297865, "o", "width=8 height=8\r\r\n"]
+[0.319013, "o", "/tmp/tmp.kCUtce1oxf/api.png: 8x8 uchar, 1 band, b-w, pngload\r\r\n"]

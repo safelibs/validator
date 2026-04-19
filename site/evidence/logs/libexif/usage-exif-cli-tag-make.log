@@ -1,0 +1,10 @@
+$ docker run --rm -t --mount type=bind,src=/tmp/validator-status-libexif-usage-exif-cli-tag-make-ls5fm6sp,dst=/validator/status validator-libexif-shared-be41de901577 bash -lc 'set -euo pipefail
+/validator/tests/_shared/install_override_debs.sh
+exec /validator/tests/_shared/run_library_tests.sh "$@"' validator-testcase libexif usage-exif-cli-tag-make -- bash /validator/tests/libexif/tests/cases/usage/usage-exif-cli-tag-make.sh
+no override packages found; continuing with apt originals
+EXIF entry 'Manufacturer' (0x10f, 'Make') exists in IFD '0':
+Tag: 0x10f ('Make')
+  Format: 2 ('ASCII')
+  Components: 6
+  Size: 6
+  Value: Canon

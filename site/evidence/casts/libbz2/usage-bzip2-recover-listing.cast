@@ -1,0 +1,4 @@
+{"version": 2, "width": 120, "height": 40, "timestamp": 1776622097, "env": {"TERM": "xterm-256color", "SHELL": "/bin/bash"}}
+[0.100081, "o", "no override packages found; continuing with apt originals\r\r\n"]
+[0.104635, "o", "bzip2recover 1.0.8: extracts blocks from damaged .bz2 files.\r\r\nbzip2recover: searching for block boundaries ...\r\r\n   block 1 runs from 80 to 359\r\r\nbzip2recover: splitting into blocks\r\r\n   writing block 1 to `rec00001in.bz2' ...\r\r\nbzip2recover: finished\r\r\n"]
+[0.105987, "o", "/tmp/tmp.N6wtZtNQ8z/rec00001in.bz2\r\r\n"]

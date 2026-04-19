@@ -1,0 +1,4 @@
+{"version": 2, "width": 120, "height": 40, "timestamp": 1776622091, "env": {"TERM": "xterm-256color", "SHELL": "/bin/bash"}}
+[0.133069, "o", "no override packages found; continuing with apt originals\r\r\n"]
+[0.165519, "o", "./\r\r\n./b.txt\r\r\n./dir/\r\r\n./dir/a.txt\r\r\n"]
+[0.166983, "o", "./\r\r\n./b.txt\r\r\n./dir/\r\r\n./dir/a.txt\r\r\n"]

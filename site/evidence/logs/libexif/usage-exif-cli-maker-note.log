@@ -1,0 +1,101 @@
+$ docker run --rm -t --mount type=bind,src=/tmp/validator-status-libexif-usage-exif-cli-maker-note-_gqnlssv,dst=/validator/status validator-libexif-shared-be41de901577 bash -lc 'set -euo pipefail
+/validator/tests/_shared/install_override_debs.sh
+exec /validator/tests/_shared/run_library_tests.sh "$@"' validator-testcase libexif usage-exif-cli-maker-note -- bash /validator/tests/libexif/tests/cases/usage/usage-exif-cli-maker-note.sh
+no override packages found; continuing with apt originals
+MakerNote contains 96 values:
+Macro Mode          |Normal
+Self-timer          |Off
+Quality             |Superfine
+Flash Mode          |Off
+Drive Mode          |Single
+Unknown Tag         |0x0000
+Focus Mode          |Single
+Unknown Tag         |0x0000
+Record Mode         |JPEG
+Image Size          |Small
+Easy Shooting Mode  |Landscape
+Digital Zoom        |None
+Contrast            |Normal
+Saturation          |Normal
+Sharpness           |Normal
+ISO                 |Auto
+Metering Mode       |Evaluative
+Focus Range         |Auto
+AF Point            |Auto AF point selection
+Exposure Mode       |Easy shooting
+Unknown Tag         |0x7fff
+Lens Type           |0xffff
+Long Focal Length of|662
+Short Focal Length o|186
+Focal Units per mm  |32
+Maximal Aperture    |2.89
+Minimal Aperture    |8.00
+Flash Activity      |0xffff
+Flash Details       |
+Unknown Tag         |0x0000
+Unknown Tag         |0x0000
+Focus Mode          |Single
+AE Setting          |Normal AE
+Image Stabilization |0xffff
+Display Aperture    |0.00
+Zoom Source Width   |3072
+Zoom Target Width   |3072
+Unknown Tag         |0x0000
+Spot Metering Mode  |0x0000
+Photo Effect        |Off
+Manual Flash Output |Off
+Color Tone          |0x7fff
+Unknown Tag         |0x7fff
+Unknown Tag         |0x0001
+Unknown Tag         |0x0000
+Focal Type          |Zoom
+Focal Length        |186
+Focal Plane X Size  |7.39 mm
+Focal Plane Y Size  |5.54 mm
+Unknown Tag         |0 0 0 0 
+Auto ISO            |1.000
+Shot ISO            |50
+Measured EV         |-9.94 EV
+Target Aperture     |2.80
+Target Exposure Time|1
+Exposure Compensatio|0.00 EV
+White Balance       |Auto
+Slow Shutter        |Off
+Sequence Number     |0
+Optical Zoom Code   |0x0000
+Unknown Tag         |0x0000
+Camera Temperature  |0x0000
+Flash Guide Number  |0.00
+AF Point            |0x0000
+Flash Exposure Compe|0.00 EV
+AE Bracketing       |Off
+AE Bracket Value    |0.00 EV
+Control Mode        |0x0001
+Focus Distance Upper|6553 mm
+Focus Distance Lower|0 mm
+F-Number            |2.89
+Exposure Time       |1
+Measured EV 2       |0x0000
+Bulb Duration       |0x0000
+Unknown Tag         |0xffd0
+Camera Type         |Compact
+Auto Rotate         |Rotate 90 CW
+ND Filter           |Off
+Self-timer          |Off
+Unknown Tag         |0x0000
+Unknown Tag         |0x0000
+Unknown Tag         |0x0000
+Manual Flash Output |Off
+Unknown Tag         |0 0 0 0 0 0 
+Unknown Tag         |0 0 0 0 
+AF Info             |9 9 640 480 3072 230 553 41 64982 0 554 64982 0 554 64982 
+Thumbnail Valid Area|0 0 0 0 
+Image Type          |IMG:PowerShot S70 JPEG
+Firmware Version    |Firmware Version 1.01
+Image Number        |123-4567
+Owner Name          |
+Model ID            |20447232 
+Unknown Tag         |10 2 2 640 480 
+Unknown Tag         |256 bytes unknown data
+Unknown Tag         |1 
+Camera Info         |72 9 512 512 512 512 512 512 512 512 512 65 0 0 65125 2 0 

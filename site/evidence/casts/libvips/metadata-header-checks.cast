@@ -1,0 +1,4 @@
+{"version": 2, "width": 120, "height": 40, "timestamp": 1776622137, "env": {"TERM": "xterm-256color", "SHELL": "/bin/bash"}}
+[0.113308, "o", "no override packages found; continuing with apt originals\r\r\n"]
+[0.140321, "o", "/validator/tests/libvips/tests/tagged-port/original/test/test-suite/images/sample.png: 290x442 ushort, 3 bands, rgb16, pngload\r\r\nwidth: 290\r\r\nheight: 442\r\r\nbands: 3\r\r\nformat: ushort\r\r\ncoding: none\r\r\ninterpretation: rgb16\r\r\nxoffset: 0\r\r\nyoffset: 0\r\r\nxres: 11.811\r\r\nyres: 11.811\r\r\nfilename: /validator/tests/libvips/tests/tagged-port/original/test/test-suite/images/sample.png\r\r\nvips-loader: pngload\r\r\nxmp-data: 17 bytes of binary data\r\r\nbits-per-sample: 16\r\r\n"]
+[0.14226, "o", "/validator/tests/libvips/tests/tagged-port/original/test/test-suite/images/sample.png: 290x442 ushort, 3 bands, rgb16, pngload\r\r\nwidth: 290\r\r\nheight: 442\r\r\nbands: 3\r\r\n"]

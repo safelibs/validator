@@ -1,0 +1,5 @@
+$ docker run --rm -t --mount type=bind,src=/tmp/validator-status-libcsv-large-field-handling-9q8252co,dst=/validator/status validator-libcsv-shared-2991cc074733 bash -lc 'set -euo pipefail
+/validator/tests/_shared/install_override_debs.sh
+exec /validator/tests/_shared/run_library_tests.sh "$@"' validator-testcase libcsv large-field-handling -- bash /validator/tests/libcsv/tests/cases/source/large-field-handling.sh
+no override packages found; continuing with apt originals
+large=200000

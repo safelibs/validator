@@ -8,7 +8,7 @@ from pathlib import Path, PurePosixPath
 from typing import Any
 
 from tools import ValidatorError, select_libraries
-from tools.testcases import Testcase, TestcaseManifest, load_manifests, testcase_result_sort_key
+from tools.testcases import Testcase, TestcaseManifest, load_manifests
 
 
 REQUIRED_RESULT_FIELDS = {
@@ -34,46 +34,9 @@ REQUIRED_RESULT_FIELDS = {
     "apt_packages",
     "override_debs_installed",
 }
-SUMMARY_FIELDS = {
-    "schema_version",
-    "library",
-    "mode",
-    "cases",
-    "source_cases",
-    "usage_cases",
-    "passed",
-    "failed",
-    "casts",
-    "duration_seconds",
-}
+OPTIONAL_RESULT_FIELDS = {"error"}
 UTC_TIMESTAMP_RE = re.compile(r"^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(?:\.\d+)?Z$")
-PAIRED_RESULT_FIELDS = {
-    "library",
-    "mode",
-    "execution_strategy",
-    "status",
-    "started_at",
-    "finished_at",
-    "duration_seconds",
-    "log_path",
-    "cast_path",
-    "exit_code",
-}
-PAIRED_SUMMARY_BUCKETS = (
-    "passed_dependents",
-    "failed_dependents",
-    "warned_dependents",
-    "skipped_dependents",
-)
-PAIRED_PROOF_SUMMARY_FIELDS = (
-    "report_format",
-    "expected_dependents",
-    "selected_dependents",
-    "passed_dependents",
-    "failed_dependents",
-    "warned_dependents",
-    "skipped_dependents",
-)
+PROOF_STATUSES = {"passed", "failed"}
 
 
 def _reject_json_constant(value: str) -> None:
@@ -109,17 +72,6 @@ def _validate_existing_artifact_file_path(
         raise ValidatorError(f"{field_name} must stay within the artifact root in {source_path}: {path}") from exc
     if not resolved.is_file():
         raise ValidatorError(f"{field_name} must be a file in {source_path}: {path}")
-
-
-def _validate_no_duplicate_strings(values: list[str], *, field_name: str) -> None:
-    seen: set[str] = set()
-    duplicates: list[str] = []
-    for value in values:
-        if value in seen:
-            duplicates.append(value)
-        seen.add(value)
-    if duplicates:
-        raise ValidatorError(f"{field_name} must not contain duplicates: {', '.join(duplicates)}")
 
 
 def validate_artifact_relative_path(
@@ -167,6 +119,12 @@ def _require_optional_string(value: Any, *, field_name: str, source_path: Path) 
     return _require_string(value, field_name=field_name, source_path=source_path)
 
 
+def _require_status(value: Any, *, source_path: Path) -> str:
+    if not isinstance(value, str) or not value.strip() or value not in PROOF_STATUSES:
+        raise ValidatorError(f"status must be passed or failed in {source_path}")
+    return value
+
+
 def _require_utc_timestamp(value: Any, *, field_name: str, source_path: Path) -> str:
     text = _require_string(value, field_name=field_name, source_path=source_path)
     if not UTC_TIMESTAMP_RE.fullmatch(text):
@@ -210,39 +168,6 @@ def _require_string_list(value: Any, *, field_name: str, source_path: Path) -> l
             raise ValidatorError(f"{field_name} entries must be non-empty strings in {source_path}")
         normalized.append(item)
     return normalized
-
-
-def _result_path_identity(path: Path, *, artifacts_root: Path) -> tuple[str, str] | None:
-    absolute_path = path if path.is_absolute() else Path.cwd() / path
-    try:
-        relative = absolute_path.relative_to(artifacts_root.resolve(strict=False) / "results")
-    except ValueError:
-        return None
-    if len(relative.parts) != 2 or relative.suffix != ".json" or relative.name == "summary.json":
-        return None
-    return relative.parts[0], relative.stem
-
-
-def _summary_path_identity(path: Path, *, artifacts_root: Path) -> str | None:
-    absolute_path = path if path.is_absolute() else Path.cwd() / path
-    try:
-        relative = absolute_path.relative_to(artifacts_root.resolve(strict=False) / "results")
-    except ValueError:
-        return None
-    if len(relative.parts) != 2 or relative.name != "summary.json":
-        return None
-    return relative.parts[0]
-
-
-def _paired_summary_path_identity(path: Path, *, artifacts_root: Path) -> tuple[str, str] | None:
-    absolute_path = path if path.is_absolute() else Path.cwd() / path
-    try:
-        relative = absolute_path.relative_to(artifacts_root.resolve(strict=False) / "downstream")
-    except ValueError:
-        return None
-    if len(relative.parts) != 3 or relative.parts[2] != "summary.json":
-        return None
-    return relative.parts[0], relative.parts[1]
 
 
 def inspect_cast(cast_path: Path) -> dict[str, Any]:
@@ -307,7 +232,7 @@ def inspect_cast(cast_path: Path) -> dict[str, Any]:
     }
 
 
-def load_result(path: Path, *, artifacts_root: Path) -> dict[str, Any]:
+def load_result(path: Path, *, artifacts_root: Path, require_casts: bool = False) -> dict[str, Any]:
     _validate_existing_artifact_file_path(
         path,
         field_name="result path",
@@ -318,6 +243,9 @@ def load_result(path: Path, *, artifacts_root: Path) -> dict[str, Any]:
     missing = sorted(REQUIRED_RESULT_FIELDS - set(payload))
     if missing:
         raise ValidatorError(f"result schema mismatch in {path}: missing {', '.join(missing)}")
+    extras = sorted(set(payload) - REQUIRED_RESULT_FIELDS - OPTIONAL_RESULT_FIELDS)
+    if extras:
+        raise ValidatorError(f"unsupported result fields in {path}: {', '.join(extras)}")
 
     if payload.get("schema_version") != 2:
         raise ValidatorError(f"schema_version must be 2 in {path}")
@@ -341,8 +269,8 @@ def load_result(path: Path, *, artifacts_root: Path) -> dict[str, Any]:
     if kind == "usage" and client_application is None:
         raise ValidatorError(f"usage result client_application must be non-empty in {path}")
 
-    tags = _require_string_list(payload.get("tags"), field_name="tags", source_path=path)
-    requires = _require_string_list(payload.get("requires"), field_name="requires", source_path=path)
+    _require_string_list(payload.get("tags"), field_name="tags", source_path=path)
+    _require_string_list(payload.get("requires"), field_name="requires", source_path=path)
     command = _require_string_list(payload.get("command"), field_name="command", source_path=path)
     if not command:
         raise ValidatorError(f"command must be non-empty in {path}")
@@ -350,9 +278,7 @@ def load_result(path: Path, *, artifacts_root: Path) -> dict[str, Any]:
     if not apt_packages:
         raise ValidatorError(f"apt_packages must be non-empty in {path}")
 
-    status = _require_string(payload.get("status"), field_name="status", source_path=path)
-    if status not in {"passed", "failed"}:
-        raise ValidatorError(f"status must be passed or failed in {path}")
+    _require_status(payload.get("status"), source_path=path)
     _require_utc_timestamp(payload.get("started_at"), field_name="started_at", source_path=path)
     _require_utc_timestamp(payload.get("finished_at"), field_name="finished_at", source_path=path)
     _require_nonnegative_number(
@@ -361,11 +287,17 @@ def load_result(path: Path, *, artifacts_root: Path) -> dict[str, Any]:
         source_path=path,
     )
     _require_int(payload.get("exit_code"), field_name="exit_code", source_path=path)
-    _require_bool(
+    override_debs_installed = _require_bool(
         payload.get("override_debs_installed"),
         field_name="override_debs_installed",
         source_path=path,
     )
+    if override_debs_installed:
+        raise ValidatorError(f"override_debs_installed must be false for proof generation in {path}")
+
+    expected_result_path = f"results/{library}/{testcase_id}.json"
+    expected_log_path = f"logs/{library}/{testcase_id}.log"
+    expected_cast_path = f"casts/{library}/{testcase_id}.cast"
 
     result_target = validate_artifact_relative_path(
         payload.get("result_path"),
@@ -386,366 +318,29 @@ def load_result(path: Path, *, artifacts_root: Path) -> dict[str, Any]:
         source_path=path,
     )
 
-    identity = _result_path_identity(path, artifacts_root=artifacts_root)
-    if identity is not None:
-        path_library, path_case_id = identity
-        if (library, testcase_id) != identity:
-            raise ValidatorError(f"result identity does not match path in {path}")
-        expected_result_path = f"results/{path_library}/{path_case_id}.json"
-        expected_log_path = f"logs/{path_library}/{path_case_id}.log"
-        if payload.get("result_path") != expected_result_path:
-            raise ValidatorError(f"result_path must equal {expected_result_path!r} for result path {path}")
-        if payload.get("log_path") != expected_log_path:
-            raise ValidatorError(f"log_path must equal {expected_log_path!r} for result path {path}")
-        assert result_target is not None
-        if result_target.resolve(strict=False) != path.resolve(strict=False):
-            raise ValidatorError(f"result_path must point at the source result JSON in {path}")
+    if payload.get("result_path") != expected_result_path:
+        raise ValidatorError(f"result_path must equal {expected_result_path!r} for result path {path}")
+    if payload.get("log_path") != expected_log_path:
+        raise ValidatorError(f"log_path must equal {expected_log_path!r} for result path {path}")
+    assert result_target is not None
+    if result_target.resolve(strict=False) != path.resolve(strict=False):
+        raise ValidatorError(f"result_path must point at the source result JSON in {path}")
 
     assert log_target is not None
     if not log_target.is_file():
         raise ValidatorError(f"log_path does not exist for result path {path}: {log_target}")
 
-    if cast_target is not None:
-        expected_cast_path = f"casts/{library}/{testcase_id}.cast"
+    if require_casts and payload.get("cast_path") is None:
+        raise ValidatorError(f"cast_path is required when casts are required: {path}")
+    if payload.get("cast_path") is not None:
         if payload.get("cast_path") != expected_cast_path:
             raise ValidatorError(f"cast_path must equal {expected_cast_path!r} for result path {path}")
+        assert cast_target is not None
         if not cast_target.is_file():
             raise ValidatorError(f"missing cast referenced by {path}: {cast_target}")
         inspect_cast(cast_target)
 
     return payload
-
-
-def load_summary(path: Path, *, artifacts_root: Path) -> dict[str, Any]:
-    _validate_existing_artifact_file_path(
-        path,
-        field_name="summary path",
-        artifacts_root=artifacts_root,
-        source_path=path,
-    )
-    payload = _load_json_object(path, description="summary")
-    missing = sorted(SUMMARY_FIELDS - set(payload))
-    if missing:
-        raise ValidatorError(f"summary schema mismatch in {path}: missing {', '.join(missing)}")
-    extras = sorted(set(payload) - SUMMARY_FIELDS)
-    if extras:
-        raise ValidatorError(f"unsupported summary fields in {path}: {', '.join(extras)}")
-    if payload.get("schema_version") != 2:
-        raise ValidatorError(f"summary schema_version must be 2 in {path}")
-    library = _require_string(payload.get("library"), field_name="library", source_path=path)
-    if payload.get("mode") != "original":
-        raise ValidatorError(f"summary mode must be original in {path}")
-    identity = _summary_path_identity(path, artifacts_root=artifacts_root)
-    if identity is not None and library != identity:
-        raise ValidatorError(f"summary identity does not match path in {path}")
-    for field_name in ("cases", "source_cases", "usage_cases", "passed", "failed", "casts"):
-        value = _require_int(payload.get(field_name), field_name=field_name, source_path=path)
-        if value < 0:
-            raise ValidatorError(f"{field_name} must be non-negative in {path}")
-    _require_nonnegative_number(
-        payload.get("duration_seconds"),
-        field_name="duration_seconds",
-        source_path=path,
-    )
-    if payload["source_cases"] + payload["usage_cases"] != payload["cases"]:
-        raise ValidatorError(f"source_cases plus usage_cases must equal cases in {path}")
-    if payload["passed"] + payload["failed"] != payload["cases"]:
-        raise ValidatorError(f"passed plus failed must equal cases in {path}")
-    if payload["casts"] > payload["cases"]:
-        raise ValidatorError(f"casts must not exceed cases in {path}")
-    return payload
-
-
-def _paired_execution_strategy(entry: dict[str, Any]) -> str:
-    validator = entry.get("validator")
-    if isinstance(validator, dict) and isinstance(validator.get("execution_strategy"), str):
-        return str(validator["execution_strategy"])
-    return "container-image"
-
-
-def _paired_modes_for_library(artifact_root: Path, library: str) -> list[str]:
-    result_dir = artifact_root / "results" / library
-    primary = "original"
-    modes = sorted(path.stem for path in result_dir.glob("*.json") if path.name != "summary.json")
-    if primary not in modes:
-        raise ValidatorError(f"missing paired result JSON for {library}/{primary}: {result_dir / (primary + '.json')}")
-    secondary = [mode for mode in modes if mode != primary]
-    if len(secondary) != 1 or len(modes) != 2:
-        raise ValidatorError(f"paired site proof requires exactly two result modes for {library}: {modes}")
-    return [primary, secondary[0]]
-
-
-def _load_paired_result(path: Path, *, artifacts_root: Path) -> dict[str, Any]:
-    _validate_existing_artifact_file_path(
-        path,
-        field_name="result path",
-        artifacts_root=artifacts_root,
-        source_path=path,
-    )
-    payload = _load_json_object(path, description="result")
-    missing = sorted(PAIRED_RESULT_FIELDS - set(payload))
-    if missing:
-        raise ValidatorError(f"result schema mismatch in {path}: missing {', '.join(missing)}")
-
-    status = _require_string(payload.get("status"), field_name="status", source_path=path)
-    if status not in {"passed", "failed"}:
-        raise ValidatorError(f"status must be passed or failed in {path}")
-    _require_string(payload.get("library"), field_name="library", source_path=path)
-    _require_string(payload.get("mode"), field_name="mode", source_path=path)
-    _require_string(payload.get("execution_strategy"), field_name="execution_strategy", source_path=path)
-    _require_utc_timestamp(payload.get("started_at"), field_name="started_at", source_path=path)
-    _require_utc_timestamp(payload.get("finished_at"), field_name="finished_at", source_path=path)
-    _require_nonnegative_number(payload.get("duration_seconds"), field_name="duration_seconds", source_path=path)
-    _require_int(payload.get("exit_code"), field_name="exit_code", source_path=path)
-    if payload.get("log_path") is None:
-        raise ValidatorError(f"log_path must be non-null in {path}")
-    log_target = validate_artifact_relative_path(
-        payload.get("log_path"),
-        field_name="log_path",
-        artifacts_root=artifacts_root,
-        source_path=path,
-    )
-    validate_artifact_relative_path(
-        payload.get("cast_path"),
-        field_name="cast_path",
-        artifacts_root=artifacts_root,
-        source_path=path,
-    )
-    if "downstream_summary_path" in payload:
-        validate_artifact_relative_path(
-            payload.get("downstream_summary_path"),
-            field_name="downstream_summary_path",
-            artifacts_root=artifacts_root,
-            source_path=path,
-        )
-
-    identity = _result_path_identity(path, artifacts_root=artifacts_root)
-    if identity is not None:
-        library, mode = identity
-        if payload.get("library") != library or payload.get("mode") != mode:
-            raise ValidatorError(f"result identity does not match path in {path}")
-        expected_log_path = f"logs/{library}/{mode}.log"
-        if payload.get("log_path") != expected_log_path:
-            raise ValidatorError(f"log_path must equal {expected_log_path!r} for result path {path}")
-        assert log_target is not None
-        if not log_target.is_file():
-            raise ValidatorError(f"log_path does not exist for result path {path}: {log_target}")
-    return payload
-
-
-def _normalize_paired_string_list(value: Any, *, field_name: str, source_path: Path) -> list[str]:
-    values = _require_string_list(value, field_name=field_name, source_path=source_path)
-    if len(values) != len(set(values)):
-        raise ValidatorError(f"{field_name} must not contain duplicates in {source_path}")
-    return values
-
-
-def _load_paired_summary(path: Path, *, artifacts_root: Path) -> dict[str, Any]:
-    _validate_existing_artifact_file_path(
-        path,
-        field_name="downstream summary path",
-        artifacts_root=artifacts_root,
-        source_path=path,
-    )
-    payload = _load_json_object(path, description="downstream summary")
-    required = {
-        "summary_version",
-        "library",
-        "mode",
-        "status",
-        "report_format",
-        "expected_dependents",
-        "selected_dependents",
-        *PAIRED_SUMMARY_BUCKETS,
-        "artifacts",
-    }
-    missing = sorted(required - set(payload))
-    if missing:
-        raise ValidatorError(f"downstream summary schema mismatch in {path}: missing {', '.join(missing)}")
-    if payload.get("summary_version") != 1:
-        raise ValidatorError(f"summary_version must be 1 in {path}")
-    library = _require_string(payload.get("library"), field_name="library", source_path=path)
-    mode = _require_string(payload.get("mode"), field_name="mode", source_path=path)
-    identity = _paired_summary_path_identity(path, artifacts_root=artifacts_root)
-    if identity is not None and identity != (library, mode):
-        raise ValidatorError(f"summary identity does not match path in {path}")
-    status = _require_string(payload.get("status"), field_name="status", source_path=path)
-    if status not in {"passed", "failed"}:
-        raise ValidatorError(f"status must be passed or failed in {path}")
-    _require_string(payload.get("report_format"), field_name="report_format", source_path=path)
-    expected_dependents = payload.get("expected_dependents")
-    if isinstance(expected_dependents, bool) or not isinstance(expected_dependents, int) or expected_dependents < 0:
-        raise ValidatorError(f"expected_dependents must be a non-negative integer in {path}")
-    selected = _normalize_paired_string_list(
-        payload.get("selected_dependents"),
-        field_name="selected_dependents",
-        source_path=path,
-    )
-    buckets = {
-        field_name: _normalize_paired_string_list(payload.get(field_name), field_name=field_name, source_path=path)
-        for field_name in PAIRED_SUMMARY_BUCKETS
-    }
-    if selected and expected_dependents != len(selected):
-        raise ValidatorError(f"expected_dependents must equal len(selected_dependents) in {path}")
-    terminal = [item for values in buckets.values() for item in values]
-    if len(terminal) != len(set(terminal)) or set(terminal) != set(selected):
-        raise ValidatorError(f"terminal dependent buckets must cover selected_dependents exactly once in {path}")
-    artifacts = payload.get("artifacts")
-    if not isinstance(artifacts, dict):
-        raise ValidatorError(f"artifacts must be a mapping in {path}")
-    normalized = {
-        "summary_version": 1,
-        "library": library,
-        "mode": mode,
-        "status": status,
-        "report_format": payload["report_format"],
-        "expected_dependents": expected_dependents,
-        "selected_dependents": selected,
-        **buckets,
-        "artifacts": dict(artifacts),
-    }
-    if "notes" in payload:
-        normalized["notes"] = payload["notes"]
-    return normalized
-
-
-def _paired_proof_summary(summary: dict[str, Any]) -> dict[str, Any]:
-    return {field_name: summary[field_name] for field_name in PAIRED_PROOF_SUMMARY_FIELDS}
-
-
-def _build_paired_site_proof(
-    manifest: dict[str, Any],
-    *,
-    artifact_root: Path,
-    libraries: list[str] | None,
-    excluded_libraries: dict[str, str] | None,
-) -> dict[str, Any]:
-    selected_entries = _selected_manifest_entries(manifest, libraries=libraries)
-    selected_names = [str(entry["name"]) for entry in selected_entries]
-    normalized_exclusions = _normalize_exclusions(excluded_libraries, selected_names=selected_names)
-    excluded_set = {entry["library"] for entry in normalized_exclusions}
-    included_entries = [entry for entry in selected_entries if str(entry["name"]) not in excluded_set]
-    included_names = [str(entry["name"]) for entry in included_entries]
-
-    artifact_root = artifact_root.resolve(strict=False)
-    proof_libraries: list[dict[str, Any]] = []
-    secondary_mode = ""
-    secondary_workloads = 0
-    total_workloads = 0
-    report_formats: set[str] = set()
-
-    for entry in included_entries:
-        library = str(entry["name"])
-        modes = _paired_modes_for_library(artifact_root, library)
-        secondary_mode = modes[1]
-        execution_strategy = _paired_execution_strategy(entry)
-        library_proof: dict[str, Any] = {"library": library}
-
-        for mode in modes:
-            result_path = artifact_root / "results" / library / f"{mode}.json"
-            result = _load_paired_result(result_path, artifacts_root=artifact_root)
-            _require_result_field(result, field_name="library", expected_value=library, result_path=result_path)
-            _require_result_field(result, field_name="mode", expected_value=mode, result_path=result_path)
-            _require_result_field(
-                result,
-                field_name="execution_strategy",
-                expected_value=execution_strategy,
-                result_path=result_path,
-            )
-            expected_summary_path = f"downstream/{library}/{mode}/summary.json"
-            if "downstream_summary_path" not in result:
-                raise ValidatorError(f"downstream_summary_path is required for proof-counted result {result_path}")
-            _require_result_field(
-                result,
-                field_name="downstream_summary_path",
-                expected_value=expected_summary_path,
-                result_path=result_path,
-            )
-            summary_path = artifact_root / "downstream" / library / mode / "summary.json"
-            summary = _load_paired_summary(summary_path, artifacts_root=artifact_root)
-            _require_result_field(summary, field_name="library", expected_value=library, result_path=summary_path)
-            _require_result_field(summary, field_name="mode", expected_value=mode, result_path=summary_path)
-            if result["status"] != summary["status"]:
-                raise ValidatorError(f"result status must match downstream summary status for {library}/{mode}")
-            if summary["expected_dependents"] <= 0:
-                raise ValidatorError(f"expected_dependents must be greater than zero for proof coverage in {summary_path}")
-
-            report_formats.add(str(summary["report_format"]))
-            total_workloads += int(summary["expected_dependents"])
-            mode_proof: dict[str, Any] = {
-                "result_path": f"results/{library}/{mode}.json",
-                "status": result["status"],
-                "summary_path": expected_summary_path,
-                "summary": _paired_proof_summary(summary),
-            }
-            if mode == secondary_mode:
-                cast_path = result.get("cast_path")
-                if cast_path is None:
-                    raise ValidatorError(f"cast_path is required for proof-counted result {result_path}")
-                cast_target = validate_artifact_relative_path(
-                    cast_path,
-                    field_name="cast_path",
-                    artifacts_root=artifact_root,
-                    source_path=result_path,
-                )
-                assert cast_target is not None
-                if not cast_target.is_file():
-                    raise ValidatorError(f"missing cast referenced by {result_path}: {cast_target}")
-                mode_proof["cast_path"] = cast_path
-                mode_proof.update(inspect_cast(cast_target))
-                secondary_workloads += int(summary["expected_dependents"])
-            library_proof[mode] = mode_proof
-        proof_libraries.append(library_proof)
-
-    return {
-        "proof_version": 1,
-        "included_libraries": included_names,
-        "excluded_libraries": normalized_exclusions,
-        "totals": {
-            "included_libraries": len(included_names),
-            "excluded_libraries": len(normalized_exclusions),
-            "result_runs": len(included_names) * 2,
-            f"{secondary_mode}_casts": len(included_names) if secondary_mode else 0,
-            f"{secondary_mode}_workloads": secondary_workloads,
-            "total_workloads": total_workloads,
-            "report_formats": sorted(report_formats),
-        },
-        "libraries": proof_libraries,
-    }
-
-
-def _selected_manifest_entries(
-    manifest: dict[str, Any],
-    *,
-    libraries: list[str] | None,
-) -> list[dict[str, Any]]:
-    return select_libraries(manifest, libraries)
-
-
-def _normalize_exclusions(
-    excluded_libraries: dict[str, str] | None,
-    *,
-    selected_names: list[str],
-) -> list[dict[str, str]]:
-    if excluded_libraries is None:
-        excluded_libraries = {}
-    if not isinstance(excluded_libraries, dict):
-        raise ValidatorError("excluded_libraries must be a mapping")
-
-    selected_set = set(selected_names)
-    unknown = [library for library in excluded_libraries if library not in selected_set]
-    if unknown:
-        raise ValidatorError(f"excluded libraries are outside the selected manifest set: {', '.join(unknown)}")
-
-    normalized: list[dict[str, str]] = []
-    for library in selected_names:
-        if library not in excluded_libraries:
-            continue
-        note = excluded_libraries[library]
-        if not isinstance(note, str) or not note.strip():
-            raise ValidatorError(f"excluded library {library} requires a non-empty note")
-        normalized.append({"library": library, "note": note})
-    return normalized
 
 
 def _require_result_field(
@@ -790,78 +385,121 @@ def _validate_result_matches_testcase(
         )
 
 
-def _validate_summary_matches_results(
-    summary: dict[str, Any],
+def _suite_from_manifest(manifest: dict[str, Any]) -> dict[str, str]:
+    suite = manifest.get("suite")
+    if not isinstance(suite, dict):
+        raise ValidatorError("manifest must define suite")
+    proof_suite: dict[str, str] = {}
+    for field_name in ("name", "image", "apt_suite"):
+        value = suite.get(field_name)
+        if not isinstance(value, str) or not value.strip():
+            raise ValidatorError(f"manifest suite must define non-empty {field_name}")
+        proof_suite[field_name] = value
+    return proof_suite
+
+
+def _validate_exact_result_set(
     *,
+    artifact_root: Path,
     testcase_manifest: TestcaseManifest,
-    results: list[dict[str, Any]],
-    summary_path: Path,
 ) -> None:
-    expected = {
-        "library": testcase_manifest.library,
+    result_dir = artifact_root / "results" / testcase_manifest.library
+    expected_ids = [testcase.id for testcase in testcase_manifest.testcases]
+    expected_set = set(expected_ids)
+    if len(expected_set) != len(expected_ids):
+        raise ValidatorError(f"duplicate testcase ids for {testcase_manifest.library}")
+    if not result_dir.is_dir():
+        raise ValidatorError(f"missing result directory for {testcase_manifest.library}: {result_dir}")
+    actual_ids = sorted(path.stem for path in result_dir.glob("*.json") if path.name != "summary.json")
+    actual_set = set(actual_ids)
+    duplicate_actual = sorted({case_id for case_id in actual_ids if actual_ids.count(case_id) > 1})
+    if duplicate_actual:
+        raise ValidatorError(
+            f"duplicate result JSON files for {testcase_manifest.library}: {', '.join(duplicate_actual)}"
+        )
+    missing = sorted(expected_set - actual_set)
+    unexpected = sorted(actual_set - expected_set)
+    details: list[str] = []
+    if missing:
+        details.append(f"missing {', '.join(missing)}")
+    if unexpected:
+        details.append(f"unexpected {', '.join(unexpected)}")
+    if details:
+        raise ValidatorError(
+            f"result JSON set for {testcase_manifest.library} must match testcase manifest exactly: "
+            + "; ".join(details)
+        )
+
+
+def _case_proof(
+    *,
+    result: dict[str, Any],
+    testcase: Testcase,
+    artifact_root: Path,
+    result_path: Path,
+) -> dict[str, Any]:
+    proof_row: dict[str, Any] = {
+        "testcase_id": testcase.id,
+        "title": testcase.title,
+        "description": testcase.description,
+        "kind": testcase.kind,
         "mode": "original",
-        "cases": len(results),
-        "source_cases": sum(1 for result in results if result["kind"] == "source"),
-        "usage_cases": sum(1 for result in results if result["kind"] == "usage"),
-        "passed": sum(1 for result in results if result["status"] == "passed"),
-        "failed": sum(1 for result in results if result["status"] == "failed"),
-        "casts": sum(1 for result in results if result["cast_path"] is not None),
+        "client_application": testcase.client_application,
+        "tags": list(testcase.tags),
+        "requires": list(testcase.requires),
+        "status": result["status"],
+        "result_path": f"results/{result['library']}/{testcase.id}.json",
+        "log_path": f"logs/{result['library']}/{testcase.id}.log",
+        "cast_path": result.get("cast_path"),
+        "duration_seconds": result["duration_seconds"],
+        "exit_code": result["exit_code"],
     }
-    for field_name, expected_value in expected.items():
-        if summary.get(field_name) != expected_value:
-            raise ValidatorError(
-                f"summary {field_name} mismatch in {summary_path}: "
-                f"expected {expected_value!r}, got {summary.get(field_name)!r}"
-            )
+    if result.get("cast_path") is not None:
+        cast_target = validate_artifact_relative_path(
+            result["cast_path"],
+            field_name="cast_path",
+            artifacts_root=artifact_root,
+            source_path=result_path,
+        )
+        assert cast_target is not None
+        proof_row.update(inspect_cast(cast_target))
+    return proof_row
+
+
+def _library_totals(testcases: list[dict[str, Any]]) -> dict[str, int]:
+    return {
+        "cases": len(testcases),
+        "source_cases": sum(1 for result in testcases if result["kind"] == "source"),
+        "usage_cases": sum(1 for result in testcases if result["kind"] == "usage"),
+        "passed": sum(1 for result in testcases if result["status"] == "passed"),
+        "failed": sum(1 for result in testcases if result["status"] == "failed"),
+        "casts": sum(1 for result in testcases if result["cast_path"] is not None),
+    }
 
 
 def build_proof(
     manifest: dict[str, Any],
     *,
     artifact_root: Path,
-    tests_root: Path | None = None,
+    tests_root: Path,
     libraries: list[str] | None = None,
-    excluded_libraries: dict[str, str] | None = None,
-    record_casts_expected: bool = False,
-    min_total_cases: int = 0,
+    min_cases: int = 0,
     min_source_cases: int = 0,
     min_usage_cases: int = 0,
+    require_casts: bool = False,
 ) -> dict[str, Any]:
-    if tests_root is None:
-        if record_casts_expected or min_total_cases or min_source_cases or min_usage_cases:
-            raise ValidatorError("original-only proof options require tests_root")
-        return _build_paired_site_proof(
-            manifest,
-            artifact_root=artifact_root,
-            libraries=libraries,
-            excluded_libraries=excluded_libraries,
-        )
-
-    if min_total_cases < 0 or min_source_cases < 0 or min_usage_cases < 0:
+    if min_cases < 0 or min_source_cases < 0 or min_usage_cases < 0:
         raise ValidatorError("case thresholds must be non-negative")
 
-    selected_entries = _selected_manifest_entries(manifest, libraries=libraries)
-    selected_names = [str(entry["name"]) for entry in selected_entries]
-    normalized_exclusions = _normalize_exclusions(
-        excluded_libraries,
-        selected_names=selected_names,
-    )
-    excluded_set = {entry["library"] for entry in normalized_exclusions}
-    included_entries = [entry for entry in selected_entries if str(entry["name"]) not in excluded_set]
-    included_names = [str(entry["name"]) for entry in included_entries]
-
-    if included_entries:
-        included_manifest = dict(manifest)
-        included_manifest["libraries"] = included_entries
-        testcase_manifests = load_manifests(included_manifest, tests_root=tests_root)
-    else:
-        testcase_manifests = {}
+    selected_entries = select_libraries(manifest, libraries)
+    selected_manifest = dict(manifest)
+    selected_manifest["libraries"] = selected_entries
+    testcase_manifests = load_manifests(selected_manifest, tests_root=tests_root)
 
     artifact_root = artifact_root.resolve(strict=False)
     proof_libraries: list[dict[str, Any]] = []
     totals = {
-        "included_libraries": len(included_names),
-        "excluded_libraries": len(normalized_exclusions),
+        "libraries": 0,
         "cases": 0,
         "source_cases": 0,
         "usage_cases": 0,
@@ -870,76 +508,45 @@ def build_proof(
         "casts": 0,
     }
 
-    for entry in included_entries:
+    for entry in selected_entries:
         library = str(entry["name"])
         testcase_manifest = testcase_manifests[library]
-        case_proofs: list[dict[str, Any]] = []
-        result_payloads: list[dict[str, Any]] = []
+        _validate_exact_result_set(artifact_root=artifact_root, testcase_manifest=testcase_manifest)
 
+        case_rows: list[dict[str, Any]] = []
         for testcase in testcase_manifest.testcases:
             result_path = artifact_root / "results" / library / f"{testcase.id}.json"
-            if not result_path.is_file():
-                raise ValidatorError(f"missing result JSON for {library}/{testcase.id}: {result_path}")
-            result = load_result(result_path, artifacts_root=artifact_root)
+            result = load_result(result_path, artifacts_root=artifact_root, require_casts=require_casts)
             _validate_result_matches_testcase(
                 result,
                 testcase=testcase,
                 testcase_manifest=testcase_manifest,
                 result_path=result_path,
             )
-            if record_casts_expected and result.get("cast_path") is None:
-                raise ValidatorError(f"cast_path is required when casts were recorded: {result_path}")
-            cast_info: dict[str, Any] = {}
-            if result.get("cast_path") is not None:
-                cast_target = validate_artifact_relative_path(
-                    result["cast_path"],
-                    field_name="cast_path",
-                    artifacts_root=artifact_root,
-                    source_path=result_path,
+            case_rows.append(
+                _case_proof(
+                    result=result,
+                    testcase=testcase,
+                    artifact_root=artifact_root,
+                    result_path=result_path,
                 )
-                assert cast_target is not None
-                cast_info = inspect_cast(cast_target)
+            )
 
-            result_payloads.append(result)
-            case_proof: dict[str, Any] = {
-                "testcase_id": testcase.id,
-                "kind": testcase.kind,
-                "client_application": testcase.client_application,
-                "status": result["status"],
-                "result_path": f"results/{library}/{testcase.id}.json",
-                "log_path": f"logs/{library}/{testcase.id}.log",
-                "cast_path": result.get("cast_path"),
-            }
-            case_proof.update(cast_info)
-            case_proofs.append(case_proof)
-
-        result_payloads.sort(key=testcase_result_sort_key)
-        summary_path = artifact_root / "results" / library / "summary.json"
-        summary = load_summary(summary_path, artifacts_root=artifact_root)
-        _validate_summary_matches_results(
-            summary,
-            testcase_manifest=testcase_manifest,
-            results=result_payloads,
-            summary_path=summary_path,
-        )
-
-        totals["cases"] += summary["cases"]
-        totals["source_cases"] += summary["source_cases"]
-        totals["usage_cases"] += summary["usage_cases"]
-        totals["passed"] += summary["passed"]
-        totals["failed"] += summary["failed"]
-        totals["casts"] += summary["casts"]
-
+        library_totals = _library_totals(case_rows)
         proof_libraries.append(
             {
                 "library": library,
-                "summary_path": f"results/{library}/summary.json",
-                "cases": case_proofs,
+                "apt_packages": list(testcase_manifest.apt_packages),
+                "totals": library_totals,
+                "testcases": case_rows,
             }
         )
+        totals["libraries"] += 1
+        for field_name in ("cases", "source_cases", "usage_cases", "passed", "failed", "casts"):
+            totals[field_name] += library_totals[field_name]
 
-    if min_total_cases and totals["cases"] < min_total_cases:
-        raise ValidatorError(f"total case threshold not met: {totals['cases']} < {min_total_cases}")
+    if min_cases and totals["cases"] < min_cases:
+        raise ValidatorError(f"case threshold not met: {totals['cases']} < {min_cases}")
     if min_source_cases and totals["source_cases"] < min_source_cases:
         raise ValidatorError(f"source case threshold not met: {totals['source_cases']} < {min_source_cases}")
     if min_usage_cases and totals["usage_cases"] < min_usage_cases:
@@ -947,9 +554,7 @@ def build_proof(
 
     return {
         "proof_version": 2,
-        "mode": "original",
-        "included_libraries": included_names,
-        "excluded_libraries": normalized_exclusions,
+        "suite": _suite_from_manifest(manifest),
         "totals": totals,
         "libraries": proof_libraries,
     }

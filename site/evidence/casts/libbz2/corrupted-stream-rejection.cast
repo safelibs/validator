@@ -1,0 +1,3 @@
+{"version": 2, "width": 120, "height": 40, "timestamp": 1776622095, "env": {"TERM": "xterm-256color", "SHELL": "/bin/bash"}}
+[0.112292, "o", "no override packages found; continuing with apt originals\r\r\n"]
+[0.124284, "o", "\r\r\nbunzip2: Data integrity error when decompressing.\r\r\n\tInput file = /tmp/tmp.5GFwOcAyyM/bad.bz2, output file = (stdout)\r\r\n\r\r\nIt is possible that the compressed file(s) have become corrupted.\r\r\nYou can use the -tvv option to test integrity of such files.\r\r\n\r\r\nYou can use the `bzip2recover' program to attempt to recover\r\r\ndata from undamaged sections of corrupted files.\r\r\n\r\r\n"]

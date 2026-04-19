@@ -1,0 +1,5 @@
+$ docker run --rm -t --mount type=bind,src=/tmp/validator-status-libuv-usage-nodejs-fs-read-write-t7x2qlkc,dst=/validator/status validator-libuv-shared-3c2b5783eb7b bash -lc 'set -euo pipefail
+/validator/tests/_shared/install_override_debs.sh
+exec /validator/tests/_shared/run_library_tests.sh "$@"' validator-testcase libuv usage-nodejs-fs-read-write -- bash /validator/tests/libuv/tests/cases/usage/usage-nodejs-fs-read-write.sh
+no override packages found; continuing with apt originals
+payload

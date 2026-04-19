@@ -1,0 +1,4 @@
+{"version": 2, "width": 120, "height": 40, "timestamp": 1776622140, "env": {"TERM": "xterm-256color", "SHELL": "/bin/bash"}}
+[0.105966, "o", "no override packages found; continuing with apt originals\r\r\n"]
+[0.11938, "o", "Decoded /tmp/tmp.75xrxavbjK/a.webp. Dimensions: 2 x 2 . Format: lossy. Now saving...\r\r\nSaved file /tmp/tmp.75xrxavbjK/out.ppm\r\r\n"]
+[0.120214, "o", "P6\r\r\n2 2\r\r\n255\r\r\n"]

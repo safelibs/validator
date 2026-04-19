@@ -1,0 +1,51 @@
+$ docker run --rm -t --mount type=bind,src=/tmp/validator-status-libexif-usage-exif-cli-machine-readable-kzcbgtzy,dst=/validator/status validator-libexif-shared-be41de901577 bash -lc 'set -euo pipefail
+/validator/tests/_shared/install_override_debs.sh
+exec /validator/tests/_shared/run_library_tests.sh "$@"' validator-testcase libexif usage-exif-cli-machine-readable -- bash /validator/tests/libexif/tests/cases/usage/usage-exif-cli-machine-readable.sh
+no override packages found; continuing with apt originals
+Manufacturer	Canon
+Model	Canon PowerShot S70
+Orientation	Right-top
+X-Resolution	180
+Y-Resolution	180
+Resolution Unit	Inch
+Date and Time	2009:10:10 16:42:32
+YCbCr Positioning	Centered
+Compression	JPEG compression
+X-Resolution	180
+Y-Resolution	180
+Resolution Unit	Inch
+Exposure Time	1 sec.
+F-Number	f/2.8
+Exif Version	Exif Version 2.2
+Date and Time (Original)	2009:10:10 16:42:32
+Date and Time (Digitized)	2009:10:10 16:42:32
+Components Configuration	Y Cb Cr -
+Compressed Bits per Pixel	 5
+Shutter Speed	0.00 EV (1 sec.)
+Aperture	2.97 EV (f/2.8)
+Exposure Bias	0.00 EV
+Maximum Aperture Value	2.97 EV (f/2.8)
+Metering Mode	Pattern
+Flash	Flash did not fire, compulsory flash mode
+Focal Length	5.8 mm
+Maker Note	904 bytes undefined data
+User Comment	
+FlashPixVersion	FlashPix Version 1.0
+Color Space	sRGB
+Pixel X Dimension	640
+Pixel Y Dimension	480
+Focal Plane X-Resolution	2253.521
+Focal Plane Y-Resolution	2253.521
+Focal Plane Resolution Unit	Inch
+Sensing Method	One-chip color area sensor
+File Source	DSC
+Custom Rendered	Normal process
+Exposure Mode	Auto exposure
+White Balance	Auto white balance
+Digital Zoom Ratio	1.0000
+Scene Capture Type	Landscape
+Interoperability Index	R98
+Interoperability Version	0100
+RelatedImageWidth	640
+RelatedImageLength	480
+ThumbnailSize	4

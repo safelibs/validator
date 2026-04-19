@@ -1,0 +1,296 @@
+:root {
+  color-scheme: light;
+  font-family: Inter, "Segoe UI", Arial, sans-serif;
+  color: #18201f;
+  background: #f6f7f4;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: #f6f7f4;
+}
+
+main {
+  width: min(1180px, calc(100% - 32px));
+  margin: 0 auto;
+  padding: 24px 0 48px;
+}
+
+h1, h2, p { margin-top: 0; }
+
+h1 {
+  font-size: 2.25rem;
+  line-height: 1.08;
+  margin-bottom: 18px;
+}
+
+h2 {
+  font-size: 1.25rem;
+  margin: 0 0 14px;
+}
+
+.dashboard {
+  padding: 16px 0 20px;
+}
+
+.metric-grid,
+.library-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 10px;
+}
+
+.metric,
+.library-card {
+  border: 1px solid #d8ddd6;
+  border-radius: 8px;
+  background: #ffffff;
+  padding: 14px;
+}
+
+.metric strong,
+.library-card strong {
+  display: block;
+  color: #0f3b34;
+  font-size: 1.45rem;
+  line-height: 1.1;
+  overflow-wrap: anywhere;
+}
+
+.metric span,
+.library-card span {
+  display: block;
+  color: #59635f;
+  font-size: 0.9rem;
+  margin-top: 5px;
+}
+
+.library-card {
+  color: inherit;
+  text-decoration: none;
+}
+
+.library-card:hover,
+.library-card:focus-visible {
+  border-color: #4f7f78;
+  outline: none;
+}
+
+.library-overview,
+.controls,
+.testcases {
+  margin-top: 24px;
+}
+
+.controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: end;
+  padding: 12px;
+  border: 1px solid #d8ddd6;
+  border-radius: 8px;
+  background: #ffffff;
+}
+
+label {
+  display: grid;
+  gap: 5px;
+  color: #4d5753;
+  font-size: 0.9rem;
+}
+
+.search-label {
+  flex: 1 1 260px;
+}
+
+input,
+select,
+button,
+.log-link {
+  min-height: 38px;
+  border-radius: 6px;
+  font: inherit;
+}
+
+input,
+select {
+  border: 1px solid #bfc8c3;
+  background: #fbfcfa;
+  color: #18201f;
+  padding: 7px 9px;
+}
+
+button,
+.log-link {
+  border: 1px solid #24524c;
+  background: #24524c;
+  color: #ffffff;
+  padding: 8px 12px;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+button:hover,
+button:focus-visible,
+.log-link:hover,
+.log-link:focus-visible {
+  background: #163a35;
+  outline: none;
+}
+
+.case-row {
+  border: 1px solid #d8ddd6;
+  border-radius: 8px;
+  background: #ffffff;
+  margin-bottom: 10px;
+  overflow: hidden;
+}
+
+.case-row[hidden] {
+  display: none;
+}
+
+.case-row summary {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 12px;
+  align-items: center;
+  cursor: pointer;
+  padding: 14px;
+}
+
+.case-title strong,
+.case-id {
+  display: block;
+  overflow-wrap: anywhere;
+}
+
+.case-title strong {
+  font-size: 1rem;
+}
+
+.case-id,
+.muted {
+  color: #66716d;
+  font-size: 0.88rem;
+}
+
+.status-pill {
+  border-radius: 999px;
+  padding: 5px 9px;
+  font-size: 0.82rem;
+  font-weight: 700;
+}
+
+.status-passed {
+  background: #dcefe5;
+  color: #155b36;
+}
+
+.status-failed {
+  background: #f8ded9;
+  color: #8a2a1d;
+}
+
+.case-body {
+  border-top: 1px solid #edf0ec;
+  padding: 14px;
+}
+
+.case-body p {
+  line-height: 1.5;
+  margin-bottom: 12px;
+}
+
+.case-meta {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 10px;
+  margin: 0 0 14px;
+}
+
+.case-meta div {
+  min-width: 0;
+}
+
+.case-meta dt {
+  color: #66716d;
+  font-size: 0.8rem;
+}
+
+.case-meta dd {
+  margin: 3px 0 0;
+  overflow-wrap: anywhere;
+}
+
+.tags span {
+  display: inline-block;
+  margin: 0 5px 5px 0;
+  border-radius: 999px;
+  background: #edf0ec;
+  padding: 3px 7px;
+  font-size: 0.82rem;
+}
+
+.case-actions,
+.player-controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+}
+
+.cast-player {
+  margin-top: 12px;
+}
+
+.player-controls {
+  margin-bottom: 8px;
+}
+
+.scrub-label {
+  flex: 1 1 220px;
+}
+
+.terminal {
+  height: 230px;
+  max-height: 42vh;
+  overflow: auto;
+  margin: 0;
+  border-radius: 8px;
+  background: #111817;
+  color: #e7f0ec;
+  padding: 12px;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  font-family: "SFMono-Regular", Consolas, monospace;
+  font-size: 0.9rem;
+  line-height: 1.45;
+}
+
+@media (max-width: 620px) {
+  main {
+    width: min(100% - 20px, 1180px);
+    padding-top: 16px;
+  }
+
+  h1 {
+    font-size: 1.8rem;
+  }
+
+  .case-row summary {
+    grid-template-columns: 1fr;
+  }
+
+  .controls {
+    align-items: stretch;
+  }
+
+  label,
+  .search-label {
+    flex: 1 1 100%;
+  }
+}

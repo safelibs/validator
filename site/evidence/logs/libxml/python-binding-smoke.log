@@ -1,0 +1,5 @@
+$ docker run --rm -t --mount type=bind,src=/tmp/validator-status-libxml-python-binding-smoke-0u8v4kz8,dst=/validator/status validator-libxml-shared-47e2d47d6a99 bash -lc 'set -euo pipefail
+/validator/tests/_shared/install_override_debs.sh
+exec /validator/tests/_shared/run_library_tests.sh "$@"' validator-testcase libxml python-binding-smoke -- bash /validator/tests/libxml/tests/cases/source/python-binding-smoke.sh
+no override packages found; continuing with apt originals
+items=1 text=alpha

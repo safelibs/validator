@@ -1,0 +1,5 @@
+$ docker run --rm -t --mount type=bind,src=/tmp/validator-status-libarchive-usage-python-libarchive-c-tar-list-wtv2z8dh,dst=/validator/status validator-libarchive-shared-c80df9fe5971 bash -lc 'set -euo pipefail
+/validator/tests/_shared/install_override_debs.sh
+exec /validator/tests/_shared/run_library_tests.sh "$@"' validator-testcase libarchive usage-python-libarchive-c-tar-list -- bash /validator/tests/libarchive/tests/cases/usage/usage-python-libarchive-c-tar-list.sh
+no override packages found; continuing with apt originals
+entries alpha.txt,beta.txt

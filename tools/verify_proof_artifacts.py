@@ -19,11 +19,8 @@ def build_parser() -> argparse.ArgumentParser:
     parser.add_argument("--artifact-root", required=True, type=Path)
     parser.add_argument("--proof-output", required=True)
     parser.add_argument("--library", action="append")
-    parser.add_argument("--exclude-library", action="append", default=[])
-    parser.add_argument("--exclude-note")
-    parser.add_argument("--record-casts", action="store_true")
     parser.add_argument("--require-casts", action="store_true")
-    parser.add_argument("--min-total-cases", type=int, default=0)
+    parser.add_argument("--min-cases", type=int, default=0)
     parser.add_argument("--min-source-cases", type=int, default=0)
     parser.add_argument("--min-usage-cases", type=int, default=0)
     return parser
@@ -63,33 +60,26 @@ def _validate_proof_output_path(raw_path: str, *, artifact_root: Path) -> Path:
 
 def main(argv: list[str] | None = None) -> int:
     args = build_parser().parse_args(argv)
-    if args.min_total_cases < 0 or args.min_source_cases < 0 or args.min_usage_cases < 0:
+    if args.min_cases < 0 or args.min_source_cases < 0 or args.min_usage_cases < 0:
         raise ValidatorError("case thresholds must be non-negative")
 
     libraries = args.library or None
     if libraries is not None:
         _reject_duplicates(libraries, field_name="--library")
-    _reject_duplicates(args.exclude_library, field_name="--exclude-library")
 
     artifact_root = args.artifact_root.resolve(strict=False)
     proof_output = _validate_proof_output_path(args.proof_output, artifact_root=artifact_root)
 
-    exclude_note = args.exclude_note or ""
-    excluded_libraries = {
-        library: exclude_note
-        for library in args.exclude_library
-    }
     manifest = load_manifest(args.config)
     proof = build_proof(
         manifest,
         artifact_root=artifact_root,
         tests_root=args.tests_root,
         libraries=libraries,
-        excluded_libraries=excluded_libraries,
-        record_casts_expected=args.record_casts or args.require_casts,
-        min_total_cases=args.min_total_cases,
+        min_cases=args.min_cases,
         min_source_cases=args.min_source_cases,
         min_usage_cases=args.min_usage_cases,
+        require_casts=args.require_casts,
     )
     write_json(proof_output, proof)
     return 0

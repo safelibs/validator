@@ -1,0 +1,9 @@
+$ docker run --rm -t --mount type=bind,src=/tmp/validator-status-libxml-usage-xmlstarlet-format-xml-d6q549nn,dst=/validator/status validator-libxml-shared-47e2d47d6a99 bash -lc 'set -euo pipefail
+/validator/tests/_shared/install_override_debs.sh
+exec /validator/tests/_shared/run_library_tests.sh "$@"' validator-testcase libxml usage-xmlstarlet-format-xml -- bash /validator/tests/libxml/tests/cases/usage/usage-xmlstarlet-format-xml.sh
+no override packages found; continuing with apt originals
+<?xml version="1.0"?>
+<root>
+  <item name="alpha">1</item>
+  <item name="beta">2</item>
+</root>

@@ -1,0 +1,5 @@
+$ docker run --rm -t --mount type=bind,src=/tmp/validator-status-libpng-chunk-metadata-inspection-vzmxym5u,dst=/validator/status validator-libpng-shared-35d09b712ace bash -lc 'set -euo pipefail
+/validator/tests/_shared/install_override_debs.sh
+exec /validator/tests/_shared/run_library_tests.sh "$@"' validator-testcase libpng chunk-metadata-inspection -- bash /validator/tests/libpng/tests/cases/source/chunk-metadata-inspection.sh
+no override packages found; continuing with apt originals
+width=32 height=32 type=2

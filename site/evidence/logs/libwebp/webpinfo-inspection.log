@@ -1,0 +1,16 @@
+$ docker run --rm -t --mount type=bind,src=/tmp/validator-status-libwebp-webpinfo-inspection-0su7_4ja,dst=/validator/status validator-libwebp-shared-3c77de9c53f4 bash -lc 'set -euo pipefail
+/validator/tests/_shared/install_override_debs.sh
+exec /validator/tests/_shared/run_library_tests.sh "$@"' validator-testcase libwebp webpinfo-inspection -- bash /validator/tests/libwebp/tests/cases/source/webpinfo-inspection.sh
+no override packages found; continuing with apt originals
+File: /validator/tests/libwebp/tests/tagged-port/original/examples/test.webp
+RIFF HEADER:
+  File size:   4880
+Chunk VP8  at offset     12, length   4868
+  Width: 128
+  Height: 128
+  Alpha: 0
+  Animation: 0
+  Format: Lossy (1)
+No error detected.
+RIFF HEADER:
+Chunk VP8  at offset     12, length   4868

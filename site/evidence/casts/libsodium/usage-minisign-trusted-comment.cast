@@ -1,0 +1,4 @@
+{"version": 2, "width": 120, "height": 40, "timestamp": 1776622126, "env": {"TERM": "xterm-256color", "SHELL": "/bin/bash"}}
+[0.10282, "o", "no override packages found; continuing with apt originals\r\r\n"]
+[0.107197, "o", "The secret key was saved as /tmp/tmp.cgZTjn5vHt/minisign.sec - Keep it secret!\r\r\nThe public key was saved as /tmp/tmp.cgZTjn5vHt/minisign.pub - That one can be public.\r\r\n\r\r\nFiles signed using this key pair can be verified with the following command:\r\r\n\r\r\nminisign -Vm <file> -P RWQaeqWBuD+fmDFbFEkPeCikeYDb4gf+tAG0khCUrYsmnDFDFqduatLE\r\r\n\r\r\n"]
+[0.108502, "o", "Signature and comment signature verified\r\r\nTrusted comment: validator comment\r\r\n"]

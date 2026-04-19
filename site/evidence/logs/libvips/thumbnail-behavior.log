@@ -1,0 +1,5 @@
+$ docker run --rm -t --mount type=bind,src=/tmp/validator-status-libvips-thumbnail-behavior-pwsbnuj5,dst=/validator/status validator-libvips-shared-42d02b58b5df bash -lc 'set -euo pipefail
+/validator/tests/_shared/install_override_debs.sh
+exec /validator/tests/_shared/run_library_tests.sh "$@"' validator-testcase libvips thumbnail-behavior -- bash /validator/tests/libvips/tests/cases/source/thumbnail-behavior.sh
+no override packages found; continuing with apt originals
+/tmp/tmp.c94qmbi7tv/thumb.jpg: 21x32 uchar, 3 bands, srgb, jpegload

@@ -1,0 +1,19 @@
+$ docker run --rm -t --mount type=bind,src=/tmp/validator-status-giflib-usage-giflib-tools-giffix-copy-4c4bam4o,dst=/validator/status validator-giflib-shared-f854defacfbb bash -lc 'set -euo pipefail
+/validator/tests/_shared/install_override_debs.sh
+exec /validator/tests/_shared/run_library_tests.sh "$@"' validator-testcase giflib usage-giflib-tools-giffix-copy -- bash /validator/tests/giflib/tests/cases/usage/usage-giflib-tools-giffix-copy.sh
+no override packages found; continuing with apt originals
+
+/tmp/tmp.FBtO44SwnZ/fixed.gif:
+
+	Screen Size - Width = 40, Height = 40.
+	ColorResolution = 7, BitsPerPixel = 4, BackGround = 0, Aspect = 0.
+	Has Global Color Map.
+
+
+Image #1:
+
+	Image Size - Left = 0, Top = 0, Width = 40, Height = 40.
+	Image is Non Interlaced.
+	No Image Color Map.
+
+GIF file terminated normally.

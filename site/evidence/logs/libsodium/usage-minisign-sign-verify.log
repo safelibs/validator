@@ -1,0 +1,13 @@
+$ docker run --rm -t --mount type=bind,src=/tmp/validator-status-libsodium-usage-minisign-sign-verify-p_agcvbv,dst=/validator/status validator-libsodium-shared-6b44f961c7d4 bash -lc 'set -euo pipefail
+/validator/tests/_shared/install_override_debs.sh
+exec /validator/tests/_shared/run_library_tests.sh "$@"' validator-testcase libsodium usage-minisign-sign-verify -- bash /validator/tests/libsodium/tests/cases/usage/usage-minisign-sign-verify.sh
+no override packages found; continuing with apt originals
+The secret key was saved as /tmp/tmp.s4fEDnnuds/minisign.sec - Keep it secret!
+The public key was saved as /tmp/tmp.s4fEDnnuds/minisign.pub - That one can be public.
+
+Files signed using this key pair can be verified with the following command:
+
+minisign -Vm <file> -P RWRzB/BWoS2XzLfQx+DHdwNmOE/ghtWxFeYdEG0s3o9Zo02JyyKP3bQn
+
+Signature and comment signature verified
+Trusted comment: timestamp:1776622126	file:message.txt	hashed

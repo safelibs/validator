@@ -1,0 +1,5 @@
+$ docker run --rm -t --mount type=bind,src=/tmp/validator-status-libsodium-compile-link-smoke-671v1ugp,dst=/validator/status validator-libsodium-shared-6b44f961c7d4 bash -lc 'set -euo pipefail
+/validator/tests/_shared/install_override_debs.sh
+exec /validator/tests/_shared/run_library_tests.sh "$@"' validator-testcase libsodium compile-link-smoke -- bash /validator/tests/libsodium/tests/cases/source/compile-link-smoke.sh
+no override packages found; continuing with apt originals
+sodium=1.0.18

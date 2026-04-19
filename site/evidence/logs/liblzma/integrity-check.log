@@ -1,0 +1,21 @@
+$ docker run --rm -t --mount type=bind,src=/tmp/validator-status-liblzma-integrity-check-wlr7wick,dst=/validator/status validator-liblzma-shared-aa25cf9259a4 bash -lc 'set -euo pipefail
+/validator/tests/_shared/install_override_debs.sh
+exec /validator/tests/_shared/run_library_tests.sh "$@"' validator-testcase liblzma integrity-check -- bash /validator/tests/liblzma/tests/cases/source/integrity-check.sh
+no override packages found; continuing with apt originals
+/tmp/tmp.OlHt8P5jOf/a.xz (1/1)
+  Streams:           1
+  Blocks:            1
+  Compressed size:   68 B
+  Uncompressed size: 10 B
+  Ratio:             6.800
+  Check:             CRC64
+  Stream Padding:    0 B
+  Streams:
+    Stream    Blocks      CompOffset    UncompOffset        CompSize      UncompSize  Ratio  Check      Padding
+         1         1               0               0              68              10  6.800  CRC64            0
+  Blocks:
+    Stream     Block      CompOffset    UncompOffset       TotalSize      UncompSize  Ratio  Check
+         1         1              12               0              36              10  3.600  CRC64
+  Check:             CRC64
+         1         1               0               0              68              10  6.800  CRC64            0
+         1         1              12               0              36              10  3.600  CRC64

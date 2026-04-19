@@ -1,0 +1,3 @@
+{"version": 2, "width": 120, "height": 40, "timestamp": 1776622147, "env": {"TERM": "xterm-256color", "SHELL": "/bin/bash"}}
+[0.115485, "o", "no override packages found; continuing with apt originals\r\r\n"]
+[0.121832, "o", "<?xml version=\"1.0\"?>\r\r\n<root>\r\r\n  <item name=\"alpha\">1</item>\r\r\n  <item name=\"beta\">2</item>\r\r\n</root>\r\r\n"]

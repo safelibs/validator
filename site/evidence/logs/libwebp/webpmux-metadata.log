@@ -1,0 +1,10 @@
+$ docker run --rm -t --mount type=bind,src=/tmp/validator-status-libwebp-webpmux-metadata-_ofoq1et,dst=/validator/status validator-libwebp-shared-3c77de9c53f4 bash -lc 'set -euo pipefail
+/validator/tests/_shared/install_override_debs.sh
+exec /validator/tests/_shared/run_library_tests.sh "$@"' validator-testcase libwebp webpmux-metadata -- bash /validator/tests/libwebp/tests/cases/source/webpmux-metadata.sh
+no override packages found; continuing with apt originals
+Saved file /tmp/tmp.AALTGdkGKO/exif.webp (4920 bytes)
+Canvas size: 128 x 128
+Features present: EXIF metadata
+Size of the EXIF metadata: 13
+Features present: EXIF metadata
+Size of the EXIF metadata: 13

@@ -1,0 +1,10 @@
+$ docker run --rm -t --mount type=bind,src=/tmp/validator-status-libarchive-archive-metadata-listing-e0fapcxg,dst=/validator/status validator-libarchive-shared-c80df9fe5971 bash -lc 'set -euo pipefail
+/validator/tests/_shared/install_override_debs.sh
+exec /validator/tests/_shared/run_library_tests.sh "$@"' validator-testcase libarchive archive-metadata-listing -- bash /validator/tests/libarchive/tests/cases/source/archive-metadata-listing.sh
+no override packages found; continuing with apt originals
+drwxr-xr-x  0 root   root        0 Apr 19 18:08 ./
+-rw-r--r--  0 root   root        7 Apr 19 18:08 ./target.txt
+lrwxrwxrwx  0 root   root        0 Apr 19 18:08 ./link.txt -> target.txt
+-rw-r--r--  0 root   root        7 Apr 19 18:08 ./target.txt
+lrwxrwxrwx  0 root   root        0 Apr 19 18:08 ./link.txt -> target.txt
+lrwxrwxrwx  0 root   root        0 Apr 19 18:08 ./link.txt -> target.txt
