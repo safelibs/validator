@@ -50,8 +50,7 @@ testcases:
   - compile
 - id: invalid-data-handling
   title: Invalid EXIF data handling
-  description: Feeds invalid bytes through ExifLoader and confirms graceful empty
-    handling.
+  description: Feeds invalid bytes through ExifLoader and confirms graceful empty handling.
   kind: source
   command:
   - bash
@@ -60,3 +59,105 @@ testcases:
   tags:
   - api
   - negative
+- id: usage-exif-cli-list-tags
+  title: exif CLI lists camera tags
+  description: Runs the exif CLI on a JPEG fixture and reads camera tag output.
+  kind: usage
+  client_application: exif
+  command:
+  - bash
+  - /validator/tests/libexif/tests/cases/usage/usage-exif-cli-list-tags.sh
+  timeout_seconds: 180
+  tags:
+  - usage
+  - metadata
+- id: usage-exif-cli-machine-readable
+  title: exif CLI machine output
+  description: Runs the exif CLI in machine-readable mode and reads structured tag output.
+  kind: usage
+  client_application: exif
+  command:
+  - bash
+  - /validator/tests/libexif/tests/cases/usage/usage-exif-cli-machine-readable.sh
+  timeout_seconds: 180
+  tags:
+  - usage
+  - metadata
+- id: usage-gphoto2-metadata-read-1
+  title: gphoto2 EXIF metadata read 1
+  description: Compiles a gphoto2-style metadata reader that extracts camera fields through libexif.
+  kind: usage
+  client_application: gphoto2
+  command:
+  - bash
+  - /validator/tests/libexif/tests/cases/usage/usage-gphoto2-metadata-read-1.sh
+  timeout_seconds: 180
+  tags:
+  - usage
+  - metadata
+  - compile
+- id: usage-gphoto2-metadata-read-2
+  title: gphoto2 EXIF metadata read 2
+  description: Compiles a gphoto2-style metadata reader that extracts camera fields through libexif.
+  kind: usage
+  client_application: gphoto2
+  command:
+  - bash
+  - /validator/tests/libexif/tests/cases/usage/usage-gphoto2-metadata-read-2.sh
+  timeout_seconds: 180
+  tags:
+  - usage
+  - metadata
+  - compile
+- id: usage-imagemagick-metadata-read-1
+  title: imagemagick EXIF metadata read 1
+  description: Compiles a imagemagick-style metadata reader that extracts camera fields through libexif.
+  kind: usage
+  client_application: imagemagick
+  command:
+  - bash
+  - /validator/tests/libexif/tests/cases/usage/usage-imagemagick-metadata-read-1.sh
+  timeout_seconds: 180
+  tags:
+  - usage
+  - metadata
+  - compile
+- id: usage-imagemagick-metadata-read-2
+  title: imagemagick EXIF metadata read 2
+  description: Compiles a imagemagick-style metadata reader that extracts camera fields through libexif.
+  kind: usage
+  client_application: imagemagick
+  command:
+  - bash
+  - /validator/tests/libexif/tests/cases/usage/usage-imagemagick-metadata-read-2.sh
+  timeout_seconds: 180
+  tags:
+  - usage
+  - metadata
+  - compile
+- id: usage-ruby-exif-metadata-read-1
+  title: ruby-exif EXIF metadata read 1
+  description: Compiles a ruby-exif-style metadata reader that extracts camera fields through libexif.
+  kind: usage
+  client_application: ruby-exif
+  command:
+  - bash
+  - /validator/tests/libexif/tests/cases/usage/usage-ruby-exif-metadata-read-1.sh
+  timeout_seconds: 180
+  tags:
+  - usage
+  - metadata
+  - compile
+- id: usage-ruby-exif-metadata-read-2
+  title: ruby-exif EXIF metadata read 2
+  description: Compiles a ruby-exif-style metadata reader that extracts camera fields through libexif.
+  kind: usage
+  client_application: ruby-exif
+  command:
+  - bash
+  - /validator/tests/libexif/tests/cases/usage/usage-ruby-exif-metadata-read-2.sh
+  timeout_seconds: 180
+  tags:
+  - usage
+  - metadata
+  - compile

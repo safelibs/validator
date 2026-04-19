@@ -59,3 +59,107 @@ testcases:
   tags:
   - api
   - negative
+- id: usage-python3-yaml-safe-load
+  title: PyYAML safe load
+  description: Runs PyYAML safe load behavior through libyaml.
+  kind: usage
+  client_application: python3-yaml
+  command:
+  - bash
+  - /validator/tests/libyaml/tests/cases/usage/usage-python3-yaml-safe-load.sh
+  timeout_seconds: 180
+  tags:
+  - usage
+  - yaml
+  - python
+- id: usage-python3-yaml-dump
+  title: PyYAML dump
+  description: Runs PyYAML dump behavior through libyaml.
+  kind: usage
+  client_application: python3-yaml
+  command:
+  - bash
+  - /validator/tests/libyaml/tests/cases/usage/usage-python3-yaml-dump.sh
+  timeout_seconds: 180
+  tags:
+  - usage
+  - yaml
+  - python
+- id: usage-python3-yaml-csafe-loader
+  title: PyYAML csafe loader
+  description: Runs PyYAML csafe loader behavior through libyaml.
+  kind: usage
+  client_application: python3-yaml
+  command:
+  - bash
+  - /validator/tests/libyaml/tests/cases/usage/usage-python3-yaml-csafe-loader.sh
+  timeout_seconds: 180
+  tags:
+  - usage
+  - yaml
+  - python
+- id: usage-python3-yaml-csafe-dumper
+  title: PyYAML csafe dumper
+  description: Runs PyYAML csafe dumper behavior through libyaml.
+  kind: usage
+  client_application: python3-yaml
+  command:
+  - bash
+  - /validator/tests/libyaml/tests/cases/usage/usage-python3-yaml-csafe-dumper.sh
+  timeout_seconds: 180
+  tags:
+  - usage
+  - yaml
+  - python
+- id: usage-python3-yaml-anchors
+  title: PyYAML anchors
+  description: Runs PyYAML anchors behavior through libyaml.
+  kind: usage
+  client_application: python3-yaml
+  command:
+  - bash
+  - /validator/tests/libyaml/tests/cases/usage/usage-python3-yaml-anchors.sh
+  timeout_seconds: 180
+  tags:
+  - usage
+  - yaml
+  - python
+- id: usage-python3-yaml-documents
+  title: PyYAML documents
+  description: Runs PyYAML documents behavior through libyaml.
+  kind: usage
+  client_application: python3-yaml
+  command:
+  - bash
+  - /validator/tests/libyaml/tests/cases/usage/usage-python3-yaml-documents.sh
+  timeout_seconds: 180
+  tags:
+  - usage
+  - yaml
+  - python
+- id: usage-python3-yaml-events
+  title: PyYAML events
+  description: Runs PyYAML events behavior through libyaml.
+  kind: usage
+  client_application: python3-yaml
+  command:
+  - bash
+  - /validator/tests/libyaml/tests/cases/usage/usage-python3-yaml-events.sh
+  timeout_seconds: 180
+  tags:
+  - usage
+  - yaml
+  - python
+- id: usage-python3-yaml-error
+  title: PyYAML error
+  description: Runs PyYAML error behavior through libyaml.
+  kind: usage
+  client_application: python3-yaml
+  command:
+  - bash
+  - /validator/tests/libyaml/tests/cases/usage/usage-python3-yaml-error.sh
+  timeout_seconds: 180
+  tags:
+  - usage
+  - yaml
+  - python

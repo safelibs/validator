@@ -6,6 +6,7 @@ RUN apt-get update \
  && apt-get install -y --no-install-recommends \
       libuv1t64 \
       libuv1-dev \
+      nodejs \
       bash \
       build-essential \
       ca-certificates \

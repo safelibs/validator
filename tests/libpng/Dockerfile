@@ -7,6 +7,8 @@ RUN apt-get update \
       libpng16-16t64 \
       libpng-dev \
       libpng-tools \
+      pngquant \
+      netpbm \
       bash \
       build-essential \
       ca-certificates \

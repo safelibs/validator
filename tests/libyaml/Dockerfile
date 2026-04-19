@@ -6,6 +6,7 @@ RUN apt-get update \
  && apt-get install -y --no-install-recommends \
       libyaml-0-2 \
       libyaml-dev \
+      python3-yaml \
       bash \
       build-essential \
       ca-certificates \

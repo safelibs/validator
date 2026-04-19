@@ -61,3 +61,107 @@ testcases:
   tags:
   - cli
   - negative
+- id: usage-python3-pil-open-tiff
+  title: Pillow open tiff
+  description: Uses Pillow to run TIFF open tiff behavior through libtiff.
+  kind: usage
+  client_application: python3-pil
+  command:
+  - bash
+  - /validator/tests/libtiff/tests/cases/usage/usage-python3-pil-open-tiff.sh
+  timeout_seconds: 180
+  tags:
+  - usage
+  - image
+  - python
+- id: usage-python3-pil-convert-tiff
+  title: Pillow convert tiff
+  description: Uses Pillow to run TIFF convert tiff behavior through libtiff.
+  kind: usage
+  client_application: python3-pil
+  command:
+  - bash
+  - /validator/tests/libtiff/tests/cases/usage/usage-python3-pil-convert-tiff.sh
+  timeout_seconds: 180
+  tags:
+  - usage
+  - image
+  - python
+- id: usage-python3-pil-thumbnail-tiff
+  title: Pillow thumbnail tiff
+  description: Uses Pillow to run TIFF thumbnail tiff behavior through libtiff.
+  kind: usage
+  client_application: python3-pil
+  command:
+  - bash
+  - /validator/tests/libtiff/tests/cases/usage/usage-python3-pil-thumbnail-tiff.sh
+  timeout_seconds: 180
+  tags:
+  - usage
+  - image
+  - python
+- id: usage-python3-pil-tags-tiff
+  title: Pillow tags tiff
+  description: Uses Pillow to run TIFF tags tiff behavior through libtiff.
+  kind: usage
+  client_application: python3-pil
+  command:
+  - bash
+  - /validator/tests/libtiff/tests/cases/usage/usage-python3-pil-tags-tiff.sh
+  timeout_seconds: 180
+  tags:
+  - usage
+  - image
+  - python
+- id: usage-python3-pil-multipage-tiff
+  title: Pillow multipage tiff
+  description: Uses Pillow to run TIFF multipage tiff behavior through libtiff.
+  kind: usage
+  client_application: python3-pil
+  command:
+  - bash
+  - /validator/tests/libtiff/tests/cases/usage/usage-python3-pil-multipage-tiff.sh
+  timeout_seconds: 180
+  tags:
+  - usage
+  - image
+  - python
+- id: usage-python3-pil-lzw-tiff
+  title: Pillow lzw tiff
+  description: Uses Pillow to run TIFF lzw tiff behavior through libtiff.
+  kind: usage
+  client_application: python3-pil
+  command:
+  - bash
+  - /validator/tests/libtiff/tests/cases/usage/usage-python3-pil-lzw-tiff.sh
+  timeout_seconds: 180
+  tags:
+  - usage
+  - image
+  - python
+- id: usage-python3-pil-float-tiff
+  title: Pillow float tiff
+  description: Uses Pillow to run TIFF float tiff behavior through libtiff.
+  kind: usage
+  client_application: python3-pil
+  command:
+  - bash
+  - /validator/tests/libtiff/tests/cases/usage/usage-python3-pil-float-tiff.sh
+  timeout_seconds: 180
+  tags:
+  - usage
+  - image
+  - python
+- id: usage-python3-pil-crop-tiff
+  title: Pillow crop tiff
+  description: Uses Pillow to run TIFF crop tiff behavior through libtiff.
+  kind: usage
+  client_application: python3-pil
+  command:
+  - bash
+  - /validator/tests/libtiff/tests/cases/usage/usage-python3-pil-crop-tiff.sh
+  timeout_seconds: 180
+  tags:
+  - usage
+  - image
+  - python

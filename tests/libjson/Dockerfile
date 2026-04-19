@@ -6,6 +6,9 @@ RUN apt-get update \
  && apt-get install -y --no-install-recommends \
       libjson-c5 \
       libjson-c-dev \
+      gdal-bin \
+      ttyd \
+      curl \
       bash \
       build-essential \
       ca-certificates \

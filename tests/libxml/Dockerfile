@@ -8,6 +8,8 @@ RUN apt-get update \
       libxml2-dev \
       libxml2-utils \
       python3-libxml2 \
+      python3-lxml \
+      xmlstarlet \
       bash \
       build-essential \
       ca-certificates \

@@ -8,6 +8,7 @@ RUN apt-get update \
       libvips-dev \
       libvips-tools \
       gir1.2-vips-8.0 \
+      ruby-vips \
       bash \
       bc \
       build-essential \

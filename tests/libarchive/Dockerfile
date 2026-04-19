@@ -7,6 +7,7 @@ RUN apt-get update \
       libarchive13t64 \
       libarchive-dev \
       libarchive-tools \
+      python3-libarchive-c \
       bash \
       build-essential \
       bzip2 \

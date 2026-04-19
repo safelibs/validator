@@ -59,3 +59,99 @@ testcases:
   tags:
   - api
   - process
+- id: usage-nodejs-event-loop-timer
+  title: Node.js event loop timer
+  description: Runs Node.js event loop timer behavior to exercise libuv.
+  kind: usage
+  client_application: nodejs
+  command:
+  - bash
+  - /validator/tests/libuv/tests/cases/usage/usage-nodejs-event-loop-timer.sh
+  timeout_seconds: 180
+  tags:
+  - usage
+  - event-loop
+- id: usage-nodejs-fs-read-write
+  title: Node.js fs read write
+  description: Runs Node.js fs read write behavior to exercise libuv.
+  kind: usage
+  client_application: nodejs
+  command:
+  - bash
+  - /validator/tests/libuv/tests/cases/usage/usage-nodejs-fs-read-write.sh
+  timeout_seconds: 180
+  tags:
+  - usage
+  - event-loop
+- id: usage-nodejs-dns-lookup
+  title: Node.js dns lookup
+  description: Runs Node.js dns lookup behavior to exercise libuv.
+  kind: usage
+  client_application: nodejs
+  command:
+  - bash
+  - /validator/tests/libuv/tests/cases/usage/usage-nodejs-dns-lookup.sh
+  timeout_seconds: 180
+  tags:
+  - usage
+  - event-loop
+- id: usage-nodejs-tcp-loopback
+  title: Node.js tcp loopback
+  description: Runs Node.js tcp loopback behavior to exercise libuv.
+  kind: usage
+  client_application: nodejs
+  command:
+  - bash
+  - /validator/tests/libuv/tests/cases/usage/usage-nodejs-tcp-loopback.sh
+  timeout_seconds: 180
+  tags:
+  - usage
+  - event-loop
+- id: usage-nodejs-udp-loopback
+  title: Node.js udp loopback
+  description: Runs Node.js udp loopback behavior to exercise libuv.
+  kind: usage
+  client_application: nodejs
+  command:
+  - bash
+  - /validator/tests/libuv/tests/cases/usage/usage-nodejs-udp-loopback.sh
+  timeout_seconds: 180
+  tags:
+  - usage
+  - event-loop
+- id: usage-nodejs-child-process
+  title: Node.js child process
+  description: Runs Node.js child process behavior to exercise libuv.
+  kind: usage
+  client_application: nodejs
+  command:
+  - bash
+  - /validator/tests/libuv/tests/cases/usage/usage-nodejs-child-process.sh
+  timeout_seconds: 180
+  tags:
+  - usage
+  - event-loop
+- id: usage-nodejs-stream-pipe
+  title: Node.js stream pipe
+  description: Runs Node.js stream pipe behavior to exercise libuv.
+  kind: usage
+  client_application: nodejs
+  command:
+  - bash
+  - /validator/tests/libuv/tests/cases/usage/usage-nodejs-stream-pipe.sh
+  timeout_seconds: 180
+  tags:
+  - usage
+  - event-loop
+- id: usage-nodejs-stat-call
+  title: Node.js stat call
+  description: Runs Node.js stat call behavior to exercise libuv.
+  kind: usage
+  client_application: nodejs
+  command:
+  - bash
+  - /validator/tests/libuv/tests/cases/usage/usage-nodejs-stat-call.sh
+  timeout_seconds: 180
+  tags:
+  - usage
+  - event-loop

@@ -8,6 +8,7 @@ RUN apt-get update \
       libtiffxx6 \
       libtiff-dev \
       libtiff-tools \
+      python3-pil \
       bash \
       build-essential \
       ca-certificates \

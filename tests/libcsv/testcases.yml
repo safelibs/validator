@@ -59,3 +59,107 @@ testcases:
   tags:
   - api
   - delimiter
+- id: usage-readstat-csv-parse-1
+  title: readstat CSV parse 1
+  description: Compiles a readstat-style CSV reader that parses tabular fields through libcsv.
+  kind: usage
+  client_application: readstat
+  command:
+  - bash
+  - /validator/tests/libcsv/tests/cases/usage/usage-readstat-csv-parse-1.sh
+  timeout_seconds: 180
+  tags:
+  - usage
+  - compile
+  - csv
+- id: usage-readstat-csv-parse-2
+  title: readstat CSV parse 2
+  description: Compiles a readstat-style CSV reader that parses tabular fields through libcsv.
+  kind: usage
+  client_application: readstat
+  command:
+  - bash
+  - /validator/tests/libcsv/tests/cases/usage/usage-readstat-csv-parse-2.sh
+  timeout_seconds: 180
+  tags:
+  - usage
+  - compile
+  - csv
+- id: usage-readstat-csv-parse-3
+  title: readstat CSV parse 3
+  description: Compiles a readstat-style CSV reader that parses tabular fields through libcsv.
+  kind: usage
+  client_application: readstat
+  command:
+  - bash
+  - /validator/tests/libcsv/tests/cases/usage/usage-readstat-csv-parse-3.sh
+  timeout_seconds: 180
+  tags:
+  - usage
+  - compile
+  - csv
+- id: usage-readstat-csv-parse-4
+  title: readstat CSV parse 4
+  description: Compiles a readstat-style CSV reader that parses tabular fields through libcsv.
+  kind: usage
+  client_application: readstat
+  command:
+  - bash
+  - /validator/tests/libcsv/tests/cases/usage/usage-readstat-csv-parse-4.sh
+  timeout_seconds: 180
+  tags:
+  - usage
+  - compile
+  - csv
+- id: usage-tellico-csv-parse-1
+  title: tellico CSV parse 1
+  description: Compiles a tellico-style CSV reader that parses tabular fields through libcsv.
+  kind: usage
+  client_application: tellico
+  command:
+  - bash
+  - /validator/tests/libcsv/tests/cases/usage/usage-tellico-csv-parse-1.sh
+  timeout_seconds: 180
+  tags:
+  - usage
+  - compile
+  - csv
+- id: usage-tellico-csv-parse-2
+  title: tellico CSV parse 2
+  description: Compiles a tellico-style CSV reader that parses tabular fields through libcsv.
+  kind: usage
+  client_application: tellico
+  command:
+  - bash
+  - /validator/tests/libcsv/tests/cases/usage/usage-tellico-csv-parse-2.sh
+  timeout_seconds: 180
+  tags:
+  - usage
+  - compile
+  - csv
+- id: usage-tellico-csv-parse-3
+  title: tellico CSV parse 3
+  description: Compiles a tellico-style CSV reader that parses tabular fields through libcsv.
+  kind: usage
+  client_application: tellico
+  command:
+  - bash
+  - /validator/tests/libcsv/tests/cases/usage/usage-tellico-csv-parse-3.sh
+  timeout_seconds: 180
+  tags:
+  - usage
+  - compile
+  - csv
+- id: usage-tellico-csv-parse-4
+  title: tellico CSV parse 4
+  description: Compiles a tellico-style CSV reader that parses tabular fields through libcsv.
+  kind: usage
+  client_application: tellico
+  command:
+  - bash
+  - /validator/tests/libcsv/tests/cases/usage/usage-tellico-csv-parse-4.sh
+  timeout_seconds: 180
+  tags:
+  - usage
+  - compile
+  - csv

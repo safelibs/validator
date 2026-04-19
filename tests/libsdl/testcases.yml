@@ -60,3 +60,107 @@ testcases:
   tags:
   - cli
   - installed-test
+- id: usage-python3-pygame-surface-fill
+  title: Pygame surface fill
+  description: Uses Pygame to run SDL surface fill behavior.
+  kind: usage
+  client_application: python3-pygame
+  command:
+  - bash
+  - /validator/tests/libsdl/tests/cases/usage/usage-python3-pygame-surface-fill.sh
+  timeout_seconds: 180
+  tags:
+  - usage
+  - headless
+  - python
+- id: usage-python3-pygame-image-save
+  title: Pygame image save
+  description: Uses Pygame to run SDL image save behavior.
+  kind: usage
+  client_application: python3-pygame
+  command:
+  - bash
+  - /validator/tests/libsdl/tests/cases/usage/usage-python3-pygame-image-save.sh
+  timeout_seconds: 180
+  tags:
+  - usage
+  - headless
+  - python
+- id: usage-python3-pygame-event-queue
+  title: Pygame event queue
+  description: Uses Pygame to run SDL event queue behavior.
+  kind: usage
+  client_application: python3-pygame
+  command:
+  - bash
+  - /validator/tests/libsdl/tests/cases/usage/usage-python3-pygame-event-queue.sh
+  timeout_seconds: 180
+  tags:
+  - usage
+  - headless
+  - python
+- id: usage-python3-pygame-audio-dummy
+  title: Pygame audio dummy
+  description: Uses Pygame to run SDL audio dummy behavior.
+  kind: usage
+  client_application: python3-pygame
+  command:
+  - bash
+  - /validator/tests/libsdl/tests/cases/usage/usage-python3-pygame-audio-dummy.sh
+  timeout_seconds: 180
+  tags:
+  - usage
+  - headless
+  - python
+- id: usage-python3-pygame-xvfb-display
+  title: Pygame xvfb display
+  description: Uses Pygame to run SDL xvfb display behavior.
+  kind: usage
+  client_application: python3-pygame
+  command:
+  - bash
+  - /validator/tests/libsdl/tests/cases/usage/usage-python3-pygame-xvfb-display.sh
+  timeout_seconds: 180
+  tags:
+  - usage
+  - gui
+  - python
+- id: usage-python3-pygame-draw-rect
+  title: Pygame draw rect
+  description: Uses Pygame to run SDL draw rect behavior.
+  kind: usage
+  client_application: python3-pygame
+  command:
+  - bash
+  - /validator/tests/libsdl/tests/cases/usage/usage-python3-pygame-draw-rect.sh
+  timeout_seconds: 180
+  tags:
+  - usage
+  - headless
+  - python
+- id: usage-python3-pygame-font-module
+  title: Pygame font module
+  description: Uses Pygame to run SDL font module behavior.
+  kind: usage
+  client_application: python3-pygame
+  command:
+  - bash
+  - /validator/tests/libsdl/tests/cases/usage/usage-python3-pygame-font-module.sh
+  timeout_seconds: 180
+  tags:
+  - usage
+  - headless
+  - python
+- id: usage-python3-pygame-transform-scale
+  title: Pygame transform scale
+  description: Uses Pygame to run SDL transform scale behavior.
+  kind: usage
+  client_application: python3-pygame
+  command:
+  - bash
+  - /validator/tests/libsdl/tests/cases/usage/usage-python3-pygame-transform-scale.sh
+  timeout_seconds: 180
+  tags:
+  - usage
+  - headless
+  - python

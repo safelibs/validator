@@ -1,173 +1,20 @@
 {
-  "distribution": "Ubuntu 24.04 (noble)",
-  "generated_at": "2026-04-02",
-  "selection_strategy": "Representative rather than exhaustive. Entries were chosen to cover multiple kinds of libxml use across desktop software, server software, language bindings, CLI tools, documentation toolchains, and source-package build dependencies.",
-  "method": [
-    "Identified candidate dependents from local Noble package metadata with apt-cache rdepends on libxml2, libxml2-dev, and libxml2-utils.",
-    "Validated direct dependency edges and package roles with apt-cache show or apt-cache showsrc.",
-    "Used upstream documentation when a package description did not make the XML-facing runtime feature explicit."
-  ],
+  "schema_version": 1,
+  "library": "libxml",
   "dependents": [
     {
-      "name": "libvirt-daemon",
-      "package_type": "binary",
-      "category": "virtualization",
-      "libxml_dependency": [
-        "libxml2"
-      ],
-      "use_phase": "runtime",
-      "runtime_functionality": "Reads, validates, and emits the XML documents libvirt uses to define domains, networks, storage, snapshots, checkpoints, secrets, and related virtualization objects.",
-      "evidence": [
-        "apt-cache show libvirt-daemon",
-        "https://libvirt.org/format.html",
-        "https://www.libvirt.org/formatdomain"
-      ]
-    },
-    {
-      "name": "postgresql-16",
-      "package_type": "binary",
-      "category": "database",
-      "libxml_dependency": [
-        "libxml2"
-      ],
-      "use_phase": "runtime",
-      "runtime_functionality": "Provides PostgreSQL's built-in XML type plus XML generation, XPath evaluation, XMLEXISTS/XMLTABLE processing, and table/schema/database-to-XML export functions.",
-      "evidence": [
-        "apt-cache show postgresql-16",
-        "https://www.postgresql.org/docs/current/functions-xml.html"
-      ]
-    },
-    {
-      "name": "php8.3-xml",
-      "package_type": "binary",
-      "category": "language-runtime",
-      "libxml_dependency": [
-        "libxml2"
-      ],
-      "use_phase": "runtime",
-      "runtime_functionality": "Implements PHP's DOM, SimpleXML, XMLReader, XMLWriter, and XSL extensions.",
-      "evidence": [
-        "apt-cache show php8.3-xml"
-      ]
-    },
-    {
       "name": "python3-lxml",
-      "package_type": "binary",
-      "category": "language-runtime",
-      "libxml_dependency": [
-        "libxml2"
+      "packages": [
+        "python3-lxml"
       ],
-      "use_phase": "runtime",
-      "runtime_functionality": "Exposes XML and HTML parsing, tree manipulation, XPath, and XSLT functionality to Python programs.",
-      "evidence": [
-        "apt-cache show python3-lxml"
-      ]
+      "description": "python3-lxml client exercised by usage testcases."
     },
     {
       "name": "xmlstarlet",
-      "package_type": "binary",
-      "category": "command-line-tool",
-      "libxml_dependency": [
-        "libxml2"
+      "packages": [
+        "xmlstarlet"
       ],
-      "use_phase": "runtime",
-      "runtime_functionality": "Transforms, queries, validates, edits, canonicalizes, and reformats XML documents from the shell.",
-      "evidence": [
-        "apt-cache show xmlstarlet"
-      ]
-    },
-    {
-      "name": "mariadb-plugin-connect",
-      "package_type": "binary",
-      "category": "database",
-      "libxml_dependency": [
-        "libxml2"
-      ],
-      "use_phase": "runtime",
-      "runtime_functionality": "Lets MariaDB's CONNECT storage engine work with external XML data sources alongside other file and remote-table formats.",
-      "evidence": [
-        "apt-cache show mariadb-plugin-connect"
-      ]
-    },
-    {
-      "name": "cyrus-caldav",
-      "package_type": "binary",
-      "category": "groupware-server",
-      "libxml_dependency": [
-        "libxml2"
-      ],
-      "use_phase": "runtime",
-      "runtime_functionality": "Implements the CalDAV and CardDAV portions of Cyrus, which rely on XML-based WebDAV request and response documents.",
-      "evidence": [
-        "apt-cache show cyrus-caldav"
-      ]
-    },
-    {
-      "name": "yelp",
-      "package_type": "binary",
-      "category": "desktop-help",
-      "libxml_dependency": [
-        "libxml2"
-      ],
-      "use_phase": "runtime",
-      "runtime_functionality": "Displays GNOME help content in DocBook and Mallard XML formats.",
-      "evidence": [
-        "apt-cache show yelp"
-      ]
-    },
-    {
-      "name": "libobt2v5",
-      "package_type": "binary",
-      "category": "desktop-library",
-      "libxml_dependency": [
-        "libxml2"
-      ],
-      "use_phase": "runtime",
-      "runtime_functionality": "Loads and parses Openbox configuration and theme files for the Openbox desktop environment.",
-      "evidence": [
-        "apt-cache show libobt2v5"
-      ]
-    },
-    {
-      "name": "kdoctools5",
-      "package_type": "binary",
-      "category": "documentation-toolchain",
-      "libxml_dependency": [
-        "libxml2",
-        "libxml2-utils"
-      ],
-      "use_phase": "tooling",
-      "runtime_functionality": "Generates documentation in various output formats from DocBook XML sources.",
-      "evidence": [
-        "apt-cache show kdoctools5"
-      ]
-    },
-    {
-      "name": "yelp-tools",
-      "package_type": "binary",
-      "category": "documentation-toolchain",
-      "libxml_dependency": [
-        "libxml2-utils"
-      ],
-      "use_phase": "tooling",
-      "runtime_functionality": "Builds and checks Mallard and related help-document XML content for downstream software projects.",
-      "evidence": [
-        "apt-cache show yelp-tools"
-      ]
-    },
-    {
-      "name": "llvm-toolchain-18",
-      "package_type": "source",
-      "category": "compiler-toolchain",
-      "libxml_dependency": [
-        "libxml2-dev"
-      ],
-      "use_phase": "build",
-      "runtime_functionality": null,
-      "notes": "Included to represent source-package build-time use. The Noble source package Build-Depends on libxml2-dev.",
-      "evidence": [
-        "apt-cache showsrc llvm-toolchain-18"
-      ]
+      "description": "xmlstarlet client exercised by usage testcases."
     }
   ]
 }

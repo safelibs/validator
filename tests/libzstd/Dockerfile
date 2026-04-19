@@ -7,6 +7,7 @@ RUN apt-get update \
       libzstd1 \
       libzstd-dev \
       zstd \
+      libarchive-tools \
       bash \
       build-essential \
       ca-certificates \

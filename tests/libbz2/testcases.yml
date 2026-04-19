@@ -18,8 +18,7 @@ testcases:
   - roundtrip
 - id: stream-concatenation
   title: bzip2 stream concatenation
-  description: Concatenates independent bzip2 streams and verifies continuous decompression
-    output.
+  description: Concatenates independent bzip2 streams and verifies continuous decompression output.
   kind: source
   command:
   - bash
@@ -52,8 +51,7 @@ testcases:
   - negative
 - id: debian-sample-parity
   title: Debian sample fixture parity
-  description: Decompresses packaged sample streams and compares them to reference
-    fixtures.
+  description: Decompresses packaged sample streams and compares them to reference fixtures.
   kind: source
   command:
   - bash
@@ -62,3 +60,99 @@ testcases:
   tags:
   - cli
   - fixture
+- id: usage-bzip2-compress-file
+  title: bzip2 compress file
+  description: Runs bzip2 client compress file behavior through libbz2.
+  kind: usage
+  client_application: bzip2
+  command:
+  - bash
+  - /validator/tests/libbz2/tests/cases/usage/usage-bzip2-compress-file.sh
+  timeout_seconds: 180
+  tags:
+  - usage
+  - compression
+- id: usage-bzip2-test-stream
+  title: bzip2 test stream
+  description: Runs bzip2 client test stream behavior through libbz2.
+  kind: usage
+  client_application: bzip2
+  command:
+  - bash
+  - /validator/tests/libbz2/tests/cases/usage/usage-bzip2-test-stream.sh
+  timeout_seconds: 180
+  tags:
+  - usage
+  - compression
+- id: usage-bzip2-small-block
+  title: bzip2 small block
+  description: Runs bzip2 client small block behavior through libbz2.
+  kind: usage
+  client_application: bzip2
+  command:
+  - bash
+  - /validator/tests/libbz2/tests/cases/usage/usage-bzip2-small-block.sh
+  timeout_seconds: 180
+  tags:
+  - usage
+  - compression
+- id: usage-bzip2-large-block
+  title: bzip2 large block
+  description: Runs bzip2 client large block behavior through libbz2.
+  kind: usage
+  client_application: bzip2
+  command:
+  - bash
+  - /validator/tests/libbz2/tests/cases/usage/usage-bzip2-large-block.sh
+  timeout_seconds: 180
+  tags:
+  - usage
+  - compression
+- id: usage-bzip2-concatenated-streams
+  title: bzip2 concatenated streams
+  description: Runs bzip2 client concatenated streams behavior through libbz2.
+  kind: usage
+  client_application: bzip2
+  command:
+  - bash
+  - /validator/tests/libbz2/tests/cases/usage/usage-bzip2-concatenated-streams.sh
+  timeout_seconds: 180
+  tags:
+  - usage
+  - compression
+- id: usage-bzip2-stdout-stream
+  title: bzip2 stdout stream
+  description: Runs bzip2 client stdout stream behavior through libbz2.
+  kind: usage
+  client_application: bzip2
+  command:
+  - bash
+  - /validator/tests/libbz2/tests/cases/usage/usage-bzip2-stdout-stream.sh
+  timeout_seconds: 180
+  tags:
+  - usage
+  - compression
+- id: usage-bzip2-recover-listing
+  title: bzip2 recover listing
+  description: Runs bzip2 client recover listing behavior through libbz2.
+  kind: usage
+  client_application: bzip2
+  command:
+  - bash
+  - /validator/tests/libbz2/tests/cases/usage/usage-bzip2-recover-listing.sh
+  timeout_seconds: 180
+  tags:
+  - usage
+  - compression
+- id: usage-bzip2-version-query
+  title: bzip2 version query
+  description: Runs bzip2 client version query behavior through libbz2.
+  kind: usage
+  client_application: bzip2
+  command:
+  - bash
+  - /validator/tests/libbz2/tests/cases/usage/usage-bzip2-version-query.sh
+  timeout_seconds: 180
+  tags:
+  - usage
+  - compression

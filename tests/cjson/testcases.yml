@@ -17,8 +17,7 @@ testcases:
   - roundtrip
 - id: minify-whitespace
   title: Minify JSON whitespace behavior
-  description: Checks cJSON minification removes layout whitespace without altering
-    string data.
+  description: Checks cJSON minification removes layout whitespace without altering string data.
   kind: source
   command:
   - bash
@@ -40,8 +39,7 @@ testcases:
   - patch
 - id: allocator-hooks-edge
   title: Allocator hook edge behavior
-  description: Installs custom allocator hooks and verifies allocation accounting
-    around deletion.
+  description: Installs custom allocator hooks and verifies allocation accounting around deletion.
   kind: source
   command:
   - bash
@@ -61,3 +59,99 @@ testcases:
   tags:
   - api
   - negative
+- id: usage-iperf3-parse-throughput-json
+  title: iperf3 throughput JSON parse
+  description: Parses a iperf3 client JSON payload with cJSON and reads the end field.
+  kind: usage
+  client_application: iperf3
+  command:
+  - bash
+  - /validator/tests/cjson/tests/cases/usage/usage-iperf3-parse-throughput-json.sh
+  timeout_seconds: 180
+  tags:
+  - usage
+  - json
+- id: usage-mosquitto-parse-message-json
+  title: Mosquitto message JSON parse
+  description: Parses a mosquitto-clients client JSON payload with cJSON and reads the topic field.
+  kind: usage
+  client_application: mosquitto-clients
+  command:
+  - bash
+  - /validator/tests/cjson/tests/cases/usage/usage-mosquitto-parse-message-json.sh
+  timeout_seconds: 180
+  tags:
+  - usage
+  - json
+- id: usage-rist-tools-parse-link-json
+  title: RIST tools link JSON parse
+  description: Parses a rist-tools client JSON payload with cJSON and reads the link field.
+  kind: usage
+  client_application: rist-tools
+  command:
+  - bash
+  - /validator/tests/cjson/tests/cases/usage/usage-rist-tools-parse-link-json.sh
+  timeout_seconds: 180
+  tags:
+  - usage
+  - json
+- id: usage-oidc-agent-parse-token-json
+  title: OIDC agent token JSON parse
+  description: Parses a oidc-agent-cli client JSON payload with cJSON and reads the access_token field.
+  kind: usage
+  client_application: oidc-agent-cli
+  command:
+  - bash
+  - /validator/tests/cjson/tests/cases/usage/usage-oidc-agent-parse-token-json.sh
+  timeout_seconds: 180
+  tags:
+  - usage
+  - json
+- id: usage-opm-common-parse-grid-json
+  title: OPM common grid JSON parse
+  description: Parses a opm-common client JSON payload with cJSON and reads the grid field.
+  kind: usage
+  client_application: opm-common
+  command:
+  - bash
+  - /validator/tests/cjson/tests/cases/usage/usage-opm-common-parse-grid-json.sh
+  timeout_seconds: 180
+  tags:
+  - usage
+  - json
+- id: usage-monado-parse-view-json
+  title: Monado view JSON parse
+  description: Parses a monado-cli client JSON payload with cJSON and reads the view field.
+  kind: usage
+  client_application: monado-cli
+  command:
+  - bash
+  - /validator/tests/cjson/tests/cases/usage/usage-monado-parse-view-json.sh
+  timeout_seconds: 180
+  tags:
+  - usage
+  - json
+- id: usage-pgagroal-parse-pool-json
+  title: pgagroal pool JSON parse
+  description: Parses a pgagroal client JSON payload with cJSON and reads the pool field.
+  kind: usage
+  client_application: pgagroal
+  command:
+  - bash
+  - /validator/tests/cjson/tests/cases/usage/usage-pgagroal-parse-pool-json.sh
+  timeout_seconds: 180
+  tags:
+  - usage
+  - json
+- id: usage-qad-parse-analysis-json
+  title: QAD analysis JSON parse
+  description: Parses a qad client JSON payload with cJSON and reads the status field.
+  kind: usage
+  client_application: qad
+  command:
+  - bash
+  - /validator/tests/cjson/tests/cases/usage/usage-qad-parse-analysis-json.sh
+  timeout_seconds: 180
+  tags:
+  - usage
+  - json

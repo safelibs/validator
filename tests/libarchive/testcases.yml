@@ -60,3 +60,99 @@ testcases:
   tags:
   - api
   - compile
+- id: usage-python-libarchive-c-tar-list
+  title: python-libarchive-c tar list
+  description: Uses python-libarchive-c to list entries from a tar archive through libarchive.
+  kind: usage
+  client_application: python3-libarchive-c
+  command:
+  - bash
+  - /validator/tests/libarchive/tests/cases/usage/usage-python-libarchive-c-tar-list.sh
+  timeout_seconds: 180
+  tags:
+  - usage
+  - archive
+- id: usage-python-libarchive-c-tar-extract
+  title: python-libarchive-c tar extract
+  description: Uses python-libarchive-c to extract files from a tar archive through libarchive.
+  kind: usage
+  client_application: python3-libarchive-c
+  command:
+  - bash
+  - /validator/tests/libarchive/tests/cases/usage/usage-python-libarchive-c-tar-extract.sh
+  timeout_seconds: 180
+  tags:
+  - usage
+  - archive
+- id: usage-python-libarchive-c-metadata-read
+  title: python-libarchive-c metadata read
+  description: Uses python-libarchive-c to read archive entry paths and sizes through libarchive.
+  kind: usage
+  client_application: python3-libarchive-c
+  command:
+  - bash
+  - /validator/tests/libarchive/tests/cases/usage/usage-python-libarchive-c-metadata-read.sh
+  timeout_seconds: 180
+  tags:
+  - usage
+  - archive
+- id: usage-python-libarchive-c-stream-read
+  title: python-libarchive-c stream read
+  description: Uses python-libarchive-c to stream archive entries through libarchive.
+  kind: usage
+  client_application: python3-libarchive-c
+  command:
+  - bash
+  - /validator/tests/libarchive/tests/cases/usage/usage-python-libarchive-c-stream-read.sh
+  timeout_seconds: 180
+  tags:
+  - usage
+  - archive
+- id: usage-python-libarchive-c-file-roundtrip
+  title: python-libarchive-c file roundtrip
+  description: Uses python-libarchive-c to write and read multiple files through libarchive.
+  kind: usage
+  client_application: python3-libarchive-c
+  command:
+  - bash
+  - /validator/tests/libarchive/tests/cases/usage/usage-python-libarchive-c-file-roundtrip.sh
+  timeout_seconds: 180
+  tags:
+  - usage
+  - archive
+- id: usage-python-libarchive-c-directory-entry
+  title: python-libarchive-c directory entry
+  description: Uses python-libarchive-c to handle directory entries through libarchive.
+  kind: usage
+  client_application: python3-libarchive-c
+  command:
+  - bash
+  - /validator/tests/libarchive/tests/cases/usage/usage-python-libarchive-c-directory-entry.sh
+  timeout_seconds: 180
+  tags:
+  - usage
+  - archive
+- id: usage-python-libarchive-c-copy-mode
+  title: python-libarchive-c copy mode
+  description: Uses python-libarchive-c to copy archived files through libarchive.
+  kind: usage
+  client_application: python3-libarchive-c
+  command:
+  - bash
+  - /validator/tests/libarchive/tests/cases/usage/usage-python-libarchive-c-copy-mode.sh
+  timeout_seconds: 180
+  tags:
+  - usage
+  - archive
+- id: usage-python-libarchive-c-gzip-filter
+  title: python-libarchive-c gzip filter
+  description: Uses python-libarchive-c to read a gzip-filtered archive through libarchive.
+  kind: usage
+  client_application: python3-libarchive-c
+  command:
+  - bash
+  - /validator/tests/libarchive/tests/cases/usage/usage-python-libarchive-c-gzip-filter.sh
+  timeout_seconds: 180
+  tags:
+  - usage
+  - archive

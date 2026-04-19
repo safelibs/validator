@@ -6,6 +6,7 @@ RUN apt-get update \
  && apt-get install -y --no-install-recommends \
       libcsv3 \
       libcsv-dev \
+      readstat \
       bash \
       build-essential \
       ca-certificates \

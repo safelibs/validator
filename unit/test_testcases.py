@@ -241,6 +241,122 @@ class TestcaseManifestTests(unittest.TestCase):
             with self.assertRaisesRegex(ValidatorError, "client_application"):
                 testcases.load_testcase_manifest(manifest_path, library="demo")
 
+    def test_validate_usage_case_artifacts_accepts_compact_dependent_fixture(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            tests_root = Path(tmp)
+            root = tests_root / "demo"
+            usage_root = root / "tests" / "cases" / "usage"
+            fixture_root = root / "tests" / "fixtures"
+            usage_root.mkdir(parents=True)
+            fixture_root.mkdir(parents=True)
+            script_path = usage_root / "usage-known-client.sh"
+            script_path.write_text("#!/usr/bin/env bash\nset -euo pipefail\necho known\n")
+            script_path.chmod(0o755)
+            (fixture_root / "dependents.json").write_text(
+                json.dumps(
+                    {
+                        "schema_version": 1,
+                        "library": "demo",
+                        "dependents": [
+                            {
+                                "name": "known-client",
+                                "packages": ["known-client"],
+                                "description": "known-client client exercised by usage testcases.",
+                            }
+                        ],
+                    }
+                )
+            )
+            manifest_path = root / "testcases.yml"
+            manifest_path.write_text(
+                yaml.safe_dump(
+                    {
+                        "schema_version": 1,
+                        "library": "demo",
+                        "apt_packages": ["demo-runtime"],
+                        "testcases": [
+                            {
+                                "id": "usage-known-client",
+                                "title": "Known client behavior",
+                                "description": "Runs known-client against a small fixture.",
+                                "kind": "usage",
+                                "client_application": "known-client",
+                                "command": ["bash", "/validator/tests/demo/tests/cases/usage/usage-known-client.sh"],
+                                "timeout_seconds": 1,
+                                "tags": [],
+                            }
+                        ],
+                    },
+                    sort_keys=False,
+                )
+            )
+            config = {
+                "libraries": [
+                    {
+                        "name": "demo",
+                        "apt_packages": ["demo-runtime"],
+                        "testcases": str(manifest_path),
+                    }
+                ]
+            }
+
+            manifests = testcases.load_manifests(config, tests_root=tests_root)
+            testcases.validate_usage_case_artifacts(manifests, tests_root=tests_root)
+
+    def test_validate_usage_case_artifacts_rejects_historical_dependent_fixture_fields(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            path = Path(tmp) / "dependents.json"
+            path.write_text(
+                json.dumps(
+                    {
+                        "schema_version": 1,
+                        "library": "demo",
+                        "dependents": [{"name": "known-client", "packages": ["known-client"]}],
+                        "dependency_paths": [],
+                    }
+                )
+            )
+
+            with self.assertRaisesRegex(ValidatorError, "compact phase 5 schema"):
+                testcases.validate_sanitized_dependent_fixture(
+                    path,
+                    library="demo",
+                    used_clients={"known-client"},
+                )
+
+    def test_summarize_manifests_counts_usage_cases(self) -> None:
+        manifest = testcases.TestcaseManifest(
+            library="demo",
+            schema_version=1,
+            apt_packages=("demo-runtime",),
+            testcases=(
+                testcases.Testcase(
+                    id="source-demo",
+                    title="Source demo",
+                    description="Source demo",
+                    kind="source",
+                    command=("bash", "/validator/tests/demo/tests/cases/source/source-demo.sh"),
+                    timeout_seconds=1,
+                    tags=(),
+                ),
+                testcases.Testcase(
+                    id="usage-demo-client",
+                    title="Usage demo",
+                    description="Runs demo-client with a fixture.",
+                    kind="usage",
+                    command=("bash", "/validator/tests/demo/tests/cases/usage/usage-demo-client.sh"),
+                    timeout_seconds=1,
+                    tags=(),
+                    client_application="demo-client",
+                ),
+            ),
+        )
+
+        self.assertEqual(
+            testcases.summarize_manifests({"demo": manifest}),
+            [{"library": "demo", "source_cases": 1, "usage_cases": 1, "total_cases": 2}],
+        )
+
     def test_extract_dependent_identifiers_supports_existing_fixture_shapes(self) -> None:
         payload = {
             "dependents": [

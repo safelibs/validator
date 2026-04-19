@@ -60,3 +60,107 @@ testcases:
   tags:
   - cli
   - negative
+- id: usage-giflib-tools-giftext-headers
+  title: giflib-tools giftext headers
+  description: Runs giflib-tools giftext headers on a GIF fixture and checks image metadata.
+  kind: usage
+  client_application: giflib-tools
+  command:
+  - bash
+  - /validator/tests/giflib/tests/cases/usage/usage-giflib-tools-giftext-headers.sh
+  timeout_seconds: 180
+  tags:
+  - usage
+  - cli
+  - image
+- id: usage-giflib-tools-gif2rgb-convert
+  title: giflib-tools gif2rgb convert
+  description: Runs giflib-tools gif2rgb convert on a GIF fixture and checks image metadata.
+  kind: usage
+  client_application: giflib-tools
+  command:
+  - bash
+  - /validator/tests/giflib/tests/cases/usage/usage-giflib-tools-gif2rgb-convert.sh
+  timeout_seconds: 180
+  tags:
+  - usage
+  - cli
+  - image
+- id: usage-giflib-tools-giffix-copy
+  title: giflib-tools giffix copy
+  description: Runs giflib-tools giffix copy on a GIF fixture and checks image metadata.
+  kind: usage
+  client_application: giflib-tools
+  command:
+  - bash
+  - /validator/tests/giflib/tests/cases/usage/usage-giflib-tools-giffix-copy.sh
+  timeout_seconds: 180
+  tags:
+  - usage
+  - cli
+  - image
+- id: usage-giflib-tools-gifclrmp-map
+  title: giflib-tools gifclrmp map
+  description: Runs giflib-tools gifclrmp map on a GIF fixture and checks image metadata.
+  kind: usage
+  client_application: giflib-tools
+  command:
+  - bash
+  - /validator/tests/giflib/tests/cases/usage/usage-giflib-tools-gifclrmp-map.sh
+  timeout_seconds: 180
+  tags:
+  - usage
+  - cli
+  - image
+- id: usage-giflib-tools-gifbuild-dump
+  title: giflib-tools gifbuild dump
+  description: Runs giflib-tools gifbuild dump on a GIF fixture and checks image metadata.
+  kind: usage
+  client_application: giflib-tools
+  command:
+  - bash
+  - /validator/tests/giflib/tests/cases/usage/usage-giflib-tools-gifbuild-dump.sh
+  timeout_seconds: 180
+  tags:
+  - usage
+  - cli
+  - image
+- id: usage-giflib-tools-gifwedge-generate
+  title: giflib-tools gifwedge generate
+  description: Runs giflib-tools gifwedge generate on a GIF fixture and checks image metadata.
+  kind: usage
+  client_application: giflib-tools
+  command:
+  - bash
+  - /validator/tests/giflib/tests/cases/usage/usage-giflib-tools-gifwedge-generate.sh
+  timeout_seconds: 180
+  tags:
+  - usage
+  - cli
+  - image
+- id: usage-giflib-tools-giffilter-stream
+  title: giflib-tools giffilter stream
+  description: Runs giflib-tools giffilter stream on a GIF fixture and checks image metadata.
+  kind: usage
+  client_application: giflib-tools
+  command:
+  - bash
+  - /validator/tests/giflib/tests/cases/usage/usage-giflib-tools-giffilter-stream.sh
+  timeout_seconds: 180
+  tags:
+  - usage
+  - cli
+  - image
+- id: usage-giflib-tools-gifinto-wrapper
+  title: giflib-tools gifinto wrapper
+  description: Runs giflib-tools gifinto wrapper on a GIF fixture and checks image metadata.
+  kind: usage
+  client_application: giflib-tools
+  command:
+  - bash
+  - /validator/tests/giflib/tests/cases/usage/usage-giflib-tools-gifinto-wrapper.sh
+  timeout_seconds: 180
+  tags:
+  - usage
+  - cli
+  - image

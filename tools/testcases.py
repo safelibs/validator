@@ -43,6 +43,20 @@ DEPENDENT_LIST_KEYS = (
 COMMAND_PATH_TOKEN_SEPARATORS_RE = re.compile(r"""[\s'"`;$|&(){}\[\]<>,]+""")
 VALIDATOR_PATH_RE = re.compile(r"""/validator(?:/[^\s'"`;$|&(){}\[\]<>,]*)?""")
 ALLOWED_TESTCASE_MANIFEST_FIELDS = {"schema_version", "library", "apt_packages", "testcases"}
+SANITIZED_DEPENDENT_TOP_LEVEL_FIELDS = {"schema_version", "library", "dependents"}
+SANITIZED_DEPENDENT_FIELDS = {
+    "name",
+    "source_package",
+    "package",
+    "binary_package",
+    "packages",
+    "description",
+}
+DEPENDENT_FIXTURE_FORBIDDEN_RE = re.compile(r"\b(?:safe|unsafe|excluded)\b", re.IGNORECASE)
+GENERIC_USAGE_DESCRIPTION_RE = re.compile(
+    r"\b(?:dependent test|usage test|safe regression|regression test)\b",
+    re.IGNORECASE,
+)
 
 
 @dataclass(frozen=True)
@@ -270,6 +284,16 @@ def _validate_testcase(
     if kind == "usage":
         if client_application is None:
             raise ValidatorError(f"usage testcase must define client_application in {path}: {case_id}")
+        for field_name, value in (
+            ("id", case_id),
+            ("title", title),
+            ("description", description),
+        ):
+            if GENERIC_USAGE_DESCRIPTION_RE.search(value):
+                raise ValidatorError(
+                    f"usage testcase {field_name} must describe client behavior without generic migration wording "
+                    f"in {path}: {case_id}"
+                )
         if dependent_identifiers is None:
             dependent_path = path.parent / "tests" / "fixtures" / "dependents.json"
             dependent_identifiers = load_dependent_identifiers(dependent_path)
@@ -401,17 +425,18 @@ def _container_path_to_host_path(value: str, *, tests_root: Path, library: str) 
     return tests_root / library / Path(*relative.parts)
 
 
-def validate_source_case_artifacts(
+def _validate_case_scripts(
     manifests: dict[str, TestcaseManifest],
     *,
     tests_root: Path,
+    kind: str,
 ) -> None:
     for library, manifest in manifests.items():
         for testcase in manifest.testcases:
-            if testcase.kind != "source":
+            if testcase.kind != kind:
                 continue
 
-            source_scripts: list[Path] = []
+            scripts: list[Path] = []
             for command_item in testcase.command:
                 for candidate in _iter_command_path_candidates(command_item):
                     host_path = _container_path_to_host_path(
@@ -421,34 +446,193 @@ def validate_source_case_artifacts(
                     )
                     if host_path is None:
                         continue
-                    if "/tests/cases/source/" in candidate and candidate.endswith(".sh"):
-                        source_scripts.append(host_path)
+                    if f"/tests/cases/{kind}/" in candidate and candidate.endswith(".sh"):
+                        scripts.append(host_path)
 
-            if not source_scripts:
+            if not scripts:
                 raise ValidatorError(
-                    f"source testcase must execute a script under tests/cases/source: "
+                    f"{kind} testcase must execute a script under tests/cases/{kind}: "
                     f"{library}/{testcase.id}"
                 )
 
-            for script_path in source_scripts:
+            for script_path in scripts:
                 try:
                     resolved = script_path.resolve(strict=True)
                 except FileNotFoundError as exc:
                     raise ValidatorError(
-                        f"missing source testcase script for {library}/{testcase.id}: {script_path}"
+                        f"missing {kind} testcase script for {library}/{testcase.id}: {script_path}"
                     ) from exc
                 if not resolved.is_file():
                     raise ValidatorError(
-                        f"source testcase script must be a file for {library}/{testcase.id}: {script_path}"
+                        f"{kind} testcase script must be a file for {library}/{testcase.id}: {script_path}"
                     )
                 if not resolved.stat().st_mode & 0o111:
                     raise ValidatorError(
-                        f"source testcase script must be executable for {library}/{testcase.id}: {script_path}"
+                        f"{kind} testcase script must be executable for {library}/{testcase.id}: {script_path}"
                     )
+
+
+def validate_source_case_artifacts(
+    manifests: dict[str, TestcaseManifest],
+    *,
+    tests_root: Path,
+) -> None:
+    _validate_case_scripts(manifests, tests_root=tests_root, kind="source")
+
+
+def _load_dependent_fixture(path: Path) -> dict[str, Any]:
+    try:
+        payload = json.loads(path.read_text())
+    except FileNotFoundError as exc:
+        raise ValidatorError(f"missing dependent fixture: {path}") from exc
+    except json.JSONDecodeError as exc:
+        raise ValidatorError(f"invalid dependent fixture JSON at {path}: {exc}") from exc
+    if not isinstance(payload, dict):
+        raise ValidatorError(f"dependent fixture must be a JSON object: {path}")
+    return payload
+
+
+def _scan_for_forbidden_dependent_text(value: Any, *, path: Path) -> None:
+    if isinstance(value, str):
+        if DEPENDENT_FIXTURE_FORBIDDEN_RE.search(value):
+            raise ValidatorError(f"dependent fixture contains forbidden historical vocabulary at {path}: {value!r}")
+        return
+    if isinstance(value, list):
+        for item in value:
+            _scan_for_forbidden_dependent_text(item, path=path)
+        return
+    if isinstance(value, dict):
+        for key, item in value.items():
+            if DEPENDENT_FIXTURE_FORBIDDEN_RE.search(str(key)):
+                raise ValidatorError(f"dependent fixture contains forbidden historical key at {path}: {key!r}")
+            _scan_for_forbidden_dependent_text(item, path=path)
+
+
+def validate_sanitized_dependent_fixture(
+    path: Path,
+    *,
+    library: str,
+    used_clients: set[str],
+) -> set[str]:
+    payload = _load_dependent_fixture(path)
+    top_level = set(payload)
+    if top_level != SANITIZED_DEPENDENT_TOP_LEVEL_FIELDS:
+        unexpected = sorted(top_level - SANITIZED_DEPENDENT_TOP_LEVEL_FIELDS)
+        missing = sorted(SANITIZED_DEPENDENT_TOP_LEVEL_FIELDS - top_level)
+        details = []
+        if unexpected:
+            details.append(f"unsupported fields: {', '.join(unexpected)}")
+        if missing:
+            details.append(f"missing fields: {', '.join(missing)}")
+        raise ValidatorError(f"dependent fixture must use the compact phase 5 schema at {path}: {'; '.join(details)}")
+    if payload.get("schema_version") != 1:
+        raise ValidatorError(f"dependent fixture schema_version must be 1 at {path}")
+    if payload.get("library") != library:
+        raise ValidatorError(f"dependent fixture library mismatch at {path}: expected {library!r}")
+    dependents = payload.get("dependents")
+    if not isinstance(dependents, list) or not dependents:
+        raise ValidatorError(f"dependent fixture dependents must be a non-empty list at {path}")
+
+    _scan_for_forbidden_dependent_text(payload, path=path)
+
+    identifiers: set[str] = set()
+    for index, entry in enumerate(dependents):
+        if not isinstance(entry, dict):
+            raise ValidatorError(f"dependent fixture entries must be objects at {path}: index {index}")
+        extra_fields = sorted(set(entry) - SANITIZED_DEPENDENT_FIELDS)
+        if extra_fields:
+            raise ValidatorError(
+                f"dependent fixture entry contains unsupported fields at {path}: {', '.join(extra_fields)}"
+            )
+        packages = entry.get("packages", [])
+        if "packages" in entry:
+            if not isinstance(packages, list) or any(
+                not isinstance(package, str) or not package.strip()
+                for package in packages
+            ):
+                raise ValidatorError(f"dependent fixture packages must be a list of strings at {path}: index {index}")
+        has_identifier = False
+        for field_name in ("name", "source_package", "package", "binary_package"):
+            value = entry.get(field_name)
+            if value is None:
+                continue
+            if not isinstance(value, str) or not value.strip():
+                raise ValidatorError(
+                    f"dependent fixture {field_name} must be a non-empty string at {path}: index {index}"
+                )
+            identifiers.add(value.strip())
+            has_identifier = True
+        for package in packages:
+            identifiers.add(package.strip())
+            has_identifier = True
+        description = entry.get("description")
+        if description is not None and (not isinstance(description, str) or not description.strip()):
+            raise ValidatorError(f"dependent fixture description must be a non-empty string at {path}: index {index}")
+        if not has_identifier:
+            raise ValidatorError(f"dependent fixture entry must expose an identifier at {path}: index {index}")
+
+    missing_clients = sorted(used_clients - identifiers)
+    if missing_clients:
+        raise ValidatorError(
+            f"dependent fixture does not cover usage client_application values for {library}: "
+            f"{', '.join(missing_clients)}"
+        )
+    return identifiers
+
+
+def validate_usage_case_artifacts(
+    manifests: dict[str, TestcaseManifest],
+    *,
+    tests_root: Path,
+) -> None:
+    _validate_case_scripts(manifests, tests_root=tests_root, kind="usage")
+    for library, manifest in manifests.items():
+        used_clients = {
+            testcase.client_application
+            for testcase in manifest.testcases
+            if testcase.kind == "usage" and testcase.client_application is not None
+        }
+        if not used_clients:
+            continue
+        validate_sanitized_dependent_fixture(
+            tests_root / library / "tests" / "fixtures" / "dependents.json",
+            library=library,
+            used_clients=used_clients,
+        )
 
 
 def testcase_result_sort_key(result: dict[str, Any]) -> tuple[str, str]:
     return (str(result.get("library") or ""), str(result.get("testcase_id") or ""))
+
+
+def summarize_manifests(manifests: dict[str, TestcaseManifest]) -> list[dict[str, Any]]:
+    rows: list[dict[str, Any]] = []
+    for library in sorted(manifests):
+        manifest = manifests[library]
+        source_cases = sum(1 for testcase in manifest.testcases if testcase.kind == "source")
+        usage_cases = sum(1 for testcase in manifest.testcases if testcase.kind == "usage")
+        rows.append(
+            {
+                "library": library,
+                "source_cases": source_cases,
+                "usage_cases": usage_cases,
+                "total_cases": len(manifest.testcases),
+            }
+        )
+    return rows
+
+
+def print_manifest_summary(manifests: dict[str, TestcaseManifest]) -> None:
+    rows = summarize_manifests(manifests)
+    print("library source usage total")
+    for row in rows:
+        print(f"{row['library']} {row['source_cases']} {row['usage_cases']} {row['total_cases']}")
+    print(
+        "TOTAL "
+        f"{sum(row['source_cases'] for row in rows)} "
+        f"{sum(row['usage_cases'] for row in rows)} "
+        f"{sum(row['total_cases'] for row in rows)}"
+    )
 
 
 def build_parser() -> argparse.ArgumentParser:
@@ -459,33 +643,52 @@ def build_parser() -> argparse.ArgumentParser:
     parser.add_argument("--library", action="append")
     parser.add_argument("--check", action="store_true")
     parser.add_argument("--check-manifest-only", action="store_true")
+    parser.add_argument("--list-summary", action="store_true")
     parser.add_argument("--min-source-cases", type=int, default=0)
+    parser.add_argument("--min-usage-cases", type=int, default=0)
+    parser.add_argument("--min-cases", type=int, default=0)
     return parser
 
 
 def main(argv: list[str] | None = None) -> int:
     args = build_parser().parse_args(argv)
-    if not args.check and not args.check_manifest_only:
-        raise ValidatorError("one of --check or --check-manifest-only is required")
+    if not args.check and not args.check_manifest_only and not args.list_summary:
+        raise ValidatorError("one of --check, --check-manifest-only, or --list-summary is required")
 
     config = load_manifest(args.config)
     selected = select_libraries(config, args.library)
     selected_config = dict(config)
     selected_config["libraries"] = selected
-    if args.min_source_cases < 0:
+    if args.min_source_cases < 0 or args.min_usage_cases < 0 or args.min_cases < 0:
         raise ValidatorError("case thresholds must be non-negative")
 
-    if args.check:
+    if args.check or args.list_summary:
         manifests = load_manifests(selected_config, tests_root=args.tests_root)
-        validate_source_case_artifacts(manifests, tests_root=args.tests_root)
         source_cases = sum(
             1
             for manifest in manifests.values()
             for testcase in manifest.testcases
             if testcase.kind == "source"
         )
+        usage_cases = sum(
+            1
+            for manifest in manifests.values()
+            for testcase in manifest.testcases
+            if testcase.kind == "usage"
+        )
+        total_cases = sum(len(manifest.testcases) for manifest in manifests.values())
+        if args.list_summary:
+            print_manifest_summary(manifests)
+        if not args.check:
+            return 0
+        validate_source_case_artifacts(manifests, tests_root=args.tests_root)
+        validate_usage_case_artifacts(manifests, tests_root=args.tests_root)
         if args.min_source_cases and source_cases < args.min_source_cases:
             raise ValidatorError(f"source case threshold not met: {source_cases} < {args.min_source_cases}")
+        if args.min_usage_cases and usage_cases < args.min_usage_cases:
+            raise ValidatorError(f"usage case threshold not met: {usage_cases} < {args.min_usage_cases}")
+        if args.min_cases and total_cases < args.min_cases:
+            raise ValidatorError(f"case threshold not met: {total_cases} < {args.min_cases}")
         return 0
 
     load_manifests(selected_config, tests_root=args.tests_root, require_testcases=False)

@@ -60,3 +60,99 @@ testcases:
   tags:
   - cli
   - negative
+- id: usage-pngquant-compress-png
+  title: pngquant compress png
+  description: Runs pngquant compress png through libpng on a PNG fixture.
+  kind: usage
+  client_application: pngquant
+  command:
+  - bash
+  - /validator/tests/libpng/tests/cases/usage/usage-pngquant-compress-png.sh
+  timeout_seconds: 180
+  tags:
+  - usage
+  - image
+- id: usage-pngquant-quality-png
+  title: pngquant quality png
+  description: Runs pngquant quality png through libpng on a PNG fixture.
+  kind: usage
+  client_application: pngquant
+  command:
+  - bash
+  - /validator/tests/libpng/tests/cases/usage/usage-pngquant-quality-png.sh
+  timeout_seconds: 180
+  tags:
+  - usage
+  - image
+- id: usage-pngquant-strip-png
+  title: pngquant strip png
+  description: Runs pngquant strip png through libpng on a PNG fixture.
+  kind: usage
+  client_application: pngquant
+  command:
+  - bash
+  - /validator/tests/libpng/tests/cases/usage/usage-pngquant-strip-png.sh
+  timeout_seconds: 180
+  tags:
+  - usage
+  - image
+- id: usage-pngquant-speed-png
+  title: pngquant speed png
+  description: Runs pngquant speed png through libpng on a PNG fixture.
+  kind: usage
+  client_application: pngquant
+  command:
+  - bash
+  - /validator/tests/libpng/tests/cases/usage/usage-pngquant-speed-png.sh
+  timeout_seconds: 180
+  tags:
+  - usage
+  - image
+- id: usage-netpbm-pngtopnm
+  title: netpbm pngtopnm
+  description: Runs netpbm pngtopnm through libpng on a PNG fixture.
+  kind: usage
+  client_application: netpbm
+  command:
+  - bash
+  - /validator/tests/libpng/tests/cases/usage/usage-netpbm-pngtopnm.sh
+  timeout_seconds: 180
+  tags:
+  - usage
+  - image
+- id: usage-netpbm-pnmtopng
+  title: netpbm pnmtopng
+  description: Runs netpbm pnmtopng through libpng on a PNG fixture.
+  kind: usage
+  client_application: netpbm
+  command:
+  - bash
+  - /validator/tests/libpng/tests/cases/usage/usage-netpbm-pnmtopng.sh
+  timeout_seconds: 180
+  tags:
+  - usage
+  - image
+- id: usage-netpbm-pngtopam
+  title: netpbm pngtopam
+  description: Runs netpbm pngtopam through libpng on a PNG fixture.
+  kind: usage
+  client_application: netpbm
+  command:
+  - bash
+  - /validator/tests/libpng/tests/cases/usage/usage-netpbm-pngtopam.sh
+  timeout_seconds: 180
+  tags:
+  - usage
+  - image
+- id: usage-netpbm-roundtrip-png
+  title: netpbm roundtrip png
+  description: Runs netpbm roundtrip png through libpng on a PNG fixture.
+  kind: usage
+  client_application: netpbm
+  command:
+  - bash
+  - /validator/tests/libpng/tests/cases/usage/usage-netpbm-roundtrip-png.sh
+  timeout_seconds: 180
+  tags:
+  - usage
+  - image

@@ -7,6 +7,7 @@ RUN apt-get update \
       libsdl2-2.0-0 \
       libsdl2-dev \
       libsdl2-tests \
+      python3-pygame \
       bash \
       build-essential \
       ca-certificates \

@@ -62,3 +62,107 @@ testcases:
   tags:
   - cli
   - negative
+- id: usage-python3-pil-open-jpeg
+  title: Pillow open jpeg
+  description: Uses Pillow to open jpeg through libjpeg-turbo.
+  kind: usage
+  client_application: python3-pil
+  command:
+  - bash
+  - /validator/tests/libjpeg-turbo/tests/cases/usage/usage-python3-pil-open-jpeg.sh
+  timeout_seconds: 180
+  tags:
+  - usage
+  - image
+  - python
+- id: usage-python3-pil-grayscale-jpeg
+  title: Pillow grayscale jpeg
+  description: Uses Pillow to grayscale jpeg through libjpeg-turbo.
+  kind: usage
+  client_application: python3-pil
+  command:
+  - bash
+  - /validator/tests/libjpeg-turbo/tests/cases/usage/usage-python3-pil-grayscale-jpeg.sh
+  timeout_seconds: 180
+  tags:
+  - usage
+  - image
+  - python
+- id: usage-python3-pil-thumbnail-jpeg
+  title: Pillow thumbnail jpeg
+  description: Uses Pillow to thumbnail jpeg through libjpeg-turbo.
+  kind: usage
+  client_application: python3-pil
+  command:
+  - bash
+  - /validator/tests/libjpeg-turbo/tests/cases/usage/usage-python3-pil-thumbnail-jpeg.sh
+  timeout_seconds: 180
+  tags:
+  - usage
+  - image
+  - python
+- id: usage-python3-pil-transpose-jpeg
+  title: Pillow transpose jpeg
+  description: Uses Pillow to transpose jpeg through libjpeg-turbo.
+  kind: usage
+  client_application: python3-pil
+  command:
+  - bash
+  - /validator/tests/libjpeg-turbo/tests/cases/usage/usage-python3-pil-transpose-jpeg.sh
+  timeout_seconds: 180
+  tags:
+  - usage
+  - image
+  - python
+- id: usage-vips-header-jpeg
+  title: vips header jpeg
+  description: Runs vips header jpeg on a JPEG fixture through libjpeg-turbo.
+  kind: usage
+  client_application: vips
+  command:
+  - bash
+  - /validator/tests/libjpeg-turbo/tests/cases/usage/usage-vips-header-jpeg.sh
+  timeout_seconds: 180
+  tags:
+  - usage
+  - image
+  - cli
+- id: usage-vips-copy-jpeg-png
+  title: vips copy jpeg png
+  description: Runs vips copy jpeg png on a JPEG fixture through libjpeg-turbo.
+  kind: usage
+  client_application: vips
+  command:
+  - bash
+  - /validator/tests/libjpeg-turbo/tests/cases/usage/usage-vips-copy-jpeg-png.sh
+  timeout_seconds: 180
+  tags:
+  - usage
+  - image
+  - cli
+- id: usage-libvips42t64-thumbnail-jpeg
+  title: libvips42t64 thumbnail jpeg
+  description: Runs libvips42t64 thumbnail jpeg on a JPEG fixture through libjpeg-turbo.
+  kind: usage
+  client_application: libvips42t64
+  command:
+  - bash
+  - /validator/tests/libjpeg-turbo/tests/cases/usage/usage-libvips42t64-thumbnail-jpeg.sh
+  timeout_seconds: 180
+  tags:
+  - usage
+  - image
+  - cli
+- id: usage-libvips42t64-stats-jpeg
+  title: libvips42t64 stats jpeg
+  description: Runs libvips42t64 stats jpeg on a JPEG fixture through libjpeg-turbo.
+  kind: usage
+  client_application: libvips42t64
+  command:
+  - bash
+  - /validator/tests/libjpeg-turbo/tests/cases/usage/usage-libvips42t64-stats-jpeg.sh
+  timeout_seconds: 180
+  tags:
+  - usage
+  - image
+  - cli

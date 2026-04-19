@@ -25,6 +25,7 @@ def build_parser() -> argparse.ArgumentParser:
     parser.add_argument("--require-casts", action="store_true")
     parser.add_argument("--min-total-cases", type=int, default=0)
     parser.add_argument("--min-source-cases", type=int, default=0)
+    parser.add_argument("--min-usage-cases", type=int, default=0)
     return parser
 
 
@@ -62,7 +63,7 @@ def _validate_proof_output_path(raw_path: str, *, artifact_root: Path) -> Path:
 
 def main(argv: list[str] | None = None) -> int:
     args = build_parser().parse_args(argv)
-    if args.min_total_cases < 0 or args.min_source_cases < 0:
+    if args.min_total_cases < 0 or args.min_source_cases < 0 or args.min_usage_cases < 0:
         raise ValidatorError("case thresholds must be non-negative")
 
     libraries = args.library or None
@@ -88,6 +89,7 @@ def main(argv: list[str] | None = None) -> int:
         record_casts_expected=args.record_casts or args.require_casts,
         min_total_cases=args.min_total_cases,
         min_source_cases=args.min_source_cases,
+        min_usage_cases=args.min_usage_cases,
     )
     write_json(proof_output, proof)
     return 0

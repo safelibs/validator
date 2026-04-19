@@ -12,6 +12,12 @@ RUN apt-get update \
       libwebp-dev \
       libsharpyuv-dev \
       webp \
+      python3-pil \
+      libvips-tools \
+      ffmpeg \
+      libsdl2-image-dev \
+      webp-pixbuf-loader \
+      libgdk-pixbuf2.0-bin \
       bash \
       build-essential \
       ca-certificates \

@@ -60,3 +60,107 @@ testcases:
   tags:
   - cli
   - negative
+- id: usage-libarchive-tools-xz-tar-list
+  title: libarchive-tools xz tar list
+  description: Runs bsdtar tar list on a xz-compressed archive through liblzma.
+  kind: usage
+  client_application: libarchive-tools
+  command:
+  - bash
+  - /validator/tests/liblzma/tests/cases/usage/usage-libarchive-tools-xz-tar-list.sh
+  timeout_seconds: 180
+  tags:
+  - usage
+  - archive
+  - compression
+- id: usage-libarchive-tools-xz-tar-extract
+  title: libarchive-tools xz tar extract
+  description: Runs bsdtar tar extract on a xz-compressed archive through liblzma.
+  kind: usage
+  client_application: libarchive-tools
+  command:
+  - bash
+  - /validator/tests/liblzma/tests/cases/usage/usage-libarchive-tools-xz-tar-extract.sh
+  timeout_seconds: 180
+  tags:
+  - usage
+  - archive
+  - compression
+- id: usage-libarchive-tools-xz-stdout-stream
+  title: libarchive-tools xz stdout stream
+  description: Runs bsdtar stdout stream on a xz-compressed archive through liblzma.
+  kind: usage
+  client_application: libarchive-tools
+  command:
+  - bash
+  - /validator/tests/liblzma/tests/cases/usage/usage-libarchive-tools-xz-stdout-stream.sh
+  timeout_seconds: 180
+  tags:
+  - usage
+  - archive
+  - compression
+- id: usage-libarchive-tools-xz-large-file
+  title: libarchive-tools xz large file
+  description: Runs bsdtar large file on a xz-compressed archive through liblzma.
+  kind: usage
+  client_application: libarchive-tools
+  command:
+  - bash
+  - /validator/tests/liblzma/tests/cases/usage/usage-libarchive-tools-xz-large-file.sh
+  timeout_seconds: 180
+  tags:
+  - usage
+  - archive
+  - compression
+- id: usage-libarchive-tools-xz-symlink
+  title: libarchive-tools xz symlink
+  description: Runs bsdtar symlink on a xz-compressed archive through liblzma.
+  kind: usage
+  client_application: libarchive-tools
+  command:
+  - bash
+  - /validator/tests/liblzma/tests/cases/usage/usage-libarchive-tools-xz-symlink.sh
+  timeout_seconds: 180
+  tags:
+  - usage
+  - archive
+  - compression
+- id: usage-libarchive-tools-xz-empty-dir
+  title: libarchive-tools xz empty dir
+  description: Runs bsdtar empty dir on a xz-compressed archive through liblzma.
+  kind: usage
+  client_application: libarchive-tools
+  command:
+  - bash
+  - /validator/tests/liblzma/tests/cases/usage/usage-libarchive-tools-xz-empty-dir.sh
+  timeout_seconds: 180
+  tags:
+  - usage
+  - archive
+  - compression
+- id: usage-libarchive-tools-xz-filter-auto
+  title: libarchive-tools xz filter auto
+  description: Runs bsdtar filter auto on a xz-compressed archive through liblzma.
+  kind: usage
+  client_application: libarchive-tools
+  command:
+  - bash
+  - /validator/tests/liblzma/tests/cases/usage/usage-libarchive-tools-xz-filter-auto.sh
+  timeout_seconds: 180
+  tags:
+  - usage
+  - archive
+  - compression
+- id: usage-libarchive-tools-xz-copy-mode
+  title: libarchive-tools xz copy mode
+  description: Runs bsdtar copy mode on a xz-compressed archive through liblzma.
+  kind: usage
+  client_application: libarchive-tools
+  command:
+  - bash
+  - /validator/tests/liblzma/tests/cases/usage/usage-libarchive-tools-xz-copy-mode.sh
+  timeout_seconds: 180
+  tags:
+  - usage
+  - archive
+  - compression

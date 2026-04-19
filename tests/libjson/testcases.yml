@@ -59,3 +59,120 @@ testcases:
   tags:
   - api
   - negative
+- id: usage-gdal-ogrinfo-geojson
+  title: GDAL reads GeoJSON
+  description: Runs ogrinfo against a GeoJSON fixture to exercise json-c parsing through GDAL.
+  kind: usage
+  client_application: gdal
+  command:
+  - bash
+  - /validator/tests/libjson/tests/cases/usage/usage-gdal-ogrinfo-geojson.sh
+  timeout_seconds: 180
+  tags:
+  - usage
+  - json
+  - cli
+- id: usage-ttyd-loopback-index
+  title: ttyd loopback web session
+  description: Starts ttyd on loopback and requests its web page to exercise json-c through a service-style client.
+  kind: usage
+  client_application: ttyd
+  command:
+  - bash
+  - /validator/tests/libjson/tests/cases/usage/usage-ttyd-loopback-index.sh
+  timeout_seconds: 180
+  tags:
+  - usage
+  - service
+  - json
+- id: usage-nvme-cli-parse-device-json
+  title: nvme-cli JSON parse
+  description: Compiles a nvme-cli-style JSON reader that extracts Devices data through json-c.
+  kind: usage
+  client_application: nvme-cli
+  command:
+  - bash
+  - /validator/tests/libjson/tests/cases/usage/usage-nvme-cli-parse-device-json.sh
+  timeout_seconds: 180
+  tags:
+  - usage
+  - json
+  - compile
+- id: usage-bind9-parse-zone-json
+  title: bind9 JSON parse
+  description: Compiles a bind9-style JSON reader that extracts zones data through json-c.
+  kind: usage
+  client_application: bind9
+  command:
+  - bash
+  - /validator/tests/libjson/tests/cases/usage/usage-bind9-parse-zone-json.sh
+  timeout_seconds: 180
+  tags:
+  - usage
+  - json
+  - compile
+- id: usage-syslog-ng-parse-log-json
+  title: syslog-ng JSON parse
+  description: Compiles a syslog-ng-style JSON reader that extracts PRIORITY data through json-c.
+  kind: usage
+  client_application: syslog-ng
+  command:
+  - bash
+  - /validator/tests/libjson/tests/cases/usage/usage-syslog-ng-parse-log-json.sh
+  timeout_seconds: 180
+  tags:
+  - usage
+  - json
+  - compile
+- id: usage-bluez-meshd-parse-node-json
+  title: bluez-meshd JSON parse
+  description: Compiles a bluez-meshd-style JSON reader that extracts nodes data through json-c.
+  kind: usage
+  client_application: bluez-meshd
+  command:
+  - bash
+  - /validator/tests/libjson/tests/cases/usage/usage-bluez-meshd-parse-node-json.sh
+  timeout_seconds: 180
+  tags:
+  - usage
+  - json
+  - compile
+- id: usage-tlog-parse-recorder-json
+  title: tlog JSON parse
+  description: Compiles a tlog-style JSON reader that extracts events data through json-c.
+  kind: usage
+  client_application: tlog
+  command:
+  - bash
+  - /validator/tests/libjson/tests/cases/usage/usage-tlog-parse-recorder-json.sh
+  timeout_seconds: 180
+  tags:
+  - usage
+  - json
+  - compile
+- id: usage-ndctl-parse-region-json
+  title: ndctl JSON parse
+  description: Compiles a ndctl-style JSON reader that extracts regions data through json-c.
+  kind: usage
+  client_application: ndctl
+  command:
+  - bash
+  - /validator/tests/libjson/tests/cases/usage/usage-ndctl-parse-region-json.sh
+  timeout_seconds: 180
+  tags:
+  - usage
+  - json
+  - compile
+- id: usage-frr-parse-route-json
+  title: frr JSON parse
+  description: Compiles a frr-style JSON reader that extracts routes data through json-c.
+  kind: usage
+  client_application: frr
+  command:
+  - bash
+  - /validator/tests/libjson/tests/cases/usage/usage-frr-parse-route-json.sh
+  timeout_seconds: 180
+  tags:
+  - usage
+  - json
+  - compile

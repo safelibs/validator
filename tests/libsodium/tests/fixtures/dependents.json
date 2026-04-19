@@ -1,234 +1,48 @@
 {
-  "generated_at": "2026-04-03T05:04:00Z",
-  "analysis_date": "2026-04-02",
-  "target_distribution": {
-    "name": "Ubuntu",
-    "version": "24.04.3 LTS",
-    "codename": "noble",
-    "architecture": "amd64"
-  },
-  "libsodium_packages": {
-    "runtime": "libsodium23",
-    "development": "libsodium-dev"
-  },
-  "selection_rule": "Include a diverse set of direct Ubuntu 24.04 package dependents on libsodium23 or libsodium-dev. Prefer packages whose sodium-backed runtime functionality can be identified from package metadata, local command help, or upstream documentation. Development-only packages are included to cover compile-time users; their runtime_functionality field is null when the -dev package itself has no runtime behavior.",
-  "discovery_commands": [
-    "apt-cache rdepends libsodium23",
-    "apt-cache rdepends libsodium-dev",
-    "apt-cache depends <package>",
-    "apt-cache show <package>",
-    "nix-store --help --generate-binary-cache-key",
-    "ldd $(command -v nix)"
-  ],
+  "schema_version": 1,
+  "library": "libsodium",
   "dependents": [
     {
-      "package": "minisign",
-      "kind": "application",
-      "section": "universe/misc",
-      "dependency_scope": "runtime",
-      "direct_dependency": "libsodium23",
-      "runtime_functionality": "Signing files and verifying Ed25519 signatures.",
-      "evidence": [
-        "apt-cache depends minisign shows a direct Depends on libsodium23.",
-        "apt-cache show minisign describes it as a file signing and signature verification tool using Ed25519."
-      ]
-    },
-    {
-      "package": "shadowsocks-libev",
-      "kind": "application",
-      "section": "universe/net",
-      "dependency_scope": "runtime",
-      "direct_dependency": "libsodium23",
-      "runtime_functionality": "Encrypted Shadowsocks SOCKS5 proxy traffic.",
-      "evidence": [
-        "apt-cache depends shadowsocks-libev shows a direct Depends on libsodium23.",
-        "apt-cache show shadowsocks-libev describes it as a lightweight and secure SOCKS5 proxy."
-      ]
-    },
-    {
-      "package": "libtoxcore2",
-      "kind": "library",
-      "section": "universe/libs",
-      "dependency_scope": "runtime",
-      "direct_dependency": "libsodium23",
-      "runtime_functionality": "Encrypted peer-to-peer Tox communication primitives used for chat, calls, and file transfer.",
-      "evidence": [
-        "apt-cache depends libtoxcore2 shows a direct Depends on libsodium23.",
-        "apt-cache show libtoxcore2 describes Tox as an encrypted, distributed peer-to-peer communication platform."
-      ]
-    },
-    {
-      "package": "qtox",
-      "kind": "application",
-      "section": "universe/net",
-      "dependency_scope": "runtime",
-      "direct_dependency": "libsodium23",
-      "runtime_functionality": "Tox chat, group chat, file transfer, and audio/video call features ride on the libsodium-backed Tox stack.",
-      "evidence": [
-        "apt-cache depends qtox shows a direct Depends on libsodium23 and libtoxcore2.",
-        "apt-cache show qtox lists messaging, file transfer, audio calls, and video calls among its runtime features."
-      ]
-    },
-    {
-      "package": "fastd",
-      "kind": "application",
-      "section": "universe/net",
-      "dependency_scope": "runtime",
-      "direct_dependency": "libsodium23",
-      "runtime_functionality": "Secure VPN tunneling.",
-      "evidence": [
-        "apt-cache depends fastd shows a direct Depends on libsodium23.",
-        "apt-cache show fastd describes it as a Fast and Secure Tunneling Daemon."
-      ]
-    },
-    {
-      "package": "curvedns",
-      "kind": "application",
-      "section": "universe/net",
-      "dependency_scope": "runtime",
-      "direct_dependency": "libsodium23",
-      "runtime_functionality": "DNSCurve forwarding of DNS traffic.",
-      "evidence": [
-        "apt-cache depends curvedns shows a direct Depends on libsodium23.",
-        "apt-cache show curvedns describes it as DNS/DNSCurve forwarding software implementing the DNSCurve protocol."
-      ]
-    },
-    {
-      "package": "nix-bin",
-      "kind": "application",
-      "section": "universe/devel",
-      "dependency_scope": "runtime",
-      "direct_dependency": "libsodium23",
-      "runtime_functionality": "Generating Ed25519 keys for signed binary caches, plus the associated signed binary-cache support exposed by nix-store.",
-      "evidence": [
-        "apt-cache depends nix-bin shows a direct Depends on libsodium23.",
-        "ldd $(command -v nix) shows the installed nix binary linking against libsodium.so.23.",
-        "nix-store --help --generate-binary-cache-key documents generation of an Ed25519 key pair for a signed binary cache."
-      ]
-    },
-    {
-      "package": "libzmq5",
-      "kind": "library",
-      "section": "universe/libs",
-      "dependency_scope": "runtime",
-      "direct_dependency": "libsodium23",
-      "runtime_functionality": "CURVE socket authentication/confidentiality and CURVE keypair generation.",
-      "evidence": [
-        "apt-cache depends libzmq5 shows a direct Depends on libsodium23.",
-        "The ZeroMQ zmq_curve documentation describes CURVE as providing secure authentication and confidentiality.",
-        "The zmq_curve_keypair documentation says ENOTSUP is returned when libzmq was not built with cryptographic support (libsodium)."
+      "name": "libzmq5",
+      "packages": [
+        "libzmq5"
       ],
-      "reference_urls": [
-        "https://libzmq.readthedocs.io/en/zeromq4-x/zmq_curve.html",
-        "https://libzmq.readthedocs.io/en/zeromq4-x/zmq_curve_keypair.html"
-      ]
+      "description": "libzmq5 client exercised by usage testcases."
     },
     {
-      "package": "vim",
-      "kind": "application",
-      "section": "editors",
-      "dependency_scope": "runtime",
-      "direct_dependency": "libsodium23",
-      "runtime_functionality": "Editing encrypted files with cryptmethod set to xchacha20 or xchacha20v2.",
-      "evidence": [
-        "apt-cache depends vim shows a direct Depends on libsodium23.",
-        "The Vim cryptmethod help says xchacha20 encryption is provided by libsodium and requires Vim to be built with +sodium."
+      "name": "minisign",
+      "packages": [
+        "minisign"
       ],
-      "reference_urls": [
-        "https://vimhelp.org/options.txt.html#'cryptmethod'"
-      ]
+      "description": "minisign client exercised by usage testcases."
     },
     {
-      "package": "php8.3-cli",
-      "kind": "language runtime",
-      "section": "php",
-      "dependency_scope": "runtime",
-      "direct_dependency": "libsodium23",
-      "runtime_functionality": "The built-in Sodium extension (the sodium_* APIs) for encryption, decryption, signatures, password hashing, key exchange, and related primitives.",
-      "evidence": [
-        "apt-cache depends php8.3-cli shows a direct Depends on libsodium23.",
-        "The PHP Sodium manual describes the extension as a PHP interface to modern cryptographic operations including encryption, decryption, signatures, and password hashing.",
-        "The PHP installation manual says the extension is bundled with PHP and compiled with sodium support."
+      "name": "php8.3-cli",
+      "packages": [
+        "php8.3-cli"
       ],
-      "reference_urls": [
-        "https://www.php.net/manual/en/book.sodium.php",
-        "https://www.php.net/manual/en/sodium.installation.php"
-      ]
+      "description": "php8.3-cli client exercised by usage testcases."
     },
     {
-      "package": "python3-nacl",
-      "kind": "language binding",
-      "section": "python",
-      "dependency_scope": "runtime",
-      "direct_dependency": "libsodium23",
-      "runtime_functionality": "PyNaCl cryptographic APIs exposed to Python code.",
-      "evidence": [
-        "apt-cache depends python3-nacl shows a direct Depends on libsodium23.",
-        "apt-cache show python3-nacl describes it as Python bindings to libsodium."
-      ]
+      "name": "python3-nacl",
+      "packages": [
+        "python3-nacl"
+      ],
+      "description": "python3-nacl client exercised by usage testcases."
     },
     {
-      "package": "ruby-rbnacl",
-      "kind": "language binding",
-      "section": "universe/ruby",
-      "dependency_scope": "runtime",
-      "direct_dependency": "libsodium23",
-      "runtime_functionality": "RbNaCl cryptographic APIs exposed to Ruby code.",
-      "evidence": [
-        "apt-cache depends ruby-rbnacl shows a direct Depends on libsodium23.",
-        "apt-cache show ruby-rbnacl describes it as a Ruby binding to the Networking and Cryptography library."
-      ]
+      "name": "r-cran-sodium",
+      "packages": [
+        "r-cran-sodium"
+      ],
+      "description": "r-cran-sodium client exercised by usage testcases."
     },
     {
-      "package": "r-cran-sodium",
-      "kind": "language binding",
-      "section": "universe/gnu-r",
-      "dependency_scope": "runtime",
-      "direct_dependency": "libsodium23",
-      "runtime_functionality": "R bindings for encryption, decryption, signatures, password hashing, and related primitives.",
-      "evidence": [
-        "apt-cache depends r-cran-sodium shows a direct Depends on libsodium23.",
-        "apt-cache show r-cran-sodium describes it as R bindings to libsodium for encryption, decryption, signatures, password hashing, and more."
-      ]
-    },
-    {
-      "package": "librust-libsodium-sys-dev",
-      "kind": "development package",
-      "section": "universe/rust",
-      "dependency_scope": "compile-time",
-      "direct_dependency": "libsodium-dev",
-      "runtime_functionality": null,
-      "notes": "This package ships Rust crate source for FFI bindings to libsodium and is used to link Rust code against libsodium at build time.",
-      "evidence": [
-        "apt-cache show librust-libsodium-sys-dev shows a direct Depends on libsodium-dev.",
-        "apt-cache show librust-libsodium-sys-dev describes it as FFI binding source code for libsodium."
-      ]
-    },
-    {
-      "package": "libtoxcore-dev",
-      "kind": "development package",
-      "section": "universe/libdevel",
-      "dependency_scope": "compile-time",
-      "direct_dependency": "libsodium-dev",
-      "runtime_functionality": null,
-      "notes": "This package supplies headers and development files for building software against libtoxcore; the runtime behavior lives in libtoxcore2, not in the -dev package itself.",
-      "evidence": [
-        "apt-cache show libtoxcore-dev shows a direct Depends on libsodium-dev.",
-        "apt-cache show libtoxcore-dev describes it as development headers for the encrypted Tox communication stack."
-      ]
-    },
-    {
-      "package": "libzmq3-dev",
-      "kind": "development package",
-      "section": "universe/libdevel",
-      "dependency_scope": "compile-time",
-      "direct_dependency": "libsodium-dev",
-      "runtime_functionality": null,
-      "notes": "This package supplies headers and development files for building software against ZeroMQ; the runtime CURVE functionality lives in libzmq5, not in the -dev package itself.",
-      "evidence": [
-        "apt-cache show libzmq3-dev shows a direct Depends on libsodium-dev.",
-        "apt-cache show libzmq3-dev describes it as ZeroMQ development libraries and header files."
-      ]
+      "name": "ruby-rbnacl",
+      "packages": [
+        "ruby-rbnacl"
+      ],
+      "description": "ruby-rbnacl client exercised by usage testcases."
     }
   ]
 }

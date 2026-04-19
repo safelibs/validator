@@ -6,6 +6,7 @@ RUN apt-get update \
  && apt-get install -y --no-install-recommends \
       libexif12 \
       libexif-dev \
+      exif \
       bash \
       build-essential \
       ca-certificates \

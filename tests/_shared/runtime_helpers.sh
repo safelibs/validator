@@ -25,6 +25,36 @@ validator_require_dir() {
   }
 }
 
+validator_assert_contains() {
+  local path=$1
+  local needle=$2
+  grep -Fq -- "$needle" "$path" || {
+    printf 'expected %s to contain: %s\n' "$path" "$needle" >&2
+    if [[ -f "$path" ]]; then
+      sed -n '1,120p' "$path" >&2
+    fi
+    exit 1
+  }
+}
+
+validator_make_fixture() {
+  local path=$1
+  mkdir -p "$(dirname "$path")"
+  if (($# > 1)); then
+    printf '%s' "$2" >"$path"
+  else
+    cat >"$path"
+  fi
+}
+
+validator_run_xvfb() {
+  if command -v xvfb-run >/dev/null 2>&1; then
+    xvfb-run -a "$@"
+  else
+    "$@"
+  fi
+}
+
 validator_status_dir() {
   printf '%s\n' "${VALIDATOR_STATUS_DIR:-/validator/status}"
 }

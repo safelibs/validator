@@ -9,6 +9,8 @@ RUN apt-get update \
       libturbojpeg \
       libturbojpeg0-dev \
       libjpeg-turbo-progs \
+      python3-pil \
+      libvips-tools \
       bash \
       build-essential \
       ca-certificates \
