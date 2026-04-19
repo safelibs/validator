@@ -1,0 +1,10 @@
+{
+  "dependents": [
+    {
+      "name": "demo-client",
+      "packages": [
+        "demo-client-bin"
+      ]
+    }
+  ]
+}

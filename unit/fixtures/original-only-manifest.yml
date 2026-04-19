@@ -1,0 +1,32 @@
+archive:
+  image: ubuntu:24.04
+  install_packages: []
+inventory:
+  verified_at: '2026-04-18T00:00:00Z'
+  gh_repo_list_command: gh repo list example --limit 200 --json name,nameWithOwner,isPrivate,url,defaultBranchRef
+  tag_probe_rule: refs/tags/{library}/04-test
+  raw_snapshot: inventory/github-repo-list.json
+  filtered_snapshot: inventory/github-port-repos.json
+  goal_repo_family: repos-*
+  verified_repo_family: port-*
+repositories:
+  - name: original-demo
+    github_repo: example/port-original-demo
+    ref: refs/tags/original-demo/04-test
+    verify_packages:
+      - demo-runtime
+      - demo-dev
+    build:
+      mode: original-fixture
+      artifact_globs:
+        - '*.deb'
+    validator:
+      sibling_repo: port-original-demo
+      imports:
+        - tests
+      import_excludes: []
+    fixtures:
+      dependents:
+        source: copy-staged-root
+      relevant_cves:
+        source: copy-staged-root

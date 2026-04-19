@@ -4,6 +4,8 @@ set -euo pipefail
 library=${1:?usage: run_library_tests.sh <library>}
 run_script="/validator/tests/${library}/tests/run.sh"
 
+source /validator/tests/_shared/runtime_helpers.sh
+
 if [[ ! -f "$run_script" ]]; then
   echo "Missing library test script: $run_script" >&2
   exit 1
@@ -17,5 +19,6 @@ fi
 export VALIDATOR_LIBRARY="$library"
 export VALIDATOR_LIBRARY_ROOT="/validator/tests/${library}"
 export VALIDATOR_TAGGED_ROOT="$VALIDATOR_LIBRARY_ROOT/tests/tagged-port"
+export VALIDATOR_STATUS_DIR="${VALIDATOR_STATUS_DIR:-/validator/status}"
 
 exec "$run_script"

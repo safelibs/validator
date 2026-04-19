@@ -25,6 +25,18 @@ validator_require_dir() {
   }
 }
 
+validator_status_dir() {
+  printf '%s\n' "${VALIDATOR_STATUS_DIR:-/validator/status}"
+}
+
+validator_mark_status() {
+  local name=$1
+  local status_dir
+  status_dir=$(validator_status_dir)
+  mkdir -p "$status_dir"
+  : >"$status_dir/$name"
+}
+
 validator_copy_tree() {
   local source=$1
   local dest=$2

@@ -15,13 +15,14 @@ from tools.proof import build_proof
 def build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser()
     parser.add_argument("--config", required=True, type=Path)
+    parser.add_argument("--tests-root", type=Path, default=Path(__file__).resolve().parents[1] / "tests")
     parser.add_argument("--artifact-root", required=True, type=Path)
     parser.add_argument("--proof-output", required=True)
     parser.add_argument("--library", action="append")
     parser.add_argument("--exclude-library", action="append", default=[])
     parser.add_argument("--exclude-note")
-    parser.add_argument("--min-safe-workloads", type=int, default=0)
-    parser.add_argument("--min-total-workloads", type=int, default=0)
+    parser.add_argument("--record-casts", action="store_true")
+    parser.add_argument("--min-total-cases", type=int, default=0)
     return parser
 
 
@@ -47,7 +48,7 @@ def _validate_proof_output_path(raw_path: str, *, artifact_root: Path) -> Path:
         raise ValidatorError("--proof-output must not contain empty, '.', or '..' path segments")
 
     artifact_root_resolved = artifact_root.resolve(strict=False)
-    proof_output_resolved = proof_output.resolve(strict=False)
+    proof_output_resolved = (artifact_root / proof_output).resolve(strict=False)
     try:
         proof_output_resolved.relative_to(artifact_root_resolved)
     except ValueError as exc:
@@ -57,8 +58,8 @@ def _validate_proof_output_path(raw_path: str, *, artifact_root: Path) -> Path:
 
 def main(argv: list[str] | None = None) -> int:
     args = build_parser().parse_args(argv)
-    if args.min_safe_workloads < 0 or args.min_total_workloads < 0:
-        raise ValidatorError("workload thresholds must be non-negative")
+    if args.min_total_cases < 0:
+        raise ValidatorError("case thresholds must be non-negative")
 
     libraries = args.library or None
     if libraries is not None:
@@ -77,10 +78,11 @@ def main(argv: list[str] | None = None) -> int:
     proof = build_proof(
         manifest,
         artifact_root=artifact_root,
+        tests_root=args.tests_root,
         libraries=libraries,
         excluded_libraries=excluded_libraries,
-        min_safe_workloads=args.min_safe_workloads,
-        min_total_workloads=args.min_total_workloads,
+        record_casts_expected=args.record_casts,
+        min_total_cases=args.min_total_cases,
     )
     write_json(proof_output, proof)
     return 0
