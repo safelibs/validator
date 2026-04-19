@@ -1,3 +1,3 @@
-{"version": 2, "width": 120, "height": 40, "timestamp": 1776630541, "env": {"TERM": "xterm-256color", "SHELL": "/bin/bash"}}
-[0.1771, "o", "no override packages found; continuing with apt originals\r\r\n"]
-[0.183185, "o", "\r\r\n/tmp/tmp.vlj7fnRr7R/rebuilt.gif:\r\r\n\r\r\n\tScreen Size - Width = 40, Height = 40.\r\r\n\tColorResolution = 7, BitsPerPixel = 4, BackGround = 0, Aspect = 0.\r\r\n\tHas Global Color Map.\r\r\n\r\r\n\r\r\nImage #1:\r\r\n\r\r\n\tImage Size - Left = 0, Top = 0, Width = 40, Height = 40.\r\r\n\tImage is Non Interlaced.\r\r\n\tNo Image Color Map.\r\r\n\r\r\nGIF file terminated normally.\r\r\n"]
+{"version": 2, "width": 120, "height": 40, "timestamp": 1776632598, "env": {"TERM": "xterm-256color", "SHELL": "/bin/bash"}}
+[0.106831, "o", "no override packages found; continuing with apt originals\r\r\n"]
+[0.112241, "o", "\r\r\n/tmp/tmp.JnvJSE6Sbx/rebuilt.gif:\r\r\n\r\r\n\tScreen Size - Width = 40, Height = 40.\r\r\n\tColorResolution = 7, BitsPerPixel = 4, BackGround = 0, Aspect = 0.\r\r\n\tHas Global Color Map.\r\r\n\r\r\n\r\r\nImage #1:\r\r\n\r\r\n\tImage Size - Left = 0, Top = 0, Width = 40, Height = 40.\r\r\n\tImage is Non Interlaced.\r\r\n\tNo Image Color Map.\r\r\n\r\r\nGIF file terminated normally.\r\r\n"]

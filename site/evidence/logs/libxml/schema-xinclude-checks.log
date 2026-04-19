@@ -1,8 +1,8 @@
-$ docker run --rm -t --mount type=bind,src=/tmp/validator-status-libxml-schema-xinclude-checks-eokokyc0,dst=/validator/status validator-libxml-shared-11c7da3b3d40 bash -lc 'set -euo pipefail
+$ docker run --rm -t --mount type=bind,src=/tmp/validator-status-libxml-schema-xinclude-checks-_g3rntsx,dst=/validator/status validator-libxml-shared-661ae4d6ae2f bash -lc 'set -euo pipefail
 /validator/tests/_shared/install_override_debs.sh
 exec /validator/tests/_shared/run_library_tests.sh "$@"' validator-testcase libxml schema-xinclude-checks -- bash /validator/tests/libxml/tests/cases/source/schema-xinclude-checks.sh
 no override packages found; continuing with apt originals
-/tmp/tmp.ypdQvEY88y/valid.xml validates
+/tmp/tmp.kiFr0Ga5y9/valid.xml validates
 <?xml version="1.0"?>
 <root xmlns:xi="http://www.w3.org/2001/XInclude"><included>text</included></root>
 <root xmlns:xi="http://www.w3.org/2001/XInclude"><included>text</included></root>

@@ -1,4 +1,4 @@
-$ docker run --rm -t --mount type=bind,src=/tmp/validator-status-libbz2-usage-bzip2-concatenated-streams-4ouzk6g1,dst=/validator/status validator-libbz2-shared-28b281024195 bash -lc 'set -euo pipefail
+$ docker run --rm -t --mount type=bind,src=/tmp/validator-status-libbz2-usage-bzip2-concatenated-streams-sk3n6qi6,dst=/validator/status validator-libbz2-shared-57db01d4e8b5 bash -lc 'set -euo pipefail
 /validator/tests/_shared/install_override_debs.sh
 exec /validator/tests/_shared/run_library_tests.sh "$@"' validator-testcase libbz2 usage-bzip2-concatenated-streams -- bash /validator/tests/libbz2/tests/cases/usage/usage-bzip2-concatenated-streams.sh
 no override packages found; continuing with apt originals

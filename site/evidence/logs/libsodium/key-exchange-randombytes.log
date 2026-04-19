@@ -1,4 +1,4 @@
-$ docker run --rm -t --mount type=bind,src=/tmp/validator-status-libsodium-key-exchange-randombytes-7lzyon66,dst=/validator/status validator-libsodium-shared-e11acfbcb1d3 bash -lc 'set -euo pipefail
+$ docker run --rm -t --mount type=bind,src=/tmp/validator-status-libsodium-key-exchange-randombytes-w886abha,dst=/validator/status validator-libsodium-shared-8b86c901b07f bash -lc 'set -euo pipefail
 /validator/tests/_shared/install_override_debs.sh
 exec /validator/tests/_shared/run_library_tests.sh "$@"' validator-testcase libsodium key-exchange-randombytes -- bash /validator/tests/libsodium/tests/cases/source/key-exchange-randombytes.sh
 no override packages found; continuing with apt originals

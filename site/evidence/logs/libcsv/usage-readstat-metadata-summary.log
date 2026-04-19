@@ -1,4 +1,4 @@
-$ docker run --rm -t --mount type=bind,src=/tmp/validator-status-libcsv-usage-readstat-metadata-summary-iuxpchsm,dst=/validator/status validator-libcsv-shared-83ddd35eefc6 bash -lc 'set -euo pipefail
+$ docker run --rm -t --mount type=bind,src=/tmp/validator-status-libcsv-usage-readstat-metadata-summary-skwdhtiq,dst=/validator/status validator-libcsv-shared-02323ffb3cf0 bash -lc 'set -euo pipefail
 /validator/tests/_shared/install_override_debs.sh
 exec /validator/tests/_shared/run_library_tests.sh "$@"' validator-testcase libcsv usage-readstat-metadata-summary -- bash /validator/tests/libcsv/tests/cases/usage/usage-readstat-metadata-summary.sh
 no override packages found; continuing with apt originals
@@ -9,4 +9,4 @@ Rows: 2
 Table label: (null)
 Format version: 118
 Byte order: little-endian
-Timestamp: 19 Apr 2026 20:29
+Timestamp: 19 Apr 2026 21:03

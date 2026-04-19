@@ -1,9 +1,9 @@
-$ docker run --rm -t --mount type=bind,src=/tmp/validator-status-libwebp-cwebp-dwebp-roundtrip-g2lpjkgp,dst=/validator/status validator-libwebp-shared-c37a73bd8280 bash -lc 'set -euo pipefail
+$ docker run --rm -t --mount type=bind,src=/tmp/validator-status-libwebp-cwebp-dwebp-roundtrip-fq097pbf,dst=/validator/status validator-libwebp-shared-0e02fa27eb46 bash -lc 'set -euo pipefail
 /validator/tests/_shared/install_override_debs.sh
 exec /validator/tests/_shared/run_library_tests.sh "$@"' validator-testcase libwebp cwebp-dwebp-roundtrip -- bash /validator/tests/libwebp/tests/cases/source/cwebp-dwebp-roundtrip.sh
 no override packages found; continuing with apt originals
-Decoded /tmp/tmp.v1CKvEs6H5/a.webp. Dimensions: 2 x 2 . Format: lossy. Now saving...
-Saved file /tmp/tmp.v1CKvEs6H5/out.ppm
+Decoded /tmp/tmp.JvNwvXbkcc/a.webp. Dimensions: 2 x 2 . Format: lossy. Now saving...
+Saved file /tmp/tmp.JvNwvXbkcc/out.ppm
 P6
 2 2
 255

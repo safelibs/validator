@@ -1,4 +1,6 @@
-{"version": 2, "width": 120, "height": 40, "timestamp": 1776630550, "env": {"TERM": "xterm-256color", "SHELL": "/bin/bash"}}
-[0.097832, "o", "no override packages found; continuing with apt originals\r\r\n"]
-[0.101733, "o", "bzip2recover 1.0.8: extracts blocks from damaged .bz2 files.\r\r\nbzip2recover: searching for block boundaries ...\r\r\n   block 1 runs from 80 to 359\r\r\nbzip2recover: splitting into blocks\r\r\n   writing block 1 to `rec00001in.bz2' ...\r\r\nbzip2recover: finished\r\r\n"]
-[0.102634, "o", "/tmp/tmp.TaGg1boSpo/rec00001in.bz2\r\r\n"]
+{"version": 2, "width": 120, "height": 40, "timestamp": 1776632605, "env": {"TERM": "xterm-256color", "SHELL": "/bin/bash"}}
+[0.123002, "o", "no override packages found; continuing with apt originals\r\r\n"]
+[0.127109, "o", "bzip2recover 1.0.8: extracts blocks from damaged .bz2 files.\r\r\nbzip2recover: searching for block boundaries ...\r\r\n"]
+[0.127135, "o", "   block 1 runs from 80 to 359\r\r\nbzip2recover: splitting into blocks\r\r\n   writing block 1 to `rec00001in.bz2' ...\r\r\n"]
+[0.127145, "o", "bzip2recover: finished\r\r\n"]
+[0.12808, "o", "/tmp/tmp.Gvdl85rSaQ/rec00001in.bz2\r\r\n"]

@@ -1,8 +1,5 @@
-$ docker build --tag validator-libxml-shared-11c7da3b3d40 --file /tmp/validator-run-matrix-libxml-e250qrwc/libxml/Dockerfile /tmp/validator-run-matrix-libxml-e250qrwc
+$ docker build --tag validator-libxml-shared-661ae4d6ae2f --file /tmp/validator-run-matrix-libxml-kenn_olx/libxml/Dockerfile /tmp/validator-run-matrix-libxml-kenn_olx
 #0 building with "default" instance using docker driver
-
-#1 [internal] load build definition from Dockerfile
-#1 DONE 0.0s
 
 #1 [internal] load build definition from Dockerfile
 #1 transferring dockerfile: 967B done
@@ -40,5 +37,5 @@ $ docker build --tag validator-libxml-shared-11c7da3b3d40 --file /tmp/validator-
 #11 exporting to image
 #11 exporting layers done
 #11 writing image sha256:3be91fa8d1d765bdb655758a2eb9014cb00cb6d25d04e35a09ea9848ec58481a done
-#11 naming to docker.io/library/validator-libxml-shared-11c7da3b3d40 done
+#11 naming to docker.io/library/validator-libxml-shared-661ae4d6ae2f done
 #11 DONE 0.0s

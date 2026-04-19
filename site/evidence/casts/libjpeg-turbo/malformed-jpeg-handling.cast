@@ -1,3 +1,3 @@
-{"version": 2, "width": 120, "height": 40, "timestamp": 1776630558, "env": {"TERM": "xterm-256color", "SHELL": "/bin/bash"}}
-[0.105306, "o", "no override packages found; continuing with apt originals\r\r\n"]
-[0.109672, "o", "Not a JPEG file: starts with 0x6e 0x6f\r\r\n"]
+{"version": 2, "width": 120, "height": 40, "timestamp": 1776632613, "env": {"TERM": "xterm-256color", "SHELL": "/bin/bash"}}
+[0.108446, "o", "no override packages found; continuing with apt originals\r\r\n"]
+[0.112987, "o", "Not a JPEG file: starts with 0x6e 0x6f\r\r\n"]

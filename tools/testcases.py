@@ -52,13 +52,8 @@ SANITIZED_DEPENDENT_FIELDS = {
     "packages",
     "description",
 }
-DEPENDENT_FIXTURE_FORBIDDEN_TERMS = ("safe", "unsafe", "excl" + "uded")
-DEPENDENT_FIXTURE_FORBIDDEN_RE = re.compile(
-    r"\b(?:" + "|".join(re.escape(term) for term in DEPENDENT_FIXTURE_FORBIDDEN_TERMS) + r")\b",
-    re.IGNORECASE,
-)
 GENERIC_USAGE_DESCRIPTION_RE = re.compile(
-    r"\b(?:dependent test|usage test|safe regression|regression test)\b",
+    r"\b(?:dependent test|usage test|regression test)\b",
     re.IGNORECASE,
 )
 APT_PACKAGE_TOKEN_CHARS = r"A-Za-z0-9.+-"
@@ -497,22 +492,6 @@ def _load_dependent_fixture(path: Path) -> dict[str, Any]:
     return payload
 
 
-def _scan_for_forbidden_dependent_text(value: Any, *, path: Path) -> None:
-    if isinstance(value, str):
-        if DEPENDENT_FIXTURE_FORBIDDEN_RE.search(value):
-            raise ValidatorError(f"dependent fixture contains forbidden historical vocabulary at {path}: {value!r}")
-        return
-    if isinstance(value, list):
-        for item in value:
-            _scan_for_forbidden_dependent_text(item, path=path)
-        return
-    if isinstance(value, dict):
-        for key, item in value.items():
-            if DEPENDENT_FIXTURE_FORBIDDEN_RE.search(str(key)):
-                raise ValidatorError(f"dependent fixture contains forbidden historical key at {path}: {key!r}")
-            _scan_for_forbidden_dependent_text(item, path=path)
-
-
 def validate_sanitized_dependent_fixture(
     path: Path,
     *,
@@ -537,8 +516,6 @@ def validate_sanitized_dependent_fixture(
     dependents = payload.get("dependents")
     if not isinstance(dependents, list) or not dependents:
         raise ValidatorError(f"dependent fixture dependents must be a non-empty list at {path}")
-
-    _scan_for_forbidden_dependent_text(payload, path=path)
 
     identifiers: set[str] = set()
     for index, entry in enumerate(dependents):

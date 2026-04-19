@@ -1,4 +1,4 @@
-$ docker run --rm -t --mount type=bind,src=/tmp/validator-status-cjson-malformed-number-rejection-5j78jjs1,dst=/validator/status validator-cjson-shared-21e981415766 bash -lc 'set -euo pipefail
+$ docker run --rm -t --mount type=bind,src=/tmp/validator-status-cjson-malformed-number-rejection-mvr0fprl,dst=/validator/status validator-cjson-shared-fb8b285a69e2 bash -lc 'set -euo pipefail
 /validator/tests/_shared/install_override_debs.sh
 exec /validator/tests/_shared/run_library_tests.sh "$@"' validator-testcase cjson malformed-number-rejection -- bash /validator/tests/cjson/tests/cases/source/malformed-number-rejection.sh
 no override packages found; continuing with apt originals

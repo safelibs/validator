@@ -1,3 +1,3 @@
-{"version": 2, "width": 120, "height": 40, "timestamp": 1776630570, "env": {"TERM": "xterm-256color", "SHELL": "/bin/bash"}}
-[0.110779, "o", "no override packages found; continuing with apt originals\r\r\n"]
-[0.118333, "o", "/tmp/tmp.hdDt5A4sMU/out.png: PNG image data, 32 x 32, 8-bit colormap, non-interlaced\r\r\n"]
+{"version": 2, "width": 120, "height": 40, "timestamp": 1776632628, "env": {"TERM": "xterm-256color", "SHELL": "/bin/bash"}}
+[0.108679, "o", "no override packages found; continuing with apt originals\r\r\n"]
+[0.116778, "o", "/tmp/tmp.DQRzR81L73/out.png: PNG image data, 32 x 32, 8-bit colormap, non-interlaced\r\r\n"]

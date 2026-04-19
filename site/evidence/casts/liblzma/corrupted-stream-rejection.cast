@@ -1,3 +1,3 @@
-{"version": 2, "width": 120, "height": 40, "timestamp": 1776630566, "env": {"TERM": "xterm-256color", "SHELL": "/bin/bash"}}
-[0.109271, "o", "no override packages found; continuing with apt originals\r\r\n"]
-[0.122056, "o", "xz: /tmp/tmp.dEEQPJ5sxP/bad.xz: Unexpected end of input\r\r\n"]
+{"version": 2, "width": 120, "height": 40, "timestamp": 1776632623, "env": {"TERM": "xterm-256color", "SHELL": "/bin/bash"}}
+[0.110651, "o", "no override packages found; continuing with apt originals\r\r\n"]
+[0.123487, "o", "xz: /tmp/tmp.bXSq7kQUU9/bad.xz: Unexpected end of input\r\r\n"]

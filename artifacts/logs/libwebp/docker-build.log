@@ -1,8 +1,5 @@
-$ docker build --tag validator-libwebp-shared-c37a73bd8280 --file /tmp/validator-run-matrix-libwebp-lglt5fcf/libwebp/Dockerfile /tmp/validator-run-matrix-libwebp-lglt5fcf
+$ docker build --tag validator-libwebp-shared-0e02fa27eb46 --file /tmp/validator-run-matrix-libwebp-86id68ce/libwebp/Dockerfile /tmp/validator-run-matrix-libwebp-86id68ce
 #0 building with "default" instance using docker driver
-
-#1 [internal] load build definition from Dockerfile
-#1 DONE 0.0s
 
 #1 [internal] load build definition from Dockerfile
 #1 transferring dockerfile: 1.41kB done
@@ -43,5 +40,5 @@ $ docker build --tag validator-libwebp-shared-c37a73bd8280 --file /tmp/validator
 #12 exporting to image
 #12 exporting layers done
 #12 writing image sha256:e22f7aca2ee2dab1ab5c76b205fd92fa3852374902d21b5cdb99400becab0099 done
-#12 naming to docker.io/library/validator-libwebp-shared-c37a73bd8280 done
+#12 naming to docker.io/library/validator-libwebp-shared-0e02fa27eb46 done
 #12 DONE 0.0s

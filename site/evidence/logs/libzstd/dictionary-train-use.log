@@ -1,8 +1,8 @@
-$ docker run --rm -t --mount type=bind,src=/tmp/validator-status-libzstd-dictionary-train-use-ikzv05tz,dst=/validator/status validator-libzstd-shared-52b2b08cde7e bash -lc 'set -euo pipefail
+$ docker run --rm -t --mount type=bind,src=/tmp/validator-status-libzstd-dictionary-train-use-fl_2y2hf,dst=/validator/status validator-libzstd-shared-acc4ca4ec272 bash -lc 'set -euo pipefail
 /validator/tests/_shared/install_override_debs.sh
 exec /validator/tests/_shared/run_library_tests.sh "$@"' validator-testcase libzstd dictionary-train-use -- bash /validator/tests/libzstd/tests/cases/source/dictionary-train-use.sh
 no override packages found; continuing with apt originals
-Loading /tmp/tmp.H56WJnaEnn/samples/s23...                                                                                      Trying 5 different sets of parameters
+Loading /tmp/tmp.mbSZudByzM/samples/s23...                                                                                      Trying 5 different sets of parameters
 FASTCOVER parameters incorrect
 FASTCOVER parameters incorrect
                                                                                k=1024
@@ -11,6 +11,6 @@ f=20
 steps=4
 split=75
 accel=1
-Save dictionary of size 1024 into file /tmp/tmp.H56WJnaEnn/dict 
--rw-r--r-- 1 root root 1024 Apr 19 20:30 /tmp/tmp.H56WJnaEnn/dict
--rw-r--r-- 1 root root   36 Apr 19 20:30 /tmp/tmp.H56WJnaEnn/msg.zst
+Save dictionary of size 1024 into file /tmp/tmp.mbSZudByzM/dict 
+-rw-r--r-- 1 root root 1024 Apr 19 21:04 /tmp/tmp.mbSZudByzM/dict
+-rw-r--r-- 1 root root   36 Apr 19 21:04 /tmp/tmp.mbSZudByzM/msg.zst

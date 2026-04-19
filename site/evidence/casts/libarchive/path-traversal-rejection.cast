@@ -1,3 +1,3 @@
-{"version": 2, "width": 120, "height": 40, "timestamp": 1776630545, "env": {"TERM": "xterm-256color", "SHELL": "/bin/bash"}}
-[0.185259, "o", "no override packages found; continuing with apt originals\r\r\n"]
-[0.207396, "o", "../escape.txt: Path contains '..': Unknown error -1\r\r\nbsdtar: Error exit delayed from previous errors.\r\r\n"]
+{"version": 2, "width": 120, "height": 40, "timestamp": 1776632600, "env": {"TERM": "xterm-256color", "SHELL": "/bin/bash"}}
+[0.106769, "o", "no override packages found; continuing with apt originals\r\r\n"]
+[0.128924, "o", "../escape.txt: Path contains '..': Unknown error -1\r\r\nbsdtar: Error exit delayed from previous errors.\r\r\n"]

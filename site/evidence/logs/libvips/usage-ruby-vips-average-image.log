@@ -1,4 +1,4 @@
-$ docker run --rm -t --mount type=bind,src=/tmp/validator-status-libvips-usage-ruby-vips-average-image-aqf8ixnp,dst=/validator/status validator-libvips-shared-8fada0923fc3 bash -lc 'set -euo pipefail
+$ docker run --rm -t --mount type=bind,src=/tmp/validator-status-libvips-usage-ruby-vips-average-image-gny7c1q8,dst=/validator/status validator-libvips-shared-acb49e6c1077 bash -lc 'set -euo pipefail
 /validator/tests/_shared/install_override_debs.sh
 exec /validator/tests/_shared/run_library_tests.sh "$@"' validator-testcase libvips usage-ruby-vips-average-image -- bash /validator/tests/libvips/tests/cases/usage/usage-ruby-vips-average-image.sh
 no override packages found; continuing with apt originals

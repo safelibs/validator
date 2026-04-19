@@ -1,4 +1,4 @@
-$ docker build --tag validator-libbz2-shared-28b281024195 --file /tmp/validator-run-matrix-libbz2-5sg2nli2/libbz2/Dockerfile /tmp/validator-run-matrix-libbz2-5sg2nli2
+$ docker build --tag validator-libbz2-shared-57db01d4e8b5 --file /tmp/validator-run-matrix-libbz2-mnexrfg5/libbz2/Dockerfile /tmp/validator-run-matrix-libbz2-mnexrfg5
 #0 building with "default" instance using docker driver
 
 #1 [internal] load build definition from Dockerfile
@@ -25,10 +25,10 @@ $ docker build --tag validator-libbz2-shared-28b281024195 --file /tmp/validator-
 #7 [3/6] WORKDIR /validator
 #7 CACHED
 
-#8 [5/6] COPY libbz2/ /validator/tests/libbz2/
+#8 [4/6] COPY _shared/ /validator/tests/_shared/
 #8 CACHED
 
-#9 [4/6] COPY _shared/ /validator/tests/_shared/
+#9 [5/6] COPY libbz2/ /validator/tests/libbz2/
 #9 CACHED
 
 #10 [6/6] RUN find /validator/tests/_shared -maxdepth 1 -type f -name '*.sh' -exec chmod +x {} +  && chmod +x /validator/tests/libbz2/docker-entrypoint.sh /validator/tests/libbz2/tests/run.sh  && if [ -d /validator/tests/libbz2/tests/cases ]; then       find /validator/tests/libbz2/tests/cases -type f -name '*.sh' -exec chmod +x {} +;     fi
@@ -37,5 +37,5 @@ $ docker build --tag validator-libbz2-shared-28b281024195 --file /tmp/validator-
 #11 exporting to image
 #11 exporting layers done
 #11 writing image sha256:014ab6eb1d052089b2a12cab9ed7d00e98305fa017b94e94866f628800077753 done
-#11 naming to docker.io/library/validator-libbz2-shared-28b281024195 done
+#11 naming to docker.io/library/validator-libbz2-shared-57db01d4e8b5 done
 #11 DONE 0.0s

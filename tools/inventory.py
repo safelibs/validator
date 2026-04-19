@@ -80,8 +80,6 @@ ALLOWED_LIBRARY_FIELDS = {"name", "apt_packages", "testcases", "source_snapshot"
 ALLOWED_FIXTURE_FIELDS = {"dependents"}
 FORBIDDEN_PACKAGE_FIELDS = {
     "override" + "_packages",
-    "safe" + "_packages",
-    "unsafe" + "_packages",
     "verify" + "_packages",
 }
 FORBIDDEN_SCHEMA_FIELDS = {
@@ -93,7 +91,6 @@ FORBIDDEN_SCHEMA_FIELDS = {
     "ref",
     "validator",
     "imports",
-    "safe" + "-debian",
     "checkout" + "-artifacts",
     "base_url",
     "pin_priority",
@@ -101,10 +98,7 @@ FORBIDDEN_SCHEMA_FIELDS = {
 }
 FORBIDDEN_FIXTURE_TERMS = ("cve", "security")
 FORBIDDEN_STRING_TERMS = (
-    "safe" + "-debian",
     "checkout" + "-artifacts",
-    "Safe" + "Libs",
-    "safe" + "libs",
 )
 
 

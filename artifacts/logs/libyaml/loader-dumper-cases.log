@@ -1,4 +1,4 @@
-$ docker run --rm -t --mount type=bind,src=/tmp/validator-status-libyaml-loader-dumper-cases-urmc48ks,dst=/validator/status validator-libyaml-shared-6cc694aaa615 bash -lc 'set -euo pipefail
+$ docker run --rm -t --mount type=bind,src=/tmp/validator-status-libyaml-loader-dumper-cases-ea5ctnpk,dst=/validator/status validator-libyaml-shared-b1a04f528c56 bash -lc 'set -euo pipefail
 /validator/tests/_shared/install_override_debs.sh
 exec /validator/tests/_shared/run_library_tests.sh "$@"' validator-testcase libyaml loader-dumper-cases -- bash /validator/tests/libyaml/tests/cases/source/loader-dumper-cases.sh
 no override packages found; continuing with apt originals

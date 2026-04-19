@@ -1,5 +1,8 @@
-$ docker build --tag validator-libpng-shared-1b87497107c0 --file /tmp/validator-run-matrix-libpng-ox6hfwdg/libpng/Dockerfile /tmp/validator-run-matrix-libpng-ox6hfwdg
+$ docker build --tag validator-libpng-shared-9bdb256b5440 --file /tmp/validator-run-matrix-libpng-1mf40w5r/libpng/Dockerfile /tmp/validator-run-matrix-libpng-1mf40w5r
 #0 building with "default" instance using docker driver
+
+#1 [internal] load build definition from Dockerfile
+#1 DONE 0.0s
 
 #1 [internal] load build definition from Dockerfile
 #1 transferring dockerfile: 890B done
@@ -19,16 +22,16 @@ $ docker build --tag validator-libpng-shared-1b87497107c0 --file /tmp/validator-
 #5 transferring context: 6.43MB 0.0s done
 #5 DONE 0.1s
 
-#6 [4/6] COPY _shared/ /validator/tests/_shared/
+#6 [2/6] RUN apt-get update  && apt-get install -y --no-install-recommends       libpng16-16t64       libpng-dev       libpng-tools       pngquant       netpbm       bash       build-essential       ca-certificates       coreutils       file       jq       pkg-config       python3       zlib1g-dev  && rm -rf /var/lib/apt/lists/*
 #6 CACHED
 
-#7 [5/6] COPY libpng/ /validator/tests/libpng/
+#7 [3/6] WORKDIR /validator
 #7 CACHED
 
-#8 [2/6] RUN apt-get update  && apt-get install -y --no-install-recommends       libpng16-16t64       libpng-dev       libpng-tools       pngquant       netpbm       bash       build-essential       ca-certificates       coreutils       file       jq       pkg-config       python3       zlib1g-dev  && rm -rf /var/lib/apt/lists/*
+#8 [4/6] COPY _shared/ /validator/tests/_shared/
 #8 CACHED
 
-#9 [3/6] WORKDIR /validator
+#9 [5/6] COPY libpng/ /validator/tests/libpng/
 #9 CACHED
 
 #10 [6/6] RUN find /validator/tests/_shared -maxdepth 1 -type f -name '*.sh' -exec chmod +x {} +  && chmod +x /validator/tests/libpng/docker-entrypoint.sh /validator/tests/libpng/tests/run.sh  && if [ -d /validator/tests/libpng/tests/cases ]; then       find /validator/tests/libpng/tests/cases -type f -name '*.sh' -exec chmod +x {} +;     fi
@@ -37,5 +40,5 @@ $ docker build --tag validator-libpng-shared-1b87497107c0 --file /tmp/validator-
 #11 exporting to image
 #11 exporting layers done
 #11 writing image sha256:f7c585c64d3f71393bfdd6ba4ac55208cdb88f7c512e7372469fa6eae1f7803b done
-#11 naming to docker.io/library/validator-libpng-shared-1b87497107c0 done
+#11 naming to docker.io/library/validator-libpng-shared-9bdb256b5440 done
 #11 DONE 0.0s

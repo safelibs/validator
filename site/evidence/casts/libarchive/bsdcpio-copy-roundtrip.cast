@@ -1,5 +1,5 @@
-{"version": 2, "width": 120, "height": 40, "timestamp": 1776630544, "env": {"TERM": "xterm-256color", "SHELL": "/bin/bash"}}
-[0.342203, "o", "no override packages found; continuing with apt originals\r\r\n"]
-[0.380999, "o", "1 block\r\r\n"]
-[0.383191, "o", "1 block\r\r\n"]
-[0.386028, "o", ".\r\r\n./sub\r\r\n./sub/payload.txt\r\r\n1 block\r\r\n"]
+{"version": 2, "width": 120, "height": 40, "timestamp": 1776632599, "env": {"TERM": "xterm-256color", "SHELL": "/bin/bash"}}
+[0.099258, "o", "no override packages found; continuing with apt originals\r\r\n"]
+[0.110978, "o", "1 block\r\r\n"]
+[0.113119, "o", "1 block\r\r\n"]
+[0.115244, "o", ".\r\r\n./sub\r\r\n./sub/payload.txt\r\r\n1 block\r\r\n"]

@@ -1,5 +1,5 @@
-$ docker run --rm -t --mount type=bind,src=/tmp/validator-status-libbz2-cli-compress-decompress-obmpjhn3,dst=/validator/status validator-libbz2-shared-28b281024195 bash -lc 'set -euo pipefail
+$ docker run --rm -t --mount type=bind,src=/tmp/validator-status-libbz2-cli-compress-decompress-clabdl_z,dst=/validator/status validator-libbz2-shared-57db01d4e8b5 bash -lc 'set -euo pipefail
 /validator/tests/_shared/install_override_debs.sh
 exec /validator/tests/_shared/run_library_tests.sh "$@"' validator-testcase libbz2 cli-compress-decompress -- bash /validator/tests/libbz2/tests/cases/source/cli-compress-decompress.sh
 no override packages found; continuing with apt originals
--rw-r--r-- 1 root root 58 Apr 19 20:29 /tmp/tmp.gdypq85zTa/plain.bz2
+-rw-r--r-- 1 root root 58 Apr 19 21:03 /tmp/tmp.o6OOXwZm7s/plain.bz2

@@ -1,5 +1,5 @@
-{"version": 2, "width": 120, "height": 40, "timestamp": 1776630599, "env": {"TERM": "xterm-256color", "SHELL": "/bin/bash"}}
-[0.109201, "o", "no override packages found; continuing with apt originals\r\r\n"]
-[0.114105, "o", "/tmp/tmp.ypdQvEY88y/valid.xml validates\r\r\n"]
-[0.116018, "o", "<?xml version=\"1.0\"?>\r\r\n<root xmlns:xi=\"http://www.w3.org/2001/XInclude\"><included>text</included></root>\r\r\n"]
-[0.116577, "o", "<root xmlns:xi=\"http://www.w3.org/2001/XInclude\"><included>text</included></root>\r\r\n"]
+{"version": 2, "width": 120, "height": 40, "timestamp": 1776632656, "env": {"TERM": "xterm-256color", "SHELL": "/bin/bash"}}
+[0.105347, "o", "no override packages found; continuing with apt originals\r\r\n"]
+[0.110531, "o", "/tmp/tmp.kiFr0Ga5y9/valid.xml validates\r\r\n"]
+[0.112776, "o", "<?xml version=\"1.0\"?>\r\r\n<root xmlns:xi=\"http://www.w3.org/2001/XInclude\"><included>text</included></root>\r\r\n"]
+[0.113301, "o", "<root xmlns:xi=\"http://www.w3.org/2001/XInclude\"><included>text</included></root>\r\r\n"]
