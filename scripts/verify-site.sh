@@ -253,7 +253,17 @@ index_path = site_root / "index.html"
 if not index_path.is_file():
     fail(f"missing rendered index.html: {index_path}")
 html_paths = [index_path, *sorted((site_root / "library").glob("*.html"))]
-html_text = "\n".join(path.read_text() for path in html_paths)
+html_by_path = {path: path.read_text() for path in html_paths}
+html_text = "\n".join(html_by_path.values())
+
+html_without_case_rows = re.sub(
+    r'<details class="case-row"(?=[\s>]).*?</details>',
+    "",
+    html_text,
+    flags=re.IGNORECASE | re.DOTALL,
+)
+if re.search(r"\bsafe\b|\bunsafe\b|safe[- ]workload", html_without_case_rows, flags=re.IGNORECASE):
+    fail("rendered HTML contains final user-facing safe/unsafe language")
 
 for row in expected_rows:
     escaped_library = html.escape(str(row["library"]))
@@ -275,6 +285,20 @@ for field_name in ("libraries", "cases", "source_cases", "usage_cases", "passed"
     if marker not in html_text:
         fail(f"missing proof total marker in HTML: {marker}")
 
-if re.search(r"safe[- ]workload|\bunsafe\b", html_text, flags=re.IGNORECASE):
-    fail("rendered HTML contains final user-facing safe/unsafe language")
+library_root = site_root / "library"
+expected_html_by_path = {
+    index_path: render_site.render_page(expected_site_data),
+}
+for library in proof_libraries:
+    expected_html_by_path[library_root / f"{library}.html"] = render_site.render_page(
+        expected_site_data,
+        page_depth=1,
+        current_library=library,
+    )
+
+if set(html_by_path) != set(expected_html_by_path):
+    fail("rendered HTML page set does not match proof libraries")
+for path, expected_html in expected_html_by_path.items():
+    if html_by_path[path] != expected_html:
+        fail(f"rendered HTML does not match deterministic render: {path.relative_to(site_root)}")
 PY

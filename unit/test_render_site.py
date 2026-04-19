@@ -336,6 +336,18 @@ class RenderSiteTests(unittest.TestCase):
         self.assertNotEqual(completed.returncode, 0)
         self.assertIn("copied log evidence does not match", completed.stderr + completed.stdout)
 
+    def test_verify_site_rejects_final_safe_language_in_html(self) -> None:
+        self.write_library_artifacts("cjson")
+        proof_path = self.write_proof(["cjson"])
+
+        for phrase in ("Safe validation", "safe validation", "unsafe validation", "safe-workload validation"):
+            self.render(proof_path)
+            index_path = self.site_root / "index.html"
+            index_path.write_text(index_path.read_text().replace("</main>", f"<p>{phrase}</p></main>", 1))
+            completed = self.run_verify_site(proof_path)
+            self.assertNotEqual(completed.returncode, 0, phrase)
+            self.assertIn("safe/unsafe language", completed.stderr + completed.stdout)
+
     def test_verify_site_rejects_missing_html_rows_and_bad_library_selection(self) -> None:
         self.write_library_artifacts("cjson")
         proof_path = self.write_proof(["cjson"])
