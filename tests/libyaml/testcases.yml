@@ -1,6 +1,61 @@
 schema_version: 1
 library: libyaml
 apt_packages:
-  - libyaml-0-2
-  - libyaml-dev
-testcases: []
+- libyaml-0-2
+- libyaml-dev
+testcases:
+- id: parser-emitter-roundtrip
+  title: YAML parser emitter round trip
+  description: Loads YAML into a document and emits it back through libyaml.
+  kind: source
+  command:
+  - bash
+  - /validator/tests/libyaml/tests/cases/source/parser-emitter-roundtrip.sh
+  timeout_seconds: 120
+  tags:
+  - api
+  - roundtrip
+- id: loader-dumper-cases
+  title: YAML loader dumper cases
+  description: Loads multiple YAML documents and counts them through libyaml.
+  kind: source
+  command:
+  - bash
+  - /validator/tests/libyaml/tests/cases/source/loader-dumper-cases.sh
+  timeout_seconds: 120
+  tags:
+  - api
+  - parser
+- id: anchor-alias-handling
+  title: YAML anchor alias handling
+  description: Parses YAML events and confirms alias events are reported.
+  kind: source
+  command:
+  - bash
+  - /validator/tests/libyaml/tests/cases/source/anchor-alias-handling.sh
+  timeout_seconds: 120
+  tags:
+  - api
+  - alias
+- id: compile-link-smoke
+  title: libyaml compile link smoke
+  description: Compiles a minimal program against the public libyaml headers.
+  kind: source
+  command:
+  - bash
+  - /validator/tests/libyaml/tests/cases/source/compile-link-smoke.sh
+  timeout_seconds: 120
+  tags:
+  - api
+  - compile
+- id: invalid-yaml-rejection
+  title: Invalid YAML rejection
+  description: Requires libyaml parser load to fail on malformed YAML input.
+  kind: source
+  command:
+  - bash
+  - /validator/tests/libyaml/tests/cases/source/invalid-yaml-rejection.sh
+  timeout_seconds: 120
+  tags:
+  - api
+  - negative

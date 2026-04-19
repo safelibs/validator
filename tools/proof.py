@@ -824,9 +824,10 @@ def build_proof(
     excluded_libraries: dict[str, str] | None = None,
     record_casts_expected: bool = False,
     min_total_cases: int = 0,
+    min_source_cases: int = 0,
 ) -> dict[str, Any]:
     if tests_root is None:
-        if record_casts_expected or min_total_cases:
+        if record_casts_expected or min_total_cases or min_source_cases:
             raise ValidatorError("original-only proof options require tests_root")
         return _build_paired_site_proof(
             manifest,
@@ -835,7 +836,7 @@ def build_proof(
             excluded_libraries=excluded_libraries,
         )
 
-    if min_total_cases < 0:
+    if min_total_cases < 0 or min_source_cases < 0:
         raise ValidatorError("case thresholds must be non-negative")
 
     selected_entries = _selected_manifest_entries(manifest, libraries=libraries)
@@ -938,6 +939,8 @@ def build_proof(
 
     if min_total_cases and totals["cases"] < min_total_cases:
         raise ValidatorError(f"total case threshold not met: {totals['cases']} < {min_total_cases}")
+    if min_source_cases and totals["source_cases"] < min_source_cases:
+        raise ValidatorError(f"source case threshold not met: {totals['source_cases']} < {min_source_cases}")
 
     return {
         "proof_version": 2,

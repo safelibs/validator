@@ -265,6 +265,8 @@ class ProofTests(unittest.TestCase):
 
         with self.assertRaisesRegex(ValidatorError, "total case threshold"):
             self.build(min_total_cases=3)
+        with self.assertRaisesRegex(ValidatorError, "source case threshold"):
+            self.build(min_source_cases=2)
 
     def test_cli_validates_output_paths_and_writes_proof(self) -> None:
         self.write_library()
@@ -279,7 +281,7 @@ class ProofTests(unittest.TestCase):
                     str(self.artifacts_root),
                     "--proof-output",
                     "proof/proof.json",
-                    "--record-casts",
+                    "--require-casts",
                 ]
             )
 
@@ -287,6 +289,26 @@ class ProofTests(unittest.TestCase):
         proof_path = self.artifacts_root / "proof" / "proof.json"
         self.assertTrue(proof_path.is_file())
         self.assertEqual(json.loads(proof_path.read_text())["proof_version"], 2)
+
+        absolute_proof_path = self.artifacts_root / "proof" / "absolute-proof.json"
+        with mock.patch("tools.verify_proof_artifacts.load_manifest", return_value=self.config):
+            exit_code = verify_proof_artifacts.main(
+                [
+                    "--config",
+                    str(FIXTURES / "original-only-manifest.yml"),
+                    "--tests-root",
+                    str(self.tests_root),
+                    "--artifact-root",
+                    str(self.artifacts_root),
+                    "--proof-output",
+                    str(absolute_proof_path),
+                    "--record-casts",
+                    "--min-source-cases",
+                    "1",
+                ]
+            )
+        self.assertEqual(exit_code, 0)
+        self.assertTrue(absolute_proof_path.is_file())
 
         original_cwd = Path.cwd()
         os.chdir(self.root)

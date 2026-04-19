@@ -1,8 +1,63 @@
 schema_version: 1
 library: libxml
 apt_packages:
-  - libxml2
-  - libxml2-dev
-  - libxml2-utils
-  - python3-libxml2
-testcases: []
+- libxml2
+- libxml2-dev
+- libxml2-utils
+- python3-libxml2
+testcases:
+- id: xmllint-parse-format
+  title: xmllint parse and format
+  description: Parses and formats XML using the installed xmllint command.
+  kind: source
+  command:
+  - bash
+  - /validator/tests/libxml/tests/cases/source/xmllint-parse-format.sh
+  timeout_seconds: 120
+  tags:
+  - cli
+  - xml
+- id: xmlcatalog-lookup
+  title: xmlcatalog lookup behavior
+  description: Resolves a public identifier from a local XML catalog file.
+  kind: source
+  command:
+  - bash
+  - /validator/tests/libxml/tests/cases/source/xmlcatalog-lookup.sh
+  timeout_seconds: 120
+  tags:
+  - cli
+  - catalog
+- id: python-binding-smoke
+  title: Python libxml2 binding smoke
+  description: Parses and queries XML through the packaged Python libxml2 binding.
+  kind: source
+  command:
+  - bash
+  - /validator/tests/libxml/tests/cases/source/python-binding-smoke.sh
+  timeout_seconds: 120
+  tags:
+  - python
+  - binding
+- id: reader-c-api-behavior
+  title: libxml reader C API behavior
+  description: Compiles a program using xmlTextReader to stream element names.
+  kind: source
+  command:
+  - bash
+  - /validator/tests/libxml/tests/cases/source/reader-c-api-behavior.sh
+  timeout_seconds: 120
+  tags:
+  - api
+  - reader
+- id: schema-xinclude-checks
+  title: Schema and XInclude checks
+  description: Validates XML against a schema and expands an XInclude document.
+  kind: source
+  command:
+  - bash
+  - /validator/tests/libxml/tests/cases/source/schema-xinclude-checks.sh
+  timeout_seconds: 120
+  tags:
+  - cli
+  - schema

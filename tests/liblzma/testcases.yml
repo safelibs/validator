@@ -1,7 +1,62 @@
 schema_version: 1
 library: liblzma
 apt_packages:
-  - liblzma5
-  - liblzma-dev
-  - xz-utils
-testcases: []
+- liblzma5
+- liblzma-dev
+- xz-utils
+testcases:
+- id: xz-compress-decompress
+  title: xz command round trip
+  description: Compresses and decompresses text with xz command line tools.
+  kind: source
+  command:
+  - bash
+  - /validator/tests/liblzma/tests/cases/source/xz-compress-decompress.sh
+  timeout_seconds: 120
+  tags:
+  - cli
+  - roundtrip
+- id: integrity-check
+  title: xz integrity check
+  description: Creates a CRC64 checked stream and verifies it with xz test mode.
+  kind: source
+  command:
+  - bash
+  - /validator/tests/liblzma/tests/cases/source/integrity-check.sh
+  timeout_seconds: 120
+  tags:
+  - cli
+  - integrity
+- id: streaming-c-api-smoke
+  title: liblzma streaming C API smoke
+  description: Compiles and runs a liblzma streaming encoder smoke program.
+  kind: source
+  command:
+  - bash
+  - /validator/tests/liblzma/tests/cases/source/streaming-c-api-smoke.sh
+  timeout_seconds: 120
+  tags:
+  - api
+  - compile
+- id: multi-stream-behavior
+  title: xz multi stream behavior
+  description: Concatenates xz streams and verifies decompression preserves both payloads.
+  kind: source
+  command:
+  - bash
+  - /validator/tests/liblzma/tests/cases/source/multi-stream-behavior.sh
+  timeout_seconds: 120
+  tags:
+  - cli
+  - stream
+- id: corrupted-stream-rejection
+  title: xz corrupted stream rejection
+  description: Requires xz test mode to fail on a corrupted stream.
+  kind: source
+  command:
+  - bash
+  - /validator/tests/liblzma/tests/cases/source/corrupted-stream-rejection.sh
+  timeout_seconds: 120
+  tags:
+  - cli
+  - negative

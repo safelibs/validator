@@ -22,7 +22,9 @@ def build_parser() -> argparse.ArgumentParser:
     parser.add_argument("--exclude-library", action="append", default=[])
     parser.add_argument("--exclude-note")
     parser.add_argument("--record-casts", action="store_true")
+    parser.add_argument("--require-casts", action="store_true")
     parser.add_argument("--min-total-cases", type=int, default=0)
+    parser.add_argument("--min-source-cases", type=int, default=0)
     return parser
 
 
@@ -41,14 +43,16 @@ def _validate_proof_output_path(raw_path: str, *, artifact_root: Path) -> Path:
     if "\\" in raw_path:
         raise ValidatorError("--proof-output must not contain backslashes")
     proof_output = Path(raw_path)
-    if proof_output.is_absolute():
-        raise ValidatorError("--proof-output must be a relative path")
-    parts = raw_path.split("/")
-    if any(part in {"", ".", ".."} for part in parts):
+    raw_parts = raw_path.split("/")
+    if proof_output.is_absolute() and raw_parts and raw_parts[0] == "":
+        raw_parts = raw_parts[1:]
+    if any(part in {"", ".", ".."} for part in raw_parts):
         raise ValidatorError("--proof-output must not contain empty, '.', or '..' path segments")
 
     artifact_root_resolved = artifact_root.resolve(strict=False)
-    proof_output_resolved = (artifact_root / proof_output).resolve(strict=False)
+    proof_output_resolved = proof_output.resolve(strict=False) if proof_output.is_absolute() else (
+        artifact_root / proof_output
+    ).resolve(strict=False)
     try:
         proof_output_resolved.relative_to(artifact_root_resolved)
     except ValueError as exc:
@@ -58,7 +62,7 @@ def _validate_proof_output_path(raw_path: str, *, artifact_root: Path) -> Path:
 
 def main(argv: list[str] | None = None) -> int:
     args = build_parser().parse_args(argv)
-    if args.min_total_cases < 0:
+    if args.min_total_cases < 0 or args.min_source_cases < 0:
         raise ValidatorError("case thresholds must be non-negative")
 
     libraries = args.library or None
@@ -81,8 +85,9 @@ def main(argv: list[str] | None = None) -> int:
         tests_root=args.tests_root,
         libraries=libraries,
         excluded_libraries=excluded_libraries,
-        record_casts_expected=args.record_casts,
+        record_casts_expected=args.record_casts or args.require_casts,
         min_total_cases=args.min_total_cases,
+        min_source_cases=args.min_source_cases,
     )
     write_json(proof_output, proof)
     return 0

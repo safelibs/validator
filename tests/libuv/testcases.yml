@@ -1,6 +1,61 @@
 schema_version: 1
 library: libuv
 apt_packages:
-  - libuv1t64
-  - libuv1-dev
-testcases: []
+- libuv1t64
+- libuv1-dev
+testcases:
+- id: event-loop-timer
+  title: libuv event loop timer
+  description: Compiles a libuv timer program and runs the event loop.
+  kind: source
+  command:
+  - bash
+  - /validator/tests/libuv/tests/cases/source/event-loop-timer.sh
+  timeout_seconds: 120
+  tags:
+  - api
+  - event
+- id: fs-read-write
+  title: libuv fs read write
+  description: Uses synchronous libuv fs requests to write and read a file.
+  kind: source
+  command:
+  - bash
+  - /validator/tests/libuv/tests/cases/source/fs-read-write.sh
+  timeout_seconds: 120
+  tags:
+  - api
+  - fs
+- id: tcp-loopback-smoke
+  title: libuv TCP loopback smoke
+  description: Creates a loopback TCP server and client through libuv APIs.
+  kind: source
+  command:
+  - bash
+  - /validator/tests/libuv/tests/cases/source/tcp-loopback-smoke.sh
+  timeout_seconds: 120
+  tags:
+  - api
+  - tcp
+- id: dns-getaddrinfo
+  title: libuv DNS getaddrinfo
+  description: Resolves localhost through libuv getaddrinfo request handling APIs.
+  kind: source
+  command:
+  - bash
+  - /validator/tests/libuv/tests/cases/source/dns-getaddrinfo.sh
+  timeout_seconds: 120
+  tags:
+  - api
+  - dns
+- id: process-pipe-smoke
+  title: libuv process pipe smoke
+  description: Spawns a process with libuv and reads stdout through a pipe.
+  kind: source
+  command:
+  - bash
+  - /validator/tests/libuv/tests/cases/source/process-pipe-smoke.sh
+  timeout_seconds: 120
+  tags:
+  - api
+  - process

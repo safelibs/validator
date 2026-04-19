@@ -1,6 +1,61 @@
 schema_version: 1
 library: libjson
 apt_packages:
-  - libjson-c5
-  - libjson-c-dev
-testcases: []
+- libjson-c5
+- libjson-c-dev
+testcases:
+- id: tokener-parse
+  title: json-c tokener parse
+  description: Parses nested JSON through json-c tokener APIs and reads fields.
+  kind: source
+  command:
+  - bash
+  - /validator/tests/libjson/tests/cases/source/tokener-parse.sh
+  timeout_seconds: 120
+  tags:
+  - api
+  - parser
+- id: serializer-roundtrip
+  title: json-c serializer round trip
+  description: Serializes an object then parses it again through json-c.
+  kind: source
+  command:
+  - bash
+  - /validator/tests/libjson/tests/cases/source/serializer-roundtrip.sh
+  timeout_seconds: 120
+  tags:
+  - api
+  - roundtrip
+- id: refcount-object-mutation
+  title: Refcount and object mutation
+  description: Exercises json-c reference counting while mutating object members.
+  kind: source
+  command:
+  - bash
+  - /validator/tests/libjson/tests/cases/source/refcount-object-mutation.sh
+  timeout_seconds: 120
+  tags:
+  - api
+  - refcount
+- id: compile-link-smoke
+  title: json-c compile link smoke
+  description: Compiles a small program against json-c headers and library.
+  kind: source
+  command:
+  - bash
+  - /validator/tests/libjson/tests/cases/source/compile-link-smoke.sh
+  timeout_seconds: 120
+  tags:
+  - api
+  - compile
+- id: malformed-json-handling
+  title: Malformed JSON handling
+  description: Requires json-c tokener to report an error for malformed JSON.
+  kind: source
+  command:
+  - bash
+  - /validator/tests/libjson/tests/cases/source/malformed-json-handling.sh
+  timeout_seconds: 120
+  tags:
+  - api
+  - negative

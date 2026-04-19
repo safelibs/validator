@@ -1,7 +1,63 @@
 schema_version: 1
 library: libzstd
 apt_packages:
-  - libzstd1
-  - libzstd-dev
-  - zstd
-testcases: []
+- libzstd1
+- libzstd-dev
+- zstd
+testcases:
+- id: zstd-compress-decompress
+  title: zstd command round trip
+  description: Compresses and decompresses text through the zstd command line.
+  kind: source
+  command:
+  - bash
+  - /validator/tests/libzstd/tests/cases/source/zstd-compress-decompress.sh
+  timeout_seconds: 120
+  tags:
+  - cli
+  - roundtrip
+- id: dictionary-train-use
+  title: zstd dictionary train use
+  description: Trains a small dictionary, compresses with it, and decompresses with
+    it.
+  kind: source
+  command:
+  - bash
+  - /validator/tests/libzstd/tests/cases/source/dictionary-train-use.sh
+  timeout_seconds: 120
+  tags:
+  - cli
+  - dictionary
+- id: streaming-c-api-smoke
+  title: libzstd streaming C API smoke
+  description: Compiles and runs a Zstandard streaming compression smoke program.
+  kind: source
+  command:
+  - bash
+  - /validator/tests/libzstd/tests/cases/source/streaming-c-api-smoke.sh
+  timeout_seconds: 120
+  tags:
+  - api
+  - compile
+- id: multi-frame-behavior
+  title: zstd multi frame behavior
+  description: Concatenates independent zstd frames and verifies continuous decompression.
+  kind: source
+  command:
+  - bash
+  - /validator/tests/libzstd/tests/cases/source/multi-frame-behavior.sh
+  timeout_seconds: 120
+  tags:
+  - cli
+  - stream
+- id: corrupted-frame-rejection
+  title: zstd corrupted frame rejection
+  description: Requires zstd test mode to fail on a corrupted frame.
+  kind: source
+  command:
+  - bash
+  - /validator/tests/libzstd/tests/cases/source/corrupted-frame-rejection.sh
+  timeout_seconds: 120
+  tags:
+  - cli
+  - negative

@@ -1,9 +1,64 @@
 schema_version: 1
 library: libjpeg-turbo
 apt_packages:
-  - libjpeg-turbo8
-  - libjpeg-turbo8-dev
-  - libturbojpeg
-  - libturbojpeg0-dev
-  - libjpeg-turbo-progs
-testcases: []
+- libjpeg-turbo8
+- libjpeg-turbo8-dev
+- libturbojpeg
+- libturbojpeg0-dev
+- libjpeg-turbo-progs
+testcases:
+- id: cjpeg-djpeg-roundtrip
+  title: cjpeg and djpeg round trip
+  description: Encodes a generated PPM image and decodes it back to PPM.
+  kind: source
+  command:
+  - bash
+  - /validator/tests/libjpeg-turbo/tests/cases/source/cjpeg-djpeg-roundtrip.sh
+  timeout_seconds: 120
+  tags:
+  - cli
+  - media
+- id: jpegtran-transform
+  title: jpegtran image transform
+  description: Rotates a JPEG with jpegtran and decodes the transformed image.
+  kind: source
+  command:
+  - bash
+  - /validator/tests/libjpeg-turbo/tests/cases/source/jpegtran-transform.sh
+  timeout_seconds: 120
+  tags:
+  - cli
+  - transform
+- id: turbojpeg-api-smoke
+  title: TurboJPEG API compile smoke
+  description: Compiles and runs a TurboJPEG compression API smoke program.
+  kind: source
+  command:
+  - bash
+  - /validator/tests/libjpeg-turbo/tests/cases/source/turbojpeg-api-smoke.sh
+  timeout_seconds: 120
+  tags:
+  - api
+  - compile
+- id: progressive-grayscale-conversion
+  title: Progressive grayscale conversion
+  description: Creates a progressive JPEG and decodes it through grayscale conversion.
+  kind: source
+  command:
+  - bash
+  - /validator/tests/libjpeg-turbo/tests/cases/source/progressive-grayscale-conversion.sh
+  timeout_seconds: 120
+  tags:
+  - cli
+  - colorspace
+- id: malformed-jpeg-handling
+  title: Malformed JPEG input handling
+  description: Requires djpeg to return failure for non-JPEG input bytes.
+  kind: source
+  command:
+  - bash
+  - /validator/tests/libjpeg-turbo/tests/cases/source/malformed-jpeg-handling.sh
+  timeout_seconds: 120
+  tags:
+  - cli
+  - negative

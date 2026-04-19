@@ -391,6 +391,62 @@ def load_manifests(
     return loaded
 
 
+def _container_path_to_host_path(value: str, *, tests_root: Path, library: str) -> Path | None:
+    prefix = f"/validator/tests/{library}/"
+    if not value.startswith(prefix):
+        return None
+    relative = PurePosixPath(value.removeprefix(prefix))
+    if relative.is_absolute() or _has_path_segment(relative.as_posix(), ".."):
+        raise ValidatorError(f"container testcase path escapes library root for {library}: {value}")
+    return tests_root / library / Path(*relative.parts)
+
+
+def validate_source_case_artifacts(
+    manifests: dict[str, TestcaseManifest],
+    *,
+    tests_root: Path,
+) -> None:
+    for library, manifest in manifests.items():
+        for testcase in manifest.testcases:
+            if testcase.kind != "source":
+                continue
+
+            source_scripts: list[Path] = []
+            for command_item in testcase.command:
+                for candidate in _iter_command_path_candidates(command_item):
+                    host_path = _container_path_to_host_path(
+                        candidate,
+                        tests_root=tests_root,
+                        library=library,
+                    )
+                    if host_path is None:
+                        continue
+                    if "/tests/cases/source/" in candidate and candidate.endswith(".sh"):
+                        source_scripts.append(host_path)
+
+            if not source_scripts:
+                raise ValidatorError(
+                    f"source testcase must execute a script under tests/cases/source: "
+                    f"{library}/{testcase.id}"
+                )
+
+            for script_path in source_scripts:
+                try:
+                    resolved = script_path.resolve(strict=True)
+                except FileNotFoundError as exc:
+                    raise ValidatorError(
+                        f"missing source testcase script for {library}/{testcase.id}: {script_path}"
+                    ) from exc
+                if not resolved.is_file():
+                    raise ValidatorError(
+                        f"source testcase script must be a file for {library}/{testcase.id}: {script_path}"
+                    )
+                if not resolved.stat().st_mode & 0o111:
+                    raise ValidatorError(
+                        f"source testcase script must be executable for {library}/{testcase.id}: {script_path}"
+                    )
+
+
 def testcase_result_sort_key(result: dict[str, Any]) -> tuple[str, str]:
     return (str(result.get("library") or ""), str(result.get("testcase_id") or ""))
 
@@ -403,6 +459,7 @@ def build_parser() -> argparse.ArgumentParser:
     parser.add_argument("--library", action="append")
     parser.add_argument("--check", action="store_true")
     parser.add_argument("--check-manifest-only", action="store_true")
+    parser.add_argument("--min-source-cases", type=int, default=0)
     return parser
 
 
@@ -415,9 +472,20 @@ def main(argv: list[str] | None = None) -> int:
     selected = select_libraries(config, args.library)
     selected_config = dict(config)
     selected_config["libraries"] = selected
+    if args.min_source_cases < 0:
+        raise ValidatorError("case thresholds must be non-negative")
 
     if args.check:
-        load_manifests(selected_config, tests_root=args.tests_root)
+        manifests = load_manifests(selected_config, tests_root=args.tests_root)
+        validate_source_case_artifacts(manifests, tests_root=args.tests_root)
+        source_cases = sum(
+            1
+            for manifest in manifests.values()
+            for testcase in manifest.testcases
+            if testcase.kind == "source"
+        )
+        if args.min_source_cases and source_cases < args.min_source_cases:
+            raise ValidatorError(f"source case threshold not met: {source_cases} < {args.min_source_cases}")
         return 0
 
     load_manifests(selected_config, tests_root=args.tests_root, require_testcases=False)

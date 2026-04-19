@@ -1,7 +1,64 @@
 schema_version: 1
 library: libbz2
 apt_packages:
-  - libbz2-1.0
-  - libbz2-dev
-  - bzip2
-testcases: []
+- libbz2-1.0
+- libbz2-dev
+- bzip2
+testcases:
+- id: cli-compress-decompress
+  title: bzip2 command round trip
+  description: Compresses and decompresses text through the installed bzip2 commands.
+  kind: source
+  command:
+  - bash
+  - /validator/tests/libbz2/tests/cases/source/cli-compress-decompress.sh
+  timeout_seconds: 120
+  tags:
+  - cli
+  - roundtrip
+- id: stream-concatenation
+  title: bzip2 stream concatenation
+  description: Concatenates independent bzip2 streams and verifies continuous decompression
+    output.
+  kind: source
+  command:
+  - bash
+  - /validator/tests/libbz2/tests/cases/source/stream-concatenation.sh
+  timeout_seconds: 120
+  tags:
+  - cli
+  - stream
+- id: c-api-buffer-roundtrip
+  title: libbz2 C API round trip
+  description: Compiles a libbz2 buffer compression and decompression round trip.
+  kind: source
+  command:
+  - bash
+  - /validator/tests/libbz2/tests/cases/source/c-api-buffer-roundtrip.sh
+  timeout_seconds: 120
+  tags:
+  - api
+  - compile
+- id: corrupted-stream-rejection
+  title: bzip2 corrupted stream rejection
+  description: Requires the decompressor to return failure for a corrupted stream.
+  kind: source
+  command:
+  - bash
+  - /validator/tests/libbz2/tests/cases/source/corrupted-stream-rejection.sh
+  timeout_seconds: 120
+  tags:
+  - cli
+  - negative
+- id: debian-sample-parity
+  title: Debian sample fixture parity
+  description: Decompresses packaged sample streams and compares them to reference
+    fixtures.
+  kind: source
+  command:
+  - bash
+  - /validator/tests/libbz2/tests/cases/source/debian-sample-parity.sh
+  timeout_seconds: 120
+  tags:
+  - cli
+  - fixture

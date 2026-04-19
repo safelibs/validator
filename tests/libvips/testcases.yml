@@ -1,8 +1,63 @@
 schema_version: 1
 library: libvips
 apt_packages:
-  - libvips42t64
-  - libvips-dev
-  - libvips-tools
-  - gir1.2-vips-8.0
-testcases: []
+- libvips42t64
+- libvips-dev
+- libvips-tools
+- gir1.2-vips-8.0
+testcases:
+- id: vips-cli-load-save
+  title: vips CLI load save
+  description: Loads a sample image with vips and saves it to PNG.
+  kind: source
+  command:
+  - bash
+  - /validator/tests/libvips/tests/cases/source/vips-cli-load-save.sh
+  timeout_seconds: 120
+  tags:
+  - cli
+  - media
+- id: thumbnail-behavior
+  title: vipsthumbnail behavior
+  description: Creates a thumbnail from a sample image and inspects its header.
+  kind: source
+  command:
+  - bash
+  - /validator/tests/libvips/tests/cases/source/thumbnail-behavior.sh
+  timeout_seconds: 120
+  tags:
+  - cli
+  - thumbnail
+- id: c-api-compile-smoke
+  title: libvips C API compile smoke
+  description: Compiles a libvips program that creates and writes an image.
+  kind: source
+  command:
+  - bash
+  - /validator/tests/libvips/tests/cases/source/c-api-compile-smoke.sh
+  timeout_seconds: 120
+  tags:
+  - api
+  - compile
+- id: gir-introspection-smoke
+  title: Vips introspection smoke
+  description: Queries the installed Vips GObject introspection namespace metadata.
+  kind: source
+  command:
+  - bash
+  - /validator/tests/libvips/tests/cases/source/gir-introspection-smoke.sh
+  timeout_seconds: 120
+  tags:
+  - introspection
+  - metadata
+- id: metadata-header-checks
+  title: vips metadata header checks
+  description: Inspects detailed image metadata using vipsheader on a PNG fixture.
+  kind: source
+  command:
+  - bash
+  - /validator/tests/libvips/tests/cases/source/metadata-header-checks.sh
+  timeout_seconds: 120
+  tags:
+  - cli
+  - metadata

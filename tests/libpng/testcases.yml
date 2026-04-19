@@ -1,7 +1,62 @@
 schema_version: 1
 library: libpng
 apt_packages:
-  - libpng16-16t64
-  - libpng-dev
-  - libpng-tools
-testcases: []
+- libpng16-16t64
+- libpng-dev
+- libpng-tools
+testcases:
+- id: pngfix-fixture-handling
+  title: pngfix fixture handling
+  description: Runs pngfix against a checked-in PNGSuite fixture and validates output.
+  kind: source
+  command:
+  - bash
+  - /validator/tests/libpng/tests/cases/source/pngfix-fixture-handling.sh
+  timeout_seconds: 120
+  tags:
+  - cli
+  - media
+- id: read-write-c-api-smoke
+  title: libpng read write C API smoke
+  description: Compiles a libpng program that writes and reads a PNG image.
+  kind: source
+  command:
+  - bash
+  - /validator/tests/libpng/tests/cases/source/read-write-c-api-smoke.sh
+  timeout_seconds: 120
+  tags:
+  - api
+  - compile
+- id: chunk-metadata-inspection
+  title: PNG chunk metadata inspection
+  description: Reads IHDR metadata from a PNG fixture through libpng APIs.
+  kind: source
+  command:
+  - bash
+  - /validator/tests/libpng/tests/cases/source/chunk-metadata-inspection.sh
+  timeout_seconds: 120
+  tags:
+  - api
+  - metadata
+- id: palette-fixture-handling
+  title: Palette PNG fixture handling
+  description: Checks palette color type handling on a PNGSuite palette fixture.
+  kind: source
+  command:
+  - bash
+  - /validator/tests/libpng/tests/cases/source/palette-fixture-handling.sh
+  timeout_seconds: 120
+  tags:
+  - api
+  - palette
+- id: malformed-png-rejection
+  title: Malformed PNG rejection
+  description: Requires pngfix to reject bytes that are not a valid PNG file.
+  kind: source
+  command:
+  - bash
+  - /validator/tests/libpng/tests/cases/source/malformed-png-rejection.sh
+  timeout_seconds: 120
+  tags:
+  - cli
+  - negative

@@ -1,7 +1,62 @@
 schema_version: 1
 library: libsdl
 apt_packages:
-  - libsdl2-2.0-0
-  - libsdl2-dev
-  - libsdl2-tests
-testcases: []
+- libsdl2-2.0-0
+- libsdl2-dev
+- libsdl2-tests
+testcases:
+- id: version-query-compile
+  title: SDL version query compile
+  description: Compiles a small SDL program that reports version and platform details.
+  kind: source
+  command:
+  - bash
+  - /validator/tests/libsdl/tests/cases/source/version-query-compile.sh
+  timeout_seconds: 120
+  tags:
+  - api
+  - compile
+- id: headless-event-timer
+  title: Headless event timer behavior
+  description: Runs SDL timer and event APIs under dummy video settings.
+  kind: source
+  command:
+  - bash
+  - /validator/tests/libsdl/tests/cases/source/headless-event-timer.sh
+  timeout_seconds: 120
+  tags:
+  - api
+  - event
+- id: surface-blit-pixel-format
+  title: Surface pixel format blit
+  description: Creates RGB surfaces, fills pixels, and blits under SDL software surfaces.
+  kind: source
+  command:
+  - bash
+  - /validator/tests/libsdl/tests/cases/source/surface-blit-pixel-format.sh
+  timeout_seconds: 120
+  tags:
+  - api
+  - surface
+- id: dummy-audio-queue
+  title: Dummy audio queue behavior
+  description: Opens the SDL dummy audio driver and queues sample bytes.
+  kind: source
+  command:
+  - bash
+  - /validator/tests/libsdl/tests/cases/source/dummy-audio-queue.sh
+  timeout_seconds: 120
+  tags:
+  - api
+  - audio
+- id: installed-test-binary
+  title: Installed SDL test binary
+  description: Runs one packaged SDL installed test binary under dummy drivers.
+  kind: source
+  command:
+  - bash
+  - /validator/tests/libsdl/tests/cases/source/installed-test-binary.sh
+  timeout_seconds: 120
+  tags:
+  - cli
+  - installed-test

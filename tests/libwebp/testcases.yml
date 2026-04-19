@@ -1,12 +1,67 @@
 schema_version: 1
 library: libwebp
 apt_packages:
-  - libwebp7
-  - libwebpdemux2
-  - libwebpmux3
-  - libwebpdecoder3
-  - libsharpyuv0
-  - libwebp-dev
-  - libsharpyuv-dev
-  - webp
-testcases: []
+- libwebp7
+- libwebpdemux2
+- libwebpmux3
+- libwebpdecoder3
+- libsharpyuv0
+- libwebp-dev
+- libsharpyuv-dev
+- webp
+testcases:
+- id: cwebp-dwebp-roundtrip
+  title: cwebp dwebp round trip
+  description: Encodes a generated PPM image to WebP and decodes it.
+  kind: source
+  command:
+  - bash
+  - /validator/tests/libwebp/tests/cases/source/cwebp-dwebp-roundtrip.sh
+  timeout_seconds: 120
+  tags:
+  - cli
+  - media
+- id: webpinfo-inspection
+  title: webpinfo inspection
+  description: Inspects a checked-in WebP example through the webpinfo tool.
+  kind: source
+  command:
+  - bash
+  - /validator/tests/libwebp/tests/cases/source/webpinfo-inspection.sh
+  timeout_seconds: 120
+  tags:
+  - cli
+  - metadata
+- id: webpmux-metadata
+  title: webpmux metadata behavior
+  description: Adds EXIF metadata to a WebP file and reads mux information.
+  kind: source
+  command:
+  - bash
+  - /validator/tests/libwebp/tests/cases/source/webpmux-metadata.sh
+  timeout_seconds: 120
+  tags:
+  - cli
+  - metadata
+- id: decode-c-api-smoke
+  title: libwebp C API decode smoke
+  description: Compiles and runs a WebP decode API program against a fixture.
+  kind: source
+  command:
+  - bash
+  - /validator/tests/libwebp/tests/cases/source/decode-c-api-smoke.sh
+  timeout_seconds: 120
+  tags:
+  - api
+  - compile
+- id: malformed-webp-rejection
+  title: Malformed WebP rejection
+  description: Requires dwebp to fail on bytes that are not WebP data.
+  kind: source
+  command:
+  - bash
+  - /validator/tests/libwebp/tests/cases/source/malformed-webp-rejection.sh
+  timeout_seconds: 120
+  tags:
+  - cli
+  - negative

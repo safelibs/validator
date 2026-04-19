@@ -1,6 +1,61 @@
 schema_version: 1
 library: libcsv
 apt_packages:
-  - libcsv3
-  - libcsv-dev
-testcases: []
+- libcsv3
+- libcsv-dev
+testcases:
+- id: parser-callback-behavior
+  title: Parser callback behavior
+  description: Compiles a parser callback program and checks fields and rows.
+  kind: source
+  command:
+  - bash
+  - /validator/tests/libcsv/tests/cases/source/parser-callback-behavior.sh
+  timeout_seconds: 120
+  tags:
+  - api
+  - parser
+- id: strict-quote-error
+  title: Strict quote error behavior
+  description: Uses strict parser options to reject an unterminated quoted field.
+  kind: source
+  command:
+  - bash
+  - /validator/tests/libcsv/tests/cases/source/strict-quote-error.sh
+  timeout_seconds: 120
+  tags:
+  - api
+  - negative
+- id: example-tool-compile-run
+  title: Example tool compile and run
+  description: Builds an upstream example tool and runs it against a fixture CSV.
+  kind: source
+  command:
+  - bash
+  - /validator/tests/libcsv/tests/cases/source/example-tool-compile-run.sh
+  timeout_seconds: 120
+  tags:
+  - api
+  - example
+- id: large-field-handling
+  title: Large field handling
+  description: Parses a large field and confirms the callback receives all bytes.
+  kind: source
+  command:
+  - bash
+  - /validator/tests/libcsv/tests/cases/source/large-field-handling.sh
+  timeout_seconds: 120
+  tags:
+  - api
+  - large-field
+- id: empty-field-custom-delimiter
+  title: Empty fields and custom delimiter
+  description: Checks empty field callbacks while parsing semicolon delimited data.
+  kind: source
+  command:
+  - bash
+  - /validator/tests/libcsv/tests/cases/source/empty-field-custom-delimiter.sh
+  timeout_seconds: 120
+  tags:
+  - api
+  - delimiter

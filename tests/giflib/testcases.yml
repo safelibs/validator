@@ -1,7 +1,62 @@
 schema_version: 1
 library: giflib
 apt_packages:
-  - libgif7
-  - libgif-dev
-  - giflib-tools
-testcases: []
+- libgif7
+- libgif-dev
+- giflib-tools
+testcases:
+- id: giftext-metadata
+  title: giftext metadata inspection
+  description: Inspects GIF metadata from an upstream sample with the giftext tool.
+  kind: source
+  command:
+  - bash
+  - /validator/tests/giflib/tests/cases/source/giftext-metadata.sh
+  timeout_seconds: 120
+  tags:
+  - cli
+  - metadata
+- id: gif2rgb-conversion
+  title: gif2rgb RGB conversion
+  description: Converts a sample GIF to raw RGB bytes and compares the fixture length.
+  kind: source
+  command:
+  - bash
+  - /validator/tests/giflib/tests/cases/source/gif2rgb-conversion.sh
+  timeout_seconds: 120
+  tags:
+  - cli
+  - media
+- id: gifbuild-roundtrip
+  title: gifbuild textual round trip
+  description: Dumps a GIF to textual form and rebuilds an equivalent GIF stream.
+  kind: source
+  command:
+  - bash
+  - /validator/tests/giflib/tests/cases/source/gifbuild-roundtrip.sh
+  timeout_seconds: 120
+  tags:
+  - cli
+  - roundtrip
+- id: interlaced-fixture-handling
+  title: Interlaced GIF fixture handling
+  description: Converts an interlaced GIF fixture and compares the expected RGB output.
+  kind: source
+  command:
+  - bash
+  - /validator/tests/giflib/tests/cases/source/interlaced-fixture-handling.sh
+  timeout_seconds: 120
+  tags:
+  - cli
+  - media
+- id: malformed-gif-rejection
+  title: Malformed GIF rejection
+  description: Confirms truncated GIF input is rejected by an installed giflib tool.
+  kind: source
+  command:
+  - bash
+  - /validator/tests/giflib/tests/cases/source/malformed-gif-rejection.sh
+  timeout_seconds: 120
+  tags:
+  - cli
+  - negative

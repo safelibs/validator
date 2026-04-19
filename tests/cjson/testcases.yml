@@ -1,6 +1,63 @@
 schema_version: 1
 library: cjson
 apt_packages:
-  - libcjson1
-  - libcjson-dev
-testcases: []
+- libcjson1
+- libcjson-dev
+testcases:
+- id: parse-print-roundtrip
+  title: Parse and print JSON round trip
+  description: Parses and prints representative JSON while preserving expected structure.
+  kind: source
+  command:
+  - bash
+  - /validator/tests/cjson/tests/cases/source/parse-print-roundtrip.sh
+  timeout_seconds: 120
+  tags:
+  - api
+  - roundtrip
+- id: minify-whitespace
+  title: Minify JSON whitespace behavior
+  description: Checks cJSON minification removes layout whitespace without altering
+    string data.
+  kind: source
+  command:
+  - bash
+  - /validator/tests/cjson/tests/cases/source/minify-whitespace.sh
+  timeout_seconds: 120
+  tags:
+  - api
+  - minify
+- id: utils-patch-pointer
+  title: JSON pointer patch behavior
+  description: Applies a JSON patch and resolves the changed value through cJSON utilities.
+  kind: source
+  command:
+  - bash
+  - /validator/tests/cjson/tests/cases/source/utils-patch-pointer.sh
+  timeout_seconds: 120
+  tags:
+  - api
+  - patch
+- id: allocator-hooks-edge
+  title: Allocator hook edge behavior
+  description: Installs custom allocator hooks and verifies allocation accounting
+    around deletion.
+  kind: source
+  command:
+  - bash
+  - /validator/tests/cjson/tests/cases/source/allocator-hooks-edge.sh
+  timeout_seconds: 120
+  tags:
+  - api
+  - allocator
+- id: malformed-number-rejection
+  title: Malformed number rejection
+  description: Requires cJSON to reject incomplete exponent notation in a number token.
+  kind: source
+  command:
+  - bash
+  - /validator/tests/cjson/tests/cases/source/malformed-number-rejection.sh
+  timeout_seconds: 120
+  tags:
+  - api
+  - negative

@@ -1,7 +1,62 @@
 schema_version: 1
 library: libarchive
 apt_packages:
-  - libarchive13t64
-  - libarchive-dev
-  - libarchive-tools
-testcases: []
+- libarchive13t64
+- libarchive-dev
+- libarchive-tools
+testcases:
+- id: bsdtar-tar-zip-roundtrip
+  title: bsdtar tar and zip round trip
+  description: Creates tar and zip archives then extracts both with bsdtar.
+  kind: source
+  command:
+  - bash
+  - /validator/tests/libarchive/tests/cases/source/bsdtar-tar-zip-roundtrip.sh
+  timeout_seconds: 120
+  tags:
+  - cli
+  - archive
+- id: bsdcpio-copy-roundtrip
+  title: bsdcpio copy archive round trip
+  description: Copies files into and out of a newc archive using bsdcpio.
+  kind: source
+  command:
+  - bash
+  - /validator/tests/libarchive/tests/cases/source/bsdcpio-copy-roundtrip.sh
+  timeout_seconds: 120
+  tags:
+  - cli
+  - archive
+- id: archive-metadata-listing
+  title: Archive metadata listing behavior
+  description: Lists archive metadata including modes and symbolic link entries.
+  kind: source
+  command:
+  - bash
+  - /validator/tests/libarchive/tests/cases/source/archive-metadata-listing.sh
+  timeout_seconds: 120
+  tags:
+  - cli
+  - metadata
+- id: path-traversal-rejection
+  title: Path traversal rejection
+  description: Verifies bsdtar rejects archive entries that would escape extraction.
+  kind: source
+  command:
+  - bash
+  - /validator/tests/libarchive/tests/cases/source/path-traversal-rejection.sh
+  timeout_seconds: 120
+  tags:
+  - cli
+  - negative
+- id: archive-read-api-smoke
+  title: archive read API smoke
+  description: Compiles and runs a libarchive archive_read API listing program.
+  kind: source
+  command:
+  - bash
+  - /validator/tests/libarchive/tests/cases/source/archive-read-api-smoke.sh
+  timeout_seconds: 120
+  tags:
+  - api
+  - compile

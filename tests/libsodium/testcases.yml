@@ -1,6 +1,62 @@
 schema_version: 1
 library: libsodium
 apt_packages:
-  - libsodium23
-  - libsodium-dev
-testcases: []
+- libsodium23
+- libsodium-dev
+testcases:
+- id: generichash-smoke
+  title: libsodium hash behavior
+  description: Computes a libsodium generic hash and prints the digest prefix.
+  kind: source
+  command:
+  - bash
+  - /validator/tests/libsodium/tests/cases/source/generichash-smoke.sh
+  timeout_seconds: 120
+  tags:
+  - api
+  - crypto
+- id: secretbox-roundtrip
+  title: libsodium secretbox round trip
+  description: Encrypts and decrypts a message with crypto_secretbox_easy public
+    APIs.
+  kind: source
+  command:
+  - bash
+  - /validator/tests/libsodium/tests/cases/source/secretbox-roundtrip.sh
+  timeout_seconds: 120
+  tags:
+  - api
+  - crypto
+- id: sign-verify
+  title: libsodium sign verify
+  description: Signs a message and verifies the detached signature.
+  kind: source
+  command:
+  - bash
+  - /validator/tests/libsodium/tests/cases/source/sign-verify.sh
+  timeout_seconds: 120
+  tags:
+  - api
+  - crypto
+- id: key-exchange-randombytes
+  title: libsodium key exchange randombytes
+  description: Creates deterministic keypairs and derives matching key exchange sessions.
+  kind: source
+  command:
+  - bash
+  - /validator/tests/libsodium/tests/cases/source/key-exchange-randombytes.sh
+  timeout_seconds: 120
+  tags:
+  - api
+  - crypto
+- id: compile-link-smoke
+  title: libsodium compile link smoke
+  description: Compiles a libsodium program and reports the installed library version.
+  kind: source
+  command:
+  - bash
+  - /validator/tests/libsodium/tests/cases/source/compile-link-smoke.sh
+  timeout_seconds: 120
+  tags:
+  - api
+  - compile

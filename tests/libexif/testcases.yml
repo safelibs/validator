@@ -1,6 +1,62 @@
 schema_version: 1
 library: libexif
 apt_packages:
-  - libexif12
-  - libexif-dev
-testcases: []
+- libexif12
+- libexif-dev
+testcases:
+- id: jpeg-exif-c-api-parse
+  title: JPEG EXIF C API parse
+  description: Parses representative JPEG EXIF metadata and reads make and model tags.
+  kind: source
+  command:
+  - bash
+  - /validator/tests/libexif/tests/cases/source/jpeg-exif-c-api-parse.sh
+  timeout_seconds: 120
+  tags:
+  - api
+  - metadata
+- id: maker-note-handling
+  title: Maker note data handling
+  description: Finds maker-note bytes in a JPEG fixture through libexif metadata APIs.
+  kind: source
+  command:
+  - bash
+  - /validator/tests/libexif/tests/cases/source/maker-note-handling.sh
+  timeout_seconds: 120
+  tags:
+  - api
+  - metadata
+- id: tag-lookup-value-formatting
+  title: Tag lookup and value formatting
+  description: Looks up EXIF tag names and formats initialized entry values.
+  kind: source
+  command:
+  - bash
+  - /validator/tests/libexif/tests/cases/source/tag-lookup-value-formatting.sh
+  timeout_seconds: 120
+  tags:
+  - api
+  - format
+- id: compile-link-smoke
+  title: libexif compile link smoke
+  description: Compiles and runs a small program against the public libexif headers.
+  kind: source
+  command:
+  - bash
+  - /validator/tests/libexif/tests/cases/source/compile-link-smoke.sh
+  timeout_seconds: 120
+  tags:
+  - api
+  - compile
+- id: invalid-data-handling
+  title: Invalid EXIF data handling
+  description: Feeds invalid bytes through ExifLoader and confirms graceful empty
+    handling.
+  kind: source
+  command:
+  - bash
+  - /validator/tests/libexif/tests/cases/source/invalid-data-handling.sh
+  timeout_seconds: 120
+  tags:
+  - api
+  - negative
