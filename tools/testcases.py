@@ -14,7 +14,7 @@ if __package__ in {None, ""}:
     sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
 from tools import ValidatorError, select_libraries
-from tools.inventory import load_manifest
+from tools.inventory import FORBIDDEN_PACKAGE_FIELDS, FORBIDDEN_SCHEMA_FIELDS, load_manifest
 
 
 CASE_ID_RE = re.compile(r"^[a-z0-9][a-z0-9-]{1,78}[a-z0-9]$")
@@ -42,6 +42,7 @@ DEPENDENT_LIST_KEYS = (
 )
 COMMAND_PATH_TOKEN_SEPARATORS_RE = re.compile(r"""[\s'"`;$|&(){}\[\]<>,]+""")
 VALIDATOR_PATH_RE = re.compile(r"""/validator(?:/[^\s'"`;$|&(){}\[\]<>,]*)?""")
+ALLOWED_TESTCASE_MANIFEST_FIELDS = {"schema_version", "library", "apt_packages", "testcases"}
 
 
 @dataclass(frozen=True)
@@ -103,6 +104,18 @@ def _require_string_list(value: Any, *, field_name: str, path: Path, non_empty: 
             raise ValidatorError(f"{field_name} entries must be non-empty strings in {path}")
         normalized.append(item.strip())
     return normalized
+
+
+def _reject_unexpected_manifest_fields(payload: dict[str, Any], *, path: Path) -> None:
+    unexpected = sorted(set(payload) - ALLOWED_TESTCASE_MANIFEST_FIELDS)
+    if not unexpected:
+        return
+    for field_name in unexpected:
+        if field_name in FORBIDDEN_PACKAGE_FIELDS or field_name.endswith("_packages"):
+            raise ValidatorError(f"{path} contains forbidden package-list field: {field_name}")
+        if field_name in FORBIDDEN_SCHEMA_FIELDS:
+            raise ValidatorError(f"{path} contains forbidden schema field: {field_name}")
+    raise ValidatorError(f"{path} testcase manifest contains unsupported fields: {', '.join(unexpected)}")
 
 
 def _has_path_segment(value: str, segment: str) -> bool:
@@ -281,6 +294,7 @@ def _validate_testcase(
 
 def load_testcase_manifest(path: Path, *, library: str) -> TestcaseManifest:
     payload = _load_yaml_mapping(path)
+    _reject_unexpected_manifest_fields(payload, path=path)
 
     if payload.get("schema_version") != 1:
         raise ValidatorError(f"schema_version must be 1 in {path}")

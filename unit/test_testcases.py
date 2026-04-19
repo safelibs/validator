@@ -52,6 +52,39 @@ class TestcaseManifestTests(unittest.TestCase):
         with self.assertRaisesRegex(ValidatorError, "apt_packages mismatch"):
             testcases.load_manifests(mismatched, tests_root=FIXTURES / "original-only-tests")
 
+    def test_load_testcase_manifest_rejects_forbidden_manifest_fields(self) -> None:
+        cases = [
+            ({"override_packages": ["demo-runtime"]}, "forbidden package-list field"),
+            ({"extra_packages": ["demo-runtime"]}, "forbidden package-list field"),
+            ({"archive": {}}, "forbidden schema field"),
+            ({"unexpected": True}, "unsupported fields"),
+        ]
+
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            manifest_path = root / "testcases.yml"
+            config = {
+                "libraries": [
+                    {
+                        "name": "demo",
+                        "apt_packages": ["demo-runtime"],
+                        "testcases": str(manifest_path),
+                    }
+                ]
+            }
+            for update, message in cases:
+                payload = {
+                    "schema_version": 1,
+                    "library": "demo",
+                    "apt_packages": ["demo-runtime"],
+                    "testcases": [],
+                    **update,
+                }
+                manifest_path.write_text(yaml.safe_dump(payload, sort_keys=False))
+                with self.subTest(update=update):
+                    with self.assertRaisesRegex(ValidatorError, message):
+                        testcases.load_manifests(config, tests_root=root, require_testcases=False)
+
     def test_zero_testcases_are_allowed_for_manifest_only_but_rejected_for_selected_load(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:
             root = Path(tmp)
