@@ -1,0 +1,7 @@
+schema_version: 1
+library: giflib
+apt_packages:
+  - libgif7
+  - libgif-dev
+  - giflib-tools
+testcases: []

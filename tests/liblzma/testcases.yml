@@ -1,0 +1,7 @@
+schema_version: 1
+library: liblzma
+apt_packages:
+  - liblzma5
+  - liblzma-dev
+  - xz-utils
+testcases: []

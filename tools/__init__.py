@@ -119,26 +119,42 @@ def list_relative_files(root: Path) -> set[str]:
     }
 
 
-def select_repositories(
+def select_libraries(
     manifest: dict[str, Any],
     libraries: Iterable[str] | None = None,
 ) -> list[dict[str, Any]]:
-    repositories = manifest["repositories"]
-    if libraries is None:
-        return list(repositories)
+    manifest_libraries = manifest["libraries"]
+    if not isinstance(manifest_libraries, list):
+        raise ValidatorError("manifest must define libraries")
 
-    by_name = {entry["name"]: entry for entry in repositories}
-    selected: list[dict[str, Any]] = []
-    missing: list[str] = []
+    names: list[str] = []
+    for index, entry in enumerate(manifest_libraries, start=1):
+        if not isinstance(entry, dict) or not isinstance(entry.get("name"), str) or not entry["name"]:
+            raise ValidatorError(f"manifest library #{index} must be a mapping with a name")
+        names.append(str(entry["name"]))
+    duplicate_manifest_names = sorted({name for name in names if names.count(name) > 1})
+    if duplicate_manifest_names:
+        raise ValidatorError(f"manifest library names must be unique: {', '.join(duplicate_manifest_names)}")
+
+    if libraries is None:
+        return list(manifest_libraries)
+
+    selected_names: list[str] = []
     for library in libraries:
-        entry = by_name.get(library)
-        if entry is None:
-            missing.append(library)
-        else:
-            selected.append(entry)
-    if missing:
-        raise ValidatorError(f"unknown libraries in config: {', '.join(missing)}")
-    return selected
+        if not isinstance(library, str) or not library:
+            raise ValidatorError(f"library selections must be non-empty strings: {library!r}")
+        selected_names.append(library)
+
+    duplicate_selections = sorted({name for name in selected_names if selected_names.count(name) > 1})
+    if duplicate_selections:
+        raise ValidatorError(f"--library must not contain duplicates: {', '.join(duplicate_selections)}")
+
+    unknown = [name for name in selected_names if name not in names]
+    if unknown:
+        raise ValidatorError(f"unknown libraries in config: {', '.join(unknown)}")
+
+    selected_set = set(selected_names)
+    return [entry for entry in manifest_libraries if str(entry["name"]) in selected_set]
 
 
 def tracked_files(repo_root: Path) -> list[str]:

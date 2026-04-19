@@ -1,0 +1,6 @@
+schema_version: 1
+library: libyaml
+apt_packages:
+  - libyaml-0-2
+  - libyaml-dev
+testcases: []

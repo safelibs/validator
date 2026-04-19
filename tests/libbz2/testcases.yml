@@ -1,0 +1,7 @@
+schema_version: 1
+library: libbz2
+apt_packages:
+  - libbz2-1.0
+  - libbz2-dev
+  - bzip2
+testcases: []

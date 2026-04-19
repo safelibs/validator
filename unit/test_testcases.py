@@ -9,10 +9,21 @@ import yaml
 
 from tools import ValidatorError
 from tools import testcases
-from tools.inventory import load_manifest
 
 
 FIXTURES = Path(__file__).resolve().parent / "fixtures"
+
+
+def original_demo_config() -> dict[str, object]:
+    return {
+        "libraries": [
+            {
+                "name": "original-demo",
+                "apt_packages": ["demo-runtime", "demo-dev"],
+                "testcases": str(FIXTURES / "original-only-tests" / "original-demo" / "testcases.yml"),
+            }
+        ]
+    }
 
 
 class TestcaseManifestTests(unittest.TestCase):
@@ -29,14 +40,14 @@ class TestcaseManifestTests(unittest.TestCase):
         self.assertEqual(manifest.testcases[1].client_application, "demo-client")
 
     def test_load_manifests_requires_apt_package_order_to_match_config(self) -> None:
-        config = load_manifest(FIXTURES / "original-only-manifest.yml")
+        config = original_demo_config()
         loaded = testcases.load_manifests(config, tests_root=FIXTURES / "original-only-tests")
         self.assertEqual(tuple(loaded), ("original-demo",))
 
         mismatched = dict(config)
-        entry = dict(config["repositories"][0])
-        entry["verify_packages"] = ["demo-dev", "demo-runtime"]
-        mismatched["repositories"] = [entry]
+        entry = dict(config["libraries"][0])
+        entry["apt_packages"] = ["demo-dev", "demo-runtime"]
+        mismatched["libraries"] = [entry]
 
         with self.assertRaisesRegex(ValidatorError, "apt_packages mismatch"):
             testcases.load_manifests(mismatched, tests_root=FIXTURES / "original-only-tests")
@@ -60,9 +71,19 @@ class TestcaseManifestTests(unittest.TestCase):
             manifest = testcases.load_testcase_manifest(library_root / "testcases.yml", library="empty-lib")
             self.assertEqual(manifest.testcases, ())
 
-            config = {"repositories": [{"name": "empty-lib", "verify_packages": ["empty-runtime"]}]}
+            config = {
+                "libraries": [
+                    {
+                        "name": "empty-lib",
+                        "apt_packages": ["empty-runtime"],
+                        "testcases": str(library_root / "testcases.yml"),
+                    }
+                ]
+            }
             with self.assertRaisesRegex(ValidatorError, "zero testcases"):
                 testcases.load_manifests(config, tests_root=root)
+            loaded = testcases.load_manifests(config, tests_root=root, require_testcases=False)
+            self.assertEqual(loaded["empty-lib"].testcases, ())
 
     def test_rejects_invalid_case_ids_and_unsafe_commands(self) -> None:
         repo_root = Path(__file__).resolve().parents[1]

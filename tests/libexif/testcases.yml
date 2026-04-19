@@ -1,0 +1,6 @@
+schema_version: 1
+library: libexif
+apt_packages:
+  - libexif12
+  - libexif-dev
+testcases: []

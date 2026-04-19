@@ -1,0 +1,6 @@
+schema_version: 1
+library: libcsv
+apt_packages:
+  - libcsv3
+  - libcsv-dev
+testcases: []

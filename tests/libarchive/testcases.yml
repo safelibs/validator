@@ -1,0 +1,7 @@
+schema_version: 1
+library: libarchive
+apt_packages:
+  - libarchive13t64
+  - libarchive-dev
+  - libarchive-tools
+testcases: []

@@ -1,0 +1,6 @@
+schema_version: 1
+library: libjson
+apt_packages:
+  - libjson-c5
+  - libjson-c-dev
+testcases: []

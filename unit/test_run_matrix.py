@@ -15,6 +15,18 @@ from tools import run_matrix
 FIXTURES = Path(__file__).resolve().parent / "fixtures"
 
 
+def original_demo_config() -> dict[str, object]:
+    return {
+        "libraries": [
+            {
+                "name": "original-demo",
+                "apt_packages": ["demo-runtime", "demo-dev"],
+                "testcases": str(FIXTURES / "original-only-tests" / "original-demo" / "testcases.yml"),
+            }
+        ]
+    }
+
+
 class RunMatrixTests(unittest.TestCase):
     def run_root(self) -> Path:
         tempdir = tempfile.TemporaryDirectory()
@@ -65,7 +77,10 @@ class RunMatrixTests(unittest.TestCase):
         root = self.run_root()
         artifact_root = root / "artifacts"
 
-        with mock.patch("tools.run_matrix.ensure_library_image", return_value="validator-original-demo"), mock.patch(
+        with mock.patch("tools.run_matrix.load_manifest", return_value=original_demo_config()), mock.patch(
+            "tools.run_matrix.ensure_library_image",
+            return_value="validator-original-demo",
+        ), mock.patch(
             "tools.run_matrix.run_logged",
             side_effect=self.fake_logged_run(),
         ):
@@ -117,7 +132,10 @@ class RunMatrixTests(unittest.TestCase):
         with self.assertRaisesRegex(ValidatorError, "matrix root"):
             run_matrix.validate_matrix_override_deb_root(FIXTURES / "original-override-debs" / "original-demo")
 
-        with mock.patch("tools.run_matrix.ensure_library_image", return_value="validator-original-demo"), mock.patch(
+        with mock.patch("tools.run_matrix.load_manifest", return_value=original_demo_config()), mock.patch(
+            "tools.run_matrix.ensure_library_image",
+            return_value="validator-original-demo",
+        ), mock.patch(
             "tools.run_matrix.run_logged",
             side_effect=self.fake_logged_run(),
         ):
@@ -164,7 +182,10 @@ class RunMatrixTests(unittest.TestCase):
         root = self.run_root()
         artifact_root = root / "artifacts"
 
-        with mock.patch("tools.run_matrix.ensure_library_image", return_value="validator-original-demo"), mock.patch(
+        with mock.patch("tools.run_matrix.load_manifest", return_value=original_demo_config()), mock.patch(
+            "tools.run_matrix.ensure_library_image",
+            return_value="validator-original-demo",
+        ), mock.patch(
             "tools.run_matrix.run_logged",
             side_effect=self.fake_logged_run({"echo-source.sh"}),
         ):
@@ -230,7 +251,9 @@ class RunMatrixTests(unittest.TestCase):
         self.assertIsNone(states["demo"].image_tag)
 
     def test_list_libraries_does_not_require_testcase_manifests(self) -> None:
-        with mock.patch("tools.run_matrix.load_manifests") as load_manifests:
+        with mock.patch("tools.run_matrix.load_manifest", return_value=original_demo_config()), mock.patch(
+            "tools.run_matrix.load_manifests"
+        ) as load_manifests:
             exit_code = run_matrix.main(
                 [
                     "--config",
@@ -248,14 +271,14 @@ class RunMatrixTests(unittest.TestCase):
         root = self.run_root()
         artifact_root = root / "artifacts"
         manifest = {
-            "archive": {"image": "ubuntu:24.04"},
-            "inventory": {"verified_at": "2026-04-18T00:00:00Z"},
-            "repositories": [{"name": "../../escape"}],
+            "schema_version": 2,
+            "suite": {"image": "ubuntu:24.04"},
+            "libraries": [{"name": "../../escape"}],
         }
 
         with mock.patch("tools.run_matrix.load_manifest", return_value=manifest), mock.patch(
-            "tools.run_matrix.select_repositories",
-            return_value=manifest["repositories"],
+            "tools.run_matrix.select_libraries",
+            return_value=manifest["libraries"],
         ):
             with self.assertRaisesRegex(ValidatorError, "invalid library name"):
                 run_matrix.main(

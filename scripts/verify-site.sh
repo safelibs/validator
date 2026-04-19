@@ -6,6 +6,7 @@ results_root=
 site_root=
 artifacts_root=
 proof_path=
+tests_root=
 
 while (($# > 0)); do
   case "$1" in
@@ -29,6 +30,10 @@ while (($# > 0)); do
       site_root=$2
       shift 2
       ;;
+    --tests-root)
+      tests_root=$2
+      shift 2
+      ;;
     *)
       echo "unexpected argument: $1" >&2
       exit 1
@@ -37,13 +42,13 @@ while (($# > 0)); do
 done
 
 if [[ -z "$config" || -z "$results_root" || -z "$site_root" ]]; then
-  echo "usage: verify-site.sh --config <manifest> --results-root <dir> [--artifacts-root <dir>] [--proof-path <path>] --site-root <dir>" >&2
+  echo "usage: verify-site.sh --config <manifest> --results-root <dir> [--artifacts-root <dir>] [--proof-path <path>] [--tests-root <dir>] --site-root <dir>" >&2
   exit 1
 fi
 
 repo_root=$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)
 
-python3 - "$repo_root" "$config" "$results_root" "$site_root" "$artifacts_root" "$proof_path" <<'PY'
+python3 - "$repo_root" "$config" "$results_root" "$site_root" "$artifacts_root" "$proof_path" "$tests_root" <<'PY'
 from __future__ import annotations
 
 import json
@@ -77,7 +82,9 @@ results_root = Path(sys.argv[3])
 site_root = Path(sys.argv[4])
 artifacts_root_arg = sys.argv[5]
 proof_path_arg = sys.argv[6]
+tests_root_arg = sys.argv[7]
 artifacts_root = Path(artifacts_root_arg) if artifacts_root_arg else results_root.parent
+tests_root = Path(tests_root_arg) if tests_root_arg else repo_root / "tests"
 artifacts_root_resolved = artifacts_root.resolve()
 proof_path = Path(proof_path_arg) if proof_path_arg else artifacts_root / "proof" / "validator-proof.json"
 proof_path_resolved = proof_path.resolve(strict=False)
@@ -87,7 +94,7 @@ except ValueError:
     fail(f"proof path must resolve inside the artifact root: {proof_path}")
 
 manifest = validator_call("load manifest", load_manifest, config_path)
-manifest_libraries = [str(entry["name"]) for entry in manifest["repositories"]]
+manifest_libraries = [str(entry["name"]) for entry in manifest["libraries"]]
 manifest_set = set(manifest_libraries)
 
 
@@ -153,13 +160,18 @@ selected_set = set(included_libraries) | set(excluded_note_map)
 selected_libraries = [library for library in manifest_libraries if library in selected_set]
 if set(selected_libraries) != selected_set:
     fail("proof selected library set does not match manifest")
+proof_kwargs = {
+    "artifact_root": artifacts_root,
+    "libraries": selected_libraries,
+    "excluded_libraries": excluded_note_map,
+}
+if proof_file.get("proof_version") == 2:
+    proof_kwargs["tests_root"] = tests_root
 expected_proof = validator_call(
     "rebuild proof",
     proof_tools.build_proof,
     manifest,
-    artifact_root=artifacts_root,
-    libraries=selected_libraries,
-    excluded_libraries=excluded_note_map,
+    **proof_kwargs,
 )
 if expected_proof != proof_file:
     fail("proof manifest does not match rebuilt proof")
@@ -205,10 +217,25 @@ filtered_results = [
     for result in all_results
     if str(result["library"]) in set(included_libraries)
 ]
-expected_keys = {(library, mode) for library in included_libraries for mode in ("original", "safe")}
-actual_keys = {(str(result["library"]), str(result["mode"])) for result in filtered_results}
-if actual_keys != expected_keys:
-    fail(f"filtered result rows must cover proof included libraries exactly: expected {sorted(expected_keys)}, found {sorted(actual_keys)}")
+if proof_file.get("proof_version") == 2:
+    expected_keys = {
+        (str(library_entry["library"]), str(case["testcase_id"]))
+        for library_entry in proof_file.get("libraries", [])
+        if isinstance(library_entry, dict)
+        for case in library_entry.get("cases", [])
+        if isinstance(case, dict)
+    }
+    actual_keys = {
+        (str(result["library"]), str(result.get("testcase_id") or ""))
+        for result in filtered_results
+    }
+    if actual_keys != expected_keys:
+        fail(f"filtered result rows must cover proof cases exactly: expected {sorted(expected_keys)}, found {sorted(actual_keys)}")
+else:
+    expected_keys = {(library, mode) for library in included_libraries for mode in ("original", "safe")}
+    actual_keys = {(str(result["library"]), str(result["mode"])) for result in filtered_results}
+    if actual_keys != expected_keys:
+        fail(f"filtered result rows must cover proof included libraries exactly: expected {sorted(expected_keys)}, found {sorted(actual_keys)}")
 expected_rows = render_site.build_site_rows(
     sorted(filtered_results, key=render_site.result_sort_key),
     output_root=site_root,
@@ -220,6 +247,8 @@ normalize = lambda rows: sorted(
         {
             "library": row["library"],
             "mode": row["mode"],
+            "testcase_id": row.get("testcase_id"),
+            "apt_packages": row.get("apt_packages"),
             "status": row["status"],
             "log_path": row["log_path"],
             "cast_path": row["cast_path"],

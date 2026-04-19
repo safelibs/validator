@@ -1,0 +1,7 @@
+schema_version: 1
+library: libzstd
+apt_packages:
+  - libzstd1
+  - libzstd-dev
+  - zstd
+testcases: []

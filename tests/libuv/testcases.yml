@@ -1,0 +1,6 @@
+schema_version: 1
+library: libuv
+apt_packages:
+  - libuv1t64
+  - libuv1-dev
+testcases: []

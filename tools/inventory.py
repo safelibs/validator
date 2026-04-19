@@ -1,640 +1,297 @@
 from __future__ import annotations
 
 import argparse
-import copy
-import json
-import subprocess
 import sys
-from datetime import datetime, timezone
-from pathlib import Path
-from typing import Any, Callable
+from pathlib import Path, PurePosixPath
+from typing import Any
 
 import yaml
 
 if __package__ in {None, ""}:
     sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
-from tools import ValidatorError, redact_secrets, write_json
-from tools import github_auth
+from tools import ValidatorError
 
 
-GH_REPO_LIST_COMMAND = (
-    "gh repo list safelibs --limit 200 --json name,nameWithOwner,isPrivate,url,defaultBranchRef"
+REPO_ROOT = Path(__file__).resolve().parents[1]
+
+LIBRARY_ORDER = (
+    "cjson",
+    "giflib",
+    "libarchive",
+    "libbz2",
+    "libcsv",
+    "libexif",
+    "libjpeg-turbo",
+    "libjson",
+    "liblzma",
+    "libpng",
+    "libsdl",
+    "libsodium",
+    "libtiff",
+    "libuv",
+    "libvips",
+    "libwebp",
+    "libxml",
+    "libyaml",
+    "libzstd",
 )
-TAG_PROBE_RULE = "refs/tags/{library}/04-test"
-GOAL_REPO_FAMILY = "repos-*"
-VERIFIED_REPO_FAMILY = "port-*"
-NON_APT_LIBRARIES = {"libexif", "libuv"}
-FILTERED_ROW_KEYS = {"library", "nameWithOwner", "url", "default_branch", "tag_ref"}
-REQUIRED_INVENTORY_KEYS = {
-    "verified_at",
-    "gh_repo_list_command",
-    "tag_probe_rule",
-    "raw_snapshot",
-    "filtered_snapshot",
-    "goal_repo_family",
-    "verified_repo_family",
-}
-DEFAULT_EXECUTION_STRATEGY = "container-image"
-VALID_EXECUTION_STRATEGIES = {"container-image", "host-harness"}
-VALIDATOR_IMPORTS = {
-    "cjson": [
-        "safe/tests",
-        "safe/scripts",
-        "original/tests",
-        "original/fuzzing",
-        "original/test.c",
-        "original/cJSON.h",
-        "original/cJSON_Utils.h",
-    ],
-    "giflib": [
-        "safe",
-        "original",
-    ],
-    "libarchive": [
-        "safe/tests",
-        "safe/debian/tests",
-        "safe/scripts",
-        "safe/generated/api_inventory.json",
-        "safe/generated/cve_matrix.json",
-        "safe/generated/link_compat_manifest.json",
-        "safe/generated/original_build_contract.json",
-        "safe/generated/original_package_metadata.json",
-        "safe/generated/original_c_build",
-        "safe/generated/original_link_objects",
-        "safe/generated/original_pkgconfig/libarchive.pc",
-        "safe/generated/pkgconfig/libarchive.pc",
-        "safe/generated/rust_test_manifest.json",
-        "safe/generated/test_manifest.json",
-        "original/libarchive-3.7.2",
-    ],
-    "libbz2": [
-        "safe/tests",
-        "safe/debian/tests",
-        "safe/scripts",
-        "original",
-    ],
-    "libcsv": [
-        "safe",
-        "original",
-    ],
-    "libexif": [
-        "safe/tests",
-        "original/libexif",
-        "original/test",
-        "original/contrib/examples",
-    ],
-    "libjpeg-turbo": [
-        "safe",
-        "original",
-    ],
-    "libjson": [
-        "safe/tests",
-        "safe/debian/tests",
-        "original",
-    ],
-    "liblzma": [
-        "safe/docker",
-        "safe/scripts",
-        "safe/tests/dependents",
-        "safe/tests/extra",
-        "safe/tests/upstream",
-        "original",
-    ],
-    "libpng": [
-        "safe/tests",
-        "original",
-    ],
-    "libsdl": [
-        "safe",
-        "original",
-    ],
-    "libsodium": [
-        "safe/tests",
-        "safe/docker",
-        "safe/tools",
-        "original",
-    ],
-    "libtiff": [
-        "safe/test",
-        "safe/scripts",
-        "original/test",
-    ],
-    "libuv": [
-        "safe/docker",
-        "safe/include",
-        "safe/prebuilt",
-        "safe/scripts",
-        "safe/test",
-        "safe/test-extra",
-        "safe/tests/dependents",
-        "original",
-    ],
-    "libvips": [
-        "safe/debian/changelog",
-        "safe/reference",
-        "safe/scripts",
-        "safe/tests/dependents",
-        "safe/tests/introspection",
-        "safe/tests/link_compat",
-        "safe/tests/upstream",
-        "safe/vendor/pyvips-3.1.1",
-        "build-check-install",
-        "original/test",
-        "original/examples",
-    ],
-    "libwebp": [
-        "safe/tests",
-        "original",
-    ],
-    "libxml": [
-        "safe/tests",
-        "safe/debian/tests",
-        "safe/scripts",
-        "original",
-    ],
-    "libyaml": [
-        "safe",
-        "original",
-    ],
-    "libzstd": [
-        "safe",
-        "original/libzstd-1.5.5+dfsg2",
-    ],
-}
-PHASE_1_FROZEN_IMPORTS = {
-    "cjson": [
-        "safe/tests",
-        "safe/scripts",
-        "original/tests",
-        "original/fuzzing",
-        "original/test.c",
-        "original/cJSON.h",
-        "original/cJSON_Utils.h",
-    ],
-    "libarchive": [
-        "safe/tests",
-        "safe/debian/tests",
-        "safe/scripts",
-        "safe/generated/api_inventory.json",
-        "safe/generated/cve_matrix.json",
-        "safe/generated/link_compat_manifest.json",
-        "safe/generated/original_build_contract.json",
-        "safe/generated/original_package_metadata.json",
-        "safe/generated/original_c_build",
-        "safe/generated/original_link_objects",
-        "safe/generated/original_pkgconfig/libarchive.pc",
-        "safe/generated/pkgconfig/libarchive.pc",
-        "safe/generated/rust_test_manifest.json",
-        "safe/generated/test_manifest.json",
-        "original/libarchive-3.7.2",
-    ],
-    "libbz2": [
-        "safe/tests",
-        "safe/debian/tests",
-        "safe/scripts",
-        "original",
-    ],
-    "libexif": [
-        "safe/tests",
-        "original/libexif",
-        "original/test",
-        "original/contrib/examples",
-    ],
-    "libtiff": [
-        "safe/test",
-        "safe/scripts",
-        "original/test",
-    ],
-    "libxml": [
-        "safe/tests",
-        "safe/debian/tests",
-        "safe/scripts",
-        "original",
-    ],
+
+CANONICAL_APT_PACKAGES: dict[str, tuple[str, ...]] = {
+    "cjson": ("libcjson1", "libcjson-dev"),
+    "giflib": ("libgif7", "libgif-dev", "giflib-tools"),
+    "libarchive": ("libarchive13t64", "libarchive-dev", "libarchive-tools"),
+    "libbz2": ("libbz2-1.0", "libbz2-dev", "bzip2"),
+    "libcsv": ("libcsv3", "libcsv-dev"),
+    "libexif": ("libexif12", "libexif-dev"),
+    "libjpeg-turbo": (
+        "libjpeg-turbo8",
+        "libjpeg-turbo8-dev",
+        "libturbojpeg",
+        "libturbojpeg0-dev",
+        "libjpeg-turbo-progs",
+    ),
+    "libjson": ("libjson-c5", "libjson-c-dev"),
+    "liblzma": ("liblzma5", "liblzma-dev", "xz-utils"),
+    "libpng": ("libpng16-16t64", "libpng-dev", "libpng-tools"),
+    "libsdl": ("libsdl2-2.0-0", "libsdl2-dev", "libsdl2-tests"),
+    "libsodium": ("libsodium23", "libsodium-dev"),
+    "libtiff": ("libtiff6", "libtiffxx6", "libtiff-dev", "libtiff-tools"),
+    "libuv": ("libuv1t64", "libuv1-dev"),
+    "libvips": ("libvips42t64", "libvips-dev", "libvips-tools", "gir1.2-vips-8.0"),
+    "libwebp": (
+        "libwebp7",
+        "libwebpdemux2",
+        "libwebpmux3",
+        "libwebpdecoder3",
+        "libsharpyuv0",
+        "libwebp-dev",
+        "libsharpyuv-dev",
+        "webp",
+    ),
+    "libxml": ("libxml2", "libxml2-dev", "libxml2-utils", "python3-libxml2"),
+    "libyaml": ("libyaml-0-2", "libyaml-dev"),
+    "libzstd": ("libzstd1", "libzstd-dev", "zstd"),
 }
 
-
-def iso_utc_now() -> str:
-    return datetime.now(timezone.utc).replace(microsecond=0).isoformat().replace("+00:00", "Z")
+ALLOWED_TOP_LEVEL_FIELDS = {"schema_version", "suite", "libraries"}
+ALLOWED_SUITE_FIELDS = {"name", "image", "apt_suite"}
+ALLOWED_LIBRARY_FIELDS = {"name", "apt_packages", "testcases", "source_snapshot", "fixtures"}
+ALLOWED_FIXTURE_FIELDS = {"dependents"}
+FORBIDDEN_PACKAGE_FIELDS = {
+    "override" + "_packages",
+    "safe" + "_packages",
+    "unsafe" + "_packages",
+    "verify" + "_packages",
+}
+FORBIDDEN_SCHEMA_FIELDS = {
+    "archive",
+    "inventory",
+    "repositories",
+    "build",
+    "github_repo",
+    "ref",
+    "validator",
+    "imports",
+    "safe" + "-debian",
+    "checkout" + "-artifacts",
+    "base_url",
+    "pin_priority",
+    "artifact_globs",
+}
+FORBIDDEN_FIXTURE_TERMS = ("cve", "security")
+FORBIDDEN_STRING_TERMS = (
+    "safe" + "-debian",
+    "checkout" + "-artifacts",
+    "Safe" + "Libs",
+    "safe" + "libs",
+)
 
 
 def load_yaml_mapping(path: Path) -> dict[str, Any]:
-    data = yaml.safe_load(path.read_text())
+    try:
+        data = yaml.safe_load(path.read_text())
+    except FileNotFoundError as exc:
+        raise ValidatorError(f"missing manifest: {path}") from exc
+    except yaml.YAMLError as exc:
+        raise ValidatorError(f"invalid manifest YAML at {path}: {exc}") from exc
     if not isinstance(data, dict):
         raise ValidatorError(f"{path} must contain a YAML mapping")
     return data
 
 
-def normalize_execution_strategy(value: Any, *, context: str) -> str:
-    if value is None:
-        return DEFAULT_EXECUTION_STRATEGY
-    strategy = str(value).strip()
-    if strategy not in VALID_EXECUTION_STRATEGIES:
-        choices = ", ".join(sorted(VALID_EXECUTION_STRATEGIES))
-        raise ValidatorError(f"{context} must be one of: {choices}")
-    return strategy
+def _require_mapping(value: Any, *, field_name: str, path: Path) -> dict[str, Any]:
+    if not isinstance(value, dict):
+        raise ValidatorError(f"{field_name} must be a YAML mapping in {path}")
+    return value
 
 
-def validator_execution_strategy_for(entry: dict[str, Any]) -> str:
-    validator = entry.get("validator")
-    context = f"{entry.get('name', '<unknown>')} validator.execution_strategy"
-    if isinstance(validator, dict):
-        return normalize_execution_strategy(validator.get("execution_strategy"), context=context)
-    return DEFAULT_EXECUTION_STRATEGY
+def _require_non_empty_string(value: Any, *, field_name: str, path: Path) -> str:
+    if not isinstance(value, str) or not value.strip():
+        raise ValidatorError(f"{field_name} must be a non-empty string in {path}")
+    return value.strip()
 
 
-def validate_phase_1_frozen_imports() -> None:
-    drifted = [
-        library
-        for library, expected_imports in PHASE_1_FROZEN_IMPORTS.items()
-        if VALIDATOR_IMPORTS.get(library) != expected_imports
-    ]
-    if drifted:
+def _require_string_list(value: Any, *, field_name: str, path: Path) -> list[str]:
+    if not isinstance(value, list) or not value:
+        raise ValidatorError(f"{field_name} must be a non-empty list in {path}")
+    normalized: list[str] = []
+    for item in value:
+        if not isinstance(item, str) or not item.strip():
+            raise ValidatorError(f"{field_name} entries must be non-empty strings in {path}")
+        normalized.append(item.strip())
+    return normalized
+
+
+def _reject_unexpected_fields(
+    payload: dict[str, Any],
+    *,
+    allowed: set[str],
+    context: str,
+) -> None:
+    unexpected = sorted(set(payload) - allowed)
+    if unexpected:
+        raise ValidatorError(f"{context} contains unsupported fields: {', '.join(unexpected)}")
+
+
+def _reject_forbidden_terms(value: Any, *, context: str) -> None:
+    if isinstance(value, dict):
+        for key, item in value.items():
+            key_text = str(key)
+            if key_text in FORBIDDEN_SCHEMA_FIELDS:
+                raise ValidatorError(f"{context} contains forbidden schema field: {key_text}")
+            if key_text in FORBIDDEN_PACKAGE_FIELDS:
+                raise ValidatorError(f"{context} contains forbidden package-list field: {key_text}")
+            _reject_forbidden_terms(item, context=f"{context}.{key_text}")
+    elif isinstance(value, list):
+        for index, item in enumerate(value, start=1):
+            _reject_forbidden_terms(item, context=f"{context}[{index}]")
+    elif isinstance(value, str):
+        for term in FORBIDDEN_STRING_TERMS:
+            if term in value:
+                raise ValidatorError(f"{context} contains forbidden legacy metadata: {term}")
+
+
+def _validate_repo_relative_path(value: Any, *, field_name: str, path: Path) -> str:
+    text = _require_non_empty_string(value, field_name=field_name, path=path)
+    if "\\" in text:
+        raise ValidatorError(f"{field_name} must be a repository-relative POSIX path in {path}: {text!r}")
+    pure = PurePosixPath(text)
+    if pure.is_absolute() or any(part in {"", ".", ".."} for part in pure.parts):
+        raise ValidatorError(f"{field_name} must be a repository-relative path in {path}: {text!r}")
+    target = (REPO_ROOT / Path(*pure.parts)).resolve(strict=False)
+    try:
+        target.relative_to(REPO_ROOT.resolve(strict=False))
+    except ValueError as exc:
+        raise ValidatorError(f"{field_name} must stay within the repository in {path}: {text!r}") from exc
+    if not target.exists():
+        raise ValidatorError(f"{field_name} path does not exist in {path}: {text}")
+    return text
+
+
+def _validate_suite(suite: Any, *, path: Path) -> None:
+    suite_mapping = _require_mapping(suite, field_name="suite", path=path)
+    _reject_unexpected_fields(suite_mapping, allowed=ALLOWED_SUITE_FIELDS, context=f"{path} suite")
+    _require_non_empty_string(suite_mapping.get("name"), field_name="suite.name", path=path)
+    _require_non_empty_string(suite_mapping.get("image"), field_name="suite.image", path=path)
+    _require_non_empty_string(suite_mapping.get("apt_suite"), field_name="suite.apt_suite", path=path)
+
+
+def _validate_fixtures(fixtures: Any, *, library: str, path: Path) -> None:
+    fixture_mapping = _require_mapping(fixtures, field_name=f"{library}.fixtures", path=path)
+    _reject_unexpected_fields(
+        fixture_mapping,
+        allowed=ALLOWED_FIXTURE_FIELDS,
+        context=f"{path} {library}.fixtures",
+    )
+    for fixture_name in fixture_mapping:
+        normalized = fixture_name.lower()
+        if any(term in normalized for term in FORBIDDEN_FIXTURE_TERMS):
+            raise ValidatorError(f"{path} {library}.fixtures must not reference CVE or security fixtures")
+    _validate_repo_relative_path(
+        fixture_mapping.get("dependents"),
+        field_name=f"{library}.fixtures.dependents",
+        path=path,
+    )
+
+
+def _validate_library(entry: Any, *, path: Path, index: int) -> str:
+    if not isinstance(entry, dict):
+        raise ValidatorError(f"{path} library #{index} must be a YAML mapping")
+    _reject_unexpected_fields(
+        entry,
+        allowed=ALLOWED_LIBRARY_FIELDS,
+        context=f"{path} library #{index}",
+    )
+
+    name = _require_non_empty_string(entry.get("name"), field_name=f"library #{index}.name", path=path)
+    expected_packages = CANONICAL_APT_PACKAGES.get(name)
+    if expected_packages is None:
+        raise ValidatorError(f"{path} defines unsupported library: {name}")
+
+    apt_packages = _require_string_list(
+        entry.get("apt_packages"),
+        field_name=f"{name}.apt_packages",
+        path=path,
+    )
+    if tuple(apt_packages) != expected_packages:
         raise ValidatorError(
-            "phase-1 frozen validator.imports drift detected for: "
-            + ", ".join(sorted(drifted))
+            f"{path} {name}.apt_packages must equal the canonical ordered package list: "
+            f"{list(expected_packages)!r}"
         )
+
+    testcases = _validate_repo_relative_path(entry.get("testcases"), field_name=f"{name}.testcases", path=path)
+    expected_testcases = f"tests/{name}/testcases.yml"
+    if testcases != expected_testcases:
+        raise ValidatorError(f"{path} {name}.testcases must be {expected_testcases!r}")
+
+    _validate_repo_relative_path(
+        entry.get("source_snapshot"),
+        field_name=f"{name}.source_snapshot",
+        path=path,
+    )
+    _validate_fixtures(entry.get("fixtures"), library=name, path=path)
+    return name
 
 
 def load_manifest(
     path: Path,
     *,
-    require_inventory: bool = True,
-    require_validator: bool = True,
+    require_inventory: bool | None = None,
+    require_validator: bool | None = None,
 ) -> dict[str, Any]:
-    validate_phase_1_frozen_imports()
+    del require_inventory, require_validator
+
     data = load_yaml_mapping(path)
-    archive = data.get("archive")
-    repositories = data.get("repositories")
-    if not isinstance(archive, dict):
-        raise ValidatorError(f"{path} must define archive")
-    if not isinstance(repositories, list) or not repositories:
-        raise ValidatorError(f"{path} must define a non-empty repositories list")
+    _reject_forbidden_terms(data, context=str(path))
+    _reject_unexpected_fields(data, allowed=ALLOWED_TOP_LEVEL_FIELDS, context=str(path))
 
-    inventory = data.get("inventory")
-    if require_inventory and not isinstance(inventory, dict):
-        raise ValidatorError(f"{path} must define inventory")
+    if data.get("schema_version") != 2:
+        raise ValidatorError(f"{path} schema_version must be 2")
+    _validate_suite(data.get("suite"), path=path)
 
-    names: set[str] = set()
-    for index, entry in enumerate(repositories, start=1):
-        if not isinstance(entry, dict):
-            raise ValidatorError(f"{path} repository #{index} must be a YAML mapping")
-        for field in ("name", "github_repo", "ref"):
-            if not str(entry.get(field) or "").strip():
-                raise ValidatorError(f"{path} repository #{index} must define {field}")
-        name = str(entry["name"])
-        if name in names:
-            raise ValidatorError(f"{path} defines duplicate repository name: {name}")
-        names.add(name)
+    libraries = data.get("libraries")
+    if not isinstance(libraries, list) or not libraries:
+        raise ValidatorError(f"{path} must define a non-empty libraries list")
 
-        build = entry.get("build")
-        if not isinstance(build, dict):
-            raise ValidatorError(f"{path} repository #{index} must define build")
-        artifact_globs = build.get("artifact_globs")
-        if not isinstance(artifact_globs, list) or not artifact_globs:
-            raise ValidatorError(
-                f"{path} repository #{index} build must define artifact_globs"
-            )
-
-        validator = entry.get("validator")
-        if isinstance(validator, dict):
-            validator["execution_strategy"] = normalize_execution_strategy(
-                validator.get("execution_strategy"),
-                context=f"{path} repository #{index} validator.execution_strategy",
-            )
-
-        if require_validator:
-            fixtures = entry.get("fixtures")
-            if not isinstance(validator, dict):
-                raise ValidatorError(f"{path} repository #{index} must define validator")
-            if not isinstance(fixtures, dict):
-                raise ValidatorError(f"{path} repository #{index} must define fixtures")
-            imports = validator.get("imports")
-            if not isinstance(imports, list) or not imports:
-                raise ValidatorError(
-                    f"{path} repository #{index} validator.imports must be a non-empty list"
-                )
-            expected_frozen_imports = PHASE_1_FROZEN_IMPORTS.get(name)
-            if expected_frozen_imports is not None and list(imports) != expected_frozen_imports:
-                raise ValidatorError(
-                    f"{path} repository #{index} validator.imports for {name} must stay on the phase-1 frozen contract"
-                )
-            if validator.get("import_excludes") != []:
-                raise ValidatorError(
-                    f"{path} repository #{index} validator.import_excludes must be []"
-                )
-            sibling_repo = str(validator.get("sibling_repo") or "").strip()
-            if not sibling_repo:
-                raise ValidatorError(
-                    f"{path} repository #{index} validator.sibling_repo must be set"
-                )
-            for fixture_name in ("dependents", "relevant_cves"):
-                fixture = fixtures.get(fixture_name)
-                if not isinstance(fixture, dict) or fixture.get("source") != "copy-staged-root":
-                    raise ValidatorError(
-                        f"{path} repository #{index} fixtures.{fixture_name}.source mismatch"
-                    )
+    names = [_validate_library(entry, path=path, index=index) for index, entry in enumerate(libraries, start=1)]
+    duplicates = sorted({name for name in names if names.count(name) > 1})
+    if duplicates:
+        raise ValidatorError(f"{path} defines duplicate libraries: {', '.join(duplicates)}")
+    if tuple(names) != LIBRARY_ORDER:
+        raise ValidatorError(f"{path} libraries must appear in the fixed v2 order: {list(LIBRARY_ORDER)!r}")
     return data
-
-
-def load_github_inventory(path: Path) -> list[dict[str, Any]]:
-    data = json.loads(path.read_text())
-    if not isinstance(data, list):
-        raise ValidatorError(f"{path} must contain a JSON array")
-    for index, row in enumerate(data, start=1):
-        if not isinstance(row, dict):
-            raise ValidatorError(f"{path} row #{index} must be a JSON object")
-    return data
-
-
-def remote_tag_reachable(github_repo: str, tag_ref: str) -> bool:
-    command = [
-        "git",
-        "ls-remote",
-        "--exit-code",
-        github_auth.github_git_url(github_repo),
-        tag_ref,
-    ]
-    completed = subprocess.run(
-        command,
-        env=github_auth.git_env(),
-        text=True,
-        capture_output=True,
-        check=False,
-    )
-    if completed.returncode == 0:
-        return bool(completed.stdout.strip())
-    if completed.returncode == 2:
-        return False
-
-    raise ValidatorError(
-        f"unable to probe {github_repo} {tag_ref}: "
-        f"{redact_secrets(completed.stderr.strip() or str(completed.returncode))}"
-    )
-
-
-def supported_library_names(apt_manifest: dict[str, Any]) -> set[str]:
-    return {str(entry["name"]) for entry in apt_manifest["repositories"]} | set(NON_APT_LIBRARIES)
-
-
-def validator_imports_for(library: str) -> list[str]:
-    imports = VALIDATOR_IMPORTS.get(library)
-    if imports is None:
-        raise ValidatorError(f"missing validator imports for supported library {library}")
-    return list(imports)
-
-
-def select_tagged_scope(
-    github_rows: list[dict[str, Any]],
-    *,
-    supported_libraries: set[str],
-    probe: Callable[[str, str], bool] = remote_tag_reachable,
-    tag_probe_rule: str = TAG_PROBE_RULE,
-) -> list[dict[str, Any]]:
-    selected: list[dict[str, Any]] = []
-    for row in github_rows:
-        name = str(row.get("name") or "")
-        if not name.startswith("port-"):
-            continue
-        library = name.removeprefix("port-")
-        if library not in supported_libraries:
-            continue
-        tag_ref = tag_probe_rule.format(library=library)
-        github_repo = str(row.get("nameWithOwner") or "")
-        if not github_repo:
-            raise ValidatorError(f"raw GitHub row missing nameWithOwner for {name}")
-        if not probe(github_repo, tag_ref):
-            continue
-        selected.append(
-            {
-                "library": library,
-                "nameWithOwner": github_repo,
-                "url": str(row.get("url") or ""),
-                "default_branch": (row.get("defaultBranchRef") or {}).get("name"),
-                "tag_ref": tag_ref,
-            }
-        )
-    return sorted(selected, key=lambda item: item["library"])
-
-
-def merge_apt_repo_metadata(
-    apt_manifest: dict[str, Any],
-    filtered_rows: list[dict[str, Any]],
-    *,
-    verified_at: str | None = None,
-    raw_snapshot: str = "inventory/github-repo-list.json",
-    filtered_snapshot: str = "inventory/github-port-repos.json",
-) -> dict[str, Any]:
-    validate_phase_1_frozen_imports()
-    apt_entries = {entry["name"]: entry for entry in apt_manifest["repositories"]}
-    repositories: list[dict[str, Any]] = []
-    for row in filtered_rows:
-        library = row["library"]
-        tag_ref = row["tag_ref"]
-        github_repo = str(row["nameWithOwner"])
-        if library in apt_entries:
-            apt_entry = apt_entries[library]
-            repository: dict[str, Any] = {
-                "name": library,
-                "github_repo": copy.deepcopy(apt_entry["github_repo"]),
-                "ref": tag_ref,
-            }
-            if "verify_packages" in apt_entry:
-                repository["verify_packages"] = copy.deepcopy(apt_entry["verify_packages"])
-            repository["build"] = copy.deepcopy(apt_entry["build"])
-        elif library in NON_APT_LIBRARIES:
-            repository = {
-                "name": library,
-                "github_repo": github_repo,
-                "ref": tag_ref,
-                "build": {
-                    "mode": "safe-debian",
-                    "artifact_globs": ["*.deb"],
-                },
-            }
-        else:
-            raise ValidatorError(f"filtered library {library} is not present in apt-repo metadata")
-
-        repository["validator"] = {
-            "sibling_repo": f"port-{library}",
-            "execution_strategy": (
-                validator_execution_strategy_for(apt_entry)
-                if library in apt_entries
-                else DEFAULT_EXECUTION_STRATEGY
-            ),
-            "imports": validator_imports_for(library),
-            "import_excludes": [],
-        }
-        repository["fixtures"] = {
-            "dependents": {"source": "copy-staged-root"},
-            "relevant_cves": {"source": "copy-staged-root"},
-        }
-        repositories.append(repository)
-
-    return {
-        "archive": copy.deepcopy(apt_manifest["archive"]),
-        "inventory": {
-            "verified_at": verified_at or iso_utc_now(),
-            "gh_repo_list_command": GH_REPO_LIST_COMMAND,
-            "tag_probe_rule": TAG_PROBE_RULE,
-            "raw_snapshot": raw_snapshot,
-            "filtered_snapshot": filtered_snapshot,
-            "goal_repo_family": GOAL_REPO_FAMILY,
-            "verified_repo_family": VERIFIED_REPO_FAMILY,
-        },
-        "repositories": repositories,
-    }
-
-
-def validate_filtered_rows(filtered_rows: list[dict[str, Any]]) -> None:
-    libraries = [row["library"] for row in filtered_rows]
-    if libraries != sorted(libraries):
-        raise ValidatorError(f"filtered inventory must be sorted by library: {libraries}")
-    for row in filtered_rows:
-        if set(row) != FILTERED_ROW_KEYS:
-            raise ValidatorError(
-                f"filtered inventory row schema mismatch for {row.get('library', '<unknown>')}: {sorted(row)}"
-            )
-
-
-def validate_inventory_metadata(inventory: dict[str, Any]) -> None:
-    if set(REQUIRED_INVENTORY_KEYS) - set(inventory):
-        missing = sorted(set(REQUIRED_INVENTORY_KEYS) - set(inventory))
-        raise ValidatorError(f"inventory metadata is incomplete: {', '.join(missing)}")
-    expected = {
-        "gh_repo_list_command": GH_REPO_LIST_COMMAND,
-        "tag_probe_rule": TAG_PROBE_RULE,
-        "raw_snapshot": "inventory/github-repo-list.json",
-        "filtered_snapshot": "inventory/github-port-repos.json",
-        "goal_repo_family": GOAL_REPO_FAMILY,
-        "verified_repo_family": VERIFIED_REPO_FAMILY,
-    }
-    for key, expected_value in expected.items():
-        if inventory.get(key) != expected_value:
-            raise ValidatorError(f"inventory {key} mismatch: {inventory.get(key)!r}")
-    if not str(inventory.get("verified_at") or "").strip():
-        raise ValidatorError("inventory verified_at must be set")
-
-
-def verify_scope(
-    github_rows: list[dict[str, Any]],
-    filtered_rows: list[dict[str, Any]],
-    manifest: dict[str, Any],
-    *,
-    supported_libraries: set[str],
-    probe: Callable[[str, str], bool] = remote_tag_reachable,
-) -> None:
-    validate_filtered_rows(filtered_rows)
-    validate_inventory_metadata(manifest["inventory"])
-    tag_probe_rule = manifest["inventory"]["tag_probe_rule"]
-    expected_filtered = select_tagged_scope(
-        github_rows,
-        supported_libraries=supported_libraries,
-        probe=probe,
-        tag_probe_rule=tag_probe_rule,
-    )
-    if filtered_rows != expected_filtered:
-        raise ValidatorError("filtered inventory diverges from the live tagged subset")
-
-    manifest_names = [entry["name"] for entry in manifest["repositories"]]
-    filtered_names = [row["library"] for row in filtered_rows]
-    if manifest_names != filtered_names:
-        raise ValidatorError("manifest repositories diverge from filtered inventory order")
-
-    filtered_by_library = {row["library"]: row for row in filtered_rows}
-    for entry in manifest["repositories"]:
-        expected_row = filtered_by_library[entry["name"]]
-        if entry.get("github_repo") != expected_row["nameWithOwner"]:
-            raise ValidatorError(
-                f"{entry['name']} github_repo mismatch: {entry.get('github_repo')!r}"
-            )
-        expected_ref = tag_probe_rule.format(library=entry["name"])
-        if entry.get("ref") != expected_ref:
-            raise ValidatorError(f"{entry['name']} ref mismatch: {entry.get('ref')!r}")
-
-
-def write_manifest(path: Path, data: dict[str, Any]) -> None:
-    path.parent.mkdir(parents=True, exist_ok=True)
-    path.write_text(yaml.safe_dump(data, sort_keys=False))
-
-
-def generate_inventory(
-    github_json: Path,
-    apt_config: Path,
-    write_filtered: Path,
-    write_config: Path,
-    *,
-    verify_generated_scope: bool,
-) -> None:
-    github_rows = load_github_inventory(github_json)
-    apt_manifest = load_manifest(apt_config, require_inventory=False, require_validator=False)
-    supported_libraries = supported_library_names(apt_manifest)
-    filtered_rows = select_tagged_scope(github_rows, supported_libraries=supported_libraries)
-    manifest = merge_apt_repo_metadata(apt_manifest, filtered_rows)
-    if verify_generated_scope:
-        verify_scope(
-            github_rows,
-            filtered_rows,
-            manifest,
-            supported_libraries=supported_libraries,
-        )
-    write_json(write_filtered, filtered_rows)
-    write_manifest(write_config, manifest)
-
-
-def check_remote_tags(config: Path) -> None:
-    manifest = load_manifest(config)
-    tag_probe_rule = manifest["inventory"]["tag_probe_rule"]
-    failures: list[str] = []
-    for entry in manifest["repositories"]:
-        library = entry["name"]
-        expected_ref = tag_probe_rule.format(library=library)
-        if entry["ref"] != expected_ref:
-            failures.append(f"{library} ref mismatch: {entry['ref']!r}")
-            continue
-        if not remote_tag_reachable(entry["github_repo"], expected_ref):
-            failures.append(f"{library} missing remote tag: {expected_ref}")
-    if failures:
-        raise ValidatorError("\n".join(failures))
 
 
 def build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser()
-    parser.add_argument("--github-json", type=Path)
-    parser.add_argument("--apt-config", type=Path)
-    parser.add_argument("--write-filtered", type=Path)
-    parser.add_argument("--write-config", type=Path)
-    parser.add_argument("--verify-scope", action="store_true")
-    parser.add_argument("--config", type=Path)
-    parser.add_argument("--check-remote-tags", action="store_true")
+    parser.add_argument("--config", required=True, type=Path)
     return parser
 
 
 def main(argv: list[str] | None = None) -> int:
     args = build_parser().parse_args(argv)
-    if args.check_remote_tags:
-        if args.config is None:
-            raise ValidatorError("--config is required with --check-remote-tags")
-        check_remote_tags(args.config)
-        return 0
-
-    required = [
-        ("--github-json", args.github_json),
-        ("--apt-config", args.apt_config),
-        ("--write-filtered", args.write_filtered),
-        ("--write-config", args.write_config),
-    ]
-    missing = [flag for flag, value in required if value is None]
-    if missing:
-        raise ValidatorError(f"missing required arguments: {', '.join(missing)}")
-    generate_inventory(
-        args.github_json,
-        args.apt_config,
-        args.write_filtered,
-        args.write_config,
-        verify_generated_scope=args.verify_scope,
-    )
+    load_manifest(args.config)
     return 0
 
 

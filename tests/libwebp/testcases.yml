@@ -1,0 +1,12 @@
+schema_version: 1
+library: libwebp
+apt_packages:
+  - libwebp7
+  - libwebpdemux2
+  - libwebpmux3
+  - libwebpdecoder3
+  - libsharpyuv0
+  - libwebp-dev
+  - libsharpyuv-dev
+  - webp
+testcases: []

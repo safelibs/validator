@@ -1,0 +1,8 @@
+schema_version: 1
+library: libxml
+apt_packages:
+  - libxml2
+  - libxml2-dev
+  - libxml2-utils
+  - python3-libxml2
+testcases: []

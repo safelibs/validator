@@ -1,0 +1,8 @@
+schema_version: 1
+library: libtiff
+apt_packages:
+  - libtiff6
+  - libtiffxx6
+  - libtiff-dev
+  - libtiff-tools
+testcases: []

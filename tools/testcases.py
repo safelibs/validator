@@ -13,7 +13,7 @@ import yaml
 if __package__ in {None, ""}:
     sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
-from tools import ValidatorError, select_repositories
+from tools import ValidatorError, select_libraries
 from tools.inventory import load_manifest
 
 
@@ -327,36 +327,51 @@ def load_testcase_manifest(path: Path, *, library: str) -> TestcaseManifest:
     )
 
 
-def _repository_apt_packages(entry: dict[str, Any]) -> tuple[str, ...]:
-    packages = entry.get("verify_packages")
+def _library_apt_packages(entry: dict[str, Any]) -> tuple[str, ...]:
+    packages = entry.get("apt_packages")
     if not isinstance(packages, list) or not packages:
-        raise ValidatorError(f"{entry.get('name', '<unknown>')} must define non-empty verify_packages")
+        raise ValidatorError(f"{entry.get('name', '<unknown>')} must define non-empty apt_packages")
     normalized: list[str] = []
     for package in packages:
         if not isinstance(package, str) or not package.strip():
-            raise ValidatorError(f"{entry.get('name', '<unknown>')} verify_packages must be non-empty strings")
+            raise ValidatorError(f"{entry.get('name', '<unknown>')} apt_packages must be non-empty strings")
         normalized.append(package.strip())
     return tuple(normalized)
 
 
-def load_manifests(config: dict[str, Any], *, tests_root: Path) -> dict[str, TestcaseManifest]:
-    loaded: dict[str, TestcaseManifest] = {}
-    repositories = config.get("repositories")
-    if not isinstance(repositories, list) or not repositories:
-        raise ValidatorError("config must define repositories")
+def _manifest_path_for(entry: dict[str, Any], *, tests_root: Path) -> Path:
+    raw_path = _require_non_empty_string(entry.get("testcases"), field_name="testcases", path=tests_root)
+    path = Path(raw_path)
+    if path.is_absolute():
+        return path
+    if path.parts and path.parts[0] == tests_root.name:
+        return Path(__file__).resolve().parents[1] / path
+    return tests_root / path
 
-    for entry in repositories:
+
+def load_manifests(
+    config: dict[str, Any],
+    *,
+    tests_root: Path,
+    require_testcases: bool = True,
+) -> dict[str, TestcaseManifest]:
+    loaded: dict[str, TestcaseManifest] = {}
+    libraries = config.get("libraries")
+    if not isinstance(libraries, list) or not libraries:
+        raise ValidatorError("config must define libraries")
+
+    for entry in libraries:
         if not isinstance(entry, dict):
-            raise ValidatorError("config repositories must be mappings")
-        library = _require_non_empty_string(entry.get("name"), field_name="repository name", path=tests_root)
-        manifest = load_testcase_manifest(tests_root / library / "testcases.yml", library=library)
-        expected_packages = _repository_apt_packages(entry)
+            raise ValidatorError("config libraries must be mappings")
+        library = _require_non_empty_string(entry.get("name"), field_name="library name", path=tests_root)
+        manifest = load_testcase_manifest(_manifest_path_for(entry, tests_root=tests_root), library=library)
+        expected_packages = _library_apt_packages(entry)
         if manifest.apt_packages != expected_packages:
             raise ValidatorError(
                 f"apt_packages mismatch for {library}: testcase manifest has {list(manifest.apt_packages)!r}, "
                 f"repositories.yml has {list(expected_packages)!r}"
             )
-        if not manifest.testcases:
+        if require_testcases and not manifest.testcases:
             raise ValidatorError(f"selected library has zero testcases: {library}")
         loaded[library] = manifest
     return loaded
@@ -383,23 +398,15 @@ def main(argv: list[str] | None = None) -> int:
         raise ValidatorError("one of --check or --check-manifest-only is required")
 
     config = load_manifest(args.config)
-    selected = select_repositories(config, args.library)
+    selected = select_libraries(config, args.library)
     selected_config = dict(config)
-    selected_config["repositories"] = selected
+    selected_config["libraries"] = selected
 
     if args.check:
         load_manifests(selected_config, tests_root=args.tests_root)
         return 0
 
-    for entry in selected:
-        library = _require_non_empty_string(entry.get("name"), field_name="repository name", path=args.tests_root)
-        manifest = load_testcase_manifest(args.tests_root / library / "testcases.yml", library=library)
-        expected_packages = _repository_apt_packages(entry)
-        if manifest.apt_packages != expected_packages:
-            raise ValidatorError(
-                f"apt_packages mismatch for {library}: testcase manifest has {list(manifest.apt_packages)!r}, "
-                f"repositories.yml has {list(expected_packages)!r}"
-            )
+    load_manifests(selected_config, tests_root=args.tests_root, require_testcases=False)
     return 0
 
 

@@ -21,12 +21,12 @@ import uuid
 from dataclasses import dataclass, field
 from datetime import datetime, timezone
 from pathlib import Path
-from typing import Iterable, TextIO
+from typing import TextIO
 
 if __package__ in {None, ""}:
     sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
-from tools import ValidatorError, ensure_parent, select_repositories, write_json
+from tools import ValidatorError, ensure_parent, select_libraries, write_json
 from tools.inventory import load_manifest
 from tools.testcases import Testcase, TestcaseManifest, load_manifests
 
@@ -84,10 +84,6 @@ class RunOutcome:
 
 def iso_utc_now() -> str:
     return datetime.now(timezone.utc).replace(microsecond=0).isoformat().replace("+00:00", "Z")
-
-
-def dedupe(values: Iterable[str]) -> list[str]:
-    return list(dict.fromkeys(values))
 
 
 def artifact_relative_path(path: Path, artifact_root: Path) -> str:
@@ -752,7 +748,6 @@ def parse_args(argv: list[str] | None = None) -> MatrixArgs:
     mode = str(namespace.mode)
     if mode != "original":
         raise ValidatorError("--mode accepts only 'original' during the original-only runner phase")
-    libraries = dedupe(namespace.library or [])
     return MatrixArgs(
         config=namespace.config,
         tests_root=namespace.tests_root,
@@ -760,7 +755,7 @@ def parse_args(argv: list[str] | None = None) -> MatrixArgs:
         override_deb_root=namespace.override_deb_root,
         mode=mode,
         record_casts=namespace.record_casts,
-        library=libraries or None,
+        library=namespace.library or None,
         list_libraries=namespace.list_libraries,
     )
 
@@ -768,7 +763,7 @@ def parse_args(argv: list[str] | None = None) -> MatrixArgs:
 def main(argv: list[str] | None = None) -> int:
     args = parse_args(argv)
     manifest = load_manifest(args.config)
-    selected = select_repositories(manifest, args.library)
+    selected = select_libraries(manifest, args.library)
     libraries = [validate_library_name(str(entry["name"])) for entry in selected]
 
     if args.list_libraries:
@@ -777,7 +772,7 @@ def main(argv: list[str] | None = None) -> int:
         return 0
 
     selected_manifest = dict(manifest)
-    selected_manifest["repositories"] = selected
+    selected_manifest["libraries"] = selected
     testcase_manifests = load_manifests(selected_manifest, tests_root=args.tests_root)
 
     override_deb_dirs: dict[str, Path | None] = {library: None for library in libraries}

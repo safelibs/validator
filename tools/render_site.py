@@ -29,11 +29,12 @@ REQUIRED_RESULT_FIELDS = {
 }
 
 
-def result_sort_key(result: dict[str, Any]) -> tuple[str, int, str]:
+def result_sort_key(result: dict[str, Any]) -> tuple[str, int, str, str]:
     return (
         str(result["library"]),
         MODE_ORDER.get(str(result["mode"]), 99),
         str(result["mode"]),
+        str(result.get("testcase_id") or ""),
     )
 
 
@@ -65,6 +66,8 @@ def load_results(results_root: Path, *, artifacts_root: Path) -> list[dict[str, 
 
     results: list[dict[str, Any]] = []
     for path in sorted(results_root.glob("*/*.json")):
+        if path.name == "summary.json":
+            continue
         payload = json.loads(path.read_text())
         if not REQUIRED_RESULT_FIELDS <= set(payload):
             raise ValidatorError(f"result schema mismatch in {path}: {sorted(payload)}")
@@ -108,9 +111,35 @@ def load_proof(proof_path: Path, *, artifacts_root: Path, output_root: Path) -> 
     libraries = site_proof.get("libraries")
     if not isinstance(libraries, list):
         raise ValidatorError(f"proof manifest must contain libraries list: {proof_path}")
+    proof_version = site_proof.get("proof_version")
     for library_entry in libraries:
         if not isinstance(library_entry, dict):
             raise ValidatorError(f"proof library entries must be objects: {proof_path}")
+        if proof_version == 2:
+            cases = library_entry.get("cases")
+            if not isinstance(cases, list):
+                raise ValidatorError(f"proof v2 library entries must contain cases: {proof_path}")
+            for case_entry in cases:
+                if not isinstance(case_entry, dict):
+                    raise ValidatorError(f"proof v2 cases must be objects: {proof_path}")
+                cast_path = case_entry.get("cast_path")
+                if cast_path is None:
+                    continue
+                cast_target = validate_artifact_relative_path(
+                    cast_path,
+                    field_name="cast_path",
+                    artifacts_root=artifacts_root,
+                    source_path=proof_path,
+                )
+                assert cast_target is not None
+                if not cast_target.is_file():
+                    raise ValidatorError(f"proof cast_path does not exist: {cast_path}")
+                case_entry["cast_href"] = relative_href(
+                    output_root=output_root,
+                    artifacts_root=artifacts_root,
+                    relative_path=cast_path,
+                )
+            continue
         for mode in ("original", "safe"):
             mode_entry = library_entry.get(mode)
             if not isinstance(mode_entry, dict):
@@ -152,6 +181,37 @@ def _filter_results_for_proof(
         for result in results
         if str(result.get("library")) in included_set
     ]
+    if proof_data.get("proof_version") == 2:
+        proof_libraries = proof_data.get("libraries")
+        if not isinstance(proof_libraries, list):
+            raise ValidatorError("proof libraries must be a list")
+        expected_keys: set[tuple[str, str]] = set()
+        for library_entry in proof_libraries:
+            if not isinstance(library_entry, dict):
+                raise ValidatorError("proof library entries must be objects")
+            library = str(library_entry.get("library") or "")
+            cases = library_entry.get("cases")
+            if library not in included_set or not isinstance(cases, list):
+                continue
+            for case_entry in cases:
+                if not isinstance(case_entry, dict) or not isinstance(case_entry.get("testcase_id"), str):
+                    raise ValidatorError("proof case entries must contain testcase_id")
+                expected_keys.add((library, str(case_entry["testcase_id"])))
+        row_keys = [
+            (str(result.get("library")), str(result.get("testcase_id") or ""))
+            for result in filtered
+        ]
+        actual_keys = set(row_keys)
+        duplicates = sorted(key for key in actual_keys if row_keys.count(key) > 1)
+        if duplicates:
+            raise ValidatorError(f"duplicate result rows for proof cases: {duplicates}")
+        if actual_keys != expected_keys:
+            raise ValidatorError(
+                f"result rows must cover exactly proof cases: "
+                f"expected {sorted(expected_keys)}, found {sorted(actual_keys)}"
+            )
+        return sorted(filtered, key=result_sort_key)
+
     row_keys = [(str(result.get("library")), str(result.get("mode"))) for result in filtered]
     expected_keys = {(library, mode) for library in included for mode in MODE_ORDER}
     actual_keys = set(row_keys)
@@ -192,7 +252,69 @@ def render_index(site_rows: list[dict[str, Any]], proof_data: dict[str, Any] | N
         )
 
     proof_section: list[str] = []
-    if proof_data is not None:
+    if proof_data is not None and proof_data.get("proof_version") == 2:
+        totals = proof_data.get("totals", {})
+        proof_summary = [
+            '        <div class="summary proof-summary">',
+            f'          <div class="summary-card" data-proof-total="included_libraries"><strong>{html.escape(str(totals.get("included_libraries", "")))}</strong><span>Included libraries</span></div>',
+            f'          <div class="summary-card" data-proof-total="excluded_libraries"><strong>{html.escape(str(totals.get("excluded_libraries", "")))}</strong><span>Excluded libraries</span></div>',
+            f'          <div class="summary-card" data-proof-total="cases"><strong>{html.escape(str(totals.get("cases", "")))}</strong><span>Cases</span></div>',
+            f'          <div class="summary-card" data-proof-total="passed"><strong>{html.escape(str(totals.get("passed", "")))}</strong><span>Passed</span></div>',
+            f'          <div class="summary-card" data-proof-total="failed"><strong>{html.escape(str(totals.get("failed", "")))}</strong><span>Failed</span></div>',
+            f'          <div class="summary-card" data-proof-total="casts"><strong>{html.escape(str(totals.get("casts", "")))}</strong><span>Casts</span></div>',
+            "        </div>",
+        ]
+        proof_rows: list[str] = []
+        for library_entry in proof_data.get("libraries", []):
+            library = str(library_entry["library"])
+            cases = library_entry.get("cases", [])
+            case_count = len(cases) if isinstance(cases, list) else 0
+            passed_cases = sum(1 for case in cases if isinstance(case, dict) and case.get("status") == "passed")
+            failed_cases = sum(1 for case in cases if isinstance(case, dict) and case.get("status") == "failed")
+            cast_count = sum(1 for case in cases if isinstance(case, dict) and case.get("cast_path") is not None)
+            proof_rows.append(
+                "\n".join(
+                    [
+                        f'      <tr data-proof-library="{html.escape(library)}">',
+                        f"        <td>{html.escape(library)}</td>",
+                        f"        <td>{case_count}</td>",
+                        f'        <td class="status status-passed">{passed_cases}</td>',
+                        f'        <td class="status status-failed">{failed_cases}</td>',
+                        f"        <td>{cast_count}</td>",
+                        "      </tr>",
+                    ]
+                )
+            )
+        exclusion_rows: list[str] = []
+        for exclusion in proof_data.get("excluded_libraries", []):
+            library = str(exclusion["library"])
+            note = str(exclusion["note"])
+            exclusion_rows.append(
+                f'      <p data-proof-excluded-library="{html.escape(library)}">'
+                f'<strong>{html.escape(library)}</strong>: {html.escape(note)}</p>'
+            )
+        proof_section = [
+            '      <section class="proof">',
+            "        <h2>Proof</h2>",
+            *proof_summary,
+            "        <table>",
+            "          <thead>",
+            "            <tr>",
+            "              <th>Library</th>",
+            "              <th>Cases</th>",
+            "              <th>Passed</th>",
+            "              <th>Failed</th>",
+            "              <th>Casts</th>",
+            "            </tr>",
+            "          </thead>",
+            "          <tbody>",
+            *proof_rows,
+            "          </tbody>",
+            "        </table>",
+            *exclusion_rows,
+            "      </section>",
+        ]
+    elif proof_data is not None:
         totals = proof_data.get("totals", {})
         report_formats = totals.get("report_formats", [])
         if isinstance(report_formats, list):
@@ -356,6 +478,10 @@ def build_site_rows(results: list[dict[str, Any]], *, output_root: Path, artifac
             {
                 "library": str(result["library"]),
                 "mode": str(result["mode"]),
+                "testcase_id": result.get("testcase_id"),
+                "title": result.get("title"),
+                "kind": result.get("kind"),
+                "apt_packages": result.get("apt_packages"),
                 "status": str(result["status"]),
                 "log_path": log_path,
                 "cast_path": cast_path,

@@ -7,6 +7,7 @@ import unittest
 from pathlib import Path
 
 from tools import ValidatorError
+from tools import inventory
 from tools import proof
 from tools import render_site
 from tools import write_json
@@ -46,7 +47,7 @@ class RenderSiteTests(unittest.TestCase):
                 {
                     "library": library,
                     "mode": mode,
-                    "execution_strategy": "host-harness",
+                    "execution_strategy": "container-image",
                     "status": status,
                     "started_at": "2026-04-12T00:00:00Z",
                     "finished_at": "2026-04-12T00:00:01Z",
@@ -97,28 +98,25 @@ class RenderSiteTests(unittest.TestCase):
             cast_path=f"casts/{library}/safe.cast",
         )
 
-    def manifest(self, libraries: list[str]) -> dict[str, object]:
+    def manifest(self) -> dict[str, object]:
         return {
-            "archive": {"image": "ubuntu:24.04"},
-            "inventory": {"verified_at": "2026-04-12T00:00:00Z"},
-            "repositories": [
+            "schema_version": 2,
+            "suite": {
+                "name": "ubuntu-24.04-original-apt",
+                "image": "ubuntu:24.04",
+                "apt_suite": "noble",
+            },
+            "libraries": [
                 {
                     "name": library,
-                    "github_repo": f"safelibs/port-{library}",
-                    "ref": f"refs/tags/{library}/04-test",
-                    "build": {"mode": "safe-debian", "artifact_globs": ["*.deb"]},
-                    "validator": {
-                        "sibling_repo": f"port-{library}",
-                        "execution_strategy": "host-harness",
-                        "imports": ["safe"],
-                        "import_excludes": [],
-                    },
+                    "apt_packages": list(inventory.CANONICAL_APT_PACKAGES[library]),
+                    "testcases": f"tests/{library}/testcases.yml",
+                    "source_snapshot": f"tests/{library}/tests/tagged-port/original",
                     "fixtures": {
-                        "dependents": {"source": "copy-staged-root"},
-                        "relevant_cves": {"source": "copy-staged-root"},
+                        "dependents": f"tests/{library}/tests/fixtures/dependents.json",
                     },
                 }
-                for library in libraries
+                for library in inventory.LIBRARY_ORDER
             ],
         }
 
@@ -126,7 +124,7 @@ class RenderSiteTests(unittest.TestCase):
         import yaml
 
         manifest_path = self.root / "manifest.yml"
-        manifest_path.write_text(yaml.safe_dump(self.manifest(libraries), sort_keys=False))
+        manifest_path.write_text(yaml.safe_dump(self.manifest(), sort_keys=False))
         return manifest_path
 
     def write_proof(
@@ -136,8 +134,9 @@ class RenderSiteTests(unittest.TestCase):
         excluded_libraries: dict[str, str] | None = None,
     ) -> Path:
         proof_data = proof.build_proof(
-            self.manifest(libraries),
+            self.manifest(),
             artifact_root=self.artifacts_root,
+            libraries=libraries,
             excluded_libraries=excluded_libraries,
         )
         proof_path = self.artifacts_root / "proof" / "validator-proof.json"
@@ -344,23 +343,23 @@ class RenderSiteTests(unittest.TestCase):
 
     def test_verify_site_rejects_traversal_paths(self) -> None:
         repo_root = Path(__file__).resolve().parents[1]
-        manifest_path = self.write_manifest(["demo"])
-        self.write_summary(library="demo", mode="original")
-        self.write_summary(library="demo", mode="safe")
+        manifest_path = self.write_manifest(["cjson"])
+        self.write_summary(library="cjson", mode="original")
+        self.write_summary(library="cjson", mode="safe")
         self.write_result(
-            library="demo",
+            library="cjson",
             mode="original",
             status="passed",
-            log_path="logs/demo/original.log",
+            log_path="logs/cjson/original.log",
             cast_path=None,
         )
 
-        target = self.results_root / "demo" / "safe.json"
+        target = self.results_root / "cjson" / "safe.json"
         target.parent.mkdir(parents=True, exist_ok=True)
         target.write_text(
             json.dumps(
                 {
-                    "library": "demo",
+                    "library": "cjson",
                     "mode": "safe",
                     "status": "passed",
                     "started_at": "2026-04-12T00:00:00Z",
@@ -370,7 +369,7 @@ class RenderSiteTests(unittest.TestCase):
                     "log_path": "../../../etc/hosts",
                     "cast_path": None,
                     "exit_code": 0,
-                    "downstream_summary_path": "downstream/demo/safe/summary.json",
+                    "downstream_summary_path": "downstream/cjson/safe/summary.json",
                 }
             )
         )
@@ -379,7 +378,7 @@ class RenderSiteTests(unittest.TestCase):
             proof_path,
             {
                 "proof_version": 1,
-                "included_libraries": ["demo"],
+                "included_libraries": ["cjson"],
                 "excluded_libraries": [],
                 "totals": {},
                 "libraries": [],
@@ -393,7 +392,7 @@ class RenderSiteTests(unittest.TestCase):
                 {
                     "results": [
                         {
-                            "library": "demo",
+                            "library": "cjson",
                             "mode": "safe",
                             "status": "passed",
                             "log_path": "../../../etc/hosts",
@@ -404,7 +403,7 @@ class RenderSiteTests(unittest.TestCase):
                     ],
                     "proof": {
                         "proof_version": 1,
-                        "included_libraries": ["demo"],
+                        "included_libraries": ["cjson"],
                         "excluded_libraries": [],
                         "totals": {},
                         "libraries": [],
@@ -412,7 +411,7 @@ class RenderSiteTests(unittest.TestCase):
                 }
             )
         )
-        (site_root / "index.html").write_text('<tr data-library="demo" data-mode="safe"></tr>\n')
+        (site_root / "index.html").write_text('<tr data-library="cjson" data-mode="safe"></tr>\n')
 
         completed = subprocess.run(
             [
@@ -439,9 +438,9 @@ class RenderSiteTests(unittest.TestCase):
         self.assertIn("artifact-root-relative", completed.stderr + completed.stdout)
 
     def test_verify_site_accepts_explicit_artifacts_root(self) -> None:
-        self.write_complete_library("demo")
-        manifest_path = self.write_manifest(["demo"])
-        proof_path = self.write_proof(["demo"])
+        self.write_complete_library("cjson")
+        manifest_path = self.write_manifest(["cjson"])
+        proof_path = self.write_proof(["cjson"])
 
         site_root = self.root / "site"
         render_site.main(
@@ -467,28 +466,28 @@ class RenderSiteTests(unittest.TestCase):
 
     def test_render_site_includes_proof_data_and_hosted_exclusions(self) -> None:
         _, proof_path, site_root = self.render_with_proof(
-            ["alpha", "beta"],
-            excluded_libraries={"beta": "hosted beta exclusion"},
+            ["cjson", "giflib"],
+            excluded_libraries={"giflib": "hosted giflib exclusion"},
         )
 
         site_data = json.loads((site_root / "site-data.json").read_text())
         self.assertEqual(set(site_data), {"results", "proof"})
         self.assertEqual(
             [(row["library"], row["mode"]) for row in site_data["results"]],
-            [("alpha", "original"), ("alpha", "safe")],
+            [("cjson", "original"), ("cjson", "safe")],
         )
-        self.assertEqual(site_data["proof"]["included_libraries"], ["alpha"])
+        self.assertEqual(site_data["proof"]["included_libraries"], ["cjson"])
         self.assertEqual(
             site_data["proof"]["excluded_libraries"],
-            [{"library": "beta", "note": "hosted beta exclusion"}],
+            [{"library": "giflib", "note": "hosted giflib exclusion"}],
         )
         safe_entry = site_data["proof"]["libraries"][0]["safe"]
-        self.assertEqual(safe_entry["cast_href"], "../artifacts/casts/alpha/safe.cast")
+        self.assertEqual(safe_entry["cast_href"], "../artifacts/casts/cjson/safe.cast")
         self.assertTrue((site_root / safe_entry["cast_href"]).resolve().is_file())
 
         html_text = (site_root / "index.html").read_text()
-        self.assertIn('data-proof-library="alpha"', html_text)
-        self.assertIn('data-proof-excluded-library="beta"', html_text)
+        self.assertIn('data-proof-library="cjson"', html_text)
+        self.assertIn('data-proof-excluded-library="giflib"', html_text)
         self.assertIn('data-proof-total="included_libraries"', html_text)
         self.assertIn("<strong>1</strong><span>Included libraries</span>", html_text)
         self.assertIn('data-proof-total="excluded_libraries"', html_text)
@@ -503,13 +502,13 @@ class RenderSiteTests(unittest.TestCase):
         self.assertIn("<strong>4</strong><span>Total workloads</span>", html_text)
         self.assertIn('data-proof-total="report_formats"', html_text)
         self.assertIn("Report formats: imported-log-marker", html_text)
-        self.assertIn("hosted beta exclusion", html_text)
-        self.assertNotIn('data-library="beta"', html_text)
-        self.assertIn("../artifacts/casts/alpha/safe.cast", html_text)
+        self.assertIn("hosted giflib exclusion", html_text)
+        self.assertNotIn('data-library="giflib"', html_text)
+        self.assertIn("../artifacts/casts/cjson/safe.cast", html_text)
         self.assertTrue(proof_path.is_file())
 
     def test_verify_site_rejects_proof_path_traversal(self) -> None:
-        manifest_path, _, site_root = self.render_with_proof(["alpha"])
+        manifest_path, _, site_root = self.render_with_proof(["cjson"])
         outside_proof = self.root / "outside-proof.json"
         outside_proof.write_text("{}\n")
 
@@ -524,17 +523,17 @@ class RenderSiteTests(unittest.TestCase):
 
     def test_verify_site_rejects_malformed_or_duplicate_excluded_entries(self) -> None:
         manifest_path, proof_path, site_root = self.render_with_proof(
-            ["alpha", "beta"],
-            excluded_libraries={"beta": "hosted beta exclusion"},
+            ["cjson", "giflib"],
+            excluded_libraries={"giflib": "hosted giflib exclusion"},
         )
 
         original = json.loads(proof_path.read_text())
         for excluded_libraries, message in (
-            ([{"library": "beta"}], "malformed excluded library entry"),
+            ([{"library": "giflib"}], "malformed excluded library entry"),
             (
                 [
-                    {"library": "beta", "note": "one"},
-                    {"library": "beta", "note": "two"},
+                    {"library": "giflib", "note": "one"},
+                    {"library": "giflib", "note": "two"},
                 ],
                 "duplicate excluded library entry",
             ),
@@ -555,7 +554,7 @@ class RenderSiteTests(unittest.TestCase):
         write_json(proof_path, original)
 
     def test_verify_site_rejects_missing_or_altered_proof_rows(self) -> None:
-        manifest_path, proof_path, site_root = self.render_with_proof(["alpha"])
+        manifest_path, proof_path, site_root = self.render_with_proof(["cjson"])
         site_data_path = site_root / "site-data.json"
         original_site_data = json.loads(site_data_path.read_text())
 
@@ -585,7 +584,7 @@ class RenderSiteTests(unittest.TestCase):
         write_json(site_data_path, original_site_data)
 
     def test_verify_site_rejects_missing_proof_totals_in_html(self) -> None:
-        manifest_path, proof_path, site_root = self.render_with_proof(["alpha"])
+        manifest_path, proof_path, site_root = self.render_with_proof(["cjson"])
         index_path = site_root / "index.html"
         html_text = index_path.read_text()
         index_path.write_text(
@@ -603,14 +602,14 @@ class RenderSiteTests(unittest.TestCase):
         self.assertIn("missing proof total marker", completed.stderr + completed.stdout)
 
     def test_verify_site_rejects_changed_result_hrefs(self) -> None:
-        manifest_path, proof_path, site_root = self.render_with_proof(["alpha"])
+        manifest_path, proof_path, site_root = self.render_with_proof(["cjson"])
         site_data_path = site_root / "site-data.json"
         original_site_data = json.loads(site_data_path.read_text())
 
         for row_index, field_name in ((0, "log_href"), (1, "cast_href")):
             with self.subTest(field_name=field_name):
                 site_data = json.loads(json.dumps(original_site_data))
-                site_data["results"][row_index][field_name] = "../artifacts/logs/alpha/wrong.log"
+                site_data["results"][row_index][field_name] = "../artifacts/logs/cjson/wrong.log"
                 write_json(site_data_path, site_data)
 
                 completed = self.run_verify_site(
@@ -625,20 +624,20 @@ class RenderSiteTests(unittest.TestCase):
 
     def test_verify_site_rejects_stale_excluded_result_rows(self) -> None:
         manifest_path, proof_path, site_root = self.render_with_proof(
-            ["alpha", "beta"],
-            excluded_libraries={"beta": "hosted beta exclusion"},
+            ["cjson", "giflib"],
+            excluded_libraries={"giflib": "hosted giflib exclusion"},
         )
         site_data_path = site_root / "site-data.json"
         site_data = json.loads(site_data_path.read_text())
         site_data["results"].append(
             {
-                "library": "beta",
+                "library": "giflib",
                 "mode": "safe",
                 "status": "passed",
-                "log_path": "logs/beta/safe.log",
-                "cast_path": "casts/beta/safe.cast",
-                "log_href": "../artifacts/logs/beta/safe.log",
-                "cast_href": "../artifacts/casts/beta/safe.cast",
+                "log_path": "logs/giflib/safe.log",
+                "cast_path": "casts/giflib/safe.cast",
+                "log_href": "../artifacts/logs/giflib/safe.log",
+                "cast_href": "../artifacts/casts/giflib/safe.cast",
             }
         )
         write_json(site_data_path, site_data)

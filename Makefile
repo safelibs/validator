@@ -1,33 +1,30 @@
 PYTHON ?= python3
 CONFIG ?= repositories.yml
-APT_CONFIG ?= /home/yans/safelibs/apt-repo/repositories.yml
-WORKSPACE ?= .work
-DEST_ROOT ?= $(WORKSPACE)/ports
-RAW_INVENTORY ?= inventory/github-repo-list.json
-FILTERED_INVENTORY ?= inventory/github-port-repos.json
-DEST ?= .
+TESTS_ROOT ?= tests
+ARTIFACT_ROOT ?= artifacts
+SITE_ROOT ?= site
+PROOF_OUTPUT ?= proof/validator-proof.json
 
-.PHONY: unit inventory stage-ports build-safe import-assets clean
+.PHONY: unit check-testcases matrix proof site verify-site clean
 
 unit:
 	$(PYTHON) -m unittest discover -s unit -v
 
-inventory:
-	mkdir -p inventory
-	if [ -n "$${GH_TOKEN:-}" ]; then export GH_TOKEN; elif [ -n "$${SAFELIBS_REPO_TOKEN:-}" ]; then export GH_TOKEN="$$SAFELIBS_REPO_TOKEN"; else unset GH_TOKEN || true; fi; gh repo list safelibs --limit 200 --json name,nameWithOwner,isPrivate,url,defaultBranchRef > $(RAW_INVENTORY)
-	$(PYTHON) tools/inventory.py --github-json $(RAW_INVENTORY) --apt-config $(APT_CONFIG) --write-filtered $(FILTERED_INVENTORY) --write-config $(CONFIG) --verify-scope
+check-testcases:
+	$(PYTHON) tools/testcases.py --config $(CONFIG) --tests-root $(TESTS_ROOT) --check-manifest-only
 
-stage-ports:
-	$(PYTHON) tools/stage_port_repos.py --config $(CONFIG) --workspace $(WORKSPACE) --dest-root $(DEST_ROOT) $(if $(SOURCE_ROOT),--source-root $(SOURCE_ROOT),) $(if $(LIBRARIES),--libraries $(LIBRARIES),)
+matrix:
+	bash test.sh --config $(CONFIG) --tests-root $(TESTS_ROOT) --artifact-root $(ARTIFACT_ROOT) $(if $(LIBRARY),--library $(LIBRARY),) $(if $(RECORD_CASTS),--record-casts,)
 
-build-safe:
-	@test -n "$(LIBRARY)" || (echo "LIBRARY is required" >&2; exit 1)
-	$(PYTHON) tools/build_safe_debs.py --config $(CONFIG) --library $(LIBRARY) --port-root $(DEST_ROOT) --workspace $(WORKSPACE) --output $(WORKSPACE)/debs/$(LIBRARY)
+proof:
+	$(PYTHON) tools/verify_proof_artifacts.py --config $(CONFIG) --tests-root $(TESTS_ROOT) --artifact-root $(ARTIFACT_ROOT) --proof-output $(PROOF_OUTPUT) $(if $(LIBRARY),--library $(LIBRARY),) $(if $(RECORD_CASTS),--record-casts,)
 
-import-assets:
-	@test -n "$(LIBRARY)" || (echo "LIBRARY is required" >&2; exit 1)
-	$(PYTHON) tools/import_port_assets.py --config $(CONFIG) --library $(LIBRARY) --port-root $(DEST_ROOT) --workspace $(WORKSPACE) --dest-root $(DEST)
+site:
+	$(PYTHON) tools/render_site.py --results-root $(ARTIFACT_ROOT)/results --artifacts-root $(ARTIFACT_ROOT) --proof-path $(ARTIFACT_ROOT)/$(PROOF_OUTPUT) --output-root $(SITE_ROOT)
+
+verify-site:
+	bash scripts/verify-site.sh --config $(CONFIG) --results-root $(ARTIFACT_ROOT)/results --artifacts-root $(ARTIFACT_ROOT) --proof-path $(ARTIFACT_ROOT)/$(PROOF_OUTPUT) --tests-root $(TESTS_ROOT) --site-root $(SITE_ROOT)
 
 clean:
-	rm -rf $(WORKSPACE)
+	rm -rf .work $(ARTIFACT_ROOT) $(SITE_ROOT)
 	find . -name __pycache__ -type d -prune -exec rm -rf {} +

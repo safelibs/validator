@@ -7,12 +7,7 @@ from typing import Any
 
 import yaml
 
-from tools.inventory import (
-    GH_REPO_LIST_COMMAND,
-    GOAL_REPO_FAMILY,
-    TAG_PROBE_RULE,
-    VERIFIED_REPO_FAMILY,
-)
+from tools.inventory import CANONICAL_APT_PACKAGES, LIBRARY_ORDER
 
 
 def run_git(
@@ -53,90 +48,53 @@ def commit_all(repo_root: Path, message: str = "commit") -> None:
 
 def archive_config() -> dict[str, Any]:
     return {
-        "suite": "noble",
-        "component": "main",
-        "origin": "SafeLibs",
-        "label": "SafeLibs",
-        "description": "Test repo for Ubuntu 24.04",
-        "homepage": "https://example.invalid/project",
-        "base_url": "https://example.invalid/validator/",
-        "key_name": "safelibs",
+        "name": "ubuntu-24.04-original-apt",
         "image": "ubuntu:24.04",
-        "install_packages": [
-            "ca-certificates",
-            "git",
-            "python3",
-        ],
+        "apt_suite": "noble",
     }
 
 
 def inventory_config() -> dict[str, Any]:
-    return {
-        "verified_at": "2026-04-12T00:00:00Z",
-        "gh_repo_list_command": GH_REPO_LIST_COMMAND,
-        "tag_probe_rule": TAG_PROBE_RULE,
-        "raw_snapshot": "inventory/github-repo-list.json",
-        "filtered_snapshot": "inventory/github-port-repos.json",
-        "goal_repo_family": GOAL_REPO_FAMILY,
-        "verified_repo_family": VERIFIED_REPO_FAMILY,
-    }
+    return {}
 
 
 def repository_entry(
     name: str,
     *,
-    imports: list[str],
-    execution_strategy: str = "container-image",
-    build: dict[str, Any] | None = None,
-    verify_packages: list[str] | None = None,
+    apt_packages: list[str] | None = None,
 ) -> dict[str, Any]:
+    packages = apt_packages or list(CANONICAL_APT_PACKAGES.get(name, ("demo-runtime", "demo-dev")))
     entry: dict[str, Any] = {
         "name": name,
-        "github_repo": f"safelibs/port-{name}",
-        "ref": TAG_PROBE_RULE.format(library=name),
-        "build": copy.deepcopy(build or {"mode": "safe-debian", "artifact_globs": ["*.deb"]}),
-        "validator": {
-            "sibling_repo": f"port-{name}",
-            "execution_strategy": execution_strategy,
-            "imports": list(imports),
-            "import_excludes": [],
-        },
+        "apt_packages": packages,
+        "testcases": f"tests/{name}/testcases.yml",
+        "source_snapshot": f"tests/{name}/tests/tagged-port/original",
         "fixtures": {
-            "dependents": {"source": "copy-staged-root"},
-            "relevant_cves": {"source": "copy-staged-root"},
+            "dependents": f"tests/{name}/tests/fixtures/dependents.json",
         },
     }
-    if verify_packages is not None:
-        entry["verify_packages"] = list(verify_packages)
     return entry
 
 
 def host_harness_repository_entry(
     name: str,
     *,
-    imports: list[str],
-    build: dict[str, Any] | None = None,
-    verify_packages: list[str] | None = None,
+    apt_packages: list[str] | None = None,
 ) -> dict[str, Any]:
-    return repository_entry(
-        name,
-        imports=imports,
-        execution_strategy="host-harness",
-        build=build,
-        verify_packages=verify_packages,
-    )
+    return repository_entry(name, apt_packages=apt_packages)
 
 
 def write_manifest(
     path: Path,
-    repositories: list[dict[str, Any]],
+    repositories: list[dict[str, Any]] | None = None,
     *,
     archive: dict[str, Any] | None = None,
     inventory: dict[str, Any] | None = None,
 ) -> None:
+    del inventory
     data = {
-        "archive": copy.deepcopy(archive or archive_config()),
-        "inventory": copy.deepcopy(inventory or inventory_config()),
-        "repositories": copy.deepcopy(repositories),
+        "schema_version": 2,
+        "suite": copy.deepcopy(archive or archive_config()),
+        "libraries": copy.deepcopy(repositories or [repository_entry(name) for name in LIBRARY_ORDER]),
     }
     path.write_text(yaml.safe_dump(data, sort_keys=False))

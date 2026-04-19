@@ -1,0 +1,7 @@
+schema_version: 1
+library: libpng
+apt_packages:
+  - libpng16-16t64
+  - libpng-dev
+  - libpng-tools
+testcases: []

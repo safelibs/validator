@@ -1,0 +1,6 @@
+schema_version: 1
+library: libsodium
+apt_packages:
+  - libsodium23
+  - libsodium-dev
+testcases: []

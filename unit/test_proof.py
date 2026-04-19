@@ -5,15 +5,27 @@ import os
 import tempfile
 import unittest
 from pathlib import Path
+from unittest import mock
 
 from tools import ValidatorError
 from tools import proof
 from tools import verify_proof_artifacts
-from tools.inventory import load_manifest
 from tools.testcases import TestcaseManifest, load_testcase_manifest
 
 
 FIXTURES = Path(__file__).resolve().parent / "fixtures"
+
+
+def original_demo_config() -> dict[str, object]:
+    return {
+        "libraries": [
+            {
+                "name": "original-demo",
+                "apt_packages": ["demo-runtime", "demo-dev"],
+                "testcases": str(FIXTURES / "original-only-tests" / "original-demo" / "testcases.yml"),
+            }
+        ]
+    }
 
 
 class ProofTests(unittest.TestCase):
@@ -22,7 +34,7 @@ class ProofTests(unittest.TestCase):
         self.addCleanup(self.tempdir.cleanup)
         self.root = Path(self.tempdir.name)
         self.artifacts_root = self.root / "artifacts"
-        self.config = load_manifest(FIXTURES / "original-only-manifest.yml")
+        self.config = original_demo_config()
         self.tests_root = FIXTURES / "original-only-tests"
         self.case_manifest = load_testcase_manifest(
             self.tests_root / "original-demo" / "testcases.yml",
@@ -256,19 +268,20 @@ class ProofTests(unittest.TestCase):
 
     def test_cli_validates_output_paths_and_writes_proof(self) -> None:
         self.write_library()
-        exit_code = verify_proof_artifacts.main(
-            [
-                "--config",
-                str(FIXTURES / "original-only-manifest.yml"),
-                "--tests-root",
-                str(self.tests_root),
-                "--artifact-root",
-                str(self.artifacts_root),
-                "--proof-output",
-                "proof/proof.json",
-                "--record-casts",
-            ]
-        )
+        with mock.patch("tools.verify_proof_artifacts.load_manifest", return_value=self.config):
+            exit_code = verify_proof_artifacts.main(
+                [
+                    "--config",
+                    str(FIXTURES / "original-only-manifest.yml"),
+                    "--tests-root",
+                    str(self.tests_root),
+                    "--artifact-root",
+                    str(self.artifacts_root),
+                    "--proof-output",
+                    "proof/proof.json",
+                    "--record-casts",
+                ]
+            )
 
         self.assertEqual(exit_code, 0)
         proof_path = self.artifacts_root / "proof" / "proof.json"
@@ -281,18 +294,19 @@ class ProofTests(unittest.TestCase):
         for output in ("../proof.json", "proof\\bad.json", "/tmp/proof.json", "proof//bad.json", "proof/./bad.json"):
             with self.subTest(output=output):
                 with self.assertRaisesRegex(ValidatorError, "--proof-output"):
-                    verify_proof_artifacts.main(
-                        [
-                            "--config",
-                            str(FIXTURES / "original-only-manifest.yml"),
-                            "--tests-root",
-                            str(self.tests_root),
-                            "--artifact-root",
-                            str(self.artifacts_root),
-                            "--proof-output",
-                            output,
-                        ]
-                    )
+                    with mock.patch("tools.verify_proof_artifacts.load_manifest", return_value=self.config):
+                        verify_proof_artifacts.main(
+                            [
+                                "--config",
+                                str(FIXTURES / "original-only-manifest.yml"),
+                                "--tests-root",
+                                str(self.tests_root),
+                                "--artifact-root",
+                                str(self.artifacts_root),
+                                "--proof-output",
+                                output,
+                            ]
+                        )
 
     def test_duplicate_exclusions_are_rejected_before_config_load(self) -> None:
         with self.assertRaisesRegex(ValidatorError, "--exclude-library must not contain duplicates"):

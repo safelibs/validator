@@ -7,7 +7,7 @@ from datetime import datetime
 from pathlib import Path, PurePosixPath
 from typing import Any
 
-from tools import ValidatorError
+from tools import ValidatorError, select_libraries
 from tools.testcases import Testcase, TestcaseManifest, load_manifests, testcase_result_sort_key
 
 
@@ -719,29 +719,7 @@ def _selected_manifest_entries(
     *,
     libraries: list[str] | None,
 ) -> list[dict[str, Any]]:
-    repositories = manifest.get("repositories")
-    if not isinstance(repositories, list) or not repositories:
-        raise ValidatorError("manifest must define repositories")
-    manifest_names = [str(entry.get("name")) for entry in repositories if isinstance(entry, dict)]
-    if len(manifest_names) != len(repositories):
-        raise ValidatorError("manifest repositories must be mappings with names")
-
-    by_name = {name: entry for name, entry in zip(manifest_names, repositories)}
-    if len(by_name) != len(manifest_names):
-        raise ValidatorError("manifest repository names must be unique")
-
-    if libraries is None:
-        return list(repositories)
-
-    for library in libraries:
-        if not isinstance(library, str) or not library:
-            raise ValidatorError(f"library selections must be non-empty strings: {library!r}")
-    _validate_no_duplicate_strings(libraries, field_name="--library")
-    unknown = [library for library in libraries if library not in by_name]
-    if unknown:
-        raise ValidatorError(f"unknown libraries in proof selection: {', '.join(unknown)}")
-    selected_set = set(libraries)
-    return [entry for entry in repositories if str(entry["name"]) in selected_set]
+    return select_libraries(manifest, libraries)
 
 
 def _normalize_exclusions(
@@ -872,7 +850,7 @@ def build_proof(
 
     if included_entries:
         included_manifest = dict(manifest)
-        included_manifest["repositories"] = included_entries
+        included_manifest["libraries"] = included_entries
         testcase_manifests = load_manifests(included_manifest, tests_root=tests_root)
     else:
         testcase_manifests = {}

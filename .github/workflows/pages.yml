@@ -12,16 +12,9 @@ permissions:
   id-token: write
 
 jobs:
-  build:
+  validate:
     runs-on: ubuntu-24.04
-    env:
-      GH_TOKEN: ${{ github.token }}
-    outputs:
-      matrix_exit_code: ${{ steps.matrix-result.outputs.matrix_exit_code }}
     steps:
-      - name: Reset gated workspace
-        run: rm -rf .work/ports artifacts site
-
       - uses: actions/checkout@v4
 
       - name: Install host dependencies
@@ -29,103 +22,8 @@ jobs:
           sudo apt-get update
           sudo apt-get install -y --no-install-recommends python3-yaml
 
-      - name: Check remote tag reachability
-        run: |
-          python3 tools/inventory.py --config repositories.yml --check-remote-tags
+      - name: Check testcase manifests
+        run: make check-testcases
 
-      - name: Stage hosted full manifest
-        run: |
-          hosted_libraries=()
-          while IFS= read -r library; do
-            if [ "$library" != "libarchive" ]; then
-              hosted_libraries+=("$library")
-            fi
-          done < <(python3 tools/run_matrix.py --config repositories.yml --list-libraries)
-          if [ "${#hosted_libraries[@]}" -eq 0 ]; then
-            echo "no hosted libraries selected" >&2
-            exit 1
-          fi
-          printf 'Hosted full matrix excludes privileged libarchive harness.\n'
-          python3 tools/stage_port_repos.py --config repositories.yml --workspace .work --dest-root .work/ports --libraries "${hosted_libraries[@]}"
-
-      - id: matrix-result
-        name: Run full matrix
-        run: |
-          hosted_library_args=()
-          while IFS= read -r library; do
-            if [ "$library" != "libarchive" ]; then
-              hosted_library_args+=(--library "$library")
-            fi
-          done < <(python3 tools/run_matrix.py --config repositories.yml --list-libraries)
-          if [ "${#hosted_library_args[@]}" -eq 0 ]; then
-            echo "no hosted libraries selected" >&2
-            exit 1
-          fi
-          set +e
-          bash test.sh --config repositories.yml --tests-root tests --port-root .work/ports --artifact-root artifacts --mode both --record-casts "${hosted_library_args[@]}"
-          matrix_exit_code=$?
-          echo "matrix_exit_code=$matrix_exit_code" >>"$GITHUB_OUTPUT"
-          echo "matrix_exit_code=$matrix_exit_code" >>"$GITHUB_ENV"
-          exit 0
-
-      - name: Generate hosted proof
-        run: |
-          python3 tools/verify_proof_artifacts.py \
-            --config repositories.yml \
-            --artifact-root artifacts \
-            --exclude-library libarchive \
-            --exclude-note 'libarchive requires a privileged local FUSE host and is verified outside hosted Pages' \
-            --proof-output artifacts/proof/hosted-validator-proof.json \
-            --min-safe-workloads 250 \
-            --min-total-workloads 500
-
-      - name: Render site
-        run: |
-          python3 tools/render_site.py \
-            --results-root artifacts/results \
-            --artifacts-root artifacts \
-            --proof-path artifacts/proof/hosted-validator-proof.json \
-            --output-root site
-
-      - name: Verify site
-        run: |
-          bash scripts/verify-site.sh \
-            --config repositories.yml \
-            --results-root artifacts/results \
-            --artifacts-root artifacts \
-            --proof-path artifacts/proof/hosted-validator-proof.json \
-            --site-root site
-
-      - name: Configure Pages
-        uses: actions/configure-pages@v5
-
-      - name: Upload Pages artifact
-        uses: actions/upload-pages-artifact@v3
-        with:
-          path: site
-
-  deploy:
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-    needs:
-      - build
-    runs-on: ubuntu-24.04
-    steps:
-      - name: Deploy Pages
-        id: deployment
-        uses: actions/deploy-pages@v4
-
-  report-status:
-    if: ${{ always() && needs.build.result == 'success' && needs.deploy.result == 'success' }}
-    needs:
-      - build
-      - deploy
-    runs-on: ubuntu-24.04
-    steps:
-      - name: Fail after deployment when the aggregate matrix failed
-        run: |
-          matrix_exit_code='${{ needs.build.outputs.matrix_exit_code }}'
-          if [ "${matrix_exit_code}" != "0" ]; then
-            exit 1
-          fi
+      - name: Run unit tests
+        run: make unit
