@@ -69,7 +69,7 @@ class InventoryTests(unittest.TestCase):
             ("package alias", {"libraries": [dict(self.load_repo_manifest()["libraries"][0], verify_packages=[])]}, "forbidden package-list field"),
             ("legacy build field", {"libraries": [dict(self.load_repo_manifest()["libraries"][0], build={})]}, "forbidden schema field"),
             (
-                "cve fixture",
+                "cve fixture key",
                 {
                     "libraries": [
                         dict(
@@ -82,6 +82,20 @@ class InventoryTests(unittest.TestCase):
                     ]
                 },
                 "unsupported fields",
+            ),
+            (
+                "cve fixture path",
+                {
+                    "libraries": [
+                        dict(
+                            self.load_repo_manifest()["libraries"][0],
+                            fixtures={
+                                "dependents": "tests/cjson/tests/fixtures/relevant_cves.json",
+                            },
+                        )
+                    ]
+                },
+                "must not reference CVE or security fixtures",
             ),
         ]
         for _, update, message in cases:

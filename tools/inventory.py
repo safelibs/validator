@@ -208,8 +208,15 @@ def _validate_fixtures(fixtures: Any, *, library: str, path: Path) -> None:
         normalized = fixture_name.lower()
         if any(term in normalized for term in FORBIDDEN_FIXTURE_TERMS):
             raise ValidatorError(f"{path} {library}.fixtures must not reference CVE or security fixtures")
-    _validate_repo_relative_path(
+    dependents_path = _require_non_empty_string(
         fixture_mapping.get("dependents"),
+        field_name=f"{library}.fixtures.dependents",
+        path=path,
+    )
+    if any(term in dependents_path.lower() for term in FORBIDDEN_FIXTURE_TERMS):
+        raise ValidatorError(f"{path} {library}.fixtures must not reference CVE or security fixtures")
+    _validate_repo_relative_path(
+        dependents_path,
         field_name=f"{library}.fixtures.dependents",
         path=path,
     )
