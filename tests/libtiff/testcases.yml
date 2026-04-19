@@ -139,14 +139,14 @@ testcases:
   - usage
   - image
   - python
-- id: usage-python3-pil-float-tiff
-  title: Pillow float tiff
-  description: Uses Pillow to run TIFF float tiff behavior through libtiff.
+- id: usage-python3-pil-rgb-tiff-load
+  title: Pillow RGB tiff load
+  description: Opens an RGB TIFF fixture with Pillow to exercise libtiff-backed image decoding.
   kind: usage
   client_application: python3-pil
   command:
   - bash
-  - /validator/tests/libtiff/tests/cases/usage/usage-python3-pil-float-tiff.sh
+  - /validator/tests/libtiff/tests/cases/usage/usage-python3-pil-rgb-tiff-load.sh
   timeout_seconds: 180
   tags:
   - usage

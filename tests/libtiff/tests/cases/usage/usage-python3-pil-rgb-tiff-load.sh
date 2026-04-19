@@ -9,5 +9,6 @@ tmpdir=$(mktemp -d)
 validator_require_file "$tiff"
 python3 - <<'PY' "$tiff" "$tmpdir/out.tiff"
 from PIL import Image
-im=Image.open('/validator/tests/libtiff/tests/tagged-port/original/test/images/test_float64_predictor2_le_lzw.tif'); im.load(); print(im.mode, im.size)
+import sys
+im=Image.open(sys.argv[1]); im.load(); print(im.mode, im.size)
 PY

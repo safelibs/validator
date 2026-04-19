@@ -7,6 +7,6 @@ tmpdir=$(mktemp -d)
 
     gif="$VALIDATOR_SOURCE_ROOT/pic/treescap.gif"
 validator_require_file "$gif"
-gif2rgb -o "$tmpdir/out.rgb" $gif
+gif2rgb -1 -o "$tmpdir/out.rgb" "$gif"
 validator_require_file "$tmpdir/out.rgb"
 wc -c "$tmpdir/out.rgb"

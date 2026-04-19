@@ -7,5 +7,5 @@ tmpdir=$(mktemp -d)
 
     gif="$VALIDATOR_SOURCE_ROOT/pic/treescap.gif"
 validator_require_file "$gif"
-giftext $gif | tee "$tmpdir/out"
+giftext "$gif" | tee "$tmpdir/out"
 validator_assert_contains "$tmpdir/out" 'Screen Size'

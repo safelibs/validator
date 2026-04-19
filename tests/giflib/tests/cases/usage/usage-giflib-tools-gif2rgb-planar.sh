@@ -7,6 +7,8 @@ tmpdir=$(mktemp -d)
 
     gif="$VALIDATOR_SOURCE_ROOT/pic/treescap.gif"
 validator_require_file "$gif"
-gifinto "$tmpdir/copy.gif" <$gif
-giftext "$tmpdir/copy.gif" | tee "$tmpdir/out"
-validator_assert_contains "$tmpdir/out" 'Screen Size'
+gif2rgb -o "$tmpdir/planes" "$gif"
+validator_require_file "$tmpdir/planes.R"
+validator_require_file "$tmpdir/planes.G"
+validator_require_file "$tmpdir/planes.B"
+wc -c "$tmpdir/planes.R" "$tmpdir/planes.G" "$tmpdir/planes.B"

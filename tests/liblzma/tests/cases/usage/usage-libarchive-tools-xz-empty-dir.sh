@@ -7,7 +7,7 @@ tmpdir=$(mktemp -d)
 
     mkdir -p "$tmpdir/in" "$tmpdir/out"
 printf 'empty-dir\n' >"$tmpdir/in/payload.txt"
-bsdtar -Jf "$tmpdir/a.tar.xz" -C "$tmpdir/in" .
+bsdtar -cJf "$tmpdir/a.tar.xz" -C "$tmpdir/in" .
 bsdtar -tf "$tmpdir/a.tar.xz" | tee "$tmpdir/list"
 bsdtar -xf "$tmpdir/a.tar.xz" -C "$tmpdir/out"
 validator_assert_contains "$tmpdir/out/payload.txt" 'empty-dir'

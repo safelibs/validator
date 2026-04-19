@@ -125,40 +125,40 @@ testcases:
   - usage
   - cli
   - image
-- id: usage-giflib-tools-gifwedge-generate
-  title: giflib-tools gifwedge generate
-  description: Runs giflib-tools gifwedge generate on a GIF fixture and checks image metadata.
+- id: usage-giflib-tools-gifbuild-roundtrip
+  title: giflib-tools gifbuild roundtrip
+  description: Dumps a GIF fixture to gifbuild text and rebuilds it to verify the client can round trip image structure.
   kind: usage
   client_application: giflib-tools
   command:
   - bash
-  - /validator/tests/giflib/tests/cases/usage/usage-giflib-tools-gifwedge-generate.sh
+  - /validator/tests/giflib/tests/cases/usage/usage-giflib-tools-gifbuild-roundtrip.sh
   timeout_seconds: 180
   tags:
   - usage
   - cli
   - image
-- id: usage-giflib-tools-giffilter-stream
-  title: giflib-tools giffilter stream
-  description: Runs giflib-tools giffilter stream on a GIF fixture and checks image metadata.
+- id: usage-giflib-tools-gif2rgb-planar
+  title: giflib-tools gif2rgb planar output
+  description: Converts a GIF fixture into separate RGB planes with gif2rgb and verifies all channel files are produced.
   kind: usage
   client_application: giflib-tools
   command:
   - bash
-  - /validator/tests/giflib/tests/cases/usage/usage-giflib-tools-giffilter-stream.sh
+  - /validator/tests/giflib/tests/cases/usage/usage-giflib-tools-gif2rgb-planar.sh
   timeout_seconds: 180
   tags:
   - usage
   - cli
   - image
-- id: usage-giflib-tools-gifinto-wrapper
-  title: giflib-tools gifinto wrapper
-  description: Runs giflib-tools gifinto wrapper on a GIF fixture and checks image metadata.
+- id: usage-giflib-tools-giftext-colormap
+  title: giflib-tools giftext color map
+  description: Uses giftext to dump the GIF color map from a fixture and verifies color table output is present.
   kind: usage
   client_application: giflib-tools
   command:
   - bash
-  - /validator/tests/giflib/tests/cases/usage/usage-giflib-tools-gifinto-wrapper.sh
+  - /validator/tests/giflib/tests/cases/usage/usage-giflib-tools-giftext-colormap.sh
   timeout_seconds: 180
   tags:
   - usage

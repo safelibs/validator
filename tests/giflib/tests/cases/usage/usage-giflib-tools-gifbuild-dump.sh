@@ -7,5 +7,5 @@ tmpdir=$(mktemp -d)
 
     gif="$VALIDATOR_SOURCE_ROOT/pic/treescap.gif"
 validator_require_file "$gif"
-gifbuild -d $gif >"$tmpdir/dump.txt"
+gifbuild -d "$gif" >"$tmpdir/dump.txt"
 grep -E 'screen|image|rgb' -i "$tmpdir/dump.txt" | head
