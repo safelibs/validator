@@ -3,60 +3,11 @@
   "library": "libjson",
   "dependents": [
     {
-      "name": "bind9",
-      "packages": [
-        "bind9-utils"
-      ],
-      "description": "bind9 client exercised by usage testcases."
-    },
-    {
-      "name": "bluez-meshd",
-      "packages": [
-        "bluez"
-      ],
-      "description": "bluez-meshd client exercised by usage testcases."
-    },
-    {
-      "name": "frr",
-      "packages": [
-        "frr"
-      ],
-      "description": "frr client exercised by usage testcases."
-    },
-    {
       "name": "gdal",
       "packages": [
         "gdal-bin"
       ],
       "description": "gdal client exercised by usage testcases."
-    },
-    {
-      "name": "ndctl",
-      "packages": [
-        "ndctl"
-      ],
-      "description": "ndctl client exercised by usage testcases."
-    },
-    {
-      "name": "nvme-cli",
-      "packages": [
-        "nvme-cli"
-      ],
-      "description": "nvme-cli client exercised by usage testcases."
-    },
-    {
-      "name": "syslog-ng",
-      "packages": [
-        "syslog-ng-core"
-      ],
-      "description": "syslog-ng client exercised by usage testcases."
-    },
-    {
-      "name": "tlog",
-      "packages": [
-        "tlog"
-      ],
-      "description": "tlog client exercised by usage testcases."
     },
     {
       "name": "ttyd",

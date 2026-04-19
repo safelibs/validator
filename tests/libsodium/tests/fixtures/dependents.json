@@ -5,9 +5,9 @@
     {
       "name": "libzmq5",
       "packages": [
-        "libzmq5"
+        "libzmq3-dev"
       ],
-      "description": "libzmq5 client exercised by usage testcases."
+      "description": "ZeroMQ development package used by a usage testcase that checks libsodium-backed CURVE support."
     },
     {
       "name": "minisign",

@@ -7,7 +7,6 @@ RUN apt-get update \
       libcjson1 \
       libcjson-dev \
       iperf3 \
-      mosquitto-clients \
       bash \
       build-essential \
       ca-certificates \

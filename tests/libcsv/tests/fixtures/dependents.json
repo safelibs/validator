@@ -8,13 +8,6 @@
         "readstat"
       ],
       "description": "readstat client exercised by usage testcases."
-    },
-    {
-      "name": "tellico",
-      "packages": [
-        "tellico"
-      ],
-      "description": "tellico client exercised by usage testcases."
     }
   ]
 }

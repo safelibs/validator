@@ -12,9 +12,9 @@
     {
       "name": "libsdl2-image",
       "packages": [
-        "libsdl2-image-2.0-0"
+        "libsdl2-image-dev"
       ],
-      "description": "libsdl2-image client exercised by usage testcases."
+      "description": "SDL2_image development package used by a usage testcase that loads a WebP fixture."
     },
     {
       "name": "python3-pil",

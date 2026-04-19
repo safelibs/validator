@@ -59,107 +59,99 @@ testcases:
   tags:
   - api
   - delimiter
-- id: usage-readstat-csv-parse-1
-  title: readstat CSV parse 1
-  description: Compiles a readstat-style CSV reader that parses tabular fields through libcsv.
+- id: usage-readstat-csv-to-dta
+  title: readstat CSV to DTA
+  description: Runs readstat to convert CSV plus JSON metadata into a Stata DTA file and reads it back as CSV.
   kind: usage
   client_application: readstat
   command:
   - bash
-  - /validator/tests/libcsv/tests/cases/usage/usage-readstat-csv-parse-1.sh
+  - /validator/tests/libcsv/tests/cases/usage/usage-readstat-csv-to-dta.sh
   timeout_seconds: 180
   tags:
   - usage
-  - compile
   - csv
-- id: usage-readstat-csv-parse-2
-  title: readstat CSV parse 2
-  description: Compiles a readstat-style CSV reader that parses tabular fields through libcsv.
+- id: usage-readstat-dta-to-csv
+  title: readstat DTA to CSV
+  description: Runs readstat to convert a CSV-derived DTA dataset back to CSV and verifies row values.
   kind: usage
   client_application: readstat
   command:
   - bash
-  - /validator/tests/libcsv/tests/cases/usage/usage-readstat-csv-parse-2.sh
+  - /validator/tests/libcsv/tests/cases/usage/usage-readstat-dta-to-csv.sh
   timeout_seconds: 180
   tags:
   - usage
-  - compile
   - csv
-- id: usage-readstat-csv-parse-3
-  title: readstat CSV parse 3
-  description: Compiles a readstat-style CSV reader that parses tabular fields through libcsv.
+- id: usage-readstat-csv-to-sav
+  title: readstat CSV to SAV
+  description: Runs readstat to parse CSV through metadata and write an SPSS SAV dataset.
   kind: usage
   client_application: readstat
   command:
   - bash
-  - /validator/tests/libcsv/tests/cases/usage/usage-readstat-csv-parse-3.sh
+  - /validator/tests/libcsv/tests/cases/usage/usage-readstat-csv-to-sav.sh
   timeout_seconds: 180
   tags:
   - usage
-  - compile
   - csv
-- id: usage-readstat-csv-parse-4
-  title: readstat CSV parse 4
-  description: Compiles a readstat-style CSV reader that parses tabular fields through libcsv.
+- id: usage-readstat-sav-to-csv
+  title: readstat SAV to CSV
+  description: Runs readstat to read an SPSS SAV dataset generated from CSV and emit CSV rows.
   kind: usage
   client_application: readstat
   command:
   - bash
-  - /validator/tests/libcsv/tests/cases/usage/usage-readstat-csv-parse-4.sh
+  - /validator/tests/libcsv/tests/cases/usage/usage-readstat-sav-to-csv.sh
   timeout_seconds: 180
   tags:
   - usage
-  - compile
   - csv
-- id: usage-tellico-csv-parse-1
-  title: tellico CSV parse 1
-  description: Compiles a tellico-style CSV reader that parses tabular fields through libcsv.
+- id: usage-readstat-metadata-summary
+  title: readstat metadata summary
+  description: Runs readstat against a CSV-derived DTA file and verifies the reported variable and row metadata.
   kind: usage
-  client_application: tellico
+  client_application: readstat
   command:
   - bash
-  - /validator/tests/libcsv/tests/cases/usage/usage-tellico-csv-parse-1.sh
+  - /validator/tests/libcsv/tests/cases/usage/usage-readstat-metadata-summary.sh
   timeout_seconds: 180
   tags:
   - usage
-  - compile
   - csv
-- id: usage-tellico-csv-parse-2
-  title: tellico CSV parse 2
-  description: Compiles a tellico-style CSV reader that parses tabular fields through libcsv.
+- id: usage-readstat-quoted-csv
+  title: readstat quoted CSV fields
+  description: Runs readstat on a quoted CSV field containing a comma and verifies the parsed value survives conversion.
   kind: usage
-  client_application: tellico
+  client_application: readstat
   command:
   - bash
-  - /validator/tests/libcsv/tests/cases/usage/usage-tellico-csv-parse-2.sh
+  - /validator/tests/libcsv/tests/cases/usage/usage-readstat-quoted-csv.sh
   timeout_seconds: 180
   tags:
   - usage
-  - compile
   - csv
-- id: usage-tellico-csv-parse-3
-  title: tellico CSV parse 3
-  description: Compiles a tellico-style CSV reader that parses tabular fields through libcsv.
+- id: usage-readstat-missing-values
+  title: readstat missing CSV values
+  description: Runs readstat on CSV input with an empty numeric value and verifies the missing value is preserved.
   kind: usage
-  client_application: tellico
+  client_application: readstat
   command:
   - bash
-  - /validator/tests/libcsv/tests/cases/usage/usage-tellico-csv-parse-3.sh
+  - /validator/tests/libcsv/tests/cases/usage/usage-readstat-missing-values.sh
   timeout_seconds: 180
   tags:
   - usage
-  - compile
   - csv
-- id: usage-tellico-csv-parse-4
-  title: tellico CSV parse 4
-  description: Compiles a tellico-style CSV reader that parses tabular fields through libcsv.
+- id: usage-readstat-normalize-csv
+  title: readstat normalized CSV output
+  description: Runs readstat to parse CSV with metadata and write normalized CSV output.
   kind: usage
-  client_application: tellico
+  client_application: readstat
   command:
   - bash
-  - /validator/tests/libcsv/tests/cases/usage/usage-tellico-csv-parse-4.sh
+  - /validator/tests/libcsv/tests/cases/usage/usage-readstat-normalize-csv.sh
   timeout_seconds: 180
   tags:
   - usage
-  - compile
   - csv

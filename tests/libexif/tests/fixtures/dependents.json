@@ -8,27 +8,6 @@
         "exif"
       ],
       "description": "exif client exercised by usage testcases."
-    },
-    {
-      "name": "gphoto2",
-      "packages": [
-        "gphoto2"
-      ],
-      "description": "gphoto2 client exercised by usage testcases."
-    },
-    {
-      "name": "imagemagick",
-      "packages": [
-        "imagemagick"
-      ],
-      "description": "imagemagick client exercised by usage testcases."
-    },
-    {
-      "name": "ruby-exif",
-      "packages": [
-        "ruby-exif"
-      ],
-      "description": "ruby-exif client exercised by usage testcases."
     }
   ]
 }

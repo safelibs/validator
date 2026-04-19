@@ -83,81 +83,75 @@ testcases:
   tags:
   - usage
   - metadata
-- id: usage-gphoto2-metadata-read-1
-  title: gphoto2 EXIF metadata read 1
-  description: Compiles a gphoto2-style metadata reader that extracts camera fields through libexif.
+- id: usage-exif-cli-tag-make
+  title: exif CLI make tag
+  description: Runs the exif CLI to read the camera Make tag from a JPEG fixture.
   kind: usage
-  client_application: gphoto2
+  client_application: exif
   command:
   - bash
-  - /validator/tests/libexif/tests/cases/usage/usage-gphoto2-metadata-read-1.sh
+  - /validator/tests/libexif/tests/cases/usage/usage-exif-cli-tag-make.sh
   timeout_seconds: 180
   tags:
   - usage
   - metadata
-  - compile
-- id: usage-gphoto2-metadata-read-2
-  title: gphoto2 EXIF metadata read 2
-  description: Compiles a gphoto2-style metadata reader that extracts camera fields through libexif.
+- id: usage-exif-cli-tag-model
+  title: exif CLI model tag
+  description: Runs the exif CLI to read the camera Model tag from a JPEG fixture.
   kind: usage
-  client_application: gphoto2
+  client_application: exif
   command:
   - bash
-  - /validator/tests/libexif/tests/cases/usage/usage-gphoto2-metadata-read-2.sh
+  - /validator/tests/libexif/tests/cases/usage/usage-exif-cli-tag-model.sh
   timeout_seconds: 180
   tags:
   - usage
   - metadata
-  - compile
-- id: usage-imagemagick-metadata-read-1
-  title: imagemagick EXIF metadata read 1
-  description: Compiles a imagemagick-style metadata reader that extracts camera fields through libexif.
+- id: usage-exif-cli-maker-note
+  title: exif CLI maker note
+  description: Runs the exif CLI to decode maker-note metadata from a JPEG fixture.
   kind: usage
-  client_application: imagemagick
+  client_application: exif
   command:
   - bash
-  - /validator/tests/libexif/tests/cases/usage/usage-imagemagick-metadata-read-1.sh
+  - /validator/tests/libexif/tests/cases/usage/usage-exif-cli-maker-note.sh
   timeout_seconds: 180
   tags:
   - usage
   - metadata
-  - compile
-- id: usage-imagemagick-metadata-read-2
-  title: imagemagick EXIF metadata read 2
-  description: Compiles a imagemagick-style metadata reader that extracts camera fields through libexif.
+- id: usage-exif-cli-extract-thumbnail
+  title: exif CLI thumbnail extraction
+  description: Runs the exif CLI to extract the embedded JPEG thumbnail from camera metadata.
   kind: usage
-  client_application: imagemagick
+  client_application: exif
   command:
   - bash
-  - /validator/tests/libexif/tests/cases/usage/usage-imagemagick-metadata-read-2.sh
+  - /validator/tests/libexif/tests/cases/usage/usage-exif-cli-extract-thumbnail.sh
   timeout_seconds: 180
   tags:
   - usage
   - metadata
-  - compile
-- id: usage-ruby-exif-metadata-read-1
-  title: ruby-exif EXIF metadata read 1
-  description: Compiles a ruby-exif-style metadata reader that extracts camera fields through libexif.
+- id: usage-exif-cli-ifd-exif
+  title: exif CLI EXIF IFD
+  description: Runs the exif CLI against the EXIF IFD and verifies exposure metadata is decoded.
   kind: usage
-  client_application: ruby-exif
+  client_application: exif
   command:
   - bash
-  - /validator/tests/libexif/tests/cases/usage/usage-ruby-exif-metadata-read-1.sh
+  - /validator/tests/libexif/tests/cases/usage/usage-exif-cli-ifd-exif.sh
   timeout_seconds: 180
   tags:
   - usage
   - metadata
-  - compile
-- id: usage-ruby-exif-metadata-read-2
-  title: ruby-exif EXIF metadata read 2
-  description: Compiles a ruby-exif-style metadata reader that extracts camera fields through libexif.
+- id: usage-exif-cli-xml-output
+  title: exif CLI XML output
+  description: Runs the exif CLI XML output mode and verifies camera model metadata appears in XML.
   kind: usage
-  client_application: ruby-exif
+  client_application: exif
   command:
   - bash
-  - /validator/tests/libexif/tests/cases/usage/usage-ruby-exif-metadata-read-2.sh
+  - /validator/tests/libexif/tests/cases/usage/usage-exif-cli-xml-output.sh
   timeout_seconds: 180
   tags:
   - usage
   - metadata
-  - compile

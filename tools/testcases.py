@@ -57,6 +57,7 @@ GENERIC_USAGE_DESCRIPTION_RE = re.compile(
     r"\b(?:dependent test|usage test|safe regression|regression test)\b",
     re.IGNORECASE,
 )
+APT_PACKAGE_TOKEN_CHARS = r"A-Za-z0-9.+-"
 
 
 @dataclass(frozen=True)
@@ -580,6 +581,62 @@ def validate_sanitized_dependent_fixture(
     return identifiers
 
 
+def _entry_identifiers(entry: dict[str, Any]) -> set[str]:
+    identifiers: set[str] = set()
+    for field_name in ("name", "source_package", "package", "binary_package"):
+        _collect_string(identifiers, entry.get(field_name))
+    _collect_string_list(identifiers, entry.get("packages"))
+    return identifiers
+
+
+def _packages_for_used_clients(payload: dict[str, Any], *, used_clients: set[str]) -> set[str]:
+    packages: set[str] = set()
+    dependents = payload.get("dependents")
+    if not isinstance(dependents, list):
+        return packages
+    for entry in dependents:
+        if not isinstance(entry, dict):
+            continue
+        if used_clients.isdisjoint(_entry_identifiers(entry)):
+            continue
+        for package in entry.get("packages", []):
+            if isinstance(package, str) and package.strip():
+                packages.add(package.strip())
+    return packages
+
+
+def _validate_dockerfile_installs_dependent_packages(
+    *,
+    tests_root: Path,
+    library: str,
+    fixture_payload: dict[str, Any],
+    used_clients: set[str],
+) -> None:
+    packages = _packages_for_used_clients(fixture_payload, used_clients=used_clients)
+    if not packages:
+        return
+
+    dockerfile = tests_root / library / "Dockerfile"
+    try:
+        dockerfile_text = dockerfile.read_text()
+    except FileNotFoundError as exc:
+        raise ValidatorError(f"missing Dockerfile for dependent package validation: {dockerfile}") from exc
+
+    missing = [
+        package
+        for package in sorted(packages)
+        if not re.search(
+            rf"(?<![{APT_PACKAGE_TOKEN_CHARS}]){re.escape(package)}(?![{APT_PACKAGE_TOKEN_CHARS}])",
+            dockerfile_text,
+        )
+    ]
+    if missing:
+        raise ValidatorError(
+            f"Dockerfile for {library} does not install dependent packages used by usage cases: "
+            f"{', '.join(missing)}"
+        )
+
+
 def validate_usage_case_artifacts(
     manifests: dict[str, TestcaseManifest],
     *,
@@ -594,9 +651,13 @@ def validate_usage_case_artifacts(
         }
         if not used_clients:
             continue
-        validate_sanitized_dependent_fixture(
-            tests_root / library / "tests" / "fixtures" / "dependents.json",
+        fixture_path = tests_root / library / "tests" / "fixtures" / "dependents.json"
+        validate_sanitized_dependent_fixture(fixture_path, library=library, used_clients=used_clients)
+        fixture_payload = _load_dependent_fixture(fixture_path)
+        _validate_dockerfile_installs_dependent_packages(
+            tests_root=tests_root,
             library=library,
+            fixture_payload=fixture_payload,
             used_clients=used_clients,
         )
 

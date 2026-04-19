@@ -8,55 +8,6 @@
         "iperf3"
       ],
       "description": "iperf3 client exercised by usage testcases."
-    },
-    {
-      "name": "monado-cli",
-      "packages": [
-        "monado-cli"
-      ],
-      "description": "monado-cli client exercised by usage testcases."
-    },
-    {
-      "name": "mosquitto-clients",
-      "packages": [
-        "mosquitto-clients"
-      ],
-      "description": "mosquitto-clients client exercised by usage testcases."
-    },
-    {
-      "name": "oidc-agent-cli",
-      "packages": [
-        "oidc-agent-cli"
-      ],
-      "description": "oidc-agent-cli client exercised by usage testcases."
-    },
-    {
-      "name": "opm-common",
-      "packages": [
-        "libopm-common-bin"
-      ],
-      "description": "opm-common client exercised by usage testcases."
-    },
-    {
-      "name": "pgagroal",
-      "packages": [
-        "pgagroal"
-      ],
-      "description": "pgagroal client exercised by usage testcases."
-    },
-    {
-      "name": "qad",
-      "packages": [
-        "qad"
-      ],
-      "description": "qad client exercised by usage testcases."
-    },
-    {
-      "name": "rist-tools",
-      "packages": [
-        "rist-tools"
-      ],
-      "description": "rist-tools client exercised by usage testcases."
     }
   ]
 }

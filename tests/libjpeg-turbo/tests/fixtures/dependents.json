@@ -3,13 +3,6 @@
   "library": "libjpeg-turbo",
   "dependents": [
     {
-      "name": "libvips42t64",
-      "packages": [
-        "libvips42t64"
-      ],
-      "description": "libvips42t64 client exercised by usage testcases."
-    },
-    {
       "name": "python3-pil",
       "packages": [
         "python3-pil"

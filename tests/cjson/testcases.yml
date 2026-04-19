@@ -59,98 +59,98 @@ testcases:
   tags:
   - api
   - negative
-- id: usage-iperf3-parse-throughput-json
-  title: iperf3 throughput JSON parse
-  description: Parses a iperf3 client JSON payload with cJSON and reads the end field.
+- id: usage-iperf3-json-tcp-throughput
+  title: iperf3 TCP JSON throughput
+  description: Runs an iperf3 loopback TCP test with JSON output and verifies throughput fields emitted by the client.
   kind: usage
   client_application: iperf3
   command:
   - bash
-  - /validator/tests/cjson/tests/cases/usage/usage-iperf3-parse-throughput-json.sh
+  - /validator/tests/cjson/tests/cases/usage/usage-iperf3-json-tcp-throughput.sh
   timeout_seconds: 180
   tags:
   - usage
   - json
-- id: usage-mosquitto-parse-message-json
-  title: Mosquitto message JSON parse
-  description: Parses a mosquitto-clients client JSON payload with cJSON and reads the topic field.
+- id: usage-iperf3-json-reverse-throughput
+  title: iperf3 reverse JSON throughput
+  description: Runs an iperf3 reverse loopback test with JSON output and verifies reverse throughput fields.
   kind: usage
-  client_application: mosquitto-clients
+  client_application: iperf3
   command:
   - bash
-  - /validator/tests/cjson/tests/cases/usage/usage-mosquitto-parse-message-json.sh
+  - /validator/tests/cjson/tests/cases/usage/usage-iperf3-json-reverse-throughput.sh
   timeout_seconds: 180
   tags:
   - usage
   - json
-- id: usage-rist-tools-parse-link-json
-  title: RIST tools link JSON parse
-  description: Parses a rist-tools client JSON payload with cJSON and reads the link field.
+- id: usage-iperf3-json-udp-throughput
+  title: iperf3 UDP JSON throughput
+  description: Runs an iperf3 loopback UDP test with JSON output and verifies UDP summary fields.
   kind: usage
-  client_application: rist-tools
+  client_application: iperf3
   command:
   - bash
-  - /validator/tests/cjson/tests/cases/usage/usage-rist-tools-parse-link-json.sh
+  - /validator/tests/cjson/tests/cases/usage/usage-iperf3-json-udp-throughput.sh
   timeout_seconds: 180
   tags:
   - usage
   - json
-- id: usage-oidc-agent-parse-token-json
-  title: OIDC agent token JSON parse
-  description: Parses a oidc-agent-cli client JSON payload with cJSON and reads the access_token field.
+- id: usage-iperf3-json-fixed-bytes
+  title: iperf3 fixed-byte JSON run
+  description: Runs an iperf3 loopback transfer with a fixed byte count and validates the emitted JSON totals.
   kind: usage
-  client_application: oidc-agent-cli
+  client_application: iperf3
   command:
   - bash
-  - /validator/tests/cjson/tests/cases/usage/usage-oidc-agent-parse-token-json.sh
+  - /validator/tests/cjson/tests/cases/usage/usage-iperf3-json-fixed-bytes.sh
   timeout_seconds: 180
   tags:
   - usage
   - json
-- id: usage-opm-common-parse-grid-json
-  title: OPM common grid JSON parse
-  description: Parses a opm-common client JSON payload with cJSON and reads the grid field.
+- id: usage-iperf3-json-parallel-streams
+  title: iperf3 parallel JSON streams
+  description: Runs an iperf3 loopback test with parallel streams and verifies stream details in JSON output.
   kind: usage
-  client_application: opm-common
+  client_application: iperf3
   command:
   - bash
-  - /validator/tests/cjson/tests/cases/usage/usage-opm-common-parse-grid-json.sh
+  - /validator/tests/cjson/tests/cases/usage/usage-iperf3-json-parallel-streams.sh
   timeout_seconds: 180
   tags:
   - usage
   - json
-- id: usage-monado-parse-view-json
-  title: Monado view JSON parse
-  description: Parses a monado-cli client JSON payload with cJSON and reads the view field.
+- id: usage-iperf3-json-interval-report
+  title: iperf3 interval JSON report
+  description: Runs an iperf3 loopback test with interval reporting and verifies interval objects in JSON output.
   kind: usage
-  client_application: monado-cli
+  client_application: iperf3
   command:
   - bash
-  - /validator/tests/cjson/tests/cases/usage/usage-monado-parse-view-json.sh
+  - /validator/tests/cjson/tests/cases/usage/usage-iperf3-json-interval-report.sh
   timeout_seconds: 180
   tags:
   - usage
   - json
-- id: usage-pgagroal-parse-pool-json
-  title: pgagroal pool JSON parse
-  description: Parses a pgagroal client JSON payload with cJSON and reads the pool field.
+- id: usage-iperf3-json-bidirectional
+  title: iperf3 bidirectional JSON run
+  description: Runs an iperf3 bidirectional loopback test and validates sender and receiver JSON summaries.
   kind: usage
-  client_application: pgagroal
+  client_application: iperf3
   command:
   - bash
-  - /validator/tests/cjson/tests/cases/usage/usage-pgagroal-parse-pool-json.sh
+  - /validator/tests/cjson/tests/cases/usage/usage-iperf3-json-bidirectional.sh
   timeout_seconds: 180
   tags:
   - usage
   - json
-- id: usage-qad-parse-analysis-json
-  title: QAD analysis JSON parse
-  description: Parses a qad client JSON payload with cJSON and reads the status field.
+- id: usage-iperf3-json-server-output
+  title: iperf3 server JSON output
+  description: Runs iperf3 with server-output capture and verifies the client JSON includes server-side results.
   kind: usage
-  client_application: qad
+  client_application: iperf3
   command:
   - bash
-  - /validator/tests/cjson/tests/cases/usage/usage-qad-parse-analysis-json.sh
+  - /validator/tests/cjson/tests/cases/usage/usage-iperf3-json-server-output.sh
   timeout_seconds: 180
   tags:
   - usage
