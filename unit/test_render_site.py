@@ -475,6 +475,89 @@ class RenderSiteTests(unittest.TestCase):
 
         self.assertEqual(completed.returncode, 0, completed.stderr + completed.stdout)
 
+    def test_render_site_with_config_rejects_package_drift_without_proof(self) -> None:
+        tests_root = self.root / "case-manifests"
+        testcase_root = tests_root / "tests" / "cjson"
+        testcase_root.mkdir(parents=True)
+        packages = list(inventory.CANONICAL_APT_PACKAGES["cjson"])
+        (testcase_root / "testcases.yml").write_text(
+            yaml.safe_dump(
+                {
+                    "schema_version": 1,
+                    "library": "cjson",
+                    "apt_packages": packages,
+                    "testcases": [],
+                },
+                sort_keys=False,
+            )
+        )
+        manifest_path = self.write_manifest(["cjson"])
+        log_path = self.artifacts_root / "logs" / "cjson" / "direct-site.log"
+        log_path.parent.mkdir(parents=True, exist_ok=True)
+        log_path.write_text("ok\n")
+        result_path = self.artifacts_root / "results" / "cjson" / "direct-site.json"
+        result_payload = {
+            "schema_version": 2,
+            "library": "cjson",
+            "mode": "original",
+            "testcase_id": "direct-site",
+            "title": "Direct site render",
+            "description": "Result row used to validate direct site package metadata.",
+            "kind": "source",
+            "client_application": None,
+            "tags": [],
+            "requires": [],
+            "status": "passed",
+            "started_at": "2026-04-19T00:00:00Z",
+            "finished_at": "2026-04-19T00:00:01Z",
+            "duration_seconds": 1.0,
+            "result_path": "results/cjson/direct-site.json",
+            "log_path": "logs/cjson/direct-site.log",
+            "cast_path": None,
+            "exit_code": 0,
+            "command": ["bash", "-lc", "true"],
+            "apt_packages": packages,
+            "override_debs_installed": False,
+        }
+        write_json(result_path, result_payload)
+
+        site_root = self.root / "site"
+        render_site.main(
+            [
+                "--config",
+                str(manifest_path),
+                "--tests-root",
+                str(tests_root),
+                "--results-root",
+                str(self.results_root),
+                "--artifacts-root",
+                str(self.artifacts_root),
+                "--output-root",
+                str(site_root),
+            ]
+        )
+
+        site_data = json.loads((site_root / "site-data.json").read_text())
+        self.assertEqual(site_data["results"][0]["apt_packages"], packages)
+
+        result_payload["apt_packages"] = ["wrong-package"]
+        write_json(result_path, result_payload)
+        with self.assertRaisesRegex(ValidatorError, "apt_packages mismatch"):
+            render_site.main(
+                [
+                    "--config",
+                    str(manifest_path),
+                    "--tests-root",
+                    str(tests_root),
+                    "--results-root",
+                    str(self.results_root),
+                    "--artifacts-root",
+                    str(self.artifacts_root),
+                    "--output-root",
+                    str(self.root / "drifted-site"),
+                ]
+            )
+
     def test_verify_site_accepts_v2_original_only_proof(self) -> None:
         tests_root = self.root / "case-manifests"
         testcase_root = tests_root / "tests" / "cjson"

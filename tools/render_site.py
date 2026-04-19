@@ -15,6 +15,7 @@ if __package__ in {None, ""}:
 from tools import ValidatorError, ensure_parent, select_libraries, write_json
 from tools.inventory import load_manifest
 from tools import proof as proof_tools
+from tools.testcases import load_manifests
 
 
 MODE_ORDER = {"original": 0, "safe": 1}
@@ -279,6 +280,43 @@ def validate_v2_site_inputs(
     )
     if expected_proof != proof_data:
         raise ValidatorError("proof manifest does not match rebuilt v2 proof")
+
+
+def validate_config_result_packages(
+    results: list[dict[str, Any]],
+    *,
+    config_path: Path,
+    tests_root: Path,
+) -> None:
+    manifest = load_manifest(config_path)
+    result_libraries: list[str] = []
+    seen_libraries: set[str] = set()
+    for result in results:
+        library = result.get("library")
+        if not isinstance(library, str) or not library:
+            raise ValidatorError(f"result library must be a non-empty string: {library!r}")
+        if library not in seen_libraries:
+            result_libraries.append(library)
+            seen_libraries.add(library)
+
+    selected_config = dict(manifest)
+    selected_config["libraries"] = select_libraries(manifest, result_libraries)
+    testcase_manifests = load_manifests(
+        selected_config,
+        tests_root=tests_root,
+        require_testcases=False,
+    )
+
+    for result in results:
+        library = str(result["library"])
+        expected_packages = list(testcase_manifests[library].apt_packages)
+        actual_packages = result.get("apt_packages")
+        if actual_packages != expected_packages:
+            testcase_id = result.get("testcase_id") or result.get("mode") or "<unknown>"
+            raise ValidatorError(
+                f"apt_packages mismatch for {library}/{testcase_id}: "
+                f"result has {actual_packages!r}, repositories.yml has {expected_packages!r}"
+            )
 
 
 def render_index(site_rows: list[dict[str, Any]], proof_data: dict[str, Any] | None = None) -> str:
@@ -569,6 +607,12 @@ def build_parser() -> argparse.ArgumentParser:
 def main(argv: list[str] | None = None) -> int:
     args = build_parser().parse_args(argv)
     results = load_results(args.results_root, artifacts_root=args.artifacts_root)
+    if args.config is not None:
+        validate_config_result_packages(
+            results,
+            config_path=args.config,
+            tests_root=args.tests_root,
+        )
     proof_data: dict[str, Any] | None = None
     if args.proof_path is not None:
         proof_data = load_proof(
