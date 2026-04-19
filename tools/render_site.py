@@ -225,6 +225,7 @@ def build_site_data(
             case["cast_href"] = cast_href
 
             row = {key: case.get(key) for key in TESTCASE_ROW_KEYS}
+            row["library"] = library
             if set(row) != set(TESTCASE_ROW_KEYS):
                 raise ValidatorError("internal testcase row shape mismatch")
             rows.append(row)

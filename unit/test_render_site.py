@@ -172,6 +172,8 @@ class RenderSiteTests(unittest.TestCase):
         )
         copied_log = self.site_root / first_row["log_href"]
         copied_cast = self.site_root / first_row["cast_href"]
+        self.assertEqual(first_row["library"], "cjson")
+        self.assertTrue(all(row["library"] == "cjson" for row in site_data["testcases"]))
         self.assertEqual(copied_log.read_bytes(), (self.artifacts_root / first_row["log_path"]).read_bytes())
         self.assertEqual(copied_cast.read_bytes(), (self.artifacts_root / first_row["cast_path"]).read_bytes())
         self.assertTrue((self.site_root / "assets" / "player.js").is_file())
@@ -180,9 +182,12 @@ class RenderSiteTests(unittest.TestCase):
 
         html_text = (self.site_root / "index.html").read_text()
         self.assertIn("Original Library Validation", html_text)
+        self.assertIn('data-library="cjson"', html_text)
         self.assertIn('data-player-cast="evidence/casts/cjson/', html_text)
         self.assertIn('id="search-input"', html_text)
         self.assertIn("js-player-pause", html_text)
+        self.assertNotIn('data-library="None"', html_text)
+        self.assertNotIn("None /", html_text)
         self.assertNotIn("Safe", html_text)
         self.assertNotIn("safe workload", html_text.lower())
 

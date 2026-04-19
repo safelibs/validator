@@ -6440,7 +6440,7 @@
   },
   "testcases": [
     {
-      "library": null,
+      "library": "cjson",
       "testcase_id": "parse-print-roundtrip",
       "mode": "original",
       "title": "Parse and print JSON round trip",
@@ -6460,7 +6460,7 @@
       "cast_href": "evidence/casts/cjson/parse-print-roundtrip.cast"
     },
     {
-      "library": null,
+      "library": "cjson",
       "testcase_id": "minify-whitespace",
       "mode": "original",
       "title": "Minify JSON whitespace behavior",
@@ -6480,7 +6480,7 @@
       "cast_href": "evidence/casts/cjson/minify-whitespace.cast"
     },
     {
-      "library": null,
+      "library": "cjson",
       "testcase_id": "utils-patch-pointer",
       "mode": "original",
       "title": "JSON pointer patch behavior",
@@ -6500,7 +6500,7 @@
       "cast_href": "evidence/casts/cjson/utils-patch-pointer.cast"
     },
     {
-      "library": null,
+      "library": "cjson",
       "testcase_id": "allocator-hooks-edge",
       "mode": "original",
       "title": "Allocator hook edge behavior",
@@ -6520,7 +6520,7 @@
       "cast_href": "evidence/casts/cjson/allocator-hooks-edge.cast"
     },
     {
-      "library": null,
+      "library": "cjson",
       "testcase_id": "malformed-number-rejection",
       "mode": "original",
       "title": "Malformed number rejection",
@@ -6540,7 +6540,7 @@
       "cast_href": "evidence/casts/cjson/malformed-number-rejection.cast"
     },
     {
-      "library": null,
+      "library": "cjson",
       "testcase_id": "usage-iperf3-json-tcp-throughput",
       "mode": "original",
       "title": "iperf3 TCP JSON throughput",
@@ -6560,7 +6560,7 @@
       "cast_href": "evidence/casts/cjson/usage-iperf3-json-tcp-throughput.cast"
     },
     {
-      "library": null,
+      "library": "cjson",
       "testcase_id": "usage-iperf3-json-reverse-throughput",
       "mode": "original",
       "title": "iperf3 reverse JSON throughput",
@@ -6580,7 +6580,7 @@
       "cast_href": "evidence/casts/cjson/usage-iperf3-json-reverse-throughput.cast"
     },
     {
-      "library": null,
+      "library": "cjson",
       "testcase_id": "usage-iperf3-json-udp-throughput",
       "mode": "original",
       "title": "iperf3 UDP JSON throughput",
@@ -6600,7 +6600,7 @@
       "cast_href": "evidence/casts/cjson/usage-iperf3-json-udp-throughput.cast"
     },
     {
-      "library": null,
+      "library": "cjson",
       "testcase_id": "usage-iperf3-json-fixed-bytes",
       "mode": "original",
       "title": "iperf3 fixed-byte JSON run",
@@ -6620,7 +6620,7 @@
       "cast_href": "evidence/casts/cjson/usage-iperf3-json-fixed-bytes.cast"
     },
     {
-      "library": null,
+      "library": "cjson",
       "testcase_id": "usage-iperf3-json-parallel-streams",
       "mode": "original",
       "title": "iperf3 parallel JSON streams",
@@ -6640,7 +6640,7 @@
       "cast_href": "evidence/casts/cjson/usage-iperf3-json-parallel-streams.cast"
     },
     {
-      "library": null,
+      "library": "cjson",
       "testcase_id": "usage-iperf3-json-interval-report",
       "mode": "original",
       "title": "iperf3 interval JSON report",
@@ -6660,7 +6660,7 @@
       "cast_href": "evidence/casts/cjson/usage-iperf3-json-interval-report.cast"
     },
     {
-      "library": null,
+      "library": "cjson",
       "testcase_id": "usage-iperf3-json-bidirectional",
       "mode": "original",
       "title": "iperf3 bidirectional JSON run",
@@ -6680,7 +6680,7 @@
       "cast_href": "evidence/casts/cjson/usage-iperf3-json-bidirectional.cast"
     },
     {
-      "library": null,
+      "library": "cjson",
       "testcase_id": "usage-iperf3-json-server-output",
       "mode": "original",
       "title": "iperf3 server JSON output",
@@ -6700,7 +6700,7 @@
       "cast_href": "evidence/casts/cjson/usage-iperf3-json-server-output.cast"
     },
     {
-      "library": null,
+      "library": "giflib",
       "testcase_id": "giftext-metadata",
       "mode": "original",
       "title": "giftext metadata inspection",
@@ -6720,7 +6720,7 @@
       "cast_href": "evidence/casts/giflib/giftext-metadata.cast"
     },
     {
-      "library": null,
+      "library": "giflib",
       "testcase_id": "gif2rgb-conversion",
       "mode": "original",
       "title": "gif2rgb RGB conversion",
@@ -6740,7 +6740,7 @@
       "cast_href": "evidence/casts/giflib/gif2rgb-conversion.cast"
     },
     {
-      "library": null,
+      "library": "giflib",
       "testcase_id": "gifbuild-roundtrip",
       "mode": "original",
       "title": "gifbuild textual round trip",
@@ -6760,7 +6760,7 @@
       "cast_href": "evidence/casts/giflib/gifbuild-roundtrip.cast"
     },
     {
-      "library": null,
+      "library": "giflib",
       "testcase_id": "interlaced-fixture-handling",
       "mode": "original",
       "title": "Interlaced GIF fixture handling",
@@ -6780,7 +6780,7 @@
       "cast_href": "evidence/casts/giflib/interlaced-fixture-handling.cast"
     },
     {
-      "library": null,
+      "library": "giflib",
       "testcase_id": "malformed-gif-rejection",
       "mode": "original",
       "title": "Malformed GIF rejection",
@@ -6800,7 +6800,7 @@
       "cast_href": "evidence/casts/giflib/malformed-gif-rejection.cast"
     },
     {
-      "library": null,
+      "library": "giflib",
       "testcase_id": "usage-giflib-tools-giftext-headers",
       "mode": "original",
       "title": "giflib-tools giftext headers",
@@ -6821,7 +6821,7 @@
       "cast_href": "evidence/casts/giflib/usage-giflib-tools-giftext-headers.cast"
     },
     {
-      "library": null,
+      "library": "giflib",
       "testcase_id": "usage-giflib-tools-gif2rgb-convert",
       "mode": "original",
       "title": "giflib-tools gif2rgb convert",
@@ -6842,7 +6842,7 @@
       "cast_href": "evidence/casts/giflib/usage-giflib-tools-gif2rgb-convert.cast"
     },
     {
-      "library": null,
+      "library": "giflib",
       "testcase_id": "usage-giflib-tools-giffix-copy",
       "mode": "original",
       "title": "giflib-tools giffix copy",
@@ -6863,7 +6863,7 @@
       "cast_href": "evidence/casts/giflib/usage-giflib-tools-giffix-copy.cast"
     },
     {
-      "library": null,
+      "library": "giflib",
       "testcase_id": "usage-giflib-tools-gifclrmp-map",
       "mode": "original",
       "title": "giflib-tools gifclrmp map",
@@ -6884,7 +6884,7 @@
       "cast_href": "evidence/casts/giflib/usage-giflib-tools-gifclrmp-map.cast"
     },
     {
-      "library": null,
+      "library": "giflib",
       "testcase_id": "usage-giflib-tools-gifbuild-dump",
       "mode": "original",
       "title": "giflib-tools gifbuild dump",
@@ -6905,7 +6905,7 @@
       "cast_href": "evidence/casts/giflib/usage-giflib-tools-gifbuild-dump.cast"
     },
     {
-      "library": null,
+      "library": "giflib",
       "testcase_id": "usage-giflib-tools-gifbuild-roundtrip",
       "mode": "original",
       "title": "giflib-tools gifbuild roundtrip",
@@ -6926,7 +6926,7 @@
       "cast_href": "evidence/casts/giflib/usage-giflib-tools-gifbuild-roundtrip.cast"
     },
     {
-      "library": null,
+      "library": "giflib",
       "testcase_id": "usage-giflib-tools-gif2rgb-planar",
       "mode": "original",
       "title": "giflib-tools gif2rgb planar output",
@@ -6947,7 +6947,7 @@
       "cast_href": "evidence/casts/giflib/usage-giflib-tools-gif2rgb-planar.cast"
     },
     {
-      "library": null,
+      "library": "giflib",
       "testcase_id": "usage-giflib-tools-giftext-colormap",
       "mode": "original",
       "title": "giflib-tools giftext color map",
@@ -6968,7 +6968,7 @@
       "cast_href": "evidence/casts/giflib/usage-giflib-tools-giftext-colormap.cast"
     },
     {
-      "library": null,
+      "library": "libarchive",
       "testcase_id": "bsdtar-tar-zip-roundtrip",
       "mode": "original",
       "title": "bsdtar tar and zip round trip",
@@ -6988,7 +6988,7 @@
       "cast_href": "evidence/casts/libarchive/bsdtar-tar-zip-roundtrip.cast"
     },
     {
-      "library": null,
+      "library": "libarchive",
       "testcase_id": "bsdcpio-copy-roundtrip",
       "mode": "original",
       "title": "bsdcpio copy archive round trip",
@@ -7008,7 +7008,7 @@
       "cast_href": "evidence/casts/libarchive/bsdcpio-copy-roundtrip.cast"
     },
     {
-      "library": null,
+      "library": "libarchive",
       "testcase_id": "archive-metadata-listing",
       "mode": "original",
       "title": "Archive metadata listing behavior",
@@ -7028,7 +7028,7 @@
       "cast_href": "evidence/casts/libarchive/archive-metadata-listing.cast"
     },
     {
-      "library": null,
+      "library": "libarchive",
       "testcase_id": "path-traversal-rejection",
       "mode": "original",
       "title": "Path traversal rejection",
@@ -7048,7 +7048,7 @@
       "cast_href": "evidence/casts/libarchive/path-traversal-rejection.cast"
     },
     {
-      "library": null,
+      "library": "libarchive",
       "testcase_id": "archive-read-api-smoke",
       "mode": "original",
       "title": "archive read API smoke",
@@ -7068,7 +7068,7 @@
       "cast_href": "evidence/casts/libarchive/archive-read-api-smoke.cast"
     },
     {
-      "library": null,
+      "library": "libarchive",
       "testcase_id": "usage-python-libarchive-c-tar-list",
       "mode": "original",
       "title": "python-libarchive-c tar list",
@@ -7088,7 +7088,7 @@
       "cast_href": "evidence/casts/libarchive/usage-python-libarchive-c-tar-list.cast"
     },
     {
-      "library": null,
+      "library": "libarchive",
       "testcase_id": "usage-python-libarchive-c-tar-extract",
       "mode": "original",
       "title": "python-libarchive-c tar extract",
@@ -7108,7 +7108,7 @@
       "cast_href": "evidence/casts/libarchive/usage-python-libarchive-c-tar-extract.cast"
     },
     {
-      "library": null,
+      "library": "libarchive",
       "testcase_id": "usage-python-libarchive-c-metadata-read",
       "mode": "original",
       "title": "python-libarchive-c metadata read",
@@ -7128,7 +7128,7 @@
       "cast_href": "evidence/casts/libarchive/usage-python-libarchive-c-metadata-read.cast"
     },
     {
-      "library": null,
+      "library": "libarchive",
       "testcase_id": "usage-python-libarchive-c-stream-read",
       "mode": "original",
       "title": "python-libarchive-c stream read",
@@ -7148,7 +7148,7 @@
       "cast_href": "evidence/casts/libarchive/usage-python-libarchive-c-stream-read.cast"
     },
     {
-      "library": null,
+      "library": "libarchive",
       "testcase_id": "usage-python-libarchive-c-file-roundtrip",
       "mode": "original",
       "title": "python-libarchive-c file roundtrip",
@@ -7168,7 +7168,7 @@
       "cast_href": "evidence/casts/libarchive/usage-python-libarchive-c-file-roundtrip.cast"
     },
     {
-      "library": null,
+      "library": "libarchive",
       "testcase_id": "usage-python-libarchive-c-directory-entry",
       "mode": "original",
       "title": "python-libarchive-c directory entry",
@@ -7188,7 +7188,7 @@
       "cast_href": "evidence/casts/libarchive/usage-python-libarchive-c-directory-entry.cast"
     },
     {
-      "library": null,
+      "library": "libarchive",
       "testcase_id": "usage-python-libarchive-c-copy-mode",
       "mode": "original",
       "title": "python-libarchive-c copy mode",
@@ -7208,7 +7208,7 @@
       "cast_href": "evidence/casts/libarchive/usage-python-libarchive-c-copy-mode.cast"
     },
     {
-      "library": null,
+      "library": "libarchive",
       "testcase_id": "usage-python-libarchive-c-gzip-filter",
       "mode": "original",
       "title": "python-libarchive-c gzip filter",
@@ -7228,7 +7228,7 @@
       "cast_href": "evidence/casts/libarchive/usage-python-libarchive-c-gzip-filter.cast"
     },
     {
-      "library": null,
+      "library": "libbz2",
       "testcase_id": "cli-compress-decompress",
       "mode": "original",
       "title": "bzip2 command round trip",
@@ -7248,7 +7248,7 @@
       "cast_href": "evidence/casts/libbz2/cli-compress-decompress.cast"
     },
     {
-      "library": null,
+      "library": "libbz2",
       "testcase_id": "stream-concatenation",
       "mode": "original",
       "title": "bzip2 stream concatenation",
@@ -7268,7 +7268,7 @@
       "cast_href": "evidence/casts/libbz2/stream-concatenation.cast"
     },
     {
-      "library": null,
+      "library": "libbz2",
       "testcase_id": "c-api-buffer-roundtrip",
       "mode": "original",
       "title": "libbz2 C API round trip",
@@ -7288,7 +7288,7 @@
       "cast_href": "evidence/casts/libbz2/c-api-buffer-roundtrip.cast"
     },
     {
-      "library": null,
+      "library": "libbz2",
       "testcase_id": "corrupted-stream-rejection",
       "mode": "original",
       "title": "bzip2 corrupted stream rejection",
@@ -7308,7 +7308,7 @@
       "cast_href": "evidence/casts/libbz2/corrupted-stream-rejection.cast"
     },
     {
-      "library": null,
+      "library": "libbz2",
       "testcase_id": "debian-sample-parity",
       "mode": "original",
       "title": "Debian sample fixture parity",
@@ -7328,7 +7328,7 @@
       "cast_href": "evidence/casts/libbz2/debian-sample-parity.cast"
     },
     {
-      "library": null,
+      "library": "libbz2",
       "testcase_id": "usage-bzip2-compress-file",
       "mode": "original",
       "title": "bzip2 compress file",
@@ -7348,7 +7348,7 @@
       "cast_href": "evidence/casts/libbz2/usage-bzip2-compress-file.cast"
     },
     {
-      "library": null,
+      "library": "libbz2",
       "testcase_id": "usage-bzip2-test-stream",
       "mode": "original",
       "title": "bzip2 test stream",
@@ -7368,7 +7368,7 @@
       "cast_href": "evidence/casts/libbz2/usage-bzip2-test-stream.cast"
     },
     {
-      "library": null,
+      "library": "libbz2",
       "testcase_id": "usage-bzip2-small-block",
       "mode": "original",
       "title": "bzip2 small block",
@@ -7388,7 +7388,7 @@
       "cast_href": "evidence/casts/libbz2/usage-bzip2-small-block.cast"
     },
     {
-      "library": null,
+      "library": "libbz2",
       "testcase_id": "usage-bzip2-large-block",
       "mode": "original",
       "title": "bzip2 large block",
@@ -7408,7 +7408,7 @@
       "cast_href": "evidence/casts/libbz2/usage-bzip2-large-block.cast"
     },
     {
-      "library": null,
+      "library": "libbz2",
       "testcase_id": "usage-bzip2-concatenated-streams",
       "mode": "original",
       "title": "bzip2 concatenated streams",
@@ -7428,7 +7428,7 @@
       "cast_href": "evidence/casts/libbz2/usage-bzip2-concatenated-streams.cast"
     },
     {
-      "library": null,
+      "library": "libbz2",
       "testcase_id": "usage-bzip2-stdout-stream",
       "mode": "original",
       "title": "bzip2 stdout stream",
@@ -7448,7 +7448,7 @@
       "cast_href": "evidence/casts/libbz2/usage-bzip2-stdout-stream.cast"
     },
     {
-      "library": null,
+      "library": "libbz2",
       "testcase_id": "usage-bzip2-recover-listing",
       "mode": "original",
       "title": "bzip2 recover listing",
@@ -7468,7 +7468,7 @@
       "cast_href": "evidence/casts/libbz2/usage-bzip2-recover-listing.cast"
     },
     {
-      "library": null,
+      "library": "libbz2",
       "testcase_id": "usage-bzip2-version-query",
       "mode": "original",
       "title": "bzip2 version query",
@@ -7488,7 +7488,7 @@
       "cast_href": "evidence/casts/libbz2/usage-bzip2-version-query.cast"
     },
     {
-      "library": null,
+      "library": "libcsv",
       "testcase_id": "parser-callback-behavior",
       "mode": "original",
       "title": "Parser callback behavior",
@@ -7508,7 +7508,7 @@
       "cast_href": "evidence/casts/libcsv/parser-callback-behavior.cast"
     },
     {
-      "library": null,
+      "library": "libcsv",
       "testcase_id": "strict-quote-error",
       "mode": "original",
       "title": "Strict quote error behavior",
@@ -7528,7 +7528,7 @@
       "cast_href": "evidence/casts/libcsv/strict-quote-error.cast"
     },
     {
-      "library": null,
+      "library": "libcsv",
       "testcase_id": "example-tool-compile-run",
       "mode": "original",
       "title": "Example tool compile and run",
@@ -7548,7 +7548,7 @@
       "cast_href": "evidence/casts/libcsv/example-tool-compile-run.cast"
     },
     {
-      "library": null,
+      "library": "libcsv",
       "testcase_id": "large-field-handling",
       "mode": "original",
       "title": "Large field handling",
@@ -7568,7 +7568,7 @@
       "cast_href": "evidence/casts/libcsv/large-field-handling.cast"
     },
     {
-      "library": null,
+      "library": "libcsv",
       "testcase_id": "empty-field-custom-delimiter",
       "mode": "original",
       "title": "Empty fields and custom delimiter",
@@ -7588,7 +7588,7 @@
       "cast_href": "evidence/casts/libcsv/empty-field-custom-delimiter.cast"
     },
     {
-      "library": null,
+      "library": "libcsv",
       "testcase_id": "usage-readstat-csv-to-dta",
       "mode": "original",
       "title": "readstat CSV to DTA",
@@ -7608,7 +7608,7 @@
       "cast_href": "evidence/casts/libcsv/usage-readstat-csv-to-dta.cast"
     },
     {
-      "library": null,
+      "library": "libcsv",
       "testcase_id": "usage-readstat-dta-to-csv",
       "mode": "original",
       "title": "readstat DTA to CSV",
@@ -7628,7 +7628,7 @@
       "cast_href": "evidence/casts/libcsv/usage-readstat-dta-to-csv.cast"
     },
     {
-      "library": null,
+      "library": "libcsv",
       "testcase_id": "usage-readstat-csv-to-sav",
       "mode": "original",
       "title": "readstat CSV to SAV",
@@ -7648,7 +7648,7 @@
       "cast_href": "evidence/casts/libcsv/usage-readstat-csv-to-sav.cast"
     },
     {
-      "library": null,
+      "library": "libcsv",
       "testcase_id": "usage-readstat-sav-to-csv",
       "mode": "original",
       "title": "readstat SAV to CSV",
@@ -7668,7 +7668,7 @@
       "cast_href": "evidence/casts/libcsv/usage-readstat-sav-to-csv.cast"
     },
     {
-      "library": null,
+      "library": "libcsv",
       "testcase_id": "usage-readstat-metadata-summary",
       "mode": "original",
       "title": "readstat metadata summary",
@@ -7688,7 +7688,7 @@
       "cast_href": "evidence/casts/libcsv/usage-readstat-metadata-summary.cast"
     },
     {
-      "library": null,
+      "library": "libcsv",
       "testcase_id": "usage-readstat-quoted-csv",
       "mode": "original",
       "title": "readstat quoted CSV fields",
@@ -7708,7 +7708,7 @@
       "cast_href": "evidence/casts/libcsv/usage-readstat-quoted-csv.cast"
     },
     {
-      "library": null,
+      "library": "libcsv",
       "testcase_id": "usage-readstat-missing-values",
       "mode": "original",
       "title": "readstat missing CSV values",
@@ -7728,7 +7728,7 @@
       "cast_href": "evidence/casts/libcsv/usage-readstat-missing-values.cast"
     },
     {
-      "library": null,
+      "library": "libcsv",
       "testcase_id": "usage-readstat-normalize-csv",
       "mode": "original",
       "title": "readstat normalized CSV output",
@@ -7748,7 +7748,7 @@
       "cast_href": "evidence/casts/libcsv/usage-readstat-normalize-csv.cast"
     },
     {
-      "library": null,
+      "library": "libexif",
       "testcase_id": "jpeg-exif-c-api-parse",
       "mode": "original",
       "title": "JPEG EXIF C API parse",
@@ -7768,7 +7768,7 @@
       "cast_href": "evidence/casts/libexif/jpeg-exif-c-api-parse.cast"
     },
     {
-      "library": null,
+      "library": "libexif",
       "testcase_id": "maker-note-handling",
       "mode": "original",
       "title": "Maker note data handling",
@@ -7788,7 +7788,7 @@
       "cast_href": "evidence/casts/libexif/maker-note-handling.cast"
     },
     {
-      "library": null,
+      "library": "libexif",
       "testcase_id": "tag-lookup-value-formatting",
       "mode": "original",
       "title": "Tag lookup and value formatting",
@@ -7808,7 +7808,7 @@
       "cast_href": "evidence/casts/libexif/tag-lookup-value-formatting.cast"
     },
     {
-      "library": null,
+      "library": "libexif",
       "testcase_id": "compile-link-smoke",
       "mode": "original",
       "title": "libexif compile link smoke",
@@ -7828,7 +7828,7 @@
       "cast_href": "evidence/casts/libexif/compile-link-smoke.cast"
     },
     {
-      "library": null,
+      "library": "libexif",
       "testcase_id": "invalid-data-handling",
       "mode": "original",
       "title": "Invalid EXIF data handling",
@@ -7848,7 +7848,7 @@
       "cast_href": "evidence/casts/libexif/invalid-data-handling.cast"
     },
     {
-      "library": null,
+      "library": "libexif",
       "testcase_id": "usage-exif-cli-list-tags",
       "mode": "original",
       "title": "exif CLI lists camera tags",
@@ -7868,7 +7868,7 @@
       "cast_href": "evidence/casts/libexif/usage-exif-cli-list-tags.cast"
     },
     {
-      "library": null,
+      "library": "libexif",
       "testcase_id": "usage-exif-cli-machine-readable",
       "mode": "original",
       "title": "exif CLI machine output",
@@ -7888,7 +7888,7 @@
       "cast_href": "evidence/casts/libexif/usage-exif-cli-machine-readable.cast"
     },
     {
-      "library": null,
+      "library": "libexif",
       "testcase_id": "usage-exif-cli-tag-make",
       "mode": "original",
       "title": "exif CLI make tag",
@@ -7908,7 +7908,7 @@
       "cast_href": "evidence/casts/libexif/usage-exif-cli-tag-make.cast"
     },
     {
-      "library": null,
+      "library": "libexif",
       "testcase_id": "usage-exif-cli-tag-model",
       "mode": "original",
       "title": "exif CLI model tag",
@@ -7928,7 +7928,7 @@
       "cast_href": "evidence/casts/libexif/usage-exif-cli-tag-model.cast"
     },
     {
-      "library": null,
+      "library": "libexif",
       "testcase_id": "usage-exif-cli-maker-note",
       "mode": "original",
       "title": "exif CLI maker note",
@@ -7948,7 +7948,7 @@
       "cast_href": "evidence/casts/libexif/usage-exif-cli-maker-note.cast"
     },
     {
-      "library": null,
+      "library": "libexif",
       "testcase_id": "usage-exif-cli-extract-thumbnail",
       "mode": "original",
       "title": "exif CLI thumbnail extraction",
@@ -7968,7 +7968,7 @@
       "cast_href": "evidence/casts/libexif/usage-exif-cli-extract-thumbnail.cast"
     },
     {
-      "library": null,
+      "library": "libexif",
       "testcase_id": "usage-exif-cli-ifd-exif",
       "mode": "original",
       "title": "exif CLI EXIF IFD",
@@ -7988,7 +7988,7 @@
       "cast_href": "evidence/casts/libexif/usage-exif-cli-ifd-exif.cast"
     },
     {
-      "library": null,
+      "library": "libexif",
       "testcase_id": "usage-exif-cli-xml-output",
       "mode": "original",
       "title": "exif CLI XML output",
@@ -8008,7 +8008,7 @@
       "cast_href": "evidence/casts/libexif/usage-exif-cli-xml-output.cast"
     },
     {
-      "library": null,
+      "library": "libjpeg-turbo",
       "testcase_id": "cjpeg-djpeg-roundtrip",
       "mode": "original",
       "title": "cjpeg and djpeg round trip",
@@ -8028,7 +8028,7 @@
       "cast_href": "evidence/casts/libjpeg-turbo/cjpeg-djpeg-roundtrip.cast"
     },
     {
-      "library": null,
+      "library": "libjpeg-turbo",
       "testcase_id": "jpegtran-transform",
       "mode": "original",
       "title": "jpegtran image transform",
@@ -8048,7 +8048,7 @@
       "cast_href": "evidence/casts/libjpeg-turbo/jpegtran-transform.cast"
     },
     {
-      "library": null,
+      "library": "libjpeg-turbo",
       "testcase_id": "turbojpeg-api-smoke",
       "mode": "original",
       "title": "TurboJPEG API compile smoke",
@@ -8068,7 +8068,7 @@
       "cast_href": "evidence/casts/libjpeg-turbo/turbojpeg-api-smoke.cast"
     },
     {
-      "library": null,
+      "library": "libjpeg-turbo",
       "testcase_id": "progressive-grayscale-conversion",
       "mode": "original",
       "title": "Progressive grayscale conversion",
@@ -8088,7 +8088,7 @@
       "cast_href": "evidence/casts/libjpeg-turbo/progressive-grayscale-conversion.cast"
     },
     {
-      "library": null,
+      "library": "libjpeg-turbo",
       "testcase_id": "malformed-jpeg-handling",
       "mode": "original",
       "title": "Malformed JPEG input handling",
@@ -8108,7 +8108,7 @@
       "cast_href": "evidence/casts/libjpeg-turbo/malformed-jpeg-handling.cast"
     },
     {
-      "library": null,
+      "library": "libjpeg-turbo",
       "testcase_id": "usage-python3-pil-open-jpeg",
       "mode": "original",
       "title": "Pillow open jpeg",
@@ -8129,7 +8129,7 @@
       "cast_href": "evidence/casts/libjpeg-turbo/usage-python3-pil-open-jpeg.cast"
     },
     {
-      "library": null,
+      "library": "libjpeg-turbo",
       "testcase_id": "usage-python3-pil-grayscale-jpeg",
       "mode": "original",
       "title": "Pillow grayscale jpeg",
@@ -8150,7 +8150,7 @@
       "cast_href": "evidence/casts/libjpeg-turbo/usage-python3-pil-grayscale-jpeg.cast"
     },
     {
-      "library": null,
+      "library": "libjpeg-turbo",
       "testcase_id": "usage-python3-pil-thumbnail-jpeg",
       "mode": "original",
       "title": "Pillow thumbnail jpeg",
@@ -8171,7 +8171,7 @@
       "cast_href": "evidence/casts/libjpeg-turbo/usage-python3-pil-thumbnail-jpeg.cast"
     },
     {
-      "library": null,
+      "library": "libjpeg-turbo",
       "testcase_id": "usage-python3-pil-transpose-jpeg",
       "mode": "original",
       "title": "Pillow transpose jpeg",
@@ -8192,7 +8192,7 @@
       "cast_href": "evidence/casts/libjpeg-turbo/usage-python3-pil-transpose-jpeg.cast"
     },
     {
-      "library": null,
+      "library": "libjpeg-turbo",
       "testcase_id": "usage-vips-header-jpeg",
       "mode": "original",
       "title": "vips header jpeg",
@@ -8213,7 +8213,7 @@
       "cast_href": "evidence/casts/libjpeg-turbo/usage-vips-header-jpeg.cast"
     },
     {
-      "library": null,
+      "library": "libjpeg-turbo",
       "testcase_id": "usage-vips-copy-jpeg-png",
       "mode": "original",
       "title": "vips copy jpeg png",
@@ -8234,7 +8234,7 @@
       "cast_href": "evidence/casts/libjpeg-turbo/usage-vips-copy-jpeg-png.cast"
     },
     {
-      "library": null,
+      "library": "libjpeg-turbo",
       "testcase_id": "usage-vips-thumbnail-jpeg",
       "mode": "original",
       "title": "vips thumbnail jpeg",
@@ -8255,7 +8255,7 @@
       "cast_href": "evidence/casts/libjpeg-turbo/usage-vips-thumbnail-jpeg.cast"
     },
     {
-      "library": null,
+      "library": "libjpeg-turbo",
       "testcase_id": "usage-vips-stats-jpeg",
       "mode": "original",
       "title": "vips stats jpeg",
@@ -8276,7 +8276,7 @@
       "cast_href": "evidence/casts/libjpeg-turbo/usage-vips-stats-jpeg.cast"
     },
     {
-      "library": null,
+      "library": "libjson",
       "testcase_id": "tokener-parse",
       "mode": "original",
       "title": "json-c tokener parse",
@@ -8296,7 +8296,7 @@
       "cast_href": "evidence/casts/libjson/tokener-parse.cast"
     },
     {
-      "library": null,
+      "library": "libjson",
       "testcase_id": "serializer-roundtrip",
       "mode": "original",
       "title": "json-c serializer round trip",
@@ -8316,7 +8316,7 @@
       "cast_href": "evidence/casts/libjson/serializer-roundtrip.cast"
     },
     {
-      "library": null,
+      "library": "libjson",
       "testcase_id": "refcount-object-mutation",
       "mode": "original",
       "title": "Refcount and object mutation",
@@ -8336,7 +8336,7 @@
       "cast_href": "evidence/casts/libjson/refcount-object-mutation.cast"
     },
     {
-      "library": null,
+      "library": "libjson",
       "testcase_id": "compile-link-smoke",
       "mode": "original",
       "title": "json-c compile link smoke",
@@ -8356,7 +8356,7 @@
       "cast_href": "evidence/casts/libjson/compile-link-smoke.cast"
     },
     {
-      "library": null,
+      "library": "libjson",
       "testcase_id": "malformed-json-handling",
       "mode": "original",
       "title": "Malformed JSON handling",
@@ -8376,7 +8376,7 @@
       "cast_href": "evidence/casts/libjson/malformed-json-handling.cast"
     },
     {
-      "library": null,
+      "library": "libjson",
       "testcase_id": "usage-gdal-ogrinfo-geojson",
       "mode": "original",
       "title": "GDAL reads GeoJSON",
@@ -8397,7 +8397,7 @@
       "cast_href": "evidence/casts/libjson/usage-gdal-ogrinfo-geojson.cast"
     },
     {
-      "library": null,
+      "library": "libjson",
       "testcase_id": "usage-ttyd-loopback-index",
       "mode": "original",
       "title": "ttyd loopback web session",
@@ -8418,7 +8418,7 @@
       "cast_href": "evidence/casts/libjson/usage-ttyd-loopback-index.cast"
     },
     {
-      "library": null,
+      "library": "libjson",
       "testcase_id": "usage-gdal-ogrinfo-filter-geojson",
       "mode": "original",
       "title": "GDAL filters GeoJSON",
@@ -8438,7 +8438,7 @@
       "cast_href": "evidence/casts/libjson/usage-gdal-ogrinfo-filter-geojson.cast"
     },
     {
-      "library": null,
+      "library": "libjson",
       "testcase_id": "usage-gdal-ogr2ogr-copy-geojson",
       "mode": "original",
       "title": "GDAL copies GeoJSON",
@@ -8458,7 +8458,7 @@
       "cast_href": "evidence/casts/libjson/usage-gdal-ogr2ogr-copy-geojson.cast"
     },
     {
-      "library": null,
+      "library": "libjson",
       "testcase_id": "usage-gdal-ogr2ogr-csv-geojson",
       "mode": "original",
       "title": "GDAL converts GeoJSON to CSV",
@@ -8478,7 +8478,7 @@
       "cast_href": "evidence/casts/libjson/usage-gdal-ogr2ogr-csv-geojson.cast"
     },
     {
-      "library": null,
+      "library": "libjson",
       "testcase_id": "usage-gdal-ogr2ogr-gpkg-geojson",
       "mode": "original",
       "title": "GDAL converts GeoJSON to GeoPackage",
@@ -8498,7 +8498,7 @@
       "cast_href": "evidence/casts/libjson/usage-gdal-ogr2ogr-gpkg-geojson.cast"
     },
     {
-      "library": null,
+      "library": "libjson",
       "testcase_id": "usage-gdal-ogrinfo-sql-geojson",
       "mode": "original",
       "title": "GDAL SQL over GeoJSON",
@@ -8518,7 +8518,7 @@
       "cast_href": "evidence/casts/libjson/usage-gdal-ogrinfo-sql-geojson.cast"
     },
     {
-      "library": null,
+      "library": "libjson",
       "testcase_id": "usage-gdal-ogrinfo-spatial-filter",
       "mode": "original",
       "title": "GDAL spatial filter over GeoJSON",
@@ -8538,7 +8538,7 @@
       "cast_href": "evidence/casts/libjson/usage-gdal-ogrinfo-spatial-filter.cast"
     },
     {
-      "library": null,
+      "library": "libjson",
       "testcase_id": "usage-gdal-gdalinfo-json-raster",
       "mode": "original",
       "title": "GDAL raster JSON metadata",
@@ -8558,7 +8558,7 @@
       "cast_href": "evidence/casts/libjson/usage-gdal-gdalinfo-json-raster.cast"
     },
     {
-      "library": null,
+      "library": "liblzma",
       "testcase_id": "xz-compress-decompress",
       "mode": "original",
       "title": "xz command round trip",
@@ -8578,7 +8578,7 @@
       "cast_href": "evidence/casts/liblzma/xz-compress-decompress.cast"
     },
     {
-      "library": null,
+      "library": "liblzma",
       "testcase_id": "integrity-check",
       "mode": "original",
       "title": "xz integrity check",
@@ -8598,7 +8598,7 @@
       "cast_href": "evidence/casts/liblzma/integrity-check.cast"
     },
     {
-      "library": null,
+      "library": "liblzma",
       "testcase_id": "streaming-c-api-smoke",
       "mode": "original",
       "title": "liblzma streaming C API smoke",
@@ -8618,7 +8618,7 @@
       "cast_href": "evidence/casts/liblzma/streaming-c-api-smoke.cast"
     },
     {
-      "library": null,
+      "library": "liblzma",
       "testcase_id": "multi-stream-behavior",
       "mode": "original",
       "title": "xz multi stream behavior",
@@ -8638,7 +8638,7 @@
       "cast_href": "evidence/casts/liblzma/multi-stream-behavior.cast"
     },
     {
-      "library": null,
+      "library": "liblzma",
       "testcase_id": "corrupted-stream-rejection",
       "mode": "original",
       "title": "xz corrupted stream rejection",
@@ -8658,7 +8658,7 @@
       "cast_href": "evidence/casts/liblzma/corrupted-stream-rejection.cast"
     },
     {
-      "library": null,
+      "library": "liblzma",
       "testcase_id": "usage-libarchive-tools-xz-tar-list",
       "mode": "original",
       "title": "libarchive-tools xz tar list",
@@ -8679,7 +8679,7 @@
       "cast_href": "evidence/casts/liblzma/usage-libarchive-tools-xz-tar-list.cast"
     },
     {
-      "library": null,
+      "library": "liblzma",
       "testcase_id": "usage-libarchive-tools-xz-tar-extract",
       "mode": "original",
       "title": "libarchive-tools xz tar extract",
@@ -8700,7 +8700,7 @@
       "cast_href": "evidence/casts/liblzma/usage-libarchive-tools-xz-tar-extract.cast"
     },
     {
-      "library": null,
+      "library": "liblzma",
       "testcase_id": "usage-libarchive-tools-xz-stdout-stream",
       "mode": "original",
       "title": "libarchive-tools xz stdout stream",
@@ -8721,7 +8721,7 @@
       "cast_href": "evidence/casts/liblzma/usage-libarchive-tools-xz-stdout-stream.cast"
     },
     {
-      "library": null,
+      "library": "liblzma",
       "testcase_id": "usage-libarchive-tools-xz-large-file",
       "mode": "original",
       "title": "libarchive-tools xz large file",
@@ -8742,7 +8742,7 @@
       "cast_href": "evidence/casts/liblzma/usage-libarchive-tools-xz-large-file.cast"
     },
     {
-      "library": null,
+      "library": "liblzma",
       "testcase_id": "usage-libarchive-tools-xz-symlink",
       "mode": "original",
       "title": "libarchive-tools xz symlink",
@@ -8763,7 +8763,7 @@
       "cast_href": "evidence/casts/liblzma/usage-libarchive-tools-xz-symlink.cast"
     },
     {
-      "library": null,
+      "library": "liblzma",
       "testcase_id": "usage-libarchive-tools-xz-empty-dir",
       "mode": "original",
       "title": "libarchive-tools xz empty dir",
@@ -8784,7 +8784,7 @@
       "cast_href": "evidence/casts/liblzma/usage-libarchive-tools-xz-empty-dir.cast"
     },
     {
-      "library": null,
+      "library": "liblzma",
       "testcase_id": "usage-libarchive-tools-xz-filter-auto",
       "mode": "original",
       "title": "libarchive-tools xz filter auto",
@@ -8805,7 +8805,7 @@
       "cast_href": "evidence/casts/liblzma/usage-libarchive-tools-xz-filter-auto.cast"
     },
     {
-      "library": null,
+      "library": "liblzma",
       "testcase_id": "usage-libarchive-tools-xz-copy-mode",
       "mode": "original",
       "title": "libarchive-tools xz copy mode",
@@ -8826,7 +8826,7 @@
       "cast_href": "evidence/casts/liblzma/usage-libarchive-tools-xz-copy-mode.cast"
     },
     {
-      "library": null,
+      "library": "libpng",
       "testcase_id": "pngfix-fixture-handling",
       "mode": "original",
       "title": "pngfix fixture handling",
@@ -8846,7 +8846,7 @@
       "cast_href": "evidence/casts/libpng/pngfix-fixture-handling.cast"
     },
     {
-      "library": null,
+      "library": "libpng",
       "testcase_id": "read-write-c-api-smoke",
       "mode": "original",
       "title": "libpng read write C API smoke",
@@ -8866,7 +8866,7 @@
       "cast_href": "evidence/casts/libpng/read-write-c-api-smoke.cast"
     },
     {
-      "library": null,
+      "library": "libpng",
       "testcase_id": "chunk-metadata-inspection",
       "mode": "original",
       "title": "PNG chunk metadata inspection",
@@ -8886,7 +8886,7 @@
       "cast_href": "evidence/casts/libpng/chunk-metadata-inspection.cast"
     },
     {
-      "library": null,
+      "library": "libpng",
       "testcase_id": "palette-fixture-handling",
       "mode": "original",
       "title": "Palette PNG fixture handling",
@@ -8906,7 +8906,7 @@
       "cast_href": "evidence/casts/libpng/palette-fixture-handling.cast"
     },
     {
-      "library": null,
+      "library": "libpng",
       "testcase_id": "malformed-png-rejection",
       "mode": "original",
       "title": "Malformed PNG rejection",
@@ -8926,7 +8926,7 @@
       "cast_href": "evidence/casts/libpng/malformed-png-rejection.cast"
     },
     {
-      "library": null,
+      "library": "libpng",
       "testcase_id": "usage-pngquant-compress-png",
       "mode": "original",
       "title": "pngquant compress png",
@@ -8946,7 +8946,7 @@
       "cast_href": "evidence/casts/libpng/usage-pngquant-compress-png.cast"
     },
     {
-      "library": null,
+      "library": "libpng",
       "testcase_id": "usage-pngquant-quality-png",
       "mode": "original",
       "title": "pngquant quality png",
@@ -8966,7 +8966,7 @@
       "cast_href": "evidence/casts/libpng/usage-pngquant-quality-png.cast"
     },
     {
-      "library": null,
+      "library": "libpng",
       "testcase_id": "usage-pngquant-strip-png",
       "mode": "original",
       "title": "pngquant strip png",
@@ -8986,7 +8986,7 @@
       "cast_href": "evidence/casts/libpng/usage-pngquant-strip-png.cast"
     },
     {
-      "library": null,
+      "library": "libpng",
       "testcase_id": "usage-pngquant-speed-png",
       "mode": "original",
       "title": "pngquant speed png",
@@ -9006,7 +9006,7 @@
       "cast_href": "evidence/casts/libpng/usage-pngquant-speed-png.cast"
     },
     {
-      "library": null,
+      "library": "libpng",
       "testcase_id": "usage-netpbm-pngtopnm",
       "mode": "original",
       "title": "netpbm pngtopnm",
@@ -9026,7 +9026,7 @@
       "cast_href": "evidence/casts/libpng/usage-netpbm-pngtopnm.cast"
     },
     {
-      "library": null,
+      "library": "libpng",
       "testcase_id": "usage-netpbm-pnmtopng",
       "mode": "original",
       "title": "netpbm pnmtopng",
@@ -9046,7 +9046,7 @@
       "cast_href": "evidence/casts/libpng/usage-netpbm-pnmtopng.cast"
     },
     {
-      "library": null,
+      "library": "libpng",
       "testcase_id": "usage-netpbm-pngtopam",
       "mode": "original",
       "title": "netpbm pngtopam",
@@ -9066,7 +9066,7 @@
       "cast_href": "evidence/casts/libpng/usage-netpbm-pngtopam.cast"
     },
     {
-      "library": null,
+      "library": "libpng",
       "testcase_id": "usage-netpbm-roundtrip-png",
       "mode": "original",
       "title": "netpbm roundtrip png",
@@ -9086,7 +9086,7 @@
       "cast_href": "evidence/casts/libpng/usage-netpbm-roundtrip-png.cast"
     },
     {
-      "library": null,
+      "library": "libsdl",
       "testcase_id": "version-query-compile",
       "mode": "original",
       "title": "SDL version query compile",
@@ -9106,7 +9106,7 @@
       "cast_href": "evidence/casts/libsdl/version-query-compile.cast"
     },
     {
-      "library": null,
+      "library": "libsdl",
       "testcase_id": "headless-event-timer",
       "mode": "original",
       "title": "Headless event timer behavior",
@@ -9126,7 +9126,7 @@
       "cast_href": "evidence/casts/libsdl/headless-event-timer.cast"
     },
     {
-      "library": null,
+      "library": "libsdl",
       "testcase_id": "surface-blit-pixel-format",
       "mode": "original",
       "title": "Surface pixel format blit",
@@ -9146,7 +9146,7 @@
       "cast_href": "evidence/casts/libsdl/surface-blit-pixel-format.cast"
     },
     {
-      "library": null,
+      "library": "libsdl",
       "testcase_id": "dummy-audio-queue",
       "mode": "original",
       "title": "Dummy audio queue behavior",
@@ -9166,7 +9166,7 @@
       "cast_href": "evidence/casts/libsdl/dummy-audio-queue.cast"
     },
     {
-      "library": null,
+      "library": "libsdl",
       "testcase_id": "installed-test-binary",
       "mode": "original",
       "title": "Installed SDL test binary",
@@ -9186,7 +9186,7 @@
       "cast_href": "evidence/casts/libsdl/installed-test-binary.cast"
     },
     {
-      "library": null,
+      "library": "libsdl",
       "testcase_id": "usage-python3-pygame-surface-fill",
       "mode": "original",
       "title": "Pygame surface fill",
@@ -9207,7 +9207,7 @@
       "cast_href": "evidence/casts/libsdl/usage-python3-pygame-surface-fill.cast"
     },
     {
-      "library": null,
+      "library": "libsdl",
       "testcase_id": "usage-python3-pygame-image-save",
       "mode": "original",
       "title": "Pygame image save",
@@ -9228,7 +9228,7 @@
       "cast_href": "evidence/casts/libsdl/usage-python3-pygame-image-save.cast"
     },
     {
-      "library": null,
+      "library": "libsdl",
       "testcase_id": "usage-python3-pygame-event-queue",
       "mode": "original",
       "title": "Pygame event queue",
@@ -9249,7 +9249,7 @@
       "cast_href": "evidence/casts/libsdl/usage-python3-pygame-event-queue.cast"
     },
     {
-      "library": null,
+      "library": "libsdl",
       "testcase_id": "usage-python3-pygame-audio-dummy",
       "mode": "original",
       "title": "Pygame audio dummy",
@@ -9270,7 +9270,7 @@
       "cast_href": "evidence/casts/libsdl/usage-python3-pygame-audio-dummy.cast"
     },
     {
-      "library": null,
+      "library": "libsdl",
       "testcase_id": "usage-python3-pygame-xvfb-display",
       "mode": "original",
       "title": "Pygame xvfb display",
@@ -9291,7 +9291,7 @@
       "cast_href": "evidence/casts/libsdl/usage-python3-pygame-xvfb-display.cast"
     },
     {
-      "library": null,
+      "library": "libsdl",
       "testcase_id": "usage-python3-pygame-draw-rect",
       "mode": "original",
       "title": "Pygame draw rect",
@@ -9312,7 +9312,7 @@
       "cast_href": "evidence/casts/libsdl/usage-python3-pygame-draw-rect.cast"
     },
     {
-      "library": null,
+      "library": "libsdl",
       "testcase_id": "usage-python3-pygame-font-module",
       "mode": "original",
       "title": "Pygame font module",
@@ -9333,7 +9333,7 @@
       "cast_href": "evidence/casts/libsdl/usage-python3-pygame-font-module.cast"
     },
     {
-      "library": null,
+      "library": "libsdl",
       "testcase_id": "usage-python3-pygame-transform-scale",
       "mode": "original",
       "title": "Pygame transform scale",
@@ -9354,7 +9354,7 @@
       "cast_href": "evidence/casts/libsdl/usage-python3-pygame-transform-scale.cast"
     },
     {
-      "library": null,
+      "library": "libsodium",
       "testcase_id": "generichash-smoke",
       "mode": "original",
       "title": "libsodium hash behavior",
@@ -9374,7 +9374,7 @@
       "cast_href": "evidence/casts/libsodium/generichash-smoke.cast"
     },
     {
-      "library": null,
+      "library": "libsodium",
       "testcase_id": "secretbox-roundtrip",
       "mode": "original",
       "title": "libsodium secretbox round trip",
@@ -9394,7 +9394,7 @@
       "cast_href": "evidence/casts/libsodium/secretbox-roundtrip.cast"
     },
     {
-      "library": null,
+      "library": "libsodium",
       "testcase_id": "sign-verify",
       "mode": "original",
       "title": "libsodium sign verify",
@@ -9414,7 +9414,7 @@
       "cast_href": "evidence/casts/libsodium/sign-verify.cast"
     },
     {
-      "library": null,
+      "library": "libsodium",
       "testcase_id": "key-exchange-randombytes",
       "mode": "original",
       "title": "libsodium key exchange randombytes",
@@ -9434,7 +9434,7 @@
       "cast_href": "evidence/casts/libsodium/key-exchange-randombytes.cast"
     },
     {
-      "library": null,
+      "library": "libsodium",
       "testcase_id": "compile-link-smoke",
       "mode": "original",
       "title": "libsodium compile link smoke",
@@ -9454,7 +9454,7 @@
       "cast_href": "evidence/casts/libsodium/compile-link-smoke.cast"
     },
     {
-      "library": null,
+      "library": "libsodium",
       "testcase_id": "usage-minisign-sign-verify",
       "mode": "original",
       "title": "minisign signs and verifies",
@@ -9474,7 +9474,7 @@
       "cast_href": "evidence/casts/libsodium/usage-minisign-sign-verify.cast"
     },
     {
-      "library": null,
+      "library": "libsodium",
       "testcase_id": "usage-minisign-trusted-comment",
       "mode": "original",
       "title": "minisign trusted comment",
@@ -9494,7 +9494,7 @@
       "cast_href": "evidence/casts/libsodium/usage-minisign-trusted-comment.cast"
     },
     {
-      "library": null,
+      "library": "libsodium",
       "testcase_id": "usage-python3-nacl-secretbox",
       "mode": "original",
       "title": "python3-nacl secretbox",
@@ -9514,7 +9514,7 @@
       "cast_href": "evidence/casts/libsodium/usage-python3-nacl-secretbox.cast"
     },
     {
-      "library": null,
+      "library": "libsodium",
       "testcase_id": "usage-python3-nacl-signing",
       "mode": "original",
       "title": "python3-nacl signing",
@@ -9534,7 +9534,7 @@
       "cast_href": "evidence/casts/libsodium/usage-python3-nacl-signing.cast"
     },
     {
-      "library": null,
+      "library": "libsodium",
       "testcase_id": "usage-ruby-rbnacl-secretbox",
       "mode": "original",
       "title": "RbNaCl SecretBox encrypts",
@@ -9554,7 +9554,7 @@
       "cast_href": "evidence/casts/libsodium/usage-ruby-rbnacl-secretbox.cast"
     },
     {
-      "library": null,
+      "library": "libsodium",
       "testcase_id": "usage-php83-sodium-generichash",
       "mode": "original",
       "title": "PHP sodium generichash",
@@ -9574,7 +9574,7 @@
       "cast_href": "evidence/casts/libsodium/usage-php83-sodium-generichash.cast"
     },
     {
-      "library": null,
+      "library": "libsodium",
       "testcase_id": "usage-php83-sodium-secretbox",
       "mode": "original",
       "title": "PHP sodium secretbox",
@@ -9594,7 +9594,7 @@
       "cast_href": "evidence/casts/libsodium/usage-php83-sodium-secretbox.cast"
     },
     {
-      "library": null,
+      "library": "libsodium",
       "testcase_id": "usage-r-cran-sodium-hash",
       "mode": "original",
       "title": "R sodium hashes data",
@@ -9614,7 +9614,7 @@
       "cast_href": "evidence/casts/libsodium/usage-r-cran-sodium-hash.cast"
     },
     {
-      "library": null,
+      "library": "libsodium",
       "testcase_id": "usage-libzmq5-curve-capability",
       "mode": "original",
       "title": "ZeroMQ reports CURVE capability",
@@ -9634,7 +9634,7 @@
       "cast_href": "evidence/casts/libsodium/usage-libzmq5-curve-capability.cast"
     },
     {
-      "library": null,
+      "library": "libtiff",
       "testcase_id": "tiffinfo-metadata",
       "mode": "original",
       "title": "tiffinfo metadata inspection",
@@ -9654,7 +9654,7 @@
       "cast_href": "evidence/casts/libtiff/tiffinfo-metadata.cast"
     },
     {
-      "library": null,
+      "library": "libtiff",
       "testcase_id": "tiffcp-copy",
       "mode": "original",
       "title": "tiffcp copy behavior",
@@ -9674,7 +9674,7 @@
       "cast_href": "evidence/casts/libtiff/tiffcp-copy.cast"
     },
     {
-      "library": null,
+      "library": "libtiff",
       "testcase_id": "tiffdump-structure",
       "mode": "original",
       "title": "tiffdump structure inspection",
@@ -9694,7 +9694,7 @@
       "cast_href": "evidence/casts/libtiff/tiffdump-structure.cast"
     },
     {
-      "library": null,
+      "library": "libtiff",
       "testcase_id": "c-api-read-write",
       "mode": "original",
       "title": "libtiff C API read write",
@@ -9714,7 +9714,7 @@
       "cast_href": "evidence/casts/libtiff/c-api-read-write.cast"
     },
     {
-      "library": null,
+      "library": "libtiff",
       "testcase_id": "malformed-tiff-rejection",
       "mode": "original",
       "title": "Malformed TIFF rejection",
@@ -9734,7 +9734,7 @@
       "cast_href": "evidence/casts/libtiff/malformed-tiff-rejection.cast"
     },
     {
-      "library": null,
+      "library": "libtiff",
       "testcase_id": "usage-python3-pil-open-tiff",
       "mode": "original",
       "title": "Pillow open tiff",
@@ -9755,7 +9755,7 @@
       "cast_href": "evidence/casts/libtiff/usage-python3-pil-open-tiff.cast"
     },
     {
-      "library": null,
+      "library": "libtiff",
       "testcase_id": "usage-python3-pil-convert-tiff",
       "mode": "original",
       "title": "Pillow convert tiff",
@@ -9776,7 +9776,7 @@
       "cast_href": "evidence/casts/libtiff/usage-python3-pil-convert-tiff.cast"
     },
     {
-      "library": null,
+      "library": "libtiff",
       "testcase_id": "usage-python3-pil-thumbnail-tiff",
       "mode": "original",
       "title": "Pillow thumbnail tiff",
@@ -9797,7 +9797,7 @@
       "cast_href": "evidence/casts/libtiff/usage-python3-pil-thumbnail-tiff.cast"
     },
     {
-      "library": null,
+      "library": "libtiff",
       "testcase_id": "usage-python3-pil-tags-tiff",
       "mode": "original",
       "title": "Pillow tags tiff",
@@ -9818,7 +9818,7 @@
       "cast_href": "evidence/casts/libtiff/usage-python3-pil-tags-tiff.cast"
     },
     {
-      "library": null,
+      "library": "libtiff",
       "testcase_id": "usage-python3-pil-multipage-tiff",
       "mode": "original",
       "title": "Pillow multipage tiff",
@@ -9839,7 +9839,7 @@
       "cast_href": "evidence/casts/libtiff/usage-python3-pil-multipage-tiff.cast"
     },
     {
-      "library": null,
+      "library": "libtiff",
       "testcase_id": "usage-python3-pil-lzw-tiff",
       "mode": "original",
       "title": "Pillow lzw tiff",
@@ -9860,7 +9860,7 @@
       "cast_href": "evidence/casts/libtiff/usage-python3-pil-lzw-tiff.cast"
     },
     {
-      "library": null,
+      "library": "libtiff",
       "testcase_id": "usage-python3-pil-rgb-tiff-load",
       "mode": "original",
       "title": "Pillow RGB tiff load",
@@ -9881,7 +9881,7 @@
       "cast_href": "evidence/casts/libtiff/usage-python3-pil-rgb-tiff-load.cast"
     },
     {
-      "library": null,
+      "library": "libtiff",
       "testcase_id": "usage-python3-pil-crop-tiff",
       "mode": "original",
       "title": "Pillow crop tiff",
@@ -9902,7 +9902,7 @@
       "cast_href": "evidence/casts/libtiff/usage-python3-pil-crop-tiff.cast"
     },
     {
-      "library": null,
+      "library": "libuv",
       "testcase_id": "event-loop-timer",
       "mode": "original",
       "title": "libuv event loop timer",
@@ -9922,7 +9922,7 @@
       "cast_href": "evidence/casts/libuv/event-loop-timer.cast"
     },
     {
-      "library": null,
+      "library": "libuv",
       "testcase_id": "fs-read-write",
       "mode": "original",
       "title": "libuv fs read write",
@@ -9942,7 +9942,7 @@
       "cast_href": "evidence/casts/libuv/fs-read-write.cast"
     },
     {
-      "library": null,
+      "library": "libuv",
       "testcase_id": "tcp-loopback-smoke",
       "mode": "original",
       "title": "libuv TCP loopback smoke",
@@ -9962,7 +9962,7 @@
       "cast_href": "evidence/casts/libuv/tcp-loopback-smoke.cast"
     },
     {
-      "library": null,
+      "library": "libuv",
       "testcase_id": "dns-getaddrinfo",
       "mode": "original",
       "title": "libuv DNS getaddrinfo",
@@ -9982,7 +9982,7 @@
       "cast_href": "evidence/casts/libuv/dns-getaddrinfo.cast"
     },
     {
-      "library": null,
+      "library": "libuv",
       "testcase_id": "process-pipe-smoke",
       "mode": "original",
       "title": "libuv process pipe smoke",
@@ -10002,7 +10002,7 @@
       "cast_href": "evidence/casts/libuv/process-pipe-smoke.cast"
     },
     {
-      "library": null,
+      "library": "libuv",
       "testcase_id": "usage-nodejs-event-loop-timer",
       "mode": "original",
       "title": "Node.js event loop timer",
@@ -10022,7 +10022,7 @@
       "cast_href": "evidence/casts/libuv/usage-nodejs-event-loop-timer.cast"
     },
     {
-      "library": null,
+      "library": "libuv",
       "testcase_id": "usage-nodejs-fs-read-write",
       "mode": "original",
       "title": "Node.js fs read write",
@@ -10042,7 +10042,7 @@
       "cast_href": "evidence/casts/libuv/usage-nodejs-fs-read-write.cast"
     },
     {
-      "library": null,
+      "library": "libuv",
       "testcase_id": "usage-nodejs-dns-lookup",
       "mode": "original",
       "title": "Node.js dns lookup",
@@ -10062,7 +10062,7 @@
       "cast_href": "evidence/casts/libuv/usage-nodejs-dns-lookup.cast"
     },
     {
-      "library": null,
+      "library": "libuv",
       "testcase_id": "usage-nodejs-tcp-loopback",
       "mode": "original",
       "title": "Node.js tcp loopback",
@@ -10082,7 +10082,7 @@
       "cast_href": "evidence/casts/libuv/usage-nodejs-tcp-loopback.cast"
     },
     {
-      "library": null,
+      "library": "libuv",
       "testcase_id": "usage-nodejs-udp-loopback",
       "mode": "original",
       "title": "Node.js udp loopback",
@@ -10102,7 +10102,7 @@
       "cast_href": "evidence/casts/libuv/usage-nodejs-udp-loopback.cast"
     },
     {
-      "library": null,
+      "library": "libuv",
       "testcase_id": "usage-nodejs-child-process",
       "mode": "original",
       "title": "Node.js child process",
@@ -10122,7 +10122,7 @@
       "cast_href": "evidence/casts/libuv/usage-nodejs-child-process.cast"
     },
     {
-      "library": null,
+      "library": "libuv",
       "testcase_id": "usage-nodejs-stream-pipe",
       "mode": "original",
       "title": "Node.js stream pipe",
@@ -10142,7 +10142,7 @@
       "cast_href": "evidence/casts/libuv/usage-nodejs-stream-pipe.cast"
     },
     {
-      "library": null,
+      "library": "libuv",
       "testcase_id": "usage-nodejs-stat-call",
       "mode": "original",
       "title": "Node.js stat call",
@@ -10162,7 +10162,7 @@
       "cast_href": "evidence/casts/libuv/usage-nodejs-stat-call.cast"
     },
     {
-      "library": null,
+      "library": "libvips",
       "testcase_id": "vips-cli-load-save",
       "mode": "original",
       "title": "vips CLI load save",
@@ -10182,7 +10182,7 @@
       "cast_href": "evidence/casts/libvips/vips-cli-load-save.cast"
     },
     {
-      "library": null,
+      "library": "libvips",
       "testcase_id": "thumbnail-behavior",
       "mode": "original",
       "title": "vipsthumbnail behavior",
@@ -10202,7 +10202,7 @@
       "cast_href": "evidence/casts/libvips/thumbnail-behavior.cast"
     },
     {
-      "library": null,
+      "library": "libvips",
       "testcase_id": "c-api-compile-smoke",
       "mode": "original",
       "title": "libvips C API compile smoke",
@@ -10222,7 +10222,7 @@
       "cast_href": "evidence/casts/libvips/c-api-compile-smoke.cast"
     },
     {
-      "library": null,
+      "library": "libvips",
       "testcase_id": "gir-introspection-smoke",
       "mode": "original",
       "title": "Vips introspection smoke",
@@ -10242,7 +10242,7 @@
       "cast_href": "evidence/casts/libvips/gir-introspection-smoke.cast"
     },
     {
-      "library": null,
+      "library": "libvips",
       "testcase_id": "metadata-header-checks",
       "mode": "original",
       "title": "vips metadata header checks",
@@ -10262,7 +10262,7 @@
       "cast_href": "evidence/casts/libvips/metadata-header-checks.cast"
     },
     {
-      "library": null,
+      "library": "libvips",
       "testcase_id": "usage-ruby-vips-create-image",
       "mode": "original",
       "title": "ruby-vips create image",
@@ -10283,7 +10283,7 @@
       "cast_href": "evidence/casts/libvips/usage-ruby-vips-create-image.cast"
     },
     {
-      "library": null,
+      "library": "libvips",
       "testcase_id": "usage-ruby-vips-resize-image",
       "mode": "original",
       "title": "ruby-vips resize image",
@@ -10304,7 +10304,7 @@
       "cast_href": "evidence/casts/libvips/usage-ruby-vips-resize-image.cast"
     },
     {
-      "library": null,
+      "library": "libvips",
       "testcase_id": "usage-ruby-vips-average-image",
       "mode": "original",
       "title": "ruby-vips average image",
@@ -10325,7 +10325,7 @@
       "cast_href": "evidence/casts/libvips/usage-ruby-vips-average-image.cast"
     },
     {
-      "library": null,
+      "library": "libvips",
       "testcase_id": "usage-ruby-vips-bandjoin-image",
       "mode": "original",
       "title": "ruby-vips bandjoin image",
@@ -10346,7 +10346,7 @@
       "cast_href": "evidence/casts/libvips/usage-ruby-vips-bandjoin-image.cast"
     },
     {
-      "library": null,
+      "library": "libvips",
       "testcase_id": "usage-ruby-vips-crop-image",
       "mode": "original",
       "title": "ruby-vips crop image",
@@ -10367,7 +10367,7 @@
       "cast_href": "evidence/casts/libvips/usage-ruby-vips-crop-image.cast"
     },
     {
-      "library": null,
+      "library": "libvips",
       "testcase_id": "usage-ruby-vips-rotate-image",
       "mode": "original",
       "title": "ruby-vips rotate image",
@@ -10388,7 +10388,7 @@
       "cast_href": "evidence/casts/libvips/usage-ruby-vips-rotate-image.cast"
     },
     {
-      "library": null,
+      "library": "libvips",
       "testcase_id": "usage-ruby-vips-linear-image",
       "mode": "original",
       "title": "ruby-vips linear image",
@@ -10409,7 +10409,7 @@
       "cast_href": "evidence/casts/libvips/usage-ruby-vips-linear-image.cast"
     },
     {
-      "library": null,
+      "library": "libvips",
       "testcase_id": "usage-ruby-vips-save-png",
       "mode": "original",
       "title": "ruby-vips save png",
@@ -10430,7 +10430,7 @@
       "cast_href": "evidence/casts/libvips/usage-ruby-vips-save-png.cast"
     },
     {
-      "library": null,
+      "library": "libwebp",
       "testcase_id": "cwebp-dwebp-roundtrip",
       "mode": "original",
       "title": "cwebp dwebp round trip",
@@ -10450,7 +10450,7 @@
       "cast_href": "evidence/casts/libwebp/cwebp-dwebp-roundtrip.cast"
     },
     {
-      "library": null,
+      "library": "libwebp",
       "testcase_id": "webpinfo-inspection",
       "mode": "original",
       "title": "webpinfo inspection",
@@ -10470,7 +10470,7 @@
       "cast_href": "evidence/casts/libwebp/webpinfo-inspection.cast"
     },
     {
-      "library": null,
+      "library": "libwebp",
       "testcase_id": "webpmux-metadata",
       "mode": "original",
       "title": "webpmux metadata behavior",
@@ -10490,7 +10490,7 @@
       "cast_href": "evidence/casts/libwebp/webpmux-metadata.cast"
     },
     {
-      "library": null,
+      "library": "libwebp",
       "testcase_id": "decode-c-api-smoke",
       "mode": "original",
       "title": "libwebp C API decode smoke",
@@ -10510,7 +10510,7 @@
       "cast_href": "evidence/casts/libwebp/decode-c-api-smoke.cast"
     },
     {
-      "library": null,
+      "library": "libwebp",
       "testcase_id": "malformed-webp-rejection",
       "mode": "original",
       "title": "Malformed WebP rejection",
@@ -10530,7 +10530,7 @@
       "cast_href": "evidence/casts/libwebp/malformed-webp-rejection.cast"
     },
     {
-      "library": null,
+      "library": "libwebp",
       "testcase_id": "usage-python3-pil-open-webp",
       "mode": "original",
       "title": "Pillow open webp",
@@ -10551,7 +10551,7 @@
       "cast_href": "evidence/casts/libwebp/usage-python3-pil-open-webp.cast"
     },
     {
-      "library": null,
+      "library": "libwebp",
       "testcase_id": "usage-python3-pil-convert-webp",
       "mode": "original",
       "title": "Pillow convert webp",
@@ -10572,7 +10572,7 @@
       "cast_href": "evidence/casts/libwebp/usage-python3-pil-convert-webp.cast"
     },
     {
-      "library": null,
+      "library": "libwebp",
       "testcase_id": "usage-python3-pil-save-webp",
       "mode": "original",
       "title": "Pillow save webp",
@@ -10593,7 +10593,7 @@
       "cast_href": "evidence/casts/libwebp/usage-python3-pil-save-webp.cast"
     },
     {
-      "library": null,
+      "library": "libwebp",
       "testcase_id": "usage-vips-webp-header",
       "mode": "original",
       "title": "vips webp header",
@@ -10613,7 +10613,7 @@
       "cast_href": "evidence/casts/libwebp/usage-vips-webp-header.cast"
     },
     {
-      "library": null,
+      "library": "libwebp",
       "testcase_id": "usage-vips-webp-resize",
       "mode": "original",
       "title": "vips webp resize",
@@ -10633,7 +10633,7 @@
       "cast_href": "evidence/casts/libwebp/usage-vips-webp-resize.cast"
     },
     {
-      "library": null,
+      "library": "libwebp",
       "testcase_id": "usage-ffmpeg-webp-decode",
       "mode": "original",
       "title": "ffmpeg webp decode",
@@ -10653,7 +10653,7 @@
       "cast_href": "evidence/casts/libwebp/usage-ffmpeg-webp-decode.cast"
     },
     {
-      "library": null,
+      "library": "libwebp",
       "testcase_id": "usage-ffmpeg-webp-probe",
       "mode": "original",
       "title": "ffmpeg webp probe",
@@ -10673,7 +10673,7 @@
       "cast_href": "evidence/casts/libwebp/usage-ffmpeg-webp-probe.cast"
     },
     {
-      "library": null,
+      "library": "libwebp",
       "testcase_id": "usage-webp-pixbuf-loader-pixbuf-thumbnail",
       "mode": "original",
       "title": "webp-pixbuf-loader pixbuf thumbnail",
@@ -10693,7 +10693,7 @@
       "cast_href": "evidence/casts/libwebp/usage-webp-pixbuf-loader-pixbuf-thumbnail.cast"
     },
     {
-      "library": null,
+      "library": "libwebp",
       "testcase_id": "usage-libsdl2-image-load-webp",
       "mode": "original",
       "title": "SDL2_image loads WebP",
@@ -10714,7 +10714,7 @@
       "cast_href": "evidence/casts/libwebp/usage-libsdl2-image-load-webp.cast"
     },
     {
-      "library": null,
+      "library": "libxml",
       "testcase_id": "xmllint-parse-format",
       "mode": "original",
       "title": "xmllint parse and format",
@@ -10734,7 +10734,7 @@
       "cast_href": "evidence/casts/libxml/xmllint-parse-format.cast"
     },
     {
-      "library": null,
+      "library": "libxml",
       "testcase_id": "xmlcatalog-lookup",
       "mode": "original",
       "title": "xmlcatalog lookup behavior",
@@ -10754,7 +10754,7 @@
       "cast_href": "evidence/casts/libxml/xmlcatalog-lookup.cast"
     },
     {
-      "library": null,
+      "library": "libxml",
       "testcase_id": "python-binding-smoke",
       "mode": "original",
       "title": "Python libxml2 binding smoke",
@@ -10774,7 +10774,7 @@
       "cast_href": "evidence/casts/libxml/python-binding-smoke.cast"
     },
     {
-      "library": null,
+      "library": "libxml",
       "testcase_id": "reader-c-api-behavior",
       "mode": "original",
       "title": "libxml reader C API behavior",
@@ -10794,7 +10794,7 @@
       "cast_href": "evidence/casts/libxml/reader-c-api-behavior.cast"
     },
     {
-      "library": null,
+      "library": "libxml",
       "testcase_id": "schema-xinclude-checks",
       "mode": "original",
       "title": "Schema and XInclude checks",
@@ -10814,7 +10814,7 @@
       "cast_href": "evidence/casts/libxml/schema-xinclude-checks.cast"
     },
     {
-      "library": null,
+      "library": "libxml",
       "testcase_id": "usage-python3-lxml-parse-xml",
       "mode": "original",
       "title": "python3-lxml parse xml",
@@ -10834,7 +10834,7 @@
       "cast_href": "evidence/casts/libxml/usage-python3-lxml-parse-xml.cast"
     },
     {
-      "library": null,
+      "library": "libxml",
       "testcase_id": "usage-python3-lxml-xpath-xml",
       "mode": "original",
       "title": "python3-lxml xpath xml",
@@ -10854,7 +10854,7 @@
       "cast_href": "evidence/casts/libxml/usage-python3-lxml-xpath-xml.cast"
     },
     {
-      "library": null,
+      "library": "libxml",
       "testcase_id": "usage-python3-lxml-xslt-xml",
       "mode": "original",
       "title": "python3-lxml xslt xml",
@@ -10874,7 +10874,7 @@
       "cast_href": "evidence/casts/libxml/usage-python3-lxml-xslt-xml.cast"
     },
     {
-      "library": null,
+      "library": "libxml",
       "testcase_id": "usage-python3-lxml-schema-xml",
       "mode": "original",
       "title": "python3-lxml schema xml",
@@ -10894,7 +10894,7 @@
       "cast_href": "evidence/casts/libxml/usage-python3-lxml-schema-xml.cast"
     },
     {
-      "library": null,
+      "library": "libxml",
       "testcase_id": "usage-xmlstarlet-select-xml",
       "mode": "original",
       "title": "xmlstarlet select xml",
@@ -10915,7 +10915,7 @@
       "cast_href": "evidence/casts/libxml/usage-xmlstarlet-select-xml.cast"
     },
     {
-      "library": null,
+      "library": "libxml",
       "testcase_id": "usage-xmlstarlet-format-xml",
       "mode": "original",
       "title": "xmlstarlet format xml",
@@ -10936,7 +10936,7 @@
       "cast_href": "evidence/casts/libxml/usage-xmlstarlet-format-xml.cast"
     },
     {
-      "library": null,
+      "library": "libxml",
       "testcase_id": "usage-xmlstarlet-edit-xml",
       "mode": "original",
       "title": "xmlstarlet edit xml",
@@ -10957,7 +10957,7 @@
       "cast_href": "evidence/casts/libxml/usage-xmlstarlet-edit-xml.cast"
     },
     {
-      "library": null,
+      "library": "libxml",
       "testcase_id": "usage-xmlstarlet-validate-xml",
       "mode": "original",
       "title": "xmlstarlet validate xml",
@@ -10978,7 +10978,7 @@
       "cast_href": "evidence/casts/libxml/usage-xmlstarlet-validate-xml.cast"
     },
     {
-      "library": null,
+      "library": "libyaml",
       "testcase_id": "parser-emitter-roundtrip",
       "mode": "original",
       "title": "YAML parser emitter round trip",
@@ -10998,7 +10998,7 @@
       "cast_href": "evidence/casts/libyaml/parser-emitter-roundtrip.cast"
     },
     {
-      "library": null,
+      "library": "libyaml",
       "testcase_id": "loader-dumper-cases",
       "mode": "original",
       "title": "YAML loader dumper cases",
@@ -11018,7 +11018,7 @@
       "cast_href": "evidence/casts/libyaml/loader-dumper-cases.cast"
     },
     {
-      "library": null,
+      "library": "libyaml",
       "testcase_id": "anchor-alias-handling",
       "mode": "original",
       "title": "YAML anchor alias handling",
@@ -11038,7 +11038,7 @@
       "cast_href": "evidence/casts/libyaml/anchor-alias-handling.cast"
     },
     {
-      "library": null,
+      "library": "libyaml",
       "testcase_id": "compile-link-smoke",
       "mode": "original",
       "title": "libyaml compile link smoke",
@@ -11058,7 +11058,7 @@
       "cast_href": "evidence/casts/libyaml/compile-link-smoke.cast"
     },
     {
-      "library": null,
+      "library": "libyaml",
       "testcase_id": "invalid-yaml-rejection",
       "mode": "original",
       "title": "Invalid YAML rejection",
@@ -11078,7 +11078,7 @@
       "cast_href": "evidence/casts/libyaml/invalid-yaml-rejection.cast"
     },
     {
-      "library": null,
+      "library": "libyaml",
       "testcase_id": "usage-python3-yaml-safe-load",
       "mode": "original",
       "title": "PyYAML safe load",
@@ -11099,7 +11099,7 @@
       "cast_href": "evidence/casts/libyaml/usage-python3-yaml-safe-load.cast"
     },
     {
-      "library": null,
+      "library": "libyaml",
       "testcase_id": "usage-python3-yaml-dump",
       "mode": "original",
       "title": "PyYAML dump",
@@ -11120,7 +11120,7 @@
       "cast_href": "evidence/casts/libyaml/usage-python3-yaml-dump.cast"
     },
     {
-      "library": null,
+      "library": "libyaml",
       "testcase_id": "usage-python3-yaml-csafe-loader",
       "mode": "original",
       "title": "PyYAML csafe loader",
@@ -11141,7 +11141,7 @@
       "cast_href": "evidence/casts/libyaml/usage-python3-yaml-csafe-loader.cast"
     },
     {
-      "library": null,
+      "library": "libyaml",
       "testcase_id": "usage-python3-yaml-csafe-dumper",
       "mode": "original",
       "title": "PyYAML csafe dumper",
@@ -11162,7 +11162,7 @@
       "cast_href": "evidence/casts/libyaml/usage-python3-yaml-csafe-dumper.cast"
     },
     {
-      "library": null,
+      "library": "libyaml",
       "testcase_id": "usage-python3-yaml-anchors",
       "mode": "original",
       "title": "PyYAML anchors",
@@ -11183,7 +11183,7 @@
       "cast_href": "evidence/casts/libyaml/usage-python3-yaml-anchors.cast"
     },
     {
-      "library": null,
+      "library": "libyaml",
       "testcase_id": "usage-python3-yaml-documents",
       "mode": "original",
       "title": "PyYAML documents",
@@ -11204,7 +11204,7 @@
       "cast_href": "evidence/casts/libyaml/usage-python3-yaml-documents.cast"
     },
     {
-      "library": null,
+      "library": "libyaml",
       "testcase_id": "usage-python3-yaml-events",
       "mode": "original",
       "title": "PyYAML events",
@@ -11225,7 +11225,7 @@
       "cast_href": "evidence/casts/libyaml/usage-python3-yaml-events.cast"
     },
     {
-      "library": null,
+      "library": "libyaml",
       "testcase_id": "usage-python3-yaml-error",
       "mode": "original",
       "title": "PyYAML error",
@@ -11246,7 +11246,7 @@
       "cast_href": "evidence/casts/libyaml/usage-python3-yaml-error.cast"
     },
     {
-      "library": null,
+      "library": "libzstd",
       "testcase_id": "zstd-compress-decompress",
       "mode": "original",
       "title": "zstd command round trip",
@@ -11266,7 +11266,7 @@
       "cast_href": "evidence/casts/libzstd/zstd-compress-decompress.cast"
     },
     {
-      "library": null,
+      "library": "libzstd",
       "testcase_id": "dictionary-train-use",
       "mode": "original",
       "title": "zstd dictionary train use",
@@ -11286,7 +11286,7 @@
       "cast_href": "evidence/casts/libzstd/dictionary-train-use.cast"
     },
     {
-      "library": null,
+      "library": "libzstd",
       "testcase_id": "streaming-c-api-smoke",
       "mode": "original",
       "title": "libzstd streaming C API smoke",
@@ -11306,7 +11306,7 @@
       "cast_href": "evidence/casts/libzstd/streaming-c-api-smoke.cast"
     },
     {
-      "library": null,
+      "library": "libzstd",
       "testcase_id": "multi-frame-behavior",
       "mode": "original",
       "title": "zstd multi frame behavior",
@@ -11326,7 +11326,7 @@
       "cast_href": "evidence/casts/libzstd/multi-frame-behavior.cast"
     },
     {
-      "library": null,
+      "library": "libzstd",
       "testcase_id": "corrupted-frame-rejection",
       "mode": "original",
       "title": "zstd corrupted frame rejection",
@@ -11346,7 +11346,7 @@
       "cast_href": "evidence/casts/libzstd/corrupted-frame-rejection.cast"
     },
     {
-      "library": null,
+      "library": "libzstd",
       "testcase_id": "usage-libarchive-tools-zstd-tar-list",
       "mode": "original",
       "title": "libarchive-tools zstd tar list",
@@ -11367,7 +11367,7 @@
       "cast_href": "evidence/casts/libzstd/usage-libarchive-tools-zstd-tar-list.cast"
     },
     {
-      "library": null,
+      "library": "libzstd",
       "testcase_id": "usage-libarchive-tools-zstd-tar-extract",
       "mode": "original",
       "title": "libarchive-tools zstd tar extract",
@@ -11388,7 +11388,7 @@
       "cast_href": "evidence/casts/libzstd/usage-libarchive-tools-zstd-tar-extract.cast"
     },
     {
-      "library": null,
+      "library": "libzstd",
       "testcase_id": "usage-libarchive-tools-zstd-stdout-stream",
       "mode": "original",
       "title": "libarchive-tools zstd stdout stream",
@@ -11409,7 +11409,7 @@
       "cast_href": "evidence/casts/libzstd/usage-libarchive-tools-zstd-stdout-stream.cast"
     },
     {
-      "library": null,
+      "library": "libzstd",
       "testcase_id": "usage-libarchive-tools-zstd-large-file",
       "mode": "original",
       "title": "libarchive-tools zstd large file",
@@ -11430,7 +11430,7 @@
       "cast_href": "evidence/casts/libzstd/usage-libarchive-tools-zstd-large-file.cast"
     },
     {
-      "library": null,
+      "library": "libzstd",
       "testcase_id": "usage-libarchive-tools-zstd-symlink",
       "mode": "original",
       "title": "libarchive-tools zstd symlink",
@@ -11451,7 +11451,7 @@
       "cast_href": "evidence/casts/libzstd/usage-libarchive-tools-zstd-symlink.cast"
     },
     {
-      "library": null,
+      "library": "libzstd",
       "testcase_id": "usage-libarchive-tools-zstd-empty-dir",
       "mode": "original",
       "title": "libarchive-tools zstd empty dir",
@@ -11472,7 +11472,7 @@
       "cast_href": "evidence/casts/libzstd/usage-libarchive-tools-zstd-empty-dir.cast"
     },
     {
-      "library": null,
+      "library": "libzstd",
       "testcase_id": "usage-libarchive-tools-zstd-filter-auto",
       "mode": "original",
       "title": "libarchive-tools zstd filter auto",
@@ -11493,7 +11493,7 @@
       "cast_href": "evidence/casts/libzstd/usage-libarchive-tools-zstd-filter-auto.cast"
     },
     {
-      "library": null,
+      "library": "libzstd",
       "testcase_id": "usage-libarchive-tools-zstd-copy-mode",
       "mode": "original",
       "title": "libarchive-tools zstd copy mode",
