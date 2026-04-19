@@ -47,6 +47,33 @@ SUMMARY_FIELDS = {
     "duration_seconds",
 }
 UTC_TIMESTAMP_RE = re.compile(r"^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(?:\.\d+)?Z$")
+PAIRED_RESULT_FIELDS = {
+    "library",
+    "mode",
+    "execution_strategy",
+    "status",
+    "started_at",
+    "finished_at",
+    "duration_seconds",
+    "log_path",
+    "cast_path",
+    "exit_code",
+}
+PAIRED_SUMMARY_BUCKETS = (
+    "passed_dependents",
+    "failed_dependents",
+    "warned_dependents",
+    "skipped_dependents",
+)
+PAIRED_PROOF_SUMMARY_FIELDS = (
+    "report_format",
+    "expected_dependents",
+    "selected_dependents",
+    "passed_dependents",
+    "failed_dependents",
+    "warned_dependents",
+    "skipped_dependents",
+)
 
 
 def _reject_json_constant(value: str) -> None:
@@ -205,6 +232,17 @@ def _summary_path_identity(path: Path, *, artifacts_root: Path) -> str | None:
     if len(relative.parts) != 2 or relative.name != "summary.json":
         return None
     return relative.parts[0]
+
+
+def _paired_summary_path_identity(path: Path, *, artifacts_root: Path) -> tuple[str, str] | None:
+    absolute_path = path if path.is_absolute() else Path.cwd() / path
+    try:
+        relative = absolute_path.relative_to(artifacts_root.resolve(strict=False) / "downstream")
+    except ValueError:
+        return None
+    if len(relative.parts) != 3 or relative.parts[2] != "summary.json":
+        return None
+    return relative.parts[0], relative.parts[1]
 
 
 def inspect_cast(cast_path: Path) -> dict[str, Any]:
@@ -418,6 +456,264 @@ def load_summary(path: Path, *, artifacts_root: Path) -> dict[str, Any]:
     return payload
 
 
+def _paired_execution_strategy(entry: dict[str, Any]) -> str:
+    validator = entry.get("validator")
+    if isinstance(validator, dict) and isinstance(validator.get("execution_strategy"), str):
+        return str(validator["execution_strategy"])
+    return "container-image"
+
+
+def _paired_modes_for_library(artifact_root: Path, library: str) -> list[str]:
+    result_dir = artifact_root / "results" / library
+    primary = "original"
+    modes = sorted(path.stem for path in result_dir.glob("*.json") if path.name != "summary.json")
+    if primary not in modes:
+        raise ValidatorError(f"missing paired result JSON for {library}/{primary}: {result_dir / (primary + '.json')}")
+    secondary = [mode for mode in modes if mode != primary]
+    if len(secondary) != 1 or len(modes) != 2:
+        raise ValidatorError(f"paired site proof requires exactly two result modes for {library}: {modes}")
+    return [primary, secondary[0]]
+
+
+def _load_paired_result(path: Path, *, artifacts_root: Path) -> dict[str, Any]:
+    _validate_existing_artifact_file_path(
+        path,
+        field_name="result path",
+        artifacts_root=artifacts_root,
+        source_path=path,
+    )
+    payload = _load_json_object(path, description="result")
+    missing = sorted(PAIRED_RESULT_FIELDS - set(payload))
+    if missing:
+        raise ValidatorError(f"result schema mismatch in {path}: missing {', '.join(missing)}")
+
+    status = _require_string(payload.get("status"), field_name="status", source_path=path)
+    if status not in {"passed", "failed"}:
+        raise ValidatorError(f"status must be passed or failed in {path}")
+    _require_string(payload.get("library"), field_name="library", source_path=path)
+    _require_string(payload.get("mode"), field_name="mode", source_path=path)
+    _require_string(payload.get("execution_strategy"), field_name="execution_strategy", source_path=path)
+    _require_utc_timestamp(payload.get("started_at"), field_name="started_at", source_path=path)
+    _require_utc_timestamp(payload.get("finished_at"), field_name="finished_at", source_path=path)
+    _require_nonnegative_number(payload.get("duration_seconds"), field_name="duration_seconds", source_path=path)
+    _require_int(payload.get("exit_code"), field_name="exit_code", source_path=path)
+    if payload.get("log_path") is None:
+        raise ValidatorError(f"log_path must be non-null in {path}")
+    log_target = validate_artifact_relative_path(
+        payload.get("log_path"),
+        field_name="log_path",
+        artifacts_root=artifacts_root,
+        source_path=path,
+    )
+    validate_artifact_relative_path(
+        payload.get("cast_path"),
+        field_name="cast_path",
+        artifacts_root=artifacts_root,
+        source_path=path,
+    )
+    if "downstream_summary_path" in payload:
+        validate_artifact_relative_path(
+            payload.get("downstream_summary_path"),
+            field_name="downstream_summary_path",
+            artifacts_root=artifacts_root,
+            source_path=path,
+        )
+
+    identity = _result_path_identity(path, artifacts_root=artifacts_root)
+    if identity is not None:
+        library, mode = identity
+        if payload.get("library") != library or payload.get("mode") != mode:
+            raise ValidatorError(f"result identity does not match path in {path}")
+        expected_log_path = f"logs/{library}/{mode}.log"
+        if payload.get("log_path") != expected_log_path:
+            raise ValidatorError(f"log_path must equal {expected_log_path!r} for result path {path}")
+        assert log_target is not None
+        if not log_target.is_file():
+            raise ValidatorError(f"log_path does not exist for result path {path}: {log_target}")
+    return payload
+
+
+def _normalize_paired_string_list(value: Any, *, field_name: str, source_path: Path) -> list[str]:
+    values = _require_string_list(value, field_name=field_name, source_path=source_path)
+    if len(values) != len(set(values)):
+        raise ValidatorError(f"{field_name} must not contain duplicates in {source_path}")
+    return values
+
+
+def _load_paired_summary(path: Path, *, artifacts_root: Path) -> dict[str, Any]:
+    _validate_existing_artifact_file_path(
+        path,
+        field_name="downstream summary path",
+        artifacts_root=artifacts_root,
+        source_path=path,
+    )
+    payload = _load_json_object(path, description="downstream summary")
+    required = {
+        "summary_version",
+        "library",
+        "mode",
+        "status",
+        "report_format",
+        "expected_dependents",
+        "selected_dependents",
+        *PAIRED_SUMMARY_BUCKETS,
+        "artifacts",
+    }
+    missing = sorted(required - set(payload))
+    if missing:
+        raise ValidatorError(f"downstream summary schema mismatch in {path}: missing {', '.join(missing)}")
+    if payload.get("summary_version") != 1:
+        raise ValidatorError(f"summary_version must be 1 in {path}")
+    library = _require_string(payload.get("library"), field_name="library", source_path=path)
+    mode = _require_string(payload.get("mode"), field_name="mode", source_path=path)
+    identity = _paired_summary_path_identity(path, artifacts_root=artifacts_root)
+    if identity is not None and identity != (library, mode):
+        raise ValidatorError(f"summary identity does not match path in {path}")
+    status = _require_string(payload.get("status"), field_name="status", source_path=path)
+    if status not in {"passed", "failed"}:
+        raise ValidatorError(f"status must be passed or failed in {path}")
+    _require_string(payload.get("report_format"), field_name="report_format", source_path=path)
+    expected_dependents = payload.get("expected_dependents")
+    if isinstance(expected_dependents, bool) or not isinstance(expected_dependents, int) or expected_dependents < 0:
+        raise ValidatorError(f"expected_dependents must be a non-negative integer in {path}")
+    selected = _normalize_paired_string_list(
+        payload.get("selected_dependents"),
+        field_name="selected_dependents",
+        source_path=path,
+    )
+    buckets = {
+        field_name: _normalize_paired_string_list(payload.get(field_name), field_name=field_name, source_path=path)
+        for field_name in PAIRED_SUMMARY_BUCKETS
+    }
+    if selected and expected_dependents != len(selected):
+        raise ValidatorError(f"expected_dependents must equal len(selected_dependents) in {path}")
+    terminal = [item for values in buckets.values() for item in values]
+    if len(terminal) != len(set(terminal)) or set(terminal) != set(selected):
+        raise ValidatorError(f"terminal dependent buckets must cover selected_dependents exactly once in {path}")
+    artifacts = payload.get("artifacts")
+    if not isinstance(artifacts, dict):
+        raise ValidatorError(f"artifacts must be a mapping in {path}")
+    normalized = {
+        "summary_version": 1,
+        "library": library,
+        "mode": mode,
+        "status": status,
+        "report_format": payload["report_format"],
+        "expected_dependents": expected_dependents,
+        "selected_dependents": selected,
+        **buckets,
+        "artifacts": dict(artifacts),
+    }
+    if "notes" in payload:
+        normalized["notes"] = payload["notes"]
+    return normalized
+
+
+def _paired_proof_summary(summary: dict[str, Any]) -> dict[str, Any]:
+    return {field_name: summary[field_name] for field_name in PAIRED_PROOF_SUMMARY_FIELDS}
+
+
+def _build_paired_site_proof(
+    manifest: dict[str, Any],
+    *,
+    artifact_root: Path,
+    libraries: list[str] | None,
+    excluded_libraries: dict[str, str] | None,
+) -> dict[str, Any]:
+    selected_entries = _selected_manifest_entries(manifest, libraries=libraries)
+    selected_names = [str(entry["name"]) for entry in selected_entries]
+    normalized_exclusions = _normalize_exclusions(excluded_libraries, selected_names=selected_names)
+    excluded_set = {entry["library"] for entry in normalized_exclusions}
+    included_entries = [entry for entry in selected_entries if str(entry["name"]) not in excluded_set]
+    included_names = [str(entry["name"]) for entry in included_entries]
+
+    artifact_root = artifact_root.resolve(strict=False)
+    proof_libraries: list[dict[str, Any]] = []
+    secondary_mode = ""
+    secondary_workloads = 0
+    total_workloads = 0
+    report_formats: set[str] = set()
+
+    for entry in included_entries:
+        library = str(entry["name"])
+        modes = _paired_modes_for_library(artifact_root, library)
+        secondary_mode = modes[1]
+        execution_strategy = _paired_execution_strategy(entry)
+        library_proof: dict[str, Any] = {"library": library}
+
+        for mode in modes:
+            result_path = artifact_root / "results" / library / f"{mode}.json"
+            result = _load_paired_result(result_path, artifacts_root=artifact_root)
+            _require_result_field(result, field_name="library", expected_value=library, result_path=result_path)
+            _require_result_field(result, field_name="mode", expected_value=mode, result_path=result_path)
+            _require_result_field(
+                result,
+                field_name="execution_strategy",
+                expected_value=execution_strategy,
+                result_path=result_path,
+            )
+            expected_summary_path = f"downstream/{library}/{mode}/summary.json"
+            if "downstream_summary_path" not in result:
+                raise ValidatorError(f"downstream_summary_path is required for proof-counted result {result_path}")
+            _require_result_field(
+                result,
+                field_name="downstream_summary_path",
+                expected_value=expected_summary_path,
+                result_path=result_path,
+            )
+            summary_path = artifact_root / "downstream" / library / mode / "summary.json"
+            summary = _load_paired_summary(summary_path, artifacts_root=artifact_root)
+            _require_result_field(summary, field_name="library", expected_value=library, result_path=summary_path)
+            _require_result_field(summary, field_name="mode", expected_value=mode, result_path=summary_path)
+            if result["status"] != summary["status"]:
+                raise ValidatorError(f"result status must match downstream summary status for {library}/{mode}")
+            if summary["expected_dependents"] <= 0:
+                raise ValidatorError(f"expected_dependents must be greater than zero for proof coverage in {summary_path}")
+
+            report_formats.add(str(summary["report_format"]))
+            total_workloads += int(summary["expected_dependents"])
+            mode_proof: dict[str, Any] = {
+                "result_path": f"results/{library}/{mode}.json",
+                "status": result["status"],
+                "summary_path": expected_summary_path,
+                "summary": _paired_proof_summary(summary),
+            }
+            if mode == secondary_mode:
+                cast_path = result.get("cast_path")
+                if cast_path is None:
+                    raise ValidatorError(f"cast_path is required for proof-counted result {result_path}")
+                cast_target = validate_artifact_relative_path(
+                    cast_path,
+                    field_name="cast_path",
+                    artifacts_root=artifact_root,
+                    source_path=result_path,
+                )
+                assert cast_target is not None
+                if not cast_target.is_file():
+                    raise ValidatorError(f"missing cast referenced by {result_path}: {cast_target}")
+                mode_proof["cast_path"] = cast_path
+                mode_proof.update(inspect_cast(cast_target))
+                secondary_workloads += int(summary["expected_dependents"])
+            library_proof[mode] = mode_proof
+        proof_libraries.append(library_proof)
+
+    return {
+        "proof_version": 1,
+        "included_libraries": included_names,
+        "excluded_libraries": normalized_exclusions,
+        "totals": {
+            "included_libraries": len(included_names),
+            "excluded_libraries": len(normalized_exclusions),
+            "result_runs": len(included_names) * 2,
+            f"{secondary_mode}_casts": len(included_names) if secondary_mode else 0,
+            f"{secondary_mode}_workloads": secondary_workloads,
+            "total_workloads": total_workloads,
+            "report_formats": sorted(report_formats),
+        },
+        "libraries": proof_libraries,
+    }
+
+
 def _selected_manifest_entries(
     manifest: dict[str, Any],
     *,
@@ -545,12 +841,22 @@ def build_proof(
     manifest: dict[str, Any],
     *,
     artifact_root: Path,
-    tests_root: Path,
+    tests_root: Path | None = None,
     libraries: list[str] | None = None,
     excluded_libraries: dict[str, str] | None = None,
     record_casts_expected: bool = False,
     min_total_cases: int = 0,
 ) -> dict[str, Any]:
+    if tests_root is None:
+        if record_casts_expected or min_total_cases:
+            raise ValidatorError("original-only proof options require tests_root")
+        return _build_paired_site_proof(
+            manifest,
+            artifact_root=artifact_root,
+            libraries=libraries,
+            excluded_libraries=excluded_libraries,
+        )
+
     if min_total_cases < 0:
         raise ValidatorError("case thresholds must be non-negative")
 
