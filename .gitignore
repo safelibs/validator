@@ -5,6 +5,8 @@
 .juvenal-state.json
 __pycache__/
 *.pyc
+.playwright-mcp/
+phase08-*
 artifacts/.workspace/
 artifacts/proof/
 artifacts/casts/

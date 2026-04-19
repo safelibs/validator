@@ -1,4 +1,4 @@
-$ docker build --tag validator-libbz2-shared-97a9340ad13c --file /tmp/validator-run-matrix-libbz2-0axw4iue/libbz2/Dockerfile /tmp/validator-run-matrix-libbz2-0axw4iue
+$ docker build --tag validator-libbz2-shared-77c05bb730e4 --file /tmp/validator-run-matrix-libbz2-fm2ej2c1/libbz2/Dockerfile /tmp/validator-run-matrix-libbz2-fm2ej2c1
 #0 building with "default" instance using docker driver
 
 #1 [internal] load build definition from Dockerfile
@@ -37,5 +37,5 @@ $ docker build --tag validator-libbz2-shared-97a9340ad13c --file /tmp/validator-
 #11 exporting to image
 #11 exporting layers done
 #11 writing image sha256:014ab6eb1d052089b2a12cab9ed7d00e98305fa017b94e94866f628800077753 done
-#11 naming to docker.io/library/validator-libbz2-shared-97a9340ad13c done
+#11 naming to docker.io/library/validator-libbz2-shared-77c05bb730e4 done
 #11 DONE 0.0s

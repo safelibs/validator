@@ -1,4 +1,4 @@
-$ docker run --rm -t --mount type=bind,src=/tmp/validator-status-libsdl-headless-event-timer-k5gvexg6,dst=/validator/status validator-libsdl-shared-b41745731491 bash -lc 'set -euo pipefail
+$ docker run --rm -t --mount type=bind,src=/tmp/validator-status-libsdl-headless-event-timer-j2qf_9dc,dst=/validator/status validator-libsdl-shared-92ef973758ad bash -lc 'set -euo pipefail
 /validator/tests/_shared/install_override_debs.sh
 exec /validator/tests/_shared/run_library_tests.sh "$@"' validator-testcase libsdl headless-event-timer -- bash /validator/tests/libsdl/tests/cases/source/headless-event-timer.sh
 no override packages found; continuing with apt originals

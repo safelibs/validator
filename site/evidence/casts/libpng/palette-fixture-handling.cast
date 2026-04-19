@@ -1,3 +1,3 @@
-{"version": 2, "width": 120, "height": 40, "timestamp": 1776636234, "env": {"TERM": "xterm-256color", "SHELL": "/bin/bash"}}
-[0.114049, "o", "no override packages found; continuing with apt originals\r\r\n"]
-[0.118084, "o", "/validator/tests/libpng/tests/tagged-port/original/contrib/pngsuite/basn3p08.png: PNG image data, 32 x 32, 8-bit colormap, non-interlaced\r\r\n"]
+{"version": 2, "width": 120, "height": 40, "timestamp": 1776637745, "env": {"TERM": "xterm-256color", "SHELL": "/bin/bash"}}
+[0.107897, "o", "no override packages found; continuing with apt originals\r\r\n"]
+[0.111547, "o", "/validator/tests/libpng/tests/tagged-port/original/contrib/pngsuite/basn3p08.png: PNG image data, 32 x 32, 8-bit colormap, non-interlaced\r\r\n"]

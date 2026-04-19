@@ -1,4 +1,4 @@
-{"version": 2, "width": 120, "height": 40, "timestamp": 1776636223, "env": {"TERM": "xterm-256color", "SHELL": "/bin/bash"}}
-[0.111351, "o", "no override packages found; continuing with apt originals\r\r\n"]
-[0.124047, "o", "P6\r\r\n2 2\r\r\n255\r\r\n"]
-[0.124733, "o", "/tmp/tmp.fib12owjei/a.jpg: JPEG image data, JFIF standard 1.01, aspect ratio, density 1x1, segment length 16, baseline, precision 8, 2x2, components 3\r\r\n"]
+{"version": 2, "width": 120, "height": 40, "timestamp": 1776637734, "env": {"TERM": "xterm-256color", "SHELL": "/bin/bash"}}
+[0.11157, "o", "no override packages found; continuing with apt originals\r\r\n"]
+[0.123998, "o", "P6\r\r\n2 2\r\r\n255\r\r\n"]
+[0.124744, "o", "/tmp/tmp.z5rYtrTaK1/a.jpg: JPEG image data, JFIF standard 1.01, aspect ratio, density 1x1, segment length 16, baseline, precision 8, 2x2, components 3\r\r\n"]

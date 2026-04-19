@@ -1,4 +1,4 @@
-$ docker run --rm -t --mount type=bind,src=/tmp/validator-status-libarchive-bsdtar-tar-zip-roundtrip-eyh9zmnx,dst=/validator/status validator-libarchive-shared-1cbddebb800d bash -lc 'set -euo pipefail
+$ docker run --rm -t --mount type=bind,src=/tmp/validator-status-libarchive-bsdtar-tar-zip-roundtrip-nohi5063,dst=/validator/status validator-libarchive-shared-e2fa66c24f53 bash -lc 'set -euo pipefail
 /validator/tests/_shared/install_override_debs.sh
 exec /validator/tests/_shared/run_library_tests.sh "$@"' validator-testcase libarchive bsdtar-tar-zip-roundtrip -- bash /validator/tests/libarchive/tests/cases/source/bsdtar-tar-zip-roundtrip.sh
 no override packages found; continuing with apt originals

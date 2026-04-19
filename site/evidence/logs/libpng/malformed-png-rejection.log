@@ -1,5 +1,5 @@
-$ docker run --rm -t --mount type=bind,src=/tmp/validator-status-libpng-malformed-png-rejection-lizkf6m2,dst=/validator/status validator-libpng-shared-7509830b3d5e bash -lc 'set -euo pipefail
+$ docker run --rm -t --mount type=bind,src=/tmp/validator-status-libpng-malformed-png-rejection-e19s9j5q,dst=/validator/status validator-libpng-shared-7c99da52b536 bash -lc 'set -euo pipefail
 /validator/tests/_shared/install_override_debs.sh
 exec /validator/tests/_shared/run_library_tests.sh "$@"' validator-testcase libpng malformed-png-rejection -- bash /validator/tests/libpng/tests/cases/source/malformed-png-rejection.sh
 no override packages found; continuing with apt originals
-pngJ ERR 00 libpng Success Success not_a_PNG_(signature) /tmp/tmp.NTmSul644E/bad.png
+pngJ ERR 00 libpng Success Success not_a_PNG_(signature) /tmp/tmp.6eiBfV6yCl/bad.png

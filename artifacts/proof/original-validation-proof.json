@@ -50,7 +50,7 @@
           "exit_code": 0,
           "cast_events": 2,
           "cast_bytes": 423,
-          "cast_duration_seconds": 0.138265
+          "cast_duration_seconds": 0.138422
         },
         {
           "testcase_id": "minify-whitespace",
@@ -68,11 +68,11 @@
           "result_path": "results/cjson/minify-whitespace.json",
           "log_path": "logs/cjson/minify-whitespace.log",
           "cast_path": "casts/cjson/minify-whitespace.cast",
-          "duration_seconds": 0.242,
+          "duration_seconds": 0.221,
           "exit_code": 0,
           "cast_events": 2,
           "cast_bytes": 105,
-          "cast_duration_seconds": 0.13404
+          "cast_duration_seconds": 0.137937
         },
         {
           "testcase_id": "utils-patch-pointer",
@@ -90,11 +90,11 @@
           "result_path": "results/cjson/utils-patch-pointer.json",
           "log_path": "logs/cjson/utils-patch-pointer.log",
           "cast_path": "casts/cjson/utils-patch-pointer.cast",
-          "duration_seconds": 0.227,
+          "duration_seconds": 0.221,
           "exit_code": 0,
           "cast_events": 2,
           "cast_bytes": 89,
-          "cast_duration_seconds": 0.137968
+          "cast_duration_seconds": 0.135503
         },
         {
           "testcase_id": "allocator-hooks-edge",
@@ -112,11 +112,11 @@
           "result_path": "results/cjson/allocator-hooks-edge.json",
           "log_path": "logs/cjson/allocator-hooks-edge.log",
           "cast_path": "casts/cjson/allocator-hooks-edge.cast",
-          "duration_seconds": 0.223,
+          "duration_seconds": 0.228,
           "exit_code": 0,
           "cast_events": 2,
           "cast_bytes": 117,
-          "cast_duration_seconds": 0.137374
+          "cast_duration_seconds": 0.141697
         },
         {
           "testcase_id": "malformed-number-rejection",
@@ -134,11 +134,11 @@
           "result_path": "results/cjson/malformed-number-rejection.json",
           "log_path": "logs/cjson/malformed-number-rejection.log",
           "cast_path": "casts/cjson/malformed-number-rejection.cast",
-          "duration_seconds": 0.228,
+          "duration_seconds": 0.213,
           "exit_code": 0,
           "cast_events": 2,
           "cast_bytes": 86,
-          "cast_duration_seconds": 0.129801
+          "cast_duration_seconds": 0.126965
         },
         {
           "testcase_id": "usage-iperf3-json-tcp-throughput",
@@ -156,11 +156,11 @@
           "result_path": "results/cjson/usage-iperf3-json-tcp-throughput.json",
           "log_path": "logs/cjson/usage-iperf3-json-tcp-throughput.log",
           "cast_path": "casts/cjson/usage-iperf3-json-tcp-throughput.cast",
-          "duration_seconds": 1.438,
+          "duration_seconds": 1.423,
           "exit_code": 0,
           "cast_events": 2,
           "cast_bytes": 162,
-          "cast_duration_seconds": 1.327778
+          "cast_duration_seconds": 1.317528
         },
         {
           "testcase_id": "usage-iperf3-json-reverse-throughput",
@@ -178,11 +178,11 @@
           "result_path": "results/cjson/usage-iperf3-json-reverse-throughput.json",
           "log_path": "logs/cjson/usage-iperf3-json-reverse-throughput.log",
           "cast_path": "casts/cjson/usage-iperf3-json-reverse-throughput.cast",
-          "duration_seconds": 1.403,
+          "duration_seconds": 1.43,
           "exit_code": 0,
           "cast_events": 2,
           "cast_bytes": 162,
-          "cast_duration_seconds": 1.322286
+          "cast_duration_seconds": 1.323855
         },
         {
           "testcase_id": "usage-iperf3-json-udp-throughput",
@@ -200,11 +200,11 @@
           "result_path": "results/cjson/usage-iperf3-json-udp-throughput.json",
           "log_path": "logs/cjson/usage-iperf3-json-udp-throughput.log",
           "cast_path": "casts/cjson/usage-iperf3-json-udp-throughput.cast",
-          "duration_seconds": 1.411,
+          "duration_seconds": 1.424,
           "exit_code": 0,
           "cast_events": 2,
           "cast_bytes": 120,
-          "cast_duration_seconds": 1.321293
+          "cast_duration_seconds": 1.31836
         },
         {
           "testcase_id": "usage-iperf3-json-fixed-bytes",
@@ -222,11 +222,11 @@
           "result_path": "results/cjson/usage-iperf3-json-fixed-bytes.json",
           "log_path": "logs/cjson/usage-iperf3-json-fixed-bytes.log",
           "cast_path": "casts/cjson/usage-iperf3-json-fixed-bytes.cast",
-          "duration_seconds": 1.401,
+          "duration_seconds": 1.432,
           "exit_code": 0,
           "cast_events": 2,
           "cast_bytes": 162,
-          "cast_duration_seconds": 1.323232
+          "cast_duration_seconds": 1.334984
         },
         {
           "testcase_id": "usage-iperf3-json-parallel-streams",
@@ -244,11 +244,11 @@
           "result_path": "results/cjson/usage-iperf3-json-parallel-streams.json",
           "log_path": "logs/cjson/usage-iperf3-json-parallel-streams.log",
           "cast_path": "casts/cjson/usage-iperf3-json-parallel-streams.cast",
-          "duration_seconds": 1.415,
+          "duration_seconds": 1.426,
           "exit_code": 0,
           "cast_events": 2,
           "cast_bytes": 162,
-          "cast_duration_seconds": 1.316173
+          "cast_duration_seconds": 1.327962
         },
         {
           "testcase_id": "usage-iperf3-json-interval-report",
@@ -266,11 +266,11 @@
           "result_path": "results/cjson/usage-iperf3-json-interval-report.json",
           "log_path": "logs/cjson/usage-iperf3-json-interval-report.log",
           "cast_path": "casts/cjson/usage-iperf3-json-interval-report.cast",
-          "duration_seconds": 1.425,
+          "duration_seconds": 1.645,
           "exit_code": 0,
           "cast_events": 2,
           "cast_bytes": 162,
-          "cast_duration_seconds": 1.328781
+          "cast_duration_seconds": 1.54434
         },
         {
           "testcase_id": "usage-iperf3-json-bidirectional",
@@ -288,11 +288,11 @@
           "result_path": "results/cjson/usage-iperf3-json-bidirectional.json",
           "log_path": "logs/cjson/usage-iperf3-json-bidirectional.log",
           "cast_path": "casts/cjson/usage-iperf3-json-bidirectional.cast",
-          "duration_seconds": 1.414,
+          "duration_seconds": 1.418,
           "exit_code": 0,
           "cast_events": 2,
           "cast_bytes": 212,
-          "cast_duration_seconds": 1.317412
+          "cast_duration_seconds": 1.321871
         },
         {
           "testcase_id": "usage-iperf3-json-server-output",
@@ -310,11 +310,11 @@
           "result_path": "results/cjson/usage-iperf3-json-server-output.json",
           "log_path": "logs/cjson/usage-iperf3-json-server-output.log",
           "cast_path": "casts/cjson/usage-iperf3-json-server-output.cast",
-          "duration_seconds": 1.42,
+          "duration_seconds": 1.407,
           "exit_code": 0,
           "cast_events": 2,
           "cast_bytes": 162,
-          "cast_duration_seconds": 1.318472
+          "cast_duration_seconds": 1.317838
         }
       ]
     },
@@ -350,11 +350,11 @@
           "result_path": "results/giflib/giftext-metadata.json",
           "log_path": "logs/giflib/giftext-metadata.log",
           "cast_path": "casts/giflib/giftext-metadata.cast",
-          "duration_seconds": 0.217,
+          "duration_seconds": 0.198,
           "exit_code": 0,
           "cast_events": 2,
           "cast_bytes": 441,
-          "cast_duration_seconds": 0.118015
+          "cast_duration_seconds": 0.112295
         },
         {
           "testcase_id": "gif2rgb-conversion",
@@ -372,11 +372,11 @@
           "result_path": "results/giflib/gif2rgb-conversion.json",
           "log_path": "logs/giflib/gif2rgb-conversion.log",
           "cast_path": "casts/giflib/gif2rgb-conversion.cast",
-          "duration_seconds": 0.211,
+          "duration_seconds": 0.196,
           "exit_code": 0,
           "cast_events": 2,
           "cast_bytes": 96,
-          "cast_duration_seconds": 0.113957
+          "cast_duration_seconds": 0.113261
         },
         {
           "testcase_id": "gifbuild-roundtrip",
@@ -394,11 +394,11 @@
           "result_path": "results/giflib/gifbuild-roundtrip.json",
           "log_path": "logs/giflib/gifbuild-roundtrip.log",
           "cast_path": "casts/giflib/gifbuild-roundtrip.cast",
-          "duration_seconds": 0.206,
+          "duration_seconds": 0.196,
           "exit_code": 0,
           "cast_events": 2,
           "cast_bytes": 565,
-          "cast_duration_seconds": 0.113675
+          "cast_duration_seconds": 0.111913
         },
         {
           "testcase_id": "interlaced-fixture-handling",
@@ -416,11 +416,11 @@
           "result_path": "results/giflib/interlaced-fixture-handling.json",
           "log_path": "logs/giflib/interlaced-fixture-handling.log",
           "cast_path": "casts/giflib/interlaced-fixture-handling.cast",
-          "duration_seconds": 0.199,
+          "duration_seconds": 0.186,
           "exit_code": 0,
           "cast_events": 1,
           "cast_bytes": 60,
-          "cast_duration_seconds": 0.107524
+          "cast_duration_seconds": 0.103951
         },
         {
           "testcase_id": "malformed-gif-rejection",
@@ -438,11 +438,11 @@
           "result_path": "results/giflib/malformed-gif-rejection.json",
           "log_path": "logs/giflib/malformed-gif-rejection.log",
           "cast_path": "casts/giflib/malformed-gif-rejection.cast",
-          "duration_seconds": 0.204,
+          "duration_seconds": 0.207,
           "exit_code": 0,
           "cast_events": 2,
           "cast_bytes": 93,
-          "cast_duration_seconds": 0.105687
+          "cast_duration_seconds": 0.110731
         },
         {
           "testcase_id": "usage-giflib-tools-giftext-headers",
@@ -461,11 +461,11 @@
           "result_path": "results/giflib/usage-giflib-tools-giftext-headers.json",
           "log_path": "logs/giflib/usage-giflib-tools-giftext-headers.log",
           "cast_path": "casts/giflib/usage-giflib-tools-giftext-headers.cast",
-          "duration_seconds": 0.209,
+          "duration_seconds": 0.195,
           "exit_code": 0,
           "cast_events": 2,
           "cast_bytes": 441,
-          "cast_duration_seconds": 0.112374
+          "cast_duration_seconds": 0.101309
         },
         {
           "testcase_id": "usage-giflib-tools-gif2rgb-convert",
@@ -484,11 +484,11 @@
           "result_path": "results/giflib/usage-giflib-tools-gif2rgb-convert.json",
           "log_path": "logs/giflib/usage-giflib-tools-gif2rgb-convert.log",
           "cast_path": "casts/giflib/usage-giflib-tools-gif2rgb-convert.cast",
-          "duration_seconds": 0.198,
+          "duration_seconds": 0.205,
           "exit_code": 0,
           "cast_events": 2,
           "cast_bytes": 95,
-          "cast_duration_seconds": 0.104913
+          "cast_duration_seconds": 0.110553
         },
         {
           "testcase_id": "usage-giflib-tools-giffix-copy",
@@ -507,11 +507,11 @@
           "result_path": "results/giflib/usage-giflib-tools-giffix-copy.json",
           "log_path": "logs/giflib/usage-giflib-tools-giffix-copy.log",
           "cast_path": "casts/giflib/usage-giflib-tools-giffix-copy.cast",
-          "duration_seconds": 0.205,
+          "duration_seconds": 0.209,
           "exit_code": 0,
           "cast_events": 2,
           "cast_bytes": 403,
-          "cast_duration_seconds": 0.110138
+          "cast_duration_seconds": 0.115501
         },
         {
           "testcase_id": "usage-giflib-tools-gifclrmp-map",
@@ -530,11 +530,11 @@
           "result_path": "results/giflib/usage-giflib-tools-gifclrmp-map.json",
           "log_path": "logs/giflib/usage-giflib-tools-gifclrmp-map.log",
           "cast_path": "casts/giflib/usage-giflib-tools-gifclrmp-map.cast",
-          "duration_seconds": 0.193,
+          "duration_seconds": 0.211,
           "exit_code": 0,
           "cast_events": 2,
           "cast_bytes": 348,
-          "cast_duration_seconds": 0.111593
+          "cast_duration_seconds": 0.113746
         },
         {
           "testcase_id": "usage-giflib-tools-gifbuild-dump",
@@ -553,11 +553,11 @@
           "result_path": "results/giflib/usage-giflib-tools-gifbuild-dump.json",
           "log_path": "logs/giflib/usage-giflib-tools-gifbuild-dump.log",
           "cast_path": "casts/giflib/usage-giflib-tools-gifbuild-dump.cast",
-          "duration_seconds": 0.201,
+          "duration_seconds": 0.217,
           "exit_code": 0,
           "cast_events": 2,
           "cast_bytes": 272,
-          "cast_duration_seconds": 0.113388
+          "cast_duration_seconds": 0.118208
         },
         {
           "testcase_id": "usage-giflib-tools-gifbuild-roundtrip",
@@ -576,11 +576,11 @@
           "result_path": "results/giflib/usage-giflib-tools-gifbuild-roundtrip.json",
           "log_path": "logs/giflib/usage-giflib-tools-gifbuild-roundtrip.log",
           "cast_path": "casts/giflib/usage-giflib-tools-gifbuild-roundtrip.cast",
-          "duration_seconds": 0.192,
+          "duration_seconds": 0.202,
           "exit_code": 0,
           "cast_events": 2,
           "cast_bytes": 405,
-          "cast_duration_seconds": 0.113
+          "cast_duration_seconds": 0.109889
         },
         {
           "testcase_id": "usage-giflib-tools-gif2rgb-planar",
@@ -599,11 +599,11 @@
           "result_path": "results/giflib/usage-giflib-tools-gif2rgb-planar.json",
           "log_path": "logs/giflib/usage-giflib-tools-gif2rgb-planar.log",
           "cast_path": "casts/giflib/usage-giflib-tools-gif2rgb-planar.cast",
-          "duration_seconds": 0.205,
+          "duration_seconds": 0.215,
           "exit_code": 0,
           "cast_events": 2,
           "cast_bytes": 181,
-          "cast_duration_seconds": 0.112692
+          "cast_duration_seconds": 0.119742
         },
         {
           "testcase_id": "usage-giflib-tools-giftext-colormap",
@@ -622,11 +622,11 @@
           "result_path": "results/giflib/usage-giflib-tools-giftext-colormap.json",
           "log_path": "logs/giflib/usage-giflib-tools-giftext-colormap.log",
           "cast_path": "casts/giflib/usage-giflib-tools-giftext-colormap.cast",
-          "duration_seconds": 0.203,
+          "duration_seconds": 0.208,
           "exit_code": 0,
           "cast_events": 2,
           "cast_bytes": 796,
-          "cast_duration_seconds": 0.111029
+          "cast_duration_seconds": 0.117736
         }
       ]
     },
@@ -662,11 +662,11 @@
           "result_path": "results/libarchive/bsdtar-tar-zip-roundtrip.json",
           "log_path": "logs/libarchive/bsdtar-tar-zip-roundtrip.log",
           "cast_path": "casts/libarchive/bsdtar-tar-zip-roundtrip.cast",
-          "duration_seconds": 0.263,
+          "duration_seconds": 0.26,
           "exit_code": 0,
           "cast_events": 3,
           "cast_bytes": 136,
-          "cast_duration_seconds": 0.157703
+          "cast_duration_seconds": 0.156916
         },
         {
           "testcase_id": "bsdcpio-copy-roundtrip",
@@ -684,11 +684,11 @@
           "result_path": "results/libarchive/bsdcpio-copy-roundtrip.json",
           "log_path": "logs/libarchive/bsdcpio-copy-roundtrip.log",
           "cast_path": "casts/libarchive/bsdcpio-copy-roundtrip.cast",
-          "duration_seconds": 0.227,
+          "duration_seconds": 0.25,
           "exit_code": 0,
           "cast_events": 4,
           "cast_bytes": 122,
-          "cast_duration_seconds": 0.131384
+          "cast_duration_seconds": 0.12261
         },
         {
           "testcase_id": "archive-metadata-listing",
@@ -706,11 +706,11 @@
           "result_path": "results/libarchive/archive-metadata-listing.json",
           "log_path": "logs/libarchive/archive-metadata-listing.log",
           "cast_path": "casts/libarchive/archive-metadata-listing.cast",
-          "duration_seconds": 0.239,
+          "duration_seconds": 0.457,
           "exit_code": 0,
-          "cast_events": 5,
+          "cast_events": 4,
           "cast_bytes": 464,
-          "cast_duration_seconds": 0.12688
+          "cast_duration_seconds": 0.32548
         },
         {
           "testcase_id": "path-traversal-rejection",
@@ -728,11 +728,11 @@
           "result_path": "results/libarchive/path-traversal-rejection.json",
           "log_path": "logs/libarchive/path-traversal-rejection.log",
           "cast_path": "casts/libarchive/path-traversal-rejection.cast",
-          "duration_seconds": 0.202,
+          "duration_seconds": 0.338,
           "exit_code": 0,
           "cast_events": 2,
           "cast_bytes": 165,
-          "cast_duration_seconds": 0.12572
+          "cast_duration_seconds": 0.203632
         },
         {
           "testcase_id": "archive-read-api-smoke",
@@ -750,11 +750,11 @@
           "result_path": "results/libarchive/archive-read-api-smoke.json",
           "log_path": "logs/libarchive/archive-read-api-smoke.log",
           "cast_path": "casts/libarchive/archive-read-api-smoke.cast",
-          "duration_seconds": 0.247,
+          "duration_seconds": 0.477,
           "exit_code": 0,
           "cast_events": 2,
           "cast_bytes": 81,
-          "cast_duration_seconds": 0.166218
+          "cast_duration_seconds": 0.37658
         },
         {
           "testcase_id": "usage-python-libarchive-c-tar-list",
@@ -772,11 +772,11 @@
           "result_path": "results/libarchive/usage-python-libarchive-c-tar-list.json",
           "log_path": "logs/libarchive/usage-python-libarchive-c-tar-list.log",
           "cast_path": "casts/libarchive/usage-python-libarchive-c-tar-list.cast",
-          "duration_seconds": 0.271,
+          "duration_seconds": 0.24,
           "exit_code": 0,
           "cast_events": 2,
           "cast_bytes": 89,
-          "cast_duration_seconds": 0.15165
+          "cast_duration_seconds": 0.140723
         },
         {
           "testcase_id": "usage-python-libarchive-c-tar-extract",
@@ -794,11 +794,11 @@
           "result_path": "results/libarchive/usage-python-libarchive-c-tar-extract.json",
           "log_path": "logs/libarchive/usage-python-libarchive-c-tar-extract.log",
           "cast_path": "casts/libarchive/usage-python-libarchive-c-tar-extract.cast",
-          "duration_seconds": 0.247,
+          "duration_seconds": 0.227,
           "exit_code": 0,
           "cast_events": 2,
           "cast_bytes": 68,
-          "cast_duration_seconds": 0.136136
+          "cast_duration_seconds": 0.139833
         },
         {
           "testcase_id": "usage-python-libarchive-c-metadata-read",
@@ -816,11 +816,11 @@
           "result_path": "results/libarchive/usage-python-libarchive-c-metadata-read.json",
           "log_path": "logs/libarchive/usage-python-libarchive-c-metadata-read.log",
           "cast_path": "casts/libarchive/usage-python-libarchive-c-metadata-read.cast",
-          "duration_seconds": 0.252,
+          "duration_seconds": 0.239,
           "exit_code": 0,
           "cast_events": 2,
           "cast_bytes": 98,
-          "cast_duration_seconds": 0.142717
+          "cast_duration_seconds": 0.1385
         },
         {
           "testcase_id": "usage-python-libarchive-c-stream-read",
@@ -838,11 +838,11 @@
           "result_path": "results/libarchive/usage-python-libarchive-c-stream-read.json",
           "log_path": "logs/libarchive/usage-python-libarchive-c-stream-read.log",
           "cast_path": "casts/libarchive/usage-python-libarchive-c-stream-read.cast",
-          "duration_seconds": 0.25,
+          "duration_seconds": 0.251,
           "exit_code": 0,
           "cast_events": 2,
           "cast_bytes": 88,
-          "cast_duration_seconds": 0.145562
+          "cast_duration_seconds": 0.146119
         },
         {
           "testcase_id": "usage-python-libarchive-c-file-roundtrip",
@@ -860,11 +860,11 @@
           "result_path": "results/libarchive/usage-python-libarchive-c-file-roundtrip.json",
           "log_path": "logs/libarchive/usage-python-libarchive-c-file-roundtrip.log",
           "cast_path": "casts/libarchive/usage-python-libarchive-c-file-roundtrip.cast",
-          "duration_seconds": 0.243,
+          "duration_seconds": 0.232,
           "exit_code": 0,
           "cast_events": 2,
           "cast_bytes": 103,
-          "cast_duration_seconds": 0.129896
+          "cast_duration_seconds": 0.134992
         },
         {
           "testcase_id": "usage-python-libarchive-c-directory-entry",
@@ -882,11 +882,11 @@
           "result_path": "results/libarchive/usage-python-libarchive-c-directory-entry.json",
           "log_path": "logs/libarchive/usage-python-libarchive-c-directory-entry.log",
           "cast_path": "casts/libarchive/usage-python-libarchive-c-directory-entry.cast",
-          "duration_seconds": 0.235,
+          "duration_seconds": 0.241,
           "exit_code": 0,
           "cast_events": 2,
           "cast_bytes": 94,
-          "cast_duration_seconds": 0.143895
+          "cast_duration_seconds": 0.154407
         },
         {
           "testcase_id": "usage-python-libarchive-c-copy-mode",
@@ -904,11 +904,11 @@
           "result_path": "results/libarchive/usage-python-libarchive-c-copy-mode.json",
           "log_path": "logs/libarchive/usage-python-libarchive-c-copy-mode.log",
           "cast_path": "casts/libarchive/usage-python-libarchive-c-copy-mode.cast",
-          "duration_seconds": 0.251,
+          "duration_seconds": 0.238,
           "exit_code": 0,
           "cast_events": 2,
           "cast_bytes": 109,
-          "cast_duration_seconds": 0.139022
+          "cast_duration_seconds": 0.146313
         },
         {
           "testcase_id": "usage-python-libarchive-c-gzip-filter",
@@ -926,11 +926,11 @@
           "result_path": "results/libarchive/usage-python-libarchive-c-gzip-filter.json",
           "log_path": "logs/libarchive/usage-python-libarchive-c-gzip-filter.log",
           "cast_path": "casts/libarchive/usage-python-libarchive-c-gzip-filter.cast",
-          "duration_seconds": 0.244,
+          "duration_seconds": 0.233,
           "exit_code": 0,
           "cast_events": 2,
           "cast_bytes": 86,
-          "cast_duration_seconds": 0.147694
+          "cast_duration_seconds": 0.137165
         }
       ]
     },
@@ -966,11 +966,11 @@
           "result_path": "results/libbz2/cli-compress-decompress.json",
           "log_path": "logs/libbz2/cli-compress-decompress.log",
           "cast_path": "casts/libbz2/cli-compress-decompress.cast",
-          "duration_seconds": 0.262,
+          "duration_seconds": 0.214,
           "exit_code": 0,
           "cast_events": 2,
           "cast_bytes": 131,
-          "cast_duration_seconds": 0.118999
+          "cast_duration_seconds": 0.120247
         },
         {
           "testcase_id": "stream-concatenation",
@@ -988,11 +988,11 @@
           "result_path": "results/libbz2/stream-concatenation.json",
           "log_path": "logs/libbz2/stream-concatenation.log",
           "cast_path": "casts/libbz2/stream-concatenation.cast",
-          "duration_seconds": 0.245,
+          "duration_seconds": 0.214,
           "exit_code": 0,
           "cast_events": 2,
           "cast_bytes": 77,
-          "cast_duration_seconds": 0.136638
+          "cast_duration_seconds": 0.11551
         },
         {
           "testcase_id": "c-api-buffer-roundtrip",
@@ -1010,11 +1010,11 @@
           "result_path": "results/libbz2/c-api-buffer-roundtrip.json",
           "log_path": "logs/libbz2/c-api-buffer-roundtrip.log",
           "cast_path": "casts/libbz2/c-api-buffer-roundtrip.cast",
-          "duration_seconds": 0.24,
+          "duration_seconds": 0.226,
           "exit_code": 0,
           "cast_events": 2,
           "cast_bytes": 90,
-          "cast_duration_seconds": 0.145059
+          "cast_duration_seconds": 0.140565
         },
         {
           "testcase_id": "corrupted-stream-rejection",
@@ -1032,11 +1032,11 @@
           "result_path": "results/libbz2/corrupted-stream-rejection.json",
           "log_path": "logs/libbz2/corrupted-stream-rejection.log",
           "cast_path": "casts/libbz2/corrupted-stream-rejection.cast",
-          "duration_seconds": 0.201,
+          "duration_seconds": 0.222,
           "exit_code": 0,
           "cast_events": 2,
           "cast_bytes": 437,
-          "cast_duration_seconds": 0.128243
+          "cast_duration_seconds": 0.119196
         },
         {
           "testcase_id": "debian-sample-parity",
@@ -1054,11 +1054,11 @@
           "result_path": "results/libbz2/debian-sample-parity.json",
           "log_path": "logs/libbz2/debian-sample-parity.log",
           "cast_path": "casts/libbz2/debian-sample-parity.cast",
-          "duration_seconds": 0.221,
+          "duration_seconds": 0.233,
           "exit_code": 0,
           "cast_events": 4,
           "cast_bytes": 182,
-          "cast_duration_seconds": 0.124716
+          "cast_duration_seconds": 0.13675
         },
         {
           "testcase_id": "usage-bzip2-compress-file",
@@ -1076,11 +1076,11 @@
           "result_path": "results/libbz2/usage-bzip2-compress-file.json",
           "log_path": "logs/libbz2/usage-bzip2-compress-file.log",
           "cast_path": "casts/libbz2/usage-bzip2-compress-file.cast",
-          "duration_seconds": 0.221,
+          "duration_seconds": 0.218,
           "exit_code": 0,
           "cast_events": 2,
           "cast_bytes": 73,
-          "cast_duration_seconds": 0.101146
+          "cast_duration_seconds": 0.122494
         },
         {
           "testcase_id": "usage-bzip2-test-stream",
@@ -1098,11 +1098,11 @@
           "result_path": "results/libbz2/usage-bzip2-test-stream.json",
           "log_path": "logs/libbz2/usage-bzip2-test-stream.log",
           "cast_path": "casts/libbz2/usage-bzip2-test-stream.cast",
-          "duration_seconds": 0.199,
+          "duration_seconds": 0.205,
           "exit_code": 0,
           "cast_events": 2,
           "cast_bytes": 95,
-          "cast_duration_seconds": 0.109268
+          "cast_duration_seconds": 0.108764
         },
         {
           "testcase_id": "usage-bzip2-small-block",
@@ -1120,11 +1120,11 @@
           "result_path": "results/libbz2/usage-bzip2-small-block.json",
           "log_path": "logs/libbz2/usage-bzip2-small-block.log",
           "cast_path": "casts/libbz2/usage-bzip2-small-block.cast",
-          "duration_seconds": 0.21,
+          "duration_seconds": 0.199,
           "exit_code": 0,
           "cast_events": 2,
           "cast_bytes": 82,
-          "cast_duration_seconds": 0.110726
+          "cast_duration_seconds": 0.117675
         },
         {
           "testcase_id": "usage-bzip2-large-block",
@@ -1142,11 +1142,11 @@
           "result_path": "results/libbz2/usage-bzip2-large-block.json",
           "log_path": "logs/libbz2/usage-bzip2-large-block.log",
           "cast_path": "casts/libbz2/usage-bzip2-large-block.cast",
-          "duration_seconds": 0.208,
+          "duration_seconds": 0.206,
           "exit_code": 0,
           "cast_events": 2,
           "cast_bytes": 66,
-          "cast_duration_seconds": 0.117697
+          "cast_duration_seconds": 0.11255
         },
         {
           "testcase_id": "usage-bzip2-concatenated-streams",
@@ -1164,11 +1164,11 @@
           "result_path": "results/libbz2/usage-bzip2-concatenated-streams.json",
           "log_path": "logs/libbz2/usage-bzip2-concatenated-streams.log",
           "cast_path": "casts/libbz2/usage-bzip2-concatenated-streams.cast",
-          "duration_seconds": 0.205,
+          "duration_seconds": 0.211,
           "exit_code": 0,
           "cast_events": 2,
           "cast_bytes": 72,
-          "cast_duration_seconds": 0.116179
+          "cast_duration_seconds": 0.119841
         },
         {
           "testcase_id": "usage-bzip2-stdout-stream",
@@ -1186,11 +1186,11 @@
           "result_path": "results/libbz2/usage-bzip2-stdout-stream.json",
           "log_path": "logs/libbz2/usage-bzip2-stdout-stream.log",
           "cast_path": "casts/libbz2/usage-bzip2-stdout-stream.cast",
-          "duration_seconds": 0.191,
+          "duration_seconds": 0.208,
           "exit_code": 0,
           "cast_events": 2,
           "cast_bytes": 75,
-          "cast_duration_seconds": 0.098721
+          "cast_duration_seconds": 0.112998
         },
         {
           "testcase_id": "usage-bzip2-recover-listing",
@@ -1208,11 +1208,11 @@
           "result_path": "results/libbz2/usage-bzip2-recover-listing.json",
           "log_path": "logs/libbz2/usage-bzip2-recover-listing.log",
           "cast_path": "casts/libbz2/usage-bzip2-recover-listing.cast",
-          "duration_seconds": 0.19,
+          "duration_seconds": 0.186,
           "exit_code": 0,
-          "cast_events": 4,
+          "cast_events": 3,
           "cast_bytes": 352,
-          "cast_duration_seconds": 0.112389
+          "cast_duration_seconds": 0.104544
         },
         {
           "testcase_id": "usage-bzip2-version-query",
@@ -1230,11 +1230,11 @@
           "result_path": "results/libbz2/usage-bzip2-version-query.json",
           "log_path": "logs/libbz2/usage-bzip2-version-query.log",
           "cast_path": "casts/libbz2/usage-bzip2-version-query.cast",
-          "duration_seconds": 0.199,
+          "duration_seconds": 0.214,
           "exit_code": 0,
           "cast_events": 2,
           "cast_bytes": 626,
-          "cast_duration_seconds": 0.106505
+          "cast_duration_seconds": 0.120214
         }
       ]
     },
@@ -1269,11 +1269,11 @@
           "result_path": "results/libcsv/parser-callback-behavior.json",
           "log_path": "logs/libcsv/parser-callback-behavior.log",
           "cast_path": "casts/libcsv/parser-callback-behavior.cast",
-          "duration_seconds": 0.223,
+          "duration_seconds": 0.246,
           "exit_code": 0,
           "cast_events": 2,
           "cast_bytes": 142,
-          "cast_duration_seconds": 0.136701
+          "cast_duration_seconds": 0.138473
         },
         {
           "testcase_id": "strict-quote-error",
@@ -1291,11 +1291,11 @@
           "result_path": "results/libcsv/strict-quote-error.json",
           "log_path": "logs/libcsv/strict-quote-error.log",
           "cast_path": "casts/libcsv/strict-quote-error.cast",
-          "duration_seconds": 0.227,
+          "duration_seconds": 0.25,
           "exit_code": 0,
           "cast_events": 2,
           "cast_bytes": 117,
-          "cast_duration_seconds": 0.132536
+          "cast_duration_seconds": 0.137398
         },
         {
           "testcase_id": "example-tool-compile-run",
@@ -1313,11 +1313,11 @@
           "result_path": "results/libcsv/example-tool-compile-run.json",
           "log_path": "logs/libcsv/example-tool-compile-run.log",
           "cast_path": "casts/libcsv/example-tool-compile-run.cast",
-          "duration_seconds": 0.229,
+          "duration_seconds": 0.218,
           "exit_code": 0,
           "cast_events": 3,
           "cast_bytes": 104,
-          "cast_duration_seconds": 0.141354
+          "cast_duration_seconds": 0.129818
         },
         {
           "testcase_id": "large-field-handling",
@@ -1335,11 +1335,11 @@
           "result_path": "results/libcsv/large-field-handling.json",
           "log_path": "logs/libcsv/large-field-handling.log",
           "cast_path": "casts/libcsv/large-field-handling.cast",
-          "duration_seconds": 0.243,
+          "duration_seconds": 0.224,
           "exit_code": 0,
           "cast_events": 2,
           "cast_bytes": 75,
-          "cast_duration_seconds": 0.138488
+          "cast_duration_seconds": 0.131921
         },
         {
           "testcase_id": "empty-field-custom-delimiter",
@@ -1357,11 +1357,11 @@
           "result_path": "results/libcsv/empty-field-custom-delimiter.json",
           "log_path": "logs/libcsv/empty-field-custom-delimiter.log",
           "cast_path": "casts/libcsv/empty-field-custom-delimiter.cast",
-          "duration_seconds": 0.245,
+          "duration_seconds": 0.26,
           "exit_code": 0,
           "cast_events": 2,
           "cast_bytes": 119,
-          "cast_duration_seconds": 0.148179
+          "cast_duration_seconds": 0.14331
         },
         {
           "testcase_id": "usage-readstat-csv-to-dta",
@@ -1383,7 +1383,7 @@
           "exit_code": 0,
           "cast_events": 3,
           "cast_bytes": 217,
-          "cast_duration_seconds": 0.121117
+          "cast_duration_seconds": 0.115517
         },
         {
           "testcase_id": "usage-readstat-dta-to-csv",
@@ -1401,11 +1401,11 @@
           "result_path": "results/libcsv/usage-readstat-dta-to-csv.json",
           "log_path": "logs/libcsv/usage-readstat-dta-to-csv.log",
           "cast_path": "casts/libcsv/usage-readstat-dta-to-csv.cast",
-          "duration_seconds": 0.21,
+          "duration_seconds": 0.219,
           "exit_code": 0,
           "cast_events": 3,
           "cast_bytes": 162,
-          "cast_duration_seconds": 0.121874
+          "cast_duration_seconds": 0.122207
         },
         {
           "testcase_id": "usage-readstat-csv-to-sav",
@@ -1423,11 +1423,11 @@
           "result_path": "results/libcsv/usage-readstat-csv-to-sav.json",
           "log_path": "logs/libcsv/usage-readstat-csv-to-sav.log",
           "cast_path": "casts/libcsv/usage-readstat-csv-to-sav.cast",
-          "duration_seconds": 0.226,
+          "duration_seconds": 0.216,
           "exit_code": 0,
           "cast_events": 3,
           "cast_bytes": 217,
-          "cast_duration_seconds": 0.116655
+          "cast_duration_seconds": 0.122177
         },
         {
           "testcase_id": "usage-readstat-sav-to-csv",
@@ -1445,11 +1445,11 @@
           "result_path": "results/libcsv/usage-readstat-sav-to-csv.json",
           "log_path": "logs/libcsv/usage-readstat-sav-to-csv.log",
           "cast_path": "casts/libcsv/usage-readstat-sav-to-csv.cast",
-          "duration_seconds": 0.206,
+          "duration_seconds": 0.217,
           "exit_code": 0,
           "cast_events": 3,
           "cast_bytes": 162,
-          "cast_duration_seconds": 0.11527
+          "cast_duration_seconds": 0.120377
         },
         {
           "testcase_id": "usage-readstat-metadata-summary",
@@ -1467,11 +1467,11 @@
           "result_path": "results/libcsv/usage-readstat-metadata-summary.json",
           "log_path": "logs/libcsv/usage-readstat-metadata-summary.log",
           "cast_path": "casts/libcsv/usage-readstat-metadata-summary.cast",
-          "duration_seconds": 0.213,
+          "duration_seconds": 0.225,
           "exit_code": 0,
           "cast_events": 3,
           "cast_bytes": 271,
-          "cast_duration_seconds": 0.109171
+          "cast_duration_seconds": 0.121564
         },
         {
           "testcase_id": "usage-readstat-quoted-csv",
@@ -1489,11 +1489,11 @@
           "result_path": "results/libcsv/usage-readstat-quoted-csv.json",
           "log_path": "logs/libcsv/usage-readstat-quoted-csv.log",
           "cast_path": "casts/libcsv/usage-readstat-quoted-csv.cast",
-          "duration_seconds": 0.223,
+          "duration_seconds": 0.222,
           "exit_code": 0,
           "cast_events": 3,
           "cast_bytes": 214,
-          "cast_duration_seconds": 0.113468
+          "cast_duration_seconds": 0.11847
         },
         {
           "testcase_id": "usage-readstat-missing-values",
@@ -1511,11 +1511,11 @@
           "result_path": "results/libcsv/usage-readstat-missing-values.json",
           "log_path": "logs/libcsv/usage-readstat-missing-values.log",
           "cast_path": "casts/libcsv/usage-readstat-missing-values.cast",
-          "duration_seconds": 0.215,
+          "duration_seconds": 0.211,
           "exit_code": 0,
-          "cast_events": 3,
+          "cast_events": 4,
           "cast_bytes": 214,
-          "cast_duration_seconds": 0.108029
+          "cast_duration_seconds": 0.108083
         },
         {
           "testcase_id": "usage-readstat-normalize-csv",
@@ -1533,11 +1533,11 @@
           "result_path": "results/libcsv/usage-readstat-normalize-csv.json",
           "log_path": "logs/libcsv/usage-readstat-normalize-csv.log",
           "cast_path": "casts/libcsv/usage-readstat-normalize-csv.cast",
-          "duration_seconds": 0.217,
+          "duration_seconds": 0.21,
           "exit_code": 0,
           "cast_events": 2,
           "cast_bytes": 111,
-          "cast_duration_seconds": 0.114923
+          "cast_duration_seconds": 0.112936
         }
       ]
     },
@@ -1572,11 +1572,11 @@
           "result_path": "results/libexif/jpeg-exif-c-api-parse.json",
           "log_path": "logs/libexif/jpeg-exif-c-api-parse.log",
           "cast_path": "casts/libexif/jpeg-exif-c-api-parse.cast",
-          "duration_seconds": 0.238,
+          "duration_seconds": 0.231,
           "exit_code": 0,
           "cast_events": 2,
           "cast_bytes": 101,
-          "cast_duration_seconds": 0.143884
+          "cast_duration_seconds": 0.143379
         },
         {
           "testcase_id": "maker-note-handling",
@@ -1594,11 +1594,11 @@
           "result_path": "results/libexif/maker-note-handling.json",
           "log_path": "logs/libexif/maker-note-handling.log",
           "cast_path": "casts/libexif/maker-note-handling.cast",
-          "duration_seconds": 0.223,
+          "duration_seconds": 0.214,
           "exit_code": 0,
           "cast_events": 2,
           "cast_bytes": 82,
-          "cast_duration_seconds": 0.138876
+          "cast_duration_seconds": 0.127884
         },
         {
           "testcase_id": "tag-lookup-value-formatting",
@@ -1616,11 +1616,11 @@
           "result_path": "results/libexif/tag-lookup-value-formatting.json",
           "log_path": "logs/libexif/tag-lookup-value-formatting.log",
           "cast_path": "casts/libexif/tag-lookup-value-formatting.cast",
-          "duration_seconds": 0.254,
+          "duration_seconds": 0.221,
           "exit_code": 0,
           "cast_events": 2,
           "cast_bytes": 83,
-          "cast_duration_seconds": 0.147541
+          "cast_duration_seconds": 0.138636
         },
         {
           "testcase_id": "compile-link-smoke",
@@ -1638,11 +1638,11 @@
           "result_path": "results/libexif/compile-link-smoke.json",
           "log_path": "logs/libexif/compile-link-smoke.log",
           "cast_path": "casts/libexif/compile-link-smoke.cast",
-          "duration_seconds": 0.239,
+          "duration_seconds": 0.235,
           "exit_code": 0,
           "cast_events": 2,
           "cast_bytes": 82,
-          "cast_duration_seconds": 0.134025
+          "cast_duration_seconds": 0.132125
         },
         {
           "testcase_id": "invalid-data-handling",
@@ -1660,11 +1660,11 @@
           "result_path": "results/libexif/invalid-data-handling.json",
           "log_path": "logs/libexif/invalid-data-handling.log",
           "cast_path": "casts/libexif/invalid-data-handling.cast",
-          "duration_seconds": 0.245,
+          "duration_seconds": 0.218,
           "exit_code": 0,
           "cast_events": 2,
           "cast_bytes": 72,
-          "cast_duration_seconds": 0.149792
+          "cast_duration_seconds": 0.136231
         },
         {
           "testcase_id": "usage-exif-cli-list-tags",
@@ -1682,11 +1682,11 @@
           "result_path": "results/libexif/usage-exif-cli-list-tags.json",
           "log_path": "logs/libexif/usage-exif-cli-list-tags.log",
           "cast_path": "casts/libexif/usage-exif-cli-list-tags.cast",
-          "duration_seconds": 0.199,
+          "duration_seconds": 0.195,
           "exit_code": 0,
           "cast_events": 2,
           "cast_bytes": 2073,
-          "cast_duration_seconds": 0.098819
+          "cast_duration_seconds": 0.105852
         },
         {
           "testcase_id": "usage-exif-cli-machine-readable",
@@ -1704,11 +1704,11 @@
           "result_path": "results/libexif/usage-exif-cli-machine-readable.json",
           "log_path": "logs/libexif/usage-exif-cli-machine-readable.log",
           "cast_path": "casts/libexif/usage-exif-cli-machine-readable.cast",
-          "duration_seconds": 0.226,
+          "duration_seconds": 0.211,
           "exit_code": 0,
           "cast_events": 2,
           "cast_bytes": 1421,
-          "cast_duration_seconds": 0.120765
+          "cast_duration_seconds": 0.106273
         },
         {
           "testcase_id": "usage-exif-cli-tag-make",
@@ -1726,11 +1726,11 @@
           "result_path": "results/libexif/usage-exif-cli-tag-make.json",
           "log_path": "logs/libexif/usage-exif-cli-tag-make.log",
           "cast_path": "casts/libexif/usage-exif-cli-tag-make.cast",
-          "duration_seconds": 0.212,
+          "duration_seconds": 0.231,
           "exit_code": 0,
           "cast_events": 2,
           "cast_bytes": 216,
-          "cast_duration_seconds": 0.128433
+          "cast_duration_seconds": 0.113031
         },
         {
           "testcase_id": "usage-exif-cli-tag-model",
@@ -1748,11 +1748,11 @@
           "result_path": "results/libexif/usage-exif-cli-tag-model.json",
           "log_path": "logs/libexif/usage-exif-cli-tag-model.log",
           "cast_path": "casts/libexif/usage-exif-cli-tag-model.cast",
-          "duration_seconds": 0.203,
+          "duration_seconds": 0.23,
           "exit_code": 0,
           "cast_events": 2,
           "cast_bytes": 227,
-          "cast_duration_seconds": 0.112218
+          "cast_duration_seconds": 0.120658
         },
         {
           "testcase_id": "usage-exif-cli-maker-note",
@@ -1770,11 +1770,11 @@
           "result_path": "results/libexif/usage-exif-cli-maker-note.json",
           "log_path": "logs/libexif/usage-exif-cli-maker-note.log",
           "cast_path": "casts/libexif/usage-exif-cli-maker-note.cast",
-          "duration_seconds": 0.185,
+          "duration_seconds": 0.212,
           "exit_code": 0,
           "cast_events": 2,
           "cast_bytes": 3094,
-          "cast_duration_seconds": 0.103206
+          "cast_duration_seconds": 0.115793
         },
         {
           "testcase_id": "usage-exif-cli-extract-thumbnail",
@@ -1792,11 +1792,11 @@
           "result_path": "results/libexif/usage-exif-cli-extract-thumbnail.json",
           "log_path": "logs/libexif/usage-exif-cli-extract-thumbnail.log",
           "cast_path": "casts/libexif/usage-exif-cli-extract-thumbnail.cast",
-          "duration_seconds": 0.225,
+          "duration_seconds": 0.209,
           "exit_code": 0,
           "cast_events": 3,
           "cast_bytes": 155,
-          "cast_duration_seconds": 0.119854
+          "cast_duration_seconds": 0.10773
         },
         {
           "testcase_id": "usage-exif-cli-ifd-exif",
@@ -1814,11 +1814,11 @@
           "result_path": "results/libexif/usage-exif-cli-ifd-exif.json",
           "log_path": "logs/libexif/usage-exif-cli-ifd-exif.log",
           "cast_path": "casts/libexif/usage-exif-cli-ifd-exif.cast",
-          "duration_seconds": 0.214,
+          "duration_seconds": 0.185,
           "exit_code": 0,
           "cast_events": 2,
           "cast_bytes": 1580,
-          "cast_duration_seconds": 0.111198
+          "cast_duration_seconds": 0.10819
         },
         {
           "testcase_id": "usage-exif-cli-xml-output",
@@ -1836,11 +1836,11 @@
           "result_path": "results/libexif/usage-exif-cli-xml-output.json",
           "log_path": "logs/libexif/usage-exif-cli-xml-output.log",
           "cast_path": "casts/libexif/usage-exif-cli-xml-output.cast",
-          "duration_seconds": 0.22,
+          "duration_seconds": 0.201,
           "exit_code": 0,
-          "cast_events": 3,
+          "cast_events": 2,
           "cast_bytes": 2356,
-          "cast_duration_seconds": 0.121631
+          "cast_duration_seconds": 0.122355
         }
       ]
     },
@@ -1878,11 +1878,11 @@
           "result_path": "results/libjpeg-turbo/cjpeg-djpeg-roundtrip.json",
           "log_path": "logs/libjpeg-turbo/cjpeg-djpeg-roundtrip.log",
           "cast_path": "casts/libjpeg-turbo/cjpeg-djpeg-roundtrip.cast",
-          "duration_seconds": 0.228,
+          "duration_seconds": 0.22,
           "exit_code": 0,
           "cast_events": 3,
           "cast_bytes": 230,
-          "cast_duration_seconds": 0.124733
+          "cast_duration_seconds": 0.124744
         },
         {
           "testcase_id": "jpegtran-transform",
@@ -1900,11 +1900,11 @@
           "result_path": "results/libjpeg-turbo/jpegtran-transform.json",
           "log_path": "logs/libjpeg-turbo/jpegtran-transform.log",
           "cast_path": "casts/libjpeg-turbo/jpegtran-transform.cast",
-          "duration_seconds": 0.235,
+          "duration_seconds": 0.189,
           "exit_code": 0,
           "cast_events": 2,
           "cast_bytes": 77,
-          "cast_duration_seconds": 0.109987
+          "cast_duration_seconds": 0.104796
         },
         {
           "testcase_id": "turbojpeg-api-smoke",
@@ -1922,11 +1922,11 @@
           "result_path": "results/libjpeg-turbo/turbojpeg-api-smoke.json",
           "log_path": "logs/libjpeg-turbo/turbojpeg-api-smoke.log",
           "cast_path": "casts/libjpeg-turbo/turbojpeg-api-smoke.cast",
-          "duration_seconds": 0.25,
+          "duration_seconds": 0.224,
           "exit_code": 0,
           "cast_events": 2,
           "cast_bytes": 76,
-          "cast_duration_seconds": 0.140203
+          "cast_duration_seconds": 0.131582
         },
         {
           "testcase_id": "progressive-grayscale-conversion",
@@ -1944,11 +1944,11 @@
           "result_path": "results/libjpeg-turbo/progressive-grayscale-conversion.json",
           "log_path": "logs/libjpeg-turbo/progressive-grayscale-conversion.log",
           "cast_path": "casts/libjpeg-turbo/progressive-grayscale-conversion.cast",
-          "duration_seconds": 0.209,
+          "duration_seconds": 0.206,
           "exit_code": 0,
           "cast_events": 3,
           "cast_bytes": 233,
-          "cast_duration_seconds": 0.115512
+          "cast_duration_seconds": 0.119955
         },
         {
           "testcase_id": "malformed-jpeg-handling",
@@ -1966,11 +1966,11 @@
           "result_path": "results/libjpeg-turbo/malformed-jpeg-handling.json",
           "log_path": "logs/libjpeg-turbo/malformed-jpeg-handling.log",
           "cast_path": "casts/libjpeg-turbo/malformed-jpeg-handling.cast",
-          "duration_seconds": 0.198,
+          "duration_seconds": 0.213,
           "exit_code": 0,
           "cast_events": 2,
           "cast_bytes": 101,
-          "cast_duration_seconds": 0.105466
+          "cast_duration_seconds": 0.115426
         },
         {
           "testcase_id": "usage-python3-pil-open-jpeg",
@@ -1989,11 +1989,11 @@
           "result_path": "results/libjpeg-turbo/usage-python3-pil-open-jpeg.json",
           "log_path": "logs/libjpeg-turbo/usage-python3-pil-open-jpeg.log",
           "cast_path": "casts/libjpeg-turbo/usage-python3-pil-open-jpeg.cast",
-          "duration_seconds": 0.266,
+          "duration_seconds": 0.237,
           "exit_code": 0,
           "cast_events": 2,
           "cast_bytes": 78,
-          "cast_duration_seconds": 0.157634
+          "cast_duration_seconds": 0.154948
         },
         {
           "testcase_id": "usage-python3-pil-grayscale-jpeg",
@@ -2012,11 +2012,11 @@
           "result_path": "results/libjpeg-turbo/usage-python3-pil-grayscale-jpeg.json",
           "log_path": "logs/libjpeg-turbo/usage-python3-pil-grayscale-jpeg.log",
           "cast_path": "casts/libjpeg-turbo/usage-python3-pil-grayscale-jpeg.cast",
-          "duration_seconds": 0.251,
+          "duration_seconds": 0.252,
           "exit_code": 0,
           "cast_events": 2,
           "cast_bytes": 71,
-          "cast_duration_seconds": 0.158683
+          "cast_duration_seconds": 0.152134
         },
         {
           "testcase_id": "usage-python3-pil-thumbnail-jpeg",
@@ -2035,11 +2035,11 @@
           "result_path": "results/libjpeg-turbo/usage-python3-pil-thumbnail-jpeg.json",
           "log_path": "logs/libjpeg-turbo/usage-python3-pil-thumbnail-jpeg.log",
           "cast_path": "casts/libjpeg-turbo/usage-python3-pil-thumbnail-jpeg.cast",
-          "duration_seconds": 0.263,
+          "duration_seconds": 0.244,
           "exit_code": 0,
           "cast_events": 2,
           "cast_bytes": 75,
-          "cast_duration_seconds": 0.153348
+          "cast_duration_seconds": 0.148392
         },
         {
           "testcase_id": "usage-python3-pil-transpose-jpeg",
@@ -2058,11 +2058,11 @@
           "result_path": "results/libjpeg-turbo/usage-python3-pil-transpose-jpeg.json",
           "log_path": "logs/libjpeg-turbo/usage-python3-pil-transpose-jpeg.log",
           "cast_path": "casts/libjpeg-turbo/usage-python3-pil-transpose-jpeg.cast",
-          "duration_seconds": 0.25,
+          "duration_seconds": 0.273,
           "exit_code": 0,
           "cast_events": 2,
           "cast_bytes": 69,
-          "cast_duration_seconds": 0.14171
+          "cast_duration_seconds": 0.158803
         },
         {
           "testcase_id": "usage-vips-header-jpeg",
@@ -2081,11 +2081,11 @@
           "result_path": "results/libjpeg-turbo/usage-vips-header-jpeg.json",
           "log_path": "logs/libjpeg-turbo/usage-vips-header-jpeg.log",
           "cast_path": "casts/libjpeg-turbo/usage-vips-header-jpeg.cast",
-          "duration_seconds": 0.233,
+          "duration_seconds": 0.249,
           "exit_code": 0,
           "cast_events": 2,
           "cast_bytes": 125,
-          "cast_duration_seconds": 0.134745
+          "cast_duration_seconds": 0.142584
         },
         {
           "testcase_id": "usage-vips-copy-jpeg-png",
@@ -2104,11 +2104,11 @@
           "result_path": "results/libjpeg-turbo/usage-vips-copy-jpeg-png.json",
           "log_path": "logs/libjpeg-turbo/usage-vips-copy-jpeg-png.log",
           "cast_path": "casts/libjpeg-turbo/usage-vips-copy-jpeg-png.cast",
-          "duration_seconds": 0.246,
+          "duration_seconds": 0.275,
           "exit_code": 0,
           "cast_events": 2,
           "cast_bytes": 125,
-          "cast_duration_seconds": 0.156466
+          "cast_duration_seconds": 0.165922
         },
         {
           "testcase_id": "usage-vips-thumbnail-jpeg",
@@ -2127,11 +2127,11 @@
           "result_path": "results/libjpeg-turbo/usage-vips-thumbnail-jpeg.json",
           "log_path": "logs/libjpeg-turbo/usage-vips-thumbnail-jpeg.log",
           "cast_path": "casts/libjpeg-turbo/usage-vips-thumbnail-jpeg.cast",
-          "duration_seconds": 0.234,
+          "duration_seconds": 0.254,
           "exit_code": 0,
           "cast_events": 2,
           "cast_bytes": 128,
-          "cast_duration_seconds": 0.148421
+          "cast_duration_seconds": 0.172021
         },
         {
           "testcase_id": "usage-vips-stats-jpeg",
@@ -2150,11 +2150,11 @@
           "result_path": "results/libjpeg-turbo/usage-vips-stats-jpeg.json",
           "log_path": "logs/libjpeg-turbo/usage-vips-stats-jpeg.log",
           "cast_path": "casts/libjpeg-turbo/usage-vips-stats-jpeg.cast",
-          "duration_seconds": 0.259,
+          "duration_seconds": 0.261,
           "exit_code": 0,
           "cast_events": 2,
           "cast_bytes": 119,
-          "cast_duration_seconds": 0.170681
+          "cast_duration_seconds": 0.171773
         }
       ]
     },
@@ -2189,11 +2189,11 @@
           "result_path": "results/libjson/tokener-parse.json",
           "log_path": "logs/libjson/tokener-parse.log",
           "cast_path": "casts/libjson/tokener-parse.cast",
-          "duration_seconds": 0.251,
+          "duration_seconds": 0.241,
           "exit_code": 0,
           "cast_events": 2,
           "cast_bytes": 73,
-          "cast_duration_seconds": 0.151112
+          "cast_duration_seconds": 0.145371
         },
         {
           "testcase_id": "serializer-roundtrip",
@@ -2211,11 +2211,11 @@
           "result_path": "results/libjson/serializer-roundtrip.json",
           "log_path": "logs/libjson/serializer-roundtrip.log",
           "cast_path": "casts/libjson/serializer-roundtrip.cast",
-          "duration_seconds": 0.228,
+          "duration_seconds": 0.253,
           "exit_code": 0,
           "cast_events": 2,
           "cast_bytes": 76,
-          "cast_duration_seconds": 0.142492
+          "cast_duration_seconds": 0.139833
         },
         {
           "testcase_id": "refcount-object-mutation",
@@ -2233,11 +2233,11 @@
           "result_path": "results/libjson/refcount-object-mutation.json",
           "log_path": "logs/libjson/refcount-object-mutation.log",
           "cast_path": "casts/libjson/refcount-object-mutation.cast",
-          "duration_seconds": 0.224,
+          "duration_seconds": 0.22,
           "exit_code": 0,
           "cast_events": 2,
           "cast_bytes": 102,
-          "cast_duration_seconds": 0.137258
+          "cast_duration_seconds": 0.133702
         },
         {
           "testcase_id": "compile-link-smoke",
@@ -2255,11 +2255,11 @@
           "result_path": "results/libjson/compile-link-smoke.json",
           "log_path": "logs/libjson/compile-link-smoke.log",
           "cast_path": "casts/libjson/compile-link-smoke.cast",
-          "duration_seconds": 0.24,
+          "duration_seconds": 0.225,
           "exit_code": 0,
           "cast_events": 2,
           "cast_bytes": 82,
-          "cast_duration_seconds": 0.141628
+          "cast_duration_seconds": 0.13046
         },
         {
           "testcase_id": "malformed-json-handling",
@@ -2277,11 +2277,11 @@
           "result_path": "results/libjson/malformed-json-handling.json",
           "log_path": "logs/libjson/malformed-json-handling.log",
           "cast_path": "casts/libjson/malformed-json-handling.cast",
-          "duration_seconds": 0.229,
+          "duration_seconds": 0.234,
           "exit_code": 0,
           "cast_events": 2,
           "cast_bytes": 89,
-          "cast_duration_seconds": 0.14198
+          "cast_duration_seconds": 0.144657
         },
         {
           "testcase_id": "usage-gdal-ogrinfo-geojson",
@@ -2300,11 +2300,11 @@
           "result_path": "results/libjson/usage-gdal-ogrinfo-geojson.json",
           "log_path": "logs/libjson/usage-gdal-ogrinfo-geojson.log",
           "cast_path": "casts/libjson/usage-gdal-ogrinfo-geojson.cast",
-          "duration_seconds": 0.226,
+          "duration_seconds": 0.237,
           "exit_code": 0,
           "cast_events": 2,
           "cast_bytes": 903,
-          "cast_duration_seconds": 0.130454
+          "cast_duration_seconds": 0.132649
         },
         {
           "testcase_id": "usage-ttyd-loopback-index",
@@ -2323,11 +2323,11 @@
           "result_path": "results/libjson/usage-ttyd-loopback-index.json",
           "log_path": "logs/libjson/usage-ttyd-loopback-index.log",
           "cast_path": "casts/libjson/usage-ttyd-loopback-index.cast",
-          "duration_seconds": 0.217,
+          "duration_seconds": 0.221,
           "exit_code": 0,
           "cast_events": 1,
           "cast_bytes": 60,
-          "cast_duration_seconds": 0.108611
+          "cast_duration_seconds": 0.117326
         },
         {
           "testcase_id": "usage-gdal-ogrinfo-filter-geojson",
@@ -2345,11 +2345,11 @@
           "result_path": "results/libjson/usage-gdal-ogrinfo-filter-geojson.json",
           "log_path": "logs/libjson/usage-gdal-ogrinfo-filter-geojson.log",
           "cast_path": "casts/libjson/usage-gdal-ogrinfo-filter-geojson.cast",
-          "duration_seconds": 0.228,
+          "duration_seconds": 0.227,
           "exit_code": 0,
           "cast_events": 2,
           "cast_bytes": 994,
-          "cast_duration_seconds": 0.130593
+          "cast_duration_seconds": 0.1329
         },
         {
           "testcase_id": "usage-gdal-ogr2ogr-copy-geojson",
@@ -2367,11 +2367,11 @@
           "result_path": "results/libjson/usage-gdal-ogr2ogr-copy-geojson.json",
           "log_path": "logs/libjson/usage-gdal-ogr2ogr-copy-geojson.log",
           "cast_path": "casts/libjson/usage-gdal-ogr2ogr-copy-geojson.cast",
-          "duration_seconds": 0.214,
+          "duration_seconds": 0.235,
           "exit_code": 0,
           "cast_events": 1,
           "cast_bytes": 60,
-          "cast_duration_seconds": 0.100854
+          "cast_duration_seconds": 0.119425
         },
         {
           "testcase_id": "usage-gdal-ogr2ogr-csv-geojson",
@@ -2389,11 +2389,11 @@
           "result_path": "results/libjson/usage-gdal-ogr2ogr-csv-geojson.json",
           "log_path": "logs/libjson/usage-gdal-ogr2ogr-csv-geojson.log",
           "cast_path": "casts/libjson/usage-gdal-ogr2ogr-csv-geojson.cast",
-          "duration_seconds": 0.22,
+          "duration_seconds": 0.221,
           "exit_code": 0,
           "cast_events": 1,
           "cast_bytes": 60,
-          "cast_duration_seconds": 0.106025
+          "cast_duration_seconds": 0.099792
         },
         {
           "testcase_id": "usage-gdal-ogr2ogr-gpkg-geojson",
@@ -2411,11 +2411,11 @@
           "result_path": "results/libjson/usage-gdal-ogr2ogr-gpkg-geojson.json",
           "log_path": "logs/libjson/usage-gdal-ogr2ogr-gpkg-geojson.log",
           "cast_path": "casts/libjson/usage-gdal-ogr2ogr-gpkg-geojson.cast",
-          "duration_seconds": 0.24,
+          "duration_seconds": 0.283,
           "exit_code": 0,
           "cast_events": 2,
           "cast_bytes": 1503,
-          "cast_duration_seconds": 0.163602
+          "cast_duration_seconds": 0.172153
         },
         {
           "testcase_id": "usage-gdal-ogrinfo-sql-geojson",
@@ -2433,11 +2433,11 @@
           "result_path": "results/libjson/usage-gdal-ogrinfo-sql-geojson.json",
           "log_path": "logs/libjson/usage-gdal-ogrinfo-sql-geojson.log",
           "cast_path": "casts/libjson/usage-gdal-ogrinfo-sql-geojson.cast",
-          "duration_seconds": 0.245,
+          "duration_seconds": 0.224,
           "exit_code": 0,
           "cast_events": 2,
           "cast_bytes": 948,
-          "cast_duration_seconds": 0.137939
+          "cast_duration_seconds": 0.12917
         },
         {
           "testcase_id": "usage-gdal-ogrinfo-spatial-filter",
@@ -2455,11 +2455,11 @@
           "result_path": "results/libjson/usage-gdal-ogrinfo-spatial-filter.json",
           "log_path": "logs/libjson/usage-gdal-ogrinfo-spatial-filter.log",
           "cast_path": "casts/libjson/usage-gdal-ogrinfo-spatial-filter.cast",
-          "duration_seconds": 0.229,
+          "duration_seconds": 0.226,
           "exit_code": 0,
           "cast_events": 2,
           "cast_bytes": 995,
-          "cast_duration_seconds": 0.136182
+          "cast_duration_seconds": 0.133555
         },
         {
           "testcase_id": "usage-gdal-gdalinfo-json-raster",
@@ -2477,11 +2477,11 @@
           "result_path": "results/libjson/usage-gdal-gdalinfo-json-raster.json",
           "log_path": "logs/libjson/usage-gdal-gdalinfo-json-raster.log",
           "cast_path": "casts/libjson/usage-gdal-gdalinfo-json-raster.cast",
-          "duration_seconds": 0.253,
+          "duration_seconds": 0.227,
           "exit_code": 0,
           "cast_events": 2,
           "cast_bytes": 78,
-          "cast_duration_seconds": 0.144028
+          "cast_duration_seconds": 0.133327
         }
       ]
     },
@@ -2517,11 +2517,11 @@
           "result_path": "results/liblzma/xz-compress-decompress.json",
           "log_path": "logs/liblzma/xz-compress-decompress.log",
           "cast_path": "casts/liblzma/xz-compress-decompress.cast",
-          "duration_seconds": 0.226,
+          "duration_seconds": 0.221,
           "exit_code": 0,
           "cast_events": 2,
           "cast_bytes": 214,
-          "cast_duration_seconds": 0.128999
+          "cast_duration_seconds": 0.119245
         },
         {
           "testcase_id": "integrity-check",
@@ -2539,11 +2539,11 @@
           "result_path": "results/liblzma/integrity-check.json",
           "log_path": "logs/liblzma/integrity-check.log",
           "cast_path": "casts/liblzma/integrity-check.cast",
-          "duration_seconds": 0.21,
+          "duration_seconds": 0.191,
           "exit_code": 0,
           "cast_events": 3,
           "cast_bytes": 983,
-          "cast_duration_seconds": 0.109385
+          "cast_duration_seconds": 0.107148
         },
         {
           "testcase_id": "streaming-c-api-smoke",
@@ -2561,11 +2561,11 @@
           "result_path": "results/liblzma/streaming-c-api-smoke.json",
           "log_path": "logs/liblzma/streaming-c-api-smoke.log",
           "cast_path": "casts/liblzma/streaming-c-api-smoke.cast",
-          "duration_seconds": 0.231,
+          "duration_seconds": 0.232,
           "exit_code": 0,
           "cast_events": 2,
           "cast_bytes": 76,
-          "cast_duration_seconds": 0.130382
+          "cast_duration_seconds": 0.142796
         },
         {
           "testcase_id": "multi-stream-behavior",
@@ -2583,11 +2583,11 @@
           "result_path": "results/liblzma/multi-stream-behavior.json",
           "log_path": "logs/liblzma/multi-stream-behavior.log",
           "cast_path": "casts/liblzma/multi-stream-behavior.cast",
-          "duration_seconds": 0.231,
+          "duration_seconds": 0.233,
           "exit_code": 0,
           "cast_events": 2,
           "cast_bytes": 75,
-          "cast_duration_seconds": 0.126631
+          "cast_duration_seconds": 0.138553
         },
         {
           "testcase_id": "corrupted-stream-rejection",
@@ -2605,11 +2605,11 @@
           "result_path": "results/liblzma/corrupted-stream-rejection.json",
           "log_path": "logs/liblzma/corrupted-stream-rejection.log",
           "cast_path": "casts/liblzma/corrupted-stream-rejection.cast",
-          "duration_seconds": 0.208,
+          "duration_seconds": 0.207,
           "exit_code": 0,
           "cast_events": 2,
           "cast_bytes": 118,
-          "cast_duration_seconds": 0.118972
+          "cast_duration_seconds": 0.109431
         },
         {
           "testcase_id": "usage-libarchive-tools-xz-tar-list",
@@ -2628,11 +2628,11 @@
           "result_path": "results/liblzma/usage-libarchive-tools-xz-tar-list.json",
           "log_path": "logs/liblzma/usage-libarchive-tools-xz-tar-list.log",
           "cast_path": "casts/liblzma/usage-libarchive-tools-xz-tar-list.cast",
-          "duration_seconds": 0.23,
+          "duration_seconds": 0.232,
           "exit_code": 0,
           "cast_events": 2,
           "cast_bytes": 81,
-          "cast_duration_seconds": 0.121958
+          "cast_duration_seconds": 0.120048
         },
         {
           "testcase_id": "usage-libarchive-tools-xz-tar-extract",
@@ -2651,11 +2651,11 @@
           "result_path": "results/liblzma/usage-libarchive-tools-xz-tar-extract.json",
           "log_path": "logs/liblzma/usage-libarchive-tools-xz-tar-extract.log",
           "cast_path": "casts/liblzma/usage-libarchive-tools-xz-tar-extract.cast",
-          "duration_seconds": 0.203,
+          "duration_seconds": 0.218,
           "exit_code": 0,
           "cast_events": 2,
           "cast_bytes": 81,
-          "cast_duration_seconds": 0.117613
+          "cast_duration_seconds": 0.119352
         },
         {
           "testcase_id": "usage-libarchive-tools-xz-stdout-stream",
@@ -2674,11 +2674,11 @@
           "result_path": "results/liblzma/usage-libarchive-tools-xz-stdout-stream.json",
           "log_path": "logs/liblzma/usage-libarchive-tools-xz-stdout-stream.log",
           "cast_path": "casts/liblzma/usage-libarchive-tools-xz-stdout-stream.cast",
-          "duration_seconds": 0.21,
+          "duration_seconds": 0.229,
           "exit_code": 0,
           "cast_events": 2,
           "cast_bytes": 81,
-          "cast_duration_seconds": 0.120655
+          "cast_duration_seconds": 0.129299
         },
         {
           "testcase_id": "usage-libarchive-tools-xz-large-file",
@@ -2697,11 +2697,11 @@
           "result_path": "results/liblzma/usage-libarchive-tools-xz-large-file.json",
           "log_path": "logs/liblzma/usage-libarchive-tools-xz-large-file.log",
           "cast_path": "casts/liblzma/usage-libarchive-tools-xz-large-file.cast",
-          "duration_seconds": 0.205,
+          "duration_seconds": 0.224,
           "exit_code": 0,
           "cast_events": 2,
           "cast_bytes": 81,
-          "cast_duration_seconds": 0.115997
+          "cast_duration_seconds": 0.132352
         },
         {
           "testcase_id": "usage-libarchive-tools-xz-symlink",
@@ -2720,11 +2720,11 @@
           "result_path": "results/liblzma/usage-libarchive-tools-xz-symlink.json",
           "log_path": "logs/liblzma/usage-libarchive-tools-xz-symlink.log",
           "cast_path": "casts/liblzma/usage-libarchive-tools-xz-symlink.cast",
-          "duration_seconds": 0.216,
+          "duration_seconds": 0.259,
           "exit_code": 0,
           "cast_events": 2,
           "cast_bytes": 81,
-          "cast_duration_seconds": 0.120235
+          "cast_duration_seconds": 0.128727
         },
         {
           "testcase_id": "usage-libarchive-tools-xz-empty-dir",
@@ -2743,11 +2743,11 @@
           "result_path": "results/liblzma/usage-libarchive-tools-xz-empty-dir.json",
           "log_path": "logs/liblzma/usage-libarchive-tools-xz-empty-dir.log",
           "cast_path": "casts/liblzma/usage-libarchive-tools-xz-empty-dir.cast",
-          "duration_seconds": 0.245,
+          "duration_seconds": 0.448,
           "exit_code": 0,
           "cast_events": 2,
           "cast_bytes": 81,
-          "cast_duration_seconds": 0.128076
+          "cast_duration_seconds": 0.320581
         },
         {
           "testcase_id": "usage-libarchive-tools-xz-filter-auto",
@@ -2766,11 +2766,11 @@
           "result_path": "results/liblzma/usage-libarchive-tools-xz-filter-auto.json",
           "log_path": "logs/liblzma/usage-libarchive-tools-xz-filter-auto.log",
           "cast_path": "casts/liblzma/usage-libarchive-tools-xz-filter-auto.cast",
-          "duration_seconds": 0.217,
+          "duration_seconds": 0.251,
           "exit_code": 0,
           "cast_events": 2,
           "cast_bytes": 81,
-          "cast_duration_seconds": 0.121801
+          "cast_duration_seconds": 0.142988
         },
         {
           "testcase_id": "usage-libarchive-tools-xz-copy-mode",
@@ -2789,11 +2789,11 @@
           "result_path": "results/liblzma/usage-libarchive-tools-xz-copy-mode.json",
           "log_path": "logs/liblzma/usage-libarchive-tools-xz-copy-mode.log",
           "cast_path": "casts/liblzma/usage-libarchive-tools-xz-copy-mode.cast",
-          "duration_seconds": 0.236,
+          "duration_seconds": 0.217,
           "exit_code": 0,
           "cast_events": 2,
           "cast_bytes": 81,
-          "cast_duration_seconds": 0.124346
+          "cast_duration_seconds": 0.111537
         }
       ]
     },
@@ -2829,11 +2829,11 @@
           "result_path": "results/libpng/pngfix-fixture-handling.json",
           "log_path": "logs/libpng/pngfix-fixture-handling.log",
           "cast_path": "casts/libpng/pngfix-fixture-handling.cast",
-          "duration_seconds": 0.205,
+          "duration_seconds": 0.211,
           "exit_code": 0,
           "cast_events": 3,
           "cast_bytes": 264,
-          "cast_duration_seconds": 0.120877
+          "cast_duration_seconds": 0.118019
         },
         {
           "testcase_id": "read-write-c-api-smoke",
@@ -2851,11 +2851,11 @@
           "result_path": "results/libpng/read-write-c-api-smoke.json",
           "log_path": "logs/libpng/read-write-c-api-smoke.log",
           "cast_path": "casts/libpng/read-write-c-api-smoke.cast",
-          "duration_seconds": 0.221,
+          "duration_seconds": 0.222,
           "exit_code": 0,
           "cast_events": 2,
           "cast_bytes": 79,
-          "cast_duration_seconds": 0.139872
+          "cast_duration_seconds": 0.134014
         },
         {
           "testcase_id": "chunk-metadata-inspection",
@@ -2873,11 +2873,11 @@
           "result_path": "results/libpng/chunk-metadata-inspection.json",
           "log_path": "logs/libpng/chunk-metadata-inspection.log",
           "cast_path": "casts/libpng/chunk-metadata-inspection.cast",
-          "duration_seconds": 0.22,
+          "duration_seconds": 0.197,
           "exit_code": 0,
           "cast_events": 2,
           "cast_bytes": 88,
-          "cast_duration_seconds": 0.131526
+          "cast_duration_seconds": 0.12801
         },
         {
           "testcase_id": "palette-fixture-handling",
@@ -2895,11 +2895,11 @@
           "result_path": "results/libpng/palette-fixture-handling.json",
           "log_path": "logs/libpng/palette-fixture-handling.log",
           "cast_path": "casts/libpng/palette-fixture-handling.cast",
-          "duration_seconds": 0.217,
+          "duration_seconds": 0.203,
           "exit_code": 0,
           "cast_events": 2,
           "cast_bytes": 200,
-          "cast_duration_seconds": 0.118084
+          "cast_duration_seconds": 0.111547
         },
         {
           "testcase_id": "malformed-png-rejection",
@@ -2917,11 +2917,11 @@
           "result_path": "results/libpng/malformed-png-rejection.json",
           "log_path": "logs/libpng/malformed-png-rejection.log",
           "cast_path": "casts/libpng/malformed-png-rejection.cast",
-          "duration_seconds": 0.212,
+          "duration_seconds": 0.213,
           "exit_code": 0,
           "cast_events": 2,
           "cast_bytes": 147,
-          "cast_duration_seconds": 0.11043
+          "cast_duration_seconds": 0.114553
         },
         {
           "testcase_id": "usage-pngquant-compress-png",
@@ -2939,11 +2939,11 @@
           "result_path": "results/libpng/usage-pngquant-compress-png.json",
           "log_path": "logs/libpng/usage-pngquant-compress-png.log",
           "cast_path": "casts/libpng/usage-pngquant-compress-png.cast",
-          "duration_seconds": 0.201,
+          "duration_seconds": 0.198,
           "exit_code": 0,
           "cast_events": 2,
           "cast_bytes": 147,
-          "cast_duration_seconds": 0.114485
+          "cast_duration_seconds": 0.107621
         },
         {
           "testcase_id": "usage-pngquant-quality-png",
@@ -2961,11 +2961,11 @@
           "result_path": "results/libpng/usage-pngquant-quality-png.json",
           "log_path": "logs/libpng/usage-pngquant-quality-png.log",
           "cast_path": "casts/libpng/usage-pngquant-quality-png.cast",
-          "duration_seconds": 0.216,
+          "duration_seconds": 0.215,
           "exit_code": 0,
           "cast_events": 1,
           "cast_bytes": 60,
-          "cast_duration_seconds": 0.12074
+          "cast_duration_seconds": 0.113913
         },
         {
           "testcase_id": "usage-pngquant-strip-png",
@@ -2987,7 +2987,7 @@
           "exit_code": 0,
           "cast_events": 2,
           "cast_bytes": 147,
-          "cast_duration_seconds": 0.116864
+          "cast_duration_seconds": 0.12496
         },
         {
           "testcase_id": "usage-pngquant-speed-png",
@@ -3005,11 +3005,11 @@
           "result_path": "results/libpng/usage-pngquant-speed-png.json",
           "log_path": "logs/libpng/usage-pngquant-speed-png.log",
           "cast_path": "casts/libpng/usage-pngquant-speed-png.cast",
-          "duration_seconds": 0.192,
+          "duration_seconds": 0.208,
           "exit_code": 0,
           "cast_events": 1,
           "cast_bytes": 60,
-          "cast_duration_seconds": 0.102891
+          "cast_duration_seconds": 0.114657
         },
         {
           "testcase_id": "usage-netpbm-pngtopnm",
@@ -3027,11 +3027,11 @@
           "result_path": "results/libpng/usage-netpbm-pngtopnm.json",
           "log_path": "logs/libpng/usage-netpbm-pngtopnm.log",
           "cast_path": "casts/libpng/usage-netpbm-pngtopnm.cast",
-          "duration_seconds": 0.193,
+          "duration_seconds": 0.208,
           "exit_code": 0,
           "cast_events": 2,
           "cast_bytes": 73,
-          "cast_duration_seconds": 0.108286
+          "cast_duration_seconds": 0.114898
         },
         {
           "testcase_id": "usage-netpbm-pnmtopng",
@@ -3049,11 +3049,11 @@
           "result_path": "results/libpng/usage-netpbm-pnmtopng.json",
           "log_path": "logs/libpng/usage-netpbm-pnmtopng.log",
           "cast_path": "casts/libpng/usage-netpbm-pnmtopng.cast",
-          "duration_seconds": 0.187,
+          "duration_seconds": 0.207,
           "exit_code": 0,
           "cast_events": 2,
           "cast_bytes": 145,
-          "cast_duration_seconds": 0.112181
+          "cast_duration_seconds": 0.115973
         },
         {
           "testcase_id": "usage-netpbm-pngtopam",
@@ -3071,11 +3071,11 @@
           "result_path": "results/libpng/usage-netpbm-pngtopam.json",
           "log_path": "logs/libpng/usage-netpbm-pngtopam.log",
           "cast_path": "casts/libpng/usage-netpbm-pngtopam.cast",
-          "duration_seconds": 0.206,
+          "duration_seconds": 0.202,
           "exit_code": 0,
           "cast_events": 2,
           "cast_bytes": 2059,
-          "cast_duration_seconds": 0.114806
+          "cast_duration_seconds": 0.122122
         },
         {
           "testcase_id": "usage-netpbm-roundtrip-png",
@@ -3093,11 +3093,11 @@
           "result_path": "results/libpng/usage-netpbm-roundtrip-png.json",
           "log_path": "logs/libpng/usage-netpbm-roundtrip-png.log",
           "cast_path": "casts/libpng/usage-netpbm-roundtrip-png.cast",
-          "duration_seconds": 0.199,
+          "duration_seconds": 0.191,
           "exit_code": 0,
           "cast_events": 2,
           "cast_bytes": 150,
-          "cast_duration_seconds": 0.109403
+          "cast_duration_seconds": 0.112281
         }
       ]
     },
@@ -3133,11 +3133,11 @@
           "result_path": "results/libsdl/version-query-compile.json",
           "log_path": "logs/libsdl/version-query-compile.log",
           "cast_path": "casts/libsdl/version-query-compile.cast",
-          "duration_seconds": 0.431,
+          "duration_seconds": 0.407,
           "exit_code": 0,
           "cast_events": 2,
           "cast_bytes": 88,
-          "cast_duration_seconds": 0.330295
+          "cast_duration_seconds": 0.3142
         },
         {
           "testcase_id": "headless-event-timer",
@@ -3155,11 +3155,11 @@
           "result_path": "results/libsdl/headless-event-timer.json",
           "log_path": "logs/libsdl/headless-event-timer.log",
           "cast_path": "casts/libsdl/headless-event-timer.cast",
-          "duration_seconds": 0.423,
+          "duration_seconds": 0.427,
           "exit_code": 0,
           "cast_events": 2,
           "cast_bytes": 75,
-          "cast_duration_seconds": 0.317464
+          "cast_duration_seconds": 0.312613
         },
         {
           "testcase_id": "surface-blit-pixel-format",
@@ -3181,7 +3181,7 @@
           "exit_code": 0,
           "cast_events": 2,
           "cast_bytes": 103,
-          "cast_duration_seconds": 0.29219
+          "cast_duration_seconds": 0.291131
         },
         {
           "testcase_id": "dummy-audio-queue",
@@ -3199,11 +3199,11 @@
           "result_path": "results/libsdl/dummy-audio-queue.json",
           "log_path": "logs/libsdl/dummy-audio-queue.log",
           "cast_path": "casts/libsdl/dummy-audio-queue.cast",
-          "duration_seconds": 0.427,
+          "duration_seconds": 0.414,
           "exit_code": 0,
           "cast_events": 2,
           "cast_bytes": 73,
-          "cast_duration_seconds": 0.297201
+          "cast_duration_seconds": 0.295918
         },
         {
           "testcase_id": "installed-test-binary",
@@ -3221,11 +3221,11 @@
           "result_path": "results/libsdl/installed-test-binary.json",
           "log_path": "logs/libsdl/installed-test-binary.log",
           "cast_path": "casts/libsdl/installed-test-binary.cast",
-          "duration_seconds": 0.321,
+          "duration_seconds": 0.187,
           "exit_code": 0,
           "cast_events": 2,
           "cast_bytes": 926,
-          "cast_duration_seconds": 0.189687
+          "cast_duration_seconds": 0.106646
         },
         {
           "testcase_id": "usage-python3-pygame-surface-fill",
@@ -3244,11 +3244,11 @@
           "result_path": "results/libsdl/usage-python3-pygame-surface-fill.json",
           "log_path": "logs/libsdl/usage-python3-pygame-surface-fill.log",
           "cast_path": "casts/libsdl/usage-python3-pygame-surface-fill.cast",
-          "duration_seconds": 0.529,
+          "duration_seconds": 0.448,
           "exit_code": 0,
           "cast_events": 4,
           "cast_bytes": 1117,
-          "cast_duration_seconds": 0.410407
+          "cast_duration_seconds": 0.329846
         },
         {
           "testcase_id": "usage-python3-pygame-image-save",
@@ -3267,11 +3267,11 @@
           "result_path": "results/libsdl/usage-python3-pygame-image-save.json",
           "log_path": "logs/libsdl/usage-python3-pygame-image-save.log",
           "cast_path": "casts/libsdl/usage-python3-pygame-image-save.cast",
-          "duration_seconds": 0.427,
+          "duration_seconds": 0.423,
           "exit_code": 0,
           "cast_events": 4,
           "cast_bytes": 1119,
-          "cast_duration_seconds": 0.316763
+          "cast_duration_seconds": 0.3255
         },
         {
           "testcase_id": "usage-python3-pygame-event-queue",
@@ -3290,11 +3290,11 @@
           "result_path": "results/libsdl/usage-python3-pygame-event-queue.json",
           "log_path": "logs/libsdl/usage-python3-pygame-event-queue.log",
           "cast_path": "casts/libsdl/usage-python3-pygame-event-queue.cast",
-          "duration_seconds": 0.423,
+          "duration_seconds": 0.414,
           "exit_code": 0,
           "cast_events": 4,
           "cast_bytes": 1099,
-          "cast_duration_seconds": 0.320253
+          "cast_duration_seconds": 0.314003
         },
         {
           "testcase_id": "usage-python3-pygame-audio-dummy",
@@ -3313,11 +3313,11 @@
           "result_path": "results/libsdl/usage-python3-pygame-audio-dummy.json",
           "log_path": "logs/libsdl/usage-python3-pygame-audio-dummy.log",
           "cast_path": "casts/libsdl/usage-python3-pygame-audio-dummy.cast",
-          "duration_seconds": 0.37,
+          "duration_seconds": 0.373,
           "exit_code": 0,
           "cast_events": 3,
           "cast_bytes": 420,
-          "cast_duration_seconds": 0.195725
+          "cast_duration_seconds": 0.199706
         },
         {
           "testcase_id": "usage-python3-pygame-xvfb-display",
@@ -3336,11 +3336,11 @@
           "result_path": "results/libsdl/usage-python3-pygame-xvfb-display.json",
           "log_path": "logs/libsdl/usage-python3-pygame-xvfb-display.log",
           "cast_path": "casts/libsdl/usage-python3-pygame-xvfb-display.cast",
-          "duration_seconds": 0.433,
+          "duration_seconds": 0.406,
           "exit_code": 0,
           "cast_events": 3,
           "cast_bytes": 415,
-          "cast_duration_seconds": 0.318853
+          "cast_duration_seconds": 0.303348
         },
         {
           "testcase_id": "usage-python3-pygame-draw-rect",
@@ -3359,11 +3359,11 @@
           "result_path": "results/libsdl/usage-python3-pygame-draw-rect.json",
           "log_path": "logs/libsdl/usage-python3-pygame-draw-rect.log",
           "cast_path": "casts/libsdl/usage-python3-pygame-draw-rect.cast",
-          "duration_seconds": 0.442,
+          "duration_seconds": 0.422,
           "exit_code": 0,
           "cast_events": 4,
           "cast_bytes": 1108,
-          "cast_duration_seconds": 0.323127
+          "cast_duration_seconds": 0.311594
         },
         {
           "testcase_id": "usage-python3-pygame-font-module",
@@ -3382,11 +3382,11 @@
           "result_path": "results/libsdl/usage-python3-pygame-font-module.json",
           "log_path": "logs/libsdl/usage-python3-pygame-font-module.log",
           "cast_path": "casts/libsdl/usage-python3-pygame-font-module.cast",
-          "duration_seconds": 0.434,
+          "duration_seconds": 0.446,
           "exit_code": 0,
           "cast_events": 4,
           "cast_bytes": 1099,
-          "cast_duration_seconds": 0.327336
+          "cast_duration_seconds": 0.330467
         },
         {
           "testcase_id": "usage-python3-pygame-transform-scale",
@@ -3405,11 +3405,11 @@
           "result_path": "results/libsdl/usage-python3-pygame-transform-scale.json",
           "log_path": "logs/libsdl/usage-python3-pygame-transform-scale.log",
           "cast_path": "casts/libsdl/usage-python3-pygame-transform-scale.cast",
-          "duration_seconds": 0.436,
+          "duration_seconds": 0.439,
           "exit_code": 0,
           "cast_events": 4,
           "cast_bytes": 1099,
-          "cast_duration_seconds": 0.326862
+          "cast_duration_seconds": 0.32362
         }
       ]
     },
@@ -3444,11 +3444,11 @@
           "result_path": "results/libsodium/generichash-smoke.json",
           "log_path": "logs/libsodium/generichash-smoke.log",
           "cast_path": "casts/libsodium/generichash-smoke.cast",
-          "duration_seconds": 0.25,
+          "duration_seconds": 0.234,
           "exit_code": 0,
           "cast_events": 2,
           "cast_bytes": 76,
-          "cast_duration_seconds": 0.140274
+          "cast_duration_seconds": 0.16031
         },
         {
           "testcase_id": "secretbox-roundtrip",
@@ -3466,11 +3466,11 @@
           "result_path": "results/libsodium/secretbox-roundtrip.json",
           "log_path": "logs/libsodium/secretbox-roundtrip.log",
           "cast_path": "casts/libsodium/secretbox-roundtrip.cast",
-          "duration_seconds": 0.233,
+          "duration_seconds": 0.222,
           "exit_code": 0,
           "cast_events": 2,
           "cast_bytes": 88,
-          "cast_duration_seconds": 0.134668
+          "cast_duration_seconds": 0.136179
         },
         {
           "testcase_id": "sign-verify",
@@ -3488,11 +3488,11 @@
           "result_path": "results/libsodium/sign-verify.json",
           "log_path": "logs/libsodium/sign-verify.log",
           "cast_path": "casts/libsodium/sign-verify.cast",
-          "duration_seconds": 0.248,
+          "duration_seconds": 0.234,
           "exit_code": 0,
           "cast_events": 2,
           "cast_bytes": 75,
-          "cast_duration_seconds": 0.159269
+          "cast_duration_seconds": 0.140837
         },
         {
           "testcase_id": "key-exchange-randombytes",
@@ -3510,11 +3510,11 @@
           "result_path": "results/libsodium/key-exchange-randombytes.json",
           "log_path": "logs/libsodium/key-exchange-randombytes.log",
           "cast_path": "casts/libsodium/key-exchange-randombytes.cast",
-          "duration_seconds": 0.238,
+          "duration_seconds": 0.239,
           "exit_code": 0,
           "cast_events": 2,
           "cast_bytes": 75,
-          "cast_duration_seconds": 0.135741
+          "cast_duration_seconds": 0.14749
         },
         {
           "testcase_id": "compile-link-smoke",
@@ -3532,11 +3532,11 @@
           "result_path": "results/libsodium/compile-link-smoke.json",
           "log_path": "logs/libsodium/compile-link-smoke.log",
           "cast_path": "casts/libsodium/compile-link-smoke.cast",
-          "duration_seconds": 0.258,
+          "duration_seconds": 0.223,
           "exit_code": 0,
           "cast_events": 2,
           "cast_bytes": 76,
-          "cast_duration_seconds": 0.151987
+          "cast_duration_seconds": 0.139564
         },
         {
           "testcase_id": "usage-minisign-sign-verify",
@@ -3554,11 +3554,11 @@
           "result_path": "results/libsodium/usage-minisign-sign-verify.json",
           "log_path": "logs/libsodium/usage-minisign-sign-verify.log",
           "cast_path": "casts/libsodium/usage-minisign-sign-verify.cast",
-          "duration_seconds": 0.211,
+          "duration_seconds": 0.198,
           "exit_code": 0,
-          "cast_events": 3,
+          "cast_events": 4,
           "cast_bytes": 507,
-          "cast_duration_seconds": 0.110409
+          "cast_duration_seconds": 0.113993
         },
         {
           "testcase_id": "usage-minisign-trusted-comment",
@@ -3576,11 +3576,11 @@
           "result_path": "results/libsodium/usage-minisign-trusted-comment.json",
           "log_path": "logs/libsodium/usage-minisign-trusted-comment.log",
           "cast_path": "casts/libsodium/usage-minisign-trusted-comment.cast",
-          "duration_seconds": 0.207,
+          "duration_seconds": 0.189,
           "exit_code": 0,
           "cast_events": 3,
           "cast_bytes": 480,
-          "cast_duration_seconds": 0.114662
+          "cast_duration_seconds": 0.10715
         },
         {
           "testcase_id": "usage-python3-nacl-secretbox",
@@ -3598,11 +3598,11 @@
           "result_path": "results/libsodium/usage-python3-nacl-secretbox.json",
           "log_path": "logs/libsodium/usage-python3-nacl-secretbox.log",
           "cast_path": "casts/libsodium/usage-python3-nacl-secretbox.cast",
-          "duration_seconds": 0.205,
+          "duration_seconds": 0.207,
           "exit_code": 0,
           "cast_events": 2,
           "cast_bytes": 70,
-          "cast_duration_seconds": 0.114347
+          "cast_duration_seconds": 0.130443
         },
         {
           "testcase_id": "usage-python3-nacl-signing",
@@ -3620,11 +3620,11 @@
           "result_path": "results/libsodium/usage-python3-nacl-signing.json",
           "log_path": "logs/libsodium/usage-python3-nacl-signing.log",
           "cast_path": "casts/libsodium/usage-python3-nacl-signing.cast",
-          "duration_seconds": 0.218,
+          "duration_seconds": 0.216,
           "exit_code": 0,
           "cast_events": 2,
           "cast_bytes": 70,
-          "cast_duration_seconds": 0.12731
+          "cast_duration_seconds": 0.120442
         },
         {
           "testcase_id": "usage-ruby-rbnacl-secretbox",
@@ -3642,11 +3642,11 @@
           "result_path": "results/libsodium/usage-ruby-rbnacl-secretbox.json",
           "log_path": "logs/libsodium/usage-ruby-rbnacl-secretbox.log",
           "cast_path": "casts/libsodium/usage-ruby-rbnacl-secretbox.cast",
-          "duration_seconds": 0.238,
+          "duration_seconds": 0.254,
           "exit_code": 0,
           "cast_events": 2,
           "cast_bytes": 70,
-          "cast_duration_seconds": 0.146545
+          "cast_duration_seconds": 0.155534
         },
         {
           "testcase_id": "usage-php83-sodium-generichash",
@@ -3664,11 +3664,11 @@
           "result_path": "results/libsodium/usage-php83-sodium-generichash.json",
           "log_path": "logs/libsodium/usage-php83-sodium-generichash.log",
           "cast_path": "casts/libsodium/usage-php83-sodium-generichash.cast",
-          "duration_seconds": 0.214,
+          "duration_seconds": 0.212,
           "exit_code": 0,
           "cast_events": 2,
           "cast_bytes": 127,
-          "cast_duration_seconds": 0.11342
+          "cast_duration_seconds": 0.109388
         },
         {
           "testcase_id": "usage-php83-sodium-secretbox",
@@ -3686,11 +3686,11 @@
           "result_path": "results/libsodium/usage-php83-sodium-secretbox.json",
           "log_path": "logs/libsodium/usage-php83-sodium-secretbox.log",
           "cast_path": "casts/libsodium/usage-php83-sodium-secretbox.cast",
-          "duration_seconds": 0.22,
+          "duration_seconds": 0.218,
           "exit_code": 0,
           "cast_events": 2,
           "cast_bytes": 70,
-          "cast_duration_seconds": 0.125898
+          "cast_duration_seconds": 0.122608
         },
         {
           "testcase_id": "usage-r-cran-sodium-hash",
@@ -3708,11 +3708,11 @@
           "result_path": "results/libsodium/usage-r-cran-sodium-hash.json",
           "log_path": "logs/libsodium/usage-r-cran-sodium-hash.log",
           "cast_path": "casts/libsodium/usage-r-cran-sodium-hash.cast",
-          "duration_seconds": 0.278,
+          "duration_seconds": 0.275,
           "exit_code": 0,
           "cast_events": 2,
           "cast_bytes": 66,
-          "cast_duration_seconds": 0.182193
+          "cast_duration_seconds": 0.183706
         },
         {
           "testcase_id": "usage-libzmq5-curve-capability",
@@ -3730,11 +3730,11 @@
           "result_path": "results/libsodium/usage-libzmq5-curve-capability.json",
           "log_path": "logs/libsodium/usage-libzmq5-curve-capability.log",
           "cast_path": "casts/libsodium/usage-libzmq5-curve-capability.cast",
-          "duration_seconds": 0.234,
+          "duration_seconds": 0.251,
           "exit_code": 0,
           "cast_events": 2,
           "cast_bytes": 70,
-          "cast_duration_seconds": 0.143115
+          "cast_duration_seconds": 0.154512
         }
       ]
     },
@@ -3771,11 +3771,11 @@
           "result_path": "results/libtiff/tiffinfo-metadata.json",
           "log_path": "logs/libtiff/tiffinfo-metadata.log",
           "cast_path": "casts/libtiff/tiffinfo-metadata.cast",
-          "duration_seconds": 0.226,
+          "duration_seconds": 0.216,
           "exit_code": 0,
           "cast_events": 3,
           "cast_bytes": 574,
-          "cast_duration_seconds": 0.126293
+          "cast_duration_seconds": 0.115932
         },
         {
           "testcase_id": "tiffcp-copy",
@@ -3793,11 +3793,11 @@
           "result_path": "results/libtiff/tiffcp-copy.json",
           "log_path": "logs/libtiff/tiffcp-copy.log",
           "cast_path": "casts/libtiff/tiffcp-copy.cast",
-          "duration_seconds": 0.212,
+          "duration_seconds": 0.226,
           "exit_code": 0,
           "cast_events": 3,
           "cast_bytes": 593,
-          "cast_duration_seconds": 0.11737
+          "cast_duration_seconds": 0.120205
         },
         {
           "testcase_id": "tiffdump-structure",
@@ -3815,11 +3815,11 @@
           "result_path": "results/libtiff/tiffdump-structure.json",
           "log_path": "logs/libtiff/tiffdump-structure.log",
           "cast_path": "casts/libtiff/tiffdump-structure.cast",
-          "duration_seconds": 0.225,
+          "duration_seconds": 0.199,
           "exit_code": 0,
           "cast_events": 3,
           "cast_bytes": 907,
-          "cast_duration_seconds": 0.124269
+          "cast_duration_seconds": 0.114574
         },
         {
           "testcase_id": "c-api-read-write",
@@ -3837,11 +3837,11 @@
           "result_path": "results/libtiff/c-api-read-write.json",
           "log_path": "logs/libtiff/c-api-read-write.log",
           "cast_path": "casts/libtiff/c-api-read-write.cast",
-          "duration_seconds": 0.262,
+          "duration_seconds": 0.241,
           "exit_code": 0,
           "cast_events": 2,
           "cast_bytes": 79,
-          "cast_duration_seconds": 0.157259
+          "cast_duration_seconds": 0.14644
         },
         {
           "testcase_id": "malformed-tiff-rejection",
@@ -3859,11 +3859,11 @@
           "result_path": "results/libtiff/malformed-tiff-rejection.json",
           "log_path": "logs/libtiff/malformed-tiff-rejection.log",
           "cast_path": "casts/libtiff/malformed-tiff-rejection.cast",
-          "duration_seconds": 0.203,
+          "duration_seconds": 0.188,
           "exit_code": 0,
           "cast_events": 2,
           "cast_bytes": 149,
-          "cast_duration_seconds": 0.111498
+          "cast_duration_seconds": 0.107038
         },
         {
           "testcase_id": "usage-python3-pil-open-tiff",
@@ -3882,11 +3882,11 @@
           "result_path": "results/libtiff/usage-python3-pil-open-tiff.json",
           "log_path": "logs/libtiff/usage-python3-pil-open-tiff.log",
           "cast_path": "casts/libtiff/usage-python3-pil-open-tiff.cast",
-          "duration_seconds": 0.251,
+          "duration_seconds": 0.247,
           "exit_code": 0,
           "cast_events": 2,
           "cast_bytes": 82,
-          "cast_duration_seconds": 0.149882
+          "cast_duration_seconds": 0.157015
         },
         {
           "testcase_id": "usage-python3-pil-convert-tiff",
@@ -3905,11 +3905,11 @@
           "result_path": "results/libtiff/usage-python3-pil-convert-tiff.json",
           "log_path": "logs/libtiff/usage-python3-pil-convert-tiff.log",
           "cast_path": "casts/libtiff/usage-python3-pil-convert-tiff.cast",
-          "duration_seconds": 0.244,
+          "duration_seconds": 0.261,
           "exit_code": 0,
           "cast_events": 2,
           "cast_bytes": 97,
-          "cast_duration_seconds": 0.152538
+          "cast_duration_seconds": 0.158296
         },
         {
           "testcase_id": "usage-python3-pil-thumbnail-tiff",
@@ -3928,11 +3928,11 @@
           "result_path": "results/libtiff/usage-python3-pil-thumbnail-tiff.json",
           "log_path": "logs/libtiff/usage-python3-pil-thumbnail-tiff.log",
           "cast_path": "casts/libtiff/usage-python3-pil-thumbnail-tiff.cast",
-          "duration_seconds": 0.242,
+          "duration_seconds": 0.257,
           "exit_code": 0,
           "cast_events": 2,
           "cast_bytes": 75,
-          "cast_duration_seconds": 0.150083
+          "cast_duration_seconds": 0.153392
         },
         {
           "testcase_id": "usage-python3-pil-tags-tiff",
@@ -3951,11 +3951,11 @@
           "result_path": "results/libtiff/usage-python3-pil-tags-tiff.json",
           "log_path": "logs/libtiff/usage-python3-pil-tags-tiff.log",
           "cast_path": "casts/libtiff/usage-python3-pil-tags-tiff.cast",
-          "duration_seconds": 0.252,
+          "duration_seconds": 0.242,
           "exit_code": 0,
           "cast_events": 2,
           "cast_bytes": 70,
-          "cast_duration_seconds": 0.156043
+          "cast_duration_seconds": 0.143716
         },
         {
           "testcase_id": "usage-python3-pil-multipage-tiff",
@@ -3974,11 +3974,11 @@
           "result_path": "results/libtiff/usage-python3-pil-multipage-tiff.json",
           "log_path": "logs/libtiff/usage-python3-pil-multipage-tiff.log",
           "cast_path": "casts/libtiff/usage-python3-pil-multipage-tiff.cast",
-          "duration_seconds": 0.25,
+          "duration_seconds": 0.257,
           "exit_code": 0,
           "cast_events": 2,
           "cast_bytes": 71,
-          "cast_duration_seconds": 0.155806
+          "cast_duration_seconds": 0.157814
         },
         {
           "testcase_id": "usage-python3-pil-lzw-tiff",
@@ -3997,11 +3997,11 @@
           "result_path": "results/libtiff/usage-python3-pil-lzw-tiff.json",
           "log_path": "logs/libtiff/usage-python3-pil-lzw-tiff.log",
           "cast_path": "casts/libtiff/usage-python3-pil-lzw-tiff.cast",
-          "duration_seconds": 0.241,
+          "duration_seconds": 0.255,
           "exit_code": 0,
           "cast_events": 2,
           "cast_bytes": 69,
-          "cast_duration_seconds": 0.146646
+          "cast_duration_seconds": 0.161585
         },
         {
           "testcase_id": "usage-python3-pil-rgb-tiff-load",
@@ -4020,11 +4020,11 @@
           "result_path": "results/libtiff/usage-python3-pil-rgb-tiff-load.json",
           "log_path": "logs/libtiff/usage-python3-pil-rgb-tiff-load.log",
           "cast_path": "casts/libtiff/usage-python3-pil-rgb-tiff-load.cast",
-          "duration_seconds": 0.236,
+          "duration_seconds": 0.25,
           "exit_code": 0,
           "cast_events": 2,
           "cast_bytes": 77,
-          "cast_duration_seconds": 0.148501
+          "cast_duration_seconds": 0.148881
         },
         {
           "testcase_id": "usage-python3-pil-crop-tiff",
@@ -4043,11 +4043,11 @@
           "result_path": "results/libtiff/usage-python3-pil-crop-tiff.json",
           "log_path": "logs/libtiff/usage-python3-pil-crop-tiff.log",
           "cast_path": "casts/libtiff/usage-python3-pil-crop-tiff.cast",
-          "duration_seconds": 0.27,
+          "duration_seconds": 0.231,
           "exit_code": 0,
           "cast_events": 2,
           "cast_bytes": 74,
-          "cast_duration_seconds": 0.152683
+          "cast_duration_seconds": 0.151806
         }
       ]
     },
@@ -4082,11 +4082,11 @@
           "result_path": "results/libuv/event-loop-timer.json",
           "log_path": "logs/libuv/event-loop-timer.log",
           "cast_path": "casts/libuv/event-loop-timer.cast",
-          "duration_seconds": 0.265,
+          "duration_seconds": 0.259,
           "exit_code": 0,
           "cast_events": 2,
           "cast_bytes": 74,
-          "cast_duration_seconds": 0.166114
+          "cast_duration_seconds": 0.168564
         },
         {
           "testcase_id": "fs-read-write",
@@ -4104,11 +4104,11 @@
           "result_path": "results/libuv/fs-read-write.json",
           "log_path": "logs/libuv/fs-read-write.log",
           "cast_path": "casts/libuv/fs-read-write.cast",
-          "duration_seconds": 0.252,
+          "duration_seconds": 0.253,
           "exit_code": 0,
           "cast_events": 2,
           "cast_bytes": 81,
-          "cast_duration_seconds": 0.155915
+          "cast_duration_seconds": 0.153569
         },
         {
           "testcase_id": "tcp-loopback-smoke",
@@ -4126,11 +4126,11 @@
           "result_path": "results/libuv/tcp-loopback-smoke.json",
           "log_path": "logs/libuv/tcp-loopback-smoke.log",
           "cast_path": "casts/libuv/tcp-loopback-smoke.cast",
-          "duration_seconds": 0.249,
+          "duration_seconds": 0.256,
           "exit_code": 0,
           "cast_events": 2,
           "cast_bytes": 79,
-          "cast_duration_seconds": 0.147962
+          "cast_duration_seconds": 0.149486
         },
         {
           "testcase_id": "dns-getaddrinfo",
@@ -4148,11 +4148,11 @@
           "result_path": "results/libuv/dns-getaddrinfo.json",
           "log_path": "logs/libuv/dns-getaddrinfo.log",
           "cast_path": "casts/libuv/dns-getaddrinfo.cast",
-          "duration_seconds": 0.242,
+          "duration_seconds": 0.234,
           "exit_code": 0,
           "cast_events": 2,
           "cast_bytes": 71,
-          "cast_duration_seconds": 0.143571
+          "cast_duration_seconds": 0.143332
         },
         {
           "testcase_id": "process-pipe-smoke",
@@ -4170,11 +4170,11 @@
           "result_path": "results/libuv/process-pipe-smoke.json",
           "log_path": "logs/libuv/process-pipe-smoke.log",
           "cast_path": "casts/libuv/process-pipe-smoke.cast",
-          "duration_seconds": 0.238,
+          "duration_seconds": 0.232,
           "exit_code": 0,
           "cast_events": 2,
           "cast_bytes": 79,
-          "cast_duration_seconds": 0.14779
+          "cast_duration_seconds": 0.147019
         },
         {
           "testcase_id": "usage-nodejs-event-loop-timer",
@@ -4192,11 +4192,11 @@
           "result_path": "results/libuv/usage-nodejs-event-loop-timer.json",
           "log_path": "logs/libuv/usage-nodejs-event-loop-timer.log",
           "cast_path": "casts/libuv/usage-nodejs-event-loop-timer.cast",
-          "duration_seconds": 0.261,
+          "duration_seconds": 0.278,
           "exit_code": 0,
           "cast_events": 2,
           "cast_bytes": 74,
-          "cast_duration_seconds": 0.16293
+          "cast_duration_seconds": 0.15992
         },
         {
           "testcase_id": "usage-nodejs-fs-read-write",
@@ -4214,11 +4214,11 @@
           "result_path": "results/libuv/usage-nodejs-fs-read-write.json",
           "log_path": "logs/libuv/usage-nodejs-fs-read-write.log",
           "cast_path": "casts/libuv/usage-nodejs-fs-read-write.cast",
-          "duration_seconds": 0.262,
+          "duration_seconds": 0.27,
           "exit_code": 0,
           "cast_events": 2,
           "cast_bytes": 70,
-          "cast_duration_seconds": 0.159735
+          "cast_duration_seconds": 0.173972
         },
         {
           "testcase_id": "usage-nodejs-dns-lookup",
@@ -4240,7 +4240,7 @@
           "exit_code": 0,
           "cast_events": 2,
           "cast_bytes": 80,
-          "cast_duration_seconds": 0.169203
+          "cast_duration_seconds": 0.156445
         },
         {
           "testcase_id": "usage-nodejs-tcp-loopback",
@@ -4258,11 +4258,11 @@
           "result_path": "results/libuv/usage-nodejs-tcp-loopback.json",
           "log_path": "logs/libuv/usage-nodejs-tcp-loopback.log",
           "cast_path": "casts/libuv/usage-nodejs-tcp-loopback.cast",
-          "duration_seconds": 0.267,
+          "duration_seconds": 0.26,
           "exit_code": 0,
           "cast_events": 2,
           "cast_bytes": 67,
-          "cast_duration_seconds": 0.177604
+          "cast_duration_seconds": 0.167497
         },
         {
           "testcase_id": "usage-nodejs-udp-loopback",
@@ -4280,11 +4280,11 @@
           "result_path": "results/libuv/usage-nodejs-udp-loopback.json",
           "log_path": "logs/libuv/usage-nodejs-udp-loopback.log",
           "cast_path": "casts/libuv/usage-nodejs-udp-loopback.cast",
-          "duration_seconds": 0.262,
+          "duration_seconds": 0.27,
           "exit_code": 0,
           "cast_events": 2,
           "cast_bytes": 69,
-          "cast_duration_seconds": 0.169963
+          "cast_duration_seconds": 0.16419
         },
         {
           "testcase_id": "usage-nodejs-child-process",
@@ -4302,11 +4302,11 @@
           "result_path": "results/libuv/usage-nodejs-child-process.json",
           "log_path": "logs/libuv/usage-nodejs-child-process.log",
           "cast_path": "casts/libuv/usage-nodejs-child-process.cast",
-          "duration_seconds": 0.273,
+          "duration_seconds": 0.275,
           "exit_code": 0,
           "cast_events": 2,
           "cast_bytes": 71,
-          "cast_duration_seconds": 0.188359
+          "cast_duration_seconds": 0.173769
         },
         {
           "testcase_id": "usage-nodejs-stream-pipe",
@@ -4324,11 +4324,11 @@
           "result_path": "results/libuv/usage-nodejs-stream-pipe.json",
           "log_path": "logs/libuv/usage-nodejs-stream-pipe.log",
           "cast_path": "casts/libuv/usage-nodejs-stream-pipe.cast",
-          "duration_seconds": 0.266,
+          "duration_seconds": 0.27,
           "exit_code": 0,
           "cast_events": 2,
           "cast_bytes": 72,
-          "cast_duration_seconds": 0.161752
+          "cast_duration_seconds": 0.173301
         },
         {
           "testcase_id": "usage-nodejs-stat-call",
@@ -4346,11 +4346,11 @@
           "result_path": "results/libuv/usage-nodejs-stat-call.json",
           "log_path": "logs/libuv/usage-nodejs-stat-call.log",
           "cast_path": "casts/libuv/usage-nodejs-stat-call.cast",
-          "duration_seconds": 0.259,
+          "duration_seconds": 0.269,
           "exit_code": 0,
           "cast_events": 2,
           "cast_bytes": 69,
-          "cast_duration_seconds": 0.166117
+          "cast_duration_seconds": 0.170646
         }
       ]
     },
@@ -4387,11 +4387,11 @@
           "result_path": "results/libvips/vips-cli-load-save.json",
           "log_path": "logs/libvips/vips-cli-load-save.log",
           "cast_path": "casts/libvips/vips-cli-load-save.cast",
-          "duration_seconds": 0.282,
+          "duration_seconds": 0.303,
           "exit_code": 0,
           "cast_events": 3,
           "cast_bytes": 198,
-          "cast_duration_seconds": 0.17271
+          "cast_duration_seconds": 0.209479
         },
         {
           "testcase_id": "thumbnail-behavior",
@@ -4409,11 +4409,11 @@
           "result_path": "results/libvips/thumbnail-behavior.json",
           "log_path": "logs/libvips/thumbnail-behavior.log",
           "cast_path": "casts/libvips/thumbnail-behavior.cast",
-          "duration_seconds": 0.247,
+          "duration_seconds": 0.261,
           "exit_code": 0,
           "cast_events": 2,
           "cast_bytes": 130,
-          "cast_duration_seconds": 0.15772
+          "cast_duration_seconds": 0.166685
         },
         {
           "testcase_id": "c-api-compile-smoke",
@@ -4431,11 +4431,11 @@
           "result_path": "results/libvips/c-api-compile-smoke.json",
           "log_path": "logs/libvips/c-api-compile-smoke.log",
           "cast_path": "casts/libvips/c-api-compile-smoke.cast",
-          "duration_seconds": 0.405,
+          "duration_seconds": 0.428,
           "exit_code": 0,
           "cast_events": 3,
           "cast_bytes": 142,
-          "cast_duration_seconds": 0.305661
+          "cast_duration_seconds": 0.311499
         },
         {
           "testcase_id": "gir-introspection-smoke",
@@ -4453,11 +4453,11 @@
           "result_path": "results/libvips/gir-introspection-smoke.json",
           "log_path": "logs/libvips/gir-introspection-smoke.log",
           "cast_path": "casts/libvips/gir-introspection-smoke.cast",
-          "duration_seconds": 0.189,
+          "duration_seconds": 0.212,
           "exit_code": 0,
           "cast_events": 3,
           "cast_bytes": 106,
-          "cast_duration_seconds": 0.106918
+          "cast_duration_seconds": 0.116949
         },
         {
           "testcase_id": "metadata-header-checks",
@@ -4475,11 +4475,11 @@
           "result_path": "results/libvips/metadata-header-checks.json",
           "log_path": "logs/libvips/metadata-header-checks.log",
           "cast_path": "casts/libvips/metadata-header-checks.cast",
-          "duration_seconds": 0.227,
+          "duration_seconds": 0.26,
           "exit_code": 0,
           "cast_events": 3,
           "cast_bytes": 685,
-          "cast_duration_seconds": 0.135212
+          "cast_duration_seconds": 0.146122
         },
         {
           "testcase_id": "usage-ruby-vips-create-image",
@@ -4498,11 +4498,11 @@
           "result_path": "results/libvips/usage-ruby-vips-create-image.json",
           "log_path": "logs/libvips/usage-ruby-vips-create-image.log",
           "cast_path": "casts/libvips/usage-ruby-vips-create-image.cast",
-          "duration_seconds": 0.271,
+          "duration_seconds": 0.297,
           "exit_code": 0,
           "cast_events": 2,
           "cast_bytes": 73,
-          "cast_duration_seconds": 0.168891
+          "cast_duration_seconds": 0.194151
         },
         {
           "testcase_id": "usage-ruby-vips-resize-image",
@@ -4521,11 +4521,11 @@
           "result_path": "results/libvips/usage-ruby-vips-resize-image.json",
           "log_path": "logs/libvips/usage-ruby-vips-resize-image.log",
           "cast_path": "casts/libvips/usage-ruby-vips-resize-image.cast",
-          "duration_seconds": 0.266,
+          "duration_seconds": 0.251,
           "exit_code": 0,
           "cast_events": 2,
           "cast_bytes": 73,
-          "cast_duration_seconds": 0.184245
+          "cast_duration_seconds": 0.171333
         },
         {
           "testcase_id": "usage-ruby-vips-average-image",
@@ -4544,11 +4544,11 @@
           "result_path": "results/libvips/usage-ruby-vips-average-image.json",
           "log_path": "logs/libvips/usage-ruby-vips-average-image.log",
           "cast_path": "casts/libvips/usage-ruby-vips-average-image.cast",
-          "duration_seconds": 0.268,
+          "duration_seconds": 0.281,
           "exit_code": 0,
           "cast_events": 2,
           "cast_bytes": 70,
-          "cast_duration_seconds": 0.181771
+          "cast_duration_seconds": 0.188885
         },
         {
           "testcase_id": "usage-ruby-vips-bandjoin-image",
@@ -4571,7 +4571,7 @@
           "exit_code": 0,
           "cast_events": 2,
           "cast_bytes": 70,
-          "cast_duration_seconds": 0.183618
+          "cast_duration_seconds": 0.188357
         },
         {
           "testcase_id": "usage-ruby-vips-crop-image",
@@ -4590,11 +4590,11 @@
           "result_path": "results/libvips/usage-ruby-vips-crop-image.json",
           "log_path": "logs/libvips/usage-ruby-vips-crop-image.log",
           "cast_path": "casts/libvips/usage-ruby-vips-crop-image.cast",
-          "duration_seconds": 0.285,
+          "duration_seconds": 0.293,
           "exit_code": 0,
           "cast_events": 2,
           "cast_bytes": 71,
-          "cast_duration_seconds": 0.170974
+          "cast_duration_seconds": 0.189264
         },
         {
           "testcase_id": "usage-ruby-vips-rotate-image",
@@ -4613,11 +4613,11 @@
           "result_path": "results/libvips/usage-ruby-vips-rotate-image.json",
           "log_path": "logs/libvips/usage-ruby-vips-rotate-image.log",
           "cast_path": "casts/libvips/usage-ruby-vips-rotate-image.cast",
-          "duration_seconds": 0.274,
+          "duration_seconds": 0.287,
           "exit_code": 0,
           "cast_events": 2,
           "cast_bytes": 70,
-          "cast_duration_seconds": 0.184154
+          "cast_duration_seconds": 0.179764
         },
         {
           "testcase_id": "usage-ruby-vips-linear-image",
@@ -4636,11 +4636,11 @@
           "result_path": "results/libvips/usage-ruby-vips-linear-image.json",
           "log_path": "logs/libvips/usage-ruby-vips-linear-image.log",
           "cast_path": "casts/libvips/usage-ruby-vips-linear-image.cast",
-          "duration_seconds": 0.28,
+          "duration_seconds": 0.273,
           "exit_code": 0,
           "cast_events": 2,
           "cast_bytes": 71,
-          "cast_duration_seconds": 0.178056
+          "cast_duration_seconds": 0.171173
         },
         {
           "testcase_id": "usage-ruby-vips-save-png",
@@ -4659,11 +4659,11 @@
           "result_path": "results/libvips/usage-ruby-vips-save-png.json",
           "log_path": "logs/libvips/usage-ruby-vips-save-png.log",
           "cast_path": "casts/libvips/usage-ruby-vips-save-png.cast",
-          "duration_seconds": 0.285,
+          "duration_seconds": 0.273,
           "exit_code": 0,
           "cast_events": 2,
           "cast_bytes": 66,
-          "cast_duration_seconds": 0.175348
+          "cast_duration_seconds": 0.18148
         }
       ]
     },
@@ -4704,11 +4704,11 @@
           "result_path": "results/libwebp/cwebp-dwebp-roundtrip.json",
           "log_path": "logs/libwebp/cwebp-dwebp-roundtrip.log",
           "cast_path": "casts/libwebp/cwebp-dwebp-roundtrip.cast",
-          "duration_seconds": 0.214,
+          "duration_seconds": 0.227,
           "exit_code": 0,
           "cast_events": 3,
           "cast_bytes": 205,
-          "cast_duration_seconds": 0.120294
+          "cast_duration_seconds": 0.129946
         },
         {
           "testcase_id": "webpinfo-inspection",
@@ -4726,11 +4726,11 @@
           "result_path": "results/libwebp/webpinfo-inspection.json",
           "log_path": "logs/libwebp/webpinfo-inspection.log",
           "cast_path": "casts/libwebp/webpinfo-inspection.cast",
-          "duration_seconds": 0.215,
+          "duration_seconds": 0.227,
           "exit_code": 0,
           "cast_events": 3,
           "cast_bytes": 385,
-          "cast_duration_seconds": 0.122138
+          "cast_duration_seconds": 0.120498
         },
         {
           "testcase_id": "webpmux-metadata",
@@ -4748,11 +4748,11 @@
           "result_path": "results/libwebp/webpmux-metadata.json",
           "log_path": "logs/libwebp/webpmux-metadata.log",
           "cast_path": "casts/libwebp/webpmux-metadata.cast",
-          "duration_seconds": 0.192,
+          "duration_seconds": 0.208,
           "exit_code": 0,
           "cast_events": 4,
           "cast_bytes": 273,
-          "cast_duration_seconds": 0.109276
+          "cast_duration_seconds": 0.117376
         },
         {
           "testcase_id": "decode-c-api-smoke",
@@ -4770,11 +4770,11 @@
           "result_path": "results/libwebp/decode-c-api-smoke.json",
           "log_path": "logs/libwebp/decode-c-api-smoke.log",
           "cast_path": "casts/libwebp/decode-c-api-smoke.cast",
-          "duration_seconds": 0.236,
+          "duration_seconds": 0.226,
           "exit_code": 0,
           "cast_events": 2,
           "cast_bytes": 83,
-          "cast_duration_seconds": 0.146456
+          "cast_duration_seconds": 0.135955
         },
         {
           "testcase_id": "malformed-webp-rejection",
@@ -4792,11 +4792,11 @@
           "result_path": "results/libwebp/malformed-webp-rejection.json",
           "log_path": "logs/libwebp/malformed-webp-rejection.log",
           "cast_path": "casts/libwebp/malformed-webp-rejection.cast",
-          "duration_seconds": 0.202,
+          "duration_seconds": 0.22,
           "exit_code": 0,
           "cast_events": 2,
           "cast_bytes": 140,
-          "cast_duration_seconds": 0.120832
+          "cast_duration_seconds": 0.106708
         },
         {
           "testcase_id": "usage-python3-pil-open-webp",
@@ -4815,11 +4815,11 @@
           "result_path": "results/libwebp/usage-python3-pil-open-webp.json",
           "log_path": "logs/libwebp/usage-python3-pil-open-webp.log",
           "cast_path": "casts/libwebp/usage-python3-pil-open-webp.cast",
-          "duration_seconds": 0.276,
+          "duration_seconds": 0.261,
           "exit_code": 0,
           "cast_events": 2,
           "cast_bytes": 78,
-          "cast_duration_seconds": 0.167918
+          "cast_duration_seconds": 0.159869
         },
         {
           "testcase_id": "usage-python3-pil-convert-webp",
@@ -4838,11 +4838,11 @@
           "result_path": "results/libwebp/usage-python3-pil-convert-webp.json",
           "log_path": "logs/libwebp/usage-python3-pil-convert-webp.log",
           "cast_path": "casts/libwebp/usage-python3-pil-convert-webp.cast",
-          "duration_seconds": 0.263,
+          "duration_seconds": 0.255,
           "exit_code": 0,
           "cast_events": 2,
           "cast_bytes": 97,
-          "cast_duration_seconds": 0.166512
+          "cast_duration_seconds": 0.160947
         },
         {
           "testcase_id": "usage-python3-pil-save-webp",
@@ -4861,11 +4861,11 @@
           "result_path": "results/libwebp/usage-python3-pil-save-webp.json",
           "log_path": "logs/libwebp/usage-python3-pil-save-webp.log",
           "cast_path": "casts/libwebp/usage-python3-pil-save-webp.cast",
-          "duration_seconds": 0.257,
+          "duration_seconds": 0.273,
           "exit_code": 0,
           "cast_events": 2,
           "cast_bytes": 74,
-          "cast_duration_seconds": 0.164349
+          "cast_duration_seconds": 0.167642
         },
         {
           "testcase_id": "usage-vips-webp-header",
@@ -4883,11 +4883,11 @@
           "result_path": "results/libwebp/usage-vips-webp-header.json",
           "log_path": "logs/libwebp/usage-vips-webp-header.log",
           "cast_path": "casts/libwebp/usage-vips-webp-header.cast",
-          "duration_seconds": 0.247,
+          "duration_seconds": 0.232,
           "exit_code": 0,
           "cast_events": 2,
           "cast_bytes": 126,
-          "cast_duration_seconds": 0.146034
+          "cast_duration_seconds": 0.14494
         },
         {
           "testcase_id": "usage-vips-webp-resize",
@@ -4905,11 +4905,11 @@
           "result_path": "results/libwebp/usage-vips-webp-resize.json",
           "log_path": "logs/libwebp/usage-vips-webp-resize.log",
           "cast_path": "casts/libwebp/usage-vips-webp-resize.cast",
-          "duration_seconds": 0.26,
+          "duration_seconds": 0.266,
           "exit_code": 0,
           "cast_events": 2,
           "cast_bytes": 125,
-          "cast_duration_seconds": 0.167363
+          "cast_duration_seconds": 0.159358
         },
         {
           "testcase_id": "usage-ffmpeg-webp-decode",
@@ -4927,11 +4927,11 @@
           "result_path": "results/libwebp/usage-ffmpeg-webp-decode.json",
           "log_path": "logs/libwebp/usage-ffmpeg-webp-decode.log",
           "cast_path": "casts/libwebp/usage-ffmpeg-webp-decode.cast",
-          "duration_seconds": 0.261,
+          "duration_seconds": 0.257,
           "exit_code": 0,
           "cast_events": 2,
           "cast_bytes": 146,
-          "cast_duration_seconds": 0.155633
+          "cast_duration_seconds": 0.162954
         },
         {
           "testcase_id": "usage-ffmpeg-webp-probe",
@@ -4949,11 +4949,11 @@
           "result_path": "results/libwebp/usage-ffmpeg-webp-probe.json",
           "log_path": "logs/libwebp/usage-ffmpeg-webp-probe.log",
           "cast_path": "casts/libwebp/usage-ffmpeg-webp-probe.cast",
-          "duration_seconds": 0.273,
+          "duration_seconds": 0.237,
           "exit_code": 0,
           "cast_events": 2,
           "cast_bytes": 1297,
-          "cast_duration_seconds": 0.1603
+          "cast_duration_seconds": 0.144685
         },
         {
           "testcase_id": "usage-webp-pixbuf-loader-pixbuf-thumbnail",
@@ -4971,11 +4971,11 @@
           "result_path": "results/libwebp/usage-webp-pixbuf-loader-pixbuf-thumbnail.json",
           "log_path": "logs/libwebp/usage-webp-pixbuf-loader-pixbuf-thumbnail.log",
           "cast_path": "casts/libwebp/usage-webp-pixbuf-loader-pixbuf-thumbnail.cast",
-          "duration_seconds": 0.214,
+          "duration_seconds": 0.226,
           "exit_code": 0,
           "cast_events": 2,
           "cast_bytes": 150,
-          "cast_duration_seconds": 0.127738
+          "cast_duration_seconds": 0.120935
         },
         {
           "testcase_id": "usage-libsdl2-image-load-webp",
@@ -4994,11 +4994,11 @@
           "result_path": "results/libwebp/usage-libsdl2-image-load-webp.json",
           "log_path": "logs/libwebp/usage-libsdl2-image-load-webp.log",
           "cast_path": "casts/libwebp/usage-libsdl2-image-load-webp.cast",
-          "duration_seconds": 0.467,
+          "duration_seconds": 0.458,
           "exit_code": 0,
           "cast_events": 2,
           "cast_bytes": 74,
-          "cast_duration_seconds": 0.343309
+          "cast_duration_seconds": 0.348035
         }
       ]
     },
@@ -5035,11 +5035,11 @@
           "result_path": "results/libxml/xmllint-parse-format.json",
           "log_path": "logs/libxml/xmllint-parse-format.log",
           "cast_path": "casts/libxml/xmllint-parse-format.cast",
-          "duration_seconds": 0.293,
+          "duration_seconds": 0.322,
           "exit_code": 0,
           "cast_events": 3,
           "cast_bytes": 163,
-          "cast_duration_seconds": 0.204066
+          "cast_duration_seconds": 0.221444
         },
         {
           "testcase_id": "xmlcatalog-lookup",
@@ -5057,11 +5057,11 @@
           "result_path": "results/libxml/xmlcatalog-lookup.json",
           "log_path": "logs/libxml/xmlcatalog-lookup.log",
           "cast_path": "casts/libxml/xmlcatalog-lookup.cast",
-          "duration_seconds": 0.199,
+          "duration_seconds": 0.217,
           "exit_code": 0,
           "cast_events": 3,
           "cast_bytes": 122,
-          "cast_duration_seconds": 0.113025
+          "cast_duration_seconds": 0.106856
         },
         {
           "testcase_id": "python-binding-smoke",
@@ -5079,11 +5079,11 @@
           "result_path": "results/libxml/python-binding-smoke.json",
           "log_path": "logs/libxml/python-binding-smoke.log",
           "cast_path": "casts/libxml/python-binding-smoke.cast",
-          "duration_seconds": 0.208,
+          "duration_seconds": 0.226,
           "exit_code": 0,
           "cast_events": 2,
           "cast_bytes": 81,
-          "cast_duration_seconds": 0.120833
+          "cast_duration_seconds": 0.125286
         },
         {
           "testcase_id": "reader-c-api-behavior",
@@ -5101,11 +5101,11 @@
           "result_path": "results/libxml/reader-c-api-behavior.json",
           "log_path": "logs/libxml/reader-c-api-behavior.log",
           "cast_path": "casts/libxml/reader-c-api-behavior.cast",
-          "duration_seconds": 0.253,
+          "duration_seconds": 0.275,
           "exit_code": 0,
           "cast_events": 2,
           "cast_bytes": 91,
-          "cast_duration_seconds": 0.162042
+          "cast_duration_seconds": 0.184384
         },
         {
           "testcase_id": "schema-xinclude-checks",
@@ -5123,11 +5123,11 @@
           "result_path": "results/libxml/schema-xinclude-checks.json",
           "log_path": "logs/libxml/schema-xinclude-checks.log",
           "cast_path": "casts/libxml/schema-xinclude-checks.cast",
-          "duration_seconds": 0.2,
+          "duration_seconds": 0.212,
           "exit_code": 0,
           "cast_events": 4,
           "cast_bytes": 294,
-          "cast_duration_seconds": 0.11275
+          "cast_duration_seconds": 0.113034
         },
         {
           "testcase_id": "usage-python3-lxml-parse-xml",
@@ -5145,11 +5145,11 @@
           "result_path": "results/libxml/usage-python3-lxml-parse-xml.json",
           "log_path": "logs/libxml/usage-python3-lxml-parse-xml.log",
           "cast_path": "casts/libxml/usage-python3-lxml-parse-xml.cast",
-          "duration_seconds": 0.224,
+          "duration_seconds": 0.243,
           "exit_code": 0,
           "cast_events": 2,
           "cast_bytes": 64,
-          "cast_duration_seconds": 0.125312
+          "cast_duration_seconds": 0.13575
         },
         {
           "testcase_id": "usage-python3-lxml-xpath-xml",
@@ -5167,11 +5167,11 @@
           "result_path": "results/libxml/usage-python3-lxml-xpath-xml.json",
           "log_path": "logs/libxml/usage-python3-lxml-xpath-xml.log",
           "cast_path": "casts/libxml/usage-python3-lxml-xpath-xml.cast",
-          "duration_seconds": 0.219,
+          "duration_seconds": 0.232,
           "exit_code": 0,
           "cast_events": 2,
           "cast_bytes": 64,
-          "cast_duration_seconds": 0.127711
+          "cast_duration_seconds": 0.125038
         },
         {
           "testcase_id": "usage-python3-lxml-xslt-xml",
@@ -5189,11 +5189,11 @@
           "result_path": "results/libxml/usage-python3-lxml-xslt-xml.json",
           "log_path": "logs/libxml/usage-python3-lxml-xslt-xml.log",
           "cast_path": "casts/libxml/usage-python3-lxml-xslt-xml.cast",
-          "duration_seconds": 0.237,
+          "duration_seconds": 0.224,
           "exit_code": 0,
           "cast_events": 2,
           "cast_bytes": 102,
-          "cast_duration_seconds": 0.128347
+          "cast_duration_seconds": 0.124496
         },
         {
           "testcase_id": "usage-python3-lxml-schema-xml",
@@ -5211,11 +5211,11 @@
           "result_path": "results/libxml/usage-python3-lxml-schema-xml.json",
           "log_path": "logs/libxml/usage-python3-lxml-schema-xml.log",
           "cast_path": "casts/libxml/usage-python3-lxml-schema-xml.cast",
-          "duration_seconds": 0.232,
+          "duration_seconds": 0.248,
           "exit_code": 0,
           "cast_events": 2,
           "cast_bytes": 67,
-          "cast_duration_seconds": 0.143759
+          "cast_duration_seconds": 0.138583
         },
         {
           "testcase_id": "usage-xmlstarlet-select-xml",
@@ -5234,11 +5234,11 @@
           "result_path": "results/libxml/usage-xmlstarlet-select-xml.json",
           "log_path": "logs/libxml/usage-xmlstarlet-select-xml.log",
           "cast_path": "casts/libxml/usage-xmlstarlet-select-xml.cast",
-          "duration_seconds": 0.198,
+          "duration_seconds": 0.218,
           "exit_code": 0,
           "cast_events": 2,
           "cast_bytes": 61,
-          "cast_duration_seconds": 0.121451
+          "cast_duration_seconds": 0.120259
         },
         {
           "testcase_id": "usage-xmlstarlet-format-xml",
@@ -5257,11 +5257,11 @@
           "result_path": "results/libxml/usage-xmlstarlet-format-xml.json",
           "log_path": "logs/libxml/usage-xmlstarlet-format-xml.log",
           "cast_path": "casts/libxml/usage-xmlstarlet-format-xml.cast",
-          "duration_seconds": 0.205,
+          "duration_seconds": 0.226,
           "exit_code": 0,
           "cast_events": 2,
           "cast_bytes": 166,
-          "cast_duration_seconds": 0.111305
+          "cast_duration_seconds": 0.131432
         },
         {
           "testcase_id": "usage-xmlstarlet-edit-xml",
@@ -5280,11 +5280,11 @@
           "result_path": "results/libxml/usage-xmlstarlet-edit-xml.json",
           "log_path": "logs/libxml/usage-xmlstarlet-edit-xml.log",
           "cast_path": "casts/libxml/usage-xmlstarlet-edit-xml.cast",
-          "duration_seconds": 0.198,
+          "duration_seconds": 0.201,
           "exit_code": 0,
           "cast_events": 2,
           "cast_bytes": 167,
-          "cast_duration_seconds": 0.11354
+          "cast_duration_seconds": 0.116501
         },
         {
           "testcase_id": "usage-xmlstarlet-validate-xml",
@@ -5303,11 +5303,11 @@
           "result_path": "results/libxml/usage-xmlstarlet-validate-xml.json",
           "log_path": "logs/libxml/usage-xmlstarlet-validate-xml.log",
           "cast_path": "casts/libxml/usage-xmlstarlet-validate-xml.cast",
-          "duration_seconds": 0.213,
+          "duration_seconds": 0.221,
           "exit_code": 0,
           "cast_events": 2,
           "cast_bytes": 97,
-          "cast_duration_seconds": 0.119643
+          "cast_duration_seconds": 0.11953
         }
       ]
     },
@@ -5342,11 +5342,11 @@
           "result_path": "results/libyaml/parser-emitter-roundtrip.json",
           "log_path": "logs/libyaml/parser-emitter-roundtrip.log",
           "cast_path": "casts/libyaml/parser-emitter-roundtrip.cast",
-          "duration_seconds": 0.235,
+          "duration_seconds": 0.228,
           "exit_code": 0,
           "cast_events": 2,
           "cast_bytes": 91,
-          "cast_duration_seconds": 0.142228
+          "cast_duration_seconds": 0.143031
         },
         {
           "testcase_id": "loader-dumper-cases",
@@ -5364,11 +5364,11 @@
           "result_path": "results/libyaml/loader-dumper-cases.json",
           "log_path": "logs/libyaml/loader-dumper-cases.log",
           "cast_path": "casts/libyaml/loader-dumper-cases.cast",
-          "duration_seconds": 0.225,
+          "duration_seconds": 0.226,
           "exit_code": 0,
           "cast_events": 2,
           "cast_bytes": 74,
-          "cast_duration_seconds": 0.138139
+          "cast_duration_seconds": 0.142601
         },
         {
           "testcase_id": "anchor-alias-handling",
@@ -5386,11 +5386,11 @@
           "result_path": "results/libyaml/anchor-alias-handling.json",
           "log_path": "logs/libyaml/anchor-alias-handling.log",
           "cast_path": "casts/libyaml/anchor-alias-handling.cast",
-          "duration_seconds": 0.217,
+          "duration_seconds": 0.224,
           "exit_code": 0,
           "cast_events": 2,
           "cast_bytes": 72,
-          "cast_duration_seconds": 0.13314
+          "cast_duration_seconds": 0.138809
         },
         {
           "testcase_id": "compile-link-smoke",
@@ -5408,11 +5408,11 @@
           "result_path": "results/libyaml/compile-link-smoke.json",
           "log_path": "logs/libyaml/compile-link-smoke.log",
           "cast_path": "casts/libyaml/compile-link-smoke.cast",
-          "duration_seconds": 0.228,
+          "duration_seconds": 0.227,
           "exit_code": 0,
           "cast_events": 2,
           "cast_bytes": 89,
-          "cast_duration_seconds": 0.140086
+          "cast_duration_seconds": 0.137853
         },
         {
           "testcase_id": "invalid-yaml-rejection",
@@ -5430,11 +5430,11 @@
           "result_path": "results/libyaml/invalid-yaml-rejection.json",
           "log_path": "logs/libyaml/invalid-yaml-rejection.log",
           "cast_path": "casts/libyaml/invalid-yaml-rejection.cast",
-          "duration_seconds": 0.217,
+          "duration_seconds": 0.232,
           "exit_code": 0,
           "cast_events": 2,
           "cast_bytes": 70,
-          "cast_duration_seconds": 0.131112
+          "cast_duration_seconds": 0.136788
         },
         {
           "testcase_id": "usage-python3-yaml-safe-load",
@@ -5453,11 +5453,11 @@
           "result_path": "results/libyaml/usage-python3-yaml-safe-load.json",
           "log_path": "logs/libyaml/usage-python3-yaml-safe-load.log",
           "cast_path": "casts/libyaml/usage-python3-yaml-safe-load.cast",
-          "duration_seconds": 0.224,
+          "duration_seconds": 0.201,
           "exit_code": 0,
           "cast_events": 2,
           "cast_bytes": 70,
-          "cast_duration_seconds": 0.131852
+          "cast_duration_seconds": 0.120729
         },
         {
           "testcase_id": "usage-python3-yaml-dump",
@@ -5476,11 +5476,11 @@
           "result_path": "results/libyaml/usage-python3-yaml-dump.json",
           "log_path": "logs/libyaml/usage-python3-yaml-dump.log",
           "cast_path": "casts/libyaml/usage-python3-yaml-dump.cast",
-          "duration_seconds": 0.232,
+          "duration_seconds": 0.223,
           "exit_code": 0,
           "cast_events": 2,
           "cast_bytes": 98,
-          "cast_duration_seconds": 0.121827
+          "cast_duration_seconds": 0.136011
         },
         {
           "testcase_id": "usage-python3-yaml-csafe-loader",
@@ -5499,11 +5499,11 @@
           "result_path": "results/libyaml/usage-python3-yaml-csafe-loader.json",
           "log_path": "logs/libyaml/usage-python3-yaml-csafe-loader.log",
           "cast_path": "casts/libyaml/usage-python3-yaml-csafe-loader.cast",
-          "duration_seconds": 0.232,
+          "duration_seconds": 0.239,
           "exit_code": 0,
           "cast_events": 2,
           "cast_bytes": 65,
-          "cast_duration_seconds": 0.129822
+          "cast_duration_seconds": 0.13877
         },
         {
           "testcase_id": "usage-python3-yaml-csafe-dumper",
@@ -5526,7 +5526,7 @@
           "exit_code": 0,
           "cast_events": 2,
           "cast_bytes": 75,
-          "cast_duration_seconds": 0.130568
+          "cast_duration_seconds": 0.135356
         },
         {
           "testcase_id": "usage-python3-yaml-anchors",
@@ -5545,11 +5545,11 @@
           "result_path": "results/libyaml/usage-python3-yaml-anchors.json",
           "log_path": "logs/libyaml/usage-python3-yaml-anchors.log",
           "cast_path": "casts/libyaml/usage-python3-yaml-anchors.cast",
-          "duration_seconds": 0.22,
+          "duration_seconds": 0.26,
           "exit_code": 0,
           "cast_events": 2,
           "cast_bytes": 68,
-          "cast_duration_seconds": 0.129952
+          "cast_duration_seconds": 0.139984
         },
         {
           "testcase_id": "usage-python3-yaml-documents",
@@ -5568,11 +5568,11 @@
           "result_path": "results/libyaml/usage-python3-yaml-documents.json",
           "log_path": "logs/libyaml/usage-python3-yaml-documents.log",
           "cast_path": "casts/libyaml/usage-python3-yaml-documents.cast",
-          "duration_seconds": 0.239,
+          "duration_seconds": 0.233,
           "exit_code": 0,
           "cast_events": 2,
           "cast_bytes": 64,
-          "cast_duration_seconds": 0.130674
+          "cast_duration_seconds": 0.130971
         },
         {
           "testcase_id": "usage-python3-yaml-events",
@@ -5591,11 +5591,11 @@
           "result_path": "results/libyaml/usage-python3-yaml-events.json",
           "log_path": "logs/libyaml/usage-python3-yaml-events.log",
           "cast_path": "casts/libyaml/usage-python3-yaml-events.cast",
-          "duration_seconds": 0.235,
+          "duration_seconds": 0.229,
           "exit_code": 0,
           "cast_events": 2,
           "cast_bytes": 64,
-          "cast_duration_seconds": 0.128507
+          "cast_duration_seconds": 0.132131
         },
         {
           "testcase_id": "usage-python3-yaml-error",
@@ -5614,11 +5614,11 @@
           "result_path": "results/libyaml/usage-python3-yaml-error.json",
           "log_path": "logs/libyaml/usage-python3-yaml-error.log",
           "cast_path": "casts/libyaml/usage-python3-yaml-error.cast",
-          "duration_seconds": 0.241,
+          "duration_seconds": 0.244,
           "exit_code": 0,
           "cast_events": 2,
           "cast_bytes": 74,
-          "cast_duration_seconds": 0.13239
+          "cast_duration_seconds": 0.129238
         }
       ]
     },
@@ -5654,11 +5654,11 @@
           "result_path": "results/libzstd/zstd-compress-decompress.json",
           "log_path": "logs/libzstd/zstd-compress-decompress.log",
           "cast_path": "casts/libzstd/zstd-compress-decompress.cast",
-          "duration_seconds": 0.361,
+          "duration_seconds": 0.205,
           "exit_code": 0,
           "cast_events": 2,
           "cast_bytes": 319,
-          "cast_duration_seconds": 0.230478
+          "cast_duration_seconds": 0.116283
         },
         {
           "testcase_id": "dictionary-train-use",
@@ -5676,11 +5676,11 @@
           "result_path": "results/libzstd/dictionary-train-use.json",
           "log_path": "logs/libzstd/dictionary-train-use.log",
           "cast_path": "casts/libzstd/dictionary-train-use.cast",
-          "duration_seconds": 0.384,
+          "duration_seconds": 0.321,
           "exit_code": 0,
           "cast_events": 5,
           "cast_bytes": 637,
-          "cast_duration_seconds": 0.268043
+          "cast_duration_seconds": 0.209444
         },
         {
           "testcase_id": "streaming-c-api-smoke",
@@ -5698,11 +5698,11 @@
           "result_path": "results/libzstd/streaming-c-api-smoke.json",
           "log_path": "logs/libzstd/streaming-c-api-smoke.log",
           "cast_path": "casts/libzstd/streaming-c-api-smoke.cast",
-          "duration_seconds": 0.228,
+          "duration_seconds": 0.234,
           "exit_code": 0,
           "cast_events": 2,
           "cast_bytes": 97,
-          "cast_duration_seconds": 0.143726
+          "cast_duration_seconds": 0.143081
         },
         {
           "testcase_id": "multi-frame-behavior",
@@ -5720,11 +5720,11 @@
           "result_path": "results/libzstd/multi-frame-behavior.json",
           "log_path": "logs/libzstd/multi-frame-behavior.log",
           "cast_path": "casts/libzstd/multi-frame-behavior.cast",
-          "duration_seconds": 0.232,
+          "duration_seconds": 0.255,
           "exit_code": 0,
           "cast_events": 2,
           "cast_bytes": 84,
-          "cast_duration_seconds": 0.124239
+          "cast_duration_seconds": 0.136299
         },
         {
           "testcase_id": "corrupted-frame-rejection",
@@ -5742,11 +5742,11 @@
           "result_path": "results/libzstd/corrupted-frame-rejection.json",
           "log_path": "logs/libzstd/corrupted-frame-rejection.log",
           "cast_path": "casts/libzstd/corrupted-frame-rejection.cast",
-          "duration_seconds": 0.217,
+          "duration_seconds": 0.204,
           "exit_code": 0,
           "cast_events": 2,
           "cast_bytes": 117,
-          "cast_duration_seconds": 0.121411
+          "cast_duration_seconds": 0.117714
         },
         {
           "testcase_id": "usage-libarchive-tools-zstd-tar-list",
@@ -5765,11 +5765,11 @@
           "result_path": "results/libzstd/usage-libarchive-tools-zstd-tar-list.json",
           "log_path": "logs/libzstd/usage-libarchive-tools-zstd-tar-list.log",
           "cast_path": "casts/libzstd/usage-libarchive-tools-zstd-tar-list.cast",
-          "duration_seconds": 0.224,
+          "duration_seconds": 0.245,
           "exit_code": 0,
           "cast_events": 2,
           "cast_bytes": 81,
-          "cast_duration_seconds": 0.12456
+          "cast_duration_seconds": 0.117239
         },
         {
           "testcase_id": "usage-libarchive-tools-zstd-tar-extract",
@@ -5788,11 +5788,11 @@
           "result_path": "results/libzstd/usage-libarchive-tools-zstd-tar-extract.json",
           "log_path": "logs/libzstd/usage-libarchive-tools-zstd-tar-extract.log",
           "cast_path": "casts/libzstd/usage-libarchive-tools-zstd-tar-extract.cast",
-          "duration_seconds": 0.216,
+          "duration_seconds": 0.47,
           "exit_code": 0,
           "cast_events": 2,
           "cast_bytes": 81,
-          "cast_duration_seconds": 0.113193
+          "cast_duration_seconds": 0.330937
         },
         {
           "testcase_id": "usage-libarchive-tools-zstd-stdout-stream",
@@ -5811,11 +5811,11 @@
           "result_path": "results/libzstd/usage-libarchive-tools-zstd-stdout-stream.json",
           "log_path": "logs/libzstd/usage-libarchive-tools-zstd-stdout-stream.log",
           "cast_path": "casts/libzstd/usage-libarchive-tools-zstd-stdout-stream.cast",
-          "duration_seconds": 0.223,
+          "duration_seconds": 0.274,
           "exit_code": 0,
           "cast_events": 2,
           "cast_bytes": 81,
-          "cast_duration_seconds": 0.116874
+          "cast_duration_seconds": 0.17856
         },
         {
           "testcase_id": "usage-libarchive-tools-zstd-large-file",
@@ -5834,11 +5834,11 @@
           "result_path": "results/libzstd/usage-libarchive-tools-zstd-large-file.json",
           "log_path": "logs/libzstd/usage-libarchive-tools-zstd-large-file.log",
           "cast_path": "casts/libzstd/usage-libarchive-tools-zstd-large-file.cast",
-          "duration_seconds": 0.248,
+          "duration_seconds": 0.216,
           "exit_code": 0,
           "cast_events": 2,
           "cast_bytes": 81,
-          "cast_duration_seconds": 0.126345
+          "cast_duration_seconds": 0.122699
         },
         {
           "testcase_id": "usage-libarchive-tools-zstd-symlink",
@@ -5857,11 +5857,11 @@
           "result_path": "results/libzstd/usage-libarchive-tools-zstd-symlink.json",
           "log_path": "logs/libzstd/usage-libarchive-tools-zstd-symlink.log",
           "cast_path": "casts/libzstd/usage-libarchive-tools-zstd-symlink.cast",
-          "duration_seconds": 0.221,
+          "duration_seconds": 0.199,
           "exit_code": 0,
           "cast_events": 2,
           "cast_bytes": 81,
-          "cast_duration_seconds": 0.124168
+          "cast_duration_seconds": 0.112301
         },
         {
           "testcase_id": "usage-libarchive-tools-zstd-empty-dir",
@@ -5880,11 +5880,11 @@
           "result_path": "results/libzstd/usage-libarchive-tools-zstd-empty-dir.json",
           "log_path": "logs/libzstd/usage-libarchive-tools-zstd-empty-dir.log",
           "cast_path": "casts/libzstd/usage-libarchive-tools-zstd-empty-dir.cast",
-          "duration_seconds": 0.224,
+          "duration_seconds": 0.228,
           "exit_code": 0,
           "cast_events": 2,
           "cast_bytes": 81,
-          "cast_duration_seconds": 0.117133
+          "cast_duration_seconds": 0.124524
         },
         {
           "testcase_id": "usage-libarchive-tools-zstd-filter-auto",
@@ -5903,11 +5903,11 @@
           "result_path": "results/libzstd/usage-libarchive-tools-zstd-filter-auto.json",
           "log_path": "logs/libzstd/usage-libarchive-tools-zstd-filter-auto.log",
           "cast_path": "casts/libzstd/usage-libarchive-tools-zstd-filter-auto.cast",
-          "duration_seconds": 0.217,
+          "duration_seconds": 0.233,
           "exit_code": 0,
           "cast_events": 2,
           "cast_bytes": 81,
-          "cast_duration_seconds": 0.125273
+          "cast_duration_seconds": 0.135149
         },
         {
           "testcase_id": "usage-libarchive-tools-zstd-copy-mode",
@@ -5926,11 +5926,11 @@
           "result_path": "results/libzstd/usage-libarchive-tools-zstd-copy-mode.json",
           "log_path": "logs/libzstd/usage-libarchive-tools-zstd-copy-mode.log",
           "cast_path": "casts/libzstd/usage-libarchive-tools-zstd-copy-mode.cast",
-          "duration_seconds": 0.241,
+          "duration_seconds": 0.227,
           "exit_code": 0,
           "cast_events": 2,
           "cast_bytes": 81,
-          "cast_duration_seconds": 0.131702
+          "cast_duration_seconds": 0.132875
         }
       ]
     }

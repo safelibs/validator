@@ -1,6 +1,6 @@
-$ docker run --rm -t --mount type=bind,src=/tmp/validator-status-libvips-vips-cli-load-save-1kj621wh,dst=/validator/status validator-libvips-shared-1f33ab6009d3 bash -lc 'set -euo pipefail
+$ docker run --rm -t --mount type=bind,src=/tmp/validator-status-libvips-vips-cli-load-save-603y5sqg,dst=/validator/status validator-libvips-shared-3f1dab15402a bash -lc 'set -euo pipefail
 /validator/tests/_shared/install_override_debs.sh
 exec /validator/tests/_shared/run_library_tests.sh "$@"' validator-testcase libvips vips-cli-load-save -- bash /validator/tests/libvips/tests/cases/source/vips-cli-load-save.sh
 no override packages found; continuing with apt originals
-/tmp/tmp.6LLS0qL6C6/out.png: 290x442 uchar, 3 bands, srgb, pngload
-/tmp/tmp.6LLS0qL6C6/out.png: 290x442 uchar, 3 bands, srgb, pngload
+/tmp/tmp.3RElbRbikg/out.png: 290x442 uchar, 3 bands, srgb, pngload
+/tmp/tmp.3RElbRbikg/out.png: 290x442 uchar, 3 bands, srgb, pngload

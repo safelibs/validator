@@ -1,3 +1,3 @@
-{"version": 2, "width": 120, "height": 40, "timestamp": 1776636208, "env": {"TERM": "xterm-256color", "SHELL": "/bin/bash"}}
-[0.107369, "o", "no override packages found; continuing with apt originals\r\r\n"]
-[0.111593, "o", "  0  46 140  93\r\r\n  1   0 255 255\r\r\n  2   0 157   0\r\r\n  3  81 200  86\r\r\n  4 190 190 190\r\r\n  5 110 110 110\r\r\n  6 255 255   0\r\r\n  7 136 115  95\r\r\n  8 231 231 231\r\r\n  9   0 153 102\r\r\n 10   0   0   0\r\r\n 11   0   0   0\r\r\n 12   0   0   0\r\r\n 13   0   0   0\r\r\n 14   0   0   0\r\r\n 15   0   0   0\r\r\n"]
+{"version": 2, "width": 120, "height": 40, "timestamp": 1776637718, "env": {"TERM": "xterm-256color", "SHELL": "/bin/bash"}}
+[0.109772, "o", "no override packages found; continuing with apt originals\r\r\n"]
+[0.113746, "o", "  0  46 140  93\r\r\n  1   0 255 255\r\r\n  2   0 157   0\r\r\n  3  81 200  86\r\r\n  4 190 190 190\r\r\n  5 110 110 110\r\r\n  6 255 255   0\r\r\n  7 136 115  95\r\r\n  8 231 231 231\r\r\n  9   0 153 102\r\r\n 10   0   0   0\r\r\n 11   0   0   0\r\r\n 12   0   0   0\r\r\n 13   0   0   0\r\r\n 14   0   0   0\r\r\n 15   0   0   0\r\r\n"]

@@ -1,4 +1,4 @@
-$ docker run --rm -t --mount type=bind,src=/tmp/validator-status-libtiff-tiffdump-structure-rnq6e2vw,dst=/validator/status validator-libtiff-shared-922fa22f9202 bash -lc 'set -euo pipefail
+$ docker run --rm -t --mount type=bind,src=/tmp/validator-status-libtiff-tiffdump-structure-bwj8wzbg,dst=/validator/status validator-libtiff-shared-c62ead405799 bash -lc 'set -euo pipefail
 /validator/tests/_shared/install_override_debs.sh
 exec /validator/tests/_shared/run_library_tests.sh "$@"' validator-testcase libtiff tiffdump-structure -- bash /validator/tests/libtiff/tests/cases/source/tiffdump-structure.sh
 no override packages found; continuing with apt originals

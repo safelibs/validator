@@ -1,4 +1,4 @@
-{"version": 2, "width": 120, "height": 40, "timestamp": 1776636263, "env": {"TERM": "xterm-256color", "SHELL": "/bin/bash"}}
-[0.106961, "o", "no override packages found; continuing with apt originals\r\r\n"]
-[0.112324, "o", "/tmp/tmp.8fDz280tsy/demo.dtd\r\r\n"]
-[0.113025, "o", "/tmp/tmp.8fDz280tsy/demo.dtd\r\r\n"]
+{"version": 2, "width": 120, "height": 40, "timestamp": 1776637774, "env": {"TERM": "xterm-256color", "SHELL": "/bin/bash"}}
+[0.100886, "o", "no override packages found; continuing with apt originals\r\r\n"]
+[0.106457, "o", "/tmp/tmp.E6WMw2aqzN/demo.dtd\r\r\n"]
+[0.106856, "o", "/tmp/tmp.E6WMw2aqzN/demo.dtd\r\r\n"]

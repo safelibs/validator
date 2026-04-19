@@ -1,6 +1,6 @@
-{"version": 2, "width": 120, "height": 40, "timestamp": 1776636270, "env": {"TERM": "xterm-256color", "SHELL": "/bin/bash"}}
-[0.158959, "o", "no override packages found; continuing with apt originals\r\r\n"]
-[0.257052, "o", "Loading /tmp/tmp.03izsn8Bts/samples/s23...       \r"]
-[0.258362, "o", "\r                                                                               \rTrying 5 different sets of parameters\r\r\n"]
-[0.264624, "o", "FASTCOVER parameters incorrect\r\r\nFASTCOVER parameters incorrect\r\r\n\r                                                                               \rk=1024\r\r\nd=8\r\r\nf=20\r\r\nsteps=4\r\r\nsplit=75\r\r\naccel=1\r\r\nSave dictionary of size 1024 into file /tmp/tmp.03izsn8Bts/dict \r\r\n"]
-[0.268043, "o", "-rw-r--r-- 1 root root 1024 Apr 19 22:04 /tmp/tmp.03izsn8Bts/dict\r\r\n-rw-r--r-- 1 root root   36 Apr 19 22:04 /tmp/tmp.03izsn8Bts/msg.zst\r\r\n"]
+{"version": 2, "width": 120, "height": 40, "timestamp": 1776637781, "env": {"TERM": "xterm-256color", "SHELL": "/bin/bash"}}
+[0.098603, "o", "no override packages found; continuing with apt originals\r\r\n"]
+[0.198829, "o", "Loading /tmp/tmp.D7gtaM9fL3/samples/s23...       \r"]
+[0.200031, "o", "\r                                                                               \rTrying 5 different sets of parameters\r\r\n"]
+[0.206309, "o", "FASTCOVER parameters incorrect\r\r\nFASTCOVER parameters incorrect\r\r\n\r                                                                               \rk=1024\r\r\nd=8\r\r\nf=20\r\r\nsteps=4\r\r\nsplit=75\r\r\naccel=1\r\r\nSave dictionary of size 1024 into file /tmp/tmp.D7gtaM9fL3/dict \r\r\n"]
+[0.209444, "o", "-rw-r--r-- 1 root root 1024 Apr 19 22:29 /tmp/tmp.D7gtaM9fL3/dict\r\r\n-rw-r--r-- 1 root root   36 Apr 19 22:29 /tmp/tmp.D7gtaM9fL3/msg.zst\r\r\n"]

@@ -1,4 +1,4 @@
-$ docker build --tag validator-libxml-shared-852f913720d2 --file /tmp/validator-run-matrix-libxml-qlyb9txj/libxml/Dockerfile /tmp/validator-run-matrix-libxml-qlyb9txj
+$ docker build --tag validator-libxml-shared-3a082a838fef --file /tmp/validator-run-matrix-libxml-b08ztj9u/libxml/Dockerfile /tmp/validator-run-matrix-libxml-b08ztj9u
 #0 building with "default" instance using docker driver
 
 #1 [internal] load build definition from Dockerfile
@@ -19,16 +19,16 @@ $ docker build --tag validator-libxml-shared-852f913720d2 --file /tmp/validator-
 #5 transferring context: 54.87MB 0.4s done
 #5 DONE 0.4s
 
-#6 [2/6] RUN apt-get update  && apt-get install -y --no-install-recommends       libxml2       libxml2-dev       libxml2-utils       python3-libxml2       python3-lxml       xmlstarlet       bash       build-essential       ca-certificates       coreutils       file       jq       liblzma-dev       perl       pkg-config       python3       xsltproc       zlib1g-dev  && rm -rf /var/lib/apt/lists/*
+#6 [3/6] WORKDIR /validator
 #6 CACHED
 
-#7 [3/6] WORKDIR /validator
+#7 [4/6] COPY _shared/ /validator/tests/_shared/
 #7 CACHED
 
-#8 [4/6] COPY _shared/ /validator/tests/_shared/
+#8 [5/6] COPY libxml/ /validator/tests/libxml/
 #8 CACHED
 
-#9 [5/6] COPY libxml/ /validator/tests/libxml/
+#9 [2/6] RUN apt-get update  && apt-get install -y --no-install-recommends       libxml2       libxml2-dev       libxml2-utils       python3-libxml2       python3-lxml       xmlstarlet       bash       build-essential       ca-certificates       coreutils       file       jq       liblzma-dev       perl       pkg-config       python3       xsltproc       zlib1g-dev  && rm -rf /var/lib/apt/lists/*
 #9 CACHED
 
 #10 [6/6] RUN find /validator/tests/_shared -maxdepth 1 -type f -name '*.sh' -exec chmod +x {} +  && chmod +x /validator/tests/libxml/docker-entrypoint.sh /validator/tests/libxml/tests/run.sh  && if [ -d /validator/tests/libxml/tests/cases ]; then       find /validator/tests/libxml/tests/cases -type f -name '*.sh' -exec chmod +x {} +;     fi
@@ -37,5 +37,5 @@ $ docker build --tag validator-libxml-shared-852f913720d2 --file /tmp/validator-
 #11 exporting to image
 #11 exporting layers done
 #11 writing image sha256:3be91fa8d1d765bdb655758a2eb9014cb00cb6d25d04e35a09ea9848ec58481a done
-#11 naming to docker.io/library/validator-libxml-shared-852f913720d2 done
+#11 naming to docker.io/library/validator-libxml-shared-3a082a838fef done
 #11 DONE 0.0s

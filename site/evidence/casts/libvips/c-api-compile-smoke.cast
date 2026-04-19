@@ -1,4 +1,4 @@
-{"version": 2, "width": 120, "height": 40, "timestamp": 1776636254, "env": {"TERM": "xterm-256color", "SHELL": "/bin/bash"}}
-[0.103492, "o", "no override packages found; continuing with apt originals\r\r\n"]
-[0.284222, "o", "width=8 height=8\r\r\n"]
-[0.305661, "o", "/tmp/tmp.XjrTxGNOu7/api.png: 8x8 uchar, 1 band, b-w, pngload\r\r\n"]
+{"version": 2, "width": 120, "height": 40, "timestamp": 1776637765, "env": {"TERM": "xterm-256color", "SHELL": "/bin/bash"}}
+[0.110261, "o", "no override packages found; continuing with apt originals\r\r\n"]
+[0.289384, "o", "width=8 height=8\r\r\n"]
+[0.311499, "o", "/tmp/tmp.78VRIUWdNu/api.png: 8x8 uchar, 1 band, b-w, pngload\r\r\n"]

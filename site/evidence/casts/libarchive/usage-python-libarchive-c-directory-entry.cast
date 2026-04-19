@@ -1,3 +1,3 @@
-{"version": 2, "width": 120, "height": 40, "timestamp": 1776636212, "env": {"TERM": "xterm-256color", "SHELL": "/bin/bash"}}
-[0.113341, "o", "no override packages found; continuing with apt originals\r\r\n"]
-[0.143895, "o", "directory tree/,tree/nested.txt\r\r\n"]
+{"version": 2, "width": 120, "height": 40, "timestamp": 1776637723, "env": {"TERM": "xterm-256color", "SHELL": "/bin/bash"}}
+[0.123316, "o", "no override packages found; continuing with apt originals\r\r\n"]
+[0.154407, "o", "directory tree/,tree/nested.txt\r\r\n"]

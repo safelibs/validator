@@ -1,5 +1,5 @@
-{"version": 2, "width": 120, "height": 40, "timestamp": 1776636214, "env": {"TERM": "xterm-256color", "SHELL": "/bin/bash"}}
-[0.106484, "o", "no override packages found; continuing with apt originals\r\r\n"]
-[0.114639, "o", "98696 /tmp/tmp.Z549UjgSEY/sample1.out\r\r\n"]
-[0.122292, "o", "212340 /tmp/tmp.Z549UjgSEY/sample2.out\r\r\n"]
-[0.124716, "o", "120244 /tmp/tmp.Z549UjgSEY/sample3.out\r\r\n"]
+{"version": 2, "width": 120, "height": 40, "timestamp": 1776637725, "env": {"TERM": "xterm-256color", "SHELL": "/bin/bash"}}
+[0.118977, "o", "no override packages found; continuing with apt originals\r\r\n"]
+[0.126641, "o", "98696 /tmp/tmp.RlHH5G8GhD/sample1.out\r\r\n"]
+[0.134657, "o", "212340 /tmp/tmp.RlHH5G8GhD/sample2.out\r\r\n"]
+[0.13675, "o", "120244 /tmp/tmp.RlHH5G8GhD/sample3.out\r\r\n"]

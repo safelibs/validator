@@ -1,4 +1,4 @@
-$ docker run --rm -t --mount type=bind,src=/tmp/validator-status-libxml-usage-python3-lxml-parse-xml-h6ryzr2y,dst=/validator/status validator-libxml-shared-852f913720d2 bash -lc 'set -euo pipefail
+$ docker run --rm -t --mount type=bind,src=/tmp/validator-status-libxml-usage-python3-lxml-parse-xml-qgr6kvpp,dst=/validator/status validator-libxml-shared-3a082a838fef bash -lc 'set -euo pipefail
 /validator/tests/_shared/install_override_debs.sh
 exec /validator/tests/_shared/run_library_tests.sh "$@"' validator-testcase libxml usage-python3-lxml-parse-xml -- bash /validator/tests/libxml/tests/cases/usage/usage-python3-lxml-parse-xml.sh
 no override packages found; continuing with apt originals
