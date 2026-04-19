@@ -1,5 +1,5 @@
-{"version": 2, "width": 120, "height": 40, "timestamp": 1776637769, "env": {"TERM": "xterm-256color", "SHELL": "/bin/bash"}}
-[0.112961, "o", "no override packages found; continuing with apt originals\r\r\n"]
-[0.116048, "o", "Saved file /tmp/tmp.nn3ZPSTi5V/exif.webp (4920 bytes)\r\r\n"]
-[0.116947, "o", "Canvas size: 128 x 128\r\r\nFeatures present: EXIF metadata\r\r\nSize of the EXIF metadata: 13\r\r\n"]
-[0.117376, "o", "Features present: EXIF metadata\r\r\nSize of the EXIF metadata: 13\r\r\n"]
+{"version": 2, "width": 120, "height": 40, "timestamp": 1776639079, "env": {"TERM": "xterm-256color", "SHELL": "/bin/bash"}}
+[0.112046, "o", "no override packages found; continuing with apt originals\r\r\n"]
+[0.116353, "o", "Saved file /tmp/tmp.QAUGFtFsNf/exif.webp (4920 bytes)\r\r\n"]
+[0.116985, "o", "Canvas size: 128 x 128\r\r\nFeatures present: EXIF metadata\r\r\nSize of the EXIF metadata: 13\r\r\n"]
+[0.117608, "o", "Features present: EXIF metadata\r\r\nSize of the EXIF metadata: 13\r\r\n"]

@@ -1,4 +1,4 @@
-$ docker run --rm -t --mount type=bind,src=/tmp/validator-status-libsodium-usage-r-cran-sodium-hash-d134kn53,dst=/validator/status validator-libsodium-shared-522a4c9326e7 bash -lc 'set -euo pipefail
+$ docker run --rm -t --mount type=bind,src=/tmp/validator-status-libsodium-usage-r-cran-sodium-hash-eva69nq1,dst=/validator/status validator-libsodium-shared-d01056741926 bash -lc 'set -euo pipefail
 /validator/tests/_shared/install_override_debs.sh
 exec /validator/tests/_shared/run_library_tests.sh "$@"' validator-testcase libsodium usage-r-cran-sodium-hash -- bash /validator/tests/libsodium/tests/cases/usage/usage-r-cran-sodium-hash.sh
 no override packages found; continuing with apt originals

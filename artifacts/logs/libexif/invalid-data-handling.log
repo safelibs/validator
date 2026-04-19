@@ -1,4 +1,4 @@
-$ docker run --rm -t --mount type=bind,src=/tmp/validator-status-libexif-invalid-data-handling-nbtyzpds,dst=/validator/status validator-libexif-shared-a762647840bc bash -lc 'set -euo pipefail
+$ docker run --rm -t --mount type=bind,src=/tmp/validator-status-libexif-invalid-data-handling-suc0ghoe,dst=/validator/status validator-libexif-shared-4dc6954aa574 bash -lc 'set -euo pipefail
 /validator/tests/_shared/install_override_debs.sh
 exec /validator/tests/_shared/run_library_tests.sh "$@"' validator-testcase libexif invalid-data-handling -- bash /validator/tests/libexif/tests/cases/source/invalid-data-handling.sh
 no override packages found; continuing with apt originals

@@ -1,4 +1,4 @@
-$ docker build --tag validator-libtiff-shared-c62ead405799 --file /tmp/validator-run-matrix-libtiff-fcyz5inb/libtiff/Dockerfile /tmp/validator-run-matrix-libtiff-fcyz5inb
+$ docker build --tag validator-libtiff-shared-f9583354f139 --file /tmp/validator-run-matrix-libtiff-2uzs2y49/libtiff/Dockerfile /tmp/validator-run-matrix-libtiff-2uzs2y49
 #0 building with "default" instance using docker driver
 
 #1 [internal] load build definition from Dockerfile
@@ -22,13 +22,13 @@ $ docker build --tag validator-libtiff-shared-c62ead405799 --file /tmp/validator
 #6 [2/6] RUN apt-get update  && apt-get install -y --no-install-recommends       libtiff6       libtiffxx6       libtiff-dev       libtiff-tools       python3-pil       bash       build-essential       ca-certificates       coreutils       file       ghostscript       jq       libjbig-dev       libjpeg-dev       liblzma-dev       libwebp-dev       netpbm       pkg-config       poppler-utils       python3       zlib1g-dev  && rm -rf /var/lib/apt/lists/*
 #6 CACHED
 
-#7 [3/6] WORKDIR /validator
+#7 [5/6] COPY libtiff/ /validator/tests/libtiff/
 #7 CACHED
 
-#8 [4/6] COPY _shared/ /validator/tests/_shared/
+#8 [3/6] WORKDIR /validator
 #8 CACHED
 
-#9 [5/6] COPY libtiff/ /validator/tests/libtiff/
+#9 [4/6] COPY _shared/ /validator/tests/_shared/
 #9 CACHED
 
 #10 [6/6] RUN find /validator/tests/_shared -maxdepth 1 -type f -name '*.sh' -exec chmod +x {} +  && chmod +x /validator/tests/libtiff/docker-entrypoint.sh /validator/tests/libtiff/tests/run.sh  && if [ -d /validator/tests/libtiff/tests/cases ]; then       find /validator/tests/libtiff/tests/cases -type f -name '*.sh' -exec chmod +x {} +;     fi
@@ -37,5 +37,5 @@ $ docker build --tag validator-libtiff-shared-c62ead405799 --file /tmp/validator
 #11 exporting to image
 #11 exporting layers done
 #11 writing image sha256:5fce2dca4ac7ee8d2d5b005580b87d8ee077da2d77bb02eb5cded3b0b44e95a4 done
-#11 naming to docker.io/library/validator-libtiff-shared-c62ead405799 done
+#11 naming to docker.io/library/validator-libtiff-shared-f9583354f139 done
 #11 DONE 0.0s

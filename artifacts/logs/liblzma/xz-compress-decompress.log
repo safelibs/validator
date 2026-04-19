@@ -1,6 +1,6 @@
-$ docker run --rm -t --mount type=bind,src=/tmp/validator-status-liblzma-xz-compress-decompress-qb83fgwn,dst=/validator/status validator-liblzma-shared-e7e9e3283706 bash -lc 'set -euo pipefail
+$ docker run --rm -t --mount type=bind,src=/tmp/validator-status-liblzma-xz-compress-decompress-l1d_tb5p,dst=/validator/status validator-liblzma-shared-6e232ab203ef bash -lc 'set -euo pipefail
 /validator/tests/_shared/install_override_debs.sh
 exec /validator/tests/_shared/run_library_tests.sh "$@"' validator-testcase liblzma xz-compress-decompress -- bash /validator/tests/liblzma/tests/cases/source/xz-compress-decompress.sh
 no override packages found; continuing with apt originals
 Strms  Blocks   Compressed Uncompressed  Ratio  Check   Filename
-    1       1         68 B         11 B  6.182  CRC64   /tmp/tmp.rcI0EmqapR/plain.xz
+    1       1         68 B         11 B  6.182  CRC64   /tmp/tmp.MLIIiQE31X/plain.xz

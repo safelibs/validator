@@ -1,3 +1,3 @@
-{"version": 2, "width": 120, "height": 40, "timestamp": 1776637758, "env": {"TERM": "xterm-256color", "SHELL": "/bin/bash"}}
-[0.102077, "o", "no override packages found; continuing with apt originals\r\r\n"]
-[0.107038, "o", "/tmp/tmp.Dd3JUbJAtq/bad.tiff: Not a TIFF or MDI file, bad magic number 28526 (0x6f6e).\r\r\n"]
+{"version": 2, "width": 120, "height": 40, "timestamp": 1776639068, "env": {"TERM": "xterm-256color", "SHELL": "/bin/bash"}}
+[0.109657, "o", "no override packages found; continuing with apt originals\r\r\n"]
+[0.115263, "o", "/tmp/tmp.qM8ophPOwv/bad.tiff: Not a TIFF or MDI file, bad magic number 28526 (0x6f6e).\r\r\n"]

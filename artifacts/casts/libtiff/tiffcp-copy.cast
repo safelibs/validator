@@ -1,4 +1,4 @@
-{"version": 2, "width": 120, "height": 40, "timestamp": 1776637757, "env": {"TERM": "xterm-256color", "SHELL": "/bin/bash"}}
-[0.113336, "o", "no override packages found; continuing with apt originals\r\r\n"]
-[0.119499, "o", "=== TIFF directory 0 ===\r\r\nTIFF Directory at offset 0x115da (71130)\r\r\n  Image Width: 157 Image Length: 151\r\r\n  Bits/Sample: 8\r\r\n  Sample Format: unsigned integer\r\r\n  Compression Scheme: None\r\r\n  Photometric Interpretation: RGB color\r\r\n  Orientation: row 0 top, col 0 lhs\r\r\n  Samples/Pixel: 3\r\r\n  Rows/Strip: 17\r\r\n  Planar Configuration: single image plane\r\r\n  Page Number: 0-1\r\r\n  DocumentName: rgb-3c-8b.tiff\r\r\n  Software: GraphicsMagick 1.2 unreleased Q16 http://www.GraphicsMagick.org/\r\r\n\r\r\n"]
-[0.120205, "o", "  Image Width: 157 Image Length: 151\r\r\n"]
+{"version": 2, "width": 120, "height": 40, "timestamp": 1776639067, "env": {"TERM": "xterm-256color", "SHELL": "/bin/bash"}}
+[0.115156, "o", "no override packages found; continuing with apt originals\r\r\n"]
+[0.121302, "o", "=== TIFF directory 0 ===\r\r\nTIFF Directory at offset 0x115da (71130)\r\r\n  Image Width: 157 Image Length: 151\r\r\n  Bits/Sample: 8\r\r\n  Sample Format: unsigned integer\r\r\n  Compression Scheme: None\r\r\n  Photometric Interpretation: RGB color\r\r\n  Orientation: row 0 top, col 0 lhs\r\r\n  Samples/Pixel: 3\r\r\n  Rows/Strip: 17\r\r\n  Planar Configuration: single image plane\r\r\n  Page Number: 0-1\r\r\n  DocumentName: rgb-3c-8b.tiff\r\r\n  Software: GraphicsMagick 1.2 unreleased Q16 http://www.GraphicsMagick.org/\r\r\n\r\r\n"]
+[0.122176, "o", "  Image Width: 157 Image Length: 151\r\r\n"]

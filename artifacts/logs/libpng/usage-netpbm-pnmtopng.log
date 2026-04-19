@@ -1,5 +1,5 @@
-$ docker run --rm -t --mount type=bind,src=/tmp/validator-status-libpng-usage-netpbm-pnmtopng-h00s77jy,dst=/validator/status validator-libpng-shared-7c99da52b536 bash -lc 'set -euo pipefail
+$ docker run --rm -t --mount type=bind,src=/tmp/validator-status-libpng-usage-netpbm-pnmtopng-za2p3omi,dst=/validator/status validator-libpng-shared-ed1d0b568c54 bash -lc 'set -euo pipefail
 /validator/tests/_shared/install_override_debs.sh
 exec /validator/tests/_shared/run_library_tests.sh "$@"' validator-testcase libpng usage-netpbm-pnmtopng -- bash /validator/tests/libpng/tests/cases/usage/usage-netpbm-pnmtopng.sh
 no override packages found; continuing with apt originals
-/tmp/tmp.SJSb3FdCfv/out.png: PNG image data, 1 x 1, 1-bit colormap, non-interlaced
+/tmp/tmp.SwsYasdW14/out.png: PNG image data, 1 x 1, 1-bit colormap, non-interlaced

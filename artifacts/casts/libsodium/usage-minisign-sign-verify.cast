@@ -1,5 +1,4 @@
-{"version": 2, "width": 120, "height": 40, "timestamp": 1776637755, "env": {"TERM": "xterm-256color", "SHELL": "/bin/bash"}}
-[0.108021, "o", "no override packages found; continuing with apt originals\r\r\n"]
-[0.111963, "o", "The secret key was saved as /tmp/tmp.xUZxgPFGkC/minisign.sec - Keep it secret!\r\r\nThe public key was saved as /tmp/tmp.xUZxgPFGkC/minisign.pub - That one can be public.\r\r\n\r\r\nFiles signed using this key pair can be verified with the following command:\r\r\n\r\r\nminisign -Vm <file> -P RWR6BjIocQQ4pYh8t7+rotcaXELDPsHj+qBPj6ppMaJrLYyMHoE/BfJV\r\r\n"]
-[0.112233, "o", "\r\r\n"]
-[0.113993, "o", "Signature and comment signature verified\r\r\nTrusted comment: timestamp:1776637755\tfile:message.txt\thashed\r\r\n"]
+{"version": 2, "width": 120, "height": 40, "timestamp": 1776639065, "env": {"TERM": "xterm-256color", "SHELL": "/bin/bash"}}
+[0.111053, "o", "no override packages found; continuing with apt originals\r\r\n"]
+[0.114846, "o", "The secret key was saved as /tmp/tmp.v65TqYOlOs/minisign.sec - Keep it secret!\r\r\nThe public key was saved as /tmp/tmp.v65TqYOlOs/minisign.pub - That one can be public.\r\r\n\r\r\nFiles signed using this key pair can be verified with the following command:\r\r\n\r\r\nminisign -Vm <file> -P RWQpPGz7V2HMaR0GesllKLM4JONAj8GPPAHzOdMEUI18MnqimpH84IpT\r\r\n\r\r\n"]
+[0.116475, "o", "Signature and comment signature verified\r\r\nTrusted comment: timestamp:1776639065\tfile:message.txt\thashed\r\r\n"]

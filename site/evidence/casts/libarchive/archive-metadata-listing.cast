@@ -1,5 +1,5 @@
-{"version": 2, "width": 120, "height": 40, "timestamp": 1776637720, "env": {"TERM": "xterm-256color", "SHELL": "/bin/bash"}}
-[0.186567, "o", "no override packages found; continuing with apt originals\r\r\n"]
-[0.324695, "o", "drwxr-xr-x  0 root   root        0 Apr 19 22:28 ./\r\r\n-rw-r--r--  0 root   root        7 Apr 19 22:28 ./target.txt\r\r\nlrwxrwxrwx  0 root   root        0 Apr 19 22:28 ./link.txt -> target.txt\r\r\n"]
-[0.32529, "o", "-rw-r--r--  0 root   root        7 Apr 19 22:28 ./target.txt\r\r\nlrwxrwxrwx  0 root   root        0 Apr 19 22:28 ./link.txt -> target.txt\r\r\n"]
-[0.32548, "o", "lrwxrwxrwx  0 root   root        0 Apr 19 22:28 ./link.txt -> target.txt\r\r\n"]
+{"version": 2, "width": 120, "height": 40, "timestamp": 1776639031, "env": {"TERM": "xterm-256color", "SHELL": "/bin/bash"}}
+[0.112774, "o", "no override packages found; continuing with apt originals\r\r\n"]
+[0.125801, "o", "drwxr-xr-x  0 root   root        0 Apr 19 22:50 ./\r\r\nlrwxrwxrwx  0 root   root        0 Apr 19 22:50 ./link.txt -> target.txt\r\r\n-rw-r--r--  0 root   root        7 Apr 19 22:50 ./target.txt\r\r\n"]
+[0.126417, "o", "lrwxrwxrwx  0 root   root        0 Apr 19 22:50 ./link.txt -> target.txt\r\r\n-rw-r--r--  0 root   root        7 Apr 19 22:50 ./target.txt\r\r\n"]
+[0.127123, "o", "lrwxrwxrwx  0 root   root        0 Apr 19 22:50 ./link.txt -> target.txt\r\r\n"]

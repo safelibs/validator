@@ -1,4 +1,4 @@
-$ docker run --rm -t --mount type=bind,src=/tmp/validator-status-libzstd-usage-libarchive-tools-zstd-stdout-stream-cai0vi8w,dst=/validator/status validator-libzstd-shared-6c559ab75642 bash -lc 'set -euo pipefail
+$ docker run --rm -t --mount type=bind,src=/tmp/validator-status-libzstd-usage-libarchive-tools-zstd-stdout-stream-vijs6dot,dst=/validator/status validator-libzstd-shared-146ed76315e8 bash -lc 'set -euo pipefail
 /validator/tests/_shared/install_override_debs.sh
 exec /validator/tests/_shared/run_library_tests.sh "$@"' validator-testcase libzstd usage-libarchive-tools-zstd-stdout-stream -- bash /validator/tests/libzstd/tests/cases/usage/usage-libarchive-tools-zstd-stdout-stream.sh
 no override packages found; continuing with apt originals
