@@ -16,25 +16,33 @@ from tools import ValidatorError, ensure_parent, write_json
 from tools import proof as proof_tools
 
 
-MODE_ORDER = {"original": 0, "safe": 1}
 REQUIRED_RESULT_FIELDS = {
+    "schema_version",
     "library",
     "mode",
+    "testcase_id",
+    "title",
+    "description",
+    "kind",
+    "client_application",
+    "tags",
+    "requires",
     "status",
     "started_at",
     "finished_at",
     "duration_seconds",
+    "result_path",
     "log_path",
     "cast_path",
+    "exit_code",
+    "command",
+    "apt_packages",
+    "override_debs_installed",
 }
 
 
-def result_sort_key(result: dict[str, Any]) -> tuple[str, int, str]:
-    return (
-        str(result["library"]),
-        MODE_ORDER.get(str(result["mode"]), 99),
-        str(result["mode"]),
-    )
+def result_sort_key(result: dict[str, Any]) -> tuple[str, str]:
+    return (str(result["library"]), str(result["testcase_id"]))
 
 
 def relative_href(*, output_root: Path, artifacts_root: Path, relative_path: str | None) -> str | None:
@@ -59,15 +67,39 @@ def validate_artifact_relative_path(
     )
 
 
+def _load_json_object(path: Path) -> dict[str, Any]:
+    try:
+        payload = json.loads(path.read_text())
+    except FileNotFoundError as exc:
+        raise ValidatorError(f"missing JSON file: {path}") from exc
+    except json.JSONDecodeError as exc:
+        raise ValidatorError(f"invalid JSON at {path}: {exc}") from exc
+    if not isinstance(payload, dict):
+        raise ValidatorError(f"JSON payload must be an object: {path}")
+    return payload
+
+
 def load_results(results_root: Path, *, artifacts_root: Path) -> list[dict[str, Any]]:
     if not results_root.is_dir():
         raise ValidatorError(f"results root does not exist: {results_root}")
 
     results: list[dict[str, Any]] = []
     for path in sorted(results_root.glob("*/*.json")):
-        payload = json.loads(path.read_text())
+        if path.name == "summary.json":
+            continue
+        payload = _load_json_object(path)
         if not REQUIRED_RESULT_FIELDS <= set(payload):
             raise ValidatorError(f"result schema mismatch in {path}: {sorted(payload)}")
+        if payload.get("schema_version") != 2:
+            raise ValidatorError(f"result schema_version must be 2 in {path}")
+        if payload.get("mode") != "original":
+            raise ValidatorError(f"result mode must be original in {path}")
+        validate_artifact_relative_path(
+            payload["result_path"],
+            field_name="result_path",
+            artifacts_root=artifacts_root,
+            source_path=path,
+        )
         validate_artifact_relative_path(
             payload["log_path"],
             field_name="log_path",
@@ -95,14 +127,11 @@ def load_proof(proof_path: Path, *, artifacts_root: Path, output_root: Path) -> 
     except ValueError as exc:
         raise ValidatorError(f"proof path must resolve inside artifact root: {proof_path}") from exc
 
-    try:
-        proof_data = json.loads(proof_path.read_text())
-    except FileNotFoundError as exc:
-        raise ValidatorError(f"missing proof manifest: {proof_path}") from exc
-    except json.JSONDecodeError as exc:
-        raise ValidatorError(f"invalid proof manifest JSON at {proof_path}: {exc}") from exc
-    if not isinstance(proof_data, dict):
-        raise ValidatorError(f"proof manifest must be a JSON object: {proof_path}")
+    proof_data = _load_json_object(proof_path)
+    if proof_data.get("proof_version") != 2:
+        raise ValidatorError(f"proof_version must be 2 in {proof_path}")
+    if proof_data.get("mode") != "original":
+        raise ValidatorError(f"proof mode must be original in {proof_path}")
 
     site_proof = copy.deepcopy(proof_data)
     libraries = site_proof.get("libraries")
@@ -111,12 +140,15 @@ def load_proof(proof_path: Path, *, artifacts_root: Path, output_root: Path) -> 
     for library_entry in libraries:
         if not isinstance(library_entry, dict):
             raise ValidatorError(f"proof library entries must be objects: {proof_path}")
-        for mode in ("original", "safe"):
-            mode_entry = library_entry.get(mode)
-            if not isinstance(mode_entry, dict):
-                continue
-            cast_path = mode_entry.get("cast_path")
+        cases = library_entry.get("cases")
+        if not isinstance(cases, list):
+            raise ValidatorError(f"proof library entries must contain cases lists: {proof_path}")
+        for case_entry in cases:
+            if not isinstance(case_entry, dict):
+                raise ValidatorError(f"proof case entries must be objects: {proof_path}")
+            cast_path = case_entry.get("cast_path")
             if cast_path is None:
+                case_entry["cast_href"] = None
                 continue
             cast_target = validate_artifact_relative_path(
                 cast_path,
@@ -127,7 +159,7 @@ def load_proof(proof_path: Path, *, artifacts_root: Path, output_root: Path) -> 
             assert cast_target is not None
             if not cast_target.is_file():
                 raise ValidatorError(f"proof cast_path does not exist: {cast_path}")
-            mode_entry["cast_href"] = relative_href(
+            case_entry["cast_href"] = relative_href(
                 output_root=output_root,
                 artifacts_root=artifacts_root,
                 relative_path=cast_path,
@@ -147,20 +179,22 @@ def _filter_results_for_proof(
     if len(included_set) != len(included):
         raise ValidatorError("proof included_libraries must not contain duplicates")
 
-    filtered: list[dict[str, Any]] = [
-        result
-        for result in results
-        if str(result.get("library")) in included_set
-    ]
-    row_keys = [(str(result.get("library")), str(result.get("mode"))) for result in filtered]
-    expected_keys = {(library, mode) for library in included for mode in MODE_ORDER}
+    filtered = [result for result in results if str(result.get("library")) in included_set]
+    row_keys = [(str(result.get("library")), str(result.get("testcase_id"))) for result in filtered]
+    expected_keys = {
+        (str(library_entry["library"]), str(case_entry["testcase_id"]))
+        for library_entry in proof_data.get("libraries", [])
+        if isinstance(library_entry, dict)
+        for case_entry in library_entry.get("cases", [])
+        if isinstance(case_entry, dict)
+    }
     actual_keys = set(row_keys)
     duplicates = sorted(key for key in actual_keys if row_keys.count(key) > 1)
     if duplicates:
-        raise ValidatorError(f"duplicate result rows for proof libraries: {duplicates}")
+        raise ValidatorError(f"duplicate result rows for proof cases: {duplicates}")
     if actual_keys != expected_keys:
         raise ValidatorError(
-            f"result rows must cover exactly both modes for proof libraries: "
+            f"result rows must cover exactly proof cases: "
             f"expected {sorted(expected_keys)}, found {sorted(actual_keys)}"
         )
     return sorted(filtered, key=result_sort_key)
@@ -180,9 +214,10 @@ def render_index(site_rows: list[dict[str, Any]], proof_data: dict[str, Any] | N
         rows.append(
             "\n".join(
                 [
-                    f'      <tr data-library="{html.escape(row["library"])}" data-mode="{html.escape(row["mode"])}">',
+                    f'      <tr data-library="{html.escape(row["library"])}" data-testcase="{html.escape(row["testcase_id"])}">',
                     f'        <td>{html.escape(row["library"])}</td>',
-                    f'        <td>{html.escape(row["mode"])}</td>',
+                    f'        <td>{html.escape(row["testcase_id"])}</td>',
+                    f'        <td>{html.escape(row["kind"])}</td>',
                     f'        <td class="status status-{html.escape(row["status"])}">{html.escape(row["status"])}</td>',
                     f'        <td><a href="{html.escape(str(row["log_href"]))}">log</a></td>',
                     f"        <td>{cast_link}</td>",
@@ -194,52 +229,44 @@ def render_index(site_rows: list[dict[str, Any]], proof_data: dict[str, Any] | N
     proof_section: list[str] = []
     if proof_data is not None:
         totals = proof_data.get("totals", {})
-        report_formats = totals.get("report_formats", [])
-        if isinstance(report_formats, list):
-            report_format_text = ", ".join(str(item) for item in report_formats)
-            report_format_count = len(report_formats)
-        else:
-            report_format_text = str(report_formats)
-            report_format_count = ""
         proof_summary = [
             '        <div class="summary proof-summary">',
             f'          <div class="summary-card" data-proof-total="included_libraries"><strong>{html.escape(str(totals.get("included_libraries", "")))}</strong><span>Included libraries</span></div>',
             f'          <div class="summary-card" data-proof-total="excluded_libraries"><strong>{html.escape(str(totals.get("excluded_libraries", "")))}</strong><span>Excluded libraries</span></div>',
-            f'          <div class="summary-card" data-proof-total="result_runs"><strong>{html.escape(str(totals.get("result_runs", "")))}</strong><span>Result runs</span></div>',
-            f'          <div class="summary-card" data-proof-total="safe_casts"><strong>{html.escape(str(totals.get("safe_casts", "")))}</strong><span>Safe casts</span></div>',
-            f'          <div class="summary-card" data-proof-total="safe_workloads"><strong>{html.escape(str(totals.get("safe_workloads", "")))}</strong><span>Safe workloads</span></div>',
-            f'          <div class="summary-card" data-proof-total="total_workloads"><strong>{html.escape(str(totals.get("total_workloads", "")))}</strong><span>Total workloads</span></div>',
-            f'          <div class="summary-card proof-format-card" data-proof-total="report_formats"><strong>{html.escape(str(report_format_count))}</strong><span>Report formats: {html.escape(report_format_text)}</span></div>',
+            f'          <div class="summary-card" data-proof-total="cases"><strong>{html.escape(str(totals.get("cases", "")))}</strong><span>Cases</span></div>',
+            f'          <div class="summary-card" data-proof-total="source_cases"><strong>{html.escape(str(totals.get("source_cases", "")))}</strong><span>Source cases</span></div>',
+            f'          <div class="summary-card" data-proof-total="usage_cases"><strong>{html.escape(str(totals.get("usage_cases", "")))}</strong><span>Usage cases</span></div>',
+            f'          <div class="summary-card" data-proof-total="passed"><strong>{html.escape(str(totals.get("passed", "")))}</strong><span>Passed</span></div>',
+            f'          <div class="summary-card" data-proof-total="failed"><strong>{html.escape(str(totals.get("failed", "")))}</strong><span>Failed</span></div>',
+            f'          <div class="summary-card" data-proof-total="casts"><strong>{html.escape(str(totals.get("casts", "")))}</strong><span>Casts</span></div>',
             "        </div>",
         ]
         proof_rows: list[str] = []
         for library_entry in proof_data.get("libraries", []):
             library = str(library_entry["library"])
-            original = library_entry["original"]
-            safe = library_entry["safe"]
-            safe_cast_href = safe.get("cast_href")
-            safe_cast_link = (
-                f'<a href="{html.escape(str(safe_cast_href))}">{html.escape(str(safe["cast_path"]))}</a>'
-                if safe_cast_href is not None
-                else '<span class="muted">n/a</span>'
-            )
-            proof_rows.append(
-                "\n".join(
-                    [
-                        f'      <tr data-proof-library="{html.escape(library)}">',
-                        f"        <td>{html.escape(library)}</td>",
-                        f'        <td class="status status-{html.escape(str(original["status"]))}">{html.escape(str(original["status"]))}</td>',
-                        f'        <td class="status status-{html.escape(str(safe["status"]))}">{html.escape(str(safe["status"]))}</td>',
-                        f"        <td>{safe_cast_link}</td>",
-                        f'        <td>{html.escape(str(safe["cast_events"]))}</td>',
-                        f'        <td>{html.escape(str(original["summary"]["expected_dependents"]))}</td>',
-                        f'        <td>{html.escape(str(safe["summary"]["expected_dependents"]))}</td>',
-                        f'        <td>{html.escape(str(original["summary"]["report_format"]))}</td>',
-                        f'        <td>{html.escape(str(safe["summary"]["report_format"]))}</td>',
-                        "      </tr>",
-                    ]
+            for case_entry in library_entry.get("cases", []):
+                case_id = str(case_entry["testcase_id"])
+                cast_href = case_entry.get("cast_href")
+                cast_path = case_entry.get("cast_path")
+                cast_link = (
+                    f'<a href="{html.escape(str(cast_href))}">{html.escape(str(cast_path))}</a>'
+                    if cast_href is not None
+                    else '<span class="muted">n/a</span>'
                 )
-            )
+                proof_rows.append(
+                    "\n".join(
+                        [
+                            f'      <tr data-proof-library="{html.escape(library)}" data-proof-testcase="{html.escape(case_id)}">',
+                            f"        <td>{html.escape(library)}</td>",
+                            f"        <td>{html.escape(case_id)}</td>",
+                            f'        <td>{html.escape(str(case_entry["kind"]))}</td>',
+                            f'        <td class="status status-{html.escape(str(case_entry["status"]))}">{html.escape(str(case_entry["status"]))}</td>',
+                            f"        <td>{cast_link}</td>",
+                            f'        <td>{html.escape(str(case_entry.get("cast_events", "")))}</td>',
+                            "      </tr>",
+                        ]
+                    )
+                )
         exclusion_rows: list[str] = []
         for exclusion in proof_data.get("excluded_libraries", []):
             library = str(exclusion["library"])
@@ -256,14 +283,11 @@ def render_index(site_rows: list[dict[str, Any]], proof_data: dict[str, Any] | N
             "          <thead>",
             "            <tr>",
             "              <th>Library</th>",
-            "              <th>Original</th>",
-            "              <th>Safe</th>",
-            "              <th>Safe cast</th>",
+            "              <th>Testcase</th>",
+            "              <th>Kind</th>",
+            "              <th>Status</th>",
+            "              <th>Cast</th>",
             "              <th>Events</th>",
-            "              <th>Original workloads</th>",
-            "              <th>Safe workloads</th>",
-            "              <th>Original format</th>",
-            "              <th>Safe format</th>",
             "            </tr>",
             "          </thead>",
             "          <tbody>",
@@ -281,26 +305,25 @@ def render_index(site_rows: list[dict[str, Any]], proof_data: dict[str, Any] | N
             "  <head>",
             '    <meta charset="utf-8">',
             '    <meta name="viewport" content="width=device-width, initial-scale=1">',
-            "    <title>SafeLibs validator matrix</title>",
+            "    <title>Validator original testcase matrix</title>",
             "    <style>",
             "      :root { color-scheme: light; font-family: 'IBM Plex Sans', 'Segoe UI', sans-serif; }",
-            "      body { margin: 0; background: linear-gradient(180deg, #f4efe4 0%, #fffdf8 100%); color: #16221f; }",
-            "      main { max-width: 960px; margin: 0 auto; padding: 48px 24px 72px; }",
+            "      body { margin: 0; background: #f7f8f5; color: #16221f; }",
+            "      main { max-width: 1040px; margin: 0 auto; padding: 48px 24px 72px; }",
             "      h1 { margin: 0 0 12px; font-size: clamp(2.25rem, 5vw, 3.5rem); }",
             "      h2 { margin: 36px 0 16px; font-size: 1.7rem; }",
             "      p { line-height: 1.6; }",
-            "      .hero { margin-bottom: 32px; padding: 28px; border-radius: 24px; background: rgba(255, 255, 255, 0.85); box-shadow: 0 18px 48px rgba(29, 52, 44, 0.08); }",
+            "      .hero { margin-bottom: 32px; padding: 28px; background: #ffffff; border: 1px solid rgba(22, 34, 31, 0.1); }",
             "      .summary { display: flex; gap: 16px; flex-wrap: wrap; margin-top: 20px; }",
-            "      .summary-card { min-width: 140px; padding: 14px 18px; border-radius: 18px; background: #e3ece7; }",
+            "      .summary-card { min-width: 130px; padding: 14px 18px; background: #e8eee9; }",
             "      .summary-card strong { display: block; font-size: 1.8rem; }",
             "      .proof-summary { margin-bottom: 18px; }",
-            "      .proof-format-card { flex: 1 1 100%; }",
-            "      table { width: 100%; border-collapse: collapse; background: rgba(255, 255, 255, 0.92); border-radius: 22px; overflow: hidden; box-shadow: 0 18px 48px rgba(29, 52, 44, 0.08); }",
+            "      table { width: 100%; border-collapse: collapse; background: #ffffff; border: 1px solid rgba(22, 34, 31, 0.1); }",
             "      .proof table { font-size: 0.95rem; }",
-            "      th, td { padding: 16px 18px; text-align: left; border-bottom: 1px solid rgba(22, 34, 31, 0.08); }",
-            "      th { font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.08em; color: #56655f; background: rgba(227, 236, 231, 0.85); }",
+            "      th, td { padding: 14px 16px; text-align: left; border-bottom: 1px solid rgba(22, 34, 31, 0.08); }",
+            "      th { font-size: 0.85rem; text-transform: uppercase; color: #56655f; background: #e8eee9; }",
             "      tr:last-child td { border-bottom: 0; }",
-            "      .status { font-weight: 700; text-transform: uppercase; letter-spacing: 0.04em; }",
+            "      .status { font-weight: 700; text-transform: uppercase; }",
             "      .status-passed { color: #17643f; }",
             "      .status-failed { color: #9d2e2e; }",
             "      .muted { color: #7b8982; }",
@@ -316,10 +339,10 @@ def render_index(site_rows: list[dict[str, Any]], proof_data: dict[str, Any] | N
             "    <main>",
             '      <section class="hero">',
             "        <p>Static report rendered directly from validator result JSON.</p>",
-            "        <h1>SafeLibs validator matrix</h1>",
-            "        <p>Each row links to the captured run log and, when available, the safe-mode terminal cast.</p>",
+            "        <h1>Validator original testcase matrix</h1>",
+            "        <p>Each row links to the captured testcase run log and terminal cast when present.</p>",
             '        <div class="summary">',
-            f'          <div class="summary-card"><strong>{total}</strong><span>Runs</span></div>',
+            f'          <div class="summary-card"><strong>{total}</strong><span>Cases</span></div>',
             f'          <div class="summary-card"><strong>{passed}</strong><span>Passed</span></div>',
             f'          <div class="summary-card"><strong>{failed}</strong><span>Failed</span></div>',
             "        </div>",
@@ -328,7 +351,8 @@ def render_index(site_rows: list[dict[str, Any]], proof_data: dict[str, Any] | N
             "        <thead>",
             "          <tr>",
             "            <th>Library</th>",
-            "            <th>Mode</th>",
+            "            <th>Testcase</th>",
+            "            <th>Kind</th>",
             "            <th>Status</th>",
             "            <th>Log</th>",
             "            <th>Cast</th>",
@@ -355,7 +379,8 @@ def build_site_rows(results: list[dict[str, Any]], *, output_root: Path, artifac
         rows.append(
             {
                 "library": str(result["library"]),
-                "mode": str(result["mode"]),
+                "testcase_id": str(result["testcase_id"]),
+                "kind": str(result["kind"]),
                 "status": str(result["status"]),
                 "log_path": log_path,
                 "cast_path": cast_path,
