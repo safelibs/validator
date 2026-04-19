@@ -151,6 +151,8 @@ class ProofTests(unittest.TestCase):
             ("result_path", "results/original-demo/wrong.json", "result_path must equal"),
             ("log_path", "logs/original-demo/wrong.log", "log_path must equal"),
             ("started_at", "2026-04-18T00:00:00+00:00", "ending in Z"),
+            ("started_at", "not-a-dateZ", "UTC ISO-8601"),
+            ("finished_at", "2026-13-18T00:00:01Z", "UTC ISO-8601"),
             ("duration_seconds", -1, "duration_seconds must be a non-negative number"),
             ("exit_code", 1.5, "exit_code must be an integer"),
             ("override_debs_installed", "no", "must be a boolean"),

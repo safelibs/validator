@@ -2,6 +2,8 @@ from __future__ import annotations
 
 import json
 import math
+import re
+from datetime import datetime
 from pathlib import Path, PurePosixPath
 from typing import Any
 
@@ -44,6 +46,7 @@ SUMMARY_FIELDS = {
     "casts",
     "duration_seconds",
 }
+UTC_TIMESTAMP_RE = re.compile(r"^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(?:\.\d+)?Z$")
 
 
 def _reject_json_constant(value: str) -> None:
@@ -139,8 +142,12 @@ def _require_optional_string(value: Any, *, field_name: str, source_path: Path) 
 
 def _require_utc_timestamp(value: Any, *, field_name: str, source_path: Path) -> str:
     text = _require_string(value, field_name=field_name, source_path=source_path)
-    if not text.endswith("Z"):
+    if not UTC_TIMESTAMP_RE.fullmatch(text):
         raise ValidatorError(f"{field_name} must be a UTC ISO-8601 string ending in Z in {source_path}")
+    try:
+        datetime.fromisoformat(text[:-1] + "+00:00")
+    except ValueError as exc:
+        raise ValidatorError(f"{field_name} must be a UTC ISO-8601 string ending in Z in {source_path}") from exc
     return text
 
 
