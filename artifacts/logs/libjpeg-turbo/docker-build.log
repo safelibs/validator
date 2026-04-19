@@ -1,5 +1,8 @@
-$ docker build --tag validator-libjpeg-turbo-shared-f728d5e4569d --file /tmp/validator-run-matrix-libjpeg-turbo-_y04e85g/libjpeg-turbo/Dockerfile /tmp/validator-run-matrix-libjpeg-turbo-_y04e85g
+$ docker build --tag validator-libjpeg-turbo-shared-cc2f13e7dfd2 --file /tmp/validator-run-matrix-libjpeg-turbo-bk8nonj1/libjpeg-turbo/Dockerfile /tmp/validator-run-matrix-libjpeg-turbo-bk8nonj1
 #0 building with "default" instance using docker driver
+
+#1 [internal] load build definition from Dockerfile
+#1 DONE 0.0s
 
 #1 [internal] load build definition from Dockerfile
 #1 transferring dockerfile: 1.03kB done
@@ -37,5 +40,5 @@ $ docker build --tag validator-libjpeg-turbo-shared-f728d5e4569d --file /tmp/val
 #11 exporting to image
 #11 exporting layers done
 #11 writing image sha256:ac9a3006f043b72011f43152746c08cbddaadc4cf2c530c1a47cbc2f7140220b done
-#11 naming to docker.io/library/validator-libjpeg-turbo-shared-f728d5e4569d done
+#11 naming to docker.io/library/validator-libjpeg-turbo-shared-cc2f13e7dfd2 done
 #11 DONE 0.0s

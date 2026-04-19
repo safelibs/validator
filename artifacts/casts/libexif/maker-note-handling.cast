@@ -1,3 +1,3 @@
-{"version": 2, "width": 120, "height": 40, "timestamp": 1776634645, "env": {"TERM": "xterm-256color", "SHELL": "/bin/bash"}}
-[0.109037, "o", "no override packages found; continuing with apt originals\r\r\n"]
-[0.137296, "o", "maker-note-size=904\r\r\n"]
+{"version": 2, "width": 120, "height": 40, "timestamp": 1776636220, "env": {"TERM": "xterm-256color", "SHELL": "/bin/bash"}}
+[0.109876, "o", "no override packages found; continuing with apt originals\r\r\n"]
+[0.138876, "o", "maker-note-size=904\r\r\n"]

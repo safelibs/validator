@@ -1,10 +1,10 @@
-$ docker run --rm -t --mount type=bind,src=/tmp/validator-status-libbz2-corrupted-stream-rejection-kkit1qrs,dst=/validator/status validator-libbz2-shared-86718bb902f3 bash -lc 'set -euo pipefail
+$ docker run --rm -t --mount type=bind,src=/tmp/validator-status-libbz2-corrupted-stream-rejection-eug4ovi5,dst=/validator/status validator-libbz2-shared-97a9340ad13c bash -lc 'set -euo pipefail
 /validator/tests/_shared/install_override_debs.sh
 exec /validator/tests/_shared/run_library_tests.sh "$@"' validator-testcase libbz2 corrupted-stream-rejection -- bash /validator/tests/libbz2/tests/cases/source/corrupted-stream-rejection.sh
 no override packages found; continuing with apt originals
 
 bunzip2: Data integrity error when decompressing.
-	Input file = /tmp/tmp.fR980QMxL2/bad.bz2, output file = (stdout)
+	Input file = /tmp/tmp.g7Y4qmkVwV/bad.bz2, output file = (stdout)
 
 It is possible that the compressed file(s) have become corrupted.
 You can use the -tvv option to test integrity of such files.

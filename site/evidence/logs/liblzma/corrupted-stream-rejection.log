@@ -1,5 +1,5 @@
-$ docker run --rm -t --mount type=bind,src=/tmp/validator-status-liblzma-corrupted-stream-rejection-hzrcjkx7,dst=/validator/status validator-liblzma-shared-76e5647ea798 bash -lc 'set -euo pipefail
+$ docker run --rm -t --mount type=bind,src=/tmp/validator-status-liblzma-corrupted-stream-rejection-jde1vnun,dst=/validator/status validator-liblzma-shared-4379238058c2 bash -lc 'set -euo pipefail
 /validator/tests/_shared/install_override_debs.sh
 exec /validator/tests/_shared/run_library_tests.sh "$@"' validator-testcase liblzma corrupted-stream-rejection -- bash /validator/tests/liblzma/tests/cases/source/corrupted-stream-rejection.sh
 no override packages found; continuing with apt originals
-xz: /tmp/tmp.ieS2f6fvLG/bad.xz: Unexpected end of input
+xz: /tmp/tmp.hy3KYENEQI/bad.xz: Unexpected end of input

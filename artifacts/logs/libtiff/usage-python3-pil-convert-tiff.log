@@ -1,5 +1,5 @@
-$ docker run --rm -t --mount type=bind,src=/tmp/validator-status-libtiff-usage-python3-pil-convert-tiff-nvt51tv4,dst=/validator/status validator-libtiff-shared-19d9ef4efe82 bash -lc 'set -euo pipefail
+$ docker run --rm -t --mount type=bind,src=/tmp/validator-status-libtiff-usage-python3-pil-convert-tiff-i70n3e_v,dst=/validator/status validator-libtiff-shared-922fa22f9202 bash -lc 'set -euo pipefail
 /validator/tests/_shared/install_override_debs.sh
 exec /validator/tests/_shared/run_library_tests.sh "$@"' validator-testcase libtiff usage-python3-pil-convert-tiff -- bash /validator/tests/libtiff/tests/cases/usage/usage-python3-pil-convert-tiff.sh
 no override packages found; continuing with apt originals
-saved /tmp/tmp.EM7k9KuEgp/out.tiff
+saved /tmp/tmp.K1axFCUJvo/out.tiff

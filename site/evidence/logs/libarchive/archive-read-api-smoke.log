@@ -1,4 +1,4 @@
-$ docker run --rm -t --mount type=bind,src=/tmp/validator-status-libarchive-archive-read-api-smoke-slaqiutn,dst=/validator/status validator-libarchive-shared-8ce240eb1386 bash -lc 'set -euo pipefail
+$ docker run --rm -t --mount type=bind,src=/tmp/validator-status-libarchive-archive-read-api-smoke-a0_n_3ua,dst=/validator/status validator-libarchive-shared-1cbddebb800d bash -lc 'set -euo pipefail
 /validator/tests/_shared/install_override_debs.sh
 exec /validator/tests/_shared/run_library_tests.sh "$@"' validator-testcase libarchive archive-read-api-smoke -- bash /validator/tests/libarchive/tests/cases/source/archive-read-api-smoke.sh
 no override packages found; continuing with apt originals

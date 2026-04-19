@@ -1,4 +1,4 @@
-$ docker build --tag validator-libbz2-shared-86718bb902f3 --file /tmp/validator-run-matrix-libbz2-9qt4x83l/libbz2/Dockerfile /tmp/validator-run-matrix-libbz2-9qt4x83l
+$ docker build --tag validator-libbz2-shared-97a9340ad13c --file /tmp/validator-run-matrix-libbz2-0axw4iue/libbz2/Dockerfile /tmp/validator-run-matrix-libbz2-0axw4iue
 #0 building with "default" instance using docker driver
 
 #1 [internal] load build definition from Dockerfile
@@ -19,13 +19,13 @@ $ docker build --tag validator-libbz2-shared-86718bb902f3 --file /tmp/validator-
 #5 transferring context: 3.23MB 0.0s done
 #5 DONE 0.0s
 
-#6 [4/6] COPY _shared/ /validator/tests/_shared/
+#6 [2/6] RUN apt-get update  && apt-get install -y --no-install-recommends       libbz2-1.0       libbz2-dev       bzip2       bash       build-essential       ca-certificates       coreutils       file       jq       perl       pkg-config       python3  && rm -rf /var/lib/apt/lists/*
 #6 CACHED
 
 #7 [3/6] WORKDIR /validator
 #7 CACHED
 
-#8 [2/6] RUN apt-get update  && apt-get install -y --no-install-recommends       libbz2-1.0       libbz2-dev       bzip2       bash       build-essential       ca-certificates       coreutils       file       jq       perl       pkg-config       python3  && rm -rf /var/lib/apt/lists/*
+#8 [4/6] COPY _shared/ /validator/tests/_shared/
 #8 CACHED
 
 #9 [5/6] COPY libbz2/ /validator/tests/libbz2/
@@ -37,5 +37,5 @@ $ docker build --tag validator-libbz2-shared-86718bb902f3 --file /tmp/validator-
 #11 exporting to image
 #11 exporting layers done
 #11 writing image sha256:014ab6eb1d052089b2a12cab9ed7d00e98305fa017b94e94866f628800077753 done
-#11 naming to docker.io/library/validator-libbz2-shared-86718bb902f3 done
+#11 naming to docker.io/library/validator-libbz2-shared-97a9340ad13c done
 #11 DONE 0.0s

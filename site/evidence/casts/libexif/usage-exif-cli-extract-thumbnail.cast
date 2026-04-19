@@ -1,4 +1,4 @@
-{"version": 2, "width": 120, "height": 40, "timestamp": 1776634647, "env": {"TERM": "xterm-256color", "SHELL": "/bin/bash"}}
-[0.11641, "o", "no override packages found; continuing with apt originals\r\r\n"]
-[0.121325, "o", "Wrote file '/tmp/tmp.Ut2MrF7Bwl/thumb.jpg'.\r\r\n"]
-[0.12197, "o", "/tmp/tmp.Ut2MrF7Bwl/thumb.jpg: JPEG image data\r\r\n"]
+{"version": 2, "width": 120, "height": 40, "timestamp": 1776636222, "env": {"TERM": "xterm-256color", "SHELL": "/bin/bash"}}
+[0.113958, "o", "no override packages found; continuing with apt originals\r\r\n"]
+[0.119052, "o", "Wrote file '/tmp/tmp.4SGjIlQtfC/thumb.jpg'.\r\r\n"]
+[0.119854, "o", "/tmp/tmp.4SGjIlQtfC/thumb.jpg: JPEG image data\r\r\n"]

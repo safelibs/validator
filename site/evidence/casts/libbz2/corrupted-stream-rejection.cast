@@ -1,3 +1,3 @@
-{"version": 2, "width": 120, "height": 40, "timestamp": 1776634640, "env": {"TERM": "xterm-256color", "SHELL": "/bin/bash"}}
-[0.101987, "o", "no override packages found; continuing with apt originals\r\r\n"]
-[0.114069, "o", "\r\r\nbunzip2: Data integrity error when decompressing.\r\r\n\tInput file = /tmp/tmp.fR980QMxL2/bad.bz2, output file = (stdout)\r\r\n\r\r\nIt is possible that the compressed file(s) have become corrupted.\r\r\nYou can use the -tvv option to test integrity of such files.\r\r\n\r\r\nYou can use the `bzip2recover' program to attempt to recover\r\r\ndata from undamaged sections of corrupted files.\r\r\n\r\r\n"]
+{"version": 2, "width": 120, "height": 40, "timestamp": 1776636214, "env": {"TERM": "xterm-256color", "SHELL": "/bin/bash"}}
+[0.11606, "o", "no override packages found; continuing with apt originals\r\r\n"]
+[0.128243, "o", "\r\r\nbunzip2: Data integrity error when decompressing.\r\r\n\tInput file = /tmp/tmp.g7Y4qmkVwV/bad.bz2, output file = (stdout)\r\r\n\r\r\nIt is possible that the compressed file(s) have become corrupted.\r\r\nYou can use the -tvv option to test integrity of such files.\r\r\n\r\r\nYou can use the `bzip2recover' program to attempt to recover\r\r\ndata from undamaged sections of corrupted files.\r\r\n\r\r\n"]

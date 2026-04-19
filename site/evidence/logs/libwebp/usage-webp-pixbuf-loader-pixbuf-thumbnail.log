@@ -1,5 +1,5 @@
-$ docker run --rm -t --mount type=bind,src=/tmp/validator-status-libwebp-usage-webp-pixbuf-loader-pixbuf-thumbnail-2ao4fjnn,dst=/validator/status validator-libwebp-shared-ef5eab3242a9 bash -lc 'set -euo pipefail
+$ docker run --rm -t --mount type=bind,src=/tmp/validator-status-libwebp-usage-webp-pixbuf-loader-pixbuf-thumbnail-4nf_usiw,dst=/validator/status validator-libwebp-shared-ee22d60bfdbc bash -lc 'set -euo pipefail
 /validator/tests/_shared/install_override_debs.sh
 exec /validator/tests/_shared/run_library_tests.sh "$@"' validator-testcase libwebp usage-webp-pixbuf-loader-pixbuf-thumbnail -- bash /validator/tests/libwebp/tests/cases/usage/usage-webp-pixbuf-loader-pixbuf-thumbnail.sh
 no override packages found; continuing with apt originals
-/tmp/tmp.Rmgzea0K0x/thumb.png: PNG image data, 32 x 24, 8-bit/color RGB, non-interlaced
+/tmp/tmp.H0mX8pZywa/thumb.png: PNG image data, 32 x 24, 8-bit/color RGB, non-interlaced

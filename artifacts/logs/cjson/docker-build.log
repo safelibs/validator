@@ -1,4 +1,4 @@
-$ docker build --tag validator-cjson-shared-f9a7c9ce3e54 --file /tmp/validator-run-matrix-cjson-nyyx9q0l/cjson/Dockerfile /tmp/validator-run-matrix-cjson-nyyx9q0l
+$ docker build --tag validator-cjson-shared-923dd293a1cf --file /tmp/validator-run-matrix-cjson-b_jshcor/cjson/Dockerfile /tmp/validator-run-matrix-cjson-b_jshcor
 #0 building with "default" instance using docker driver
 
 #1 [internal] load build definition from Dockerfile
@@ -37,5 +37,5 @@ $ docker build --tag validator-cjson-shared-f9a7c9ce3e54 --file /tmp/validator-r
 #11 exporting to image
 #11 exporting layers done
 #11 writing image sha256:0f8afd1dba819f85152e4f590c3ed14e94f63128c54a8e8ec8097bb9a8bc0120 done
-#11 naming to docker.io/library/validator-cjson-shared-f9a7c9ce3e54 done
+#11 naming to docker.io/library/validator-cjson-shared-923dd293a1cf done
 #11 DONE 0.0s

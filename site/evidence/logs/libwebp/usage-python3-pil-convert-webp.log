@@ -1,5 +1,5 @@
-$ docker run --rm -t --mount type=bind,src=/tmp/validator-status-libwebp-usage-python3-pil-convert-webp-zjbtz7a9,dst=/validator/status validator-libwebp-shared-ef5eab3242a9 bash -lc 'set -euo pipefail
+$ docker run --rm -t --mount type=bind,src=/tmp/validator-status-libwebp-usage-python3-pil-convert-webp-fkdq1s4g,dst=/validator/status validator-libwebp-shared-ee22d60bfdbc bash -lc 'set -euo pipefail
 /validator/tests/_shared/install_override_debs.sh
 exec /validator/tests/_shared/run_library_tests.sh "$@"' validator-testcase libwebp usage-python3-pil-convert-webp -- bash /validator/tests/libwebp/tests/cases/usage/usage-python3-pil-convert-webp.sh
 no override packages found; continuing with apt originals
-saved /tmp/tmp.71KO7TGOnV/out.webp
+saved /tmp/tmp.1ivXIAOrqX/out.webp

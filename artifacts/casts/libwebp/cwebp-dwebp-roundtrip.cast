@@ -1,4 +1,4 @@
-{"version": 2, "width": 120, "height": 40, "timestamp": 1776634684, "env": {"TERM": "xterm-256color", "SHELL": "/bin/bash"}}
-[0.113518, "o", "no override packages found; continuing with apt originals\r\r\n"]
-[0.126694, "o", "Decoded /tmp/tmp.NN9hy7RYf7/a.webp. Dimensions: 2 x 2 . Format: lossy. Now saving...\r\r\nSaved file /tmp/tmp.NN9hy7RYf7/out.ppm\r\r\n"]
-[0.127086, "o", "P6\r\r\n2 2\r\r\n255\r\r\n"]
+{"version": 2, "width": 120, "height": 40, "timestamp": 1776636258, "env": {"TERM": "xterm-256color", "SHELL": "/bin/bash"}}
+[0.106281, "o", "no override packages found; continuing with apt originals\r\r\n"]
+[0.119869, "o", "Decoded /tmp/tmp.9xPyhmexnR/a.webp. Dimensions: 2 x 2 . Format: lossy. Now saving...\r\r\nSaved file /tmp/tmp.9xPyhmexnR/out.ppm\r\r\n"]
+[0.120294, "o", "P6\r\r\n2 2\r\r\n255\r\r\n"]

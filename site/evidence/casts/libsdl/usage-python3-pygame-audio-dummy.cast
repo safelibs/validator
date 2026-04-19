@@ -1,4 +1,4 @@
-{"version": 2, "width": 120, "height": 40, "timestamp": 1776634666, "env": {"TERM": "xterm-256color", "SHELL": "/bin/bash"}}
-[0.115656, "o", "no override packages found; continuing with apt originals\r\r\n"]
-[0.12942, "o", "<frozen importlib._bootstrap>:488: RuntimeWarning: Your system is avx2 capable but pygame was not built with support for it. The performance of some of your blits could be adversely affected. Consider enabling compile time detection with environment variables like PYGAME_DETECT_AVX2=1 if you are compiling without cross compilation.\r\r\n"]
-[0.201447, "o", "mixer (22050, -16, 1)\r\r\n"]
+{"version": 2, "width": 120, "height": 40, "timestamp": 1776636240, "env": {"TERM": "xterm-256color", "SHELL": "/bin/bash"}}
+[0.1122, "o", "no override packages found; continuing with apt originals\r\r\n"]
+[0.126291, "o", "<frozen importlib._bootstrap>:488: RuntimeWarning: Your system is avx2 capable but pygame was not built with support for it. The performance of some of your blits could be adversely affected. Consider enabling compile time detection with environment variables like PYGAME_DETECT_AVX2=1 if you are compiling without cross compilation.\r\r\n"]
+[0.195725, "o", "mixer (22050, -16, 1)\r\r\n"]

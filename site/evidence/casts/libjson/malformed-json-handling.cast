@@ -1,3 +1,3 @@
-{"version": 2, "width": 120, "height": 40, "timestamp": 1776634653, "env": {"TERM": "xterm-256color", "SHELL": "/bin/bash"}}
-[0.119459, "o", "no override packages found; continuing with apt originals\r\r\n"]
-[0.149921, "o", "error=unexpected character\r\r\n"]
+{"version": 2, "width": 120, "height": 40, "timestamp": 1776636227, "env": {"TERM": "xterm-256color", "SHELL": "/bin/bash"}}
+[0.111879, "o", "no override packages found; continuing with apt originals\r\r\n"]
+[0.14198, "o", "error=unexpected character\r\r\n"]

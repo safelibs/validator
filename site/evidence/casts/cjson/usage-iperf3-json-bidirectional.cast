@@ -1,3 +1,3 @@
-{"version": 2, "width": 120, "height": 40, "timestamp": 1776634629, "env": {"TERM": "xterm-256color", "SHELL": "/bin/bash"}}
-[0.110066, "o", "no override packages found; continuing with apt originals\r\r\n"]
-[1.325784, "o", "cpu_utilization_percent,receiver_tcp_congestion,sender_tcp_congestion,streams,sum_received,sum_received_bidir_reverse,sum_sent,sum_sent_bidir_reverse\r\r\n"]
+{"version": 2, "width": 120, "height": 40, "timestamp": 1776636203, "env": {"TERM": "xterm-256color", "SHELL": "/bin/bash"}}
+[0.102348, "o", "no override packages found; continuing with apt originals\r\r\n"]
+[1.317412, "o", "cpu_utilization_percent,receiver_tcp_congestion,sender_tcp_congestion,streams,sum_received,sum_received_bidir_reverse,sum_sent,sum_sent_bidir_reverse\r\r\n"]

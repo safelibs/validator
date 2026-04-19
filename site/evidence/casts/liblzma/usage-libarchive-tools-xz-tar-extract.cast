@@ -1,3 +1,3 @@
-{"version": 2, "width": 120, "height": 40, "timestamp": 1776634657, "env": {"TERM": "xterm-256color", "SHELL": "/bin/bash"}}
-[0.101356, "o", "no override packages found; continuing with apt originals\r\r\n"]
-[0.114486, "o", "./\r\r\n./payload.txt\r\r\n"]
+{"version": 2, "width": 120, "height": 40, "timestamp": 1776636231, "env": {"TERM": "xterm-256color", "SHELL": "/bin/bash"}}
+[0.104085, "o", "no override packages found; continuing with apt originals\r\r\n"]
+[0.117613, "o", "./\r\r\n./payload.txt\r\r\n"]
