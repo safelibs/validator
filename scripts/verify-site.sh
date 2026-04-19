@@ -312,26 +312,50 @@ for row in site_rows:
         if not resolved_cast_href.is_file():
             fail(f"missing cast target referenced by site: {cast_href}")
 
-for library_entry in site_proof["libraries"]:
-    safe_entry = library_entry["safe"]
-    cast_path = safe_entry["cast_path"]
-    cast_href = safe_entry.get("cast_href")
-    if not cast_href:
-        fail(f"missing proof cast_href for {library_entry['library']}")
-    cast_target = validate_relative_artifact_path(
-        cast_path,
-        field_name="cast_path",
-        source=f"proof row {library_entry['library']}",
-    )
-    assert cast_target is not None
-    resolved_cast_href = resolve_site_href(
-        cast_href,
-        field_name="proof cast_href",
-        source=f"proof row {library_entry['library']}",
-    )
-    assert resolved_cast_href is not None
-    if resolved_cast_href != cast_target:
-        fail(f"proof cast_href does not match cast_path for {library_entry['library']}")
+if site_proof.get("proof_version") == 2:
+    for library_entry in site_proof["libraries"]:
+        for case_entry in library_entry.get("cases", []):
+            cast_path = case_entry.get("cast_path")
+            if cast_path is None:
+                continue
+            cast_href = case_entry.get("cast_href")
+            if not cast_href:
+                fail(f"missing proof cast_href for {library_entry['library']}/{case_entry.get('testcase_id')}")
+            cast_target = validate_relative_artifact_path(
+                cast_path,
+                field_name="cast_path",
+                source=f"proof row {library_entry['library']}/{case_entry.get('testcase_id')}",
+            )
+            assert cast_target is not None
+            resolved_cast_href = resolve_site_href(
+                cast_href,
+                field_name="proof cast_href",
+                source=f"proof row {library_entry['library']}/{case_entry.get('testcase_id')}",
+            )
+            assert resolved_cast_href is not None
+            if resolved_cast_href != cast_target:
+                fail(f"proof cast_href does not match cast_path for {library_entry['library']}/{case_entry.get('testcase_id')}")
+else:
+    for library_entry in site_proof["libraries"]:
+        safe_entry = library_entry["safe"]
+        cast_path = safe_entry["cast_path"]
+        cast_href = safe_entry.get("cast_href")
+        if not cast_href:
+            fail(f"missing proof cast_href for {library_entry['library']}")
+        cast_target = validate_relative_artifact_path(
+            cast_path,
+            field_name="cast_path",
+            source=f"proof row {library_entry['library']}",
+        )
+        assert cast_target is not None
+        resolved_cast_href = resolve_site_href(
+            cast_href,
+            field_name="proof cast_href",
+            source=f"proof row {library_entry['library']}",
+        )
+        assert resolved_cast_href is not None
+        if resolved_cast_href != cast_target:
+            fail(f"proof cast_href does not match cast_path for {library_entry['library']}")
 
 index_path = site_root / "index.html"
 if not index_path.is_file():
@@ -346,14 +370,24 @@ if html_rows != expected_html_rows:
 proof_totals = site_proof.get("totals")
 if not isinstance(proof_totals, dict):
     fail("site-data.json proof totals must be an object")
-numeric_total_fields = (
-    "included_libraries",
-    "excluded_libraries",
-    "result_runs",
-    "safe_casts",
-    "safe_workloads",
-    "total_workloads",
-)
+if site_proof.get("proof_version") == 2:
+    numeric_total_fields = (
+        "included_libraries",
+        "excluded_libraries",
+        "cases",
+        "passed",
+        "failed",
+        "casts",
+    )
+else:
+    numeric_total_fields = (
+        "included_libraries",
+        "excluded_libraries",
+        "result_runs",
+        "safe_casts",
+        "safe_workloads",
+        "total_workloads",
+    )
 for field_name in numeric_total_fields:
     marker = f'data-proof-total="{field_name}"'
     if marker not in html_text:
@@ -363,16 +397,17 @@ for field_name in numeric_total_fields:
     if re.search(value_pattern, html_text) is None:
         fail(f"missing proof total value in index.html for {field_name}: {escaped_value}")
 
-format_marker = 'data-proof-total="report_formats"'
-if format_marker not in html_text:
-    fail(f"missing proof total marker in index.html: {format_marker}")
-report_formats = proof_totals.get("report_formats")
-if not isinstance(report_formats, list):
-    fail("proof report_formats total must be a list")
-for report_format in report_formats:
-    escaped_format = html.escape(str(report_format))
-    if escaped_format not in html_text:
-        fail(f"missing proof report format in index.html: {escaped_format}")
+if site_proof.get("proof_version") != 2:
+    format_marker = 'data-proof-total="report_formats"'
+    if format_marker not in html_text:
+        fail(f"missing proof total marker in index.html: {format_marker}")
+    report_formats = proof_totals.get("report_formats")
+    if not isinstance(report_formats, list):
+        fail("proof report_formats total must be a list")
+    for report_format in report_formats:
+        escaped_format = html.escape(str(report_format))
+        if escaped_format not in html_text:
+            fail(f"missing proof report format in index.html: {escaped_format}")
 
 for library in included_libraries:
     marker = f'data-proof-library="{library}"'

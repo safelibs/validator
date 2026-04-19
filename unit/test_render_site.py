@@ -6,6 +6,8 @@ import tempfile
 import unittest
 from pathlib import Path
 
+import yaml
+
 from tools import ValidatorError
 from tools import inventory
 from tools import proof
@@ -168,7 +170,14 @@ class RenderSiteTests(unittest.TestCase):
         )
         return manifest_path, proof_path, site_root
 
-    def run_verify_site(self, *, manifest_path: Path, site_root: Path, proof_path: Path | None = None) -> subprocess.CompletedProcess[str]:
+    def run_verify_site(
+        self,
+        *,
+        manifest_path: Path,
+        site_root: Path,
+        proof_path: Path | None = None,
+        tests_root: Path | None = None,
+    ) -> subprocess.CompletedProcess[str]:
         repo_root = Path(__file__).resolve().parents[1]
         command = [
             "bash",
@@ -184,6 +193,8 @@ class RenderSiteTests(unittest.TestCase):
         ]
         if proof_path is not None:
             command.extend(["--proof-path", str(proof_path)])
+        if tests_root is not None:
+            command.extend(["--tests-root", str(tests_root)])
         return subprocess.run(
             command,
             cwd=repo_root,
@@ -463,6 +474,112 @@ class RenderSiteTests(unittest.TestCase):
         )
 
         self.assertEqual(completed.returncode, 0, completed.stderr + completed.stdout)
+
+    def test_verify_site_accepts_v2_original_only_proof(self) -> None:
+        tests_root = self.root / "case-manifests"
+        testcase_root = tests_root / "tests" / "cjson"
+        testcase_root.mkdir(parents=True)
+        packages = list(inventory.CANONICAL_APT_PACKAGES["cjson"])
+        testcase = {
+            "id": "source-v2-proof-case",
+            "title": "V2 proof source case",
+            "description": "Temporary source case for original-only proof/site verification.",
+            "kind": "source",
+            "command": ["bash", "-lc", "true"],
+            "timeout_seconds": 1,
+            "tags": ["proof"],
+        }
+        (testcase_root / "testcases.yml").write_text(
+            yaml.safe_dump(
+                {
+                    "schema_version": 1,
+                    "library": "cjson",
+                    "apt_packages": packages,
+                    "testcases": [testcase],
+                },
+                sort_keys=False,
+            )
+        )
+
+        log_path = self.artifacts_root / "logs" / "cjson" / "source-v2-proof-case.log"
+        log_path.parent.mkdir(parents=True, exist_ok=True)
+        log_path.write_text("ok\n")
+        write_json(
+            self.artifacts_root / "results" / "cjson" / "source-v2-proof-case.json",
+            {
+                "schema_version": 2,
+                "library": "cjson",
+                "mode": "original",
+                "testcase_id": testcase["id"],
+                "title": testcase["title"],
+                "description": testcase["description"],
+                "kind": testcase["kind"],
+                "client_application": None,
+                "tags": testcase["tags"],
+                "requires": [],
+                "status": "passed",
+                "started_at": "2026-04-19T00:00:00Z",
+                "finished_at": "2026-04-19T00:00:01Z",
+                "duration_seconds": 1.0,
+                "result_path": "results/cjson/source-v2-proof-case.json",
+                "log_path": "logs/cjson/source-v2-proof-case.log",
+                "cast_path": None,
+                "exit_code": 0,
+                "command": testcase["command"],
+                "apt_packages": packages,
+                "override_debs_installed": False,
+            },
+        )
+        write_json(
+            self.artifacts_root / "results" / "cjson" / "summary.json",
+            {
+                "schema_version": 2,
+                "library": "cjson",
+                "mode": "original",
+                "cases": 1,
+                "source_cases": 1,
+                "usage_cases": 0,
+                "passed": 1,
+                "failed": 0,
+                "casts": 0,
+                "duration_seconds": 1.0,
+            },
+        )
+        proof_path = self.artifacts_root / "proof" / "validator-proof.json"
+        write_json(
+            proof_path,
+            proof.build_proof(
+                self.manifest(),
+                artifact_root=self.artifacts_root,
+                tests_root=tests_root,
+                libraries=["cjson"],
+            ),
+        )
+        site_root = self.root / "site"
+        render_site.main(
+            [
+                "--results-root",
+                str(self.results_root),
+                "--artifacts-root",
+                str(self.artifacts_root),
+                "--proof-path",
+                str(proof_path),
+                "--output-root",
+                str(site_root),
+            ]
+        )
+
+        completed = self.run_verify_site(
+            manifest_path=self.write_manifest(["cjson"]),
+            proof_path=proof_path,
+            tests_root=tests_root,
+            site_root=site_root,
+        )
+
+        self.assertEqual(completed.returncode, 0, completed.stderr + completed.stdout)
+        site_data = json.loads((site_root / "site-data.json").read_text())
+        self.assertEqual(site_data["proof"]["proof_version"], 2)
+        self.assertIn('data-proof-total="cases"', (site_root / "index.html").read_text())
 
     def test_render_site_includes_proof_data_and_hosted_exclusions(self) -> None:
         _, proof_path, site_root = self.render_with_proof(

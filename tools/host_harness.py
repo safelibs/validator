@@ -25,7 +25,6 @@ class PreparedHarnessRun:
     repo_root: Path
     harness_script: Path
     dependents_path: Path
-    relevant_cves_path: Path
     downstream_dir: Path
     safe_deb_dir: Path | None
     artifact_root: Path
@@ -96,7 +95,6 @@ def materialize_scratch_repo(
     original_script = tests_dir / "harness-source" / "original-test-script.sh"
     safe_control = tests_dir / "harness-source" / "debian" / "control"
     dependents_source = tests_dir / "fixtures" / "dependents.json"
-    relevant_cves_source = tests_dir / "fixtures" / "relevant_cves.json"
     baseline_script = tests_dir / "run.sh"
     tagged_port_root = tests_dir / "tagged-port"
 
@@ -105,7 +103,6 @@ def materialize_scratch_repo(
         "original harness script": original_script,
         "safe debian control": safe_control,
         "dependents fixture": dependents_source,
-        "relevant CVEs fixture": relevant_cves_source,
         "tagged-port root": tagged_port_root,
     }
     for label, path in required_paths.items():
@@ -125,7 +122,6 @@ def materialize_scratch_repo(
     copy_file(original_script, repo_root / "test-original.sh")
     copy_file(safe_control, repo_root / "safe" / "debian" / "control")
     copy_file(dependents_source, repo_root / "dependents.json")
-    copy_file(relevant_cves_source, repo_root / "relevant_cves.json")
     if baseline_script.exists():
         copy_file(baseline_script, repo_root / "tests" / "run.sh")
     (repo_root / ".validator").mkdir(parents=True, exist_ok=True)
@@ -149,7 +145,6 @@ def materialize_scratch_repo(
         repo_root=repo_root,
         harness_script=harness_script,
         dependents_path=repo_root / "dependents.json",
-        relevant_cves_path=repo_root / "relevant_cves.json",
         downstream_dir=downstream_dir,
         safe_deb_dir=staged_safe_deb_dir,
         artifact_root=artifact_root,
