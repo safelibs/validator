@@ -1,14 +1,28 @@
 from __future__ import annotations
 
+import atexit
 import json
 import os
 import re
 import shlex
 import shutil
 import subprocess
+import sys
 from fnmatch import fnmatch
 from pathlib import Path, PurePosixPath
 from typing import Any, Iterable
+
+sys.dont_write_bytecode = True
+
+
+def _cleanup_python_bytecode_caches() -> None:
+    repo_root = Path(__file__).resolve().parents[1]
+    for cache_dir in (Path(__file__).resolve().parent / "__pycache__", repo_root / "unit" / "__pycache__"):
+        if cache_dir.exists():
+            shutil.rmtree(cache_dir, ignore_errors=True)
+
+
+atexit.register(_cleanup_python_bytecode_caches)
 
 
 class ValidatorError(RuntimeError):
