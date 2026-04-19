@@ -12,7 +12,8 @@ from typing import Any
 if __package__ in {None, ""}:
     sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
-from tools import ValidatorError, ensure_parent, write_json
+from tools import ValidatorError, ensure_parent, select_libraries, write_json
+from tools.inventory import load_manifest
 from tools import proof as proof_tools
 
 
@@ -224,6 +225,60 @@ def _filter_results_for_proof(
             f"expected {sorted(expected_keys)}, found {sorted(actual_keys)}"
         )
     return sorted(filtered, key=result_sort_key)
+
+
+def _excluded_note_map(proof_data: dict[str, Any]) -> dict[str, str]:
+    excluded = proof_data.get("excluded_libraries")
+    if not isinstance(excluded, list):
+        raise ValidatorError("proof excluded_libraries must be a list")
+    note_map: dict[str, str] = {}
+    for entry in excluded:
+        if not isinstance(entry, dict) or set(entry) != {"library", "note"}:
+            raise ValidatorError(f"malformed excluded library entry: {entry!r}")
+        library = entry["library"]
+        note = entry["note"]
+        if not isinstance(library, str) or not library:
+            raise ValidatorError(f"malformed excluded library entry: {entry!r}")
+        if not isinstance(note, str) or not note.strip():
+            raise ValidatorError(f"excluded library note must be non-empty: {entry!r}")
+        if library in note_map:
+            raise ValidatorError(f"duplicate excluded library entry: {library}")
+        note_map[library] = note
+    return note_map
+
+
+def validate_v2_site_inputs(
+    *,
+    proof_data: dict[str, Any],
+    config_path: Path | None,
+    tests_root: Path,
+    artifact_root: Path,
+) -> None:
+    if proof_data.get("proof_version") != 2:
+        return
+    if config_path is None:
+        raise ValidatorError("--config is required when rendering proof v2 site data")
+
+    manifest = load_manifest(config_path)
+    included = proof_data.get("included_libraries")
+    if not isinstance(included, list) or not all(isinstance(item, str) for item in included):
+        raise ValidatorError("proof included_libraries must be a list of strings")
+    excluded = _excluded_note_map(proof_data)
+    selected_set = set(included) | set(excluded)
+    selected = select_libraries(manifest, selected_set)
+    selected_libraries = [str(entry["name"]) for entry in selected]
+    if set(selected_libraries) != selected_set:
+        raise ValidatorError("proof selected library set does not match manifest")
+
+    expected_proof = proof_tools.build_proof(
+        manifest,
+        artifact_root=artifact_root,
+        tests_root=tests_root,
+        libraries=selected_libraries,
+        excluded_libraries=excluded,
+    )
+    if expected_proof != proof_data:
+        raise ValidatorError("proof manifest does not match rebuilt v2 proof")
 
 
 def render_index(site_rows: list[dict[str, Any]], proof_data: dict[str, Any] | None = None) -> str:
@@ -502,6 +557,8 @@ def build_site_rows(results: list[dict[str, Any]], *, output_root: Path, artifac
 
 def build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser()
+    parser.add_argument("--config", type=Path)
+    parser.add_argument("--tests-root", type=Path, default=Path(__file__).resolve().parents[1] / "tests")
     parser.add_argument("--results-root", required=True, type=Path)
     parser.add_argument("--artifacts-root", required=True, type=Path)
     parser.add_argument("--output-root", required=True, type=Path)
@@ -518,6 +575,12 @@ def main(argv: list[str] | None = None) -> int:
             args.proof_path,
             artifacts_root=args.artifacts_root,
             output_root=args.output_root,
+        )
+        validate_v2_site_inputs(
+            proof_data=json.loads(args.proof_path.read_text()),
+            config_path=args.config,
+            tests_root=args.tests_root,
+            artifact_root=args.artifacts_root,
         )
         results = _filter_results_for_proof(results, proof_data=proof_data)
     site_rows = build_site_rows(results, output_root=args.output_root, artifacts_root=args.artifacts_root)

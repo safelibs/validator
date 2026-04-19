@@ -20,7 +20,7 @@ proof:
 	$(PYTHON) tools/verify_proof_artifacts.py --config $(CONFIG) --tests-root $(TESTS_ROOT) --artifact-root $(ARTIFACT_ROOT) --proof-output $(PROOF_OUTPUT) $(if $(LIBRARY),--library $(LIBRARY),) $(if $(RECORD_CASTS),--record-casts,)
 
 site:
-	$(PYTHON) tools/render_site.py --results-root $(ARTIFACT_ROOT)/results --artifacts-root $(ARTIFACT_ROOT) --proof-path $(ARTIFACT_ROOT)/$(PROOF_OUTPUT) --output-root $(SITE_ROOT)
+	$(PYTHON) tools/render_site.py --config $(CONFIG) --tests-root $(TESTS_ROOT) --results-root $(ARTIFACT_ROOT)/results --artifacts-root $(ARTIFACT_ROOT) --proof-path $(ARTIFACT_ROOT)/$(PROOF_OUTPUT) --output-root $(SITE_ROOT)
 
 verify-site:
 	bash scripts/verify-site.sh --config $(CONFIG) --results-root $(ARTIFACT_ROOT)/results --artifacts-root $(ARTIFACT_ROOT) --proof-path $(ARTIFACT_ROOT)/$(PROOF_OUTPUT) --tests-root $(TESTS_ROOT) --site-root $(SITE_ROOT)

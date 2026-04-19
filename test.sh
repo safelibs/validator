@@ -23,10 +23,10 @@ done
 
 default_args=()
 if [[ $has_config -eq 0 ]]; then
-  default_args+=(--config "$repo_root/unit/fixtures/original-only-manifest.yml")
-  if [[ $has_tests_root -eq 0 ]]; then
-    default_args+=(--tests-root "$repo_root/unit/fixtures/original-only-tests")
-  fi
+  default_args+=(--config "$repo_root/repositories.yml")
+fi
+if [[ $has_tests_root -eq 0 ]]; then
+  default_args+=(--tests-root "$repo_root/tests")
 fi
 if [[ $has_artifact_root -eq 0 ]]; then
   default_args+=(--artifact-root "${VALIDATOR_ARTIFACT_ROOT:-/tmp/validator-test-artifacts}")

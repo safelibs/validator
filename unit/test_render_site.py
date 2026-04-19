@@ -546,6 +546,7 @@ class RenderSiteTests(unittest.TestCase):
             },
         )
         proof_path = self.artifacts_root / "proof" / "validator-proof.json"
+        manifest_path = self.write_manifest(["cjson"])
         write_json(
             proof_path,
             proof.build_proof(
@@ -558,6 +559,10 @@ class RenderSiteTests(unittest.TestCase):
         site_root = self.root / "site"
         render_site.main(
             [
+                "--config",
+                str(manifest_path),
+                "--tests-root",
+                str(tests_root),
                 "--results-root",
                 str(self.results_root),
                 "--artifacts-root",
@@ -570,7 +575,7 @@ class RenderSiteTests(unittest.TestCase):
         )
 
         completed = self.run_verify_site(
-            manifest_path=self.write_manifest(["cjson"]),
+            manifest_path=manifest_path,
             proof_path=proof_path,
             tests_root=tests_root,
             site_root=site_root,
@@ -580,6 +585,28 @@ class RenderSiteTests(unittest.TestCase):
         site_data = json.loads((site_root / "site-data.json").read_text())
         self.assertEqual(site_data["proof"]["proof_version"], 2)
         self.assertIn('data-proof-total="cases"', (site_root / "index.html").read_text())
+
+        result_path = self.artifacts_root / "results" / "cjson" / "source-v2-proof-case.json"
+        tampered = json.loads(result_path.read_text())
+        tampered["apt_packages"] = ["not-canonical"]
+        write_json(result_path, tampered)
+        with self.assertRaisesRegex(ValidatorError, "apt_packages mismatch"):
+            render_site.main(
+                [
+                    "--config",
+                    str(manifest_path),
+                    "--tests-root",
+                    str(tests_root),
+                    "--results-root",
+                    str(self.results_root),
+                    "--artifacts-root",
+                    str(self.artifacts_root),
+                    "--proof-path",
+                    str(proof_path),
+                    "--output-root",
+                    str(self.root / "tampered-site"),
+                ]
+            )
 
     def test_render_site_includes_proof_data_and_hosted_exclusions(self) -> None:
         _, proof_path, site_root = self.render_with_proof(
