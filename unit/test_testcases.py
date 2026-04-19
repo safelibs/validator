@@ -65,11 +65,15 @@ class TestcaseManifestTests(unittest.TestCase):
                 testcases.load_manifests(config, tests_root=root)
 
     def test_rejects_invalid_case_ids_and_unsafe_commands(self) -> None:
+        repo_root = Path(__file__).resolve().parents[1]
         cases = [
             ({"id": "BadID"}, "testcase id"),
             ({"command": ["bash", "/validator/tests/other/tests/run.sh"]}, "must stay under"),
             ({"command": ["bash", "../run.sh"]}, "path segments"),
             ({"command": ["bash", ".."]}, "path segments"),
+            ({"command": ["bash", "-lc", "exec /validator/tests/other/tests/run.sh"]}, "must stay under"),
+            ({"command": ["bash", "-lc", "cd ../other && true"]}, "path segments"),
+            ({"command": ["bash", "-lc", f"printf x >{repo_root / 'out'}"]}, "repository-host"),
             ({"command": ["relative/script.sh"]}, "first element"),
         ]
 

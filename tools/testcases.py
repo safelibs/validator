@@ -40,6 +40,8 @@ DEPENDENT_LIST_KEYS = (
     "packages",
     "selected_applications",
 )
+COMMAND_PATH_TOKEN_SEPARATORS_RE = re.compile(r"""[\s'"`;$|&(){}\[\]<>,]+""")
+VALIDATOR_PATH_RE = re.compile(r"""/validator(?:/[^\s'"`;$|&(){}\[\]<>,]*)?""")
 
 
 @dataclass(frozen=True)
@@ -107,25 +109,34 @@ def _has_path_segment(value: str, segment: str) -> bool:
     return segment in PurePosixPath(value).parts
 
 
+def _iter_command_path_candidates(value: str) -> list[str]:
+    candidates: list[str] = []
+    for token in COMMAND_PATH_TOKEN_SEPARATORS_RE.split(value):
+        if not token:
+            continue
+        candidates.extend(part for part in token.split("=") if part)
+    candidates.extend(match.group(0) for match in VALIDATOR_PATH_RE.finditer(value))
+    return candidates
+
+
 def _validate_command_element(value: str, *, path: Path, library: str) -> None:
     if "\0" in value:
         raise ValidatorError(f"command entries must not contain NUL bytes in {path}")
     if "\\" in value:
         raise ValidatorError(f"command entries must not contain backslashes in {path}: {value!r}")
-    if _has_path_segment(value, ".."):
-        raise ValidatorError(f"command entries must not contain '..' path segments in {path}: {value!r}")
 
     repo_root = Path(__file__).resolve().parents[1]
-    try:
-        candidate = Path(value)
-        if candidate.is_absolute() and str(candidate).startswith(str(repo_root.resolve(strict=False))):
-            raise ValidatorError(f"command entries must not use repository-host absolute paths in {path}: {value!r}")
-    except OSError:
-        pass
+    repo_root_text = str(repo_root.resolve(strict=False))
 
-    if value == "/validator" or value.startswith("/validator/"):
-        allowed_prefix = f"/validator/tests/{library}/"
-        if not value.startswith(allowed_prefix):
+    for candidate in _iter_command_path_candidates(value):
+        if _has_path_segment(candidate, ".."):
+            raise ValidatorError(f"command entries must not contain '..' path segments in {path}: {value!r}")
+        if repo_root_text in candidate:
+            raise ValidatorError(f"command entries must not use repository-host absolute paths in {path}: {value!r}")
+        if candidate == "/validator" or candidate.startswith("/validator/"):
+            allowed_prefix = f"/validator/tests/{library}/"
+            if candidate.startswith(allowed_prefix):
+                continue
             raise ValidatorError(
                 f"/validator command paths must stay under /validator/tests/{library}/ in {path}: {value!r}"
             )
