@@ -240,15 +240,22 @@ def stream_process_with_cast(
         deadline = started + float(timeout_seconds) if timeout_seconds is not None else None
         decoder = codecs.getincrementaldecoder("utf-8")("replace")
         timed_out = False
-        cast_chunks: list[str] = []
+        wrote_cast_event = False
 
         def write_output(text: str) -> None:
+            nonlocal wrote_cast_event
             text = normalize_log_text(text, log_replacements)
             log_handle.write(text)
-            cast_chunks.append(text)
+            timestamp = max(0.0, time.monotonic() - started)
+            cast_handle.write(json.dumps([timestamp, "o", text]) + "\n")
+            wrote_cast_event = True
 
-        def write_cast_transcript() -> None:
-            cast_handle.write(json.dumps([0.0, "o", "".join(cast_chunks)]) + "\n")
+        def ensure_cast_has_event() -> None:
+            nonlocal wrote_cast_event
+            if wrote_cast_event:
+                return
+            cast_handle.write(json.dumps([max(0.0, time.monotonic() - started), "o", ""]) + "\n")
+            wrote_cast_event = True
 
         try:
             try:
@@ -264,7 +271,6 @@ def stream_process_with_cast(
             except OSError as exc:
                 message = f"{type(exc).__name__}: {exc}\n"
                 write_output(message)
-                write_cast_transcript()
                 log_handle.flush()
                 cast_handle.flush()
                 return RunOutcome(127)
@@ -319,7 +325,7 @@ def stream_process_with_cast(
                     tail = decoder.decode(b"", final=True)
                     if tail:
                         write_output(tail)
-                    write_cast_transcript()
+                    ensure_cast_has_event()
                     log_handle.flush()
                     cast_handle.flush()
                     return RunOutcome(124 if timed_out else int(process.returncode or 0), timed_out=timed_out)

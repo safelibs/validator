@@ -801,10 +801,24 @@ PLAYER_JS = r"""
       this.startedAt = 0;
       this.offset = 0;
 
-      this.playButton?.addEventListener("click", () => this.play());
+      this.playButton?.addEventListener("click", () => this.run(() => this.play()));
       this.pauseButton?.addEventListener("click", () => this.pause());
-      this.restartButton?.addEventListener("click", () => this.restart());
+      this.restartButton?.addEventListener("click", () => this.run(() => this.restart()));
       this.scrub?.addEventListener("input", () => this.seekFromScrub());
+    }
+
+    showError(error) {
+      const message = error instanceof Error ? error.message : String(error);
+      this.terminal.textContent = `${message}\n`;
+    }
+
+    async run(action) {
+      try {
+        await action();
+      } catch (error) {
+        this.pause();
+        this.showError(error);
+      }
     }
 
     async load() {
@@ -906,26 +920,29 @@ PLAYER_JS = r"""
       this.offset = 0;
       this.terminal.textContent = "";
       this.updateScrub();
-      this.play();
+      await this.play();
     }
   }
+
+  function playerForRow(row) {
+    const playerRoot = row?.querySelector("[data-player]");
+    const castHref = row?.dataset.playerCast;
+    if (!row || !playerRoot || !castHref) return null;
+    if (!playerRoot.castPlayer || playerRoot.castPlayer.castHref !== castHref) {
+      playerRoot.castPlayer = new CastPlayer(playerRoot, castHref);
+    }
+    return playerRoot.castPlayer;
+  }
+
+  rows.forEach((row) => playerForRow(row));
 
   document.querySelectorAll(".js-load-cast").forEach((button) => {
     button.addEventListener("click", async () => {
       const row = button.closest(".case-row");
-      const playerRoot = row?.querySelector("[data-player]");
-      const castHref = button.dataset.cast;
-      if (!row || !playerRoot || !castHref) return;
+      const player = playerForRow(row);
+      if (!row || !player) return;
       row.open = true;
-      if (!playerRoot.castPlayer) {
-        playerRoot.castPlayer = new CastPlayer(playerRoot, castHref);
-      }
-      try {
-        await playerRoot.castPlayer.restart();
-      } catch (error) {
-        const terminal = playerRoot.querySelector(".terminal");
-        if (terminal) terminal.textContent = `${error.message}\n`;
-      }
+      await player.run(() => player.restart());
     });
   });
 })();

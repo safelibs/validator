@@ -3,6 +3,7 @@ from __future__ import annotations
 import json
 import shutil
 import subprocess
+import sys
 import tempfile
 import unittest
 from pathlib import Path
@@ -224,6 +225,37 @@ class RunMatrixTests(unittest.TestCase):
 
         self.assertTrue(outcome.timed_out)
         self.assertEqual(outcome.exit_code, 124)
+
+    def test_cast_recording_preserves_stream_timing(self) -> None:
+        root = self.run_root()
+        log_path = root / "timed.log"
+        cast_path = root / "timed.cast"
+
+        script = (
+            "import sys, time; "
+            "sys.stdout.write('first\\n'); sys.stdout.flush(); "
+            "time.sleep(0.25); "
+            "sys.stdout.write('second\\n'); sys.stdout.flush()"
+        )
+        outcome = run_matrix.run_logged(
+            [sys.executable, "-c", script],
+            log_path=log_path,
+            cast_path=cast_path,
+            timeout_seconds=5,
+        )
+
+        self.assertEqual(outcome.exit_code, 0)
+        lines = cast_path.read_text().splitlines()
+        self.assertEqual(json.loads(lines[0])["version"], 2)
+        events = [json.loads(line) for line in lines[1:]]
+        self.assertGreaterEqual(len(events), 2)
+        self.assertTrue(all(event[1] == "o" for event in events))
+        self.assertIn("first", "".join(event[2] for event in events))
+        self.assertIn("second", "".join(event[2] for event in events))
+
+        timestamps = [float(event[0]) for event in events]
+        self.assertEqual(timestamps, sorted(timestamps))
+        self.assertGreater(timestamps[-1], timestamps[0] + 0.1)
 
     def test_cleanup_library_images_removes_cached_tags(self) -> None:
         states = {
