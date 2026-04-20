@@ -1,5 +1,16 @@
 $ docker run --rm -t --mount type=bind,src=/tmp/validator-status-libwebp-usage-ffmpeg-webp-decode,dst=/validator/status validator-libwebp-shared bash -lc 'set -euo pipefail
 /validator/tests/_shared/install_override_debs.sh
-exec /validator/tests/_shared/run_library_tests.sh "$@"' validator-testcase libwebp usage-ffmpeg-webp-decode -- bash /validator/tests/libwebp/tests/cases/usage/usage-ffmpeg-webp-decode.sh
+exec /validator/tests/_shared/run_library_tests.sh "$@"' validator-testcase libwebp usage-ffmpeg-webp-decode -- bash -x /validator/tests/libwebp/tests/cases/usage/usage-ffmpeg-webp-decode.sh
 no override packages found; continuing with apt originals
++ set -euo pipefail
++ source /validator/tests/_shared/runtime_helpers.sh
+++ set -euo pipefail
+++ mktemp -d
++ tmpdir=/tmp/validator-tmp
++ trap 'rm -rf "$tmpdir"' EXIT
++ python3 - /tmp/validator-tmp/in.ppm
++ cwebp -quiet /tmp/validator-tmp/in.ppm -o /tmp/validator-tmp/in.webp
++ ffmpeg -hide_banner -loglevel error -i /tmp/validator-tmp/in.webp /tmp/validator-tmp/out.png
++ file /tmp/validator-tmp/out.png
 /tmp/validator-tmp/out.png: PNG image data, 4 x 3, 8-bit/color RGB, non-interlaced
++ rm -rf /tmp/validator-tmp

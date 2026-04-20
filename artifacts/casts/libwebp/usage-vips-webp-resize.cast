@@ -1,3 +1,10 @@
 {"version": 2, "width": 120, "height": 40, "timestamp": 0, "env": {"TERM": "xterm-256color", "SHELL": "/bin/bash"}}
-[0.11524104501586407, "o", "no override packages found; continuing with apt originals\r\r\n"]
-[0.17138021998107433, "o", "/tmp/validator-tmp/out.png: 2x2 uchar, 3 bands, srgb, pngload\r\r\n"]
+[0.10804595705121756, "o", "no override packages found; continuing with apt originals\r\r\n"]
+[0.10954451898578554, "o", "+ set -euo pipefail\r\r\n+ source /validator/tests/_shared/runtime_helpers.sh\r\r\n++ set -euo pipefail\r\r\n"]
+[0.10971344204153866, "o", "++ mktemp -d\r\r\n"]
+[0.11090704496018589, "o", "+ tmpdir=/tmp/validator-tmp\r\r\n+ trap 'rm -rf \"$tmpdir\"' EXIT\r\r\n+ python3 - /tmp/validator-tmp/in.ppm\r\r\n"]
+[0.11827661702409387, "o", "+ cwebp -quiet /tmp/validator-tmp/in.ppm -o /tmp/validator-tmp/in.webp\r\r\n"]
+[0.12013911304529756, "o", "+ vips resize /tmp/validator-tmp/in.webp /tmp/validator-tmp/out.png 0.5\r\r\n"]
+[0.14363272697664797, "o", "+ vipsheader /tmp/validator-tmp/out.png\r\r\n"]
+[0.16309309098869562, "o", "/tmp/validator-tmp/out.png: 2x2 uchar, 3 bands, srgb, pngload\r\r\n"]
+[0.1642276239581406, "o", "+ rm -rf /tmp/validator-tmp\r\r\n"]

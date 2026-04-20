@@ -1,3 +1,4 @@
 {"version": 2, "width": 120, "height": 40, "timestamp": 0, "env": {"TERM": "xterm-256color", "SHELL": "/bin/bash"}}
-[0.12091125303413719, "o", "no override packages found; continuing with apt originals\r\r\n"]
-[0.15220806805882603, "o", "entries alpha.txt,beta.txt\r\r\n"]
+[0.1059058828977868, "o", "no override packages found; continuing with apt originals\r\r\n"]
+[0.10767094790935516, "o", "+ set -euo pipefail\r\r\n+ /validator/tests/libarchive/tests/cases/usage/usage-python-libarchive-c-common.sh tar-list\r\r\n"]
+[0.1367993599269539, "o", "entries alpha.txt,beta.txt\r\r\n"]

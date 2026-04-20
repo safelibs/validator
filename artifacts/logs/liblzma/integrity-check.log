@@ -1,7 +1,18 @@
 $ docker run --rm -t --mount type=bind,src=/tmp/validator-status-liblzma-integrity-check,dst=/validator/status validator-liblzma-shared bash -lc 'set -euo pipefail
 /validator/tests/_shared/install_override_debs.sh
-exec /validator/tests/_shared/run_library_tests.sh "$@"' validator-testcase liblzma integrity-check -- bash /validator/tests/liblzma/tests/cases/source/integrity-check.sh
+exec /validator/tests/_shared/run_library_tests.sh "$@"' validator-testcase liblzma integrity-check -- bash -x /validator/tests/liblzma/tests/cases/source/integrity-check.sh
 no override packages found; continuing with apt originals
++ set -euo pipefail
++ source /validator/tests/_shared/runtime_helpers.sh
+++ set -euo pipefail
+++ mktemp -d
++ tmpdir=/tmp/validator-tmp
++ trap 'rm -rf "$tmpdir"' EXIT
++ printf 'integrity\n'
++ xz --check=crc64 -c /tmp/validator-tmp/plain
++ xz --test /tmp/validator-tmp/a.xz
++ xz --list --verbose /tmp/validator-tmp/a.xz
++ tee /tmp/validator-tmp/list
 /tmp/validator-tmp/a.xz (1/1)
   Streams:           1
   Blocks:            1
@@ -16,6 +27,8 @@ no override packages found; continuing with apt originals
   Blocks:
     Stream     Block      CompOffset    UncompOffset       TotalSize      UncompSize  Ratio  Check
          1         1              12               0              36              10  3.600  CRC64
++ grep -i CRC64 /tmp/validator-tmp/list
   Check:             CRC64
          1         1               0               0              68              10  6.800  CRC64            0
          1         1              12               0              36              10  3.600  CRC64
++ rm -rf /tmp/validator-tmp

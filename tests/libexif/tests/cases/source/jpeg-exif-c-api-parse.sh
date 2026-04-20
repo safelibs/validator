@@ -5,7 +5,7 @@ source /validator/tests/_shared/runtime_helpers.sh
 tmpdir=$(mktemp -d)
 trap 'rm -rf "$tmpdir"' EXIT
 
-img="$VALIDATOR_SOURCE_ROOT/test/testdata/canon_makernote_variant_1.jpg"; validator_require_file "$img"
+img="$VALIDATOR_SAMPLE_ROOT/test/testdata/canon_makernote_variant_1.jpg"; validator_require_file "$img"
 cat >"$tmpdir/t.c" <<'C'
 #include <libexif/exif-data.h>
 #include <stdio.h>

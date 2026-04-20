@@ -1,7 +1,20 @@
 $ docker run --rm -t --mount type=bind,src=/tmp/validator-status-libbz2-corrupted-stream-rejection,dst=/validator/status validator-libbz2-shared bash -lc 'set -euo pipefail
 /validator/tests/_shared/install_override_debs.sh
-exec /validator/tests/_shared/run_library_tests.sh "$@"' validator-testcase libbz2 corrupted-stream-rejection -- bash /validator/tests/libbz2/tests/cases/source/corrupted-stream-rejection.sh
+exec /validator/tests/_shared/run_library_tests.sh "$@"' validator-testcase libbz2 corrupted-stream-rejection -- bash -x /validator/tests/libbz2/tests/cases/source/corrupted-stream-rejection.sh
 no override packages found; continuing with apt originals
++ set -euo pipefail
++ source /validator/tests/_shared/runtime_helpers.sh
+++ set -euo pipefail
+++ mktemp -d
++ tmpdir=/tmp/validator-tmp
++ trap 'rm -rf "$tmpdir"' EXIT
++ printf 'payload\n'
++ bzip2 -c /tmp/validator-tmp/plain
++ cp /tmp/validator-tmp/plain.bz2 /tmp/validator-tmp/bad.bz2
++ printf '\000'
++ dd of=/tmp/validator-tmp/bad.bz2 bs=1 seek=10 conv=notrunc status=none
++ bunzip2 -c /tmp/validator-tmp/bad.bz2
++ cat /tmp/validator-tmp/log
 
 bunzip2: Data integrity error when decompressing.
 	Input file = /tmp/validator-tmp/bad.bz2, output file = (stdout)
@@ -12,3 +25,4 @@ You can use the -tvv option to test integrity of such files.
 You can use the `bzip2recover' program to attempt to recover
 data from undamaged sections of corrupted files.
 
++ rm -rf /tmp/validator-tmp

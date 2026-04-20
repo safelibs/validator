@@ -1,3 +1,6 @@
 {"version": 2, "width": 120, "height": 40, "timestamp": 0, "env": {"TERM": "xterm-256color", "SHELL": "/bin/bash"}}
-[0.11512202001176775, "o", "no override packages found; continuing with apt originals\r\r\n"]
-[0.1756307949544862, "o", "child-ok\r\r\n"]
+[0.0978615009225905, "o", "no override packages found; continuing with apt originals\r\r\n"]
+[0.09964297094848007, "o", "+ set -euo pipefail\r\r\n+ source /validator/tests/_shared/runtime_helpers.sh\r\r\n++ set -euo pipefail\r\r\n++ mktemp -d\r\r\n"]
+[0.10100496793165803, "o", "+ tmpdir=/tmp/validator-tmp\r\r\n+ trap 'rm -rf \"$tmpdir\"' EXIT\r\r\n+ node -e 'require('\\''child_process'\\'').execFile('\\''/bin/echo'\\'',['\\''child-ok'\\''],(e,out)=>{if(e)throw e; console.log(out.trim());});' /tmp/validator-tmp/node.txt\r\r\n"]
+[0.1594555809861049, "o", "child-ok\r\r\n"]
+[0.16120668593794107, "o", "+ rm -rf /tmp/validator-tmp\r\r\n"]

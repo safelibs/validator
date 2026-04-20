@@ -1,10 +1,27 @@
 $ docker run --rm -t --mount type=bind,src=/tmp/validator-status-libarchive-bsdcpio-copy-roundtrip,dst=/validator/status validator-libarchive-shared bash -lc 'set -euo pipefail
 /validator/tests/_shared/install_override_debs.sh
-exec /validator/tests/_shared/run_library_tests.sh "$@"' validator-testcase libarchive bsdcpio-copy-roundtrip -- bash /validator/tests/libarchive/tests/cases/source/bsdcpio-copy-roundtrip.sh
+exec /validator/tests/_shared/run_library_tests.sh "$@"' validator-testcase libarchive bsdcpio-copy-roundtrip -- bash -x /validator/tests/libarchive/tests/cases/source/bsdcpio-copy-roundtrip.sh
 no override packages found; continuing with apt originals
++ set -euo pipefail
++ source /validator/tests/_shared/runtime_helpers.sh
+++ set -euo pipefail
+++ mktemp -d
++ tmpdir=/tmp/validator-tmp
++ trap 'rm -rf "$tmpdir"' EXIT
++ mkdir -p /tmp/validator-tmp/in/sub /tmp/validator-tmp/out
++ printf 'cpio payload\n'
++ cd /tmp/validator-tmp/in
++ find . -print
++ sort
++ bsdcpio -o -H newc
 1 block
++ cd /tmp/validator-tmp/out
++ bsdcpio -id
 1 block
++ cmp /tmp/validator-tmp/in/sub/payload.txt /tmp/validator-tmp/out/sub/payload.txt
++ bsdcpio -it
 .
 ./sub
 ./sub/payload.txt
 1 block
++ rm -rf /tmp/validator-tmp

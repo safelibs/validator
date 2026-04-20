@@ -1,3 +1,7 @@
 {"version": 2, "width": 120, "height": 40, "timestamp": 0, "env": {"TERM": "xterm-256color", "SHELL": "/bin/bash"}}
-[0.10817513498477638, "o", "no override packages found; continuing with apt originals\r\r\n"]
-[0.12119555601384491, "o", "3cf2d09da453bbdd6b68d8a1acd5f15ba23ba46d4ff087592b3d319432500a50\r\r\n"]
+[0.11415494198445231, "o", "no override packages found; continuing with apt originals\r\r\n"]
+[0.11593490198720247, "o", "+ set -euo pipefail\r\r\n+ source /validator/tests/_shared/runtime_helpers.sh\r\r\n++ set -euo pipefail\r\r\n"]
+[0.1162757029524073, "o", "++ mktemp -d\r\r\n"]
+[0.11741268099285662, "o", "+ tmpdir=/tmp/validator-tmp\r\r\n+ trap 'rm -rf \"$tmpdir\"' EXIT\r\r\n+ php -r 'echo sodium_bin2hex(sodium_crypto_generichash('\\''payload'\\'')), PHP_EOL;'\r\r\n"]
+[0.12702374602667987, "o", "3cf2d09da453bbdd6b68d8a1acd5f15ba23ba46d4ff087592b3d319432500a50\r\r\n"]
+[0.1281015300191939, "o", "+ rm -rf /tmp/validator-tmp\r\r\n"]

@@ -1,4 +1,8 @@
 {"version": 2, "width": 120, "height": 40, "timestamp": 0, "env": {"TERM": "xterm-256color", "SHELL": "/bin/bash"}}
-[0.11644811497535557, "o", "no override packages found; continuing with apt originals\r\r\n"]
-[0.17456793505698442, "o", "/tmp/validator-tmp/out.png: 290x442 uchar, 3 bands, srgb, pngload\r\r\n"]
-[0.17576764803379774, "o", "/tmp/validator-tmp/out.png: 290x442 uchar, 3 bands, srgb, pngload\r\r\n"]
+[0.1117072730557993, "o", "no override packages found; continuing with apt originals\r\r\n"]
+[0.11346316803246737, "o", "+ set -euo pipefail\r\r\n+ source /validator/tests/_shared/runtime_helpers.sh\r\r\n++ set -euo pipefail\r\r\n++ mktemp -d\r\r\n"]
+[0.11491519003175199, "o", "+ tmpdir=/tmp/validator-tmp\r\r\n+ trap 'rm -rf \"$tmpdir\"' EXIT\r\r\n+ img=/validator/tests/libvips/tests/fixtures/samples/test/test-suite/images/sample.jpg\r\r\n+ validator_require_file /validator/tests/libvips/tests/fixtures/samples/test/test-suite/images/sample.jpg\r\r\n+ local path=/validator/tests/libvips/tests/fixtures/samples/test/test-suite/images/sample.jpg\r\r\n+ [[ -f /validator/tests/libvips/tests/fixtures/samples/test/test-suite/images/sample.jpg ]]\r\r\n+ vips copy /validator/tests/libvips/tests/fixtures/samples/test/test-suite/images/sample.jpg /tmp/validator-tmp/out.png\r\r\n"]
+[0.1510514379478991, "o", "+ vipsheader /tmp/validator-tmp/out.png\r\r\n+ tee /tmp/validator-tmp/h\r\r\n"]
+[0.17102321702986956, "o", "/tmp/validator-tmp/out.png: 290x442 uchar, 3 bands, srgb, pngload\r\r\n"]
+[0.17168261797633022, "o", "+ grep -E '[0-9]+x[0-9]+' /tmp/validator-tmp/h\r\r\n"]
+[0.17232815397437662, "o", "/tmp/validator-tmp/out.png: 290x442 uchar, 3 bands, srgb, pngload\r\r\n+ rm -rf /tmp/validator-tmp\r\r\n"]

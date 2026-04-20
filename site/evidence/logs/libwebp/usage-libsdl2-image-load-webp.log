@@ -1,5 +1,18 @@
 $ docker run --rm -t --mount type=bind,src=/tmp/validator-status-libwebp-usage-libsdl2-image-load-webp,dst=/validator/status validator-libwebp-shared bash -lc 'set -euo pipefail
 /validator/tests/_shared/install_override_debs.sh
-exec /validator/tests/_shared/run_library_tests.sh "$@"' validator-testcase libwebp usage-libsdl2-image-load-webp -- bash /validator/tests/libwebp/tests/cases/usage/usage-libsdl2-image-load-webp.sh
+exec /validator/tests/_shared/run_library_tests.sh "$@"' validator-testcase libwebp usage-libsdl2-image-load-webp -- bash -x /validator/tests/libwebp/tests/cases/usage/usage-libsdl2-image-load-webp.sh
 no override packages found; continuing with apt originals
++ set -euo pipefail
++ source /validator/tests/_shared/runtime_helpers.sh
+++ set -euo pipefail
+++ mktemp -d
++ tmpdir=/tmp/validator-tmp
++ trap 'rm -rf "$tmpdir"' EXIT
++ python3 - /tmp/validator-tmp/in.ppm
++ cwebp -quiet /tmp/validator-tmp/in.ppm -o /tmp/validator-tmp/in.webp
++ cat
+++ pkg-config --cflags --libs SDL2_image
++ gcc /tmp/validator-tmp/t.c -o /tmp/validator-tmp/t -I/usr/include/SDL2 -D_REENTRANT -I/usr/include/libpng16 -I/usr/include/x86_64-linux-gnu -I/usr/include/webp -lSDL2_image -lSDL2
++ /tmp/validator-tmp/t /tmp/validator-tmp/in.webp
 surface=4x3
++ rm -rf /tmp/validator-tmp

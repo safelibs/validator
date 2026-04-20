@@ -1,3 +1,8 @@
 {"version": 2, "width": 120, "height": 40, "timestamp": 0, "env": {"TERM": "xterm-256color", "SHELL": "/bin/bash"}}
-[0.112740584067069, "o", "no override packages found; continuing with apt originals\r\r\n"]
-[0.13987851003184915, "o", "jpeg-size=727\r\r\n"]
+[0.1099962800508365, "o", "no override packages found; continuing with apt originals\r\r\n"]
+[0.11175877403002232, "o", "+ set -euo pipefail\r\r\n+ source /validator/tests/_shared/runtime_helpers.sh\r\r\n++ set -euo pipefail\r\r\n"]
+[0.1121688800631091, "o", "++ mktemp -d\r\r\n"]
+[0.1133438580436632, "o", "+ tmpdir=/tmp/validator-tmp\r\r\n+ trap 'rm -rf \"$tmpdir\"' EXIT\r\r\n+ cat\r\r\n"]
+[0.11384334100876004, "o", "+ gcc /tmp/validator-tmp/t.c -o /tmp/validator-tmp/t -lturbojpeg\r\r\n"]
+[0.1359144530724734, "o", "+ /tmp/validator-tmp/t\r\r\n"]
+[0.13598623499274254, "o", "jpeg-size=727\r\r\n+ rm -rf /tmp/validator-tmp\r\r\n"]

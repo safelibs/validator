@@ -1,3 +1,6 @@
 {"version": 2, "width": 120, "height": 40, "timestamp": 0, "env": {"TERM": "xterm-256color", "SHELL": "/bin/bash"}}
-[0.11535023991018534, "o", "no override packages found; continuing with apt originals\r\r\n"]
-[0.1200786039698869, "o", "zstd: /tmp/validator-tmp/bad.zst: unsupported format \r\r\n"]
+[0.10804988804738969, "o", "no override packages found; continuing with apt originals\r\r\n"]
+[0.10978698206599802, "o", "+ set -euo pipefail\r\r\n+ source /validator/tests/_shared/runtime_helpers.sh\r\r\n++ set -euo pipefail\r\r\n"]
+[0.11010948207695037, "o", "++ mktemp -d\r\r\n"]
+[0.11125347309280187, "o", "+ tmpdir=/tmp/validator-tmp\r\r\n+ trap 'rm -rf \"$tmpdir\"' EXIT\r\r\n+ printf 'not a zstd frame\\n'\r\r\n+ zstd -t /tmp/validator-tmp/bad.zst\r\r\n"]
+[0.1124706610571593, "o", "+ cat /tmp/validator-tmp/log\r\r\nzstd: /tmp/validator-tmp/bad.zst: unsupported format \r\r\n+ rm -rf /tmp/validator-tmp\r\r\n"]

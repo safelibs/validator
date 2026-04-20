@@ -1,3 +1,6 @@
 {"version": 2, "width": 120, "height": 40, "timestamp": 0, "env": {"TERM": "xterm-256color", "SHELL": "/bin/bash"}}
-[0.11585180903784931, "o", "no override packages found; continuing with apt originals\r\r\n"]
-[0.12099231802858412, "o", "P6\r\r\n32 32\r\r\n"]
+[0.09498918696772307, "o", "no override packages found; continuing with apt originals\r\r\n"]
+[0.0966562710236758, "o", "+ set -euo pipefail\r\r\n+ source /validator/tests/_shared/runtime_helpers.sh\r\r\n++ set -euo pipefail\r\r\n++ mktemp -d\r\r\n"]
+[0.09759021503850818, "o", "+ tmpdir=/tmp/validator-tmp\r\r\n+ trap 'rm -rf \"$tmpdir\"' EXIT\r\r\n+ png=/validator/tests/libpng/tests/fixtures/samples/contrib/pngsuite/basn2c08.png\r\r\n+ validator_require_file /validator/tests/libpng/tests/fixtures/samples/contrib/pngsuite/basn2c08.png\r\r\n+ local path=/validator/tests/libpng/tests/fixtures/samples/contrib/pngsuite/basn2c08.png\r\r\n+ [[ -f /validator/tests/libpng/tests/fixtures/samples/contrib/pngsuite/basn2c08.png ]]\r\r\n+ pngtopnm /validator/tests/libpng/tests/fixtures/samples/contrib/pngsuite/basn2c08.png\r\r\n"]
+[0.09875009802635759, "o", "+ head -n 2 /tmp/validator-tmp/out.pnm\r\r\n"]
+[0.09931663400493562, "o", "P6\r\r\n32 32\r\r\n+ rm -rf /tmp/validator-tmp\r\r\n"]

@@ -1,7 +1,20 @@
 $ docker run --rm -t --mount type=bind,src=/tmp/validator-status-libtiff-tiffcp-copy,dst=/validator/status validator-libtiff-shared bash -lc 'set -euo pipefail
 /validator/tests/_shared/install_override_debs.sh
-exec /validator/tests/_shared/run_library_tests.sh "$@"' validator-testcase libtiff tiffcp-copy -- bash /validator/tests/libtiff/tests/cases/source/tiffcp-copy.sh
+exec /validator/tests/_shared/run_library_tests.sh "$@"' validator-testcase libtiff tiffcp-copy -- bash -x /validator/tests/libtiff/tests/cases/source/tiffcp-copy.sh
 no override packages found; continuing with apt originals
++ set -euo pipefail
++ source /validator/tests/_shared/runtime_helpers.sh
+++ set -euo pipefail
+++ mktemp -d
++ tmpdir=/tmp/validator-tmp
++ trap 'rm -rf "$tmpdir"' EXIT
++ t=/validator/tests/libtiff/tests/fixtures/samples/test/images/rgb-3c-8b.tiff
++ validator_require_file /validator/tests/libtiff/tests/fixtures/samples/test/images/rgb-3c-8b.tiff
++ local path=/validator/tests/libtiff/tests/fixtures/samples/test/images/rgb-3c-8b.tiff
++ [[ -f /validator/tests/libtiff/tests/fixtures/samples/test/images/rgb-3c-8b.tiff ]]
++ tiffcp -c none /validator/tests/libtiff/tests/fixtures/samples/test/images/rgb-3c-8b.tiff /tmp/validator-tmp/copy.tiff
++ tiffinfo /tmp/validator-tmp/copy.tiff
++ tee /tmp/validator-tmp/info
 === TIFF directory 0 ===
 TIFF Directory at offset 0x115da (71130)
   Image Width: 157 Image Length: 151
@@ -17,4 +30,6 @@ TIFF Directory at offset 0x115da (71130)
   DocumentName: rgb-3c-8b.tiff
   Software: GraphicsMagick 1.2 unreleased Q16 http://www.GraphicsMagick.org/
 
++ grep -Ei 'Image Width' /tmp/validator-tmp/info
   Image Width: 157 Image Length: 151
++ rm -rf /tmp/validator-tmp

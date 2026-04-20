@@ -1,3 +1,9 @@
 {"version": 2, "width": 120, "height": 40, "timestamp": 0, "env": {"TERM": "xterm-256color", "SHELL": "/bin/bash"}}
-[0.5854507620679215, "o", "no override packages found; continuing with apt originals\r\r\n"]
-[0.6676137130707502, "o", "udp-ok\r\r\n"]
+[0.11149142100475729, "o", "no override packages found; continuing with apt originals\r\r\n"]
+[0.11318629002198577, "o", "+ set -euo pipefail\r\r\n"]
+[0.11320585198700428, "o", "+ source /validator/tests/_shared/runtime_helpers.sh\r\r\n++ set -euo pipefail\r\r\n"]
+[0.11332130897790194, "o", "++ mktemp -d\r\r\n"]
+[0.11461830500047654, "o", "+ tmpdir=/tmp/validator-tmp\r\r\n+ trap 'rm -rf \"$tmpdir\"' EXIT\r\r\n"]
+[0.11464544001501054, "o", "+ node -e 'const dgram=require('\\''dgram'\\''); const s=dgram.createSocket('\\''udp4'\\''); s.on('\\''message'\\'',m=>{console.log(m.toString()); s.close();}); s.bind(0,'\\''127.0.0.1'\\'',()=>s.send(Buffer.from('\\''udp-ok'\\''),s.address().port,'\\''127.0.0.1'\\''));' /tmp/validator-tmp/node.txt\r\r\n"]
+[0.174812498036772, "o", "udp-ok\r\r\n"]
+[0.1771955150179565, "o", "+ rm -rf /tmp/validator-tmp\r\r\n"]

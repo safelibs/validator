@@ -1,12 +1,34 @@
 $ docker run --rm -t --mount type=bind,src=/tmp/validator-status-libarchive-bsdtar-tar-zip-roundtrip,dst=/validator/status validator-libarchive-shared bash -lc 'set -euo pipefail
 /validator/tests/_shared/install_override_debs.sh
-exec /validator/tests/_shared/run_library_tests.sh "$@"' validator-testcase libarchive bsdtar-tar-zip-roundtrip -- bash /validator/tests/libarchive/tests/cases/source/bsdtar-tar-zip-roundtrip.sh
+exec /validator/tests/_shared/run_library_tests.sh "$@"' validator-testcase libarchive bsdtar-tar-zip-roundtrip -- bash -x /validator/tests/libarchive/tests/cases/source/bsdtar-tar-zip-roundtrip.sh
 no override packages found; continuing with apt originals
++ set -euo pipefail
++ source /validator/tests/_shared/runtime_helpers.sh
+++ set -euo pipefail
+++ mktemp -d
++ tmpdir=/tmp/validator-tmp
++ trap 'rm -rf "$tmpdir"' EXIT
++ mkdir -p /tmp/validator-tmp/in/dir /tmp/validator-tmp/tar /tmp/validator-tmp/zip
++ printf 'alpha\n'
++ printf 'beta\n'
++ bsdtar -cf /tmp/validator-tmp/a.tar -C /tmp/validator-tmp/in .
++ bsdtar --format zip -cf /tmp/validator-tmp/a.zip -C /tmp/validator-tmp/in .
++ bsdtar -tf /tmp/validator-tmp/a.tar
++ LC_ALL=C
++ sort
 ./
 ./b.txt
 ./dir/
 ./dir/a.txt
++ bsdtar -tf /tmp/validator-tmp/a.zip
++ LC_ALL=C
++ sort
 ./
 ./b.txt
 ./dir/
 ./dir/a.txt
++ bsdtar -xf /tmp/validator-tmp/a.tar -C /tmp/validator-tmp/tar
++ bsdtar -xf /tmp/validator-tmp/a.zip -C /tmp/validator-tmp/zip
++ cmp /tmp/validator-tmp/in/dir/a.txt /tmp/validator-tmp/tar/dir/a.txt
++ cmp /tmp/validator-tmp/in/b.txt /tmp/validator-tmp/zip/b.txt
++ rm -rf /tmp/validator-tmp

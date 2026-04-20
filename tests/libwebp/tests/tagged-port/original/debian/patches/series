@@ -1,5 +1,0 @@
-0001-CMakeLists.txt-Install-CMake-Config-to-arch-dep-loca.patch
-install-additional-tools.patch
-Fix-invalid-incremental-decoding-check.patch
-Fix-next-is-invalid-pointer-when-WebPSafeMalloc-fail.patch
-Fix-static-analyzer-warnings.patch

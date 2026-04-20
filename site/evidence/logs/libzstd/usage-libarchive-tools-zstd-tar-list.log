@@ -1,6 +1,23 @@
 $ docker run --rm -t --mount type=bind,src=/tmp/validator-status-libzstd-usage-libarchive-tools-zstd-tar-list,dst=/validator/status validator-libzstd-shared bash -lc 'set -euo pipefail
 /validator/tests/_shared/install_override_debs.sh
-exec /validator/tests/_shared/run_library_tests.sh "$@"' validator-testcase libzstd usage-libarchive-tools-zstd-tar-list -- bash /validator/tests/libzstd/tests/cases/usage/usage-libarchive-tools-zstd-tar-list.sh
+exec /validator/tests/_shared/run_library_tests.sh "$@"' validator-testcase libzstd usage-libarchive-tools-zstd-tar-list -- bash -x /validator/tests/libzstd/tests/cases/usage/usage-libarchive-tools-zstd-tar-list.sh
 no override packages found; continuing with apt originals
++ set -euo pipefail
++ source /validator/tests/_shared/runtime_helpers.sh
+++ set -euo pipefail
+++ mktemp -d
++ tmpdir=/tmp/validator-tmp
++ trap 'rm -rf "$tmpdir"' EXIT
++ mkdir -p /tmp/validator-tmp/in /tmp/validator-tmp/out
++ printf 'tar-list\n'
++ bsdtar --zstd -cf /tmp/validator-tmp/a.tar.zstd -C /tmp/validator-tmp/in .
++ bsdtar -tf /tmp/validator-tmp/a.tar.zstd
++ tee /tmp/validator-tmp/list
 ./
 ./payload.txt
++ bsdtar -xf /tmp/validator-tmp/a.tar.zstd -C /tmp/validator-tmp/out
++ validator_assert_contains /tmp/validator-tmp/out/payload.txt tar-list
++ local path=/tmp/validator-tmp/out/payload.txt
++ local needle=tar-list
++ grep -Fq -- tar-list /tmp/validator-tmp/out/payload.txt
++ rm -rf /tmp/validator-tmp

@@ -1,3 +1,9 @@
 {"version": 2, "width": 120, "height": 40, "timestamp": 0, "env": {"TERM": "xterm-256color", "SHELL": "/bin/bash"}}
-[0.1063232539454475, "o", "no override packages found; continuing with apt originals\r\r\n"]
-[0.1618885229108855, "o", "saved /tmp/validator-tmp/out.webp\r\r\n"]
+[0.11179046495817602, "o", "no override packages found; continuing with apt originals\r\r\n"]
+[0.11343578097876161, "o", "+ set -euo pipefail\r\r\n+ source /validator/tests/_shared/runtime_helpers.sh\r\r\n++ set -euo pipefail\r\r\n"]
+[0.11393174098338932, "o", "++ mktemp -d\r\r\n"]
+[0.1153793620178476, "o", "+ tmpdir=/tmp/validator-tmp\r\r\n+ trap 'rm -rf \"$tmpdir\"' EXIT\r\r\n+ python3 - /tmp/validator-tmp/in.ppm\r\r\n"]
+[0.12297984701581299, "o", "+ cwebp -quiet /tmp/validator-tmp/in.ppm -o /tmp/validator-tmp/in.webp\r\r\n"]
+[0.12484082602895796, "o", "+ python3 - /tmp/validator-tmp/in.webp /tmp/validator-tmp/out.webp\r\r\n"]
+[0.16565130394883454, "o", "saved /tmp/validator-tmp/out.webp\r\r\n"]
+[0.17055481404531747, "o", "+ rm -rf /tmp/validator-tmp\r\r\n"]

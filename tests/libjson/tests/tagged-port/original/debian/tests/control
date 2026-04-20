@@ -1,2 +1,0 @@
-Tests: unit-test
-Depends: @, gcc, libc-dev, cmake

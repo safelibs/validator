@@ -1,6 +1,19 @@
 $ docker run --rm -t --mount type=bind,src=/tmp/validator-status-libarchive-archive-read-api-smoke,dst=/validator/status validator-libarchive-shared bash -lc 'set -euo pipefail
 /validator/tests/_shared/install_override_debs.sh
-exec /validator/tests/_shared/run_library_tests.sh "$@"' validator-testcase libarchive archive-read-api-smoke -- bash /validator/tests/libarchive/tests/cases/source/archive-read-api-smoke.sh
+exec /validator/tests/_shared/run_library_tests.sh "$@"' validator-testcase libarchive archive-read-api-smoke -- bash -x /validator/tests/libarchive/tests/cases/source/archive-read-api-smoke.sh
 no override packages found; continuing with apt originals
++ set -euo pipefail
++ source /validator/tests/_shared/runtime_helpers.sh
+++ set -euo pipefail
+++ mktemp -d
++ tmpdir=/tmp/validator-tmp
++ trap 'rm -rf "$tmpdir"' EXIT
++ mkdir -p /tmp/validator-tmp/in
++ printf 'api\n'
++ bsdtar -cf /tmp/validator-tmp/a.tar -C /tmp/validator-tmp/in .
++ cat
++ gcc /tmp/validator-tmp/t.c -o /tmp/validator-tmp/t -larchive
++ /tmp/validator-tmp/t /tmp/validator-tmp/a.tar
 ./
 ./payload.txt
++ rm -rf /tmp/validator-tmp

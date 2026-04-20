@@ -1,6 +1,23 @@
 $ docker run --rm -t --mount type=bind,src=/tmp/validator-status-libpng-pngfix-fixture-handling,dst=/validator/status validator-libpng-shared bash -lc 'set -euo pipefail
 /validator/tests/_shared/install_override_debs.sh
-exec /validator/tests/_shared/run_library_tests.sh "$@"' validator-testcase libpng pngfix-fixture-handling -- bash /validator/tests/libpng/tests/cases/source/pngfix-fixture-handling.sh
+exec /validator/tests/_shared/run_library_tests.sh "$@"' validator-testcase libpng pngfix-fixture-handling -- bash -x /validator/tests/libpng/tests/cases/source/pngfix-fixture-handling.sh
 no override packages found; continuing with apt originals
-IDAT OK  default 12 12 72 3104 /validator/tests/libpng/tests/tagged-port/original/contrib/pngsuite/basn2c08.png
++ set -euo pipefail
++ source /validator/tests/_shared/runtime_helpers.sh
+++ set -euo pipefail
+++ mktemp -d
++ tmpdir=/tmp/validator-tmp
++ trap 'rm -rf "$tmpdir"' EXIT
++ png=/validator/tests/libpng/tests/fixtures/samples/contrib/pngsuite/basn2c08.png
++ validator_require_file /validator/tests/libpng/tests/fixtures/samples/contrib/pngsuite/basn2c08.png
++ local path=/validator/tests/libpng/tests/fixtures/samples/contrib/pngsuite/basn2c08.png
++ [[ -f /validator/tests/libpng/tests/fixtures/samples/contrib/pngsuite/basn2c08.png ]]
++ tee /tmp/validator-tmp/log
++ pngfix --out=/tmp/validator-tmp/fixed.png /validator/tests/libpng/tests/fixtures/samples/contrib/pngsuite/basn2c08.png
+IDAT OK  default 12 12 72 3104 /validator/tests/libpng/tests/fixtures/samples/contrib/pngsuite/basn2c08.png
++ validator_require_file /tmp/validator-tmp/fixed.png
++ local path=/tmp/validator-tmp/fixed.png
++ [[ -f /tmp/validator-tmp/fixed.png ]]
++ file /tmp/validator-tmp/fixed.png
 /tmp/validator-tmp/fixed.png: PNG image data, 32 x 32, 8-bit/color RGB, non-interlaced
++ rm -rf /tmp/validator-tmp

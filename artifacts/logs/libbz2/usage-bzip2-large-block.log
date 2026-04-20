@@ -1,5 +1,416 @@
 $ docker run --rm -t --mount type=bind,src=/tmp/validator-status-libbz2-usage-bzip2-large-block,dst=/validator/status validator-libbz2-shared bash -lc 'set -euo pipefail
 /validator/tests/_shared/install_override_debs.sh
-exec /validator/tests/_shared/run_library_tests.sh "$@"' validator-testcase libbz2 usage-bzip2-large-block -- bash /validator/tests/libbz2/tests/cases/usage/usage-bzip2-large-block.sh
+exec /validator/tests/_shared/run_library_tests.sh "$@"' validator-testcase libbz2 usage-bzip2-large-block -- bash -x /validator/tests/libbz2/tests/cases/usage/usage-bzip2-large-block.sh
 no override packages found; continuing with apt originals
++ set -euo pipefail
++ source /validator/tests/_shared/runtime_helpers.sh
+++ set -euo pipefail
+++ mktemp -d
++ tmpdir=/tmp/validator-tmp
++ trap 'rm -rf "$tmpdir"' EXIT
+++ seq 1 200
++ for i in $(seq 1 200)
++ printf 'payload %03d\n' 1
++ for i in $(seq 1 200)
++ printf 'payload %03d\n' 2
++ for i in $(seq 1 200)
++ printf 'payload %03d\n' 3
++ for i in $(seq 1 200)
++ printf 'payload %03d\n' 4
++ for i in $(seq 1 200)
++ printf 'payload %03d\n' 5
++ for i in $(seq 1 200)
++ printf 'payload %03d\n' 6
++ for i in $(seq 1 200)
++ printf 'payload %03d\n' 7
++ for i in $(seq 1 200)
++ printf 'payload %03d\n' 8
++ for i in $(seq 1 200)
++ printf 'payload %03d\n' 9
++ for i in $(seq 1 200)
++ printf 'payload %03d\n' 10
++ for i in $(seq 1 200)
++ printf 'payload %03d\n' 11
++ for i in $(seq 1 200)
++ printf 'payload %03d\n' 12
++ for i in $(seq 1 200)
++ printf 'payload %03d\n' 13
++ for i in $(seq 1 200)
++ printf 'payload %03d\n' 14
++ for i in $(seq 1 200)
++ printf 'payload %03d\n' 15
++ for i in $(seq 1 200)
++ printf 'payload %03d\n' 16
++ for i in $(seq 1 200)
++ printf 'payload %03d\n' 17
++ for i in $(seq 1 200)
++ printf 'payload %03d\n' 18
++ for i in $(seq 1 200)
++ printf 'payload %03d\n' 19
++ for i in $(seq 1 200)
++ printf 'payload %03d\n' 20
++ for i in $(seq 1 200)
++ printf 'payload %03d\n' 21
++ for i in $(seq 1 200)
++ printf 'payload %03d\n' 22
++ for i in $(seq 1 200)
++ printf 'payload %03d\n' 23
++ for i in $(seq 1 200)
++ printf 'payload %03d\n' 24
++ for i in $(seq 1 200)
++ printf 'payload %03d\n' 25
++ for i in $(seq 1 200)
++ printf 'payload %03d\n' 26
++ for i in $(seq 1 200)
++ printf 'payload %03d\n' 27
++ for i in $(seq 1 200)
++ printf 'payload %03d\n' 28
++ for i in $(seq 1 200)
++ printf 'payload %03d\n' 29
++ for i in $(seq 1 200)
++ printf 'payload %03d\n' 30
++ for i in $(seq 1 200)
++ printf 'payload %03d\n' 31
++ for i in $(seq 1 200)
++ printf 'payload %03d\n' 32
++ for i in $(seq 1 200)
++ printf 'payload %03d\n' 33
++ for i in $(seq 1 200)
++ printf 'payload %03d\n' 34
++ for i in $(seq 1 200)
++ printf 'payload %03d\n' 35
++ for i in $(seq 1 200)
++ printf 'payload %03d\n' 36
++ for i in $(seq 1 200)
++ printf 'payload %03d\n' 37
++ for i in $(seq 1 200)
++ printf 'payload %03d\n' 38
++ for i in $(seq 1 200)
++ printf 'payload %03d\n' 39
++ for i in $(seq 1 200)
++ printf 'payload %03d\n' 40
++ for i in $(seq 1 200)
++ printf 'payload %03d\n' 41
++ for i in $(seq 1 200)
++ printf 'payload %03d\n' 42
++ for i in $(seq 1 200)
++ printf 'payload %03d\n' 43
++ for i in $(seq 1 200)
++ printf 'payload %03d\n' 44
++ for i in $(seq 1 200)
++ printf 'payload %03d\n' 45
++ for i in $(seq 1 200)
++ printf 'payload %03d\n' 46
++ for i in $(seq 1 200)
++ printf 'payload %03d\n' 47
++ for i in $(seq 1 200)
++ printf 'payload %03d\n' 48
++ for i in $(seq 1 200)
++ printf 'payload %03d\n' 49
++ for i in $(seq 1 200)
++ printf 'payload %03d\n' 50
++ for i in $(seq 1 200)
++ printf 'payload %03d\n' 51
++ for i in $(seq 1 200)
++ printf 'payload %03d\n' 52
++ for i in $(seq 1 200)
++ printf 'payload %03d\n' 53
++ for i in $(seq 1 200)
++ printf 'payload %03d\n' 54
++ for i in $(seq 1 200)
++ printf 'payload %03d\n' 55
++ for i in $(seq 1 200)
++ printf 'payload %03d\n' 56
++ for i in $(seq 1 200)
++ printf 'payload %03d\n' 57
++ for i in $(seq 1 200)
++ printf 'payload %03d\n' 58
++ for i in $(seq 1 200)
++ printf 'payload %03d\n' 59
++ for i in $(seq 1 200)
++ printf 'payload %03d\n' 60
++ for i in $(seq 1 200)
++ printf 'payload %03d\n' 61
++ for i in $(seq 1 200)
++ printf 'payload %03d\n' 62
++ for i in $(seq 1 200)
++ printf 'payload %03d\n' 63
++ for i in $(seq 1 200)
++ printf 'payload %03d\n' 64
++ for i in $(seq 1 200)
++ printf 'payload %03d\n' 65
++ for i in $(seq 1 200)
++ printf 'payload %03d\n' 66
++ for i in $(seq 1 200)
++ printf 'payload %03d\n' 67
++ for i in $(seq 1 200)
++ printf 'payload %03d\n' 68
++ for i in $(seq 1 200)
++ printf 'payload %03d\n' 69
++ for i in $(seq 1 200)
++ printf 'payload %03d\n' 70
++ for i in $(seq 1 200)
++ printf 'payload %03d\n' 71
++ for i in $(seq 1 200)
++ printf 'payload %03d\n' 72
++ for i in $(seq 1 200)
++ printf 'payload %03d\n' 73
++ for i in $(seq 1 200)
++ printf 'payload %03d\n' 74
++ for i in $(seq 1 200)
++ printf 'payload %03d\n' 75
++ for i in $(seq 1 200)
++ printf 'payload %03d\n' 76
++ for i in $(seq 1 200)
++ printf 'payload %03d\n' 77
++ for i in $(seq 1 200)
++ printf 'payload %03d\n' 78
++ for i in $(seq 1 200)
++ printf 'payload %03d\n' 79
++ for i in $(seq 1 200)
++ printf 'payload %03d\n' 80
++ for i in $(seq 1 200)
++ printf 'payload %03d\n' 81
++ for i in $(seq 1 200)
++ printf 'payload %03d\n' 82
++ for i in $(seq 1 200)
++ printf 'payload %03d\n' 83
++ for i in $(seq 1 200)
++ printf 'payload %03d\n' 84
++ for i in $(seq 1 200)
++ printf 'payload %03d\n' 85
++ for i in $(seq 1 200)
++ printf 'payload %03d\n' 86
++ for i in $(seq 1 200)
++ printf 'payload %03d\n' 87
++ for i in $(seq 1 200)
++ printf 'payload %03d\n' 88
++ for i in $(seq 1 200)
++ printf 'payload %03d\n' 89
++ for i in $(seq 1 200)
++ printf 'payload %03d\n' 90
++ for i in $(seq 1 200)
++ printf 'payload %03d\n' 91
++ for i in $(seq 1 200)
++ printf 'payload %03d\n' 92
++ for i in $(seq 1 200)
++ printf 'payload %03d\n' 93
++ for i in $(seq 1 200)
++ printf 'payload %03d\n' 94
++ for i in $(seq 1 200)
++ printf 'payload %03d\n' 95
++ for i in $(seq 1 200)
++ printf 'payload %03d\n' 96
++ for i in $(seq 1 200)
++ printf 'payload %03d\n' 97
++ for i in $(seq 1 200)
++ printf 'payload %03d\n' 98
++ for i in $(seq 1 200)
++ printf 'payload %03d\n' 99
++ for i in $(seq 1 200)
++ printf 'payload %03d\n' 100
++ for i in $(seq 1 200)
++ printf 'payload %03d\n' 101
++ for i in $(seq 1 200)
++ printf 'payload %03d\n' 102
++ for i in $(seq 1 200)
++ printf 'payload %03d\n' 103
++ for i in $(seq 1 200)
++ printf 'payload %03d\n' 104
++ for i in $(seq 1 200)
++ printf 'payload %03d\n' 105
++ for i in $(seq 1 200)
++ printf 'payload %03d\n' 106
++ for i in $(seq 1 200)
++ printf 'payload %03d\n' 107
++ for i in $(seq 1 200)
++ printf 'payload %03d\n' 108
++ for i in $(seq 1 200)
++ printf 'payload %03d\n' 109
++ for i in $(seq 1 200)
++ printf 'payload %03d\n' 110
++ for i in $(seq 1 200)
++ printf 'payload %03d\n' 111
++ for i in $(seq 1 200)
++ printf 'payload %03d\n' 112
++ for i in $(seq 1 200)
++ printf 'payload %03d\n' 113
++ for i in $(seq 1 200)
++ printf 'payload %03d\n' 114
++ for i in $(seq 1 200)
++ printf 'payload %03d\n' 115
++ for i in $(seq 1 200)
++ printf 'payload %03d\n' 116
++ for i in $(seq 1 200)
++ printf 'payload %03d\n' 117
++ for i in $(seq 1 200)
++ printf 'payload %03d\n' 118
++ for i in $(seq 1 200)
++ printf 'payload %03d\n' 119
++ for i in $(seq 1 200)
++ printf 'payload %03d\n' 120
++ for i in $(seq 1 200)
++ printf 'payload %03d\n' 121
++ for i in $(seq 1 200)
++ printf 'payload %03d\n' 122
++ for i in $(seq 1 200)
++ printf 'payload %03d\n' 123
++ for i in $(seq 1 200)
++ printf 'payload %03d\n' 124
++ for i in $(seq 1 200)
++ printf 'payload %03d\n' 125
++ for i in $(seq 1 200)
++ printf 'payload %03d\n' 126
++ for i in $(seq 1 200)
++ printf 'payload %03d\n' 127
++ for i in $(seq 1 200)
++ printf 'payload %03d\n' 128
++ for i in $(seq 1 200)
++ printf 'payload %03d\n' 129
++ for i in $(seq 1 200)
++ printf 'payload %03d\n' 130
++ for i in $(seq 1 200)
++ printf 'payload %03d\n' 131
++ for i in $(seq 1 200)
++ printf 'payload %03d\n' 132
++ for i in $(seq 1 200)
++ printf 'payload %03d\n' 133
++ for i in $(seq 1 200)
++ printf 'payload %03d\n' 134
++ for i in $(seq 1 200)
++ printf 'payload %03d\n' 135
++ for i in $(seq 1 200)
++ printf 'payload %03d\n' 136
++ for i in $(seq 1 200)
++ printf 'payload %03d\n' 137
++ for i in $(seq 1 200)
++ printf 'payload %03d\n' 138
++ for i in $(seq 1 200)
++ printf 'payload %03d\n' 139
++ for i in $(seq 1 200)
++ printf 'payload %03d\n' 140
++ for i in $(seq 1 200)
++ printf 'payload %03d\n' 141
++ for i in $(seq 1 200)
++ printf 'payload %03d\n' 142
++ for i in $(seq 1 200)
++ printf 'payload %03d\n' 143
++ for i in $(seq 1 200)
++ printf 'payload %03d\n' 144
++ for i in $(seq 1 200)
++ printf 'payload %03d\n' 145
++ for i in $(seq 1 200)
++ printf 'payload %03d\n' 146
++ for i in $(seq 1 200)
++ printf 'payload %03d\n' 147
++ for i in $(seq 1 200)
++ printf 'payload %03d\n' 148
++ for i in $(seq 1 200)
++ printf 'payload %03d\n' 149
++ for i in $(seq 1 200)
++ printf 'payload %03d\n' 150
++ for i in $(seq 1 200)
++ printf 'payload %03d\n' 151
++ for i in $(seq 1 200)
++ printf 'payload %03d\n' 152
++ for i in $(seq 1 200)
++ printf 'payload %03d\n' 153
++ for i in $(seq 1 200)
++ printf 'payload %03d\n' 154
++ for i in $(seq 1 200)
++ printf 'payload %03d\n' 155
++ for i in $(seq 1 200)
++ printf 'payload %03d\n' 156
++ for i in $(seq 1 200)
++ printf 'payload %03d\n' 157
++ for i in $(seq 1 200)
++ printf 'payload %03d\n' 158
++ for i in $(seq 1 200)
++ printf 'payload %03d\n' 159
++ for i in $(seq 1 200)
++ printf 'payload %03d\n' 160
++ for i in $(seq 1 200)
++ printf 'payload %03d\n' 161
++ for i in $(seq 1 200)
++ printf 'payload %03d\n' 162
++ for i in $(seq 1 200)
++ printf 'payload %03d\n' 163
++ for i in $(seq 1 200)
++ printf 'payload %03d\n' 164
++ for i in $(seq 1 200)
++ printf 'payload %03d\n' 165
++ for i in $(seq 1 200)
++ printf 'payload %03d\n' 166
++ for i in $(seq 1 200)
++ printf 'payload %03d\n' 167
++ for i in $(seq 1 200)
++ printf 'payload %03d\n' 168
++ for i in $(seq 1 200)
++ printf 'payload %03d\n' 169
++ for i in $(seq 1 200)
++ printf 'payload %03d\n' 170
++ for i in $(seq 1 200)
++ printf 'payload %03d\n' 171
++ for i in $(seq 1 200)
++ printf 'payload %03d\n' 172
++ for i in $(seq 1 200)
++ printf 'payload %03d\n' 173
++ for i in $(seq 1 200)
++ printf 'payload %03d\n' 174
++ for i in $(seq 1 200)
++ printf 'payload %03d\n' 175
++ for i in $(seq 1 200)
++ printf 'payload %03d\n' 176
++ for i in $(seq 1 200)
++ printf 'payload %03d\n' 177
++ for i in $(seq 1 200)
++ printf 'payload %03d\n' 178
++ for i in $(seq 1 200)
++ printf 'payload %03d\n' 179
++ for i in $(seq 1 200)
++ printf 'payload %03d\n' 180
++ for i in $(seq 1 200)
++ printf 'payload %03d\n' 181
++ for i in $(seq 1 200)
++ printf 'payload %03d\n' 182
++ for i in $(seq 1 200)
++ printf 'payload %03d\n' 183
++ for i in $(seq 1 200)
++ printf 'payload %03d\n' 184
++ for i in $(seq 1 200)
++ printf 'payload %03d\n' 185
++ for i in $(seq 1 200)
++ printf 'payload %03d\n' 186
++ for i in $(seq 1 200)
++ printf 'payload %03d\n' 187
++ for i in $(seq 1 200)
++ printf 'payload %03d\n' 188
++ for i in $(seq 1 200)
++ printf 'payload %03d\n' 189
++ for i in $(seq 1 200)
++ printf 'payload %03d\n' 190
++ for i in $(seq 1 200)
++ printf 'payload %03d\n' 191
++ for i in $(seq 1 200)
++ printf 'payload %03d\n' 192
++ for i in $(seq 1 200)
++ printf 'payload %03d\n' 193
++ for i in $(seq 1 200)
++ printf 'payload %03d\n' 194
++ for i in $(seq 1 200)
++ printf 'payload %03d\n' 195
++ for i in $(seq 1 200)
++ printf 'payload %03d\n' 196
++ for i in $(seq 1 200)
++ printf 'payload %03d\n' 197
++ for i in $(seq 1 200)
++ printf 'payload %03d\n' 198
++ for i in $(seq 1 200)
++ printf 'payload %03d\n' 199
++ for i in $(seq 1 200)
++ printf 'payload %03d\n' 200
++ bzip2 -9 -c /tmp/validator-tmp/in.txt
++ bzip2 -dc /tmp/validator-tmp/in.bz2
++ wc -l
 200
++ rm -rf /tmp/validator-tmp

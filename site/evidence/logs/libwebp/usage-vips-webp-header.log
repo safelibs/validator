@@ -1,5 +1,20 @@
 $ docker run --rm -t --mount type=bind,src=/tmp/validator-status-libwebp-usage-vips-webp-header,dst=/validator/status validator-libwebp-shared bash -lc 'set -euo pipefail
 /validator/tests/_shared/install_override_debs.sh
-exec /validator/tests/_shared/run_library_tests.sh "$@"' validator-testcase libwebp usage-vips-webp-header -- bash /validator/tests/libwebp/tests/cases/usage/usage-vips-webp-header.sh
+exec /validator/tests/_shared/run_library_tests.sh "$@"' validator-testcase libwebp usage-vips-webp-header -- bash -x /validator/tests/libwebp/tests/cases/usage/usage-vips-webp-header.sh
 no override packages found; continuing with apt originals
++ set -euo pipefail
++ source /validator/tests/_shared/runtime_helpers.sh
+++ set -euo pipefail
+++ mktemp -d
++ tmpdir=/tmp/validator-tmp
++ trap 'rm -rf "$tmpdir"' EXIT
++ python3 - /tmp/validator-tmp/in.ppm
++ cwebp -quiet /tmp/validator-tmp/in.ppm -o /tmp/validator-tmp/in.webp
++ vipsheader /tmp/validator-tmp/in.webp
++ tee /tmp/validator-tmp/out
 /tmp/validator-tmp/in.webp: 4x3 uchar, 3 bands, srgb, webpload
++ validator_assert_contains /tmp/validator-tmp/out webpload
++ local path=/tmp/validator-tmp/out
++ local needle=webpload
++ grep -Fq -- webpload /tmp/validator-tmp/out
++ rm -rf /tmp/validator-tmp

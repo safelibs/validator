@@ -1,3 +1,9 @@
 {"version": 2, "width": 120, "height": 40, "timestamp": 0, "env": {"TERM": "xterm-256color", "SHELL": "/bin/bash"}}
-[0.10235231695696712, "o", "no override packages found; continuing with apt originals\r\r\n"]
-[0.1282881599618122, "o", "parse stopped near: e+]\r\r\n"]
+[0.12082097004167736, "o", "no override packages found; continuing with apt originals\r\r\n"]
+[0.12232485204003751, "o", "+ set -euo pipefail\r\r\n+ source /validator/tests/_shared/runtime_helpers.sh\r\r\n"]
+[0.1223875320283696, "o", "++ set -euo pipefail\r\r\n"]
+[0.12272707500960678, "o", "++ mktemp -d\r\r\n"]
+[0.12384385906625539, "o", "+ tmpdir=/tmp/validator-tmp\r\r\n+ trap 'rm -rf \"$tmpdir\"' EXIT\r\r\n+ cat\r\r\n"]
+[0.12464918603654951, "o", "+ gcc /tmp/validator-tmp/t.c -o /tmp/validator-tmp/t -lcjson\r\r\n"]
+[0.14645642403047532, "o", "+ /tmp/validator-tmp/t\r\r\n"]
+[0.147280358010903, "o", "parse stopped near: e+]\r\r\n+ rm -rf /tmp/validator-tmp\r\r\n"]

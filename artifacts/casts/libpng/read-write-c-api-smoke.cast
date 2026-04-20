@@ -1,3 +1,9 @@
 {"version": 2, "width": 120, "height": 40, "timestamp": 0, "env": {"TERM": "xterm-256color", "SHELL": "/bin/bash"}}
-[0.10228259605355561, "o", "no override packages found; continuing with apt originals\r\r\n"]
-[0.1364168080035597, "o", "width=1 height=1\r\r\n"]
+[0.10372766095679253, "o", "no override packages found; continuing with apt originals\r\r\n"]
+[0.10555184097029269, "o", "+ set -euo pipefail\r\r\n+ source /validator/tests/_shared/runtime_helpers.sh\r\r\n++ set -euo pipefail\r\r\n"]
+[0.10561154596507549, "o", "++ mktemp -d\r\r\n"]
+[0.10726927395444363, "o", "+ tmpdir=/tmp/validator-tmp\r\r\n+ trap 'rm -rf \"$tmpdir\"' EXIT\r\r\n+ cat\r\r\n"]
+[0.10807633597869426, "o", "++ pkg-config --cflags --libs libpng\r\r\n"]
+[0.10877612105105072, "o", "+ gcc /tmp/validator-tmp/t.c -o /tmp/validator-tmp/t -I/usr/include/libpng16 -lpng16\r\r\n"]
+[0.13847409398294985, "o", "+ /tmp/validator-tmp/t /tmp/validator-tmp/out.png\r\r\n"]
+[0.1392612309427932, "o", "width=1 height=1\r\r\n+ rm -rf /tmp/validator-tmp\r\r\n"]

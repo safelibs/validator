@@ -1,3 +1,11 @@
 {"version": 2, "width": 120, "height": 40, "timestamp": 0, "env": {"TERM": "xterm-256color", "SHELL": "/bin/bash"}}
-[0.11186818196438253, "o", "no override packages found; continuing with apt originals\r\r\n"]
-[0.125625774031505, "o", "./\r\r\n./payload.txt\r\r\n"]
+[0.1086605949094519, "o", "no override packages found; continuing with apt originals\r\r\n"]
+[0.11010936496313661, "o", "+ set -euo pipefail\r\r\n+ source /validator/tests/_shared/runtime_helpers.sh\r\r\n++ set -euo pipefail\r\r\n"]
+[0.11037013598252088, "o", "++ mktemp -d\r\r\n"]
+[0.11218068993184716, "o", "+ tmpdir=/tmp/validator-tmp\r\r\n+ trap 'rm -rf \"$tmpdir\"' EXIT\r\r\n+ mkdir -p /tmp/validator-tmp/in /tmp/validator-tmp/out\r\r\n"]
+[0.11289526696782559, "o", "+ printf 'empty-dir\\n'\r\r\n+ bsdtar -cJf /tmp/validator-tmp/a.tar.xz -C /tmp/validator-tmp/in .\r\r\n"]
+[0.12106548098381609, "o", "+ bsdtar -tf /tmp/validator-tmp/a.tar.xz\r\r\n+ tee /tmp/validator-tmp/list\r\r\n"]
+[0.12229908397421241, "o", "./\r\r\n./payload.txt\r\r\n"]
+[0.12244116992224008, "o", "+ bsdtar -xf /tmp/validator-tmp/a.tar.xz -C /tmp/validator-tmp/out\r\r\n"]
+[0.12423288892023265, "o", "+ validator_assert_contains /tmp/validator-tmp/out/payload.txt empty-dir\r\r\n+ local path=/tmp/validator-tmp/out/payload.txt\r\r\n+ local needle=empty-dir\r\r\n+ grep -Fq -- empty-dir /tmp/validator-tmp/out/payload.txt\r\r\n"]
+[0.12489776290021837, "o", "+ rm -rf /tmp/validator-tmp\r\r\n"]

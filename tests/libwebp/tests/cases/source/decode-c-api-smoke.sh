@@ -5,7 +5,7 @@ source /validator/tests/_shared/runtime_helpers.sh
 tmpdir=$(mktemp -d)
 trap 'rm -rf "$tmpdir"' EXIT
 
-w="$VALIDATOR_SOURCE_ROOT/examples/test.webp"; validator_require_file "$w"; cat >"$tmpdir/t.c" <<'C'
+w="$VALIDATOR_SAMPLE_ROOT/examples/test.webp"; validator_require_file "$w"; cat >"$tmpdir/t.c" <<'C'
 #include <webp/decode.h>
 #include <stdio.h>
 #include <stdlib.h>

@@ -1,3 +1,7 @@
 {"version": 2, "width": 120, "height": 40, "timestamp": 0, "env": {"TERM": "xterm-256color", "SHELL": "/bin/bash"}}
-[0.10802663792856038, "o", "no override packages found; continuing with apt originals\r\r\n"]
-[0.11293619591742754, "o", "pngJ ERR 00 libpng Success Success not_a_PNG_(signature) /tmp/validator-tmp/bad.png\r\r\n"]
+[0.10704014601651579, "o", "no override packages found; continuing with apt originals\r\r\n"]
+[0.10916850005742162, "o", "+ set -euo pipefail\r\r\n+ source /validator/tests/_shared/runtime_helpers.sh\r\r\n++ set -euo pipefail\r\r\n"]
+[0.10942352097481489, "o", "++ mktemp -d\r\r\n"]
+[0.11123801802750677, "o", "+ tmpdir=/tmp/validator-tmp\r\r\n+ trap 'rm -rf \"$tmpdir\"' EXIT\r\r\n+ printf 'not png\\n'\r\r\n+ pngfix --out=/tmp/validator-tmp/out.png /tmp/validator-tmp/bad.png\r\r\n"]
+[0.1120640350272879, "o", "+ cat /tmp/validator-tmp/log\r\r\n"]
+[0.11232181102968752, "o", "pngJ ERR 00 libpng Success Success not_a_PNG_(signature) /tmp/validator-tmp/bad.png\r\r\n+ rm -rf /tmp/validator-tmp\r\r\n"]

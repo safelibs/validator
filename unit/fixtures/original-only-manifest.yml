@@ -9,6 +9,5 @@ libraries:
       - demo-runtime
       - demo-dev
     testcases: unit/fixtures/original-only-tests/original-demo/testcases.yml
-    source_snapshot: unit/fixtures/original-only-tests/original-demo/tests/tagged-port/original
     fixtures:
       dependents: unit/fixtures/original-only-tests/original-demo/tests/fixtures/dependents.json

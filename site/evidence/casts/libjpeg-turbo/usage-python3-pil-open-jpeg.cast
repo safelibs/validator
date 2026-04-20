@@ -1,3 +1,10 @@
 {"version": 2, "width": 120, "height": 40, "timestamp": 0, "env": {"TERM": "xterm-256color", "SHELL": "/bin/bash"}}
-[0.12188357394188643, "o", "no override packages found; continuing with apt originals\r\r\n"]
-[0.16596966597717255, "o", "JPEG (4, 3) RGB\r\r\n"]
+[0.10165640199556947, "o", "no override packages found; continuing with apt originals\r\r\n"]
+[0.10351797705516219, "o", "+ set -euo pipefail\r\r\n+ source /validator/tests/_shared/runtime_helpers.sh\r\r\n++ set -euo pipefail\r\r\n"]
+[0.10361559502780437, "o", "++ mktemp -d\r\r\n"]
+[0.10505125403869897, "o", "+ tmpdir=/tmp/validator-tmp\r\r\n+ trap 'rm -rf \"$tmpdir\"' EXIT\r\r\n"]
+[0.10507852397859097, "o", "+ python3 - /tmp/validator-tmp/in.ppm\r\r\n"]
+[0.11232096597086638, "o", "+ cjpeg /tmp/validator-tmp/in.ppm\r\r\n"]
+[0.11300643999129534, "o", "+ python3 - /tmp/validator-tmp/in.jpg /tmp/validator-tmp/out.jpg\r\r\n"]
+[0.145743811968714, "o", "JPEG (4, 3) RGB\r\r\n"]
+[0.15055984898936003, "o", "+ rm -rf /tmp/validator-tmp\r\r\n"]

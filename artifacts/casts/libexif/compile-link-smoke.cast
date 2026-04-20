@@ -1,3 +1,8 @@
 {"version": 2, "width": 120, "height": 40, "timestamp": 0, "env": {"TERM": "xterm-256color", "SHELL": "/bin/bash"}}
-[0.10699481796473265, "o", "no override packages found; continuing with apt originals\r\r\n"]
-[0.13520405197050422, "o", "tag=DateTime ifds=5\r\r\n"]
+[0.11045917600858957, "o", "no override packages found; continuing with apt originals\r\r\n"]
+[0.11183062405325472, "o", "+ set -euo pipefail\r\r\n+ source /validator/tests/_shared/runtime_helpers.sh\r\r\n++ set -euo pipefail\r\r\n++ mktemp -d\r\r\n"]
+[0.11281857499852777, "o", "+ tmpdir=/tmp/validator-tmp\r\r\n+ trap 'rm -rf \"$tmpdir\"' EXIT\r\r\n+ cat\r\r\n"]
+[0.11368846299592406, "o", "++ pkg-config --cflags --libs libexif\r\r\n"]
+[0.11427766806446016, "o", "+ gcc /tmp/validator-tmp/t.c -o /tmp/validator-tmp/t -lexif\r\r\n"]
+[0.1375477290712297, "o", "+ /tmp/validator-tmp/t\r\r\n"]
+[0.13809337303973734, "o", "tag=DateTime ifds=5\r\r\n+ rm -rf /tmp/validator-tmp\r\r\n"]

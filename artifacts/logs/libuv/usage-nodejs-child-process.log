@@ -1,5 +1,13 @@
 $ docker run --rm -t --mount type=bind,src=/tmp/validator-status-libuv-usage-nodejs-child-process,dst=/validator/status validator-libuv-shared bash -lc 'set -euo pipefail
 /validator/tests/_shared/install_override_debs.sh
-exec /validator/tests/_shared/run_library_tests.sh "$@"' validator-testcase libuv usage-nodejs-child-process -- bash /validator/tests/libuv/tests/cases/usage/usage-nodejs-child-process.sh
+exec /validator/tests/_shared/run_library_tests.sh "$@"' validator-testcase libuv usage-nodejs-child-process -- bash -x /validator/tests/libuv/tests/cases/usage/usage-nodejs-child-process.sh
 no override packages found; continuing with apt originals
++ set -euo pipefail
++ source /validator/tests/_shared/runtime_helpers.sh
+++ set -euo pipefail
+++ mktemp -d
++ tmpdir=/tmp/validator-tmp
++ trap 'rm -rf "$tmpdir"' EXIT
++ node -e 'require('\''child_process'\'').execFile('\''/bin/echo'\'',['\''child-ok'\''],(e,out)=>{if(e)throw e; console.log(out.trim());});' /tmp/validator-tmp/node.txt
 child-ok
++ rm -rf /tmp/validator-tmp

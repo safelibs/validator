@@ -39,7 +39,7 @@ fi
 export VALIDATOR_LIBRARY="$library"
 export VALIDATOR_LIBRARY_ROOT="$library_root"
 export VALIDATOR_TESTCASE_ID="$testcase_id"
-export VALIDATOR_SOURCE_ROOT="$library_root/tests/tagged-port/original"
 export VALIDATOR_FIXTURE_ROOT="$library_root/tests/fixtures"
+export VALIDATOR_SAMPLE_ROOT="$VALIDATOR_FIXTURE_ROOT/samples"
 
 exec "$@"

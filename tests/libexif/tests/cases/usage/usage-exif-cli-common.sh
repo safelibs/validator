@@ -6,7 +6,7 @@ workload=${1:?missing exif CLI workload}
 tmpdir=$(mktemp -d)
 trap 'rm -rf "$tmpdir"' EXIT
 
-img="$VALIDATOR_SOURCE_ROOT/test/testdata/canon_makernote_variant_1.jpg"
+img="$VALIDATOR_SAMPLE_ROOT/test/testdata/canon_makernote_variant_1.jpg"
 validator_require_file "$img"
 
 case "$workload" in

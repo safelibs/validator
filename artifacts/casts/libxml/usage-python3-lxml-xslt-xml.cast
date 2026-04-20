@@ -1,3 +1,11 @@
 {"version": 2, "width": 120, "height": 40, "timestamp": 0, "env": {"TERM": "xterm-256color", "SHELL": "/bin/bash"}}
-[0.11087995499838144, "o", "no override packages found; continuing with apt originals\r\r\n"]
-[0.13717320701107383, "o", "<?xml version=\"1.0\"?>\r\r\n<out>1</out>\r\r\n\r\r\n"]
+[0.11539776006247848, "o", "no override packages found; continuing with apt originals\r\r\n"]
+[0.11709791608154774, "o", "+ set -euo pipefail\r\r\n+ source /validator/tests/_shared/runtime_helpers.sh\r\r\n++ set -euo pipefail\r\r\n"]
+[0.1173748440342024, "o", "++ mktemp -d\r\r\n"]
+[0.11877785506658256, "o", "+ tmpdir=/tmp/validator-tmp\r\r\n+ trap 'rm -rf \"$tmpdir\"' EXIT\r\r\n+ validator_make_fixture /tmp/validator-tmp/in.xml '<root><item name=\"alpha\">1</item><item name=\"beta\">2</item></root>'\r\r\n+ local path=/tmp/validator-tmp/in.xml\r\r\n"]
+[0.11911494506057352, "o", "++ dirname /tmp/validator-tmp/in.xml\r\r\n"]
+[0.11948526708874851, "o", "+ mkdir -p /tmp/validator-tmp\r\r\n"]
+[0.12019935809075832, "o", "+ (( 2 > 1 ))\r\r\n+ printf %s '<root><item name=\"alpha\">1</item><item name=\"beta\">2</item></root>'\r\r\n"]
+[0.12027074000798166, "o", "+ python3 - /tmp/validator-tmp/in.xml\r\r\n"]
+[0.14111730502918363, "o", "<?xml version=\"1.0\"?>\r\r\n<out>1</out>\r\r\n\r\r\n"]
+[0.14489191106986254, "o", "+ rm -rf /tmp/validator-tmp\r\r\n"]

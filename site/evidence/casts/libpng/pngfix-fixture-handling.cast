@@ -1,4 +1,10 @@
 {"version": 2, "width": 120, "height": 40, "timestamp": 0, "env": {"TERM": "xterm-256color", "SHELL": "/bin/bash"}}
-[0.11585965100675821, "o", "no override packages found; continuing with apt originals\r\r\n"]
-[0.11993117502424866, "o", "IDAT OK  default 12 12 72 3104 /validator/tests/libpng/tests/tagged-port/original/contrib/pngsuite/basn2c08.png\r\r\n"]
-[0.1211050150450319, "o", "/tmp/validator-tmp/fixed.png: PNG image data, 32 x 32, 8-bit/color RGB, non-interlaced\r\r\n"]
+[0.10419195098802447, "o", "no override packages found; continuing with apt originals\r\r\n"]
+[0.10553256596904248, "o", "+ set -euo pipefail\r\r\n+ source /validator/tests/_shared/runtime_helpers.sh\r\r\n++ set -euo pipefail\r\r\n"]
+[0.1055742409080267, "o", "++ mktemp -d\r\r\n"]
+[0.1070635209325701, "o", "+ tmpdir=/tmp/validator-tmp\r\r\n+ trap 'rm -rf \"$tmpdir\"' EXIT\r\r\n+ png=/validator/tests/libpng/tests/fixtures/samples/contrib/pngsuite/basn2c08.png\r\r\n+ validator_require_file /validator/tests/libpng/tests/fixtures/samples/contrib/pngsuite/basn2c08.png\r\r\n"]
+[0.10708458290901035, "o", "+ local path=/validator/tests/libpng/tests/fixtures/samples/contrib/pngsuite/basn2c08.png\r\r\n+ [[ -f /validator/tests/libpng/tests/fixtures/samples/contrib/pngsuite/basn2c08.png ]]\r\r\n"]
+[0.10736624500714242, "o", "+ tee /tmp/validator-tmp/log\r\r\n"]
+[0.1076165100093931, "o", "+ pngfix --out=/tmp/validator-tmp/fixed.png /validator/tests/libpng/tests/fixtures/samples/contrib/pngsuite/basn2c08.png\r\r\n"]
+[0.10820367897395045, "o", "IDAT OK  default 12 12 72 3104 /validator/tests/libpng/tests/fixtures/samples/contrib/pngsuite/basn2c08.png\r\r\n+ validator_require_file /tmp/validator-tmp/fixed.png\r\r\n+ local path=/tmp/validator-tmp/fixed.png\r\r\n+ [[ -f /tmp/validator-tmp/fixed.png ]]\r\r\n+ file /tmp/validator-tmp/fixed.png\r\r\n"]
+[0.10917325492482632, "o", "/tmp/validator-tmp/fixed.png: PNG image data, 32 x 32, 8-bit/color RGB, non-interlaced\r\r\n+ rm -rf /tmp/validator-tmp\r\r\n"]

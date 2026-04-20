@@ -1,3 +1,7 @@
 {"version": 2, "width": 120, "height": 40, "timestamp": 0, "env": {"TERM": "xterm-256color", "SHELL": "/bin/bash"}}
-[0.14350737899076194, "o", "no override packages found; continuing with apt originals\r\r\n"]
-[0.18841542303562164, "o", "tags 14\r\r\n"]
+[0.10752905998378992, "o", "no override packages found; continuing with apt originals\r\r\n"]
+[0.10961285897064954, "o", "+ set -euo pipefail\r\r\n+ source /validator/tests/_shared/runtime_helpers.sh\r\r\n++ set -euo pipefail\r\r\n"]
+[0.10987578402273357, "o", "++ mktemp -d\r\r\n"]
+[0.1112098980229348, "o", "+ tmpdir=/tmp/validator-tmp\r\r\n+ trap 'rm -rf \"$tmpdir\"' EXIT\r\r\n+ tiff=/validator/tests/libtiff/tests/fixtures/samples/test/images/rgb-3c-8b.tiff\r\r\n+ validator_require_file /validator/tests/libtiff/tests/fixtures/samples/test/images/rgb-3c-8b.tiff\r\r\n+ local path=/validator/tests/libtiff/tests/fixtures/samples/test/images/rgb-3c-8b.tiff\r\r\n+ [[ -f /validator/tests/libtiff/tests/fixtures/samples/test/images/rgb-3c-8b.tiff ]]\r\r\n+ python3 - /validator/tests/libtiff/tests/fixtures/samples/test/images/rgb-3c-8b.tiff /tmp/validator-tmp/out.tiff\r\r\n"]
+[0.1549680749885738, "o", "tags 14\r\r\n"]
+[0.15928010398056358, "o", "+ rm -rf /tmp/validator-tmp\r\r\n"]

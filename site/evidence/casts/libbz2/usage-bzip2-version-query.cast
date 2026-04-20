@@ -1,3 +1,9 @@
 {"version": 2, "width": 120, "height": 40, "timestamp": 0, "env": {"TERM": "xterm-256color", "SHELL": "/bin/bash"}}
-[0.10131496808025986, "o", "no override packages found; continuing with apt originals\r\r\n"]
-[0.10509358206763864, "o", "bzip2, a block-sorting file compressor.  Version 1.0.8, 13-Jul-2019.\r\r\n   \r\r\n   Copyright (C) 1996-2019 by Julian Seward.\r\r\n   \r\r\n   This program is free software; you can redistribute it and/or modify\r\r\n   it under the terms set out in the LICENSE file, which is included\r\r\n   in the bzip2 source distribution.\r\r\n   \r\r\n   This program is distributed in the hope that it will be useful,\r\r\n   but WITHOUT ANY WARRANTY; without even the implied warranty of\r\r\n   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the\r\r\n   LICENSE file for more details.\r\r\n   \r\r\n"]
+[0.10019054403528571, "o", "no override packages found; continuing with apt originals\r\r\n"]
+[0.10189219599124044, "o", "+ set -euo pipefail\r\r\n+ source /validator/tests/_shared/runtime_helpers.sh\r\r\n++ set -euo pipefail\r\r\n++ mktemp -d\r\r\n"]
+[0.10338719701394439, "o", "+ tmpdir=/tmp/validator-tmp\r\r\n+ trap 'rm -rf \"$tmpdir\"' EXIT\r\r\n"]
+[0.10343888204079121, "o", "+ bzip2 --version\r\r\n"]
+[0.10363207699265331, "o", "+ tee /tmp/validator-tmp/out\r\r\n"]
+[0.10406908905133605, "o", "bzip2, a block-sorting file compressor.  Version 1.0.8, 13-Jul-2019.\r\r\n   \r\r\n   Copyright (C) 1996-2019 by Julian Seward.\r\r\n   \r\r\n   This program is free software; you can redistribute it and/or modify\r\r\n   it under the terms set out in the LICENSE file, which is included\r\r\n   in the bzip2 source distribution.\r\r\n   \r\r\n   This program is distributed in the hope that it will be useful,\r\r\n   but WITHOUT ANY WARRANTY; without even the implied warranty of\r\r\n   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the\r\r\n   LICENSE file for more details.\r\r\n   \r\r\n+ validator_assert_contains /tmp/validator-tmp/out bzip2\r\r\n+ local path=/tmp/validator-tmp/out\r\r\n+ local needle=bzip2\r\r\n"]
+[0.10410783707629889, "o", "+ grep -Fq -- bzip2 /tmp/validator-tmp/out\r\r\n"]
+[0.10471774404868484, "o", "+ rm -rf /tmp/validator-tmp\r\r\n"]

@@ -1,3 +1,11 @@
 {"version": 2, "width": 120, "height": 40, "timestamp": 0, "env": {"TERM": "xterm-256color", "SHELL": "/bin/bash"}}
-[0.10479420702904463, "o", "no override packages found; continuing with apt originals\r\r\n"]
-[0.15300951804965734, "o", "curve=1\r\r\n"]
+[0.11013828904833645, "o", "no override packages found; continuing with apt originals\r\r\n"]
+[0.11178807797841728, "o", "+ set -euo pipefail\r\r\n+ source /validator/tests/_shared/runtime_helpers.sh\r\r\n++ set -euo pipefail\r\r\n"]
+[0.11184558703098446, "o", "++ mktemp -d\r\r\n"]
+[0.1131801389856264, "o", "+ tmpdir=/tmp/validator-tmp\r\r\n+ trap 'rm -rf \"$tmpdir\"' EXIT\r\r\n"]
+[0.1131936419988051, "o", "+ cat\r\r\n"]
+[0.11401052703149617, "o", "++ pkg-config --cflags --libs libzmq\r\r\n"]
+[0.11502012296114117, "o", "+ gcc /tmp/validator-tmp/t.c -o /tmp/validator-tmp/t -isystem /usr/include/mit-krb5 -I/usr/include/pgm-5.3 -I/usr/include/libxml2 -I/usr/include/x86_64-linux-gnu -lzmq\r\r\n"]
+[0.15831631899345666, "o", "+ /tmp/validator-tmp/t\r\r\n"]
+[0.1596131370170042, "o", "curve=1\r\r\n"]
+[0.15971966204233468, "o", "+ rm -rf /tmp/validator-tmp\r\r\n"]

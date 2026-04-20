@@ -1,3 +1,8 @@
 {"version": 2, "width": 120, "height": 40, "timestamp": 0, "env": {"TERM": "xterm-256color", "SHELL": "/bin/bash"}}
-[0.10497563309036195, "o", "no override packages found; continuing with apt originals\r\r\n"]
-[0.13011846505105495, "o", "2\r\r\n"]
+[0.10964915400836617, "o", "no override packages found; continuing with apt originals\r\r\n"]
+[0.11138151201885194, "o", "+ set -euo pipefail\r\r\n+ source /validator/tests/_shared/runtime_helpers.sh\r\r\n++ set -euo pipefail\r\r\n++ mktemp -d\r\r\n"]
+[0.11331662198062986, "o", "+ tmpdir=/tmp/validator-tmp\r\r\n+ trap 'rm -rf \"$tmpdir\"' EXIT\r\r\n+ validator_make_fixture /tmp/validator-tmp/in.xml '<root><item name=\"alpha\">1</item><item name=\"beta\">2</item></root>'\r\r\n+ local path=/tmp/validator-tmp/in.xml\r\r\n++ dirname /tmp/validator-tmp/in.xml\r\r\n"]
+[0.11386845097877085, "o", "+ mkdir -p /tmp/validator-tmp\r\r\n"]
+[0.11409831594210118, "o", "+ (( 2 > 1 ))\r\r\n+ printf %s '<root><item name=\"alpha\">1</item><item name=\"beta\">2</item></root>'\r\r\n+ python3 - /tmp/validator-tmp/in.xml\r\r\n"]
+[0.1347309279954061, "o", "2\r\r\n"]
+[0.13813425693660975, "o", "+ rm -rf /tmp/validator-tmp\r\r\n"]

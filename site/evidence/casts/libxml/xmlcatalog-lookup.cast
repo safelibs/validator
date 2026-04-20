@@ -1,4 +1,8 @@
 {"version": 2, "width": 120, "height": 40, "timestamp": 0, "env": {"TERM": "xterm-256color", "SHELL": "/bin/bash"}}
-[0.10667091002687812, "o", "no override packages found; continuing with apt originals\r\r\n"]
-[0.11239437595941126, "o", "/tmp/validator-tmp/demo.dtd\r\r\n"]
-[0.11327252094633877, "o", "/tmp/validator-tmp/demo.dtd\r\r\n"]
+[0.11491208896040916, "o", "no override packages found; continuing with apt originals\r\r\n"]
+[0.11640821094624698, "o", "+ set -euo pipefail\r\r\n+ source /validator/tests/_shared/runtime_helpers.sh\r\r\n++ set -euo pipefail\r\r\n"]
+[0.11648951494134963, "o", "++ mktemp -d\r\r\n"]
+[0.11858361691702157, "o", "+ tmpdir=/tmp/validator-tmp\r\r\n+ trap 'rm -rf \"$tmpdir\"' EXIT\r\r\n+ printf '<!ELEMENT root EMPTY>\\n'\r\r\n+ cat\r\r\n"]
+[0.11907032795716077, "o", "+ tee /tmp/validator-tmp/lookup\r\r\n+ xmlcatalog /tmp/validator-tmp/catalog.xml '-//Example//DTD Demo//EN'\r\r\n"]
+[0.1205553679028526, "o", "/tmp/validator-tmp/demo.dtd\r\r\n+ grep demo.dtd /tmp/validator-tmp/lookup\r\r\n"]
+[0.12114550091791898, "o", "/tmp/validator-tmp/demo.dtd\r\r\n+ rm -rf /tmp/validator-tmp\r\r\n"]

@@ -1,6 +1,18 @@
 $ docker run --rm -t --mount type=bind,src=/tmp/validator-status-liblzma-xz-compress-decompress,dst=/validator/status validator-liblzma-shared bash -lc 'set -euo pipefail
 /validator/tests/_shared/install_override_debs.sh
-exec /validator/tests/_shared/run_library_tests.sh "$@"' validator-testcase liblzma xz-compress-decompress -- bash /validator/tests/liblzma/tests/cases/source/xz-compress-decompress.sh
+exec /validator/tests/_shared/run_library_tests.sh "$@"' validator-testcase liblzma xz-compress-decompress -- bash -x /validator/tests/liblzma/tests/cases/source/xz-compress-decompress.sh
 no override packages found; continuing with apt originals
++ set -euo pipefail
++ source /validator/tests/_shared/runtime_helpers.sh
+++ set -euo pipefail
+++ mktemp -d
++ tmpdir=/tmp/validator-tmp
++ trap 'rm -rf "$tmpdir"' EXIT
++ printf 'xz payload\n'
++ xz -c /tmp/validator-tmp/plain
++ xz -dc /tmp/validator-tmp/plain.xz
++ cmp /tmp/validator-tmp/plain /tmp/validator-tmp/out
++ xz --list /tmp/validator-tmp/plain.xz
 Strms  Blocks   Compressed Uncompressed  Ratio  Check   Filename
     1       1         68 B         11 B  6.182  CRC64   /tmp/validator-tmp/plain.xz
++ rm -rf /tmp/validator-tmp

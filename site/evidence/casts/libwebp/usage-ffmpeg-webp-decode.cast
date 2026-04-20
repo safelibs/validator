@@ -1,3 +1,11 @@
 {"version": 2, "width": 120, "height": 40, "timestamp": 0, "env": {"TERM": "xterm-256color", "SHELL": "/bin/bash"}}
-[0.10993084695655853, "o", "no override packages found; continuing with apt originals\r\r\n"]
-[0.1590721009997651, "o", "/tmp/validator-tmp/out.png: PNG image data, 4 x 3, 8-bit/color RGB, non-interlaced\r\r\n"]
+[0.0976576249813661, "o", "no override packages found; continuing with apt originals\r\r\n"]
+[0.09925259801093489, "o", "+ set -euo pipefail\r\r\n+ source /validator/tests/_shared/runtime_helpers.sh\r\r\n"]
+[0.09935133904218674, "o", "++ set -euo pipefail\r\r\n"]
+[0.09949702501762658, "o", "++ mktemp -d\r\r\n"]
+[0.10080895700957626, "o", "+ tmpdir=/tmp/validator-tmp\r\r\n"]
+[0.1009453929727897, "o", "+ trap 'rm -rf \"$tmpdir\"' EXIT\r\r\n+ python3 - /tmp/validator-tmp/in.ppm\r\r\n"]
+[0.10862168204039335, "o", "+ cwebp -quiet /tmp/validator-tmp/in.ppm -o /tmp/validator-tmp/in.webp\r\r\n"]
+[0.11035584297496825, "o", "+ ffmpeg -hide_banner -loglevel error -i /tmp/validator-tmp/in.webp /tmp/validator-tmp/out.png\r\r\n"]
+[0.14552130899392068, "o", "+ file /tmp/validator-tmp/out.png\r\r\n"]
+[0.14655235095415264, "o", "/tmp/validator-tmp/out.png: PNG image data, 4 x 3, 8-bit/color RGB, non-interlaced\r\r\n+ rm -rf /tmp/validator-tmp\r\r\n"]

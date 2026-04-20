@@ -1,7 +1,20 @@
 $ docker run --rm -t --mount type=bind,src=/tmp/validator-status-giflib-usage-giflib-tools-gifbuild-dump,dst=/validator/status validator-giflib-shared bash -lc 'set -euo pipefail
 /validator/tests/_shared/install_override_debs.sh
-exec /validator/tests/_shared/run_library_tests.sh "$@"' validator-testcase giflib usage-giflib-tools-gifbuild-dump -- bash /validator/tests/giflib/tests/cases/usage/usage-giflib-tools-gifbuild-dump.sh
+exec /validator/tests/_shared/run_library_tests.sh "$@"' validator-testcase giflib usage-giflib-tools-gifbuild-dump -- bash -x /validator/tests/giflib/tests/cases/usage/usage-giflib-tools-gifbuild-dump.sh
 no override packages found; continuing with apt originals
++ set -euo pipefail
++ source /validator/tests/_shared/runtime_helpers.sh
+++ set -euo pipefail
+++ mktemp -d
++ tmpdir=/tmp/validator-tmp
++ trap 'rm -rf "$tmpdir"' EXIT
++ gif=/validator/tests/giflib/tests/fixtures/samples/pic/treescap.gif
++ validator_require_file /validator/tests/giflib/tests/fixtures/samples/pic/treescap.gif
++ local path=/validator/tests/giflib/tests/fixtures/samples/pic/treescap.gif
++ [[ -f /validator/tests/giflib/tests/fixtures/samples/pic/treescap.gif ]]
++ gifbuild -d /validator/tests/giflib/tests/fixtures/samples/pic/treescap.gif
++ head
++ grep -E 'screen|image|rgb' -i /tmp/validator-tmp/dump.txt
 screen width 40
 screen height 40
 screen colors 128
@@ -12,3 +25,4 @@ screen map
 	rgb 000 157 000 is 2
 	rgb 081 200 086 is 3
 	rgb 190 190 190 is 4
++ rm -rf /tmp/validator-tmp

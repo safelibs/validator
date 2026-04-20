@@ -1,5 +1,23 @@
 $ docker run --rm -t --mount type=bind,src=/tmp/validator-status-libxml-usage-xmlstarlet-select-xml,dst=/validator/status validator-libxml-shared bash -lc 'set -euo pipefail
 /validator/tests/_shared/install_override_debs.sh
-exec /validator/tests/_shared/run_library_tests.sh "$@"' validator-testcase libxml usage-xmlstarlet-select-xml -- bash /validator/tests/libxml/tests/cases/usage/usage-xmlstarlet-select-xml.sh
+exec /validator/tests/_shared/run_library_tests.sh "$@"' validator-testcase libxml usage-xmlstarlet-select-xml -- bash -x /validator/tests/libxml/tests/cases/usage/usage-xmlstarlet-select-xml.sh
 no override packages found; continuing with apt originals
-1
++ set -euo pipefail
++ source /validator/tests/_shared/runtime_helpers.sh
+++ set -euo pipefail
+++ mktemp -d
++ tmpdir=/tmp/validator-tmp
++ trap 'rm -rf "$tmpdir"' EXIT
++ validator_make_fixture /tmp/validator-tmp/in.xml '<root><item name="alpha">1</item><item name="beta">2</item></root>'
++ local path=/tmp/validator-tmp/in.xml
+++ dirname /tmp/validator-tmp/in.xml
++ mkdir -p /tmp/validator-tmp
++ (( 2 > 1 ))
++ printf %s '<root><item name="alpha">1</item><item name="beta">2</item></root>'
++ xmlstarlet sel -t -v '/root/item[@name="alpha"]' /tmp/validator-tmp/in.xml
++ tee /tmp/validator-tmp/out
+1+ validator_assert_contains /tmp/validator-tmp/out 1
++ local path=/tmp/validator-tmp/out
++ local needle=1
++ grep -Fq -- 1 /tmp/validator-tmp/out
++ rm -rf /tmp/validator-tmp

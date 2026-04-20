@@ -1,3 +1,11 @@
 {"version": 2, "width": 120, "height": 40, "timestamp": 0, "env": {"TERM": "xterm-256color", "SHELL": "/bin/bash"}}
-[0.11654678697232157, "o", "no override packages found; continuing with apt originals\r\r\n"]
-[0.17496282793581486, "o", "/tmp/validator-tmp/stats.v: 10x4 double, 1 band, matrix\r\r\n"]
+[0.10880385397467762, "o", "no override packages found; continuing with apt originals\r\r\n"]
+[0.1099006769945845, "o", "+ set -euo pipefail\r\r\n+ source /validator/tests/_shared/runtime_helpers.sh\r\r\n++ set -euo pipefail\r\r\n"]
+[0.11014195601455867, "o", "++ mktemp -d\r\r\n"]
+[0.1111873839981854, "o", "+ tmpdir=/tmp/validator-tmp\r\r\n+ trap 'rm -rf \"$tmpdir\"' EXIT\r\r\n"]
+[0.11125200905371457, "o", "+ python3 - /tmp/validator-tmp/in.ppm\r\r\n"]
+[0.11985075799748302, "o", "+ cjpeg /tmp/validator-tmp/in.ppm\r\r\n"]
+[0.12022797204554081, "o", "+ vips stats /tmp/validator-tmp/in.jpg /tmp/validator-tmp/stats.v\r\r\n"]
+[0.1477767740143463, "o", "+ vipsheader /tmp/validator-tmp/stats.v\r\r\n"]
+[0.16828484495636076, "o", "/tmp/validator-tmp/stats.v: 10x4 double, 1 band, matrix\r\r\n"]
+[0.1690380920190364, "o", "+ rm -rf /tmp/validator-tmp\r\r\n"]

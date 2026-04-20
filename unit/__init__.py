@@ -68,7 +68,6 @@ def repository_entry(
         "name": name,
         "apt_packages": packages,
         "testcases": f"tests/{name}/testcases.yml",
-        "source_snapshot": f"tests/{name}/tests/tagged-port/original",
         "fixtures": {
             "dependents": f"tests/{name}/tests/fixtures/dependents.json",
         },

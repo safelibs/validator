@@ -14,8 +14,8 @@ reviewed from one checkout.
 - `tests/<library>/tests/cases/usage/*.sh`: dependent-client testcase scripts.
 - `tests/<library>/tests/fixtures/dependents.json`: compact dependent-client
   fixture data used by usage testcases.
-- `tests/<library>/tests/tagged-port/original/`: checked-in original source
-  snapshot used as fixture material.
+- `tests/<library>/tests/fixtures/samples/`: small non-source sample inputs
+  used by fixture-driven testcases.
 - `tests/_shared/`: common package override and testcase runtime helpers.
 - `tools/`: manifest, matrix, proof, and site rendering tools.
 - `scripts/verify-site.sh`: deterministic site verification.
@@ -31,7 +31,7 @@ reviewed from one checkout.
 
 - `suite`: `name`, `image`, and `apt_suite` for the Ubuntu package suite.
 - `libraries`: fixed-order entries with `name`, canonical `apt_packages`,
-  `testcases`, `source_snapshot`, and `fixtures.dependents`.
+  `testcases`, and `fixtures.dependents`.
 
 Each `tests/<library>/testcases.yml` uses `schema_version: 1` and contains:
 

@@ -1,5 +1,18 @@
 $ docker run --rm -t --mount type=bind,src=/tmp/validator-status-libvips-thumbnail-behavior,dst=/validator/status validator-libvips-shared bash -lc 'set -euo pipefail
 /validator/tests/_shared/install_override_debs.sh
-exec /validator/tests/_shared/run_library_tests.sh "$@"' validator-testcase libvips thumbnail-behavior -- bash /validator/tests/libvips/tests/cases/source/thumbnail-behavior.sh
+exec /validator/tests/_shared/run_library_tests.sh "$@"' validator-testcase libvips thumbnail-behavior -- bash -x /validator/tests/libvips/tests/cases/source/thumbnail-behavior.sh
 no override packages found; continuing with apt originals
++ set -euo pipefail
++ source /validator/tests/_shared/runtime_helpers.sh
+++ set -euo pipefail
+++ mktemp -d
++ tmpdir=/tmp/validator-tmp
++ trap 'rm -rf "$tmpdir"' EXIT
++ img=/validator/tests/libvips/tests/fixtures/samples/test/test-suite/images/sample.jpg
++ validator_require_file /validator/tests/libvips/tests/fixtures/samples/test/test-suite/images/sample.jpg
++ local path=/validator/tests/libvips/tests/fixtures/samples/test/test-suite/images/sample.jpg
++ [[ -f /validator/tests/libvips/tests/fixtures/samples/test/test-suite/images/sample.jpg ]]
++ vipsthumbnail /validator/tests/libvips/tests/fixtures/samples/test/test-suite/images/sample.jpg --size 32 -o /tmp/validator-tmp/thumb.jpg
++ vipsheader /tmp/validator-tmp/thumb.jpg
 /tmp/validator-tmp/thumb.jpg: 21x32 uchar, 3 bands, srgb, jpegload
++ rm -rf /tmp/validator-tmp

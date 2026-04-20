@@ -1,7 +1,16 @@
 $ docker run --rm -t --mount type=bind,src=/tmp/validator-status-libsdl-usage-python3-pygame-event-queue,dst=/validator/status validator-libsdl-shared bash -lc 'set -euo pipefail
 /validator/tests/_shared/install_override_debs.sh
-exec /validator/tests/_shared/run_library_tests.sh "$@"' validator-testcase libsdl usage-python3-pygame-event-queue -- bash /validator/tests/libsdl/tests/cases/usage/usage-python3-pygame-event-queue.sh
+exec /validator/tests/_shared/run_library_tests.sh "$@"' validator-testcase libsdl usage-python3-pygame-event-queue -- bash -x /validator/tests/libsdl/tests/cases/usage/usage-python3-pygame-event-queue.sh
 no override packages found; continuing with apt originals
++ set -euo pipefail
++ source /validator/tests/_shared/runtime_helpers.sh
+++ set -euo pipefail
+++ mktemp -d
++ tmpdir=/tmp/validator-tmp
++ trap 'rm -rf "$tmpdir"' EXIT
++ export PYGAME_HIDE_SUPPORT_PROMPT=1
++ PYGAME_HIDE_SUPPORT_PROMPT=1
++ python3 - /tmp/validator-tmp/out.bmp
 <frozen importlib._bootstrap>:488: RuntimeWarning: Your system is avx2 capable but pygame was not built with support for it. The performance of some of your blits could be adversely affected. Consider enabling compile time detection with environment variables like PYGAME_DETECT_AVX2=1 if you are compiling without cross compilation.
 ALSA lib confmisc.c:855:(parse_card) cannot find card '0'
 ALSA lib conf.c:5204:(_snd_config_evaluate) function snd_func_card_inum returned error: No such file or directory
@@ -12,3 +21,4 @@ ALSA lib conf.c:5204:(_snd_config_evaluate) function snd_func_refer returned err
 ALSA lib conf.c:5727:(snd_config_expand) Evaluate error: No such file or directory
 ALSA lib pcm.c:2721:(snd_pcm_open_noupdate) Unknown PCM default
 event 32866 7
++ rm -rf /tmp/validator-tmp

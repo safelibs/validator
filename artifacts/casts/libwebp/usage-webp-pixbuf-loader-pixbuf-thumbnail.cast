@@ -1,3 +1,10 @@
 {"version": 2, "width": 120, "height": 40, "timestamp": 0, "env": {"TERM": "xterm-256color", "SHELL": "/bin/bash"}}
-[0.10176746698562056, "o", "no override packages found; continuing with apt originals\r\r\n"]
-[0.11767419299576432, "o", "/tmp/validator-tmp/thumb.png: PNG image data, 32 x 24, 8-bit/color RGB, non-interlaced\r\r\n"]
+[0.11233690311200917, "o", "no override packages found; continuing with apt originals\r\r\n"]
+[0.11387438606470823, "o", "+ set -euo pipefail\r\r\n+ source /validator/tests/_shared/runtime_helpers.sh\r\r\n++ set -euo pipefail\r\r\n"]
+[0.11431640305090696, "o", "++ mktemp -d\r\r\n"]
+[0.11604365310631692, "o", "+ tmpdir=/tmp/validator-tmp\r\r\n+ trap 'rm -rf \"$tmpdir\"' EXIT\r\r\n+ python3 - /tmp/validator-tmp/in.ppm\r\r\n"]
+[0.1243468940956518, "o", "+ cwebp -quiet /tmp/validator-tmp/in.ppm -o /tmp/validator-tmp/in.webp\r\r\n"]
+[0.12608164409175515, "o", "+ gdk-pixbuf-thumbnailer -s 32 /tmp/validator-tmp/in.webp /tmp/validator-tmp/thumb.png\r\r\n"]
+[0.1288909650174901, "o", "+ file /tmp/validator-tmp/thumb.png\r\r\n"]
+[0.1298067270545289, "o", "/tmp/validator-tmp/thumb.png: PNG image data, 32 x 24, 8-bit/color RGB, non-interlaced\r\r\n"]
+[0.12994795001577586, "o", "+ rm -rf /tmp/validator-tmp\r\r\n"]

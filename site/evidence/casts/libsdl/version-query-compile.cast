@@ -1,3 +1,10 @@
 {"version": 2, "width": 120, "height": 40, "timestamp": 0, "env": {"TERM": "xterm-256color", "SHELL": "/bin/bash"}}
-[0.1304278209572658, "o", "no override packages found; continuing with apt originals\r\r\n"]
-[0.3194496310316026, "o", "SDL 2.30.0 platform=Linux\r\r\n"]
+[0.20375151897314936, "o", "no override packages found; continuing with apt originals\r\r\n"]
+[0.20552513794973493, "o", "+ set -euo pipefail\r\r\n+ source /validator/tests/_shared/runtime_helpers.sh\r\r\n++ set -euo pipefail\r\r\n"]
+[0.20583629002794623, "o", "++ mktemp -d\r\r\n"]
+[0.20925973600242287, "o", "+ tmpdir=/tmp/validator-tmp\r\r\n+ trap 'rm -rf \"$tmpdir\"' EXIT\r\r\n+ cat\r\r\n"]
+[0.2100611929781735, "o", "++ sdl2-config --cflags --libs\r\r\n"]
+[0.21142398891970515, "o", "+ gcc /tmp/validator-tmp/t.c -o /tmp/validator-tmp/t -I/usr/include/SDL2 -D_REENTRANT -lSDL2\r\r\n"]
+[0.38792651996482164, "o", "+ /tmp/validator-tmp/t\r\r\n"]
+[0.3901054069865495, "o", "SDL 2.30.0 platform=Linux\r\r\n"]
+[0.3904173159971833, "o", "+ rm -rf /tmp/validator-tmp\r\r\n"]

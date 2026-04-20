@@ -1,3 +1,9 @@
 {"version": 2, "width": 120, "height": 40, "timestamp": 0, "env": {"TERM": "xterm-256color", "SHELL": "/bin/bash"}}
-[0.11408961098641157, "o", "no override packages found; continuing with apt originals\r\r\n"]
-[0.13655836193356663, "o", "../escape.txt: Path contains '..': Unknown error -1\r\r\nbsdtar: Error exit delayed from previous errors.\r\r\n"]
+[0.10435406502801925, "o", "no override packages found; continuing with apt originals\r\r\n"]
+[0.10582536400761455, "o", "+ set -euo pipefail\r\r\n+ source /validator/tests/_shared/runtime_helpers.sh\r\r\n"]
+[0.10609186801593751, "o", "++ set -euo pipefail\r\r\n++ mktemp -d\r\r\n"]
+[0.10720581701025367, "o", "+ tmpdir=/tmp/validator-tmp\r\r\n+ trap 'rm -rf \"$tmpdir\"' EXIT\r\r\n+ python3 - /tmp/validator-tmp/traversal.tar\r\r\n"]
+[0.1235921710031107, "o", "+ mkdir -p /tmp/validator-tmp/out\r\r\n"]
+[0.12413247500080615, "o", "+ bsdtar -xf /tmp/validator-tmp/traversal.tar -C /tmp/validator-tmp/out\r\r\n"]
+[0.12620319600682706, "o", "+ cat /tmp/validator-tmp/log\r\r\n"]
+[0.1265859609702602, "o", "../escape.txt: Path contains '..': Unknown error -1\r\r\nbsdtar: Error exit delayed from previous errors.\r\r\n+ [[ ! -e /tmp/validator-tmp/escape.txt ]]\r\r\n+ rm -rf /tmp/validator-tmp\r\r\n"]

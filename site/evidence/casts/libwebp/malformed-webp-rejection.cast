@@ -1,3 +1,7 @@
 {"version": 2, "width": 120, "height": 40, "timestamp": 0, "env": {"TERM": "xterm-256color", "SHELL": "/bin/bash"}}
-[0.1080404530512169, "o", "no override packages found; continuing with apt originals\r\r\n"]
-[0.111828897963278, "o", "Decoding of /tmp/validator-tmp/bad.webp failed.\r\r\nStatus: 7(NOT_ENOUGH_DATA)\r\r\n"]
+[0.11880457494407892, "o", "no override packages found; continuing with apt originals\r\r\n"]
+[0.12066546292044222, "o", "+ set -euo pipefail\r\r\n+ source /validator/tests/_shared/runtime_helpers.sh\r\r\n++ set -euo pipefail\r\r\n"]
+[0.1207401939900592, "o", "++ mktemp -d\r\r\n"]
+[0.12241896498017013, "o", "+ tmpdir=/tmp/validator-tmp\r\r\n+ trap 'rm -rf \"$tmpdir\"' EXIT\r\r\n+ printf 'not webp\\n'\r\r\n+ dwebp /tmp/validator-tmp/bad.webp -o /tmp/validator-tmp/out.ppm\r\r\n"]
+[0.12343706691171974, "o", "+ cat /tmp/validator-tmp/log\r\r\n"]
+[0.12353628396522254, "o", "Decoding of /tmp/validator-tmp/bad.webp failed.\r\r\nStatus: 7(NOT_ENOUGH_DATA)\r\r\n+ rm -rf /tmp/validator-tmp\r\r\n"]

@@ -1,7 +1,16 @@
 $ docker run --rm -t --mount type=bind,src=/tmp/validator-status-libsodium-usage-minisign-trusted-comment,dst=/validator/status validator-libsodium-shared bash -lc 'set -euo pipefail
 /validator/tests/_shared/install_override_debs.sh
-exec /validator/tests/_shared/run_library_tests.sh "$@"' validator-testcase libsodium usage-minisign-trusted-comment -- bash /validator/tests/libsodium/tests/cases/usage/usage-minisign-trusted-comment.sh
+exec /validator/tests/_shared/run_library_tests.sh "$@"' validator-testcase libsodium usage-minisign-trusted-comment -- bash -x /validator/tests/libsodium/tests/cases/usage/usage-minisign-trusted-comment.sh
 no override packages found; continuing with apt originals
++ set -euo pipefail
++ source /validator/tests/_shared/runtime_helpers.sh
+++ set -euo pipefail
+++ mktemp -d
++ tmpdir=/tmp/validator-tmp
++ trap 'rm -rf "$tmpdir"' EXIT
++ printf 'payload
+'
++ minisign -G -p /tmp/validator-tmp/minisign.pub -s /tmp/validator-tmp/minisign.sec -W
 The secret key was saved as /tmp/validator-tmp/minisign.sec - Keep it secret!
 The public key was saved as /tmp/validator-tmp/minisign.pub - That one can be public.
 
@@ -9,5 +18,13 @@ Files signed using this key pair can be verified with the following command:
 
 minisign -Vm <file> -P MINISIGN-PUBLIC-KEY
 
++ minisign -Sm /tmp/validator-tmp/message.txt -s /tmp/validator-tmp/minisign.sec -t 'validator comment' -x /tmp/validator-tmp/message.txt.minisig
++ minisign -Vm /tmp/validator-tmp/message.txt -p /tmp/validator-tmp/minisign.pub -x /tmp/validator-tmp/message.txt.minisig
++ tee /tmp/validator-tmp/out
 Signature and comment signature verified
 Trusted comment: validator comment
++ validator_assert_contains /tmp/validator-tmp/out 'validator comment'
++ local path=/tmp/validator-tmp/out
++ local 'needle=validator comment'
++ grep -Fq -- 'validator comment' /tmp/validator-tmp/out
++ rm -rf /tmp/validator-tmp

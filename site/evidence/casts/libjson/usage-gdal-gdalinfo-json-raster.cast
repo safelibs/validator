@@ -1,3 +1,4 @@
 {"version": 2, "width": 120, "height": 40, "timestamp": 0, "env": {"TERM": "xterm-256color", "SHELL": "/bin/bash"}}
-[0.11553983995690942, "o", "no override packages found; continuing with apt originals\r\r\n"]
-[0.13792783103417605, "o", "\u001b[0;39mtrue\u001b[0m\r\r\n"]
+[0.09813056199345738, "o", "no override packages found; continuing with apt originals\r\r\n"]
+[0.09959479002282023, "o", "+ set -euo pipefail\r\r\n+ /validator/tests/libjson/tests/cases/usage/usage-gdal-json-common.sh gdalinfo-json-raster\r\r\n"]
+[0.12138604000210762, "o", "\u001b[0;39mtrue\u001b[0m\r\r\n"]

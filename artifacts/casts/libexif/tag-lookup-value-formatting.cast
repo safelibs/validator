@@ -1,3 +1,9 @@
 {"version": 2, "width": 120, "height": 40, "timestamp": 0, "env": {"TERM": "xterm-256color", "SHELL": "/bin/bash"}}
-[0.1074384740786627, "o", "no override packages found; continuing with apt originals\r\r\n"]
-[0.13772743905428797, "o", "Orientation=Top-left\r\r\n"]
+[0.10959128092508763, "o", "no override packages found; continuing with apt originals\r\r\n"]
+[0.11120987695176154, "o", "+ set -euo pipefail\r\r\n+ source /validator/tests/_shared/runtime_helpers.sh\r\r\n++ set -euo pipefail\r\r\n"]
+[0.11145680502522737, "o", "++ mktemp -d\r\r\n"]
+[0.11302473302930593, "o", "+ tmpdir=/tmp/validator-tmp\r\r\n+ trap 'rm -rf \"$tmpdir\"' EXIT\r\r\n+ cat\r\r\n"]
+[0.11350915895309299, "o", "++ pkg-config --cflags --libs libexif\r\r\n"]
+[0.1143509519752115, "o", "+ gcc /tmp/validator-tmp/t.c -o /tmp/validator-tmp/t -lexif\r\r\n"]
+[0.13903686997946352, "o", "+ /tmp/validator-tmp/t\r\r\n"]
+[0.13945151295047253, "o", "Orientation=Top-left\r\r\n+ rm -rf /tmp/validator-tmp\r\r\n"]

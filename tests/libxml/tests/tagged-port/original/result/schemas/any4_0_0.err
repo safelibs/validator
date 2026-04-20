@@ -1,2 +1,0 @@
-./test/schemas/any4_0.xsd:17: element element: Schemas parser error : Element '{http://www.w3.org/2001/XMLSchema}element': The content model of element declaration '{http://FOO}foo' is not deterministic.
-./test/schemas/any4_0.xsd:17: element element: Schemas parser error : Element '{http://www.w3.org/2001/XMLSchema}element': The content model of complex type definition '{http://FOO}(NULL)' is not deterministic.

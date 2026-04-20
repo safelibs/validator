@@ -1,5 +1,16 @@
 $ docker run --rm -t --mount type=bind,src=/tmp/validator-status-libjpeg-turbo-usage-vips-stats-jpeg,dst=/validator/status validator-libjpeg-turbo-shared bash -lc 'set -euo pipefail
 /validator/tests/_shared/install_override_debs.sh
-exec /validator/tests/_shared/run_library_tests.sh "$@"' validator-testcase libjpeg-turbo usage-vips-stats-jpeg -- bash /validator/tests/libjpeg-turbo/tests/cases/usage/usage-vips-stats-jpeg.sh
+exec /validator/tests/_shared/run_library_tests.sh "$@"' validator-testcase libjpeg-turbo usage-vips-stats-jpeg -- bash -x /validator/tests/libjpeg-turbo/tests/cases/usage/usage-vips-stats-jpeg.sh
 no override packages found; continuing with apt originals
++ set -euo pipefail
++ source /validator/tests/_shared/runtime_helpers.sh
+++ set -euo pipefail
+++ mktemp -d
++ tmpdir=/tmp/validator-tmp
++ trap 'rm -rf "$tmpdir"' EXIT
++ python3 - /tmp/validator-tmp/in.ppm
++ cjpeg /tmp/validator-tmp/in.ppm
++ vips stats /tmp/validator-tmp/in.jpg /tmp/validator-tmp/stats.v
++ vipsheader /tmp/validator-tmp/stats.v
 /tmp/validator-tmp/stats.v: 10x4 double, 1 band, matrix
++ rm -rf /tmp/validator-tmp

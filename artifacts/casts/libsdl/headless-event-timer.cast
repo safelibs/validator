@@ -1,3 +1,10 @@
 {"version": 2, "width": 120, "height": 40, "timestamp": 0, "env": {"TERM": "xterm-256color", "SHELL": "/bin/bash"}}
-[0.11421029397752136, "o", "no override packages found; continuing with apt originals\r\r\n"]
-[0.3238252500304952, "o", "event-seen=1\r\r\n"]
+[0.1376392130041495, "o", "no override packages found; continuing with apt originals\r\r\n"]
+[0.1394141559721902, "o", "+ set -euo pipefail\r\r\n+ source /validator/tests/_shared/runtime_helpers.sh\r\r\n++ set -euo pipefail\r\r\n++ mktemp -d\r\r\n"]
+[0.1535524190403521, "o", "+ tmpdir=/tmp/validator-tmp\r\r\n+ trap 'rm -rf \"$tmpdir\"' EXIT\r\r\n"]
+[0.1536116850329563, "o", "+ export SDL_VIDEODRIVER=dummy\r\r\n+ SDL_VIDEODRIVER=dummy\r\r\n+ cat\r\r\n"]
+[0.1543096840614453, "o", "++ sdl2-config --cflags --libs\r\r\n"]
+[0.1561208120547235, "o", "+ gcc /tmp/validator-tmp/t.c -o /tmp/validator-tmp/t -I/usr/include/SDL2 -D_REENTRANT -lSDL2\r\r\n"]
+[0.32849240908399224, "o", "+ /tmp/validator-tmp/t\r\r\n"]
+[0.35460907698143274, "o", "event-seen=1\r\r\n"]
+[0.35514559503644705, "o", "+ rm -rf /tmp/validator-tmp\r\r\n"]

@@ -1,5 +1,7 @@
 $ docker run --rm -t --mount type=bind,src=/tmp/validator-status-cjson-usage-iperf3-json-interval-report,dst=/validator/status validator-cjson-shared bash -lc 'set -euo pipefail
 /validator/tests/_shared/install_override_debs.sh
-exec /validator/tests/_shared/run_library_tests.sh "$@"' validator-testcase cjson usage-iperf3-json-interval-report -- bash /validator/tests/cjson/tests/cases/usage/usage-iperf3-json-interval-report.sh
+exec /validator/tests/_shared/run_library_tests.sh "$@"' validator-testcase cjson usage-iperf3-json-interval-report -- bash -x /validator/tests/cjson/tests/cases/usage/usage-iperf3-json-interval-report.sh
 no override packages found; continuing with apt originals
++ set -euo pipefail
++ /validator/tests/cjson/tests/cases/usage/usage-iperf3-json-common.sh interval-report
 cpu_utilization_percent,receiver_tcp_congestion,sender_tcp_congestion,streams,sum_received,sum_sent

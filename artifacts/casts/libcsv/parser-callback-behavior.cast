@@ -1,3 +1,8 @@
 {"version": 2, "width": 120, "height": 40, "timestamp": 0, "env": {"TERM": "xterm-256color", "SHELL": "/bin/bash"}}
-[0.11879732902161777, "o", "no override packages found; continuing with apt originals\r\r\n"]
-[0.1481880049686879, "o", "field:name\r\r\nfield:score\r\r\nrow\r\r\nfield:alpha\r\r\nfield:42\r\r\nrow\r\r\nfields=4 rows=2\r\r\n"]
+[0.10585557110607624, "o", "no override packages found; continuing with apt originals\r\r\n"]
+[0.10721641907002777, "o", "+ set -euo pipefail\r\r\n+ source /validator/tests/_shared/runtime_helpers.sh\r\r\n++ set -euo pipefail\r\r\n"]
+[0.10745052411220968, "o", "++ mktemp -d\r\r\n"]
+[0.1089158330578357, "o", "+ tmpdir=/tmp/validator-tmp\r\r\n+ trap 'rm -rf \"$tmpdir\"' EXIT\r\r\n+ cat\r\r\n"]
+[0.10967407305724919, "o", "+ gcc /tmp/validator-tmp/t.c -o /tmp/validator-tmp/t -lcsv\r\r\n"]
+[0.1344279560726136, "o", "+ /tmp/validator-tmp/t\r\r\n"]
+[0.13482288306113333, "o", "field:name\r\r\nfield:score\r\r\nrow\r\r\nfield:alpha\r\r\nfield:42\r\r\nrow\r\r\nfields=4 rows=2\r\r\n+ rm -rf /tmp/validator-tmp\r\r\n"]

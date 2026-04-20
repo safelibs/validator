@@ -1,3 +1,7 @@
 {"version": 2, "width": 120, "height": 40, "timestamp": 0, "env": {"TERM": "xterm-256color", "SHELL": "/bin/bash"}}
-[0.10581852204632014, "o", "no override packages found; continuing with apt originals\r\r\n"]
-[0.10977525496855378, "o", "4800 /tmp/validator-tmp/out.rgb\r\r\n"]
+[0.10691712494008243, "o", "no override packages found; continuing with apt originals\r\r\n"]
+[0.10877905390225351, "o", "+ set -euo pipefail\r\r\n+ source /validator/tests/_shared/runtime_helpers.sh\r\r\n++ set -euo pipefail\r\r\n++ mktemp -d\r\r\n"]
+[0.11042362393345684, "o", "+ tmpdir=/tmp/validator-tmp\r\r\n+ trap 'rm -rf \"$tmpdir\"' EXIT\r\r\n+ gif=/validator/tests/giflib/tests/fixtures/samples/pic/treescap.gif\r\r\n+ validator_require_file /validator/tests/giflib/tests/fixtures/samples/pic/treescap.gif\r\r\n+ local path=/validator/tests/giflib/tests/fixtures/samples/pic/treescap.gif\r\r\n+ [[ -f /validator/tests/giflib/tests/fixtures/samples/pic/treescap.gif ]]\r\r\n+ gif2rgb -1 -o /tmp/validator-tmp/out.rgb /validator/tests/giflib/tests/fixtures/samples/pic/treescap.gif\r\r\n"]
+[0.11105660593602806, "o", "+ validator_require_file /tmp/validator-tmp/out.rgb\r\r\n+ local path=/tmp/validator-tmp/out.rgb\r\r\n+ [[ -f /tmp/validator-tmp/out.rgb ]]\r\r\n+ wc -c /tmp/validator-tmp/out.rgb\r\r\n"]
+[0.11149583093356341, "o", "4800 /tmp/validator-tmp/out.rgb\r\r\n"]
+[0.11173303797841072, "o", "+ rm -rf /tmp/validator-tmp\r\r\n"]

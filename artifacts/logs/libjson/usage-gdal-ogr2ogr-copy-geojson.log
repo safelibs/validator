@@ -1,4 +1,6 @@
 $ docker run --rm -t --mount type=bind,src=/tmp/validator-status-libjson-usage-gdal-ogr2ogr-copy-geojson,dst=/validator/status validator-libjson-shared bash -lc 'set -euo pipefail
 /validator/tests/_shared/install_override_debs.sh
-exec /validator/tests/_shared/run_library_tests.sh "$@"' validator-testcase libjson usage-gdal-ogr2ogr-copy-geojson -- bash /validator/tests/libjson/tests/cases/usage/usage-gdal-ogr2ogr-copy-geojson.sh
+exec /validator/tests/_shared/run_library_tests.sh "$@"' validator-testcase libjson usage-gdal-ogr2ogr-copy-geojson -- bash -x /validator/tests/libjson/tests/cases/usage/usage-gdal-ogr2ogr-copy-geojson.sh
 no override packages found; continuing with apt originals
++ set -euo pipefail
++ /validator/tests/libjson/tests/cases/usage/usage-gdal-json-common.sh ogr2ogr-copy

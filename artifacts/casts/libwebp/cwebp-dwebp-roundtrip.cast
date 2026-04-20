@@ -1,4 +1,9 @@
 {"version": 2, "width": 120, "height": 40, "timestamp": 0, "env": {"TERM": "xterm-256color", "SHELL": "/bin/bash"}}
-[0.11249970807693899, "o", "no override packages found; continuing with apt originals\r\r\n"]
-[0.12677543808240443, "o", "Decoded /tmp/validator-tmp/a.webp. Dimensions: 2 x 2 . Format: lossy. Now saving...\r\r\nSaved file /tmp/validator-tmp/out.ppm\r\r\n"]
-[0.1269572600722313, "o", "P6\r\r\n2 2\r\r\n255\r\r\n"]
+[0.10134044499136508, "o", "no override packages found; continuing with apt originals\r\r\n"]
+[0.10305284708738327, "o", "+ set -euo pipefail\r\r\n+ source /validator/tests/_shared/runtime_helpers.sh\r\r\n++ set -euo pipefail\r\r\n"]
+[0.10313103208318353, "o", "++ mktemp -d\r\r\n"]
+[0.10431067598983645, "o", "+ tmpdir=/tmp/validator-tmp\r\r\n+ trap 'rm -rf \"$tmpdir\"' EXIT\r\r\n+ python3 - /tmp/validator-tmp/in.ppm\r\r\n"]
+[0.1119601990794763, "o", "+ cwebp -quiet /tmp/validator-tmp/in.ppm -o /tmp/validator-tmp/a.webp\r\r\n"]
+[0.11369504197500646, "o", "+ dwebp /tmp/validator-tmp/a.webp -ppm -o /tmp/validator-tmp/out.ppm\r\r\n"]
+[0.11411554005462676, "o", "Decoded /tmp/validator-tmp/a.webp. Dimensions: 2 x 2 . Format: lossy. Now saving...\r\r\nSaved file /tmp/validator-tmp/out.ppm\r\r\n+ head -n 3 /tmp/validator-tmp/out.ppm\r\r\n"]
+[0.11445392505265772, "o", "P6\r\r\n2 2\r\r\n255\r\r\n+ rm -rf /tmp/validator-tmp\r\r\n"]

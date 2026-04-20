@@ -1,5 +1,16 @@
 $ docker run --rm -t --mount type=bind,src=/tmp/validator-status-libjson-refcount-object-mutation,dst=/validator/status validator-libjson-shared bash -lc 'set -euo pipefail
 /validator/tests/_shared/install_override_debs.sh
-exec /validator/tests/_shared/run_library_tests.sh "$@"' validator-testcase libjson refcount-object-mutation -- bash /validator/tests/libjson/tests/cases/source/refcount-object-mutation.sh
+exec /validator/tests/_shared/run_library_tests.sh "$@"' validator-testcase libjson refcount-object-mutation -- bash -x /validator/tests/libjson/tests/cases/source/refcount-object-mutation.sh
 no override packages found; continuing with apt originals
++ set -euo pipefail
++ source /validator/tests/_shared/runtime_helpers.sh
+++ set -euo pipefail
+++ mktemp -d
++ tmpdir=/tmp/validator-tmp
++ trap 'rm -rf "$tmpdir"' EXIT
++ cat
+++ pkg-config --cflags --libs json-c
++ gcc /tmp/validator-tmp/t.c -o /tmp/validator-tmp/t -I/usr/include/json-c -ljson-c
++ /tmp/validator-tmp/t
 held=first object={ "child": "second" }
++ rm -rf /tmp/validator-tmp

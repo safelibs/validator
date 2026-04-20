@@ -1,3 +1,11 @@
 {"version": 2, "width": 120, "height": 40, "timestamp": 0, "env": {"TERM": "xterm-256color", "SHELL": "/bin/bash"}}
-[0.10466449602972716, "o", "no override packages found; continuing with apt originals\r\r\n"]
-[0.1379431540844962, "o", "/tmp/validator-tmp/in.jpg: 4x3 uchar, 3 bands, srgb, jpegload\r\r\n"]
+[0.1147418770706281, "o", "no override packages found; continuing with apt originals\r\r\n"]
+[0.11633477604482323, "o", "+ set -euo pipefail\r\r\n+ source /validator/tests/_shared/runtime_helpers.sh\r\r\n++ set -euo pipefail\r\r\n"]
+[0.11650398606434464, "o", "++ mktemp -d\r\r\n"]
+[0.11833211500197649, "o", "+ tmpdir=/tmp/validator-tmp\r\r\n+ trap 'rm -rf \"$tmpdir\"' EXIT\r\r\n+ python3 - /tmp/validator-tmp/in.ppm\r\r\n"]
+[0.12593210500199348, "o", "+ cjpeg /tmp/validator-tmp/in.ppm\r\r\n"]
+[0.12668518908321857, "o", "+ vipsheader /tmp/validator-tmp/in.jpg\r\r\n"]
+[0.126732956035994, "o", "+ tee /tmp/validator-tmp/out\r\r\n"]
+[0.14830384508240968, "o", "/tmp/validator-tmp/in.jpg: 4x3 uchar, 3 bands, srgb, jpegload\r\r\n"]
+[0.14947201404720545, "o", "+ validator_assert_contains /tmp/validator-tmp/out jpegload\r\r\n+ local path=/tmp/validator-tmp/out\r\r\n+ local needle=jpegload\r\r\n+ grep -Fq -- jpegload /tmp/validator-tmp/out\r\r\n"]
+[0.1498083689948544, "o", "+ rm -rf /tmp/validator-tmp\r\r\n"]

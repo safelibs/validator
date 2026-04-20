@@ -76,7 +76,7 @@ CANONICAL_APT_PACKAGES: dict[str, tuple[str, ...]] = {
 
 ALLOWED_TOP_LEVEL_FIELDS = {"schema_version", "suite", "libraries"}
 ALLOWED_SUITE_FIELDS = {"name", "image", "apt_suite"}
-ALLOWED_LIBRARY_FIELDS = {"name", "apt_packages", "testcases", "source_snapshot", "fixtures"}
+ALLOWED_LIBRARY_FIELDS = {"name", "apt_packages", "testcases", "fixtures"}
 ALLOWED_FIXTURE_FIELDS = {"dependents"}
 FORBIDDEN_PACKAGE_FIELDS = {
     "override" + "_packages",
@@ -246,11 +246,6 @@ def _validate_library(entry: Any, *, path: Path, index: int) -> str:
     if testcases != expected_testcases:
         raise ValidatorError(f"{path} {name}.testcases must be {expected_testcases!r}")
 
-    _validate_repo_relative_path(
-        entry.get("source_snapshot"),
-        field_name=f"{name}.source_snapshot",
-        path=path,
-    )
     _validate_fixtures(entry.get("fixtures"), library=name, path=path)
     return name
 

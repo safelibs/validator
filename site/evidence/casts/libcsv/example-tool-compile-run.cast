@@ -1,4 +1,10 @@
 {"version": 2, "width": 120, "height": 40, "timestamp": 0, "env": {"TERM": "xterm-256color", "SHELL": "/bin/bash"}}
-[0.1163100020494312, "o", "no override packages found; continuing with apt originals\r\r\n"]
-[0.14464177296031266, "o", "\"1\",\"2\",\"3\",\"4\",\"5\"\r\r\n"]
-[0.14501043199561536, "o", "\"1\",\"2\",\"3\",\"4\",\"5\"\r\r\n"]
+[0.10367361304815859, "o", "no override packages found; continuing with apt originals\r\r\n"]
+[0.10492684808559716, "o", "+ set -euo pipefail\r\r\n+ source /validator/tests/_shared/runtime_helpers.sh\r\r\n++ set -euo pipefail\r\r\n"]
+[0.10524429008364677, "o", "++ mktemp -d\r\r\n"]
+[0.10665750701446086, "o", "+ tmpdir=/tmp/validator-tmp\r\r\n+ trap 'rm -rf \"$tmpdir\"' EXIT\r\r\n+ validator_require_file /validator/tests/libcsv/tests/fixtures/samples/tests/test_01.csv\r\r\n+ local path=/validator/tests/libcsv/tests/fixtures/samples/tests/test_01.csv\r\r\n+ [[ -f /validator/tests/libcsv/tests/fixtures/samples/tests/test_01.csv ]]\r\r\n+ cat\r\r\n"]
+[0.10737540200352669, "o", "+ gcc /tmp/validator-tmp/csv-client.c -o /tmp/validator-tmp/csv-client -lcsv\r\r\n"]
+[0.13418081600684673, "o", "+ /tmp/validator-tmp/csv-client\r\r\n+ tee /tmp/validator-tmp/out\r\r\n"]
+[0.13451380701735616, "o", "1,2,3,4,5\r\r\n"]
+[0.13487502105999738, "o", "+ grep , /tmp/validator-tmp/out\r\r\n"]
+[0.13538022805005312, "o", "1,2,3,4,5\r\r\n+ rm -rf /tmp/validator-tmp\r\r\n"]

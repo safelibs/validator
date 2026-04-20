@@ -1,3 +1,9 @@
 {"version": 2, "width": 120, "height": 40, "timestamp": 0, "env": {"TERM": "xterm-256color", "SHELL": "/bin/bash"}}
-[0.11645078705623746, "o", "no override packages found; continuing with apt originals\r\r\n"]
-[0.12211066100280732, "o", "-rw-r--r-- 1 root root 58 Jan 01 00:00 /tmp/validator-tmp/plain.bz2\r\r\n"]
+[0.10110927000641823, "o", "no override packages found; continuing with apt originals\r\r\n"]
+[0.10265630797948688, "o", "+ set -euo pipefail\r\r\n+ source /validator/tests/_shared/runtime_helpers.sh\r\r\n++ set -euo pipefail\r\r\n"]
+[0.10275265306700021, "o", "++ mktemp -d\r\r\n"]
+[0.10466318705584854, "o", "+ tmpdir=/tmp/validator-tmp\r\r\n+ trap 'rm -rf \"$tmpdir\"' EXIT\r\r\n+ printf 'bzip2 source case\\n'\r\r\n+ bzip2 -c /tmp/validator-tmp/plain\r\r\n"]
+[0.10549387102946639, "o", "+ bunzip2 -c /tmp/validator-tmp/plain.bz2\r\r\n"]
+[0.10631408297922462, "o", "+ cmp /tmp/validator-tmp/plain /tmp/validator-tmp/out\r\r\n"]
+[0.10662126599345356, "o", "+ ls -l /tmp/validator-tmp/plain.bz2\r\r\n"]
+[0.10723464901093394, "o", "-rw-r--r-- 1 root root 58 Jan 01 00:00 /tmp/validator-tmp/plain.bz2\r\r\n+ rm -rf /tmp/validator-tmp\r\r\n"]

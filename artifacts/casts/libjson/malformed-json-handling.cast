@@ -1,3 +1,9 @@
 {"version": 2, "width": 120, "height": 40, "timestamp": 0, "env": {"TERM": "xterm-256color", "SHELL": "/bin/bash"}}
-[0.09895096300169826, "o", "no override packages found; continuing with apt originals\r\r\n"]
-[0.1282288470538333, "o", "error=unexpected character\r\r\n"]
+[0.11222625500522554, "o", "no override packages found; continuing with apt originals\r\r\n"]
+[0.11371652293018997, "o", "+ set -euo pipefail\r\r\n+ source /validator/tests/_shared/runtime_helpers.sh\r\r\n++ set -euo pipefail\r\r\n"]
+[0.1142614409327507, "o", "++ mktemp -d\r\r\n"]
+[0.11609648796729743, "o", "+ tmpdir=/tmp/validator-tmp\r\r\n+ trap 'rm -rf \"$tmpdir\"' EXIT\r\r\n+ cat\r\r\n"]
+[0.11720040498767048, "o", "++ pkg-config --cflags --libs json-c\r\r\n"]
+[0.1181558039970696, "o", "+ gcc /tmp/validator-tmp/t.c -o /tmp/validator-tmp/t -I/usr/include/json-c -ljson-c\r\r\n"]
+[0.1424600649625063, "o", "+ /tmp/validator-tmp/t\r\r\n"]
+[0.14290118392091244, "o", "error=unexpected character\r\r\n+ rm -rf /tmp/validator-tmp\r\r\n"]

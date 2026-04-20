@@ -1,6 +1,0 @@
-usr/include/webp/*.h
-usr/lib/*/libwebp*.so
-usr/lib/*/libwebp*.a
-usr/lib/*/pkgconfig/libwebp.pc
-usr/lib/*/pkgconfig/libwebp*.pc
-usr/lib/*/cmake/WebP/*

@@ -1,7 +1,9 @@
 $ docker run --rm -t --mount type=bind,src=/tmp/validator-status-libcsv-usage-readstat-metadata-summary,dst=/validator/status validator-libcsv-shared bash -lc 'set -euo pipefail
 /validator/tests/_shared/install_override_debs.sh
-exec /validator/tests/_shared/run_library_tests.sh "$@"' validator-testcase libcsv usage-readstat-metadata-summary -- bash /validator/tests/libcsv/tests/cases/usage/usage-readstat-metadata-summary.sh
+exec /validator/tests/_shared/run_library_tests.sh "$@"' validator-testcase libcsv usage-readstat-metadata-summary -- bash -x /validator/tests/libcsv/tests/cases/usage/usage-readstat-metadata-summary.sh
 no override packages found; continuing with apt originals
++ set -euo pipefail
++ /validator/tests/libcsv/tests/cases/usage/usage-readstat-common.sh metadata-summary
 Converted 2 variables and 2 rows in 0.00 seconds
 Format: Stata binary file (DTA)
 Columns: 2

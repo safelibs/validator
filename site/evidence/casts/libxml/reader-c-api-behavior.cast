@@ -1,3 +1,10 @@
 {"version": 2, "width": 120, "height": 40, "timestamp": 0, "env": {"TERM": "xterm-256color", "SHELL": "/bin/bash"}}
-[0.11118984804488719, "o", "no override packages found; continuing with apt originals\r\r\n"]
-[0.17414494196418673, "o", "element=root\r\r\nelement=child\r\r\n"]
+[0.09977846394758672, "o", "no override packages found; continuing with apt originals\r\r\n"]
+[0.10148972703609616, "o", "+ set -euo pipefail\r\r\n+ source /validator/tests/_shared/runtime_helpers.sh\r\r\n++ set -euo pipefail\r\r\n"]
+[0.1018347879871726, "o", "++ mktemp -d\r\r\n"]
+[0.1030461189802736, "o", "+ tmpdir=/tmp/validator-tmp\r\r\n+ trap 'rm -rf \"$tmpdir\"' EXIT\r\r\n+ cat\r\r\n"]
+[0.10357720195315778, "o", "++ pkg-config --cflags --libs libxml-2.0\r\r\n"]
+[0.1040190759813413, "o", "+ gcc /tmp/validator-tmp/t.c -o /tmp/validator-tmp/t -I/usr/include/libxml2 -lxml2\r\r\n"]
+[0.16025065502617508, "o", "+ /tmp/validator-tmp/t\r\r\n"]
+[0.16155788803007454, "o", "element=root\r\r\nelement=child\r\r\n"]
+[0.16162914305459708, "o", "+ rm -rf /tmp/validator-tmp\r\r\n"]

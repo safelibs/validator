@@ -1,4 +1,8 @@
 {"version": 2, "width": 120, "height": 40, "timestamp": 0, "env": {"TERM": "xterm-256color", "SHELL": "/bin/bash"}}
-[0.10970480099786073, "o", "no override packages found; continuing with apt originals\r\r\n"]
-[0.15780067292507738, "o", "<frozen importlib._bootstrap>:488: RuntimeWarning: Your system is avx2 capable but pygame was not built with support for it. The performance of some of your blits could be adversely affected. Consider enabling compile time detection with environment variables like PYGAME_DETECT_AVX2=1 if you are compiling without cross compilation.\r\r\n"]
-[0.3025870849378407, "o", "display (32, 24)\r\r\n"]
+[0.29221089207567275, "o", "no override packages found; continuing with apt originals\r\r\n"]
+[0.29364840197376907, "o", "+ set -euo pipefail\r\r\n+ source /validator/tests/_shared/runtime_helpers.sh\r\r\n++ set -euo pipefail\r\r\n"]
+[0.29379677097313106, "o", "++ mktemp -d\r\r\n"]
+[0.32378563401289284, "o", "+ tmpdir=/tmp/validator-tmp\r\r\n+ trap 'rm -rf \"$tmpdir\"' EXIT\r\r\n+ export PYGAME_HIDE_SUPPORT_PROMPT=1\r\r\n+ PYGAME_HIDE_SUPPORT_PROMPT=1\r\r\n+ validator_run_xvfb python3 - /tmp/validator-tmp/out.bmp\r\r\n+ command -v xvfb-run\r\r\n+ xvfb-run -a python3 - /tmp/validator-tmp/out.bmp\r\r\n"]
+[0.40829938906244934, "o", "<frozen importlib._bootstrap>:488: RuntimeWarning: Your system is avx2 capable but pygame was not built with support for it. The performance of some of your blits could be adversely affected. Consider enabling compile time detection with environment variables like PYGAME_DETECT_AVX2=1 if you are compiling without cross compilation.\r\r\n"]
+[0.5552964300150052, "o", "display (32, 24)\r\r\n"]
+[0.5788577999919653, "o", "+ rm -rf /tmp/validator-tmp\r\r\n"]

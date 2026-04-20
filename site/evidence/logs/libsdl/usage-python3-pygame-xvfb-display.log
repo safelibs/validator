@@ -1,6 +1,18 @@
 $ docker run --rm -t --mount type=bind,src=/tmp/validator-status-libsdl-usage-python3-pygame-xvfb-display,dst=/validator/status validator-libsdl-shared bash -lc 'set -euo pipefail
 /validator/tests/_shared/install_override_debs.sh
-exec /validator/tests/_shared/run_library_tests.sh "$@"' validator-testcase libsdl usage-python3-pygame-xvfb-display -- bash /validator/tests/libsdl/tests/cases/usage/usage-python3-pygame-xvfb-display.sh
+exec /validator/tests/_shared/run_library_tests.sh "$@"' validator-testcase libsdl usage-python3-pygame-xvfb-display -- bash -x /validator/tests/libsdl/tests/cases/usage/usage-python3-pygame-xvfb-display.sh
 no override packages found; continuing with apt originals
++ set -euo pipefail
++ source /validator/tests/_shared/runtime_helpers.sh
+++ set -euo pipefail
+++ mktemp -d
++ tmpdir=/tmp/validator-tmp
++ trap 'rm -rf "$tmpdir"' EXIT
++ export PYGAME_HIDE_SUPPORT_PROMPT=1
++ PYGAME_HIDE_SUPPORT_PROMPT=1
++ validator_run_xvfb python3 - /tmp/validator-tmp/out.bmp
++ command -v xvfb-run
++ xvfb-run -a python3 - /tmp/validator-tmp/out.bmp
 <frozen importlib._bootstrap>:488: RuntimeWarning: Your system is avx2 capable but pygame was not built with support for it. The performance of some of your blits could be adversely affected. Consider enabling compile time detection with environment variables like PYGAME_DETECT_AVX2=1 if you are compiling without cross compilation.
 display (32, 24)
++ rm -rf /tmp/validator-tmp

@@ -1,6 +1,23 @@
 $ docker run --rm -t --mount type=bind,src=/tmp/validator-status-liblzma-usage-libarchive-tools-xz-symlink,dst=/validator/status validator-liblzma-shared bash -lc 'set -euo pipefail
 /validator/tests/_shared/install_override_debs.sh
-exec /validator/tests/_shared/run_library_tests.sh "$@"' validator-testcase liblzma usage-libarchive-tools-xz-symlink -- bash /validator/tests/liblzma/tests/cases/usage/usage-libarchive-tools-xz-symlink.sh
+exec /validator/tests/_shared/run_library_tests.sh "$@"' validator-testcase liblzma usage-libarchive-tools-xz-symlink -- bash -x /validator/tests/liblzma/tests/cases/usage/usage-libarchive-tools-xz-symlink.sh
 no override packages found; continuing with apt originals
++ set -euo pipefail
++ source /validator/tests/_shared/runtime_helpers.sh
+++ set -euo pipefail
+++ mktemp -d
++ tmpdir=/tmp/validator-tmp
++ trap 'rm -rf "$tmpdir"' EXIT
++ mkdir -p /tmp/validator-tmp/in /tmp/validator-tmp/out
++ printf 'symlink\n'
++ bsdtar -cJf /tmp/validator-tmp/a.tar.xz -C /tmp/validator-tmp/in .
++ tee /tmp/validator-tmp/list
++ bsdtar -tf /tmp/validator-tmp/a.tar.xz
 ./
 ./payload.txt
++ bsdtar -xf /tmp/validator-tmp/a.tar.xz -C /tmp/validator-tmp/out
++ validator_assert_contains /tmp/validator-tmp/out/payload.txt symlink
++ local path=/tmp/validator-tmp/out/payload.txt
++ local needle=symlink
++ grep -Fq -- symlink /tmp/validator-tmp/out/payload.txt
++ rm -rf /tmp/validator-tmp

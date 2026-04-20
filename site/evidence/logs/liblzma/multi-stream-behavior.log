@@ -1,6 +1,22 @@
 $ docker run --rm -t --mount type=bind,src=/tmp/validator-status-liblzma-multi-stream-behavior,dst=/validator/status validator-liblzma-shared bash -lc 'set -euo pipefail
 /validator/tests/_shared/install_override_debs.sh
-exec /validator/tests/_shared/run_library_tests.sh "$@"' validator-testcase liblzma multi-stream-behavior -- bash /validator/tests/liblzma/tests/cases/source/multi-stream-behavior.sh
+exec /validator/tests/_shared/run_library_tests.sh "$@"' validator-testcase liblzma multi-stream-behavior -- bash -x /validator/tests/liblzma/tests/cases/source/multi-stream-behavior.sh
 no override packages found; continuing with apt originals
++ set -euo pipefail
++ source /validator/tests/_shared/runtime_helpers.sh
+++ set -euo pipefail
+++ mktemp -d
++ tmpdir=/tmp/validator-tmp
++ trap 'rm -rf "$tmpdir"' EXIT
++ printf 'alpha\n'
++ printf 'beta\n'
++ xz -c /tmp/validator-tmp/a
++ xz -c /tmp/validator-tmp/b
++ cat /tmp/validator-tmp/a.xz /tmp/validator-tmp/b.xz
++ tee /tmp/validator-tmp/out
++ xz -dc /tmp/validator-tmp/two.xz
 alpha
 beta
++ cmp /dev/fd/63 /tmp/validator-tmp/out
+++ printf 'alpha\nbeta\n'
++ rm -rf /tmp/validator-tmp
