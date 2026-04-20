@@ -28,6 +28,14 @@ case "$workload" in
         exif --tag=Model "$img" | tee "$tmpdir/out"
         validator_assert_contains "$tmpdir/out" 'Canon PowerShot S70'
         ;;
+    tag-datetime)
+        exif --tag=DateTime "$img" | tee "$tmpdir/out"
+        validator_assert_contains "$tmpdir/out" '2009:10:10 16:42:32'
+        ;;
+    tag-datetime-original)
+        exif --tag=DateTimeOriginal "$img" | tee "$tmpdir/out"
+        validator_assert_contains "$tmpdir/out" '2009:10:10 16:42:32'
+        ;;
     maker-note)
         exif --show-mnote "$img" | tee "$tmpdir/out"
         validator_assert_contains "$tmpdir/out" 'MakerNote contains'

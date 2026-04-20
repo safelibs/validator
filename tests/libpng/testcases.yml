@@ -156,3 +156,28 @@ testcases:
   tags:
   - usage
   - image
+- id: usage-pngquant-posterize-png
+  title: pngquant posterize PNG
+  description: Posterizes a PNG fixture with pngquant and verifies PNG output is produced.
+  kind: usage
+  client_application: pngquant
+  command:
+  - bash
+  - /validator/tests/libpng/tests/cases/usage/usage-pngquant-posterize-png.sh
+  timeout_seconds: 180
+  tags:
+  - usage
+  - image
+  - compression
+- id: usage-netpbm-pamflip-png
+  title: netpbm rotate PNG
+  description: Rotates a PNG fixture through netpbm PAM tools and verifies the resulting PNG dimensions.
+  kind: usage
+  client_application: netpbm
+  command:
+  - bash
+  - /validator/tests/libpng/tests/cases/usage/usage-netpbm-pamflip-png.sh
+  timeout_seconds: 180
+  tags:
+  - usage
+  - image

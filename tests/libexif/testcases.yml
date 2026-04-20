@@ -155,3 +155,27 @@ testcases:
   tags:
   - usage
   - metadata
+- id: usage-exif-cli-tag-datetime
+  title: exif CLI DateTime tag
+  description: Runs the exif CLI to read the image DateTime tag from a JPEG fixture.
+  kind: usage
+  client_application: exif
+  command:
+  - bash
+  - /validator/tests/libexif/tests/cases/usage/usage-exif-cli-tag-datetime.sh
+  timeout_seconds: 180
+  tags:
+  - usage
+  - metadata
+- id: usage-exif-cli-tag-datetime-original
+  title: exif CLI DateTimeOriginal tag
+  description: Runs the exif CLI to read the original capture timestamp from a JPEG fixture.
+  kind: usage
+  client_application: exif
+  command:
+  - bash
+  - /validator/tests/libexif/tests/cases/usage/usage-exif-cli-tag-datetime-original.sh
+  timeout_seconds: 180
+  tags:
+  - usage
+  - metadata

@@ -164,3 +164,29 @@ testcases:
   - usage
   - cli
   - image
+- id: usage-giflib-tools-gif2rgb-fire-fixture
+  title: giflib-tools gif2rgb fire fixture
+  description: Converts the fire GIF fixture with gif2rgb and verifies the exact RGB byte stream.
+  kind: usage
+  client_application: giflib-tools
+  command:
+  - bash
+  - /validator/tests/giflib/tests/cases/usage/usage-giflib-tools-gif2rgb-fire-fixture.sh
+  timeout_seconds: 180
+  tags:
+  - usage
+  - cli
+  - image
+- id: usage-giflib-tools-giftext-interlaced-fixture
+  title: giflib-tools giftext interlaced fixture
+  description: Inspects an interlaced GIF fixture with giftext and verifies image metadata output.
+  kind: usage
+  client_application: giflib-tools
+  command:
+  - bash
+  - /validator/tests/giflib/tests/cases/usage/usage-giflib-tools-giftext-interlaced-fixture.sh
+  timeout_seconds: 180
+  tags:
+  - usage
+  - cli
+  - image

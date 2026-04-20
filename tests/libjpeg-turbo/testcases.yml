@@ -166,3 +166,30 @@ testcases:
   - usage
   - image
   - cli
+- id: usage-python3-pil-progressive-jpeg
+  title: Pillow progressive JPEG load
+  description: Opens a progressive JPEG with Pillow and verifies libjpeg-turbo-backed image metadata.
+  kind: usage
+  client_application: python3-pil
+  command:
+  - bash
+  - /validator/tests/libjpeg-turbo/tests/cases/usage/usage-python3-pil-progressive-jpeg.sh
+  timeout_seconds: 180
+  tags:
+  - usage
+  - image
+  - python
+  - compression
+- id: usage-vips-extract-band-jpeg
+  title: vips extract JPEG band
+  description: Extracts a JPEG color band with vips and verifies the single-band image output.
+  kind: usage
+  client_application: vips
+  command:
+  - bash
+  - /validator/tests/libjpeg-turbo/tests/cases/usage/usage-vips-extract-band-jpeg.sh
+  timeout_seconds: 180
+  tags:
+  - usage
+  - image
+  - cli

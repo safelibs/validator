@@ -177,3 +177,28 @@ testcases:
   - usage
   - image
   - compile
+- id: usage-python3-pil-webp-alpha
+  title: Pillow WebP alpha channel
+  description: Saves an RGBA WebP with Pillow and verifies alpha channel preservation through libwebp.
+  kind: usage
+  client_application: python3-pil
+  command:
+  - bash
+  - /validator/tests/libwebp/tests/cases/usage/usage-python3-pil-webp-alpha.sh
+  timeout_seconds: 180
+  tags:
+  - usage
+  - image
+  - python
+- id: usage-ffmpeg-webp-scale-filter
+  title: FFmpeg WebP scale filter
+  description: Scales a WebP image with FFmpeg and verifies the PNG output stream dimensions.
+  kind: usage
+  client_application: ffmpeg
+  command:
+  - bash
+  - /validator/tests/libwebp/tests/cases/usage/usage-ffmpeg-webp-scale-filter.sh
+  timeout_seconds: 180
+  tags:
+  - usage
+  - image

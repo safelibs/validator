@@ -165,3 +165,31 @@ testcases:
   - usage
   - image
   - python
+- id: usage-python3-pil-deflate-tiff
+  title: Pillow Deflate TIFF save
+  description: Saves a Deflate-compressed TIFF with Pillow and verifies libtiff-backed reload behavior.
+  kind: usage
+  client_application: python3-pil
+  command:
+  - bash
+  - /validator/tests/libtiff/tests/cases/usage/usage-python3-pil-deflate-tiff.sh
+  timeout_seconds: 180
+  tags:
+  - usage
+  - image
+  - python
+  - compression
+- id: usage-python3-pil-tiff-dpi-save
+  title: Pillow TIFF DPI save
+  description: Saves TIFF resolution metadata with Pillow and verifies the reloaded DPI tags.
+  kind: usage
+  client_application: python3-pil
+  command:
+  - bash
+  - /validator/tests/libtiff/tests/cases/usage/usage-python3-pil-tiff-dpi-save.sh
+  timeout_seconds: 180
+  tags:
+  - usage
+  - image
+  - python
+  - metadata

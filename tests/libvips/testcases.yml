@@ -165,3 +165,29 @@ testcases:
   - usage
   - ruby
   - image
+- id: usage-ruby-vips-gaussblur-image
+  title: ruby-vips Gaussian blur image
+  description: Applies a Gaussian blur with ruby-vips and verifies image dimensions and pixel average.
+  kind: usage
+  client_application: ruby-vips
+  command:
+  - bash
+  - /validator/tests/libvips/tests/cases/usage/usage-ruby-vips-gaussblur-image.sh
+  timeout_seconds: 180
+  tags:
+  - usage
+  - ruby
+  - image
+- id: usage-ruby-vips-histogram-image
+  title: ruby-vips histogram image
+  description: Builds an image histogram with ruby-vips and verifies populated histogram bins.
+  kind: usage
+  client_application: ruby-vips
+  command:
+  - bash
+  - /validator/tests/libvips/tests/cases/usage/usage-ruby-vips-histogram-image.sh
+  timeout_seconds: 180
+  tags:
+  - usage
+  - ruby
+  - image
