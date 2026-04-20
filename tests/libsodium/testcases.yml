@@ -167,3 +167,27 @@ testcases:
   tags:
   - usage
   - compile
+- id: usage-python3-nacl-public-box
+  title: python3-nacl public box round trip
+  description: Encrypts and decrypts a message with PyNaCl public-key boxes through libsodium.
+  kind: usage
+  client_application: python3-nacl
+  command:
+  - bash
+  - /validator/tests/libsodium/tests/cases/usage/usage-python3-nacl-public-box.sh
+  timeout_seconds: 180
+  tags:
+  - usage
+  - crypto
+- id: usage-php83-sodium-sign-detached
+  title: PHP sodium detached signatures
+  description: Signs a message with PHP sodium and verifies the detached signature through libsodium.
+  kind: usage
+  client_application: php8.3-cli
+  command:
+  - bash
+  - /validator/tests/libsodium/tests/cases/usage/usage-php83-sodium-sign-detached.sh
+  timeout_seconds: 180
+  tags:
+  - usage
+  - crypto

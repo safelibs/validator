@@ -164,3 +164,29 @@ testcases:
   - usage
   - headless
   - python
+- id: usage-python3-pygame-key-event
+  title: Pygame key event dispatch
+  description: Posts a Pygame keydown event and verifies the SDL-backed queue returns the same key.
+  kind: usage
+  client_application: python3-pygame
+  command:
+  - bash
+  - /validator/tests/libsdl/tests/cases/usage/usage-python3-pygame-key-event.sh
+  timeout_seconds: 180
+  tags:
+  - usage
+  - headless
+  - python
+- id: usage-python3-pygame-mask-collision
+  title: Pygame mask collision
+  description: Builds Pygame surface masks and checks the SDL-backed overlap result for intersecting sprites.
+  kind: usage
+  client_application: python3-pygame
+  command:
+  - bash
+  - /validator/tests/libsdl/tests/cases/usage/usage-python3-pygame-mask-collision.sh
+  timeout_seconds: 180
+  tags:
+  - usage
+  - headless
+  - python
