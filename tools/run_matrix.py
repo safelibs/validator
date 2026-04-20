@@ -507,6 +507,28 @@ def cleanup_library_images(states: dict[str, LibraryState]) -> list[str]:
     return errors
 
 
+def _bash_command_enables_xtrace(command: list[str]) -> bool:
+    for arg in command[1:]:
+        if arg == "--":
+            return False
+        if not arg.startswith("-") or arg == "-":
+            return False
+        if arg.startswith("--"):
+            continue
+        if "x" in arg[1:]:
+            return True
+    return False
+
+
+def _testcase_command_for_run(testcase: Testcase, *, record_casts: bool) -> list[str]:
+    command = list(testcase.command)
+    if not record_casts or not command or os.path.basename(command[0]) != "bash":
+        return command
+    if _bash_command_enables_xtrace(command):
+        return command
+    return [command[0], "-x", *command[1:]]
+
+
 def _container_command(
     *,
     image_tag: str,
@@ -546,7 +568,7 @@ def _container_command(
             library,
             testcase.id,
             "--",
-            *testcase.command,
+            *_testcase_command_for_run(testcase, record_casts=record_casts),
         ]
     )
     return command

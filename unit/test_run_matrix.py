@@ -34,6 +34,17 @@ class RunMatrixTests(unittest.TestCase):
         self.addCleanup(tempdir.cleanup)
         return Path(tempdir.name)
 
+    def make_testcase(self, command: list[str]) -> run_matrix.Testcase:
+        return run_matrix.Testcase(
+            id="source-demo",
+            title="Source demo",
+            description="Runs the source demo fixture.",
+            kind="source",
+            command=command,
+            timeout_seconds=300,
+            tags=("smoke",),
+        )
+
     def fake_logged_run(self, failures: set[str] | None = None):
         failures = failures or set()
 
@@ -125,6 +136,38 @@ class RunMatrixTests(unittest.TestCase):
         self.assertEqual(summary["passed"], 2)
         self.assertEqual(summary["failed"], 0)
         self.assertEqual(summary["casts"], 2)
+
+    def test_record_casts_runs_bash_testcase_with_xtrace(self) -> None:
+        root = self.run_root()
+        testcase = self.make_testcase(["bash", "/validator/tests/demo/tests/run.sh"])
+
+        command = run_matrix._container_command(
+            image_tag="validator-demo",
+            library="demo",
+            testcase=testcase,
+            record_casts=True,
+            status_dir=root / "status",
+            override_deb_dir=None,
+        )
+
+        separator = command.index("--")
+        self.assertEqual(command[separator + 1 :], ["bash", "-x", "/validator/tests/demo/tests/run.sh"])
+
+    def test_record_casts_does_not_duplicate_existing_xtrace(self) -> None:
+        root = self.run_root()
+        testcase = self.make_testcase(["bash", "-x", "/validator/tests/demo/tests/run.sh"])
+
+        command = run_matrix._container_command(
+            image_tag="validator-demo",
+            library="demo",
+            testcase=testcase,
+            record_casts=True,
+            status_dir=root / "status",
+            override_deb_dir=None,
+        )
+
+        separator = command.index("--")
+        self.assertEqual(command[separator + 1 :], ["bash", "-x", "/validator/tests/demo/tests/run.sh"])
 
     def test_override_root_layout_and_installed_marker(self) -> None:
         root = self.run_root()
