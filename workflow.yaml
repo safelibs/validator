@@ -1,0 +1,1199 @@
+name: validator-more-dependent-usage-cases
+backend: codex
+working_dir: .
+max_bounces: 999
+
+vars:
+  GOAL: "add more testcases for all the libraries. Focus on triggering various library functionality through dependent applications."
+
+phases:
+  - id: impl_phase_01_data_parser_usage_cases
+    type: implement
+    bounce_target: null
+    prompt: |
+      Implement phase 1 exactly as specified below. The phase file is the authoritative prompt content for this phase.
+
+      Use the listed Preexisting Inputs in place. Consume or update existing artifacts instead of refetching, recollecting, rediscovering, regenerating, expanding, or reordering them from scratch unless the phase explicitly tells you to run an existing tool for that purpose.
+
+      Commit all phase 1 scoped work to git before yielding. Do not yield with uncommitted phase 1 file changes.
+
+      # 1. Data, Parser, and Event-Loop Dependent Usage Cases
+
+      ## Phase Name
+
+      Data, Parser, and Event-Loop Dependent Usage Cases
+
+      ## Implement Phase ID
+
+      `impl_phase_01_data_parser_usage_cases`
+
+      ## Preexisting Inputs
+
+      - `.plan/goal.md`
+      - `.plan/plan.md`
+      - `repositories.yml` canonical manifest and package list; consume it unchanged.
+      - `test.sh`
+      - `tools/testcases.py`
+      - `tools/run_matrix.py`
+      - `tools/verify_proof_artifacts.py`
+      - `tests/_shared/runtime_helpers.sh`
+      - `tests/_shared/run_library_tests.sh`
+      - Existing `tests/cjson/` manifest, Dockerfile, dependent fixture, sample fixtures, and usage scripts.
+      - Existing `tests/libcsv/` manifest, Dockerfile, dependent fixture, sample fixtures, and usage scripts.
+      - Existing `tests/libjson/` manifest, Dockerfile, dependent fixture, sample fixtures, and usage scripts.
+      - Existing `tests/libxml/` manifest, Dockerfile, dependent fixture, sample fixtures, and usage scripts.
+      - Existing `tests/libyaml/` manifest, Dockerfile, dependent fixture, sample fixtures, and usage scripts.
+      - Existing `tests/libuv/` manifest, Dockerfile, dependent fixture, sample fixtures, and usage scripts.
+      - Existing sample fixtures under each affected `tests/<library>/tests/fixtures/` directory.
+      - Existing tracked `artifacts/results/`, `artifacts/logs/`, `artifacts/casts/`, `artifacts/proof/original-validation-proof.json`, and `site/` evidence. Consume these artifacts in place; do not refetch, recollect, rediscover, regenerate, expand, or reorder dependent inventories.
+
+      ## New Outputs
+
+      - 12 new usage testcase manifest entries.
+      - 12 new executable usage scripts.
+      - Updated library-local common usage helpers for `cjson`, `libcsv`, and `libjson`.
+
+      ## File Changes
+
+      - Modify `tests/cjson/testcases.yml`.
+      - Modify `tests/cjson/tests/cases/usage/usage-iperf3-json-common.sh`.
+      - Add `tests/cjson/tests/cases/usage/usage-iperf3-json-zero-copy.sh`.
+      - Add `tests/cjson/tests/cases/usage/usage-iperf3-json-omit-warmup.sh`.
+      - Modify `tests/libcsv/testcases.yml`.
+      - Modify `tests/libcsv/tests/cases/usage/usage-readstat-common.sh`.
+      - Add `tests/libcsv/tests/cases/usage/usage-readstat-escaped-quotes-csv.sh`.
+      - Add `tests/libcsv/tests/cases/usage/usage-readstat-wide-csv.sh`.
+      - Modify `tests/libjson/testcases.yml`.
+      - Modify `tests/libjson/tests/cases/usage/usage-gdal-json-common.sh`.
+      - Add `tests/libjson/tests/cases/usage/usage-gdal-ogr2ogr-where-geojson.sh`.
+      - Add `tests/libjson/tests/cases/usage/usage-gdal-ogr2ogr-reproject-geojson.sh`.
+      - Modify `tests/libxml/testcases.yml`.
+      - Add `tests/libxml/tests/cases/usage/usage-python3-lxml-xinclude-xml.sh`.
+      - Add `tests/libxml/tests/cases/usage/usage-xmlstarlet-transform-xml.sh`.
+      - Modify `tests/libyaml/testcases.yml`.
+      - Add `tests/libyaml/tests/cases/usage/usage-python3-yaml-cbase-loader.sh`.
+      - Add `tests/libyaml/tests/cases/usage/usage-python3-yaml-binary-scalar.sh`.
+      - Modify `tests/libuv/testcases.yml`.
+      - Add `tests/libuv/tests/cases/usage/usage-nodejs-fs-watch.sh`.
+      - Add `tests/libuv/tests/cases/usage/usage-nodejs-crypto-pbkdf2.sh`.
+
+      ## Implementation Details
+
+      - Apply the global testcase entry contract to all 12 new manifest entries:
+        - Use the new script filename without `.sh` as each manifest entry `id`.
+        - Set `kind: usage`.
+        - Set `timeout_seconds: 180`.
+        - Use a semantic `title`.
+        - Use a client-behavior `description`.
+        - Set `client_application` to one of the existing identifiers named below.
+        - Set `command` exactly to `bash /validator/tests/<library>/tests/cases/usage/<script>.sh`.
+        - Tags must include `usage` and one or more behavior tags already consistent with the library's local manifest style, such as `json`, `compression`, `metadata`, `image`, `runtime`, or `crypto`.
+      - Wrapper scripts that call a library-local common helper must contain `#!/usr/bin/env bash`, `set -euo pipefail`, and then execute the common helper with the exact workload argument named here.
+      - Do not modify `repositories.yml`; it remains the fixed canonical manifest and package list.
+      - Do not modify any affected `tests/<library>/Dockerfile`; every dependent package required by the planned clients is already installed.
+      - Use only these existing `client_application` values:
+        - `cjson`: `iperf3`
+        - `libcsv`: `readstat`
+        - `libjson`: `gdal`
+        - `libxml`: `python3-lxml` and `xmlstarlet`
+        - `libyaml`: `python3-yaml`
+        - `libuv`: `nodejs`
+      - Do not modify any `tests/<library>/tests/fixtures/dependents.json`.
+      - `cjson`: extend `usage-iperf3-json-common.sh` with these workloads:
+        - `zero-copy`: start the existing one-shot loopback server, run `iperf3 -c 127.0.0.1 -p "$port" -J -Z -n 32K`, and assert with `jq -e` that `.end.sum_sent.bytes > 0` and `.end.sum_sent.bits_per_second > 0`.
+        - `omit-warmup`: run `iperf3 -c 127.0.0.1 -p "$port" -J -O 1 -t 2 -i 1`, and assert with `jq -e` that `.intervals` is non-empty, at least one interval is marked omitted through `.sum.omitted` or `.streams[].omitted`, and `.end` is an object.
+      - `libcsv`: extend `usage-readstat-common.sh` with these workloads:
+        - `escaped-quotes-csv`: create CSV containing an escaped double quote field such as `"alpha ""quoted"""`, convert through readstat metadata into DTA, read back to CSV with `readstat "$tmpdir/out.dta" -`, and assert the escaped quote text survives in the exported CSV.
+        - `wide-csv`: create a four-column CSV and matching four-variable metadata, convert to DTA, run `readstat "$tmpdir/out.dta"` for summary and assert `Columns: 4`, then export with `readstat "$tmpdir/out.dta" -` and assert a row value from the fourth column.
+      - `libjson`: extend `usage-gdal-json-common.sh` with these workloads:
+        - `ogr2ogr-where`: use the existing generated GeoJSON fixture, run `ogr2ogr -f GeoJSON "$tmpdir/filtered.geojson" "$geojson" -where 'value=2'`, assert `beta` is present, and assert `alpha` is absent.
+        - `ogr2ogr-reproject`: run `ogr2ogr -f GeoJSON "$tmpdir/reprojected.geojson" "$geojson" -s_srs EPSG:4326 -t_srs EPSG:3857`, then use `jq` to assert a FeatureCollection exists and coordinates were written.
+      - `libxml`:
+        - `usage-python3-lxml-xinclude-xml.sh`: create `main.xml` with an `xi:include` element and create `fragment.xml`, parse `main.xml` with `lxml.etree`, call `tree.xinclude()`, and assert the included element text is visible.
+        - `usage-xmlstarlet-transform-xml.sh`: create XML and XSLT fixtures, run `xmlstarlet tr`, and assert the transformed output contains the expected value.
+      - `libyaml`:
+        - `usage-python3-yaml-cbase-loader.sh`: in Python, assert `yaml.__with_libyaml__` is true, load nested YAML through `yaml.CBaseLoader`, assert scalar values are loaded as strings as expected for `BaseLoader`, and print a parsed value.
+        - `usage-python3-yaml-binary-scalar.sh`: load a `!!binary` scalar through `yaml.safe_load`, assert the decoded bytes, and print the decoded length.
+      - `libuv`:
+        - `usage-nodejs-fs-watch.sh`: create a temporary file, run a Node script using `fs.watch`, mutate the file, and assert a `change` event arrives before timeout.
+        - `usage-nodejs-crypto-pbkdf2.sh`: run Node's asynchronous `crypto.pbkdf2`, which uses libuv threadpool work, and assert the derived key length and callback completion.
+      - Make all new scripts executable.
+
+      ## Verification Phases
+
+      - Phase ID: `check_phase_01_manifest_contract`
+      - Type: `check`
+      - Fixed `bounce_target`: `impl_phase_01_data_parser_usage_cases`
+      - Purpose: validate manifest schema, executable scripts, dependent-client references, Dockerfile package coverage, and cumulative counts after phase 1.
+      - Commands:
+
+      ```bash
+      python3 tools/testcases.py \
+        --config repositories.yml \
+        --tests-root tests \
+        --check \
+        --min-source-cases 95 \
+        --min-usage-cases 167 \
+        --min-cases 262
+
+      python3 tools/testcases.py \
+        --config repositories.yml \
+        --tests-root tests \
+        --list-summary
+      ```
+
+      - Phase ID: `check_phase_01_matrix_smoke`
+      - Type: `check`
+      - Fixed `bounce_target`: `impl_phase_01_data_parser_usage_cases`
+      - Purpose: run the affected data/parser/event-loop libraries with casts and verify proof generation for the selected result set.
+      - Commands:
+
+      ```bash
+      rm -rf /tmp/validator-more-cases-phase01
+      bash test.sh \
+        --config repositories.yml \
+        --tests-root tests \
+        --artifact-root /tmp/validator-more-cases-phase01 \
+        --record-casts \
+        --library cjson \
+        --library libcsv \
+        --library libjson \
+        --library libxml \
+        --library libyaml \
+        --library libuv
+
+      python3 tools/verify_proof_artifacts.py \
+        --config repositories.yml \
+        --tests-root tests \
+        --artifact-root /tmp/validator-more-cases-phase01 \
+        --proof-output /tmp/validator-more-cases-phase01/proof/original-validation-proof.json \
+        --library cjson \
+        --library libcsv \
+        --library libjson \
+        --library libxml \
+        --library libyaml \
+        --library libuv \
+        --min-source-cases 30 \
+        --min-usage-cases 61 \
+        --min-cases 91 \
+        --require-casts
+      ```
+
+      ## Success Criteria
+
+      - Phase 1 adds exactly 12 usage cases across `cjson`, `libcsv`, `libjson`, `libxml`, `libyaml`, and `libuv` while leaving source cases unchanged.
+      - Manifest validation reports at least 95 source cases, 167 usage cases, and 262 total cases.
+      - The phase 1 matrix smoke passes with casts and selected proof totals of at least 30 source cases, 61 usage cases, and 91 total cases.
+      - `/tmp/validator-more-cases-phase01/proof/original-validation-proof.json` is used only as a temporary verifier artifact and is not committed.
+      - `repositories.yml`, affected library Dockerfiles, dependent fixtures, prepared inventories, current tracked artifacts, proof data, and rendered site evidence are preserved unchanged unless explicitly updated by existing tools.
+
+      ## Git Commit Requirement
+
+      The implementer must commit all phase 1 scoped work to git before yielding. Do not yield with uncommitted phase 1 file changes.
+
+  - id: check_phase_01_manifest_contract
+    type: check
+    bounce_target: impl_phase_01_data_parser_usage_cases
+    prompt: |
+      Reviewer role: manifest contract reviewer for phase 1 data/parser/event-loop usage cases.
+
+      Verify all of the following:
+      - The workflow implementation added exactly the phase 1 scoped usage cases and did not modify `repositories.yml`, affected Dockerfiles, dependent fixtures, prepared inventories, tracked proof data, or rendered site evidence outside the phase requirements.
+      - The new manifest entries follow the global testcase entry contract: id equals script filename without `.sh`, `kind: usage`, `timeout_seconds: 180`, semantic title, client-behavior description, valid existing `client_application`, exact `/validator/tests/<library>/tests/cases/usage/<script>.sh` command, and appropriate tags.
+      - All 12 new usage scripts exist, are executable, and wrapper scripts call their common helpers with the specified workload arguments.
+      - Dependent-client references are covered by existing fixture and Dockerfile package coverage.
+      - Cumulative counts after phase 1 meet at least 95 source cases, 167 usage cases, and 262 total cases.
+
+      Run these commands:
+
+      ```bash
+      python3 tools/testcases.py \
+        --config repositories.yml \
+        --tests-root tests \
+        --check \
+        --min-source-cases 95 \
+        --min-usage-cases 167 \
+        --min-cases 262
+
+      python3 tools/testcases.py \
+        --config repositories.yml \
+        --tests-root tests \
+        --list-summary
+      ```
+
+      End with exactly one verdict line: `VERDICT: PASS` or `VERDICT: FAIL: <reason>`
+
+  - id: check_phase_01_matrix_smoke
+    type: check
+    bounce_target: impl_phase_01_data_parser_usage_cases
+    prompt: |
+      Reviewer role: matrix smoke reviewer for phase 1 data/parser/event-loop usage cases.
+
+      Verify all of the following:
+      - The affected libraries `cjson`, `libcsv`, `libjson`, `libxml`, `libyaml`, and `libuv` pass the matrix smoke run with casts recorded.
+      - The selected proof output is generated under `/tmp/validator-more-cases-phase01/proof/original-validation-proof.json`.
+      - The selected proof totals are at least 30 source cases, 61 usage cases, and 91 total cases.
+      - Casts are required and present for the selected phase 1 run.
+      - Temporary verifier output under `/tmp/validator-more-cases-phase01` is not committed.
+
+      Run these commands:
+
+      ```bash
+      rm -rf /tmp/validator-more-cases-phase01
+      bash test.sh \
+        --config repositories.yml \
+        --tests-root tests \
+        --artifact-root /tmp/validator-more-cases-phase01 \
+        --record-casts \
+        --library cjson \
+        --library libcsv \
+        --library libjson \
+        --library libxml \
+        --library libyaml \
+        --library libuv
+
+      python3 tools/verify_proof_artifacts.py \
+        --config repositories.yml \
+        --tests-root tests \
+        --artifact-root /tmp/validator-more-cases-phase01 \
+        --proof-output /tmp/validator-more-cases-phase01/proof/original-validation-proof.json \
+        --library cjson \
+        --library libcsv \
+        --library libjson \
+        --library libxml \
+        --library libyaml \
+        --library libuv \
+        --min-source-cases 30 \
+        --min-usage-cases 61 \
+        --min-cases 91 \
+        --require-casts
+      ```
+
+      End with exactly one verdict line: `VERDICT: PASS` or `VERDICT: FAIL: <reason>`
+
+  - id: impl_phase_02_archive_compression_usage_cases
+    type: implement
+    bounce_target: null
+    prompt: |
+      Implement phase 2 exactly as specified below. The phase file is the authoritative prompt content for this phase.
+
+      Use the listed Preexisting Inputs in place, including concrete outputs from phase 1. Consume or update existing artifacts instead of refetching, recollecting, rediscovering, regenerating, expanding, or reordering them from scratch unless the phase explicitly tells you to run an existing tool for that purpose.
+
+      Commit all phase 2 scoped work to git before yielding. Do not yield with uncommitted phase 2 file changes.
+
+      # 2. Archive and Compression Dependent Usage Cases
+
+      ## Phase Name
+
+      Archive and Compression Dependent Usage Cases
+
+      ## Implement Phase ID
+
+      `impl_phase_02_archive_compression_usage_cases`
+
+      ## Preexisting Inputs
+
+      - `tests/cjson/` concrete phase 1 output directory.
+      - `tests/libcsv/` concrete phase 1 output directory.
+      - `tests/libjson/` concrete phase 1 output directory.
+      - `tests/libxml/` concrete phase 1 output directory.
+      - `tests/libyaml/` concrete phase 1 output directory.
+      - `tests/libuv/` concrete phase 1 output directory.
+      - `repositories.yml` canonical manifest and package list; consume it unchanged.
+      - `test.sh`
+      - `tools/testcases.py`
+      - `tools/run_matrix.py`
+      - `tools/verify_proof_artifacts.py`
+      - `tests/_shared/run_library_tests.sh`
+      - Existing `tests/libarchive/` manifest, Dockerfile, dependent fixture, sample fixtures, and usage scripts.
+      - Existing `tests/libbz2/` manifest, Dockerfile, dependent fixture, sample fixtures, and usage scripts.
+      - Existing `tests/liblzma/` manifest, Dockerfile, dependent fixture, sample fixtures, and usage scripts.
+      - Existing `tests/libzstd/` manifest, Dockerfile, dependent fixture, sample fixtures, and usage scripts.
+      - Existing tracked `artifacts/results/`, `artifacts/logs/`, `artifacts/casts/`, `artifacts/proof/original-validation-proof.json`, and `site/` evidence. Consume these artifacts in place; do not refetch, recollect, rediscover, regenerate, expand, or reorder dependent inventories.
+
+      ## New Outputs
+
+      - 8 new usage testcase manifest entries.
+      - 8 new executable usage scripts.
+      - Updated `python-libarchive-c` common helper.
+
+      ## File Changes
+
+      - Modify `tests/libarchive/testcases.yml`.
+      - Modify `tests/libarchive/tests/cases/usage/usage-python-libarchive-c-common.sh`.
+      - Add `tests/libarchive/tests/cases/usage/usage-python-libarchive-c-zip-roundtrip.sh`.
+      - Add `tests/libarchive/tests/cases/usage/usage-python-libarchive-c-nested-paths.sh`.
+      - Modify `tests/libbz2/testcases.yml`.
+      - Add `tests/libbz2/tests/cases/usage/usage-bzip2-decompress-keep-input.sh`.
+      - Add `tests/libbz2/tests/cases/usage/usage-bzip2-force-overwrite.sh`.
+      - Modify `tests/liblzma/testcases.yml`.
+      - Add `tests/liblzma/tests/cases/usage/usage-libarchive-tools-xz-metadata-list.sh`.
+      - Add `tests/liblzma/tests/cases/usage/usage-libarchive-tools-xz-preserve-permissions.sh`.
+      - Modify `tests/libzstd/testcases.yml`.
+      - Add `tests/libzstd/tests/cases/usage/usage-libarchive-tools-zstd-metadata-list.sh`.
+      - Add `tests/libzstd/tests/cases/usage/usage-libarchive-tools-zstd-preserve-permissions.sh`.
+
+      ## Implementation Details
+
+      - Apply the global testcase entry contract to all 8 new manifest entries:
+        - Use the new script filename without `.sh` as each manifest entry `id`.
+        - Set `kind: usage`.
+        - Set `timeout_seconds: 180`.
+        - Use a semantic `title`.
+        - Use a client-behavior `description`.
+        - Set `client_application` to one of the existing identifiers named below.
+        - Set `command` exactly to `bash /validator/tests/<library>/tests/cases/usage/<script>.sh`.
+        - Tags must include `usage` and one or more behavior tags already consistent with the library's local manifest style, such as `compression`, `metadata`, or `archive`.
+      - Wrapper scripts that call a library-local common helper must contain `#!/usr/bin/env bash`, `set -euo pipefail`, and then execute the common helper with the exact workload argument named here.
+      - Do not modify `repositories.yml`; it remains the fixed canonical manifest and package list.
+      - Do not modify any affected `tests/<library>/Dockerfile`; every dependent package required by the planned clients is already installed.
+      - Use only these existing dependent client identifiers:
+        - `libarchive`: `python3-libarchive-c`
+        - `libbz2`: `bzip2`
+        - `liblzma`: `libarchive-tools`
+        - `libzstd`: `libarchive-tools`
+      - Do not modify any `tests/<library>/tests/fixtures/dependents.json`.
+      - `libarchive`: extend `usage-python-libarchive-c-common.sh` with these workloads:
+        - `zip-roundtrip`: write a ZIP archive through `libarchive.file_writer(..., "zip")`, read it back through `libarchive.file_reader`, and assert file names and contents.
+        - `nested-paths`: write entries such as `dir/sub.txt` and `dir/space name.txt`, read them back, and assert path names and byte contents.
+      - `libbz2`:
+        - `usage-bzip2-decompress-keep-input.sh`: write a payload through `bzip2 -c` to `payload.bz2`, run `bunzip2 -k "$tmpdir/payload.bz2"`, assert both `payload.bz2` and decompressed `payload` still exist, and compare content.
+        - `usage-bzip2-force-overwrite.sh`: create one compressed output, replace the source content, run `bzip2 -kf` to overwrite the existing `.bz2`, then decompress and assert the new content is present.
+      - `liblzma`:
+        - `usage-libarchive-tools-xz-metadata-list.sh`: create an executable file, archive with `bsdtar -cJf`, run `bsdtar -tvf`, and assert the listed path and executable mode marker.
+        - `usage-libarchive-tools-xz-preserve-permissions.sh`: archive and extract an executable file through `bsdtar -cJf` and `bsdtar -xf`, then assert `test -x`.
+      - `libzstd`:
+        - `usage-libarchive-tools-zstd-metadata-list.sh`: mirror the `liblzma` metadata listing test, using `bsdtar --zstd -cf` for creation and normal `bsdtar -tf` or `bsdtar -tvf` for reading.
+        - `usage-libarchive-tools-zstd-preserve-permissions.sh`: mirror the `liblzma` permission preservation test, using `bsdtar --zstd -cf` for creation and normal `bsdtar -xf` for extraction.
+      - Make all new scripts executable.
+
+      ## Verification Phases
+
+      - Phase ID: `check_phase_02_manifest_contract`
+      - Type: `check`
+      - Fixed `bounce_target`: `impl_phase_02_archive_compression_usage_cases`
+      - Purpose: validate manifest schema and cumulative counts after archive/compression additions.
+      - Commands:
+
+      ```bash
+      python3 tools/testcases.py \
+        --config repositories.yml \
+        --tests-root tests \
+        --check \
+        --min-source-cases 95 \
+        --min-usage-cases 175 \
+        --min-cases 270
+      ```
+
+      - Phase ID: `check_phase_02_matrix_smoke`
+      - Type: `check`
+      - Fixed `bounce_target`: `impl_phase_02_archive_compression_usage_cases`
+      - Purpose: run the affected archive/compression libraries with casts and verify selected proof output.
+      - Commands:
+
+      ```bash
+      rm -rf /tmp/validator-more-cases-phase02
+      bash test.sh \
+        --config repositories.yml \
+        --tests-root tests \
+        --artifact-root /tmp/validator-more-cases-phase02 \
+        --record-casts \
+        --library libarchive \
+        --library libbz2 \
+        --library liblzma \
+        --library libzstd
+
+      python3 tools/verify_proof_artifacts.py \
+        --config repositories.yml \
+        --tests-root tests \
+        --artifact-root /tmp/validator-more-cases-phase02 \
+        --proof-output /tmp/validator-more-cases-phase02/proof/original-validation-proof.json \
+        --library libarchive \
+        --library libbz2 \
+        --library liblzma \
+        --library libzstd \
+        --min-source-cases 20 \
+        --min-usage-cases 40 \
+        --min-cases 60 \
+        --require-casts
+      ```
+
+      ## Success Criteria
+
+      - Phase 2 adds exactly 8 usage cases across `libarchive`, `libbz2`, `liblzma`, and `libzstd` while leaving source cases unchanged.
+      - Manifest validation reports at least 95 source cases, 175 usage cases, and 270 total cases.
+      - The phase 2 matrix smoke passes with casts and selected proof totals of 20 source cases, 40 usage cases, and 60 total cases.
+      - New archive/compression logs have deterministic output and no host absolute paths.
+      - Temporary verifier output under `/tmp/validator-more-cases-phase02` is not committed.
+      - `repositories.yml`, affected library Dockerfiles, dependent fixtures, prepared inventories, current tracked artifacts, proof data, and rendered site evidence are preserved unchanged unless explicitly updated by existing tools.
+
+      ## Git Commit Requirement
+
+      The implementer must commit all phase 2 scoped work to git before yielding. Do not yield with uncommitted phase 2 file changes.
+
+  - id: check_phase_02_manifest_contract
+    type: check
+    bounce_target: impl_phase_02_archive_compression_usage_cases
+    prompt: |
+      Reviewer role: manifest contract reviewer for phase 2 archive/compression usage cases.
+
+      Verify all of the following:
+      - Phase 2 added exactly 8 scoped usage cases across `libarchive`, `libbz2`, `liblzma`, and `libzstd` while leaving source cases unchanged.
+      - The new manifest entries follow the global testcase entry contract: id equals script filename without `.sh`, `kind: usage`, `timeout_seconds: 180`, semantic title, client-behavior description, valid existing `client_application`, exact `/validator/tests/<library>/tests/cases/usage/<script>.sh` command, and appropriate tags.
+      - All new scripts exist, are executable, use deterministic output, and avoid host absolute paths in logs.
+      - `repositories.yml`, affected Dockerfiles, dependent fixtures, prepared inventories, tracked proof data, and rendered site evidence are preserved unchanged unless explicitly required by the phase.
+      - Cumulative counts after phase 2 meet at least 95 source cases, 175 usage cases, and 270 total cases.
+
+      Run this command:
+
+      ```bash
+      python3 tools/testcases.py \
+        --config repositories.yml \
+        --tests-root tests \
+        --check \
+        --min-source-cases 95 \
+        --min-usage-cases 175 \
+        --min-cases 270
+      ```
+
+      End with exactly one verdict line: `VERDICT: PASS` or `VERDICT: FAIL: <reason>`
+
+  - id: check_phase_02_matrix_smoke
+    type: check
+    bounce_target: impl_phase_02_archive_compression_usage_cases
+    prompt: |
+      Reviewer role: matrix smoke reviewer for phase 2 archive/compression usage cases.
+
+      Verify all of the following:
+      - The affected libraries `libarchive`, `libbz2`, `liblzma`, and `libzstd` pass the matrix smoke run with casts recorded.
+      - The selected proof output is generated under `/tmp/validator-more-cases-phase02/proof/original-validation-proof.json`.
+      - The selected proof totals are at least 20 source cases, 40 usage cases, and 60 total cases.
+      - Casts are required and present for the selected phase 2 run.
+      - Temporary verifier output under `/tmp/validator-more-cases-phase02` is not committed.
+
+      Run these commands:
+
+      ```bash
+      rm -rf /tmp/validator-more-cases-phase02
+      bash test.sh \
+        --config repositories.yml \
+        --tests-root tests \
+        --artifact-root /tmp/validator-more-cases-phase02 \
+        --record-casts \
+        --library libarchive \
+        --library libbz2 \
+        --library liblzma \
+        --library libzstd
+
+      python3 tools/verify_proof_artifacts.py \
+        --config repositories.yml \
+        --tests-root tests \
+        --artifact-root /tmp/validator-more-cases-phase02 \
+        --proof-output /tmp/validator-more-cases-phase02/proof/original-validation-proof.json \
+        --library libarchive \
+        --library libbz2 \
+        --library liblzma \
+        --library libzstd \
+        --min-source-cases 20 \
+        --min-usage-cases 40 \
+        --min-cases 60 \
+        --require-casts
+      ```
+
+      End with exactly one verdict line: `VERDICT: PASS` or `VERDICT: FAIL: <reason>`
+
+  - id: impl_phase_03_media_image_usage_cases
+    type: implement
+    bounce_target: null
+    prompt: |
+      Implement phase 3 exactly as specified below. The phase file is the authoritative prompt content for this phase.
+
+      Use the listed Preexisting Inputs in place, including concrete outputs from phases 1 and 2. Consume or update existing artifacts instead of refetching, recollecting, rediscovering, regenerating, expanding, or reordering them from scratch unless the phase explicitly tells you to run an existing tool for that purpose.
+
+      Commit all phase 3 scoped work to git before yielding. Do not yield with uncommitted phase 3 file changes.
+
+      # 3. Media, Image, and Metadata Dependent Usage Cases
+
+      ## Phase Name
+
+      Media, Image, and Metadata Dependent Usage Cases
+
+      ## Implement Phase ID
+
+      `impl_phase_03_media_image_usage_cases`
+
+      ## Preexisting Inputs
+
+      - `tests/cjson/` concrete phase 1 output directory.
+      - `tests/libcsv/` concrete phase 1 output directory.
+      - `tests/libjson/` concrete phase 1 output directory.
+      - `tests/libxml/` concrete phase 1 output directory.
+      - `tests/libyaml/` concrete phase 1 output directory.
+      - `tests/libuv/` concrete phase 1 output directory.
+      - `tests/libarchive/` concrete phase 2 output directory.
+      - `tests/libbz2/` concrete phase 2 output directory.
+      - `tests/liblzma/` concrete phase 2 output directory.
+      - `tests/libzstd/` concrete phase 2 output directory.
+      - `repositories.yml` canonical manifest and package list; consume it unchanged.
+      - `test.sh`
+      - `tools/testcases.py`
+      - `tools/run_matrix.py`
+      - `tools/verify_proof_artifacts.py`
+      - `tests/_shared/run_library_tests.sh`
+      - Existing `tests/giflib/` manifest, Dockerfile, dependent fixture, sample fixtures, and usage scripts.
+      - Existing `tests/libexif/` manifest, Dockerfile, dependent fixture, sample fixtures, and usage scripts.
+      - Existing `tests/libjpeg-turbo/` manifest, Dockerfile, dependent fixture, sample fixtures, and usage scripts.
+      - Existing `tests/libpng/` manifest, Dockerfile, dependent fixture, sample fixtures, and usage scripts.
+      - Existing `tests/libtiff/` manifest, Dockerfile, dependent fixture, sample fixtures, and usage scripts.
+      - Existing `tests/libvips/` manifest, Dockerfile, dependent fixture, sample fixtures, and usage scripts.
+      - Existing `tests/libwebp/` manifest, Dockerfile, dependent fixture, sample fixtures, and usage scripts.
+      - Existing tracked `artifacts/results/`, `artifacts/logs/`, `artifacts/casts/`, `artifacts/proof/original-validation-proof.json`, and `site/` evidence. Consume these artifacts in place; do not refetch, recollect, rediscover, regenerate, expand, or reorder dependent inventories.
+
+      ## New Outputs
+
+      - 14 new usage testcase manifest entries.
+      - 14 new executable usage scripts.
+      - Updated `exif` common helper.
+
+      ## File Changes
+
+      - Modify `tests/giflib/testcases.yml`.
+      - Add `tests/giflib/tests/cases/usage/usage-giflib-tools-gif2rgb-fire-fixture.sh`.
+      - Add `tests/giflib/tests/cases/usage/usage-giflib-tools-giftext-interlaced-fixture.sh`.
+      - Modify `tests/libexif/testcases.yml`.
+      - Modify `tests/libexif/tests/cases/usage/usage-exif-cli-common.sh`.
+      - Add `tests/libexif/tests/cases/usage/usage-exif-cli-tag-datetime.sh`.
+      - Add `tests/libexif/tests/cases/usage/usage-exif-cli-tag-datetime-original.sh`.
+      - Modify `tests/libjpeg-turbo/testcases.yml`.
+      - Add `tests/libjpeg-turbo/tests/cases/usage/usage-python3-pil-progressive-jpeg.sh`.
+      - Add `tests/libjpeg-turbo/tests/cases/usage/usage-vips-extract-band-jpeg.sh`.
+      - Modify `tests/libpng/testcases.yml`.
+      - Add `tests/libpng/tests/cases/usage/usage-pngquant-posterize-png.sh`.
+      - Add `tests/libpng/tests/cases/usage/usage-netpbm-pamflip-png.sh`.
+      - Modify `tests/libtiff/testcases.yml`.
+      - Add `tests/libtiff/tests/cases/usage/usage-python3-pil-deflate-tiff.sh`.
+      - Add `tests/libtiff/tests/cases/usage/usage-python3-pil-tiff-dpi-save.sh`.
+      - Modify `tests/libvips/testcases.yml`.
+      - Add `tests/libvips/tests/cases/usage/usage-ruby-vips-gaussblur-image.sh`.
+      - Add `tests/libvips/tests/cases/usage/usage-ruby-vips-histogram-image.sh`.
+      - Modify `tests/libwebp/testcases.yml`.
+      - Add `tests/libwebp/tests/cases/usage/usage-python3-pil-webp-alpha.sh`.
+      - Add `tests/libwebp/tests/cases/usage/usage-ffmpeg-webp-scale-filter.sh`.
+
+      ## Implementation Details
+
+      - Apply the global testcase entry contract to all 14 new manifest entries:
+        - Use the new script filename without `.sh` as each manifest entry `id`.
+        - Set `kind: usage`.
+        - Set `timeout_seconds: 180`.
+        - Use a semantic `title`.
+        - Use a client-behavior `description`.
+        - Set `client_application` to one of the existing identifiers named below.
+        - Set `command` exactly to `bash /validator/tests/<library>/tests/cases/usage/<script>.sh`.
+        - Tags must include `usage` and one or more behavior tags already consistent with the library's local manifest style, such as `metadata`, `image`, or `compression`.
+      - Wrapper scripts that call a library-local common helper must contain `#!/usr/bin/env bash`, `set -euo pipefail`, and then execute the common helper with the exact workload argument named here.
+      - Do not modify `repositories.yml`; it remains the fixed canonical manifest and package list.
+      - Do not modify any affected `tests/<library>/Dockerfile`; every dependent package required by the planned clients is already installed.
+      - Use only these existing dependent client identifiers:
+        - `giflib`: `giflib-tools`
+        - `libexif`: `exif`
+        - `libjpeg-turbo`: `python3-pil` and `vips`
+        - `libpng`: `pngquant` and `netpbm`
+        - `libtiff`: `python3-pil`
+        - `libvips`: `ruby-vips`
+        - `libwebp`: `python3-pil` and `ffmpeg`
+      - Do not modify any `tests/<library>/tests/fixtures/dependents.json`.
+      - `giflib`:
+        - `usage-giflib-tools-gif2rgb-fire-fixture.sh`: read `"$VALIDATOR_SAMPLE_ROOT/pic/fire.gif"`, run `gif2rgb -1 -o`, and compare output bytes to `"$VALIDATOR_SAMPLE_ROOT/tests/fire.rgb"` with `cmp`.
+        - `usage-giflib-tools-giftext-interlaced-fixture.sh`: read `treescap-interlaced.gif`, run `giftext`, assert `Screen Size`, and require a case-insensitive `interlace` match in the output.
+      - `libexif`: extend `usage-exif-cli-common.sh` with these workloads:
+        - `tag-datetime`: run `exif --tag=DateTime` and assert `2009:10:10 16:42:32`.
+        - `tag-datetime-original`: run `exif --tag=DateTimeOriginal` and assert `2009:10:10 16:42:32`.
+      - `libjpeg-turbo`:
+        - `usage-python3-pil-progressive-jpeg.sh`: generate a small PPM, encode it with `cjpeg -progressive`, open the output with Pillow, call `load()`, assert size and mode, and assert `im.info.get("progressive") == 1` or `im.info.get("progression") == 1`.
+        - `usage-vips-extract-band-jpeg.sh`: generate a JPEG with `cjpeg`, run `vips extract_band "$jpg" "$tmpdir/band.pgm" 0`, assert the output file exists, and assert `vipsheader "$tmpdir/band.pgm"` reports a one-band image.
+      - `libpng`:
+        - `usage-pngquant-posterize-png.sh`: run `pngquant --posterize 4 --force --output "$tmpdir/out.png"` against an existing PNGSuite fixture and assert `file` reports PNG for `"$tmpdir/out.png"`.
+        - `usage-netpbm-pamflip-png.sh`: run `pngtopam` on a PNGSuite fixture, rotate with `pamflip -r90`, write PNG with `pnmtopng`, assert `file` reports PNG, and assert the rotated dimensions with `pngtopam "$tmpdir/out.png" | pamfile -`.
+      - `libtiff`:
+        - `usage-python3-pil-deflate-tiff.sh`: create a deterministic RGB image with Pillow, save as TIFF using `compression="tiff_adobe_deflate"`, reopen it, and assert exact mode and size.
+        - `usage-python3-pil-tiff-dpi-save.sh`: create a deterministic RGB image, save a TIFF with `dpi=(300, 300)`, reopen it, and assert TIFF XResolution and YResolution tags decode to 300.
+      - `libvips`:
+        - `usage-ruby-vips-gaussblur-image.sh`: create an 8x8 image through ruby-vips, apply `gaussblur(1.2)`, assert width and height remain 8, and assert the blurred image average is greater than 0 and less than 255.
+        - `usage-ruby-vips-histogram-image.sh`: create a small uchar image, run `hist_find`, and assert the histogram width is 256 and its maximum value is greater than 0.
+      - `libwebp`:
+        - `usage-python3-pil-webp-alpha.sh`: use Pillow to save an RGBA WebP, reopen it, and assert alpha channel preservation.
+        - `usage-ffmpeg-webp-scale-filter.sh`: generate a WebP with `cwebp` from a deterministic PPM fixture, run `ffmpeg -hide_banner -loglevel error -i "$webp" -vf scale=2:2 "$tmpdir/out.png"`, assert `file` reports PNG, and assert `ffprobe` reports dimensions `2,2`.
+      - Make all new scripts executable.
+
+      ## Verification Phases
+
+      - Phase ID: `check_phase_03_manifest_contract`
+      - Type: `check`
+      - Fixed `bounce_target`: `impl_phase_03_media_image_usage_cases`
+      - Purpose: validate manifests and cumulative counts after media/image additions.
+      - Commands:
+
+      ```bash
+      python3 tools/testcases.py \
+        --config repositories.yml \
+        --tests-root tests \
+        --check \
+        --min-source-cases 95 \
+        --min-usage-cases 189 \
+        --min-cases 284
+      ```
+
+      - Phase ID: `check_phase_03_matrix_smoke`
+      - Type: `check`
+      - Fixed `bounce_target`: `impl_phase_03_media_image_usage_cases`
+      - Purpose: run the affected image/media libraries with casts and verify selected proof output.
+      - Commands:
+
+      ```bash
+      rm -rf /tmp/validator-more-cases-phase03
+      bash test.sh \
+        --config repositories.yml \
+        --tests-root tests \
+        --artifact-root /tmp/validator-more-cases-phase03 \
+        --record-casts \
+        --library giflib \
+        --library libexif \
+        --library libjpeg-turbo \
+        --library libpng \
+        --library libtiff \
+        --library libvips \
+        --library libwebp
+
+      python3 tools/verify_proof_artifacts.py \
+        --config repositories.yml \
+        --tests-root tests \
+        --artifact-root /tmp/validator-more-cases-phase03 \
+        --proof-output /tmp/validator-more-cases-phase03/proof/original-validation-proof.json \
+        --library giflib \
+        --library libexif \
+        --library libjpeg-turbo \
+        --library libpng \
+        --library libtiff \
+        --library libvips \
+        --library libwebp \
+        --min-source-cases 35 \
+        --min-usage-cases 71 \
+        --min-cases 106 \
+        --require-casts
+      ```
+
+      ## Success Criteria
+
+      - Phase 3 adds exactly 14 usage cases across `giflib`, `libexif`, `libjpeg-turbo`, `libpng`, `libtiff`, `libvips`, and `libwebp` while leaving source cases unchanged.
+      - Manifest validation reports at least 95 source cases, 189 usage cases, and 284 total cases.
+      - The phase 3 matrix smoke passes with casts and selected proof totals of 35 source cases, 71 usage cases, and 106 total cases.
+      - Image scripts use deterministic generated or checked-in fixtures and do not rely on network or display hardware.
+      - Temporary verifier output under `/tmp/validator-more-cases-phase03` is not committed.
+      - `repositories.yml`, affected library Dockerfiles, dependent fixtures, prepared inventories, current tracked artifacts, proof data, and rendered site evidence are preserved unchanged unless explicitly updated by existing tools.
+
+      ## Git Commit Requirement
+
+      The implementer must commit all phase 3 scoped work to git before yielding. Do not yield with uncommitted phase 3 file changes.
+
+  - id: check_phase_03_manifest_contract
+    type: check
+    bounce_target: impl_phase_03_media_image_usage_cases
+    prompt: |
+      Reviewer role: manifest contract reviewer for phase 3 media/image/metadata usage cases.
+
+      Verify all of the following:
+      - Phase 3 added exactly 14 scoped usage cases across `giflib`, `libexif`, `libjpeg-turbo`, `libpng`, `libtiff`, `libvips`, and `libwebp` while leaving source cases unchanged.
+      - The new manifest entries follow the global testcase entry contract: id equals script filename without `.sh`, `kind: usage`, `timeout_seconds: 180`, semantic title, client-behavior description, valid existing `client_application`, exact `/validator/tests/<library>/tests/cases/usage/<script>.sh` command, and appropriate tags.
+      - All new scripts exist, are executable, use deterministic generated or checked-in fixtures, and do not rely on network or display hardware.
+      - `repositories.yml`, affected Dockerfiles, dependent fixtures, prepared inventories, tracked proof data, and rendered site evidence are preserved unchanged unless explicitly required by the phase.
+      - Cumulative counts after phase 3 meet at least 95 source cases, 189 usage cases, and 284 total cases.
+
+      Run this command:
+
+      ```bash
+      python3 tools/testcases.py \
+        --config repositories.yml \
+        --tests-root tests \
+        --check \
+        --min-source-cases 95 \
+        --min-usage-cases 189 \
+        --min-cases 284
+      ```
+
+      End with exactly one verdict line: `VERDICT: PASS` or `VERDICT: FAIL: <reason>`
+
+  - id: check_phase_03_matrix_smoke
+    type: check
+    bounce_target: impl_phase_03_media_image_usage_cases
+    prompt: |
+      Reviewer role: matrix smoke reviewer for phase 3 media/image/metadata usage cases.
+
+      Verify all of the following:
+      - The affected libraries `giflib`, `libexif`, `libjpeg-turbo`, `libpng`, `libtiff`, `libvips`, and `libwebp` pass the matrix smoke run with casts recorded.
+      - The selected proof output is generated under `/tmp/validator-more-cases-phase03/proof/original-validation-proof.json`.
+      - The selected proof totals are at least 35 source cases, 71 usage cases, and 106 total cases.
+      - Casts are required and present for the selected phase 3 run.
+      - Temporary verifier output under `/tmp/validator-more-cases-phase03` is not committed.
+
+      Run these commands:
+
+      ```bash
+      rm -rf /tmp/validator-more-cases-phase03
+      bash test.sh \
+        --config repositories.yml \
+        --tests-root tests \
+        --artifact-root /tmp/validator-more-cases-phase03 \
+        --record-casts \
+        --library giflib \
+        --library libexif \
+        --library libjpeg-turbo \
+        --library libpng \
+        --library libtiff \
+        --library libvips \
+        --library libwebp
+
+      python3 tools/verify_proof_artifacts.py \
+        --config repositories.yml \
+        --tests-root tests \
+        --artifact-root /tmp/validator-more-cases-phase03 \
+        --proof-output /tmp/validator-more-cases-phase03/proof/original-validation-proof.json \
+        --library giflib \
+        --library libexif \
+        --library libjpeg-turbo \
+        --library libpng \
+        --library libtiff \
+        --library libvips \
+        --library libwebp \
+        --min-source-cases 35 \
+        --min-usage-cases 71 \
+        --min-cases 106 \
+        --require-casts
+      ```
+
+      End with exactly one verdict line: `VERDICT: PASS` or `VERDICT: FAIL: <reason>`
+
+  - id: impl_phase_04_runtime_crypto_usage_cases
+    type: implement
+    bounce_target: null
+    prompt: |
+      Implement phase 4 exactly as specified below. The phase file is the authoritative prompt content for this phase.
+
+      Use the listed Preexisting Inputs in place, including concrete outputs from phases 1 through 3. Consume or update existing artifacts instead of refetching, recollecting, rediscovering, regenerating, expanding, or reordering them from scratch unless the phase explicitly tells you to run an existing tool for that purpose.
+
+      Commit all phase 4 scoped work to git before yielding. Do not yield with uncommitted phase 4 file changes.
+
+      # 4. Runtime, GUI, and Crypto Dependent Usage Cases
+
+      ## Phase Name
+
+      Runtime, GUI, and Crypto Dependent Usage Cases
+
+      ## Implement Phase ID
+
+      `impl_phase_04_runtime_crypto_usage_cases`
+
+      ## Preexisting Inputs
+
+      - `tests/cjson/` concrete phase 1 output directory.
+      - `tests/libcsv/` concrete phase 1 output directory.
+      - `tests/libjson/` concrete phase 1 output directory.
+      - `tests/libxml/` concrete phase 1 output directory.
+      - `tests/libyaml/` concrete phase 1 output directory.
+      - `tests/libuv/` concrete phase 1 output directory.
+      - `tests/libarchive/` concrete phase 2 output directory.
+      - `tests/libbz2/` concrete phase 2 output directory.
+      - `tests/liblzma/` concrete phase 2 output directory.
+      - `tests/libzstd/` concrete phase 2 output directory.
+      - `tests/giflib/` concrete phase 3 output directory.
+      - `tests/libexif/` concrete phase 3 output directory.
+      - `tests/libjpeg-turbo/` concrete phase 3 output directory.
+      - `tests/libpng/` concrete phase 3 output directory.
+      - `tests/libtiff/` concrete phase 3 output directory.
+      - `tests/libvips/` concrete phase 3 output directory.
+      - `tests/libwebp/` concrete phase 3 output directory.
+      - `repositories.yml` canonical manifest and package list; consume it unchanged.
+      - `test.sh`
+      - `tools/testcases.py`
+      - `tools/run_matrix.py`
+      - `tools/verify_proof_artifacts.py`
+      - `tests/_shared/run_library_tests.sh`
+      - Existing `tests/libsdl/` manifest, Dockerfile, dependent fixture, sample fixtures, and usage scripts.
+      - Existing `tests/libsodium/` manifest, Dockerfile, dependent fixture, sample fixtures, and usage scripts.
+      - Existing tracked `artifacts/results/`, `artifacts/logs/`, `artifacts/casts/`, `artifacts/proof/original-validation-proof.json`, and `site/` evidence. Consume these artifacts in place; do not refetch, recollect, rediscover, regenerate, expand, or reorder dependent inventories.
+
+      ## New Outputs
+
+      - 4 new usage testcase manifest entries.
+      - 4 new executable usage scripts.
+
+      ## File Changes
+
+      - Modify `tests/libsdl/testcases.yml`.
+      - Add `tests/libsdl/tests/cases/usage/usage-python3-pygame-key-event.sh`.
+      - Add `tests/libsdl/tests/cases/usage/usage-python3-pygame-mask-collision.sh`.
+      - Modify `tests/libsodium/testcases.yml`.
+      - Add `tests/libsodium/tests/cases/usage/usage-python3-nacl-public-box.sh`.
+      - Add `tests/libsodium/tests/cases/usage/usage-php83-sodium-sign-detached.sh`.
+
+      ## Implementation Details
+
+      - Apply the global testcase entry contract to all 4 new manifest entries:
+        - Use the new script filename without `.sh` as each manifest entry `id`.
+        - Set `kind: usage`.
+        - Set `timeout_seconds: 180`.
+        - Use a semantic `title`.
+        - Use a client-behavior `description`.
+        - Set `client_application` to one of the existing identifiers named below.
+        - Set `command` exactly to `bash /validator/tests/<library>/tests/cases/usage/<script>.sh`.
+        - Tags must include `usage` and one or more behavior tags already consistent with the library's local manifest style, such as `runtime`, `gui`, or `crypto`.
+      - Use only these existing dependent client identifiers:
+        - `libsdl`: `python3-pygame`
+        - `libsodium`: `python3-nacl` and `php8.3-cli`
+      - Do not modify any `tests/<library>/tests/fixtures/dependents.json`.
+      - Do not modify `repositories.yml`; it remains the fixed canonical manifest and package list.
+      - Do not modify any affected `tests/<library>/Dockerfile`; every dependent package required by the planned clients is already installed.
+      - `libsdl`:
+        - `usage-python3-pygame-key-event.sh`: export `PYGAME_HIDE_SUPPORT_PROMPT=1` and `SDL_VIDEODRIVER=dummy` before Python starts, initialize pygame, post a `KEYDOWN` event for `pygame.K_a`, pump the event queue, and assert that exact key event is received.
+        - `usage-python3-pygame-mask-collision.sh`: export `PYGAME_HIDE_SUPPORT_PROMPT=1` and `SDL_VIDEODRIVER=dummy`, create two `pygame.Surface((10, 10), pygame.SRCALPHA)` objects, fill them transparent, draw opaque overlapping rectangles, build masks with `pygame.mask.from_surface`, call `overlap` with a fixed offset, and assert the returned collision coordinate is the expected tuple.
+      - `libsodium`:
+        - `usage-python3-nacl-public-box.sh`: use PyNaCl `PrivateKey.generate()`, derive two public keys, encrypt with `Box`, decrypt, and assert plaintext round trip.
+        - `usage-php83-sodium-sign-detached.sh`: run PHP CLI using `sodium_crypto_sign_keypair`, `sodium_crypto_sign_detached`, and `sodium_crypto_sign_verify_detached`, then assert verification returns true.
+      - Make all new scripts executable.
+
+      ## Verification Phases
+
+      - Phase ID: `check_phase_04_manifest_contract`
+      - Type: `check`
+      - Fixed `bounce_target`: `impl_phase_04_runtime_crypto_usage_cases`
+      - Purpose: validate all testcase additions and final cumulative counts before threshold/doc/artifact updates.
+      - Commands:
+
+      ```bash
+      python3 tools/testcases.py \
+        --config repositories.yml \
+        --tests-root tests \
+        --check \
+        --min-source-cases 95 \
+        --min-usage-cases 193 \
+        --min-cases 288
+
+      python3 tools/testcases.py \
+        --config repositories.yml \
+        --tests-root tests \
+        --list-summary
+      ```
+
+      - Phase ID: `check_phase_04_matrix_smoke`
+      - Type: `check`
+      - Fixed `bounce_target`: `impl_phase_04_runtime_crypto_usage_cases`
+      - Purpose: run the affected GUI/runtime/crypto libraries with casts and verify selected proof output.
+      - Commands:
+
+      ```bash
+      rm -rf /tmp/validator-more-cases-phase04
+      bash test.sh \
+        --config repositories.yml \
+        --tests-root tests \
+        --artifact-root /tmp/validator-more-cases-phase04 \
+        --record-casts \
+        --library libsdl \
+        --library libsodium
+
+      python3 tools/verify_proof_artifacts.py \
+        --config repositories.yml \
+        --tests-root tests \
+        --artifact-root /tmp/validator-more-cases-phase04 \
+        --proof-output /tmp/validator-more-cases-phase04/proof/original-validation-proof.json \
+        --library libsdl \
+        --library libsodium \
+        --min-source-cases 10 \
+        --min-usage-cases 21 \
+        --min-cases 31 \
+        --require-casts
+      ```
+
+      ## Success Criteria
+
+      - Phase 4 adds exactly 4 usage cases across `libsdl` and `libsodium` while leaving source cases unchanged.
+      - Manifest validation reports final target totals of 95 source cases, 193 usage cases, and 288 total cases.
+      - The list summary shows the final target totals: 95 source, 193 usage, and 288 total.
+      - The phase 4 matrix smoke passes with casts and selected proof totals of 10 source cases, 21 usage cases, and 31 total cases.
+      - Runtime scripts execute headlessly and do not require a real display, audio device, entropy service beyond normal container support, or network.
+      - Temporary verifier output under `/tmp/validator-more-cases-phase04` is not committed.
+      - `repositories.yml`, affected library Dockerfiles, dependent fixtures, prepared inventories, current tracked artifacts, proof data, and rendered site evidence are preserved unchanged unless explicitly updated by existing tools.
+
+      ## Git Commit Requirement
+
+      The implementer must commit all phase 4 scoped work to git before yielding. Do not yield with uncommitted phase 4 file changes.
+
+  - id: check_phase_04_manifest_contract
+    type: check
+    bounce_target: impl_phase_04_runtime_crypto_usage_cases
+    prompt: |
+      Reviewer role: manifest contract reviewer for phase 4 runtime/GUI/crypto usage cases.
+
+      Verify all of the following:
+      - Phase 4 added exactly 4 scoped usage cases across `libsdl` and `libsodium` while leaving source cases unchanged.
+      - The new manifest entries follow the global testcase entry contract: id equals script filename without `.sh`, `kind: usage`, `timeout_seconds: 180`, semantic title, client-behavior description, valid existing `client_application`, exact `/validator/tests/<library>/tests/cases/usage/<script>.sh` command, and appropriate tags.
+      - All new scripts exist, are executable, run headlessly where required, and do not require a real display, audio device, entropy service beyond normal container support, or network.
+      - `repositories.yml`, affected Dockerfiles, dependent fixtures, prepared inventories, tracked proof data, and rendered site evidence are preserved unchanged unless explicitly required by the phase.
+      - Cumulative final testcase counts meet 95 source cases, 193 usage cases, and 288 total cases, and the summary reports those target totals.
+
+      Run these commands:
+
+      ```bash
+      python3 tools/testcases.py \
+        --config repositories.yml \
+        --tests-root tests \
+        --check \
+        --min-source-cases 95 \
+        --min-usage-cases 193 \
+        --min-cases 288
+
+      python3 tools/testcases.py \
+        --config repositories.yml \
+        --tests-root tests \
+        --list-summary
+      ```
+
+      End with exactly one verdict line: `VERDICT: PASS` or `VERDICT: FAIL: <reason>`
+
+  - id: check_phase_04_matrix_smoke
+    type: check
+    bounce_target: impl_phase_04_runtime_crypto_usage_cases
+    prompt: |
+      Reviewer role: matrix smoke reviewer for phase 4 runtime/GUI/crypto usage cases.
+
+      Verify all of the following:
+      - The affected libraries `libsdl` and `libsodium` pass the matrix smoke run with casts recorded.
+      - The selected proof output is generated under `/tmp/validator-more-cases-phase04/proof/original-validation-proof.json`.
+      - The selected proof totals are at least 10 source cases, 21 usage cases, and 31 total cases.
+      - Casts are required and present for the selected phase 4 run.
+      - Temporary verifier output under `/tmp/validator-more-cases-phase04` is not committed.
+
+      Run these commands:
+
+      ```bash
+      rm -rf /tmp/validator-more-cases-phase04
+      bash test.sh \
+        --config repositories.yml \
+        --tests-root tests \
+        --artifact-root /tmp/validator-more-cases-phase04 \
+        --record-casts \
+        --library libsdl \
+        --library libsodium
+
+      python3 tools/verify_proof_artifacts.py \
+        --config repositories.yml \
+        --tests-root tests \
+        --artifact-root /tmp/validator-more-cases-phase04 \
+        --proof-output /tmp/validator-more-cases-phase04/proof/original-validation-proof.json \
+        --library libsdl \
+        --library libsodium \
+        --min-source-cases 10 \
+        --min-usage-cases 21 \
+        --min-cases 31 \
+        --require-casts
+      ```
+
+      End with exactly one verdict line: `VERDICT: PASS` or `VERDICT: FAIL: <reason>`
+
+  - id: impl_phase_05_thresholds_artifacts_site
+    type: implement
+    bounce_target: null
+    prompt: |
+      Implement phase 5 exactly as specified below. The phase file is the authoritative prompt content for this phase.
+
+      Use the listed Preexisting Inputs in place, including concrete outputs from phases 1 through 4. Consume or update existing artifacts instead of refetching, recollecting, rediscovering, regenerating, expanding, or reordering them from scratch unless the phase explicitly tells you to run an existing tool for that purpose.
+
+      Commit all phase 5 scoped work, including updated generated artifacts and site output, to git before yielding. Do not yield with uncommitted phase 5 file changes.
+
+      # 5. Thresholds, Artifacts, Proof, and Site
+
+      ## Phase Name
+
+      Thresholds, Artifacts, Proof, and Site
+
+      ## Implement Phase ID
+
+      `impl_phase_05_thresholds_artifacts_site`
+
+      ## Preexisting Inputs
+
+      - `tests/cjson/` concrete phase 1 output directory.
+      - `tests/libcsv/` concrete phase 1 output directory.
+      - `tests/libjson/` concrete phase 1 output directory.
+      - `tests/libxml/` concrete phase 1 output directory.
+      - `tests/libyaml/` concrete phase 1 output directory.
+      - `tests/libuv/` concrete phase 1 output directory.
+      - `tests/libarchive/` concrete phase 2 output directory.
+      - `tests/libbz2/` concrete phase 2 output directory.
+      - `tests/liblzma/` concrete phase 2 output directory.
+      - `tests/libzstd/` concrete phase 2 output directory.
+      - `tests/giflib/` concrete phase 3 output directory.
+      - `tests/libexif/` concrete phase 3 output directory.
+      - `tests/libjpeg-turbo/` concrete phase 3 output directory.
+      - `tests/libpng/` concrete phase 3 output directory.
+      - `tests/libtiff/` concrete phase 3 output directory.
+      - `tests/libvips/` concrete phase 3 output directory.
+      - `tests/libwebp/` concrete phase 3 output directory.
+      - `tests/libsdl/` concrete phase 4 output directory.
+      - `tests/libsodium/` concrete phase 4 output directory.
+      - Existing tracked `artifacts/results/`.
+      - Existing tracked `artifacts/logs/`.
+      - Existing tracked `artifacts/casts/`.
+      - Existing tracked `artifacts/proof/original-validation-proof.json`.
+      - Existing tracked `site/` rendered output and evidence copies.
+      - `Makefile`
+      - `README.md`
+      - `repositories.yml`
+      - `test.sh`
+      - `tools/testcases.py`
+      - `tools/run_matrix.py`
+      - `tools/verify_proof_artifacts.py`
+      - `tools/render_site.py`
+      - `scripts/verify-site.sh`
+      - Existing `tests/` manifests, Dockerfiles, dependent fixtures, sample fixtures, and usage scripts after phases 1 through 4. Consume dependent inventories in place; do not refetch, recollect, rediscover, regenerate, expand, or reorder them.
+
+      ## New Outputs
+
+      - Updated `Makefile` thresholds.
+      - Updated `README.md` proof/check examples and count text.
+      - Updated in-place matrix artifacts for all 288 cases:
+        - `artifacts/results/<library>/<testcase-id>.json`
+        - `artifacts/logs/<library>/<testcase-id>.log`
+        - `artifacts/casts/<library>/<testcase-id>.cast`
+        - `artifacts/results/<library>/summary.json`
+      - Updated `artifacts/proof/original-validation-proof.json` with 95 source, 193 usage, and 288 total cases.
+      - Updated `site/site-data.json`, `site/index.html`, `site/library/*.html`, `site/evidence/logs/**`, and `site/evidence/casts/**`.
+
+      ## File Changes
+
+      - Modify `Makefile`.
+      - Modify `README.md`.
+      - Update generated artifacts under `artifacts/results/`, `artifacts/logs/`, `artifacts/casts/`, and `artifacts/proof/original-validation-proof.json` by running the existing tools.
+      - Update generated site output under `site/` by running the existing tools.
+
+      ## Implementation Details
+
+      - Raise the `Makefile` `check-testcases` command to `--min-source-cases 95 --min-usage-cases 193 --min-cases 288`.
+      - Update `README.md:80-113` examples so proof and smoke documentation uses the final full thresholds where appropriate:
+        - Full proof example: `--min-source-cases 95 --min-usage-cases 193 --min-cases 288`.
+        - Make proof example: `MIN_SOURCE_CASES=95 MIN_USAGE_CASES=193 MIN_CASES=288`.
+      - If README keeps the default `make matrix-smoke` example for `SMOKE_LIBRARIES ?= cjson libarchive libuv libwebp`, update that selected-library proof example to `MIN_SOURCE_CASES=20 MIN_USAGE_CASES=41 MIN_CASES=61`.
+      - If README documents a different selected-library smoke set, compute its thresholds from the final manifests and write those exact selected-library values in the example.
+      - Run the full matrix with casts to update the existing tracked artifact tree in place. Do not delete or refetch dependent inventories.
+      - Regenerate proof and site through the existing tools only; do not manually edit generated JSON or HTML.
+      - Confirm proof totals and site totals match the new manifests exactly.
+      - Do not modify `repositories.yml`; it remains the fixed canonical manifest and package list.
+      - Do not modify any `tests/<library>/Dockerfile`; every dependent package required by the final client set is already installed.
+
+      ## Verification Phases
+
+      - Phase ID: `check_phase_05_unit_manifest_contract`
+      - Type: `check`
+      - Fixed `bounce_target`: `impl_phase_05_thresholds_artifacts_site`
+      - Purpose: verify tooling unit tests, final manifest thresholds, and documented counts.
+      - Commands:
+
+      ```bash
+      make unit
+      make check-testcases
+      python3 tools/testcases.py \
+        --config repositories.yml \
+        --tests-root tests \
+        --list-summary
+      ```
+
+      - Phase ID: `check_phase_05_full_matrix_proof_site`
+      - Type: `check`
+      - Fixed `bounce_target`: `impl_phase_05_thresholds_artifacts_site`
+      - Purpose: update and verify the full tracked original-package evidence set, proof manifest, and rendered site in place.
+      - Commands:
+
+      ```bash
+      RECORD_CASTS=1 make matrix
+
+      REQUIRE_CASTS=1 \
+      MIN_SOURCE_CASES=95 \
+      MIN_USAGE_CASES=193 \
+      MIN_CASES=288 \
+      make proof
+
+      make site
+      make verify-site
+      ```
+
+      ## Success Criteria
+
+      - `make unit` passes.
+      - `make check-testcases` passes with the raised final thresholds.
+      - The testcase summary reports 19 libraries, 95 source cases, 193 usage cases, and 288 total cases.
+      - Full matrix results pass with casts for all 288 cases.
+      - `artifacts/proof/original-validation-proof.json` reports totals of 19 libraries, 288 cases, 95 source cases, 193 usage cases, 0 failed cases, and 288 casts when casts are required.
+      - `make verify-site` passes against the tracked `site/` output.
+      - Generated artifacts and site output are produced through the existing tools only.
+      - `repositories.yml`, library Dockerfiles, and dependent fixture inventories remain intentionally unchanged.
+
+      ## Git Commit Requirement
+
+      The implementer must commit all phase 5 scoped work, including updated generated artifacts and site output, to git before yielding. Do not yield with uncommitted phase 5 file changes.
+
+  - id: check_phase_05_unit_manifest_contract
+    type: check
+    bounce_target: impl_phase_05_thresholds_artifacts_site
+    prompt: |
+      Reviewer role: unit, manifest, and documentation reviewer for phase 5 thresholds/artifacts/site.
+
+      Verify all of the following:
+      - Tooling unit tests pass.
+      - `Makefile` `check-testcases` thresholds are raised to `--min-source-cases 95 --min-usage-cases 193 --min-cases 288`.
+      - Final manifest validation passes with 95 source cases, 193 usage cases, and 288 total cases.
+      - The testcase summary reports 19 libraries, 95 source cases, 193 usage cases, and 288 total cases.
+      - `README.md` proof/check examples and count text use the final full thresholds where appropriate, and any selected-library smoke example uses thresholds computed from the final manifests.
+      - `repositories.yml`, library Dockerfiles, and dependent fixture inventories remain intentionally unchanged.
+
+      Run these commands:
+
+      ```bash
+      make unit
+      make check-testcases
+      python3 tools/testcases.py \
+        --config repositories.yml \
+        --tests-root tests \
+        --list-summary
+      ```
+
+      End with exactly one verdict line: `VERDICT: PASS` or `VERDICT: FAIL: <reason>`
+
+  - id: check_phase_05_full_matrix_proof_site
+    type: check
+    bounce_target: impl_phase_05_thresholds_artifacts_site
+    prompt: |
+      Reviewer role: full matrix, proof, and site reviewer for phase 5 thresholds/artifacts/site.
+
+      Verify all of the following:
+      - The full matrix runs with casts and updates the existing tracked artifact tree in place for all 288 cases.
+      - The proof is regenerated through existing tools only and reports 19 libraries, 288 cases, 95 source cases, 193 usage cases, 0 failed cases, and 288 casts when casts are required.
+      - The site is regenerated through existing tools only.
+      - `make verify-site` passes against the tracked `site/` output.
+      - Generated artifacts and site output are committed by the implementer as phase 5 scoped work.
+      - `repositories.yml`, library Dockerfiles, and dependent fixture inventories remain intentionally unchanged.
+
+      Run these commands:
+
+      ```bash
+      RECORD_CASTS=1 make matrix
+
+      REQUIRE_CASTS=1 \
+      MIN_SOURCE_CASES=95 \
+      MIN_USAGE_CASES=193 \
+      MIN_CASES=288 \
+      make proof
+
+      make site
+      make verify-site
+      ```
+
+      End with exactly one verdict line: `VERDICT: PASS` or `VERDICT: FAIL: <reason>`
