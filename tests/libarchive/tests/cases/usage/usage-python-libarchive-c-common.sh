@@ -87,6 +87,30 @@ elif workload == "gzip-filter":
     names = [name for name, _, _ in read_entries(gzip_archive)]
     print("gzip", ",".join(names))
     assert names == ["alpha.txt", "beta.txt"]
+elif workload == "zip-roundtrip":
+    zip_archive = tmpdir / "roundtrip.zip"
+    expected = {
+        "zip-alpha.txt": b"zip alpha\n",
+        "zip-beta.txt": b"zip beta\n",
+    }
+    with libarchive.file_writer(str(zip_archive), "zip") as writer:
+        for name, body in expected.items():
+            writer.add_file_from_memory(name, len(body), body)
+    data = {name: body for name, _, body in read_entries(zip_archive)}
+    print("zip-roundtrip", ",".join(sorted(data)))
+    assert data == expected
+elif workload == "nested-paths":
+    nested_archive = tmpdir / "nested.tar"
+    expected = {
+        "dir/sub.txt": b"sub\n",
+        "dir/space name.txt": b"space name\n",
+    }
+    with libarchive.file_writer(str(nested_archive), "gnutar") as writer:
+        for name, body in expected.items():
+            writer.add_file_from_memory(name, len(body), body)
+    data = {name: body for name, _, body in read_entries(nested_archive)}
+    print("nested-paths", ",".join(sorted(data)))
+    assert data == expected
 else:
     raise SystemExit(f"unknown python-libarchive-c workload: {workload}")
 PY

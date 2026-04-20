@@ -156,3 +156,27 @@ testcases:
   tags:
   - usage
   - archive
+- id: usage-python-libarchive-c-zip-roundtrip
+  title: python-libarchive-c zip roundtrip
+  description: Uses python-libarchive-c to write and read ZIP archive entries through libarchive.
+  kind: usage
+  client_application: python3-libarchive-c
+  command:
+  - bash
+  - /validator/tests/libarchive/tests/cases/usage/usage-python-libarchive-c-zip-roundtrip.sh
+  timeout_seconds: 180
+  tags:
+  - usage
+  - archive
+- id: usage-python-libarchive-c-nested-paths
+  title: python-libarchive-c nested paths
+  description: Uses python-libarchive-c to preserve nested and spaced entry paths through libarchive.
+  kind: usage
+  client_application: python3-libarchive-c
+  command:
+  - bash
+  - /validator/tests/libarchive/tests/cases/usage/usage-python-libarchive-c-nested-paths.sh
+  timeout_seconds: 180
+  tags:
+  - usage
+  - archive

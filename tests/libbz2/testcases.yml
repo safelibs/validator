@@ -156,3 +156,27 @@ testcases:
   tags:
   - usage
   - compression
+- id: usage-bzip2-decompress-keep-input
+  title: bzip2 decompress keep input
+  description: Runs bunzip2 keep-input decompression and verifies the compressed file remains.
+  kind: usage
+  client_application: bzip2
+  command:
+  - bash
+  - /validator/tests/libbz2/tests/cases/usage/usage-bzip2-decompress-keep-input.sh
+  timeout_seconds: 180
+  tags:
+  - usage
+  - compression
+- id: usage-bzip2-force-overwrite
+  title: bzip2 force overwrite
+  description: Runs bzip2 forced recompression and verifies the replacement compressed payload is used.
+  kind: usage
+  client_application: bzip2
+  command:
+  - bash
+  - /validator/tests/libbz2/tests/cases/usage/usage-bzip2-force-overwrite.sh
+  timeout_seconds: 180
+  tags:
+  - usage
+  - compression

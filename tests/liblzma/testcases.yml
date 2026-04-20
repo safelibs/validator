@@ -164,3 +164,31 @@ testcases:
   - usage
   - archive
   - compression
+- id: usage-libarchive-tools-xz-metadata-list
+  title: libarchive-tools xz metadata list
+  description: Runs bsdtar verbose listing on an xz archive and verifies executable metadata.
+  kind: usage
+  client_application: libarchive-tools
+  command:
+  - bash
+  - /validator/tests/liblzma/tests/cases/usage/usage-libarchive-tools-xz-metadata-list.sh
+  timeout_seconds: 180
+  tags:
+  - usage
+  - archive
+  - compression
+  - metadata
+- id: usage-libarchive-tools-xz-preserve-permissions
+  title: libarchive-tools xz preserve permissions
+  description: Runs bsdtar xz archive extraction and verifies executable permissions survive.
+  kind: usage
+  client_application: libarchive-tools
+  command:
+  - bash
+  - /validator/tests/liblzma/tests/cases/usage/usage-libarchive-tools-xz-preserve-permissions.sh
+  timeout_seconds: 180
+  tags:
+  - usage
+  - archive
+  - compression
+  - metadata
