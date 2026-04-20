@@ -10,8 +10,8 @@ no override packages found; continuing with apt originals
 + trap 'rm -rf "$tmpdir"' EXIT
 + python3 - /tmp/validator-tmp/in.ppm
 + cwebp -quiet /tmp/validator-tmp/in.ppm -o /tmp/validator-tmp/in.webp
-+ tee /tmp/validator-tmp/out
 + ffprobe -hide_banner -loglevel error -show_streams /tmp/validator-tmp/in.webp
++ tee /tmp/validator-tmp/out
 [STREAM]
 index=0
 codec_name=webp

@@ -1,4 +1,4 @@
 {"version": 2, "width": 120, "height": 40, "timestamp": 0, "env": {"TERM": "xterm-256color", "SHELL": "/bin/bash"}}
-[0.10277473099995404, "o", "no override packages found; continuing with apt originals\r\r\n"]
-[0.10468340304214507, "o", "+ set -euo pipefail\r\r\n+ /validator/tests/libarchive/tests/cases/usage/usage-python-libarchive-c-common.sh directory-entry\r\r\n"]
-[0.1333791899960488, "o", "directory tree/,tree/nested.txt\r\r\n"]
+[0.10746048600412905, "o", "no override packages found; continuing with apt originals\r\r\n"]
+[0.10933163901790977, "o", "+ set -euo pipefail\r\r\n+ /validator/tests/libarchive/tests/cases/usage/usage-python-libarchive-c-common.sh directory-entry\r\r\n"]
+[0.13825916894711554, "o", "directory tree/,tree/nested.txt\r\r\n"]

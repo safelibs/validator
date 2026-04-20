@@ -14,8 +14,8 @@ no override packages found; continuing with apt originals
 + [[ -f /validator/tests/giflib/tests/fixtures/samples/pic/treescap.gif ]]
 + gifbuild -d /validator/tests/giflib/tests/fixtures/samples/pic/treescap.gif
 + gifbuild /tmp/validator-tmp/dump.txt
-+ tee /tmp/validator-tmp/out
 + giftext /tmp/validator-tmp/rebuilt.gif
++ tee /tmp/validator-tmp/out
 
 /tmp/validator-tmp/rebuilt.gif:
 

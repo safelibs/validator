@@ -10,8 +10,8 @@ no override packages found; continuing with apt originals
 + trap 'rm -rf "$tmpdir"' EXIT
 + python3 - /tmp/validator-tmp/in.ppm
 + cwebp -quiet /tmp/validator-tmp/in.ppm -o /tmp/validator-tmp/in.webp
-+ tee /tmp/validator-tmp/out
 + vipsheader /tmp/validator-tmp/in.webp
++ tee /tmp/validator-tmp/out
 /tmp/validator-tmp/in.webp: 4x3 uchar, 3 bands, srgb, webpload
 + validator_assert_contains /tmp/validator-tmp/out webpload
 + local path=/tmp/validator-tmp/out

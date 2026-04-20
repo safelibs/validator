@@ -1,6 +1,7 @@
 {"version": 2, "width": 120, "height": 40, "timestamp": 0, "env": {"TERM": "xterm-256color", "SHELL": "/bin/bash"}}
-[0.10931859002448618, "o", "no override packages found; continuing with apt originals\r\r\n"]
-[0.11129369807895273, "o", "+ set -euo pipefail\r\r\n+ source /validator/tests/_shared/runtime_helpers.sh\r\r\n++ set -euo pipefail\r\r\n++ mktemp -d\r\r\n"]
-[0.11268581601325423, "o", "+ tmpdir=/tmp/validator-tmp\r\r\n+ trap 'rm -rf \"$tmpdir\"' EXIT\r\r\n+ ruby -rvips -e 'image=Vips::Image.black(16,12,bands:3); image.write_to_file(ARGV[0]); puts \"size=#{image.width}x#{image.height}\"' /tmp/validator-tmp/out.png\r\r\n"]
-[0.18222328706178814, "o", "size=16x12\r\r\n"]
-[0.18280718300957233, "o", "+ rm -rf /tmp/validator-tmp\r\r\n"]
+[0.6958837809506804, "o", "no override packages found; continuing with apt originals\r\r\n"]
+[0.6974977708887309, "o", "+ set -euo pipefail\r\r\n+ source /validator/tests/_shared/runtime_helpers.sh\r\r\n++ set -euo pipefail\r\r\n"]
+[0.69800916290842, "o", "++ mktemp -d\r\r\n"]
+[0.7118429179536179, "o", "+ tmpdir=/tmp/validator-tmp\r\r\n+ trap 'rm -rf \"$tmpdir\"' EXIT\r\r\n+ ruby -rvips -e 'image=Vips::Image.black(16,12,bands:3); image.write_to_file(ARGV[0]); puts \"size=#{image.width}x#{image.height}\"' /tmp/validator-tmp/out.png\r\r\n"]
+[0.7777386968955398, "o", "size=16x12\r\r\n"]
+[0.7783920879010111, "o", "+ rm -rf /tmp/validator-tmp\r\r\n"]

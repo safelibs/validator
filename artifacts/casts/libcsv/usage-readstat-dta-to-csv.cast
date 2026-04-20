@@ -1,5 +1,5 @@
 {"version": 2, "width": 120, "height": 40, "timestamp": 0, "env": {"TERM": "xterm-256color", "SHELL": "/bin/bash"}}
-[0.09997181594371796, "o", "no override packages found; continuing with apt originals\r\r\n"]
-[0.1015965238912031, "o", "+ set -euo pipefail\r\r\n+ /validator/tests/libcsv/tests/cases/usage/usage-readstat-common.sh dta-to-csv\r\r\n"]
-[0.10748783696908504, "o", "Converted 2 variables and 2 rows in 0.00 seconds\r\r\n"]
-[0.10880930989515036, "o", "Converted 2 variables and 2 rows in 0.00 seconds\r\r\n"]
+[0.10957765101920813, "o", "no override packages found; continuing with apt originals\r\r\n"]
+[0.11113343096803874, "o", "+ set -euo pipefail\r\r\n+ /validator/tests/libcsv/tests/cases/usage/usage-readstat-common.sh dta-to-csv\r\r\n"]
+[0.11637023696675897, "o", "Converted 2 variables and 2 rows in 0.00 seconds\r\r\n"]
+[0.11727460299152881, "o", "Converted 2 variables and 2 rows in 0.00 seconds\r\r\n"]

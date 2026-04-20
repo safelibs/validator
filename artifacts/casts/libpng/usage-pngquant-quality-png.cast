@@ -1,5 +1,7 @@
 {"version": 2, "width": 120, "height": 40, "timestamp": 0, "env": {"TERM": "xterm-256color", "SHELL": "/bin/bash"}}
-[0.1124798929085955, "o", "no override packages found; continuing with apt originals\r\r\n"]
-[0.11410936492029577, "o", "+ set -euo pipefail\r\r\n+ source /validator/tests/_shared/runtime_helpers.sh\r\r\n++ set -euo pipefail\r\r\n++ mktemp -d\r\r\n"]
-[0.11578894092235714, "o", "+ tmpdir=/tmp/validator-tmp\r\r\n+ trap 'rm -rf \"$tmpdir\"' EXIT\r\r\n+ png=/validator/tests/libpng/tests/fixtures/samples/contrib/pngsuite/basn2c08.png\r\r\n+ validator_require_file /validator/tests/libpng/tests/fixtures/samples/contrib/pngsuite/basn2c08.png\r\r\n+ local path=/validator/tests/libpng/tests/fixtures/samples/contrib/pngsuite/basn2c08.png\r\r\n+ [[ -f /validator/tests/libpng/tests/fixtures/samples/contrib/pngsuite/basn2c08.png ]]\r\r\n+ pngquant --force --quality 10-90 --output /tmp/validator-tmp/out.png /validator/tests/libpng/tests/fixtures/samples/contrib/pngsuite/basn2c08.png\r\r\n"]
-[0.11870214797090739, "o", "+ validator_require_file /tmp/validator-tmp/out.png\r\r\n+ local path=/tmp/validator-tmp/out.png\r\r\n+ [[ -f /tmp/validator-tmp/out.png ]]\r\r\n+ rm -rf /tmp/validator-tmp\r\r\n"]
+[0.1108567729825154, "o", "no override packages found; continuing with apt originals\r\r\n"]
+[0.11260455893352628, "o", "+ set -euo pipefail\r\r\n+ source /validator/tests/_shared/runtime_helpers.sh\r\r\n++ set -euo pipefail\r\r\n"]
+[0.11288914200849831, "o", "++ mktemp -d\r\r\n"]
+[0.114758001989685, "o", "+ tmpdir=/tmp/validator-tmp\r\r\n+ trap 'rm -rf \"$tmpdir\"' EXIT\r\r\n+ png=/validator/tests/libpng/tests/fixtures/samples/contrib/pngsuite/basn2c08.png\r\r\n+ validator_require_file /validator/tests/libpng/tests/fixtures/samples/contrib/pngsuite/basn2c08.png\r\r\n"]
+[0.11478351498953998, "o", "+ local path=/validator/tests/libpng/tests/fixtures/samples/contrib/pngsuite/basn2c08.png\r\r\n+ [[ -f /validator/tests/libpng/tests/fixtures/samples/contrib/pngsuite/basn2c08.png ]]\r\r\n+ pngquant --force --quality 10-90 --output /tmp/validator-tmp/out.png /validator/tests/libpng/tests/fixtures/samples/contrib/pngsuite/basn2c08.png\r\r\n"]
+[0.11786765593569726, "o", "+ validator_require_file /tmp/validator-tmp/out.png\r\r\n+ local path=/tmp/validator-tmp/out.png\r\r\n+ [[ -f /tmp/validator-tmp/out.png ]]\r\r\n+ rm -rf /tmp/validator-tmp\r\r\n"]

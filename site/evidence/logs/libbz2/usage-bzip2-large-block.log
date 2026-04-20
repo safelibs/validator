@@ -410,7 +410,7 @@ no override packages found; continuing with apt originals
 + for i in $(seq 1 200)
 + printf 'payload %03d\n' 200
 + bzip2 -9 -c /tmp/validator-tmp/in.txt
-+ wc -l
 + bzip2 -dc /tmp/validator-tmp/in.bz2
++ wc -l
 200
 + rm -rf /tmp/validator-tmp

@@ -1,3 +1,3 @@
 {"version": 2, "width": 120, "height": 40, "timestamp": 0, "env": {"TERM": "xterm-256color", "SHELL": "/bin/bash"}}
-[0.10989454295486212, "o", "no override packages found; continuing with apt originals\r\r\n"]
-[0.11148064490407705, "o", "+ set -euo pipefail\r\r\n+ /validator/tests/libjson/tests/cases/usage/usage-gdal-json-common.sh ogr2ogr-csv\r\r\n"]
+[0.10840980301145464, "o", "no override packages found; continuing with apt originals\r\r\n"]
+[0.10992219403851777, "o", "+ set -euo pipefail\r\r\n+ /validator/tests/libjson/tests/cases/usage/usage-gdal-json-common.sh ogr2ogr-csv\r\r\n"]

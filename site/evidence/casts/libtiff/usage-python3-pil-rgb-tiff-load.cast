@@ -1,7 +1,7 @@
 {"version": 2, "width": 120, "height": 40, "timestamp": 0, "env": {"TERM": "xterm-256color", "SHELL": "/bin/bash"}}
-[0.11273364105727524, "o", "no override packages found; continuing with apt originals\r\r\n"]
-[0.11453118303325027, "o", "+ set -euo pipefail\r\r\n+ source /validator/tests/_shared/runtime_helpers.sh\r\r\n++ set -euo pipefail\r\r\n++ mktemp -d\r\r\n"]
-[0.11580427503213286, "o", "+ tmpdir=/tmp/validator-tmp\r\r\n+ trap 'rm -rf \"$tmpdir\"' EXIT\r\r\n"]
-[0.11605215002782643, "o", "+ tiff=/validator/tests/libtiff/tests/fixtures/samples/test/images/rgb-3c-8b.tiff\r\r\n+ validator_require_file /validator/tests/libtiff/tests/fixtures/samples/test/images/rgb-3c-8b.tiff\r\r\n+ local path=/validator/tests/libtiff/tests/fixtures/samples/test/images/rgb-3c-8b.tiff\r\r\n+ [[ -f /validator/tests/libtiff/tests/fixtures/samples/test/images/rgb-3c-8b.tiff ]]\r\r\n+ python3 - /validator/tests/libtiff/tests/fixtures/samples/test/images/rgb-3c-8b.tiff /tmp/validator-tmp/out.tiff\r\r\n"]
-[0.1611186530208215, "o", "RGB (157, 151)\r\r\n"]
-[0.16624431509990245, "o", "+ rm -rf /tmp/validator-tmp\r\r\n"]
+[0.1104521919041872, "o", "no override packages found; continuing with apt originals\r\r\n"]
+[0.1119025609223172, "o", "+ set -euo pipefail\r\r\n+ source /validator/tests/_shared/runtime_helpers.sh\r\r\n++ set -euo pipefail\r\r\n"]
+[0.11224194092210382, "o", "++ mktemp -d\r\r\n"]
+[0.11364867200609297, "o", "+ tmpdir=/tmp/validator-tmp\r\r\n+ trap 'rm -rf \"$tmpdir\"' EXIT\r\r\n+ tiff=/validator/tests/libtiff/tests/fixtures/samples/test/images/rgb-3c-8b.tiff\r\r\n+ validator_require_file /validator/tests/libtiff/tests/fixtures/samples/test/images/rgb-3c-8b.tiff\r\r\n+ local path=/validator/tests/libtiff/tests/fixtures/samples/test/images/rgb-3c-8b.tiff\r\r\n+ [[ -f /validator/tests/libtiff/tests/fixtures/samples/test/images/rgb-3c-8b.tiff ]]\r\r\n+ python3 - /validator/tests/libtiff/tests/fixtures/samples/test/images/rgb-3c-8b.tiff /tmp/validator-tmp/out.tiff\r\r\n"]
+[0.15875354199670255, "o", "RGB (157, 151)\r\r\n"]
+[0.16429154900833964, "o", "+ rm -rf /tmp/validator-tmp\r\r\n"]

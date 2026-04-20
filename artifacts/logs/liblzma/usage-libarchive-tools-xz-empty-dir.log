@@ -11,8 +11,8 @@ no override packages found; continuing with apt originals
 + mkdir -p /tmp/validator-tmp/in /tmp/validator-tmp/out
 + printf 'empty-dir\n'
 + bsdtar -cJf /tmp/validator-tmp/a.tar.xz -C /tmp/validator-tmp/in .
-+ tee /tmp/validator-tmp/list
 + bsdtar -tf /tmp/validator-tmp/a.tar.xz
++ tee /tmp/validator-tmp/list
 ./
 ./payload.txt
 + bsdtar -xf /tmp/validator-tmp/a.tar.xz -C /tmp/validator-tmp/out
