@@ -109,6 +109,18 @@ testcases:
   tags:
   - usage
   - xml
+- id: usage-python3-lxml-xinclude-xml
+  title: python3-lxml XInclude XML expansion
+  description: Runs lxml XInclude expansion and verifies included XML element text is visible to the client.
+  kind: usage
+  client_application: python3-lxml
+  command:
+  - bash
+  - /validator/tests/libxml/tests/cases/usage/usage-python3-lxml-xinclude-xml.sh
+  timeout_seconds: 180
+  tags:
+  - usage
+  - xml
 - id: usage-xmlstarlet-select-xml
   title: xmlstarlet select xml
   description: Runs xmlstarlet select xml behavior through libxml2.
@@ -156,6 +168,19 @@ testcases:
   command:
   - bash
   - /validator/tests/libxml/tests/cases/usage/usage-xmlstarlet-validate-xml.sh
+  timeout_seconds: 180
+  tags:
+  - usage
+  - xml
+  - cli
+- id: usage-xmlstarlet-transform-xml
+  title: xmlstarlet transform XML
+  description: Runs xmlstarlet XSLT transformation and verifies the selected XML value is emitted.
+  kind: usage
+  client_application: xmlstarlet
+  command:
+  - bash
+  - /validator/tests/libxml/tests/cases/usage/usage-xmlstarlet-transform-xml.sh
   timeout_seconds: 180
   tags:
   - usage

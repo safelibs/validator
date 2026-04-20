@@ -52,6 +52,14 @@ case "$workload" in
         client_args+=(--get-server-output -t 1)
         needle='"server_output'
         ;;
+    zero-copy)
+        client_args+=(-Z -n 32K)
+        needle='"sum_sent"'
+        ;;
+    omit-warmup)
+        client_args+=(-O 1 -t 2 -i 1)
+        needle='"intervals"'
+        ;;
     *)
         printf 'unknown iperf3 workload: %s\n' "$workload" >&2
         exit 2
@@ -81,4 +89,16 @@ fi
 
 validator_assert_contains "$tmpdir/client.json" "$needle"
 validator_assert_contains "$tmpdir/client.json" '"bits_per_second"'
+case "$workload" in
+    zero-copy)
+        jq -e '.end.sum_sent.bytes > 0 and .end.sum_sent.bits_per_second > 0' "$tmpdir/client.json"
+        ;;
+    omit-warmup)
+        jq -e '
+          (.intervals | length) > 0
+          and any(.intervals[]; (.sum.omitted == true) or any(.streams[]?; .omitted == true))
+          and (.end | type == "object")
+        ' "$tmpdir/client.json"
+        ;;
+esac
 jq -r '.end | keys | join(",")' "$tmpdir/client.json"

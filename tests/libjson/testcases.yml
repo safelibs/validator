@@ -169,3 +169,27 @@ testcases:
   tags:
   - usage
   - json
+- id: usage-gdal-ogr2ogr-where-geojson
+  title: GDAL filters GeoJSON with ogr2ogr
+  description: Runs ogr2ogr with an attribute where clause and verifies only the matching GeoJSON feature is written.
+  kind: usage
+  client_application: gdal
+  command:
+  - bash
+  - /validator/tests/libjson/tests/cases/usage/usage-gdal-ogr2ogr-where-geojson.sh
+  timeout_seconds: 180
+  tags:
+  - usage
+  - json
+- id: usage-gdal-ogr2ogr-reproject-geojson
+  title: GDAL reprojects GeoJSON
+  description: Runs ogr2ogr to reproject GeoJSON coordinates and verifies the resulting FeatureCollection.
+  kind: usage
+  client_application: gdal
+  command:
+  - bash
+  - /validator/tests/libjson/tests/cases/usage/usage-gdal-ogr2ogr-reproject-geojson.sh
+  timeout_seconds: 180
+  tags:
+  - usage
+  - json

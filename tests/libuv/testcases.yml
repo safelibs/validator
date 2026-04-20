@@ -155,3 +155,29 @@ testcases:
   tags:
   - usage
   - event-loop
+- id: usage-nodejs-fs-watch
+  title: Node.js fs.watch change event
+  description: Runs Node.js fs.watch on a temporary file and verifies a change event arrives through the event loop.
+  kind: usage
+  client_application: nodejs
+  command:
+  - bash
+  - /validator/tests/libuv/tests/cases/usage/usage-nodejs-fs-watch.sh
+  timeout_seconds: 180
+  tags:
+  - usage
+  - event-loop
+  - fs
+- id: usage-nodejs-crypto-pbkdf2
+  title: Node.js asynchronous PBKDF2
+  description: Runs Node.js crypto.pbkdf2 through libuv threadpool work and verifies callback completion.
+  kind: usage
+  client_application: nodejs
+  command:
+  - bash
+  - /validator/tests/libuv/tests/cases/usage/usage-nodejs-crypto-pbkdf2.sh
+  timeout_seconds: 180
+  tags:
+  - usage
+  - event-loop
+  - crypto

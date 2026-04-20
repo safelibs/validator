@@ -155,3 +155,27 @@ testcases:
   tags:
   - usage
   - json
+- id: usage-iperf3-json-zero-copy
+  title: iperf3 zero-copy JSON transfer
+  description: Runs an iperf3 zero-copy loopback transfer and verifies JSON sender byte and throughput totals.
+  kind: usage
+  client_application: iperf3
+  command:
+  - bash
+  - /validator/tests/cjson/tests/cases/usage/usage-iperf3-json-zero-copy.sh
+  timeout_seconds: 180
+  tags:
+  - usage
+  - json
+- id: usage-iperf3-json-omit-warmup
+  title: iperf3 omitted warmup JSON intervals
+  description: Runs an iperf3 loopback test with omitted warmup time and verifies JSON interval omission markers.
+  kind: usage
+  client_application: iperf3
+  command:
+  - bash
+  - /validator/tests/cjson/tests/cases/usage/usage-iperf3-json-omit-warmup.sh
+  timeout_seconds: 180
+  tags:
+  - usage
+  - json

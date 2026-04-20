@@ -155,3 +155,27 @@ testcases:
   tags:
   - usage
   - csv
+- id: usage-readstat-escaped-quotes-csv
+  title: readstat escaped quote CSV fields
+  description: Runs readstat through DTA conversion and verifies escaped double quotes survive CSV export.
+  kind: usage
+  client_application: readstat
+  command:
+  - bash
+  - /validator/tests/libcsv/tests/cases/usage/usage-readstat-escaped-quotes-csv.sh
+  timeout_seconds: 180
+  tags:
+  - usage
+  - csv
+- id: usage-readstat-wide-csv
+  title: readstat wide CSV metadata
+  description: Runs readstat with four CSV variables and verifies summary metadata and fourth-column export.
+  kind: usage
+  client_application: readstat
+  command:
+  - bash
+  - /validator/tests/libcsv/tests/cases/usage/usage-readstat-wide-csv.sh
+  timeout_seconds: 180
+  tags:
+  - usage
+  - csv

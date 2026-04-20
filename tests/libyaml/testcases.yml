@@ -163,3 +163,29 @@ testcases:
   - usage
   - yaml
   - python
+- id: usage-python3-yaml-cbase-loader
+  title: PyYAML CBaseLoader scalar parsing
+  description: Runs PyYAML CBaseLoader on nested YAML and verifies BaseLoader string scalar behavior.
+  kind: usage
+  client_application: python3-yaml
+  command:
+  - bash
+  - /validator/tests/libyaml/tests/cases/usage/usage-python3-yaml-cbase-loader.sh
+  timeout_seconds: 180
+  tags:
+  - usage
+  - yaml
+  - python
+- id: usage-python3-yaml-binary-scalar
+  title: PyYAML binary scalar decoding
+  description: Runs PyYAML safe_load on a binary scalar and verifies the decoded byte payload.
+  kind: usage
+  client_application: python3-yaml
+  command:
+  - bash
+  - /validator/tests/libyaml/tests/cases/usage/usage-python3-yaml-binary-scalar.sh
+  timeout_seconds: 180
+  tags:
+  - usage
+  - yaml
+  - python

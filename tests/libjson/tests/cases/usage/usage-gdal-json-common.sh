@@ -24,6 +24,23 @@ case "$workload" in
         ogr2ogr -f GeoJSON "$tmpdir/copy.geojson" "$geojson"
         validator_assert_contains "$tmpdir/copy.geojson" 'beta'
         ;;
+    ogr2ogr-where)
+        ogr2ogr -f GeoJSON "$tmpdir/filtered.geojson" "$geojson" -where 'value=2'
+        validator_assert_contains "$tmpdir/filtered.geojson" 'beta'
+        if grep -Fq 'alpha' "$tmpdir/filtered.geojson"; then
+            printf 'filtered GeoJSON unexpectedly retained alpha\n' >&2
+            sed -n '1,120p' "$tmpdir/filtered.geojson" >&2
+            exit 1
+        fi
+        ;;
+    ogr2ogr-reproject)
+        ogr2ogr -f GeoJSON "$tmpdir/reprojected.geojson" "$geojson" -s_srs EPSG:4326 -t_srs EPSG:3857
+        jq -e '
+          .type == "FeatureCollection"
+          and (.features | length) > 0
+          and any(.features[]; (.geometry.coordinates | length) > 0)
+        ' "$tmpdir/reprojected.geojson"
+        ;;
     ogr2ogr-csv)
         ogr2ogr -f CSV "$tmpdir/csv" "$geojson"
         validator_assert_contains "$tmpdir/csv/points.csv" 'alpha'
