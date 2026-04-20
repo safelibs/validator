@@ -14,12 +14,12 @@
         <h1>libzstd Validation</h1>
         <div class="metric-grid">
         <div class="metric" data-proof-total="libraries"><strong>19</strong><span>Libraries</span></div>
-        <div class="metric" data-proof-total="cases"><strong>250</strong><span>Cases</span></div>
+        <div class="metric" data-proof-total="cases"><strong>288</strong><span>Cases</span></div>
         <div class="metric" data-proof-total="source_cases"><strong>95</strong><span>Source</span></div>
-        <div class="metric" data-proof-total="usage_cases"><strong>155</strong><span>Usage</span></div>
-        <div class="metric" data-proof-total="passed"><strong>250</strong><span>Passed</span></div>
+        <div class="metric" data-proof-total="usage_cases"><strong>193</strong><span>Usage</span></div>
+        <div class="metric" data-proof-total="passed"><strong>288</strong><span>Passed</span></div>
         <div class="metric" data-proof-total="failed"><strong>0</strong><span>Failed</span></div>
-        <div class="metric" data-proof-total="casts"><strong>250 (100%)</strong><span>Casts</span></div>
+        <div class="metric" data-proof-total="casts"><strong>288 (100%)</strong><span>Casts</span></div>
         </div>
       </section>
 
@@ -433,6 +433,70 @@
             <div class="case-actions">
               <a class="log-link" href="../evidence/logs/libzstd/usage-libarchive-tools-zstd-copy-mode.log">Log</a>
               <button type="button" class="play-button js-load-cast" data-cast="../evidence/casts/libzstd/usage-libarchive-tools-zstd-copy-mode.cast">Play</button>
+            </div>
+            <div class="cast-player" data-player>
+              <div class="player-controls">
+                <button type="button" class="js-player-play">Play</button>
+                <button type="button" class="js-player-pause">Pause</button>
+                <button type="button" class="js-player-restart">Restart</button>
+                <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
+                <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
+              </div>
+              <pre class="terminal" aria-live="polite"></pre>
+            </div>
+          </div>
+        </details>
+        <details class="case-row" data-library="libzstd" data-testcase-id="usage-libarchive-tools-zstd-metadata-list" data-kind="usage" data-status="passed" data-player-cast="../evidence/casts/libzstd/usage-libarchive-tools-zstd-metadata-list.cast" data-search="libzstd usage-libarchive-tools-zstd-metadata-list libarchive-tools zstd metadata list Runs bsdtar verbose listing on a zstd archive and verifies executable metadata. usage libarchive-tools usage archive compression metadata">
+          <summary>
+            <span class="case-title">
+              <strong>libarchive-tools zstd metadata list</strong>
+              <span class="case-id">libzstd / usage-libarchive-tools-zstd-metadata-list</span>
+            </span>
+            <span class="status-pill status-passed">Passed</span>
+          </summary>
+          <div class="case-body">
+            <p>Runs bsdtar verbose listing on a zstd archive and verifies executable metadata.</p>
+            <dl class="case-meta">
+              <div><dt>Kind</dt><dd>usage</dd></div>
+              <div><dt>Client</dt><dd>libarchive-tools</dd></div>
+              <div><dt>Duration</dt><dd>0.00s</dd></div>
+              <div><dt>Tags</dt><dd class="tags"><span>usage</span> <span>archive</span> <span>compression</span> <span>metadata</span></dd></div>
+            </dl>
+            <div class="case-actions">
+              <a class="log-link" href="../evidence/logs/libzstd/usage-libarchive-tools-zstd-metadata-list.log">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/casts/libzstd/usage-libarchive-tools-zstd-metadata-list.cast">Play</button>
+            </div>
+            <div class="cast-player" data-player>
+              <div class="player-controls">
+                <button type="button" class="js-player-play">Play</button>
+                <button type="button" class="js-player-pause">Pause</button>
+                <button type="button" class="js-player-restart">Restart</button>
+                <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
+                <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
+              </div>
+              <pre class="terminal" aria-live="polite"></pre>
+            </div>
+          </div>
+        </details>
+        <details class="case-row" data-library="libzstd" data-testcase-id="usage-libarchive-tools-zstd-preserve-permissions" data-kind="usage" data-status="passed" data-player-cast="../evidence/casts/libzstd/usage-libarchive-tools-zstd-preserve-permissions.cast" data-search="libzstd usage-libarchive-tools-zstd-preserve-permissions libarchive-tools zstd preserve permissions Runs bsdtar zstd archive extraction and verifies executable permissions survive. usage libarchive-tools usage archive compression metadata">
+          <summary>
+            <span class="case-title">
+              <strong>libarchive-tools zstd preserve permissions</strong>
+              <span class="case-id">libzstd / usage-libarchive-tools-zstd-preserve-permissions</span>
+            </span>
+            <span class="status-pill status-passed">Passed</span>
+          </summary>
+          <div class="case-body">
+            <p>Runs bsdtar zstd archive extraction and verifies executable permissions survive.</p>
+            <dl class="case-meta">
+              <div><dt>Kind</dt><dd>usage</dd></div>
+              <div><dt>Client</dt><dd>libarchive-tools</dd></div>
+              <div><dt>Duration</dt><dd>0.00s</dd></div>
+              <div><dt>Tags</dt><dd class="tags"><span>usage</span> <span>archive</span> <span>compression</span> <span>metadata</span></dd></div>
+            </dl>
+            <div class="case-actions">
+              <a class="log-link" href="../evidence/logs/libzstd/usage-libarchive-tools-zstd-preserve-permissions.log">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/casts/libzstd/usage-libarchive-tools-zstd-preserve-permissions.cast">Play</button>
             </div>
             <div class="cast-player" data-player>
               <div class="player-controls">

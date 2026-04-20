@@ -1,4 +1,4 @@
 {"version": 2, "width": 120, "height": 40, "timestamp": 0, "env": {"TERM": "xterm-256color", "SHELL": "/bin/bash"}}
-[0.11378953699022532, "o", "no override packages found; continuing with apt originals\r\r\n"]
-[0.11534047801978886, "o", "+ set -euo pipefail\r\r\n+ /validator/tests/cjson/tests/cases/usage/usage-iperf3-json-common.sh parallel-streams\r\r\n"]
-[1.329362513963133, "o", "cpu_utilization_percent,receiver_tcp_congestion,sender_tcp_congestion,streams,sum_received,sum_sent\r\r\n"]
+[0.10948966396972537, "o", "no override packages found; continuing with apt originals\r\r\n"]
+[0.11101857095491141, "o", "+ set -euo pipefail\r\r\n+ /validator/tests/cjson/tests/cases/usage/usage-iperf3-json-common.sh parallel-streams\r\r\n"]
+[1.3239865599898621, "o", "cpu_utilization_percent,receiver_tcp_congestion,sender_tcp_congestion,streams,sum_received,sum_sent\r\r\n"]

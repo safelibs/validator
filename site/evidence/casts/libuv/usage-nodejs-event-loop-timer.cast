@@ -1,7 +1,7 @@
 {"version": 2, "width": 120, "height": 40, "timestamp": 0, "env": {"TERM": "xterm-256color", "SHELL": "/bin/bash"}}
-[0.10775800095871091, "o", "no override packages found; continuing with apt originals\r\r\n"]
-[0.10924443893600255, "o", "+ set -euo pipefail\r\r\n+ source /validator/tests/_shared/runtime_helpers.sh\r\r\n++ set -euo pipefail\r\r\n"]
-[0.10962294798810035, "o", "++ mktemp -d\r\r\n"]
-[0.1106450610095635, "o", "+ tmpdir=/tmp/validator-tmp\r\r\n+ trap 'rm -rf \"$tmpdir\"' EXIT\r\r\n+ node -e 'setTimeout(()=>console.log('\\''timer-fired'\\''),10);' /tmp/validator-tmp/node.txt\r\r\n"]
-[0.1770362799288705, "o", "timer-fired\r\r\n"]
-[0.1798712279414758, "o", "+ rm -rf /tmp/validator-tmp\r\r\n"]
+[0.762202322948724, "o", "no override packages found; continuing with apt originals\r\r\n"]
+[0.763476516935043, "o", "+ set -euo pipefail\r\r\n+ source /validator/tests/_shared/runtime_helpers.sh\r\r\n++ set -euo pipefail\r\r\n"]
+[0.7641856060363352, "o", "++ mktemp -d\r\r\n"]
+[0.7695943620055914, "o", "+ tmpdir=/tmp/validator-tmp\r\r\n+ trap 'rm -rf \"$tmpdir\"' EXIT\r\r\n+ node -e 'setTimeout(()=>console.log('\\''timer-fired'\\''),10);' /tmp/validator-tmp/node.txt\r\r\n"]
+[0.8320018330123276, "o", "timer-fired\r\r\n"]
+[0.8352463180199265, "o", "+ rm -rf /tmp/validator-tmp\r\r\n"]

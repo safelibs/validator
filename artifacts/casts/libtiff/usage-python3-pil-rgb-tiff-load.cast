@@ -1,7 +1,7 @@
 {"version": 2, "width": 120, "height": 40, "timestamp": 0, "env": {"TERM": "xterm-256color", "SHELL": "/bin/bash"}}
-[0.11449023196473718, "o", "no override packages found; continuing with apt originals\r\r\n"]
-[0.11628704098984599, "o", "+ set -euo pipefail\r\r\n+ source /validator/tests/_shared/runtime_helpers.sh\r\r\n++ set -euo pipefail\r\r\n"]
-[0.11639282596297562, "o", "++ mktemp -d\r\r\n"]
-[0.11778980796225369, "o", "+ tmpdir=/tmp/validator-tmp\r\r\n+ trap 'rm -rf \"$tmpdir\"' EXIT\r\r\n+ tiff=/validator/tests/libtiff/tests/fixtures/samples/test/images/rgb-3c-8b.tiff\r\r\n+ validator_require_file /validator/tests/libtiff/tests/fixtures/samples/test/images/rgb-3c-8b.tiff\r\r\n+ local path=/validator/tests/libtiff/tests/fixtures/samples/test/images/rgb-3c-8b.tiff\r\r\n+ [[ -f /validator/tests/libtiff/tests/fixtures/samples/test/images/rgb-3c-8b.tiff ]]\r\r\n+ python3 - /validator/tests/libtiff/tests/fixtures/samples/test/images/rgb-3c-8b.tiff /tmp/validator-tmp/out.tiff\r\r\n"]
-[0.15906560502480716, "o", "RGB (157, 151)\r\r\n"]
-[0.16368585196323693, "o", "+ rm -rf /tmp/validator-tmp\r\r\n"]
+[0.11273364105727524, "o", "no override packages found; continuing with apt originals\r\r\n"]
+[0.11453118303325027, "o", "+ set -euo pipefail\r\r\n+ source /validator/tests/_shared/runtime_helpers.sh\r\r\n++ set -euo pipefail\r\r\n++ mktemp -d\r\r\n"]
+[0.11580427503213286, "o", "+ tmpdir=/tmp/validator-tmp\r\r\n+ trap 'rm -rf \"$tmpdir\"' EXIT\r\r\n"]
+[0.11605215002782643, "o", "+ tiff=/validator/tests/libtiff/tests/fixtures/samples/test/images/rgb-3c-8b.tiff\r\r\n+ validator_require_file /validator/tests/libtiff/tests/fixtures/samples/test/images/rgb-3c-8b.tiff\r\r\n+ local path=/validator/tests/libtiff/tests/fixtures/samples/test/images/rgb-3c-8b.tiff\r\r\n+ [[ -f /validator/tests/libtiff/tests/fixtures/samples/test/images/rgb-3c-8b.tiff ]]\r\r\n+ python3 - /validator/tests/libtiff/tests/fixtures/samples/test/images/rgb-3c-8b.tiff /tmp/validator-tmp/out.tiff\r\r\n"]
+[0.1611186530208215, "o", "RGB (157, 151)\r\r\n"]
+[0.16624431509990245, "o", "+ rm -rf /tmp/validator-tmp\r\r\n"]

@@ -7,12 +7,12 @@
   },
   "totals": {
     "libraries": 19,
-    "cases": 250,
+    "cases": 288,
     "source_cases": 95,
-    "usage_cases": 155,
-    "passed": 250,
+    "usage_cases": 193,
+    "passed": 288,
     "failed": 0,
-    "casts": 250
+    "casts": 288
   },
   "libraries": [
     {
@@ -22,12 +22,12 @@
         "libcjson-dev"
       ],
       "totals": {
-        "cases": 13,
+        "cases": 15,
         "source_cases": 5,
-        "usage_cases": 8,
-        "passed": 13,
+        "usage_cases": 10,
+        "passed": 15,
         "failed": 0,
-        "casts": 13
+        "casts": 15
       },
       "testcases": [
         {
@@ -48,9 +48,9 @@
           "cast_path": "casts/cjson/parse-print-roundtrip.cast",
           "duration_seconds": 0.0,
           "exit_code": 0,
-          "cast_events": 8,
+          "cast_events": 9,
           "cast_bytes": 1131,
-          "cast_duration_seconds": 0.16931937099434435
+          "cast_duration_seconds": 0.1637351110111922
         },
         {
           "testcase_id": "minify-whitespace",
@@ -70,9 +70,9 @@
           "cast_path": "casts/cjson/minify-whitespace.cast",
           "duration_seconds": 0.0,
           "exit_code": 0,
-          "cast_events": 6,
+          "cast_events": 7,
           "cast_bytes": 409,
-          "cast_duration_seconds": 0.13404000806622207
+          "cast_duration_seconds": 0.13730150100309402
         },
         {
           "testcase_id": "utils-patch-pointer",
@@ -94,7 +94,7 @@
           "exit_code": 0,
           "cast_events": 10,
           "cast_bytes": 514,
-          "cast_duration_seconds": 0.12147977610584348
+          "cast_duration_seconds": 0.1320896049728617
         },
         {
           "testcase_id": "allocator-hooks-edge",
@@ -114,9 +114,9 @@
           "cast_path": "casts/cjson/allocator-hooks-edge.cast",
           "duration_seconds": 0.0,
           "exit_code": 0,
-          "cast_events": 6,
+          "cast_events": 7,
           "cast_bytes": 421,
-          "cast_duration_seconds": 0.13929437997285277
+          "cast_duration_seconds": 0.14575666305609047
         },
         {
           "testcase_id": "malformed-number-rejection",
@@ -138,7 +138,7 @@
           "exit_code": 0,
           "cast_events": 8,
           "cast_bytes": 390,
-          "cast_duration_seconds": 0.147280358010903
+          "cast_duration_seconds": 0.1409486479824409
         },
         {
           "testcase_id": "usage-iperf3-json-tcp-throughput",
@@ -160,7 +160,7 @@
           "exit_code": 0,
           "cast_events": 3,
           "cast_bytes": 272,
-          "cast_duration_seconds": 1.3231397829949856
+          "cast_duration_seconds": 1.3236284089507535
         },
         {
           "testcase_id": "usage-iperf3-json-reverse-throughput",
@@ -182,7 +182,7 @@
           "exit_code": 0,
           "cast_events": 3,
           "cast_bytes": 276,
-          "cast_duration_seconds": 1.324854332022369
+          "cast_duration_seconds": 1.3295772339915857
         },
         {
           "testcase_id": "usage-iperf3-json-udp-throughput",
@@ -204,7 +204,7 @@
           "exit_code": 0,
           "cast_events": 3,
           "cast_bytes": 230,
-          "cast_duration_seconds": 1.3147606609854847
+          "cast_duration_seconds": 1.318044945015572
         },
         {
           "testcase_id": "usage-iperf3-json-fixed-bytes",
@@ -226,7 +226,7 @@
           "exit_code": 0,
           "cast_events": 3,
           "cast_bytes": 269,
-          "cast_duration_seconds": 1.3338820020435378
+          "cast_duration_seconds": 1.3228924290742725
         },
         {
           "testcase_id": "usage-iperf3-json-parallel-streams",
@@ -248,7 +248,7 @@
           "exit_code": 0,
           "cast_events": 3,
           "cast_bytes": 274,
-          "cast_duration_seconds": 1.329362513963133
+          "cast_duration_seconds": 1.3239865599898621
         },
         {
           "testcase_id": "usage-iperf3-json-interval-report",
@@ -270,7 +270,7 @@
           "exit_code": 0,
           "cast_events": 3,
           "cast_bytes": 273,
-          "cast_duration_seconds": 1.3261711659142748
+          "cast_duration_seconds": 1.322234804974869
         },
         {
           "testcase_id": "usage-iperf3-json-bidirectional",
@@ -292,7 +292,7 @@
           "exit_code": 0,
           "cast_events": 3,
           "cast_bytes": 321,
-          "cast_duration_seconds": 1.3281505820341408
+          "cast_duration_seconds": 1.3228327999822795
         },
         {
           "testcase_id": "usage-iperf3-json-server-output",
@@ -314,7 +314,51 @@
           "exit_code": 0,
           "cast_events": 3,
           "cast_bytes": 271,
-          "cast_duration_seconds": 1.3210786849958822
+          "cast_duration_seconds": 1.3214193989988416
+        },
+        {
+          "testcase_id": "usage-iperf3-json-zero-copy",
+          "title": "iperf3 zero-copy JSON transfer",
+          "description": "Runs an iperf3 zero-copy loopback transfer and verifies JSON sender byte and throughput totals.",
+          "kind": "usage",
+          "mode": "original",
+          "client_application": "iperf3",
+          "tags": [
+            "usage",
+            "json"
+          ],
+          "requires": [],
+          "status": "passed",
+          "result_path": "results/cjson/usage-iperf3-json-zero-copy.json",
+          "log_path": "logs/cjson/usage-iperf3-json-zero-copy.log",
+          "cast_path": "casts/cjson/usage-iperf3-json-zero-copy.cast",
+          "duration_seconds": 0.0,
+          "exit_code": 0,
+          "cast_events": 4,
+          "cast_bytes": 285,
+          "cast_duration_seconds": 1.3289580600103363
+        },
+        {
+          "testcase_id": "usage-iperf3-json-omit-warmup",
+          "title": "iperf3 omitted warmup JSON intervals",
+          "description": "Runs an iperf3 loopback test with omitted warmup time and verifies JSON interval omission markers.",
+          "kind": "usage",
+          "mode": "original",
+          "client_application": "iperf3",
+          "tags": [
+            "usage",
+            "json"
+          ],
+          "requires": [],
+          "status": "passed",
+          "result_path": "results/cjson/usage-iperf3-json-omit-warmup.json",
+          "log_path": "logs/cjson/usage-iperf3-json-omit-warmup.log",
+          "cast_path": "casts/cjson/usage-iperf3-json-omit-warmup.cast",
+          "duration_seconds": 0.0,
+          "exit_code": 0,
+          "cast_events": 4,
+          "cast_bytes": 287,
+          "cast_duration_seconds": 3.32868499297183
         }
       ]
     },
@@ -326,12 +370,12 @@
         "giflib-tools"
       ],
       "totals": {
-        "cases": 13,
+        "cases": 15,
         "source_cases": 5,
-        "usage_cases": 8,
-        "passed": 13,
+        "usage_cases": 10,
+        "passed": 15,
         "failed": 0,
-        "casts": 13
+        "casts": 15
       },
       "testcases": [
         {
@@ -354,7 +398,7 @@
           "exit_code": 0,
           "cast_events": 7,
           "cast_bytes": 1134,
-          "cast_duration_seconds": 0.10985762299969792
+          "cast_duration_seconds": 0.1135320890462026
         },
         {
           "testcase_id": "gif2rgb-conversion",
@@ -374,9 +418,9 @@
           "cast_path": "casts/giflib/gif2rgb-conversion.cast",
           "duration_seconds": 0.0,
           "exit_code": 0,
-          "cast_events": 7,
+          "cast_events": 9,
           "cast_bytes": 1164,
-          "cast_duration_seconds": 0.12101809901650995
+          "cast_duration_seconds": 0.11463129601906985
         },
         {
           "testcase_id": "gifbuild-roundtrip",
@@ -396,9 +440,9 @@
           "cast_path": "casts/giflib/gifbuild-roundtrip.cast",
           "duration_seconds": 0.0,
           "exit_code": 0,
-          "cast_events": 10,
+          "cast_events": 8,
           "cast_bytes": 1352,
-          "cast_duration_seconds": 0.10929369903169572
+          "cast_duration_seconds": 0.11336318193934858
         },
         {
           "testcase_id": "interlaced-fixture-handling",
@@ -420,7 +464,7 @@
           "exit_code": 0,
           "cast_events": 8,
           "cast_bytes": 1239,
-          "cast_duration_seconds": 0.10831137793138623
+          "cast_duration_seconds": 0.10692343907430768
         },
         {
           "testcase_id": "malformed-gif-rejection",
@@ -440,9 +484,9 @@
           "cast_path": "casts/giflib/malformed-gif-rejection.cast",
           "duration_seconds": 0.0,
           "exit_code": 0,
-          "cast_events": 7,
+          "cast_events": 9,
           "cast_bytes": 769,
-          "cast_duration_seconds": 0.11392824992071837
+          "cast_duration_seconds": 0.11230716400314122
         },
         {
           "testcase_id": "usage-giflib-tools-giftext-headers",
@@ -463,9 +507,9 @@
           "cast_path": "casts/giflib/usage-giflib-tools-giftext-headers.cast",
           "duration_seconds": 0.0,
           "exit_code": 0,
-          "cast_events": 7,
+          "cast_events": 9,
           "cast_bytes": 1260,
-          "cast_duration_seconds": 0.11815846501849592
+          "cast_duration_seconds": 0.12053414597176015
         },
         {
           "testcase_id": "usage-giflib-tools-gif2rgb-convert",
@@ -488,7 +532,7 @@
           "exit_code": 0,
           "cast_events": 6,
           "cast_bytes": 903,
-          "cast_duration_seconds": 0.11173303797841072
+          "cast_duration_seconds": 0.12689959502313286
         },
         {
           "testcase_id": "usage-giflib-tools-giffix-copy",
@@ -509,9 +553,9 @@
           "cast_path": "casts/giflib/usage-giflib-tools-giffix-copy.cast",
           "duration_seconds": 0.0,
           "exit_code": 0,
-          "cast_events": 9,
+          "cast_events": 7,
           "cast_bytes": 1265,
-          "cast_duration_seconds": 0.12673965992871672
+          "cast_duration_seconds": 0.11556072894018143
         },
         {
           "testcase_id": "usage-giflib-tools-gifclrmp-map",
@@ -532,9 +576,9 @@
           "cast_path": "casts/giflib/usage-giflib-tools-gifclrmp-map.cast",
           "duration_seconds": 0.0,
           "exit_code": 0,
-          "cast_events": 8,
+          "cast_events": 10,
           "cast_bytes": 1090,
-          "cast_duration_seconds": 0.10992574004922062
+          "cast_duration_seconds": 0.11350852297618985
         },
         {
           "testcase_id": "usage-giflib-tools-gifbuild-dump",
@@ -555,9 +599,9 @@
           "cast_path": "casts/giflib/usage-giflib-tools-gifbuild-dump.cast",
           "duration_seconds": 0.0,
           "exit_code": 0,
-          "cast_events": 6,
+          "cast_events": 8,
           "cast_bytes": 950,
-          "cast_duration_seconds": 0.12068273697514087
+          "cast_duration_seconds": 0.11750241694971919
         },
         {
           "testcase_id": "usage-giflib-tools-gifbuild-roundtrip",
@@ -578,9 +622,9 @@
           "cast_path": "casts/giflib/usage-giflib-tools-gifbuild-roundtrip.cast",
           "duration_seconds": 0.0,
           "exit_code": 0,
-          "cast_events": 8,
+          "cast_events": 7,
           "cast_bytes": 1315,
-          "cast_duration_seconds": 0.11462142202071846
+          "cast_duration_seconds": 0.1115367270540446
         },
         {
           "testcase_id": "usage-giflib-tools-gif2rgb-planar",
@@ -603,7 +647,7 @@
           "exit_code": 0,
           "cast_events": 9,
           "cast_bytes": 1321,
-          "cast_duration_seconds": 0.11220402899198234
+          "cast_duration_seconds": 0.10554369096644223
         },
         {
           "testcase_id": "usage-giflib-tools-giftext-colormap",
@@ -626,7 +670,53 @@
           "exit_code": 0,
           "cast_events": 9,
           "cast_bytes": 1633,
-          "cast_duration_seconds": 0.12324687500949949
+          "cast_duration_seconds": 0.10944117791950703
+        },
+        {
+          "testcase_id": "usage-giflib-tools-gif2rgb-fire-fixture",
+          "title": "giflib-tools gif2rgb fire fixture",
+          "description": "Converts the fire GIF fixture with gif2rgb and verifies the exact RGB byte stream.",
+          "kind": "usage",
+          "mode": "original",
+          "client_application": "giflib-tools",
+          "tags": [
+            "usage",
+            "cli",
+            "image"
+          ],
+          "requires": [],
+          "status": "passed",
+          "result_path": "results/giflib/usage-giflib-tools-gif2rgb-fire-fixture.json",
+          "log_path": "logs/giflib/usage-giflib-tools-gif2rgb-fire-fixture.log",
+          "cast_path": "casts/giflib/usage-giflib-tools-gif2rgb-fire-fixture.cast",
+          "duration_seconds": 0.0,
+          "exit_code": 0,
+          "cast_events": 7,
+          "cast_bytes": 1091,
+          "cast_duration_seconds": 0.12106240203138441
+        },
+        {
+          "testcase_id": "usage-giflib-tools-giftext-interlaced-fixture",
+          "title": "giflib-tools giftext interlaced fixture",
+          "description": "Inspects an interlaced GIF fixture with giftext and verifies image metadata output.",
+          "kind": "usage",
+          "mode": "original",
+          "client_application": "giflib-tools",
+          "tags": [
+            "usage",
+            "cli",
+            "image"
+          ],
+          "requires": [],
+          "status": "passed",
+          "result_path": "results/giflib/usage-giflib-tools-giftext-interlaced-fixture.json",
+          "log_path": "logs/giflib/usage-giflib-tools-giftext-interlaced-fixture.log",
+          "cast_path": "casts/giflib/usage-giflib-tools-giftext-interlaced-fixture.cast",
+          "duration_seconds": 0.0,
+          "exit_code": 0,
+          "cast_events": 9,
+          "cast_bytes": 1368,
+          "cast_duration_seconds": 0.116841297945939
         }
       ]
     },
@@ -638,12 +728,12 @@
         "libarchive-tools"
       ],
       "totals": {
-        "cases": 13,
+        "cases": 15,
         "source_cases": 5,
-        "usage_cases": 8,
-        "passed": 13,
+        "usage_cases": 10,
+        "passed": 15,
         "failed": 0,
-        "casts": 13
+        "casts": 15
       },
       "testcases": [
         {
@@ -666,7 +756,7 @@
           "exit_code": 0,
           "cast_events": 15,
           "cast_bytes": 1011,
-          "cast_duration_seconds": 0.12875859800260514
+          "cast_duration_seconds": 0.16076594695914537
         },
         {
           "testcase_id": "bsdcpio-copy-roundtrip",
@@ -686,9 +776,9 @@
           "cast_path": "casts/libarchive/bsdcpio-copy-roundtrip.cast",
           "duration_seconds": 0.0,
           "exit_code": 0,
-          "cast_events": 14,
+          "cast_events": 16,
           "cast_bytes": 646,
-          "cast_duration_seconds": 0.12645971204619855
+          "cast_duration_seconds": 0.11871956801041961
         },
         {
           "testcase_id": "archive-metadata-listing",
@@ -710,7 +800,7 @@
           "exit_code": 0,
           "cast_events": 14,
           "cast_bytes": 1035,
-          "cast_duration_seconds": 0.12408930703531951
+          "cast_duration_seconds": 0.11896690994035453
         },
         {
           "testcase_id": "path-traversal-rejection",
@@ -732,7 +822,7 @@
           "exit_code": 0,
           "cast_events": 8,
           "cast_bytes": 606,
-          "cast_duration_seconds": 0.1265859609702602
+          "cast_duration_seconds": 0.13548524805810302
         },
         {
           "testcase_id": "archive-read-api-smoke",
@@ -752,9 +842,9 @@
           "cast_path": "casts/libarchive/archive-read-api-smoke.cast",
           "duration_seconds": 0.0,
           "exit_code": 0,
-          "cast_events": 11,
+          "cast_events": 9,
           "cast_bytes": 533,
-          "cast_duration_seconds": 0.17068446392659098
+          "cast_duration_seconds": 0.17448077397421002
         },
         {
           "testcase_id": "usage-python-libarchive-c-tar-list",
@@ -776,7 +866,7 @@
           "exit_code": 0,
           "cast_events": 3,
           "cast_bytes": 206,
-          "cast_duration_seconds": 0.1367993599269539
+          "cast_duration_seconds": 0.13041845802217722
         },
         {
           "testcase_id": "usage-python-libarchive-c-tar-extract",
@@ -798,7 +888,7 @@
           "exit_code": 0,
           "cast_events": 3,
           "cast_bytes": 188,
-          "cast_duration_seconds": 0.14088210696354508
+          "cast_duration_seconds": 0.13107173901516944
         },
         {
           "testcase_id": "usage-python-libarchive-c-metadata-read",
@@ -820,7 +910,7 @@
           "exit_code": 0,
           "cast_events": 3,
           "cast_bytes": 220,
-          "cast_duration_seconds": 0.1255095599917695
+          "cast_duration_seconds": 0.14224454597570002
         },
         {
           "testcase_id": "usage-python-libarchive-c-stream-read",
@@ -842,7 +932,7 @@
           "exit_code": 0,
           "cast_events": 3,
           "cast_bytes": 208,
-          "cast_duration_seconds": 0.1393753809388727
+          "cast_duration_seconds": 0.11831700801849365
         },
         {
           "testcase_id": "usage-python-libarchive-c-file-roundtrip",
@@ -864,7 +954,7 @@
           "exit_code": 0,
           "cast_events": 3,
           "cast_bytes": 226,
-          "cast_duration_seconds": 0.12901737203355879
+          "cast_duration_seconds": 0.1366312839090824
         },
         {
           "testcase_id": "usage-python-libarchive-c-directory-entry",
@@ -886,7 +976,7 @@
           "exit_code": 0,
           "cast_events": 3,
           "cast_bytes": 218,
-          "cast_duration_seconds": 0.1365400010254234
+          "cast_duration_seconds": 0.1333791899960488
         },
         {
           "testcase_id": "usage-python-libarchive-c-copy-mode",
@@ -908,7 +998,7 @@
           "exit_code": 0,
           "cast_events": 3,
           "cast_bytes": 227,
-          "cast_duration_seconds": 0.1343589280731976
+          "cast_duration_seconds": 0.1368164059240371
         },
         {
           "testcase_id": "usage-python-libarchive-c-gzip-filter",
@@ -930,7 +1020,51 @@
           "exit_code": 0,
           "cast_events": 3,
           "cast_bytes": 206,
-          "cast_duration_seconds": 0.1411294989520684
+          "cast_duration_seconds": 0.12888676906004548
+        },
+        {
+          "testcase_id": "usage-python-libarchive-c-zip-roundtrip",
+          "title": "python-libarchive-c zip roundtrip",
+          "description": "Uses python-libarchive-c to write and read ZIP archive entries through libarchive.",
+          "kind": "usage",
+          "mode": "original",
+          "client_application": "python3-libarchive-c",
+          "tags": [
+            "usage",
+            "archive"
+          ],
+          "requires": [],
+          "status": "passed",
+          "result_path": "results/libarchive/usage-python-libarchive-c-zip-roundtrip.json",
+          "log_path": "logs/libarchive/usage-python-libarchive-c-zip-roundtrip.log",
+          "cast_path": "casts/libarchive/usage-python-libarchive-c-zip-roundtrip.cast",
+          "duration_seconds": 0.0,
+          "exit_code": 0,
+          "cast_events": 3,
+          "cast_bytes": 225,
+          "cast_duration_seconds": 0.14244348695501685
+        },
+        {
+          "testcase_id": "usage-python-libarchive-c-nested-paths",
+          "title": "python-libarchive-c nested paths",
+          "description": "Uses python-libarchive-c to preserve nested and spaced entry paths through libarchive.",
+          "kind": "usage",
+          "mode": "original",
+          "client_application": "python3-libarchive-c",
+          "tags": [
+            "usage",
+            "archive"
+          ],
+          "requires": [],
+          "status": "passed",
+          "result_path": "results/libarchive/usage-python-libarchive-c-nested-paths.json",
+          "log_path": "logs/libarchive/usage-python-libarchive-c-nested-paths.log",
+          "cast_path": "casts/libarchive/usage-python-libarchive-c-nested-paths.cast",
+          "duration_seconds": 0.0,
+          "exit_code": 0,
+          "cast_events": 3,
+          "cast_bytes": 227,
+          "cast_duration_seconds": 0.137636229977943
         }
       ]
     },
@@ -942,12 +1076,12 @@
         "bzip2"
       ],
       "totals": {
-        "cases": 13,
+        "cases": 15,
         "source_cases": 5,
-        "usage_cases": 8,
-        "passed": 13,
+        "usage_cases": 10,
+        "passed": 15,
         "failed": 0,
-        "casts": 13
+        "casts": 15
       },
       "testcases": [
         {
@@ -970,7 +1104,7 @@
           "exit_code": 0,
           "cast_events": 8,
           "cast_bytes": 548,
-          "cast_duration_seconds": 0.10723464901093394
+          "cast_duration_seconds": 0.12473944004159421
         },
         {
           "testcase_id": "stream-concatenation",
@@ -990,9 +1124,9 @@
           "cast_path": "casts/libbz2/stream-concatenation.cast",
           "duration_seconds": 0.0,
           "exit_code": 0,
-          "cast_events": 12,
+          "cast_events": 14,
           "cast_bytes": 608,
-          "cast_duration_seconds": 0.11990585608873516
+          "cast_duration_seconds": 0.13783028000034392
         },
         {
           "testcase_id": "c-api-buffer-roundtrip",
@@ -1014,7 +1148,7 @@
           "exit_code": 0,
           "cast_events": 8,
           "cast_bytes": 392,
-          "cast_duration_seconds": 0.13732292398344725
+          "cast_duration_seconds": 0.13690754701383412
         },
         {
           "testcase_id": "corrupted-stream-rejection",
@@ -1034,9 +1168,9 @@
           "cast_path": "casts/libbz2/corrupted-stream-rejection.cast",
           "duration_seconds": 0.0,
           "exit_code": 0,
-          "cast_events": 11,
+          "cast_events": 10,
           "cast_bytes": 934,
-          "cast_duration_seconds": 0.12166008003987372
+          "cast_duration_seconds": 0.1162507931003347
         },
         {
           "testcase_id": "debian-sample-parity",
@@ -1056,9 +1190,9 @@
           "cast_path": "casts/libbz2/debian-sample-parity.cast",
           "duration_seconds": 0.0,
           "exit_code": 0,
-          "cast_events": 12,
+          "cast_events": 14,
           "cast_bytes": 2529,
-          "cast_duration_seconds": 0.13296726101543754
+          "cast_duration_seconds": 0.13379310793243349
         },
         {
           "testcase_id": "usage-bzip2-compress-file",
@@ -1078,9 +1212,9 @@
           "cast_path": "casts/libbz2/usage-bzip2-compress-file.cast",
           "duration_seconds": 0.0,
           "exit_code": 0,
-          "cast_events": 6,
+          "cast_events": 8,
           "cast_bytes": 607,
-          "cast_duration_seconds": 0.1075447240145877
+          "cast_duration_seconds": 0.10595014097634703
         },
         {
           "testcase_id": "usage-bzip2-test-stream",
@@ -1100,9 +1234,9 @@
           "cast_path": "casts/libbz2/usage-bzip2-test-stream.cast",
           "duration_seconds": 0.0,
           "exit_code": 0,
-          "cast_events": 8,
+          "cast_events": 6,
           "cast_bytes": 406,
-          "cast_duration_seconds": 0.10814897494856268
+          "cast_duration_seconds": 0.11475174501538277
         },
         {
           "testcase_id": "usage-bzip2-small-block",
@@ -1122,9 +1256,9 @@
           "cast_path": "casts/libbz2/usage-bzip2-small-block.cast",
           "duration_seconds": 0.0,
           "exit_code": 0,
-          "cast_events": 6,
+          "cast_events": 7,
           "cast_bytes": 381,
-          "cast_duration_seconds": 0.10571350005920976
+          "cast_duration_seconds": 0.10320627503097057
         },
         {
           "testcase_id": "usage-bzip2-large-block",
@@ -1144,9 +1278,9 @@
           "cast_path": "casts/libbz2/usage-bzip2-large-block.cast",
           "duration_seconds": 0.0,
           "exit_code": 0,
-          "cast_events": 18,
+          "cast_events": 80,
           "cast_bytes": 11873,
-          "cast_duration_seconds": 0.12558706500567496
+          "cast_duration_seconds": 0.11209162208251655
         },
         {
           "testcase_id": "usage-bzip2-concatenated-streams",
@@ -1166,9 +1300,9 @@
           "cast_path": "casts/libbz2/usage-bzip2-concatenated-streams.cast",
           "duration_seconds": 0.0,
           "exit_code": 0,
-          "cast_events": 10,
+          "cast_events": 7,
           "cast_bytes": 621,
-          "cast_duration_seconds": 0.11166690196841955
+          "cast_duration_seconds": 0.11702669691294432
         },
         {
           "testcase_id": "usage-bzip2-stdout-stream",
@@ -1188,9 +1322,9 @@
           "cast_path": "casts/libbz2/usage-bzip2-stdout-stream.cast",
           "duration_seconds": 0.0,
           "exit_code": 0,
-          "cast_events": 8,
+          "cast_events": 9,
           "cast_bytes": 561,
-          "cast_duration_seconds": 0.11646713793743402
+          "cast_duration_seconds": 0.11134680395480245
         },
         {
           "testcase_id": "usage-bzip2-recover-listing",
@@ -1210,9 +1344,9 @@
           "cast_path": "casts/libbz2/usage-bzip2-recover-listing.cast",
           "duration_seconds": 0.0,
           "exit_code": 0,
-          "cast_events": 7,
+          "cast_events": 9,
           "cast_bytes": 751,
-          "cast_duration_seconds": 0.11245235905516893
+          "cast_duration_seconds": 0.11414603993762285
         },
         {
           "testcase_id": "usage-bzip2-version-query",
@@ -1232,9 +1366,53 @@
           "cast_path": "casts/libbz2/usage-bzip2-version-query.cast",
           "duration_seconds": 0.0,
           "exit_code": 0,
-          "cast_events": 8,
+          "cast_events": 11,
           "cast_bytes": 1050,
-          "cast_duration_seconds": 0.10471774404868484
+          "cast_duration_seconds": 0.12630853697191924
+        },
+        {
+          "testcase_id": "usage-bzip2-decompress-keep-input",
+          "title": "bzip2 decompress keep input",
+          "description": "Runs bunzip2 keep-input decompression and verifies the compressed file remains.",
+          "kind": "usage",
+          "mode": "original",
+          "client_application": "bzip2",
+          "tags": [
+            "usage",
+            "compression"
+          ],
+          "requires": [],
+          "status": "passed",
+          "result_path": "results/libbz2/usage-bzip2-decompress-keep-input.json",
+          "log_path": "logs/libbz2/usage-bzip2-decompress-keep-input.log",
+          "cast_path": "casts/libbz2/usage-bzip2-decompress-keep-input.cast",
+          "duration_seconds": 0.0,
+          "exit_code": 0,
+          "cast_events": 8,
+          "cast_bytes": 619,
+          "cast_duration_seconds": 0.12262315198313445
+        },
+        {
+          "testcase_id": "usage-bzip2-force-overwrite",
+          "title": "bzip2 force overwrite",
+          "description": "Runs bzip2 forced recompression and verifies the replacement compressed payload is used.",
+          "kind": "usage",
+          "mode": "original",
+          "client_application": "bzip2",
+          "tags": [
+            "usage",
+            "compression"
+          ],
+          "requires": [],
+          "status": "passed",
+          "result_path": "results/libbz2/usage-bzip2-force-overwrite.json",
+          "log_path": "logs/libbz2/usage-bzip2-force-overwrite.log",
+          "cast_path": "casts/libbz2/usage-bzip2-force-overwrite.cast",
+          "duration_seconds": 0.0,
+          "exit_code": 0,
+          "cast_events": 9,
+          "cast_bytes": 637,
+          "cast_duration_seconds": 0.10608418798074126
         }
       ]
     },
@@ -1245,12 +1423,12 @@
         "libcsv-dev"
       ],
       "totals": {
-        "cases": 13,
+        "cases": 15,
         "source_cases": 5,
-        "usage_cases": 8,
-        "passed": 13,
+        "usage_cases": 10,
+        "passed": 15,
         "failed": 0,
-        "casts": 13
+        "casts": 15
       },
       "testcases": [
         {
@@ -1273,7 +1451,7 @@
           "exit_code": 0,
           "cast_events": 7,
           "cast_bytes": 444,
-          "cast_duration_seconds": 0.13482288306113333
+          "cast_duration_seconds": 0.14024762297049165
         },
         {
           "testcase_id": "strict-quote-error",
@@ -1295,7 +1473,7 @@
           "exit_code": 0,
           "cast_events": 7,
           "cast_bytes": 419,
-          "cast_duration_seconds": 0.1435638319235295
+          "cast_duration_seconds": 0.13605211803223938
         },
         {
           "testcase_id": "example-tool-compile-run",
@@ -1315,9 +1493,9 @@
           "cast_path": "casts/libcsv/example-tool-compile-run.cast",
           "duration_seconds": 0.0,
           "exit_code": 0,
-          "cast_events": 9,
+          "cast_events": 8,
           "cast_bytes": 728,
-          "cast_duration_seconds": 0.13538022805005312
+          "cast_duration_seconds": 0.12859855697024614
         },
         {
           "testcase_id": "large-field-handling",
@@ -1337,9 +1515,9 @@
           "cast_path": "casts/libcsv/large-field-handling.cast",
           "duration_seconds": 0.0,
           "exit_code": 0,
-          "cast_events": 9,
+          "cast_events": 7,
           "cast_bytes": 377,
-          "cast_duration_seconds": 0.13348412804771215
+          "cast_duration_seconds": 0.1402899039676413
         },
         {
           "testcase_id": "empty-field-custom-delimiter",
@@ -1359,9 +1537,9 @@
           "cast_path": "casts/libcsv/empty-field-custom-delimiter.cast",
           "duration_seconds": 0.0,
           "exit_code": 0,
-          "cast_events": 9,
+          "cast_events": 7,
           "cast_bytes": 421,
-          "cast_duration_seconds": 0.14062346192076802
+          "cast_duration_seconds": 0.1314366760198027
         },
         {
           "testcase_id": "usage-readstat-csv-to-dta",
@@ -1383,7 +1561,7 @@
           "exit_code": 0,
           "cast_events": 4,
           "cast_bytes": 321,
-          "cast_duration_seconds": 0.12009443808346987
+          "cast_duration_seconds": 0.10580786201171577
         },
         {
           "testcase_id": "usage-readstat-dta-to-csv",
@@ -1405,7 +1583,7 @@
           "exit_code": 0,
           "cast_events": 4,
           "cast_bytes": 266,
-          "cast_duration_seconds": 0.1104403049685061
+          "cast_duration_seconds": 0.10880930989515036
         },
         {
           "testcase_id": "usage-readstat-csv-to-sav",
@@ -1427,7 +1605,7 @@
           "exit_code": 0,
           "cast_events": 4,
           "cast_bytes": 321,
-          "cast_duration_seconds": 0.11510742292739451
+          "cast_duration_seconds": 0.11787072103470564
         },
         {
           "testcase_id": "usage-readstat-sav-to-csv",
@@ -1449,7 +1627,7 @@
           "exit_code": 0,
           "cast_events": 4,
           "cast_bytes": 266,
-          "cast_duration_seconds": 0.12427348899655044
+          "cast_duration_seconds": 0.11334907100535929
         },
         {
           "testcase_id": "usage-readstat-metadata-summary",
@@ -1471,7 +1649,7 @@
           "exit_code": 0,
           "cast_events": 4,
           "cast_bytes": 381,
-          "cast_duration_seconds": 0.1230299660237506
+          "cast_duration_seconds": 0.10855198791250587
         },
         {
           "testcase_id": "usage-readstat-quoted-csv",
@@ -1493,7 +1671,7 @@
           "exit_code": 0,
           "cast_events": 4,
           "cast_bytes": 318,
-          "cast_duration_seconds": 0.12543710810132325
+          "cast_duration_seconds": 0.1173345169518143
         },
         {
           "testcase_id": "usage-readstat-missing-values",
@@ -1515,7 +1693,7 @@
           "exit_code": 0,
           "cast_events": 4,
           "cast_bytes": 322,
-          "cast_duration_seconds": 0.12717850401531905
+          "cast_duration_seconds": 0.11013043601997197
         },
         {
           "testcase_id": "usage-readstat-normalize-csv",
@@ -1537,7 +1715,51 @@
           "exit_code": 0,
           "cast_events": 3,
           "cast_bytes": 218,
-          "cast_duration_seconds": 0.10123555304016918
+          "cast_duration_seconds": 0.11931129696313292
+        },
+        {
+          "testcase_id": "usage-readstat-escaped-quotes-csv",
+          "title": "readstat escaped quote CSV fields",
+          "description": "Runs readstat through DTA conversion and verifies escaped double quotes survive CSV export.",
+          "kind": "usage",
+          "mode": "original",
+          "client_application": "readstat",
+          "tags": [
+            "usage",
+            "csv"
+          ],
+          "requires": [],
+          "status": "passed",
+          "result_path": "results/libcsv/usage-readstat-escaped-quotes-csv.json",
+          "log_path": "logs/libcsv/usage-readstat-escaped-quotes-csv.log",
+          "cast_path": "casts/libcsv/usage-readstat-escaped-quotes-csv.cast",
+          "duration_seconds": 0.0,
+          "exit_code": 0,
+          "cast_events": 4,
+          "cast_bytes": 340,
+          "cast_duration_seconds": 0.11517100699711591
+        },
+        {
+          "testcase_id": "usage-readstat-wide-csv",
+          "title": "readstat wide CSV metadata",
+          "description": "Runs readstat with four CSV variables and verifies summary metadata and fourth-column export.",
+          "kind": "usage",
+          "mode": "original",
+          "client_application": "readstat",
+          "tags": [
+            "usage",
+            "csv"
+          ],
+          "requires": [],
+          "status": "passed",
+          "result_path": "results/libcsv/usage-readstat-wide-csv.json",
+          "log_path": "logs/libcsv/usage-readstat-wide-csv.log",
+          "cast_path": "casts/libcsv/usage-readstat-wide-csv.cast",
+          "duration_seconds": 0.0,
+          "exit_code": 0,
+          "cast_events": 5,
+          "cast_bytes": 530,
+          "cast_duration_seconds": 0.1276097419904545
         }
       ]
     },
@@ -1548,12 +1770,12 @@
         "libexif-dev"
       ],
       "totals": {
-        "cases": 13,
+        "cases": 15,
         "source_cases": 5,
-        "usage_cases": 8,
-        "passed": 13,
+        "usage_cases": 10,
+        "passed": 15,
         "failed": 0,
-        "casts": 13
+        "casts": 15
       },
       "testcases": [
         {
@@ -1574,9 +1796,9 @@
           "cast_path": "casts/libexif/jpeg-exif-c-api-parse.cast",
           "duration_seconds": 0.0,
           "exit_code": 0,
-          "cast_events": 8,
+          "cast_events": 10,
           "cast_bytes": 967,
-          "cast_duration_seconds": 0.1377400429919362
+          "cast_duration_seconds": 0.14280666096601635
         },
         {
           "testcase_id": "maker-note-handling",
@@ -1596,9 +1818,9 @@
           "cast_path": "casts/libexif/maker-note-handling.cast",
           "duration_seconds": 0.0,
           "exit_code": 0,
-          "cast_events": 11,
+          "cast_events": 8,
           "cast_bytes": 948,
-          "cast_duration_seconds": 0.13839138601906598
+          "cast_duration_seconds": 0.13530931598506868
         },
         {
           "testcase_id": "tag-lookup-value-formatting",
@@ -1620,7 +1842,7 @@
           "exit_code": 0,
           "cast_events": 8,
           "cast_bytes": 426,
-          "cast_duration_seconds": 0.13945151295047253
+          "cast_duration_seconds": 0.14126018097158521
         },
         {
           "testcase_id": "compile-link-smoke",
@@ -1640,9 +1862,9 @@
           "cast_path": "casts/libexif/compile-link-smoke.cast",
           "duration_seconds": 0.0,
           "exit_code": 0,
-          "cast_events": 7,
+          "cast_events": 9,
           "cast_bytes": 425,
-          "cast_duration_seconds": 0.13809337303973734
+          "cast_duration_seconds": 0.13264121196698397
         },
         {
           "testcase_id": "invalid-data-handling",
@@ -1664,7 +1886,7 @@
           "exit_code": 0,
           "cast_events": 10,
           "cast_bytes": 415,
-          "cast_duration_seconds": 0.13263568899128586
+          "cast_duration_seconds": 0.1466833259910345
         },
         {
           "testcase_id": "usage-exif-cli-list-tags",
@@ -1684,9 +1906,9 @@
           "cast_path": "casts/libexif/usage-exif-cli-list-tags.cast",
           "duration_seconds": 0.0,
           "exit_code": 0,
-          "cast_events": 3,
+          "cast_events": 4,
           "cast_bytes": 2173,
-          "cast_duration_seconds": 0.11936153296846896
+          "cast_duration_seconds": 0.12090469093527645
         },
         {
           "testcase_id": "usage-exif-cli-machine-readable",
@@ -1706,9 +1928,9 @@
           "cast_path": "casts/libexif/usage-exif-cli-machine-readable.cast",
           "duration_seconds": 0.0,
           "exit_code": 0,
-          "cast_events": 3,
+          "cast_events": 4,
           "cast_bytes": 1532,
-          "cast_duration_seconds": 0.11377503501717001
+          "cast_duration_seconds": 0.11708454298786819
         },
         {
           "testcase_id": "usage-exif-cli-tag-make",
@@ -1730,7 +1952,7 @@
           "exit_code": 0,
           "cast_events": 3,
           "cast_bytes": 319,
-          "cast_duration_seconds": 0.11179402400739491
+          "cast_duration_seconds": 0.1176097639836371
         },
         {
           "testcase_id": "usage-exif-cli-tag-model",
@@ -1752,7 +1974,7 @@
           "exit_code": 0,
           "cast_events": 3,
           "cast_bytes": 331,
-          "cast_duration_seconds": 0.1146194520406425
+          "cast_duration_seconds": 0.11480608803685755
         },
         {
           "testcase_id": "usage-exif-cli-maker-note",
@@ -1772,9 +1994,9 @@
           "cast_path": "casts/libexif/usage-exif-cli-maker-note.cast",
           "duration_seconds": 0.0,
           "exit_code": 0,
-          "cast_events": 4,
+          "cast_events": 7,
           "cast_bytes": 3199,
-          "cast_duration_seconds": 0.11617911397479475
+          "cast_duration_seconds": 0.11889834806788713
         },
         {
           "testcase_id": "usage-exif-cli-extract-thumbnail",
@@ -1796,7 +2018,7 @@
           "exit_code": 0,
           "cast_events": 4,
           "cast_bytes": 265,
-          "cast_duration_seconds": 0.11363868799526244
+          "cast_duration_seconds": 0.11424049490597099
         },
         {
           "testcase_id": "usage-exif-cli-ifd-exif",
@@ -1818,7 +2040,7 @@
           "exit_code": 0,
           "cast_events": 3,
           "cast_bytes": 1679,
-          "cast_duration_seconds": 0.11773948499467224
+          "cast_duration_seconds": 0.11510203592479229
         },
         {
           "testcase_id": "usage-exif-cli-xml-output",
@@ -1838,9 +2060,53 @@
           "cast_path": "casts/libexif/usage-exif-cli-xml-output.cast",
           "duration_seconds": 0.0,
           "exit_code": 0,
-          "cast_events": 4,
+          "cast_events": 3,
           "cast_bytes": 2461,
-          "cast_duration_seconds": 0.10880079993512481
+          "cast_duration_seconds": 0.12421957601327449
+        },
+        {
+          "testcase_id": "usage-exif-cli-tag-datetime",
+          "title": "exif CLI DateTime tag",
+          "description": "Runs the exif CLI to read the image DateTime tag from a JPEG fixture.",
+          "kind": "usage",
+          "mode": "original",
+          "client_application": "exif",
+          "tags": [
+            "usage",
+            "metadata"
+          ],
+          "requires": [],
+          "status": "passed",
+          "result_path": "results/libexif/usage-exif-cli-tag-datetime.json",
+          "log_path": "logs/libexif/usage-exif-cli-tag-datetime.log",
+          "cast_path": "casts/libexif/usage-exif-cli-tag-datetime.cast",
+          "duration_seconds": 0.0,
+          "exit_code": 0,
+          "cast_events": 5,
+          "cast_bytes": 348,
+          "cast_duration_seconds": 0.12364259001333266
+        },
+        {
+          "testcase_id": "usage-exif-cli-tag-datetime-original",
+          "title": "exif CLI DateTimeOriginal tag",
+          "description": "Runs the exif CLI to read the original capture timestamp from a JPEG fixture.",
+          "kind": "usage",
+          "mode": "original",
+          "client_application": "exif",
+          "tags": [
+            "usage",
+            "metadata"
+          ],
+          "requires": [],
+          "status": "passed",
+          "result_path": "results/libexif/usage-exif-cli-tag-datetime-original.json",
+          "log_path": "logs/libexif/usage-exif-cli-tag-datetime-original.log",
+          "cast_path": "casts/libexif/usage-exif-cli-tag-datetime-original.cast",
+          "duration_seconds": 0.0,
+          "exit_code": 0,
+          "cast_events": 3,
+          "cast_bytes": 389,
+          "cast_duration_seconds": 0.11317247105762362
         }
       ]
     },
@@ -1854,12 +2120,12 @@
         "libjpeg-turbo-progs"
       ],
       "totals": {
-        "cases": 13,
+        "cases": 15,
         "source_cases": 5,
-        "usage_cases": 8,
-        "passed": 13,
+        "usage_cases": 10,
+        "passed": 15,
         "failed": 0,
-        "casts": 13
+        "casts": 15
       },
       "testcases": [
         {
@@ -1882,7 +2148,7 @@
           "exit_code": 0,
           "cast_events": 10,
           "cast_bytes": 628,
-          "cast_duration_seconds": 0.11032620200421661
+          "cast_duration_seconds": 0.12685213203076273
         },
         {
           "testcase_id": "jpegtran-transform",
@@ -1902,9 +2168,9 @@
           "cast_path": "casts/libjpeg-turbo/jpegtran-transform.cast",
           "duration_seconds": 0.0,
           "exit_code": 0,
-          "cast_events": 10,
+          "cast_events": 8,
           "cast_bytes": 489,
-          "cast_duration_seconds": 0.11318973498418927
+          "cast_duration_seconds": 0.13019647996407002
         },
         {
           "testcase_id": "turbojpeg-api-smoke",
@@ -1924,9 +2190,9 @@
           "cast_path": "casts/libjpeg-turbo/turbojpeg-api-smoke.cast",
           "duration_seconds": 0.0,
           "exit_code": 0,
-          "cast_events": 7,
+          "cast_events": 5,
           "cast_bytes": 384,
-          "cast_duration_seconds": 0.13598623499274254
+          "cast_duration_seconds": 0.12896362389437854
         },
         {
           "testcase_id": "progressive-grayscale-conversion",
@@ -1946,9 +2212,9 @@
           "cast_path": "casts/libjpeg-turbo/progressive-grayscale-conversion.cast",
           "duration_seconds": 0.0,
           "exit_code": 0,
-          "cast_events": 8,
+          "cast_events": 10,
           "cast_bytes": 648,
-          "cast_duration_seconds": 0.12347795895766467
+          "cast_duration_seconds": 0.12838154507335275
         },
         {
           "testcase_id": "malformed-jpeg-handling",
@@ -1970,7 +2236,7 @@
           "exit_code": 0,
           "cast_events": 6,
           "cast_bytes": 401,
-          "cast_duration_seconds": 0.1177923979703337
+          "cast_duration_seconds": 0.12232858501374722
         },
         {
           "testcase_id": "usage-python3-pil-open-jpeg",
@@ -1991,9 +2257,9 @@
           "cast_path": "casts/libjpeg-turbo/usage-python3-pil-open-jpeg.cast",
           "duration_seconds": 0.0,
           "exit_code": 0,
-          "cast_events": 9,
+          "cast_events": 8,
           "cast_bytes": 429,
-          "cast_duration_seconds": 0.15055984898936003
+          "cast_duration_seconds": 0.14291478297673166
         },
         {
           "testcase_id": "usage-python3-pil-grayscale-jpeg",
@@ -2016,7 +2282,7 @@
           "exit_code": 0,
           "cast_events": 8,
           "cast_bytes": 422,
-          "cast_duration_seconds": 0.15524339396506548
+          "cast_duration_seconds": 0.1460200510919094
         },
         {
           "testcase_id": "usage-python3-pil-thumbnail-jpeg",
@@ -2039,7 +2305,7 @@
           "exit_code": 0,
           "cast_events": 8,
           "cast_bytes": 426,
-          "cast_duration_seconds": 0.15724727394990623
+          "cast_duration_seconds": 0.15863161603920162
         },
         {
           "testcase_id": "usage-python3-pil-transpose-jpeg",
@@ -2060,9 +2326,9 @@
           "cast_path": "casts/libjpeg-turbo/usage-python3-pil-transpose-jpeg.cast",
           "duration_seconds": 0.0,
           "exit_code": 0,
-          "cast_events": 9,
+          "cast_events": 7,
           "cast_bytes": 420,
-          "cast_duration_seconds": 0.16026515408884734
+          "cast_duration_seconds": 0.16153461497742683
         },
         {
           "testcase_id": "usage-vips-header-jpeg",
@@ -2085,7 +2351,7 @@
           "exit_code": 0,
           "cast_events": 10,
           "cast_bytes": 654,
-          "cast_duration_seconds": 0.1498083689948544
+          "cast_duration_seconds": 0.13763422099873424
         },
         {
           "testcase_id": "usage-vips-copy-jpeg-png",
@@ -2106,9 +2372,9 @@
           "cast_path": "casts/libjpeg-turbo/usage-vips-copy-jpeg-png.cast",
           "duration_seconds": 0.0,
           "exit_code": 0,
-          "cast_events": 9,
+          "cast_events": 8,
           "cast_bytes": 517,
-          "cast_duration_seconds": 0.1709239409537986
+          "cast_duration_seconds": 0.1759866470238194
         },
         {
           "testcase_id": "usage-vips-thumbnail-jpeg",
@@ -2129,9 +2395,9 @@
           "cast_path": "casts/libjpeg-turbo/usage-vips-thumbnail-jpeg.cast",
           "duration_seconds": 0.0,
           "exit_code": 0,
-          "cast_events": 10,
+          "cast_events": 9,
           "cast_bytes": 540,
-          "cast_duration_seconds": 0.16501786303706467
+          "cast_duration_seconds": 0.16572631895542145
         },
         {
           "testcase_id": "usage-vips-stats-jpeg",
@@ -2152,9 +2418,56 @@
           "cast_path": "casts/libjpeg-turbo/usage-vips-stats-jpeg.cast",
           "duration_seconds": 0.0,
           "exit_code": 0,
-          "cast_events": 10,
+          "cast_events": 8,
           "cast_bytes": 512,
-          "cast_duration_seconds": 0.1690380920190364
+          "cast_duration_seconds": 0.16658332094084471
+        },
+        {
+          "testcase_id": "usage-python3-pil-progressive-jpeg",
+          "title": "Pillow progressive JPEG load",
+          "description": "Opens a progressive JPEG with Pillow and verifies libjpeg-turbo-backed image metadata.",
+          "kind": "usage",
+          "mode": "original",
+          "client_application": "python3-pil",
+          "tags": [
+            "usage",
+            "image",
+            "python",
+            "compression"
+          ],
+          "requires": [],
+          "status": "passed",
+          "result_path": "results/libjpeg-turbo/usage-python3-pil-progressive-jpeg.json",
+          "log_path": "logs/libjpeg-turbo/usage-python3-pil-progressive-jpeg.log",
+          "cast_path": "casts/libjpeg-turbo/usage-python3-pil-progressive-jpeg.cast",
+          "duration_seconds": 0.0,
+          "exit_code": 0,
+          "cast_events": 8,
+          "cast_bytes": 431,
+          "cast_duration_seconds": 0.17194924305658787
+        },
+        {
+          "testcase_id": "usage-vips-extract-band-jpeg",
+          "title": "vips extract JPEG band",
+          "description": "Extracts a JPEG color band with vips and verifies the single-band image output.",
+          "kind": "usage",
+          "mode": "original",
+          "client_application": "vips",
+          "tags": [
+            "usage",
+            "image",
+            "cli"
+          ],
+          "requires": [],
+          "status": "passed",
+          "result_path": "results/libjpeg-turbo/usage-vips-extract-band-jpeg.json",
+          "log_path": "logs/libjpeg-turbo/usage-vips-extract-band-jpeg.log",
+          "cast_path": "casts/libjpeg-turbo/usage-vips-extract-band-jpeg.cast",
+          "duration_seconds": 0.0,
+          "exit_code": 0,
+          "cast_events": 10,
+          "cast_bytes": 884,
+          "cast_duration_seconds": 0.17640156100969762
         }
       ]
     },
@@ -2165,12 +2478,12 @@
         "libjson-c-dev"
       ],
       "totals": {
-        "cases": 14,
+        "cases": 16,
         "source_cases": 5,
-        "usage_cases": 9,
-        "passed": 14,
+        "usage_cases": 11,
+        "passed": 16,
         "failed": 0,
-        "casts": 14
+        "casts": 16
       },
       "testcases": [
         {
@@ -2193,7 +2506,7 @@
           "exit_code": 0,
           "cast_events": 8,
           "cast_bytes": 439,
-          "cast_duration_seconds": 0.1471555110765621
+          "cast_duration_seconds": 0.1394173640292138
         },
         {
           "testcase_id": "serializer-roundtrip",
@@ -2213,9 +2526,9 @@
           "cast_path": "casts/libjson/serializer-roundtrip.cast",
           "duration_seconds": 0.0,
           "exit_code": 0,
-          "cast_events": 9,
+          "cast_events": 8,
           "cast_bytes": 442,
-          "cast_duration_seconds": 0.12897150905337185
+          "cast_duration_seconds": 0.1256972539704293
         },
         {
           "testcase_id": "refcount-object-mutation",
@@ -2235,9 +2548,9 @@
           "cast_path": "casts/libjson/refcount-object-mutation.cast",
           "duration_seconds": 0.0,
           "exit_code": 0,
-          "cast_events": 8,
+          "cast_events": 6,
           "cast_bytes": 468,
-          "cast_duration_seconds": 0.13432442001067102
+          "cast_duration_seconds": 0.13948604196775705
         },
         {
           "testcase_id": "compile-link-smoke",
@@ -2257,9 +2570,9 @@
           "cast_path": "casts/libjson/compile-link-smoke.cast",
           "duration_seconds": 0.0,
           "exit_code": 0,
-          "cast_events": 8,
+          "cast_events": 9,
           "cast_bytes": 448,
-          "cast_duration_seconds": 0.132601466961205
+          "cast_duration_seconds": 0.1366572070401162
         },
         {
           "testcase_id": "malformed-json-handling",
@@ -2281,7 +2594,7 @@
           "exit_code": 0,
           "cast_events": 8,
           "cast_bytes": 455,
-          "cast_duration_seconds": 0.14290118392091244
+          "cast_duration_seconds": 0.13363870501052588
         },
         {
           "testcase_id": "usage-gdal-ogrinfo-geojson",
@@ -2304,7 +2617,7 @@
           "exit_code": 0,
           "cast_events": 3,
           "cast_bytes": 1013,
-          "cast_duration_seconds": 0.13954753102734685
+          "cast_duration_seconds": 0.1484098619548604
         },
         {
           "testcase_id": "usage-ttyd-loopback-index",
@@ -2327,7 +2640,7 @@
           "exit_code": 0,
           "cast_events": 10,
           "cast_bytes": 878,
-          "cast_duration_seconds": 0.14434317301493138
+          "cast_duration_seconds": 0.13824475894216448
         },
         {
           "testcase_id": "usage-gdal-ogrinfo-filter-geojson",
@@ -2349,7 +2662,7 @@
           "exit_code": 0,
           "cast_events": 3,
           "cast_bytes": 1103,
-          "cast_duration_seconds": 0.13188770692795515
+          "cast_duration_seconds": 0.13607785699423403
         },
         {
           "testcase_id": "usage-gdal-ogr2ogr-copy-geojson",
@@ -2371,7 +2684,7 @@
           "exit_code": 0,
           "cast_events": 2,
           "cast_bytes": 168,
-          "cast_duration_seconds": 0.11481717706192285
+          "cast_duration_seconds": 0.10087705997284502
         },
         {
           "testcase_id": "usage-gdal-ogr2ogr-csv-geojson",
@@ -2393,7 +2706,7 @@
           "exit_code": 0,
           "cast_events": 2,
           "cast_bytes": 167,
-          "cast_duration_seconds": 0.11094011296518147
+          "cast_duration_seconds": 0.11148064490407705
         },
         {
           "testcase_id": "usage-gdal-ogr2ogr-gpkg-geojson",
@@ -2415,7 +2728,7 @@
           "exit_code": 0,
           "cast_events": 3,
           "cast_bytes": 1610,
-          "cast_duration_seconds": 0.16636594897136092
+          "cast_duration_seconds": 0.15550119697581977
         },
         {
           "testcase_id": "usage-gdal-ogrinfo-sql-geojson",
@@ -2435,9 +2748,9 @@
           "cast_path": "casts/libjson/usage-gdal-ogrinfo-sql-geojson.cast",
           "duration_seconds": 0.0,
           "exit_code": 0,
-          "cast_events": 3,
+          "cast_events": 4,
           "cast_bytes": 1054,
-          "cast_duration_seconds": 0.1395230069756508
+          "cast_duration_seconds": 0.14015910401940346
         },
         {
           "testcase_id": "usage-gdal-ogrinfo-spatial-filter",
@@ -2459,7 +2772,7 @@
           "exit_code": 0,
           "cast_events": 3,
           "cast_bytes": 1112,
-          "cast_duration_seconds": 0.14076298696454614
+          "cast_duration_seconds": 0.1333469400415197
         },
         {
           "testcase_id": "usage-gdal-gdalinfo-json-raster",
@@ -2481,7 +2794,51 @@
           "exit_code": 0,
           "cast_events": 3,
           "cast_bytes": 194,
-          "cast_duration_seconds": 0.12138604000210762
+          "cast_duration_seconds": 0.14139864908065647
+        },
+        {
+          "testcase_id": "usage-gdal-ogr2ogr-where-geojson",
+          "title": "GDAL filters GeoJSON with ogr2ogr",
+          "description": "Runs ogr2ogr with an attribute where clause and verifies only the matching GeoJSON feature is written.",
+          "kind": "usage",
+          "mode": "original",
+          "client_application": "gdal",
+          "tags": [
+            "usage",
+            "json"
+          ],
+          "requires": [],
+          "status": "passed",
+          "result_path": "results/libjson/usage-gdal-ogr2ogr-where-geojson.json",
+          "log_path": "logs/libjson/usage-gdal-ogr2ogr-where-geojson.log",
+          "cast_path": "casts/libjson/usage-gdal-ogr2ogr-where-geojson.cast",
+          "duration_seconds": 0.0,
+          "exit_code": 0,
+          "cast_events": 2,
+          "cast_bytes": 169,
+          "cast_duration_seconds": 0.11377476598136127
+        },
+        {
+          "testcase_id": "usage-gdal-ogr2ogr-reproject-geojson",
+          "title": "GDAL reprojects GeoJSON",
+          "description": "Runs ogr2ogr to reproject GeoJSON coordinates and verifies the resulting FeatureCollection.",
+          "kind": "usage",
+          "mode": "original",
+          "client_application": "gdal",
+          "tags": [
+            "usage",
+            "json"
+          ],
+          "requires": [],
+          "status": "passed",
+          "result_path": "results/libjson/usage-gdal-ogr2ogr-reproject-geojson.json",
+          "log_path": "logs/libjson/usage-gdal-ogr2ogr-reproject-geojson.log",
+          "cast_path": "casts/libjson/usage-gdal-ogr2ogr-reproject-geojson.cast",
+          "duration_seconds": 0.0,
+          "exit_code": 0,
+          "cast_events": 3,
+          "cast_bytes": 191,
+          "cast_duration_seconds": 0.14503035601228476
         }
       ]
     },
@@ -2493,12 +2850,12 @@
         "xz-utils"
       ],
       "totals": {
-        "cases": 13,
+        "cases": 15,
         "source_cases": 5,
-        "usage_cases": 8,
-        "passed": 13,
+        "usage_cases": 10,
+        "passed": 15,
         "failed": 0,
-        "casts": 13
+        "casts": 15
       },
       "testcases": [
         {
@@ -2519,9 +2876,9 @@
           "cast_path": "casts/liblzma/xz-compress-decompress.cast",
           "duration_seconds": 0.0,
           "exit_code": 0,
-          "cast_events": 11,
+          "cast_events": 9,
           "cast_bytes": 619,
-          "cast_duration_seconds": 0.10898845398332924
+          "cast_duration_seconds": 0.12576693703886122
         },
         {
           "testcase_id": "integrity-check",
@@ -2541,9 +2898,9 @@
           "cast_path": "casts/liblzma/integrity-check.cast",
           "duration_seconds": 0.0,
           "exit_code": 0,
-          "cast_events": 9,
+          "cast_events": 6,
           "cast_bytes": 1424,
-          "cast_duration_seconds": 0.11863201297819614
+          "cast_duration_seconds": 0.11308164999354631
         },
         {
           "testcase_id": "streaming-c-api-smoke",
@@ -2565,7 +2922,7 @@
           "exit_code": 0,
           "cast_events": 7,
           "cast_bytes": 379,
-          "cast_duration_seconds": 0.14077453000936657
+          "cast_duration_seconds": 0.13102284295018762
         },
         {
           "testcase_id": "multi-stream-behavior",
@@ -2585,9 +2942,9 @@
           "cast_path": "casts/liblzma/multi-stream-behavior.cast",
           "duration_seconds": 0.0,
           "exit_code": 0,
-          "cast_events": 11,
+          "cast_events": 10,
           "cast_bytes": 580,
-          "cast_duration_seconds": 0.13858200702816248
+          "cast_duration_seconds": 0.12836329999845475
         },
         {
           "testcase_id": "corrupted-stream-rejection",
@@ -2607,9 +2964,9 @@
           "cast_path": "casts/liblzma/corrupted-stream-rejection.cast",
           "duration_seconds": 0.0,
           "exit_code": 0,
-          "cast_events": 11,
+          "cast_events": 10,
           "cast_bytes": 603,
-          "cast_duration_seconds": 0.13108874508179724
+          "cast_duration_seconds": 0.12147507804911584
         },
         {
           "testcase_id": "usage-libarchive-tools-xz-tar-list",
@@ -2632,7 +2989,7 @@
           "exit_code": 0,
           "cast_events": 12,
           "cast_bytes": 796,
-          "cast_duration_seconds": 0.1237127430504188
+          "cast_duration_seconds": 0.12122166994959116
         },
         {
           "testcase_id": "usage-libarchive-tools-xz-tar-extract",
@@ -2653,9 +3010,9 @@
           "cast_path": "casts/liblzma/usage-libarchive-tools-xz-tar-extract.cast",
           "duration_seconds": 0.0,
           "exit_code": 0,
-          "cast_events": 10,
+          "cast_events": 9,
           "cast_bytes": 808,
-          "cast_duration_seconds": 0.13816537999082357
+          "cast_duration_seconds": 0.12872278597205877
         },
         {
           "testcase_id": "usage-libarchive-tools-xz-stdout-stream",
@@ -2678,7 +3035,7 @@
           "exit_code": 0,
           "cast_events": 11,
           "cast_bytes": 816,
-          "cast_duration_seconds": 0.11660639196634293
+          "cast_duration_seconds": 0.12013369996566325
         },
         {
           "testcase_id": "usage-libarchive-tools-xz-large-file",
@@ -2699,9 +3056,9 @@
           "cast_path": "casts/liblzma/usage-libarchive-tools-xz-large-file.cast",
           "duration_seconds": 0.0,
           "exit_code": 0,
-          "cast_events": 12,
+          "cast_events": 11,
           "cast_bytes": 804,
-          "cast_duration_seconds": 0.12147487001493573
+          "cast_duration_seconds": 0.1210710610030219
         },
         {
           "testcase_id": "usage-libarchive-tools-xz-symlink",
@@ -2722,9 +3079,9 @@
           "cast_path": "casts/liblzma/usage-libarchive-tools-xz-symlink.cast",
           "duration_seconds": 0.0,
           "exit_code": 0,
-          "cast_events": 11,
+          "cast_events": 10,
           "cast_bytes": 792,
-          "cast_duration_seconds": 0.11732890107668936
+          "cast_duration_seconds": 0.13246373110450804
         },
         {
           "testcase_id": "usage-libarchive-tools-xz-empty-dir",
@@ -2745,9 +3102,9 @@
           "cast_path": "casts/liblzma/usage-libarchive-tools-xz-empty-dir.cast",
           "duration_seconds": 0.0,
           "exit_code": 0,
-          "cast_events": 10,
+          "cast_events": 11,
           "cast_bytes": 800,
-          "cast_duration_seconds": 0.12489776290021837
+          "cast_duration_seconds": 0.12905693298671395
         },
         {
           "testcase_id": "usage-libarchive-tools-xz-filter-auto",
@@ -2770,7 +3127,7 @@
           "exit_code": 0,
           "cast_events": 11,
           "cast_bytes": 808,
-          "cast_duration_seconds": 0.13872252800501883
+          "cast_duration_seconds": 0.14271530997939408
         },
         {
           "testcase_id": "usage-libarchive-tools-xz-copy-mode",
@@ -2793,7 +3150,55 @@
           "exit_code": 0,
           "cast_events": 10,
           "cast_bytes": 800,
-          "cast_duration_seconds": 0.1302448760252446
+          "cast_duration_seconds": 0.13138534396421164
+        },
+        {
+          "testcase_id": "usage-libarchive-tools-xz-metadata-list",
+          "title": "libarchive-tools xz metadata list",
+          "description": "Runs bsdtar verbose listing on an xz archive and verifies executable metadata.",
+          "kind": "usage",
+          "mode": "original",
+          "client_application": "libarchive-tools",
+          "tags": [
+            "usage",
+            "archive",
+            "compression",
+            "metadata"
+          ],
+          "requires": [],
+          "status": "passed",
+          "result_path": "results/liblzma/usage-libarchive-tools-xz-metadata-list.json",
+          "log_path": "logs/liblzma/usage-libarchive-tools-xz-metadata-list.log",
+          "cast_path": "casts/liblzma/usage-libarchive-tools-xz-metadata-list.cast",
+          "duration_seconds": 0.0,
+          "exit_code": 0,
+          "cast_events": 11,
+          "cast_bytes": 665,
+          "cast_duration_seconds": 0.12036511593032628
+        },
+        {
+          "testcase_id": "usage-libarchive-tools-xz-preserve-permissions",
+          "title": "libarchive-tools xz preserve permissions",
+          "description": "Runs bsdtar xz archive extraction and verifies executable permissions survive.",
+          "kind": "usage",
+          "mode": "original",
+          "client_application": "libarchive-tools",
+          "tags": [
+            "usage",
+            "archive",
+            "compression",
+            "metadata"
+          ],
+          "requires": [],
+          "status": "passed",
+          "result_path": "results/liblzma/usage-libarchive-tools-xz-preserve-permissions.json",
+          "log_path": "logs/liblzma/usage-libarchive-tools-xz-preserve-permissions.log",
+          "cast_path": "casts/liblzma/usage-libarchive-tools-xz-preserve-permissions.cast",
+          "duration_seconds": 0.0,
+          "exit_code": 0,
+          "cast_events": 9,
+          "cast_bytes": 683,
+          "cast_duration_seconds": 0.12842956802342087
         }
       ]
     },
@@ -2805,12 +3210,12 @@
         "libpng-tools"
       ],
       "totals": {
-        "cases": 13,
+        "cases": 15,
         "source_cases": 5,
-        "usage_cases": 8,
-        "passed": 13,
+        "usage_cases": 10,
+        "passed": 15,
         "failed": 0,
-        "casts": 13
+        "casts": 15
       },
       "testcases": [
         {
@@ -2831,9 +3236,9 @@
           "cast_path": "casts/libpng/pngfix-fixture-handling.cast",
           "duration_seconds": 0.0,
           "exit_code": 0,
-          "cast_events": 9,
+          "cast_events": 11,
           "cast_bytes": 1172,
-          "cast_duration_seconds": 0.10917325492482632
+          "cast_duration_seconds": 0.11955943005159497
         },
         {
           "testcase_id": "read-write-c-api-smoke",
@@ -2855,7 +3260,7 @@
           "exit_code": 0,
           "cast_events": 8,
           "cast_bytes": 473,
-          "cast_duration_seconds": 0.1392612309427932
+          "cast_duration_seconds": 0.14474371005780995
         },
         {
           "testcase_id": "chunk-metadata-inspection",
@@ -2877,7 +3282,7 @@
           "exit_code": 0,
           "cast_events": 8,
           "cast_bytes": 903,
-          "cast_duration_seconds": 0.14260984596330673
+          "cast_duration_seconds": 0.14608444110490382
         },
         {
           "testcase_id": "palette-fixture-handling",
@@ -2899,7 +3304,7 @@
           "exit_code": 0,
           "cast_events": 6,
           "cast_bytes": 1118,
-          "cast_duration_seconds": 0.11400544398929924
+          "cast_duration_seconds": 0.11575933801941574
         },
         {
           "testcase_id": "malformed-png-rejection",
@@ -2921,7 +3326,7 @@
           "exit_code": 0,
           "cast_events": 6,
           "cast_bytes": 479,
-          "cast_duration_seconds": 0.11232181102968752
+          "cast_duration_seconds": 0.12025479099247605
         },
         {
           "testcase_id": "usage-pngquant-compress-png",
@@ -2943,7 +3348,7 @@
           "exit_code": 0,
           "cast_events": 7,
           "cast_bytes": 898,
-          "cast_duration_seconds": 0.11514786595944315
+          "cast_duration_seconds": 0.10814804898109287
         },
         {
           "testcase_id": "usage-pngquant-quality-png",
@@ -2963,9 +3368,9 @@
           "cast_path": "casts/libpng/usage-pngquant-quality-png.cast",
           "duration_seconds": 0.0,
           "exit_code": 0,
-          "cast_events": 5,
+          "cast_events": 4,
           "cast_bytes": 925,
-          "cast_duration_seconds": 0.1181838089833036
+          "cast_duration_seconds": 0.11870214797090739
         },
         {
           "testcase_id": "usage-pngquant-strip-png",
@@ -2985,9 +3390,9 @@
           "cast_path": "casts/libpng/usage-pngquant-strip-png.cast",
           "duration_seconds": 0.0,
           "exit_code": 0,
-          "cast_events": 9,
+          "cast_events": 7,
           "cast_bytes": 903,
-          "cast_duration_seconds": 0.09946362697519362
+          "cast_duration_seconds": 0.12281113199423999
         },
         {
           "testcase_id": "usage-pngquant-speed-png",
@@ -3007,9 +3412,9 @@
           "cast_path": "casts/libpng/usage-pngquant-speed-png.cast",
           "duration_seconds": 0.0,
           "exit_code": 0,
-          "cast_events": 9,
+          "cast_events": 5,
           "cast_bytes": 919,
-          "cast_duration_seconds": 0.10968103702180088
+          "cast_duration_seconds": 0.1304294839501381
         },
         {
           "testcase_id": "usage-netpbm-pngtopnm",
@@ -3029,9 +3434,9 @@
           "cast_path": "casts/libpng/usage-netpbm-pngtopnm.cast",
           "duration_seconds": 0.0,
           "exit_code": 0,
-          "cast_events": 5,
+          "cast_events": 8,
           "cast_bytes": 783,
-          "cast_duration_seconds": 0.09931663400493562
+          "cast_duration_seconds": 0.11396998597774655
         },
         {
           "testcase_id": "usage-netpbm-pnmtopng",
@@ -3053,7 +3458,7 @@
           "exit_code": 0,
           "cast_events": 8,
           "cast_bytes": 835,
-          "cast_duration_seconds": 0.11262896901462227
+          "cast_duration_seconds": 0.10752341407351196
         },
         {
           "testcase_id": "usage-netpbm-pngtopam",
@@ -3075,7 +3480,7 @@
           "exit_code": 0,
           "cast_events": 7,
           "cast_bytes": 2769,
-          "cast_duration_seconds": 0.11043369199614972
+          "cast_duration_seconds": 0.11408099299296737
         },
         {
           "testcase_id": "usage-netpbm-roundtrip-png",
@@ -3097,7 +3502,52 @@
           "exit_code": 0,
           "cast_events": 7,
           "cast_bytes": 896,
-          "cast_duration_seconds": 0.11774647806305438
+          "cast_duration_seconds": 0.11444755306001753
+        },
+        {
+          "testcase_id": "usage-pngquant-posterize-png",
+          "title": "pngquant posterize PNG",
+          "description": "Posterizes a PNG fixture with pngquant and verifies PNG output is produced.",
+          "kind": "usage",
+          "mode": "original",
+          "client_application": "pngquant",
+          "tags": [
+            "usage",
+            "image",
+            "compression"
+          ],
+          "requires": [],
+          "status": "passed",
+          "result_path": "results/libpng/usage-pngquant-posterize-png.json",
+          "log_path": "logs/libpng/usage-pngquant-posterize-png.log",
+          "cast_path": "casts/libpng/usage-pngquant-posterize-png.cast",
+          "duration_seconds": 0.0,
+          "exit_code": 0,
+          "cast_events": 8,
+          "cast_bytes": 1142,
+          "cast_duration_seconds": 0.11757973907515407
+        },
+        {
+          "testcase_id": "usage-netpbm-pamflip-png",
+          "title": "netpbm rotate PNG",
+          "description": "Rotates a PNG fixture through netpbm PAM tools and verifies the resulting PNG dimensions.",
+          "kind": "usage",
+          "mode": "original",
+          "client_application": "netpbm",
+          "tags": [
+            "usage",
+            "image"
+          ],
+          "requires": [],
+          "status": "passed",
+          "result_path": "results/libpng/usage-netpbm-pamflip-png.json",
+          "log_path": "logs/libpng/usage-netpbm-pamflip-png.log",
+          "cast_path": "casts/libpng/usage-netpbm-pamflip-png.cast",
+          "duration_seconds": 0.0,
+          "exit_code": 0,
+          "cast_events": 16,
+          "cast_bytes": 1488,
+          "cast_duration_seconds": 0.10837748204357922
         }
       ]
     },
@@ -3109,12 +3559,12 @@
         "libsdl2-tests"
       ],
       "totals": {
-        "cases": 13,
+        "cases": 15,
         "source_cases": 5,
-        "usage_cases": 8,
-        "passed": 13,
+        "usage_cases": 10,
+        "passed": 15,
         "failed": 0,
-        "casts": 13
+        "casts": 15
       },
       "testcases": [
         {
@@ -3137,7 +3587,7 @@
           "exit_code": 0,
           "cast_events": 9,
           "cast_bytes": 457,
-          "cast_duration_seconds": 0.3904173159971833
+          "cast_duration_seconds": 0.2990809800103307
         },
         {
           "testcase_id": "headless-event-timer",
@@ -3159,7 +3609,7 @@
           "exit_code": 0,
           "cast_events": 9,
           "cast_bytes": 503,
-          "cast_duration_seconds": 0.35514559503644705
+          "cast_duration_seconds": 0.3230719219427556
         },
         {
           "testcase_id": "surface-blit-pixel-format",
@@ -3179,9 +3629,9 @@
           "cast_path": "casts/libsdl/surface-blit-pixel-format.cast",
           "duration_seconds": 0.0,
           "exit_code": 0,
-          "cast_events": 9,
+          "cast_events": 10,
           "cast_bytes": 472,
-          "cast_duration_seconds": 0.32236759702209383
+          "cast_duration_seconds": 0.2971520549617708
         },
         {
           "testcase_id": "dummy-audio-queue",
@@ -3201,9 +3651,9 @@
           "cast_path": "casts/libsdl/dummy-audio-queue.cast",
           "duration_seconds": 0.0,
           "exit_code": 0,
-          "cast_events": 9,
+          "cast_events": 8,
           "cast_bytes": 501,
-          "cast_duration_seconds": 0.32408879802096635
+          "cast_duration_seconds": 0.30932952207513154
         },
         {
           "testcase_id": "installed-test-binary",
@@ -3223,9 +3673,9 @@
           "cast_path": "casts/libsdl/installed-test-binary.cast",
           "duration_seconds": 0.0,
           "exit_code": 0,
-          "cast_events": 6,
+          "cast_events": 7,
           "cast_bytes": 1550,
-          "cast_duration_seconds": 0.1482145079644397
+          "cast_duration_seconds": 0.11070572608150542
         },
         {
           "testcase_id": "usage-python3-pygame-surface-fill",
@@ -3246,9 +3696,9 @@
           "cast_path": "casts/libsdl/usage-python3-pygame-surface-fill.cast",
           "duration_seconds": 0.0,
           "exit_code": 0,
-          "cast_events": 9,
+          "cast_events": 8,
           "cast_bytes": 1439,
-          "cast_duration_seconds": 0.3522015439812094
+          "cast_duration_seconds": 0.33789473806973547
         },
         {
           "testcase_id": "usage-python3-pygame-image-save",
@@ -3269,9 +3719,9 @@
           "cast_path": "casts/libsdl/usage-python3-pygame-image-save.cast",
           "duration_seconds": 0.0,
           "exit_code": 0,
-          "cast_events": 9,
+          "cast_events": 8,
           "cast_bytes": 1440,
-          "cast_duration_seconds": 0.3453763209981844
+          "cast_duration_seconds": 0.33934572502039373
         },
         {
           "testcase_id": "usage-python3-pygame-event-queue",
@@ -3292,9 +3742,9 @@
           "cast_path": "casts/libsdl/usage-python3-pygame-event-queue.cast",
           "duration_seconds": 0.0,
           "exit_code": 0,
-          "cast_events": 8,
+          "cast_events": 9,
           "cast_bytes": 1421,
-          "cast_duration_seconds": 0.3928071509581059
+          "cast_duration_seconds": 0.3399746420327574
         },
         {
           "testcase_id": "usage-python3-pygame-audio-dummy",
@@ -3315,9 +3765,9 @@
           "cast_path": "casts/libsdl/usage-python3-pygame-audio-dummy.cast",
           "duration_seconds": 0.0,
           "exit_code": 0,
-          "cast_events": 7,
+          "cast_events": 9,
           "cast_bytes": 742,
-          "cast_duration_seconds": 0.5045125300530344
+          "cast_duration_seconds": 0.28677348198834807
         },
         {
           "testcase_id": "usage-python3-pygame-xvfb-display",
@@ -3340,7 +3790,7 @@
           "exit_code": 0,
           "cast_events": 7,
           "cast_bytes": 833,
-          "cast_duration_seconds": 0.5788577999919653
+          "cast_duration_seconds": 0.33161665801890194
         },
         {
           "testcase_id": "usage-python3-pygame-draw-rect",
@@ -3361,9 +3811,9 @@
           "cast_path": "casts/libsdl/usage-python3-pygame-draw-rect.cast",
           "duration_seconds": 0.0,
           "exit_code": 0,
-          "cast_events": 8,
+          "cast_events": 9,
           "cast_bytes": 1430,
-          "cast_duration_seconds": 0.4942958849715069
+          "cast_duration_seconds": 0.3294475299771875
         },
         {
           "testcase_id": "usage-python3-pygame-font-module",
@@ -3384,9 +3834,9 @@
           "cast_path": "casts/libsdl/usage-python3-pygame-font-module.cast",
           "duration_seconds": 0.0,
           "exit_code": 0,
-          "cast_events": 7,
+          "cast_events": 8,
           "cast_bytes": 1421,
-          "cast_duration_seconds": 0.45220607705414295
+          "cast_duration_seconds": 0.33438421494793147
         },
         {
           "testcase_id": "usage-python3-pygame-transform-scale",
@@ -3409,7 +3859,53 @@
           "exit_code": 0,
           "cast_events": 8,
           "cast_bytes": 1421,
-          "cast_duration_seconds": 0.3432605480775237
+          "cast_duration_seconds": 0.33730515697970986
+        },
+        {
+          "testcase_id": "usage-python3-pygame-key-event",
+          "title": "Pygame key event dispatch",
+          "description": "Posts a Pygame keydown event and verifies the SDL-backed queue returns the same key.",
+          "kind": "usage",
+          "mode": "original",
+          "client_application": "python3-pygame",
+          "tags": [
+            "usage",
+            "headless",
+            "python"
+          ],
+          "requires": [],
+          "status": "passed",
+          "result_path": "results/libsdl/usage-python3-pygame-key-event.json",
+          "log_path": "logs/libsdl/usage-python3-pygame-key-event.log",
+          "cast_path": "casts/libsdl/usage-python3-pygame-key-event.cast",
+          "duration_seconds": 0.0,
+          "exit_code": 0,
+          "cast_events": 8,
+          "cast_bytes": 1450,
+          "cast_duration_seconds": 0.3366626650094986
+        },
+        {
+          "testcase_id": "usage-python3-pygame-mask-collision",
+          "title": "Pygame mask collision",
+          "description": "Builds Pygame surface masks and checks the SDL-backed overlap result for intersecting sprites.",
+          "kind": "usage",
+          "mode": "original",
+          "client_application": "python3-pygame",
+          "tags": [
+            "usage",
+            "headless",
+            "python"
+          ],
+          "requires": [],
+          "status": "passed",
+          "result_path": "results/libsdl/usage-python3-pygame-mask-collision.json",
+          "log_path": "logs/libsdl/usage-python3-pygame-mask-collision.log",
+          "cast_path": "casts/libsdl/usage-python3-pygame-mask-collision.cast",
+          "duration_seconds": 0.0,
+          "exit_code": 0,
+          "cast_events": 7,
+          "cast_bytes": 1454,
+          "cast_duration_seconds": 0.3389953379519284
         }
       ]
     },
@@ -3420,12 +3916,12 @@
         "libsodium-dev"
       ],
       "totals": {
-        "cases": 14,
+        "cases": 16,
         "source_cases": 5,
-        "usage_cases": 9,
-        "passed": 14,
+        "usage_cases": 11,
+        "passed": 16,
         "failed": 0,
-        "casts": 14
+        "casts": 16
       },
       "testcases": [
         {
@@ -3446,9 +3942,9 @@
           "cast_path": "casts/libsodium/generichash-smoke.cast",
           "duration_seconds": 0.0,
           "exit_code": 0,
-          "cast_events": 8,
+          "cast_events": 6,
           "cast_bytes": 381,
-          "cast_duration_seconds": 0.15428170503582805
+          "cast_duration_seconds": 0.14375480206217617
         },
         {
           "testcase_id": "secretbox-roundtrip",
@@ -3468,9 +3964,9 @@
           "cast_path": "casts/libsodium/secretbox-roundtrip.cast",
           "duration_seconds": 0.0,
           "exit_code": 0,
-          "cast_events": 7,
+          "cast_events": 6,
           "cast_bytes": 393,
-          "cast_duration_seconds": 0.14645272900816053
+          "cast_duration_seconds": 0.14005590905435383
         },
         {
           "testcase_id": "sign-verify",
@@ -3490,9 +3986,9 @@
           "cast_path": "casts/libsodium/sign-verify.cast",
           "duration_seconds": 0.0,
           "exit_code": 0,
-          "cast_events": 8,
+          "cast_events": 7,
           "cast_bytes": 380,
-          "cast_duration_seconds": 0.14266799797769636
+          "cast_duration_seconds": 0.13559422502294183
         },
         {
           "testcase_id": "key-exchange-randombytes",
@@ -3514,7 +4010,7 @@
           "exit_code": 0,
           "cast_events": 7,
           "cast_bytes": 380,
-          "cast_duration_seconds": 0.15102397999726236
+          "cast_duration_seconds": 0.13761100301053375
         },
         {
           "testcase_id": "compile-link-smoke",
@@ -3534,9 +4030,9 @@
           "cast_path": "casts/libsodium/compile-link-smoke.cast",
           "duration_seconds": 0.0,
           "exit_code": 0,
-          "cast_events": 7,
+          "cast_events": 9,
           "cast_bytes": 381,
-          "cast_duration_seconds": 0.15319748397450894
+          "cast_duration_seconds": 0.13147204008419067
         },
         {
           "testcase_id": "usage-minisign-sign-verify",
@@ -3556,9 +4052,9 @@
           "cast_path": "casts/libsodium/usage-minisign-sign-verify.cast",
           "duration_seconds": 0.0,
           "exit_code": 0,
-          "cast_events": 8,
+          "cast_events": 9,
           "cast_bytes": 1337,
-          "cast_duration_seconds": 0.11483406100887805
+          "cast_duration_seconds": 0.10832506499718875
         },
         {
           "testcase_id": "usage-minisign-trusted-comment",
@@ -3578,9 +4074,9 @@
           "cast_path": "casts/libsodium/usage-minisign-trusted-comment.cast",
           "duration_seconds": 0.0,
           "exit_code": 0,
-          "cast_events": 10,
+          "cast_events": 13,
           "cast_bytes": 1273,
-          "cast_duration_seconds": 0.11908073502127081
+          "cast_duration_seconds": 0.1095356720034033
         },
         {
           "testcase_id": "usage-python3-nacl-secretbox",
@@ -3600,9 +4096,9 @@
           "cast_path": "casts/libsodium/usage-python3-nacl-secretbox.cast",
           "duration_seconds": 0.0,
           "exit_code": 0,
-          "cast_events": 6,
+          "cast_events": 7,
           "cast_bytes": 292,
-          "cast_duration_seconds": 0.12306479690596461
+          "cast_duration_seconds": 0.13054071995429695
         },
         {
           "testcase_id": "usage-python3-nacl-signing",
@@ -3624,7 +4120,7 @@
           "exit_code": 0,
           "cast_events": 6,
           "cast_bytes": 292,
-          "cast_duration_seconds": 0.13407562300562859
+          "cast_duration_seconds": 0.12928595300763845
         },
         {
           "testcase_id": "usage-ruby-rbnacl-secretbox",
@@ -3646,7 +4142,7 @@
           "exit_code": 0,
           "cast_events": 6,
           "cast_bytes": 517,
-          "cast_duration_seconds": 0.1633025510236621
+          "cast_duration_seconds": 0.16099004202988
         },
         {
           "testcase_id": "usage-php83-sodium-generichash",
@@ -3668,7 +4164,7 @@
           "exit_code": 0,
           "cast_events": 6,
           "cast_bytes": 422,
-          "cast_duration_seconds": 0.1281015300191939
+          "cast_duration_seconds": 0.12589464895427227
         },
         {
           "testcase_id": "usage-php83-sodium-secretbox",
@@ -3690,7 +4186,7 @@
           "exit_code": 0,
           "cast_events": 6,
           "cast_bytes": 511,
-          "cast_duration_seconds": 0.1227347010280937
+          "cast_duration_seconds": 0.12701133906375617
         },
         {
           "testcase_id": "usage-r-cran-sodium-hash",
@@ -3712,7 +4208,7 @@
           "exit_code": 0,
           "cast_events": 6,
           "cast_bytes": 370,
-          "cast_duration_seconds": 0.1879958170466125
+          "cast_duration_seconds": 0.1761062789009884
         },
         {
           "testcase_id": "usage-libzmq5-curve-capability",
@@ -3732,9 +4228,53 @@
           "cast_path": "casts/libsodium/usage-libzmq5-curve-capability.cast",
           "duration_seconds": 0.0,
           "exit_code": 0,
-          "cast_events": 10,
+          "cast_events": 9,
           "cast_bytes": 520,
-          "cast_duration_seconds": 0.15971966204233468
+          "cast_duration_seconds": 0.15598877402953804
+        },
+        {
+          "testcase_id": "usage-python3-nacl-public-box",
+          "title": "python3-nacl public box round trip",
+          "description": "Encrypts and decrypts a message with PyNaCl public-key boxes through libsodium.",
+          "kind": "usage",
+          "mode": "original",
+          "client_application": "python3-nacl",
+          "tags": [
+            "usage",
+            "crypto"
+          ],
+          "requires": [],
+          "status": "passed",
+          "result_path": "results/libsodium/usage-python3-nacl-public-box.json",
+          "log_path": "logs/libsodium/usage-python3-nacl-public-box.log",
+          "cast_path": "casts/libsodium/usage-python3-nacl-public-box.cast",
+          "duration_seconds": 0.0,
+          "exit_code": 0,
+          "cast_events": 7,
+          "cast_bytes": 303,
+          "cast_duration_seconds": 0.1415646990062669
+        },
+        {
+          "testcase_id": "usage-php83-sodium-sign-detached",
+          "title": "PHP sodium detached signatures",
+          "description": "Signs a message with PHP sodium and verifies the detached signature through libsodium.",
+          "kind": "usage",
+          "mode": "original",
+          "client_application": "php8.3-cli",
+          "tags": [
+            "usage",
+            "crypto"
+          ],
+          "requires": [],
+          "status": "passed",
+          "result_path": "results/libsodium/usage-php83-sodium-sign-detached.json",
+          "log_path": "logs/libsodium/usage-php83-sodium-sign-detached.log",
+          "cast_path": "casts/libsodium/usage-php83-sodium-sign-detached.cast",
+          "duration_seconds": 0.0,
+          "exit_code": 0,
+          "cast_events": 6,
+          "cast_bytes": 287,
+          "cast_duration_seconds": 0.12571425002533942
         }
       ]
     },
@@ -3747,12 +4287,12 @@
         "libtiff-tools"
       ],
       "totals": {
-        "cases": 13,
+        "cases": 15,
         "source_cases": 5,
-        "usage_cases": 8,
-        "passed": 13,
+        "usage_cases": 10,
+        "passed": 15,
         "failed": 0,
-        "casts": 13
+        "casts": 15
       },
       "testcases": [
         {
@@ -3773,9 +4313,9 @@
           "cast_path": "casts/libtiff/tiffinfo-metadata.cast",
           "duration_seconds": 0.0,
           "exit_code": 0,
-          "cast_events": 9,
+          "cast_events": 6,
           "cast_bytes": 1326,
-          "cast_duration_seconds": 0.10893228906206787
+          "cast_duration_seconds": 0.11346633499488235
         },
         {
           "testcase_id": "tiffcp-copy",
@@ -3797,7 +4337,7 @@
           "exit_code": 0,
           "cast_events": 7,
           "cast_bytes": 1410,
-          "cast_duration_seconds": 0.11735529010184109
+          "cast_duration_seconds": 0.1156551509629935
         },
         {
           "testcase_id": "tiffdump-structure",
@@ -3817,9 +4357,9 @@
           "cast_path": "casts/libtiff/tiffdump-structure.cast",
           "duration_seconds": 0.0,
           "exit_code": 0,
-          "cast_events": 7,
+          "cast_events": 9,
           "cast_bytes": 1689,
-          "cast_duration_seconds": 0.11583554500248283
+          "cast_duration_seconds": 0.12248695699963719
         },
         {
           "testcase_id": "c-api-read-write",
@@ -3839,9 +4379,9 @@
           "cast_path": "casts/libtiff/c-api-read-write.cast",
           "duration_seconds": 0.0,
           "exit_code": 0,
-          "cast_events": 8,
+          "cast_events": 7,
           "cast_bytes": 410,
-          "cast_duration_seconds": 0.1523619139334187
+          "cast_duration_seconds": 0.1554272830253467
         },
         {
           "testcase_id": "malformed-tiff-rejection",
@@ -3863,7 +4403,7 @@
           "exit_code": 0,
           "cast_events": 6,
           "cast_bytes": 452,
-          "cast_duration_seconds": 0.11844938795547932
+          "cast_duration_seconds": 0.11297521402593702
         },
         {
           "testcase_id": "usage-python3-pil-open-tiff",
@@ -3886,7 +4426,7 @@
           "exit_code": 0,
           "cast_events": 6,
           "cast_bytes": 771,
-          "cast_duration_seconds": 0.16100325610022992
+          "cast_duration_seconds": 0.16529319598339498
         },
         {
           "testcase_id": "usage-python3-pil-convert-tiff",
@@ -3907,9 +4447,9 @@
           "cast_path": "casts/libtiff/usage-python3-pil-convert-tiff.cast",
           "duration_seconds": 0.0,
           "exit_code": 0,
-          "cast_events": 5,
+          "cast_events": 6,
           "cast_bytes": 785,
-          "cast_duration_seconds": 0.16088827000930905
+          "cast_duration_seconds": 0.16284018801525235
         },
         {
           "testcase_id": "usage-python3-pil-thumbnail-tiff",
@@ -3932,7 +4472,7 @@
           "exit_code": 0,
           "cast_events": 6,
           "cast_bytes": 764,
-          "cast_duration_seconds": 0.16101903992239386
+          "cast_duration_seconds": 0.15962183196097612
         },
         {
           "testcase_id": "usage-python3-pil-tags-tiff",
@@ -3955,7 +4495,7 @@
           "exit_code": 0,
           "cast_events": 6,
           "cast_bytes": 759,
-          "cast_duration_seconds": 0.15928010398056358
+          "cast_duration_seconds": 0.1557074929587543
         },
         {
           "testcase_id": "usage-python3-pil-multipage-tiff",
@@ -3976,9 +4516,9 @@
           "cast_path": "casts/libtiff/usage-python3-pil-multipage-tiff.cast",
           "duration_seconds": 0.0,
           "exit_code": 0,
-          "cast_events": 6,
+          "cast_events": 5,
           "cast_bytes": 760,
-          "cast_duration_seconds": 0.16256289999000728
+          "cast_duration_seconds": 0.1458474809769541
         },
         {
           "testcase_id": "usage-python3-pil-lzw-tiff",
@@ -4001,7 +4541,7 @@
           "exit_code": 0,
           "cast_events": 8,
           "cast_bytes": 758,
-          "cast_duration_seconds": 0.1519701590295881
+          "cast_duration_seconds": 0.16099944710731506
         },
         {
           "testcase_id": "usage-python3-pil-rgb-tiff-load",
@@ -4024,7 +4564,7 @@
           "exit_code": 0,
           "cast_events": 6,
           "cast_bytes": 766,
-          "cast_duration_seconds": 0.16368585196323693
+          "cast_duration_seconds": 0.16624431509990245
         },
         {
           "testcase_id": "usage-python3-pil-crop-tiff",
@@ -4045,9 +4585,57 @@
           "cast_path": "casts/libtiff/usage-python3-pil-crop-tiff.cast",
           "duration_seconds": 0.0,
           "exit_code": 0,
-          "cast_events": 9,
+          "cast_events": 6,
           "cast_bytes": 763,
-          "cast_duration_seconds": 0.1543995450483635
+          "cast_duration_seconds": 0.17535293905530125
+        },
+        {
+          "testcase_id": "usage-python3-pil-deflate-tiff",
+          "title": "Pillow Deflate TIFF save",
+          "description": "Saves a Deflate-compressed TIFF with Pillow and verifies libtiff-backed reload behavior.",
+          "kind": "usage",
+          "mode": "original",
+          "client_application": "python3-pil",
+          "tags": [
+            "usage",
+            "image",
+            "python",
+            "compression"
+          ],
+          "requires": [],
+          "status": "passed",
+          "result_path": "results/libtiff/usage-python3-pil-deflate-tiff.json",
+          "log_path": "logs/libtiff/usage-python3-pil-deflate-tiff.log",
+          "cast_path": "casts/libtiff/usage-python3-pil-deflate-tiff.cast",
+          "duration_seconds": 0.0,
+          "exit_code": 0,
+          "cast_events": 5,
+          "cast_bytes": 332,
+          "cast_duration_seconds": 0.22990857996046543
+        },
+        {
+          "testcase_id": "usage-python3-pil-tiff-dpi-save",
+          "title": "Pillow TIFF DPI save",
+          "description": "Saves TIFF resolution metadata with Pillow and verifies the reloaded DPI tags.",
+          "kind": "usage",
+          "mode": "original",
+          "client_application": "python3-pil",
+          "tags": [
+            "usage",
+            "image",
+            "python",
+            "metadata"
+          ],
+          "requires": [],
+          "status": "passed",
+          "result_path": "results/libtiff/usage-python3-pil-tiff-dpi-save.json",
+          "log_path": "logs/libtiff/usage-python3-pil-tiff-dpi-save.log",
+          "cast_path": "casts/libtiff/usage-python3-pil-tiff-dpi-save.cast",
+          "duration_seconds": 0.0,
+          "exit_code": 0,
+          "cast_events": 7,
+          "cast_bytes": 328,
+          "cast_duration_seconds": 0.2388094199122861
         }
       ]
     },
@@ -4058,12 +4646,12 @@
         "libuv1-dev"
       ],
       "totals": {
-        "cases": 13,
+        "cases": 15,
         "source_cases": 5,
-        "usage_cases": 8,
-        "passed": 13,
+        "usage_cases": 10,
+        "passed": 15,
         "failed": 0,
-        "casts": 13
+        "casts": 15
       },
       "testcases": [
         {
@@ -4086,7 +4674,7 @@
           "exit_code": 0,
           "cast_events": 7,
           "cast_bytes": 375,
-          "cast_duration_seconds": 0.1570060069207102
+          "cast_duration_seconds": 0.22781878500245512
         },
         {
           "testcase_id": "fs-read-write",
@@ -4106,9 +4694,9 @@
           "cast_path": "casts/libuv/fs-read-write.cast",
           "duration_seconds": 0.0,
           "exit_code": 0,
-          "cast_events": 6,
+          "cast_events": 8,
           "cast_bytes": 406,
-          "cast_duration_seconds": 0.14605989400297403
+          "cast_duration_seconds": 0.24677444202825427
         },
         {
           "testcase_id": "tcp-loopback-smoke",
@@ -4128,9 +4716,9 @@
           "cast_path": "casts/libuv/tcp-loopback-smoke.cast",
           "duration_seconds": 0.0,
           "exit_code": 0,
-          "cast_events": 7,
+          "cast_events": 11,
           "cast_bytes": 380,
-          "cast_duration_seconds": 0.15601483697537333
+          "cast_duration_seconds": 0.2078355080448091
         },
         {
           "testcase_id": "dns-getaddrinfo",
@@ -4152,7 +4740,7 @@
           "exit_code": 0,
           "cast_events": 8,
           "cast_bytes": 372,
-          "cast_duration_seconds": 0.14958212396595627
+          "cast_duration_seconds": 0.2874490360263735
         },
         {
           "testcase_id": "process-pipe-smoke",
@@ -4172,9 +4760,9 @@
           "cast_path": "casts/libuv/process-pipe-smoke.cast",
           "duration_seconds": 0.0,
           "exit_code": 0,
-          "cast_events": 6,
+          "cast_events": 7,
           "cast_bytes": 380,
-          "cast_duration_seconds": 0.1349878739565611
+          "cast_duration_seconds": 0.4251827480038628
         },
         {
           "testcase_id": "usage-nodejs-event-loop-timer",
@@ -4196,7 +4784,7 @@
           "exit_code": 0,
           "cast_events": 6,
           "cast_bytes": 377,
-          "cast_duration_seconds": 0.1798712279414758
+          "cast_duration_seconds": 0.8352463180199265
         },
         {
           "testcase_id": "usage-nodejs-fs-read-write",
@@ -4218,7 +4806,7 @@
           "exit_code": 0,
           "cast_events": 6,
           "cast_bytes": 461,
-          "cast_duration_seconds": 0.17430732503999025
+          "cast_duration_seconds": 0.7095134150004014
         },
         {
           "testcase_id": "usage-nodejs-dns-lookup",
@@ -4240,7 +4828,7 @@
           "exit_code": 0,
           "cast_events": 6,
           "cast_bytes": 434,
-          "cast_duration_seconds": 0.16562071803491563
+          "cast_duration_seconds": 0.21526637603528798
         },
         {
           "testcase_id": "usage-nodejs-tcp-loopback",
@@ -4262,7 +4850,7 @@
           "exit_code": 0,
           "cast_events": 6,
           "cast_bytes": 574,
-          "cast_duration_seconds": 0.17896461498457938
+          "cast_duration_seconds": 0.17326908302493393
         },
         {
           "testcase_id": "usage-nodejs-udp-loopback",
@@ -4282,9 +4870,9 @@
           "cast_path": "casts/libuv/usage-nodejs-udp-loopback.cast",
           "duration_seconds": 0.0,
           "exit_code": 0,
-          "cast_events": 8,
+          "cast_events": 6,
           "cast_bytes": 567,
-          "cast_duration_seconds": 0.1771955150179565
+          "cast_duration_seconds": 0.18869820202235132
         },
         {
           "testcase_id": "usage-nodejs-child-process",
@@ -4304,9 +4892,9 @@
           "cast_path": "casts/libuv/usage-nodejs-child-process.cast",
           "duration_seconds": 0.0,
           "exit_code": 0,
-          "cast_events": 5,
+          "cast_events": 6,
           "cast_bytes": 450,
-          "cast_duration_seconds": 0.16120668593794107
+          "cast_duration_seconds": 0.31001643009949476
         },
         {
           "testcase_id": "usage-nodejs-stream-pipe",
@@ -4326,9 +4914,9 @@
           "cast_path": "casts/libuv/usage-nodejs-stream-pipe.cast",
           "duration_seconds": 0.0,
           "exit_code": 0,
-          "cast_events": 6,
+          "cast_events": 5,
           "cast_bytes": 446,
-          "cast_duration_seconds": 0.17221145203802735
+          "cast_duration_seconds": 0.884582154918462
         },
         {
           "testcase_id": "usage-nodejs-stat-call",
@@ -4348,9 +4936,55 @@
           "cast_path": "casts/libuv/usage-nodejs-stat-call.cast",
           "duration_seconds": 0.0,
           "exit_code": 0,
-          "cast_events": 6,
+          "cast_events": 5,
           "cast_bytes": 482,
-          "cast_duration_seconds": 0.15791212499607354
+          "cast_duration_seconds": 0.7435447030002251
+        },
+        {
+          "testcase_id": "usage-nodejs-fs-watch",
+          "title": "Node.js fs.watch change event",
+          "description": "Runs Node.js fs.watch on a temporary file and verifies a change event arrives through the event loop.",
+          "kind": "usage",
+          "mode": "original",
+          "client_application": "nodejs",
+          "tags": [
+            "usage",
+            "event-loop",
+            "fs"
+          ],
+          "requires": [],
+          "status": "passed",
+          "result_path": "results/libuv/usage-nodejs-fs-watch.json",
+          "log_path": "logs/libuv/usage-nodejs-fs-watch.log",
+          "cast_path": "casts/libuv/usage-nodejs-fs-watch.cast",
+          "duration_seconds": 0.0,
+          "exit_code": 0,
+          "cast_events": 8,
+          "cast_bytes": 518,
+          "cast_duration_seconds": 0.573486597975716
+        },
+        {
+          "testcase_id": "usage-nodejs-crypto-pbkdf2",
+          "title": "Node.js asynchronous PBKDF2",
+          "description": "Runs Node.js crypto.pbkdf2 through libuv threadpool work and verifies callback completion.",
+          "kind": "usage",
+          "mode": "original",
+          "client_application": "nodejs",
+          "tags": [
+            "usage",
+            "event-loop",
+            "crypto"
+          ],
+          "requires": [],
+          "status": "passed",
+          "result_path": "results/libuv/usage-nodejs-crypto-pbkdf2.json",
+          "log_path": "logs/libuv/usage-nodejs-crypto-pbkdf2.log",
+          "cast_path": "casts/libuv/usage-nodejs-crypto-pbkdf2.cast",
+          "duration_seconds": 0.0,
+          "exit_code": 0,
+          "cast_events": 7,
+          "cast_bytes": 497,
+          "cast_duration_seconds": 0.1935686389915645
         }
       ]
     },
@@ -4363,12 +4997,12 @@
         "gir1.2-vips-8.0"
       ],
       "totals": {
-        "cases": 13,
+        "cases": 15,
         "source_cases": 5,
-        "usage_cases": 8,
-        "passed": 13,
+        "usage_cases": 10,
+        "passed": 15,
         "failed": 0,
-        "casts": 13
+        "casts": 15
       },
       "testcases": [
         {
@@ -4389,9 +5023,9 @@
           "cast_path": "casts/libvips/vips-cli-load-save.cast",
           "duration_seconds": 0.0,
           "exit_code": 0,
-          "cast_events": 7,
+          "cast_events": 8,
           "cast_bytes": 1038,
-          "cast_duration_seconds": 0.17232815397437662
+          "cast_duration_seconds": 0.1735180839896202
         },
         {
           "testcase_id": "thumbnail-behavior",
@@ -4411,9 +5045,9 @@
           "cast_path": "casts/libvips/thumbnail-behavior.cast",
           "duration_seconds": 0.0,
           "exit_code": 0,
-          "cast_events": 7,
+          "cast_events": 9,
           "cast_bytes": 914,
-          "cast_duration_seconds": 0.1653552409261465
+          "cast_duration_seconds": 0.14969671401195228
         },
         {
           "testcase_id": "c-api-compile-smoke",
@@ -4435,7 +5069,7 @@
           "exit_code": 0,
           "cast_events": 11,
           "cast_bytes": 1102,
-          "cast_duration_seconds": 0.31112609698902816
+          "cast_duration_seconds": 0.3215307230129838
         },
         {
           "testcase_id": "gir-introspection-smoke",
@@ -4457,7 +5091,7 @@
           "exit_code": 0,
           "cast_events": 7,
           "cast_bytes": 422,
-          "cast_duration_seconds": 0.11104113608598709
+          "cast_duration_seconds": 0.11434594402089715
         },
         {
           "testcase_id": "metadata-header-checks",
@@ -4477,9 +5111,9 @@
           "cast_path": "casts/libvips/metadata-header-checks.cast",
           "duration_seconds": 0.0,
           "exit_code": 0,
-          "cast_events": 10,
+          "cast_events": 9,
           "cast_bytes": 1455,
-          "cast_duration_seconds": 0.12671264610253274
+          "cast_duration_seconds": 0.14735102804843336
         },
         {
           "testcase_id": "usage-ruby-vips-create-image",
@@ -4500,9 +5134,9 @@
           "cast_path": "casts/libvips/usage-ruby-vips-create-image.cast",
           "duration_seconds": 0.0,
           "exit_code": 0,
-          "cast_events": 6,
+          "cast_events": 5,
           "cast_bytes": 442,
-          "cast_duration_seconds": 0.17693507496733218
+          "cast_duration_seconds": 0.18280718300957233
         },
         {
           "testcase_id": "usage-ruby-vips-resize-image",
@@ -4523,9 +5157,9 @@
           "cast_path": "casts/libvips/usage-ruby-vips-resize-image.cast",
           "duration_seconds": 0.0,
           "exit_code": 0,
-          "cast_events": 7,
+          "cast_events": 6,
           "cast_bytes": 459,
-          "cast_duration_seconds": 0.1696967879543081
+          "cast_duration_seconds": 0.16822046297602355
         },
         {
           "testcase_id": "usage-ruby-vips-average-image",
@@ -4548,7 +5182,7 @@
           "exit_code": 0,
           "cast_events": 6,
           "cast_bytes": 390,
-          "cast_duration_seconds": 0.18335098191164434
+          "cast_duration_seconds": 0.16702703305054456
         },
         {
           "testcase_id": "usage-ruby-vips-bandjoin-image",
@@ -4571,7 +5205,7 @@
           "exit_code": 0,
           "cast_events": 5,
           "cast_bytes": 455,
-          "cast_duration_seconds": 0.18067284696735442
+          "cast_duration_seconds": 0.17320264701265842
         },
         {
           "testcase_id": "usage-ruby-vips-crop-image",
@@ -4592,9 +5226,9 @@
           "cast_path": "casts/libvips/usage-ruby-vips-crop-image.cast",
           "duration_seconds": 0.0,
           "exit_code": 0,
-          "cast_events": 5,
+          "cast_events": 6,
           "cast_bytes": 431,
-          "cast_duration_seconds": 0.1837086509913206
+          "cast_duration_seconds": 0.18128296290524304
         },
         {
           "testcase_id": "usage-ruby-vips-rotate-image",
@@ -4617,7 +5251,7 @@
           "exit_code": 0,
           "cast_events": 6,
           "cast_bytes": 419,
-          "cast_duration_seconds": 0.16991656797472388
+          "cast_duration_seconds": 0.18529954901896417
         },
         {
           "testcase_id": "usage-ruby-vips-linear-image",
@@ -4638,9 +5272,9 @@
           "cast_path": "casts/libvips/usage-ruby-vips-linear-image.cast",
           "duration_seconds": 0.0,
           "exit_code": 0,
-          "cast_events": 6,
+          "cast_events": 7,
           "cast_bytes": 405,
-          "cast_duration_seconds": 0.1758525719633326
+          "cast_duration_seconds": 0.18103808292653412
         },
         {
           "testcase_id": "usage-ruby-vips-save-png",
@@ -4661,9 +5295,55 @@
           "cast_path": "casts/libvips/usage-ruby-vips-save-png.cast",
           "duration_seconds": 0.0,
           "exit_code": 0,
-          "cast_events": 5,
+          "cast_events": 6,
           "cast_bytes": 418,
-          "cast_duration_seconds": 0.17990140500478446
+          "cast_duration_seconds": 0.17369893903378397
+        },
+        {
+          "testcase_id": "usage-ruby-vips-gaussblur-image",
+          "title": "ruby-vips Gaussian blur image",
+          "description": "Applies a Gaussian blur with ruby-vips and verifies image dimensions and pixel average.",
+          "kind": "usage",
+          "mode": "original",
+          "client_application": "ruby-vips",
+          "tags": [
+            "usage",
+            "ruby",
+            "image"
+          ],
+          "requires": [],
+          "status": "passed",
+          "result_path": "results/libvips/usage-ruby-vips-gaussblur-image.json",
+          "log_path": "logs/libvips/usage-ruby-vips-gaussblur-image.log",
+          "cast_path": "casts/libvips/usage-ruby-vips-gaussblur-image.cast",
+          "duration_seconds": 0.0,
+          "exit_code": 0,
+          "cast_events": 5,
+          "cast_bytes": 201,
+          "cast_duration_seconds": 0.17171972594223917
+        },
+        {
+          "testcase_id": "usage-ruby-vips-histogram-image",
+          "title": "ruby-vips histogram image",
+          "description": "Builds an image histogram with ruby-vips and verifies populated histogram bins.",
+          "kind": "usage",
+          "mode": "original",
+          "client_application": "ruby-vips",
+          "tags": [
+            "usage",
+            "ruby",
+            "image"
+          ],
+          "requires": [],
+          "status": "passed",
+          "result_path": "results/libvips/usage-ruby-vips-histogram-image.json",
+          "log_path": "logs/libvips/usage-ruby-vips-histogram-image.log",
+          "cast_path": "casts/libvips/usage-ruby-vips-histogram-image.cast",
+          "duration_seconds": 0.0,
+          "exit_code": 0,
+          "cast_events": 4,
+          "cast_bytes": 207,
+          "cast_duration_seconds": 0.17402507399674505
         }
       ]
     },
@@ -4680,12 +5360,12 @@
         "webp"
       ],
       "totals": {
-        "cases": 14,
+        "cases": 16,
         "source_cases": 5,
-        "usage_cases": 9,
-        "passed": 14,
+        "usage_cases": 11,
+        "passed": 16,
         "failed": 0,
-        "casts": 14
+        "casts": 16
       },
       "testcases": [
         {
@@ -4706,9 +5386,9 @@
           "cast_path": "casts/libwebp/cwebp-dwebp-roundtrip.cast",
           "duration_seconds": 0.0,
           "exit_code": 0,
-          "cast_events": 8,
+          "cast_events": 9,
           "cast_bytes": 635,
-          "cast_duration_seconds": 0.11445392505265772
+          "cast_duration_seconds": 0.12193434499204159
         },
         {
           "testcase_id": "webpinfo-inspection",
@@ -4730,7 +5410,7 @@
           "exit_code": 0,
           "cast_events": 10,
           "cast_bytes": 1079,
-          "cast_duration_seconds": 0.11290543095674366
+          "cast_duration_seconds": 0.10540610598400235
         },
         {
           "testcase_id": "webpmux-metadata",
@@ -4750,9 +5430,9 @@
           "cast_path": "casts/libwebp/webpmux-metadata.cast",
           "duration_seconds": 0.0,
           "exit_code": 0,
-          "cast_events": 10,
+          "cast_events": 9,
           "cast_bytes": 1105,
-          "cast_duration_seconds": 0.12536666705273092
+          "cast_duration_seconds": 0.11724745202809572
         },
         {
           "testcase_id": "decode-c-api-smoke",
@@ -4772,9 +5452,9 @@
           "cast_path": "casts/libwebp/decode-c-api-smoke.cast",
           "duration_seconds": 0.0,
           "exit_code": 0,
-          "cast_events": 7,
+          "cast_events": 6,
           "cast_bytes": 782,
-          "cast_duration_seconds": 0.14338257897179574
+          "cast_duration_seconds": 0.15258105495013297
         },
         {
           "testcase_id": "malformed-webp-rejection",
@@ -4796,7 +5476,7 @@
           "exit_code": 0,
           "cast_events": 6,
           "cast_bytes": 470,
-          "cast_duration_seconds": 0.12353628396522254
+          "cast_duration_seconds": 0.1172015470219776
         },
         {
           "testcase_id": "usage-python3-pil-open-webp",
@@ -4817,9 +5497,9 @@
           "cast_path": "casts/libwebp/usage-python3-pil-open-webp.cast",
           "duration_seconds": 0.0,
           "exit_code": 0,
-          "cast_events": 8,
+          "cast_events": 7,
           "cast_bytes": 468,
-          "cast_duration_seconds": 0.16475222795270383
+          "cast_duration_seconds": 0.17059626104310155
         },
         {
           "testcase_id": "usage-python3-pil-convert-webp",
@@ -4842,7 +5522,7 @@
           "exit_code": 0,
           "cast_events": 8,
           "cast_bytes": 486,
-          "cast_duration_seconds": 0.17055481404531747
+          "cast_duration_seconds": 0.1542379210004583
         },
         {
           "testcase_id": "usage-python3-pil-save-webp",
@@ -4865,7 +5545,7 @@
           "exit_code": 0,
           "cast_events": 8,
           "cast_bytes": 464,
-          "cast_duration_seconds": 0.1685371440835297
+          "cast_duration_seconds": 0.160817391006276
         },
         {
           "testcase_id": "usage-vips-webp-header",
@@ -4885,9 +5565,9 @@
           "cast_path": "casts/libwebp/usage-vips-webp-header.cast",
           "duration_seconds": 0.0,
           "exit_code": 0,
-          "cast_events": 10,
+          "cast_events": 9,
           "cast_bytes": 693,
-          "cast_duration_seconds": 0.14608283201232553
+          "cast_duration_seconds": 0.14992508897557855
         },
         {
           "testcase_id": "usage-vips-webp-resize",
@@ -4909,7 +5589,7 @@
           "exit_code": 0,
           "cast_events": 9,
           "cast_bytes": 561,
-          "cast_duration_seconds": 0.1642276239581406
+          "cast_duration_seconds": 0.16291963099502027
         },
         {
           "testcase_id": "usage-ffmpeg-webp-decode",
@@ -4929,9 +5609,9 @@
           "cast_path": "casts/libwebp/usage-ffmpeg-webp-decode.cast",
           "duration_seconds": 0.0,
           "exit_code": 0,
-          "cast_events": 10,
+          "cast_events": 9,
           "cast_bytes": 599,
-          "cast_duration_seconds": 0.14655235095415264
+          "cast_duration_seconds": 0.16271500696893781
         },
         {
           "testcase_id": "usage-ffmpeg-webp-probe",
@@ -4953,7 +5633,7 @@
           "exit_code": 0,
           "cast_events": 10,
           "cast_bytes": 1926,
-          "cast_duration_seconds": 0.1535410420037806
+          "cast_duration_seconds": 0.15104296093340963
         },
         {
           "testcase_id": "usage-webp-pixbuf-loader-pixbuf-thumbnail",
@@ -4975,7 +5655,7 @@
           "exit_code": 0,
           "cast_events": 9,
           "cast_bytes": 597,
-          "cast_duration_seconds": 0.12994795001577586
+          "cast_duration_seconds": 0.12169908301439136
         },
         {
           "testcase_id": "usage-libsdl2-image-load-webp",
@@ -4996,9 +5676,54 @@
           "cast_path": "casts/libwebp/usage-libsdl2-image-load-webp.cast",
           "duration_seconds": 0.0,
           "exit_code": 0,
-          "cast_events": 11,
+          "cast_events": 12,
           "cast_bytes": 682,
-          "cast_duration_seconds": 0.3379791700281203
+          "cast_duration_seconds": 0.35009077296126634
+        },
+        {
+          "testcase_id": "usage-python3-pil-webp-alpha",
+          "title": "Pillow WebP alpha channel",
+          "description": "Saves an RGBA WebP with Pillow and verifies alpha channel preservation through libwebp.",
+          "kind": "usage",
+          "mode": "original",
+          "client_application": "python3-pil",
+          "tags": [
+            "usage",
+            "image",
+            "python"
+          ],
+          "requires": [],
+          "status": "passed",
+          "result_path": "results/libwebp/usage-python3-pil-webp-alpha.json",
+          "log_path": "logs/libwebp/usage-python3-pil-webp-alpha.log",
+          "cast_path": "casts/libwebp/usage-python3-pil-webp-alpha.cast",
+          "duration_seconds": 0.0,
+          "exit_code": 0,
+          "cast_events": 6,
+          "cast_bytes": 337,
+          "cast_duration_seconds": 0.16625546000432223
+        },
+        {
+          "testcase_id": "usage-ffmpeg-webp-scale-filter",
+          "title": "FFmpeg WebP scale filter",
+          "description": "Scales a WebP image with FFmpeg and verifies the PNG output stream dimensions.",
+          "kind": "usage",
+          "mode": "original",
+          "client_application": "ffmpeg",
+          "tags": [
+            "usage",
+            "image"
+          ],
+          "requires": [],
+          "status": "passed",
+          "result_path": "results/libwebp/usage-ffmpeg-webp-scale-filter.json",
+          "log_path": "logs/libwebp/usage-ffmpeg-webp-scale-filter.log",
+          "cast_path": "casts/libwebp/usage-ffmpeg-webp-scale-filter.cast",
+          "duration_seconds": 0.0,
+          "exit_code": 0,
+          "cast_events": 15,
+          "cast_bytes": 1064,
+          "cast_duration_seconds": 0.1819320530630648
         }
       ]
     },
@@ -5011,12 +5736,12 @@
         "python3-libxml2"
       ],
       "totals": {
-        "cases": 13,
+        "cases": 15,
         "source_cases": 5,
-        "usage_cases": 8,
-        "passed": 13,
+        "usage_cases": 10,
+        "passed": 15,
         "failed": 0,
-        "casts": 13
+        "casts": 15
       },
       "testcases": [
         {
@@ -5039,7 +5764,7 @@
           "exit_code": 0,
           "cast_events": 8,
           "cast_bytes": 613,
-          "cast_duration_seconds": 0.11866217397619039
+          "cast_duration_seconds": 0.12679131503682584
         },
         {
           "testcase_id": "xmlcatalog-lookup",
@@ -5059,9 +5784,9 @@
           "cast_path": "casts/libxml/xmlcatalog-lookup.cast",
           "duration_seconds": 0.0,
           "exit_code": 0,
-          "cast_events": 7,
+          "cast_events": 6,
           "cast_bytes": 524,
-          "cast_duration_seconds": 0.12114550091791898
+          "cast_duration_seconds": 0.12329930800478905
         },
         {
           "testcase_id": "python-binding-smoke",
@@ -5081,9 +5806,9 @@
           "cast_path": "casts/libxml/python-binding-smoke.cast",
           "duration_seconds": 0.0,
           "exit_code": 0,
-          "cast_events": 5,
+          "cast_events": 6,
           "cast_bytes": 303,
-          "cast_duration_seconds": 0.1291409790283069
+          "cast_duration_seconds": 0.1276634830283001
         },
         {
           "testcase_id": "reader-c-api-behavior",
@@ -5105,7 +5830,7 @@
           "exit_code": 0,
           "cast_events": 9,
           "cast_bytes": 460,
-          "cast_duration_seconds": 0.16162914305459708
+          "cast_duration_seconds": 0.16116284998133779
         },
         {
           "testcase_id": "schema-xinclude-checks",
@@ -5125,9 +5850,9 @@
           "cast_path": "casts/libxml/schema-xinclude-checks.cast",
           "duration_seconds": 0.0,
           "exit_code": 0,
-          "cast_events": 9,
+          "cast_events": 10,
           "cast_bytes": 839,
-          "cast_duration_seconds": 0.12009414006024599
+          "cast_duration_seconds": 0.1079306430183351
         },
         {
           "testcase_id": "usage-python3-lxml-parse-xml",
@@ -5149,7 +5874,7 @@
           "exit_code": 0,
           "cast_events": 8,
           "cast_bytes": 645,
-          "cast_duration_seconds": 0.14125516300555319
+          "cast_duration_seconds": 0.13780815398786217
         },
         {
           "testcase_id": "usage-python3-lxml-xpath-xml",
@@ -5169,9 +5894,9 @@
           "cast_path": "casts/libxml/usage-python3-lxml-xpath-xml.cast",
           "duration_seconds": 0.0,
           "exit_code": 0,
-          "cast_events": 7,
+          "cast_events": 8,
           "cast_bytes": 645,
-          "cast_duration_seconds": 0.13813425693660975
+          "cast_duration_seconds": 0.13180973601993173
         },
         {
           "testcase_id": "usage-python3-lxml-xslt-xml",
@@ -5193,7 +5918,7 @@
           "exit_code": 0,
           "cast_events": 10,
           "cast_bytes": 683,
-          "cast_duration_seconds": 0.14489191106986254
+          "cast_duration_seconds": 0.1352441170020029
         },
         {
           "testcase_id": "usage-python3-lxml-schema-xml",
@@ -5213,9 +5938,31 @@
           "cast_path": "casts/libxml/usage-python3-lxml-schema-xml.cast",
           "duration_seconds": 0.0,
           "exit_code": 0,
-          "cast_events": 9,
+          "cast_events": 8,
           "cast_bytes": 648,
-          "cast_duration_seconds": 0.1378118599532172
+          "cast_duration_seconds": 0.14102203503716737
+        },
+        {
+          "testcase_id": "usage-python3-lxml-xinclude-xml",
+          "title": "python3-lxml XInclude XML expansion",
+          "description": "Runs lxml XInclude expansion and verifies included XML element text is visible to the client.",
+          "kind": "usage",
+          "mode": "original",
+          "client_application": "python3-lxml",
+          "tags": [
+            "usage",
+            "xml"
+          ],
+          "requires": [],
+          "status": "passed",
+          "result_path": "results/libxml/usage-python3-lxml-xinclude-xml.json",
+          "log_path": "logs/libxml/usage-python3-lxml-xinclude-xml.log",
+          "cast_path": "casts/libxml/usage-python3-lxml-xinclude-xml.cast",
+          "duration_seconds": 0.0,
+          "exit_code": 0,
+          "cast_events": 9,
+          "cast_bytes": 566,
+          "cast_duration_seconds": 0.14389095397200435
         },
         {
           "testcase_id": "usage-xmlstarlet-select-xml",
@@ -5236,9 +5983,9 @@
           "cast_path": "casts/libxml/usage-xmlstarlet-select-xml.cast",
           "duration_seconds": 0.0,
           "exit_code": 0,
-          "cast_events": 11,
+          "cast_events": 9,
           "cast_bytes": 865,
-          "cast_duration_seconds": 0.12494157394394279
+          "cast_duration_seconds": 0.1168520050123334
         },
         {
           "testcase_id": "usage-xmlstarlet-format-xml",
@@ -5259,9 +6006,9 @@
           "cast_path": "casts/libxml/usage-xmlstarlet-format-xml.cast",
           "duration_seconds": 0.0,
           "exit_code": 0,
-          "cast_events": 12,
+          "cast_events": 10,
           "cast_bytes": 956,
-          "cast_duration_seconds": 0.11968166998121887
+          "cast_duration_seconds": 0.11704402498435229
         },
         {
           "testcase_id": "usage-xmlstarlet-edit-xml",
@@ -5282,9 +6029,9 @@
           "cast_path": "casts/libxml/usage-xmlstarlet-edit-xml.cast",
           "duration_seconds": 0.0,
           "exit_code": 0,
-          "cast_events": 12,
+          "cast_events": 9,
           "cast_bytes": 975,
-          "cast_duration_seconds": 0.12628571910317987
+          "cast_duration_seconds": 0.1126818850170821
         },
         {
           "testcase_id": "usage-xmlstarlet-validate-xml",
@@ -5305,9 +6052,32 @@
           "cast_path": "casts/libxml/usage-xmlstarlet-validate-xml.cast",
           "duration_seconds": 0.0,
           "exit_code": 0,
-          "cast_events": 10,
+          "cast_events": 12,
           "cast_bytes": 881,
-          "cast_duration_seconds": 0.11523054807912558
+          "cast_duration_seconds": 0.11752475402317941
+        },
+        {
+          "testcase_id": "usage-xmlstarlet-transform-xml",
+          "title": "xmlstarlet transform XML",
+          "description": "Runs xmlstarlet XSLT transformation and verifies the selected XML value is emitted.",
+          "kind": "usage",
+          "mode": "original",
+          "client_application": "xmlstarlet",
+          "tags": [
+            "usage",
+            "xml",
+            "cli"
+          ],
+          "requires": [],
+          "status": "passed",
+          "result_path": "results/libxml/usage-xmlstarlet-transform-xml.json",
+          "log_path": "logs/libxml/usage-xmlstarlet-transform-xml.log",
+          "cast_path": "casts/libxml/usage-xmlstarlet-transform-xml.cast",
+          "duration_seconds": 0.0,
+          "exit_code": 0,
+          "cast_events": 10,
+          "cast_bytes": 546,
+          "cast_duration_seconds": 0.11857350496575236
         }
       ]
     },
@@ -5318,12 +6088,12 @@
         "libyaml-dev"
       ],
       "totals": {
-        "cases": 13,
+        "cases": 15,
         "source_cases": 5,
-        "usage_cases": 8,
-        "passed": 13,
+        "usage_cases": 10,
+        "passed": 15,
         "failed": 0,
-        "casts": 13
+        "casts": 15
       },
       "testcases": [
         {
@@ -5344,9 +6114,9 @@
           "cast_path": "casts/libyaml/parser-emitter-roundtrip.cast",
           "duration_seconds": 0.0,
           "exit_code": 0,
-          "cast_events": 6,
+          "cast_events": 8,
           "cast_bytes": 394,
-          "cast_duration_seconds": 0.14341824501752853
+          "cast_duration_seconds": 0.1421867690514773
         },
         {
           "testcase_id": "loader-dumper-cases",
@@ -5366,9 +6136,9 @@
           "cast_path": "casts/libyaml/loader-dumper-cases.cast",
           "duration_seconds": 0.0,
           "exit_code": 0,
-          "cast_events": 7,
+          "cast_events": 8,
           "cast_bytes": 377,
-          "cast_duration_seconds": 0.13876822299789637
+          "cast_duration_seconds": 0.13306649203877896
         },
         {
           "testcase_id": "anchor-alias-handling",
@@ -5388,9 +6158,9 @@
           "cast_path": "casts/libyaml/anchor-alias-handling.cast",
           "duration_seconds": 0.0,
           "exit_code": 0,
-          "cast_events": 7,
+          "cast_events": 8,
           "cast_bytes": 375,
-          "cast_duration_seconds": 0.13737083598971367
+          "cast_duration_seconds": 0.1314574470743537
         },
         {
           "testcase_id": "compile-link-smoke",
@@ -5410,9 +6180,9 @@
           "cast_path": "casts/libyaml/compile-link-smoke.cast",
           "duration_seconds": 0.0,
           "exit_code": 0,
-          "cast_events": 8,
+          "cast_events": 6,
           "cast_bytes": 392,
-          "cast_duration_seconds": 0.14332576107699424
+          "cast_duration_seconds": 0.13199349190108478
         },
         {
           "testcase_id": "invalid-yaml-rejection",
@@ -5434,7 +6204,7 @@
           "exit_code": 0,
           "cast_events": 7,
           "cast_bytes": 373,
-          "cast_duration_seconds": 0.13888924906495959
+          "cast_duration_seconds": 0.13125879096332937
         },
         {
           "testcase_id": "usage-python3-yaml-safe-load",
@@ -5457,7 +6227,7 @@
           "exit_code": 0,
           "cast_events": 7,
           "cast_bytes": 292,
-          "cast_duration_seconds": 0.13432345900218934
+          "cast_duration_seconds": 0.1326067759655416
         },
         {
           "testcase_id": "usage-python3-yaml-dump",
@@ -5478,9 +6248,9 @@
           "cast_path": "casts/libyaml/usage-python3-yaml-dump.cast",
           "duration_seconds": 0.0,
           "exit_code": 0,
-          "cast_events": 6,
+          "cast_events": 7,
           "cast_bytes": 320,
-          "cast_duration_seconds": 0.125667994027026
+          "cast_duration_seconds": 0.13184641010593623
         },
         {
           "testcase_id": "usage-python3-yaml-csafe-loader",
@@ -5503,7 +6273,7 @@
           "exit_code": 0,
           "cast_events": 6,
           "cast_bytes": 287,
-          "cast_duration_seconds": 0.12820434395689517
+          "cast_duration_seconds": 0.13260352204088122
         },
         {
           "testcase_id": "usage-python3-yaml-csafe-dumper",
@@ -5524,9 +6294,9 @@
           "cast_path": "casts/libyaml/usage-python3-yaml-csafe-dumper.cast",
           "duration_seconds": 0.0,
           "exit_code": 0,
-          "cast_events": 6,
+          "cast_events": 5,
           "cast_bytes": 297,
-          "cast_duration_seconds": 0.1381226220401004
+          "cast_duration_seconds": 0.13183754007332027
         },
         {
           "testcase_id": "usage-python3-yaml-anchors",
@@ -5547,9 +6317,9 @@
           "cast_path": "casts/libyaml/usage-python3-yaml-anchors.cast",
           "duration_seconds": 0.0,
           "exit_code": 0,
-          "cast_events": 5,
+          "cast_events": 6,
           "cast_bytes": 290,
-          "cast_duration_seconds": 0.1336351609788835
+          "cast_duration_seconds": 0.1305319709936157
         },
         {
           "testcase_id": "usage-python3-yaml-documents",
@@ -5570,9 +6340,9 @@
           "cast_path": "casts/libyaml/usage-python3-yaml-documents.cast",
           "duration_seconds": 0.0,
           "exit_code": 0,
-          "cast_events": 8,
+          "cast_events": 6,
           "cast_bytes": 286,
-          "cast_duration_seconds": 0.13121237908490002
+          "cast_duration_seconds": 0.13388864905573428
         },
         {
           "testcase_id": "usage-python3-yaml-events",
@@ -5593,9 +6363,9 @@
           "cast_path": "casts/libyaml/usage-python3-yaml-events.cast",
           "duration_seconds": 0.0,
           "exit_code": 0,
-          "cast_events": 5,
+          "cast_events": 6,
           "cast_bytes": 286,
-          "cast_duration_seconds": 0.13843448809348047
+          "cast_duration_seconds": 0.13763751601800323
         },
         {
           "testcase_id": "usage-python3-yaml-error",
@@ -5618,7 +6388,53 @@
           "exit_code": 0,
           "cast_events": 6,
           "cast_bytes": 296,
-          "cast_duration_seconds": 0.1280742660164833
+          "cast_duration_seconds": 0.13292052398901433
+        },
+        {
+          "testcase_id": "usage-python3-yaml-cbase-loader",
+          "title": "PyYAML CBaseLoader scalar parsing",
+          "description": "Runs PyYAML CBaseLoader on nested YAML and verifies BaseLoader string scalar behavior.",
+          "kind": "usage",
+          "mode": "original",
+          "client_application": "python3-yaml",
+          "tags": [
+            "usage",
+            "yaml",
+            "python"
+          ],
+          "requires": [],
+          "status": "passed",
+          "result_path": "results/libyaml/usage-python3-yaml-cbase-loader.json",
+          "log_path": "logs/libyaml/usage-python3-yaml-cbase-loader.log",
+          "cast_path": "casts/libyaml/usage-python3-yaml-cbase-loader.cast",
+          "duration_seconds": 0.0,
+          "exit_code": 0,
+          "cast_events": 6,
+          "cast_bytes": 486,
+          "cast_duration_seconds": 0.13335629692301154
+        },
+        {
+          "testcase_id": "usage-python3-yaml-binary-scalar",
+          "title": "PyYAML binary scalar decoding",
+          "description": "Runs PyYAML safe_load on a binary scalar and verifies the decoded byte payload.",
+          "kind": "usage",
+          "mode": "original",
+          "client_application": "python3-yaml",
+          "tags": [
+            "usage",
+            "yaml",
+            "python"
+          ],
+          "requires": [],
+          "status": "passed",
+          "result_path": "results/libyaml/usage-python3-yaml-binary-scalar.json",
+          "log_path": "logs/libyaml/usage-python3-yaml-binary-scalar.log",
+          "cast_path": "casts/libyaml/usage-python3-yaml-binary-scalar.cast",
+          "duration_seconds": 0.0,
+          "exit_code": 0,
+          "cast_events": 8,
+          "cast_bytes": 474,
+          "cast_duration_seconds": 0.126723104971461
         }
       ]
     },
@@ -5630,12 +6446,12 @@
         "zstd"
       ],
       "totals": {
-        "cases": 13,
+        "cases": 15,
         "source_cases": 5,
-        "usage_cases": 8,
-        "passed": 13,
+        "usage_cases": 10,
+        "passed": 15,
         "failed": 0,
-        "casts": 13
+        "casts": 15
       },
       "testcases": [
         {
@@ -5656,9 +6472,9 @@
           "cast_path": "casts/libzstd/zstd-compress-decompress.cast",
           "duration_seconds": 0.0,
           "exit_code": 0,
-          "cast_events": 10,
+          "cast_events": 9,
           "cast_bytes": 737,
-          "cast_duration_seconds": 0.19188719999510795
+          "cast_duration_seconds": 0.11106920696329325
         },
         {
           "testcase_id": "dictionary-train-use",
@@ -5678,9 +6494,9 @@
           "cast_path": "casts/libzstd/dictionary-train-use.cast",
           "duration_seconds": 0.0,
           "exit_code": 0,
-          "cast_events": 1440,
+          "cast_events": 1222,
           "cast_bytes": 335522,
-          "cast_duration_seconds": 0.22958778298925608
+          "cast_duration_seconds": 0.23357554897665977
         },
         {
           "testcase_id": "streaming-c-api-smoke",
@@ -5702,7 +6518,7 @@
           "exit_code": 0,
           "cast_events": 6,
           "cast_bytes": 400,
-          "cast_duration_seconds": 0.15071450697723776
+          "cast_duration_seconds": 0.14063712989445776
         },
         {
           "testcase_id": "multi-frame-behavior",
@@ -5722,9 +6538,9 @@
           "cast_path": "casts/libzstd/multi-frame-behavior.cast",
           "duration_seconds": 0.0,
           "exit_code": 0,
-          "cast_events": 12,
+          "cast_events": 15,
           "cast_bytes": 634,
-          "cast_duration_seconds": 0.1365721159381792
+          "cast_duration_seconds": 0.12131462199613452
         },
         {
           "testcase_id": "corrupted-frame-rejection",
@@ -5744,9 +6560,9 @@
           "cast_path": "casts/libzstd/corrupted-frame-rejection.cast",
           "duration_seconds": 0.0,
           "exit_code": 0,
-          "cast_events": 5,
+          "cast_events": 8,
           "cast_bytes": 426,
-          "cast_duration_seconds": 0.1124706610571593
+          "cast_duration_seconds": 0.10864954104181379
         },
         {
           "testcase_id": "usage-libarchive-tools-zstd-tar-list",
@@ -5767,9 +6583,9 @@
           "cast_path": "casts/libzstd/usage-libarchive-tools-zstd-tar-list.cast",
           "duration_seconds": 0.0,
           "exit_code": 0,
-          "cast_events": 9,
+          "cast_events": 10,
           "cast_bytes": 808,
-          "cast_duration_seconds": 0.13360843108966947
+          "cast_duration_seconds": 0.12927493394818157
         },
         {
           "testcase_id": "usage-libarchive-tools-zstd-tar-extract",
@@ -5792,7 +6608,7 @@
           "exit_code": 0,
           "cast_events": 11,
           "cast_bytes": 820,
-          "cast_duration_seconds": 0.13859561900608242
+          "cast_duration_seconds": 0.12527293199673295
         },
         {
           "testcase_id": "usage-libarchive-tools-zstd-stdout-stream",
@@ -5813,9 +6629,9 @@
           "cast_path": "casts/libzstd/usage-libarchive-tools-zstd-stdout-stream.cast",
           "duration_seconds": 0.0,
           "exit_code": 0,
-          "cast_events": 8,
+          "cast_events": 11,
           "cast_bytes": 828,
-          "cast_duration_seconds": 0.1326298820786178
+          "cast_duration_seconds": 0.12476721405982971
         },
         {
           "testcase_id": "usage-libarchive-tools-zstd-large-file",
@@ -5836,9 +6652,9 @@
           "cast_path": "casts/libzstd/usage-libarchive-tools-zstd-large-file.cast",
           "duration_seconds": 0.0,
           "exit_code": 0,
-          "cast_events": 13,
+          "cast_events": 11,
           "cast_bytes": 816,
-          "cast_duration_seconds": 0.11728541704360396
+          "cast_duration_seconds": 0.12139833206310868
         },
         {
           "testcase_id": "usage-libarchive-tools-zstd-symlink",
@@ -5859,9 +6675,9 @@
           "cast_path": "casts/libzstd/usage-libarchive-tools-zstd-symlink.cast",
           "duration_seconds": 0.0,
           "exit_code": 0,
-          "cast_events": 11,
+          "cast_events": 13,
           "cast_bytes": 804,
-          "cast_duration_seconds": 0.11498476006090641
+          "cast_duration_seconds": 0.11981375003233552
         },
         {
           "testcase_id": "usage-libarchive-tools-zstd-empty-dir",
@@ -5882,9 +6698,9 @@
           "cast_path": "casts/libzstd/usage-libarchive-tools-zstd-empty-dir.cast",
           "duration_seconds": 0.0,
           "exit_code": 0,
-          "cast_events": 10,
+          "cast_events": 9,
           "cast_bytes": 812,
-          "cast_duration_seconds": 0.12209245993290097
+          "cast_duration_seconds": 0.12832595594227314
         },
         {
           "testcase_id": "usage-libarchive-tools-zstd-filter-auto",
@@ -5905,9 +6721,9 @@
           "cast_path": "casts/libzstd/usage-libarchive-tools-zstd-filter-auto.cast",
           "duration_seconds": 0.0,
           "exit_code": 0,
-          "cast_events": 12,
+          "cast_events": 11,
           "cast_bytes": 820,
-          "cast_duration_seconds": 0.12667935900390148
+          "cast_duration_seconds": 0.13488005299586803
         },
         {
           "testcase_id": "usage-libarchive-tools-zstd-copy-mode",
@@ -5928,9 +6744,57 @@
           "cast_path": "casts/libzstd/usage-libarchive-tools-zstd-copy-mode.cast",
           "duration_seconds": 0.0,
           "exit_code": 0,
-          "cast_events": 12,
+          "cast_events": 10,
           "cast_bytes": 812,
-          "cast_duration_seconds": 0.13507714797742665
+          "cast_duration_seconds": 0.13173075707163662
+        },
+        {
+          "testcase_id": "usage-libarchive-tools-zstd-metadata-list",
+          "title": "libarchive-tools zstd metadata list",
+          "description": "Runs bsdtar verbose listing on a zstd archive and verifies executable metadata.",
+          "kind": "usage",
+          "mode": "original",
+          "client_application": "libarchive-tools",
+          "tags": [
+            "usage",
+            "archive",
+            "compression",
+            "metadata"
+          ],
+          "requires": [],
+          "status": "passed",
+          "result_path": "results/libzstd/usage-libarchive-tools-zstd-metadata-list.json",
+          "log_path": "logs/libzstd/usage-libarchive-tools-zstd-metadata-list.log",
+          "cast_path": "casts/libzstd/usage-libarchive-tools-zstd-metadata-list.cast",
+          "duration_seconds": 0.0,
+          "exit_code": 0,
+          "cast_events": 11,
+          "cast_bytes": 681,
+          "cast_duration_seconds": 0.12389818299561739
+        },
+        {
+          "testcase_id": "usage-libarchive-tools-zstd-preserve-permissions",
+          "title": "libarchive-tools zstd preserve permissions",
+          "description": "Runs bsdtar zstd archive extraction and verifies executable permissions survive.",
+          "kind": "usage",
+          "mode": "original",
+          "client_application": "libarchive-tools",
+          "tags": [
+            "usage",
+            "archive",
+            "compression",
+            "metadata"
+          ],
+          "requires": [],
+          "status": "passed",
+          "result_path": "results/libzstd/usage-libarchive-tools-zstd-preserve-permissions.json",
+          "log_path": "logs/libzstd/usage-libarchive-tools-zstd-preserve-permissions.log",
+          "cast_path": "casts/libzstd/usage-libarchive-tools-zstd-preserve-permissions.cast",
+          "duration_seconds": 0.0,
+          "exit_code": 0,
+          "cast_events": 9,
+          "cast_bytes": 699,
+          "cast_duration_seconds": 0.14336320396978408
         }
       ]
     }

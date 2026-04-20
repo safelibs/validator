@@ -1,7 +1,6 @@
 {"version": 2, "width": 120, "height": 40, "timestamp": 0, "env": {"TERM": "xterm-256color", "SHELL": "/bin/bash"}}
-[0.09554021595977247, "o", "no override packages found; continuing with apt originals\r\r\n"]
-[0.09702229395043105, "o", "+ set -euo pipefail\r\r\n+ source /validator/tests/_shared/runtime_helpers.sh\r\r\n++ set -euo pipefail\r\r\n"]
-[0.09727798402309418, "o", "++ mktemp -d\r\r\n"]
-[0.09875536500476301, "o", "+ tmpdir=/tmp/validator-tmp\r\r\n+ trap 'rm -rf \"$tmpdir\"' EXIT\r\r\n+ node -e 'const fs=require('\\''fs'\\''); fs.writeFileSync(process.argv[1],'\\''watch'\\''); fs.stat(process.argv[1],(e,s)=>{if(e)throw e; console.log('\\''size='\\''+s.size);});' /tmp/validator-tmp/node.txt\r\r\n"]
-[0.15556063794065267, "o", "size=5\r\r\n"]
-[0.15791212499607354, "o", "+ rm -rf /tmp/validator-tmp\r\r\n"]
+[0.665435511036776, "o", "no override packages found; continuing with apt originals\r\r\n"]
+[0.6670084480429068, "o", "+ set -euo pipefail\r\r\n+ source /validator/tests/_shared/runtime_helpers.sh\r\r\n++ set -euo pipefail\r\r\n++ mktemp -d\r\r\n"]
+[0.6883414729963988, "o", "+ tmpdir=/tmp/validator-tmp\r\r\n+ trap 'rm -rf \"$tmpdir\"' EXIT\r\r\n+ node -e 'const fs=require('\\''fs'\\''); fs.writeFileSync(process.argv[1],'\\''watch'\\''); fs.stat(process.argv[1],(e,s)=>{if(e)throw e; console.log('\\''size='\\''+s.size);});' /tmp/validator-tmp/node.txt\r\r\n"]
+[0.7409787359647453, "o", "size=5\r\r\n"]
+[0.7435447030002251, "o", "+ rm -rf /tmp/validator-tmp\r\r\n"]

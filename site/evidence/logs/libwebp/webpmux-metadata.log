@@ -15,8 +15,8 @@ no override packages found; continuing with apt originals
 + printf 'Exif\000\000phase04'
 + webpmux -set exif /tmp/validator-tmp/exif.bin /validator/tests/libwebp/tests/fixtures/samples/examples/test.webp -o /tmp/validator-tmp/exif.webp
 Saved file /tmp/validator-tmp/exif.webp (4920 bytes)
-+ tee /tmp/validator-tmp/m
 + webpmux -info /tmp/validator-tmp/exif.webp
++ tee /tmp/validator-tmp/m
 Canvas size: 128 x 128
 Features present: EXIF metadata
 Size of the EXIF metadata: 13

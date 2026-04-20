@@ -1,4 +1,4 @@
 {"version": 2, "width": 120, "height": 40, "timestamp": 0, "env": {"TERM": "xterm-256color", "SHELL": "/bin/bash"}}
-[0.10953379003331065, "o", "no override packages found; continuing with apt originals\r\r\n"]
-[0.1110358260339126, "o", "+ set -euo pipefail\r\r\n+ /validator/tests/libexif/tests/cases/usage/usage-exif-cli-common.sh tag-model\r\r\n"]
-[0.1146194520406425, "o", "EXIF entry 'Model' (0x110, 'Model') exists in IFD '0':\r\r\nTag: 0x110 ('Model')\r\r\n  Format: 2 ('ASCII')\r\r\n  Components: 20\r\r\n  Size: 20\r\r\n  Value: Canon PowerShot S70\r\r\n"]
+[0.10983176494482905, "o", "no override packages found; continuing with apt originals\r\r\n"]
+[0.1114258470479399, "o", "+ set -euo pipefail\r\r\n+ /validator/tests/libexif/tests/cases/usage/usage-exif-cli-common.sh tag-model\r\r\n"]
+[0.11480608803685755, "o", "EXIF entry 'Model' (0x110, 'Model') exists in IFD '0':\r\r\nTag: 0x110 ('Model')\r\r\n  Format: 2 ('ASCII')\r\r\n  Components: 20\r\r\n  Size: 20\r\r\n  Value: Canon PowerShot S70\r\r\n"]

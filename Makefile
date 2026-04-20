@@ -18,7 +18,7 @@ unit:
 	$(PYTHON) -m unittest discover -s unit -v
 
 check-testcases:
-	$(PYTHON) tools/testcases.py --config $(CONFIG) --tests-root $(TESTS_ROOT) --check --min-source-cases 95 --min-usage-cases 155 --min-cases 250
+	$(PYTHON) tools/testcases.py --config $(CONFIG) --tests-root $(TESTS_ROOT) --check --min-source-cases 95 --min-usage-cases 193 --min-cases 288
 
 matrix:
 	bash test.sh --config $(CONFIG) --tests-root $(TESTS_ROOT) --artifact-root $(ARTIFACT_ROOT) $(LIBRARY_ARGS) $(if $(RECORD_CASTS),--record-casts,)

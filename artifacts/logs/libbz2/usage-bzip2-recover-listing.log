@@ -10,9 +10,9 @@ no override packages found; continuing with apt originals
 + trap 'rm -rf "$tmpdir"' EXIT
 + printf 'recover payload\n'
 + bzip2 -c /tmp/validator-tmp/in.txt
++ tee /tmp/validator-tmp/out
 + cd /tmp/validator-tmp
 + bzip2recover in.bz2
-+ tee /tmp/validator-tmp/out
 bzip2recover 1.0.8: extracts blocks from damaged .bz2 files.
 bzip2recover: searching for block boundaries ...
    block 1 runs from 80 to 359

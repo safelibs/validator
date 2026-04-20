@@ -10,8 +10,8 @@ no override packages found; continuing with apt originals
 + trap 'rm -rf "$tmpdir"' EXIT
 + printf '<!ELEMENT root EMPTY>\n'
 + cat
-+ tee /tmp/validator-tmp/lookup
 + xmlcatalog /tmp/validator-tmp/catalog.xml '-//Example//DTD Demo//EN'
++ tee /tmp/validator-tmp/lookup
 /tmp/validator-tmp/demo.dtd
 + grep demo.dtd /tmp/validator-tmp/lookup
 /tmp/validator-tmp/demo.dtd

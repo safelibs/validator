@@ -2,11 +2,11 @@
   "schema_version": 2,
   "library": "libwebp",
   "mode": "original",
-  "cases": 14,
+  "cases": 16,
   "source_cases": 5,
-  "usage_cases": 9,
-  "passed": 14,
+  "usage_cases": 11,
+  "passed": 16,
   "failed": 0,
-  "casts": 14,
+  "casts": 16,
   "duration_seconds": 0.0
 }

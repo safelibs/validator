@@ -9,9 +9,9 @@ no override packages found; continuing with apt originals
 + tmpdir=/tmp/validator-tmp
 + trap 'rm -rf "$tmpdir"' EXIT
 + printf 'pipe payload\n'
-+ bzip2 -c
-+ tee /tmp/validator-tmp/out
 + bzip2 -dc
++ tee /tmp/validator-tmp/out
++ bzip2 -c
 pipe payload
 + validator_assert_contains /tmp/validator-tmp/out 'pipe payload'
 + local path=/tmp/validator-tmp/out

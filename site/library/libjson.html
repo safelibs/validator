@@ -14,12 +14,12 @@
         <h1>libjson Validation</h1>
         <div class="metric-grid">
         <div class="metric" data-proof-total="libraries"><strong>19</strong><span>Libraries</span></div>
-        <div class="metric" data-proof-total="cases"><strong>250</strong><span>Cases</span></div>
+        <div class="metric" data-proof-total="cases"><strong>288</strong><span>Cases</span></div>
         <div class="metric" data-proof-total="source_cases"><strong>95</strong><span>Source</span></div>
-        <div class="metric" data-proof-total="usage_cases"><strong>155</strong><span>Usage</span></div>
-        <div class="metric" data-proof-total="passed"><strong>250</strong><span>Passed</span></div>
+        <div class="metric" data-proof-total="usage_cases"><strong>193</strong><span>Usage</span></div>
+        <div class="metric" data-proof-total="passed"><strong>288</strong><span>Passed</span></div>
         <div class="metric" data-proof-total="failed"><strong>0</strong><span>Failed</span></div>
-        <div class="metric" data-proof-total="casts"><strong>250 (100%)</strong><span>Casts</span></div>
+        <div class="metric" data-proof-total="casts"><strong>288 (100%)</strong><span>Casts</span></div>
         </div>
       </section>
 
@@ -465,6 +465,70 @@
             <div class="case-actions">
               <a class="log-link" href="../evidence/logs/libjson/usage-gdal-gdalinfo-json-raster.log">Log</a>
               <button type="button" class="play-button js-load-cast" data-cast="../evidence/casts/libjson/usage-gdal-gdalinfo-json-raster.cast">Play</button>
+            </div>
+            <div class="cast-player" data-player>
+              <div class="player-controls">
+                <button type="button" class="js-player-play">Play</button>
+                <button type="button" class="js-player-pause">Pause</button>
+                <button type="button" class="js-player-restart">Restart</button>
+                <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
+                <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
+              </div>
+              <pre class="terminal" aria-live="polite"></pre>
+            </div>
+          </div>
+        </details>
+        <details class="case-row" data-library="libjson" data-testcase-id="usage-gdal-ogr2ogr-where-geojson" data-kind="usage" data-status="passed" data-player-cast="../evidence/casts/libjson/usage-gdal-ogr2ogr-where-geojson.cast" data-search="libjson usage-gdal-ogr2ogr-where-geojson GDAL filters GeoJSON with ogr2ogr Runs ogr2ogr with an attribute where clause and verifies only the matching GeoJSON feature is written. usage gdal usage json">
+          <summary>
+            <span class="case-title">
+              <strong>GDAL filters GeoJSON with ogr2ogr</strong>
+              <span class="case-id">libjson / usage-gdal-ogr2ogr-where-geojson</span>
+            </span>
+            <span class="status-pill status-passed">Passed</span>
+          </summary>
+          <div class="case-body">
+            <p>Runs ogr2ogr with an attribute where clause and verifies only the matching GeoJSON feature is written.</p>
+            <dl class="case-meta">
+              <div><dt>Kind</dt><dd>usage</dd></div>
+              <div><dt>Client</dt><dd>gdal</dd></div>
+              <div><dt>Duration</dt><dd>0.00s</dd></div>
+              <div><dt>Tags</dt><dd class="tags"><span>usage</span> <span>json</span></dd></div>
+            </dl>
+            <div class="case-actions">
+              <a class="log-link" href="../evidence/logs/libjson/usage-gdal-ogr2ogr-where-geojson.log">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/casts/libjson/usage-gdal-ogr2ogr-where-geojson.cast">Play</button>
+            </div>
+            <div class="cast-player" data-player>
+              <div class="player-controls">
+                <button type="button" class="js-player-play">Play</button>
+                <button type="button" class="js-player-pause">Pause</button>
+                <button type="button" class="js-player-restart">Restart</button>
+                <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
+                <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
+              </div>
+              <pre class="terminal" aria-live="polite"></pre>
+            </div>
+          </div>
+        </details>
+        <details class="case-row" data-library="libjson" data-testcase-id="usage-gdal-ogr2ogr-reproject-geojson" data-kind="usage" data-status="passed" data-player-cast="../evidence/casts/libjson/usage-gdal-ogr2ogr-reproject-geojson.cast" data-search="libjson usage-gdal-ogr2ogr-reproject-geojson GDAL reprojects GeoJSON Runs ogr2ogr to reproject GeoJSON coordinates and verifies the resulting FeatureCollection. usage gdal usage json">
+          <summary>
+            <span class="case-title">
+              <strong>GDAL reprojects GeoJSON</strong>
+              <span class="case-id">libjson / usage-gdal-ogr2ogr-reproject-geojson</span>
+            </span>
+            <span class="status-pill status-passed">Passed</span>
+          </summary>
+          <div class="case-body">
+            <p>Runs ogr2ogr to reproject GeoJSON coordinates and verifies the resulting FeatureCollection.</p>
+            <dl class="case-meta">
+              <div><dt>Kind</dt><dd>usage</dd></div>
+              <div><dt>Client</dt><dd>gdal</dd></div>
+              <div><dt>Duration</dt><dd>0.00s</dd></div>
+              <div><dt>Tags</dt><dd class="tags"><span>usage</span> <span>json</span></dd></div>
+            </dl>
+            <div class="case-actions">
+              <a class="log-link" href="../evidence/logs/libjson/usage-gdal-ogr2ogr-reproject-geojson.log">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/casts/libjson/usage-gdal-ogr2ogr-reproject-geojson.cast">Play</button>
             </div>
             <div class="cast-player" data-player>
               <div class="player-controls">

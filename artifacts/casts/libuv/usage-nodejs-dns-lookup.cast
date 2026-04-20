@@ -1,7 +1,7 @@
 {"version": 2, "width": 120, "height": 40, "timestamp": 0, "env": {"TERM": "xterm-256color", "SHELL": "/bin/bash"}}
-[0.1069264190737158, "o", "no override packages found; continuing with apt originals\r\r\n"]
-[0.10853393003344536, "o", "+ set -euo pipefail\r\r\n+ source /validator/tests/_shared/runtime_helpers.sh\r\r\n++ set -euo pipefail\r\r\n"]
-[0.10887967003509402, "o", "++ mktemp -d\r\r\n"]
-[0.11060593707952648, "o", "+ tmpdir=/tmp/validator-tmp\r\r\n+ trap 'rm -rf \"$tmpdir\"' EXIT\r\r\n+ node -e 'require('\\''dns'\\'').lookup('\\''localhost'\\'',(e,a)=>{if(e)throw e; console.log('\\''address='\\''+a);});' /tmp/validator-tmp/node.txt\r\r\n"]
-[0.16351799003314227, "o", "address=127.0.0.1\r\r\n"]
-[0.16562071803491563, "o", "+ rm -rf /tmp/validator-tmp\r\r\n"]
+[0.15606454003136605, "o", "no override packages found; continuing with apt originals\r\r\n"]
+[0.1575856771087274, "o", "+ set -euo pipefail\r\r\n+ source /validator/tests/_shared/runtime_helpers.sh\r\r\n++ set -euo pipefail\r\r\n"]
+[0.1576813020510599, "o", "++ mktemp -d\r\r\n"]
+[0.15992349304724485, "o", "+ tmpdir=/tmp/validator-tmp\r\r\n+ trap 'rm -rf \"$tmpdir\"' EXIT\r\r\n+ node -e 'require('\\''dns'\\'').lookup('\\''localhost'\\'',(e,a)=>{if(e)throw e; console.log('\\''address='\\''+a);});' /tmp/validator-tmp/node.txt\r\r\n"]
+[0.21319168305490166, "o", "address=127.0.0.1\r\r\n"]
+[0.21526637603528798, "o", "+ rm -rf /tmp/validator-tmp\r\r\n"]

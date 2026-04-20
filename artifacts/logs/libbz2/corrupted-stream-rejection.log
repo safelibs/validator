@@ -11,8 +11,8 @@ no override packages found; continuing with apt originals
 + printf 'payload\n'
 + bzip2 -c /tmp/validator-tmp/plain
 + cp /tmp/validator-tmp/plain.bz2 /tmp/validator-tmp/bad.bz2
-+ printf '\000'
 + dd of=/tmp/validator-tmp/bad.bz2 bs=1 seek=10 conv=notrunc status=none
++ printf '\000'
 + bunzip2 -c /tmp/validator-tmp/bad.bz2
 + cat /tmp/validator-tmp/log
 

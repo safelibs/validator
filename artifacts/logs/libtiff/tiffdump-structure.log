@@ -12,8 +12,8 @@ no override packages found; continuing with apt originals
 + validator_require_file /validator/tests/libtiff/tests/fixtures/samples/test/images/minisblack-1c-8b.tiff
 + local path=/validator/tests/libtiff/tests/fixtures/samples/test/images/minisblack-1c-8b.tiff
 + [[ -f /validator/tests/libtiff/tests/fixtures/samples/test/images/minisblack-1c-8b.tiff ]]
-+ tee /tmp/validator-tmp/dump
 + tiffdump /validator/tests/libtiff/tests/fixtures/samples/test/images/minisblack-1c-8b.tiff
++ tee /tmp/validator-tmp/dump
 /validator/tests/libtiff/tests/fixtures/samples/test/images/minisblack-1c-8b.tiff:
 Magic: 0x4d4d <big-endian> Version: 0x2a <ClassicTIFF>
 Directory 0: offset 23716 (0x5ca4) next 0 (0)

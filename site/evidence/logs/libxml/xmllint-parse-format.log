@@ -10,8 +10,8 @@ no override packages found; continuing with apt originals
 + trap 'rm -rf "$tmpdir"' EXIT
 + printf '<root><item id="1">alpha</item></root>\n'
 + xmllint --noout /tmp/validator-tmp/in.xml
-+ tee /tmp/validator-tmp/f.xml
 + xmllint --format /tmp/validator-tmp/in.xml
++ tee /tmp/validator-tmp/f.xml
 <?xml version="1.0"?>
 <root>
   <item id="1">alpha</item>

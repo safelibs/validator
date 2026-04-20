@@ -86,8 +86,8 @@ python3 tools/verify_proof_artifacts.py \
   --artifact-root artifacts \
   --proof-output artifacts/proof/original-validation-proof.json \
   --min-source-cases 95 \
-  --min-usage-cases 155 \
-  --min-cases 250 \
+  --min-usage-cases 193 \
+  --min-cases 288 \
   --require-casts
 
 python3 tools/render_site.py \
@@ -108,7 +108,7 @@ bash scripts/verify-site.sh \
 The same flow is available through Make targets:
 
 ```bash
-REQUIRE_CASTS=1 MIN_SOURCE_CASES=95 MIN_USAGE_CASES=155 MIN_CASES=250 make proof
+REQUIRE_CASTS=1 MIN_SOURCE_CASES=95 MIN_USAGE_CASES=193 MIN_CASES=288 make proof
 make site
 make verify-site
 ```
@@ -117,7 +117,7 @@ For a faster local representative run:
 
 ```bash
 make matrix-smoke ARTIFACT_ROOT=/tmp/validator-smoke-artifacts
-REQUIRE_CASTS=1 MIN_SOURCE_CASES=20 MIN_USAGE_CASES=32 MIN_CASES=52 \
+REQUIRE_CASTS=1 MIN_SOURCE_CASES=20 MIN_USAGE_CASES=41 MIN_CASES=61 \
   LIBRARIES="cjson libarchive libuv libwebp" \
   make proof ARTIFACT_ROOT=/tmp/validator-smoke-artifacts
 make site ARTIFACT_ROOT=/tmp/validator-smoke-artifacts SITE_ROOT=/tmp/validator-smoke-site

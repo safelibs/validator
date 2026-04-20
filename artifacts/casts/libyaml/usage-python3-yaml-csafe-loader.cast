@@ -1,7 +1,7 @@
 {"version": 2, "width": 120, "height": 40, "timestamp": 0, "env": {"TERM": "xterm-256color", "SHELL": "/bin/bash"}}
-[0.10515825403854251, "o", "no override packages found; continuing with apt originals\r\r\n"]
-[0.10703019704669714, "o", "+ set -euo pipefail\r\r\n+ source /validator/tests/_shared/runtime_helpers.sh\r\r\n++ set -euo pipefail\r\r\n"]
-[0.10728013596963137, "o", "++ mktemp -d\r\r\n"]
-[0.10840489203110337, "o", "+ tmpdir=/tmp/validator-tmp\r\r\n+ trap 'rm -rf \"$tmpdir\"' EXIT\r\r\n+ python3 -\r\r\n"]
-[0.1258346780668944, "o", "42\r\r\n"]
-[0.12820434395689517, "o", "+ rm -rf /tmp/validator-tmp\r\r\n"]
+[0.10886348399799317, "o", "no override packages found; continuing with apt originals\r\r\n"]
+[0.11087518802378327, "o", "+ set -euo pipefail\r\r\n+ source /validator/tests/_shared/runtime_helpers.sh\r\r\n++ set -euo pipefail\r\r\n"]
+[0.11098334507551044, "o", "++ mktemp -d\r\r\n"]
+[0.11227321007754654, "o", "+ tmpdir=/tmp/validator-tmp\r\r\n+ trap 'rm -rf \"$tmpdir\"' EXIT\r\r\n+ python3 -\r\r\n"]
+[0.1300513599999249, "o", "42\r\r\n"]
+[0.13260352204088122, "o", "+ rm -rf /tmp/validator-tmp\r\r\n"]

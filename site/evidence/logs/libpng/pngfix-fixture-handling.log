@@ -12,8 +12,8 @@ no override packages found; continuing with apt originals
 + validator_require_file /validator/tests/libpng/tests/fixtures/samples/contrib/pngsuite/basn2c08.png
 + local path=/validator/tests/libpng/tests/fixtures/samples/contrib/pngsuite/basn2c08.png
 + [[ -f /validator/tests/libpng/tests/fixtures/samples/contrib/pngsuite/basn2c08.png ]]
-+ tee /tmp/validator-tmp/log
 + pngfix --out=/tmp/validator-tmp/fixed.png /validator/tests/libpng/tests/fixtures/samples/contrib/pngsuite/basn2c08.png
++ tee /tmp/validator-tmp/log
 IDAT OK  default 12 12 72 3104 /validator/tests/libpng/tests/fixtures/samples/contrib/pngsuite/basn2c08.png
 + validator_require_file /tmp/validator-tmp/fixed.png
 + local path=/tmp/validator-tmp/fixed.png

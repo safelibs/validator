@@ -2,11 +2,11 @@
   "schema_version": 2,
   "library": "libsdl",
   "mode": "original",
-  "cases": 13,
+  "cases": 15,
   "source_cases": 5,
-  "usage_cases": 8,
-  "passed": 13,
+  "usage_cases": 10,
+  "passed": 15,
   "failed": 0,
-  "casts": 13,
+  "casts": 15,
   "duration_seconds": 0.0
 }

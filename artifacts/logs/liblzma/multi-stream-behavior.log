@@ -13,8 +13,8 @@ no override packages found; continuing with apt originals
 + xz -c /tmp/validator-tmp/a
 + xz -c /tmp/validator-tmp/b
 + cat /tmp/validator-tmp/a.xz /tmp/validator-tmp/b.xz
-+ tee /tmp/validator-tmp/out
 + xz -dc /tmp/validator-tmp/two.xz
++ tee /tmp/validator-tmp/out
 alpha
 beta
 + cmp /dev/fd/63 /tmp/validator-tmp/out
