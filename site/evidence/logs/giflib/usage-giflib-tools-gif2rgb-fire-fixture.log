@@ -1,21 +1,4 @@
 $ docker run --rm -t --mount type=bind,src=/tmp/validator-status-giflib-usage-giflib-tools-gif2rgb-fire-fixture,dst=/validator/status validator-giflib-shared bash -lc 'set -euo pipefail
 /validator/tests/_shared/install_override_debs.sh
-exec /validator/tests/_shared/run_library_tests.sh "$@"' validator-testcase giflib usage-giflib-tools-gif2rgb-fire-fixture -- bash -x /validator/tests/giflib/tests/cases/usage/usage-giflib-tools-gif2rgb-fire-fixture.sh
+exec /validator/tests/_shared/run_library_tests.sh "$@"' validator-testcase giflib usage-giflib-tools-gif2rgb-fire-fixture -- bash -c 'PS4=$1; shift; set -x; source "$@"' validator-xtrace '__VALIDATOR_XTRACE__ ' /validator/tests/giflib/tests/cases/usage/usage-giflib-tools-gif2rgb-fire-fixture.sh
 no override packages found; continuing with apt originals
-+ set -euo pipefail
-+ source /validator/tests/_shared/runtime_helpers.sh
-++ set -euo pipefail
-++ mktemp -d
-+ tmpdir=/tmp/validator-tmp
-+ trap 'rm -rf "$tmpdir"' EXIT
-+ gif=/validator/tests/giflib/tests/fixtures/samples/pic/fire.gif
-+ expected=/validator/tests/giflib/tests/fixtures/samples/tests/fire.rgb
-+ validator_require_file /validator/tests/giflib/tests/fixtures/samples/pic/fire.gif
-+ local path=/validator/tests/giflib/tests/fixtures/samples/pic/fire.gif
-+ [[ -f /validator/tests/giflib/tests/fixtures/samples/pic/fire.gif ]]
-+ validator_require_file /validator/tests/giflib/tests/fixtures/samples/tests/fire.rgb
-+ local path=/validator/tests/giflib/tests/fixtures/samples/tests/fire.rgb
-+ [[ -f /validator/tests/giflib/tests/fixtures/samples/tests/fire.rgb ]]
-+ gif2rgb -1 -o /tmp/validator-tmp/fire.rgb /validator/tests/giflib/tests/fixtures/samples/pic/fire.gif
-+ cmp /validator/tests/giflib/tests/fixtures/samples/tests/fire.rgb /tmp/validator-tmp/fire.rgb
-+ rm -rf /tmp/validator-tmp

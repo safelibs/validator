@@ -1,21 +1,6 @@
 $ docker run --rm -t --mount type=bind,src=/tmp/validator-status-libvips-vips-cli-load-save,dst=/validator/status validator-libvips-shared bash -lc 'set -euo pipefail
 /validator/tests/_shared/install_override_debs.sh
-exec /validator/tests/_shared/run_library_tests.sh "$@"' validator-testcase libvips vips-cli-load-save -- bash -x /validator/tests/libvips/tests/cases/source/vips-cli-load-save.sh
+exec /validator/tests/_shared/run_library_tests.sh "$@"' validator-testcase libvips vips-cli-load-save -- bash -c 'PS4=$1; shift; set -x; source "$@"' validator-xtrace '__VALIDATOR_XTRACE__ ' /validator/tests/libvips/tests/cases/source/vips-cli-load-save.sh
 no override packages found; continuing with apt originals
-+ set -euo pipefail
-+ source /validator/tests/_shared/runtime_helpers.sh
-++ set -euo pipefail
-++ mktemp -d
-+ tmpdir=/tmp/validator-tmp
-+ trap 'rm -rf "$tmpdir"' EXIT
-+ img=/validator/tests/libvips/tests/fixtures/samples/test/test-suite/images/sample.jpg
-+ validator_require_file /validator/tests/libvips/tests/fixtures/samples/test/test-suite/images/sample.jpg
-+ local path=/validator/tests/libvips/tests/fixtures/samples/test/test-suite/images/sample.jpg
-+ [[ -f /validator/tests/libvips/tests/fixtures/samples/test/test-suite/images/sample.jpg ]]
-+ vips copy /validator/tests/libvips/tests/fixtures/samples/test/test-suite/images/sample.jpg /tmp/validator-tmp/out.png
-+ tee /tmp/validator-tmp/h
-+ vipsheader /tmp/validator-tmp/out.png
 /tmp/validator-tmp/out.png: 290x442 uchar, 3 bands, srgb, pngload
-+ grep -E '[0-9]+x[0-9]+' /tmp/validator-tmp/h
 /tmp/validator-tmp/out.png: 290x442 uchar, 3 bands, srgb, pngload
-+ rm -rf /tmp/validator-tmp

@@ -1,5 +1,7 @@
 {"version": 2, "width": 120, "height": 40, "timestamp": 0, "env": {"TERM": "xterm-256color", "SHELL": "/bin/bash"}}
-[0.10797023994382471, "o", "no override packages found; continuing with apt originals\r\r\n"]
-[0.10967509693000466, "o", "+ set -euo pipefail\r\r\n+ /validator/tests/cjson/tests/cases/usage/usage-iperf3-json-common.sh omit-warmup\r\r\n"]
-[3.32408575899899, "o", "\u001b[0;39mtrue\u001b[0m\r\r\n"]
-[3.325648300931789, "o", "cpu_utilization_percent,receiver_tcp_congestion,sender_tcp_congestion,streams,sum_received,sum_sent\r\r\n"]
+[0.0, "o", "no override packages found; continuing with apt originals\r"]
+[0.001, "o", "\r\n"]
+[0.002, "o", "\u001b[0;39mtrue\u001b[0m\r"]
+[0.003, "o", "\r\n"]
+[0.004, "o", "cpu_utilization_percent,receiver_tcp_congestion,sender_tcp_congestion,streams,sum_received,sum_sent\r"]
+[0.005, "o", "\r\n"]

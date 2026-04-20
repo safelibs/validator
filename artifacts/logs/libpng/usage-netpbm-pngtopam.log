@@ -1,21 +1,8 @@
 $ docker run --rm -t --mount type=bind,src=/tmp/validator-status-libpng-usage-netpbm-pngtopam,dst=/validator/status validator-libpng-shared bash -lc 'set -euo pipefail
 /validator/tests/_shared/install_override_debs.sh
-exec /validator/tests/_shared/run_library_tests.sh "$@"' validator-testcase libpng usage-netpbm-pngtopam -- bash -x /validator/tests/libpng/tests/cases/usage/usage-netpbm-pngtopam.sh
+exec /validator/tests/_shared/run_library_tests.sh "$@"' validator-testcase libpng usage-netpbm-pngtopam -- bash -c 'PS4=$1; shift; set -x; source "$@"' validator-xtrace '__VALIDATOR_XTRACE__ ' /validator/tests/libpng/tests/cases/usage/usage-netpbm-pngtopam.sh
 no override packages found; continuing with apt originals
-+ set -euo pipefail
-+ source /validator/tests/_shared/runtime_helpers.sh
-++ set -euo pipefail
-++ mktemp -d
-+ tmpdir=/tmp/validator-tmp
-+ trap 'rm -rf "$tmpdir"' EXIT
-+ png=/validator/tests/libpng/tests/fixtures/samples/contrib/pngsuite/basn2c08.png
-+ validator_require_file /validator/tests/libpng/tests/fixtures/samples/contrib/pngsuite/basn2c08.png
-+ local path=/validator/tests/libpng/tests/fixtures/samples/contrib/pngsuite/basn2c08.png
-+ [[ -f /validator/tests/libpng/tests/fixtures/samples/contrib/pngsuite/basn2c08.png ]]
-+ pngtopam /validator/tests/libpng/tests/fixtures/samples/contrib/pngsuite/basn2c08.png
-+ head -n 4 /tmp/validator-tmp/out.pam
 P6
 32 32
 255
 ����������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������~��}��|��{��z��y��x��w��v��u��t��s��r��q��p��o��n��m��l��k��j��i��h��g��f��e��d��c��b��a��`��_��^��]��\��[��Z��Y��X��W��V��U��T��S��R��Q��P��O��N��M��L��K��J��I��H��G��F��E��D��C��B��A��@��?��>��=��<��;��:��9��8��7��6��5��4��3��2��1��0��/��.��-��,��+��*��)��(��'��&��%��$��#��"��!�� ��������������������������������������������
-+ rm -rf /tmp/validator-tmp

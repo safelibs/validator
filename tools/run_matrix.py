@@ -33,8 +33,10 @@ from tools.testcases import Testcase, TestcaseManifest, load_manifests
 CAST_COLUMNS = 120
 CAST_ROWS = 40
 CAST_HEADER_TIMESTAMP = 0
+DETERMINISTIC_CAST_EVENT_INTERVAL_SECONDS = 0.001
 DETERMINISTIC_TIMESTAMP = "1970-01-01T00:00:00Z"
 DETERMINISTIC_DURATION_SECONDS = 0.0
+VALIDATOR_XTRACE_PREFIX = "__VALIDATOR_XTRACE__ "
 TMP_PATH_PATTERN = re.compile(r"/tmp/tmp\.?[A-Za-z0-9_-]+")
 LS_DATE_PATTERN = re.compile(
     r"\b(?:Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec) +\d{1,2} +\d{2}:\d{2}\b"
@@ -42,6 +44,9 @@ LS_DATE_PATTERN = re.compile(
 MINISIGN_PUBLIC_KEY_PATTERN = re.compile(r"-P [A-Za-z0-9+/=]+")
 TRUSTED_TIMESTAMP_PATTERN = re.compile(r"timestamp:\d+")
 READSTAT_TIMESTAMP_PATTERN = re.compile(r"Timestamp: \d{1,2} [A-Z][a-z]{2} \d{4} \d{2}:\d{2}")
+VALIDATOR_XTRACE_MARKER_PATTERN = r"_+VALIDATOR_XTRACE__ "
+VALIDATOR_XTRACE_LINE_PATTERN = re.compile(rf"^{VALIDATOR_XTRACE_MARKER_PATTERN}[^\n]*(?:\n|$)", re.MULTILINE)
+VALIDATOR_XTRACE_INLINE_PATTERN = re.compile(rf"{VALIDATOR_XTRACE_MARKER_PATTERN}[^\r\n]*")
 
 
 @dataclass(init=False)
@@ -137,6 +142,21 @@ def normalize_log_text(text: str, replacements: dict[str, str] | None = None) ->
     normalized = TRUSTED_TIMESTAMP_PATTERN.sub("timestamp:0", normalized)
     normalized = READSTAT_TIMESTAMP_PATTERN.sub("Timestamp: 01 Jan 1970 00:00", normalized)
     return normalized
+
+
+def normalize_recorded_output_text(text: str, replacements: dict[str, str] | None = None) -> str:
+    normalized = normalize_log_text(text, replacements)
+    normalized = VALIDATOR_XTRACE_LINE_PATTERN.sub("", normalized)
+    normalized = VALIDATOR_XTRACE_INLINE_PATTERN.sub("", normalized)
+    return normalized
+
+
+def deterministic_cast_events(text: str) -> list[tuple[float, str]]:
+    chunks = text.splitlines(keepends=True) or [""]
+    return [
+        (round(index * DETERMINISTIC_CAST_EVENT_INTERVAL_SECONDS, 6), chunk)
+        for index, chunk in enumerate(chunks)
+    ]
 
 
 def set_pty_size(fd: int, *, rows: int, cols: int) -> None:
@@ -240,22 +260,19 @@ def stream_process_with_cast(
         deadline = started + float(timeout_seconds) if timeout_seconds is not None else None
         decoder = codecs.getincrementaldecoder("utf-8")("replace")
         timed_out = False
-        wrote_cast_event = False
+        output_parts: list[str] = []
 
         def write_output(text: str) -> None:
-            nonlocal wrote_cast_event
-            text = normalize_log_text(text, log_replacements)
-            log_handle.write(text)
-            timestamp = max(0.0, time.monotonic() - started)
-            cast_handle.write(json.dumps([timestamp, "o", text]) + "\n")
-            wrote_cast_event = True
+            output_parts.append(text)
 
-        def ensure_cast_has_event() -> None:
-            nonlocal wrote_cast_event
-            if wrote_cast_event:
-                return
-            cast_handle.write(json.dumps([max(0.0, time.monotonic() - started), "o", ""]) + "\n")
-            wrote_cast_event = True
+        def persist_output() -> None:
+            text = normalize_recorded_output_text("".join(output_parts), log_replacements)
+            if text:
+                log_handle.write(text)
+            for timestamp, chunk in deterministic_cast_events(text):
+                cast_handle.write(json.dumps([timestamp, "o", chunk]) + "\n")
+            log_handle.flush()
+            cast_handle.flush()
 
         try:
             try:
@@ -271,20 +288,17 @@ def stream_process_with_cast(
             except OSError as exc:
                 message = f"{type(exc).__name__}: {exc}\n"
                 write_output(message)
-                log_handle.flush()
-                cast_handle.flush()
+                persist_output()
                 return RunOutcome(127)
             finally:
                 os.close(slave_fd)
 
             while True:
                 now = time.monotonic()
-                if deadline is not None and now >= deadline and process.poll() is None:
+                if deadline is not None and now >= deadline and process.poll() is None and not timed_out:
                     timed_out = True
                     timeout_message = f"\nprocess timed out after {timeout_seconds} seconds\n"
                     write_output(timeout_message)
-                    log_handle.flush()
-                    cast_handle.flush()
                     _kill_process_group(process)
 
                 wait_time = 0.1
@@ -302,8 +316,6 @@ def stream_process_with_cast(
                         text = decoder.decode(chunk)
                         if text:
                             write_output(text)
-                            log_handle.flush()
-                            cast_handle.flush()
                         continue
 
                 if process.poll() is not None:
@@ -325,9 +337,7 @@ def stream_process_with_cast(
                     tail = decoder.decode(b"", final=True)
                     if tail:
                         write_output(tail)
-                    ensure_cast_has_event()
-                    log_handle.flush()
-                    cast_handle.flush()
+                    persist_output()
                     return RunOutcome(124 if timed_out else int(process.returncode or 0), timed_out=timed_out)
         finally:
             os.close(master_fd)
@@ -507,26 +517,30 @@ def cleanup_library_images(states: dict[str, LibraryState]) -> list[str]:
     return errors
 
 
-def _bash_command_enables_xtrace(command: list[str]) -> bool:
-    for arg in command[1:]:
+def _bash_script_args(command: list[str]) -> list[str]:
+    args = list(command[1:])
+    while args:
+        arg = args[0]
         if arg == "--":
-            return False
+            return args[1:]
         if not arg.startswith("-") or arg == "-":
-            return False
-        if arg.startswith("--"):
-            continue
-        if "x" in arg[1:]:
-            return True
-    return False
+            return args
+        args = args[1:]
+    return args
 
 
 def _testcase_command_for_run(testcase: Testcase, *, record_casts: bool) -> list[str]:
     command = list(testcase.command)
     if not record_casts or not command or os.path.basename(command[0]) != "bash":
         return command
-    if _bash_command_enables_xtrace(command):
-        return command
-    return [command[0], "-x", *command[1:]]
+    return [
+        command[0],
+        "-c",
+        'PS4=$1; shift; set -x; source "$@"',
+        "validator-xtrace",
+        VALIDATOR_XTRACE_PREFIX,
+        *_bash_script_args(command),
+    ]
 
 
 def _container_command(

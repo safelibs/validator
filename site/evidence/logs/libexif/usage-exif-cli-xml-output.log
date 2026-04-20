@@ -1,9 +1,7 @@
 $ docker run --rm -t --mount type=bind,src=/tmp/validator-status-libexif-usage-exif-cli-xml-output,dst=/validator/status validator-libexif-shared bash -lc 'set -euo pipefail
 /validator/tests/_shared/install_override_debs.sh
-exec /validator/tests/_shared/run_library_tests.sh "$@"' validator-testcase libexif usage-exif-cli-xml-output -- bash -x /validator/tests/libexif/tests/cases/usage/usage-exif-cli-xml-output.sh
+exec /validator/tests/_shared/run_library_tests.sh "$@"' validator-testcase libexif usage-exif-cli-xml-output -- bash -c 'PS4=$1; shift; set -x; source "$@"' validator-xtrace '__VALIDATOR_XTRACE__ ' /validator/tests/libexif/tests/cases/usage/usage-exif-cli-xml-output.sh
 no override packages found; continuing with apt originals
-+ set -euo pipefail
-+ /validator/tests/libexif/tests/cases/usage/usage-exif-cli-common.sh xml-output
 <exif>
 	<Manufacturer>Canon</Manufacturer>
 	<Model>Canon PowerShot S70</Model>

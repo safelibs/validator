@@ -1,18 +1,5 @@
 $ docker run --rm -t --mount type=bind,src=/tmp/validator-status-libuv-usage-nodejs-fs-watch,dst=/validator/status validator-libuv-shared bash -lc 'set -euo pipefail
 /validator/tests/_shared/install_override_debs.sh
-exec /validator/tests/_shared/run_library_tests.sh "$@"' validator-testcase libuv usage-nodejs-fs-watch -- bash -x /validator/tests/libuv/tests/cases/usage/usage-nodejs-fs-watch.sh
+exec /validator/tests/_shared/run_library_tests.sh "$@"' validator-testcase libuv usage-nodejs-fs-watch -- bash -c 'PS4=$1; shift; set -x; source "$@"' validator-xtrace '__VALIDATOR_XTRACE__ ' /validator/tests/libuv/tests/cases/usage/usage-nodejs-fs-watch.sh
 no override packages found; continuing with apt originals
-+ set -euo pipefail
-+ source /validator/tests/_shared/runtime_helpers.sh
-++ set -euo pipefail
-++ mktemp -d
-+ tmpdir=/tmp/validator-tmp
-+ trap 'rm -rf "$tmpdir"' EXIT
-+ node - /tmp/validator-tmp/watched.txt
-+ tee /tmp/validator-tmp/out
 change
-+ validator_assert_contains /tmp/validator-tmp/out change
-+ local path=/tmp/validator-tmp/out
-+ local needle=change
-+ grep -Fq -- change /tmp/validator-tmp/out
-+ rm -rf /tmp/validator-tmp

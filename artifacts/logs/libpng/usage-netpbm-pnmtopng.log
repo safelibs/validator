@@ -1,19 +1,5 @@
 $ docker run --rm -t --mount type=bind,src=/tmp/validator-status-libpng-usage-netpbm-pnmtopng,dst=/validator/status validator-libpng-shared bash -lc 'set -euo pipefail
 /validator/tests/_shared/install_override_debs.sh
-exec /validator/tests/_shared/run_library_tests.sh "$@"' validator-testcase libpng usage-netpbm-pnmtopng -- bash -x /validator/tests/libpng/tests/cases/usage/usage-netpbm-pnmtopng.sh
+exec /validator/tests/_shared/run_library_tests.sh "$@"' validator-testcase libpng usage-netpbm-pnmtopng -- bash -c 'PS4=$1; shift; set -x; source "$@"' validator-xtrace '__VALIDATOR_XTRACE__ ' /validator/tests/libpng/tests/cases/usage/usage-netpbm-pnmtopng.sh
 no override packages found; continuing with apt originals
-+ set -euo pipefail
-+ source /validator/tests/_shared/runtime_helpers.sh
-++ set -euo pipefail
-++ mktemp -d
-+ tmpdir=/tmp/validator-tmp
-+ trap 'rm -rf "$tmpdir"' EXIT
-+ png=/validator/tests/libpng/tests/fixtures/samples/contrib/pngsuite/basn2c08.png
-+ validator_require_file /validator/tests/libpng/tests/fixtures/samples/contrib/pngsuite/basn2c08.png
-+ local path=/validator/tests/libpng/tests/fixtures/samples/contrib/pngsuite/basn2c08.png
-+ [[ -f /validator/tests/libpng/tests/fixtures/samples/contrib/pngsuite/basn2c08.png ]]
-+ printf 'P3\n1 1\n255\n255 0 0\n'
-+ pnmtopng /tmp/validator-tmp/in.pnm
-+ file /tmp/validator-tmp/out.png
 /tmp/validator-tmp/out.png: PNG image data, 1 x 1, 1-bit colormap, non-interlaced
-+ rm -rf /tmp/validator-tmp

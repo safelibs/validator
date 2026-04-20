@@ -1,22 +1,6 @@
 $ docker run --rm -t --mount type=bind,src=/tmp/validator-status-libzstd-multi-frame-behavior,dst=/validator/status validator-libzstd-shared bash -lc 'set -euo pipefail
 /validator/tests/_shared/install_override_debs.sh
-exec /validator/tests/_shared/run_library_tests.sh "$@"' validator-testcase libzstd multi-frame-behavior -- bash -x /validator/tests/libzstd/tests/cases/source/multi-frame-behavior.sh
+exec /validator/tests/_shared/run_library_tests.sh "$@"' validator-testcase libzstd multi-frame-behavior -- bash -c 'PS4=$1; shift; set -x; source "$@"' validator-xtrace '__VALIDATOR_XTRACE__ ' /validator/tests/libzstd/tests/cases/source/multi-frame-behavior.sh
 no override packages found; continuing with apt originals
-+ set -euo pipefail
-+ source /validator/tests/_shared/runtime_helpers.sh
-++ set -euo pipefail
-++ mktemp -d
-+ tmpdir=/tmp/validator-tmp
-+ trap 'rm -rf "$tmpdir"' EXIT
-+ printf 'frame one\n'
-+ printf 'frame two\n'
-+ zstd -q -c /tmp/validator-tmp/one
-+ zstd -q -c /tmp/validator-tmp/two
-+ cat /tmp/validator-tmp/one.zst /tmp/validator-tmp/two.zst
-+ zstd -q -dc /tmp/validator-tmp/both.zst
-+ tee /tmp/validator-tmp/out
 frame one
 frame two
-+ cmp /dev/fd/63 /tmp/validator-tmp/out
-++ printf 'frame one\nframe two\n'
-+ rm -rf /tmp/validator-tmp

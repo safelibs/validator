@@ -1,9 +1,7 @@
 $ docker run --rm -t --mount type=bind,src=/tmp/validator-status-libexif-usage-exif-cli-tag-datetime-original,dst=/validator/status validator-libexif-shared bash -lc 'set -euo pipefail
 /validator/tests/_shared/install_override_debs.sh
-exec /validator/tests/_shared/run_library_tests.sh "$@"' validator-testcase libexif usage-exif-cli-tag-datetime-original -- bash -x /validator/tests/libexif/tests/cases/usage/usage-exif-cli-tag-datetime-original.sh
+exec /validator/tests/_shared/run_library_tests.sh "$@"' validator-testcase libexif usage-exif-cli-tag-datetime-original -- bash -c 'PS4=$1; shift; set -x; source "$@"' validator-xtrace '__VALIDATOR_XTRACE__ ' /validator/tests/libexif/tests/cases/usage/usage-exif-cli-tag-datetime-original.sh
 no override packages found; continuing with apt originals
-+ set -euo pipefail
-+ /validator/tests/libexif/tests/cases/usage/usage-exif-cli-common.sh tag-datetime-original
 EXIF entry 'Date and Time (Original)' (0x9003, 'DateTimeOriginal') exists in IFD 'EXIF':
 Tag: 0x9003 ('DateTimeOriginal')
   Format: 2 ('ASCII')

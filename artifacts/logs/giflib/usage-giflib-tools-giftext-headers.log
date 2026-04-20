@@ -1,19 +1,7 @@
 $ docker run --rm -t --mount type=bind,src=/tmp/validator-status-giflib-usage-giflib-tools-giftext-headers,dst=/validator/status validator-giflib-shared bash -lc 'set -euo pipefail
 /validator/tests/_shared/install_override_debs.sh
-exec /validator/tests/_shared/run_library_tests.sh "$@"' validator-testcase giflib usage-giflib-tools-giftext-headers -- bash -x /validator/tests/giflib/tests/cases/usage/usage-giflib-tools-giftext-headers.sh
+exec /validator/tests/_shared/run_library_tests.sh "$@"' validator-testcase giflib usage-giflib-tools-giftext-headers -- bash -c 'PS4=$1; shift; set -x; source "$@"' validator-xtrace '__VALIDATOR_XTRACE__ ' /validator/tests/giflib/tests/cases/usage/usage-giflib-tools-giftext-headers.sh
 no override packages found; continuing with apt originals
-+ set -euo pipefail
-+ source /validator/tests/_shared/runtime_helpers.sh
-++ set -euo pipefail
-++ mktemp -d
-+ tmpdir=/tmp/validator-tmp
-+ trap 'rm -rf "$tmpdir"' EXIT
-+ gif=/validator/tests/giflib/tests/fixtures/samples/pic/treescap.gif
-+ validator_require_file /validator/tests/giflib/tests/fixtures/samples/pic/treescap.gif
-+ local path=/validator/tests/giflib/tests/fixtures/samples/pic/treescap.gif
-+ [[ -f /validator/tests/giflib/tests/fixtures/samples/pic/treescap.gif ]]
-+ giftext /validator/tests/giflib/tests/fixtures/samples/pic/treescap.gif
-+ tee /tmp/validator-tmp/out
 
 /validator/tests/giflib/tests/fixtures/samples/pic/treescap.gif:
 
@@ -29,8 +17,3 @@ Image #1:
 	No Image Color Map.
 
 GIF file terminated normally.
-+ validator_assert_contains /tmp/validator-tmp/out 'Screen Size'
-+ local path=/tmp/validator-tmp/out
-+ local 'needle=Screen Size'
-+ grep -Fq -- 'Screen Size' /tmp/validator-tmp/out
-+ rm -rf /tmp/validator-tmp

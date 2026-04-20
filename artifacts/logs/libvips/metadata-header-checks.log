@@ -1,19 +1,7 @@
 $ docker run --rm -t --mount type=bind,src=/tmp/validator-status-libvips-metadata-header-checks,dst=/validator/status validator-libvips-shared bash -lc 'set -euo pipefail
 /validator/tests/_shared/install_override_debs.sh
-exec /validator/tests/_shared/run_library_tests.sh "$@"' validator-testcase libvips metadata-header-checks -- bash -x /validator/tests/libvips/tests/cases/source/metadata-header-checks.sh
+exec /validator/tests/_shared/run_library_tests.sh "$@"' validator-testcase libvips metadata-header-checks -- bash -c 'PS4=$1; shift; set -x; source "$@"' validator-xtrace '__VALIDATOR_XTRACE__ ' /validator/tests/libvips/tests/cases/source/metadata-header-checks.sh
 no override packages found; continuing with apt originals
-+ set -euo pipefail
-+ source /validator/tests/_shared/runtime_helpers.sh
-++ set -euo pipefail
-++ mktemp -d
-+ tmpdir=/tmp/validator-tmp
-+ trap 'rm -rf "$tmpdir"' EXIT
-+ img=/validator/tests/libvips/tests/fixtures/samples/test/test-suite/images/sample.png
-+ validator_require_file /validator/tests/libvips/tests/fixtures/samples/test/test-suite/images/sample.png
-+ local path=/validator/tests/libvips/tests/fixtures/samples/test/test-suite/images/sample.png
-+ [[ -f /validator/tests/libvips/tests/fixtures/samples/test/test-suite/images/sample.png ]]
-+ vipsheader -a /validator/tests/libvips/tests/fixtures/samples/test/test-suite/images/sample.png
-+ tee /tmp/validator-tmp/h
 /validator/tests/libvips/tests/fixtures/samples/test/test-suite/images/sample.png: 290x442 ushort, 3 bands, rgb16, pngload
 width: 290
 height: 442
@@ -29,9 +17,7 @@ filename: /validator/tests/libvips/tests/fixtures/samples/test/test-suite/images
 vips-loader: pngload
 xmp-data: 17 bytes of binary data
 bits-per-sample: 16
-+ grep -E 'width|height|bands' /tmp/validator-tmp/h
 /validator/tests/libvips/tests/fixtures/samples/test/test-suite/images/sample.png: 290x442 ushort, 3 bands, rgb16, pngload
 width: 290
 height: 442
 bands: 3
-+ rm -rf /tmp/validator-tmp

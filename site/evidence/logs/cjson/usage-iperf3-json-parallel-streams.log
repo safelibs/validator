@@ -1,7 +1,5 @@
 $ docker run --rm -t --mount type=bind,src=/tmp/validator-status-cjson-usage-iperf3-json-parallel-streams,dst=/validator/status validator-cjson-shared bash -lc 'set -euo pipefail
 /validator/tests/_shared/install_override_debs.sh
-exec /validator/tests/_shared/run_library_tests.sh "$@"' validator-testcase cjson usage-iperf3-json-parallel-streams -- bash -x /validator/tests/cjson/tests/cases/usage/usage-iperf3-json-parallel-streams.sh
+exec /validator/tests/_shared/run_library_tests.sh "$@"' validator-testcase cjson usage-iperf3-json-parallel-streams -- bash -c 'PS4=$1; shift; set -x; source "$@"' validator-xtrace '__VALIDATOR_XTRACE__ ' /validator/tests/cjson/tests/cases/usage/usage-iperf3-json-parallel-streams.sh
 no override packages found; continuing with apt originals
-+ set -euo pipefail
-+ /validator/tests/cjson/tests/cases/usage/usage-iperf3-json-common.sh parallel-streams
 cpu_utilization_percent,receiver_tcp_congestion,sender_tcp_congestion,streams,sum_received,sum_sent

@@ -1,7 +1,5 @@
 {"version": 2, "width": 120, "height": 40, "timestamp": 0, "env": {"TERM": "xterm-256color", "SHELL": "/bin/bash"}}
-[0.1550582400523126, "o", "no override packages found; continuing with apt originals\r\r\n"]
-[0.15631977596785873, "o", "+ set -euo pipefail\r\r\n+ source /validator/tests/_shared/runtime_helpers.sh\r\r\n++ set -euo pipefail\r\r\n++ mktemp -d\r\r\n"]
-[0.15933360299095511, "o", "+ tmpdir=/tmp/validator-tmp\r\r\n+ trap 'rm -rf \"$tmpdir\"' EXIT\r\r\n+ cat\r\r\n"]
-[0.1598312749993056, "o", "+ gcc /tmp/validator-tmp/t.c -o /tmp/validator-tmp/t -lyaml\r\r\n"]
-[0.18653871503192931, "o", "+ /tmp/validator-tmp/t\r\r\n"]
-[0.18696058599743992, "o", "aliases=1\r\r\n+ rm -rf /tmp/validator-tmp\r\r\n"]
+[0.0, "o", "no override packages found; continuing with apt originals\r"]
+[0.001, "o", "\r\n"]
+[0.002, "o", "aliases=1\r"]
+[0.003, "o", "\r\n"]

@@ -1,7 +1,5 @@
 {"version": 2, "width": 120, "height": 40, "timestamp": 0, "env": {"TERM": "xterm-256color", "SHELL": "/bin/bash"}}
-[0.10191788908559829, "o", "no override packages found; continuing with apt originals\r\r\n"]
-[0.10363874607719481, "o", "+ set -euo pipefail\r\r\n+ source /validator/tests/_shared/runtime_helpers.sh\r\r\n++ set -euo pipefail\r\r\n++ mktemp -d\r\r\n"]
-[0.10498556506354362, "o", "+ tmpdir=/tmp/validator-tmp\r\r\n+ trap 'rm -rf \"$tmpdir\"' EXIT\r\r\n+ gif=/validator/tests/giflib/tests/fixtures/samples/pic/fire.gif\r\r\n+ expected=/validator/tests/giflib/tests/fixtures/samples/tests/fire.rgb\r\r\n+ validator_require_file /validator/tests/giflib/tests/fixtures/samples/pic/fire.gif\r\r\n+ local path=/validator/tests/giflib/tests/fixtures/samples/pic/fire.gif\r\r\n+ [[ -f /validator/tests/giflib/tests/fixtures/samples/pic/fire.gif ]]\r\r\n+ validator_require_file /validator/tests/giflib/tests/fixtures/samples/tests/fire.rgb\r\r\n+ local path=/validator/tests/giflib/tests/fixtures/samples/tests/fire.rgb\r\r\n+ [[ -f /validator/tests/giflib/tests/fixtures/samples/tests/fire.rgb ]]\r\r\n+ gif2rgb -1 -o /tmp/validator-tmp/fire.rgb /validator/tests/giflib/tests/fixtures/samples/pic/fire.gif\r\r\n"]
-[0.10602381406351924, "o", "+ cmp /validator/tests/giflib/tests/fixtures/samples/tests/fire.rgb /tmp/validator-tmp/fire.rgb\r\r\n"]
-[0.10658988798968494, "o", "+ wc -c /tmp/validator-tmp/fire.rgb\r\r\n"]
-[0.10708364809397608, "o", "5400 /tmp/validator-tmp/fire.rgb\r\r\n+ rm -rf /tmp/validator-tmp\r\r\n"]
+[0.0, "o", "no override packages found; continuing with apt originals\r"]
+[0.001, "o", "\r\n"]
+[0.002, "o", "5400 /tmp/validator-tmp/fire.rgb\r"]
+[0.003, "o", "\r\n"]

@@ -1,23 +1,6 @@
 $ docker run --rm -t --mount type=bind,src=/tmp/validator-status-liblzma-usage-libarchive-tools-xz-large-file,dst=/validator/status validator-liblzma-shared bash -lc 'set -euo pipefail
 /validator/tests/_shared/install_override_debs.sh
-exec /validator/tests/_shared/run_library_tests.sh "$@"' validator-testcase liblzma usage-libarchive-tools-xz-large-file -- bash -x /validator/tests/liblzma/tests/cases/usage/usage-libarchive-tools-xz-large-file.sh
+exec /validator/tests/_shared/run_library_tests.sh "$@"' validator-testcase liblzma usage-libarchive-tools-xz-large-file -- bash -c 'PS4=$1; shift; set -x; source "$@"' validator-xtrace '__VALIDATOR_XTRACE__ ' /validator/tests/liblzma/tests/cases/usage/usage-libarchive-tools-xz-large-file.sh
 no override packages found; continuing with apt originals
-+ set -euo pipefail
-+ source /validator/tests/_shared/runtime_helpers.sh
-++ set -euo pipefail
-++ mktemp -d
-+ tmpdir=/tmp/validator-tmp
-+ trap 'rm -rf "$tmpdir"' EXIT
-+ mkdir -p /tmp/validator-tmp/in /tmp/validator-tmp/out
-+ printf 'large-file\n'
-+ bsdtar -cJf /tmp/validator-tmp/a.tar.xz -C /tmp/validator-tmp/in .
-+ bsdtar -tf /tmp/validator-tmp/a.tar.xz
-+ tee /tmp/validator-tmp/list
 ./
 ./payload.txt
-+ bsdtar -xf /tmp/validator-tmp/a.tar.xz -C /tmp/validator-tmp/out
-+ validator_assert_contains /tmp/validator-tmp/out/payload.txt large-file
-+ local path=/tmp/validator-tmp/out/payload.txt
-+ local needle=large-file
-+ grep -Fq -- large-file /tmp/validator-tmp/out/payload.txt
-+ rm -rf /tmp/validator-tmp

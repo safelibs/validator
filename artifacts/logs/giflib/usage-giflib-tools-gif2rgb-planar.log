@@ -1,30 +1,8 @@
 $ docker run --rm -t --mount type=bind,src=/tmp/validator-status-giflib-usage-giflib-tools-gif2rgb-planar,dst=/validator/status validator-giflib-shared bash -lc 'set -euo pipefail
 /validator/tests/_shared/install_override_debs.sh
-exec /validator/tests/_shared/run_library_tests.sh "$@"' validator-testcase giflib usage-giflib-tools-gif2rgb-planar -- bash -x /validator/tests/giflib/tests/cases/usage/usage-giflib-tools-gif2rgb-planar.sh
+exec /validator/tests/_shared/run_library_tests.sh "$@"' validator-testcase giflib usage-giflib-tools-gif2rgb-planar -- bash -c 'PS4=$1; shift; set -x; source "$@"' validator-xtrace '__VALIDATOR_XTRACE__ ' /validator/tests/giflib/tests/cases/usage/usage-giflib-tools-gif2rgb-planar.sh
 no override packages found; continuing with apt originals
-+ set -euo pipefail
-+ source /validator/tests/_shared/runtime_helpers.sh
-++ set -euo pipefail
-++ mktemp -d
-+ tmpdir=/tmp/validator-tmp
-+ trap 'rm -rf "$tmpdir"' EXIT
-+ gif=/validator/tests/giflib/tests/fixtures/samples/pic/treescap.gif
-+ validator_require_file /validator/tests/giflib/tests/fixtures/samples/pic/treescap.gif
-+ local path=/validator/tests/giflib/tests/fixtures/samples/pic/treescap.gif
-+ [[ -f /validator/tests/giflib/tests/fixtures/samples/pic/treescap.gif ]]
-+ gif2rgb -o /tmp/validator-tmp/planes /validator/tests/giflib/tests/fixtures/samples/pic/treescap.gif
-+ validator_require_file /tmp/validator-tmp/planes.R
-+ local path=/tmp/validator-tmp/planes.R
-+ [[ -f /tmp/validator-tmp/planes.R ]]
-+ validator_require_file /tmp/validator-tmp/planes.G
-+ local path=/tmp/validator-tmp/planes.G
-+ [[ -f /tmp/validator-tmp/planes.G ]]
-+ validator_require_file /tmp/validator-tmp/planes.B
-+ local path=/tmp/validator-tmp/planes.B
-+ [[ -f /tmp/validator-tmp/planes.B ]]
-+ wc -c /tmp/validator-tmp/planes.R /tmp/validator-tmp/planes.G /tmp/validator-tmp/planes.B
 1600 /tmp/validator-tmp/planes.R
 1600 /tmp/validator-tmp/planes.G
 1600 /tmp/validator-tmp/planes.B
 4800 total
-+ rm -rf /tmp/validator-tmp

@@ -1,17 +1,5 @@
 $ docker run --rm -t --mount type=bind,src=/tmp/validator-status-libbz2-cli-compress-decompress,dst=/validator/status validator-libbz2-shared bash -lc 'set -euo pipefail
 /validator/tests/_shared/install_override_debs.sh
-exec /validator/tests/_shared/run_library_tests.sh "$@"' validator-testcase libbz2 cli-compress-decompress -- bash -x /validator/tests/libbz2/tests/cases/source/cli-compress-decompress.sh
+exec /validator/tests/_shared/run_library_tests.sh "$@"' validator-testcase libbz2 cli-compress-decompress -- bash -c 'PS4=$1; shift; set -x; source "$@"' validator-xtrace '__VALIDATOR_XTRACE__ ' /validator/tests/libbz2/tests/cases/source/cli-compress-decompress.sh
 no override packages found; continuing with apt originals
-+ set -euo pipefail
-+ source /validator/tests/_shared/runtime_helpers.sh
-++ set -euo pipefail
-++ mktemp -d
-+ tmpdir=/tmp/validator-tmp
-+ trap 'rm -rf "$tmpdir"' EXIT
-+ printf 'bzip2 source case\n'
-+ bzip2 -c /tmp/validator-tmp/plain
-+ bunzip2 -c /tmp/validator-tmp/plain.bz2
-+ cmp /tmp/validator-tmp/plain /tmp/validator-tmp/out
-+ ls -l /tmp/validator-tmp/plain.bz2
 -rw-r--r-- 1 root root 58 Jan 01 00:00 /tmp/validator-tmp/plain.bz2
-+ rm -rf /tmp/validator-tmp

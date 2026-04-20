@@ -151,7 +151,17 @@ class RunMatrixTests(unittest.TestCase):
         )
 
         separator = command.index("--")
-        self.assertEqual(command[separator + 1 :], ["bash", "-x", "/validator/tests/demo/tests/run.sh"])
+        self.assertEqual(
+            command[separator + 1 :],
+            [
+                "bash",
+                "-c",
+                'PS4=$1; shift; set -x; source "$@"',
+                "validator-xtrace",
+                run_matrix.VALIDATOR_XTRACE_PREFIX,
+                "/validator/tests/demo/tests/run.sh",
+            ],
+        )
 
     def test_record_casts_does_not_duplicate_existing_xtrace(self) -> None:
         root = self.run_root()
@@ -167,7 +177,17 @@ class RunMatrixTests(unittest.TestCase):
         )
 
         separator = command.index("--")
-        self.assertEqual(command[separator + 1 :], ["bash", "-x", "/validator/tests/demo/tests/run.sh"])
+        self.assertEqual(
+            command[separator + 1 :],
+            [
+                "bash",
+                "-c",
+                'PS4=$1; shift; set -x; source "$@"',
+                "validator-xtrace",
+                run_matrix.VALIDATOR_XTRACE_PREFIX,
+                "/validator/tests/demo/tests/run.sh",
+            ],
+        )
 
     def test_override_root_layout_and_installed_marker(self) -> None:
         root = self.run_root()
@@ -269,7 +289,20 @@ class RunMatrixTests(unittest.TestCase):
         self.assertTrue(outcome.timed_out)
         self.assertEqual(outcome.exit_code, 124)
 
-    def test_cast_recording_preserves_stream_timing(self) -> None:
+    def test_recorded_output_strips_validator_xtrace_markers(self) -> None:
+        text = (
+            "__VALIDATOR_XTRACE__ source /tmp/case.sh\r\n"
+            "payload"
+            "___VALIDATOR_XTRACE__ validator_assert_contains /tmp/out payload\r\n"
+            "done\r\n"
+        )
+
+        self.assertEqual(
+            run_matrix.normalize_recorded_output_text(text),
+            "payload\r\n" "done\r\n",
+        )
+
+    def test_cast_recording_uses_deterministic_stream_order(self) -> None:
         root = self.run_root()
         log_path = root / "timed.log"
         cast_path = root / "timed.cast"
@@ -297,8 +330,13 @@ class RunMatrixTests(unittest.TestCase):
         self.assertIn("second", "".join(event[2] for event in events))
 
         timestamps = [float(event[0]) for event in events]
-        self.assertEqual(timestamps, sorted(timestamps))
-        self.assertGreater(timestamps[-1], timestamps[0] + 0.1)
+        self.assertEqual(
+            timestamps,
+            [
+                round(index * run_matrix.DETERMINISTIC_CAST_EVENT_INTERVAL_SECONDS, 6)
+                for index in range(len(events))
+            ],
+        )
 
     def test_cleanup_library_images_removes_cached_tags(self) -> None:
         states = {

@@ -1,20 +1,5 @@
 $ docker run --rm -t --mount type=bind,src=/tmp/validator-status-libexif-maker-note-handling,dst=/validator/status validator-libexif-shared bash -lc 'set -euo pipefail
 /validator/tests/_shared/install_override_debs.sh
-exec /validator/tests/_shared/run_library_tests.sh "$@"' validator-testcase libexif maker-note-handling -- bash -x /validator/tests/libexif/tests/cases/source/maker-note-handling.sh
+exec /validator/tests/_shared/run_library_tests.sh "$@"' validator-testcase libexif maker-note-handling -- bash -c 'PS4=$1; shift; set -x; source "$@"' validator-xtrace '__VALIDATOR_XTRACE__ ' /validator/tests/libexif/tests/cases/source/maker-note-handling.sh
 no override packages found; continuing with apt originals
-+ set -euo pipefail
-+ source /validator/tests/_shared/runtime_helpers.sh
-++ set -euo pipefail
-++ mktemp -d
-+ tmpdir=/tmp/validator-tmp
-+ trap 'rm -rf "$tmpdir"' EXIT
-+ img=/validator/tests/libexif/tests/fixtures/samples/test/testdata/canon_makernote_variant_1.jpg
-+ validator_require_file /validator/tests/libexif/tests/fixtures/samples/test/testdata/canon_makernote_variant_1.jpg
-+ local path=/validator/tests/libexif/tests/fixtures/samples/test/testdata/canon_makernote_variant_1.jpg
-+ [[ -f /validator/tests/libexif/tests/fixtures/samples/test/testdata/canon_makernote_variant_1.jpg ]]
-+ cat
-++ pkg-config --cflags --libs libexif
-+ gcc /tmp/validator-tmp/t.c -o /tmp/validator-tmp/t -lexif
-+ /tmp/validator-tmp/t /validator/tests/libexif/tests/fixtures/samples/test/testdata/canon_makernote_variant_1.jpg
 maker-note-size=904
-+ rm -rf /tmp/validator-tmp

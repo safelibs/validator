@@ -1,8 +1,5 @@
 {"version": 2, "width": 120, "height": 40, "timestamp": 0, "env": {"TERM": "xterm-256color", "SHELL": "/bin/bash"}}
-[0.10847823298536241, "o", "no override packages found; continuing with apt originals\r\r\n"]
-[0.11004125792533159, "o", "+ set -euo pipefail\r\r\n+ source /validator/tests/_shared/runtime_helpers.sh\r\r\n++ set -euo pipefail\r\r\n"]
-[0.11022329400293529, "o", "++ mktemp -d\r\r\n"]
-[0.11131124501116574, "o", "+ tmpdir=/tmp/validator-tmp\r\r\n+ trap 'rm -rf \"$tmpdir\"' EXIT\r\r\n+ printf 'pipe payload\\n'\r\r\n"]
-[0.11160122591536492, "o", "+ bzip2 -c\r\r\n+ bzip2 -dc\r\r\n+ tee /tmp/validator-tmp/out\r\r\n"]
-[0.11199343600310385, "o", "pipe payload\r\r\n+ validator_assert_contains /tmp/validator-tmp/out 'pipe payload'\r\r\n+ local path=/tmp/validator-tmp/out\r\r\n+ local 'needle=pipe payload'\r\r\n+ grep -Fq -- 'pipe payload' /tmp/validator-tmp/out\r\r\n"]
-[0.1125967790139839, "o", "+ rm -rf /tmp/validator-tmp\r\r\n"]
+[0.0, "o", "no override packages found; continuing with apt originals\r"]
+[0.001, "o", "\r\n"]
+[0.002, "o", "pipe payload\r"]
+[0.003, "o", "\r\n"]

@@ -1,7 +1,5 @@
 {"version": 2, "width": 120, "height": 40, "timestamp": 0, "env": {"TERM": "xterm-256color", "SHELL": "/bin/bash"}}
-[0.10423304897267371, "o", "no override packages found; continuing with apt originals\r\r\n"]
-[0.1057227390119806, "o", "+ set -euo pipefail\r\r\n+ source /validator/tests/_shared/runtime_helpers.sh\r\r\n++ set -euo pipefail\r\r\n"]
-[0.10597941500600427, "o", "++ mktemp -d\r\r\n"]
-[0.10707634699065238, "o", "+ tmpdir=/tmp/validator-tmp\r\r\n+ trap 'rm -rf \"$tmpdir\"' EXIT\r\r\n+ Rscript -e 'library(sodium); value <- hash(charToRaw(\"payload\")); cat(length(value), \"\\n\")'\r\r\n"]
-[0.20564589102286845, "o", "32 \r\r\n"]
-[0.21072738897055387, "o", "+ rm -rf /tmp/validator-tmp\r\r\n"]
+[0.0, "o", "no override packages found; continuing with apt originals\r"]
+[0.001, "o", "\r\n"]
+[0.002, "o", "32 \r"]
+[0.003, "o", "\r\n"]

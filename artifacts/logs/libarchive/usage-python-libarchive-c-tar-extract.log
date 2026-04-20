@@ -1,7 +1,5 @@
 $ docker run --rm -t --mount type=bind,src=/tmp/validator-status-libarchive-usage-python-libarchive-c-tar-extract,dst=/validator/status validator-libarchive-shared bash -lc 'set -euo pipefail
 /validator/tests/_shared/install_override_debs.sh
-exec /validator/tests/_shared/run_library_tests.sh "$@"' validator-testcase libarchive usage-python-libarchive-c-tar-extract -- bash -x /validator/tests/libarchive/tests/cases/usage/usage-python-libarchive-c-tar-extract.sh
+exec /validator/tests/_shared/run_library_tests.sh "$@"' validator-testcase libarchive usage-python-libarchive-c-tar-extract -- bash -c 'PS4=$1; shift; set -x; source "$@"' validator-xtrace '__VALIDATOR_XTRACE__ ' /validator/tests/libarchive/tests/cases/usage/usage-python-libarchive-c-tar-extract.sh
 no override packages found; continuing with apt originals
-+ set -euo pipefail
-+ /validator/tests/libarchive/tests/cases/usage/usage-python-libarchive-c-common.sh tar-extract
 alpha

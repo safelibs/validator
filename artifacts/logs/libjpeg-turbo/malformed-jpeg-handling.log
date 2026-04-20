@@ -1,15 +1,5 @@
 $ docker run --rm -t --mount type=bind,src=/tmp/validator-status-libjpeg-turbo-malformed-jpeg-handling,dst=/validator/status validator-libjpeg-turbo-shared bash -lc 'set -euo pipefail
 /validator/tests/_shared/install_override_debs.sh
-exec /validator/tests/_shared/run_library_tests.sh "$@"' validator-testcase libjpeg-turbo malformed-jpeg-handling -- bash -x /validator/tests/libjpeg-turbo/tests/cases/source/malformed-jpeg-handling.sh
+exec /validator/tests/_shared/run_library_tests.sh "$@"' validator-testcase libjpeg-turbo malformed-jpeg-handling -- bash -c 'PS4=$1; shift; set -x; source "$@"' validator-xtrace '__VALIDATOR_XTRACE__ ' /validator/tests/libjpeg-turbo/tests/cases/source/malformed-jpeg-handling.sh
 no override packages found; continuing with apt originals
-+ set -euo pipefail
-+ source /validator/tests/_shared/runtime_helpers.sh
-++ set -euo pipefail
-++ mktemp -d
-+ tmpdir=/tmp/validator-tmp
-+ trap 'rm -rf "$tmpdir"' EXIT
-+ printf 'not jpeg\n'
-+ djpeg /tmp/validator-tmp/bad.jpg
-+ cat /tmp/validator-tmp/log
 Not a JPEG file: starts with 0x6e 0x6f
-+ rm -rf /tmp/validator-tmp

@@ -1,15 +1,5 @@
 $ docker run --rm -t --mount type=bind,src=/tmp/validator-status-libtiff-c-api-read-write,dst=/validator/status validator-libtiff-shared bash -lc 'set -euo pipefail
 /validator/tests/_shared/install_override_debs.sh
-exec /validator/tests/_shared/run_library_tests.sh "$@"' validator-testcase libtiff c-api-read-write -- bash -x /validator/tests/libtiff/tests/cases/source/c-api-read-write.sh
+exec /validator/tests/_shared/run_library_tests.sh "$@"' validator-testcase libtiff c-api-read-write -- bash -c 'PS4=$1; shift; set -x; source "$@"' validator-xtrace '__VALIDATOR_XTRACE__ ' /validator/tests/libtiff/tests/cases/source/c-api-read-write.sh
 no override packages found; continuing with apt originals
-+ set -euo pipefail
-+ source /validator/tests/_shared/runtime_helpers.sh
-++ set -euo pipefail
-++ mktemp -d
-+ tmpdir=/tmp/validator-tmp
-+ trap 'rm -rf "$tmpdir"' EXIT
-+ cat
-+ gcc /tmp/validator-tmp/t.c -o /tmp/validator-tmp/t -ltiff
-+ /tmp/validator-tmp/t /tmp/validator-tmp/out.tiff
 width=1 height=1
-+ rm -rf /tmp/validator-tmp

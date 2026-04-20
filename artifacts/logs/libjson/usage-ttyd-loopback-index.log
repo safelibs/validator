@@ -1,30 +1,4 @@
 $ docker run --rm -t --mount type=bind,src=/tmp/validator-status-libjson-usage-ttyd-loopback-index,dst=/validator/status validator-libjson-shared bash -lc 'set -euo pipefail
 /validator/tests/_shared/install_override_debs.sh
-exec /validator/tests/_shared/run_library_tests.sh "$@"' validator-testcase libjson usage-ttyd-loopback-index -- bash -x /validator/tests/libjson/tests/cases/usage/usage-ttyd-loopback-index.sh
+exec /validator/tests/_shared/run_library_tests.sh "$@"' validator-testcase libjson usage-ttyd-loopback-index -- bash -c 'PS4=$1; shift; set -x; source "$@"' validator-xtrace '__VALIDATOR_XTRACE__ ' /validator/tests/libjson/tests/cases/usage/usage-ttyd-loopback-index.sh
 no override packages found; continuing with apt originals
-+ set -euo pipefail
-+ source /validator/tests/_shared/runtime_helpers.sh
-++ set -euo pipefail
-++ mktemp -d
-+ tmpdir=/tmp/validator-tmp
-+ trap 'rm -rf "$tmpdir"' EXIT
-+ port=17681
-+ pid=11
-+ trap 'kill "$pid" 2>/dev/null || true; rm -rf "$tmpdir"' EXIT
-+ ttyd -i 127.0.0.1 -p 17681 bash -lc 'printf validator-ttyd'
-++ seq 1 40
-+ for _ in $(seq 1 40)
-+ curl -fsS http://127.0.0.1:17681/
-+ break
-+ validator_require_file /tmp/validator-tmp/page.html
-+ local path=/tmp/validator-tmp/page.html
-+ [[ -f /tmp/validator-tmp/page.html ]]
-+ validator_assert_contains /tmp/validator-tmp/page.html ttyd
-+ local path=/tmp/validator-tmp/page.html
-+ local needle=ttyd
-+ grep -Fq -- ttyd /tmp/validator-tmp/page.html
-+ kill 11
-+ wait 11
-+ kill 11
-+ true
-+ rm -rf /tmp/validator-tmp

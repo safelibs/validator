@@ -1,18 +1,7 @@
 $ docker run --rm -t --mount type=bind,src=/tmp/validator-status-libzstd-zstd-compress-decompress,dst=/validator/status validator-libzstd-shared bash -lc 'set -euo pipefail
 /validator/tests/_shared/install_override_debs.sh
-exec /validator/tests/_shared/run_library_tests.sh "$@"' validator-testcase libzstd zstd-compress-decompress -- bash -x /validator/tests/libzstd/tests/cases/source/zstd-compress-decompress.sh
+exec /validator/tests/_shared/run_library_tests.sh "$@"' validator-testcase libzstd zstd-compress-decompress -- bash -c 'PS4=$1; shift; set -x; source "$@"' validator-xtrace '__VALIDATOR_XTRACE__ ' /validator/tests/libzstd/tests/cases/source/zstd-compress-decompress.sh
 no override packages found; continuing with apt originals
-+ set -euo pipefail
-+ source /validator/tests/_shared/runtime_helpers.sh
-++ set -euo pipefail
-++ mktemp -d
-+ tmpdir=/tmp/validator-tmp
-+ trap 'rm -rf "$tmpdir"' EXIT
-+ printf 'zstd payload\n'
-+ zstd -q -c /tmp/validator-tmp/plain
-+ zstd -q -dc /tmp/validator-tmp/plain.zst
-+ cmp /tmp/validator-tmp/plain /tmp/validator-tmp/out
-+ zstd -lv /tmp/validator-tmp/plain.zst
 *** Zstandard CLI (64-bit) v1.5.5, by Yann Collet ***
 /tmp/validator-tmp/plain.zst 
 # Zstandard Frames: 1
@@ -23,4 +12,3 @@ Decompressed Size: 13 B (13 B)
 Ratio: 0.5000
 Check: XXH64 ddbf013d
 
-+ rm -rf /tmp/validator-tmp

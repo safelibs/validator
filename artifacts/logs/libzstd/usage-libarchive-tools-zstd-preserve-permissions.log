@@ -1,19 +1,5 @@
 $ docker run --rm -t --mount type=bind,src=/tmp/validator-status-libzstd-usage-libarchive-tools-zstd-preserve-permissions,dst=/validator/status validator-libzstd-shared bash -lc 'set -euo pipefail
 /validator/tests/_shared/install_override_debs.sh
-exec /validator/tests/_shared/run_library_tests.sh "$@"' validator-testcase libzstd usage-libarchive-tools-zstd-preserve-permissions -- bash -x /validator/tests/libzstd/tests/cases/usage/usage-libarchive-tools-zstd-preserve-permissions.sh
+exec /validator/tests/_shared/run_library_tests.sh "$@"' validator-testcase libzstd usage-libarchive-tools-zstd-preserve-permissions -- bash -c 'PS4=$1; shift; set -x; source "$@"' validator-xtrace '__VALIDATOR_XTRACE__ ' /validator/tests/libzstd/tests/cases/usage/usage-libarchive-tools-zstd-preserve-permissions.sh
 no override packages found; continuing with apt originals
-+ set -euo pipefail
-+ source /validator/tests/_shared/runtime_helpers.sh
-++ set -euo pipefail
-++ mktemp -d
-+ tmpdir=/tmp/validator-tmp
-+ trap 'rm -rf "$tmpdir"' EXIT
-+ mkdir -p /tmp/validator-tmp/in /tmp/validator-tmp/out
-+ printf '#!/usr/bin/env sh\nprintf zstd-permissions\n'
-+ chmod 755 /tmp/validator-tmp/in/run.sh
-+ bsdtar --zstd -cf /tmp/validator-tmp/a.tar.zstd -C /tmp/validator-tmp/in run.sh
-+ bsdtar -xf /tmp/validator-tmp/a.tar.zstd -C /tmp/validator-tmp/out
-+ test -x /tmp/validator-tmp/out/run.sh
-+ printf 'zstd preserve permissions ok\n'
 zstd preserve permissions ok
-+ rm -rf /tmp/validator-tmp

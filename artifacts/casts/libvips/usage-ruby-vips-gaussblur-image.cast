@@ -1,4 +1,5 @@
 {"version": 2, "width": 120, "height": 40, "timestamp": 0, "env": {"TERM": "xterm-256color", "SHELL": "/bin/bash"}}
-[0.10284811398014426, "o", "no override packages found; continuing with apt originals\r\r\n"]
-[0.1045918669551611, "o", "+ set -euo pipefail\r\r\n+ source /validator/tests/_shared/runtime_helpers.sh\r\r\n++ set -euo pipefail\r\r\n+ ruby -rvips\r\r\n"]
-[0.16789783991407603, "o", "gaussblur 8x8 avg=64.0\r\r\n"]
+[0.0, "o", "no override packages found; continuing with apt originals\r"]
+[0.001, "o", "\r\n"]
+[0.002, "o", "gaussblur 8x8 avg=64.0\r"]
+[0.003, "o", "\r\n"]

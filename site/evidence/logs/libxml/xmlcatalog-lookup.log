@@ -1,18 +1,6 @@
 $ docker run --rm -t --mount type=bind,src=/tmp/validator-status-libxml-xmlcatalog-lookup,dst=/validator/status validator-libxml-shared bash -lc 'set -euo pipefail
 /validator/tests/_shared/install_override_debs.sh
-exec /validator/tests/_shared/run_library_tests.sh "$@"' validator-testcase libxml xmlcatalog-lookup -- bash -x /validator/tests/libxml/tests/cases/source/xmlcatalog-lookup.sh
+exec /validator/tests/_shared/run_library_tests.sh "$@"' validator-testcase libxml xmlcatalog-lookup -- bash -c 'PS4=$1; shift; set -x; source "$@"' validator-xtrace '__VALIDATOR_XTRACE__ ' /validator/tests/libxml/tests/cases/source/xmlcatalog-lookup.sh
 no override packages found; continuing with apt originals
-+ set -euo pipefail
-+ source /validator/tests/_shared/runtime_helpers.sh
-++ set -euo pipefail
-++ mktemp -d
-+ tmpdir=/tmp/validator-tmp
-+ trap 'rm -rf "$tmpdir"' EXIT
-+ printf '<!ELEMENT root EMPTY>\n'
-+ cat
-+ xmlcatalog /tmp/validator-tmp/catalog.xml '-//Example//DTD Demo//EN'
-+ tee /tmp/validator-tmp/lookup
 /tmp/validator-tmp/demo.dtd
-+ grep demo.dtd /tmp/validator-tmp/lookup
 /tmp/validator-tmp/demo.dtd
-+ rm -rf /tmp/validator-tmp

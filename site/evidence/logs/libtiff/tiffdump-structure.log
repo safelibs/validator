@@ -1,19 +1,7 @@
 $ docker run --rm -t --mount type=bind,src=/tmp/validator-status-libtiff-tiffdump-structure,dst=/validator/status validator-libtiff-shared bash -lc 'set -euo pipefail
 /validator/tests/_shared/install_override_debs.sh
-exec /validator/tests/_shared/run_library_tests.sh "$@"' validator-testcase libtiff tiffdump-structure -- bash -x /validator/tests/libtiff/tests/cases/source/tiffdump-structure.sh
+exec /validator/tests/_shared/run_library_tests.sh "$@"' validator-testcase libtiff tiffdump-structure -- bash -c 'PS4=$1; shift; set -x; source "$@"' validator-xtrace '__VALIDATOR_XTRACE__ ' /validator/tests/libtiff/tests/cases/source/tiffdump-structure.sh
 no override packages found; continuing with apt originals
-+ set -euo pipefail
-+ source /validator/tests/_shared/runtime_helpers.sh
-++ set -euo pipefail
-++ mktemp -d
-+ tmpdir=/tmp/validator-tmp
-+ trap 'rm -rf "$tmpdir"' EXIT
-+ t=/validator/tests/libtiff/tests/fixtures/samples/test/images/minisblack-1c-8b.tiff
-+ validator_require_file /validator/tests/libtiff/tests/fixtures/samples/test/images/minisblack-1c-8b.tiff
-+ local path=/validator/tests/libtiff/tests/fixtures/samples/test/images/minisblack-1c-8b.tiff
-+ [[ -f /validator/tests/libtiff/tests/fixtures/samples/test/images/minisblack-1c-8b.tiff ]]
-+ tiffdump /validator/tests/libtiff/tests/fixtures/samples/test/images/minisblack-1c-8b.tiff
-+ tee /tmp/validator-tmp/dump
 /validator/tests/libtiff/tests/fixtures/samples/test/images/minisblack-1c-8b.tiff:
 Magic: 0x4d4d <big-endian> Version: 0x2a <ClassicTIFF>
 Directory 0: offset 23716 (0x5ca4) next 0 (0)
@@ -31,7 +19,5 @@ PlanarConfig (284) SHORT (3) 1<1>
 PageNumber (297) SHORT (3) 2<0 1>
 Software (305) ASCII (2) 65<GraphicsMagick 1.2 unrel ...>
 SampleFormat (339) SHORT (3) 1<1>
-+ grep -Ei 'ImageWidth|ImageLength' /tmp/validator-tmp/dump
 ImageWidth (256) SHORT (3) 1<157>
 ImageLength (257) SHORT (3) 1<151>
-+ rm -rf /tmp/validator-tmp

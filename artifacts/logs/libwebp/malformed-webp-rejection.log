@@ -1,16 +1,6 @@
 $ docker run --rm -t --mount type=bind,src=/tmp/validator-status-libwebp-malformed-webp-rejection,dst=/validator/status validator-libwebp-shared bash -lc 'set -euo pipefail
 /validator/tests/_shared/install_override_debs.sh
-exec /validator/tests/_shared/run_library_tests.sh "$@"' validator-testcase libwebp malformed-webp-rejection -- bash -x /validator/tests/libwebp/tests/cases/source/malformed-webp-rejection.sh
+exec /validator/tests/_shared/run_library_tests.sh "$@"' validator-testcase libwebp malformed-webp-rejection -- bash -c 'PS4=$1; shift; set -x; source "$@"' validator-xtrace '__VALIDATOR_XTRACE__ ' /validator/tests/libwebp/tests/cases/source/malformed-webp-rejection.sh
 no override packages found; continuing with apt originals
-+ set -euo pipefail
-+ source /validator/tests/_shared/runtime_helpers.sh
-++ set -euo pipefail
-++ mktemp -d
-+ tmpdir=/tmp/validator-tmp
-+ trap 'rm -rf "$tmpdir"' EXIT
-+ printf 'not webp\n'
-+ dwebp /tmp/validator-tmp/bad.webp -o /tmp/validator-tmp/out.ppm
-+ cat /tmp/validator-tmp/log
 Decoding of /tmp/validator-tmp/bad.webp failed.
 Status: 7(NOT_ENOUGH_DATA)
-+ rm -rf /tmp/validator-tmp

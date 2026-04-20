@@ -1,9 +1,5 @@
 $ docker run --rm -t --mount type=bind,src=/tmp/validator-status-libvips-usage-ruby-vips-gaussblur-image,dst=/validator/status validator-libvips-shared bash -lc 'set -euo pipefail
 /validator/tests/_shared/install_override_debs.sh
-exec /validator/tests/_shared/run_library_tests.sh "$@"' validator-testcase libvips usage-ruby-vips-gaussblur-image -- bash -x /validator/tests/libvips/tests/cases/usage/usage-ruby-vips-gaussblur-image.sh
+exec /validator/tests/_shared/run_library_tests.sh "$@"' validator-testcase libvips usage-ruby-vips-gaussblur-image -- bash -c 'PS4=$1; shift; set -x; source "$@"' validator-xtrace '__VALIDATOR_XTRACE__ ' /validator/tests/libvips/tests/cases/usage/usage-ruby-vips-gaussblur-image.sh
 no override packages found; continuing with apt originals
-+ set -euo pipefail
-+ source /validator/tests/_shared/runtime_helpers.sh
-++ set -euo pipefail
-+ ruby -rvips
 gaussblur 8x8 avg=64.0

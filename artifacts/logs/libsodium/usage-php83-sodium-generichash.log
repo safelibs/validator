@@ -1,13 +1,5 @@
 $ docker run --rm -t --mount type=bind,src=/tmp/validator-status-libsodium-usage-php83-sodium-generichash,dst=/validator/status validator-libsodium-shared bash -lc 'set -euo pipefail
 /validator/tests/_shared/install_override_debs.sh
-exec /validator/tests/_shared/run_library_tests.sh "$@"' validator-testcase libsodium usage-php83-sodium-generichash -- bash -x /validator/tests/libsodium/tests/cases/usage/usage-php83-sodium-generichash.sh
+exec /validator/tests/_shared/run_library_tests.sh "$@"' validator-testcase libsodium usage-php83-sodium-generichash -- bash -c 'PS4=$1; shift; set -x; source "$@"' validator-xtrace '__VALIDATOR_XTRACE__ ' /validator/tests/libsodium/tests/cases/usage/usage-php83-sodium-generichash.sh
 no override packages found; continuing with apt originals
-+ set -euo pipefail
-+ source /validator/tests/_shared/runtime_helpers.sh
-++ set -euo pipefail
-++ mktemp -d
-+ tmpdir=/tmp/validator-tmp
-+ trap 'rm -rf "$tmpdir"' EXIT
-+ php -r 'echo sodium_bin2hex(sodium_crypto_generichash('\''payload'\'')), PHP_EOL;'
 3cf2d09da453bbdd6b68d8a1acd5f15ba23ba46d4ff087592b3d319432500a50
-+ rm -rf /tmp/validator-tmp

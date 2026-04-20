@@ -1,23 +1,8 @@
 $ docker run --rm -t --mount type=bind,src=/tmp/validator-status-libxml-schema-xinclude-checks,dst=/validator/status validator-libxml-shared bash -lc 'set -euo pipefail
 /validator/tests/_shared/install_override_debs.sh
-exec /validator/tests/_shared/run_library_tests.sh "$@"' validator-testcase libxml schema-xinclude-checks -- bash -x /validator/tests/libxml/tests/cases/source/schema-xinclude-checks.sh
+exec /validator/tests/_shared/run_library_tests.sh "$@"' validator-testcase libxml schema-xinclude-checks -- bash -c 'PS4=$1; shift; set -x; source "$@"' validator-xtrace '__VALIDATOR_XTRACE__ ' /validator/tests/libxml/tests/cases/source/schema-xinclude-checks.sh
 no override packages found; continuing with apt originals
-+ set -euo pipefail
-+ source /validator/tests/_shared/runtime_helpers.sh
-++ set -euo pipefail
-++ mktemp -d
-+ tmpdir=/tmp/validator-tmp
-+ trap 'rm -rf "$tmpdir"' EXIT
-+ cat
-+ printf '<root><item>valid</item></root>\n'
-+ xmllint --noout --schema /tmp/validator-tmp/schema.xsd /tmp/validator-tmp/valid.xml
 /tmp/validator-tmp/valid.xml validates
-+ printf '<included>text</included>\n'
-+ cat
-+ xmllint --xinclude /tmp/validator-tmp/root.xml
-+ tee /tmp/validator-tmp/x.xml
 <?xml version="1.0"?>
 <root xmlns:xi="http://www.w3.org/2001/XInclude"><included>text</included></root>
-+ grep '<included>text</included>' /tmp/validator-tmp/x.xml
 <root xmlns:xi="http://www.w3.org/2001/XInclude"><included>text</included></root>
-+ rm -rf /tmp/validator-tmp

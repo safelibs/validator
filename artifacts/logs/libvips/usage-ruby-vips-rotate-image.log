@@ -1,13 +1,5 @@
 $ docker run --rm -t --mount type=bind,src=/tmp/validator-status-libvips-usage-ruby-vips-rotate-image,dst=/validator/status validator-libvips-shared bash -lc 'set -euo pipefail
 /validator/tests/_shared/install_override_debs.sh
-exec /validator/tests/_shared/run_library_tests.sh "$@"' validator-testcase libvips usage-ruby-vips-rotate-image -- bash -x /validator/tests/libvips/tests/cases/usage/usage-ruby-vips-rotate-image.sh
+exec /validator/tests/_shared/run_library_tests.sh "$@"' validator-testcase libvips usage-ruby-vips-rotate-image -- bash -c 'PS4=$1; shift; set -x; source "$@"' validator-xtrace '__VALIDATOR_XTRACE__ ' /validator/tests/libvips/tests/cases/usage/usage-ruby-vips-rotate-image.sh
 no override packages found; continuing with apt originals
-+ set -euo pipefail
-+ source /validator/tests/_shared/runtime_helpers.sh
-++ set -euo pipefail
-++ mktemp -d
-+ tmpdir=/tmp/validator-tmp
-+ trap 'rm -rf "$tmpdir"' EXIT
-+ ruby -rvips -e 'image=Vips::Image.black(5,9,bands:3); out=image.rot90; puts "rot=#{out.width}x#{out.height}"' /tmp/validator-tmp/out.png
 rot=9x5
-+ rm -rf /tmp/validator-tmp

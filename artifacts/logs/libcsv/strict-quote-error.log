@@ -1,15 +1,5 @@
 $ docker run --rm -t --mount type=bind,src=/tmp/validator-status-libcsv-strict-quote-error,dst=/validator/status validator-libcsv-shared bash -lc 'set -euo pipefail
 /validator/tests/_shared/install_override_debs.sh
-exec /validator/tests/_shared/run_library_tests.sh "$@"' validator-testcase libcsv strict-quote-error -- bash -x /validator/tests/libcsv/tests/cases/source/strict-quote-error.sh
+exec /validator/tests/_shared/run_library_tests.sh "$@"' validator-testcase libcsv strict-quote-error -- bash -c 'PS4=$1; shift; set -x; source "$@"' validator-xtrace '__VALIDATOR_XTRACE__ ' /validator/tests/libcsv/tests/cases/source/strict-quote-error.sh
 no override packages found; continuing with apt originals
-+ set -euo pipefail
-+ source /validator/tests/_shared/runtime_helpers.sh
-++ set -euo pipefail
-++ mktemp -d
-+ tmpdir=/tmp/validator-tmp
-+ trap 'rm -rf "$tmpdir"' EXIT
-+ cat
-+ gcc /tmp/validator-tmp/t.c -o /tmp/validator-tmp/t -lcsv
-+ /tmp/validator-tmp/t
 error=error parsing data while strict checking enabled
-+ rm -rf /tmp/validator-tmp

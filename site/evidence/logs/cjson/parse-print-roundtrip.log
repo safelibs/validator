@@ -1,20 +1,5 @@
 $ docker run --rm -t --mount type=bind,src=/tmp/validator-status-cjson-parse-print-roundtrip,dst=/validator/status validator-cjson-shared bash -lc 'set -euo pipefail
 /validator/tests/_shared/install_override_debs.sh
-exec /validator/tests/_shared/run_library_tests.sh "$@"' validator-testcase cjson parse-print-roundtrip -- bash -x /validator/tests/cjson/tests/cases/source/parse-print-roundtrip.sh
+exec /validator/tests/_shared/run_library_tests.sh "$@"' validator-testcase cjson parse-print-roundtrip -- bash -c 'PS4=$1; shift; set -x; source "$@"' validator-xtrace '__VALIDATOR_XTRACE__ ' /validator/tests/cjson/tests/cases/source/parse-print-roundtrip.sh
 no override packages found; continuing with apt originals
-+ set -euo pipefail
-+ source /validator/tests/_shared/runtime_helpers.sh
-++ set -euo pipefail
-++ mktemp -d
-+ tmpdir=/tmp/validator-tmp
-+ trap 'rm -rf "$tmpdir"' EXIT
-+ validator_require_file /validator/tests/cjson/tests/fixtures/samples/tests/inputs/test1
-+ local path=/validator/tests/cjson/tests/fixtures/samples/tests/inputs/test1
-+ [[ -f /validator/tests/cjson/tests/fixtures/samples/tests/inputs/test1 ]]
-+ cat
-+ gcc /tmp/validator-tmp/t.c -o /tmp/validator-tmp/t -lcjson
-+ /tmp/validator-tmp/t /validator/tests/cjson/tests/fixtures/samples/tests/inputs/test1
-+ tee /tmp/validator-tmp/out.json
 {"glossary":{"title":"example glossary","GlossDiv":{"title":"S","GlossList":{"GlossEntry":{"ID":"SGML","SortAs":"SGML","GlossTerm":"Standard Generalized Markup Language","Acronym":"SGML","Abbrev":"ISO 8879:1986","GlossDef":{"para":"A meta-markup language, used to create markup languages such as DocBook.","GlossSeeAlso":["GML","XML"]},"GlossSee":"markup"}}}}}
-+ python3 -m json.tool /tmp/validator-tmp/out.json
-+ rm -rf /tmp/validator-tmp

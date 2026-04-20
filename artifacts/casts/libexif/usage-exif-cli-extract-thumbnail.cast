@@ -1,5 +1,7 @@
 {"version": 2, "width": 120, "height": 40, "timestamp": 0, "env": {"TERM": "xterm-256color", "SHELL": "/bin/bash"}}
-[0.10786253202240914, "o", "no override packages found; continuing with apt originals\r\r\n"]
-[0.1095813870197162, "o", "+ set -euo pipefail\r\r\n+ /validator/tests/libexif/tests/cases/usage/usage-exif-cli-common.sh extract-thumbnail\r\r\n"]
-[0.11295007902663201, "o", "Wrote file '/tmp/validator-tmp/thumb.jpg'.\r\r\n"]
-[0.11431342107243836, "o", "/tmp/validator-tmp/thumb.jpg: JPEG image data\r\r\n"]
+[0.0, "o", "no override packages found; continuing with apt originals\r"]
+[0.001, "o", "\r\n"]
+[0.002, "o", "Wrote file '/tmp/validator-tmp/thumb.jpg'.\r"]
+[0.003, "o", "\r\n"]
+[0.004, "o", "/tmp/validator-tmp/thumb.jpg: JPEG image data\r"]
+[0.005, "o", "\r\n"]

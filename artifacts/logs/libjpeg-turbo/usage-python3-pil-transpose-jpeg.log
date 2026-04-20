@@ -1,15 +1,5 @@
 $ docker run --rm -t --mount type=bind,src=/tmp/validator-status-libjpeg-turbo-usage-python3-pil-transpose-jpeg,dst=/validator/status validator-libjpeg-turbo-shared bash -lc 'set -euo pipefail
 /validator/tests/_shared/install_override_debs.sh
-exec /validator/tests/_shared/run_library_tests.sh "$@"' validator-testcase libjpeg-turbo usage-python3-pil-transpose-jpeg -- bash -x /validator/tests/libjpeg-turbo/tests/cases/usage/usage-python3-pil-transpose-jpeg.sh
+exec /validator/tests/_shared/run_library_tests.sh "$@"' validator-testcase libjpeg-turbo usage-python3-pil-transpose-jpeg -- bash -c 'PS4=$1; shift; set -x; source "$@"' validator-xtrace '__VALIDATOR_XTRACE__ ' /validator/tests/libjpeg-turbo/tests/cases/usage/usage-python3-pil-transpose-jpeg.sh
 no override packages found; continuing with apt originals
-+ set -euo pipefail
-+ source /validator/tests/_shared/runtime_helpers.sh
-++ set -euo pipefail
-++ mktemp -d
-+ tmpdir=/tmp/validator-tmp
-+ trap 'rm -rf "$tmpdir"' EXIT
-+ python3 - /tmp/validator-tmp/in.ppm
-+ cjpeg /tmp/validator-tmp/in.ppm
-+ python3 - /tmp/validator-tmp/in.jpg /tmp/validator-tmp/out.jpg
 (4, 3)
-+ rm -rf /tmp/validator-tmp

@@ -1,9 +1,5 @@
 {"version": 2, "width": 120, "height": 40, "timestamp": 0, "env": {"TERM": "xterm-256color", "SHELL": "/bin/bash"}}
-[0.11151254898868501, "o", "no override packages found; continuing with apt originals\r\r\n"]
-[0.11332803801633418, "o", "+ set -euo pipefail\r\r\n+ source /validator/tests/_shared/runtime_helpers.sh\r\r\n++ set -euo pipefail\r\r\n"]
-[0.11347007495351136, "o", "++ mktemp -d\r\r\n"]
-[0.11470006802119315, "o", "+ tmpdir=/tmp/validator-tmp\r\r\n+ trap 'rm -rf \"$tmpdir\"' EXIT\r\r\n+ cat\r\r\n"]
-[0.11537419992964715, "o", "++ pkg-config --cflags --libs json-c\r\r\n"]
-[0.11629479192197323, "o", "+ gcc /tmp/validator-tmp/t.c -o /tmp/validator-tmp/t -I/usr/include/json-c -ljson-c\r\r\n"]
-[0.14111440093256533, "o", "+ /tmp/validator-tmp/t\r\r\n"]
-[0.1414744530338794, "o", "held=first object={ \"child\": \"second\" }\r\r\n+ rm -rf /tmp/validator-tmp\r\r\n"]
+[0.0, "o", "no override packages found; continuing with apt originals\r"]
+[0.001, "o", "\r\n"]
+[0.002, "o", "held=first object={ \"child\": \"second\" }\r"]
+[0.003, "o", "\r\n"]
