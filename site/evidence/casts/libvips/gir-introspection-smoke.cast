@@ -1,2 +1,4 @@
 {"version": 2, "width": 120, "height": 40, "timestamp": 0, "env": {"TERM": "xterm-256color", "SHELL": "/bin/bash"}}
-[0.0, "o", "no override packages found; continuing with apt originals\r\r\nshlib: libvips.so.42\r\r\nshlib: libvips.so.42\r\r\n"]
+[0.11278491502162069, "o", "no override packages found; continuing with apt originals\r\r\n"]
+[0.11728763696737587, "o", "shlib: libvips.so.42\r\r\n"]
+[0.11790466005913913, "o", "shlib: libvips.so.42\r\r\n"]

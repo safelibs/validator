@@ -1,2 +1,5 @@
 {"version": 2, "width": 120, "height": 40, "timestamp": 0, "env": {"TERM": "xterm-256color", "SHELL": "/bin/bash"}}
-[0.0, "o", "no override packages found; continuing with apt originals\r\r\n/tmp/validator-tmp/valid.xml validates\r\r\n<?xml version=\"1.0\"?>\r\r\n<root xmlns:xi=\"http://www.w3.org/2001/XInclude\"><included>text</included></root>\r\r\n<root xmlns:xi=\"http://www.w3.org/2001/XInclude\"><included>text</included></root>\r\r\n"]
+[0.09697416005656123, "o", "no override packages found; continuing with apt originals\r\r\n"]
+[0.10191195306833833, "o", "/tmp/validator-tmp/valid.xml validates\r\r\n"]
+[0.10406362707726657, "o", "<?xml version=\"1.0\"?>\r\r\n<root xmlns:xi=\"http://www.w3.org/2001/XInclude\"><included>text</included></root>\r\r\n"]
+[0.10410756303463131, "o", "<root xmlns:xi=\"http://www.w3.org/2001/XInclude\"><included>text</included></root>\r\r\n"]

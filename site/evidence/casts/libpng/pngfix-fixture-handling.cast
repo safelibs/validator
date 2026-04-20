@@ -1,2 +1,4 @@
 {"version": 2, "width": 120, "height": 40, "timestamp": 0, "env": {"TERM": "xterm-256color", "SHELL": "/bin/bash"}}
-[0.0, "o", "no override packages found; continuing with apt originals\r\r\nIDAT OK  default 12 12 72 3104 /validator/tests/libpng/tests/tagged-port/original/contrib/pngsuite/basn2c08.png\r\r\n/tmp/validator-tmp/fixed.png: PNG image data, 32 x 32, 8-bit/color RGB, non-interlaced\r\r\n"]
+[0.11585965100675821, "o", "no override packages found; continuing with apt originals\r\r\n"]
+[0.11993117502424866, "o", "IDAT OK  default 12 12 72 3104 /validator/tests/libpng/tests/tagged-port/original/contrib/pngsuite/basn2c08.png\r\r\n"]
+[0.1211050150450319, "o", "/tmp/validator-tmp/fixed.png: PNG image data, 32 x 32, 8-bit/color RGB, non-interlaced\r\r\n"]

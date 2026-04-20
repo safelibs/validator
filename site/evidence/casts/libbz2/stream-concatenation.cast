@@ -1,2 +1,3 @@
 {"version": 2, "width": 120, "height": 40, "timestamp": 0, "env": {"TERM": "xterm-256color", "SHELL": "/bin/bash"}}
-[0.0, "o", "no override packages found; continuing with apt originals\r\r\nfirst\r\r\nsecond\r\r\n"]
+[0.09408747404813766, "o", "no override packages found; continuing with apt originals\r\r\n"]
+[0.10952651198022068, "o", "first\r\r\nsecond\r\r\n"]

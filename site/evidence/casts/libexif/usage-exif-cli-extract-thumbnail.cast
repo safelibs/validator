@@ -1,2 +1,4 @@
 {"version": 2, "width": 120, "height": 40, "timestamp": 0, "env": {"TERM": "xterm-256color", "SHELL": "/bin/bash"}}
-[0.0, "o", "no override packages found; continuing with apt originals\r\r\nWrote file '/tmp/validator-tmp/thumb.jpg'.\r\r\n/tmp/validator-tmp/thumb.jpg: JPEG image data\r\r\n"]
+[0.11270437599159777, "o", "no override packages found; continuing with apt originals\r\r\n"]
+[0.1175948359305039, "o", "Wrote file '/tmp/validator-tmp/thumb.jpg'.\r\r\n"]
+[0.11882970796432346, "o", "/tmp/validator-tmp/thumb.jpg: JPEG image data\r\r\n"]

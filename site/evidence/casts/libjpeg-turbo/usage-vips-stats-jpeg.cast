@@ -1,2 +1,3 @@
 {"version": 2, "width": 120, "height": 40, "timestamp": 0, "env": {"TERM": "xterm-256color", "SHELL": "/bin/bash"}}
-[0.0, "o", "no override packages found; continuing with apt originals\r\r\n/tmp/validator-tmp/stats.v: 10x4 double, 1 band, matrix\r\r\n"]
+[0.11654678697232157, "o", "no override packages found; continuing with apt originals\r\r\n"]
+[0.17496282793581486, "o", "/tmp/validator-tmp/stats.v: 10x4 double, 1 band, matrix\r\r\n"]

@@ -1,2 +1,3 @@
 {"version": 2, "width": 120, "height": 40, "timestamp": 0, "env": {"TERM": "xterm-256color", "SHELL": "/bin/bash"}}
-[0.0, "o", "no override packages found; continuing with apt originals\r\r\nEXIF entry 'Manufacturer' (0x10f, 'Make') exists in IFD '0':\r\r\nTag: 0x10f ('Make')\r\r\n  Format: 2 ('ASCII')\r\r\n  Components: 6\r\r\n  Size: 6\r\r\n  Value: Canon\r\r\n"]
+[0.10740186099428684, "o", "no override packages found; continuing with apt originals\r\r\n"]
+[0.11269633192569017, "o", "EXIF entry 'Manufacturer' (0x10f, 'Make') exists in IFD '0':\r\r\nTag: 0x10f ('Make')\r\r\n  Format: 2 ('ASCII')\r\r\n  Components: 6\r\r\n  Size: 6\r\r\n  Value: Canon\r\r\n"]

@@ -1,2 +1,3 @@
 {"version": 2, "width": 120, "height": 40, "timestamp": 0, "env": {"TERM": "xterm-256color", "SHELL": "/bin/bash"}}
-[0.0, "o", "no override packages found; continuing with apt originals\r\r\naddress=127.0.0.1\r\r\n"]
+[0.4961313270032406, "o", "no override packages found; continuing with apt originals\r\r\n"]
+[0.5955935099627823, "o", "address=127.0.0.1\r\r\n"]

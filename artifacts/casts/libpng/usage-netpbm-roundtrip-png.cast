@@ -1,2 +1,3 @@
 {"version": 2, "width": 120, "height": 40, "timestamp": 0, "env": {"TERM": "xterm-256color", "SHELL": "/bin/bash"}}
-[0.0, "o", "no override packages found; continuing with apt originals\r\r\n/tmp/validator-tmp/round.png: PNG image data, 32 x 32, 8-bit/color RGB, non-interlaced\r\r\n"]
+[0.10689869511406869, "o", "no override packages found; continuing with apt originals\r\r\n"]
+[0.11275735904928297, "o", "/tmp/validator-tmp/round.png: PNG image data, 32 x 32, 8-bit/color RGB, non-interlaced\r\r\n"]

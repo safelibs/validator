@@ -1,2 +1,4 @@
 {"version": 2, "width": 120, "height": 40, "timestamp": 0, "env": {"TERM": "xterm-256color", "SHELL": "/bin/bash"}}
-[0.0, "o", "no override packages found; continuing with apt originals\r\r\nbzip2recover 1.0.8: extracts blocks from damaged .bz2 files.\r\r\nbzip2recover: searching for block boundaries ...\r\r\n   block 1 runs from 80 to 359\r\r\nbzip2recover: splitting into blocks\r\r\n   writing block 1 to `rec00001in.bz2' ...\r\r\nbzip2recover: finished\r\r\n/tmp/validator-tmp/rec00001in.bz2\r\r\n"]
+[0.10826118208933622, "o", "no override packages found; continuing with apt originals\r\r\n"]
+[0.11309498001355678, "o", "bzip2recover 1.0.8: extracts blocks from damaged .bz2 files.\r\r\nbzip2recover: searching for block boundaries ...\r\r\n   block 1 runs from 80 to 359\r\r\nbzip2recover: splitting into blocks\r\r\n   writing block 1 to `rec00001in.bz2' ...\r\r\nbzip2recover: finished\r\r\n"]
+[0.1134793310193345, "o", "/tmp/validator-tmp/rec00001in.bz2\r\r\n"]

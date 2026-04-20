@@ -1,2 +1,5 @@
 {"version": 2, "width": 120, "height": 40, "timestamp": 0, "env": {"TERM": "xterm-256color", "SHELL": "/bin/bash"}}
-[0.0, "o", "no override packages found; continuing with apt originals\r\r\n98696 /tmp/validator-tmp/sample1.out\r\r\n212340 /tmp/validator-tmp/sample2.out\r\r\n120244 /tmp/validator-tmp/sample3.out\r\r\n"]
+[0.11305982293561101, "o", "no override packages found; continuing with apt originals\r\r\n"]
+[0.1204776749946177, "o", "98696 /tmp/validator-tmp/sample1.out\r\r\n"]
+[0.12829461100045592, "o", "212340 /tmp/validator-tmp/sample2.out\r\r\n"]
+[0.13062460394576192, "o", "120244 /tmp/validator-tmp/sample3.out\r\r\n"]

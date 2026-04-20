@@ -1,2 +1,4 @@
 {"version": 2, "width": 120, "height": 40, "timestamp": 0, "env": {"TERM": "xterm-256color", "SHELL": "/bin/bash"}}
-[0.0, "o", "no override packages found; continuing with apt originals\r\r\nDecoded /tmp/validator-tmp/a.webp. Dimensions: 2 x 2 . Format: lossy. Now saving...\r\r\nSaved file /tmp/validator-tmp/out.ppm\r\r\nP6\r\r\n2 2\r\r\n255\r\r\n"]
+[0.11249970807693899, "o", "no override packages found; continuing with apt originals\r\r\n"]
+[0.12677543808240443, "o", "Decoded /tmp/validator-tmp/a.webp. Dimensions: 2 x 2 . Format: lossy. Now saving...\r\r\nSaved file /tmp/validator-tmp/out.ppm\r\r\n"]
+[0.1269572600722313, "o", "P6\r\r\n2 2\r\r\n255\r\r\n"]

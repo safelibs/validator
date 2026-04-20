@@ -1,2 +1,4 @@
 {"version": 2, "width": 120, "height": 40, "timestamp": 0, "env": {"TERM": "xterm-256color", "SHELL": "/bin/bash"}}
-[0.0, "o", "no override packages found; continuing with apt originals\r\r\nFile: /validator/tests/libwebp/tests/tagged-port/original/examples/test.webp\r\r\nRIFF HEADER:\r\r\n  File size:   4880\r\r\nChunk VP8  at offset     12, length   4868\r\r\n  Width: 128\r\r\n  Height: 128\r\r\n  Alpha: 0\r\r\n  Animation: 0\r\r\n  Format: Lossy (1)\r\r\nNo error detected.\r\r\nRIFF HEADER:\r\r\nChunk VP8  at offset     12, length   4868\r\r\n"]
+[0.1067582800751552, "o", "no override packages found; continuing with apt originals\r\r\n"]
+[0.11055073398165405, "o", "File: /validator/tests/libwebp/tests/tagged-port/original/examples/test.webp\r\r\nRIFF HEADER:\r\r\n  File size:   4880\r\r\nChunk VP8  at offset     12, length   4868\r\r\n  Width: 128\r\r\n  Height: 128\r\r\n  Alpha: 0\r\r\n  Animation: 0\r\r\n  Format: Lossy (1)\r\r\nNo error detected.\r\r\n"]
+[0.11095104203559458, "o", "RIFF HEADER:\r\r\nChunk VP8  at offset     12, length   4868\r\r\n"]

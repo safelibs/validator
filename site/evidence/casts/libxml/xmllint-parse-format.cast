@@ -1,2 +1,4 @@
 {"version": 2, "width": 120, "height": 40, "timestamp": 0, "env": {"TERM": "xterm-256color", "SHELL": "/bin/bash"}}
-[0.0, "o", "no override packages found; continuing with apt originals\r\r\n<?xml version=\"1.0\"?>\r\r\n<root>\r\r\n  <item id=\"1\">alpha</item>\r\r\n</root>\r\r\n  <item id=\"1\">alpha</item>\r\r\n"]
+[0.22448271396569908, "o", "no override packages found; continuing with apt originals\r\r\n"]
+[0.23064982693176717, "o", "<?xml version=\"1.0\"?>\r\r\n<root>\r\r\n  <item id=\"1\">alpha</item>\r\r\n</root>\r\r\n"]
+[0.23147548700217158, "o", "  <item id=\"1\">alpha</item>\r\r\n"]
