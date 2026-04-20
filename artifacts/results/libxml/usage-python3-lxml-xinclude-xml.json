@@ -1,0 +1,34 @@
+{
+  "schema_version": 2,
+  "library": "libxml",
+  "mode": "original",
+  "testcase_id": "usage-python3-lxml-xinclude-xml",
+  "title": "python3-lxml XInclude XML expansion",
+  "description": "Runs lxml XInclude expansion and verifies included XML element text is visible to the client.",
+  "kind": "usage",
+  "client_application": "python3-lxml",
+  "tags": [
+    "usage",
+    "xml"
+  ],
+  "requires": [],
+  "status": "passed",
+  "started_at": "1970-01-01T00:00:00Z",
+  "finished_at": "1970-01-01T00:00:00Z",
+  "duration_seconds": 0.0,
+  "result_path": "results/libxml/usage-python3-lxml-xinclude-xml.json",
+  "log_path": "logs/libxml/usage-python3-lxml-xinclude-xml.log",
+  "cast_path": "casts/libxml/usage-python3-lxml-xinclude-xml.cast",
+  "exit_code": 0,
+  "command": [
+    "bash",
+    "/validator/tests/libxml/tests/cases/usage/usage-python3-lxml-xinclude-xml.sh"
+  ],
+  "apt_packages": [
+    "libxml2",
+    "libxml2-dev",
+    "libxml2-utils",
+    "python3-libxml2"
+  ],
+  "override_debs_installed": false
+}

@@ -1,0 +1,24 @@
+$ docker run --rm -t --mount type=bind,src=/tmp/validator-status-libjpeg-turbo-usage-vips-extract-band-jpeg,dst=/validator/status validator-libjpeg-turbo-shared bash -lc 'set -euo pipefail
+/validator/tests/_shared/install_override_debs.sh
+exec /validator/tests/_shared/run_library_tests.sh "$@"' validator-testcase libjpeg-turbo usage-vips-extract-band-jpeg -- bash -x /validator/tests/libjpeg-turbo/tests/cases/usage/usage-vips-extract-band-jpeg.sh
+no override packages found; continuing with apt originals
++ set -euo pipefail
++ source /validator/tests/_shared/runtime_helpers.sh
+++ set -euo pipefail
+++ mktemp -d
++ tmpdir=/tmp/validator-tmp
++ trap 'rm -rf "$tmpdir"' EXIT
++ python3 - /tmp/validator-tmp/in.ppm
++ cjpeg /tmp/validator-tmp/in.ppm
++ vips extract_band /tmp/validator-tmp/in.jpg /tmp/validator-tmp/band.pgm 0
++ validator_require_file /tmp/validator-tmp/band.pgm
++ local path=/tmp/validator-tmp/band.pgm
++ [[ -f /tmp/validator-tmp/band.pgm ]]
++ tee /tmp/validator-tmp/header
++ vipsheader /tmp/validator-tmp/band.pgm
+/tmp/validator-tmp/band.pgm: 4x3 uchar, 1 band, b-w, ppmload
++ validator_assert_contains /tmp/validator-tmp/header '1 band'
++ local path=/tmp/validator-tmp/header
++ local 'needle=1 band'
++ grep -Fq -- '1 band' /tmp/validator-tmp/header
++ rm -rf /tmp/validator-tmp

@@ -14,8 +14,8 @@ no override packages found; continuing with apt originals
 + mkdir -p /tmp/validator-tmp
 + (( 2 > 1 ))
 + printf %s '<root><item name="alpha">1</item><item name="beta">2</item></root>'
-+ xmlstarlet sel -t -v '/root/item[@name="alpha"]' /tmp/validator-tmp/in.xml
 + tee /tmp/validator-tmp/out
++ xmlstarlet sel -t -v '/root/item[@name="alpha"]' /tmp/validator-tmp/in.xml
 1+ validator_assert_contains /tmp/validator-tmp/out 1
 + local path=/tmp/validator-tmp/out
 + local needle=1

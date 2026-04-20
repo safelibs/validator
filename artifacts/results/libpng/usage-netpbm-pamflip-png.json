@@ -1,0 +1,33 @@
+{
+  "schema_version": 2,
+  "library": "libpng",
+  "mode": "original",
+  "testcase_id": "usage-netpbm-pamflip-png",
+  "title": "netpbm rotate PNG",
+  "description": "Rotates a PNG fixture through netpbm PAM tools and verifies the resulting PNG dimensions.",
+  "kind": "usage",
+  "client_application": "netpbm",
+  "tags": [
+    "usage",
+    "image"
+  ],
+  "requires": [],
+  "status": "passed",
+  "started_at": "1970-01-01T00:00:00Z",
+  "finished_at": "1970-01-01T00:00:00Z",
+  "duration_seconds": 0.0,
+  "result_path": "results/libpng/usage-netpbm-pamflip-png.json",
+  "log_path": "logs/libpng/usage-netpbm-pamflip-png.log",
+  "cast_path": "casts/libpng/usage-netpbm-pamflip-png.cast",
+  "exit_code": 0,
+  "command": [
+    "bash",
+    "/validator/tests/libpng/tests/cases/usage/usage-netpbm-pamflip-png.sh"
+  ],
+  "apt_packages": [
+    "libpng16-16t64",
+    "libpng-dev",
+    "libpng-tools"
+  ],
+  "override_debs_installed": false
+}

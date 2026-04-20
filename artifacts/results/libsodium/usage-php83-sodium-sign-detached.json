@@ -1,0 +1,32 @@
+{
+  "schema_version": 2,
+  "library": "libsodium",
+  "mode": "original",
+  "testcase_id": "usage-php83-sodium-sign-detached",
+  "title": "PHP sodium detached signatures",
+  "description": "Signs a message with PHP sodium and verifies the detached signature through libsodium.",
+  "kind": "usage",
+  "client_application": "php8.3-cli",
+  "tags": [
+    "usage",
+    "crypto"
+  ],
+  "requires": [],
+  "status": "passed",
+  "started_at": "1970-01-01T00:00:00Z",
+  "finished_at": "1970-01-01T00:00:00Z",
+  "duration_seconds": 0.0,
+  "result_path": "results/libsodium/usage-php83-sodium-sign-detached.json",
+  "log_path": "logs/libsodium/usage-php83-sodium-sign-detached.log",
+  "cast_path": "casts/libsodium/usage-php83-sodium-sign-detached.cast",
+  "exit_code": 0,
+  "command": [
+    "bash",
+    "/validator/tests/libsodium/tests/cases/usage/usage-php83-sodium-sign-detached.sh"
+  ],
+  "apt_packages": [
+    "libsodium23",
+    "libsodium-dev"
+  ],
+  "override_debs_installed": false
+}

@@ -1,4 +1,4 @@
 {"version": 2, "width": 120, "height": 40, "timestamp": 0, "env": {"TERM": "xterm-256color", "SHELL": "/bin/bash"}}
-[0.10793407098390162, "o", "no override packages found; continuing with apt originals\r\r\n"]
-[0.10942189092747867, "o", "+ set -euo pipefail\r\r\n+ /validator/tests/libarchive/tests/cases/usage/usage-python-libarchive-c-common.sh stream-read\r\r\n"]
-[0.13845971692353487, "o", "stream alpha.txt,beta.txt\r\r\n"]
+[0.11548800906166434, "o", "no override packages found; continuing with apt originals\r\r\n"]
+[0.11709625704679638, "o", "+ set -euo pipefail\r\r\n+ /validator/tests/libarchive/tests/cases/usage/usage-python-libarchive-c-common.sh stream-read\r\r\n"]
+[0.14615764701738954, "o", "stream alpha.txt,beta.txt\r\r\n"]

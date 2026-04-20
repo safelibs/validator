@@ -1,6 +1,7 @@
 {"version": 2, "width": 120, "height": 40, "timestamp": 0, "env": {"TERM": "xterm-256color", "SHELL": "/bin/bash"}}
-[0.10770825296640396, "o", "no override packages found; continuing with apt originals\r\r\n"]
-[0.10953163600061089, "o", "+ set -euo pipefail\r\r\n+ source /validator/tests/_shared/runtime_helpers.sh\r\r\n++ set -euo pipefail\r\r\n++ mktemp -d\r\r\n"]
-[0.11091845692135394, "o", "+ tmpdir=/tmp/validator-tmp\r\r\n+ trap 'rm -rf \"$tmpdir\"' EXIT\r\r\n+ node -e 'const fs=require('\\''fs'\\''); fs.writeFileSync(process.argv[1],'\\''payload'\\''); console.log(fs.readFileSync(process.argv[1],'\\''utf8'\\''));' /tmp/validator-tmp/node.txt\r\r\n"]
-[0.16775764396879822, "o", "payload\r\r\n"]
-[0.1707766359904781, "o", "+ rm -rf /tmp/validator-tmp\r\r\n"]
+[0.11598733498249203, "o", "no override packages found; continuing with apt originals\r\r\n"]
+[0.11723697499837726, "o", "+ set -euo pipefail\r\r\n+ source /validator/tests/_shared/runtime_helpers.sh\r\r\n++ set -euo pipefail\r\r\n"]
+[0.1176322209648788, "o", "++ mktemp -d\r\r\n"]
+[0.11903277400415391, "o", "+ tmpdir=/tmp/validator-tmp\r\r\n+ trap 'rm -rf \"$tmpdir\"' EXIT\r\r\n+ node -e 'const fs=require('\\''fs'\\''); fs.writeFileSync(process.argv[1],'\\''payload'\\''); console.log(fs.readFileSync(process.argv[1],'\\''utf8'\\''));' /tmp/validator-tmp/node.txt\r\r\n"]
+[0.17388963198754936, "o", "payload\r\r\n"]
+[0.17794771504122764, "o", "+ rm -rf /tmp/validator-tmp\r\r\n"]

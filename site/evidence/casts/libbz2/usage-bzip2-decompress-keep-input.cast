@@ -1,0 +1,7 @@
+{"version": 2, "width": 120, "height": 40, "timestamp": 0, "env": {"TERM": "xterm-256color", "SHELL": "/bin/bash"}}
+[0.10494612599723041, "o", "no override packages found; continuing with apt originals\r\r\n"]
+[0.10659460606984794, "o", "+ set -euo pipefail\r\r\n+ source /validator/tests/_shared/runtime_helpers.sh\r\r\n++ set -euo pipefail\r\r\n++ mktemp -d\r\r\n"]
+[0.10843773407395929, "o", "+ tmpdir=/tmp/validator-tmp\r\r\n+ trap 'rm -rf \"$tmpdir\"' EXIT\r\r\n+ printf 'bzip2 keep input payload\\n'\r\r\n+ bzip2 -c /tmp/validator-tmp/expected\r\r\n"]
+[0.10889674804639071, "o", "+ bunzip2 -k /tmp/validator-tmp/payload.bz2\r\r\n"]
+[0.10944660205859691, "o", "+ test -f /tmp/validator-tmp/payload.bz2\r\r\n+ test -f /tmp/validator-tmp/payload\r\r\n+ cmp /tmp/validator-tmp/expected /tmp/validator-tmp/payload\r\r\n"]
+[0.10998190508689731, "o", "+ printf 'bzip2 decompress keep input ok\\n'\r\r\nbzip2 decompress keep input ok\r\r\n+ rm -rf /tmp/validator-tmp\r\r\n"]

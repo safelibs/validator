@@ -1,0 +1,10 @@
+{"version": 2, "width": 120, "height": 40, "timestamp": 0, "env": {"TERM": "xterm-256color", "SHELL": "/bin/bash"}}
+[0.10163170099258423, "o", "no override packages found; continuing with apt originals\r\r\n"]
+[0.10338434507139027, "o", "+ set -euo pipefail\r\r\n+ source /validator/tests/_shared/runtime_helpers.sh\r\r\n++ set -euo pipefail\r\r\n"]
+[0.1036652330076322, "o", "++ mktemp -d\r\r\n"]
+[0.10507903399411589, "o", "+ tmpdir=/tmp/validator-tmp\r\r\n+ trap 'rm -rf \"$tmpdir\"' EXIT\r\r\n+ cat\r\r\n"]
+[0.10550460405647755, "o", "+ cat\r\r\n"]
+[0.10625472397077829, "o", "+ xmlstarlet tr /tmp/validator-tmp/transform.xsl /tmp/validator-tmp/in.xml\r\r\n+ tee /tmp/validator-tmp/out\r\r\n"]
+[0.10797088500112295, "o", "2+ validator_assert_contains /tmp/validator-tmp/out 2\r\r\n"]
+[0.10800898098386824, "o", "+ local path=/tmp/validator-tmp/out\r\r\n+ local needle=2\r\r\n+ grep -Fq -- 2 /tmp/validator-tmp/out\r\r\n"]
+[0.10880688100587577, "o", "+ rm -rf /tmp/validator-tmp\r\r\n"]

@@ -1,0 +1,32 @@
+{
+  "schema_version": 2,
+  "library": "libexif",
+  "mode": "original",
+  "testcase_id": "usage-exif-cli-tag-datetime",
+  "title": "exif CLI DateTime tag",
+  "description": "Runs the exif CLI to read the image DateTime tag from a JPEG fixture.",
+  "kind": "usage",
+  "client_application": "exif",
+  "tags": [
+    "usage",
+    "metadata"
+  ],
+  "requires": [],
+  "status": "passed",
+  "started_at": "1970-01-01T00:00:00Z",
+  "finished_at": "1970-01-01T00:00:00Z",
+  "duration_seconds": 0.0,
+  "result_path": "results/libexif/usage-exif-cli-tag-datetime.json",
+  "log_path": "logs/libexif/usage-exif-cli-tag-datetime.log",
+  "cast_path": "casts/libexif/usage-exif-cli-tag-datetime.cast",
+  "exit_code": 0,
+  "command": [
+    "bash",
+    "/validator/tests/libexif/tests/cases/usage/usage-exif-cli-tag-datetime.sh"
+  ],
+  "apt_packages": [
+    "libexif12",
+    "libexif-dev"
+  ],
+  "override_debs_installed": false
+}

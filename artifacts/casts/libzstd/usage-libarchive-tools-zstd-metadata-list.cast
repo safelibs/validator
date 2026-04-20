@@ -1,0 +1,11 @@
+{"version": 2, "width": 120, "height": 40, "timestamp": 0, "env": {"TERM": "xterm-256color", "SHELL": "/bin/bash"}}
+[0.10964963294100016, "o", "no override packages found; continuing with apt originals\r\r\n"]
+[0.11160668393131346, "o", "+ set -euo pipefail\r\r\n+ source /validator/tests/_shared/runtime_helpers.sh\r\r\n++ set -euo pipefail\r\r\n"]
+[0.11231647501699626, "o", "++ mktemp -d\r\r\n"]
+[0.11400846298784018, "o", "+ tmpdir=/tmp/validator-tmp\r\r\n+ trap 'rm -rf \"$tmpdir\"' EXIT\r\r\n+ mkdir -p /tmp/validator-tmp/in\r\r\n"]
+[0.11494503996800631, "o", "+ printf '#!/usr/bin/env sh\\nprintf zstd-metadata\\n'\r\r\n+ chmod 755 /tmp/validator-tmp/in/run.sh\r\r\n"]
+[0.11523692193441093, "o", "+ bsdtar --zstd -cf /tmp/validator-tmp/a.tar.zstd -C /tmp/validator-tmp/in run.sh\r\r\n"]
+[0.12369386793579906, "o", "+ bsdtar -tvf /tmp/validator-tmp/a.tar.zstd\r\r\n"]
+[0.12539078993722796, "o", "+ grep -Fq run.sh /tmp/validator-tmp/list\r\r\n"]
+[0.12604700902011245, "o", "+ grep -Eq '^-rwx' /tmp/validator-tmp/list\r\r\n"]
+[0.1266488250112161, "o", "+ printf 'zstd metadata list ok\\n'\r\r\nzstd metadata list ok\r\r\n+ rm -rf /tmp/validator-tmp\r\r\n"]

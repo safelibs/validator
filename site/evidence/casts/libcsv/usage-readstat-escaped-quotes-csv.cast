@@ -1,0 +1,5 @@
+{"version": 2, "width": 120, "height": 40, "timestamp": 0, "env": {"TERM": "xterm-256color", "SHELL": "/bin/bash"}}
+[0.11010206304490566, "o", "no override packages found; continuing with apt originals\r\r\n"]
+[0.1119101729709655, "o", "+ set -euo pipefail\r\r\n+ /validator/tests/libcsv/tests/cases/usage/usage-readstat-common.sh escaped-quotes-csv\r\r\n"]
+[0.11777451902162284, "o", "Converted 2 variables and 2 rows in 0.00 seconds\r\r\n"]
+[0.11898788006510586, "o", "Converted 2 variables and 2 rows in 0.00 seconds\r\r\n\"name\",\"score\"\r\r\n\"alpha \"\"quoted\"\"\",42.000000\r\r\n\"beta\",7.000000\r\r\n"]

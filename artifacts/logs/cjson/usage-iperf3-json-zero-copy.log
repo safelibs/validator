@@ -1,0 +1,8 @@
+$ docker run --rm -t --mount type=bind,src=/tmp/validator-status-cjson-usage-iperf3-json-zero-copy,dst=/validator/status validator-cjson-shared bash -lc 'set -euo pipefail
+/validator/tests/_shared/install_override_debs.sh
+exec /validator/tests/_shared/run_library_tests.sh "$@"' validator-testcase cjson usage-iperf3-json-zero-copy -- bash -x /validator/tests/cjson/tests/cases/usage/usage-iperf3-json-zero-copy.sh
+no override packages found; continuing with apt originals
++ set -euo pipefail
++ /validator/tests/cjson/tests/cases/usage/usage-iperf3-json-common.sh zero-copy
+[0;39mtrue[0m
+cpu_utilization_percent,receiver_tcp_congestion,sender_tcp_congestion,streams,sum_received,sum_sent

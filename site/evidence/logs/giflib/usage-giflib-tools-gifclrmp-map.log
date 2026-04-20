@@ -12,8 +12,8 @@ no override packages found; continuing with apt originals
 + validator_require_file /validator/tests/giflib/tests/fixtures/samples/pic/treescap.gif
 + local path=/validator/tests/giflib/tests/fixtures/samples/pic/treescap.gif
 + [[ -f /validator/tests/giflib/tests/fixtures/samples/pic/treescap.gif ]]
-+ gifclrmp /validator/tests/giflib/tests/fixtures/samples/pic/treescap.gif
 + tee /tmp/validator-tmp/out
++ gifclrmp /validator/tests/giflib/tests/fixtures/samples/pic/treescap.gif
   0  46 140  93
   1   0 255 255
   2   0 157   0

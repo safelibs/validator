@@ -1,0 +1,38 @@
+{
+  "schema_version": 2,
+  "library": "libwebp",
+  "mode": "original",
+  "testcase_id": "usage-ffmpeg-webp-scale-filter",
+  "title": "FFmpeg WebP scale filter",
+  "description": "Scales a WebP image with FFmpeg and verifies the PNG output stream dimensions.",
+  "kind": "usage",
+  "client_application": "ffmpeg",
+  "tags": [
+    "usage",
+    "image"
+  ],
+  "requires": [],
+  "status": "passed",
+  "started_at": "1970-01-01T00:00:00Z",
+  "finished_at": "1970-01-01T00:00:00Z",
+  "duration_seconds": 0.0,
+  "result_path": "results/libwebp/usage-ffmpeg-webp-scale-filter.json",
+  "log_path": "logs/libwebp/usage-ffmpeg-webp-scale-filter.log",
+  "cast_path": "casts/libwebp/usage-ffmpeg-webp-scale-filter.cast",
+  "exit_code": 0,
+  "command": [
+    "bash",
+    "/validator/tests/libwebp/tests/cases/usage/usage-ffmpeg-webp-scale-filter.sh"
+  ],
+  "apt_packages": [
+    "libwebp7",
+    "libwebpdemux2",
+    "libwebpmux3",
+    "libwebpdecoder3",
+    "libsharpyuv0",
+    "libwebp-dev",
+    "libsharpyuv-dev",
+    "webp"
+  ],
+  "override_debs_installed": false
+}

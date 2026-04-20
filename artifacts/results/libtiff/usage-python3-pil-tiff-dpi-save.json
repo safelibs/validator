@@ -1,0 +1,36 @@
+{
+  "schema_version": 2,
+  "library": "libtiff",
+  "mode": "original",
+  "testcase_id": "usage-python3-pil-tiff-dpi-save",
+  "title": "Pillow TIFF DPI save",
+  "description": "Saves TIFF resolution metadata with Pillow and verifies the reloaded DPI tags.",
+  "kind": "usage",
+  "client_application": "python3-pil",
+  "tags": [
+    "usage",
+    "image",
+    "python",
+    "metadata"
+  ],
+  "requires": [],
+  "status": "passed",
+  "started_at": "1970-01-01T00:00:00Z",
+  "finished_at": "1970-01-01T00:00:00Z",
+  "duration_seconds": 0.0,
+  "result_path": "results/libtiff/usage-python3-pil-tiff-dpi-save.json",
+  "log_path": "logs/libtiff/usage-python3-pil-tiff-dpi-save.log",
+  "cast_path": "casts/libtiff/usage-python3-pil-tiff-dpi-save.cast",
+  "exit_code": 0,
+  "command": [
+    "bash",
+    "/validator/tests/libtiff/tests/cases/usage/usage-python3-pil-tiff-dpi-save.sh"
+  ],
+  "apt_packages": [
+    "libtiff6",
+    "libtiffxx6",
+    "libtiff-dev",
+    "libtiff-tools"
+  ],
+  "override_debs_installed": false
+}

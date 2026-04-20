@@ -1,0 +1,11 @@
+{"version": 2, "width": 120, "height": 40, "timestamp": 0, "env": {"TERM": "xterm-256color", "SHELL": "/bin/bash"}}
+[0.11226634902413934, "o", "no override packages found; continuing with apt originals\r\r\n"]
+[0.11394602910149843, "o", "+ set -euo pipefail\r\r\n+ source /validator/tests/_shared/runtime_helpers.sh\r\r\n++ set -euo pipefail\r\r\n"]
+[0.11406456108670682, "o", "++ mktemp -d\r\r\n"]
+[0.1156470940914005, "o", "+ tmpdir=/tmp/validator-tmp\r\r\n+ trap 'rm -rf \"$tmpdir\"' EXIT\r\r\n+ python3 - /tmp/validator-tmp/in.ppm\r\r\n"]
+[0.13089993910398334, "o", "+ cjpeg /tmp/validator-tmp/in.ppm\r\r\n"]
+[0.13134702702518553, "o", "+ vips extract_band /tmp/validator-tmp/in.jpg /tmp/validator-tmp/band.pgm 0\r\r\n"]
+[0.15548634703736752, "o", "+ validator_require_file /tmp/validator-tmp/band.pgm\r\r\n+ local path=/tmp/validator-tmp/band.pgm\r\r\n+ [[ -f /tmp/validator-tmp/band.pgm ]]\r\r\n+ tee /tmp/validator-tmp/header\r\r\n+ vipsheader /tmp/validator-tmp/band.pgm\r\r\n"]
+[0.1758571770042181, "o", "/tmp/validator-tmp/band.pgm: 4x3 uchar, 1 band, b-w, ppmload\r\r\n"]
+[0.17685852805152535, "o", "+ validator_assert_contains /tmp/validator-tmp/header '1 band'\r\r\n+ local path=/tmp/validator-tmp/header\r\r\n+ local 'needle=1 band'\r\r\n+ grep -Fq -- '1 band' /tmp/validator-tmp/header\r\r\n"]
+[0.17714440310373902, "o", "+ rm -rf /tmp/validator-tmp\r\r\n"]

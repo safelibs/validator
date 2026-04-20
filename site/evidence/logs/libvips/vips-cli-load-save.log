@@ -13,8 +13,8 @@ no override packages found; continuing with apt originals
 + local path=/validator/tests/libvips/tests/fixtures/samples/test/test-suite/images/sample.jpg
 + [[ -f /validator/tests/libvips/tests/fixtures/samples/test/test-suite/images/sample.jpg ]]
 + vips copy /validator/tests/libvips/tests/fixtures/samples/test/test-suite/images/sample.jpg /tmp/validator-tmp/out.png
-+ vipsheader /tmp/validator-tmp/out.png
 + tee /tmp/validator-tmp/h
++ vipsheader /tmp/validator-tmp/out.png
 /tmp/validator-tmp/out.png: 290x442 uchar, 3 bands, srgb, pngload
 + grep -E '[0-9]+x[0-9]+' /tmp/validator-tmp/h
 /tmp/validator-tmp/out.png: 290x442 uchar, 3 bands, srgb, pngload

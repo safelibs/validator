@@ -1,0 +1,35 @@
+{
+  "schema_version": 2,
+  "library": "libvips",
+  "mode": "original",
+  "testcase_id": "usage-ruby-vips-gaussblur-image",
+  "title": "ruby-vips Gaussian blur image",
+  "description": "Applies a Gaussian blur with ruby-vips and verifies image dimensions and pixel average.",
+  "kind": "usage",
+  "client_application": "ruby-vips",
+  "tags": [
+    "usage",
+    "ruby",
+    "image"
+  ],
+  "requires": [],
+  "status": "passed",
+  "started_at": "1970-01-01T00:00:00Z",
+  "finished_at": "1970-01-01T00:00:00Z",
+  "duration_seconds": 0.0,
+  "result_path": "results/libvips/usage-ruby-vips-gaussblur-image.json",
+  "log_path": "logs/libvips/usage-ruby-vips-gaussblur-image.log",
+  "cast_path": "casts/libvips/usage-ruby-vips-gaussblur-image.cast",
+  "exit_code": 0,
+  "command": [
+    "bash",
+    "/validator/tests/libvips/tests/cases/usage/usage-ruby-vips-gaussblur-image.sh"
+  ],
+  "apt_packages": [
+    "libvips42t64",
+    "libvips-dev",
+    "libvips-tools",
+    "gir1.2-vips-8.0"
+  ],
+  "override_debs_installed": false
+}

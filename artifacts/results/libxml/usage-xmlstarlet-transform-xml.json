@@ -1,0 +1,35 @@
+{
+  "schema_version": 2,
+  "library": "libxml",
+  "mode": "original",
+  "testcase_id": "usage-xmlstarlet-transform-xml",
+  "title": "xmlstarlet transform XML",
+  "description": "Runs xmlstarlet XSLT transformation and verifies the selected XML value is emitted.",
+  "kind": "usage",
+  "client_application": "xmlstarlet",
+  "tags": [
+    "usage",
+    "xml",
+    "cli"
+  ],
+  "requires": [],
+  "status": "passed",
+  "started_at": "1970-01-01T00:00:00Z",
+  "finished_at": "1970-01-01T00:00:00Z",
+  "duration_seconds": 0.0,
+  "result_path": "results/libxml/usage-xmlstarlet-transform-xml.json",
+  "log_path": "logs/libxml/usage-xmlstarlet-transform-xml.log",
+  "cast_path": "casts/libxml/usage-xmlstarlet-transform-xml.cast",
+  "exit_code": 0,
+  "command": [
+    "bash",
+    "/validator/tests/libxml/tests/cases/usage/usage-xmlstarlet-transform-xml.sh"
+  ],
+  "apt_packages": [
+    "libxml2",
+    "libxml2-dev",
+    "libxml2-utils",
+    "python3-libxml2"
+  ],
+  "override_debs_installed": false
+}

@@ -1,0 +1,33 @@
+{
+  "schema_version": 2,
+  "library": "libyaml",
+  "mode": "original",
+  "testcase_id": "usage-python3-yaml-binary-scalar",
+  "title": "PyYAML binary scalar decoding",
+  "description": "Runs PyYAML safe_load on a binary scalar and verifies the decoded byte payload.",
+  "kind": "usage",
+  "client_application": "python3-yaml",
+  "tags": [
+    "usage",
+    "yaml",
+    "python"
+  ],
+  "requires": [],
+  "status": "passed",
+  "started_at": "1970-01-01T00:00:00Z",
+  "finished_at": "1970-01-01T00:00:00Z",
+  "duration_seconds": 0.0,
+  "result_path": "results/libyaml/usage-python3-yaml-binary-scalar.json",
+  "log_path": "logs/libyaml/usage-python3-yaml-binary-scalar.log",
+  "cast_path": "casts/libyaml/usage-python3-yaml-binary-scalar.cast",
+  "exit_code": 0,
+  "command": [
+    "bash",
+    "/validator/tests/libyaml/tests/cases/usage/usage-python3-yaml-binary-scalar.sh"
+  ],
+  "apt_packages": [
+    "libyaml-0-2",
+    "libyaml-dev"
+  ],
+  "override_debs_installed": false
+}

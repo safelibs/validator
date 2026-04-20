@@ -1,0 +1,36 @@
+{
+  "schema_version": 2,
+  "library": "libjpeg-turbo",
+  "mode": "original",
+  "testcase_id": "usage-vips-extract-band-jpeg",
+  "title": "vips extract JPEG band",
+  "description": "Extracts a JPEG color band with vips and verifies the single-band image output.",
+  "kind": "usage",
+  "client_application": "vips",
+  "tags": [
+    "usage",
+    "image",
+    "cli"
+  ],
+  "requires": [],
+  "status": "passed",
+  "started_at": "1970-01-01T00:00:00Z",
+  "finished_at": "1970-01-01T00:00:00Z",
+  "duration_seconds": 0.0,
+  "result_path": "results/libjpeg-turbo/usage-vips-extract-band-jpeg.json",
+  "log_path": "logs/libjpeg-turbo/usage-vips-extract-band-jpeg.log",
+  "cast_path": "casts/libjpeg-turbo/usage-vips-extract-band-jpeg.cast",
+  "exit_code": 0,
+  "command": [
+    "bash",
+    "/validator/tests/libjpeg-turbo/tests/cases/usage/usage-vips-extract-band-jpeg.sh"
+  ],
+  "apt_packages": [
+    "libjpeg-turbo8",
+    "libjpeg-turbo8-dev",
+    "libturbojpeg",
+    "libturbojpeg0-dev",
+    "libjpeg-turbo-progs"
+  ],
+  "override_debs_installed": false
+}

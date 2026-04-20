@@ -1,0 +1,7 @@
+{"version": 2, "width": 120, "height": 40, "timestamp": 0, "env": {"TERM": "xterm-256color", "SHELL": "/bin/bash"}}
+[0.10217911493964493, "o", "no override packages found; continuing with apt originals\r\r\n"]
+[0.10386551299598068, "o", "+ set -euo pipefail\r\r\n+ source /validator/tests/_shared/runtime_helpers.sh\r\r\n++ set -euo pipefail\r\r\n"]
+[0.10420668893493712, "o", "++ mktemp -d\r\r\n"]
+[0.10540475300513208, "o", "+ tmpdir=/tmp/validator-tmp\r\r\n+ trap 'rm -rf \"$tmpdir\"' EXIT\r\r\n+ php\r\r\n"]
+[0.11436407500877976, "o", "verified\r\r\n"]
+[0.1154162579914555, "o", "+ rm -rf /tmp/validator-tmp\r\r\n"]

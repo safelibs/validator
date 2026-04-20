@@ -1,0 +1,35 @@
+{
+  "schema_version": 2,
+  "library": "libzstd",
+  "mode": "original",
+  "testcase_id": "usage-libarchive-tools-zstd-preserve-permissions",
+  "title": "libarchive-tools zstd preserve permissions",
+  "description": "Runs bsdtar zstd archive extraction and verifies executable permissions survive.",
+  "kind": "usage",
+  "client_application": "libarchive-tools",
+  "tags": [
+    "usage",
+    "archive",
+    "compression",
+    "metadata"
+  ],
+  "requires": [],
+  "status": "passed",
+  "started_at": "1970-01-01T00:00:00Z",
+  "finished_at": "1970-01-01T00:00:00Z",
+  "duration_seconds": 0.0,
+  "result_path": "results/libzstd/usage-libarchive-tools-zstd-preserve-permissions.json",
+  "log_path": "logs/libzstd/usage-libarchive-tools-zstd-preserve-permissions.log",
+  "cast_path": "casts/libzstd/usage-libarchive-tools-zstd-preserve-permissions.cast",
+  "exit_code": 0,
+  "command": [
+    "bash",
+    "/validator/tests/libzstd/tests/cases/usage/usage-libarchive-tools-zstd-preserve-permissions.sh"
+  ],
+  "apt_packages": [
+    "libzstd1",
+    "libzstd-dev",
+    "zstd"
+  ],
+  "override_debs_installed": false
+}

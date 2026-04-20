@@ -1,0 +1,39 @@
+{
+  "schema_version": 2,
+  "library": "libwebp",
+  "mode": "original",
+  "testcase_id": "usage-python3-pil-webp-alpha",
+  "title": "Pillow WebP alpha channel",
+  "description": "Saves an RGBA WebP with Pillow and verifies alpha channel preservation through libwebp.",
+  "kind": "usage",
+  "client_application": "python3-pil",
+  "tags": [
+    "usage",
+    "image",
+    "python"
+  ],
+  "requires": [],
+  "status": "passed",
+  "started_at": "1970-01-01T00:00:00Z",
+  "finished_at": "1970-01-01T00:00:00Z",
+  "duration_seconds": 0.0,
+  "result_path": "results/libwebp/usage-python3-pil-webp-alpha.json",
+  "log_path": "logs/libwebp/usage-python3-pil-webp-alpha.log",
+  "cast_path": "casts/libwebp/usage-python3-pil-webp-alpha.cast",
+  "exit_code": 0,
+  "command": [
+    "bash",
+    "/validator/tests/libwebp/tests/cases/usage/usage-python3-pil-webp-alpha.sh"
+  ],
+  "apt_packages": [
+    "libwebp7",
+    "libwebpdemux2",
+    "libwebpmux3",
+    "libwebpdecoder3",
+    "libsharpyuv0",
+    "libwebp-dev",
+    "libsharpyuv-dev",
+    "webp"
+  ],
+  "override_debs_installed": false
+}

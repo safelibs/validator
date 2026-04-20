@@ -1,0 +1,34 @@
+{
+  "schema_version": 2,
+  "library": "libsdl",
+  "mode": "original",
+  "testcase_id": "usage-python3-pygame-mask-collision",
+  "title": "Pygame mask collision",
+  "description": "Builds Pygame surface masks and checks the SDL-backed overlap result for intersecting sprites.",
+  "kind": "usage",
+  "client_application": "python3-pygame",
+  "tags": [
+    "usage",
+    "headless",
+    "python"
+  ],
+  "requires": [],
+  "status": "passed",
+  "started_at": "1970-01-01T00:00:00Z",
+  "finished_at": "1970-01-01T00:00:00Z",
+  "duration_seconds": 0.0,
+  "result_path": "results/libsdl/usage-python3-pygame-mask-collision.json",
+  "log_path": "logs/libsdl/usage-python3-pygame-mask-collision.log",
+  "cast_path": "casts/libsdl/usage-python3-pygame-mask-collision.cast",
+  "exit_code": 0,
+  "command": [
+    "bash",
+    "/validator/tests/libsdl/tests/cases/usage/usage-python3-pygame-mask-collision.sh"
+  ],
+  "apt_packages": [
+    "libsdl2-2.0-0",
+    "libsdl2-dev",
+    "libsdl2-tests"
+  ],
+  "override_debs_installed": false
+}

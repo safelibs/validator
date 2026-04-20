@@ -1,0 +1,10 @@
+{"version": 2, "width": 120, "height": 40, "timestamp": 0, "env": {"TERM": "xterm-256color", "SHELL": "/bin/bash"}}
+[0.10626789194066077, "o", "no override packages found; continuing with apt originals\r\r\n"]
+[0.10832292900886387, "o", "+ set -euo pipefail\r\r\n+ source /validator/tests/_shared/runtime_helpers.sh\r\r\n++ set -euo pipefail\r\r\n"]
+[0.10839137993752956, "o", "++ mktemp -d\r\r\n"]
+[0.10959213995374739, "o", "+ tmpdir=/tmp/validator-tmp\r\r\n+ trap 'rm -rf \"$tmpdir\"' EXIT\r\r\n+ png=/validator/tests/libpng/tests/fixtures/samples/contrib/pngsuite/basn2c08.png\r\r\n+ validator_require_file /validator/tests/libpng/tests/fixtures/samples/contrib/pngsuite/basn2c08.png\r\r\n+ local path=/validator/tests/libpng/tests/fixtures/samples/contrib/pngsuite/basn2c08.png\r\r\n+ [[ -f /validator/tests/libpng/tests/fixtures/samples/contrib/pngsuite/basn2c08.png ]]\r\r\n+ pngquant --posterize 4 --force --output /tmp/validator-tmp/out.png /validator/tests/libpng/tests/fixtures/samples/contrib/pngsuite/basn2c08.png\r\r\n"]
+[0.1110752000240609, "o", "+ file /tmp/validator-tmp/out.png\r\r\n+ tee /tmp/validator-tmp/file\r\r\n"]
+[0.11154647299554199, "o", "/tmp/validator-tmp/out.png: PNG image data, 32 x 32, 8-bit colormap, non-interlaced\r\r\n"]
+[0.11157945194281638, "o", "+ validator_assert_contains /tmp/validator-tmp/file 'PNG image data'\r\r\n"]
+[0.11160316993482411, "o", "+ local path=/tmp/validator-tmp/file\r\r\n+ local 'needle=PNG image data'\r\r\n+ grep -Fq -- 'PNG image data' /tmp/validator-tmp/file\r\r\n"]
+[0.11235922295600176, "o", "+ rm -rf /tmp/validator-tmp\r\r\n"]

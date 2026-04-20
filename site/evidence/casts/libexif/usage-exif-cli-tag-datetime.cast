@@ -1,0 +1,4 @@
+{"version": 2, "width": 120, "height": 40, "timestamp": 0, "env": {"TERM": "xterm-256color", "SHELL": "/bin/bash"}}
+[0.10268884606193751, "o", "no override packages found; continuing with apt originals\r\r\n"]
+[0.10431348998099566, "o", "+ set -euo pipefail\r\r\n+ /validator/tests/libexif/tests/cases/usage/usage-exif-cli-common.sh tag-datetime\r\r\n"]
+[0.10778248705901206, "o", "EXIF entry 'Date and Time' (0x132, 'DateTime') exists in IFD '0':\r\r\nTag: 0x132 ('DateTime')\r\r\n  Format: 2 ('ASCII')\r\r\n  Components: 20\r\r\n  Size: 20\r\r\n  Value: 2009:10:10 16:42:32\r\r\n"]

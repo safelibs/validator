@@ -1,4 +1,4 @@
 {"version": 2, "width": 120, "height": 40, "timestamp": 0, "env": {"TERM": "xterm-256color", "SHELL": "/bin/bash"}}
-[0.10582014499232173, "o", "no override packages found; continuing with apt originals\r\r\n"]
-[0.10735605098307133, "o", "+ set -euo pipefail\r\r\n+ /validator/tests/libarchive/tests/cases/usage/usage-python-libarchive-c-common.sh file-roundtrip\r\r\n"]
-[0.13663781993091106, "o", "{'one.txt': 'one\\n', 'two.txt': 'two\\n'}\r\r\n"]
+[0.11207424500025809, "o", "no override packages found; continuing with apt originals\r\r\n"]
+[0.11346884700469673, "o", "+ set -euo pipefail\r\r\n+ /validator/tests/libarchive/tests/cases/usage/usage-python-libarchive-c-common.sh file-roundtrip\r\r\n"]
+[0.14309752301778644, "o", "{'one.txt': 'one\\n', 'two.txt': 'two\\n'}\r\r\n"]

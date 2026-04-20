@@ -1,0 +1,32 @@
+{
+  "schema_version": 2,
+  "library": "libcsv",
+  "mode": "original",
+  "testcase_id": "usage-readstat-wide-csv",
+  "title": "readstat wide CSV metadata",
+  "description": "Runs readstat with four CSV variables and verifies summary metadata and fourth-column export.",
+  "kind": "usage",
+  "client_application": "readstat",
+  "tags": [
+    "usage",
+    "csv"
+  ],
+  "requires": [],
+  "status": "passed",
+  "started_at": "1970-01-01T00:00:00Z",
+  "finished_at": "1970-01-01T00:00:00Z",
+  "duration_seconds": 0.0,
+  "result_path": "results/libcsv/usage-readstat-wide-csv.json",
+  "log_path": "logs/libcsv/usage-readstat-wide-csv.log",
+  "cast_path": "casts/libcsv/usage-readstat-wide-csv.cast",
+  "exit_code": 0,
+  "command": [
+    "bash",
+    "/validator/tests/libcsv/tests/cases/usage/usage-readstat-wide-csv.sh"
+  ],
+  "apt_packages": [
+    "libcsv3",
+    "libcsv-dev"
+  ],
+  "override_debs_installed": false
+}

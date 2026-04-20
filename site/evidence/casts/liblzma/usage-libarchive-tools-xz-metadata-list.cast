@@ -1,0 +1,10 @@
+{"version": 2, "width": 120, "height": 40, "timestamp": 0, "env": {"TERM": "xterm-256color", "SHELL": "/bin/bash"}}
+[0.11070309299975634, "o", "no override packages found; continuing with apt originals\r\r\n"]
+[0.11244706099387258, "o", "+ set -euo pipefail\r\r\n+ source /validator/tests/_shared/runtime_helpers.sh\r\r\n++ set -euo pipefail\r\r\n++ mktemp -d\r\r\n"]
+[0.1137225340353325, "o", "+ tmpdir=/tmp/validator-tmp\r\r\n+ trap 'rm -rf \"$tmpdir\"' EXIT\r\r\n+ mkdir -p /tmp/validator-tmp/in\r\r\n"]
+[0.11442934500519186, "o", "+ printf '#!/usr/bin/env sh\\nprintf xz-metadata\\n'\r\r\n+ chmod 755 /tmp/validator-tmp/in/run.sh\r\r\n"]
+[0.11515248101204634, "o", "+ bsdtar -cJf /tmp/validator-tmp/a.tar.xz -C /tmp/validator-tmp/in run.sh\r\r\n"]
+[0.12343363300897181, "o", "+ bsdtar -tvf /tmp/validator-tmp/a.tar.xz\r\r\n"]
+[0.12529356707818806, "o", "+ grep -Fq run.sh /tmp/validator-tmp/list\r\r\n"]
+[0.12595918402075768, "o", "+ grep -Eq '^-rwx' /tmp/validator-tmp/list\r\r\n"]
+[0.126583228004165, "o", "+ printf 'xz metadata list ok\\n'\r\r\nxz metadata list ok\r\r\n+ rm -rf /tmp/validator-tmp\r\r\n"]

@@ -1,0 +1,32 @@
+{
+  "schema_version": 2,
+  "library": "libjson",
+  "mode": "original",
+  "testcase_id": "usage-gdal-ogr2ogr-where-geojson",
+  "title": "GDAL filters GeoJSON with ogr2ogr",
+  "description": "Runs ogr2ogr with an attribute where clause and verifies only the matching GeoJSON feature is written.",
+  "kind": "usage",
+  "client_application": "gdal",
+  "tags": [
+    "usage",
+    "json"
+  ],
+  "requires": [],
+  "status": "passed",
+  "started_at": "1970-01-01T00:00:00Z",
+  "finished_at": "1970-01-01T00:00:00Z",
+  "duration_seconds": 0.0,
+  "result_path": "results/libjson/usage-gdal-ogr2ogr-where-geojson.json",
+  "log_path": "logs/libjson/usage-gdal-ogr2ogr-where-geojson.log",
+  "cast_path": "casts/libjson/usage-gdal-ogr2ogr-where-geojson.cast",
+  "exit_code": 0,
+  "command": [
+    "bash",
+    "/validator/tests/libjson/tests/cases/usage/usage-gdal-ogr2ogr-where-geojson.sh"
+  ],
+  "apt_packages": [
+    "libjson-c5",
+    "libjson-c-dev"
+  ],
+  "override_debs_installed": false
+}

@@ -13,8 +13,8 @@ no override packages found; continuing with apt originals
 + local path=/validator/tests/giflib/tests/fixtures/samples/pic/treescap.gif
 + [[ -f /validator/tests/giflib/tests/fixtures/samples/pic/treescap.gif ]]
 + gifbuild -d /validator/tests/giflib/tests/fixtures/samples/pic/treescap.gif
-+ grep -E 'screen|image|rgb' -i /tmp/validator-tmp/dump.txt
 + head
++ grep -E 'screen|image|rgb' -i /tmp/validator-tmp/dump.txt
 screen width 40
 screen height 40
 screen colors 128

@@ -1,0 +1,32 @@
+{
+  "schema_version": 2,
+  "library": "libcsv",
+  "mode": "original",
+  "testcase_id": "usage-readstat-escaped-quotes-csv",
+  "title": "readstat escaped quote CSV fields",
+  "description": "Runs readstat through DTA conversion and verifies escaped double quotes survive CSV export.",
+  "kind": "usage",
+  "client_application": "readstat",
+  "tags": [
+    "usage",
+    "csv"
+  ],
+  "requires": [],
+  "status": "passed",
+  "started_at": "1970-01-01T00:00:00Z",
+  "finished_at": "1970-01-01T00:00:00Z",
+  "duration_seconds": 0.0,
+  "result_path": "results/libcsv/usage-readstat-escaped-quotes-csv.json",
+  "log_path": "logs/libcsv/usage-readstat-escaped-quotes-csv.log",
+  "cast_path": "casts/libcsv/usage-readstat-escaped-quotes-csv.cast",
+  "exit_code": 0,
+  "command": [
+    "bash",
+    "/validator/tests/libcsv/tests/cases/usage/usage-readstat-escaped-quotes-csv.sh"
+  ],
+  "apt_packages": [
+    "libcsv3",
+    "libcsv-dev"
+  ],
+  "override_debs_installed": false
+}

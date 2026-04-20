@@ -1,0 +1,32 @@
+{
+  "schema_version": 2,
+  "library": "libsodium",
+  "mode": "original",
+  "testcase_id": "usage-python3-nacl-public-box",
+  "title": "python3-nacl public box round trip",
+  "description": "Encrypts and decrypts a message with PyNaCl public-key boxes through libsodium.",
+  "kind": "usage",
+  "client_application": "python3-nacl",
+  "tags": [
+    "usage",
+    "crypto"
+  ],
+  "requires": [],
+  "status": "passed",
+  "started_at": "1970-01-01T00:00:00Z",
+  "finished_at": "1970-01-01T00:00:00Z",
+  "duration_seconds": 0.0,
+  "result_path": "results/libsodium/usage-python3-nacl-public-box.json",
+  "log_path": "logs/libsodium/usage-python3-nacl-public-box.log",
+  "cast_path": "casts/libsodium/usage-python3-nacl-public-box.cast",
+  "exit_code": 0,
+  "command": [
+    "bash",
+    "/validator/tests/libsodium/tests/cases/usage/usage-python3-nacl-public-box.sh"
+  ],
+  "apt_packages": [
+    "libsodium23",
+    "libsodium-dev"
+  ],
+  "override_debs_installed": false
+}

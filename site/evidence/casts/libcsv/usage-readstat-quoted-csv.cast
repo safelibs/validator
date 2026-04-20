@@ -1,5 +1,5 @@
 {"version": 2, "width": 120, "height": 40, "timestamp": 0, "env": {"TERM": "xterm-256color", "SHELL": "/bin/bash"}}
-[0.10789423703681678, "o", "no override packages found; continuing with apt originals\r\r\n"]
-[0.10940091102384031, "o", "+ set -euo pipefail\r\r\n+ /validator/tests/libcsv/tests/cases/usage/usage-readstat-common.sh quoted-csv\r\r\n"]
-[0.11437433608807623, "o", "Converted 2 variables and 2 rows in 0.00 seconds\r\r\n"]
-[0.11572396103292704, "o", "Converted 2 variables and 2 rows in 0.00 seconds\r\r\n\"name\",\"score\"\r\r\n\"alpha, one\",42.000000\r\r\n\"beta\",\r\r\n"]
+[0.11549015808850527, "o", "no override packages found; continuing with apt originals\r\r\n"]
+[0.11708707909565419, "o", "+ set -euo pipefail\r\r\n+ /validator/tests/libcsv/tests/cases/usage/usage-readstat-common.sh quoted-csv\r\r\n"]
+[0.1218683950137347, "o", "Converted 2 variables and 2 rows in 0.00 seconds\r\r\n"]
+[0.12309860705863684, "o", "Converted 2 variables and 2 rows in 0.00 seconds\r\r\n\"name\",\"score\"\r\r\n\"alpha, one\",42.000000\r\r\n\"beta\",\r\r\n"]

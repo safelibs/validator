@@ -1,0 +1,35 @@
+{
+  "schema_version": 2,
+  "library": "liblzma",
+  "mode": "original",
+  "testcase_id": "usage-libarchive-tools-xz-metadata-list",
+  "title": "libarchive-tools xz metadata list",
+  "description": "Runs bsdtar verbose listing on an xz archive and verifies executable metadata.",
+  "kind": "usage",
+  "client_application": "libarchive-tools",
+  "tags": [
+    "usage",
+    "archive",
+    "compression",
+    "metadata"
+  ],
+  "requires": [],
+  "status": "passed",
+  "started_at": "1970-01-01T00:00:00Z",
+  "finished_at": "1970-01-01T00:00:00Z",
+  "duration_seconds": 0.0,
+  "result_path": "results/liblzma/usage-libarchive-tools-xz-metadata-list.json",
+  "log_path": "logs/liblzma/usage-libarchive-tools-xz-metadata-list.log",
+  "cast_path": "casts/liblzma/usage-libarchive-tools-xz-metadata-list.cast",
+  "exit_code": 0,
+  "command": [
+    "bash",
+    "/validator/tests/liblzma/tests/cases/usage/usage-libarchive-tools-xz-metadata-list.sh"
+  ],
+  "apt_packages": [
+    "liblzma5",
+    "liblzma-dev",
+    "xz-utils"
+  ],
+  "override_debs_installed": false
+}

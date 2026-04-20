@@ -1,0 +1,32 @@
+{
+  "schema_version": 2,
+  "library": "cjson",
+  "mode": "original",
+  "testcase_id": "usage-iperf3-json-zero-copy",
+  "title": "iperf3 zero-copy JSON transfer",
+  "description": "Runs an iperf3 zero-copy loopback transfer and verifies JSON sender byte and throughput totals.",
+  "kind": "usage",
+  "client_application": "iperf3",
+  "tags": [
+    "usage",
+    "json"
+  ],
+  "requires": [],
+  "status": "passed",
+  "started_at": "1970-01-01T00:00:00Z",
+  "finished_at": "1970-01-01T00:00:00Z",
+  "duration_seconds": 0.0,
+  "result_path": "results/cjson/usage-iperf3-json-zero-copy.json",
+  "log_path": "logs/cjson/usage-iperf3-json-zero-copy.log",
+  "cast_path": "casts/cjson/usage-iperf3-json-zero-copy.cast",
+  "exit_code": 0,
+  "command": [
+    "bash",
+    "/validator/tests/cjson/tests/cases/usage/usage-iperf3-json-zero-copy.sh"
+  ],
+  "apt_packages": [
+    "libcjson1",
+    "libcjson-dev"
+  ],
+  "override_debs_installed": false
+}

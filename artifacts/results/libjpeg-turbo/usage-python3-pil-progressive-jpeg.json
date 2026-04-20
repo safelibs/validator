@@ -1,0 +1,37 @@
+{
+  "schema_version": 2,
+  "library": "libjpeg-turbo",
+  "mode": "original",
+  "testcase_id": "usage-python3-pil-progressive-jpeg",
+  "title": "Pillow progressive JPEG load",
+  "description": "Opens a progressive JPEG with Pillow and verifies libjpeg-turbo-backed image metadata.",
+  "kind": "usage",
+  "client_application": "python3-pil",
+  "tags": [
+    "usage",
+    "image",
+    "python",
+    "compression"
+  ],
+  "requires": [],
+  "status": "passed",
+  "started_at": "1970-01-01T00:00:00Z",
+  "finished_at": "1970-01-01T00:00:00Z",
+  "duration_seconds": 0.0,
+  "result_path": "results/libjpeg-turbo/usage-python3-pil-progressive-jpeg.json",
+  "log_path": "logs/libjpeg-turbo/usage-python3-pil-progressive-jpeg.log",
+  "cast_path": "casts/libjpeg-turbo/usage-python3-pil-progressive-jpeg.cast",
+  "exit_code": 0,
+  "command": [
+    "bash",
+    "/validator/tests/libjpeg-turbo/tests/cases/usage/usage-python3-pil-progressive-jpeg.sh"
+  ],
+  "apt_packages": [
+    "libjpeg-turbo8",
+    "libjpeg-turbo8-dev",
+    "libturbojpeg",
+    "libturbojpeg0-dev",
+    "libjpeg-turbo-progs"
+  ],
+  "override_debs_installed": false
+}

@@ -1,5 +1,5 @@
 {"version": 2, "width": 120, "height": 40, "timestamp": 0, "env": {"TERM": "xterm-256color", "SHELL": "/bin/bash"}}
-[0.10771473695058376, "o", "no override packages found; continuing with apt originals\r\r\n"]
-[0.10935290693305433, "o", "+ set -euo pipefail\r\r\n+ /validator/tests/libcsv/tests/cases/usage/usage-readstat-common.sh metadata-summary\r\r\n"]
-[0.1143602830125019, "o", "Converted 2 variables and 2 rows in 0.00 seconds\r\r\n"]
-[0.11527135700453073, "o", "Format: Stata binary file (DTA)\r\r\nColumns: 2\r\r\nRows: 2\r\r\nTable label: (null)\r\r\nFormat version: 118\r\r\nByte order: little-endian\r\r\nTimestamp: 01 Jan 1970 00:00\r\r\n"]
+[0.11495081603061408, "o", "no override packages found; continuing with apt originals\r\r\n"]
+[0.11650939902756363, "o", "+ set -euo pipefail\r\r\n+ /validator/tests/libcsv/tests/cases/usage/usage-readstat-common.sh metadata-summary\r\r\n"]
+[0.12105975998565555, "o", "Converted 2 variables and 2 rows in 0.00 seconds\r\r\n"]
+[0.12208654801361263, "o", "Format: Stata binary file (DTA)\r\r\nColumns: 2\r\r\nRows: 2\r\r\nTable label: (null)\r\r\nFormat version: 118\r\r\nByte order: little-endian\r\r\nTimestamp: 01 Jan 1970 00:00\r\r\n"]

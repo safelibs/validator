@@ -10,8 +10,8 @@ no override packages found; continuing with apt originals
 + trap 'rm -rf "$tmpdir"' EXIT
 + python3 - /tmp/validator-tmp/in.ppm
 + cjpeg /tmp/validator-tmp/in.ppm
-+ vipsheader /tmp/validator-tmp/in.jpg
 + tee /tmp/validator-tmp/out
++ vipsheader /tmp/validator-tmp/in.jpg
 /tmp/validator-tmp/in.jpg: 4x3 uchar, 3 bands, srgb, jpegload
 + validator_assert_contains /tmp/validator-tmp/out jpegload
 + local path=/tmp/validator-tmp/out

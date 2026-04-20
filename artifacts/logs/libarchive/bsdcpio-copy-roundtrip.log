@@ -11,8 +11,8 @@ no override packages found; continuing with apt originals
 + mkdir -p /tmp/validator-tmp/in/sub /tmp/validator-tmp/out
 + printf 'cpio payload\n'
 + cd /tmp/validator-tmp/in
-+ sort
 + find . -print
++ sort
 + bsdcpio -o -H newc
 1 block
 + cd /tmp/validator-tmp/out

@@ -1,0 +1,4 @@
+{"version": 2, "width": 120, "height": 40, "timestamp": 0, "env": {"TERM": "xterm-256color", "SHELL": "/bin/bash"}}
+[0.11455846903845668, "o", "no override packages found; continuing with apt originals\r\r\n"]
+[0.11647020501550287, "o", "+ set -euo pipefail\r\r\n+ /validator/tests/libarchive/tests/cases/usage/usage-python-libarchive-c-common.sh zip-roundtrip\r\r\n"]
+[0.1463521170662716, "o", "zip-roundtrip zip-alpha.txt,zip-beta.txt\r\r\n"]
