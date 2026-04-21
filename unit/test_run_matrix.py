@@ -302,7 +302,7 @@ class RunMatrixTests(unittest.TestCase):
             "payload\r\n" "done\r\n",
         )
 
-    def test_cast_recording_uses_deterministic_stream_order(self) -> None:
+    def test_cast_recording_preserves_stream_timing(self) -> None:
         root = self.run_root()
         log_path = root / "timed.log"
         cast_path = root / "timed.cast"
@@ -326,6 +326,35 @@ class RunMatrixTests(unittest.TestCase):
         events = [json.loads(line) for line in lines[1:]]
         self.assertGreaterEqual(len(events), 2)
         self.assertTrue(all(event[1] == "o" for event in events))
+        self.assertIn("first", "".join(event[2] for event in events))
+        self.assertIn("second", "".join(event[2] for event in events))
+
+        timestamps = [float(event[0]) for event in events]
+        self.assertEqual(timestamps, sorted(timestamps))
+        self.assertGreater(timestamps[-1], timestamps[0] + 0.1)
+
+    def test_deterministic_cast_recording_uses_stable_stream_order(self) -> None:
+        root = self.run_root()
+        log_path = root / "deterministic.log"
+        cast_path = root / "deterministic.cast"
+
+        script = (
+            "import sys, time; "
+            "sys.stdout.write('first\\n'); sys.stdout.flush(); "
+            "time.sleep(0.25); "
+            "sys.stdout.write('second\\n'); sys.stdout.flush()"
+        )
+        outcome = run_matrix.run_logged(
+            [sys.executable, "-c", script],
+            log_path=log_path,
+            cast_path=cast_path,
+            timeout_seconds=5,
+            deterministic_cast=True,
+        )
+
+        self.assertEqual(outcome.exit_code, 0)
+        events = [json.loads(line) for line in cast_path.read_text().splitlines()[1:]]
+        self.assertGreaterEqual(len(events), 2)
         self.assertIn("first", "".join(event[2] for event in events))
         self.assertIn("second", "".join(event[2] for event in events))
 

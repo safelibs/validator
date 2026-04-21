@@ -242,6 +242,7 @@ def stream_process_with_cast(
     env: dict[str, str] | None = None,
     timeout_seconds: int | float | None = None,
     log_replacements: dict[str, str] | None = None,
+    deterministic_cast: bool = False,
 ) -> RunOutcome:
     ensure_parent(cast_path)
     with cast_path.open("w", encoding="utf-8") as cast_handle:
@@ -261,16 +262,31 @@ def stream_process_with_cast(
         decoder = codecs.getincrementaldecoder("utf-8")("replace")
         timed_out = False
         output_parts: list[str] = []
+        wrote_cast_event = False
 
         def write_output(text: str) -> None:
-            output_parts.append(text)
+            nonlocal wrote_cast_event
+            if deterministic_cast:
+                output_parts.append(text)
+                return
+            text = normalize_log_text(text, log_replacements)
+            log_handle.write(text)
+            timestamp = max(0.0, time.monotonic() - started)
+            cast_handle.write(json.dumps([timestamp, "o", text]) + "\n")
+            wrote_cast_event = True
 
         def persist_output() -> None:
-            text = normalize_recorded_output_text("".join(output_parts), log_replacements)
-            if text:
-                log_handle.write(text)
-            for timestamp, chunk in deterministic_cast_events(text):
-                cast_handle.write(json.dumps([timestamp, "o", chunk]) + "\n")
+            nonlocal wrote_cast_event
+            if deterministic_cast:
+                text = normalize_recorded_output_text("".join(output_parts), log_replacements)
+                if text:
+                    log_handle.write(text)
+                for timestamp, chunk in deterministic_cast_events(text):
+                    cast_handle.write(json.dumps([timestamp, "o", chunk]) + "\n")
+                wrote_cast_event = True
+            elif not wrote_cast_event:
+                cast_handle.write(json.dumps([max(0.0, time.monotonic() - started), "o", ""]) + "\n")
+                wrote_cast_event = True
             log_handle.flush()
             cast_handle.flush()
 
@@ -352,6 +368,7 @@ def run_logged(
     env: dict[str, str] | None = None,
     timeout_seconds: int | float | None = None,
     log_replacements: dict[str, str] | None = None,
+    deterministic_cast: bool = False,
 ) -> RunOutcome:
     ensure_parent(log_path)
     with log_path.open("a", encoding="utf-8") as log_handle:
@@ -366,6 +383,7 @@ def run_logged(
                 env=env,
                 timeout_seconds=timeout_seconds,
                 log_replacements=log_replacements,
+                deterministic_cast=deterministic_cast,
             )
         return stream_process(
             args,
@@ -702,6 +720,7 @@ def run_testcase(
             log_replacements={
                 str(status_dir.resolve()): f"/tmp/validator-status-{library}-{testcase.id}",
             },
+            deterministic_cast=record_casts,
         )
         if outcome.timed_out:
             error = f"testcase timed out after {testcase.timeout_seconds} seconds"
