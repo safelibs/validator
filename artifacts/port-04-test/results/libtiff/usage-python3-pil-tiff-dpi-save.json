@@ -34,9 +34,9 @@
   ],
   "override_debs_installed": true,
   "port_repository": "safelibs/port-libtiff",
-  "port_tag_ref": "refs/tags/build-055a084b9d67",
-  "port_commit": "055a084b9d67303636a910fe6167f4cf734315f4",
-  "port_release_tag": "build-055a084b9d67",
+  "port_tag_ref": "refs/tags/libtiff/04-test",
+  "port_commit": "9e34df3e07fc8800108b3987f16526a28f05fd24",
+  "port_release_tag": "build-9e34df3e07fc",
   "port_debs": [
     {
       "package": "libtiff6",

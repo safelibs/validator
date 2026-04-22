@@ -30,7 +30,7 @@
   ],
   "override_debs_installed": true,
   "port_repository": "safelibs/port-libuv",
-  "port_tag_ref": "refs/tags/build-a2d0955c60f5",
+  "port_tag_ref": "refs/tags/libuv/04-test",
   "port_commit": "a2d0955c60f587f605b50846042a5007001d561b",
   "port_release_tag": "build-a2d0955c60f5",
   "port_debs": [

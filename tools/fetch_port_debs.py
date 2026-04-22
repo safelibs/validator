@@ -25,6 +25,7 @@ from tools.inventory import load_manifest
 
 
 COMMIT_RE = re.compile(r"^[0-9a-f]{40}$")
+PHASE_TAG_RE = re.compile(r"^(?P<number>[0-9]+)-(?P<name>[A-Za-z0-9][A-Za-z0-9._-]*)$")
 NATIVE_ARCHITECTURES = {"amd64", "all"}
 LOCK_GENERATED_AT = "1970-01-01T00:00:00Z"
 
@@ -148,16 +149,17 @@ def require_commit(value: str | None, *, description: str) -> str:
     return value
 
 
-def resolve_tag_commit(repo: PortRepo) -> str:
+def resolve_tag_commit(repo: PortRepo, tag_ref: str | None = None) -> str:
+    tag_ref = tag_ref or repo.tag_ref
     git_url = github_git_url(repo.name_with_owner)
     completed = run(
-        ["git", "ls-remote", git_url, repo.tag_ref, f"{repo.tag_ref}^{{}}"],
+        ["git", "ls-remote", git_url, tag_ref, f"{tag_ref}^{{}}"],
         env=git_env(),
         capture_output=True,
     )
     refs = parse_ls_remote_refs(completed.stdout)
-    commit = refs.get(f"{repo.tag_ref}^{{}}") or refs.get(repo.tag_ref)
-    return require_commit(commit, description=f"tag {repo.tag_ref} in {repo.name_with_owner}")
+    commit = refs.get(f"{tag_ref}^{{}}") or refs.get(tag_ref)
+    return require_commit(commit, description=f"tag {tag_ref} in {repo.name_with_owner}")
 
 
 def release_tag_for_commit(commit: str) -> str:
@@ -166,60 +168,49 @@ def release_tag_for_commit(commit: str) -> str:
     return f"build-{commit[:12]}"
 
 
-def build_tag_ref_for_commit(commit: str) -> str:
-    return f"refs/tags/{release_tag_for_commit(commit)}"
-
-
-def resolve_build_tag_commit(repo: PortRepo, tag_ref: str) -> str | None:
-    git_url = github_git_url(repo.name_with_owner)
-    refs = parse_ls_remote_refs(
-        run(
-            ["git", "ls-remote", git_url, tag_ref, f"{tag_ref}^{{}}"],
-            env=git_env(),
-            capture_output=True,
-        ).stdout
-    )
-    commit = refs.get(f"{tag_ref}^{{}}") or refs.get(tag_ref)
-    if commit is None:
+def phase_tag_sort_key(repo: PortRepo, tag_ref: str) -> tuple[int, str] | None:
+    prefix = f"refs/tags/{repo.library}/"
+    if not tag_ref.startswith(prefix) or tag_ref.endswith("^{}"):
         return None
-    return require_commit(commit, description=f"build tag {tag_ref} in {repo.name_with_owner}")
+    tag_name = tag_ref.removeprefix(prefix)
+    match = PHASE_TAG_RE.fullmatch(tag_name)
+    if match is None:
+        return None
+    return int(match.group("number")), tag_name
+
+
+def latest_qualifying_phase_tag_ref(repo: PortRepo) -> str:
+    minimum_key = phase_tag_sort_key(repo, repo.tag_ref)
+    if minimum_key is None:
+        raise ValidatorError(f"port repository tag_ref for {repo.library} must be a phase tag")
+
+    git_url = github_git_url(repo.name_with_owner)
+    completed = run(
+        ["git", "ls-remote", "--tags", git_url, f"refs/tags/{repo.library}/*"],
+        env=git_env(),
+        capture_output=True,
+    )
+    refs = parse_ls_remote_refs(completed.stdout)
+    minimum_phase = minimum_key[0]
+    candidates = [
+        (key, tag_ref)
+        for tag_ref in refs
+        if (key := phase_tag_sort_key(repo, tag_ref)) is not None and key[0] >= minimum_phase
+    ]
+    if not candidates:
+        raise ValidatorError(
+            f"no phase tags at or after {repo.tag_ref} were found in {repo.name_with_owner}"
+        )
+    return max(candidates, key=lambda item: item[0])[1]
 
 
 def resolve_port_ref(repo: PortRepo) -> ResolvedPortRef:
-    minimum_commit = resolve_tag_commit(repo)
-    branch_ref = f"refs/heads/{repo.default_branch}"
-    git_url = github_git_url(repo.name_with_owner)
-    branch_refs = parse_ls_remote_refs(
-        run(
-            ["git", "ls-remote", git_url, branch_ref],
-            env=git_env(),
-            capture_output=True,
-        ).stdout
-    )
-    branch_commit = require_commit(
-        branch_refs.get(branch_ref),
-        description=f"default branch {branch_ref} in {repo.name_with_owner}",
-    )
-    build_tag_ref = build_tag_ref_for_commit(branch_commit)
-    build_commit = resolve_build_tag_commit(repo, build_tag_ref)
-    if build_commit is not None and build_commit != branch_commit:
-        raise ValidatorError(
-            f"build tag {build_tag_ref} in {repo.name_with_owner} points to {build_commit}, "
-            f"not default branch commit {branch_commit}"
-        )
-    if build_commit is None:
-        build_tag_ref = build_tag_ref_for_commit(minimum_commit)
-        build_commit = resolve_build_tag_commit(repo, build_tag_ref)
-        if build_commit is None:
-            raise ValidatorError(f"missing build tag {build_tag_ref} in {repo.name_with_owner}")
-        if build_commit != minimum_commit:
-            raise ValidatorError(
-                f"build tag {build_tag_ref} in {repo.name_with_owner} points to {build_commit}, "
-                f"not minimum tag commit {minimum_commit}"
-            )
+    selected_tag_ref = latest_qualifying_phase_tag_ref(repo)
+    selected_commit = resolve_tag_commit(repo, selected_tag_ref)
+    minimum_commit = selected_commit if selected_tag_ref == repo.tag_ref else resolve_tag_commit(repo)
     return ResolvedPortRef(
-        tag_ref=build_tag_ref,
-        commit=build_commit,
+        tag_ref=selected_tag_ref,
+        commit=selected_commit,
         minimum_tag_ref=repo.tag_ref,
         minimum_commit=minimum_commit,
     )

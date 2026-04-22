@@ -31,30 +31,30 @@
   ],
   "override_debs_installed": true,
   "port_repository": "safelibs/port-libbz2",
-  "port_tag_ref": "refs/tags/build-54601f7bb1c9",
-  "port_commit": "54601f7bb1c95bffa3a874e1d798c9fbc55062e7",
-  "port_release_tag": "build-54601f7bb1c9",
+  "port_tag_ref": "refs/tags/libbz2/04-test",
+  "port_commit": "8c4b1bee6d2536377f96a66426d39bdb77f60c94",
+  "port_release_tag": "build-8c4b1bee6d25",
   "port_debs": [
     {
       "package": "libbz2-1.0",
       "filename": "libbz2-1.0_1.0.8-5.1build0.1+safelibs1_amd64.deb",
       "architecture": "amd64",
-      "sha256": "8d42560fa19b5050da49fcd5d021a2e9aec36b4feb9d54747a590a89528ebaae",
-      "size": 183470
+      "sha256": "2331fe4951e3c351f2ab0099d8ef5362e106cded3917c7ab9f9a9c0efabf8c4a",
+      "size": 183426
     },
     {
       "package": "libbz2-dev",
       "filename": "libbz2-dev_1.0.8-5.1build0.1+safelibs1_amd64.deb",
       "architecture": "amd64",
-      "sha256": "adcfe9fcd37033dd7d770d3c852fdf16b87ee1cc8b5df8317e94adbeb6919cc3",
-      "size": 8579954
+      "sha256": "b4d228178bb1b279127d1d62fbe46b3a033fb332073145f8b62b742d7d1d0e3b",
+      "size": 8579926
     },
     {
       "package": "bzip2",
       "filename": "bzip2_1.0.8-5.1build0.1+safelibs1_amd64.deb",
       "architecture": "amd64",
-      "sha256": "2302af6265c13b34cdb15e495520ad23e5dd7be68270e947121f13ca0d8a7d35",
-      "size": 35074
+      "sha256": "decc20d84efcb50f7077ae09d2b846c4ee068b4ea6b76394863d660db44dfa6a",
+      "size": 35080
     }
   ],
   "unported_original_packages": [],

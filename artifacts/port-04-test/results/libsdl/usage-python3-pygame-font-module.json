@@ -32,9 +32,9 @@
   ],
   "override_debs_installed": true,
   "port_repository": "safelibs/port-libsdl",
-  "port_tag_ref": "refs/tags/build-1b1de4b6d3a8",
-  "port_commit": "1b1de4b6d3a882632479a82218e431f56350bc1e",
-  "port_release_tag": "build-1b1de4b6d3a8",
+  "port_tag_ref": "refs/tags/libsdl/04-test",
+  "port_commit": "14609a9a584435d4a12c46aa11e969a0f0f8a7d5",
+  "port_release_tag": "build-14609a9a5844",
   "port_debs": [
     {
       "package": "libsdl2-2.0-0",

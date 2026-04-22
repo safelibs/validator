@@ -30,9 +30,9 @@
   ],
   "override_debs_installed": true,
   "port_repository": "safelibs/port-cjson",
-  "port_tag_ref": "refs/tags/build-8f3d8a4a4366",
-  "port_commit": "8f3d8a4a4366181592523ba05d00e2b0266dcbbc",
-  "port_release_tag": "build-8f3d8a4a4366",
+  "port_tag_ref": "refs/tags/cjson/04-test",
+  "port_commit": "de29489668c1c42bf2f3528a26cc992a30e1ba9b",
+  "port_release_tag": "build-de29489668c1",
   "port_debs": [
     {
       "package": "libcjson1",

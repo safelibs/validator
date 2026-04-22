@@ -33,9 +33,9 @@
   ],
   "override_debs_installed": true,
   "port_repository": "safelibs/port-liblzma",
-  "port_tag_ref": "refs/tags/build-fd94dcc9f96a",
-  "port_commit": "fd94dcc9f96a2b8963de7a148dda6d3dc42351d7",
-  "port_release_tag": "build-fd94dcc9f96a",
+  "port_tag_ref": "refs/tags/liblzma/04-test",
+  "port_commit": "ebba850f8faee3ef9ced72e8556201c642f95f33",
+  "port_release_tag": "build-ebba850f8fae",
   "port_debs": [
     {
       "package": "liblzma5",

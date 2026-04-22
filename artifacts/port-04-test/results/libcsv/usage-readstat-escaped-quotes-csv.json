@@ -30,9 +30,9 @@
   ],
   "override_debs_installed": true,
   "port_repository": "safelibs/port-libcsv",
-  "port_tag_ref": "refs/tags/build-6e4a1fc033bc",
-  "port_commit": "6e4a1fc033bce8933530991786abccc60078913c",
-  "port_release_tag": "build-6e4a1fc033bc",
+  "port_tag_ref": "refs/tags/libcsv/04-test",
+  "port_commit": "91e798441fdd01840738ac7488cb064f9299b21d",
+  "port_release_tag": "build-91e798441fdd",
   "port_debs": [
     {
       "package": "libcsv3",

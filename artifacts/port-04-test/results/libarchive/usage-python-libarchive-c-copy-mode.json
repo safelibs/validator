@@ -31,9 +31,9 @@
   ],
   "override_debs_installed": true,
   "port_repository": "safelibs/port-libarchive",
-  "port_tag_ref": "refs/tags/build-5b82bb43f596",
-  "port_commit": "5b82bb43f596f18f6ec00b1cda46d7d389a552cf",
-  "port_release_tag": "build-5b82bb43f596",
+  "port_tag_ref": "refs/tags/libarchive/04-test",
+  "port_commit": "95a312cfb18fbb50bdc07a30d65e5b6caffa6bcd",
+  "port_release_tag": "build-95a312cfb18f",
   "port_debs": [
     {
       "package": "libarchive13t64",
@@ -46,8 +46,8 @@
       "package": "libarchive-dev",
       "filename": "libarchive-dev_3.7.2-2ubuntu0.6_amd64.deb",
       "architecture": "amd64",
-      "sha256": "5695712d4b690d5052e15777b5cfb58ca6323131ff58af994cdbf75d78753557",
-      "size": 18953360
+      "sha256": "5577714987eefe7dfb31c3e164cc2b9fb09fa13f8e975a97160f116db652996a",
+      "size": 18955064
     },
     {
       "package": "libarchive-tools",

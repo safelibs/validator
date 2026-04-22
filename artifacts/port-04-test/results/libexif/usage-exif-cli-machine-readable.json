@@ -30,9 +30,9 @@
   ],
   "override_debs_installed": true,
   "port_repository": "safelibs/port-libexif",
-  "port_tag_ref": "refs/tags/build-1c476e14dfeb",
-  "port_commit": "1c476e14dfeb9abf2f5de25a0eb51bee11d03da9",
-  "port_release_tag": "build-1c476e14dfeb",
+  "port_tag_ref": "refs/tags/libexif/04-test",
+  "port_commit": "9f7fcf07e3702f97d61ccb0d0b5eb48591d85b5c",
+  "port_release_tag": "build-9f7fcf07e370",
   "port_debs": [
     {
       "package": "libexif12",

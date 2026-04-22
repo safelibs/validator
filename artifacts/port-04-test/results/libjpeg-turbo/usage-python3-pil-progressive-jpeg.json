@@ -35,9 +35,9 @@
   ],
   "override_debs_installed": true,
   "port_repository": "safelibs/port-libjpeg-turbo",
-  "port_tag_ref": "refs/tags/build-281b55df9716",
-  "port_commit": "281b55df97168b64d781fc2862ac663c4cbafb53",
-  "port_release_tag": "build-281b55df9716",
+  "port_tag_ref": "refs/tags/libjpeg-turbo/04-test",
+  "port_commit": "27e232c22936de7b2cfcefc549c229b9be0c64cc",
+  "port_release_tag": "build-27e232c22936",
   "port_debs": [
     {
       "package": "libjpeg-turbo8",

@@ -65,7 +65,7 @@ class PortDebTests(unittest.TestCase):
         release = release or self.fake_release()
         commit = "abcdef1234567890abcdef1234567890abcdef12"
         resolved_ref = fetch_port_debs.ResolvedPortRef(
-            tag_ref="refs/tags/build-abcdef123456",
+            tag_ref="refs/tags/original-demo/05-verify",
             commit=commit,
             minimum_tag_ref="refs/tags/original-demo/04-test",
             minimum_commit="1111111111111111111111111111111111111111",
@@ -106,7 +106,7 @@ class PortDebTests(unittest.TestCase):
         self.assertEqual(commit, "2222222222222222222222222222222222222222")
         self.assertEqual(fetch_port_debs.release_tag_for_commit(commit), "build-222222222222")
 
-    def test_resolves_default_branch_build_tag_after_minimum_stage(self) -> None:
+    def test_resolves_latest_phase_tag_at_or_after_minimum_stage(self) -> None:
         repo = fetch_port_debs.PortRepo(
             library="original-demo",
             name_with_owner="safelibs/port-original-demo",
@@ -114,28 +114,33 @@ class PortDebTests(unittest.TestCase):
             default_branch="main",
             tag_ref="refs/tags/original-demo/04-test",
         )
+        phase_stdout = (
+            "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\trefs/tags/original-demo/01-recon\n"
+            "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb\trefs/tags/original-demo/03-port\n"
+            "1111111111111111111111111111111111111111\trefs/tags/original-demo/04-test\n"
+            "abcdef1234567890abcdef1234567890abcdef12\trefs/tags/original-demo/05-verify\n"
+        )
+        selected_stdout = "abcdef1234567890abcdef1234567890abcdef12\trefs/tags/original-demo/05-verify\n"
         minimum_stdout = (
             "1111111111111111111111111111111111111111\trefs/tags/original-demo/04-test\n"
             "2222222222222222222222222222222222222222\trefs/tags/original-demo/04-test^{}\n"
         )
-        branch_stdout = "abcdef1234567890abcdef1234567890abcdef12\trefs/heads/main\n"
-        build_stdout = "abcdef1234567890abcdef1234567890abcdef12\trefs/tags/build-abcdef123456\n"
         with mock.patch(
             "tools.fetch_port_debs.run",
             side_effect=[
+                mock.Mock(stdout=phase_stdout),
+                mock.Mock(stdout=selected_stdout),
                 mock.Mock(stdout=minimum_stdout),
-                mock.Mock(stdout=branch_stdout),
-                mock.Mock(stdout=build_stdout),
             ],
         ):
             resolved = fetch_port_debs.resolve_port_ref(repo)
 
         self.assertEqual(resolved.minimum_tag_ref, "refs/tags/original-demo/04-test")
         self.assertEqual(resolved.minimum_commit, "2222222222222222222222222222222222222222")
-        self.assertEqual(resolved.tag_ref, "refs/tags/build-abcdef123456")
+        self.assertEqual(resolved.tag_ref, "refs/tags/original-demo/05-verify")
         self.assertEqual(resolved.commit, "abcdef1234567890abcdef1234567890abcdef12")
 
-    def test_resolves_minimum_build_tag_when_branch_head_is_untagged(self) -> None:
+    def test_resolves_minimum_phase_tag_when_no_higher_phase_exists(self) -> None:
         repo = fetch_port_debs.PortRepo(
             library="original-demo",
             name_with_owner="safelibs/port-original-demo",
@@ -143,22 +148,23 @@ class PortDebTests(unittest.TestCase):
             default_branch="main",
             tag_ref="refs/tags/original-demo/04-test",
         )
+        phase_stdout = (
+            "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\trefs/tags/original-demo/01-recon\n"
+            "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb\trefs/tags/original-demo/03-port\n"
+            "2222222222222222222222222222222222222222\trefs/tags/original-demo/04-test\n"
+        )
         minimum_stdout = "2222222222222222222222222222222222222222\trefs/tags/original-demo/04-test\n"
-        branch_stdout = "abcdef1234567890abcdef1234567890abcdef12\trefs/heads/main\n"
-        missing_branch_build_stdout = ""
-        minimum_build_stdout = "2222222222222222222222222222222222222222\trefs/tags/build-222222222222\n"
         with mock.patch(
             "tools.fetch_port_debs.run",
             side_effect=[
+                mock.Mock(stdout=phase_stdout),
                 mock.Mock(stdout=minimum_stdout),
-                mock.Mock(stdout=branch_stdout),
-                mock.Mock(stdout=missing_branch_build_stdout),
-                mock.Mock(stdout=minimum_build_stdout),
+                mock.Mock(stdout=minimum_stdout),
             ],
         ):
             resolved = fetch_port_debs.resolve_port_ref(repo)
 
-        self.assertEqual(resolved.tag_ref, "refs/tags/build-222222222222")
+        self.assertEqual(resolved.tag_ref, "refs/tags/original-demo/04-test")
         self.assertEqual(resolved.commit, "2222222222222222222222222222222222222222")
 
     def test_filters_assets_and_writes_deterministic_lock(self) -> None:
@@ -184,7 +190,7 @@ class PortDebTests(unittest.TestCase):
         self.assertEqual(lock["mode"], "port-04-test")
         self.assertEqual(lock["generated_at"], "1970-01-01T00:00:00Z")
         library = lock["libraries"][0]
-        self.assertEqual(library["tag_ref"], "refs/tags/build-abcdef123456")
+        self.assertEqual(library["tag_ref"], "refs/tags/original-demo/05-verify")
         self.assertEqual(library["release_tag"], "build-abcdef123456")
         self.assertEqual([deb["package"] for deb in library["debs"]], ["demo-runtime"])
         self.assertEqual(library["debs"][0]["architecture"], "amd64")
