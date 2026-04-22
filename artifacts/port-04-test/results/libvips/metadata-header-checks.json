@@ -32,16 +32,16 @@
   ],
   "override_debs_installed": true,
   "port_repository": "safelibs/port-libvips",
-  "port_tag_ref": "refs/tags/libvips/04-test",
-  "port_commit": "12543f951c24648d94d82e9809a02ed679602ef7",
-  "port_release_tag": "build-12543f951c24",
+  "port_tag_ref": "refs/tags/libvips/06-test",
+  "port_commit": "2d48ed5f49f0323cf54fc7ce39e542cc8e1475dd",
+  "port_release_tag": "build-2d48ed5f49f0",
   "port_debs": [
     {
       "package": "libvips42t64",
       "filename": "libvips42t64_8.15.1-1.1build4_amd64.deb",
       "architecture": "amd64",
-      "sha256": "217f97594ee4da20c85a79c35c86796ebcedcbf7c3e696304409fff4af391593",
-      "size": 1292950
+      "sha256": "4d8e7aa88db16338faae002f935313d167385ea7f202d80851896bcdb500b9ac",
+      "size": 1421058
     },
     {
       "package": "libvips-dev",

@@ -32,9 +32,9 @@
   ],
   "override_debs_installed": true,
   "port_repository": "safelibs/port-libxml",
-  "port_tag_ref": "refs/tags/libxml/04-test",
-  "port_commit": "8af9d2976d2400327eb27c882c48b8556f27cc2a",
-  "port_release_tag": "build-8af9d2976d24",
+  "port_tag_ref": "refs/tags/libxml/05-test",
+  "port_commit": "a154776981d14fc77142ae381f1171b4d479c642",
+  "port_release_tag": "build-a154776981d1",
   "port_debs": [
     {
       "package": "libxml2",
@@ -54,8 +54,8 @@
       "package": "libxml2-utils",
       "filename": "libxml2-utils_2.9.14+dfsg-1.3ubuntu3.7+safelibs1_amd64.deb",
       "architecture": "amd64",
-      "sha256": "ab2ae9f83b4bfae822782dce35c445b0fa2b9ccdf25042dd9dfff0c373070a26",
-      "size": 915638
+      "sha256": "bd1e3353da85b97f22c8d5988b3cc43f4ad549b8c15d8bfb46fb5edb78680777",
+      "size": 915442
     },
     {
       "package": "python3-libxml2",

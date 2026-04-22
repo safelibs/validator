@@ -357,27 +357,27 @@
       "library": "libsdl",
       "repository": "safelibs/port-libsdl",
       "url": "https://github.com/safelibs/port-libsdl",
-      "tag_ref": "refs/tags/libsdl/04-test",
-      "commit": "14609a9a584435d4a12c46aa11e969a0f0f8a7d5",
-      "release_tag": "build-14609a9a5844",
+      "tag_ref": "refs/tags/libsdl/05-test",
+      "commit": "bf1a5b2467b61e76ab1fc40fc1a58afd66465239",
+      "release_tag": "build-bf1a5b2467b6",
       "debs": [
         {
           "package": "libsdl2-2.0-0",
           "filename": "libsdl2-2.0-0_2.30.0+dfsg-1ubuntu3.1+safelibs1_amd64.deb",
           "architecture": "amd64",
-          "sha256": "f21f77cb0e382dbf6bf1f1e4a63a316850d9257b533290be404c549858dc9759",
-          "size": 492420,
-          "asset_api_url": "https://api.github.com/repos/safelibs/port-libsdl/releases/assets/401828397",
-          "browser_download_url": "https://github.com/safelibs/port-libsdl/releases/download/build-14609a9a5844/libsdl2-2.0-0_2.30.0%2Bdfsg-1ubuntu3.1%2Bsafelibs1_amd64.deb"
+          "sha256": "403f2c450fe8d618214256f056daa0d9e972143f54190683918bcc4e51f4063a",
+          "size": 492260,
+          "asset_api_url": "https://api.github.com/repos/safelibs/port-libsdl/releases/assets/402199214",
+          "browser_download_url": "https://github.com/safelibs/port-libsdl/releases/download/build-bf1a5b2467b6/libsdl2-2.0-0_2.30.0%2Bdfsg-1ubuntu3.1%2Bsafelibs1_amd64.deb"
         },
         {
           "package": "libsdl2-dev",
           "filename": "libsdl2-dev_2.30.0+dfsg-1ubuntu3.1+safelibs1_amd64.deb",
           "architecture": "amd64",
-          "sha256": "da73d1e3f4e0341de9e193b6af368321e938d7229dc0de71703251a556469bef",
-          "size": 10591960,
-          "asset_api_url": "https://api.github.com/repos/safelibs/port-libsdl/releases/assets/401828396",
-          "browser_download_url": "https://github.com/safelibs/port-libsdl/releases/download/build-14609a9a5844/libsdl2-dev_2.30.0%2Bdfsg-1ubuntu3.1%2Bsafelibs1_amd64.deb"
+          "sha256": "55204317aeedde2036da09de61275a713223cd1580a1af385882845fa441f349",
+          "size": 10590698,
+          "asset_api_url": "https://api.github.com/repos/safelibs/port-libsdl/releases/assets/402199215",
+          "browser_download_url": "https://github.com/safelibs/port-libsdl/releases/download/build-bf1a5b2467b6/libsdl2-dev_2.30.0%2Bdfsg-1ubuntu3.1%2Bsafelibs1_amd64.deb"
         },
         {
           "package": "libsdl2-tests",
@@ -385,8 +385,8 @@
           "architecture": "amd64",
           "sha256": "1218466011abfe7679e1ba391479e8c7ee9888b16ab416f6c729f3beb87f1a36",
           "size": 2843792,
-          "asset_api_url": "https://api.github.com/repos/safelibs/port-libsdl/releases/assets/401828398",
-          "browser_download_url": "https://github.com/safelibs/port-libsdl/releases/download/build-14609a9a5844/libsdl2-tests_2.30.0%2Bdfsg-1ubuntu3.1%2Bsafelibs1_amd64.deb"
+          "asset_api_url": "https://api.github.com/repos/safelibs/port-libsdl/releases/assets/402199212",
+          "browser_download_url": "https://github.com/safelibs/port-libsdl/releases/download/build-bf1a5b2467b6/libsdl2-tests_2.30.0%2Bdfsg-1ubuntu3.1%2Bsafelibs1_amd64.deb"
         }
       ],
       "unported_original_packages": []
@@ -500,18 +500,18 @@
       "library": "libvips",
       "repository": "safelibs/port-libvips",
       "url": "https://github.com/safelibs/port-libvips",
-      "tag_ref": "refs/tags/libvips/04-test",
-      "commit": "12543f951c24648d94d82e9809a02ed679602ef7",
-      "release_tag": "build-12543f951c24",
+      "tag_ref": "refs/tags/libvips/06-test",
+      "commit": "2d48ed5f49f0323cf54fc7ce39e542cc8e1475dd",
+      "release_tag": "build-2d48ed5f49f0",
       "debs": [
         {
           "package": "libvips42t64",
           "filename": "libvips42t64_8.15.1-1.1build4_amd64.deb",
           "architecture": "amd64",
-          "sha256": "217f97594ee4da20c85a79c35c86796ebcedcbf7c3e696304409fff4af391593",
-          "size": 1292950,
-          "asset_api_url": "https://api.github.com/repos/safelibs/port-libvips/releases/assets/401829697",
-          "browser_download_url": "https://github.com/safelibs/port-libvips/releases/download/build-12543f951c24/libvips42t64_8.15.1-1.1build4_amd64.deb"
+          "sha256": "4d8e7aa88db16338faae002f935313d167385ea7f202d80851896bcdb500b9ac",
+          "size": 1421058,
+          "asset_api_url": "https://api.github.com/repos/safelibs/port-libvips/releases/assets/402213833",
+          "browser_download_url": "https://github.com/safelibs/port-libvips/releases/download/build-2d48ed5f49f0/libvips42t64_8.15.1-1.1build4_amd64.deb"
         },
         {
           "package": "libvips-dev",
@@ -519,8 +519,8 @@
           "architecture": "amd64",
           "sha256": "baa99134376d9bd7f0ebe33ab98a879a3c5555d6a57304c223871ec388e6ef98",
           "size": 83304,
-          "asset_api_url": "https://api.github.com/repos/safelibs/port-libvips/releases/assets/401829699",
-          "browser_download_url": "https://github.com/safelibs/port-libvips/releases/download/build-12543f951c24/libvips-dev_8.15.1-1.1build4_amd64.deb"
+          "asset_api_url": "https://api.github.com/repos/safelibs/port-libvips/releases/assets/402213832",
+          "browser_download_url": "https://github.com/safelibs/port-libvips/releases/download/build-2d48ed5f49f0/libvips-dev_8.15.1-1.1build4_amd64.deb"
         },
         {
           "package": "libvips-tools",
@@ -528,8 +528,8 @@
           "architecture": "amd64",
           "sha256": "9000c4137b12d4c7a9d9819b37494d7827d7f5d1f213b748911293d015766d56",
           "size": 27836,
-          "asset_api_url": "https://api.github.com/repos/safelibs/port-libvips/releases/assets/401829700",
-          "browser_download_url": "https://github.com/safelibs/port-libvips/releases/download/build-12543f951c24/libvips-tools_8.15.1-1.1build4_amd64.deb"
+          "asset_api_url": "https://api.github.com/repos/safelibs/port-libvips/releases/assets/402213829",
+          "browser_download_url": "https://github.com/safelibs/port-libvips/releases/download/build-2d48ed5f49f0/libvips-tools_8.15.1-1.1build4_amd64.deb"
         },
         {
           "package": "gir1.2-vips-8.0",
@@ -537,8 +537,8 @@
           "architecture": "amd64",
           "sha256": "362d0824adb9f58e64c4d0932175ac976330db5fb0f74ddbf96a1020ac790c82",
           "size": 5104,
-          "asset_api_url": "https://api.github.com/repos/safelibs/port-libvips/releases/assets/401829698",
-          "browser_download_url": "https://github.com/safelibs/port-libvips/releases/download/build-12543f951c24/gir1.2-vips-8.0_8.15.1-1.1build4_amd64.deb"
+          "asset_api_url": "https://api.github.com/repos/safelibs/port-libvips/releases/assets/402213830",
+          "browser_download_url": "https://github.com/safelibs/port-libvips/releases/download/build-2d48ed5f49f0/gir1.2-vips-8.0_8.15.1-1.1build4_amd64.deb"
         }
       ],
       "unported_original_packages": []
@@ -630,9 +630,9 @@
       "library": "libxml",
       "repository": "safelibs/port-libxml",
       "url": "https://github.com/safelibs/port-libxml",
-      "tag_ref": "refs/tags/libxml/04-test",
-      "commit": "8af9d2976d2400327eb27c882c48b8556f27cc2a",
-      "release_tag": "build-8af9d2976d24",
+      "tag_ref": "refs/tags/libxml/05-test",
+      "commit": "a154776981d14fc77142ae381f1171b4d479c642",
+      "release_tag": "build-a154776981d1",
       "debs": [
         {
           "package": "libxml2",
@@ -640,8 +640,8 @@
           "architecture": "amd64",
           "sha256": "f9b46aa84b67f2b823bf75d215b7d5e4fc56a666fccb66ad7b6485d772f64844",
           "size": 1180668,
-          "asset_api_url": "https://api.github.com/repos/safelibs/port-libxml/releases/assets/401828641",
-          "browser_download_url": "https://github.com/safelibs/port-libxml/releases/download/build-8af9d2976d24/libxml2_2.9.14%2Bdfsg-1.3ubuntu3.7%2Bsafelibs1_amd64.deb"
+          "asset_api_url": "https://api.github.com/repos/safelibs/port-libxml/releases/assets/402199142",
+          "browser_download_url": "https://github.com/safelibs/port-libxml/releases/download/build-a154776981d1/libxml2_2.9.14%2Bdfsg-1.3ubuntu3.7%2Bsafelibs1_amd64.deb"
         },
         {
           "package": "libxml2-dev",
@@ -649,17 +649,17 @@
           "architecture": "amd64",
           "sha256": "db79517aa5cb5b9ebdad39cee6fa010a29e1a9c85e6f8bc8279b1f03a9bf6b6f",
           "size": 4179786,
-          "asset_api_url": "https://api.github.com/repos/safelibs/port-libxml/releases/assets/401828638",
-          "browser_download_url": "https://github.com/safelibs/port-libxml/releases/download/build-8af9d2976d24/libxml2-dev_2.9.14%2Bdfsg-1.3ubuntu3.7%2Bsafelibs1_amd64.deb"
+          "asset_api_url": "https://api.github.com/repos/safelibs/port-libxml/releases/assets/402199145",
+          "browser_download_url": "https://github.com/safelibs/port-libxml/releases/download/build-a154776981d1/libxml2-dev_2.9.14%2Bdfsg-1.3ubuntu3.7%2Bsafelibs1_amd64.deb"
         },
         {
           "package": "libxml2-utils",
           "filename": "libxml2-utils_2.9.14+dfsg-1.3ubuntu3.7+safelibs1_amd64.deb",
           "architecture": "amd64",
-          "sha256": "ab2ae9f83b4bfae822782dce35c445b0fa2b9ccdf25042dd9dfff0c373070a26",
-          "size": 915638,
-          "asset_api_url": "https://api.github.com/repos/safelibs/port-libxml/releases/assets/401828639",
-          "browser_download_url": "https://github.com/safelibs/port-libxml/releases/download/build-8af9d2976d24/libxml2-utils_2.9.14%2Bdfsg-1.3ubuntu3.7%2Bsafelibs1_amd64.deb"
+          "sha256": "bd1e3353da85b97f22c8d5988b3cc43f4ad549b8c15d8bfb46fb5edb78680777",
+          "size": 915442,
+          "asset_api_url": "https://api.github.com/repos/safelibs/port-libxml/releases/assets/402199144",
+          "browser_download_url": "https://github.com/safelibs/port-libxml/releases/download/build-a154776981d1/libxml2-utils_2.9.14%2Bdfsg-1.3ubuntu3.7%2Bsafelibs1_amd64.deb"
         },
         {
           "package": "python3-libxml2",
@@ -667,8 +667,8 @@
           "architecture": "amd64",
           "sha256": "0a17da0d8ee3b44c77d8a4a507d58cbebdf8f7db6e2ed164b4e2f081b872cdbd",
           "size": 136252,
-          "asset_api_url": "https://api.github.com/repos/safelibs/port-libxml/releases/assets/401828634",
-          "browser_download_url": "https://github.com/safelibs/port-libxml/releases/download/build-8af9d2976d24/python3-libxml2_2.9.14%2Bdfsg-1.3ubuntu3.7%2Bsafelibs1_amd64.deb"
+          "asset_api_url": "https://api.github.com/repos/safelibs/port-libxml/releases/assets/402199143",
+          "browser_download_url": "https://github.com/safelibs/port-libxml/releases/download/build-a154776981d1/python3-libxml2_2.9.14%2Bdfsg-1.3ubuntu3.7%2Bsafelibs1_amd64.deb"
         }
       ],
       "unported_original_packages": []

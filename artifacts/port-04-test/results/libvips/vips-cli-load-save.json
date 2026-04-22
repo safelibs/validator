@@ -12,14 +12,14 @@
     "media"
   ],
   "requires": [],
-  "status": "failed",
+  "status": "passed",
   "started_at": "1970-01-01T00:00:00Z",
   "finished_at": "1970-01-01T00:00:00Z",
   "duration_seconds": 0.0,
   "result_path": "port-04-test/results/libvips/vips-cli-load-save.json",
   "log_path": "port-04-test/logs/libvips/vips-cli-load-save.log",
   "cast_path": "port-04-test/casts/libvips/vips-cli-load-save.cast",
-  "exit_code": 1,
+  "exit_code": 0,
   "command": [
     "bash",
     "/validator/tests/libvips/tests/cases/source/vips-cli-load-save.sh"
@@ -32,16 +32,16 @@
   ],
   "override_debs_installed": true,
   "port_repository": "safelibs/port-libvips",
-  "port_tag_ref": "refs/tags/libvips/04-test",
-  "port_commit": "12543f951c24648d94d82e9809a02ed679602ef7",
-  "port_release_tag": "build-12543f951c24",
+  "port_tag_ref": "refs/tags/libvips/06-test",
+  "port_commit": "2d48ed5f49f0323cf54fc7ce39e542cc8e1475dd",
+  "port_release_tag": "build-2d48ed5f49f0",
   "port_debs": [
     {
       "package": "libvips42t64",
       "filename": "libvips42t64_8.15.1-1.1build4_amd64.deb",
       "architecture": "amd64",
-      "sha256": "217f97594ee4da20c85a79c35c86796ebcedcbf7c3e696304409fff4af391593",
-      "size": 1292950
+      "sha256": "4d8e7aa88db16338faae002f935313d167385ea7f202d80851896bcdb500b9ac",
+      "size": 1421058
     },
     {
       "package": "libvips-dev",
@@ -91,6 +91,5 @@
       "architecture": "amd64",
       "filename": "gir1.2-vips-8.0_8.15.1-1.1build4_amd64.deb"
     }
-  ],
-  "error": "testcase command exited with status 1"
+  ]
 }
