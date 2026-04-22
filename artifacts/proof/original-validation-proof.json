@@ -3697,9 +3697,9 @@
           "cast_path": "casts/libsdl/usage-python3-pygame-surface-fill.cast",
           "duration_seconds": 0.0,
           "exit_code": 0,
-          "cast_events": 2,
-          "cast_bytes": 90,
-          "cast_duration_seconds": 0.001
+          "cast_events": 11,
+          "cast_bytes": 1095,
+          "cast_duration_seconds": 0.01
         },
         {
           "testcase_id": "usage-python3-pygame-image-save",
@@ -3720,9 +3720,9 @@
           "cast_path": "casts/libsdl/usage-python3-pygame-image-save.cast",
           "duration_seconds": 0.0,
           "exit_code": 0,
-          "cast_events": 2,
-          "cast_bytes": 91,
-          "cast_duration_seconds": 0.001
+          "cast_events": 11,
+          "cast_bytes": 1096,
+          "cast_duration_seconds": 0.01
         },
         {
           "testcase_id": "usage-python3-pygame-event-queue",
@@ -3743,9 +3743,9 @@
           "cast_path": "casts/libsdl/usage-python3-pygame-event-queue.cast",
           "duration_seconds": 0.0,
           "exit_code": 0,
-          "cast_events": 2,
-          "cast_bytes": 72,
-          "cast_duration_seconds": 0.001
+          "cast_events": 11,
+          "cast_bytes": 1077,
+          "cast_duration_seconds": 0.01
         },
         {
           "testcase_id": "usage-python3-pygame-audio-dummy",
@@ -3766,9 +3766,9 @@
           "cast_path": "casts/libsdl/usage-python3-pygame-audio-dummy.cast",
           "duration_seconds": 0.0,
           "exit_code": 0,
-          "cast_events": 2,
-          "cast_bytes": 80,
-          "cast_duration_seconds": 0.001
+          "cast_events": 3,
+          "cast_bytes": 414,
+          "cast_duration_seconds": 0.002
         },
         {
           "testcase_id": "usage-python3-pygame-xvfb-display",
@@ -3789,9 +3789,9 @@
           "cast_path": "casts/libsdl/usage-python3-pygame-xvfb-display.cast",
           "duration_seconds": 0.0,
           "exit_code": 0,
-          "cast_events": 2,
-          "cast_bytes": 75,
-          "cast_duration_seconds": 0.001
+          "cast_events": 3,
+          "cast_bytes": 409,
+          "cast_duration_seconds": 0.002
         },
         {
           "testcase_id": "usage-python3-pygame-draw-rect",
@@ -3812,9 +3812,9 @@
           "cast_path": "casts/libsdl/usage-python3-pygame-draw-rect.cast",
           "duration_seconds": 0.0,
           "exit_code": 0,
-          "cast_events": 2,
-          "cast_bytes": 81,
-          "cast_duration_seconds": 0.001
+          "cast_events": 11,
+          "cast_bytes": 1086,
+          "cast_duration_seconds": 0.01
         },
         {
           "testcase_id": "usage-python3-pygame-font-module",
@@ -3835,9 +3835,9 @@
           "cast_path": "casts/libsdl/usage-python3-pygame-font-module.cast",
           "duration_seconds": 0.0,
           "exit_code": 0,
-          "cast_events": 2,
-          "cast_bytes": 72,
-          "cast_duration_seconds": 0.001
+          "cast_events": 11,
+          "cast_bytes": 1077,
+          "cast_duration_seconds": 0.01
         },
         {
           "testcase_id": "usage-python3-pygame-transform-scale",
@@ -3858,9 +3858,9 @@
           "cast_path": "casts/libsdl/usage-python3-pygame-transform-scale.cast",
           "duration_seconds": 0.0,
           "exit_code": 0,
-          "cast_events": 2,
-          "cast_bytes": 72,
-          "cast_duration_seconds": 0.001
+          "cast_events": 11,
+          "cast_bytes": 1077,
+          "cast_duration_seconds": 0.01
         },
         {
           "testcase_id": "usage-python3-pygame-key-event",
@@ -3881,9 +3881,9 @@
           "cast_path": "casts/libsdl/usage-python3-pygame-key-event.cast",
           "duration_seconds": 0.0,
           "exit_code": 0,
-          "cast_events": 2,
-          "cast_bytes": 69,
-          "cast_duration_seconds": 0.001
+          "cast_events": 11,
+          "cast_bytes": 1074,
+          "cast_duration_seconds": 0.01
         },
         {
           "testcase_id": "usage-python3-pygame-mask-collision",
@@ -3904,9 +3904,9 @@
           "cast_path": "casts/libsdl/usage-python3-pygame-mask-collision.cast",
           "duration_seconds": 0.0,
           "exit_code": 0,
-          "cast_events": 2,
-          "cast_bytes": 73,
-          "cast_duration_seconds": 0.001
+          "cast_events": 11,
+          "cast_bytes": 1078,
+          "cast_duration_seconds": 0.01
         }
       ]
     },

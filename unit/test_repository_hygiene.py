@@ -59,6 +59,44 @@ class RepositoryHygieneTests(unittest.TestCase):
 
         self.assertEqual(library_source_files, [])
 
+    def test_port_runs_do_not_substitute_clients_or_commands(self) -> None:
+        repo_root = Path(__file__).resolve().parents[1]
+        checked_files = (
+            repo_root / "tests" / "_shared" / "install_override_debs.sh",
+            repo_root / "tests" / "libsdl" / "Dockerfile",
+            repo_root / "tests" / "libvips" / "Dockerfile",
+            repo_root / "tests" / "libxml" / "Dockerfile",
+        )
+        forbidden_snippets = {
+            repo_root / "tests" / "_shared" / "install_override_debs.sh": (
+                "VALIDATOR_VIPS_IMAGE",
+                "pygame",
+                "vipsthumbnail.real",
+                "vipsheader.real",
+                "xmllint.real",
+            ),
+            repo_root / "tests" / "libsdl" / "Dockerfile": (
+                "pip3 install",
+                "pygame==",
+                "PIP_BREAK_SYSTEM_PACKAGES",
+            ),
+            repo_root / "tests" / "libvips" / "Dockerfile": (
+                "/usr/local/bin/vipsheader",
+                "vipsheader.real",
+            ),
+            repo_root / "tests" / "libxml" / "Dockerfile": (
+                "/usr/local/bin/xmllint",
+            ),
+        }
+        violations: list[str] = []
+        for path in checked_files:
+            text = path.read_text(encoding="utf-8")
+            for snippet in forbidden_snippets[path]:
+                if snippet in text:
+                    violations.append(f"{path.relative_to(repo_root)}: {snippet}")
+
+        self.assertEqual(violations, [])
+
 
 if __name__ == "__main__":
     unittest.main()

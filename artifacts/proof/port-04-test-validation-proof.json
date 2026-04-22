@@ -11,8 +11,8 @@
     "cases": 288,
     "source_cases": 95,
     "usage_cases": 193,
-    "passed": 288,
-    "failed": 0,
+    "passed": 282,
+    "failed": 6,
     "casts": 288
   },
   "libraries": [
@@ -3819,8 +3819,8 @@
         "cases": 15,
         "source_cases": 5,
         "usage_cases": 10,
-        "passed": 15,
-        "failed": 0,
+        "passed": 12,
+        "failed": 3,
         "casts": 15
       },
       "port_repository": "safelibs/port-libsdl",
@@ -3871,7 +3871,7 @@
           "duration_seconds": 0.0,
           "exit_code": 0,
           "cast_events": 61,
-          "cast_bytes": 14279,
+          "cast_bytes": 12955,
           "cast_duration_seconds": 0.06
         },
         {
@@ -3893,7 +3893,7 @@
           "duration_seconds": 0.0,
           "exit_code": 0,
           "cast_events": 61,
-          "cast_bytes": 14385,
+          "cast_bytes": 14631,
           "cast_duration_seconds": 0.06
         },
         {
@@ -3915,7 +3915,7 @@
           "duration_seconds": 0.0,
           "exit_code": 0,
           "cast_events": 61,
-          "cast_bytes": 13021,
+          "cast_bytes": 12879,
           "cast_duration_seconds": 0.06
         },
         {
@@ -3937,7 +3937,7 @@
           "duration_seconds": 0.0,
           "exit_code": 0,
           "cast_events": 61,
-          "cast_bytes": 12759,
+          "cast_bytes": 13948,
           "cast_duration_seconds": 0.06
         },
         {
@@ -3959,7 +3959,7 @@
           "duration_seconds": 0.0,
           "exit_code": 0,
           "cast_events": 114,
-          "cast_bytes": 14510,
+          "cast_bytes": 13173,
           "cast_duration_seconds": 0.113
         },
         {
@@ -3981,9 +3981,9 @@
           "cast_path": "port-04-test/casts/libsdl/usage-python3-pygame-surface-fill.cast",
           "duration_seconds": 0.0,
           "exit_code": 0,
-          "cast_events": 61,
-          "cast_bytes": 12911,
-          "cast_duration_seconds": 0.06
+          "cast_events": 62,
+          "cast_bytes": 13528,
+          "cast_duration_seconds": 0.061
         },
         {
           "testcase_id": "usage-python3-pygame-image-save",
@@ -4004,9 +4004,9 @@
           "cast_path": "port-04-test/casts/libsdl/usage-python3-pygame-image-save.cast",
           "duration_seconds": 0.0,
           "exit_code": 0,
-          "cast_events": 61,
-          "cast_bytes": 14871,
-          "cast_duration_seconds": 0.06
+          "cast_events": 62,
+          "cast_bytes": 14469,
+          "cast_duration_seconds": 0.061
         },
         {
           "testcase_id": "usage-python3-pygame-event-queue",
@@ -4021,15 +4021,15 @@
             "python"
           ],
           "requires": [],
-          "status": "passed",
+          "status": "failed",
           "result_path": "port-04-test/results/libsdl/usage-python3-pygame-event-queue.json",
           "log_path": "port-04-test/logs/libsdl/usage-python3-pygame-event-queue.log",
           "cast_path": "port-04-test/casts/libsdl/usage-python3-pygame-event-queue.cast",
           "duration_seconds": 0.0,
-          "exit_code": 0,
-          "cast_events": 61,
-          "cast_bytes": 13319,
-          "cast_duration_seconds": 0.06
+          "exit_code": 124,
+          "cast_events": 63,
+          "cast_bytes": 13566,
+          "cast_duration_seconds": 0.062
         },
         {
           "testcase_id": "usage-python3-pygame-audio-dummy",
@@ -4050,9 +4050,9 @@
           "cast_path": "port-04-test/casts/libsdl/usage-python3-pygame-audio-dummy.cast",
           "duration_seconds": 0.0,
           "exit_code": 0,
-          "cast_events": 61,
-          "cast_bytes": 14237,
-          "cast_duration_seconds": 0.06
+          "cast_events": 62,
+          "cast_bytes": 14464,
+          "cast_duration_seconds": 0.061
         },
         {
           "testcase_id": "usage-python3-pygame-xvfb-display",
@@ -4073,9 +4073,9 @@
           "cast_path": "port-04-test/casts/libsdl/usage-python3-pygame-xvfb-display.cast",
           "duration_seconds": 0.0,
           "exit_code": 0,
-          "cast_events": 61,
-          "cast_bytes": 13570,
-          "cast_duration_seconds": 0.06
+          "cast_events": 62,
+          "cast_bytes": 13557,
+          "cast_duration_seconds": 0.061
         },
         {
           "testcase_id": "usage-python3-pygame-draw-rect",
@@ -4096,9 +4096,9 @@
           "cast_path": "port-04-test/casts/libsdl/usage-python3-pygame-draw-rect.cast",
           "duration_seconds": 0.0,
           "exit_code": 0,
-          "cast_events": 61,
-          "cast_bytes": 12900,
-          "cast_duration_seconds": 0.06
+          "cast_events": 62,
+          "cast_bytes": 13388,
+          "cast_duration_seconds": 0.061
         },
         {
           "testcase_id": "usage-python3-pygame-font-module",
@@ -4119,9 +4119,9 @@
           "cast_path": "port-04-test/casts/libsdl/usage-python3-pygame-font-module.cast",
           "duration_seconds": 0.0,
           "exit_code": 0,
-          "cast_events": 61,
-          "cast_bytes": 12854,
-          "cast_duration_seconds": 0.06
+          "cast_events": 62,
+          "cast_bytes": 14369,
+          "cast_duration_seconds": 0.061
         },
         {
           "testcase_id": "usage-python3-pygame-transform-scale",
@@ -4136,15 +4136,15 @@
             "python"
           ],
           "requires": [],
-          "status": "passed",
+          "status": "failed",
           "result_path": "port-04-test/results/libsdl/usage-python3-pygame-transform-scale.json",
           "log_path": "port-04-test/logs/libsdl/usage-python3-pygame-transform-scale.log",
           "cast_path": "port-04-test/casts/libsdl/usage-python3-pygame-transform-scale.cast",
           "duration_seconds": 0.0,
-          "exit_code": 0,
-          "cast_events": 61,
-          "cast_bytes": 13213,
-          "cast_duration_seconds": 0.06
+          "exit_code": 1,
+          "cast_events": 64,
+          "cast_bytes": 14861,
+          "cast_duration_seconds": 0.063
         },
         {
           "testcase_id": "usage-python3-pygame-key-event",
@@ -4159,15 +4159,15 @@
             "python"
           ],
           "requires": [],
-          "status": "passed",
+          "status": "failed",
           "result_path": "port-04-test/results/libsdl/usage-python3-pygame-key-event.json",
           "log_path": "port-04-test/logs/libsdl/usage-python3-pygame-key-event.log",
           "cast_path": "port-04-test/casts/libsdl/usage-python3-pygame-key-event.cast",
           "duration_seconds": 0.0,
-          "exit_code": 0,
-          "cast_events": 61,
-          "cast_bytes": 13363,
-          "cast_duration_seconds": 0.06
+          "exit_code": 124,
+          "cast_events": 63,
+          "cast_bytes": 14210,
+          "cast_duration_seconds": 0.062
         },
         {
           "testcase_id": "usage-python3-pygame-mask-collision",
@@ -4188,9 +4188,9 @@
           "cast_path": "port-04-test/casts/libsdl/usage-python3-pygame-mask-collision.cast",
           "duration_seconds": 0.0,
           "exit_code": 0,
-          "cast_events": 61,
-          "cast_bytes": 13568,
-          "cast_duration_seconds": 0.06
+          "cast_events": 62,
+          "cast_bytes": 13272,
+          "cast_duration_seconds": 0.061
         }
       ]
     },
@@ -5362,8 +5362,8 @@
         "cases": 15,
         "source_cases": 5,
         "usage_cases": 10,
-        "passed": 15,
-        "failed": 0,
+        "passed": 13,
+        "failed": 2,
         "casts": 15
       },
       "port_repository": "safelibs/port-libvips",
@@ -5414,14 +5414,14 @@
             "media"
           ],
           "requires": [],
-          "status": "passed",
+          "status": "failed",
           "result_path": "port-04-test/results/libvips/vips-cli-load-save.json",
           "log_path": "port-04-test/logs/libvips/vips-cli-load-save.log",
           "cast_path": "port-04-test/casts/libvips/vips-cli-load-save.cast",
           "duration_seconds": 0.0,
-          "exit_code": 0,
+          "exit_code": 1,
           "cast_events": 60,
-          "cast_bytes": 14055,
+          "cast_bytes": 14143,
           "cast_duration_seconds": 0.059
         },
         {
@@ -5436,15 +5436,15 @@
             "thumbnail"
           ],
           "requires": [],
-          "status": "passed",
+          "status": "failed",
           "result_path": "port-04-test/results/libvips/thumbnail-behavior.json",
           "log_path": "port-04-test/logs/libvips/thumbnail-behavior.log",
           "cast_path": "port-04-test/casts/libvips/thumbnail-behavior.cast",
           "duration_seconds": 0.0,
-          "exit_code": 0,
-          "cast_events": 59,
-          "cast_bytes": 12401,
-          "cast_duration_seconds": 0.058
+          "exit_code": 255,
+          "cast_events": 61,
+          "cast_bytes": 12551,
+          "cast_duration_seconds": 0.06
         },
         {
           "testcase_id": "c-api-compile-smoke",
@@ -5465,7 +5465,7 @@
           "duration_seconds": 0.0,
           "exit_code": 0,
           "cast_events": 60,
-          "cast_bytes": 12405,
+          "cast_bytes": 12945,
           "cast_duration_seconds": 0.059
         },
         {
@@ -5487,7 +5487,7 @@
           "duration_seconds": 0.0,
           "exit_code": 0,
           "cast_events": 60,
-          "cast_bytes": 12311,
+          "cast_bytes": 12949,
           "cast_duration_seconds": 0.059
         },
         {
@@ -5509,7 +5509,7 @@
           "duration_seconds": 0.0,
           "exit_code": 0,
           "cast_events": 76,
-          "cast_bytes": 14442,
+          "cast_bytes": 14039,
           "cast_duration_seconds": 0.075
         },
         {
@@ -5532,7 +5532,7 @@
           "duration_seconds": 0.0,
           "exit_code": 0,
           "cast_events": 59,
-          "cast_bytes": 12307,
+          "cast_bytes": 12542,
           "cast_duration_seconds": 0.058
         },
         {
@@ -5555,7 +5555,7 @@
           "duration_seconds": 0.0,
           "exit_code": 0,
           "cast_events": 59,
-          "cast_bytes": 13450,
+          "cast_bytes": 14554,
           "cast_duration_seconds": 0.058
         },
         {
@@ -5578,7 +5578,7 @@
           "duration_seconds": 0.0,
           "exit_code": 0,
           "cast_events": 59,
-          "cast_bytes": 14493,
+          "cast_bytes": 12486,
           "cast_duration_seconds": 0.058
         },
         {
@@ -5601,7 +5601,7 @@
           "duration_seconds": 0.0,
           "exit_code": 0,
           "cast_events": 59,
-          "cast_bytes": 12262,
+          "cast_bytes": 13815,
           "cast_duration_seconds": 0.058
         },
         {
@@ -5624,7 +5624,7 @@
           "duration_seconds": 0.0,
           "exit_code": 0,
           "cast_events": 59,
-          "cast_bytes": 12206,
+          "cast_bytes": 13139,
           "cast_duration_seconds": 0.058
         },
         {
@@ -5647,7 +5647,7 @@
           "duration_seconds": 0.0,
           "exit_code": 0,
           "cast_events": 59,
-          "cast_bytes": 12549,
+          "cast_bytes": 13528,
           "cast_duration_seconds": 0.058
         },
         {
@@ -5670,7 +5670,7 @@
           "duration_seconds": 0.0,
           "exit_code": 0,
           "cast_events": 59,
-          "cast_bytes": 12679,
+          "cast_bytes": 12268,
           "cast_duration_seconds": 0.058
         },
         {
@@ -5693,7 +5693,7 @@
           "duration_seconds": 0.0,
           "exit_code": 0,
           "cast_events": 59,
-          "cast_bytes": 13551,
+          "cast_bytes": 12044,
           "cast_duration_seconds": 0.058
         },
         {
@@ -5716,7 +5716,7 @@
           "duration_seconds": 0.0,
           "exit_code": 0,
           "cast_events": 59,
-          "cast_bytes": 13829,
+          "cast_bytes": 14054,
           "cast_duration_seconds": 0.058
         },
         {
@@ -5739,7 +5739,7 @@
           "duration_seconds": 0.0,
           "exit_code": 0,
           "cast_events": 59,
-          "cast_bytes": 12491,
+          "cast_bytes": 12514,
           "cast_duration_seconds": 0.058
         }
       ]
@@ -6199,8 +6199,8 @@
         "cases": 15,
         "source_cases": 5,
         "usage_cases": 10,
-        "passed": 15,
-        "failed": 0,
+        "passed": 14,
+        "failed": 1,
         "casts": 15
       },
       "port_repository": "safelibs/port-libxml",
@@ -6251,15 +6251,15 @@
             "xml"
           ],
           "requires": [],
-          "status": "passed",
+          "status": "failed",
           "result_path": "port-04-test/results/libxml/xmllint-parse-format.json",
           "log_path": "port-04-test/logs/libxml/xmllint-parse-format.log",
           "cast_path": "port-04-test/casts/libxml/xmllint-parse-format.cast",
           "duration_seconds": 0.0,
-          "exit_code": 0,
-          "cast_events": 59,
-          "cast_bytes": 12945,
-          "cast_duration_seconds": 0.058
+          "exit_code": 1,
+          "cast_events": 80,
+          "cast_bytes": 13838,
+          "cast_duration_seconds": 0.079
         },
         {
           "testcase_id": "xmlcatalog-lookup",
@@ -6280,7 +6280,7 @@
           "duration_seconds": 0.0,
           "exit_code": 0,
           "cast_events": 56,
-          "cast_bytes": 13265,
+          "cast_bytes": 13200,
           "cast_duration_seconds": 0.055
         },
         {
@@ -6302,7 +6302,7 @@
           "duration_seconds": 0.0,
           "exit_code": 0,
           "cast_events": 55,
-          "cast_bytes": 13028,
+          "cast_bytes": 13015,
           "cast_duration_seconds": 0.054
         },
         {
@@ -6324,7 +6324,7 @@
           "duration_seconds": 0.0,
           "exit_code": 0,
           "cast_events": 56,
-          "cast_bytes": 13809,
+          "cast_bytes": 12748,
           "cast_duration_seconds": 0.055
         },
         {
@@ -6346,7 +6346,7 @@
           "duration_seconds": 0.0,
           "exit_code": 0,
           "cast_events": 58,
-          "cast_bytes": 12615,
+          "cast_bytes": 12996,
           "cast_duration_seconds": 0.057
         },
         {
@@ -6368,7 +6368,7 @@
           "duration_seconds": 0.0,
           "exit_code": 0,
           "cast_events": 55,
-          "cast_bytes": 14618,
+          "cast_bytes": 12375,
           "cast_duration_seconds": 0.054
         },
         {
@@ -6390,7 +6390,7 @@
           "duration_seconds": 0.0,
           "exit_code": 0,
           "cast_events": 55,
-          "cast_bytes": 13212,
+          "cast_bytes": 13042,
           "cast_duration_seconds": 0.054
         },
         {
@@ -6412,7 +6412,7 @@
           "duration_seconds": 0.0,
           "exit_code": 0,
           "cast_events": 57,
-          "cast_bytes": 13503,
+          "cast_bytes": 12639,
           "cast_duration_seconds": 0.056
         },
         {
@@ -6434,7 +6434,7 @@
           "duration_seconds": 0.0,
           "exit_code": 0,
           "cast_events": 55,
-          "cast_bytes": 12217,
+          "cast_bytes": 14251,
           "cast_duration_seconds": 0.054
         },
         {
@@ -6456,7 +6456,7 @@
           "duration_seconds": 0.0,
           "exit_code": 0,
           "cast_events": 55,
-          "cast_bytes": 13989,
+          "cast_bytes": 13591,
           "cast_duration_seconds": 0.054
         },
         {
@@ -6479,7 +6479,7 @@
           "duration_seconds": 0.0,
           "exit_code": 0,
           "cast_events": 55,
-          "cast_bytes": 12681,
+          "cast_bytes": 13251,
           "cast_duration_seconds": 0.054
         },
         {
@@ -6502,7 +6502,7 @@
           "duration_seconds": 0.0,
           "exit_code": 0,
           "cast_events": 59,
-          "cast_bytes": 13468,
+          "cast_bytes": 14260,
           "cast_duration_seconds": 0.058
         },
         {
@@ -6525,7 +6525,7 @@
           "duration_seconds": 0.0,
           "exit_code": 0,
           "cast_events": 59,
-          "cast_bytes": 13734,
+          "cast_bytes": 12411,
           "cast_duration_seconds": 0.058
         },
         {
@@ -6548,7 +6548,7 @@
           "duration_seconds": 0.0,
           "exit_code": 0,
           "cast_events": 55,
-          "cast_bytes": 12674,
+          "cast_bytes": 13419,
           "cast_duration_seconds": 0.054
         },
         {
@@ -6571,7 +6571,7 @@
           "duration_seconds": 0.0,
           "exit_code": 0,
           "cast_events": 55,
-          "cast_bytes": 13827,
+          "cast_bytes": 12963,
           "cast_duration_seconds": 0.054
         }
       ]

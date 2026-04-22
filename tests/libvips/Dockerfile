@@ -16,7 +16,6 @@ RUN apt-get update \
       coreutils \
       file \
       gobject-introspection \
-      imagemagick \
       jq \
       libffi-dev \
       libgirepository1.0-dev \
@@ -25,37 +24,6 @@ RUN apt-get update \
       python3 \
       python3-cffi \
       python3-pytest \
- && mv /usr/bin/vipsheader /usr/bin/vipsheader.real \
- && printf '%s\n' \
-      '#!/usr/bin/env bash' \
-      'set -euo pipefail' \
-      'real=/usr/bin/vipsheader' \
-      'if [[ ! -x $real ]]; then' \
-      '  real=/usr/bin/vipsheader.real' \
-      'fi' \
-      'if (($# != 1)) || [[ ${1:-} == -* ]]; then' \
-      '  exec "$real" "$@"' \
-      'fi' \
-      'output=$("$real" "$@" 2>&1)' \
-      'status=$?' \
-      'if ((status != 0)); then' \
-      '  printf "%s\n" "$output"' \
-      '  exit "$status"' \
-      'fi' \
-      'if [[ $output =~ [0-9]+x[0-9]+ ]]; then' \
-      '  printf "%s\n" "$output"' \
-      '  exit 0' \
-      'fi' \
-      'all=$("$real" -a "$1" 2>/dev/null || true)' \
-      'width=$(awk -F": *" '"'"'$1 == "width" {print $2; exit}'"'"' <<<"$all")' \
-      'height=$(awk -F": *" '"'"'$1 == "height" {print $2; exit}'"'"' <<<"$all")' \
-      'if [[ $width =~ ^[0-9]+$ && $height =~ ^[0-9]+$ ]]; then' \
-      '  printf "%s: %sx%s\n" "$1" "$width" "$height"' \
-      'else' \
-      '  printf "%s\n" "$output"' \
-      'fi' \
-      > /usr/local/bin/vipsheader \
- && chmod +x /usr/local/bin/vipsheader \
  && rm -rf /var/lib/apt/lists/*
 
 WORKDIR /validator
