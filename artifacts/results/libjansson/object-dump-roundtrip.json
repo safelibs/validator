@@ -1,0 +1,33 @@
+{
+  "schema_version": 2,
+  "library": "libjansson",
+  "mode": "original",
+  "testcase_id": "object-dump-roundtrip",
+  "title": "Jansson object dump round trip",
+  "description": "Parses an object, updates a member, and emits compact sorted JSON.",
+  "kind": "source",
+  "client_application": null,
+  "tags": [
+    "api",
+    "json"
+  ],
+  "requires": [],
+  "status": "passed",
+  "started_at": "1970-01-01T00:00:00Z",
+  "finished_at": "1970-01-01T00:00:00Z",
+  "duration_seconds": 0.0,
+  "result_path": "results/libjansson/object-dump-roundtrip.json",
+  "log_path": "logs/libjansson/object-dump-roundtrip.log",
+  "cast_path": "casts/libjansson/object-dump-roundtrip.cast",
+  "exit_code": 0,
+  "command": [
+    "bash",
+    "/validator/tests/libjansson/tests/cases/source/run.sh",
+    "object-dump-roundtrip"
+  ],
+  "apt_packages": [
+    "libjansson4",
+    "libjansson-dev"
+  ],
+  "override_debs_installed": false
+}

@@ -208,6 +208,27 @@ class PortDebTests(unittest.TestCase):
         fetch_port_debs.write_json(lock_path, lock)
         self.assertEqual(json.loads(lock_path.read_text()), lock)
 
+    def test_unavailable_port_writes_zero_deb_lock_entry(self) -> None:
+        root = self.run_root()
+        with mock.patch("tools.fetch_port_debs.load_manifest", return_value=demo_manifest()), mock.patch(
+            "tools.fetch_port_debs.resolve_port_ref",
+            side_effect=fetch_port_debs.PortDebUnavailable("no qualifying release"),
+        ):
+            lock = fetch_port_debs.build_lock(
+                config_path=Path("repositories.yml"),
+                port_repos_path=FIXTURES / "port-repos.json",
+                output_root=root / "debs",
+                libraries=["original-demo"],
+            )
+
+        library = lock["libraries"][0]
+        self.assertEqual(library["debs"], [])
+        self.assertEqual(library["unported_original_packages"], ["demo-runtime", "demo-dev"])
+        self.assertEqual(library["commit"], None)
+        self.assertEqual(library["release_tag"], None)
+        self.assertEqual(library["port_unavailable_reason"], "no qualifying release")
+        self.assertFalse((root / "debs" / "original-demo").exists())
+
     def test_duplicate_native_package_assets_are_rejected(self) -> None:
         release = {
             "assets": [

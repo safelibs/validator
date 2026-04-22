@@ -262,17 +262,21 @@ for row in expected_rows:
     if log_target.read_bytes() != log_source.read_bytes():
         fail(f"copied log evidence does not match source for {row_name}")
 
-    cast_source = artifact_source(
-        row["cast_path"],
-        field_name="cast_path",
-        source=row_name,
-        artifacts_root=artifacts_root,
-    )
-    cast_target = resolve_inside(site_root, row["cast_href"], field_name="cast_href", source=row_name)
-    if not cast_target.is_file():
-        fail(f"missing copied cast evidence for {row_name}: {row['cast_href']}")
-    if cast_target.read_bytes() != cast_source.read_bytes():
-        fail(f"copied cast evidence does not match source for {row_name}")
+    if row["cast_path"] is None:
+        if row["cast_href"] is not None:
+            fail(f"cast_href must be null when cast_path is null for {row_name}")
+    else:
+        cast_source = artifact_source(
+            row["cast_path"],
+            field_name="cast_path",
+            source=row_name,
+            artifacts_root=artifacts_root,
+        )
+        cast_target = resolve_inside(site_root, row["cast_href"], field_name="cast_href", source=row_name)
+        if not cast_target.is_file():
+            fail(f"missing copied cast evidence for {row_name}: {row['cast_href']}")
+        if cast_target.read_bytes() != cast_source.read_bytes():
+            fail(f"copied cast evidence does not match source for {row_name}")
 
 index_path = site_root / "index.html"
 if not index_path.is_file():
@@ -294,7 +298,7 @@ for row in expected_rows:
     escaped_library = html.escape(str(row["library"]))
     escaped_case = html.escape(str(row["testcase_id"]))
     escaped_mode = html.escape(str(row["mode"]))
-    escaped_cast = html.escape(str(row["cast_href"]))
+    escaped_cast = html.escape(str(row["cast_href"] or ""))
     pattern = (
         rf'data-library="{re.escape(escaped_library)}"'
         rf'[^>]*data-testcase-id="{re.escape(escaped_case)}"'

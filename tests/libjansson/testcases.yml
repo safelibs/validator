@@ -1,0 +1,196 @@
+schema_version: 1
+library: libjansson
+apt_packages:
+- libjansson4
+- libjansson-dev
+testcases:
+- id: object-dump-roundtrip
+  title: Jansson object dump round trip
+  description: Parses an object, updates a member, and emits compact sorted JSON.
+  kind: source
+  command:
+  - bash
+  - /validator/tests/libjansson/tests/cases/source/run.sh
+  - object-dump-roundtrip
+  timeout_seconds: 120
+  tags:
+  - api
+  - json
+- id: array-iteration-sum
+  title: Jansson array iteration sum
+  description: Iterates numeric array elements through the public API and verifies their sum.
+  kind: source
+  command:
+  - bash
+  - /validator/tests/libjansson/tests/cases/source/run.sh
+  - array-iteration-sum
+  timeout_seconds: 120
+  tags:
+  - api
+  - array
+- id: pack-unpack-values
+  title: Jansson pack and unpack values
+  description: Builds JSON with json_pack and reads typed members back with json_unpack.
+  kind: source
+  command:
+  - bash
+  - /validator/tests/libjansson/tests/cases/source/run.sh
+  - pack-unpack-values
+  timeout_seconds: 120
+  tags:
+  - api
+  - object
+- id: refcount-object-update
+  title: Jansson refcount object update
+  description: Replaces object members while holding an extra reference to validate lifetime behavior.
+  kind: source
+  command:
+  - bash
+  - /validator/tests/libjansson/tests/cases/source/run.sh
+  - refcount-object-update
+  timeout_seconds: 120
+  tags:
+  - api
+  - refcount
+- id: malformed-json-error
+  title: Jansson malformed JSON error
+  description: Requires json_loads to reject an unterminated array and report a parse location.
+  kind: source
+  command:
+  - bash
+  - /validator/tests/libjansson/tests/cases/source/run.sh
+  - malformed-json-error
+  timeout_seconds: 120
+  tags:
+  - api
+  - negative
+- id: usage-jshon-read-field
+  title: jshon reads a string field
+  description: Extracts a string member from an object with jshon.
+  kind: usage
+  client_application: jshon
+  command:
+  - bash
+  - /validator/tests/libjansson/tests/cases/usage/run.sh
+  - usage-jshon-read-field
+  timeout_seconds: 120
+  tags:
+  - usage
+  - json
+- id: usage-jshon-array-length
+  title: jshon reports array length
+  description: Reads an array member and verifies jshon reports its element count.
+  kind: usage
+  client_application: jshon
+  command:
+  - bash
+  - /validator/tests/libjansson/tests/cases/usage/run.sh
+  - usage-jshon-array-length
+  timeout_seconds: 120
+  tags:
+  - usage
+  - json
+- id: usage-jshon-array-values
+  title: jshon prints array values
+  description: Expands array values from JSON input and verifies each scalar is printed.
+  kind: usage
+  client_application: jshon
+  command:
+  - bash
+  - /validator/tests/libjansson/tests/cases/usage/run.sh
+  - usage-jshon-array-values
+  timeout_seconds: 120
+  tags:
+  - usage
+  - json
+- id: usage-jshon-object-keys
+  title: jshon lists object keys
+  description: Lists object keys from a nested JSON document.
+  kind: usage
+  client_application: jshon
+  command:
+  - bash
+  - /validator/tests/libjansson/tests/cases/usage/run.sh
+  - usage-jshon-object-keys
+  timeout_seconds: 120
+  tags:
+  - usage
+  - json
+- id: usage-jshon-type-check
+  title: jshon reports value type
+  description: Checks that jshon reports a boolean member as a JSON bool.
+  kind: usage
+  client_application: jshon
+  command:
+  - bash
+  - /validator/tests/libjansson/tests/cases/usage/run.sh
+  - usage-jshon-type-check
+  timeout_seconds: 120
+  tags:
+  - usage
+  - json
+- id: usage-jshon-nested-value
+  title: jshon extracts nested value
+  description: Traverses nested object members and prints the selected value.
+  kind: usage
+  client_application: jshon
+  command:
+  - bash
+  - /validator/tests/libjansson/tests/cases/usage/run.sh
+  - usage-jshon-nested-value
+  timeout_seconds: 120
+  tags:
+  - usage
+  - json
+- id: usage-jshon-file-input
+  title: jshon reads file input
+  description: Loads JSON from a file path and extracts a stored member.
+  kind: usage
+  client_application: jshon
+  command:
+  - bash
+  - /validator/tests/libjansson/tests/cases/usage/run.sh
+  - usage-jshon-file-input
+  timeout_seconds: 120
+  tags:
+  - usage
+  - json
+- id: usage-jshon-root-array-type
+  title: jshon reports root array type
+  description: Reads a root array document and verifies the reported JSON type.
+  kind: usage
+  client_application: jshon
+  command:
+  - bash
+  - /validator/tests/libjansson/tests/cases/usage/run.sh
+  - usage-jshon-root-array-type
+  timeout_seconds: 120
+  tags:
+  - usage
+  - json
+- id: usage-jshon-root-array-length
+  title: jshon reports root array length
+  description: Reads a root array document and verifies its element count.
+  kind: usage
+  client_application: jshon
+  command:
+  - bash
+  - /validator/tests/libjansson/tests/cases/usage/run.sh
+  - usage-jshon-root-array-length
+  timeout_seconds: 120
+  tags:
+  - usage
+  - json
+- id: usage-jshon-number-field
+  title: jshon extracts number field
+  description: Extracts a numeric object member as unquoted scalar output.
+  kind: usage
+  client_application: jshon
+  command:
+  - bash
+  - /validator/tests/libjansson/tests/cases/usage/run.sh
+  - usage-jshon-number-field
+  timeout_seconds: 120
+  tags:
+  - usage
+  - json

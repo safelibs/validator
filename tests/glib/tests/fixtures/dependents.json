@@ -1,0 +1,23 @@
+{
+  "schema_version": 1,
+  "library": "glib",
+  "dependents": [
+    {
+      "name": "gio",
+      "package": "libglib2.0-bin",
+      "packages": [
+        "libglib2.0-bin"
+      ],
+      "description": "gio and gsettings command-line tools exercise GLib and GIO runtime behavior."
+    },
+    {
+      "name": "python3-gi",
+      "package": "python3-gi",
+      "packages": [
+        "python3-gi",
+        "gir1.2-glib-2.0"
+      ],
+      "description": "PyGObject imports GLib and Gio through GObject introspection metadata."
+    }
+  ]
+}

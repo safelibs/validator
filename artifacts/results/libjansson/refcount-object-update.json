@@ -1,0 +1,33 @@
+{
+  "schema_version": 2,
+  "library": "libjansson",
+  "mode": "original",
+  "testcase_id": "refcount-object-update",
+  "title": "Jansson refcount object update",
+  "description": "Replaces object members while holding an extra reference to validate lifetime behavior.",
+  "kind": "source",
+  "client_application": null,
+  "tags": [
+    "api",
+    "refcount"
+  ],
+  "requires": [],
+  "status": "passed",
+  "started_at": "1970-01-01T00:00:00Z",
+  "finished_at": "1970-01-01T00:00:00Z",
+  "duration_seconds": 0.0,
+  "result_path": "results/libjansson/refcount-object-update.json",
+  "log_path": "logs/libjansson/refcount-object-update.log",
+  "cast_path": "casts/libjansson/refcount-object-update.cast",
+  "exit_code": 0,
+  "command": [
+    "bash",
+    "/validator/tests/libjansson/tests/cases/source/run.sh",
+    "refcount-object-update"
+  ],
+  "apt_packages": [
+    "libjansson4",
+    "libjansson-dev"
+  ],
+  "override_debs_installed": false
+}

@@ -253,6 +253,45 @@ class ProofTests(unittest.TestCase):
         with self.assertRaisesRegex(ValidatorError, "override_installed_packages"):
             self.build(mode="port-04-test")
 
+    def test_valid_unavailable_port_proof_generation(self) -> None:
+        unavailable = {
+            "status": "failed",
+            "exit_code": 1,
+            "override_debs_installed": False,
+            "port_commit": None,
+            "port_release_tag": None,
+            "port_debs": [],
+            "unported_original_packages": ["demo-runtime", "demo-dev"],
+            "override_installed_packages": [],
+            "port_unavailable_reason": "no qualifying release",
+            "error": "no qualifying release",
+        }
+        for testcase in self.case_manifest.testcases:
+            self.write_port_result(testcase.id, status="failed", cast=False, updates=unavailable)
+
+        result = self.build(mode="port-04-test", require_casts=True)
+
+        self.assertEqual(result["totals"]["passed"], 0)
+        self.assertEqual(result["totals"]["failed"], 2)
+        library = result["libraries"][0]
+        self.assertEqual(library["port_debs"], [])
+        self.assertEqual(library["unported_original_packages"], ["demo-runtime", "demo-dev"])
+        self.assertEqual(library["port_unavailable_reason"], "no qualifying release")
+
+        self.tempdir.cleanup()
+        self.setUp()
+        self.write_port_result("source-echo-roundtrip", cast=False, updates=unavailable | {"status": "passed"})
+        self.write_port_result("usage-client-echo", status="failed", cast=False, updates=unavailable)
+        with self.assertRaisesRegex(ValidatorError, "unavailable port results must be failed"):
+            self.build(mode="port-04-test")
+
+        self.tempdir.cleanup()
+        self.setUp()
+        self.write_port_result("source-echo-roundtrip", status="failed", updates=unavailable)
+        self.write_port_result("usage-client-echo", status="failed", cast=False, updates=unavailable)
+        with self.assertRaisesRegex(ValidatorError, "must not define cast_path"):
+            self.build(mode="port-04-test")
+
     def test_port_proof_rejects_bad_provenance_and_paths(self) -> None:
         cases = [
             ({"override_debs_installed": False}, "must be true"),

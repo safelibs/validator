@@ -1,0 +1,37 @@
+{
+  "schema_version": 2,
+  "library": "libc6",
+  "mode": "original",
+  "testcase_id": "usage-python3-runtime",
+  "title": "Python runs libc-backed runtime",
+  "description": "Starts Python, performs arithmetic, and prints a computed value.",
+  "kind": "usage",
+  "client_application": "python3-minimal",
+  "tags": [
+    "usage",
+    "python"
+  ],
+  "requires": [],
+  "status": "passed",
+  "started_at": "1970-01-01T00:00:00Z",
+  "finished_at": "1970-01-01T00:00:00Z",
+  "duration_seconds": 0.0,
+  "result_path": "results/libc6/usage-python3-runtime.json",
+  "log_path": "logs/libc6/usage-python3-runtime.log",
+  "cast_path": "casts/libc6/usage-python3-runtime.cast",
+  "exit_code": 0,
+  "command": [
+    "bash",
+    "/validator/tests/libc6/tests/cases/usage/run.sh",
+    "usage-python3-runtime"
+  ],
+  "apt_packages": [
+    "libc6",
+    "libc6-dev",
+    "libc-dev-bin",
+    "libc-bin",
+    "locales",
+    "nscd"
+  ],
+  "override_debs_installed": false
+}

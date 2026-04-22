@@ -1,0 +1,1030 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>libgcrypt Validation</title>
+    <link rel="icon" href="data:,">
+    <link rel="stylesheet" href="../assets/site.css">
+    <script defer src="../assets/player.js"></script>
+  </head>
+  <body data-site-data="../site-data.json">
+    <a class="skip-link" href="#tests-heading">Skip to tests</a>
+    <main>
+      <nav class="breadcrumb" aria-label="Breadcrumb"><a href="../index.html">All libraries</a></nav>
+      <section class="dashboard" aria-labelledby="dashboard-heading">
+        <h1 id="dashboard-heading">libgcrypt Validation</h1>
+        <div class="metric-grid">
+        <div class="metric" data-proof-total="libraries"><strong>1</strong><span>Libraries</span></div>
+        <div class="metric" data-proof-total="cases"><strong>15</strong><span>Tests</span></div>
+        <div class="metric" data-proof-total="source_cases"><strong>5</strong><span>Source tests</span></div>
+        <div class="metric" data-proof-total="usage_cases"><strong>10</strong><span>Usage tests</span></div>
+        <div class="metric" data-proof-total="passed"><strong>0 / 15</strong><span>Port tests passing</span></div>
+        <div class="metric" data-proof-total="failed"><strong>15</strong><span>Port tests failing</span></div>
+        <div class="metric" data-proof-total="casts"><strong>15 (50%)</strong><span>Evidence casts</span></div>
+        <div class="metric" data-proof-total="port_libraries"><strong>0 / 1</strong><span>Port libraries passing</span></div>
+        </div>
+      </section>
+
+      <section class="controls" aria-label="Testcase filters">
+        <label class="search-label">Search <input id="search-input" type="search" autocomplete="off" name="search"></label>
+        <label>Run mode <select id="mode-filter" name="mode"><option value="all">All</option><option value="original">Original</option><option value="port-04-test">Port</option></select></label>
+        <label>Status <select id="status-filter"><option value="all">All</option><option value="passed">Passed</option><option value="failed">Failed</option></select></label>
+        <label>Kind <select id="kind-filter"><option value="all">All</option><option value="source">Source</option><option value="usage">Usage</option></select></label>
+      </section>
+      <section id="testcases" class="testcases" aria-labelledby="tests-heading">
+        <h2 id="tests-heading">Tests</h2>
+        <details class="case-row" data-library="libgcrypt" data-testcase-id="digest-sha256-smoke" data-mode="original" data-kind="source" data-status="passed" data-player-cast="../evidence/original/casts/libgcrypt/digest-sha256-smoke.cast" data-search="libgcrypt digest-sha256-smoke original libgcrypt SHA-256 digest Computes a SHA-256 digest with gcry_md_hash_buffer and verifies the known prefix. source api crypto">
+          <summary>
+            <span class="case-title">
+              <strong>libgcrypt SHA-256 digest</strong>
+              <span class="case-id">Original / libgcrypt / digest-sha256-smoke</span>
+            </span>
+            <span class="status-pill status-passed" aria-label="Original / libgcrypt / digest-sha256-smoke status: Passed">Passed</span>
+          </summary>
+          <div class="case-body">
+            <p>Computes a SHA-256 digest with gcry_md_hash_buffer and verifies the known prefix.</p>
+            <dl class="case-meta">
+              <div><dt>Run</dt><dd>Original</dd></div>
+              <div><dt>Kind</dt><dd>source</dd></div>
+              <div><dt>Client</dt><dd>none</dd></div>
+              <div><dt>Duration</dt><dd>0.00s</dd></div>
+              <div><dt>Tags</dt><dd class="tags"><span>api</span> <span>crypto</span></dd></div>
+            </dl>
+            <div class="case-actions">
+              <a class="log-link" href="../evidence/original/logs/libgcrypt/digest-sha256-smoke.log" aria-label="Open log for Original / libgcrypt / digest-sha256-smoke">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/original/casts/libgcrypt/digest-sha256-smoke.cast" aria-label="Play cast for Original / libgcrypt / digest-sha256-smoke">Play</button>
+            </div>
+            <div class="cast-player" data-player>
+              <div class="player-controls">
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Original / libgcrypt / digest-sha256-smoke">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Original / libgcrypt / digest-sha256-smoke">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Original / libgcrypt / digest-sha256-smoke">Restart</button>
+                <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
+                <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
+              </div>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Original / libgcrypt / digest-sha256-smoke"></pre>
+            </div>
+          </div>
+        </details>
+        <details class="case-row" data-library="libgcrypt" data-testcase-id="hmac-sha256-smoke" data-mode="original" data-kind="source" data-status="passed" data-player-cast="../evidence/original/casts/libgcrypt/hmac-sha256-smoke.cast" data-search="libgcrypt hmac-sha256-smoke original libgcrypt HMAC digest Computes an HMAC through gcry_md_open with the HMAC flag. source api crypto">
+          <summary>
+            <span class="case-title">
+              <strong>libgcrypt HMAC digest</strong>
+              <span class="case-id">Original / libgcrypt / hmac-sha256-smoke</span>
+            </span>
+            <span class="status-pill status-passed" aria-label="Original / libgcrypt / hmac-sha256-smoke status: Passed">Passed</span>
+          </summary>
+          <div class="case-body">
+            <p>Computes an HMAC through gcry_md_open with the HMAC flag.</p>
+            <dl class="case-meta">
+              <div><dt>Run</dt><dd>Original</dd></div>
+              <div><dt>Kind</dt><dd>source</dd></div>
+              <div><dt>Client</dt><dd>none</dd></div>
+              <div><dt>Duration</dt><dd>0.00s</dd></div>
+              <div><dt>Tags</dt><dd class="tags"><span>api</span> <span>crypto</span></dd></div>
+            </dl>
+            <div class="case-actions">
+              <a class="log-link" href="../evidence/original/logs/libgcrypt/hmac-sha256-smoke.log" aria-label="Open log for Original / libgcrypt / hmac-sha256-smoke">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/original/casts/libgcrypt/hmac-sha256-smoke.cast" aria-label="Play cast for Original / libgcrypt / hmac-sha256-smoke">Play</button>
+            </div>
+            <div class="cast-player" data-player>
+              <div class="player-controls">
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Original / libgcrypt / hmac-sha256-smoke">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Original / libgcrypt / hmac-sha256-smoke">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Original / libgcrypt / hmac-sha256-smoke">Restart</button>
+                <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
+                <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
+              </div>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Original / libgcrypt / hmac-sha256-smoke"></pre>
+            </div>
+          </div>
+        </details>
+        <details class="case-row" data-library="libgcrypt" data-testcase-id="aes-ctr-roundtrip" data-mode="original" data-kind="source" data-status="passed" data-player-cast="../evidence/original/casts/libgcrypt/aes-ctr-roundtrip.cast" data-search="libgcrypt aes-ctr-roundtrip original libgcrypt AES CTR round trip Encrypts and decrypts a buffer through the AES-128 CTR cipher API. source api crypto">
+          <summary>
+            <span class="case-title">
+              <strong>libgcrypt AES CTR round trip</strong>
+              <span class="case-id">Original / libgcrypt / aes-ctr-roundtrip</span>
+            </span>
+            <span class="status-pill status-passed" aria-label="Original / libgcrypt / aes-ctr-roundtrip status: Passed">Passed</span>
+          </summary>
+          <div class="case-body">
+            <p>Encrypts and decrypts a buffer through the AES-128 CTR cipher API.</p>
+            <dl class="case-meta">
+              <div><dt>Run</dt><dd>Original</dd></div>
+              <div><dt>Kind</dt><dd>source</dd></div>
+              <div><dt>Client</dt><dd>none</dd></div>
+              <div><dt>Duration</dt><dd>0.00s</dd></div>
+              <div><dt>Tags</dt><dd class="tags"><span>api</span> <span>crypto</span></dd></div>
+            </dl>
+            <div class="case-actions">
+              <a class="log-link" href="../evidence/original/logs/libgcrypt/aes-ctr-roundtrip.log" aria-label="Open log for Original / libgcrypt / aes-ctr-roundtrip">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/original/casts/libgcrypt/aes-ctr-roundtrip.cast" aria-label="Play cast for Original / libgcrypt / aes-ctr-roundtrip">Play</button>
+            </div>
+            <div class="cast-player" data-player>
+              <div class="player-controls">
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Original / libgcrypt / aes-ctr-roundtrip">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Original / libgcrypt / aes-ctr-roundtrip">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Original / libgcrypt / aes-ctr-roundtrip">Restart</button>
+                <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
+                <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
+              </div>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Original / libgcrypt / aes-ctr-roundtrip"></pre>
+            </div>
+          </div>
+        </details>
+        <details class="case-row" data-library="libgcrypt" data-testcase-id="mpi-arithmetic" data-mode="original" data-kind="source" data-status="passed" data-player-cast="../evidence/original/casts/libgcrypt/mpi-arithmetic.cast" data-search="libgcrypt mpi-arithmetic original libgcrypt MPI arithmetic Adds integers through the multi-precision integer API and prints the result. source api mpi">
+          <summary>
+            <span class="case-title">
+              <strong>libgcrypt MPI arithmetic</strong>
+              <span class="case-id">Original / libgcrypt / mpi-arithmetic</span>
+            </span>
+            <span class="status-pill status-passed" aria-label="Original / libgcrypt / mpi-arithmetic status: Passed">Passed</span>
+          </summary>
+          <div class="case-body">
+            <p>Adds integers through the multi-precision integer API and prints the result.</p>
+            <dl class="case-meta">
+              <div><dt>Run</dt><dd>Original</dd></div>
+              <div><dt>Kind</dt><dd>source</dd></div>
+              <div><dt>Client</dt><dd>none</dd></div>
+              <div><dt>Duration</dt><dd>0.00s</dd></div>
+              <div><dt>Tags</dt><dd class="tags"><span>api</span> <span>mpi</span></dd></div>
+            </dl>
+            <div class="case-actions">
+              <a class="log-link" href="../evidence/original/logs/libgcrypt/mpi-arithmetic.log" aria-label="Open log for Original / libgcrypt / mpi-arithmetic">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/original/casts/libgcrypt/mpi-arithmetic.cast" aria-label="Play cast for Original / libgcrypt / mpi-arithmetic">Play</button>
+            </div>
+            <div class="cast-player" data-player>
+              <div class="player-controls">
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Original / libgcrypt / mpi-arithmetic">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Original / libgcrypt / mpi-arithmetic">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Original / libgcrypt / mpi-arithmetic">Restart</button>
+                <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
+                <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
+              </div>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Original / libgcrypt / mpi-arithmetic"></pre>
+            </div>
+          </div>
+        </details>
+        <details class="case-row" data-library="libgcrypt" data-testcase-id="nonce-generation" data-mode="original" data-kind="source" data-status="passed" data-player-cast="../evidence/original/casts/libgcrypt/nonce-generation.cast" data-search="libgcrypt nonce-generation original libgcrypt nonce generation Fills a nonce buffer with gcry_create_nonce and verifies it is not all zero bytes. source api random">
+          <summary>
+            <span class="case-title">
+              <strong>libgcrypt nonce generation</strong>
+              <span class="case-id">Original / libgcrypt / nonce-generation</span>
+            </span>
+            <span class="status-pill status-passed" aria-label="Original / libgcrypt / nonce-generation status: Passed">Passed</span>
+          </summary>
+          <div class="case-body">
+            <p>Fills a nonce buffer with gcry_create_nonce and verifies it is not all zero bytes.</p>
+            <dl class="case-meta">
+              <div><dt>Run</dt><dd>Original</dd></div>
+              <div><dt>Kind</dt><dd>source</dd></div>
+              <div><dt>Client</dt><dd>none</dd></div>
+              <div><dt>Duration</dt><dd>0.00s</dd></div>
+              <div><dt>Tags</dt><dd class="tags"><span>api</span> <span>random</span></dd></div>
+            </dl>
+            <div class="case-actions">
+              <a class="log-link" href="../evidence/original/logs/libgcrypt/nonce-generation.log" aria-label="Open log for Original / libgcrypt / nonce-generation">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/original/casts/libgcrypt/nonce-generation.cast" aria-label="Play cast for Original / libgcrypt / nonce-generation">Play</button>
+            </div>
+            <div class="cast-player" data-player>
+              <div class="player-controls">
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Original / libgcrypt / nonce-generation">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Original / libgcrypt / nonce-generation">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Original / libgcrypt / nonce-generation">Restart</button>
+                <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
+                <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
+              </div>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Original / libgcrypt / nonce-generation"></pre>
+            </div>
+          </div>
+        </details>
+        <details class="case-row" data-library="libgcrypt" data-testcase-id="usage-gpg-version-libgcrypt" data-mode="original" data-kind="usage" data-status="passed" data-player-cast="../evidence/original/casts/libgcrypt/usage-gpg-version-libgcrypt.cast" data-search="libgcrypt usage-gpg-version-libgcrypt original GnuPG reports libgcrypt Runs gpg --version and verifies it reports the linked libgcrypt version. usage gpg usage crypto">
+          <summary>
+            <span class="case-title">
+              <strong>GnuPG reports libgcrypt</strong>
+              <span class="case-id">Original / libgcrypt / usage-gpg-version-libgcrypt</span>
+            </span>
+            <span class="status-pill status-passed" aria-label="Original / libgcrypt / usage-gpg-version-libgcrypt status: Passed">Passed</span>
+          </summary>
+          <div class="case-body">
+            <p>Runs gpg --version and verifies it reports the linked libgcrypt version.</p>
+            <dl class="case-meta">
+              <div><dt>Run</dt><dd>Original</dd></div>
+              <div><dt>Kind</dt><dd>usage</dd></div>
+              <div><dt>Client</dt><dd>gpg</dd></div>
+              <div><dt>Duration</dt><dd>0.00s</dd></div>
+              <div><dt>Tags</dt><dd class="tags"><span>usage</span> <span>crypto</span></dd></div>
+            </dl>
+            <div class="case-actions">
+              <a class="log-link" href="../evidence/original/logs/libgcrypt/usage-gpg-version-libgcrypt.log" aria-label="Open log for Original / libgcrypt / usage-gpg-version-libgcrypt">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/original/casts/libgcrypt/usage-gpg-version-libgcrypt.cast" aria-label="Play cast for Original / libgcrypt / usage-gpg-version-libgcrypt">Play</button>
+            </div>
+            <div class="cast-player" data-player>
+              <div class="player-controls">
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Original / libgcrypt / usage-gpg-version-libgcrypt">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Original / libgcrypt / usage-gpg-version-libgcrypt">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Original / libgcrypt / usage-gpg-version-libgcrypt">Restart</button>
+                <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
+                <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
+              </div>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Original / libgcrypt / usage-gpg-version-libgcrypt"></pre>
+            </div>
+          </div>
+        </details>
+        <details class="case-row" data-library="libgcrypt" data-testcase-id="usage-gpg-print-md" data-mode="original" data-kind="usage" data-status="passed" data-player-cast="../evidence/original/casts/libgcrypt/usage-gpg-print-md.cast" data-search="libgcrypt usage-gpg-print-md original GnuPG prints SHA-256 digest Hashes a file with gpg --print-md to exercise libgcrypt digest code. usage gpg usage crypto">
+          <summary>
+            <span class="case-title">
+              <strong>GnuPG prints SHA-256 digest</strong>
+              <span class="case-id">Original / libgcrypt / usage-gpg-print-md</span>
+            </span>
+            <span class="status-pill status-passed" aria-label="Original / libgcrypt / usage-gpg-print-md status: Passed">Passed</span>
+          </summary>
+          <div class="case-body">
+            <p>Hashes a file with gpg --print-md to exercise libgcrypt digest code.</p>
+            <dl class="case-meta">
+              <div><dt>Run</dt><dd>Original</dd></div>
+              <div><dt>Kind</dt><dd>usage</dd></div>
+              <div><dt>Client</dt><dd>gpg</dd></div>
+              <div><dt>Duration</dt><dd>0.00s</dd></div>
+              <div><dt>Tags</dt><dd class="tags"><span>usage</span> <span>crypto</span></dd></div>
+            </dl>
+            <div class="case-actions">
+              <a class="log-link" href="../evidence/original/logs/libgcrypt/usage-gpg-print-md.log" aria-label="Open log for Original / libgcrypt / usage-gpg-print-md">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/original/casts/libgcrypt/usage-gpg-print-md.cast" aria-label="Play cast for Original / libgcrypt / usage-gpg-print-md">Play</button>
+            </div>
+            <div class="cast-player" data-player>
+              <div class="player-controls">
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Original / libgcrypt / usage-gpg-print-md">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Original / libgcrypt / usage-gpg-print-md">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Original / libgcrypt / usage-gpg-print-md">Restart</button>
+                <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
+                <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
+              </div>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Original / libgcrypt / usage-gpg-print-md"></pre>
+            </div>
+          </div>
+        </details>
+        <details class="case-row" data-library="libgcrypt" data-testcase-id="usage-gpg-symmetric-roundtrip" data-mode="original" data-kind="usage" data-status="passed" data-player-cast="../evidence/original/casts/libgcrypt/usage-gpg-symmetric-roundtrip.cast" data-search="libgcrypt usage-gpg-symmetric-roundtrip original GnuPG symmetric round trip Encrypts and decrypts a file with a passphrase-backed symmetric cipher. usage gpg usage crypto">
+          <summary>
+            <span class="case-title">
+              <strong>GnuPG symmetric round trip</strong>
+              <span class="case-id">Original / libgcrypt / usage-gpg-symmetric-roundtrip</span>
+            </span>
+            <span class="status-pill status-passed" aria-label="Original / libgcrypt / usage-gpg-symmetric-roundtrip status: Passed">Passed</span>
+          </summary>
+          <div class="case-body">
+            <p>Encrypts and decrypts a file with a passphrase-backed symmetric cipher.</p>
+            <dl class="case-meta">
+              <div><dt>Run</dt><dd>Original</dd></div>
+              <div><dt>Kind</dt><dd>usage</dd></div>
+              <div><dt>Client</dt><dd>gpg</dd></div>
+              <div><dt>Duration</dt><dd>0.00s</dd></div>
+              <div><dt>Tags</dt><dd class="tags"><span>usage</span> <span>crypto</span></dd></div>
+            </dl>
+            <div class="case-actions">
+              <a class="log-link" href="../evidence/original/logs/libgcrypt/usage-gpg-symmetric-roundtrip.log" aria-label="Open log for Original / libgcrypt / usage-gpg-symmetric-roundtrip">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/original/casts/libgcrypt/usage-gpg-symmetric-roundtrip.cast" aria-label="Play cast for Original / libgcrypt / usage-gpg-symmetric-roundtrip">Play</button>
+            </div>
+            <div class="cast-player" data-player>
+              <div class="player-controls">
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Original / libgcrypt / usage-gpg-symmetric-roundtrip">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Original / libgcrypt / usage-gpg-symmetric-roundtrip">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Original / libgcrypt / usage-gpg-symmetric-roundtrip">Restart</button>
+                <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
+                <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
+              </div>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Original / libgcrypt / usage-gpg-symmetric-roundtrip"></pre>
+            </div>
+          </div>
+        </details>
+        <details class="case-row" data-library="libgcrypt" data-testcase-id="usage-gpg-symmetric-armor" data-mode="original" data-kind="usage" data-status="passed" data-player-cast="../evidence/original/casts/libgcrypt/usage-gpg-symmetric-armor.cast" data-search="libgcrypt usage-gpg-symmetric-armor original GnuPG armored symmetric data Produces ASCII-armored symmetric ciphertext and decrypts it back to plaintext. usage gpg usage crypto">
+          <summary>
+            <span class="case-title">
+              <strong>GnuPG armored symmetric data</strong>
+              <span class="case-id">Original / libgcrypt / usage-gpg-symmetric-armor</span>
+            </span>
+            <span class="status-pill status-passed" aria-label="Original / libgcrypt / usage-gpg-symmetric-armor status: Passed">Passed</span>
+          </summary>
+          <div class="case-body">
+            <p>Produces ASCII-armored symmetric ciphertext and decrypts it back to plaintext.</p>
+            <dl class="case-meta">
+              <div><dt>Run</dt><dd>Original</dd></div>
+              <div><dt>Kind</dt><dd>usage</dd></div>
+              <div><dt>Client</dt><dd>gpg</dd></div>
+              <div><dt>Duration</dt><dd>0.00s</dd></div>
+              <div><dt>Tags</dt><dd class="tags"><span>usage</span> <span>crypto</span></dd></div>
+            </dl>
+            <div class="case-actions">
+              <a class="log-link" href="../evidence/original/logs/libgcrypt/usage-gpg-symmetric-armor.log" aria-label="Open log for Original / libgcrypt / usage-gpg-symmetric-armor">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/original/casts/libgcrypt/usage-gpg-symmetric-armor.cast" aria-label="Play cast for Original / libgcrypt / usage-gpg-symmetric-armor">Play</button>
+            </div>
+            <div class="cast-player" data-player>
+              <div class="player-controls">
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Original / libgcrypt / usage-gpg-symmetric-armor">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Original / libgcrypt / usage-gpg-symmetric-armor">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Original / libgcrypt / usage-gpg-symmetric-armor">Restart</button>
+                <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
+                <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
+              </div>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Original / libgcrypt / usage-gpg-symmetric-armor"></pre>
+            </div>
+          </div>
+        </details>
+        <details class="case-row" data-library="libgcrypt" data-testcase-id="usage-gpg-detached-sign-verify" data-mode="original" data-kind="usage" data-status="passed" data-player-cast="../evidence/original/casts/libgcrypt/usage-gpg-detached-sign-verify.cast" data-search="libgcrypt usage-gpg-detached-sign-verify original GnuPG detached signature Generates a signing key, creates a detached signature, and verifies it. usage gpg usage crypto">
+          <summary>
+            <span class="case-title">
+              <strong>GnuPG detached signature</strong>
+              <span class="case-id">Original / libgcrypt / usage-gpg-detached-sign-verify</span>
+            </span>
+            <span class="status-pill status-passed" aria-label="Original / libgcrypt / usage-gpg-detached-sign-verify status: Passed">Passed</span>
+          </summary>
+          <div class="case-body">
+            <p>Generates a signing key, creates a detached signature, and verifies it.</p>
+            <dl class="case-meta">
+              <div><dt>Run</dt><dd>Original</dd></div>
+              <div><dt>Kind</dt><dd>usage</dd></div>
+              <div><dt>Client</dt><dd>gpg</dd></div>
+              <div><dt>Duration</dt><dd>0.00s</dd></div>
+              <div><dt>Tags</dt><dd class="tags"><span>usage</span> <span>crypto</span></dd></div>
+            </dl>
+            <div class="case-actions">
+              <a class="log-link" href="../evidence/original/logs/libgcrypt/usage-gpg-detached-sign-verify.log" aria-label="Open log for Original / libgcrypt / usage-gpg-detached-sign-verify">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/original/casts/libgcrypt/usage-gpg-detached-sign-verify.cast" aria-label="Play cast for Original / libgcrypt / usage-gpg-detached-sign-verify">Play</button>
+            </div>
+            <div class="cast-player" data-player>
+              <div class="player-controls">
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Original / libgcrypt / usage-gpg-detached-sign-verify">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Original / libgcrypt / usage-gpg-detached-sign-verify">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Original / libgcrypt / usage-gpg-detached-sign-verify">Restart</button>
+                <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
+                <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
+              </div>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Original / libgcrypt / usage-gpg-detached-sign-verify"></pre>
+            </div>
+          </div>
+        </details>
+        <details class="case-row" data-library="libgcrypt" data-testcase-id="usage-gpg-clearsign-verify" data-mode="original" data-kind="usage" data-status="passed" data-player-cast="../evidence/original/casts/libgcrypt/usage-gpg-clearsign-verify.cast" data-search="libgcrypt usage-gpg-clearsign-verify original GnuPG clear-signed message Signs a message in cleartext form and verifies the resulting signature. usage gpg usage crypto">
+          <summary>
+            <span class="case-title">
+              <strong>GnuPG clear-signed message</strong>
+              <span class="case-id">Original / libgcrypt / usage-gpg-clearsign-verify</span>
+            </span>
+            <span class="status-pill status-passed" aria-label="Original / libgcrypt / usage-gpg-clearsign-verify status: Passed">Passed</span>
+          </summary>
+          <div class="case-body">
+            <p>Signs a message in cleartext form and verifies the resulting signature.</p>
+            <dl class="case-meta">
+              <div><dt>Run</dt><dd>Original</dd></div>
+              <div><dt>Kind</dt><dd>usage</dd></div>
+              <div><dt>Client</dt><dd>gpg</dd></div>
+              <div><dt>Duration</dt><dd>0.00s</dd></div>
+              <div><dt>Tags</dt><dd class="tags"><span>usage</span> <span>crypto</span></dd></div>
+            </dl>
+            <div class="case-actions">
+              <a class="log-link" href="../evidence/original/logs/libgcrypt/usage-gpg-clearsign-verify.log" aria-label="Open log for Original / libgcrypt / usage-gpg-clearsign-verify">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/original/casts/libgcrypt/usage-gpg-clearsign-verify.cast" aria-label="Play cast for Original / libgcrypt / usage-gpg-clearsign-verify">Play</button>
+            </div>
+            <div class="cast-player" data-player>
+              <div class="player-controls">
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Original / libgcrypt / usage-gpg-clearsign-verify">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Original / libgcrypt / usage-gpg-clearsign-verify">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Original / libgcrypt / usage-gpg-clearsign-verify">Restart</button>
+                <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
+                <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
+              </div>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Original / libgcrypt / usage-gpg-clearsign-verify"></pre>
+            </div>
+          </div>
+        </details>
+        <details class="case-row" data-library="libgcrypt" data-testcase-id="usage-gpg-export-import-key" data-mode="original" data-kind="usage" data-status="passed" data-player-cast="../evidence/original/casts/libgcrypt/usage-gpg-export-import-key.cast" data-search="libgcrypt usage-gpg-export-import-key original GnuPG exports and imports key Exports a generated public key and imports it into a fresh keyring. usage gpg usage crypto">
+          <summary>
+            <span class="case-title">
+              <strong>GnuPG exports and imports key</strong>
+              <span class="case-id">Original / libgcrypt / usage-gpg-export-import-key</span>
+            </span>
+            <span class="status-pill status-passed" aria-label="Original / libgcrypt / usage-gpg-export-import-key status: Passed">Passed</span>
+          </summary>
+          <div class="case-body">
+            <p>Exports a generated public key and imports it into a fresh keyring.</p>
+            <dl class="case-meta">
+              <div><dt>Run</dt><dd>Original</dd></div>
+              <div><dt>Kind</dt><dd>usage</dd></div>
+              <div><dt>Client</dt><dd>gpg</dd></div>
+              <div><dt>Duration</dt><dd>0.00s</dd></div>
+              <div><dt>Tags</dt><dd class="tags"><span>usage</span> <span>crypto</span></dd></div>
+            </dl>
+            <div class="case-actions">
+              <a class="log-link" href="../evidence/original/logs/libgcrypt/usage-gpg-export-import-key.log" aria-label="Open log for Original / libgcrypt / usage-gpg-export-import-key">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/original/casts/libgcrypt/usage-gpg-export-import-key.cast" aria-label="Play cast for Original / libgcrypt / usage-gpg-export-import-key">Play</button>
+            </div>
+            <div class="cast-player" data-player>
+              <div class="player-controls">
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Original / libgcrypt / usage-gpg-export-import-key">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Original / libgcrypt / usage-gpg-export-import-key">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Original / libgcrypt / usage-gpg-export-import-key">Restart</button>
+                <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
+                <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
+              </div>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Original / libgcrypt / usage-gpg-export-import-key"></pre>
+            </div>
+          </div>
+        </details>
+        <details class="case-row" data-library="libgcrypt" data-testcase-id="usage-gpg-recipient-encrypt" data-mode="original" data-kind="usage" data-status="passed" data-player-cast="../evidence/original/casts/libgcrypt/usage-gpg-recipient-encrypt.cast" data-search="libgcrypt usage-gpg-recipient-encrypt original GnuPG recipient encryption Encrypts a file to a generated recipient key and decrypts it through GnuPG. usage gpg usage crypto">
+          <summary>
+            <span class="case-title">
+              <strong>GnuPG recipient encryption</strong>
+              <span class="case-id">Original / libgcrypt / usage-gpg-recipient-encrypt</span>
+            </span>
+            <span class="status-pill status-passed" aria-label="Original / libgcrypt / usage-gpg-recipient-encrypt status: Passed">Passed</span>
+          </summary>
+          <div class="case-body">
+            <p>Encrypts a file to a generated recipient key and decrypts it through GnuPG.</p>
+            <dl class="case-meta">
+              <div><dt>Run</dt><dd>Original</dd></div>
+              <div><dt>Kind</dt><dd>usage</dd></div>
+              <div><dt>Client</dt><dd>gpg</dd></div>
+              <div><dt>Duration</dt><dd>0.00s</dd></div>
+              <div><dt>Tags</dt><dd class="tags"><span>usage</span> <span>crypto</span></dd></div>
+            </dl>
+            <div class="case-actions">
+              <a class="log-link" href="../evidence/original/logs/libgcrypt/usage-gpg-recipient-encrypt.log" aria-label="Open log for Original / libgcrypt / usage-gpg-recipient-encrypt">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/original/casts/libgcrypt/usage-gpg-recipient-encrypt.cast" aria-label="Play cast for Original / libgcrypt / usage-gpg-recipient-encrypt">Play</button>
+            </div>
+            <div class="cast-player" data-player>
+              <div class="player-controls">
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Original / libgcrypt / usage-gpg-recipient-encrypt">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Original / libgcrypt / usage-gpg-recipient-encrypt">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Original / libgcrypt / usage-gpg-recipient-encrypt">Restart</button>
+                <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
+                <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
+              </div>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Original / libgcrypt / usage-gpg-recipient-encrypt"></pre>
+            </div>
+          </div>
+        </details>
+        <details class="case-row" data-library="libgcrypt" data-testcase-id="usage-gpg-list-packets" data-mode="original" data-kind="usage" data-status="passed" data-player-cast="../evidence/original/casts/libgcrypt/usage-gpg-list-packets.cast" data-search="libgcrypt usage-gpg-list-packets original GnuPG lists encrypted packets Lists OpenPGP packet metadata from a symmetric encrypted file. usage gpg usage crypto">
+          <summary>
+            <span class="case-title">
+              <strong>GnuPG lists encrypted packets</strong>
+              <span class="case-id">Original / libgcrypt / usage-gpg-list-packets</span>
+            </span>
+            <span class="status-pill status-passed" aria-label="Original / libgcrypt / usage-gpg-list-packets status: Passed">Passed</span>
+          </summary>
+          <div class="case-body">
+            <p>Lists OpenPGP packet metadata from a symmetric encrypted file.</p>
+            <dl class="case-meta">
+              <div><dt>Run</dt><dd>Original</dd></div>
+              <div><dt>Kind</dt><dd>usage</dd></div>
+              <div><dt>Client</dt><dd>gpg</dd></div>
+              <div><dt>Duration</dt><dd>0.00s</dd></div>
+              <div><dt>Tags</dt><dd class="tags"><span>usage</span> <span>crypto</span></dd></div>
+            </dl>
+            <div class="case-actions">
+              <a class="log-link" href="../evidence/original/logs/libgcrypt/usage-gpg-list-packets.log" aria-label="Open log for Original / libgcrypt / usage-gpg-list-packets">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/original/casts/libgcrypt/usage-gpg-list-packets.cast" aria-label="Play cast for Original / libgcrypt / usage-gpg-list-packets">Play</button>
+            </div>
+            <div class="cast-player" data-player>
+              <div class="player-controls">
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Original / libgcrypt / usage-gpg-list-packets">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Original / libgcrypt / usage-gpg-list-packets">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Original / libgcrypt / usage-gpg-list-packets">Restart</button>
+                <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
+                <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
+              </div>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Original / libgcrypt / usage-gpg-list-packets"></pre>
+            </div>
+          </div>
+        </details>
+        <details class="case-row" data-library="libgcrypt" data-testcase-id="usage-gpg-list-keys" data-mode="original" data-kind="usage" data-status="passed" data-player-cast="../evidence/original/casts/libgcrypt/usage-gpg-list-keys.cast" data-search="libgcrypt usage-gpg-list-keys original GnuPG lists generated key Generates a key and verifies it appears in the local key listing. usage gpg usage crypto">
+          <summary>
+            <span class="case-title">
+              <strong>GnuPG lists generated key</strong>
+              <span class="case-id">Original / libgcrypt / usage-gpg-list-keys</span>
+            </span>
+            <span class="status-pill status-passed" aria-label="Original / libgcrypt / usage-gpg-list-keys status: Passed">Passed</span>
+          </summary>
+          <div class="case-body">
+            <p>Generates a key and verifies it appears in the local key listing.</p>
+            <dl class="case-meta">
+              <div><dt>Run</dt><dd>Original</dd></div>
+              <div><dt>Kind</dt><dd>usage</dd></div>
+              <div><dt>Client</dt><dd>gpg</dd></div>
+              <div><dt>Duration</dt><dd>0.00s</dd></div>
+              <div><dt>Tags</dt><dd class="tags"><span>usage</span> <span>crypto</span></dd></div>
+            </dl>
+            <div class="case-actions">
+              <a class="log-link" href="../evidence/original/logs/libgcrypt/usage-gpg-list-keys.log" aria-label="Open log for Original / libgcrypt / usage-gpg-list-keys">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/original/casts/libgcrypt/usage-gpg-list-keys.cast" aria-label="Play cast for Original / libgcrypt / usage-gpg-list-keys">Play</button>
+            </div>
+            <div class="cast-player" data-player>
+              <div class="player-controls">
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Original / libgcrypt / usage-gpg-list-keys">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Original / libgcrypt / usage-gpg-list-keys">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Original / libgcrypt / usage-gpg-list-keys">Restart</button>
+                <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
+                <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
+              </div>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Original / libgcrypt / usage-gpg-list-keys"></pre>
+            </div>
+          </div>
+        </details>
+        <details class="case-row" data-library="libgcrypt" data-testcase-id="digest-sha256-smoke" data-mode="port-04-test" data-kind="source" data-status="failed" data-player-cast="" data-search="libgcrypt digest-sha256-smoke port-04-test libgcrypt SHA-256 digest Computes a SHA-256 digest with gcry_md_hash_buffer and verifies the known prefix. source api crypto">
+          <summary>
+            <span class="case-title">
+              <strong>libgcrypt SHA-256 digest</strong>
+              <span class="case-id">Port / libgcrypt / digest-sha256-smoke</span>
+            </span>
+            <span class="status-pill status-failed" aria-label="Port / libgcrypt / digest-sha256-smoke status: Failed">Failed</span>
+          </summary>
+          <div class="case-body">
+            <p>Computes a SHA-256 digest with gcry_md_hash_buffer and verifies the known prefix.</p>
+            <dl class="case-meta">
+              <div><dt>Run</dt><dd>Port</dd></div>
+              <div><dt>Kind</dt><dd>source</dd></div>
+              <div><dt>Client</dt><dd>none</dd></div>
+              <div><dt>Duration</dt><dd>0.00s</dd></div>
+              <div><dt>Tags</dt><dd class="tags"><span>api</span> <span>crypto</span></dd></div>
+            </dl>
+            <div class="case-actions">
+              <a class="log-link" href="../evidence/port-04-test/logs/libgcrypt/digest-sha256-smoke.log" aria-label="Open log for Port / libgcrypt / digest-sha256-smoke">Log</a>
+              <span class="muted">No cast</span>
+            </div>
+            <div class="cast-player" data-player>
+              <div class="player-controls">
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Port / libgcrypt / digest-sha256-smoke">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Port / libgcrypt / digest-sha256-smoke">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Port / libgcrypt / digest-sha256-smoke">Restart</button>
+                <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
+                <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
+              </div>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Port / libgcrypt / digest-sha256-smoke"></pre>
+            </div>
+          </div>
+        </details>
+        <details class="case-row" data-library="libgcrypt" data-testcase-id="hmac-sha256-smoke" data-mode="port-04-test" data-kind="source" data-status="failed" data-player-cast="" data-search="libgcrypt hmac-sha256-smoke port-04-test libgcrypt HMAC digest Computes an HMAC through gcry_md_open with the HMAC flag. source api crypto">
+          <summary>
+            <span class="case-title">
+              <strong>libgcrypt HMAC digest</strong>
+              <span class="case-id">Port / libgcrypt / hmac-sha256-smoke</span>
+            </span>
+            <span class="status-pill status-failed" aria-label="Port / libgcrypt / hmac-sha256-smoke status: Failed">Failed</span>
+          </summary>
+          <div class="case-body">
+            <p>Computes an HMAC through gcry_md_open with the HMAC flag.</p>
+            <dl class="case-meta">
+              <div><dt>Run</dt><dd>Port</dd></div>
+              <div><dt>Kind</dt><dd>source</dd></div>
+              <div><dt>Client</dt><dd>none</dd></div>
+              <div><dt>Duration</dt><dd>0.00s</dd></div>
+              <div><dt>Tags</dt><dd class="tags"><span>api</span> <span>crypto</span></dd></div>
+            </dl>
+            <div class="case-actions">
+              <a class="log-link" href="../evidence/port-04-test/logs/libgcrypt/hmac-sha256-smoke.log" aria-label="Open log for Port / libgcrypt / hmac-sha256-smoke">Log</a>
+              <span class="muted">No cast</span>
+            </div>
+            <div class="cast-player" data-player>
+              <div class="player-controls">
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Port / libgcrypt / hmac-sha256-smoke">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Port / libgcrypt / hmac-sha256-smoke">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Port / libgcrypt / hmac-sha256-smoke">Restart</button>
+                <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
+                <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
+              </div>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Port / libgcrypt / hmac-sha256-smoke"></pre>
+            </div>
+          </div>
+        </details>
+        <details class="case-row" data-library="libgcrypt" data-testcase-id="aes-ctr-roundtrip" data-mode="port-04-test" data-kind="source" data-status="failed" data-player-cast="" data-search="libgcrypt aes-ctr-roundtrip port-04-test libgcrypt AES CTR round trip Encrypts and decrypts a buffer through the AES-128 CTR cipher API. source api crypto">
+          <summary>
+            <span class="case-title">
+              <strong>libgcrypt AES CTR round trip</strong>
+              <span class="case-id">Port / libgcrypt / aes-ctr-roundtrip</span>
+            </span>
+            <span class="status-pill status-failed" aria-label="Port / libgcrypt / aes-ctr-roundtrip status: Failed">Failed</span>
+          </summary>
+          <div class="case-body">
+            <p>Encrypts and decrypts a buffer through the AES-128 CTR cipher API.</p>
+            <dl class="case-meta">
+              <div><dt>Run</dt><dd>Port</dd></div>
+              <div><dt>Kind</dt><dd>source</dd></div>
+              <div><dt>Client</dt><dd>none</dd></div>
+              <div><dt>Duration</dt><dd>0.00s</dd></div>
+              <div><dt>Tags</dt><dd class="tags"><span>api</span> <span>crypto</span></dd></div>
+            </dl>
+            <div class="case-actions">
+              <a class="log-link" href="../evidence/port-04-test/logs/libgcrypt/aes-ctr-roundtrip.log" aria-label="Open log for Port / libgcrypt / aes-ctr-roundtrip">Log</a>
+              <span class="muted">No cast</span>
+            </div>
+            <div class="cast-player" data-player>
+              <div class="player-controls">
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Port / libgcrypt / aes-ctr-roundtrip">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Port / libgcrypt / aes-ctr-roundtrip">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Port / libgcrypt / aes-ctr-roundtrip">Restart</button>
+                <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
+                <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
+              </div>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Port / libgcrypt / aes-ctr-roundtrip"></pre>
+            </div>
+          </div>
+        </details>
+        <details class="case-row" data-library="libgcrypt" data-testcase-id="mpi-arithmetic" data-mode="port-04-test" data-kind="source" data-status="failed" data-player-cast="" data-search="libgcrypt mpi-arithmetic port-04-test libgcrypt MPI arithmetic Adds integers through the multi-precision integer API and prints the result. source api mpi">
+          <summary>
+            <span class="case-title">
+              <strong>libgcrypt MPI arithmetic</strong>
+              <span class="case-id">Port / libgcrypt / mpi-arithmetic</span>
+            </span>
+            <span class="status-pill status-failed" aria-label="Port / libgcrypt / mpi-arithmetic status: Failed">Failed</span>
+          </summary>
+          <div class="case-body">
+            <p>Adds integers through the multi-precision integer API and prints the result.</p>
+            <dl class="case-meta">
+              <div><dt>Run</dt><dd>Port</dd></div>
+              <div><dt>Kind</dt><dd>source</dd></div>
+              <div><dt>Client</dt><dd>none</dd></div>
+              <div><dt>Duration</dt><dd>0.00s</dd></div>
+              <div><dt>Tags</dt><dd class="tags"><span>api</span> <span>mpi</span></dd></div>
+            </dl>
+            <div class="case-actions">
+              <a class="log-link" href="../evidence/port-04-test/logs/libgcrypt/mpi-arithmetic.log" aria-label="Open log for Port / libgcrypt / mpi-arithmetic">Log</a>
+              <span class="muted">No cast</span>
+            </div>
+            <div class="cast-player" data-player>
+              <div class="player-controls">
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Port / libgcrypt / mpi-arithmetic">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Port / libgcrypt / mpi-arithmetic">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Port / libgcrypt / mpi-arithmetic">Restart</button>
+                <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
+                <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
+              </div>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Port / libgcrypt / mpi-arithmetic"></pre>
+            </div>
+          </div>
+        </details>
+        <details class="case-row" data-library="libgcrypt" data-testcase-id="nonce-generation" data-mode="port-04-test" data-kind="source" data-status="failed" data-player-cast="" data-search="libgcrypt nonce-generation port-04-test libgcrypt nonce generation Fills a nonce buffer with gcry_create_nonce and verifies it is not all zero bytes. source api random">
+          <summary>
+            <span class="case-title">
+              <strong>libgcrypt nonce generation</strong>
+              <span class="case-id">Port / libgcrypt / nonce-generation</span>
+            </span>
+            <span class="status-pill status-failed" aria-label="Port / libgcrypt / nonce-generation status: Failed">Failed</span>
+          </summary>
+          <div class="case-body">
+            <p>Fills a nonce buffer with gcry_create_nonce and verifies it is not all zero bytes.</p>
+            <dl class="case-meta">
+              <div><dt>Run</dt><dd>Port</dd></div>
+              <div><dt>Kind</dt><dd>source</dd></div>
+              <div><dt>Client</dt><dd>none</dd></div>
+              <div><dt>Duration</dt><dd>0.00s</dd></div>
+              <div><dt>Tags</dt><dd class="tags"><span>api</span> <span>random</span></dd></div>
+            </dl>
+            <div class="case-actions">
+              <a class="log-link" href="../evidence/port-04-test/logs/libgcrypt/nonce-generation.log" aria-label="Open log for Port / libgcrypt / nonce-generation">Log</a>
+              <span class="muted">No cast</span>
+            </div>
+            <div class="cast-player" data-player>
+              <div class="player-controls">
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Port / libgcrypt / nonce-generation">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Port / libgcrypt / nonce-generation">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Port / libgcrypt / nonce-generation">Restart</button>
+                <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
+                <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
+              </div>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Port / libgcrypt / nonce-generation"></pre>
+            </div>
+          </div>
+        </details>
+        <details class="case-row" data-library="libgcrypt" data-testcase-id="usage-gpg-version-libgcrypt" data-mode="port-04-test" data-kind="usage" data-status="failed" data-player-cast="" data-search="libgcrypt usage-gpg-version-libgcrypt port-04-test GnuPG reports libgcrypt Runs gpg --version and verifies it reports the linked libgcrypt version. usage gpg usage crypto">
+          <summary>
+            <span class="case-title">
+              <strong>GnuPG reports libgcrypt</strong>
+              <span class="case-id">Port / libgcrypt / usage-gpg-version-libgcrypt</span>
+            </span>
+            <span class="status-pill status-failed" aria-label="Port / libgcrypt / usage-gpg-version-libgcrypt status: Failed">Failed</span>
+          </summary>
+          <div class="case-body">
+            <p>Runs gpg --version and verifies it reports the linked libgcrypt version.</p>
+            <dl class="case-meta">
+              <div><dt>Run</dt><dd>Port</dd></div>
+              <div><dt>Kind</dt><dd>usage</dd></div>
+              <div><dt>Client</dt><dd>gpg</dd></div>
+              <div><dt>Duration</dt><dd>0.00s</dd></div>
+              <div><dt>Tags</dt><dd class="tags"><span>usage</span> <span>crypto</span></dd></div>
+            </dl>
+            <div class="case-actions">
+              <a class="log-link" href="../evidence/port-04-test/logs/libgcrypt/usage-gpg-version-libgcrypt.log" aria-label="Open log for Port / libgcrypt / usage-gpg-version-libgcrypt">Log</a>
+              <span class="muted">No cast</span>
+            </div>
+            <div class="cast-player" data-player>
+              <div class="player-controls">
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Port / libgcrypt / usage-gpg-version-libgcrypt">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Port / libgcrypt / usage-gpg-version-libgcrypt">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Port / libgcrypt / usage-gpg-version-libgcrypt">Restart</button>
+                <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
+                <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
+              </div>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Port / libgcrypt / usage-gpg-version-libgcrypt"></pre>
+            </div>
+          </div>
+        </details>
+        <details class="case-row" data-library="libgcrypt" data-testcase-id="usage-gpg-print-md" data-mode="port-04-test" data-kind="usage" data-status="failed" data-player-cast="" data-search="libgcrypt usage-gpg-print-md port-04-test GnuPG prints SHA-256 digest Hashes a file with gpg --print-md to exercise libgcrypt digest code. usage gpg usage crypto">
+          <summary>
+            <span class="case-title">
+              <strong>GnuPG prints SHA-256 digest</strong>
+              <span class="case-id">Port / libgcrypt / usage-gpg-print-md</span>
+            </span>
+            <span class="status-pill status-failed" aria-label="Port / libgcrypt / usage-gpg-print-md status: Failed">Failed</span>
+          </summary>
+          <div class="case-body">
+            <p>Hashes a file with gpg --print-md to exercise libgcrypt digest code.</p>
+            <dl class="case-meta">
+              <div><dt>Run</dt><dd>Port</dd></div>
+              <div><dt>Kind</dt><dd>usage</dd></div>
+              <div><dt>Client</dt><dd>gpg</dd></div>
+              <div><dt>Duration</dt><dd>0.00s</dd></div>
+              <div><dt>Tags</dt><dd class="tags"><span>usage</span> <span>crypto</span></dd></div>
+            </dl>
+            <div class="case-actions">
+              <a class="log-link" href="../evidence/port-04-test/logs/libgcrypt/usage-gpg-print-md.log" aria-label="Open log for Port / libgcrypt / usage-gpg-print-md">Log</a>
+              <span class="muted">No cast</span>
+            </div>
+            <div class="cast-player" data-player>
+              <div class="player-controls">
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Port / libgcrypt / usage-gpg-print-md">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Port / libgcrypt / usage-gpg-print-md">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Port / libgcrypt / usage-gpg-print-md">Restart</button>
+                <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
+                <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
+              </div>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Port / libgcrypt / usage-gpg-print-md"></pre>
+            </div>
+          </div>
+        </details>
+        <details class="case-row" data-library="libgcrypt" data-testcase-id="usage-gpg-symmetric-roundtrip" data-mode="port-04-test" data-kind="usage" data-status="failed" data-player-cast="" data-search="libgcrypt usage-gpg-symmetric-roundtrip port-04-test GnuPG symmetric round trip Encrypts and decrypts a file with a passphrase-backed symmetric cipher. usage gpg usage crypto">
+          <summary>
+            <span class="case-title">
+              <strong>GnuPG symmetric round trip</strong>
+              <span class="case-id">Port / libgcrypt / usage-gpg-symmetric-roundtrip</span>
+            </span>
+            <span class="status-pill status-failed" aria-label="Port / libgcrypt / usage-gpg-symmetric-roundtrip status: Failed">Failed</span>
+          </summary>
+          <div class="case-body">
+            <p>Encrypts and decrypts a file with a passphrase-backed symmetric cipher.</p>
+            <dl class="case-meta">
+              <div><dt>Run</dt><dd>Port</dd></div>
+              <div><dt>Kind</dt><dd>usage</dd></div>
+              <div><dt>Client</dt><dd>gpg</dd></div>
+              <div><dt>Duration</dt><dd>0.00s</dd></div>
+              <div><dt>Tags</dt><dd class="tags"><span>usage</span> <span>crypto</span></dd></div>
+            </dl>
+            <div class="case-actions">
+              <a class="log-link" href="../evidence/port-04-test/logs/libgcrypt/usage-gpg-symmetric-roundtrip.log" aria-label="Open log for Port / libgcrypt / usage-gpg-symmetric-roundtrip">Log</a>
+              <span class="muted">No cast</span>
+            </div>
+            <div class="cast-player" data-player>
+              <div class="player-controls">
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Port / libgcrypt / usage-gpg-symmetric-roundtrip">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Port / libgcrypt / usage-gpg-symmetric-roundtrip">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Port / libgcrypt / usage-gpg-symmetric-roundtrip">Restart</button>
+                <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
+                <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
+              </div>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Port / libgcrypt / usage-gpg-symmetric-roundtrip"></pre>
+            </div>
+          </div>
+        </details>
+        <details class="case-row" data-library="libgcrypt" data-testcase-id="usage-gpg-symmetric-armor" data-mode="port-04-test" data-kind="usage" data-status="failed" data-player-cast="" data-search="libgcrypt usage-gpg-symmetric-armor port-04-test GnuPG armored symmetric data Produces ASCII-armored symmetric ciphertext and decrypts it back to plaintext. usage gpg usage crypto">
+          <summary>
+            <span class="case-title">
+              <strong>GnuPG armored symmetric data</strong>
+              <span class="case-id">Port / libgcrypt / usage-gpg-symmetric-armor</span>
+            </span>
+            <span class="status-pill status-failed" aria-label="Port / libgcrypt / usage-gpg-symmetric-armor status: Failed">Failed</span>
+          </summary>
+          <div class="case-body">
+            <p>Produces ASCII-armored symmetric ciphertext and decrypts it back to plaintext.</p>
+            <dl class="case-meta">
+              <div><dt>Run</dt><dd>Port</dd></div>
+              <div><dt>Kind</dt><dd>usage</dd></div>
+              <div><dt>Client</dt><dd>gpg</dd></div>
+              <div><dt>Duration</dt><dd>0.00s</dd></div>
+              <div><dt>Tags</dt><dd class="tags"><span>usage</span> <span>crypto</span></dd></div>
+            </dl>
+            <div class="case-actions">
+              <a class="log-link" href="../evidence/port-04-test/logs/libgcrypt/usage-gpg-symmetric-armor.log" aria-label="Open log for Port / libgcrypt / usage-gpg-symmetric-armor">Log</a>
+              <span class="muted">No cast</span>
+            </div>
+            <div class="cast-player" data-player>
+              <div class="player-controls">
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Port / libgcrypt / usage-gpg-symmetric-armor">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Port / libgcrypt / usage-gpg-symmetric-armor">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Port / libgcrypt / usage-gpg-symmetric-armor">Restart</button>
+                <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
+                <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
+              </div>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Port / libgcrypt / usage-gpg-symmetric-armor"></pre>
+            </div>
+          </div>
+        </details>
+        <details class="case-row" data-library="libgcrypt" data-testcase-id="usage-gpg-detached-sign-verify" data-mode="port-04-test" data-kind="usage" data-status="failed" data-player-cast="" data-search="libgcrypt usage-gpg-detached-sign-verify port-04-test GnuPG detached signature Generates a signing key, creates a detached signature, and verifies it. usage gpg usage crypto">
+          <summary>
+            <span class="case-title">
+              <strong>GnuPG detached signature</strong>
+              <span class="case-id">Port / libgcrypt / usage-gpg-detached-sign-verify</span>
+            </span>
+            <span class="status-pill status-failed" aria-label="Port / libgcrypt / usage-gpg-detached-sign-verify status: Failed">Failed</span>
+          </summary>
+          <div class="case-body">
+            <p>Generates a signing key, creates a detached signature, and verifies it.</p>
+            <dl class="case-meta">
+              <div><dt>Run</dt><dd>Port</dd></div>
+              <div><dt>Kind</dt><dd>usage</dd></div>
+              <div><dt>Client</dt><dd>gpg</dd></div>
+              <div><dt>Duration</dt><dd>0.00s</dd></div>
+              <div><dt>Tags</dt><dd class="tags"><span>usage</span> <span>crypto</span></dd></div>
+            </dl>
+            <div class="case-actions">
+              <a class="log-link" href="../evidence/port-04-test/logs/libgcrypt/usage-gpg-detached-sign-verify.log" aria-label="Open log for Port / libgcrypt / usage-gpg-detached-sign-verify">Log</a>
+              <span class="muted">No cast</span>
+            </div>
+            <div class="cast-player" data-player>
+              <div class="player-controls">
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Port / libgcrypt / usage-gpg-detached-sign-verify">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Port / libgcrypt / usage-gpg-detached-sign-verify">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Port / libgcrypt / usage-gpg-detached-sign-verify">Restart</button>
+                <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
+                <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
+              </div>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Port / libgcrypt / usage-gpg-detached-sign-verify"></pre>
+            </div>
+          </div>
+        </details>
+        <details class="case-row" data-library="libgcrypt" data-testcase-id="usage-gpg-clearsign-verify" data-mode="port-04-test" data-kind="usage" data-status="failed" data-player-cast="" data-search="libgcrypt usage-gpg-clearsign-verify port-04-test GnuPG clear-signed message Signs a message in cleartext form and verifies the resulting signature. usage gpg usage crypto">
+          <summary>
+            <span class="case-title">
+              <strong>GnuPG clear-signed message</strong>
+              <span class="case-id">Port / libgcrypt / usage-gpg-clearsign-verify</span>
+            </span>
+            <span class="status-pill status-failed" aria-label="Port / libgcrypt / usage-gpg-clearsign-verify status: Failed">Failed</span>
+          </summary>
+          <div class="case-body">
+            <p>Signs a message in cleartext form and verifies the resulting signature.</p>
+            <dl class="case-meta">
+              <div><dt>Run</dt><dd>Port</dd></div>
+              <div><dt>Kind</dt><dd>usage</dd></div>
+              <div><dt>Client</dt><dd>gpg</dd></div>
+              <div><dt>Duration</dt><dd>0.00s</dd></div>
+              <div><dt>Tags</dt><dd class="tags"><span>usage</span> <span>crypto</span></dd></div>
+            </dl>
+            <div class="case-actions">
+              <a class="log-link" href="../evidence/port-04-test/logs/libgcrypt/usage-gpg-clearsign-verify.log" aria-label="Open log for Port / libgcrypt / usage-gpg-clearsign-verify">Log</a>
+              <span class="muted">No cast</span>
+            </div>
+            <div class="cast-player" data-player>
+              <div class="player-controls">
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Port / libgcrypt / usage-gpg-clearsign-verify">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Port / libgcrypt / usage-gpg-clearsign-verify">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Port / libgcrypt / usage-gpg-clearsign-verify">Restart</button>
+                <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
+                <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
+              </div>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Port / libgcrypt / usage-gpg-clearsign-verify"></pre>
+            </div>
+          </div>
+        </details>
+        <details class="case-row" data-library="libgcrypt" data-testcase-id="usage-gpg-export-import-key" data-mode="port-04-test" data-kind="usage" data-status="failed" data-player-cast="" data-search="libgcrypt usage-gpg-export-import-key port-04-test GnuPG exports and imports key Exports a generated public key and imports it into a fresh keyring. usage gpg usage crypto">
+          <summary>
+            <span class="case-title">
+              <strong>GnuPG exports and imports key</strong>
+              <span class="case-id">Port / libgcrypt / usage-gpg-export-import-key</span>
+            </span>
+            <span class="status-pill status-failed" aria-label="Port / libgcrypt / usage-gpg-export-import-key status: Failed">Failed</span>
+          </summary>
+          <div class="case-body">
+            <p>Exports a generated public key and imports it into a fresh keyring.</p>
+            <dl class="case-meta">
+              <div><dt>Run</dt><dd>Port</dd></div>
+              <div><dt>Kind</dt><dd>usage</dd></div>
+              <div><dt>Client</dt><dd>gpg</dd></div>
+              <div><dt>Duration</dt><dd>0.00s</dd></div>
+              <div><dt>Tags</dt><dd class="tags"><span>usage</span> <span>crypto</span></dd></div>
+            </dl>
+            <div class="case-actions">
+              <a class="log-link" href="../evidence/port-04-test/logs/libgcrypt/usage-gpg-export-import-key.log" aria-label="Open log for Port / libgcrypt / usage-gpg-export-import-key">Log</a>
+              <span class="muted">No cast</span>
+            </div>
+            <div class="cast-player" data-player>
+              <div class="player-controls">
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Port / libgcrypt / usage-gpg-export-import-key">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Port / libgcrypt / usage-gpg-export-import-key">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Port / libgcrypt / usage-gpg-export-import-key">Restart</button>
+                <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
+                <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
+              </div>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Port / libgcrypt / usage-gpg-export-import-key"></pre>
+            </div>
+          </div>
+        </details>
+        <details class="case-row" data-library="libgcrypt" data-testcase-id="usage-gpg-recipient-encrypt" data-mode="port-04-test" data-kind="usage" data-status="failed" data-player-cast="" data-search="libgcrypt usage-gpg-recipient-encrypt port-04-test GnuPG recipient encryption Encrypts a file to a generated recipient key and decrypts it through GnuPG. usage gpg usage crypto">
+          <summary>
+            <span class="case-title">
+              <strong>GnuPG recipient encryption</strong>
+              <span class="case-id">Port / libgcrypt / usage-gpg-recipient-encrypt</span>
+            </span>
+            <span class="status-pill status-failed" aria-label="Port / libgcrypt / usage-gpg-recipient-encrypt status: Failed">Failed</span>
+          </summary>
+          <div class="case-body">
+            <p>Encrypts a file to a generated recipient key and decrypts it through GnuPG.</p>
+            <dl class="case-meta">
+              <div><dt>Run</dt><dd>Port</dd></div>
+              <div><dt>Kind</dt><dd>usage</dd></div>
+              <div><dt>Client</dt><dd>gpg</dd></div>
+              <div><dt>Duration</dt><dd>0.00s</dd></div>
+              <div><dt>Tags</dt><dd class="tags"><span>usage</span> <span>crypto</span></dd></div>
+            </dl>
+            <div class="case-actions">
+              <a class="log-link" href="../evidence/port-04-test/logs/libgcrypt/usage-gpg-recipient-encrypt.log" aria-label="Open log for Port / libgcrypt / usage-gpg-recipient-encrypt">Log</a>
+              <span class="muted">No cast</span>
+            </div>
+            <div class="cast-player" data-player>
+              <div class="player-controls">
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Port / libgcrypt / usage-gpg-recipient-encrypt">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Port / libgcrypt / usage-gpg-recipient-encrypt">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Port / libgcrypt / usage-gpg-recipient-encrypt">Restart</button>
+                <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
+                <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
+              </div>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Port / libgcrypt / usage-gpg-recipient-encrypt"></pre>
+            </div>
+          </div>
+        </details>
+        <details class="case-row" data-library="libgcrypt" data-testcase-id="usage-gpg-list-packets" data-mode="port-04-test" data-kind="usage" data-status="failed" data-player-cast="" data-search="libgcrypt usage-gpg-list-packets port-04-test GnuPG lists encrypted packets Lists OpenPGP packet metadata from a symmetric encrypted file. usage gpg usage crypto">
+          <summary>
+            <span class="case-title">
+              <strong>GnuPG lists encrypted packets</strong>
+              <span class="case-id">Port / libgcrypt / usage-gpg-list-packets</span>
+            </span>
+            <span class="status-pill status-failed" aria-label="Port / libgcrypt / usage-gpg-list-packets status: Failed">Failed</span>
+          </summary>
+          <div class="case-body">
+            <p>Lists OpenPGP packet metadata from a symmetric encrypted file.</p>
+            <dl class="case-meta">
+              <div><dt>Run</dt><dd>Port</dd></div>
+              <div><dt>Kind</dt><dd>usage</dd></div>
+              <div><dt>Client</dt><dd>gpg</dd></div>
+              <div><dt>Duration</dt><dd>0.00s</dd></div>
+              <div><dt>Tags</dt><dd class="tags"><span>usage</span> <span>crypto</span></dd></div>
+            </dl>
+            <div class="case-actions">
+              <a class="log-link" href="../evidence/port-04-test/logs/libgcrypt/usage-gpg-list-packets.log" aria-label="Open log for Port / libgcrypt / usage-gpg-list-packets">Log</a>
+              <span class="muted">No cast</span>
+            </div>
+            <div class="cast-player" data-player>
+              <div class="player-controls">
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Port / libgcrypt / usage-gpg-list-packets">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Port / libgcrypt / usage-gpg-list-packets">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Port / libgcrypt / usage-gpg-list-packets">Restart</button>
+                <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
+                <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
+              </div>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Port / libgcrypt / usage-gpg-list-packets"></pre>
+            </div>
+          </div>
+        </details>
+        <details class="case-row" data-library="libgcrypt" data-testcase-id="usage-gpg-list-keys" data-mode="port-04-test" data-kind="usage" data-status="failed" data-player-cast="" data-search="libgcrypt usage-gpg-list-keys port-04-test GnuPG lists generated key Generates a key and verifies it appears in the local key listing. usage gpg usage crypto">
+          <summary>
+            <span class="case-title">
+              <strong>GnuPG lists generated key</strong>
+              <span class="case-id">Port / libgcrypt / usage-gpg-list-keys</span>
+            </span>
+            <span class="status-pill status-failed" aria-label="Port / libgcrypt / usage-gpg-list-keys status: Failed">Failed</span>
+          </summary>
+          <div class="case-body">
+            <p>Generates a key and verifies it appears in the local key listing.</p>
+            <dl class="case-meta">
+              <div><dt>Run</dt><dd>Port</dd></div>
+              <div><dt>Kind</dt><dd>usage</dd></div>
+              <div><dt>Client</dt><dd>gpg</dd></div>
+              <div><dt>Duration</dt><dd>0.00s</dd></div>
+              <div><dt>Tags</dt><dd class="tags"><span>usage</span> <span>crypto</span></dd></div>
+            </dl>
+            <div class="case-actions">
+              <a class="log-link" href="../evidence/port-04-test/logs/libgcrypt/usage-gpg-list-keys.log" aria-label="Open log for Port / libgcrypt / usage-gpg-list-keys">Log</a>
+              <span class="muted">No cast</span>
+            </div>
+            <div class="cast-player" data-player>
+              <div class="player-controls">
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Port / libgcrypt / usage-gpg-list-keys">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Port / libgcrypt / usage-gpg-list-keys">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Port / libgcrypt / usage-gpg-list-keys">Restart</button>
+                <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
+                <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
+              </div>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Port / libgcrypt / usage-gpg-list-keys"></pre>
+            </div>
+          </div>
+        </details>
+      </section>
+    </main>
+  </body>
+</html>

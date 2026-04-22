@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "library": "libjansson",
+  "dependents": [
+    {
+      "name": "jshon",
+      "package": "jshon",
+      "packages": [
+        "jshon"
+      ],
+      "description": "jshon queries JSON documents through the Jansson library."
+    }
+  ]
+}

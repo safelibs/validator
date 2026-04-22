@@ -1,0 +1,33 @@
+{
+  "schema_version": 2,
+  "library": "libgcrypt",
+  "mode": "original",
+  "testcase_id": "nonce-generation",
+  "title": "libgcrypt nonce generation",
+  "description": "Fills a nonce buffer with gcry_create_nonce and verifies it is not all zero bytes.",
+  "kind": "source",
+  "client_application": null,
+  "tags": [
+    "api",
+    "random"
+  ],
+  "requires": [],
+  "status": "passed",
+  "started_at": "1970-01-01T00:00:00Z",
+  "finished_at": "1970-01-01T00:00:00Z",
+  "duration_seconds": 0.0,
+  "result_path": "results/libgcrypt/nonce-generation.json",
+  "log_path": "logs/libgcrypt/nonce-generation.log",
+  "cast_path": "casts/libgcrypt/nonce-generation.cast",
+  "exit_code": 0,
+  "command": [
+    "bash",
+    "/validator/tests/libgcrypt/tests/cases/source/run.sh",
+    "nonce-generation"
+  ],
+  "apt_packages": [
+    "libgcrypt20",
+    "libgcrypt20-dev"
+  ],
+  "override_debs_installed": false
+}

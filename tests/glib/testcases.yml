@@ -1,0 +1,205 @@
+schema_version: 1
+library: glib
+apt_packages:
+- libglib2.0-0t64
+- libglib2.0-bin
+- libglib2.0-dev
+- libglib2.0-dev-bin
+- libglib2.0-data
+- libgirepository-2.0-0
+- libgirepository-2.0-dev
+- gir1.2-glib-2.0
+- gir1.2-glib-2.0-dev
+- gir1.2-girepository-3.0
+- gir1.2-girepository-3.0-dev
+testcases:
+- id: hash-table-lookup
+  title: GLib hash table lookup
+  description: Inserts and reads values through the GHashTable API.
+  kind: source
+  command:
+  - bash
+  - /validator/tests/glib/tests/cases/source/run.sh
+  - hash-table-lookup
+  timeout_seconds: 120
+  tags:
+  - api
+  - collection
+- id: main-loop-timeout
+  title: GLib main loop timeout
+  description: Runs a GMainLoop until a timeout source updates state and exits.
+  kind: source
+  command:
+  - bash
+  - /validator/tests/glib/tests/cases/source/run.sh
+  - main-loop-timeout
+  timeout_seconds: 120
+  tags:
+  - api
+  - mainloop
+- id: variant-tuple-roundtrip
+  title: GLib variant tuple round trip
+  description: Creates a GVariant tuple and reads the typed fields back.
+  kind: source
+  command:
+  - bash
+  - /validator/tests/glib/tests/cases/source/run.sh
+  - variant-tuple-roundtrip
+  timeout_seconds: 120
+  tags:
+  - api
+  - variant
+- id: key-file-roundtrip
+  title: GLib key file round trip
+  description: Serializes and reloads a GKeyFile with string and integer values.
+  kind: source
+  command:
+  - bash
+  - /validator/tests/glib/tests/cases/source/run.sh
+  - key-file-roundtrip
+  timeout_seconds: 120
+  tags:
+  - api
+  - keyfile
+- id: gio-file-roundtrip
+  title: GIO file round trip
+  description: Writes and reads a file through GFile utility APIs.
+  kind: source
+  command:
+  - bash
+  - /validator/tests/glib/tests/cases/source/run.sh
+  - gio-file-roundtrip
+  timeout_seconds: 120
+  tags:
+  - api
+  - gio
+- id: usage-gio-cat-file
+  title: gio prints file content
+  description: Reads a local file with gio cat and verifies the emitted bytes.
+  kind: usage
+  client_application: gio
+  command:
+  - bash
+  - /validator/tests/glib/tests/cases/usage/run.sh
+  - usage-gio-cat-file
+  timeout_seconds: 120
+  tags:
+  - usage
+  - gio
+- id: usage-gio-copy-file
+  title: gio copies local file
+  description: Copies a local file with gio copy and verifies the destination content.
+  kind: usage
+  client_application: gio
+  command:
+  - bash
+  - /validator/tests/glib/tests/cases/usage/run.sh
+  - usage-gio-copy-file
+  timeout_seconds: 120
+  tags:
+  - usage
+  - gio
+- id: usage-gio-info-file
+  title: gio reports file info
+  description: Reads standard file metadata with gio info for a local fixture.
+  kind: usage
+  client_application: gio
+  command:
+  - bash
+  - /validator/tests/glib/tests/cases/usage/run.sh
+  - usage-gio-info-file
+  timeout_seconds: 120
+  tags:
+  - usage
+  - gio
+- id: usage-gio-content-type
+  title: gio reports content type
+  description: Queries the standard content-type attribute for a text file.
+  kind: usage
+  client_application: gio
+  command:
+  - bash
+  - /validator/tests/glib/tests/cases/usage/run.sh
+  - usage-gio-content-type
+  timeout_seconds: 120
+  tags:
+  - usage
+  - gio
+- id: usage-glib-compile-schemas
+  title: glib-compile-schemas builds schema
+  description: Compiles a small GSettings schema into a binary schema cache.
+  kind: usage
+  client_application: gio
+  command:
+  - bash
+  - /validator/tests/glib/tests/cases/usage/run.sh
+  - usage-glib-compile-schemas
+  timeout_seconds: 120
+  tags:
+  - usage
+  - schema
+- id: usage-gsettings-read-schema
+  title: gsettings reads custom schema
+  description: Reads a default value from a compiled custom GSettings schema.
+  kind: usage
+  client_application: gio
+  command:
+  - bash
+  - /validator/tests/glib/tests/cases/usage/run.sh
+  - usage-gsettings-read-schema
+  timeout_seconds: 120
+  tags:
+  - usage
+  - schema
+- id: usage-python3-gi-mainloop
+  title: PyGObject GLib main loop
+  description: Runs a GLib MainLoop timeout through the PyGObject binding.
+  kind: usage
+  client_application: python3-gi
+  command:
+  - bash
+  - /validator/tests/glib/tests/cases/usage/run.sh
+  - usage-python3-gi-mainloop
+  timeout_seconds: 120
+  tags:
+  - usage
+  - python
+- id: usage-python3-gi-variant
+  title: PyGObject GLib Variant
+  description: Creates and unpacks a GLib Variant through the PyGObject binding.
+  kind: usage
+  client_application: python3-gi
+  command:
+  - bash
+  - /validator/tests/glib/tests/cases/usage/run.sh
+  - usage-python3-gi-variant
+  timeout_seconds: 120
+  tags:
+  - usage
+  - python
+- id: usage-python3-gi-keyfile
+  title: PyGObject GLib KeyFile
+  description: Reads an INI-style value with GLib KeyFile through PyGObject.
+  kind: usage
+  client_application: python3-gi
+  command:
+  - bash
+  - /validator/tests/glib/tests/cases/usage/run.sh
+  - usage-python3-gi-keyfile
+  timeout_seconds: 120
+  tags:
+  - usage
+  - python
+- id: usage-python3-gi-gio-file
+  title: PyGObject Gio file read
+  description: Loads file content through Gio APIs exposed by PyGObject.
+  kind: usage
+  client_application: python3-gi
+  command:
+  - bash
+  - /validator/tests/glib/tests/cases/usage/run.sh
+  - usage-python3-gi-gio-file
+  timeout_seconds: 120
+  tags:
+  - usage
+  - python

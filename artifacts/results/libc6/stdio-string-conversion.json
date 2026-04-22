@@ -1,0 +1,37 @@
+{
+  "schema_version": 2,
+  "library": "libc6",
+  "mode": "original",
+  "testcase_id": "stdio-string-conversion",
+  "title": "glibc stdio string conversion",
+  "description": "Compiles a program using snprintf and strtod from the C library.",
+  "kind": "source",
+  "client_application": null,
+  "tags": [
+    "api",
+    "stdio"
+  ],
+  "requires": [],
+  "status": "passed",
+  "started_at": "1970-01-01T00:00:00Z",
+  "finished_at": "1970-01-01T00:00:00Z",
+  "duration_seconds": 0.0,
+  "result_path": "results/libc6/stdio-string-conversion.json",
+  "log_path": "logs/libc6/stdio-string-conversion.log",
+  "cast_path": "casts/libc6/stdio-string-conversion.cast",
+  "exit_code": 0,
+  "command": [
+    "bash",
+    "/validator/tests/libc6/tests/cases/source/run.sh",
+    "stdio-string-conversion"
+  ],
+  "apt_packages": [
+    "libc6",
+    "libc6-dev",
+    "libc-dev-bin",
+    "libc-bin",
+    "locales",
+    "nscd"
+  ],
+  "override_debs_installed": false
+}

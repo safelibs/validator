@@ -1,0 +1,2 @@
+$ docker build --tag validator-libjansson-shared --file /tmp/validator-run-matrix-libjansson/libjansson/Dockerfile /tmp/validator-run-matrix-libjansson
+docker build completed

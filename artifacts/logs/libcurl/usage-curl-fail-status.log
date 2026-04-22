@@ -1,0 +1,4 @@
+$ docker run --rm -t --mount type=bind,src=/tmp/validator-status-libcurl-usage-curl-fail-status,dst=/validator/status validator-libcurl-shared bash -lc 'set -euo pipefail
+/validator/tests/_shared/install_override_debs.sh
+exec /validator/tests/_shared/run_library_tests.sh "$@"' validator-testcase libcurl usage-curl-fail-status -- bash -c 'PS4=$1; shift; set -x; source "$@"' validator-xtrace '__VALIDATOR_XTRACE__ ' /validator/tests/libcurl/tests/cases/usage/run.sh usage-curl-fail-status
+no override packages found; continuing with apt originals

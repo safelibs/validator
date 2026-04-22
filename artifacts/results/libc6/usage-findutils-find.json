@@ -1,0 +1,37 @@
+{
+  "schema_version": 2,
+  "library": "libc6",
+  "mode": "original",
+  "testcase_id": "usage-findutils-find",
+  "title": "findutils traverses files",
+  "description": "Locates a named file in a directory tree with find.",
+  "kind": "usage",
+  "client_application": "findutils",
+  "tags": [
+    "usage",
+    "cli"
+  ],
+  "requires": [],
+  "status": "passed",
+  "started_at": "1970-01-01T00:00:00Z",
+  "finished_at": "1970-01-01T00:00:00Z",
+  "duration_seconds": 0.0,
+  "result_path": "results/libc6/usage-findutils-find.json",
+  "log_path": "logs/libc6/usage-findutils-find.log",
+  "cast_path": "casts/libc6/usage-findutils-find.cast",
+  "exit_code": 0,
+  "command": [
+    "bash",
+    "/validator/tests/libc6/tests/cases/usage/run.sh",
+    "usage-findutils-find"
+  ],
+  "apt_packages": [
+    "libc6",
+    "libc6-dev",
+    "libc-dev-bin",
+    "libc-bin",
+    "locales",
+    "nscd"
+  ],
+  "override_debs_installed": false
+}

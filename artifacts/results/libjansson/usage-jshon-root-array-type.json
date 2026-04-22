@@ -1,0 +1,33 @@
+{
+  "schema_version": 2,
+  "library": "libjansson",
+  "mode": "original",
+  "testcase_id": "usage-jshon-root-array-type",
+  "title": "jshon reports root array type",
+  "description": "Reads a root array document and verifies the reported JSON type.",
+  "kind": "usage",
+  "client_application": "jshon",
+  "tags": [
+    "usage",
+    "json"
+  ],
+  "requires": [],
+  "status": "passed",
+  "started_at": "1970-01-01T00:00:00Z",
+  "finished_at": "1970-01-01T00:00:00Z",
+  "duration_seconds": 0.0,
+  "result_path": "results/libjansson/usage-jshon-root-array-type.json",
+  "log_path": "logs/libjansson/usage-jshon-root-array-type.log",
+  "cast_path": "casts/libjansson/usage-jshon-root-array-type.cast",
+  "exit_code": 0,
+  "command": [
+    "bash",
+    "/validator/tests/libjansson/tests/cases/usage/run.sh",
+    "usage-jshon-root-array-type"
+  ],
+  "apt_packages": [
+    "libjansson4",
+    "libjansson-dev"
+  ],
+  "override_debs_installed": false
+}

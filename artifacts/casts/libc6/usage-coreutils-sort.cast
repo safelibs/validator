@@ -1,0 +1,8 @@
+{"version": 2, "width": 120, "height": 40, "timestamp": 0, "env": {"TERM": "xterm-256color", "SHELL": "/bin/bash"}}
+[0.0, "o", "no override packages found; continuing with apt originals\n"]
+[0.001, "o", "b\n"]
+[0.002, "o", "c'\n"]
+[0.003, "o", "b\n"]
+[0.004, "o", "c'\n"]
+[0.005, "o", "b\n"]
+[0.006, "o", "c' /tmp/validator-tmp/out\n"]

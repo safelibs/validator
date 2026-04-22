@@ -1,0 +1,33 @@
+{
+  "schema_version": 2,
+  "library": "libjansson",
+  "mode": "original",
+  "testcase_id": "usage-jshon-object-keys",
+  "title": "jshon lists object keys",
+  "description": "Lists object keys from a nested JSON document.",
+  "kind": "usage",
+  "client_application": "jshon",
+  "tags": [
+    "usage",
+    "json"
+  ],
+  "requires": [],
+  "status": "passed",
+  "started_at": "1970-01-01T00:00:00Z",
+  "finished_at": "1970-01-01T00:00:00Z",
+  "duration_seconds": 0.0,
+  "result_path": "results/libjansson/usage-jshon-object-keys.json",
+  "log_path": "logs/libjansson/usage-jshon-object-keys.log",
+  "cast_path": "casts/libjansson/usage-jshon-object-keys.cast",
+  "exit_code": 0,
+  "command": [
+    "bash",
+    "/validator/tests/libjansson/tests/cases/usage/run.sh",
+    "usage-jshon-object-keys"
+  ],
+  "apt_packages": [
+    "libjansson4",
+    "libjansson-dev"
+  ],
+  "override_debs_installed": false
+}

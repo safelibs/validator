@@ -1,0 +1,37 @@
+{
+  "schema_version": 2,
+  "library": "libc6",
+  "mode": "original",
+  "testcase_id": "usage-bash-script-exec",
+  "title": "Bash executes script",
+  "description": "Runs a short Bash program that performs arithmetic and prints a value.",
+  "kind": "usage",
+  "client_application": "bash",
+  "tags": [
+    "usage",
+    "shell"
+  ],
+  "requires": [],
+  "status": "passed",
+  "started_at": "1970-01-01T00:00:00Z",
+  "finished_at": "1970-01-01T00:00:00Z",
+  "duration_seconds": 0.0,
+  "result_path": "results/libc6/usage-bash-script-exec.json",
+  "log_path": "logs/libc6/usage-bash-script-exec.log",
+  "cast_path": "casts/libc6/usage-bash-script-exec.cast",
+  "exit_code": 0,
+  "command": [
+    "bash",
+    "/validator/tests/libc6/tests/cases/usage/run.sh",
+    "usage-bash-script-exec"
+  ],
+  "apt_packages": [
+    "libc6",
+    "libc6-dev",
+    "libc-dev-bin",
+    "libc-bin",
+    "locales",
+    "nscd"
+  ],
+  "override_debs_installed": false
+}

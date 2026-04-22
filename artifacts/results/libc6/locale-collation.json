@@ -1,0 +1,37 @@
+{
+  "schema_version": 2,
+  "library": "libc6",
+  "mode": "original",
+  "testcase_id": "locale-collation",
+  "title": "glibc locale collation",
+  "description": "Sets the C.UTF-8 locale and compares strings through strcoll.",
+  "kind": "source",
+  "client_application": null,
+  "tags": [
+    "api",
+    "locale"
+  ],
+  "requires": [],
+  "status": "passed",
+  "started_at": "1970-01-01T00:00:00Z",
+  "finished_at": "1970-01-01T00:00:00Z",
+  "duration_seconds": 0.0,
+  "result_path": "results/libc6/locale-collation.json",
+  "log_path": "logs/libc6/locale-collation.log",
+  "cast_path": "casts/libc6/locale-collation.cast",
+  "exit_code": 0,
+  "command": [
+    "bash",
+    "/validator/tests/libc6/tests/cases/source/run.sh",
+    "locale-collation"
+  ],
+  "apt_packages": [
+    "libc6",
+    "libc6-dev",
+    "libc-dev-bin",
+    "libc-bin",
+    "locales",
+    "nscd"
+  ],
+  "override_debs_installed": false
+}

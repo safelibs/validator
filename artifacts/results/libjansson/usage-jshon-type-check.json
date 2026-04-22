@@ -1,0 +1,33 @@
+{
+  "schema_version": 2,
+  "library": "libjansson",
+  "mode": "original",
+  "testcase_id": "usage-jshon-type-check",
+  "title": "jshon reports value type",
+  "description": "Checks that jshon reports a boolean member as a JSON bool.",
+  "kind": "usage",
+  "client_application": "jshon",
+  "tags": [
+    "usage",
+    "json"
+  ],
+  "requires": [],
+  "status": "passed",
+  "started_at": "1970-01-01T00:00:00Z",
+  "finished_at": "1970-01-01T00:00:00Z",
+  "duration_seconds": 0.0,
+  "result_path": "results/libjansson/usage-jshon-type-check.json",
+  "log_path": "logs/libjansson/usage-jshon-type-check.log",
+  "cast_path": "casts/libjansson/usage-jshon-type-check.cast",
+  "exit_code": 0,
+  "command": [
+    "bash",
+    "/validator/tests/libjansson/tests/cases/usage/run.sh",
+    "usage-jshon-type-check"
+  ],
+  "apt_packages": [
+    "libjansson4",
+    "libjansson-dev"
+  ],
+  "override_debs_installed": false
+}

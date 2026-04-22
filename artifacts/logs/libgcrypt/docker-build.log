@@ -1,0 +1,2 @@
+$ docker build --tag validator-libgcrypt-shared --file /tmp/validator-run-matrix-libgcrypt/libgcrypt/Dockerfile /tmp/validator-run-matrix-libgcrypt
+docker build completed

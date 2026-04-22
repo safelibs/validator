@@ -1,0 +1,33 @@
+{
+  "schema_version": 2,
+  "library": "libgcrypt",
+  "mode": "original",
+  "testcase_id": "digest-sha256-smoke",
+  "title": "libgcrypt SHA-256 digest",
+  "description": "Computes a SHA-256 digest with gcry_md_hash_buffer and verifies the known prefix.",
+  "kind": "source",
+  "client_application": null,
+  "tags": [
+    "api",
+    "crypto"
+  ],
+  "requires": [],
+  "status": "passed",
+  "started_at": "1970-01-01T00:00:00Z",
+  "finished_at": "1970-01-01T00:00:00Z",
+  "duration_seconds": 0.0,
+  "result_path": "results/libgcrypt/digest-sha256-smoke.json",
+  "log_path": "logs/libgcrypt/digest-sha256-smoke.log",
+  "cast_path": "casts/libgcrypt/digest-sha256-smoke.cast",
+  "exit_code": 0,
+  "command": [
+    "bash",
+    "/validator/tests/libgcrypt/tests/cases/source/run.sh",
+    "digest-sha256-smoke"
+  ],
+  "apt_packages": [
+    "libgcrypt20",
+    "libgcrypt20-dev"
+  ],
+  "override_debs_installed": false
+}

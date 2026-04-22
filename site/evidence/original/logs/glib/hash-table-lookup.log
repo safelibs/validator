@@ -1,0 +1,4 @@
+$ docker run --rm -t --mount type=bind,src=/tmp/validator-status-glib-hash-table-lookup,dst=/validator/status validator-glib-shared bash -lc 'set -euo pipefail
+/validator/tests/_shared/install_override_debs.sh
+exec /validator/tests/_shared/run_library_tests.sh "$@"' validator-testcase glib hash-table-lookup -- bash -c 'PS4=$1; shift; set -x; source "$@"' validator-xtrace '__VALIDATOR_XTRACE__ ' /validator/tests/glib/tests/cases/source/run.sh hash-table-lookup
+no override packages found; continuing with apt originals

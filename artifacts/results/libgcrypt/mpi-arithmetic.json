@@ -1,0 +1,33 @@
+{
+  "schema_version": 2,
+  "library": "libgcrypt",
+  "mode": "original",
+  "testcase_id": "mpi-arithmetic",
+  "title": "libgcrypt MPI arithmetic",
+  "description": "Adds integers through the multi-precision integer API and prints the result.",
+  "kind": "source",
+  "client_application": null,
+  "tags": [
+    "api",
+    "mpi"
+  ],
+  "requires": [],
+  "status": "passed",
+  "started_at": "1970-01-01T00:00:00Z",
+  "finished_at": "1970-01-01T00:00:00Z",
+  "duration_seconds": 0.0,
+  "result_path": "results/libgcrypt/mpi-arithmetic.json",
+  "log_path": "logs/libgcrypt/mpi-arithmetic.log",
+  "cast_path": "casts/libgcrypt/mpi-arithmetic.cast",
+  "exit_code": 0,
+  "command": [
+    "bash",
+    "/validator/tests/libgcrypt/tests/cases/source/run.sh",
+    "mpi-arithmetic"
+  ],
+  "apt_packages": [
+    "libgcrypt20",
+    "libgcrypt20-dev"
+  ],
+  "override_debs_installed": false
+}

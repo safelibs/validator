@@ -63,6 +63,10 @@ class ResolvedPortRef:
     minimum_commit: str
 
 
+class PortDebUnavailable(ValidatorError):
+    pass
+
+
 def _require_string(value: Any, *, field_name: str, context: str) -> str:
     if not isinstance(value, str) or not value.strip():
         raise ValidatorError(f"{context} must define non-empty {field_name}")
@@ -198,7 +202,7 @@ def latest_qualifying_phase_tag_ref(repo: PortRepo) -> str:
         if (key := phase_tag_sort_key(repo, tag_ref)) is not None and key[0] >= minimum_phase
     ]
     if not candidates:
-        raise ValidatorError(
+        raise PortDebUnavailable(
             f"no phase tags at or after {repo.tag_ref} were found in {repo.name_with_owner}"
         )
     return max(candidates, key=lambda item: item[0])[1]
@@ -237,6 +241,8 @@ def github_api_json(url: str) -> dict[str, Any]:
         with urllib.request.urlopen(request) as response:
             payload = json.loads(response.read().decode("utf-8"))
     except urllib.error.HTTPError as exc:
+        if exc.code == 404:
+            raise PortDebUnavailable(f"GitHub API request failed for {url}: HTTP {exc.code}") from exc
         raise ValidatorError(f"GitHub API request failed for {url}: HTTP {exc.code}") from exc
     except urllib.error.URLError as exc:
         raise ValidatorError(f"GitHub API request failed for {url}: {exc.reason}") from exc
@@ -295,7 +301,7 @@ def selected_assets(
 
     selected = [selected_by_package[package] for package in canonical_packages if package in selected_by_package]
     if not selected:
-        raise ValidatorError(f"release for {library} did not contain any native canonical .deb assets")
+        raise PortDebUnavailable(f"release for {library} did not contain any native canonical .deb assets")
     unported = [package for package in canonical_packages if package not in selected_by_package]
     return selected, unported
 
@@ -410,14 +416,27 @@ def resolve_library(
     output_root: Path,
 ) -> dict[str, Any]:
     validate_port_repo(repo)
-    resolved_ref = resolve_port_ref(repo)
-    release_tag = release_tag_for_commit(resolved_ref.commit)
-    release = load_release(repo, release_tag)
-    assets, unported = selected_assets(
-        release=release,
-        canonical_packages=canonical_packages,
-        library=repo.library,
-    )
+    try:
+        resolved_ref = resolve_port_ref(repo)
+        release_tag = release_tag_for_commit(resolved_ref.commit)
+        release = load_release(repo, release_tag)
+        assets, unported = selected_assets(
+            release=release,
+            canonical_packages=canonical_packages,
+            library=repo.library,
+        )
+    except PortDebUnavailable as exc:
+        return {
+            "library": repo.library,
+            "repository": repo.name_with_owner,
+            "url": repo.url,
+            "tag_ref": repo.tag_ref,
+            "commit": None,
+            "release_tag": None,
+            "debs": [],
+            "unported_original_packages": list(canonical_packages),
+            "port_unavailable_reason": str(exc),
+        }
     leaf = clean_selected_library_debs(output_root, repo.library)
 
     selected_debs: list[ResolvedPortDeb] = []

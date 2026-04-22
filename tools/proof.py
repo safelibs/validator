@@ -45,6 +45,7 @@ PORT_REQUIRED_RESULT_FIELDS = {
     "override_installed_packages",
 }
 OPTIONAL_RESULT_FIELDS = {"error"}
+PORT_UNAVAILABLE_FIELD = "port_unavailable_reason"
 UTC_TIMESTAMP_RE = re.compile(r"^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(?:\.\d+)?Z$")
 COMMIT_RE = re.compile(r"^[0-9a-f]{40}$")
 PROOF_STATUSES = {"passed", "failed"}
@@ -188,8 +189,8 @@ def _require_mode(value: Any, *, source_path: Path) -> str:
     return mode
 
 
-def _require_port_debs(value: Any, *, source_path: Path) -> list[dict[str, Any]]:
-    if not isinstance(value, list) or not value:
+def _require_port_debs(value: Any, *, source_path: Path, allow_empty: bool = False) -> list[dict[str, Any]]:
+    if not isinstance(value, list) or (not value and not allow_empty):
         raise ValidatorError(f"port_debs must be a non-empty list in {source_path}")
     debs: list[dict[str, Any]] = []
     seen: set[str] = set()
@@ -218,8 +219,13 @@ def _require_port_debs(value: Any, *, source_path: Path) -> list[dict[str, Any]]
     return debs
 
 
-def _require_override_installed_packages(value: Any, *, source_path: Path) -> list[dict[str, str]]:
-    if not isinstance(value, list) or not value:
+def _require_override_installed_packages(
+    value: Any,
+    *,
+    source_path: Path,
+    allow_empty: bool = False,
+) -> list[dict[str, str]]:
+    if not isinstance(value, list) or (not value and not allow_empty):
         raise ValidatorError(f"override_installed_packages must be a non-empty list in {source_path}")
     records: list[dict[str, str]] = []
     for item in value:
@@ -260,13 +266,29 @@ def validate_port_result_metadata(
 ) -> dict[str, Any]:
     port_repository = _require_string(payload.get("port_repository"), field_name="port_repository", source_path=source_path)
     port_tag_ref = _require_string(payload.get("port_tag_ref"), field_name="port_tag_ref", source_path=source_path)
-    port_commit = _require_string(payload.get("port_commit"), field_name="port_commit", source_path=source_path)
-    if COMMIT_RE.fullmatch(port_commit) is None:
-        raise ValidatorError(f"port_commit must be a 40-character lowercase hex commit in {source_path}")
-    port_release_tag = _require_string(payload.get("port_release_tag"), field_name="port_release_tag", source_path=source_path)
-    if port_release_tag != f"build-{port_commit[:12]}":
-        raise ValidatorError(f"port_release_tag must equal build-<commit[:12]> in {source_path}")
-    port_debs = _require_port_debs(payload.get("port_debs"), source_path=source_path)
+    unavailable_reason = _require_optional_string(
+        payload.get(PORT_UNAVAILABLE_FIELD),
+        field_name=PORT_UNAVAILABLE_FIELD,
+        source_path=source_path,
+    )
+    port_commit = _require_optional_string(payload.get("port_commit"), field_name="port_commit", source_path=source_path)
+    port_release_tag = _require_optional_string(
+        payload.get("port_release_tag"),
+        field_name="port_release_tag",
+        source_path=source_path,
+    )
+    if unavailable_reason is None:
+        if port_commit is None or COMMIT_RE.fullmatch(port_commit) is None:
+            raise ValidatorError(f"port_commit must be a 40-character lowercase hex commit in {source_path}")
+        if port_release_tag is None or port_release_tag != f"build-{port_commit[:12]}":
+            raise ValidatorError(f"port_release_tag must equal build-<commit[:12]> in {source_path}")
+    elif port_commit is not None or port_release_tag is not None:
+        raise ValidatorError(f"unavailable port results must not define commit or release tag in {source_path}")
+    port_debs = _require_port_debs(
+        payload.get("port_debs"),
+        source_path=source_path,
+        allow_empty=unavailable_reason is not None,
+    )
     unported = _require_string_list(
         payload.get("unported_original_packages"),
         field_name="unported_original_packages",
@@ -275,8 +297,11 @@ def validate_port_result_metadata(
     installed = _require_override_installed_packages(
         payload.get("override_installed_packages"),
         source_path=source_path,
+        allow_empty=unavailable_reason is not None,
     )
     ported_packages = [deb["package"] for deb in port_debs]
+    if unavailable_reason is not None and ported_packages:
+        raise ValidatorError(f"unavailable port results must not define port_debs in {source_path}")
     if set(ported_packages).intersection(unported):
         raise ValidatorError(f"port_debs and unported_original_packages must be disjoint in {source_path}")
     combined = [package for package in apt_packages if package in ported_packages or package in unported]
@@ -290,7 +315,7 @@ def validate_port_result_metadata(
     expected_keys = [(deb["package"], deb["filename"], deb["architecture"]) for deb in port_debs]
     if installed_keys != expected_keys:
         raise ValidatorError(f"override_installed_packages must align with port_debs in {source_path}")
-    return {
+    metadata: dict[str, Any] = {
         "port_repository": port_repository,
         "port_tag_ref": port_tag_ref,
         "port_commit": port_commit,
@@ -298,6 +323,9 @@ def validate_port_result_metadata(
         "port_debs": port_debs,
         "unported_original_packages": unported,
     }
+    if unavailable_reason is not None:
+        metadata[PORT_UNAVAILABLE_FIELD] = unavailable_reason
+    return metadata
 
 
 def inspect_cast(cast_path: Path) -> dict[str, Any]:
@@ -391,7 +419,10 @@ def load_result(
         missing_port = sorted(PORT_REQUIRED_RESULT_FIELDS - set(payload))
         if missing_port:
             raise ValidatorError(f"port result schema mismatch in {path}: missing {', '.join(missing_port)}")
-    extras = sorted(set(payload) - required_fields - OPTIONAL_RESULT_FIELDS)
+    optional_fields = set(OPTIONAL_RESULT_FIELDS)
+    if mode == "port-04-test":
+        optional_fields.add(PORT_UNAVAILABLE_FIELD)
+    extras = sorted(set(payload) - required_fields - optional_fields)
     if extras:
         raise ValidatorError(f"unsupported result fields in {path}: {', '.join(extras)}")
     testcase_id = _require_string(payload.get("testcase_id"), field_name="testcase_id", source_path=path)
@@ -433,10 +464,24 @@ def load_result(
         field_name="override_debs_installed",
         source_path=path,
     )
+    port_unavailable_reason = _require_optional_string(
+        payload.get(PORT_UNAVAILABLE_FIELD),
+        field_name=PORT_UNAVAILABLE_FIELD,
+        source_path=path,
+    )
     if mode == "original" and override_debs_installed:
         raise ValidatorError(f"override_debs_installed must be false for proof generation in {path}")
-    if mode == "port-04-test" and not override_debs_installed:
+    if mode == "port-04-test" and port_unavailable_reason is None and not override_debs_installed:
         raise ValidatorError(f"override_debs_installed must be true for port proof generation in {path}")
+    if mode == "port-04-test" and port_unavailable_reason is not None and override_debs_installed:
+        raise ValidatorError(f"override_debs_installed must be false for unavailable port proof generation in {path}")
+    if port_unavailable_reason is not None:
+        if payload.get("status") != "failed":
+            raise ValidatorError(f"unavailable port results must be failed in {path}")
+        if payload.get("exit_code") == 0:
+            raise ValidatorError(f"unavailable port results must have non-zero exit_code in {path}")
+        if payload.get("cast_path") is not None:
+            raise ValidatorError(f"unavailable port results must not define cast_path in {path}")
     if mode == "port-04-test":
         validate_port_result_metadata(payload, apt_packages=apt_packages, source_path=path)
 
@@ -476,7 +521,7 @@ def load_result(
     if not log_target.is_file():
         raise ValidatorError(f"log_path does not exist for result path {path}: {log_target}")
 
-    if require_casts and payload.get("cast_path") is None:
+    if require_casts and payload.get("cast_path") is None and port_unavailable_reason is None:
         raise ValidatorError(f"cast_path is required when casts are required: {path}")
     if payload.get("cast_path") is not None:
         if payload.get("cast_path") != expected_cast_path:

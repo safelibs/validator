@@ -1,0 +1,2 @@
+$ docker build --tag validator-libcurl-shared --file /tmp/validator-run-matrix-libcurl/libcurl/Dockerfile /tmp/validator-run-matrix-libcurl
+docker build completed

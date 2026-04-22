@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "library": "libgcrypt",
+  "dependents": [
+    {
+      "name": "gpg",
+      "package": "gpg",
+      "packages": [
+        "gpg",
+        "gpg-agent"
+      ],
+      "description": "GnuPG uses libgcrypt for digest, signing, encryption, and packet processing."
+    }
+  ]
+}

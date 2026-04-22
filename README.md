@@ -9,7 +9,7 @@ checkout.
 
 ## Repository Layout
 
-- `repositories.yml`: canonical v2 manifest for the 19 supported libraries.
+- `repositories.yml`: canonical v2 manifest for the 24 supported libraries.
 - `tests/<library>/Dockerfile`: Ubuntu 24.04 harness image for one library.
 - `tests/<library>/testcases.yml`: source and usage testcase manifest.
 - `tests/<library>/tests/cases/source/*.sh`: source-facing testcase scripts.
@@ -97,9 +97,9 @@ python3 tools/verify_proof_artifacts.py \
   --tests-root tests \
   --artifact-root artifacts \
   --proof-output artifacts/proof/original-validation-proof.json \
-  --min-source-cases 95 \
-  --min-usage-cases 193 \
-  --min-cases 288 \
+  --min-source-cases 120 \
+  --min-usage-cases 243 \
+  --min-cases 363 \
   --require-casts
 
 python3 tools/verify_proof_artifacts.py \
@@ -108,9 +108,9 @@ python3 tools/verify_proof_artifacts.py \
   --artifact-root artifacts \
   --proof-output artifacts/proof/port-04-test-validation-proof.json \
   --mode port-04-test \
-  --min-source-cases 95 \
-  --min-usage-cases 193 \
-  --min-cases 288 \
+  --min-source-cases 120 \
+  --min-usage-cases 243 \
+  --min-cases 363 \
   --require-casts
 
 python3 tools/render_site.py \
@@ -133,7 +133,7 @@ bash scripts/verify-site.sh \
 The same flow is available through Make targets:
 
 ```bash
-REQUIRE_CASTS=1 MIN_SOURCE_CASES=95 MIN_USAGE_CASES=193 MIN_CASES=288 make proof-dual
+REQUIRE_CASTS=1 MIN_SOURCE_CASES=120 MIN_USAGE_CASES=243 MIN_CASES=363 make proof-dual
 make site-dual
 make verify-site-dual
 ```
@@ -159,6 +159,12 @@ commit hash, downloads available native `amd64` or `all` `.deb` assets matching
 the canonical `apt_packages`, and records omitted canonical packages as
 `unported_original_packages` in
 `artifacts/proof/port-04-test-debs-lock.json`.
+
+If a port has no qualifying `04-test` release or no native canonical deb assets,
+the lock records `port_unavailable_reason`, no debs, and all canonical packages
+as unported. The port matrix records every testcase for that library as failed
+without building a container, which makes the port show 0 passing while keeping
+the original Ubuntu package results as the source of truth.
 
 Port repositories and releases can be private. Authentication is read from
 `GH_TOKEN`, `VALIDATOR_REPO_TOKEN`, or `gh auth token`.

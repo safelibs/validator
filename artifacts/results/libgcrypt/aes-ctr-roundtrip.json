@@ -1,0 +1,33 @@
+{
+  "schema_version": 2,
+  "library": "libgcrypt",
+  "mode": "original",
+  "testcase_id": "aes-ctr-roundtrip",
+  "title": "libgcrypt AES CTR round trip",
+  "description": "Encrypts and decrypts a buffer through the AES-128 CTR cipher API.",
+  "kind": "source",
+  "client_application": null,
+  "tags": [
+    "api",
+    "crypto"
+  ],
+  "requires": [],
+  "status": "passed",
+  "started_at": "1970-01-01T00:00:00Z",
+  "finished_at": "1970-01-01T00:00:00Z",
+  "duration_seconds": 0.0,
+  "result_path": "results/libgcrypt/aes-ctr-roundtrip.json",
+  "log_path": "logs/libgcrypt/aes-ctr-roundtrip.log",
+  "cast_path": "casts/libgcrypt/aes-ctr-roundtrip.cast",
+  "exit_code": 0,
+  "command": [
+    "bash",
+    "/validator/tests/libgcrypt/tests/cases/source/run.sh",
+    "aes-ctr-roundtrip"
+  ],
+  "apt_packages": [
+    "libgcrypt20",
+    "libgcrypt20-dev"
+  ],
+  "override_debs_installed": false
+}

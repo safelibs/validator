@@ -1,0 +1,2 @@
+$ docker build --tag validator-glib-shared --file /tmp/validator-run-matrix-glib/glib/Dockerfile /tmp/validator-run-matrix-glib
+docker build completed

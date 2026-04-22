@@ -1,0 +1,53 @@
+{
+  "schema_version": 2,
+  "library": "libc6",
+  "mode": "port-04-test",
+  "testcase_id": "dlopen-libm-symbol",
+  "title": "glibc dynamic loader symbol",
+  "description": "Opens libm with dlopen and calls cos through dlsym.",
+  "kind": "source",
+  "client_application": null,
+  "tags": [
+    "api",
+    "dynamic-loader"
+  ],
+  "requires": [],
+  "status": "failed",
+  "started_at": "1970-01-01T00:00:00Z",
+  "finished_at": "1970-01-01T00:00:00Z",
+  "duration_seconds": 0.0,
+  "result_path": "port-04-test/results/libc6/dlopen-libm-symbol.json",
+  "log_path": "port-04-test/logs/libc6/dlopen-libm-symbol.log",
+  "cast_path": null,
+  "exit_code": 1,
+  "command": [
+    "bash",
+    "/validator/tests/libc6/tests/cases/source/run.sh",
+    "dlopen-libm-symbol"
+  ],
+  "apt_packages": [
+    "libc6",
+    "libc6-dev",
+    "libc-dev-bin",
+    "libc-bin",
+    "locales",
+    "nscd"
+  ],
+  "override_debs_installed": false,
+  "port_repository": "safelibs/port-libc6",
+  "port_tag_ref": "refs/tags/libc6/04-test",
+  "port_commit": null,
+  "port_release_tag": null,
+  "port_debs": [],
+  "unported_original_packages": [
+    "libc6",
+    "libc6-dev",
+    "libc-dev-bin",
+    "libc-bin",
+    "locales",
+    "nscd"
+  ],
+  "override_installed_packages": [],
+  "port_unavailable_reason": "no phase tags at or after refs/tags/libc6/04-test were found in safelibs/port-libc6",
+  "error": "no phase tags at or after refs/tags/libc6/04-test were found in safelibs/port-libc6"
+}

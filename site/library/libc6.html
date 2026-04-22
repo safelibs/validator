@@ -1,0 +1,1030 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>libc6 Validation</title>
+    <link rel="icon" href="data:,">
+    <link rel="stylesheet" href="../assets/site.css">
+    <script defer src="../assets/player.js"></script>
+  </head>
+  <body data-site-data="../site-data.json">
+    <a class="skip-link" href="#tests-heading">Skip to tests</a>
+    <main>
+      <nav class="breadcrumb" aria-label="Breadcrumb"><a href="../index.html">All libraries</a></nav>
+      <section class="dashboard" aria-labelledby="dashboard-heading">
+        <h1 id="dashboard-heading">libc6 Validation</h1>
+        <div class="metric-grid">
+        <div class="metric" data-proof-total="libraries"><strong>1</strong><span>Libraries</span></div>
+        <div class="metric" data-proof-total="cases"><strong>15</strong><span>Tests</span></div>
+        <div class="metric" data-proof-total="source_cases"><strong>5</strong><span>Source tests</span></div>
+        <div class="metric" data-proof-total="usage_cases"><strong>10</strong><span>Usage tests</span></div>
+        <div class="metric" data-proof-total="passed"><strong>0 / 15</strong><span>Port tests passing</span></div>
+        <div class="metric" data-proof-total="failed"><strong>15</strong><span>Port tests failing</span></div>
+        <div class="metric" data-proof-total="casts"><strong>15 (50%)</strong><span>Evidence casts</span></div>
+        <div class="metric" data-proof-total="port_libraries"><strong>0 / 1</strong><span>Port libraries passing</span></div>
+        </div>
+      </section>
+
+      <section class="controls" aria-label="Testcase filters">
+        <label class="search-label">Search <input id="search-input" type="search" autocomplete="off" name="search"></label>
+        <label>Run mode <select id="mode-filter" name="mode"><option value="all">All</option><option value="original">Original</option><option value="port-04-test">Port</option></select></label>
+        <label>Status <select id="status-filter"><option value="all">All</option><option value="passed">Passed</option><option value="failed">Failed</option></select></label>
+        <label>Kind <select id="kind-filter"><option value="all">All</option><option value="source">Source</option><option value="usage">Usage</option></select></label>
+      </section>
+      <section id="testcases" class="testcases" aria-labelledby="tests-heading">
+        <h2 id="tests-heading">Tests</h2>
+        <details class="case-row" data-library="libc6" data-testcase-id="stdio-string-conversion" data-mode="original" data-kind="source" data-status="passed" data-player-cast="../evidence/original/casts/libc6/stdio-string-conversion.cast" data-search="libc6 stdio-string-conversion original glibc stdio string conversion Compiles a program using snprintf and strtod from the C library. source api stdio">
+          <summary>
+            <span class="case-title">
+              <strong>glibc stdio string conversion</strong>
+              <span class="case-id">Original / libc6 / stdio-string-conversion</span>
+            </span>
+            <span class="status-pill status-passed" aria-label="Original / libc6 / stdio-string-conversion status: Passed">Passed</span>
+          </summary>
+          <div class="case-body">
+            <p>Compiles a program using snprintf and strtod from the C library.</p>
+            <dl class="case-meta">
+              <div><dt>Run</dt><dd>Original</dd></div>
+              <div><dt>Kind</dt><dd>source</dd></div>
+              <div><dt>Client</dt><dd>none</dd></div>
+              <div><dt>Duration</dt><dd>0.00s</dd></div>
+              <div><dt>Tags</dt><dd class="tags"><span>api</span> <span>stdio</span></dd></div>
+            </dl>
+            <div class="case-actions">
+              <a class="log-link" href="../evidence/original/logs/libc6/stdio-string-conversion.log" aria-label="Open log for Original / libc6 / stdio-string-conversion">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/original/casts/libc6/stdio-string-conversion.cast" aria-label="Play cast for Original / libc6 / stdio-string-conversion">Play</button>
+            </div>
+            <div class="cast-player" data-player>
+              <div class="player-controls">
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Original / libc6 / stdio-string-conversion">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Original / libc6 / stdio-string-conversion">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Original / libc6 / stdio-string-conversion">Restart</button>
+                <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
+                <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
+              </div>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Original / libc6 / stdio-string-conversion"></pre>
+            </div>
+          </div>
+        </details>
+        <details class="case-row" data-library="libc6" data-testcase-id="pthread-thread-join" data-mode="original" data-kind="source" data-status="passed" data-player-cast="../evidence/original/casts/libc6/pthread-thread-join.cast" data-search="libc6 pthread-thread-join original glibc pthread join Starts a POSIX thread and joins it through libc pthread entry points. source api pthread">
+          <summary>
+            <span class="case-title">
+              <strong>glibc pthread join</strong>
+              <span class="case-id">Original / libc6 / pthread-thread-join</span>
+            </span>
+            <span class="status-pill status-passed" aria-label="Original / libc6 / pthread-thread-join status: Passed">Passed</span>
+          </summary>
+          <div class="case-body">
+            <p>Starts a POSIX thread and joins it through libc pthread entry points.</p>
+            <dl class="case-meta">
+              <div><dt>Run</dt><dd>Original</dd></div>
+              <div><dt>Kind</dt><dd>source</dd></div>
+              <div><dt>Client</dt><dd>none</dd></div>
+              <div><dt>Duration</dt><dd>0.00s</dd></div>
+              <div><dt>Tags</dt><dd class="tags"><span>api</span> <span>pthread</span></dd></div>
+            </dl>
+            <div class="case-actions">
+              <a class="log-link" href="../evidence/original/logs/libc6/pthread-thread-join.log" aria-label="Open log for Original / libc6 / pthread-thread-join">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/original/casts/libc6/pthread-thread-join.cast" aria-label="Play cast for Original / libc6 / pthread-thread-join">Play</button>
+            </div>
+            <div class="cast-player" data-player>
+              <div class="player-controls">
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Original / libc6 / pthread-thread-join">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Original / libc6 / pthread-thread-join">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Original / libc6 / pthread-thread-join">Restart</button>
+                <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
+                <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
+              </div>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Original / libc6 / pthread-thread-join"></pre>
+            </div>
+          </div>
+        </details>
+        <details class="case-row" data-library="libc6" data-testcase-id="locale-collation" data-mode="original" data-kind="source" data-status="passed" data-player-cast="../evidence/original/casts/libc6/locale-collation.cast" data-search="libc6 locale-collation original glibc locale collation Sets the C.UTF-8 locale and compares strings through strcoll. source api locale">
+          <summary>
+            <span class="case-title">
+              <strong>glibc locale collation</strong>
+              <span class="case-id">Original / libc6 / locale-collation</span>
+            </span>
+            <span class="status-pill status-passed" aria-label="Original / libc6 / locale-collation status: Passed">Passed</span>
+          </summary>
+          <div class="case-body">
+            <p>Sets the C.UTF-8 locale and compares strings through strcoll.</p>
+            <dl class="case-meta">
+              <div><dt>Run</dt><dd>Original</dd></div>
+              <div><dt>Kind</dt><dd>source</dd></div>
+              <div><dt>Client</dt><dd>none</dd></div>
+              <div><dt>Duration</dt><dd>0.00s</dd></div>
+              <div><dt>Tags</dt><dd class="tags"><span>api</span> <span>locale</span></dd></div>
+            </dl>
+            <div class="case-actions">
+              <a class="log-link" href="../evidence/original/logs/libc6/locale-collation.log" aria-label="Open log for Original / libc6 / locale-collation">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/original/casts/libc6/locale-collation.cast" aria-label="Play cast for Original / libc6 / locale-collation">Play</button>
+            </div>
+            <div class="cast-player" data-player>
+              <div class="player-controls">
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Original / libc6 / locale-collation">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Original / libc6 / locale-collation">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Original / libc6 / locale-collation">Restart</button>
+                <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
+                <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
+              </div>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Original / libc6 / locale-collation"></pre>
+            </div>
+          </div>
+        </details>
+        <details class="case-row" data-library="libc6" data-testcase-id="dlopen-libm-symbol" data-mode="original" data-kind="source" data-status="passed" data-player-cast="../evidence/original/casts/libc6/dlopen-libm-symbol.cast" data-search="libc6 dlopen-libm-symbol original glibc dynamic loader symbol Opens libm with dlopen and calls cos through dlsym. source api dynamic-loader">
+          <summary>
+            <span class="case-title">
+              <strong>glibc dynamic loader symbol</strong>
+              <span class="case-id">Original / libc6 / dlopen-libm-symbol</span>
+            </span>
+            <span class="status-pill status-passed" aria-label="Original / libc6 / dlopen-libm-symbol status: Passed">Passed</span>
+          </summary>
+          <div class="case-body">
+            <p>Opens libm with dlopen and calls cos through dlsym.</p>
+            <dl class="case-meta">
+              <div><dt>Run</dt><dd>Original</dd></div>
+              <div><dt>Kind</dt><dd>source</dd></div>
+              <div><dt>Client</dt><dd>none</dd></div>
+              <div><dt>Duration</dt><dd>0.00s</dd></div>
+              <div><dt>Tags</dt><dd class="tags"><span>api</span> <span>dynamic-loader</span></dd></div>
+            </dl>
+            <div class="case-actions">
+              <a class="log-link" href="../evidence/original/logs/libc6/dlopen-libm-symbol.log" aria-label="Open log for Original / libc6 / dlopen-libm-symbol">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/original/casts/libc6/dlopen-libm-symbol.cast" aria-label="Play cast for Original / libc6 / dlopen-libm-symbol">Play</button>
+            </div>
+            <div class="cast-player" data-player>
+              <div class="player-controls">
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Original / libc6 / dlopen-libm-symbol">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Original / libc6 / dlopen-libm-symbol">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Original / libc6 / dlopen-libm-symbol">Restart</button>
+                <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
+                <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
+              </div>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Original / libc6 / dlopen-libm-symbol"></pre>
+            </div>
+          </div>
+        </details>
+        <details class="case-row" data-library="libc6" data-testcase-id="getaddrinfo-localhost" data-mode="original" data-kind="source" data-status="passed" data-player-cast="../evidence/original/casts/libc6/getaddrinfo-localhost.cast" data-search="libc6 getaddrinfo-localhost original glibc getaddrinfo localhost Resolves localhost through getaddrinfo and frees the address list. source api resolver">
+          <summary>
+            <span class="case-title">
+              <strong>glibc getaddrinfo localhost</strong>
+              <span class="case-id">Original / libc6 / getaddrinfo-localhost</span>
+            </span>
+            <span class="status-pill status-passed" aria-label="Original / libc6 / getaddrinfo-localhost status: Passed">Passed</span>
+          </summary>
+          <div class="case-body">
+            <p>Resolves localhost through getaddrinfo and frees the address list.</p>
+            <dl class="case-meta">
+              <div><dt>Run</dt><dd>Original</dd></div>
+              <div><dt>Kind</dt><dd>source</dd></div>
+              <div><dt>Client</dt><dd>none</dd></div>
+              <div><dt>Duration</dt><dd>0.00s</dd></div>
+              <div><dt>Tags</dt><dd class="tags"><span>api</span> <span>resolver</span></dd></div>
+            </dl>
+            <div class="case-actions">
+              <a class="log-link" href="../evidence/original/logs/libc6/getaddrinfo-localhost.log" aria-label="Open log for Original / libc6 / getaddrinfo-localhost">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/original/casts/libc6/getaddrinfo-localhost.cast" aria-label="Play cast for Original / libc6 / getaddrinfo-localhost">Play</button>
+            </div>
+            <div class="cast-player" data-player>
+              <div class="player-controls">
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Original / libc6 / getaddrinfo-localhost">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Original / libc6 / getaddrinfo-localhost">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Original / libc6 / getaddrinfo-localhost">Restart</button>
+                <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
+                <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
+              </div>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Original / libc6 / getaddrinfo-localhost"></pre>
+            </div>
+          </div>
+        </details>
+        <details class="case-row" data-library="libc6" data-testcase-id="usage-bash-script-exec" data-mode="original" data-kind="usage" data-status="passed" data-player-cast="../evidence/original/casts/libc6/usage-bash-script-exec.cast" data-search="libc6 usage-bash-script-exec original Bash executes script Runs a short Bash program that performs arithmetic and prints a value. usage bash usage shell">
+          <summary>
+            <span class="case-title">
+              <strong>Bash executes script</strong>
+              <span class="case-id">Original / libc6 / usage-bash-script-exec</span>
+            </span>
+            <span class="status-pill status-passed" aria-label="Original / libc6 / usage-bash-script-exec status: Passed">Passed</span>
+          </summary>
+          <div class="case-body">
+            <p>Runs a short Bash program that performs arithmetic and prints a value.</p>
+            <dl class="case-meta">
+              <div><dt>Run</dt><dd>Original</dd></div>
+              <div><dt>Kind</dt><dd>usage</dd></div>
+              <div><dt>Client</dt><dd>bash</dd></div>
+              <div><dt>Duration</dt><dd>0.00s</dd></div>
+              <div><dt>Tags</dt><dd class="tags"><span>usage</span> <span>shell</span></dd></div>
+            </dl>
+            <div class="case-actions">
+              <a class="log-link" href="../evidence/original/logs/libc6/usage-bash-script-exec.log" aria-label="Open log for Original / libc6 / usage-bash-script-exec">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/original/casts/libc6/usage-bash-script-exec.cast" aria-label="Play cast for Original / libc6 / usage-bash-script-exec">Play</button>
+            </div>
+            <div class="cast-player" data-player>
+              <div class="player-controls">
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Original / libc6 / usage-bash-script-exec">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Original / libc6 / usage-bash-script-exec">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Original / libc6 / usage-bash-script-exec">Restart</button>
+                <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
+                <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
+              </div>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Original / libc6 / usage-bash-script-exec"></pre>
+            </div>
+          </div>
+        </details>
+        <details class="case-row" data-library="libc6" data-testcase-id="usage-coreutils-sort" data-mode="original" data-kind="usage" data-status="passed" data-player-cast="../evidence/original/casts/libc6/usage-coreutils-sort.cast" data-search="libc6 usage-coreutils-sort original coreutils sorts text Sorts lines with GNU sort and verifies the ordered output. usage coreutils usage cli">
+          <summary>
+            <span class="case-title">
+              <strong>coreutils sorts text</strong>
+              <span class="case-id">Original / libc6 / usage-coreutils-sort</span>
+            </span>
+            <span class="status-pill status-passed" aria-label="Original / libc6 / usage-coreutils-sort status: Passed">Passed</span>
+          </summary>
+          <div class="case-body">
+            <p>Sorts lines with GNU sort and verifies the ordered output.</p>
+            <dl class="case-meta">
+              <div><dt>Run</dt><dd>Original</dd></div>
+              <div><dt>Kind</dt><dd>usage</dd></div>
+              <div><dt>Client</dt><dd>coreutils</dd></div>
+              <div><dt>Duration</dt><dd>0.00s</dd></div>
+              <div><dt>Tags</dt><dd class="tags"><span>usage</span> <span>cli</span></dd></div>
+            </dl>
+            <div class="case-actions">
+              <a class="log-link" href="../evidence/original/logs/libc6/usage-coreutils-sort.log" aria-label="Open log for Original / libc6 / usage-coreutils-sort">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/original/casts/libc6/usage-coreutils-sort.cast" aria-label="Play cast for Original / libc6 / usage-coreutils-sort">Play</button>
+            </div>
+            <div class="cast-player" data-player>
+              <div class="player-controls">
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Original / libc6 / usage-coreutils-sort">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Original / libc6 / usage-coreutils-sort">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Original / libc6 / usage-coreutils-sort">Restart</button>
+                <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
+                <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
+              </div>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Original / libc6 / usage-coreutils-sort"></pre>
+            </div>
+          </div>
+        </details>
+        <details class="case-row" data-library="libc6" data-testcase-id="usage-grep-regex" data-mode="original" data-kind="usage" data-status="passed" data-player-cast="../evidence/original/casts/libc6/usage-grep-regex.cast" data-search="libc6 usage-grep-regex original grep matches regex Filters lines with grep extended regular expressions. usage grep usage cli">
+          <summary>
+            <span class="case-title">
+              <strong>grep matches regex</strong>
+              <span class="case-id">Original / libc6 / usage-grep-regex</span>
+            </span>
+            <span class="status-pill status-passed" aria-label="Original / libc6 / usage-grep-regex status: Passed">Passed</span>
+          </summary>
+          <div class="case-body">
+            <p>Filters lines with grep extended regular expressions.</p>
+            <dl class="case-meta">
+              <div><dt>Run</dt><dd>Original</dd></div>
+              <div><dt>Kind</dt><dd>usage</dd></div>
+              <div><dt>Client</dt><dd>grep</dd></div>
+              <div><dt>Duration</dt><dd>0.00s</dd></div>
+              <div><dt>Tags</dt><dd class="tags"><span>usage</span> <span>cli</span></dd></div>
+            </dl>
+            <div class="case-actions">
+              <a class="log-link" href="../evidence/original/logs/libc6/usage-grep-regex.log" aria-label="Open log for Original / libc6 / usage-grep-regex">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/original/casts/libc6/usage-grep-regex.cast" aria-label="Play cast for Original / libc6 / usage-grep-regex">Play</button>
+            </div>
+            <div class="cast-player" data-player>
+              <div class="player-controls">
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Original / libc6 / usage-grep-regex">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Original / libc6 / usage-grep-regex">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Original / libc6 / usage-grep-regex">Restart</button>
+                <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
+                <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
+              </div>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Original / libc6 / usage-grep-regex"></pre>
+            </div>
+          </div>
+        </details>
+        <details class="case-row" data-library="libc6" data-testcase-id="usage-gawk-field-sum" data-mode="original" data-kind="usage" data-status="passed" data-player-cast="../evidence/original/casts/libc6/usage-gawk-field-sum.cast" data-search="libc6 usage-gawk-field-sum original gawk sums fields Sums numeric fields from tabular input with gawk. usage gawk usage cli">
+          <summary>
+            <span class="case-title">
+              <strong>gawk sums fields</strong>
+              <span class="case-id">Original / libc6 / usage-gawk-field-sum</span>
+            </span>
+            <span class="status-pill status-passed" aria-label="Original / libc6 / usage-gawk-field-sum status: Passed">Passed</span>
+          </summary>
+          <div class="case-body">
+            <p>Sums numeric fields from tabular input with gawk.</p>
+            <dl class="case-meta">
+              <div><dt>Run</dt><dd>Original</dd></div>
+              <div><dt>Kind</dt><dd>usage</dd></div>
+              <div><dt>Client</dt><dd>gawk</dd></div>
+              <div><dt>Duration</dt><dd>0.00s</dd></div>
+              <div><dt>Tags</dt><dd class="tags"><span>usage</span> <span>cli</span></dd></div>
+            </dl>
+            <div class="case-actions">
+              <a class="log-link" href="../evidence/original/logs/libc6/usage-gawk-field-sum.log" aria-label="Open log for Original / libc6 / usage-gawk-field-sum">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/original/casts/libc6/usage-gawk-field-sum.cast" aria-label="Play cast for Original / libc6 / usage-gawk-field-sum">Play</button>
+            </div>
+            <div class="cast-player" data-player>
+              <div class="player-controls">
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Original / libc6 / usage-gawk-field-sum">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Original / libc6 / usage-gawk-field-sum">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Original / libc6 / usage-gawk-field-sum">Restart</button>
+                <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
+                <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
+              </div>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Original / libc6 / usage-gawk-field-sum"></pre>
+            </div>
+          </div>
+        </details>
+        <details class="case-row" data-library="libc6" data-testcase-id="usage-sed-transform" data-mode="original" data-kind="usage" data-status="passed" data-player-cast="../evidence/original/casts/libc6/usage-sed-transform.cast" data-search="libc6 usage-sed-transform original sed transforms stream Rewrites a token in stream input with sed. usage sed usage cli">
+          <summary>
+            <span class="case-title">
+              <strong>sed transforms stream</strong>
+              <span class="case-id">Original / libc6 / usage-sed-transform</span>
+            </span>
+            <span class="status-pill status-passed" aria-label="Original / libc6 / usage-sed-transform status: Passed">Passed</span>
+          </summary>
+          <div class="case-body">
+            <p>Rewrites a token in stream input with sed.</p>
+            <dl class="case-meta">
+              <div><dt>Run</dt><dd>Original</dd></div>
+              <div><dt>Kind</dt><dd>usage</dd></div>
+              <div><dt>Client</dt><dd>sed</dd></div>
+              <div><dt>Duration</dt><dd>0.00s</dd></div>
+              <div><dt>Tags</dt><dd class="tags"><span>usage</span> <span>cli</span></dd></div>
+            </dl>
+            <div class="case-actions">
+              <a class="log-link" href="../evidence/original/logs/libc6/usage-sed-transform.log" aria-label="Open log for Original / libc6 / usage-sed-transform">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/original/casts/libc6/usage-sed-transform.cast" aria-label="Play cast for Original / libc6 / usage-sed-transform">Play</button>
+            </div>
+            <div class="cast-player" data-player>
+              <div class="player-controls">
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Original / libc6 / usage-sed-transform">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Original / libc6 / usage-sed-transform">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Original / libc6 / usage-sed-transform">Restart</button>
+                <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
+                <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
+              </div>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Original / libc6 / usage-sed-transform"></pre>
+            </div>
+          </div>
+        </details>
+        <details class="case-row" data-library="libc6" data-testcase-id="usage-python3-runtime" data-mode="original" data-kind="usage" data-status="passed" data-player-cast="../evidence/original/casts/libc6/usage-python3-runtime.cast" data-search="libc6 usage-python3-runtime original Python runs libc-backed runtime Starts Python, performs arithmetic, and prints a computed value. usage python3-minimal usage python">
+          <summary>
+            <span class="case-title">
+              <strong>Python runs libc-backed runtime</strong>
+              <span class="case-id">Original / libc6 / usage-python3-runtime</span>
+            </span>
+            <span class="status-pill status-passed" aria-label="Original / libc6 / usage-python3-runtime status: Passed">Passed</span>
+          </summary>
+          <div class="case-body">
+            <p>Starts Python, performs arithmetic, and prints a computed value.</p>
+            <dl class="case-meta">
+              <div><dt>Run</dt><dd>Original</dd></div>
+              <div><dt>Kind</dt><dd>usage</dd></div>
+              <div><dt>Client</dt><dd>python3-minimal</dd></div>
+              <div><dt>Duration</dt><dd>0.00s</dd></div>
+              <div><dt>Tags</dt><dd class="tags"><span>usage</span> <span>python</span></dd></div>
+            </dl>
+            <div class="case-actions">
+              <a class="log-link" href="../evidence/original/logs/libc6/usage-python3-runtime.log" aria-label="Open log for Original / libc6 / usage-python3-runtime">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/original/casts/libc6/usage-python3-runtime.cast" aria-label="Play cast for Original / libc6 / usage-python3-runtime">Play</button>
+            </div>
+            <div class="cast-player" data-player>
+              <div class="player-controls">
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Original / libc6 / usage-python3-runtime">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Original / libc6 / usage-python3-runtime">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Original / libc6 / usage-python3-runtime">Restart</button>
+                <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
+                <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
+              </div>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Original / libc6 / usage-python3-runtime"></pre>
+            </div>
+          </div>
+        </details>
+        <details class="case-row" data-library="libc6" data-testcase-id="usage-findutils-find" data-mode="original" data-kind="usage" data-status="passed" data-player-cast="../evidence/original/casts/libc6/usage-findutils-find.cast" data-search="libc6 usage-findutils-find original findutils traverses files Locates a named file in a directory tree with find. usage findutils usage cli">
+          <summary>
+            <span class="case-title">
+              <strong>findutils traverses files</strong>
+              <span class="case-id">Original / libc6 / usage-findutils-find</span>
+            </span>
+            <span class="status-pill status-passed" aria-label="Original / libc6 / usage-findutils-find status: Passed">Passed</span>
+          </summary>
+          <div class="case-body">
+            <p>Locates a named file in a directory tree with find.</p>
+            <dl class="case-meta">
+              <div><dt>Run</dt><dd>Original</dd></div>
+              <div><dt>Kind</dt><dd>usage</dd></div>
+              <div><dt>Client</dt><dd>findutils</dd></div>
+              <div><dt>Duration</dt><dd>0.00s</dd></div>
+              <div><dt>Tags</dt><dd class="tags"><span>usage</span> <span>cli</span></dd></div>
+            </dl>
+            <div class="case-actions">
+              <a class="log-link" href="../evidence/original/logs/libc6/usage-findutils-find.log" aria-label="Open log for Original / libc6 / usage-findutils-find">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/original/casts/libc6/usage-findutils-find.cast" aria-label="Play cast for Original / libc6 / usage-findutils-find">Play</button>
+            </div>
+            <div class="cast-player" data-player>
+              <div class="player-controls">
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Original / libc6 / usage-findutils-find">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Original / libc6 / usage-findutils-find">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Original / libc6 / usage-findutils-find">Restart</button>
+                <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
+                <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
+              </div>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Original / libc6 / usage-findutils-find"></pre>
+            </div>
+          </div>
+        </details>
+        <details class="case-row" data-library="libc6" data-testcase-id="usage-tar-roundtrip" data-mode="original" data-kind="usage" data-status="passed" data-player-cast="../evidence/original/casts/libc6/usage-tar-roundtrip.cast" data-search="libc6 usage-tar-roundtrip original tar archives file Creates and extracts a tar archive while preserving file content. usage tar usage archive">
+          <summary>
+            <span class="case-title">
+              <strong>tar archives file</strong>
+              <span class="case-id">Original / libc6 / usage-tar-roundtrip</span>
+            </span>
+            <span class="status-pill status-passed" aria-label="Original / libc6 / usage-tar-roundtrip status: Passed">Passed</span>
+          </summary>
+          <div class="case-body">
+            <p>Creates and extracts a tar archive while preserving file content.</p>
+            <dl class="case-meta">
+              <div><dt>Run</dt><dd>Original</dd></div>
+              <div><dt>Kind</dt><dd>usage</dd></div>
+              <div><dt>Client</dt><dd>tar</dd></div>
+              <div><dt>Duration</dt><dd>0.00s</dd></div>
+              <div><dt>Tags</dt><dd class="tags"><span>usage</span> <span>archive</span></dd></div>
+            </dl>
+            <div class="case-actions">
+              <a class="log-link" href="../evidence/original/logs/libc6/usage-tar-roundtrip.log" aria-label="Open log for Original / libc6 / usage-tar-roundtrip">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/original/casts/libc6/usage-tar-roundtrip.cast" aria-label="Play cast for Original / libc6 / usage-tar-roundtrip">Play</button>
+            </div>
+            <div class="cast-player" data-player>
+              <div class="player-controls">
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Original / libc6 / usage-tar-roundtrip">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Original / libc6 / usage-tar-roundtrip">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Original / libc6 / usage-tar-roundtrip">Restart</button>
+                <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
+                <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
+              </div>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Original / libc6 / usage-tar-roundtrip"></pre>
+            </div>
+          </div>
+        </details>
+        <details class="case-row" data-library="libc6" data-testcase-id="usage-gzip-roundtrip" data-mode="original" data-kind="usage" data-status="passed" data-player-cast="../evidence/original/casts/libc6/usage-gzip-roundtrip.cast" data-search="libc6 usage-gzip-roundtrip original gzip compresses file Compresses and decompresses a text file with gzip. usage gzip usage compression">
+          <summary>
+            <span class="case-title">
+              <strong>gzip compresses file</strong>
+              <span class="case-id">Original / libc6 / usage-gzip-roundtrip</span>
+            </span>
+            <span class="status-pill status-passed" aria-label="Original / libc6 / usage-gzip-roundtrip status: Passed">Passed</span>
+          </summary>
+          <div class="case-body">
+            <p>Compresses and decompresses a text file with gzip.</p>
+            <dl class="case-meta">
+              <div><dt>Run</dt><dd>Original</dd></div>
+              <div><dt>Kind</dt><dd>usage</dd></div>
+              <div><dt>Client</dt><dd>gzip</dd></div>
+              <div><dt>Duration</dt><dd>0.00s</dd></div>
+              <div><dt>Tags</dt><dd class="tags"><span>usage</span> <span>compression</span></dd></div>
+            </dl>
+            <div class="case-actions">
+              <a class="log-link" href="../evidence/original/logs/libc6/usage-gzip-roundtrip.log" aria-label="Open log for Original / libc6 / usage-gzip-roundtrip">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/original/casts/libc6/usage-gzip-roundtrip.cast" aria-label="Play cast for Original / libc6 / usage-gzip-roundtrip">Play</button>
+            </div>
+            <div class="cast-player" data-player>
+              <div class="player-controls">
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Original / libc6 / usage-gzip-roundtrip">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Original / libc6 / usage-gzip-roundtrip">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Original / libc6 / usage-gzip-roundtrip">Restart</button>
+                <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
+                <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
+              </div>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Original / libc6 / usage-gzip-roundtrip"></pre>
+            </div>
+          </div>
+        </details>
+        <details class="case-row" data-library="libc6" data-testcase-id="usage-coreutils-date" data-mode="original" data-kind="usage" data-status="passed" data-player-cast="../evidence/original/casts/libc6/usage-coreutils-date.cast" data-search="libc6 usage-coreutils-date original coreutils formats date Formats a UTC timestamp with GNU date and verifies the year. usage coreutils usage cli">
+          <summary>
+            <span class="case-title">
+              <strong>coreutils formats date</strong>
+              <span class="case-id">Original / libc6 / usage-coreutils-date</span>
+            </span>
+            <span class="status-pill status-passed" aria-label="Original / libc6 / usage-coreutils-date status: Passed">Passed</span>
+          </summary>
+          <div class="case-body">
+            <p>Formats a UTC timestamp with GNU date and verifies the year.</p>
+            <dl class="case-meta">
+              <div><dt>Run</dt><dd>Original</dd></div>
+              <div><dt>Kind</dt><dd>usage</dd></div>
+              <div><dt>Client</dt><dd>coreutils</dd></div>
+              <div><dt>Duration</dt><dd>0.00s</dd></div>
+              <div><dt>Tags</dt><dd class="tags"><span>usage</span> <span>cli</span></dd></div>
+            </dl>
+            <div class="case-actions">
+              <a class="log-link" href="../evidence/original/logs/libc6/usage-coreutils-date.log" aria-label="Open log for Original / libc6 / usage-coreutils-date">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/original/casts/libc6/usage-coreutils-date.cast" aria-label="Play cast for Original / libc6 / usage-coreutils-date">Play</button>
+            </div>
+            <div class="cast-player" data-player>
+              <div class="player-controls">
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Original / libc6 / usage-coreutils-date">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Original / libc6 / usage-coreutils-date">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Original / libc6 / usage-coreutils-date">Restart</button>
+                <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
+                <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
+              </div>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Original / libc6 / usage-coreutils-date"></pre>
+            </div>
+          </div>
+        </details>
+        <details class="case-row" data-library="libc6" data-testcase-id="stdio-string-conversion" data-mode="port-04-test" data-kind="source" data-status="failed" data-player-cast="" data-search="libc6 stdio-string-conversion port-04-test glibc stdio string conversion Compiles a program using snprintf and strtod from the C library. source api stdio">
+          <summary>
+            <span class="case-title">
+              <strong>glibc stdio string conversion</strong>
+              <span class="case-id">Port / libc6 / stdio-string-conversion</span>
+            </span>
+            <span class="status-pill status-failed" aria-label="Port / libc6 / stdio-string-conversion status: Failed">Failed</span>
+          </summary>
+          <div class="case-body">
+            <p>Compiles a program using snprintf and strtod from the C library.</p>
+            <dl class="case-meta">
+              <div><dt>Run</dt><dd>Port</dd></div>
+              <div><dt>Kind</dt><dd>source</dd></div>
+              <div><dt>Client</dt><dd>none</dd></div>
+              <div><dt>Duration</dt><dd>0.00s</dd></div>
+              <div><dt>Tags</dt><dd class="tags"><span>api</span> <span>stdio</span></dd></div>
+            </dl>
+            <div class="case-actions">
+              <a class="log-link" href="../evidence/port-04-test/logs/libc6/stdio-string-conversion.log" aria-label="Open log for Port / libc6 / stdio-string-conversion">Log</a>
+              <span class="muted">No cast</span>
+            </div>
+            <div class="cast-player" data-player>
+              <div class="player-controls">
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Port / libc6 / stdio-string-conversion">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Port / libc6 / stdio-string-conversion">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Port / libc6 / stdio-string-conversion">Restart</button>
+                <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
+                <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
+              </div>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Port / libc6 / stdio-string-conversion"></pre>
+            </div>
+          </div>
+        </details>
+        <details class="case-row" data-library="libc6" data-testcase-id="pthread-thread-join" data-mode="port-04-test" data-kind="source" data-status="failed" data-player-cast="" data-search="libc6 pthread-thread-join port-04-test glibc pthread join Starts a POSIX thread and joins it through libc pthread entry points. source api pthread">
+          <summary>
+            <span class="case-title">
+              <strong>glibc pthread join</strong>
+              <span class="case-id">Port / libc6 / pthread-thread-join</span>
+            </span>
+            <span class="status-pill status-failed" aria-label="Port / libc6 / pthread-thread-join status: Failed">Failed</span>
+          </summary>
+          <div class="case-body">
+            <p>Starts a POSIX thread and joins it through libc pthread entry points.</p>
+            <dl class="case-meta">
+              <div><dt>Run</dt><dd>Port</dd></div>
+              <div><dt>Kind</dt><dd>source</dd></div>
+              <div><dt>Client</dt><dd>none</dd></div>
+              <div><dt>Duration</dt><dd>0.00s</dd></div>
+              <div><dt>Tags</dt><dd class="tags"><span>api</span> <span>pthread</span></dd></div>
+            </dl>
+            <div class="case-actions">
+              <a class="log-link" href="../evidence/port-04-test/logs/libc6/pthread-thread-join.log" aria-label="Open log for Port / libc6 / pthread-thread-join">Log</a>
+              <span class="muted">No cast</span>
+            </div>
+            <div class="cast-player" data-player>
+              <div class="player-controls">
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Port / libc6 / pthread-thread-join">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Port / libc6 / pthread-thread-join">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Port / libc6 / pthread-thread-join">Restart</button>
+                <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
+                <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
+              </div>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Port / libc6 / pthread-thread-join"></pre>
+            </div>
+          </div>
+        </details>
+        <details class="case-row" data-library="libc6" data-testcase-id="locale-collation" data-mode="port-04-test" data-kind="source" data-status="failed" data-player-cast="" data-search="libc6 locale-collation port-04-test glibc locale collation Sets the C.UTF-8 locale and compares strings through strcoll. source api locale">
+          <summary>
+            <span class="case-title">
+              <strong>glibc locale collation</strong>
+              <span class="case-id">Port / libc6 / locale-collation</span>
+            </span>
+            <span class="status-pill status-failed" aria-label="Port / libc6 / locale-collation status: Failed">Failed</span>
+          </summary>
+          <div class="case-body">
+            <p>Sets the C.UTF-8 locale and compares strings through strcoll.</p>
+            <dl class="case-meta">
+              <div><dt>Run</dt><dd>Port</dd></div>
+              <div><dt>Kind</dt><dd>source</dd></div>
+              <div><dt>Client</dt><dd>none</dd></div>
+              <div><dt>Duration</dt><dd>0.00s</dd></div>
+              <div><dt>Tags</dt><dd class="tags"><span>api</span> <span>locale</span></dd></div>
+            </dl>
+            <div class="case-actions">
+              <a class="log-link" href="../evidence/port-04-test/logs/libc6/locale-collation.log" aria-label="Open log for Port / libc6 / locale-collation">Log</a>
+              <span class="muted">No cast</span>
+            </div>
+            <div class="cast-player" data-player>
+              <div class="player-controls">
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Port / libc6 / locale-collation">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Port / libc6 / locale-collation">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Port / libc6 / locale-collation">Restart</button>
+                <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
+                <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
+              </div>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Port / libc6 / locale-collation"></pre>
+            </div>
+          </div>
+        </details>
+        <details class="case-row" data-library="libc6" data-testcase-id="dlopen-libm-symbol" data-mode="port-04-test" data-kind="source" data-status="failed" data-player-cast="" data-search="libc6 dlopen-libm-symbol port-04-test glibc dynamic loader symbol Opens libm with dlopen and calls cos through dlsym. source api dynamic-loader">
+          <summary>
+            <span class="case-title">
+              <strong>glibc dynamic loader symbol</strong>
+              <span class="case-id">Port / libc6 / dlopen-libm-symbol</span>
+            </span>
+            <span class="status-pill status-failed" aria-label="Port / libc6 / dlopen-libm-symbol status: Failed">Failed</span>
+          </summary>
+          <div class="case-body">
+            <p>Opens libm with dlopen and calls cos through dlsym.</p>
+            <dl class="case-meta">
+              <div><dt>Run</dt><dd>Port</dd></div>
+              <div><dt>Kind</dt><dd>source</dd></div>
+              <div><dt>Client</dt><dd>none</dd></div>
+              <div><dt>Duration</dt><dd>0.00s</dd></div>
+              <div><dt>Tags</dt><dd class="tags"><span>api</span> <span>dynamic-loader</span></dd></div>
+            </dl>
+            <div class="case-actions">
+              <a class="log-link" href="../evidence/port-04-test/logs/libc6/dlopen-libm-symbol.log" aria-label="Open log for Port / libc6 / dlopen-libm-symbol">Log</a>
+              <span class="muted">No cast</span>
+            </div>
+            <div class="cast-player" data-player>
+              <div class="player-controls">
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Port / libc6 / dlopen-libm-symbol">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Port / libc6 / dlopen-libm-symbol">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Port / libc6 / dlopen-libm-symbol">Restart</button>
+                <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
+                <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
+              </div>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Port / libc6 / dlopen-libm-symbol"></pre>
+            </div>
+          </div>
+        </details>
+        <details class="case-row" data-library="libc6" data-testcase-id="getaddrinfo-localhost" data-mode="port-04-test" data-kind="source" data-status="failed" data-player-cast="" data-search="libc6 getaddrinfo-localhost port-04-test glibc getaddrinfo localhost Resolves localhost through getaddrinfo and frees the address list. source api resolver">
+          <summary>
+            <span class="case-title">
+              <strong>glibc getaddrinfo localhost</strong>
+              <span class="case-id">Port / libc6 / getaddrinfo-localhost</span>
+            </span>
+            <span class="status-pill status-failed" aria-label="Port / libc6 / getaddrinfo-localhost status: Failed">Failed</span>
+          </summary>
+          <div class="case-body">
+            <p>Resolves localhost through getaddrinfo and frees the address list.</p>
+            <dl class="case-meta">
+              <div><dt>Run</dt><dd>Port</dd></div>
+              <div><dt>Kind</dt><dd>source</dd></div>
+              <div><dt>Client</dt><dd>none</dd></div>
+              <div><dt>Duration</dt><dd>0.00s</dd></div>
+              <div><dt>Tags</dt><dd class="tags"><span>api</span> <span>resolver</span></dd></div>
+            </dl>
+            <div class="case-actions">
+              <a class="log-link" href="../evidence/port-04-test/logs/libc6/getaddrinfo-localhost.log" aria-label="Open log for Port / libc6 / getaddrinfo-localhost">Log</a>
+              <span class="muted">No cast</span>
+            </div>
+            <div class="cast-player" data-player>
+              <div class="player-controls">
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Port / libc6 / getaddrinfo-localhost">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Port / libc6 / getaddrinfo-localhost">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Port / libc6 / getaddrinfo-localhost">Restart</button>
+                <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
+                <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
+              </div>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Port / libc6 / getaddrinfo-localhost"></pre>
+            </div>
+          </div>
+        </details>
+        <details class="case-row" data-library="libc6" data-testcase-id="usage-bash-script-exec" data-mode="port-04-test" data-kind="usage" data-status="failed" data-player-cast="" data-search="libc6 usage-bash-script-exec port-04-test Bash executes script Runs a short Bash program that performs arithmetic and prints a value. usage bash usage shell">
+          <summary>
+            <span class="case-title">
+              <strong>Bash executes script</strong>
+              <span class="case-id">Port / libc6 / usage-bash-script-exec</span>
+            </span>
+            <span class="status-pill status-failed" aria-label="Port / libc6 / usage-bash-script-exec status: Failed">Failed</span>
+          </summary>
+          <div class="case-body">
+            <p>Runs a short Bash program that performs arithmetic and prints a value.</p>
+            <dl class="case-meta">
+              <div><dt>Run</dt><dd>Port</dd></div>
+              <div><dt>Kind</dt><dd>usage</dd></div>
+              <div><dt>Client</dt><dd>bash</dd></div>
+              <div><dt>Duration</dt><dd>0.00s</dd></div>
+              <div><dt>Tags</dt><dd class="tags"><span>usage</span> <span>shell</span></dd></div>
+            </dl>
+            <div class="case-actions">
+              <a class="log-link" href="../evidence/port-04-test/logs/libc6/usage-bash-script-exec.log" aria-label="Open log for Port / libc6 / usage-bash-script-exec">Log</a>
+              <span class="muted">No cast</span>
+            </div>
+            <div class="cast-player" data-player>
+              <div class="player-controls">
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Port / libc6 / usage-bash-script-exec">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Port / libc6 / usage-bash-script-exec">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Port / libc6 / usage-bash-script-exec">Restart</button>
+                <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
+                <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
+              </div>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Port / libc6 / usage-bash-script-exec"></pre>
+            </div>
+          </div>
+        </details>
+        <details class="case-row" data-library="libc6" data-testcase-id="usage-coreutils-sort" data-mode="port-04-test" data-kind="usage" data-status="failed" data-player-cast="" data-search="libc6 usage-coreutils-sort port-04-test coreutils sorts text Sorts lines with GNU sort and verifies the ordered output. usage coreutils usage cli">
+          <summary>
+            <span class="case-title">
+              <strong>coreutils sorts text</strong>
+              <span class="case-id">Port / libc6 / usage-coreutils-sort</span>
+            </span>
+            <span class="status-pill status-failed" aria-label="Port / libc6 / usage-coreutils-sort status: Failed">Failed</span>
+          </summary>
+          <div class="case-body">
+            <p>Sorts lines with GNU sort and verifies the ordered output.</p>
+            <dl class="case-meta">
+              <div><dt>Run</dt><dd>Port</dd></div>
+              <div><dt>Kind</dt><dd>usage</dd></div>
+              <div><dt>Client</dt><dd>coreutils</dd></div>
+              <div><dt>Duration</dt><dd>0.00s</dd></div>
+              <div><dt>Tags</dt><dd class="tags"><span>usage</span> <span>cli</span></dd></div>
+            </dl>
+            <div class="case-actions">
+              <a class="log-link" href="../evidence/port-04-test/logs/libc6/usage-coreutils-sort.log" aria-label="Open log for Port / libc6 / usage-coreutils-sort">Log</a>
+              <span class="muted">No cast</span>
+            </div>
+            <div class="cast-player" data-player>
+              <div class="player-controls">
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Port / libc6 / usage-coreutils-sort">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Port / libc6 / usage-coreutils-sort">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Port / libc6 / usage-coreutils-sort">Restart</button>
+                <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
+                <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
+              </div>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Port / libc6 / usage-coreutils-sort"></pre>
+            </div>
+          </div>
+        </details>
+        <details class="case-row" data-library="libc6" data-testcase-id="usage-grep-regex" data-mode="port-04-test" data-kind="usage" data-status="failed" data-player-cast="" data-search="libc6 usage-grep-regex port-04-test grep matches regex Filters lines with grep extended regular expressions. usage grep usage cli">
+          <summary>
+            <span class="case-title">
+              <strong>grep matches regex</strong>
+              <span class="case-id">Port / libc6 / usage-grep-regex</span>
+            </span>
+            <span class="status-pill status-failed" aria-label="Port / libc6 / usage-grep-regex status: Failed">Failed</span>
+          </summary>
+          <div class="case-body">
+            <p>Filters lines with grep extended regular expressions.</p>
+            <dl class="case-meta">
+              <div><dt>Run</dt><dd>Port</dd></div>
+              <div><dt>Kind</dt><dd>usage</dd></div>
+              <div><dt>Client</dt><dd>grep</dd></div>
+              <div><dt>Duration</dt><dd>0.00s</dd></div>
+              <div><dt>Tags</dt><dd class="tags"><span>usage</span> <span>cli</span></dd></div>
+            </dl>
+            <div class="case-actions">
+              <a class="log-link" href="../evidence/port-04-test/logs/libc6/usage-grep-regex.log" aria-label="Open log for Port / libc6 / usage-grep-regex">Log</a>
+              <span class="muted">No cast</span>
+            </div>
+            <div class="cast-player" data-player>
+              <div class="player-controls">
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Port / libc6 / usage-grep-regex">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Port / libc6 / usage-grep-regex">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Port / libc6 / usage-grep-regex">Restart</button>
+                <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
+                <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
+              </div>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Port / libc6 / usage-grep-regex"></pre>
+            </div>
+          </div>
+        </details>
+        <details class="case-row" data-library="libc6" data-testcase-id="usage-gawk-field-sum" data-mode="port-04-test" data-kind="usage" data-status="failed" data-player-cast="" data-search="libc6 usage-gawk-field-sum port-04-test gawk sums fields Sums numeric fields from tabular input with gawk. usage gawk usage cli">
+          <summary>
+            <span class="case-title">
+              <strong>gawk sums fields</strong>
+              <span class="case-id">Port / libc6 / usage-gawk-field-sum</span>
+            </span>
+            <span class="status-pill status-failed" aria-label="Port / libc6 / usage-gawk-field-sum status: Failed">Failed</span>
+          </summary>
+          <div class="case-body">
+            <p>Sums numeric fields from tabular input with gawk.</p>
+            <dl class="case-meta">
+              <div><dt>Run</dt><dd>Port</dd></div>
+              <div><dt>Kind</dt><dd>usage</dd></div>
+              <div><dt>Client</dt><dd>gawk</dd></div>
+              <div><dt>Duration</dt><dd>0.00s</dd></div>
+              <div><dt>Tags</dt><dd class="tags"><span>usage</span> <span>cli</span></dd></div>
+            </dl>
+            <div class="case-actions">
+              <a class="log-link" href="../evidence/port-04-test/logs/libc6/usage-gawk-field-sum.log" aria-label="Open log for Port / libc6 / usage-gawk-field-sum">Log</a>
+              <span class="muted">No cast</span>
+            </div>
+            <div class="cast-player" data-player>
+              <div class="player-controls">
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Port / libc6 / usage-gawk-field-sum">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Port / libc6 / usage-gawk-field-sum">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Port / libc6 / usage-gawk-field-sum">Restart</button>
+                <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
+                <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
+              </div>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Port / libc6 / usage-gawk-field-sum"></pre>
+            </div>
+          </div>
+        </details>
+        <details class="case-row" data-library="libc6" data-testcase-id="usage-sed-transform" data-mode="port-04-test" data-kind="usage" data-status="failed" data-player-cast="" data-search="libc6 usage-sed-transform port-04-test sed transforms stream Rewrites a token in stream input with sed. usage sed usage cli">
+          <summary>
+            <span class="case-title">
+              <strong>sed transforms stream</strong>
+              <span class="case-id">Port / libc6 / usage-sed-transform</span>
+            </span>
+            <span class="status-pill status-failed" aria-label="Port / libc6 / usage-sed-transform status: Failed">Failed</span>
+          </summary>
+          <div class="case-body">
+            <p>Rewrites a token in stream input with sed.</p>
+            <dl class="case-meta">
+              <div><dt>Run</dt><dd>Port</dd></div>
+              <div><dt>Kind</dt><dd>usage</dd></div>
+              <div><dt>Client</dt><dd>sed</dd></div>
+              <div><dt>Duration</dt><dd>0.00s</dd></div>
+              <div><dt>Tags</dt><dd class="tags"><span>usage</span> <span>cli</span></dd></div>
+            </dl>
+            <div class="case-actions">
+              <a class="log-link" href="../evidence/port-04-test/logs/libc6/usage-sed-transform.log" aria-label="Open log for Port / libc6 / usage-sed-transform">Log</a>
+              <span class="muted">No cast</span>
+            </div>
+            <div class="cast-player" data-player>
+              <div class="player-controls">
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Port / libc6 / usage-sed-transform">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Port / libc6 / usage-sed-transform">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Port / libc6 / usage-sed-transform">Restart</button>
+                <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
+                <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
+              </div>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Port / libc6 / usage-sed-transform"></pre>
+            </div>
+          </div>
+        </details>
+        <details class="case-row" data-library="libc6" data-testcase-id="usage-python3-runtime" data-mode="port-04-test" data-kind="usage" data-status="failed" data-player-cast="" data-search="libc6 usage-python3-runtime port-04-test Python runs libc-backed runtime Starts Python, performs arithmetic, and prints a computed value. usage python3-minimal usage python">
+          <summary>
+            <span class="case-title">
+              <strong>Python runs libc-backed runtime</strong>
+              <span class="case-id">Port / libc6 / usage-python3-runtime</span>
+            </span>
+            <span class="status-pill status-failed" aria-label="Port / libc6 / usage-python3-runtime status: Failed">Failed</span>
+          </summary>
+          <div class="case-body">
+            <p>Starts Python, performs arithmetic, and prints a computed value.</p>
+            <dl class="case-meta">
+              <div><dt>Run</dt><dd>Port</dd></div>
+              <div><dt>Kind</dt><dd>usage</dd></div>
+              <div><dt>Client</dt><dd>python3-minimal</dd></div>
+              <div><dt>Duration</dt><dd>0.00s</dd></div>
+              <div><dt>Tags</dt><dd class="tags"><span>usage</span> <span>python</span></dd></div>
+            </dl>
+            <div class="case-actions">
+              <a class="log-link" href="../evidence/port-04-test/logs/libc6/usage-python3-runtime.log" aria-label="Open log for Port / libc6 / usage-python3-runtime">Log</a>
+              <span class="muted">No cast</span>
+            </div>
+            <div class="cast-player" data-player>
+              <div class="player-controls">
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Port / libc6 / usage-python3-runtime">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Port / libc6 / usage-python3-runtime">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Port / libc6 / usage-python3-runtime">Restart</button>
+                <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
+                <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
+              </div>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Port / libc6 / usage-python3-runtime"></pre>
+            </div>
+          </div>
+        </details>
+        <details class="case-row" data-library="libc6" data-testcase-id="usage-findutils-find" data-mode="port-04-test" data-kind="usage" data-status="failed" data-player-cast="" data-search="libc6 usage-findutils-find port-04-test findutils traverses files Locates a named file in a directory tree with find. usage findutils usage cli">
+          <summary>
+            <span class="case-title">
+              <strong>findutils traverses files</strong>
+              <span class="case-id">Port / libc6 / usage-findutils-find</span>
+            </span>
+            <span class="status-pill status-failed" aria-label="Port / libc6 / usage-findutils-find status: Failed">Failed</span>
+          </summary>
+          <div class="case-body">
+            <p>Locates a named file in a directory tree with find.</p>
+            <dl class="case-meta">
+              <div><dt>Run</dt><dd>Port</dd></div>
+              <div><dt>Kind</dt><dd>usage</dd></div>
+              <div><dt>Client</dt><dd>findutils</dd></div>
+              <div><dt>Duration</dt><dd>0.00s</dd></div>
+              <div><dt>Tags</dt><dd class="tags"><span>usage</span> <span>cli</span></dd></div>
+            </dl>
+            <div class="case-actions">
+              <a class="log-link" href="../evidence/port-04-test/logs/libc6/usage-findutils-find.log" aria-label="Open log for Port / libc6 / usage-findutils-find">Log</a>
+              <span class="muted">No cast</span>
+            </div>
+            <div class="cast-player" data-player>
+              <div class="player-controls">
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Port / libc6 / usage-findutils-find">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Port / libc6 / usage-findutils-find">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Port / libc6 / usage-findutils-find">Restart</button>
+                <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
+                <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
+              </div>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Port / libc6 / usage-findutils-find"></pre>
+            </div>
+          </div>
+        </details>
+        <details class="case-row" data-library="libc6" data-testcase-id="usage-tar-roundtrip" data-mode="port-04-test" data-kind="usage" data-status="failed" data-player-cast="" data-search="libc6 usage-tar-roundtrip port-04-test tar archives file Creates and extracts a tar archive while preserving file content. usage tar usage archive">
+          <summary>
+            <span class="case-title">
+              <strong>tar archives file</strong>
+              <span class="case-id">Port / libc6 / usage-tar-roundtrip</span>
+            </span>
+            <span class="status-pill status-failed" aria-label="Port / libc6 / usage-tar-roundtrip status: Failed">Failed</span>
+          </summary>
+          <div class="case-body">
+            <p>Creates and extracts a tar archive while preserving file content.</p>
+            <dl class="case-meta">
+              <div><dt>Run</dt><dd>Port</dd></div>
+              <div><dt>Kind</dt><dd>usage</dd></div>
+              <div><dt>Client</dt><dd>tar</dd></div>
+              <div><dt>Duration</dt><dd>0.00s</dd></div>
+              <div><dt>Tags</dt><dd class="tags"><span>usage</span> <span>archive</span></dd></div>
+            </dl>
+            <div class="case-actions">
+              <a class="log-link" href="../evidence/port-04-test/logs/libc6/usage-tar-roundtrip.log" aria-label="Open log for Port / libc6 / usage-tar-roundtrip">Log</a>
+              <span class="muted">No cast</span>
+            </div>
+            <div class="cast-player" data-player>
+              <div class="player-controls">
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Port / libc6 / usage-tar-roundtrip">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Port / libc6 / usage-tar-roundtrip">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Port / libc6 / usage-tar-roundtrip">Restart</button>
+                <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
+                <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
+              </div>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Port / libc6 / usage-tar-roundtrip"></pre>
+            </div>
+          </div>
+        </details>
+        <details class="case-row" data-library="libc6" data-testcase-id="usage-gzip-roundtrip" data-mode="port-04-test" data-kind="usage" data-status="failed" data-player-cast="" data-search="libc6 usage-gzip-roundtrip port-04-test gzip compresses file Compresses and decompresses a text file with gzip. usage gzip usage compression">
+          <summary>
+            <span class="case-title">
+              <strong>gzip compresses file</strong>
+              <span class="case-id">Port / libc6 / usage-gzip-roundtrip</span>
+            </span>
+            <span class="status-pill status-failed" aria-label="Port / libc6 / usage-gzip-roundtrip status: Failed">Failed</span>
+          </summary>
+          <div class="case-body">
+            <p>Compresses and decompresses a text file with gzip.</p>
+            <dl class="case-meta">
+              <div><dt>Run</dt><dd>Port</dd></div>
+              <div><dt>Kind</dt><dd>usage</dd></div>
+              <div><dt>Client</dt><dd>gzip</dd></div>
+              <div><dt>Duration</dt><dd>0.00s</dd></div>
+              <div><dt>Tags</dt><dd class="tags"><span>usage</span> <span>compression</span></dd></div>
+            </dl>
+            <div class="case-actions">
+              <a class="log-link" href="../evidence/port-04-test/logs/libc6/usage-gzip-roundtrip.log" aria-label="Open log for Port / libc6 / usage-gzip-roundtrip">Log</a>
+              <span class="muted">No cast</span>
+            </div>
+            <div class="cast-player" data-player>
+              <div class="player-controls">
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Port / libc6 / usage-gzip-roundtrip">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Port / libc6 / usage-gzip-roundtrip">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Port / libc6 / usage-gzip-roundtrip">Restart</button>
+                <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
+                <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
+              </div>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Port / libc6 / usage-gzip-roundtrip"></pre>
+            </div>
+          </div>
+        </details>
+        <details class="case-row" data-library="libc6" data-testcase-id="usage-coreutils-date" data-mode="port-04-test" data-kind="usage" data-status="failed" data-player-cast="" data-search="libc6 usage-coreutils-date port-04-test coreutils formats date Formats a UTC timestamp with GNU date and verifies the year. usage coreutils usage cli">
+          <summary>
+            <span class="case-title">
+              <strong>coreutils formats date</strong>
+              <span class="case-id">Port / libc6 / usage-coreutils-date</span>
+            </span>
+            <span class="status-pill status-failed" aria-label="Port / libc6 / usage-coreutils-date status: Failed">Failed</span>
+          </summary>
+          <div class="case-body">
+            <p>Formats a UTC timestamp with GNU date and verifies the year.</p>
+            <dl class="case-meta">
+              <div><dt>Run</dt><dd>Port</dd></div>
+              <div><dt>Kind</dt><dd>usage</dd></div>
+              <div><dt>Client</dt><dd>coreutils</dd></div>
+              <div><dt>Duration</dt><dd>0.00s</dd></div>
+              <div><dt>Tags</dt><dd class="tags"><span>usage</span> <span>cli</span></dd></div>
+            </dl>
+            <div class="case-actions">
+              <a class="log-link" href="../evidence/port-04-test/logs/libc6/usage-coreutils-date.log" aria-label="Open log for Port / libc6 / usage-coreutils-date">Log</a>
+              <span class="muted">No cast</span>
+            </div>
+            <div class="cast-player" data-player>
+              <div class="player-controls">
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Port / libc6 / usage-coreutils-date">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Port / libc6 / usage-coreutils-date">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Port / libc6 / usage-coreutils-date">Restart</button>
+                <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
+                <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
+              </div>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Port / libc6 / usage-coreutils-date"></pre>
+            </div>
+          </div>
+        </details>
+      </section>
+    </main>
+  </body>
+</html>

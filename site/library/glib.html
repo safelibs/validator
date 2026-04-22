@@ -1,0 +1,1030 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>glib Validation</title>
+    <link rel="icon" href="data:,">
+    <link rel="stylesheet" href="../assets/site.css">
+    <script defer src="../assets/player.js"></script>
+  </head>
+  <body data-site-data="../site-data.json">
+    <a class="skip-link" href="#tests-heading">Skip to tests</a>
+    <main>
+      <nav class="breadcrumb" aria-label="Breadcrumb"><a href="../index.html">All libraries</a></nav>
+      <section class="dashboard" aria-labelledby="dashboard-heading">
+        <h1 id="dashboard-heading">glib Validation</h1>
+        <div class="metric-grid">
+        <div class="metric" data-proof-total="libraries"><strong>1</strong><span>Libraries</span></div>
+        <div class="metric" data-proof-total="cases"><strong>15</strong><span>Tests</span></div>
+        <div class="metric" data-proof-total="source_cases"><strong>5</strong><span>Source tests</span></div>
+        <div class="metric" data-proof-total="usage_cases"><strong>10</strong><span>Usage tests</span></div>
+        <div class="metric" data-proof-total="passed"><strong>0 / 15</strong><span>Port tests passing</span></div>
+        <div class="metric" data-proof-total="failed"><strong>15</strong><span>Port tests failing</span></div>
+        <div class="metric" data-proof-total="casts"><strong>15 (50%)</strong><span>Evidence casts</span></div>
+        <div class="metric" data-proof-total="port_libraries"><strong>0 / 1</strong><span>Port libraries passing</span></div>
+        </div>
+      </section>
+
+      <section class="controls" aria-label="Testcase filters">
+        <label class="search-label">Search <input id="search-input" type="search" autocomplete="off" name="search"></label>
+        <label>Run mode <select id="mode-filter" name="mode"><option value="all">All</option><option value="original">Original</option><option value="port-04-test">Port</option></select></label>
+        <label>Status <select id="status-filter"><option value="all">All</option><option value="passed">Passed</option><option value="failed">Failed</option></select></label>
+        <label>Kind <select id="kind-filter"><option value="all">All</option><option value="source">Source</option><option value="usage">Usage</option></select></label>
+      </section>
+      <section id="testcases" class="testcases" aria-labelledby="tests-heading">
+        <h2 id="tests-heading">Tests</h2>
+        <details class="case-row" data-library="glib" data-testcase-id="hash-table-lookup" data-mode="original" data-kind="source" data-status="passed" data-player-cast="../evidence/original/casts/glib/hash-table-lookup.cast" data-search="glib hash-table-lookup original GLib hash table lookup Inserts and reads values through the GHashTable API. source api collection">
+          <summary>
+            <span class="case-title">
+              <strong>GLib hash table lookup</strong>
+              <span class="case-id">Original / glib / hash-table-lookup</span>
+            </span>
+            <span class="status-pill status-passed" aria-label="Original / glib / hash-table-lookup status: Passed">Passed</span>
+          </summary>
+          <div class="case-body">
+            <p>Inserts and reads values through the GHashTable API.</p>
+            <dl class="case-meta">
+              <div><dt>Run</dt><dd>Original</dd></div>
+              <div><dt>Kind</dt><dd>source</dd></div>
+              <div><dt>Client</dt><dd>none</dd></div>
+              <div><dt>Duration</dt><dd>0.00s</dd></div>
+              <div><dt>Tags</dt><dd class="tags"><span>api</span> <span>collection</span></dd></div>
+            </dl>
+            <div class="case-actions">
+              <a class="log-link" href="../evidence/original/logs/glib/hash-table-lookup.log" aria-label="Open log for Original / glib / hash-table-lookup">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/original/casts/glib/hash-table-lookup.cast" aria-label="Play cast for Original / glib / hash-table-lookup">Play</button>
+            </div>
+            <div class="cast-player" data-player>
+              <div class="player-controls">
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Original / glib / hash-table-lookup">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Original / glib / hash-table-lookup">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Original / glib / hash-table-lookup">Restart</button>
+                <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
+                <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
+              </div>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Original / glib / hash-table-lookup"></pre>
+            </div>
+          </div>
+        </details>
+        <details class="case-row" data-library="glib" data-testcase-id="main-loop-timeout" data-mode="original" data-kind="source" data-status="passed" data-player-cast="../evidence/original/casts/glib/main-loop-timeout.cast" data-search="glib main-loop-timeout original GLib main loop timeout Runs a GMainLoop until a timeout source updates state and exits. source api mainloop">
+          <summary>
+            <span class="case-title">
+              <strong>GLib main loop timeout</strong>
+              <span class="case-id">Original / glib / main-loop-timeout</span>
+            </span>
+            <span class="status-pill status-passed" aria-label="Original / glib / main-loop-timeout status: Passed">Passed</span>
+          </summary>
+          <div class="case-body">
+            <p>Runs a GMainLoop until a timeout source updates state and exits.</p>
+            <dl class="case-meta">
+              <div><dt>Run</dt><dd>Original</dd></div>
+              <div><dt>Kind</dt><dd>source</dd></div>
+              <div><dt>Client</dt><dd>none</dd></div>
+              <div><dt>Duration</dt><dd>0.00s</dd></div>
+              <div><dt>Tags</dt><dd class="tags"><span>api</span> <span>mainloop</span></dd></div>
+            </dl>
+            <div class="case-actions">
+              <a class="log-link" href="../evidence/original/logs/glib/main-loop-timeout.log" aria-label="Open log for Original / glib / main-loop-timeout">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/original/casts/glib/main-loop-timeout.cast" aria-label="Play cast for Original / glib / main-loop-timeout">Play</button>
+            </div>
+            <div class="cast-player" data-player>
+              <div class="player-controls">
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Original / glib / main-loop-timeout">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Original / glib / main-loop-timeout">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Original / glib / main-loop-timeout">Restart</button>
+                <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
+                <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
+              </div>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Original / glib / main-loop-timeout"></pre>
+            </div>
+          </div>
+        </details>
+        <details class="case-row" data-library="glib" data-testcase-id="variant-tuple-roundtrip" data-mode="original" data-kind="source" data-status="passed" data-player-cast="../evidence/original/casts/glib/variant-tuple-roundtrip.cast" data-search="glib variant-tuple-roundtrip original GLib variant tuple round trip Creates a GVariant tuple and reads the typed fields back. source api variant">
+          <summary>
+            <span class="case-title">
+              <strong>GLib variant tuple round trip</strong>
+              <span class="case-id">Original / glib / variant-tuple-roundtrip</span>
+            </span>
+            <span class="status-pill status-passed" aria-label="Original / glib / variant-tuple-roundtrip status: Passed">Passed</span>
+          </summary>
+          <div class="case-body">
+            <p>Creates a GVariant tuple and reads the typed fields back.</p>
+            <dl class="case-meta">
+              <div><dt>Run</dt><dd>Original</dd></div>
+              <div><dt>Kind</dt><dd>source</dd></div>
+              <div><dt>Client</dt><dd>none</dd></div>
+              <div><dt>Duration</dt><dd>0.00s</dd></div>
+              <div><dt>Tags</dt><dd class="tags"><span>api</span> <span>variant</span></dd></div>
+            </dl>
+            <div class="case-actions">
+              <a class="log-link" href="../evidence/original/logs/glib/variant-tuple-roundtrip.log" aria-label="Open log for Original / glib / variant-tuple-roundtrip">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/original/casts/glib/variant-tuple-roundtrip.cast" aria-label="Play cast for Original / glib / variant-tuple-roundtrip">Play</button>
+            </div>
+            <div class="cast-player" data-player>
+              <div class="player-controls">
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Original / glib / variant-tuple-roundtrip">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Original / glib / variant-tuple-roundtrip">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Original / glib / variant-tuple-roundtrip">Restart</button>
+                <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
+                <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
+              </div>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Original / glib / variant-tuple-roundtrip"></pre>
+            </div>
+          </div>
+        </details>
+        <details class="case-row" data-library="glib" data-testcase-id="key-file-roundtrip" data-mode="original" data-kind="source" data-status="passed" data-player-cast="../evidence/original/casts/glib/key-file-roundtrip.cast" data-search="glib key-file-roundtrip original GLib key file round trip Serializes and reloads a GKeyFile with string and integer values. source api keyfile">
+          <summary>
+            <span class="case-title">
+              <strong>GLib key file round trip</strong>
+              <span class="case-id">Original / glib / key-file-roundtrip</span>
+            </span>
+            <span class="status-pill status-passed" aria-label="Original / glib / key-file-roundtrip status: Passed">Passed</span>
+          </summary>
+          <div class="case-body">
+            <p>Serializes and reloads a GKeyFile with string and integer values.</p>
+            <dl class="case-meta">
+              <div><dt>Run</dt><dd>Original</dd></div>
+              <div><dt>Kind</dt><dd>source</dd></div>
+              <div><dt>Client</dt><dd>none</dd></div>
+              <div><dt>Duration</dt><dd>0.00s</dd></div>
+              <div><dt>Tags</dt><dd class="tags"><span>api</span> <span>keyfile</span></dd></div>
+            </dl>
+            <div class="case-actions">
+              <a class="log-link" href="../evidence/original/logs/glib/key-file-roundtrip.log" aria-label="Open log for Original / glib / key-file-roundtrip">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/original/casts/glib/key-file-roundtrip.cast" aria-label="Play cast for Original / glib / key-file-roundtrip">Play</button>
+            </div>
+            <div class="cast-player" data-player>
+              <div class="player-controls">
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Original / glib / key-file-roundtrip">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Original / glib / key-file-roundtrip">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Original / glib / key-file-roundtrip">Restart</button>
+                <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
+                <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
+              </div>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Original / glib / key-file-roundtrip"></pre>
+            </div>
+          </div>
+        </details>
+        <details class="case-row" data-library="glib" data-testcase-id="gio-file-roundtrip" data-mode="original" data-kind="source" data-status="passed" data-player-cast="../evidence/original/casts/glib/gio-file-roundtrip.cast" data-search="glib gio-file-roundtrip original GIO file round trip Writes and reads a file through GFile utility APIs. source api gio">
+          <summary>
+            <span class="case-title">
+              <strong>GIO file round trip</strong>
+              <span class="case-id">Original / glib / gio-file-roundtrip</span>
+            </span>
+            <span class="status-pill status-passed" aria-label="Original / glib / gio-file-roundtrip status: Passed">Passed</span>
+          </summary>
+          <div class="case-body">
+            <p>Writes and reads a file through GFile utility APIs.</p>
+            <dl class="case-meta">
+              <div><dt>Run</dt><dd>Original</dd></div>
+              <div><dt>Kind</dt><dd>source</dd></div>
+              <div><dt>Client</dt><dd>none</dd></div>
+              <div><dt>Duration</dt><dd>0.00s</dd></div>
+              <div><dt>Tags</dt><dd class="tags"><span>api</span> <span>gio</span></dd></div>
+            </dl>
+            <div class="case-actions">
+              <a class="log-link" href="../evidence/original/logs/glib/gio-file-roundtrip.log" aria-label="Open log for Original / glib / gio-file-roundtrip">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/original/casts/glib/gio-file-roundtrip.cast" aria-label="Play cast for Original / glib / gio-file-roundtrip">Play</button>
+            </div>
+            <div class="cast-player" data-player>
+              <div class="player-controls">
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Original / glib / gio-file-roundtrip">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Original / glib / gio-file-roundtrip">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Original / glib / gio-file-roundtrip">Restart</button>
+                <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
+                <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
+              </div>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Original / glib / gio-file-roundtrip"></pre>
+            </div>
+          </div>
+        </details>
+        <details class="case-row" data-library="glib" data-testcase-id="usage-gio-cat-file" data-mode="original" data-kind="usage" data-status="passed" data-player-cast="../evidence/original/casts/glib/usage-gio-cat-file.cast" data-search="glib usage-gio-cat-file original gio prints file content Reads a local file with gio cat and verifies the emitted bytes. usage gio usage gio">
+          <summary>
+            <span class="case-title">
+              <strong>gio prints file content</strong>
+              <span class="case-id">Original / glib / usage-gio-cat-file</span>
+            </span>
+            <span class="status-pill status-passed" aria-label="Original / glib / usage-gio-cat-file status: Passed">Passed</span>
+          </summary>
+          <div class="case-body">
+            <p>Reads a local file with gio cat and verifies the emitted bytes.</p>
+            <dl class="case-meta">
+              <div><dt>Run</dt><dd>Original</dd></div>
+              <div><dt>Kind</dt><dd>usage</dd></div>
+              <div><dt>Client</dt><dd>gio</dd></div>
+              <div><dt>Duration</dt><dd>0.00s</dd></div>
+              <div><dt>Tags</dt><dd class="tags"><span>usage</span> <span>gio</span></dd></div>
+            </dl>
+            <div class="case-actions">
+              <a class="log-link" href="../evidence/original/logs/glib/usage-gio-cat-file.log" aria-label="Open log for Original / glib / usage-gio-cat-file">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/original/casts/glib/usage-gio-cat-file.cast" aria-label="Play cast for Original / glib / usage-gio-cat-file">Play</button>
+            </div>
+            <div class="cast-player" data-player>
+              <div class="player-controls">
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Original / glib / usage-gio-cat-file">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Original / glib / usage-gio-cat-file">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Original / glib / usage-gio-cat-file">Restart</button>
+                <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
+                <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
+              </div>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Original / glib / usage-gio-cat-file"></pre>
+            </div>
+          </div>
+        </details>
+        <details class="case-row" data-library="glib" data-testcase-id="usage-gio-copy-file" data-mode="original" data-kind="usage" data-status="passed" data-player-cast="../evidence/original/casts/glib/usage-gio-copy-file.cast" data-search="glib usage-gio-copy-file original gio copies local file Copies a local file with gio copy and verifies the destination content. usage gio usage gio">
+          <summary>
+            <span class="case-title">
+              <strong>gio copies local file</strong>
+              <span class="case-id">Original / glib / usage-gio-copy-file</span>
+            </span>
+            <span class="status-pill status-passed" aria-label="Original / glib / usage-gio-copy-file status: Passed">Passed</span>
+          </summary>
+          <div class="case-body">
+            <p>Copies a local file with gio copy and verifies the destination content.</p>
+            <dl class="case-meta">
+              <div><dt>Run</dt><dd>Original</dd></div>
+              <div><dt>Kind</dt><dd>usage</dd></div>
+              <div><dt>Client</dt><dd>gio</dd></div>
+              <div><dt>Duration</dt><dd>0.00s</dd></div>
+              <div><dt>Tags</dt><dd class="tags"><span>usage</span> <span>gio</span></dd></div>
+            </dl>
+            <div class="case-actions">
+              <a class="log-link" href="../evidence/original/logs/glib/usage-gio-copy-file.log" aria-label="Open log for Original / glib / usage-gio-copy-file">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/original/casts/glib/usage-gio-copy-file.cast" aria-label="Play cast for Original / glib / usage-gio-copy-file">Play</button>
+            </div>
+            <div class="cast-player" data-player>
+              <div class="player-controls">
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Original / glib / usage-gio-copy-file">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Original / glib / usage-gio-copy-file">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Original / glib / usage-gio-copy-file">Restart</button>
+                <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
+                <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
+              </div>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Original / glib / usage-gio-copy-file"></pre>
+            </div>
+          </div>
+        </details>
+        <details class="case-row" data-library="glib" data-testcase-id="usage-gio-info-file" data-mode="original" data-kind="usage" data-status="passed" data-player-cast="../evidence/original/casts/glib/usage-gio-info-file.cast" data-search="glib usage-gio-info-file original gio reports file info Reads standard file metadata with gio info for a local fixture. usage gio usage gio">
+          <summary>
+            <span class="case-title">
+              <strong>gio reports file info</strong>
+              <span class="case-id">Original / glib / usage-gio-info-file</span>
+            </span>
+            <span class="status-pill status-passed" aria-label="Original / glib / usage-gio-info-file status: Passed">Passed</span>
+          </summary>
+          <div class="case-body">
+            <p>Reads standard file metadata with gio info for a local fixture.</p>
+            <dl class="case-meta">
+              <div><dt>Run</dt><dd>Original</dd></div>
+              <div><dt>Kind</dt><dd>usage</dd></div>
+              <div><dt>Client</dt><dd>gio</dd></div>
+              <div><dt>Duration</dt><dd>0.00s</dd></div>
+              <div><dt>Tags</dt><dd class="tags"><span>usage</span> <span>gio</span></dd></div>
+            </dl>
+            <div class="case-actions">
+              <a class="log-link" href="../evidence/original/logs/glib/usage-gio-info-file.log" aria-label="Open log for Original / glib / usage-gio-info-file">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/original/casts/glib/usage-gio-info-file.cast" aria-label="Play cast for Original / glib / usage-gio-info-file">Play</button>
+            </div>
+            <div class="cast-player" data-player>
+              <div class="player-controls">
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Original / glib / usage-gio-info-file">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Original / glib / usage-gio-info-file">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Original / glib / usage-gio-info-file">Restart</button>
+                <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
+                <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
+              </div>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Original / glib / usage-gio-info-file"></pre>
+            </div>
+          </div>
+        </details>
+        <details class="case-row" data-library="glib" data-testcase-id="usage-gio-content-type" data-mode="original" data-kind="usage" data-status="passed" data-player-cast="../evidence/original/casts/glib/usage-gio-content-type.cast" data-search="glib usage-gio-content-type original gio reports content type Queries the standard content-type attribute for a text file. usage gio usage gio">
+          <summary>
+            <span class="case-title">
+              <strong>gio reports content type</strong>
+              <span class="case-id">Original / glib / usage-gio-content-type</span>
+            </span>
+            <span class="status-pill status-passed" aria-label="Original / glib / usage-gio-content-type status: Passed">Passed</span>
+          </summary>
+          <div class="case-body">
+            <p>Queries the standard content-type attribute for a text file.</p>
+            <dl class="case-meta">
+              <div><dt>Run</dt><dd>Original</dd></div>
+              <div><dt>Kind</dt><dd>usage</dd></div>
+              <div><dt>Client</dt><dd>gio</dd></div>
+              <div><dt>Duration</dt><dd>0.00s</dd></div>
+              <div><dt>Tags</dt><dd class="tags"><span>usage</span> <span>gio</span></dd></div>
+            </dl>
+            <div class="case-actions">
+              <a class="log-link" href="../evidence/original/logs/glib/usage-gio-content-type.log" aria-label="Open log for Original / glib / usage-gio-content-type">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/original/casts/glib/usage-gio-content-type.cast" aria-label="Play cast for Original / glib / usage-gio-content-type">Play</button>
+            </div>
+            <div class="cast-player" data-player>
+              <div class="player-controls">
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Original / glib / usage-gio-content-type">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Original / glib / usage-gio-content-type">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Original / glib / usage-gio-content-type">Restart</button>
+                <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
+                <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
+              </div>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Original / glib / usage-gio-content-type"></pre>
+            </div>
+          </div>
+        </details>
+        <details class="case-row" data-library="glib" data-testcase-id="usage-glib-compile-schemas" data-mode="original" data-kind="usage" data-status="passed" data-player-cast="../evidence/original/casts/glib/usage-glib-compile-schemas.cast" data-search="glib usage-glib-compile-schemas original glib-compile-schemas builds schema Compiles a small GSettings schema into a binary schema cache. usage gio usage schema">
+          <summary>
+            <span class="case-title">
+              <strong>glib-compile-schemas builds schema</strong>
+              <span class="case-id">Original / glib / usage-glib-compile-schemas</span>
+            </span>
+            <span class="status-pill status-passed" aria-label="Original / glib / usage-glib-compile-schemas status: Passed">Passed</span>
+          </summary>
+          <div class="case-body">
+            <p>Compiles a small GSettings schema into a binary schema cache.</p>
+            <dl class="case-meta">
+              <div><dt>Run</dt><dd>Original</dd></div>
+              <div><dt>Kind</dt><dd>usage</dd></div>
+              <div><dt>Client</dt><dd>gio</dd></div>
+              <div><dt>Duration</dt><dd>0.00s</dd></div>
+              <div><dt>Tags</dt><dd class="tags"><span>usage</span> <span>schema</span></dd></div>
+            </dl>
+            <div class="case-actions">
+              <a class="log-link" href="../evidence/original/logs/glib/usage-glib-compile-schemas.log" aria-label="Open log for Original / glib / usage-glib-compile-schemas">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/original/casts/glib/usage-glib-compile-schemas.cast" aria-label="Play cast for Original / glib / usage-glib-compile-schemas">Play</button>
+            </div>
+            <div class="cast-player" data-player>
+              <div class="player-controls">
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Original / glib / usage-glib-compile-schemas">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Original / glib / usage-glib-compile-schemas">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Original / glib / usage-glib-compile-schemas">Restart</button>
+                <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
+                <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
+              </div>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Original / glib / usage-glib-compile-schemas"></pre>
+            </div>
+          </div>
+        </details>
+        <details class="case-row" data-library="glib" data-testcase-id="usage-gsettings-read-schema" data-mode="original" data-kind="usage" data-status="passed" data-player-cast="../evidence/original/casts/glib/usage-gsettings-read-schema.cast" data-search="glib usage-gsettings-read-schema original gsettings reads custom schema Reads a default value from a compiled custom GSettings schema. usage gio usage schema">
+          <summary>
+            <span class="case-title">
+              <strong>gsettings reads custom schema</strong>
+              <span class="case-id">Original / glib / usage-gsettings-read-schema</span>
+            </span>
+            <span class="status-pill status-passed" aria-label="Original / glib / usage-gsettings-read-schema status: Passed">Passed</span>
+          </summary>
+          <div class="case-body">
+            <p>Reads a default value from a compiled custom GSettings schema.</p>
+            <dl class="case-meta">
+              <div><dt>Run</dt><dd>Original</dd></div>
+              <div><dt>Kind</dt><dd>usage</dd></div>
+              <div><dt>Client</dt><dd>gio</dd></div>
+              <div><dt>Duration</dt><dd>0.00s</dd></div>
+              <div><dt>Tags</dt><dd class="tags"><span>usage</span> <span>schema</span></dd></div>
+            </dl>
+            <div class="case-actions">
+              <a class="log-link" href="../evidence/original/logs/glib/usage-gsettings-read-schema.log" aria-label="Open log for Original / glib / usage-gsettings-read-schema">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/original/casts/glib/usage-gsettings-read-schema.cast" aria-label="Play cast for Original / glib / usage-gsettings-read-schema">Play</button>
+            </div>
+            <div class="cast-player" data-player>
+              <div class="player-controls">
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Original / glib / usage-gsettings-read-schema">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Original / glib / usage-gsettings-read-schema">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Original / glib / usage-gsettings-read-schema">Restart</button>
+                <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
+                <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
+              </div>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Original / glib / usage-gsettings-read-schema"></pre>
+            </div>
+          </div>
+        </details>
+        <details class="case-row" data-library="glib" data-testcase-id="usage-python3-gi-mainloop" data-mode="original" data-kind="usage" data-status="passed" data-player-cast="../evidence/original/casts/glib/usage-python3-gi-mainloop.cast" data-search="glib usage-python3-gi-mainloop original PyGObject GLib main loop Runs a GLib MainLoop timeout through the PyGObject binding. usage python3-gi usage python">
+          <summary>
+            <span class="case-title">
+              <strong>PyGObject GLib main loop</strong>
+              <span class="case-id">Original / glib / usage-python3-gi-mainloop</span>
+            </span>
+            <span class="status-pill status-passed" aria-label="Original / glib / usage-python3-gi-mainloop status: Passed">Passed</span>
+          </summary>
+          <div class="case-body">
+            <p>Runs a GLib MainLoop timeout through the PyGObject binding.</p>
+            <dl class="case-meta">
+              <div><dt>Run</dt><dd>Original</dd></div>
+              <div><dt>Kind</dt><dd>usage</dd></div>
+              <div><dt>Client</dt><dd>python3-gi</dd></div>
+              <div><dt>Duration</dt><dd>0.00s</dd></div>
+              <div><dt>Tags</dt><dd class="tags"><span>usage</span> <span>python</span></dd></div>
+            </dl>
+            <div class="case-actions">
+              <a class="log-link" href="../evidence/original/logs/glib/usage-python3-gi-mainloop.log" aria-label="Open log for Original / glib / usage-python3-gi-mainloop">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/original/casts/glib/usage-python3-gi-mainloop.cast" aria-label="Play cast for Original / glib / usage-python3-gi-mainloop">Play</button>
+            </div>
+            <div class="cast-player" data-player>
+              <div class="player-controls">
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Original / glib / usage-python3-gi-mainloop">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Original / glib / usage-python3-gi-mainloop">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Original / glib / usage-python3-gi-mainloop">Restart</button>
+                <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
+                <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
+              </div>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Original / glib / usage-python3-gi-mainloop"></pre>
+            </div>
+          </div>
+        </details>
+        <details class="case-row" data-library="glib" data-testcase-id="usage-python3-gi-variant" data-mode="original" data-kind="usage" data-status="passed" data-player-cast="../evidence/original/casts/glib/usage-python3-gi-variant.cast" data-search="glib usage-python3-gi-variant original PyGObject GLib Variant Creates and unpacks a GLib Variant through the PyGObject binding. usage python3-gi usage python">
+          <summary>
+            <span class="case-title">
+              <strong>PyGObject GLib Variant</strong>
+              <span class="case-id">Original / glib / usage-python3-gi-variant</span>
+            </span>
+            <span class="status-pill status-passed" aria-label="Original / glib / usage-python3-gi-variant status: Passed">Passed</span>
+          </summary>
+          <div class="case-body">
+            <p>Creates and unpacks a GLib Variant through the PyGObject binding.</p>
+            <dl class="case-meta">
+              <div><dt>Run</dt><dd>Original</dd></div>
+              <div><dt>Kind</dt><dd>usage</dd></div>
+              <div><dt>Client</dt><dd>python3-gi</dd></div>
+              <div><dt>Duration</dt><dd>0.00s</dd></div>
+              <div><dt>Tags</dt><dd class="tags"><span>usage</span> <span>python</span></dd></div>
+            </dl>
+            <div class="case-actions">
+              <a class="log-link" href="../evidence/original/logs/glib/usage-python3-gi-variant.log" aria-label="Open log for Original / glib / usage-python3-gi-variant">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/original/casts/glib/usage-python3-gi-variant.cast" aria-label="Play cast for Original / glib / usage-python3-gi-variant">Play</button>
+            </div>
+            <div class="cast-player" data-player>
+              <div class="player-controls">
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Original / glib / usage-python3-gi-variant">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Original / glib / usage-python3-gi-variant">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Original / glib / usage-python3-gi-variant">Restart</button>
+                <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
+                <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
+              </div>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Original / glib / usage-python3-gi-variant"></pre>
+            </div>
+          </div>
+        </details>
+        <details class="case-row" data-library="glib" data-testcase-id="usage-python3-gi-keyfile" data-mode="original" data-kind="usage" data-status="passed" data-player-cast="../evidence/original/casts/glib/usage-python3-gi-keyfile.cast" data-search="glib usage-python3-gi-keyfile original PyGObject GLib KeyFile Reads an INI-style value with GLib KeyFile through PyGObject. usage python3-gi usage python">
+          <summary>
+            <span class="case-title">
+              <strong>PyGObject GLib KeyFile</strong>
+              <span class="case-id">Original / glib / usage-python3-gi-keyfile</span>
+            </span>
+            <span class="status-pill status-passed" aria-label="Original / glib / usage-python3-gi-keyfile status: Passed">Passed</span>
+          </summary>
+          <div class="case-body">
+            <p>Reads an INI-style value with GLib KeyFile through PyGObject.</p>
+            <dl class="case-meta">
+              <div><dt>Run</dt><dd>Original</dd></div>
+              <div><dt>Kind</dt><dd>usage</dd></div>
+              <div><dt>Client</dt><dd>python3-gi</dd></div>
+              <div><dt>Duration</dt><dd>0.00s</dd></div>
+              <div><dt>Tags</dt><dd class="tags"><span>usage</span> <span>python</span></dd></div>
+            </dl>
+            <div class="case-actions">
+              <a class="log-link" href="../evidence/original/logs/glib/usage-python3-gi-keyfile.log" aria-label="Open log for Original / glib / usage-python3-gi-keyfile">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/original/casts/glib/usage-python3-gi-keyfile.cast" aria-label="Play cast for Original / glib / usage-python3-gi-keyfile">Play</button>
+            </div>
+            <div class="cast-player" data-player>
+              <div class="player-controls">
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Original / glib / usage-python3-gi-keyfile">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Original / glib / usage-python3-gi-keyfile">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Original / glib / usage-python3-gi-keyfile">Restart</button>
+                <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
+                <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
+              </div>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Original / glib / usage-python3-gi-keyfile"></pre>
+            </div>
+          </div>
+        </details>
+        <details class="case-row" data-library="glib" data-testcase-id="usage-python3-gi-gio-file" data-mode="original" data-kind="usage" data-status="passed" data-player-cast="../evidence/original/casts/glib/usage-python3-gi-gio-file.cast" data-search="glib usage-python3-gi-gio-file original PyGObject Gio file read Loads file content through Gio APIs exposed by PyGObject. usage python3-gi usage python">
+          <summary>
+            <span class="case-title">
+              <strong>PyGObject Gio file read</strong>
+              <span class="case-id">Original / glib / usage-python3-gi-gio-file</span>
+            </span>
+            <span class="status-pill status-passed" aria-label="Original / glib / usage-python3-gi-gio-file status: Passed">Passed</span>
+          </summary>
+          <div class="case-body">
+            <p>Loads file content through Gio APIs exposed by PyGObject.</p>
+            <dl class="case-meta">
+              <div><dt>Run</dt><dd>Original</dd></div>
+              <div><dt>Kind</dt><dd>usage</dd></div>
+              <div><dt>Client</dt><dd>python3-gi</dd></div>
+              <div><dt>Duration</dt><dd>0.00s</dd></div>
+              <div><dt>Tags</dt><dd class="tags"><span>usage</span> <span>python</span></dd></div>
+            </dl>
+            <div class="case-actions">
+              <a class="log-link" href="../evidence/original/logs/glib/usage-python3-gi-gio-file.log" aria-label="Open log for Original / glib / usage-python3-gi-gio-file">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/original/casts/glib/usage-python3-gi-gio-file.cast" aria-label="Play cast for Original / glib / usage-python3-gi-gio-file">Play</button>
+            </div>
+            <div class="cast-player" data-player>
+              <div class="player-controls">
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Original / glib / usage-python3-gi-gio-file">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Original / glib / usage-python3-gi-gio-file">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Original / glib / usage-python3-gi-gio-file">Restart</button>
+                <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
+                <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
+              </div>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Original / glib / usage-python3-gi-gio-file"></pre>
+            </div>
+          </div>
+        </details>
+        <details class="case-row" data-library="glib" data-testcase-id="hash-table-lookup" data-mode="port-04-test" data-kind="source" data-status="failed" data-player-cast="" data-search="glib hash-table-lookup port-04-test GLib hash table lookup Inserts and reads values through the GHashTable API. source api collection">
+          <summary>
+            <span class="case-title">
+              <strong>GLib hash table lookup</strong>
+              <span class="case-id">Port / glib / hash-table-lookup</span>
+            </span>
+            <span class="status-pill status-failed" aria-label="Port / glib / hash-table-lookup status: Failed">Failed</span>
+          </summary>
+          <div class="case-body">
+            <p>Inserts and reads values through the GHashTable API.</p>
+            <dl class="case-meta">
+              <div><dt>Run</dt><dd>Port</dd></div>
+              <div><dt>Kind</dt><dd>source</dd></div>
+              <div><dt>Client</dt><dd>none</dd></div>
+              <div><dt>Duration</dt><dd>0.00s</dd></div>
+              <div><dt>Tags</dt><dd class="tags"><span>api</span> <span>collection</span></dd></div>
+            </dl>
+            <div class="case-actions">
+              <a class="log-link" href="../evidence/port-04-test/logs/glib/hash-table-lookup.log" aria-label="Open log for Port / glib / hash-table-lookup">Log</a>
+              <span class="muted">No cast</span>
+            </div>
+            <div class="cast-player" data-player>
+              <div class="player-controls">
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Port / glib / hash-table-lookup">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Port / glib / hash-table-lookup">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Port / glib / hash-table-lookup">Restart</button>
+                <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
+                <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
+              </div>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Port / glib / hash-table-lookup"></pre>
+            </div>
+          </div>
+        </details>
+        <details class="case-row" data-library="glib" data-testcase-id="main-loop-timeout" data-mode="port-04-test" data-kind="source" data-status="failed" data-player-cast="" data-search="glib main-loop-timeout port-04-test GLib main loop timeout Runs a GMainLoop until a timeout source updates state and exits. source api mainloop">
+          <summary>
+            <span class="case-title">
+              <strong>GLib main loop timeout</strong>
+              <span class="case-id">Port / glib / main-loop-timeout</span>
+            </span>
+            <span class="status-pill status-failed" aria-label="Port / glib / main-loop-timeout status: Failed">Failed</span>
+          </summary>
+          <div class="case-body">
+            <p>Runs a GMainLoop until a timeout source updates state and exits.</p>
+            <dl class="case-meta">
+              <div><dt>Run</dt><dd>Port</dd></div>
+              <div><dt>Kind</dt><dd>source</dd></div>
+              <div><dt>Client</dt><dd>none</dd></div>
+              <div><dt>Duration</dt><dd>0.00s</dd></div>
+              <div><dt>Tags</dt><dd class="tags"><span>api</span> <span>mainloop</span></dd></div>
+            </dl>
+            <div class="case-actions">
+              <a class="log-link" href="../evidence/port-04-test/logs/glib/main-loop-timeout.log" aria-label="Open log for Port / glib / main-loop-timeout">Log</a>
+              <span class="muted">No cast</span>
+            </div>
+            <div class="cast-player" data-player>
+              <div class="player-controls">
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Port / glib / main-loop-timeout">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Port / glib / main-loop-timeout">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Port / glib / main-loop-timeout">Restart</button>
+                <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
+                <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
+              </div>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Port / glib / main-loop-timeout"></pre>
+            </div>
+          </div>
+        </details>
+        <details class="case-row" data-library="glib" data-testcase-id="variant-tuple-roundtrip" data-mode="port-04-test" data-kind="source" data-status="failed" data-player-cast="" data-search="glib variant-tuple-roundtrip port-04-test GLib variant tuple round trip Creates a GVariant tuple and reads the typed fields back. source api variant">
+          <summary>
+            <span class="case-title">
+              <strong>GLib variant tuple round trip</strong>
+              <span class="case-id">Port / glib / variant-tuple-roundtrip</span>
+            </span>
+            <span class="status-pill status-failed" aria-label="Port / glib / variant-tuple-roundtrip status: Failed">Failed</span>
+          </summary>
+          <div class="case-body">
+            <p>Creates a GVariant tuple and reads the typed fields back.</p>
+            <dl class="case-meta">
+              <div><dt>Run</dt><dd>Port</dd></div>
+              <div><dt>Kind</dt><dd>source</dd></div>
+              <div><dt>Client</dt><dd>none</dd></div>
+              <div><dt>Duration</dt><dd>0.00s</dd></div>
+              <div><dt>Tags</dt><dd class="tags"><span>api</span> <span>variant</span></dd></div>
+            </dl>
+            <div class="case-actions">
+              <a class="log-link" href="../evidence/port-04-test/logs/glib/variant-tuple-roundtrip.log" aria-label="Open log for Port / glib / variant-tuple-roundtrip">Log</a>
+              <span class="muted">No cast</span>
+            </div>
+            <div class="cast-player" data-player>
+              <div class="player-controls">
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Port / glib / variant-tuple-roundtrip">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Port / glib / variant-tuple-roundtrip">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Port / glib / variant-tuple-roundtrip">Restart</button>
+                <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
+                <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
+              </div>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Port / glib / variant-tuple-roundtrip"></pre>
+            </div>
+          </div>
+        </details>
+        <details class="case-row" data-library="glib" data-testcase-id="key-file-roundtrip" data-mode="port-04-test" data-kind="source" data-status="failed" data-player-cast="" data-search="glib key-file-roundtrip port-04-test GLib key file round trip Serializes and reloads a GKeyFile with string and integer values. source api keyfile">
+          <summary>
+            <span class="case-title">
+              <strong>GLib key file round trip</strong>
+              <span class="case-id">Port / glib / key-file-roundtrip</span>
+            </span>
+            <span class="status-pill status-failed" aria-label="Port / glib / key-file-roundtrip status: Failed">Failed</span>
+          </summary>
+          <div class="case-body">
+            <p>Serializes and reloads a GKeyFile with string and integer values.</p>
+            <dl class="case-meta">
+              <div><dt>Run</dt><dd>Port</dd></div>
+              <div><dt>Kind</dt><dd>source</dd></div>
+              <div><dt>Client</dt><dd>none</dd></div>
+              <div><dt>Duration</dt><dd>0.00s</dd></div>
+              <div><dt>Tags</dt><dd class="tags"><span>api</span> <span>keyfile</span></dd></div>
+            </dl>
+            <div class="case-actions">
+              <a class="log-link" href="../evidence/port-04-test/logs/glib/key-file-roundtrip.log" aria-label="Open log for Port / glib / key-file-roundtrip">Log</a>
+              <span class="muted">No cast</span>
+            </div>
+            <div class="cast-player" data-player>
+              <div class="player-controls">
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Port / glib / key-file-roundtrip">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Port / glib / key-file-roundtrip">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Port / glib / key-file-roundtrip">Restart</button>
+                <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
+                <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
+              </div>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Port / glib / key-file-roundtrip"></pre>
+            </div>
+          </div>
+        </details>
+        <details class="case-row" data-library="glib" data-testcase-id="gio-file-roundtrip" data-mode="port-04-test" data-kind="source" data-status="failed" data-player-cast="" data-search="glib gio-file-roundtrip port-04-test GIO file round trip Writes and reads a file through GFile utility APIs. source api gio">
+          <summary>
+            <span class="case-title">
+              <strong>GIO file round trip</strong>
+              <span class="case-id">Port / glib / gio-file-roundtrip</span>
+            </span>
+            <span class="status-pill status-failed" aria-label="Port / glib / gio-file-roundtrip status: Failed">Failed</span>
+          </summary>
+          <div class="case-body">
+            <p>Writes and reads a file through GFile utility APIs.</p>
+            <dl class="case-meta">
+              <div><dt>Run</dt><dd>Port</dd></div>
+              <div><dt>Kind</dt><dd>source</dd></div>
+              <div><dt>Client</dt><dd>none</dd></div>
+              <div><dt>Duration</dt><dd>0.00s</dd></div>
+              <div><dt>Tags</dt><dd class="tags"><span>api</span> <span>gio</span></dd></div>
+            </dl>
+            <div class="case-actions">
+              <a class="log-link" href="../evidence/port-04-test/logs/glib/gio-file-roundtrip.log" aria-label="Open log for Port / glib / gio-file-roundtrip">Log</a>
+              <span class="muted">No cast</span>
+            </div>
+            <div class="cast-player" data-player>
+              <div class="player-controls">
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Port / glib / gio-file-roundtrip">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Port / glib / gio-file-roundtrip">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Port / glib / gio-file-roundtrip">Restart</button>
+                <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
+                <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
+              </div>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Port / glib / gio-file-roundtrip"></pre>
+            </div>
+          </div>
+        </details>
+        <details class="case-row" data-library="glib" data-testcase-id="usage-gio-cat-file" data-mode="port-04-test" data-kind="usage" data-status="failed" data-player-cast="" data-search="glib usage-gio-cat-file port-04-test gio prints file content Reads a local file with gio cat and verifies the emitted bytes. usage gio usage gio">
+          <summary>
+            <span class="case-title">
+              <strong>gio prints file content</strong>
+              <span class="case-id">Port / glib / usage-gio-cat-file</span>
+            </span>
+            <span class="status-pill status-failed" aria-label="Port / glib / usage-gio-cat-file status: Failed">Failed</span>
+          </summary>
+          <div class="case-body">
+            <p>Reads a local file with gio cat and verifies the emitted bytes.</p>
+            <dl class="case-meta">
+              <div><dt>Run</dt><dd>Port</dd></div>
+              <div><dt>Kind</dt><dd>usage</dd></div>
+              <div><dt>Client</dt><dd>gio</dd></div>
+              <div><dt>Duration</dt><dd>0.00s</dd></div>
+              <div><dt>Tags</dt><dd class="tags"><span>usage</span> <span>gio</span></dd></div>
+            </dl>
+            <div class="case-actions">
+              <a class="log-link" href="../evidence/port-04-test/logs/glib/usage-gio-cat-file.log" aria-label="Open log for Port / glib / usage-gio-cat-file">Log</a>
+              <span class="muted">No cast</span>
+            </div>
+            <div class="cast-player" data-player>
+              <div class="player-controls">
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Port / glib / usage-gio-cat-file">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Port / glib / usage-gio-cat-file">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Port / glib / usage-gio-cat-file">Restart</button>
+                <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
+                <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
+              </div>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Port / glib / usage-gio-cat-file"></pre>
+            </div>
+          </div>
+        </details>
+        <details class="case-row" data-library="glib" data-testcase-id="usage-gio-copy-file" data-mode="port-04-test" data-kind="usage" data-status="failed" data-player-cast="" data-search="glib usage-gio-copy-file port-04-test gio copies local file Copies a local file with gio copy and verifies the destination content. usage gio usage gio">
+          <summary>
+            <span class="case-title">
+              <strong>gio copies local file</strong>
+              <span class="case-id">Port / glib / usage-gio-copy-file</span>
+            </span>
+            <span class="status-pill status-failed" aria-label="Port / glib / usage-gio-copy-file status: Failed">Failed</span>
+          </summary>
+          <div class="case-body">
+            <p>Copies a local file with gio copy and verifies the destination content.</p>
+            <dl class="case-meta">
+              <div><dt>Run</dt><dd>Port</dd></div>
+              <div><dt>Kind</dt><dd>usage</dd></div>
+              <div><dt>Client</dt><dd>gio</dd></div>
+              <div><dt>Duration</dt><dd>0.00s</dd></div>
+              <div><dt>Tags</dt><dd class="tags"><span>usage</span> <span>gio</span></dd></div>
+            </dl>
+            <div class="case-actions">
+              <a class="log-link" href="../evidence/port-04-test/logs/glib/usage-gio-copy-file.log" aria-label="Open log for Port / glib / usage-gio-copy-file">Log</a>
+              <span class="muted">No cast</span>
+            </div>
+            <div class="cast-player" data-player>
+              <div class="player-controls">
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Port / glib / usage-gio-copy-file">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Port / glib / usage-gio-copy-file">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Port / glib / usage-gio-copy-file">Restart</button>
+                <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
+                <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
+              </div>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Port / glib / usage-gio-copy-file"></pre>
+            </div>
+          </div>
+        </details>
+        <details class="case-row" data-library="glib" data-testcase-id="usage-gio-info-file" data-mode="port-04-test" data-kind="usage" data-status="failed" data-player-cast="" data-search="glib usage-gio-info-file port-04-test gio reports file info Reads standard file metadata with gio info for a local fixture. usage gio usage gio">
+          <summary>
+            <span class="case-title">
+              <strong>gio reports file info</strong>
+              <span class="case-id">Port / glib / usage-gio-info-file</span>
+            </span>
+            <span class="status-pill status-failed" aria-label="Port / glib / usage-gio-info-file status: Failed">Failed</span>
+          </summary>
+          <div class="case-body">
+            <p>Reads standard file metadata with gio info for a local fixture.</p>
+            <dl class="case-meta">
+              <div><dt>Run</dt><dd>Port</dd></div>
+              <div><dt>Kind</dt><dd>usage</dd></div>
+              <div><dt>Client</dt><dd>gio</dd></div>
+              <div><dt>Duration</dt><dd>0.00s</dd></div>
+              <div><dt>Tags</dt><dd class="tags"><span>usage</span> <span>gio</span></dd></div>
+            </dl>
+            <div class="case-actions">
+              <a class="log-link" href="../evidence/port-04-test/logs/glib/usage-gio-info-file.log" aria-label="Open log for Port / glib / usage-gio-info-file">Log</a>
+              <span class="muted">No cast</span>
+            </div>
+            <div class="cast-player" data-player>
+              <div class="player-controls">
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Port / glib / usage-gio-info-file">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Port / glib / usage-gio-info-file">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Port / glib / usage-gio-info-file">Restart</button>
+                <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
+                <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
+              </div>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Port / glib / usage-gio-info-file"></pre>
+            </div>
+          </div>
+        </details>
+        <details class="case-row" data-library="glib" data-testcase-id="usage-gio-content-type" data-mode="port-04-test" data-kind="usage" data-status="failed" data-player-cast="" data-search="glib usage-gio-content-type port-04-test gio reports content type Queries the standard content-type attribute for a text file. usage gio usage gio">
+          <summary>
+            <span class="case-title">
+              <strong>gio reports content type</strong>
+              <span class="case-id">Port / glib / usage-gio-content-type</span>
+            </span>
+            <span class="status-pill status-failed" aria-label="Port / glib / usage-gio-content-type status: Failed">Failed</span>
+          </summary>
+          <div class="case-body">
+            <p>Queries the standard content-type attribute for a text file.</p>
+            <dl class="case-meta">
+              <div><dt>Run</dt><dd>Port</dd></div>
+              <div><dt>Kind</dt><dd>usage</dd></div>
+              <div><dt>Client</dt><dd>gio</dd></div>
+              <div><dt>Duration</dt><dd>0.00s</dd></div>
+              <div><dt>Tags</dt><dd class="tags"><span>usage</span> <span>gio</span></dd></div>
+            </dl>
+            <div class="case-actions">
+              <a class="log-link" href="../evidence/port-04-test/logs/glib/usage-gio-content-type.log" aria-label="Open log for Port / glib / usage-gio-content-type">Log</a>
+              <span class="muted">No cast</span>
+            </div>
+            <div class="cast-player" data-player>
+              <div class="player-controls">
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Port / glib / usage-gio-content-type">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Port / glib / usage-gio-content-type">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Port / glib / usage-gio-content-type">Restart</button>
+                <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
+                <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
+              </div>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Port / glib / usage-gio-content-type"></pre>
+            </div>
+          </div>
+        </details>
+        <details class="case-row" data-library="glib" data-testcase-id="usage-glib-compile-schemas" data-mode="port-04-test" data-kind="usage" data-status="failed" data-player-cast="" data-search="glib usage-glib-compile-schemas port-04-test glib-compile-schemas builds schema Compiles a small GSettings schema into a binary schema cache. usage gio usage schema">
+          <summary>
+            <span class="case-title">
+              <strong>glib-compile-schemas builds schema</strong>
+              <span class="case-id">Port / glib / usage-glib-compile-schemas</span>
+            </span>
+            <span class="status-pill status-failed" aria-label="Port / glib / usage-glib-compile-schemas status: Failed">Failed</span>
+          </summary>
+          <div class="case-body">
+            <p>Compiles a small GSettings schema into a binary schema cache.</p>
+            <dl class="case-meta">
+              <div><dt>Run</dt><dd>Port</dd></div>
+              <div><dt>Kind</dt><dd>usage</dd></div>
+              <div><dt>Client</dt><dd>gio</dd></div>
+              <div><dt>Duration</dt><dd>0.00s</dd></div>
+              <div><dt>Tags</dt><dd class="tags"><span>usage</span> <span>schema</span></dd></div>
+            </dl>
+            <div class="case-actions">
+              <a class="log-link" href="../evidence/port-04-test/logs/glib/usage-glib-compile-schemas.log" aria-label="Open log for Port / glib / usage-glib-compile-schemas">Log</a>
+              <span class="muted">No cast</span>
+            </div>
+            <div class="cast-player" data-player>
+              <div class="player-controls">
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Port / glib / usage-glib-compile-schemas">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Port / glib / usage-glib-compile-schemas">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Port / glib / usage-glib-compile-schemas">Restart</button>
+                <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
+                <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
+              </div>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Port / glib / usage-glib-compile-schemas"></pre>
+            </div>
+          </div>
+        </details>
+        <details class="case-row" data-library="glib" data-testcase-id="usage-gsettings-read-schema" data-mode="port-04-test" data-kind="usage" data-status="failed" data-player-cast="" data-search="glib usage-gsettings-read-schema port-04-test gsettings reads custom schema Reads a default value from a compiled custom GSettings schema. usage gio usage schema">
+          <summary>
+            <span class="case-title">
+              <strong>gsettings reads custom schema</strong>
+              <span class="case-id">Port / glib / usage-gsettings-read-schema</span>
+            </span>
+            <span class="status-pill status-failed" aria-label="Port / glib / usage-gsettings-read-schema status: Failed">Failed</span>
+          </summary>
+          <div class="case-body">
+            <p>Reads a default value from a compiled custom GSettings schema.</p>
+            <dl class="case-meta">
+              <div><dt>Run</dt><dd>Port</dd></div>
+              <div><dt>Kind</dt><dd>usage</dd></div>
+              <div><dt>Client</dt><dd>gio</dd></div>
+              <div><dt>Duration</dt><dd>0.00s</dd></div>
+              <div><dt>Tags</dt><dd class="tags"><span>usage</span> <span>schema</span></dd></div>
+            </dl>
+            <div class="case-actions">
+              <a class="log-link" href="../evidence/port-04-test/logs/glib/usage-gsettings-read-schema.log" aria-label="Open log for Port / glib / usage-gsettings-read-schema">Log</a>
+              <span class="muted">No cast</span>
+            </div>
+            <div class="cast-player" data-player>
+              <div class="player-controls">
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Port / glib / usage-gsettings-read-schema">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Port / glib / usage-gsettings-read-schema">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Port / glib / usage-gsettings-read-schema">Restart</button>
+                <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
+                <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
+              </div>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Port / glib / usage-gsettings-read-schema"></pre>
+            </div>
+          </div>
+        </details>
+        <details class="case-row" data-library="glib" data-testcase-id="usage-python3-gi-mainloop" data-mode="port-04-test" data-kind="usage" data-status="failed" data-player-cast="" data-search="glib usage-python3-gi-mainloop port-04-test PyGObject GLib main loop Runs a GLib MainLoop timeout through the PyGObject binding. usage python3-gi usage python">
+          <summary>
+            <span class="case-title">
+              <strong>PyGObject GLib main loop</strong>
+              <span class="case-id">Port / glib / usage-python3-gi-mainloop</span>
+            </span>
+            <span class="status-pill status-failed" aria-label="Port / glib / usage-python3-gi-mainloop status: Failed">Failed</span>
+          </summary>
+          <div class="case-body">
+            <p>Runs a GLib MainLoop timeout through the PyGObject binding.</p>
+            <dl class="case-meta">
+              <div><dt>Run</dt><dd>Port</dd></div>
+              <div><dt>Kind</dt><dd>usage</dd></div>
+              <div><dt>Client</dt><dd>python3-gi</dd></div>
+              <div><dt>Duration</dt><dd>0.00s</dd></div>
+              <div><dt>Tags</dt><dd class="tags"><span>usage</span> <span>python</span></dd></div>
+            </dl>
+            <div class="case-actions">
+              <a class="log-link" href="../evidence/port-04-test/logs/glib/usage-python3-gi-mainloop.log" aria-label="Open log for Port / glib / usage-python3-gi-mainloop">Log</a>
+              <span class="muted">No cast</span>
+            </div>
+            <div class="cast-player" data-player>
+              <div class="player-controls">
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Port / glib / usage-python3-gi-mainloop">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Port / glib / usage-python3-gi-mainloop">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Port / glib / usage-python3-gi-mainloop">Restart</button>
+                <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
+                <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
+              </div>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Port / glib / usage-python3-gi-mainloop"></pre>
+            </div>
+          </div>
+        </details>
+        <details class="case-row" data-library="glib" data-testcase-id="usage-python3-gi-variant" data-mode="port-04-test" data-kind="usage" data-status="failed" data-player-cast="" data-search="glib usage-python3-gi-variant port-04-test PyGObject GLib Variant Creates and unpacks a GLib Variant through the PyGObject binding. usage python3-gi usage python">
+          <summary>
+            <span class="case-title">
+              <strong>PyGObject GLib Variant</strong>
+              <span class="case-id">Port / glib / usage-python3-gi-variant</span>
+            </span>
+            <span class="status-pill status-failed" aria-label="Port / glib / usage-python3-gi-variant status: Failed">Failed</span>
+          </summary>
+          <div class="case-body">
+            <p>Creates and unpacks a GLib Variant through the PyGObject binding.</p>
+            <dl class="case-meta">
+              <div><dt>Run</dt><dd>Port</dd></div>
+              <div><dt>Kind</dt><dd>usage</dd></div>
+              <div><dt>Client</dt><dd>python3-gi</dd></div>
+              <div><dt>Duration</dt><dd>0.00s</dd></div>
+              <div><dt>Tags</dt><dd class="tags"><span>usage</span> <span>python</span></dd></div>
+            </dl>
+            <div class="case-actions">
+              <a class="log-link" href="../evidence/port-04-test/logs/glib/usage-python3-gi-variant.log" aria-label="Open log for Port / glib / usage-python3-gi-variant">Log</a>
+              <span class="muted">No cast</span>
+            </div>
+            <div class="cast-player" data-player>
+              <div class="player-controls">
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Port / glib / usage-python3-gi-variant">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Port / glib / usage-python3-gi-variant">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Port / glib / usage-python3-gi-variant">Restart</button>
+                <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
+                <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
+              </div>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Port / glib / usage-python3-gi-variant"></pre>
+            </div>
+          </div>
+        </details>
+        <details class="case-row" data-library="glib" data-testcase-id="usage-python3-gi-keyfile" data-mode="port-04-test" data-kind="usage" data-status="failed" data-player-cast="" data-search="glib usage-python3-gi-keyfile port-04-test PyGObject GLib KeyFile Reads an INI-style value with GLib KeyFile through PyGObject. usage python3-gi usage python">
+          <summary>
+            <span class="case-title">
+              <strong>PyGObject GLib KeyFile</strong>
+              <span class="case-id">Port / glib / usage-python3-gi-keyfile</span>
+            </span>
+            <span class="status-pill status-failed" aria-label="Port / glib / usage-python3-gi-keyfile status: Failed">Failed</span>
+          </summary>
+          <div class="case-body">
+            <p>Reads an INI-style value with GLib KeyFile through PyGObject.</p>
+            <dl class="case-meta">
+              <div><dt>Run</dt><dd>Port</dd></div>
+              <div><dt>Kind</dt><dd>usage</dd></div>
+              <div><dt>Client</dt><dd>python3-gi</dd></div>
+              <div><dt>Duration</dt><dd>0.00s</dd></div>
+              <div><dt>Tags</dt><dd class="tags"><span>usage</span> <span>python</span></dd></div>
+            </dl>
+            <div class="case-actions">
+              <a class="log-link" href="../evidence/port-04-test/logs/glib/usage-python3-gi-keyfile.log" aria-label="Open log for Port / glib / usage-python3-gi-keyfile">Log</a>
+              <span class="muted">No cast</span>
+            </div>
+            <div class="cast-player" data-player>
+              <div class="player-controls">
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Port / glib / usage-python3-gi-keyfile">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Port / glib / usage-python3-gi-keyfile">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Port / glib / usage-python3-gi-keyfile">Restart</button>
+                <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
+                <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
+              </div>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Port / glib / usage-python3-gi-keyfile"></pre>
+            </div>
+          </div>
+        </details>
+        <details class="case-row" data-library="glib" data-testcase-id="usage-python3-gi-gio-file" data-mode="port-04-test" data-kind="usage" data-status="failed" data-player-cast="" data-search="glib usage-python3-gi-gio-file port-04-test PyGObject Gio file read Loads file content through Gio APIs exposed by PyGObject. usage python3-gi usage python">
+          <summary>
+            <span class="case-title">
+              <strong>PyGObject Gio file read</strong>
+              <span class="case-id">Port / glib / usage-python3-gi-gio-file</span>
+            </span>
+            <span class="status-pill status-failed" aria-label="Port / glib / usage-python3-gi-gio-file status: Failed">Failed</span>
+          </summary>
+          <div class="case-body">
+            <p>Loads file content through Gio APIs exposed by PyGObject.</p>
+            <dl class="case-meta">
+              <div><dt>Run</dt><dd>Port</dd></div>
+              <div><dt>Kind</dt><dd>usage</dd></div>
+              <div><dt>Client</dt><dd>python3-gi</dd></div>
+              <div><dt>Duration</dt><dd>0.00s</dd></div>
+              <div><dt>Tags</dt><dd class="tags"><span>usage</span> <span>python</span></dd></div>
+            </dl>
+            <div class="case-actions">
+              <a class="log-link" href="../evidence/port-04-test/logs/glib/usage-python3-gi-gio-file.log" aria-label="Open log for Port / glib / usage-python3-gi-gio-file">Log</a>
+              <span class="muted">No cast</span>
+            </div>
+            <div class="cast-player" data-player>
+              <div class="player-controls">
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Port / glib / usage-python3-gi-gio-file">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Port / glib / usage-python3-gi-gio-file">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Port / glib / usage-python3-gi-gio-file">Restart</button>
+                <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
+                <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
+              </div>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Port / glib / usage-python3-gi-gio-file"></pre>
+            </div>
+          </div>
+        </details>
+      </section>
+    </main>
+  </body>
+</html>

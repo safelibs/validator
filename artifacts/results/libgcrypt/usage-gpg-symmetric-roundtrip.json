@@ -1,0 +1,33 @@
+{
+  "schema_version": 2,
+  "library": "libgcrypt",
+  "mode": "original",
+  "testcase_id": "usage-gpg-symmetric-roundtrip",
+  "title": "GnuPG symmetric round trip",
+  "description": "Encrypts and decrypts a file with a passphrase-backed symmetric cipher.",
+  "kind": "usage",
+  "client_application": "gpg",
+  "tags": [
+    "usage",
+    "crypto"
+  ],
+  "requires": [],
+  "status": "passed",
+  "started_at": "1970-01-01T00:00:00Z",
+  "finished_at": "1970-01-01T00:00:00Z",
+  "duration_seconds": 0.0,
+  "result_path": "results/libgcrypt/usage-gpg-symmetric-roundtrip.json",
+  "log_path": "logs/libgcrypt/usage-gpg-symmetric-roundtrip.log",
+  "cast_path": "casts/libgcrypt/usage-gpg-symmetric-roundtrip.cast",
+  "exit_code": 0,
+  "command": [
+    "bash",
+    "/validator/tests/libgcrypt/tests/cases/usage/run.sh",
+    "usage-gpg-symmetric-roundtrip"
+  ],
+  "apt_packages": [
+    "libgcrypt20",
+    "libgcrypt20-dev"
+  ],
+  "override_debs_installed": false
+}

@@ -1,0 +1,33 @@
+{
+  "schema_version": 2,
+  "library": "libgcrypt",
+  "mode": "original",
+  "testcase_id": "usage-gpg-version-libgcrypt",
+  "title": "GnuPG reports libgcrypt",
+  "description": "Runs gpg --version and verifies it reports the linked libgcrypt version.",
+  "kind": "usage",
+  "client_application": "gpg",
+  "tags": [
+    "usage",
+    "crypto"
+  ],
+  "requires": [],
+  "status": "passed",
+  "started_at": "1970-01-01T00:00:00Z",
+  "finished_at": "1970-01-01T00:00:00Z",
+  "duration_seconds": 0.0,
+  "result_path": "results/libgcrypt/usage-gpg-version-libgcrypt.json",
+  "log_path": "logs/libgcrypt/usage-gpg-version-libgcrypt.log",
+  "cast_path": "casts/libgcrypt/usage-gpg-version-libgcrypt.cast",
+  "exit_code": 0,
+  "command": [
+    "bash",
+    "/validator/tests/libgcrypt/tests/cases/usage/run.sh",
+    "usage-gpg-version-libgcrypt"
+  ],
+  "apt_packages": [
+    "libgcrypt20",
+    "libgcrypt20-dev"
+  ],
+  "override_debs_installed": false
+}

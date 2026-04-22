@@ -1,0 +1,34 @@
+{
+  "schema_version": 2,
+  "library": "libcurl",
+  "mode": "original",
+  "testcase_id": "usage-curl-version-features",
+  "title": "curl reports protocol support",
+  "description": "Reads curl --version output and verifies HTTP protocol support is advertised.",
+  "kind": "usage",
+  "client_application": "curl",
+  "tags": [
+    "usage",
+    "version"
+  ],
+  "requires": [],
+  "status": "passed",
+  "started_at": "1970-01-01T00:00:00Z",
+  "finished_at": "1970-01-01T00:00:00Z",
+  "duration_seconds": 0.0,
+  "result_path": "results/libcurl/usage-curl-version-features.json",
+  "log_path": "logs/libcurl/usage-curl-version-features.log",
+  "cast_path": "casts/libcurl/usage-curl-version-features.cast",
+  "exit_code": 0,
+  "command": [
+    "bash",
+    "/validator/tests/libcurl/tests/cases/usage/run.sh",
+    "usage-curl-version-features"
+  ],
+  "apt_packages": [
+    "curl",
+    "libcurl4t64",
+    "libcurl4-openssl-dev"
+  ],
+  "override_debs_installed": false
+}

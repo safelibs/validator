@@ -1,0 +1,45 @@
+{
+  "schema_version": 2,
+  "library": "libgcrypt",
+  "mode": "port-04-test",
+  "testcase_id": "hmac-sha256-smoke",
+  "title": "libgcrypt HMAC digest",
+  "description": "Computes an HMAC through gcry_md_open with the HMAC flag.",
+  "kind": "source",
+  "client_application": null,
+  "tags": [
+    "api",
+    "crypto"
+  ],
+  "requires": [],
+  "status": "failed",
+  "started_at": "1970-01-01T00:00:00Z",
+  "finished_at": "1970-01-01T00:00:00Z",
+  "duration_seconds": 0.0,
+  "result_path": "port-04-test/results/libgcrypt/hmac-sha256-smoke.json",
+  "log_path": "port-04-test/logs/libgcrypt/hmac-sha256-smoke.log",
+  "cast_path": null,
+  "exit_code": 1,
+  "command": [
+    "bash",
+    "/validator/tests/libgcrypt/tests/cases/source/run.sh",
+    "hmac-sha256-smoke"
+  ],
+  "apt_packages": [
+    "libgcrypt20",
+    "libgcrypt20-dev"
+  ],
+  "override_debs_installed": false,
+  "port_repository": "safelibs/port-libgcrypt",
+  "port_tag_ref": "refs/tags/libgcrypt/04-test",
+  "port_commit": null,
+  "port_release_tag": null,
+  "port_debs": [],
+  "unported_original_packages": [
+    "libgcrypt20",
+    "libgcrypt20-dev"
+  ],
+  "override_installed_packages": [],
+  "port_unavailable_reason": "no phase tags at or after refs/tags/libgcrypt/04-test were found in safelibs/port-libgcrypt",
+  "error": "no phase tags at or after refs/tags/libgcrypt/04-test were found in safelibs/port-libgcrypt"
+}

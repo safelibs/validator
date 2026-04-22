@@ -1,0 +1,1030 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>libcurl Validation</title>
+    <link rel="icon" href="data:,">
+    <link rel="stylesheet" href="../assets/site.css">
+    <script defer src="../assets/player.js"></script>
+  </head>
+  <body data-site-data="../site-data.json">
+    <a class="skip-link" href="#tests-heading">Skip to tests</a>
+    <main>
+      <nav class="breadcrumb" aria-label="Breadcrumb"><a href="../index.html">All libraries</a></nav>
+      <section class="dashboard" aria-labelledby="dashboard-heading">
+        <h1 id="dashboard-heading">libcurl Validation</h1>
+        <div class="metric-grid">
+        <div class="metric" data-proof-total="libraries"><strong>1</strong><span>Libraries</span></div>
+        <div class="metric" data-proof-total="cases"><strong>15</strong><span>Tests</span></div>
+        <div class="metric" data-proof-total="source_cases"><strong>5</strong><span>Source tests</span></div>
+        <div class="metric" data-proof-total="usage_cases"><strong>10</strong><span>Usage tests</span></div>
+        <div class="metric" data-proof-total="passed"><strong>0 / 15</strong><span>Port tests passing</span></div>
+        <div class="metric" data-proof-total="failed"><strong>15</strong><span>Port tests failing</span></div>
+        <div class="metric" data-proof-total="casts"><strong>15 (50%)</strong><span>Evidence casts</span></div>
+        <div class="metric" data-proof-total="port_libraries"><strong>0 / 1</strong><span>Port libraries passing</span></div>
+        </div>
+      </section>
+
+      <section class="controls" aria-label="Testcase filters">
+        <label class="search-label">Search <input id="search-input" type="search" autocomplete="off" name="search"></label>
+        <label>Run mode <select id="mode-filter" name="mode"><option value="all">All</option><option value="original">Original</option><option value="port-04-test">Port</option></select></label>
+        <label>Status <select id="status-filter"><option value="all">All</option><option value="passed">Passed</option><option value="failed">Failed</option></select></label>
+        <label>Kind <select id="kind-filter"><option value="all">All</option><option value="source">Source</option><option value="usage">Usage</option></select></label>
+      </section>
+      <section id="testcases" class="testcases" aria-labelledby="tests-heading">
+        <h2 id="tests-heading">Tests</h2>
+        <details class="case-row" data-library="libcurl" data-testcase-id="version-info-smoke" data-mode="original" data-kind="source" data-status="passed" data-player-cast="../evidence/original/casts/libcurl/version-info-smoke.cast" data-search="libcurl version-info-smoke original libcurl version info Reads libcurl version and SSL backend metadata through curl_version_info. source api version">
+          <summary>
+            <span class="case-title">
+              <strong>libcurl version info</strong>
+              <span class="case-id">Original / libcurl / version-info-smoke</span>
+            </span>
+            <span class="status-pill status-passed" aria-label="Original / libcurl / version-info-smoke status: Passed">Passed</span>
+          </summary>
+          <div class="case-body">
+            <p>Reads libcurl version and SSL backend metadata through curl_version_info.</p>
+            <dl class="case-meta">
+              <div><dt>Run</dt><dd>Original</dd></div>
+              <div><dt>Kind</dt><dd>source</dd></div>
+              <div><dt>Client</dt><dd>none</dd></div>
+              <div><dt>Duration</dt><dd>0.00s</dd></div>
+              <div><dt>Tags</dt><dd class="tags"><span>api</span> <span>version</span></dd></div>
+            </dl>
+            <div class="case-actions">
+              <a class="log-link" href="../evidence/original/logs/libcurl/version-info-smoke.log" aria-label="Open log for Original / libcurl / version-info-smoke">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/original/casts/libcurl/version-info-smoke.cast" aria-label="Play cast for Original / libcurl / version-info-smoke">Play</button>
+            </div>
+            <div class="cast-player" data-player>
+              <div class="player-controls">
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Original / libcurl / version-info-smoke">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Original / libcurl / version-info-smoke">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Original / libcurl / version-info-smoke">Restart</button>
+                <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
+                <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
+              </div>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Original / libcurl / version-info-smoke"></pre>
+            </div>
+          </div>
+        </details>
+        <details class="case-row" data-library="libcurl" data-testcase-id="easy-file-read" data-mode="original" data-kind="source" data-status="passed" data-player-cast="../evidence/original/casts/libcurl/easy-file-read.cast" data-search="libcurl easy-file-read original libcurl file URL read Downloads a local file URL through the easy interface and write callback. source api transfer">
+          <summary>
+            <span class="case-title">
+              <strong>libcurl file URL read</strong>
+              <span class="case-id">Original / libcurl / easy-file-read</span>
+            </span>
+            <span class="status-pill status-passed" aria-label="Original / libcurl / easy-file-read status: Passed">Passed</span>
+          </summary>
+          <div class="case-body">
+            <p>Downloads a local file URL through the easy interface and write callback.</p>
+            <dl class="case-meta">
+              <div><dt>Run</dt><dd>Original</dd></div>
+              <div><dt>Kind</dt><dd>source</dd></div>
+              <div><dt>Client</dt><dd>none</dd></div>
+              <div><dt>Duration</dt><dd>0.00s</dd></div>
+              <div><dt>Tags</dt><dd class="tags"><span>api</span> <span>transfer</span></dd></div>
+            </dl>
+            <div class="case-actions">
+              <a class="log-link" href="../evidence/original/logs/libcurl/easy-file-read.log" aria-label="Open log for Original / libcurl / easy-file-read">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/original/casts/libcurl/easy-file-read.cast" aria-label="Play cast for Original / libcurl / easy-file-read">Play</button>
+            </div>
+            <div class="cast-player" data-player>
+              <div class="player-controls">
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Original / libcurl / easy-file-read">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Original / libcurl / easy-file-read">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Original / libcurl / easy-file-read">Restart</button>
+                <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
+                <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
+              </div>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Original / libcurl / easy-file-read"></pre>
+            </div>
+          </div>
+        </details>
+        <details class="case-row" data-library="libcurl" data-testcase-id="escape-unescape-roundtrip" data-mode="original" data-kind="source" data-status="passed" data-player-cast="../evidence/original/casts/libcurl/escape-unescape-roundtrip.cast" data-search="libcurl escape-unescape-roundtrip original libcurl URL escape round trip Escapes and unescapes a string with public libcurl URL helpers. source api url">
+          <summary>
+            <span class="case-title">
+              <strong>libcurl URL escape round trip</strong>
+              <span class="case-id">Original / libcurl / escape-unescape-roundtrip</span>
+            </span>
+            <span class="status-pill status-passed" aria-label="Original / libcurl / escape-unescape-roundtrip status: Passed">Passed</span>
+          </summary>
+          <div class="case-body">
+            <p>Escapes and unescapes a string with public libcurl URL helpers.</p>
+            <dl class="case-meta">
+              <div><dt>Run</dt><dd>Original</dd></div>
+              <div><dt>Kind</dt><dd>source</dd></div>
+              <div><dt>Client</dt><dd>none</dd></div>
+              <div><dt>Duration</dt><dd>0.00s</dd></div>
+              <div><dt>Tags</dt><dd class="tags"><span>api</span> <span>url</span></dd></div>
+            </dl>
+            <div class="case-actions">
+              <a class="log-link" href="../evidence/original/logs/libcurl/escape-unescape-roundtrip.log" aria-label="Open log for Original / libcurl / escape-unescape-roundtrip">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/original/casts/libcurl/escape-unescape-roundtrip.cast" aria-label="Play cast for Original / libcurl / escape-unescape-roundtrip">Play</button>
+            </div>
+            <div class="cast-player" data-player>
+              <div class="player-controls">
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Original / libcurl / escape-unescape-roundtrip">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Original / libcurl / escape-unescape-roundtrip">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Original / libcurl / escape-unescape-roundtrip">Restart</button>
+                <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
+                <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
+              </div>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Original / libcurl / escape-unescape-roundtrip"></pre>
+            </div>
+          </div>
+        </details>
+        <details class="case-row" data-library="libcurl" data-testcase-id="slist-header-build" data-mode="original" data-kind="source" data-status="passed" data-player-cast="../evidence/original/casts/libcurl/slist-header-build.cast" data-search="libcurl slist-header-build original libcurl slist header build Builds and frees a curl_slist of HTTP headers. source api headers">
+          <summary>
+            <span class="case-title">
+              <strong>libcurl slist header build</strong>
+              <span class="case-id">Original / libcurl / slist-header-build</span>
+            </span>
+            <span class="status-pill status-passed" aria-label="Original / libcurl / slist-header-build status: Passed">Passed</span>
+          </summary>
+          <div class="case-body">
+            <p>Builds and frees a curl_slist of HTTP headers.</p>
+            <dl class="case-meta">
+              <div><dt>Run</dt><dd>Original</dd></div>
+              <div><dt>Kind</dt><dd>source</dd></div>
+              <div><dt>Client</dt><dd>none</dd></div>
+              <div><dt>Duration</dt><dd>0.00s</dd></div>
+              <div><dt>Tags</dt><dd class="tags"><span>api</span> <span>headers</span></dd></div>
+            </dl>
+            <div class="case-actions">
+              <a class="log-link" href="../evidence/original/logs/libcurl/slist-header-build.log" aria-label="Open log for Original / libcurl / slist-header-build">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/original/casts/libcurl/slist-header-build.cast" aria-label="Play cast for Original / libcurl / slist-header-build">Play</button>
+            </div>
+            <div class="cast-player" data-player>
+              <div class="player-controls">
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Original / libcurl / slist-header-build">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Original / libcurl / slist-header-build">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Original / libcurl / slist-header-build">Restart</button>
+                <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
+                <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
+              </div>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Original / libcurl / slist-header-build"></pre>
+            </div>
+          </div>
+        </details>
+        <details class="case-row" data-library="libcurl" data-testcase-id="http-status-local" data-mode="original" data-kind="source" data-status="passed" data-player-cast="../evidence/original/casts/libcurl/http-status-local.cast" data-search="libcurl http-status-local original libcurl local HTTP status Requests a local HTTP fixture and verifies the returned response code. source api http">
+          <summary>
+            <span class="case-title">
+              <strong>libcurl local HTTP status</strong>
+              <span class="case-id">Original / libcurl / http-status-local</span>
+            </span>
+            <span class="status-pill status-passed" aria-label="Original / libcurl / http-status-local status: Passed">Passed</span>
+          </summary>
+          <div class="case-body">
+            <p>Requests a local HTTP fixture and verifies the returned response code.</p>
+            <dl class="case-meta">
+              <div><dt>Run</dt><dd>Original</dd></div>
+              <div><dt>Kind</dt><dd>source</dd></div>
+              <div><dt>Client</dt><dd>none</dd></div>
+              <div><dt>Duration</dt><dd>0.00s</dd></div>
+              <div><dt>Tags</dt><dd class="tags"><span>api</span> <span>http</span></dd></div>
+            </dl>
+            <div class="case-actions">
+              <a class="log-link" href="../evidence/original/logs/libcurl/http-status-local.log" aria-label="Open log for Original / libcurl / http-status-local">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/original/casts/libcurl/http-status-local.cast" aria-label="Play cast for Original / libcurl / http-status-local">Play</button>
+            </div>
+            <div class="cast-player" data-player>
+              <div class="player-controls">
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Original / libcurl / http-status-local">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Original / libcurl / http-status-local">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Original / libcurl / http-status-local">Restart</button>
+                <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
+                <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
+              </div>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Original / libcurl / http-status-local"></pre>
+            </div>
+          </div>
+        </details>
+        <details class="case-row" data-library="libcurl" data-testcase-id="usage-curl-http-get" data-mode="original" data-kind="usage" data-status="passed" data-player-cast="../evidence/original/casts/libcurl/usage-curl-http-get.cast" data-search="libcurl usage-curl-http-get original curl downloads HTTP body Fetches a text fixture from a local HTTP server and verifies the body. usage curl usage http">
+          <summary>
+            <span class="case-title">
+              <strong>curl downloads HTTP body</strong>
+              <span class="case-id">Original / libcurl / usage-curl-http-get</span>
+            </span>
+            <span class="status-pill status-passed" aria-label="Original / libcurl / usage-curl-http-get status: Passed">Passed</span>
+          </summary>
+          <div class="case-body">
+            <p>Fetches a text fixture from a local HTTP server and verifies the body.</p>
+            <dl class="case-meta">
+              <div><dt>Run</dt><dd>Original</dd></div>
+              <div><dt>Kind</dt><dd>usage</dd></div>
+              <div><dt>Client</dt><dd>curl</dd></div>
+              <div><dt>Duration</dt><dd>0.00s</dd></div>
+              <div><dt>Tags</dt><dd class="tags"><span>usage</span> <span>http</span></dd></div>
+            </dl>
+            <div class="case-actions">
+              <a class="log-link" href="../evidence/original/logs/libcurl/usage-curl-http-get.log" aria-label="Open log for Original / libcurl / usage-curl-http-get">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/original/casts/libcurl/usage-curl-http-get.cast" aria-label="Play cast for Original / libcurl / usage-curl-http-get">Play</button>
+            </div>
+            <div class="cast-player" data-player>
+              <div class="player-controls">
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Original / libcurl / usage-curl-http-get">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Original / libcurl / usage-curl-http-get">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Original / libcurl / usage-curl-http-get">Restart</button>
+                <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
+                <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
+              </div>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Original / libcurl / usage-curl-http-get"></pre>
+            </div>
+          </div>
+        </details>
+        <details class="case-row" data-library="libcurl" data-testcase-id="usage-curl-head-request" data-mode="original" data-kind="usage" data-status="passed" data-player-cast="../evidence/original/casts/libcurl/usage-curl-head-request.cast" data-search="libcurl usage-curl-head-request original curl reads HTTP headers Performs a HEAD request against a local HTTP server and checks the status header. usage curl usage http">
+          <summary>
+            <span class="case-title">
+              <strong>curl reads HTTP headers</strong>
+              <span class="case-id">Original / libcurl / usage-curl-head-request</span>
+            </span>
+            <span class="status-pill status-passed" aria-label="Original / libcurl / usage-curl-head-request status: Passed">Passed</span>
+          </summary>
+          <div class="case-body">
+            <p>Performs a HEAD request against a local HTTP server and checks the status header.</p>
+            <dl class="case-meta">
+              <div><dt>Run</dt><dd>Original</dd></div>
+              <div><dt>Kind</dt><dd>usage</dd></div>
+              <div><dt>Client</dt><dd>curl</dd></div>
+              <div><dt>Duration</dt><dd>0.00s</dd></div>
+              <div><dt>Tags</dt><dd class="tags"><span>usage</span> <span>http</span></dd></div>
+            </dl>
+            <div class="case-actions">
+              <a class="log-link" href="../evidence/original/logs/libcurl/usage-curl-head-request.log" aria-label="Open log for Original / libcurl / usage-curl-head-request">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/original/casts/libcurl/usage-curl-head-request.cast" aria-label="Play cast for Original / libcurl / usage-curl-head-request">Play</button>
+            </div>
+            <div class="cast-player" data-player>
+              <div class="player-controls">
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Original / libcurl / usage-curl-head-request">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Original / libcurl / usage-curl-head-request">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Original / libcurl / usage-curl-head-request">Restart</button>
+                <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
+                <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
+              </div>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Original / libcurl / usage-curl-head-request"></pre>
+            </div>
+          </div>
+        </details>
+        <details class="case-row" data-library="libcurl" data-testcase-id="usage-curl-output-file" data-mode="original" data-kind="usage" data-status="passed" data-player-cast="../evidence/original/casts/libcurl/usage-curl-output-file.cast" data-search="libcurl usage-curl-output-file original curl writes output file Downloads a local HTTP fixture into a chosen output file. usage curl usage http">
+          <summary>
+            <span class="case-title">
+              <strong>curl writes output file</strong>
+              <span class="case-id">Original / libcurl / usage-curl-output-file</span>
+            </span>
+            <span class="status-pill status-passed" aria-label="Original / libcurl / usage-curl-output-file status: Passed">Passed</span>
+          </summary>
+          <div class="case-body">
+            <p>Downloads a local HTTP fixture into a chosen output file.</p>
+            <dl class="case-meta">
+              <div><dt>Run</dt><dd>Original</dd></div>
+              <div><dt>Kind</dt><dd>usage</dd></div>
+              <div><dt>Client</dt><dd>curl</dd></div>
+              <div><dt>Duration</dt><dd>0.00s</dd></div>
+              <div><dt>Tags</dt><dd class="tags"><span>usage</span> <span>http</span></dd></div>
+            </dl>
+            <div class="case-actions">
+              <a class="log-link" href="../evidence/original/logs/libcurl/usage-curl-output-file.log" aria-label="Open log for Original / libcurl / usage-curl-output-file">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/original/casts/libcurl/usage-curl-output-file.cast" aria-label="Play cast for Original / libcurl / usage-curl-output-file">Play</button>
+            </div>
+            <div class="cast-player" data-player>
+              <div class="player-controls">
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Original / libcurl / usage-curl-output-file">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Original / libcurl / usage-curl-output-file">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Original / libcurl / usage-curl-output-file">Restart</button>
+                <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
+                <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
+              </div>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Original / libcurl / usage-curl-output-file"></pre>
+            </div>
+          </div>
+        </details>
+        <details class="case-row" data-library="libcurl" data-testcase-id="usage-curl-write-out" data-mode="original" data-kind="usage" data-status="passed" data-player-cast="../evidence/original/casts/libcurl/usage-curl-write-out.cast" data-search="libcurl usage-curl-write-out original curl reports write-out metrics Uses curl write-out formatting to report HTTP status and download size. usage curl usage http">
+          <summary>
+            <span class="case-title">
+              <strong>curl reports write-out metrics</strong>
+              <span class="case-id">Original / libcurl / usage-curl-write-out</span>
+            </span>
+            <span class="status-pill status-passed" aria-label="Original / libcurl / usage-curl-write-out status: Passed">Passed</span>
+          </summary>
+          <div class="case-body">
+            <p>Uses curl write-out formatting to report HTTP status and download size.</p>
+            <dl class="case-meta">
+              <div><dt>Run</dt><dd>Original</dd></div>
+              <div><dt>Kind</dt><dd>usage</dd></div>
+              <div><dt>Client</dt><dd>curl</dd></div>
+              <div><dt>Duration</dt><dd>0.00s</dd></div>
+              <div><dt>Tags</dt><dd class="tags"><span>usage</span> <span>http</span></dd></div>
+            </dl>
+            <div class="case-actions">
+              <a class="log-link" href="../evidence/original/logs/libcurl/usage-curl-write-out.log" aria-label="Open log for Original / libcurl / usage-curl-write-out">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/original/casts/libcurl/usage-curl-write-out.cast" aria-label="Play cast for Original / libcurl / usage-curl-write-out">Play</button>
+            </div>
+            <div class="cast-player" data-player>
+              <div class="player-controls">
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Original / libcurl / usage-curl-write-out">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Original / libcurl / usage-curl-write-out">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Original / libcurl / usage-curl-write-out">Restart</button>
+                <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
+                <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
+              </div>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Original / libcurl / usage-curl-write-out"></pre>
+            </div>
+          </div>
+        </details>
+        <details class="case-row" data-library="libcurl" data-testcase-id="usage-curl-fail-status" data-mode="original" data-kind="usage" data-status="passed" data-player-cast="../evidence/original/casts/libcurl/usage-curl-fail-status.cast" data-search="libcurl usage-curl-fail-status original curl fails on missing HTTP path Requires curl --fail to reject a missing path from the local HTTP server. usage curl usage http">
+          <summary>
+            <span class="case-title">
+              <strong>curl fails on missing HTTP path</strong>
+              <span class="case-id">Original / libcurl / usage-curl-fail-status</span>
+            </span>
+            <span class="status-pill status-passed" aria-label="Original / libcurl / usage-curl-fail-status status: Passed">Passed</span>
+          </summary>
+          <div class="case-body">
+            <p>Requires curl --fail to reject a missing path from the local HTTP server.</p>
+            <dl class="case-meta">
+              <div><dt>Run</dt><dd>Original</dd></div>
+              <div><dt>Kind</dt><dd>usage</dd></div>
+              <div><dt>Client</dt><dd>curl</dd></div>
+              <div><dt>Duration</dt><dd>0.00s</dd></div>
+              <div><dt>Tags</dt><dd class="tags"><span>usage</span> <span>http</span></dd></div>
+            </dl>
+            <div class="case-actions">
+              <a class="log-link" href="../evidence/original/logs/libcurl/usage-curl-fail-status.log" aria-label="Open log for Original / libcurl / usage-curl-fail-status">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/original/casts/libcurl/usage-curl-fail-status.cast" aria-label="Play cast for Original / libcurl / usage-curl-fail-status">Play</button>
+            </div>
+            <div class="cast-player" data-player>
+              <div class="player-controls">
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Original / libcurl / usage-curl-fail-status">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Original / libcurl / usage-curl-fail-status">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Original / libcurl / usage-curl-fail-status">Restart</button>
+                <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
+                <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
+              </div>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Original / libcurl / usage-curl-fail-status"></pre>
+            </div>
+          </div>
+        </details>
+        <details class="case-row" data-library="libcurl" data-testcase-id="usage-curl-file-url" data-mode="original" data-kind="usage" data-status="passed" data-player-cast="../evidence/original/casts/libcurl/usage-curl-file-url.cast" data-search="libcurl usage-curl-file-url original curl reads file URL Reads a local file URL through curl and verifies the file content. usage curl usage file">
+          <summary>
+            <span class="case-title">
+              <strong>curl reads file URL</strong>
+              <span class="case-id">Original / libcurl / usage-curl-file-url</span>
+            </span>
+            <span class="status-pill status-passed" aria-label="Original / libcurl / usage-curl-file-url status: Passed">Passed</span>
+          </summary>
+          <div class="case-body">
+            <p>Reads a local file URL through curl and verifies the file content.</p>
+            <dl class="case-meta">
+              <div><dt>Run</dt><dd>Original</dd></div>
+              <div><dt>Kind</dt><dd>usage</dd></div>
+              <div><dt>Client</dt><dd>curl</dd></div>
+              <div><dt>Duration</dt><dd>0.00s</dd></div>
+              <div><dt>Tags</dt><dd class="tags"><span>usage</span> <span>file</span></dd></div>
+            </dl>
+            <div class="case-actions">
+              <a class="log-link" href="../evidence/original/logs/libcurl/usage-curl-file-url.log" aria-label="Open log for Original / libcurl / usage-curl-file-url">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/original/casts/libcurl/usage-curl-file-url.cast" aria-label="Play cast for Original / libcurl / usage-curl-file-url">Play</button>
+            </div>
+            <div class="cast-player" data-player>
+              <div class="player-controls">
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Original / libcurl / usage-curl-file-url">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Original / libcurl / usage-curl-file-url">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Original / libcurl / usage-curl-file-url">Restart</button>
+                <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
+                <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
+              </div>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Original / libcurl / usage-curl-file-url"></pre>
+            </div>
+          </div>
+        </details>
+        <details class="case-row" data-library="libcurl" data-testcase-id="usage-curl-post-echo" data-mode="original" data-kind="usage" data-status="passed" data-player-cast="../evidence/original/casts/libcurl/usage-curl-post-echo.cast" data-search="libcurl usage-curl-post-echo original curl posts request body Sends a POST body to a local HTTP handler and verifies the echoed payload. usage curl usage http">
+          <summary>
+            <span class="case-title">
+              <strong>curl posts request body</strong>
+              <span class="case-id">Original / libcurl / usage-curl-post-echo</span>
+            </span>
+            <span class="status-pill status-passed" aria-label="Original / libcurl / usage-curl-post-echo status: Passed">Passed</span>
+          </summary>
+          <div class="case-body">
+            <p>Sends a POST body to a local HTTP handler and verifies the echoed payload.</p>
+            <dl class="case-meta">
+              <div><dt>Run</dt><dd>Original</dd></div>
+              <div><dt>Kind</dt><dd>usage</dd></div>
+              <div><dt>Client</dt><dd>curl</dd></div>
+              <div><dt>Duration</dt><dd>0.00s</dd></div>
+              <div><dt>Tags</dt><dd class="tags"><span>usage</span> <span>http</span></dd></div>
+            </dl>
+            <div class="case-actions">
+              <a class="log-link" href="../evidence/original/logs/libcurl/usage-curl-post-echo.log" aria-label="Open log for Original / libcurl / usage-curl-post-echo">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/original/casts/libcurl/usage-curl-post-echo.cast" aria-label="Play cast for Original / libcurl / usage-curl-post-echo">Play</button>
+            </div>
+            <div class="cast-player" data-player>
+              <div class="player-controls">
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Original / libcurl / usage-curl-post-echo">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Original / libcurl / usage-curl-post-echo">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Original / libcurl / usage-curl-post-echo">Restart</button>
+                <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
+                <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
+              </div>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Original / libcurl / usage-curl-post-echo"></pre>
+            </div>
+          </div>
+        </details>
+        <details class="case-row" data-library="libcurl" data-testcase-id="usage-curl-redirect" data-mode="original" data-kind="usage" data-status="passed" data-player-cast="../evidence/original/casts/libcurl/usage-curl-redirect.cast" data-search="libcurl usage-curl-redirect original curl follows redirect Follows a local HTTP redirect and verifies the final response body. usage curl usage http">
+          <summary>
+            <span class="case-title">
+              <strong>curl follows redirect</strong>
+              <span class="case-id">Original / libcurl / usage-curl-redirect</span>
+            </span>
+            <span class="status-pill status-passed" aria-label="Original / libcurl / usage-curl-redirect status: Passed">Passed</span>
+          </summary>
+          <div class="case-body">
+            <p>Follows a local HTTP redirect and verifies the final response body.</p>
+            <dl class="case-meta">
+              <div><dt>Run</dt><dd>Original</dd></div>
+              <div><dt>Kind</dt><dd>usage</dd></div>
+              <div><dt>Client</dt><dd>curl</dd></div>
+              <div><dt>Duration</dt><dd>0.00s</dd></div>
+              <div><dt>Tags</dt><dd class="tags"><span>usage</span> <span>http</span></dd></div>
+            </dl>
+            <div class="case-actions">
+              <a class="log-link" href="../evidence/original/logs/libcurl/usage-curl-redirect.log" aria-label="Open log for Original / libcurl / usage-curl-redirect">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/original/casts/libcurl/usage-curl-redirect.cast" aria-label="Play cast for Original / libcurl / usage-curl-redirect">Play</button>
+            </div>
+            <div class="cast-player" data-player>
+              <div class="player-controls">
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Original / libcurl / usage-curl-redirect">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Original / libcurl / usage-curl-redirect">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Original / libcurl / usage-curl-redirect">Restart</button>
+                <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
+                <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
+              </div>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Original / libcurl / usage-curl-redirect"></pre>
+            </div>
+          </div>
+        </details>
+        <details class="case-row" data-library="libcurl" data-testcase-id="usage-curl-custom-header" data-mode="original" data-kind="usage" data-status="passed" data-player-cast="../evidence/original/casts/libcurl/usage-curl-custom-header.cast" data-search="libcurl usage-curl-custom-header original curl sends custom header Sends a custom request header to a local HTTP handler and verifies it is received. usage curl usage http">
+          <summary>
+            <span class="case-title">
+              <strong>curl sends custom header</strong>
+              <span class="case-id">Original / libcurl / usage-curl-custom-header</span>
+            </span>
+            <span class="status-pill status-passed" aria-label="Original / libcurl / usage-curl-custom-header status: Passed">Passed</span>
+          </summary>
+          <div class="case-body">
+            <p>Sends a custom request header to a local HTTP handler and verifies it is received.</p>
+            <dl class="case-meta">
+              <div><dt>Run</dt><dd>Original</dd></div>
+              <div><dt>Kind</dt><dd>usage</dd></div>
+              <div><dt>Client</dt><dd>curl</dd></div>
+              <div><dt>Duration</dt><dd>0.00s</dd></div>
+              <div><dt>Tags</dt><dd class="tags"><span>usage</span> <span>http</span></dd></div>
+            </dl>
+            <div class="case-actions">
+              <a class="log-link" href="../evidence/original/logs/libcurl/usage-curl-custom-header.log" aria-label="Open log for Original / libcurl / usage-curl-custom-header">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/original/casts/libcurl/usage-curl-custom-header.cast" aria-label="Play cast for Original / libcurl / usage-curl-custom-header">Play</button>
+            </div>
+            <div class="cast-player" data-player>
+              <div class="player-controls">
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Original / libcurl / usage-curl-custom-header">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Original / libcurl / usage-curl-custom-header">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Original / libcurl / usage-curl-custom-header">Restart</button>
+                <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
+                <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
+              </div>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Original / libcurl / usage-curl-custom-header"></pre>
+            </div>
+          </div>
+        </details>
+        <details class="case-row" data-library="libcurl" data-testcase-id="usage-curl-version-features" data-mode="original" data-kind="usage" data-status="passed" data-player-cast="../evidence/original/casts/libcurl/usage-curl-version-features.cast" data-search="libcurl usage-curl-version-features original curl reports protocol support Reads curl --version output and verifies HTTP protocol support is advertised. usage curl usage version">
+          <summary>
+            <span class="case-title">
+              <strong>curl reports protocol support</strong>
+              <span class="case-id">Original / libcurl / usage-curl-version-features</span>
+            </span>
+            <span class="status-pill status-passed" aria-label="Original / libcurl / usage-curl-version-features status: Passed">Passed</span>
+          </summary>
+          <div class="case-body">
+            <p>Reads curl --version output and verifies HTTP protocol support is advertised.</p>
+            <dl class="case-meta">
+              <div><dt>Run</dt><dd>Original</dd></div>
+              <div><dt>Kind</dt><dd>usage</dd></div>
+              <div><dt>Client</dt><dd>curl</dd></div>
+              <div><dt>Duration</dt><dd>0.00s</dd></div>
+              <div><dt>Tags</dt><dd class="tags"><span>usage</span> <span>version</span></dd></div>
+            </dl>
+            <div class="case-actions">
+              <a class="log-link" href="../evidence/original/logs/libcurl/usage-curl-version-features.log" aria-label="Open log for Original / libcurl / usage-curl-version-features">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/original/casts/libcurl/usage-curl-version-features.cast" aria-label="Play cast for Original / libcurl / usage-curl-version-features">Play</button>
+            </div>
+            <div class="cast-player" data-player>
+              <div class="player-controls">
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Original / libcurl / usage-curl-version-features">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Original / libcurl / usage-curl-version-features">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Original / libcurl / usage-curl-version-features">Restart</button>
+                <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
+                <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
+              </div>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Original / libcurl / usage-curl-version-features"></pre>
+            </div>
+          </div>
+        </details>
+        <details class="case-row" data-library="libcurl" data-testcase-id="version-info-smoke" data-mode="port-04-test" data-kind="source" data-status="failed" data-player-cast="" data-search="libcurl version-info-smoke port-04-test libcurl version info Reads libcurl version and SSL backend metadata through curl_version_info. source api version">
+          <summary>
+            <span class="case-title">
+              <strong>libcurl version info</strong>
+              <span class="case-id">Port / libcurl / version-info-smoke</span>
+            </span>
+            <span class="status-pill status-failed" aria-label="Port / libcurl / version-info-smoke status: Failed">Failed</span>
+          </summary>
+          <div class="case-body">
+            <p>Reads libcurl version and SSL backend metadata through curl_version_info.</p>
+            <dl class="case-meta">
+              <div><dt>Run</dt><dd>Port</dd></div>
+              <div><dt>Kind</dt><dd>source</dd></div>
+              <div><dt>Client</dt><dd>none</dd></div>
+              <div><dt>Duration</dt><dd>0.00s</dd></div>
+              <div><dt>Tags</dt><dd class="tags"><span>api</span> <span>version</span></dd></div>
+            </dl>
+            <div class="case-actions">
+              <a class="log-link" href="../evidence/port-04-test/logs/libcurl/version-info-smoke.log" aria-label="Open log for Port / libcurl / version-info-smoke">Log</a>
+              <span class="muted">No cast</span>
+            </div>
+            <div class="cast-player" data-player>
+              <div class="player-controls">
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Port / libcurl / version-info-smoke">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Port / libcurl / version-info-smoke">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Port / libcurl / version-info-smoke">Restart</button>
+                <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
+                <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
+              </div>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Port / libcurl / version-info-smoke"></pre>
+            </div>
+          </div>
+        </details>
+        <details class="case-row" data-library="libcurl" data-testcase-id="easy-file-read" data-mode="port-04-test" data-kind="source" data-status="failed" data-player-cast="" data-search="libcurl easy-file-read port-04-test libcurl file URL read Downloads a local file URL through the easy interface and write callback. source api transfer">
+          <summary>
+            <span class="case-title">
+              <strong>libcurl file URL read</strong>
+              <span class="case-id">Port / libcurl / easy-file-read</span>
+            </span>
+            <span class="status-pill status-failed" aria-label="Port / libcurl / easy-file-read status: Failed">Failed</span>
+          </summary>
+          <div class="case-body">
+            <p>Downloads a local file URL through the easy interface and write callback.</p>
+            <dl class="case-meta">
+              <div><dt>Run</dt><dd>Port</dd></div>
+              <div><dt>Kind</dt><dd>source</dd></div>
+              <div><dt>Client</dt><dd>none</dd></div>
+              <div><dt>Duration</dt><dd>0.00s</dd></div>
+              <div><dt>Tags</dt><dd class="tags"><span>api</span> <span>transfer</span></dd></div>
+            </dl>
+            <div class="case-actions">
+              <a class="log-link" href="../evidence/port-04-test/logs/libcurl/easy-file-read.log" aria-label="Open log for Port / libcurl / easy-file-read">Log</a>
+              <span class="muted">No cast</span>
+            </div>
+            <div class="cast-player" data-player>
+              <div class="player-controls">
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Port / libcurl / easy-file-read">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Port / libcurl / easy-file-read">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Port / libcurl / easy-file-read">Restart</button>
+                <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
+                <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
+              </div>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Port / libcurl / easy-file-read"></pre>
+            </div>
+          </div>
+        </details>
+        <details class="case-row" data-library="libcurl" data-testcase-id="escape-unescape-roundtrip" data-mode="port-04-test" data-kind="source" data-status="failed" data-player-cast="" data-search="libcurl escape-unescape-roundtrip port-04-test libcurl URL escape round trip Escapes and unescapes a string with public libcurl URL helpers. source api url">
+          <summary>
+            <span class="case-title">
+              <strong>libcurl URL escape round trip</strong>
+              <span class="case-id">Port / libcurl / escape-unescape-roundtrip</span>
+            </span>
+            <span class="status-pill status-failed" aria-label="Port / libcurl / escape-unescape-roundtrip status: Failed">Failed</span>
+          </summary>
+          <div class="case-body">
+            <p>Escapes and unescapes a string with public libcurl URL helpers.</p>
+            <dl class="case-meta">
+              <div><dt>Run</dt><dd>Port</dd></div>
+              <div><dt>Kind</dt><dd>source</dd></div>
+              <div><dt>Client</dt><dd>none</dd></div>
+              <div><dt>Duration</dt><dd>0.00s</dd></div>
+              <div><dt>Tags</dt><dd class="tags"><span>api</span> <span>url</span></dd></div>
+            </dl>
+            <div class="case-actions">
+              <a class="log-link" href="../evidence/port-04-test/logs/libcurl/escape-unescape-roundtrip.log" aria-label="Open log for Port / libcurl / escape-unescape-roundtrip">Log</a>
+              <span class="muted">No cast</span>
+            </div>
+            <div class="cast-player" data-player>
+              <div class="player-controls">
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Port / libcurl / escape-unescape-roundtrip">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Port / libcurl / escape-unescape-roundtrip">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Port / libcurl / escape-unescape-roundtrip">Restart</button>
+                <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
+                <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
+              </div>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Port / libcurl / escape-unescape-roundtrip"></pre>
+            </div>
+          </div>
+        </details>
+        <details class="case-row" data-library="libcurl" data-testcase-id="slist-header-build" data-mode="port-04-test" data-kind="source" data-status="failed" data-player-cast="" data-search="libcurl slist-header-build port-04-test libcurl slist header build Builds and frees a curl_slist of HTTP headers. source api headers">
+          <summary>
+            <span class="case-title">
+              <strong>libcurl slist header build</strong>
+              <span class="case-id">Port / libcurl / slist-header-build</span>
+            </span>
+            <span class="status-pill status-failed" aria-label="Port / libcurl / slist-header-build status: Failed">Failed</span>
+          </summary>
+          <div class="case-body">
+            <p>Builds and frees a curl_slist of HTTP headers.</p>
+            <dl class="case-meta">
+              <div><dt>Run</dt><dd>Port</dd></div>
+              <div><dt>Kind</dt><dd>source</dd></div>
+              <div><dt>Client</dt><dd>none</dd></div>
+              <div><dt>Duration</dt><dd>0.00s</dd></div>
+              <div><dt>Tags</dt><dd class="tags"><span>api</span> <span>headers</span></dd></div>
+            </dl>
+            <div class="case-actions">
+              <a class="log-link" href="../evidence/port-04-test/logs/libcurl/slist-header-build.log" aria-label="Open log for Port / libcurl / slist-header-build">Log</a>
+              <span class="muted">No cast</span>
+            </div>
+            <div class="cast-player" data-player>
+              <div class="player-controls">
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Port / libcurl / slist-header-build">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Port / libcurl / slist-header-build">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Port / libcurl / slist-header-build">Restart</button>
+                <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
+                <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
+              </div>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Port / libcurl / slist-header-build"></pre>
+            </div>
+          </div>
+        </details>
+        <details class="case-row" data-library="libcurl" data-testcase-id="http-status-local" data-mode="port-04-test" data-kind="source" data-status="failed" data-player-cast="" data-search="libcurl http-status-local port-04-test libcurl local HTTP status Requests a local HTTP fixture and verifies the returned response code. source api http">
+          <summary>
+            <span class="case-title">
+              <strong>libcurl local HTTP status</strong>
+              <span class="case-id">Port / libcurl / http-status-local</span>
+            </span>
+            <span class="status-pill status-failed" aria-label="Port / libcurl / http-status-local status: Failed">Failed</span>
+          </summary>
+          <div class="case-body">
+            <p>Requests a local HTTP fixture and verifies the returned response code.</p>
+            <dl class="case-meta">
+              <div><dt>Run</dt><dd>Port</dd></div>
+              <div><dt>Kind</dt><dd>source</dd></div>
+              <div><dt>Client</dt><dd>none</dd></div>
+              <div><dt>Duration</dt><dd>0.00s</dd></div>
+              <div><dt>Tags</dt><dd class="tags"><span>api</span> <span>http</span></dd></div>
+            </dl>
+            <div class="case-actions">
+              <a class="log-link" href="../evidence/port-04-test/logs/libcurl/http-status-local.log" aria-label="Open log for Port / libcurl / http-status-local">Log</a>
+              <span class="muted">No cast</span>
+            </div>
+            <div class="cast-player" data-player>
+              <div class="player-controls">
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Port / libcurl / http-status-local">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Port / libcurl / http-status-local">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Port / libcurl / http-status-local">Restart</button>
+                <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
+                <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
+              </div>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Port / libcurl / http-status-local"></pre>
+            </div>
+          </div>
+        </details>
+        <details class="case-row" data-library="libcurl" data-testcase-id="usage-curl-http-get" data-mode="port-04-test" data-kind="usage" data-status="failed" data-player-cast="" data-search="libcurl usage-curl-http-get port-04-test curl downloads HTTP body Fetches a text fixture from a local HTTP server and verifies the body. usage curl usage http">
+          <summary>
+            <span class="case-title">
+              <strong>curl downloads HTTP body</strong>
+              <span class="case-id">Port / libcurl / usage-curl-http-get</span>
+            </span>
+            <span class="status-pill status-failed" aria-label="Port / libcurl / usage-curl-http-get status: Failed">Failed</span>
+          </summary>
+          <div class="case-body">
+            <p>Fetches a text fixture from a local HTTP server and verifies the body.</p>
+            <dl class="case-meta">
+              <div><dt>Run</dt><dd>Port</dd></div>
+              <div><dt>Kind</dt><dd>usage</dd></div>
+              <div><dt>Client</dt><dd>curl</dd></div>
+              <div><dt>Duration</dt><dd>0.00s</dd></div>
+              <div><dt>Tags</dt><dd class="tags"><span>usage</span> <span>http</span></dd></div>
+            </dl>
+            <div class="case-actions">
+              <a class="log-link" href="../evidence/port-04-test/logs/libcurl/usage-curl-http-get.log" aria-label="Open log for Port / libcurl / usage-curl-http-get">Log</a>
+              <span class="muted">No cast</span>
+            </div>
+            <div class="cast-player" data-player>
+              <div class="player-controls">
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Port / libcurl / usage-curl-http-get">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Port / libcurl / usage-curl-http-get">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Port / libcurl / usage-curl-http-get">Restart</button>
+                <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
+                <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
+              </div>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Port / libcurl / usage-curl-http-get"></pre>
+            </div>
+          </div>
+        </details>
+        <details class="case-row" data-library="libcurl" data-testcase-id="usage-curl-head-request" data-mode="port-04-test" data-kind="usage" data-status="failed" data-player-cast="" data-search="libcurl usage-curl-head-request port-04-test curl reads HTTP headers Performs a HEAD request against a local HTTP server and checks the status header. usage curl usage http">
+          <summary>
+            <span class="case-title">
+              <strong>curl reads HTTP headers</strong>
+              <span class="case-id">Port / libcurl / usage-curl-head-request</span>
+            </span>
+            <span class="status-pill status-failed" aria-label="Port / libcurl / usage-curl-head-request status: Failed">Failed</span>
+          </summary>
+          <div class="case-body">
+            <p>Performs a HEAD request against a local HTTP server and checks the status header.</p>
+            <dl class="case-meta">
+              <div><dt>Run</dt><dd>Port</dd></div>
+              <div><dt>Kind</dt><dd>usage</dd></div>
+              <div><dt>Client</dt><dd>curl</dd></div>
+              <div><dt>Duration</dt><dd>0.00s</dd></div>
+              <div><dt>Tags</dt><dd class="tags"><span>usage</span> <span>http</span></dd></div>
+            </dl>
+            <div class="case-actions">
+              <a class="log-link" href="../evidence/port-04-test/logs/libcurl/usage-curl-head-request.log" aria-label="Open log for Port / libcurl / usage-curl-head-request">Log</a>
+              <span class="muted">No cast</span>
+            </div>
+            <div class="cast-player" data-player>
+              <div class="player-controls">
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Port / libcurl / usage-curl-head-request">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Port / libcurl / usage-curl-head-request">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Port / libcurl / usage-curl-head-request">Restart</button>
+                <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
+                <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
+              </div>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Port / libcurl / usage-curl-head-request"></pre>
+            </div>
+          </div>
+        </details>
+        <details class="case-row" data-library="libcurl" data-testcase-id="usage-curl-output-file" data-mode="port-04-test" data-kind="usage" data-status="failed" data-player-cast="" data-search="libcurl usage-curl-output-file port-04-test curl writes output file Downloads a local HTTP fixture into a chosen output file. usage curl usage http">
+          <summary>
+            <span class="case-title">
+              <strong>curl writes output file</strong>
+              <span class="case-id">Port / libcurl / usage-curl-output-file</span>
+            </span>
+            <span class="status-pill status-failed" aria-label="Port / libcurl / usage-curl-output-file status: Failed">Failed</span>
+          </summary>
+          <div class="case-body">
+            <p>Downloads a local HTTP fixture into a chosen output file.</p>
+            <dl class="case-meta">
+              <div><dt>Run</dt><dd>Port</dd></div>
+              <div><dt>Kind</dt><dd>usage</dd></div>
+              <div><dt>Client</dt><dd>curl</dd></div>
+              <div><dt>Duration</dt><dd>0.00s</dd></div>
+              <div><dt>Tags</dt><dd class="tags"><span>usage</span> <span>http</span></dd></div>
+            </dl>
+            <div class="case-actions">
+              <a class="log-link" href="../evidence/port-04-test/logs/libcurl/usage-curl-output-file.log" aria-label="Open log for Port / libcurl / usage-curl-output-file">Log</a>
+              <span class="muted">No cast</span>
+            </div>
+            <div class="cast-player" data-player>
+              <div class="player-controls">
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Port / libcurl / usage-curl-output-file">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Port / libcurl / usage-curl-output-file">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Port / libcurl / usage-curl-output-file">Restart</button>
+                <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
+                <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
+              </div>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Port / libcurl / usage-curl-output-file"></pre>
+            </div>
+          </div>
+        </details>
+        <details class="case-row" data-library="libcurl" data-testcase-id="usage-curl-write-out" data-mode="port-04-test" data-kind="usage" data-status="failed" data-player-cast="" data-search="libcurl usage-curl-write-out port-04-test curl reports write-out metrics Uses curl write-out formatting to report HTTP status and download size. usage curl usage http">
+          <summary>
+            <span class="case-title">
+              <strong>curl reports write-out metrics</strong>
+              <span class="case-id">Port / libcurl / usage-curl-write-out</span>
+            </span>
+            <span class="status-pill status-failed" aria-label="Port / libcurl / usage-curl-write-out status: Failed">Failed</span>
+          </summary>
+          <div class="case-body">
+            <p>Uses curl write-out formatting to report HTTP status and download size.</p>
+            <dl class="case-meta">
+              <div><dt>Run</dt><dd>Port</dd></div>
+              <div><dt>Kind</dt><dd>usage</dd></div>
+              <div><dt>Client</dt><dd>curl</dd></div>
+              <div><dt>Duration</dt><dd>0.00s</dd></div>
+              <div><dt>Tags</dt><dd class="tags"><span>usage</span> <span>http</span></dd></div>
+            </dl>
+            <div class="case-actions">
+              <a class="log-link" href="../evidence/port-04-test/logs/libcurl/usage-curl-write-out.log" aria-label="Open log for Port / libcurl / usage-curl-write-out">Log</a>
+              <span class="muted">No cast</span>
+            </div>
+            <div class="cast-player" data-player>
+              <div class="player-controls">
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Port / libcurl / usage-curl-write-out">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Port / libcurl / usage-curl-write-out">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Port / libcurl / usage-curl-write-out">Restart</button>
+                <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
+                <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
+              </div>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Port / libcurl / usage-curl-write-out"></pre>
+            </div>
+          </div>
+        </details>
+        <details class="case-row" data-library="libcurl" data-testcase-id="usage-curl-fail-status" data-mode="port-04-test" data-kind="usage" data-status="failed" data-player-cast="" data-search="libcurl usage-curl-fail-status port-04-test curl fails on missing HTTP path Requires curl --fail to reject a missing path from the local HTTP server. usage curl usage http">
+          <summary>
+            <span class="case-title">
+              <strong>curl fails on missing HTTP path</strong>
+              <span class="case-id">Port / libcurl / usage-curl-fail-status</span>
+            </span>
+            <span class="status-pill status-failed" aria-label="Port / libcurl / usage-curl-fail-status status: Failed">Failed</span>
+          </summary>
+          <div class="case-body">
+            <p>Requires curl --fail to reject a missing path from the local HTTP server.</p>
+            <dl class="case-meta">
+              <div><dt>Run</dt><dd>Port</dd></div>
+              <div><dt>Kind</dt><dd>usage</dd></div>
+              <div><dt>Client</dt><dd>curl</dd></div>
+              <div><dt>Duration</dt><dd>0.00s</dd></div>
+              <div><dt>Tags</dt><dd class="tags"><span>usage</span> <span>http</span></dd></div>
+            </dl>
+            <div class="case-actions">
+              <a class="log-link" href="../evidence/port-04-test/logs/libcurl/usage-curl-fail-status.log" aria-label="Open log for Port / libcurl / usage-curl-fail-status">Log</a>
+              <span class="muted">No cast</span>
+            </div>
+            <div class="cast-player" data-player>
+              <div class="player-controls">
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Port / libcurl / usage-curl-fail-status">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Port / libcurl / usage-curl-fail-status">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Port / libcurl / usage-curl-fail-status">Restart</button>
+                <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
+                <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
+              </div>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Port / libcurl / usage-curl-fail-status"></pre>
+            </div>
+          </div>
+        </details>
+        <details class="case-row" data-library="libcurl" data-testcase-id="usage-curl-file-url" data-mode="port-04-test" data-kind="usage" data-status="failed" data-player-cast="" data-search="libcurl usage-curl-file-url port-04-test curl reads file URL Reads a local file URL through curl and verifies the file content. usage curl usage file">
+          <summary>
+            <span class="case-title">
+              <strong>curl reads file URL</strong>
+              <span class="case-id">Port / libcurl / usage-curl-file-url</span>
+            </span>
+            <span class="status-pill status-failed" aria-label="Port / libcurl / usage-curl-file-url status: Failed">Failed</span>
+          </summary>
+          <div class="case-body">
+            <p>Reads a local file URL through curl and verifies the file content.</p>
+            <dl class="case-meta">
+              <div><dt>Run</dt><dd>Port</dd></div>
+              <div><dt>Kind</dt><dd>usage</dd></div>
+              <div><dt>Client</dt><dd>curl</dd></div>
+              <div><dt>Duration</dt><dd>0.00s</dd></div>
+              <div><dt>Tags</dt><dd class="tags"><span>usage</span> <span>file</span></dd></div>
+            </dl>
+            <div class="case-actions">
+              <a class="log-link" href="../evidence/port-04-test/logs/libcurl/usage-curl-file-url.log" aria-label="Open log for Port / libcurl / usage-curl-file-url">Log</a>
+              <span class="muted">No cast</span>
+            </div>
+            <div class="cast-player" data-player>
+              <div class="player-controls">
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Port / libcurl / usage-curl-file-url">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Port / libcurl / usage-curl-file-url">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Port / libcurl / usage-curl-file-url">Restart</button>
+                <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
+                <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
+              </div>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Port / libcurl / usage-curl-file-url"></pre>
+            </div>
+          </div>
+        </details>
+        <details class="case-row" data-library="libcurl" data-testcase-id="usage-curl-post-echo" data-mode="port-04-test" data-kind="usage" data-status="failed" data-player-cast="" data-search="libcurl usage-curl-post-echo port-04-test curl posts request body Sends a POST body to a local HTTP handler and verifies the echoed payload. usage curl usage http">
+          <summary>
+            <span class="case-title">
+              <strong>curl posts request body</strong>
+              <span class="case-id">Port / libcurl / usage-curl-post-echo</span>
+            </span>
+            <span class="status-pill status-failed" aria-label="Port / libcurl / usage-curl-post-echo status: Failed">Failed</span>
+          </summary>
+          <div class="case-body">
+            <p>Sends a POST body to a local HTTP handler and verifies the echoed payload.</p>
+            <dl class="case-meta">
+              <div><dt>Run</dt><dd>Port</dd></div>
+              <div><dt>Kind</dt><dd>usage</dd></div>
+              <div><dt>Client</dt><dd>curl</dd></div>
+              <div><dt>Duration</dt><dd>0.00s</dd></div>
+              <div><dt>Tags</dt><dd class="tags"><span>usage</span> <span>http</span></dd></div>
+            </dl>
+            <div class="case-actions">
+              <a class="log-link" href="../evidence/port-04-test/logs/libcurl/usage-curl-post-echo.log" aria-label="Open log for Port / libcurl / usage-curl-post-echo">Log</a>
+              <span class="muted">No cast</span>
+            </div>
+            <div class="cast-player" data-player>
+              <div class="player-controls">
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Port / libcurl / usage-curl-post-echo">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Port / libcurl / usage-curl-post-echo">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Port / libcurl / usage-curl-post-echo">Restart</button>
+                <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
+                <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
+              </div>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Port / libcurl / usage-curl-post-echo"></pre>
+            </div>
+          </div>
+        </details>
+        <details class="case-row" data-library="libcurl" data-testcase-id="usage-curl-redirect" data-mode="port-04-test" data-kind="usage" data-status="failed" data-player-cast="" data-search="libcurl usage-curl-redirect port-04-test curl follows redirect Follows a local HTTP redirect and verifies the final response body. usage curl usage http">
+          <summary>
+            <span class="case-title">
+              <strong>curl follows redirect</strong>
+              <span class="case-id">Port / libcurl / usage-curl-redirect</span>
+            </span>
+            <span class="status-pill status-failed" aria-label="Port / libcurl / usage-curl-redirect status: Failed">Failed</span>
+          </summary>
+          <div class="case-body">
+            <p>Follows a local HTTP redirect and verifies the final response body.</p>
+            <dl class="case-meta">
+              <div><dt>Run</dt><dd>Port</dd></div>
+              <div><dt>Kind</dt><dd>usage</dd></div>
+              <div><dt>Client</dt><dd>curl</dd></div>
+              <div><dt>Duration</dt><dd>0.00s</dd></div>
+              <div><dt>Tags</dt><dd class="tags"><span>usage</span> <span>http</span></dd></div>
+            </dl>
+            <div class="case-actions">
+              <a class="log-link" href="../evidence/port-04-test/logs/libcurl/usage-curl-redirect.log" aria-label="Open log for Port / libcurl / usage-curl-redirect">Log</a>
+              <span class="muted">No cast</span>
+            </div>
+            <div class="cast-player" data-player>
+              <div class="player-controls">
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Port / libcurl / usage-curl-redirect">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Port / libcurl / usage-curl-redirect">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Port / libcurl / usage-curl-redirect">Restart</button>
+                <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
+                <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
+              </div>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Port / libcurl / usage-curl-redirect"></pre>
+            </div>
+          </div>
+        </details>
+        <details class="case-row" data-library="libcurl" data-testcase-id="usage-curl-custom-header" data-mode="port-04-test" data-kind="usage" data-status="failed" data-player-cast="" data-search="libcurl usage-curl-custom-header port-04-test curl sends custom header Sends a custom request header to a local HTTP handler and verifies it is received. usage curl usage http">
+          <summary>
+            <span class="case-title">
+              <strong>curl sends custom header</strong>
+              <span class="case-id">Port / libcurl / usage-curl-custom-header</span>
+            </span>
+            <span class="status-pill status-failed" aria-label="Port / libcurl / usage-curl-custom-header status: Failed">Failed</span>
+          </summary>
+          <div class="case-body">
+            <p>Sends a custom request header to a local HTTP handler and verifies it is received.</p>
+            <dl class="case-meta">
+              <div><dt>Run</dt><dd>Port</dd></div>
+              <div><dt>Kind</dt><dd>usage</dd></div>
+              <div><dt>Client</dt><dd>curl</dd></div>
+              <div><dt>Duration</dt><dd>0.00s</dd></div>
+              <div><dt>Tags</dt><dd class="tags"><span>usage</span> <span>http</span></dd></div>
+            </dl>
+            <div class="case-actions">
+              <a class="log-link" href="../evidence/port-04-test/logs/libcurl/usage-curl-custom-header.log" aria-label="Open log for Port / libcurl / usage-curl-custom-header">Log</a>
+              <span class="muted">No cast</span>
+            </div>
+            <div class="cast-player" data-player>
+              <div class="player-controls">
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Port / libcurl / usage-curl-custom-header">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Port / libcurl / usage-curl-custom-header">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Port / libcurl / usage-curl-custom-header">Restart</button>
+                <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
+                <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
+              </div>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Port / libcurl / usage-curl-custom-header"></pre>
+            </div>
+          </div>
+        </details>
+        <details class="case-row" data-library="libcurl" data-testcase-id="usage-curl-version-features" data-mode="port-04-test" data-kind="usage" data-status="failed" data-player-cast="" data-search="libcurl usage-curl-version-features port-04-test curl reports protocol support Reads curl --version output and verifies HTTP protocol support is advertised. usage curl usage version">
+          <summary>
+            <span class="case-title">
+              <strong>curl reports protocol support</strong>
+              <span class="case-id">Port / libcurl / usage-curl-version-features</span>
+            </span>
+            <span class="status-pill status-failed" aria-label="Port / libcurl / usage-curl-version-features status: Failed">Failed</span>
+          </summary>
+          <div class="case-body">
+            <p>Reads curl --version output and verifies HTTP protocol support is advertised.</p>
+            <dl class="case-meta">
+              <div><dt>Run</dt><dd>Port</dd></div>
+              <div><dt>Kind</dt><dd>usage</dd></div>
+              <div><dt>Client</dt><dd>curl</dd></div>
+              <div><dt>Duration</dt><dd>0.00s</dd></div>
+              <div><dt>Tags</dt><dd class="tags"><span>usage</span> <span>version</span></dd></div>
+            </dl>
+            <div class="case-actions">
+              <a class="log-link" href="../evidence/port-04-test/logs/libcurl/usage-curl-version-features.log" aria-label="Open log for Port / libcurl / usage-curl-version-features">Log</a>
+              <span class="muted">No cast</span>
+            </div>
+            <div class="cast-player" data-player>
+              <div class="player-controls">
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Port / libcurl / usage-curl-version-features">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Port / libcurl / usage-curl-version-features">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Port / libcurl / usage-curl-version-features">Restart</button>
+                <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
+                <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
+              </div>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Port / libcurl / usage-curl-version-features"></pre>
+            </div>
+          </div>
+        </details>
+      </section>
+    </main>
+  </body>
+</html>

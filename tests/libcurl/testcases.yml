@@ -1,0 +1,197 @@
+schema_version: 1
+library: libcurl
+apt_packages:
+- curl
+- libcurl4t64
+- libcurl4-openssl-dev
+testcases:
+- id: version-info-smoke
+  title: libcurl version info
+  description: Reads libcurl version and SSL backend metadata through curl_version_info.
+  kind: source
+  command:
+  - bash
+  - /validator/tests/libcurl/tests/cases/source/run.sh
+  - version-info-smoke
+  timeout_seconds: 120
+  tags:
+  - api
+  - version
+- id: easy-file-read
+  title: libcurl file URL read
+  description: Downloads a local file URL through the easy interface and write callback.
+  kind: source
+  command:
+  - bash
+  - /validator/tests/libcurl/tests/cases/source/run.sh
+  - easy-file-read
+  timeout_seconds: 120
+  tags:
+  - api
+  - transfer
+- id: escape-unescape-roundtrip
+  title: libcurl URL escape round trip
+  description: Escapes and unescapes a string with public libcurl URL helpers.
+  kind: source
+  command:
+  - bash
+  - /validator/tests/libcurl/tests/cases/source/run.sh
+  - escape-unescape-roundtrip
+  timeout_seconds: 120
+  tags:
+  - api
+  - url
+- id: slist-header-build
+  title: libcurl slist header build
+  description: Builds and frees a curl_slist of HTTP headers.
+  kind: source
+  command:
+  - bash
+  - /validator/tests/libcurl/tests/cases/source/run.sh
+  - slist-header-build
+  timeout_seconds: 120
+  tags:
+  - api
+  - headers
+- id: http-status-local
+  title: libcurl local HTTP status
+  description: Requests a local HTTP fixture and verifies the returned response code.
+  kind: source
+  command:
+  - bash
+  - /validator/tests/libcurl/tests/cases/source/run.sh
+  - http-status-local
+  timeout_seconds: 120
+  tags:
+  - api
+  - http
+- id: usage-curl-http-get
+  title: curl downloads HTTP body
+  description: Fetches a text fixture from a local HTTP server and verifies the body.
+  kind: usage
+  client_application: curl
+  command:
+  - bash
+  - /validator/tests/libcurl/tests/cases/usage/run.sh
+  - usage-curl-http-get
+  timeout_seconds: 120
+  tags:
+  - usage
+  - http
+- id: usage-curl-head-request
+  title: curl reads HTTP headers
+  description: Performs a HEAD request against a local HTTP server and checks the status header.
+  kind: usage
+  client_application: curl
+  command:
+  - bash
+  - /validator/tests/libcurl/tests/cases/usage/run.sh
+  - usage-curl-head-request
+  timeout_seconds: 120
+  tags:
+  - usage
+  - http
+- id: usage-curl-output-file
+  title: curl writes output file
+  description: Downloads a local HTTP fixture into a chosen output file.
+  kind: usage
+  client_application: curl
+  command:
+  - bash
+  - /validator/tests/libcurl/tests/cases/usage/run.sh
+  - usage-curl-output-file
+  timeout_seconds: 120
+  tags:
+  - usage
+  - http
+- id: usage-curl-write-out
+  title: curl reports write-out metrics
+  description: Uses curl write-out formatting to report HTTP status and download size.
+  kind: usage
+  client_application: curl
+  command:
+  - bash
+  - /validator/tests/libcurl/tests/cases/usage/run.sh
+  - usage-curl-write-out
+  timeout_seconds: 120
+  tags:
+  - usage
+  - http
+- id: usage-curl-fail-status
+  title: curl fails on missing HTTP path
+  description: Requires curl --fail to reject a missing path from the local HTTP server.
+  kind: usage
+  client_application: curl
+  command:
+  - bash
+  - /validator/tests/libcurl/tests/cases/usage/run.sh
+  - usage-curl-fail-status
+  timeout_seconds: 120
+  tags:
+  - usage
+  - http
+- id: usage-curl-file-url
+  title: curl reads file URL
+  description: Reads a local file URL through curl and verifies the file content.
+  kind: usage
+  client_application: curl
+  command:
+  - bash
+  - /validator/tests/libcurl/tests/cases/usage/run.sh
+  - usage-curl-file-url
+  timeout_seconds: 120
+  tags:
+  - usage
+  - file
+- id: usage-curl-post-echo
+  title: curl posts request body
+  description: Sends a POST body to a local HTTP handler and verifies the echoed payload.
+  kind: usage
+  client_application: curl
+  command:
+  - bash
+  - /validator/tests/libcurl/tests/cases/usage/run.sh
+  - usage-curl-post-echo
+  timeout_seconds: 120
+  tags:
+  - usage
+  - http
+- id: usage-curl-redirect
+  title: curl follows redirect
+  description: Follows a local HTTP redirect and verifies the final response body.
+  kind: usage
+  client_application: curl
+  command:
+  - bash
+  - /validator/tests/libcurl/tests/cases/usage/run.sh
+  - usage-curl-redirect
+  timeout_seconds: 120
+  tags:
+  - usage
+  - http
+- id: usage-curl-custom-header
+  title: curl sends custom header
+  description: Sends a custom request header to a local HTTP handler and verifies it is received.
+  kind: usage
+  client_application: curl
+  command:
+  - bash
+  - /validator/tests/libcurl/tests/cases/usage/run.sh
+  - usage-curl-custom-header
+  timeout_seconds: 120
+  tags:
+  - usage
+  - http
+- id: usage-curl-version-features
+  title: curl reports protocol support
+  description: Reads curl --version output and verifies HTTP protocol support is advertised.
+  kind: usage
+  client_application: curl
+  command:
+  - bash
+  - /validator/tests/libcurl/tests/cases/usage/run.sh
+  - usage-curl-version-features
+  timeout_seconds: 120
+  tags:
+  - usage
+  - version

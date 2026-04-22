@@ -75,6 +75,34 @@ def write_port_debs_and_lock(root: Path) -> tuple[Path, Path]:
     return deb_root, lock_path
 
 
+def write_unavailable_port_lock(root: Path) -> tuple[Path, Path]:
+    deb_root = root / "port-debs"
+    deb_root.mkdir(parents=True, exist_ok=True)
+    lock_path = root / "port-lock.json"
+    lock = {
+        "schema_version": 1,
+        "mode": "port-04-test",
+        "generated_at": "1970-01-01T00:00:00Z",
+        "source_config": "repositories.yml",
+        "source_inventory": "inventory/github-port-repos.json",
+        "libraries": [
+            {
+                "library": "original-demo",
+                "repository": "safelibs/port-original-demo",
+                "url": "https://github.com/safelibs/port-original-demo",
+                "tag_ref": "refs/tags/original-demo/04-test",
+                "commit": None,
+                "release_tag": None,
+                "debs": [],
+                "unported_original_packages": ["demo-runtime", "demo-dev"],
+                "port_unavailable_reason": "no qualifying release",
+            }
+        ],
+    }
+    lock_path.write_text(json.dumps(lock, indent=2) + "\n")
+    return deb_root, lock_path
+
+
 class RunMatrixTests(unittest.TestCase):
     def test_normalize_log_text_strips_carriage_returns(self) -> None:
         self.assertEqual(run_matrix.normalize_log_text("one\r\ntwo\r\n"), "one\ntwo\n")
@@ -357,6 +385,47 @@ class RunMatrixTests(unittest.TestCase):
             (artifact_root / "port-04-test" / "results" / "original-demo" / "summary.json").read_text()
         )
         self.assertEqual(summary["mode"], "port-04-test")
+
+    def test_port_mode_marks_unavailable_ports_failed_without_container_run(self) -> None:
+        root = self.run_root()
+        artifact_root = root / "artifacts"
+        deb_root, lock_path = write_unavailable_port_lock(root)
+
+        with mock.patch("tools.run_matrix.load_manifest", return_value=original_demo_config()), mock.patch(
+            "tools.run_matrix.ensure_library_image",
+        ) as ensure_image:
+            exit_code = run_matrix.main(
+                [
+                    "--config",
+                    str(FIXTURES / "original-only-manifest.yml"),
+                    "--tests-root",
+                    str(FIXTURES / "original-only-tests"),
+                    "--artifact-root",
+                    str(artifact_root),
+                    "--mode",
+                    "port-04-test",
+                    "--override-deb-root",
+                    str(deb_root),
+                    "--port-deb-lock",
+                    str(lock_path),
+                ]
+            )
+
+        self.assertEqual(exit_code, 0)
+        ensure_image.assert_not_called()
+        result = json.loads(
+            (artifact_root / "port-04-test" / "results" / "original-demo" / "source-echo-roundtrip.json").read_text()
+        )
+        self.assertEqual(result["status"], "failed")
+        self.assertFalse(result["override_debs_installed"])
+        self.assertEqual(result["port_debs"], [])
+        self.assertEqual(result["override_installed_packages"], [])
+        self.assertEqual(result["port_unavailable_reason"], "no qualifying release")
+        summary = json.loads(
+            (artifact_root / "port-04-test" / "results" / "original-demo" / "summary.json").read_text()
+        )
+        self.assertEqual(summary["passed"], 0)
+        self.assertEqual(summary["failed"], 2)
 
     def test_port_mode_rejects_hash_mismatch_and_extra_debs(self) -> None:
         root = self.run_root()

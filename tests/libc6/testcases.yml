@@ -1,0 +1,200 @@
+schema_version: 1
+library: libc6
+apt_packages:
+- libc6
+- libc6-dev
+- libc-dev-bin
+- libc-bin
+- locales
+- nscd
+testcases:
+- id: stdio-string-conversion
+  title: glibc stdio string conversion
+  description: Compiles a program using snprintf and strtod from the C library.
+  kind: source
+  command:
+  - bash
+  - /validator/tests/libc6/tests/cases/source/run.sh
+  - stdio-string-conversion
+  timeout_seconds: 120
+  tags:
+  - api
+  - stdio
+- id: pthread-thread-join
+  title: glibc pthread join
+  description: Starts a POSIX thread and joins it through libc pthread entry points.
+  kind: source
+  command:
+  - bash
+  - /validator/tests/libc6/tests/cases/source/run.sh
+  - pthread-thread-join
+  timeout_seconds: 120
+  tags:
+  - api
+  - pthread
+- id: locale-collation
+  title: glibc locale collation
+  description: Sets the C.UTF-8 locale and compares strings through strcoll.
+  kind: source
+  command:
+  - bash
+  - /validator/tests/libc6/tests/cases/source/run.sh
+  - locale-collation
+  timeout_seconds: 120
+  tags:
+  - api
+  - locale
+- id: dlopen-libm-symbol
+  title: glibc dynamic loader symbol
+  description: Opens libm with dlopen and calls cos through dlsym.
+  kind: source
+  command:
+  - bash
+  - /validator/tests/libc6/tests/cases/source/run.sh
+  - dlopen-libm-symbol
+  timeout_seconds: 120
+  tags:
+  - api
+  - dynamic-loader
+- id: getaddrinfo-localhost
+  title: glibc getaddrinfo localhost
+  description: Resolves localhost through getaddrinfo and frees the address list.
+  kind: source
+  command:
+  - bash
+  - /validator/tests/libc6/tests/cases/source/run.sh
+  - getaddrinfo-localhost
+  timeout_seconds: 120
+  tags:
+  - api
+  - resolver
+- id: usage-bash-script-exec
+  title: Bash executes script
+  description: Runs a short Bash program that performs arithmetic and prints a value.
+  kind: usage
+  client_application: bash
+  command:
+  - bash
+  - /validator/tests/libc6/tests/cases/usage/run.sh
+  - usage-bash-script-exec
+  timeout_seconds: 120
+  tags:
+  - usage
+  - shell
+- id: usage-coreutils-sort
+  title: coreutils sorts text
+  description: Sorts lines with GNU sort and verifies the ordered output.
+  kind: usage
+  client_application: coreutils
+  command:
+  - bash
+  - /validator/tests/libc6/tests/cases/usage/run.sh
+  - usage-coreutils-sort
+  timeout_seconds: 120
+  tags:
+  - usage
+  - cli
+- id: usage-grep-regex
+  title: grep matches regex
+  description: Filters lines with grep extended regular expressions.
+  kind: usage
+  client_application: grep
+  command:
+  - bash
+  - /validator/tests/libc6/tests/cases/usage/run.sh
+  - usage-grep-regex
+  timeout_seconds: 120
+  tags:
+  - usage
+  - cli
+- id: usage-gawk-field-sum
+  title: gawk sums fields
+  description: Sums numeric fields from tabular input with gawk.
+  kind: usage
+  client_application: gawk
+  command:
+  - bash
+  - /validator/tests/libc6/tests/cases/usage/run.sh
+  - usage-gawk-field-sum
+  timeout_seconds: 120
+  tags:
+  - usage
+  - cli
+- id: usage-sed-transform
+  title: sed transforms stream
+  description: Rewrites a token in stream input with sed.
+  kind: usage
+  client_application: sed
+  command:
+  - bash
+  - /validator/tests/libc6/tests/cases/usage/run.sh
+  - usage-sed-transform
+  timeout_seconds: 120
+  tags:
+  - usage
+  - cli
+- id: usage-python3-runtime
+  title: Python runs libc-backed runtime
+  description: Starts Python, performs arithmetic, and prints a computed value.
+  kind: usage
+  client_application: python3-minimal
+  command:
+  - bash
+  - /validator/tests/libc6/tests/cases/usage/run.sh
+  - usage-python3-runtime
+  timeout_seconds: 120
+  tags:
+  - usage
+  - python
+- id: usage-findutils-find
+  title: findutils traverses files
+  description: Locates a named file in a directory tree with find.
+  kind: usage
+  client_application: findutils
+  command:
+  - bash
+  - /validator/tests/libc6/tests/cases/usage/run.sh
+  - usage-findutils-find
+  timeout_seconds: 120
+  tags:
+  - usage
+  - cli
+- id: usage-tar-roundtrip
+  title: tar archives file
+  description: Creates and extracts a tar archive while preserving file content.
+  kind: usage
+  client_application: tar
+  command:
+  - bash
+  - /validator/tests/libc6/tests/cases/usage/run.sh
+  - usage-tar-roundtrip
+  timeout_seconds: 120
+  tags:
+  - usage
+  - archive
+- id: usage-gzip-roundtrip
+  title: gzip compresses file
+  description: Compresses and decompresses a text file with gzip.
+  kind: usage
+  client_application: gzip
+  command:
+  - bash
+  - /validator/tests/libc6/tests/cases/usage/run.sh
+  - usage-gzip-roundtrip
+  timeout_seconds: 120
+  tags:
+  - usage
+  - compression
+- id: usage-coreutils-date
+  title: coreutils formats date
+  description: Formats a UTC timestamp with GNU date and verifies the year.
+  kind: usage
+  client_application: coreutils
+  command:
+  - bash
+  - /validator/tests/libc6/tests/cases/usage/run.sh
+  - usage-coreutils-date
+  timeout_seconds: 120
+  tags:
+  - usage
+  - cli

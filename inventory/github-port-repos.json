@@ -14,6 +14,13 @@
     "tag_ref": "refs/tags/giflib/04-test"
   },
   {
+    "library": "glib",
+    "nameWithOwner": "safelibs/port-glib",
+    "url": "https://github.com/safelibs/port-glib",
+    "default_branch": "main",
+    "tag_ref": "refs/tags/glib/04-test"
+  },
+  {
     "library": "libarchive",
     "nameWithOwner": "safelibs/port-libarchive",
     "url": "https://github.com/safelibs/port-libarchive",
@@ -28,6 +35,13 @@
     "tag_ref": "refs/tags/libbz2/04-test"
   },
   {
+    "library": "libc6",
+    "nameWithOwner": "safelibs/port-libc6",
+    "url": "https://github.com/safelibs/port-libc6",
+    "default_branch": "main",
+    "tag_ref": "refs/tags/libc6/04-test"
+  },
+  {
     "library": "libcsv",
     "nameWithOwner": "safelibs/port-libcsv",
     "url": "https://github.com/safelibs/port-libcsv",
@@ -35,11 +49,32 @@
     "tag_ref": "refs/tags/libcsv/04-test"
   },
   {
+    "library": "libcurl",
+    "nameWithOwner": "safelibs/port-libcurl",
+    "url": "https://github.com/safelibs/port-libcurl",
+    "default_branch": "main",
+    "tag_ref": "refs/tags/libcurl/04-test"
+  },
+  {
     "library": "libexif",
     "nameWithOwner": "safelibs/port-libexif",
     "url": "https://github.com/safelibs/port-libexif",
     "default_branch": "main",
     "tag_ref": "refs/tags/libexif/04-test"
+  },
+  {
+    "library": "libgcrypt",
+    "nameWithOwner": "safelibs/port-libgcrypt",
+    "url": "https://github.com/safelibs/port-libgcrypt",
+    "default_branch": "main",
+    "tag_ref": "refs/tags/libgcrypt/04-test"
+  },
+  {
+    "library": "libjansson",
+    "nameWithOwner": "safelibs/port-libjansson",
+    "url": "https://github.com/safelibs/port-libjansson",
+    "default_branch": "main",
+    "tag_ref": "refs/tags/libjansson/04-test"
   },
   {
     "library": "libjpeg-turbo",

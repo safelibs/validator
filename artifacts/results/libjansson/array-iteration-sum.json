@@ -1,0 +1,33 @@
+{
+  "schema_version": 2,
+  "library": "libjansson",
+  "mode": "original",
+  "testcase_id": "array-iteration-sum",
+  "title": "Jansson array iteration sum",
+  "description": "Iterates numeric array elements through the public API and verifies their sum.",
+  "kind": "source",
+  "client_application": null,
+  "tags": [
+    "api",
+    "array"
+  ],
+  "requires": [],
+  "status": "passed",
+  "started_at": "1970-01-01T00:00:00Z",
+  "finished_at": "1970-01-01T00:00:00Z",
+  "duration_seconds": 0.0,
+  "result_path": "results/libjansson/array-iteration-sum.json",
+  "log_path": "logs/libjansson/array-iteration-sum.log",
+  "cast_path": "casts/libjansson/array-iteration-sum.cast",
+  "exit_code": 0,
+  "command": [
+    "bash",
+    "/validator/tests/libjansson/tests/cases/source/run.sh",
+    "array-iteration-sum"
+  ],
+  "apt_packages": [
+    "libjansson4",
+    "libjansson-dev"
+  ],
+  "override_debs_installed": false
+}

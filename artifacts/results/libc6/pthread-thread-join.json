@@ -1,0 +1,37 @@
+{
+  "schema_version": 2,
+  "library": "libc6",
+  "mode": "original",
+  "testcase_id": "pthread-thread-join",
+  "title": "glibc pthread join",
+  "description": "Starts a POSIX thread and joins it through libc pthread entry points.",
+  "kind": "source",
+  "client_application": null,
+  "tags": [
+    "api",
+    "pthread"
+  ],
+  "requires": [],
+  "status": "passed",
+  "started_at": "1970-01-01T00:00:00Z",
+  "finished_at": "1970-01-01T00:00:00Z",
+  "duration_seconds": 0.0,
+  "result_path": "results/libc6/pthread-thread-join.json",
+  "log_path": "logs/libc6/pthread-thread-join.log",
+  "cast_path": "casts/libc6/pthread-thread-join.cast",
+  "exit_code": 0,
+  "command": [
+    "bash",
+    "/validator/tests/libc6/tests/cases/source/run.sh",
+    "pthread-thread-join"
+  ],
+  "apt_packages": [
+    "libc6",
+    "libc6-dev",
+    "libc-dev-bin",
+    "libc-bin",
+    "locales",
+    "nscd"
+  ],
+  "override_debs_installed": false
+}

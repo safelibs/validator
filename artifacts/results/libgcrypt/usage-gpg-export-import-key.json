@@ -1,0 +1,33 @@
+{
+  "schema_version": 2,
+  "library": "libgcrypt",
+  "mode": "original",
+  "testcase_id": "usage-gpg-export-import-key",
+  "title": "GnuPG exports and imports key",
+  "description": "Exports a generated public key and imports it into a fresh keyring.",
+  "kind": "usage",
+  "client_application": "gpg",
+  "tags": [
+    "usage",
+    "crypto"
+  ],
+  "requires": [],
+  "status": "passed",
+  "started_at": "1970-01-01T00:00:00Z",
+  "finished_at": "1970-01-01T00:00:00Z",
+  "duration_seconds": 0.0,
+  "result_path": "results/libgcrypt/usage-gpg-export-import-key.json",
+  "log_path": "logs/libgcrypt/usage-gpg-export-import-key.log",
+  "cast_path": "casts/libgcrypt/usage-gpg-export-import-key.cast",
+  "exit_code": 0,
+  "command": [
+    "bash",
+    "/validator/tests/libgcrypt/tests/cases/usage/run.sh",
+    "usage-gpg-export-import-key"
+  ],
+  "apt_packages": [
+    "libgcrypt20",
+    "libgcrypt20-dev"
+  ],
+  "override_debs_installed": false
+}

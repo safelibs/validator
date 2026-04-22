@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "library": "libcurl",
+  "dependents": [
+    {
+      "name": "curl",
+      "package": "curl",
+      "packages": [
+        "curl"
+      ],
+      "description": "The curl command-line client transfers data through libcurl."
+    }
+  ]
+}

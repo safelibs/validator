@@ -1,0 +1,196 @@
+schema_version: 1
+library: libgcrypt
+apt_packages:
+- libgcrypt20
+- libgcrypt20-dev
+testcases:
+- id: digest-sha256-smoke
+  title: libgcrypt SHA-256 digest
+  description: Computes a SHA-256 digest with gcry_md_hash_buffer and verifies the known prefix.
+  kind: source
+  command:
+  - bash
+  - /validator/tests/libgcrypt/tests/cases/source/run.sh
+  - digest-sha256-smoke
+  timeout_seconds: 120
+  tags:
+  - api
+  - crypto
+- id: hmac-sha256-smoke
+  title: libgcrypt HMAC digest
+  description: Computes an HMAC through gcry_md_open with the HMAC flag.
+  kind: source
+  command:
+  - bash
+  - /validator/tests/libgcrypt/tests/cases/source/run.sh
+  - hmac-sha256-smoke
+  timeout_seconds: 120
+  tags:
+  - api
+  - crypto
+- id: aes-ctr-roundtrip
+  title: libgcrypt AES CTR round trip
+  description: Encrypts and decrypts a buffer through the AES-128 CTR cipher API.
+  kind: source
+  command:
+  - bash
+  - /validator/tests/libgcrypt/tests/cases/source/run.sh
+  - aes-ctr-roundtrip
+  timeout_seconds: 120
+  tags:
+  - api
+  - crypto
+- id: mpi-arithmetic
+  title: libgcrypt MPI arithmetic
+  description: Adds integers through the multi-precision integer API and prints the result.
+  kind: source
+  command:
+  - bash
+  - /validator/tests/libgcrypt/tests/cases/source/run.sh
+  - mpi-arithmetic
+  timeout_seconds: 120
+  tags:
+  - api
+  - mpi
+- id: nonce-generation
+  title: libgcrypt nonce generation
+  description: Fills a nonce buffer with gcry_create_nonce and verifies it is not all zero bytes.
+  kind: source
+  command:
+  - bash
+  - /validator/tests/libgcrypt/tests/cases/source/run.sh
+  - nonce-generation
+  timeout_seconds: 120
+  tags:
+  - api
+  - random
+- id: usage-gpg-version-libgcrypt
+  title: GnuPG reports libgcrypt
+  description: Runs gpg --version and verifies it reports the linked libgcrypt version.
+  kind: usage
+  client_application: gpg
+  command:
+  - bash
+  - /validator/tests/libgcrypt/tests/cases/usage/run.sh
+  - usage-gpg-version-libgcrypt
+  timeout_seconds: 120
+  tags:
+  - usage
+  - crypto
+- id: usage-gpg-print-md
+  title: GnuPG prints SHA-256 digest
+  description: Hashes a file with gpg --print-md to exercise libgcrypt digest code.
+  kind: usage
+  client_application: gpg
+  command:
+  - bash
+  - /validator/tests/libgcrypt/tests/cases/usage/run.sh
+  - usage-gpg-print-md
+  timeout_seconds: 120
+  tags:
+  - usage
+  - crypto
+- id: usage-gpg-symmetric-roundtrip
+  title: GnuPG symmetric round trip
+  description: Encrypts and decrypts a file with a passphrase-backed symmetric cipher.
+  kind: usage
+  client_application: gpg
+  command:
+  - bash
+  - /validator/tests/libgcrypt/tests/cases/usage/run.sh
+  - usage-gpg-symmetric-roundtrip
+  timeout_seconds: 120
+  tags:
+  - usage
+  - crypto
+- id: usage-gpg-symmetric-armor
+  title: GnuPG armored symmetric data
+  description: Produces ASCII-armored symmetric ciphertext and decrypts it back to plaintext.
+  kind: usage
+  client_application: gpg
+  command:
+  - bash
+  - /validator/tests/libgcrypt/tests/cases/usage/run.sh
+  - usage-gpg-symmetric-armor
+  timeout_seconds: 120
+  tags:
+  - usage
+  - crypto
+- id: usage-gpg-detached-sign-verify
+  title: GnuPG detached signature
+  description: Generates a signing key, creates a detached signature, and verifies it.
+  kind: usage
+  client_application: gpg
+  command:
+  - bash
+  - /validator/tests/libgcrypt/tests/cases/usage/run.sh
+  - usage-gpg-detached-sign-verify
+  timeout_seconds: 180
+  tags:
+  - usage
+  - crypto
+- id: usage-gpg-clearsign-verify
+  title: GnuPG clear-signed message
+  description: Signs a message in cleartext form and verifies the resulting signature.
+  kind: usage
+  client_application: gpg
+  command:
+  - bash
+  - /validator/tests/libgcrypt/tests/cases/usage/run.sh
+  - usage-gpg-clearsign-verify
+  timeout_seconds: 180
+  tags:
+  - usage
+  - crypto
+- id: usage-gpg-export-import-key
+  title: GnuPG exports and imports key
+  description: Exports a generated public key and imports it into a fresh keyring.
+  kind: usage
+  client_application: gpg
+  command:
+  - bash
+  - /validator/tests/libgcrypt/tests/cases/usage/run.sh
+  - usage-gpg-export-import-key
+  timeout_seconds: 180
+  tags:
+  - usage
+  - crypto
+- id: usage-gpg-recipient-encrypt
+  title: GnuPG recipient encryption
+  description: Encrypts a file to a generated recipient key and decrypts it through GnuPG.
+  kind: usage
+  client_application: gpg
+  command:
+  - bash
+  - /validator/tests/libgcrypt/tests/cases/usage/run.sh
+  - usage-gpg-recipient-encrypt
+  timeout_seconds: 180
+  tags:
+  - usage
+  - crypto
+- id: usage-gpg-list-packets
+  title: GnuPG lists encrypted packets
+  description: Lists OpenPGP packet metadata from a symmetric encrypted file.
+  kind: usage
+  client_application: gpg
+  command:
+  - bash
+  - /validator/tests/libgcrypt/tests/cases/usage/run.sh
+  - usage-gpg-list-packets
+  timeout_seconds: 120
+  tags:
+  - usage
+  - crypto
+- id: usage-gpg-list-keys
+  title: GnuPG lists generated key
+  description: Generates a key and verifies it appears in the local key listing.
+  kind: usage
+  client_application: gpg
+  command:
+  - bash
+  - /validator/tests/libgcrypt/tests/cases/usage/run.sh
+  - usage-gpg-list-keys
+  timeout_seconds: 180
+  tags:
+  - usage
+  - crypto

@@ -1,0 +1,33 @@
+{
+  "schema_version": 2,
+  "library": "libjansson",
+  "mode": "original",
+  "testcase_id": "usage-jshon-array-length",
+  "title": "jshon reports array length",
+  "description": "Reads an array member and verifies jshon reports its element count.",
+  "kind": "usage",
+  "client_application": "jshon",
+  "tags": [
+    "usage",
+    "json"
+  ],
+  "requires": [],
+  "status": "passed",
+  "started_at": "1970-01-01T00:00:00Z",
+  "finished_at": "1970-01-01T00:00:00Z",
+  "duration_seconds": 0.0,
+  "result_path": "results/libjansson/usage-jshon-array-length.json",
+  "log_path": "logs/libjansson/usage-jshon-array-length.log",
+  "cast_path": "casts/libjansson/usage-jshon-array-length.cast",
+  "exit_code": 0,
+  "command": [
+    "bash",
+    "/validator/tests/libjansson/tests/cases/usage/run.sh",
+    "usage-jshon-array-length"
+  ],
+  "apt_packages": [
+    "libjansson4",
+    "libjansson-dev"
+  ],
+  "override_debs_installed": false
+}

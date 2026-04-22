@@ -1,0 +1,34 @@
+{
+  "schema_version": 2,
+  "library": "libcurl",
+  "mode": "original",
+  "testcase_id": "usage-curl-custom-header",
+  "title": "curl sends custom header",
+  "description": "Sends a custom request header to a local HTTP handler and verifies it is received.",
+  "kind": "usage",
+  "client_application": "curl",
+  "tags": [
+    "usage",
+    "http"
+  ],
+  "requires": [],
+  "status": "passed",
+  "started_at": "1970-01-01T00:00:00Z",
+  "finished_at": "1970-01-01T00:00:00Z",
+  "duration_seconds": 0.0,
+  "result_path": "results/libcurl/usage-curl-custom-header.json",
+  "log_path": "logs/libcurl/usage-curl-custom-header.log",
+  "cast_path": "casts/libcurl/usage-curl-custom-header.cast",
+  "exit_code": 0,
+  "command": [
+    "bash",
+    "/validator/tests/libcurl/tests/cases/usage/run.sh",
+    "usage-curl-custom-header"
+  ],
+  "apt_packages": [
+    "curl",
+    "libcurl4t64",
+    "libcurl4-openssl-dev"
+  ],
+  "override_debs_installed": false
+}

@@ -1,0 +1,37 @@
+{
+  "schema_version": 2,
+  "library": "libc6",
+  "mode": "original",
+  "testcase_id": "usage-gawk-field-sum",
+  "title": "gawk sums fields",
+  "description": "Sums numeric fields from tabular input with gawk.",
+  "kind": "usage",
+  "client_application": "gawk",
+  "tags": [
+    "usage",
+    "cli"
+  ],
+  "requires": [],
+  "status": "passed",
+  "started_at": "1970-01-01T00:00:00Z",
+  "finished_at": "1970-01-01T00:00:00Z",
+  "duration_seconds": 0.0,
+  "result_path": "results/libc6/usage-gawk-field-sum.json",
+  "log_path": "logs/libc6/usage-gawk-field-sum.log",
+  "cast_path": "casts/libc6/usage-gawk-field-sum.cast",
+  "exit_code": 0,
+  "command": [
+    "bash",
+    "/validator/tests/libc6/tests/cases/usage/run.sh",
+    "usage-gawk-field-sum"
+  ],
+  "apt_packages": [
+    "libc6",
+    "libc6-dev",
+    "libc-dev-bin",
+    "libc-bin",
+    "locales",
+    "nscd"
+  ],
+  "override_debs_installed": false
+}

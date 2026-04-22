@@ -1,0 +1,2 @@
+$ docker build --tag validator-libc6-shared --file /tmp/validator-run-matrix-libc6/libc6/Dockerfile /tmp/validator-run-matrix-libc6
+docker build completed

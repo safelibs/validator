@@ -457,6 +457,12 @@ def _require_string(value: object, *, field_name: str, context: str) -> str:
     return value
 
 
+def _require_optional_string(value: object, *, field_name: str, context: str) -> str | None:
+    if value is None:
+        return None
+    return _require_string(value, field_name=field_name, context=context)
+
+
 def _require_int(value: object, *, field_name: str, context: str) -> int:
     if isinstance(value, bool) or not isinstance(value, int):
         raise ValidatorError(f"{field_name} must be an integer in {context}")
@@ -490,13 +496,23 @@ def _validate_port_lock_entry(
         raise ValidatorError(f"port lock library order mismatch: expected {library!r}")
     repository = _require_string(entry.get("repository"), field_name="repository", context=context)
     tag_ref = _require_string(entry.get("tag_ref"), field_name="tag_ref", context=context)
-    commit = _require_string(entry.get("commit"), field_name="commit", context=context)
-    release_tag = _require_string(entry.get("release_tag"), field_name="release_tag", context=context)
-    if release_tag != f"build-{commit[:12]}":
-        raise ValidatorError(f"port lock release_tag must equal build-<commit[:12]> in {context}")
+    commit = _require_optional_string(entry.get("commit"), field_name="commit", context=context)
+    release_tag = _require_optional_string(entry.get("release_tag"), field_name="release_tag", context=context)
+    unavailable_reason = _require_optional_string(
+        entry.get("port_unavailable_reason"),
+        field_name="port_unavailable_reason",
+        context=context,
+    )
+    if unavailable_reason is None:
+        if commit is None:
+            raise ValidatorError(f"commit must be a non-empty string in {context}")
+        if release_tag is None:
+            raise ValidatorError(f"release_tag must be a non-empty string in {context}")
+        if release_tag != f"build-{commit[:12]}":
+            raise ValidatorError(f"port lock release_tag must equal build-<commit[:12]> in {context}")
 
     raw_debs = _require_list(entry.get("debs"), field_name="debs", context=context)
-    if not raw_debs:
+    if unavailable_reason is None and not raw_debs:
         raise ValidatorError(f"port lock library {library} must select at least one deb")
     raw_unported = _require_list(
         entry.get("unported_original_packages"),
@@ -538,6 +554,8 @@ def _validate_port_lock_entry(
         }
 
     ported_packages = list(debs_by_package)
+    if unavailable_reason is not None and ported_packages:
+        raise ValidatorError(f"unavailable port lock library {library} must not select debs")
     if set(ported_packages).intersection(unported):
         raise ValidatorError(f"port lock debs and unported packages overlap for {library}")
     combined = [
@@ -552,7 +570,7 @@ def _validate_port_lock_entry(
 
     ordered_debs = [debs_by_package[package] for package in canonical_packages if package in debs_by_package]
     ordered_unported = [package for package in canonical_packages if package in unported]
-    return {
+    metadata: dict[str, object] = {
         "repository": repository,
         "tag_ref": tag_ref,
         "commit": commit,
@@ -560,6 +578,9 @@ def _validate_port_lock_entry(
         "port_debs": ordered_debs,
         "unported_original_packages": ordered_unported,
     }
+    if unavailable_reason is not None:
+        metadata["port_unavailable_reason"] = unavailable_reason
+    return metadata
 
 
 def load_port_deb_lock(
@@ -873,6 +894,8 @@ def _result_payload(
                 "override_installed_packages": override_installed_packages or [],
             }
         )
+        if "port_unavailable_reason" in port_metadata:
+            payload["port_unavailable_reason"] = port_metadata["port_unavailable_reason"]
     if error is not None:
         payload["error"] = error
     return payload
@@ -1104,6 +1127,30 @@ def run_library_cases(
     library = testcase_manifest.library
     build_log_path = mode_artifact_path(artifact_root, mode, "logs", library, "docker-build.log")
     results: list[dict[str, object]] = []
+    unavailable_reason = None
+    if port_metadata is not None:
+        raw_reason = port_metadata.get("port_unavailable_reason")
+        if isinstance(raw_reason, str) and raw_reason:
+            unavailable_reason = raw_reason
+    if unavailable_reason is not None:
+        for testcase in testcase_manifest.testcases:
+            results.append(
+                write_unrun_result(
+                    testcase_manifest=testcase_manifest,
+                    testcase=testcase,
+                    artifact_root=artifact_root,
+                    mode=mode,
+                    port_metadata=port_metadata,
+                    error=unavailable_reason,
+                )
+            )
+        write_library_summary(
+            artifact_root=artifact_root,
+            testcase_manifest=testcase_manifest,
+            mode=mode,
+            results=results,
+        )
+        return results
     try:
         image_tag = ensure_library_image(
             repo_root=repo_root,
@@ -1153,6 +1200,18 @@ def run_library_cases(
         results=results,
     )
     return results
+
+
+def failed_port_result_is_test_failure(result: dict[str, object]) -> bool:
+    if result.get("port_unavailable_reason"):
+        return True
+    if result.get("override_debs_installed") is not True:
+        return False
+    port_debs = result.get("port_debs")
+    installed_packages = result.get("override_installed_packages")
+    if not isinstance(port_debs, list) or not isinstance(installed_packages, list):
+        return False
+    return bool(port_debs) and len(installed_packages) == len(port_debs)
 
 
 def build_parser() -> argparse.ArgumentParser:
@@ -1215,12 +1274,16 @@ def main(argv: list[str] | None = None) -> int:
     override_deb_dirs: dict[str, Path | None] = {library: None for library in libraries}
     if args.override_deb_root is not None:
         validate_matrix_override_deb_root(args.override_deb_root)
-        override_deb_dirs = {
-            library: resolve_override_deb_dir(args.override_deb_root, library)
-            for library in libraries
-        }
+        override_deb_dirs = {}
+        for library in libraries:
+            if args.mode == "port-04-test" and port_lock[library].get("port_unavailable_reason"):
+                override_deb_dirs[library] = None
+            else:
+                override_deb_dirs[library] = resolve_override_deb_dir(args.override_deb_root, library)
         if args.mode == "port-04-test":
             for library in libraries:
+                if port_lock[library].get("port_unavailable_reason"):
+                    continue
                 assert override_deb_dirs[library] is not None
                 validate_port_override_files(
                     override_deb_dir=override_deb_dirs[library],
@@ -1245,7 +1308,11 @@ def main(argv: list[str] | None = None) -> int:
                 record_casts=args.record_casts,
                 state=states[library],
             )
-            if any(result.get("status") != "passed" for result in results):
+            for result in results:
+                if result.get("status") == "passed":
+                    continue
+                if args.mode == "port-04-test" and failed_port_result_is_test_failure(result):
+                    continue
                 any_failed = True
     finally:
         cleanup_errors = cleanup_library_images(states)

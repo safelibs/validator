@@ -1,0 +1,33 @@
+{
+  "schema_version": 2,
+  "library": "libjansson",
+  "mode": "original",
+  "testcase_id": "malformed-json-error",
+  "title": "Jansson malformed JSON error",
+  "description": "Requires json_loads to reject an unterminated array and report a parse location.",
+  "kind": "source",
+  "client_application": null,
+  "tags": [
+    "api",
+    "negative"
+  ],
+  "requires": [],
+  "status": "passed",
+  "started_at": "1970-01-01T00:00:00Z",
+  "finished_at": "1970-01-01T00:00:00Z",
+  "duration_seconds": 0.0,
+  "result_path": "results/libjansson/malformed-json-error.json",
+  "log_path": "logs/libjansson/malformed-json-error.log",
+  "cast_path": "casts/libjansson/malformed-json-error.cast",
+  "exit_code": 0,
+  "command": [
+    "bash",
+    "/validator/tests/libjansson/tests/cases/source/run.sh",
+    "malformed-json-error"
+  ],
+  "apt_packages": [
+    "libjansson4",
+    "libjansson-dev"
+  ],
+  "override_debs_installed": false
+}

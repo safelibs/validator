@@ -1,0 +1,1030 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>libjansson Validation</title>
+    <link rel="icon" href="data:,">
+    <link rel="stylesheet" href="../assets/site.css">
+    <script defer src="../assets/player.js"></script>
+  </head>
+  <body data-site-data="../site-data.json">
+    <a class="skip-link" href="#tests-heading">Skip to tests</a>
+    <main>
+      <nav class="breadcrumb" aria-label="Breadcrumb"><a href="../index.html">All libraries</a></nav>
+      <section class="dashboard" aria-labelledby="dashboard-heading">
+        <h1 id="dashboard-heading">libjansson Validation</h1>
+        <div class="metric-grid">
+        <div class="metric" data-proof-total="libraries"><strong>1</strong><span>Libraries</span></div>
+        <div class="metric" data-proof-total="cases"><strong>15</strong><span>Tests</span></div>
+        <div class="metric" data-proof-total="source_cases"><strong>5</strong><span>Source tests</span></div>
+        <div class="metric" data-proof-total="usage_cases"><strong>10</strong><span>Usage tests</span></div>
+        <div class="metric" data-proof-total="passed"><strong>15 / 15</strong><span>Port tests passing</span></div>
+        <div class="metric" data-proof-total="failed"><strong>0</strong><span>Port tests failing</span></div>
+        <div class="metric" data-proof-total="casts"><strong>30 (100%)</strong><span>Evidence casts</span></div>
+        <div class="metric" data-proof-total="port_libraries"><strong>1 / 1</strong><span>Port libraries passing</span></div>
+        </div>
+      </section>
+
+      <section class="controls" aria-label="Testcase filters">
+        <label class="search-label">Search <input id="search-input" type="search" autocomplete="off" name="search"></label>
+        <label>Run mode <select id="mode-filter" name="mode"><option value="all">All</option><option value="original">Original</option><option value="port-04-test">Port</option></select></label>
+        <label>Status <select id="status-filter"><option value="all">All</option><option value="passed">Passed</option><option value="failed">Failed</option></select></label>
+        <label>Kind <select id="kind-filter"><option value="all">All</option><option value="source">Source</option><option value="usage">Usage</option></select></label>
+      </section>
+      <section id="testcases" class="testcases" aria-labelledby="tests-heading">
+        <h2 id="tests-heading">Tests</h2>
+        <details class="case-row" data-library="libjansson" data-testcase-id="object-dump-roundtrip" data-mode="original" data-kind="source" data-status="passed" data-player-cast="../evidence/original/casts/libjansson/object-dump-roundtrip.cast" data-search="libjansson object-dump-roundtrip original Jansson object dump round trip Parses an object, updates a member, and emits compact sorted JSON. source api json">
+          <summary>
+            <span class="case-title">
+              <strong>Jansson object dump round trip</strong>
+              <span class="case-id">Original / libjansson / object-dump-roundtrip</span>
+            </span>
+            <span class="status-pill status-passed" aria-label="Original / libjansson / object-dump-roundtrip status: Passed">Passed</span>
+          </summary>
+          <div class="case-body">
+            <p>Parses an object, updates a member, and emits compact sorted JSON.</p>
+            <dl class="case-meta">
+              <div><dt>Run</dt><dd>Original</dd></div>
+              <div><dt>Kind</dt><dd>source</dd></div>
+              <div><dt>Client</dt><dd>none</dd></div>
+              <div><dt>Duration</dt><dd>0.00s</dd></div>
+              <div><dt>Tags</dt><dd class="tags"><span>api</span> <span>json</span></dd></div>
+            </dl>
+            <div class="case-actions">
+              <a class="log-link" href="../evidence/original/logs/libjansson/object-dump-roundtrip.log" aria-label="Open log for Original / libjansson / object-dump-roundtrip">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/original/casts/libjansson/object-dump-roundtrip.cast" aria-label="Play cast for Original / libjansson / object-dump-roundtrip">Play</button>
+            </div>
+            <div class="cast-player" data-player>
+              <div class="player-controls">
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Original / libjansson / object-dump-roundtrip">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Original / libjansson / object-dump-roundtrip">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Original / libjansson / object-dump-roundtrip">Restart</button>
+                <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
+                <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
+              </div>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Original / libjansson / object-dump-roundtrip"></pre>
+            </div>
+          </div>
+        </details>
+        <details class="case-row" data-library="libjansson" data-testcase-id="array-iteration-sum" data-mode="original" data-kind="source" data-status="passed" data-player-cast="../evidence/original/casts/libjansson/array-iteration-sum.cast" data-search="libjansson array-iteration-sum original Jansson array iteration sum Iterates numeric array elements through the public API and verifies their sum. source api array">
+          <summary>
+            <span class="case-title">
+              <strong>Jansson array iteration sum</strong>
+              <span class="case-id">Original / libjansson / array-iteration-sum</span>
+            </span>
+            <span class="status-pill status-passed" aria-label="Original / libjansson / array-iteration-sum status: Passed">Passed</span>
+          </summary>
+          <div class="case-body">
+            <p>Iterates numeric array elements through the public API and verifies their sum.</p>
+            <dl class="case-meta">
+              <div><dt>Run</dt><dd>Original</dd></div>
+              <div><dt>Kind</dt><dd>source</dd></div>
+              <div><dt>Client</dt><dd>none</dd></div>
+              <div><dt>Duration</dt><dd>0.00s</dd></div>
+              <div><dt>Tags</dt><dd class="tags"><span>api</span> <span>array</span></dd></div>
+            </dl>
+            <div class="case-actions">
+              <a class="log-link" href="../evidence/original/logs/libjansson/array-iteration-sum.log" aria-label="Open log for Original / libjansson / array-iteration-sum">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/original/casts/libjansson/array-iteration-sum.cast" aria-label="Play cast for Original / libjansson / array-iteration-sum">Play</button>
+            </div>
+            <div class="cast-player" data-player>
+              <div class="player-controls">
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Original / libjansson / array-iteration-sum">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Original / libjansson / array-iteration-sum">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Original / libjansson / array-iteration-sum">Restart</button>
+                <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
+                <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
+              </div>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Original / libjansson / array-iteration-sum"></pre>
+            </div>
+          </div>
+        </details>
+        <details class="case-row" data-library="libjansson" data-testcase-id="pack-unpack-values" data-mode="original" data-kind="source" data-status="passed" data-player-cast="../evidence/original/casts/libjansson/pack-unpack-values.cast" data-search="libjansson pack-unpack-values original Jansson pack and unpack values Builds JSON with json_pack and reads typed members back with json_unpack. source api object">
+          <summary>
+            <span class="case-title">
+              <strong>Jansson pack and unpack values</strong>
+              <span class="case-id">Original / libjansson / pack-unpack-values</span>
+            </span>
+            <span class="status-pill status-passed" aria-label="Original / libjansson / pack-unpack-values status: Passed">Passed</span>
+          </summary>
+          <div class="case-body">
+            <p>Builds JSON with json_pack and reads typed members back with json_unpack.</p>
+            <dl class="case-meta">
+              <div><dt>Run</dt><dd>Original</dd></div>
+              <div><dt>Kind</dt><dd>source</dd></div>
+              <div><dt>Client</dt><dd>none</dd></div>
+              <div><dt>Duration</dt><dd>0.00s</dd></div>
+              <div><dt>Tags</dt><dd class="tags"><span>api</span> <span>object</span></dd></div>
+            </dl>
+            <div class="case-actions">
+              <a class="log-link" href="../evidence/original/logs/libjansson/pack-unpack-values.log" aria-label="Open log for Original / libjansson / pack-unpack-values">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/original/casts/libjansson/pack-unpack-values.cast" aria-label="Play cast for Original / libjansson / pack-unpack-values">Play</button>
+            </div>
+            <div class="cast-player" data-player>
+              <div class="player-controls">
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Original / libjansson / pack-unpack-values">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Original / libjansson / pack-unpack-values">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Original / libjansson / pack-unpack-values">Restart</button>
+                <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
+                <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
+              </div>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Original / libjansson / pack-unpack-values"></pre>
+            </div>
+          </div>
+        </details>
+        <details class="case-row" data-library="libjansson" data-testcase-id="refcount-object-update" data-mode="original" data-kind="source" data-status="passed" data-player-cast="../evidence/original/casts/libjansson/refcount-object-update.cast" data-search="libjansson refcount-object-update original Jansson refcount object update Replaces object members while holding an extra reference to validate lifetime behavior. source api refcount">
+          <summary>
+            <span class="case-title">
+              <strong>Jansson refcount object update</strong>
+              <span class="case-id">Original / libjansson / refcount-object-update</span>
+            </span>
+            <span class="status-pill status-passed" aria-label="Original / libjansson / refcount-object-update status: Passed">Passed</span>
+          </summary>
+          <div class="case-body">
+            <p>Replaces object members while holding an extra reference to validate lifetime behavior.</p>
+            <dl class="case-meta">
+              <div><dt>Run</dt><dd>Original</dd></div>
+              <div><dt>Kind</dt><dd>source</dd></div>
+              <div><dt>Client</dt><dd>none</dd></div>
+              <div><dt>Duration</dt><dd>0.00s</dd></div>
+              <div><dt>Tags</dt><dd class="tags"><span>api</span> <span>refcount</span></dd></div>
+            </dl>
+            <div class="case-actions">
+              <a class="log-link" href="../evidence/original/logs/libjansson/refcount-object-update.log" aria-label="Open log for Original / libjansson / refcount-object-update">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/original/casts/libjansson/refcount-object-update.cast" aria-label="Play cast for Original / libjansson / refcount-object-update">Play</button>
+            </div>
+            <div class="cast-player" data-player>
+              <div class="player-controls">
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Original / libjansson / refcount-object-update">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Original / libjansson / refcount-object-update">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Original / libjansson / refcount-object-update">Restart</button>
+                <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
+                <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
+              </div>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Original / libjansson / refcount-object-update"></pre>
+            </div>
+          </div>
+        </details>
+        <details class="case-row" data-library="libjansson" data-testcase-id="malformed-json-error" data-mode="original" data-kind="source" data-status="passed" data-player-cast="../evidence/original/casts/libjansson/malformed-json-error.cast" data-search="libjansson malformed-json-error original Jansson malformed JSON error Requires json_loads to reject an unterminated array and report a parse location. source api negative">
+          <summary>
+            <span class="case-title">
+              <strong>Jansson malformed JSON error</strong>
+              <span class="case-id">Original / libjansson / malformed-json-error</span>
+            </span>
+            <span class="status-pill status-passed" aria-label="Original / libjansson / malformed-json-error status: Passed">Passed</span>
+          </summary>
+          <div class="case-body">
+            <p>Requires json_loads to reject an unterminated array and report a parse location.</p>
+            <dl class="case-meta">
+              <div><dt>Run</dt><dd>Original</dd></div>
+              <div><dt>Kind</dt><dd>source</dd></div>
+              <div><dt>Client</dt><dd>none</dd></div>
+              <div><dt>Duration</dt><dd>0.00s</dd></div>
+              <div><dt>Tags</dt><dd class="tags"><span>api</span> <span>negative</span></dd></div>
+            </dl>
+            <div class="case-actions">
+              <a class="log-link" href="../evidence/original/logs/libjansson/malformed-json-error.log" aria-label="Open log for Original / libjansson / malformed-json-error">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/original/casts/libjansson/malformed-json-error.cast" aria-label="Play cast for Original / libjansson / malformed-json-error">Play</button>
+            </div>
+            <div class="cast-player" data-player>
+              <div class="player-controls">
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Original / libjansson / malformed-json-error">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Original / libjansson / malformed-json-error">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Original / libjansson / malformed-json-error">Restart</button>
+                <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
+                <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
+              </div>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Original / libjansson / malformed-json-error"></pre>
+            </div>
+          </div>
+        </details>
+        <details class="case-row" data-library="libjansson" data-testcase-id="usage-jshon-read-field" data-mode="original" data-kind="usage" data-status="passed" data-player-cast="../evidence/original/casts/libjansson/usage-jshon-read-field.cast" data-search="libjansson usage-jshon-read-field original jshon reads a string field Extracts a string member from an object with jshon. usage jshon usage json">
+          <summary>
+            <span class="case-title">
+              <strong>jshon reads a string field</strong>
+              <span class="case-id">Original / libjansson / usage-jshon-read-field</span>
+            </span>
+            <span class="status-pill status-passed" aria-label="Original / libjansson / usage-jshon-read-field status: Passed">Passed</span>
+          </summary>
+          <div class="case-body">
+            <p>Extracts a string member from an object with jshon.</p>
+            <dl class="case-meta">
+              <div><dt>Run</dt><dd>Original</dd></div>
+              <div><dt>Kind</dt><dd>usage</dd></div>
+              <div><dt>Client</dt><dd>jshon</dd></div>
+              <div><dt>Duration</dt><dd>0.00s</dd></div>
+              <div><dt>Tags</dt><dd class="tags"><span>usage</span> <span>json</span></dd></div>
+            </dl>
+            <div class="case-actions">
+              <a class="log-link" href="../evidence/original/logs/libjansson/usage-jshon-read-field.log" aria-label="Open log for Original / libjansson / usage-jshon-read-field">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/original/casts/libjansson/usage-jshon-read-field.cast" aria-label="Play cast for Original / libjansson / usage-jshon-read-field">Play</button>
+            </div>
+            <div class="cast-player" data-player>
+              <div class="player-controls">
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Original / libjansson / usage-jshon-read-field">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Original / libjansson / usage-jshon-read-field">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Original / libjansson / usage-jshon-read-field">Restart</button>
+                <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
+                <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
+              </div>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Original / libjansson / usage-jshon-read-field"></pre>
+            </div>
+          </div>
+        </details>
+        <details class="case-row" data-library="libjansson" data-testcase-id="usage-jshon-array-length" data-mode="original" data-kind="usage" data-status="passed" data-player-cast="../evidence/original/casts/libjansson/usage-jshon-array-length.cast" data-search="libjansson usage-jshon-array-length original jshon reports array length Reads an array member and verifies jshon reports its element count. usage jshon usage json">
+          <summary>
+            <span class="case-title">
+              <strong>jshon reports array length</strong>
+              <span class="case-id">Original / libjansson / usage-jshon-array-length</span>
+            </span>
+            <span class="status-pill status-passed" aria-label="Original / libjansson / usage-jshon-array-length status: Passed">Passed</span>
+          </summary>
+          <div class="case-body">
+            <p>Reads an array member and verifies jshon reports its element count.</p>
+            <dl class="case-meta">
+              <div><dt>Run</dt><dd>Original</dd></div>
+              <div><dt>Kind</dt><dd>usage</dd></div>
+              <div><dt>Client</dt><dd>jshon</dd></div>
+              <div><dt>Duration</dt><dd>0.00s</dd></div>
+              <div><dt>Tags</dt><dd class="tags"><span>usage</span> <span>json</span></dd></div>
+            </dl>
+            <div class="case-actions">
+              <a class="log-link" href="../evidence/original/logs/libjansson/usage-jshon-array-length.log" aria-label="Open log for Original / libjansson / usage-jshon-array-length">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/original/casts/libjansson/usage-jshon-array-length.cast" aria-label="Play cast for Original / libjansson / usage-jshon-array-length">Play</button>
+            </div>
+            <div class="cast-player" data-player>
+              <div class="player-controls">
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Original / libjansson / usage-jshon-array-length">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Original / libjansson / usage-jshon-array-length">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Original / libjansson / usage-jshon-array-length">Restart</button>
+                <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
+                <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
+              </div>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Original / libjansson / usage-jshon-array-length"></pre>
+            </div>
+          </div>
+        </details>
+        <details class="case-row" data-library="libjansson" data-testcase-id="usage-jshon-array-values" data-mode="original" data-kind="usage" data-status="passed" data-player-cast="../evidence/original/casts/libjansson/usage-jshon-array-values.cast" data-search="libjansson usage-jshon-array-values original jshon prints array values Expands array values from JSON input and verifies each scalar is printed. usage jshon usage json">
+          <summary>
+            <span class="case-title">
+              <strong>jshon prints array values</strong>
+              <span class="case-id">Original / libjansson / usage-jshon-array-values</span>
+            </span>
+            <span class="status-pill status-passed" aria-label="Original / libjansson / usage-jshon-array-values status: Passed">Passed</span>
+          </summary>
+          <div class="case-body">
+            <p>Expands array values from JSON input and verifies each scalar is printed.</p>
+            <dl class="case-meta">
+              <div><dt>Run</dt><dd>Original</dd></div>
+              <div><dt>Kind</dt><dd>usage</dd></div>
+              <div><dt>Client</dt><dd>jshon</dd></div>
+              <div><dt>Duration</dt><dd>0.00s</dd></div>
+              <div><dt>Tags</dt><dd class="tags"><span>usage</span> <span>json</span></dd></div>
+            </dl>
+            <div class="case-actions">
+              <a class="log-link" href="../evidence/original/logs/libjansson/usage-jshon-array-values.log" aria-label="Open log for Original / libjansson / usage-jshon-array-values">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/original/casts/libjansson/usage-jshon-array-values.cast" aria-label="Play cast for Original / libjansson / usage-jshon-array-values">Play</button>
+            </div>
+            <div class="cast-player" data-player>
+              <div class="player-controls">
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Original / libjansson / usage-jshon-array-values">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Original / libjansson / usage-jshon-array-values">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Original / libjansson / usage-jshon-array-values">Restart</button>
+                <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
+                <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
+              </div>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Original / libjansson / usage-jshon-array-values"></pre>
+            </div>
+          </div>
+        </details>
+        <details class="case-row" data-library="libjansson" data-testcase-id="usage-jshon-object-keys" data-mode="original" data-kind="usage" data-status="passed" data-player-cast="../evidence/original/casts/libjansson/usage-jshon-object-keys.cast" data-search="libjansson usage-jshon-object-keys original jshon lists object keys Lists object keys from a nested JSON document. usage jshon usage json">
+          <summary>
+            <span class="case-title">
+              <strong>jshon lists object keys</strong>
+              <span class="case-id">Original / libjansson / usage-jshon-object-keys</span>
+            </span>
+            <span class="status-pill status-passed" aria-label="Original / libjansson / usage-jshon-object-keys status: Passed">Passed</span>
+          </summary>
+          <div class="case-body">
+            <p>Lists object keys from a nested JSON document.</p>
+            <dl class="case-meta">
+              <div><dt>Run</dt><dd>Original</dd></div>
+              <div><dt>Kind</dt><dd>usage</dd></div>
+              <div><dt>Client</dt><dd>jshon</dd></div>
+              <div><dt>Duration</dt><dd>0.00s</dd></div>
+              <div><dt>Tags</dt><dd class="tags"><span>usage</span> <span>json</span></dd></div>
+            </dl>
+            <div class="case-actions">
+              <a class="log-link" href="../evidence/original/logs/libjansson/usage-jshon-object-keys.log" aria-label="Open log for Original / libjansson / usage-jshon-object-keys">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/original/casts/libjansson/usage-jshon-object-keys.cast" aria-label="Play cast for Original / libjansson / usage-jshon-object-keys">Play</button>
+            </div>
+            <div class="cast-player" data-player>
+              <div class="player-controls">
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Original / libjansson / usage-jshon-object-keys">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Original / libjansson / usage-jshon-object-keys">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Original / libjansson / usage-jshon-object-keys">Restart</button>
+                <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
+                <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
+              </div>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Original / libjansson / usage-jshon-object-keys"></pre>
+            </div>
+          </div>
+        </details>
+        <details class="case-row" data-library="libjansson" data-testcase-id="usage-jshon-type-check" data-mode="original" data-kind="usage" data-status="passed" data-player-cast="../evidence/original/casts/libjansson/usage-jshon-type-check.cast" data-search="libjansson usage-jshon-type-check original jshon reports value type Checks that jshon reports a boolean member as a JSON bool. usage jshon usage json">
+          <summary>
+            <span class="case-title">
+              <strong>jshon reports value type</strong>
+              <span class="case-id">Original / libjansson / usage-jshon-type-check</span>
+            </span>
+            <span class="status-pill status-passed" aria-label="Original / libjansson / usage-jshon-type-check status: Passed">Passed</span>
+          </summary>
+          <div class="case-body">
+            <p>Checks that jshon reports a boolean member as a JSON bool.</p>
+            <dl class="case-meta">
+              <div><dt>Run</dt><dd>Original</dd></div>
+              <div><dt>Kind</dt><dd>usage</dd></div>
+              <div><dt>Client</dt><dd>jshon</dd></div>
+              <div><dt>Duration</dt><dd>0.00s</dd></div>
+              <div><dt>Tags</dt><dd class="tags"><span>usage</span> <span>json</span></dd></div>
+            </dl>
+            <div class="case-actions">
+              <a class="log-link" href="../evidence/original/logs/libjansson/usage-jshon-type-check.log" aria-label="Open log for Original / libjansson / usage-jshon-type-check">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/original/casts/libjansson/usage-jshon-type-check.cast" aria-label="Play cast for Original / libjansson / usage-jshon-type-check">Play</button>
+            </div>
+            <div class="cast-player" data-player>
+              <div class="player-controls">
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Original / libjansson / usage-jshon-type-check">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Original / libjansson / usage-jshon-type-check">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Original / libjansson / usage-jshon-type-check">Restart</button>
+                <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
+                <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
+              </div>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Original / libjansson / usage-jshon-type-check"></pre>
+            </div>
+          </div>
+        </details>
+        <details class="case-row" data-library="libjansson" data-testcase-id="usage-jshon-nested-value" data-mode="original" data-kind="usage" data-status="passed" data-player-cast="../evidence/original/casts/libjansson/usage-jshon-nested-value.cast" data-search="libjansson usage-jshon-nested-value original jshon extracts nested value Traverses nested object members and prints the selected value. usage jshon usage json">
+          <summary>
+            <span class="case-title">
+              <strong>jshon extracts nested value</strong>
+              <span class="case-id">Original / libjansson / usage-jshon-nested-value</span>
+            </span>
+            <span class="status-pill status-passed" aria-label="Original / libjansson / usage-jshon-nested-value status: Passed">Passed</span>
+          </summary>
+          <div class="case-body">
+            <p>Traverses nested object members and prints the selected value.</p>
+            <dl class="case-meta">
+              <div><dt>Run</dt><dd>Original</dd></div>
+              <div><dt>Kind</dt><dd>usage</dd></div>
+              <div><dt>Client</dt><dd>jshon</dd></div>
+              <div><dt>Duration</dt><dd>0.00s</dd></div>
+              <div><dt>Tags</dt><dd class="tags"><span>usage</span> <span>json</span></dd></div>
+            </dl>
+            <div class="case-actions">
+              <a class="log-link" href="../evidence/original/logs/libjansson/usage-jshon-nested-value.log" aria-label="Open log for Original / libjansson / usage-jshon-nested-value">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/original/casts/libjansson/usage-jshon-nested-value.cast" aria-label="Play cast for Original / libjansson / usage-jshon-nested-value">Play</button>
+            </div>
+            <div class="cast-player" data-player>
+              <div class="player-controls">
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Original / libjansson / usage-jshon-nested-value">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Original / libjansson / usage-jshon-nested-value">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Original / libjansson / usage-jshon-nested-value">Restart</button>
+                <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
+                <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
+              </div>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Original / libjansson / usage-jshon-nested-value"></pre>
+            </div>
+          </div>
+        </details>
+        <details class="case-row" data-library="libjansson" data-testcase-id="usage-jshon-file-input" data-mode="original" data-kind="usage" data-status="passed" data-player-cast="../evidence/original/casts/libjansson/usage-jshon-file-input.cast" data-search="libjansson usage-jshon-file-input original jshon reads file input Loads JSON from a file path and extracts a stored member. usage jshon usage json">
+          <summary>
+            <span class="case-title">
+              <strong>jshon reads file input</strong>
+              <span class="case-id">Original / libjansson / usage-jshon-file-input</span>
+            </span>
+            <span class="status-pill status-passed" aria-label="Original / libjansson / usage-jshon-file-input status: Passed">Passed</span>
+          </summary>
+          <div class="case-body">
+            <p>Loads JSON from a file path and extracts a stored member.</p>
+            <dl class="case-meta">
+              <div><dt>Run</dt><dd>Original</dd></div>
+              <div><dt>Kind</dt><dd>usage</dd></div>
+              <div><dt>Client</dt><dd>jshon</dd></div>
+              <div><dt>Duration</dt><dd>0.00s</dd></div>
+              <div><dt>Tags</dt><dd class="tags"><span>usage</span> <span>json</span></dd></div>
+            </dl>
+            <div class="case-actions">
+              <a class="log-link" href="../evidence/original/logs/libjansson/usage-jshon-file-input.log" aria-label="Open log for Original / libjansson / usage-jshon-file-input">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/original/casts/libjansson/usage-jshon-file-input.cast" aria-label="Play cast for Original / libjansson / usage-jshon-file-input">Play</button>
+            </div>
+            <div class="cast-player" data-player>
+              <div class="player-controls">
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Original / libjansson / usage-jshon-file-input">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Original / libjansson / usage-jshon-file-input">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Original / libjansson / usage-jshon-file-input">Restart</button>
+                <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
+                <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
+              </div>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Original / libjansson / usage-jshon-file-input"></pre>
+            </div>
+          </div>
+        </details>
+        <details class="case-row" data-library="libjansson" data-testcase-id="usage-jshon-root-array-type" data-mode="original" data-kind="usage" data-status="passed" data-player-cast="../evidence/original/casts/libjansson/usage-jshon-root-array-type.cast" data-search="libjansson usage-jshon-root-array-type original jshon reports root array type Reads a root array document and verifies the reported JSON type. usage jshon usage json">
+          <summary>
+            <span class="case-title">
+              <strong>jshon reports root array type</strong>
+              <span class="case-id">Original / libjansson / usage-jshon-root-array-type</span>
+            </span>
+            <span class="status-pill status-passed" aria-label="Original / libjansson / usage-jshon-root-array-type status: Passed">Passed</span>
+          </summary>
+          <div class="case-body">
+            <p>Reads a root array document and verifies the reported JSON type.</p>
+            <dl class="case-meta">
+              <div><dt>Run</dt><dd>Original</dd></div>
+              <div><dt>Kind</dt><dd>usage</dd></div>
+              <div><dt>Client</dt><dd>jshon</dd></div>
+              <div><dt>Duration</dt><dd>0.00s</dd></div>
+              <div><dt>Tags</dt><dd class="tags"><span>usage</span> <span>json</span></dd></div>
+            </dl>
+            <div class="case-actions">
+              <a class="log-link" href="../evidence/original/logs/libjansson/usage-jshon-root-array-type.log" aria-label="Open log for Original / libjansson / usage-jshon-root-array-type">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/original/casts/libjansson/usage-jshon-root-array-type.cast" aria-label="Play cast for Original / libjansson / usage-jshon-root-array-type">Play</button>
+            </div>
+            <div class="cast-player" data-player>
+              <div class="player-controls">
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Original / libjansson / usage-jshon-root-array-type">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Original / libjansson / usage-jshon-root-array-type">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Original / libjansson / usage-jshon-root-array-type">Restart</button>
+                <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
+                <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
+              </div>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Original / libjansson / usage-jshon-root-array-type"></pre>
+            </div>
+          </div>
+        </details>
+        <details class="case-row" data-library="libjansson" data-testcase-id="usage-jshon-root-array-length" data-mode="original" data-kind="usage" data-status="passed" data-player-cast="../evidence/original/casts/libjansson/usage-jshon-root-array-length.cast" data-search="libjansson usage-jshon-root-array-length original jshon reports root array length Reads a root array document and verifies its element count. usage jshon usage json">
+          <summary>
+            <span class="case-title">
+              <strong>jshon reports root array length</strong>
+              <span class="case-id">Original / libjansson / usage-jshon-root-array-length</span>
+            </span>
+            <span class="status-pill status-passed" aria-label="Original / libjansson / usage-jshon-root-array-length status: Passed">Passed</span>
+          </summary>
+          <div class="case-body">
+            <p>Reads a root array document and verifies its element count.</p>
+            <dl class="case-meta">
+              <div><dt>Run</dt><dd>Original</dd></div>
+              <div><dt>Kind</dt><dd>usage</dd></div>
+              <div><dt>Client</dt><dd>jshon</dd></div>
+              <div><dt>Duration</dt><dd>0.00s</dd></div>
+              <div><dt>Tags</dt><dd class="tags"><span>usage</span> <span>json</span></dd></div>
+            </dl>
+            <div class="case-actions">
+              <a class="log-link" href="../evidence/original/logs/libjansson/usage-jshon-root-array-length.log" aria-label="Open log for Original / libjansson / usage-jshon-root-array-length">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/original/casts/libjansson/usage-jshon-root-array-length.cast" aria-label="Play cast for Original / libjansson / usage-jshon-root-array-length">Play</button>
+            </div>
+            <div class="cast-player" data-player>
+              <div class="player-controls">
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Original / libjansson / usage-jshon-root-array-length">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Original / libjansson / usage-jshon-root-array-length">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Original / libjansson / usage-jshon-root-array-length">Restart</button>
+                <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
+                <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
+              </div>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Original / libjansson / usage-jshon-root-array-length"></pre>
+            </div>
+          </div>
+        </details>
+        <details class="case-row" data-library="libjansson" data-testcase-id="usage-jshon-number-field" data-mode="original" data-kind="usage" data-status="passed" data-player-cast="../evidence/original/casts/libjansson/usage-jshon-number-field.cast" data-search="libjansson usage-jshon-number-field original jshon extracts number field Extracts a numeric object member as unquoted scalar output. usage jshon usage json">
+          <summary>
+            <span class="case-title">
+              <strong>jshon extracts number field</strong>
+              <span class="case-id">Original / libjansson / usage-jshon-number-field</span>
+            </span>
+            <span class="status-pill status-passed" aria-label="Original / libjansson / usage-jshon-number-field status: Passed">Passed</span>
+          </summary>
+          <div class="case-body">
+            <p>Extracts a numeric object member as unquoted scalar output.</p>
+            <dl class="case-meta">
+              <div><dt>Run</dt><dd>Original</dd></div>
+              <div><dt>Kind</dt><dd>usage</dd></div>
+              <div><dt>Client</dt><dd>jshon</dd></div>
+              <div><dt>Duration</dt><dd>0.00s</dd></div>
+              <div><dt>Tags</dt><dd class="tags"><span>usage</span> <span>json</span></dd></div>
+            </dl>
+            <div class="case-actions">
+              <a class="log-link" href="../evidence/original/logs/libjansson/usage-jshon-number-field.log" aria-label="Open log for Original / libjansson / usage-jshon-number-field">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/original/casts/libjansson/usage-jshon-number-field.cast" aria-label="Play cast for Original / libjansson / usage-jshon-number-field">Play</button>
+            </div>
+            <div class="cast-player" data-player>
+              <div class="player-controls">
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Original / libjansson / usage-jshon-number-field">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Original / libjansson / usage-jshon-number-field">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Original / libjansson / usage-jshon-number-field">Restart</button>
+                <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
+                <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
+              </div>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Original / libjansson / usage-jshon-number-field"></pre>
+            </div>
+          </div>
+        </details>
+        <details class="case-row" data-library="libjansson" data-testcase-id="object-dump-roundtrip" data-mode="port-04-test" data-kind="source" data-status="passed" data-player-cast="../evidence/port-04-test/casts/libjansson/object-dump-roundtrip.cast" data-search="libjansson object-dump-roundtrip port-04-test Jansson object dump round trip Parses an object, updates a member, and emits compact sorted JSON. source api json">
+          <summary>
+            <span class="case-title">
+              <strong>Jansson object dump round trip</strong>
+              <span class="case-id">Port / libjansson / object-dump-roundtrip</span>
+            </span>
+            <span class="status-pill status-passed" aria-label="Port / libjansson / object-dump-roundtrip status: Passed">Passed</span>
+          </summary>
+          <div class="case-body">
+            <p>Parses an object, updates a member, and emits compact sorted JSON.</p>
+            <dl class="case-meta">
+              <div><dt>Run</dt><dd>Port</dd></div>
+              <div><dt>Kind</dt><dd>source</dd></div>
+              <div><dt>Client</dt><dd>none</dd></div>
+              <div><dt>Duration</dt><dd>0.00s</dd></div>
+              <div><dt>Tags</dt><dd class="tags"><span>api</span> <span>json</span></dd></div>
+            </dl>
+            <div class="case-actions">
+              <a class="log-link" href="../evidence/port-04-test/logs/libjansson/object-dump-roundtrip.log" aria-label="Open log for Port / libjansson / object-dump-roundtrip">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/port-04-test/casts/libjansson/object-dump-roundtrip.cast" aria-label="Play cast for Port / libjansson / object-dump-roundtrip">Play</button>
+            </div>
+            <div class="cast-player" data-player>
+              <div class="player-controls">
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Port / libjansson / object-dump-roundtrip">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Port / libjansson / object-dump-roundtrip">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Port / libjansson / object-dump-roundtrip">Restart</button>
+                <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
+                <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
+              </div>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Port / libjansson / object-dump-roundtrip"></pre>
+            </div>
+          </div>
+        </details>
+        <details class="case-row" data-library="libjansson" data-testcase-id="array-iteration-sum" data-mode="port-04-test" data-kind="source" data-status="passed" data-player-cast="../evidence/port-04-test/casts/libjansson/array-iteration-sum.cast" data-search="libjansson array-iteration-sum port-04-test Jansson array iteration sum Iterates numeric array elements through the public API and verifies their sum. source api array">
+          <summary>
+            <span class="case-title">
+              <strong>Jansson array iteration sum</strong>
+              <span class="case-id">Port / libjansson / array-iteration-sum</span>
+            </span>
+            <span class="status-pill status-passed" aria-label="Port / libjansson / array-iteration-sum status: Passed">Passed</span>
+          </summary>
+          <div class="case-body">
+            <p>Iterates numeric array elements through the public API and verifies their sum.</p>
+            <dl class="case-meta">
+              <div><dt>Run</dt><dd>Port</dd></div>
+              <div><dt>Kind</dt><dd>source</dd></div>
+              <div><dt>Client</dt><dd>none</dd></div>
+              <div><dt>Duration</dt><dd>0.00s</dd></div>
+              <div><dt>Tags</dt><dd class="tags"><span>api</span> <span>array</span></dd></div>
+            </dl>
+            <div class="case-actions">
+              <a class="log-link" href="../evidence/port-04-test/logs/libjansson/array-iteration-sum.log" aria-label="Open log for Port / libjansson / array-iteration-sum">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/port-04-test/casts/libjansson/array-iteration-sum.cast" aria-label="Play cast for Port / libjansson / array-iteration-sum">Play</button>
+            </div>
+            <div class="cast-player" data-player>
+              <div class="player-controls">
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Port / libjansson / array-iteration-sum">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Port / libjansson / array-iteration-sum">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Port / libjansson / array-iteration-sum">Restart</button>
+                <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
+                <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
+              </div>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Port / libjansson / array-iteration-sum"></pre>
+            </div>
+          </div>
+        </details>
+        <details class="case-row" data-library="libjansson" data-testcase-id="pack-unpack-values" data-mode="port-04-test" data-kind="source" data-status="passed" data-player-cast="../evidence/port-04-test/casts/libjansson/pack-unpack-values.cast" data-search="libjansson pack-unpack-values port-04-test Jansson pack and unpack values Builds JSON with json_pack and reads typed members back with json_unpack. source api object">
+          <summary>
+            <span class="case-title">
+              <strong>Jansson pack and unpack values</strong>
+              <span class="case-id">Port / libjansson / pack-unpack-values</span>
+            </span>
+            <span class="status-pill status-passed" aria-label="Port / libjansson / pack-unpack-values status: Passed">Passed</span>
+          </summary>
+          <div class="case-body">
+            <p>Builds JSON with json_pack and reads typed members back with json_unpack.</p>
+            <dl class="case-meta">
+              <div><dt>Run</dt><dd>Port</dd></div>
+              <div><dt>Kind</dt><dd>source</dd></div>
+              <div><dt>Client</dt><dd>none</dd></div>
+              <div><dt>Duration</dt><dd>0.00s</dd></div>
+              <div><dt>Tags</dt><dd class="tags"><span>api</span> <span>object</span></dd></div>
+            </dl>
+            <div class="case-actions">
+              <a class="log-link" href="../evidence/port-04-test/logs/libjansson/pack-unpack-values.log" aria-label="Open log for Port / libjansson / pack-unpack-values">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/port-04-test/casts/libjansson/pack-unpack-values.cast" aria-label="Play cast for Port / libjansson / pack-unpack-values">Play</button>
+            </div>
+            <div class="cast-player" data-player>
+              <div class="player-controls">
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Port / libjansson / pack-unpack-values">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Port / libjansson / pack-unpack-values">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Port / libjansson / pack-unpack-values">Restart</button>
+                <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
+                <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
+              </div>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Port / libjansson / pack-unpack-values"></pre>
+            </div>
+          </div>
+        </details>
+        <details class="case-row" data-library="libjansson" data-testcase-id="refcount-object-update" data-mode="port-04-test" data-kind="source" data-status="passed" data-player-cast="../evidence/port-04-test/casts/libjansson/refcount-object-update.cast" data-search="libjansson refcount-object-update port-04-test Jansson refcount object update Replaces object members while holding an extra reference to validate lifetime behavior. source api refcount">
+          <summary>
+            <span class="case-title">
+              <strong>Jansson refcount object update</strong>
+              <span class="case-id">Port / libjansson / refcount-object-update</span>
+            </span>
+            <span class="status-pill status-passed" aria-label="Port / libjansson / refcount-object-update status: Passed">Passed</span>
+          </summary>
+          <div class="case-body">
+            <p>Replaces object members while holding an extra reference to validate lifetime behavior.</p>
+            <dl class="case-meta">
+              <div><dt>Run</dt><dd>Port</dd></div>
+              <div><dt>Kind</dt><dd>source</dd></div>
+              <div><dt>Client</dt><dd>none</dd></div>
+              <div><dt>Duration</dt><dd>0.00s</dd></div>
+              <div><dt>Tags</dt><dd class="tags"><span>api</span> <span>refcount</span></dd></div>
+            </dl>
+            <div class="case-actions">
+              <a class="log-link" href="../evidence/port-04-test/logs/libjansson/refcount-object-update.log" aria-label="Open log for Port / libjansson / refcount-object-update">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/port-04-test/casts/libjansson/refcount-object-update.cast" aria-label="Play cast for Port / libjansson / refcount-object-update">Play</button>
+            </div>
+            <div class="cast-player" data-player>
+              <div class="player-controls">
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Port / libjansson / refcount-object-update">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Port / libjansson / refcount-object-update">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Port / libjansson / refcount-object-update">Restart</button>
+                <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
+                <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
+              </div>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Port / libjansson / refcount-object-update"></pre>
+            </div>
+          </div>
+        </details>
+        <details class="case-row" data-library="libjansson" data-testcase-id="malformed-json-error" data-mode="port-04-test" data-kind="source" data-status="passed" data-player-cast="../evidence/port-04-test/casts/libjansson/malformed-json-error.cast" data-search="libjansson malformed-json-error port-04-test Jansson malformed JSON error Requires json_loads to reject an unterminated array and report a parse location. source api negative">
+          <summary>
+            <span class="case-title">
+              <strong>Jansson malformed JSON error</strong>
+              <span class="case-id">Port / libjansson / malformed-json-error</span>
+            </span>
+            <span class="status-pill status-passed" aria-label="Port / libjansson / malformed-json-error status: Passed">Passed</span>
+          </summary>
+          <div class="case-body">
+            <p>Requires json_loads to reject an unterminated array and report a parse location.</p>
+            <dl class="case-meta">
+              <div><dt>Run</dt><dd>Port</dd></div>
+              <div><dt>Kind</dt><dd>source</dd></div>
+              <div><dt>Client</dt><dd>none</dd></div>
+              <div><dt>Duration</dt><dd>0.00s</dd></div>
+              <div><dt>Tags</dt><dd class="tags"><span>api</span> <span>negative</span></dd></div>
+            </dl>
+            <div class="case-actions">
+              <a class="log-link" href="../evidence/port-04-test/logs/libjansson/malformed-json-error.log" aria-label="Open log for Port / libjansson / malformed-json-error">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/port-04-test/casts/libjansson/malformed-json-error.cast" aria-label="Play cast for Port / libjansson / malformed-json-error">Play</button>
+            </div>
+            <div class="cast-player" data-player>
+              <div class="player-controls">
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Port / libjansson / malformed-json-error">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Port / libjansson / malformed-json-error">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Port / libjansson / malformed-json-error">Restart</button>
+                <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
+                <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
+              </div>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Port / libjansson / malformed-json-error"></pre>
+            </div>
+          </div>
+        </details>
+        <details class="case-row" data-library="libjansson" data-testcase-id="usage-jshon-read-field" data-mode="port-04-test" data-kind="usage" data-status="passed" data-player-cast="../evidence/port-04-test/casts/libjansson/usage-jshon-read-field.cast" data-search="libjansson usage-jshon-read-field port-04-test jshon reads a string field Extracts a string member from an object with jshon. usage jshon usage json">
+          <summary>
+            <span class="case-title">
+              <strong>jshon reads a string field</strong>
+              <span class="case-id">Port / libjansson / usage-jshon-read-field</span>
+            </span>
+            <span class="status-pill status-passed" aria-label="Port / libjansson / usage-jshon-read-field status: Passed">Passed</span>
+          </summary>
+          <div class="case-body">
+            <p>Extracts a string member from an object with jshon.</p>
+            <dl class="case-meta">
+              <div><dt>Run</dt><dd>Port</dd></div>
+              <div><dt>Kind</dt><dd>usage</dd></div>
+              <div><dt>Client</dt><dd>jshon</dd></div>
+              <div><dt>Duration</dt><dd>0.00s</dd></div>
+              <div><dt>Tags</dt><dd class="tags"><span>usage</span> <span>json</span></dd></div>
+            </dl>
+            <div class="case-actions">
+              <a class="log-link" href="../evidence/port-04-test/logs/libjansson/usage-jshon-read-field.log" aria-label="Open log for Port / libjansson / usage-jshon-read-field">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/port-04-test/casts/libjansson/usage-jshon-read-field.cast" aria-label="Play cast for Port / libjansson / usage-jshon-read-field">Play</button>
+            </div>
+            <div class="cast-player" data-player>
+              <div class="player-controls">
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Port / libjansson / usage-jshon-read-field">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Port / libjansson / usage-jshon-read-field">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Port / libjansson / usage-jshon-read-field">Restart</button>
+                <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
+                <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
+              </div>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Port / libjansson / usage-jshon-read-field"></pre>
+            </div>
+          </div>
+        </details>
+        <details class="case-row" data-library="libjansson" data-testcase-id="usage-jshon-array-length" data-mode="port-04-test" data-kind="usage" data-status="passed" data-player-cast="../evidence/port-04-test/casts/libjansson/usage-jshon-array-length.cast" data-search="libjansson usage-jshon-array-length port-04-test jshon reports array length Reads an array member and verifies jshon reports its element count. usage jshon usage json">
+          <summary>
+            <span class="case-title">
+              <strong>jshon reports array length</strong>
+              <span class="case-id">Port / libjansson / usage-jshon-array-length</span>
+            </span>
+            <span class="status-pill status-passed" aria-label="Port / libjansson / usage-jshon-array-length status: Passed">Passed</span>
+          </summary>
+          <div class="case-body">
+            <p>Reads an array member and verifies jshon reports its element count.</p>
+            <dl class="case-meta">
+              <div><dt>Run</dt><dd>Port</dd></div>
+              <div><dt>Kind</dt><dd>usage</dd></div>
+              <div><dt>Client</dt><dd>jshon</dd></div>
+              <div><dt>Duration</dt><dd>0.00s</dd></div>
+              <div><dt>Tags</dt><dd class="tags"><span>usage</span> <span>json</span></dd></div>
+            </dl>
+            <div class="case-actions">
+              <a class="log-link" href="../evidence/port-04-test/logs/libjansson/usage-jshon-array-length.log" aria-label="Open log for Port / libjansson / usage-jshon-array-length">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/port-04-test/casts/libjansson/usage-jshon-array-length.cast" aria-label="Play cast for Port / libjansson / usage-jshon-array-length">Play</button>
+            </div>
+            <div class="cast-player" data-player>
+              <div class="player-controls">
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Port / libjansson / usage-jshon-array-length">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Port / libjansson / usage-jshon-array-length">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Port / libjansson / usage-jshon-array-length">Restart</button>
+                <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
+                <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
+              </div>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Port / libjansson / usage-jshon-array-length"></pre>
+            </div>
+          </div>
+        </details>
+        <details class="case-row" data-library="libjansson" data-testcase-id="usage-jshon-array-values" data-mode="port-04-test" data-kind="usage" data-status="passed" data-player-cast="../evidence/port-04-test/casts/libjansson/usage-jshon-array-values.cast" data-search="libjansson usage-jshon-array-values port-04-test jshon prints array values Expands array values from JSON input and verifies each scalar is printed. usage jshon usage json">
+          <summary>
+            <span class="case-title">
+              <strong>jshon prints array values</strong>
+              <span class="case-id">Port / libjansson / usage-jshon-array-values</span>
+            </span>
+            <span class="status-pill status-passed" aria-label="Port / libjansson / usage-jshon-array-values status: Passed">Passed</span>
+          </summary>
+          <div class="case-body">
+            <p>Expands array values from JSON input and verifies each scalar is printed.</p>
+            <dl class="case-meta">
+              <div><dt>Run</dt><dd>Port</dd></div>
+              <div><dt>Kind</dt><dd>usage</dd></div>
+              <div><dt>Client</dt><dd>jshon</dd></div>
+              <div><dt>Duration</dt><dd>0.00s</dd></div>
+              <div><dt>Tags</dt><dd class="tags"><span>usage</span> <span>json</span></dd></div>
+            </dl>
+            <div class="case-actions">
+              <a class="log-link" href="../evidence/port-04-test/logs/libjansson/usage-jshon-array-values.log" aria-label="Open log for Port / libjansson / usage-jshon-array-values">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/port-04-test/casts/libjansson/usage-jshon-array-values.cast" aria-label="Play cast for Port / libjansson / usage-jshon-array-values">Play</button>
+            </div>
+            <div class="cast-player" data-player>
+              <div class="player-controls">
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Port / libjansson / usage-jshon-array-values">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Port / libjansson / usage-jshon-array-values">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Port / libjansson / usage-jshon-array-values">Restart</button>
+                <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
+                <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
+              </div>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Port / libjansson / usage-jshon-array-values"></pre>
+            </div>
+          </div>
+        </details>
+        <details class="case-row" data-library="libjansson" data-testcase-id="usage-jshon-object-keys" data-mode="port-04-test" data-kind="usage" data-status="passed" data-player-cast="../evidence/port-04-test/casts/libjansson/usage-jshon-object-keys.cast" data-search="libjansson usage-jshon-object-keys port-04-test jshon lists object keys Lists object keys from a nested JSON document. usage jshon usage json">
+          <summary>
+            <span class="case-title">
+              <strong>jshon lists object keys</strong>
+              <span class="case-id">Port / libjansson / usage-jshon-object-keys</span>
+            </span>
+            <span class="status-pill status-passed" aria-label="Port / libjansson / usage-jshon-object-keys status: Passed">Passed</span>
+          </summary>
+          <div class="case-body">
+            <p>Lists object keys from a nested JSON document.</p>
+            <dl class="case-meta">
+              <div><dt>Run</dt><dd>Port</dd></div>
+              <div><dt>Kind</dt><dd>usage</dd></div>
+              <div><dt>Client</dt><dd>jshon</dd></div>
+              <div><dt>Duration</dt><dd>0.00s</dd></div>
+              <div><dt>Tags</dt><dd class="tags"><span>usage</span> <span>json</span></dd></div>
+            </dl>
+            <div class="case-actions">
+              <a class="log-link" href="../evidence/port-04-test/logs/libjansson/usage-jshon-object-keys.log" aria-label="Open log for Port / libjansson / usage-jshon-object-keys">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/port-04-test/casts/libjansson/usage-jshon-object-keys.cast" aria-label="Play cast for Port / libjansson / usage-jshon-object-keys">Play</button>
+            </div>
+            <div class="cast-player" data-player>
+              <div class="player-controls">
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Port / libjansson / usage-jshon-object-keys">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Port / libjansson / usage-jshon-object-keys">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Port / libjansson / usage-jshon-object-keys">Restart</button>
+                <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
+                <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
+              </div>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Port / libjansson / usage-jshon-object-keys"></pre>
+            </div>
+          </div>
+        </details>
+        <details class="case-row" data-library="libjansson" data-testcase-id="usage-jshon-type-check" data-mode="port-04-test" data-kind="usage" data-status="passed" data-player-cast="../evidence/port-04-test/casts/libjansson/usage-jshon-type-check.cast" data-search="libjansson usage-jshon-type-check port-04-test jshon reports value type Checks that jshon reports a boolean member as a JSON bool. usage jshon usage json">
+          <summary>
+            <span class="case-title">
+              <strong>jshon reports value type</strong>
+              <span class="case-id">Port / libjansson / usage-jshon-type-check</span>
+            </span>
+            <span class="status-pill status-passed" aria-label="Port / libjansson / usage-jshon-type-check status: Passed">Passed</span>
+          </summary>
+          <div class="case-body">
+            <p>Checks that jshon reports a boolean member as a JSON bool.</p>
+            <dl class="case-meta">
+              <div><dt>Run</dt><dd>Port</dd></div>
+              <div><dt>Kind</dt><dd>usage</dd></div>
+              <div><dt>Client</dt><dd>jshon</dd></div>
+              <div><dt>Duration</dt><dd>0.00s</dd></div>
+              <div><dt>Tags</dt><dd class="tags"><span>usage</span> <span>json</span></dd></div>
+            </dl>
+            <div class="case-actions">
+              <a class="log-link" href="../evidence/port-04-test/logs/libjansson/usage-jshon-type-check.log" aria-label="Open log for Port / libjansson / usage-jshon-type-check">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/port-04-test/casts/libjansson/usage-jshon-type-check.cast" aria-label="Play cast for Port / libjansson / usage-jshon-type-check">Play</button>
+            </div>
+            <div class="cast-player" data-player>
+              <div class="player-controls">
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Port / libjansson / usage-jshon-type-check">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Port / libjansson / usage-jshon-type-check">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Port / libjansson / usage-jshon-type-check">Restart</button>
+                <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
+                <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
+              </div>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Port / libjansson / usage-jshon-type-check"></pre>
+            </div>
+          </div>
+        </details>
+        <details class="case-row" data-library="libjansson" data-testcase-id="usage-jshon-nested-value" data-mode="port-04-test" data-kind="usage" data-status="passed" data-player-cast="../evidence/port-04-test/casts/libjansson/usage-jshon-nested-value.cast" data-search="libjansson usage-jshon-nested-value port-04-test jshon extracts nested value Traverses nested object members and prints the selected value. usage jshon usage json">
+          <summary>
+            <span class="case-title">
+              <strong>jshon extracts nested value</strong>
+              <span class="case-id">Port / libjansson / usage-jshon-nested-value</span>
+            </span>
+            <span class="status-pill status-passed" aria-label="Port / libjansson / usage-jshon-nested-value status: Passed">Passed</span>
+          </summary>
+          <div class="case-body">
+            <p>Traverses nested object members and prints the selected value.</p>
+            <dl class="case-meta">
+              <div><dt>Run</dt><dd>Port</dd></div>
+              <div><dt>Kind</dt><dd>usage</dd></div>
+              <div><dt>Client</dt><dd>jshon</dd></div>
+              <div><dt>Duration</dt><dd>0.00s</dd></div>
+              <div><dt>Tags</dt><dd class="tags"><span>usage</span> <span>json</span></dd></div>
+            </dl>
+            <div class="case-actions">
+              <a class="log-link" href="../evidence/port-04-test/logs/libjansson/usage-jshon-nested-value.log" aria-label="Open log for Port / libjansson / usage-jshon-nested-value">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/port-04-test/casts/libjansson/usage-jshon-nested-value.cast" aria-label="Play cast for Port / libjansson / usage-jshon-nested-value">Play</button>
+            </div>
+            <div class="cast-player" data-player>
+              <div class="player-controls">
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Port / libjansson / usage-jshon-nested-value">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Port / libjansson / usage-jshon-nested-value">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Port / libjansson / usage-jshon-nested-value">Restart</button>
+                <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
+                <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
+              </div>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Port / libjansson / usage-jshon-nested-value"></pre>
+            </div>
+          </div>
+        </details>
+        <details class="case-row" data-library="libjansson" data-testcase-id="usage-jshon-file-input" data-mode="port-04-test" data-kind="usage" data-status="passed" data-player-cast="../evidence/port-04-test/casts/libjansson/usage-jshon-file-input.cast" data-search="libjansson usage-jshon-file-input port-04-test jshon reads file input Loads JSON from a file path and extracts a stored member. usage jshon usage json">
+          <summary>
+            <span class="case-title">
+              <strong>jshon reads file input</strong>
+              <span class="case-id">Port / libjansson / usage-jshon-file-input</span>
+            </span>
+            <span class="status-pill status-passed" aria-label="Port / libjansson / usage-jshon-file-input status: Passed">Passed</span>
+          </summary>
+          <div class="case-body">
+            <p>Loads JSON from a file path and extracts a stored member.</p>
+            <dl class="case-meta">
+              <div><dt>Run</dt><dd>Port</dd></div>
+              <div><dt>Kind</dt><dd>usage</dd></div>
+              <div><dt>Client</dt><dd>jshon</dd></div>
+              <div><dt>Duration</dt><dd>0.00s</dd></div>
+              <div><dt>Tags</dt><dd class="tags"><span>usage</span> <span>json</span></dd></div>
+            </dl>
+            <div class="case-actions">
+              <a class="log-link" href="../evidence/port-04-test/logs/libjansson/usage-jshon-file-input.log" aria-label="Open log for Port / libjansson / usage-jshon-file-input">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/port-04-test/casts/libjansson/usage-jshon-file-input.cast" aria-label="Play cast for Port / libjansson / usage-jshon-file-input">Play</button>
+            </div>
+            <div class="cast-player" data-player>
+              <div class="player-controls">
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Port / libjansson / usage-jshon-file-input">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Port / libjansson / usage-jshon-file-input">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Port / libjansson / usage-jshon-file-input">Restart</button>
+                <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
+                <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
+              </div>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Port / libjansson / usage-jshon-file-input"></pre>
+            </div>
+          </div>
+        </details>
+        <details class="case-row" data-library="libjansson" data-testcase-id="usage-jshon-root-array-type" data-mode="port-04-test" data-kind="usage" data-status="passed" data-player-cast="../evidence/port-04-test/casts/libjansson/usage-jshon-root-array-type.cast" data-search="libjansson usage-jshon-root-array-type port-04-test jshon reports root array type Reads a root array document and verifies the reported JSON type. usage jshon usage json">
+          <summary>
+            <span class="case-title">
+              <strong>jshon reports root array type</strong>
+              <span class="case-id">Port / libjansson / usage-jshon-root-array-type</span>
+            </span>
+            <span class="status-pill status-passed" aria-label="Port / libjansson / usage-jshon-root-array-type status: Passed">Passed</span>
+          </summary>
+          <div class="case-body">
+            <p>Reads a root array document and verifies the reported JSON type.</p>
+            <dl class="case-meta">
+              <div><dt>Run</dt><dd>Port</dd></div>
+              <div><dt>Kind</dt><dd>usage</dd></div>
+              <div><dt>Client</dt><dd>jshon</dd></div>
+              <div><dt>Duration</dt><dd>0.00s</dd></div>
+              <div><dt>Tags</dt><dd class="tags"><span>usage</span> <span>json</span></dd></div>
+            </dl>
+            <div class="case-actions">
+              <a class="log-link" href="../evidence/port-04-test/logs/libjansson/usage-jshon-root-array-type.log" aria-label="Open log for Port / libjansson / usage-jshon-root-array-type">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/port-04-test/casts/libjansson/usage-jshon-root-array-type.cast" aria-label="Play cast for Port / libjansson / usage-jshon-root-array-type">Play</button>
+            </div>
+            <div class="cast-player" data-player>
+              <div class="player-controls">
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Port / libjansson / usage-jshon-root-array-type">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Port / libjansson / usage-jshon-root-array-type">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Port / libjansson / usage-jshon-root-array-type">Restart</button>
+                <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
+                <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
+              </div>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Port / libjansson / usage-jshon-root-array-type"></pre>
+            </div>
+          </div>
+        </details>
+        <details class="case-row" data-library="libjansson" data-testcase-id="usage-jshon-root-array-length" data-mode="port-04-test" data-kind="usage" data-status="passed" data-player-cast="../evidence/port-04-test/casts/libjansson/usage-jshon-root-array-length.cast" data-search="libjansson usage-jshon-root-array-length port-04-test jshon reports root array length Reads a root array document and verifies its element count. usage jshon usage json">
+          <summary>
+            <span class="case-title">
+              <strong>jshon reports root array length</strong>
+              <span class="case-id">Port / libjansson / usage-jshon-root-array-length</span>
+            </span>
+            <span class="status-pill status-passed" aria-label="Port / libjansson / usage-jshon-root-array-length status: Passed">Passed</span>
+          </summary>
+          <div class="case-body">
+            <p>Reads a root array document and verifies its element count.</p>
+            <dl class="case-meta">
+              <div><dt>Run</dt><dd>Port</dd></div>
+              <div><dt>Kind</dt><dd>usage</dd></div>
+              <div><dt>Client</dt><dd>jshon</dd></div>
+              <div><dt>Duration</dt><dd>0.00s</dd></div>
+              <div><dt>Tags</dt><dd class="tags"><span>usage</span> <span>json</span></dd></div>
+            </dl>
+            <div class="case-actions">
+              <a class="log-link" href="../evidence/port-04-test/logs/libjansson/usage-jshon-root-array-length.log" aria-label="Open log for Port / libjansson / usage-jshon-root-array-length">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/port-04-test/casts/libjansson/usage-jshon-root-array-length.cast" aria-label="Play cast for Port / libjansson / usage-jshon-root-array-length">Play</button>
+            </div>
+            <div class="cast-player" data-player>
+              <div class="player-controls">
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Port / libjansson / usage-jshon-root-array-length">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Port / libjansson / usage-jshon-root-array-length">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Port / libjansson / usage-jshon-root-array-length">Restart</button>
+                <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
+                <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
+              </div>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Port / libjansson / usage-jshon-root-array-length"></pre>
+            </div>
+          </div>
+        </details>
+        <details class="case-row" data-library="libjansson" data-testcase-id="usage-jshon-number-field" data-mode="port-04-test" data-kind="usage" data-status="passed" data-player-cast="../evidence/port-04-test/casts/libjansson/usage-jshon-number-field.cast" data-search="libjansson usage-jshon-number-field port-04-test jshon extracts number field Extracts a numeric object member as unquoted scalar output. usage jshon usage json">
+          <summary>
+            <span class="case-title">
+              <strong>jshon extracts number field</strong>
+              <span class="case-id">Port / libjansson / usage-jshon-number-field</span>
+            </span>
+            <span class="status-pill status-passed" aria-label="Port / libjansson / usage-jshon-number-field status: Passed">Passed</span>
+          </summary>
+          <div class="case-body">
+            <p>Extracts a numeric object member as unquoted scalar output.</p>
+            <dl class="case-meta">
+              <div><dt>Run</dt><dd>Port</dd></div>
+              <div><dt>Kind</dt><dd>usage</dd></div>
+              <div><dt>Client</dt><dd>jshon</dd></div>
+              <div><dt>Duration</dt><dd>0.00s</dd></div>
+              <div><dt>Tags</dt><dd class="tags"><span>usage</span> <span>json</span></dd></div>
+            </dl>
+            <div class="case-actions">
+              <a class="log-link" href="../evidence/port-04-test/logs/libjansson/usage-jshon-number-field.log" aria-label="Open log for Port / libjansson / usage-jshon-number-field">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/port-04-test/casts/libjansson/usage-jshon-number-field.cast" aria-label="Play cast for Port / libjansson / usage-jshon-number-field">Play</button>
+            </div>
+            <div class="cast-player" data-player>
+              <div class="player-controls">
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Port / libjansson / usage-jshon-number-field">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Port / libjansson / usage-jshon-number-field">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Port / libjansson / usage-jshon-number-field">Restart</button>
+                <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
+                <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
+              </div>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Port / libjansson / usage-jshon-number-field"></pre>
+            </div>
+          </div>
+        </details>
+      </section>
+    </main>
+  </body>
+</html>

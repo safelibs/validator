@@ -1,0 +1,78 @@
+{
+  "schema_version": 1,
+  "library": "libc6",
+  "dependents": [
+    {
+      "name": "bash",
+      "package": "bash",
+      "packages": [
+        "bash"
+      ],
+      "description": "Bash executes shell scripts and links against libc."
+    },
+    {
+      "name": "coreutils",
+      "package": "coreutils",
+      "packages": [
+        "coreutils"
+      ],
+      "description": "GNU coreutils commands exercise libc process, locale, and file APIs."
+    },
+    {
+      "name": "grep",
+      "package": "grep",
+      "packages": [
+        "grep"
+      ],
+      "description": "grep scans files with libc-backed regular expression and I/O behavior."
+    },
+    {
+      "name": "gawk",
+      "package": "gawk",
+      "packages": [
+        "gawk"
+      ],
+      "description": "gawk parses and formats records through libc runtime services."
+    },
+    {
+      "name": "sed",
+      "package": "sed",
+      "packages": [
+        "sed"
+      ],
+      "description": "sed transforms stream input through libc-backed file and regex operations."
+    },
+    {
+      "name": "python3-minimal",
+      "package": "python3-minimal",
+      "packages": [
+        "python3-minimal"
+      ],
+      "description": "Python starts an interpreter and calls libc through the platform runtime."
+    },
+    {
+      "name": "findutils",
+      "package": "findutils",
+      "packages": [
+        "findutils"
+      ],
+      "description": "findutils traverses directories with libc filesystem calls."
+    },
+    {
+      "name": "tar",
+      "package": "tar",
+      "packages": [
+        "tar"
+      ],
+      "description": "tar reads and writes archives through libc file APIs."
+    },
+    {
+      "name": "gzip",
+      "package": "gzip",
+      "packages": [
+        "gzip"
+      ],
+      "description": "gzip streams compressed data through libc file APIs."
+    }
+  ]
+}
