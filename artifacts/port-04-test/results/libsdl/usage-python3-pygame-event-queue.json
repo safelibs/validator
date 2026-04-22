@@ -13,14 +13,14 @@
     "python"
   ],
   "requires": [],
-  "status": "failed",
+  "status": "passed",
   "started_at": "1970-01-01T00:00:00Z",
   "finished_at": "1970-01-01T00:00:00Z",
   "duration_seconds": 0.0,
   "result_path": "port-04-test/results/libsdl/usage-python3-pygame-event-queue.json",
   "log_path": "port-04-test/logs/libsdl/usage-python3-pygame-event-queue.log",
   "cast_path": "port-04-test/casts/libsdl/usage-python3-pygame-event-queue.cast",
-  "exit_code": 124,
+  "exit_code": 0,
   "command": [
     "bash",
     "/validator/tests/libsdl/tests/cases/usage/usage-python3-pygame-event-queue.sh"
@@ -78,6 +78,5 @@
       "architecture": "amd64",
       "filename": "libsdl2-tests_2.30.0+dfsg-1ubuntu3.1+safelibs1_amd64.deb"
     }
-  ],
-  "error": "testcase timed out after 180 seconds"
+  ]
 }

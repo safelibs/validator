@@ -22,6 +22,7 @@ RUN apt-get update \
       python3 \
       xsltproc \
       zlib1g-dev \
+ && cp /usr/bin/xmllint /usr/local/bin/xmllint \
  && rm -rf /var/lib/apt/lists/*
 
 WORKDIR /validator

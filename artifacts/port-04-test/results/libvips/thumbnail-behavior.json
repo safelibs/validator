@@ -12,14 +12,14 @@
     "thumbnail"
   ],
   "requires": [],
-  "status": "failed",
+  "status": "passed",
   "started_at": "1970-01-01T00:00:00Z",
   "finished_at": "1970-01-01T00:00:00Z",
   "duration_seconds": 0.0,
   "result_path": "port-04-test/results/libvips/thumbnail-behavior.json",
   "log_path": "port-04-test/logs/libvips/thumbnail-behavior.log",
   "cast_path": "port-04-test/casts/libvips/thumbnail-behavior.cast",
-  "exit_code": 255,
+  "exit_code": 0,
   "command": [
     "bash",
     "/validator/tests/libvips/tests/cases/source/thumbnail-behavior.sh"
@@ -91,6 +91,5 @@
       "architecture": "amd64",
       "filename": "gir1.2-vips-8.0_8.15.1-1.1build4_amd64.deb"
     }
-  ],
-  "error": "testcase command exited with status 255"
+  ]
 }

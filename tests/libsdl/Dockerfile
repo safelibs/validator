@@ -1,6 +1,9 @@
 FROM ubuntu:24.04
 
 ENV DEBIAN_FRONTEND=noninteractive
+ENV PYGAME_HIDE_SUPPORT_PROMPT=1 \
+    SDL_AUDIODRIVER=dsp \
+    SDL_VIDEODRIVER=dummy
 
 RUN apt-get update \
  && apt-get install -y --no-install-recommends \
@@ -8,6 +11,7 @@ RUN apt-get update \
       libsdl2-dev \
       libsdl2-tests \
       python3-pygame \
+      python3-pip \
       bash \
       build-essential \
       ca-certificates \
@@ -25,6 +29,7 @@ RUN apt-get update \
       pkg-config \
       python3 \
       xvfb \
+ && PIP_BREAK_SYSTEM_PACKAGES=1 pip3 install --no-cache-dir pygame==2.6.1 \
  && rm -rf /var/lib/apt/lists/*
 
 WORKDIR /validator
