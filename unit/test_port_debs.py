@@ -1,8 +1,10 @@
 from __future__ import annotations
 
+import io
 import json
 import tempfile
 import unittest
+import urllib.error
 from pathlib import Path
 from unittest import mock
 
@@ -71,7 +73,7 @@ class PortDebTests(unittest.TestCase):
             minimum_commit="1111111111111111111111111111111111111111",
         )
 
-        def fake_download(asset_url: str, target: Path) -> None:
+        def fake_download(asset_url: str, target: Path, browser_download_url: str | None = None) -> None:
             target.write_bytes(f"deb from {asset_url}\n".encode("utf-8"))
 
         patches = [
@@ -253,6 +255,80 @@ class PortDebTests(unittest.TestCase):
                     with self.assertRaisesRegex(ValidatorError, "REDACTED") as context:
                         fetch_port_debs.resolve_tag_commit(repo)
         self.assertNotIn("secret-token", str(context.exception))
+
+    def test_download_asset_prefers_browser_url_without_token(self) -> None:
+        root = self.run_root()
+        target = root / "demo.deb"
+        seen_requests = []
+
+        class FakeResponse(io.BytesIO):
+            def __enter__(self):
+                return self
+
+            def __exit__(self, exc_type, exc, tb):
+                self.close()
+
+        def fake_urlopen(request):
+            seen_requests.append(request)
+            return FakeResponse(b"deb-bytes")
+
+        with mock.patch("tools.fetch_port_debs.effective_github_token", return_value=""):
+            with mock.patch("urllib.request.urlopen", side_effect=fake_urlopen):
+                fetch_port_debs.download_asset(
+                    "https://api.github.com/repos/safelibs/port-demo/releases/assets/1",
+                    target,
+                    "https://github.com/safelibs/port-demo/releases/download/build-abc/demo.deb",
+                )
+
+        self.assertEqual(
+            [request.full_url for request in seen_requests],
+            ["https://github.com/safelibs/port-demo/releases/download/build-abc/demo.deb"],
+        )
+        self.assertIsNone(seen_requests[0].get_header("Authorization"))
+        self.assertEqual(target.read_bytes(), b"deb-bytes")
+
+    def test_download_asset_falls_back_to_browser_url_after_api_failure(self) -> None:
+        root = self.run_root()
+        target = root / "demo.deb"
+        seen_requests = []
+
+        class FakeResponse(io.BytesIO):
+            def __enter__(self):
+                return self
+
+            def __exit__(self, exc_type, exc, tb):
+                self.close()
+
+        def fake_urlopen(request):
+            seen_requests.append(request)
+            if len(seen_requests) == 1:
+                raise urllib.error.HTTPError(
+                    request.full_url,
+                    403,
+                    "rate limited",
+                    hdrs=None,
+                    fp=None,
+                )
+            return FakeResponse(b"fallback-deb")
+
+        with mock.patch("tools.fetch_port_debs.effective_github_token", return_value="token"):
+            with mock.patch("urllib.request.urlopen", side_effect=fake_urlopen):
+                fetch_port_debs.download_asset(
+                    "https://api.github.com/repos/safelibs/port-demo/releases/assets/1",
+                    target,
+                    "https://github.com/safelibs/port-demo/releases/download/build-abc/demo.deb",
+                )
+
+        self.assertEqual(
+            [request.full_url for request in seen_requests],
+            [
+                "https://api.github.com/repos/safelibs/port-demo/releases/assets/1",
+                "https://github.com/safelibs/port-demo/releases/download/build-abc/demo.deb",
+            ],
+        )
+        self.assertEqual(seen_requests[0].get_header("Authorization"), "Bearer token")
+        self.assertIsNone(seen_requests[1].get_header("Authorization"))
+        self.assertEqual(target.read_bytes(), b"fallback-deb")
 
 
 if __name__ == "__main__":

@@ -216,13 +216,13 @@ def resolve_port_ref(repo: PortRepo) -> ResolvedPortRef:
     )
 
 
-def github_headers(*, accept: str) -> dict[str, str]:
+def github_headers(*, accept: str, include_auth: bool = True) -> dict[str, str]:
     headers = {
         "Accept": accept,
         "X-GitHub-Api-Version": "2022-11-28",
         "User-Agent": "safelibs-validator",
     }
-    token = effective_github_token()
+    token = effective_github_token() if include_auth else ""
     if token:
         headers["Authorization"] = f"Bearer {token}"
     return headers
@@ -309,23 +309,53 @@ def clean_selected_library_debs(output_root: Path, library: str) -> Path:
     return leaf
 
 
-def download_asset(asset_url: str, target: Path) -> None:
-    ensure_parent(target)
+def _download_to_handle(url: str, handle, *, include_auth: bool) -> None:
     request = urllib.request.Request(
-        asset_url,
-        headers=github_headers(accept="application/octet-stream"),
+        url,
+        headers=github_headers(accept="application/octet-stream", include_auth=include_auth),
     )
+    with urllib.request.urlopen(request) as response:
+        shutil.copyfileobj(response, handle)
+
+
+def _asset_download_attempts(
+    asset_url: str,
+    browser_download_url: str | None,
+) -> list[tuple[str, bool]]:
+    if browser_download_url and not effective_github_token():
+        return [(browser_download_url, False), (asset_url, True)]
+    attempts = [(asset_url, True)]
+    if browser_download_url:
+        attempts.append((browser_download_url, False))
+    return attempts
+
+
+def download_asset(asset_url: str, target: Path, browser_download_url: str | None = None) -> None:
+    ensure_parent(target)
     fd, temp_name = tempfile.mkstemp(prefix=f".{target.name}.", suffix=".tmp", dir=str(target.parent))
     temp_path = Path(temp_name)
     try:
         with os.fdopen(fd, "wb") as handle:
-            try:
-                with urllib.request.urlopen(request) as response:
-                    shutil.copyfileobj(response, handle)
-            except urllib.error.HTTPError as exc:
-                raise ValidatorError(f"GitHub asset download failed for {asset_url}: HTTP {exc.code}") from exc
-            except urllib.error.URLError as exc:
-                raise ValidatorError(f"GitHub asset download failed for {asset_url}: {exc.reason}") from exc
+            errors: list[str] = []
+            attempts = _asset_download_attempts(asset_url, browser_download_url)
+            for index, (url, include_auth) in enumerate(attempts):
+                handle.seek(0)
+                handle.truncate()
+                try:
+                    _download_to_handle(url, handle, include_auth=include_auth)
+                    break
+                except urllib.error.HTTPError as exc:
+                    errors.append(f"{url}: HTTP {exc.code}")
+                    if index + 1 == len(attempts):
+                        raise ValidatorError(
+                            f"GitHub asset download failed for {'; fallback '.join(errors)}"
+                        ) from exc
+                except urllib.error.URLError as exc:
+                    errors.append(f"{url}: {exc.reason}")
+                    if index + 1 == len(attempts):
+                        raise ValidatorError(
+                            f"GitHub asset download failed for {'; fallback '.join(errors)}"
+                        ) from exc
         temp_path.replace(target)
     except Exception:
         temp_path.unlink(missing_ok=True)
@@ -413,7 +443,7 @@ def resolve_library(
         if browser_download_url is not None and not isinstance(browser_download_url, str):
             raise ValidatorError(f"release asset for {repo.library}/{filename} has invalid browser_download_url")
         target = leaf / filename
-        download_asset(asset_url, target)
+        download_asset(asset_url, target, browser_download_url)
         verify_deb_fields(target, package=parsed_package, architecture=architecture)
         selected_debs.append(
             ResolvedPortDeb(
