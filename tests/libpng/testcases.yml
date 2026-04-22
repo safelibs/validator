@@ -181,3 +181,143 @@ testcases:
   tags:
   - usage
   - image
+- id: usage-netpbm-pnmscale-png
+  title: netpbm scales PNG
+  description: Converts a PNG fixture through Netpbm scaling and writes PNG output.
+  kind: usage
+  client_application: netpbm
+  command:
+  - bash
+  - /validator/tests/libpng/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-netpbm-pnmscale-png
+  timeout_seconds: 180
+  tags:
+  - usage
+  - image
+  - png
+- id: usage-netpbm-pnmflip-png
+  title: netpbm flips PNG
+  description: Converts and flips a PNG fixture with Netpbm before writing PNG output.
+  kind: usage
+  client_application: netpbm
+  command:
+  - bash
+  - /validator/tests/libpng/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-netpbm-pnmflip-png
+  timeout_seconds: 180
+  tags:
+  - usage
+  - image
+  - png
+- id: usage-netpbm-pnmcut-png
+  title: netpbm crops PNG
+  description: Crops a PNG fixture through Netpbm and verifies PNG output.
+  kind: usage
+  client_application: netpbm
+  command:
+  - bash
+  - /validator/tests/libpng/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-netpbm-pnmcut-png
+  timeout_seconds: 180
+  tags:
+  - usage
+  - image
+  - png
+- id: usage-netpbm-pnmgamma-png
+  title: netpbm gamma PNG
+  description: Applies gamma correction to a PNG fixture through Netpbm and writes PNG output.
+  kind: usage
+  client_application: netpbm
+  command:
+  - bash
+  - /validator/tests/libpng/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-netpbm-pnmgamma-png
+  timeout_seconds: 180
+  tags:
+  - usage
+  - image
+  - png
+- id: usage-netpbm-pnmdepth-png
+  title: netpbm depth PNG
+  description: Changes Netpbm sample depth from a PNG fixture and writes PNG output.
+  kind: usage
+  client_application: netpbm
+  command:
+  - bash
+  - /validator/tests/libpng/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-netpbm-pnmdepth-png
+  timeout_seconds: 180
+  tags:
+  - usage
+  - image
+  - png
+- id: usage-pngquant-nofs-png
+  title: pngquant no dithering
+  description: Quantizes a PNG fixture with pngquant no-dither mode and verifies PNG output.
+  kind: usage
+  client_application: pngquant
+  command:
+  - bash
+  - /validator/tests/libpng/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-pngquant-nofs-png
+  timeout_seconds: 180
+  tags:
+  - usage
+  - image
+  - png
+- id: usage-pngquant-floyd-png
+  title: pngquant floyd dithering
+  description: Quantizes a PNG fixture with an explicit Floyd dithering value.
+  kind: usage
+  client_application: pngquant
+  command:
+  - bash
+  - /validator/tests/libpng/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-pngquant-floyd-png
+  timeout_seconds: 180
+  tags:
+  - usage
+  - image
+  - png
+- id: usage-pngquant-colors-eight-png
+  title: pngquant eight colors
+  description: Quantizes a PNG fixture to eight colors and verifies PNG output.
+  kind: usage
+  client_application: pngquant
+  command:
+  - bash
+  - /validator/tests/libpng/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-pngquant-colors-eight-png
+  timeout_seconds: 180
+  tags:
+  - usage
+  - image
+  - png
+- id: usage-pngquant-ext-png
+  title: pngquant extension output
+  description: Uses pngquant extension output naming and checks the generated file.
+  kind: usage
+  client_application: pngquant
+  command:
+  - bash
+  - /validator/tests/libpng/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-pngquant-ext-png
+  timeout_seconds: 180
+  tags:
+  - usage
+  - image
+  - png
+- id: usage-pngquant-skip-if-larger-png
+  title: pngquant skip-if-larger
+  description: Runs pngquant with skip-if-larger enabled and accepts either optimized output or skip status.
+  kind: usage
+  client_application: pngquant
+  command:
+  - bash
+  - /validator/tests/libpng/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-pngquant-skip-if-larger-png
+  timeout_seconds: 180
+  tags:
+  - usage
+  - image
+  - png

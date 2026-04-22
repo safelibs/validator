@@ -191,3 +191,143 @@ testcases:
   - usage
   - ruby
   - image
+- id: usage-ruby-vips-invert-image
+  title: ruby-vips invert image
+  description: Inverts an image with ruby-vips and verifies the average pixel value changes.
+  kind: usage
+  client_application: ruby-vips
+  command:
+  - bash
+  - /validator/tests/libvips/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-ruby-vips-invert-image
+  timeout_seconds: 180
+  tags:
+  - usage
+  - image
+  - ruby
+- id: usage-ruby-vips-extract-band
+  title: ruby-vips extract band
+  description: Extracts one band from a multi-band image with ruby-vips.
+  kind: usage
+  client_application: ruby-vips
+  command:
+  - bash
+  - /validator/tests/libvips/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-ruby-vips-extract-band
+  timeout_seconds: 180
+  tags:
+  - usage
+  - image
+  - ruby
+- id: usage-ruby-vips-flatten-alpha
+  title: ruby-vips flatten alpha
+  description: Flattens an RGBA image with ruby-vips and verifies alpha removal.
+  kind: usage
+  client_application: ruby-vips
+  command:
+  - bash
+  - /validator/tests/libvips/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-ruby-vips-flatten-alpha
+  timeout_seconds: 180
+  tags:
+  - usage
+  - image
+  - ruby
+- id: usage-ruby-vips-write-buffer
+  title: ruby-vips writes buffer
+  description: Writes a PNG image to an in-memory buffer with ruby-vips.
+  kind: usage
+  client_application: ruby-vips
+  command:
+  - bash
+  - /validator/tests/libvips/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-ruby-vips-write-buffer
+  timeout_seconds: 180
+  tags:
+  - usage
+  - image
+  - ruby
+- id: usage-ruby-vips-read-sample-png
+  title: ruby-vips reads sample PNG
+  description: Loads a checked-in PNG fixture with ruby-vips and verifies dimensions.
+  kind: usage
+  client_application: ruby-vips
+  command:
+  - bash
+  - /validator/tests/libvips/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-ruby-vips-read-sample-png
+  timeout_seconds: 180
+  tags:
+  - usage
+  - image
+  - ruby
+- id: usage-ruby-vips-read-sample-jpeg
+  title: ruby-vips reads sample JPEG
+  description: Loads a checked-in JPEG fixture with ruby-vips and verifies dimensions.
+  kind: usage
+  client_application: ruby-vips
+  command:
+  - bash
+  - /validator/tests/libvips/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-ruby-vips-read-sample-jpeg
+  timeout_seconds: 180
+  tags:
+  - usage
+  - image
+  - ruby
+- id: usage-ruby-vips-cast-uchar
+  title: ruby-vips casts image
+  description: Casts a ruby-vips image to unsigned byte format and verifies output format.
+  kind: usage
+  client_application: ruby-vips
+  command:
+  - bash
+  - /validator/tests/libvips/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-ruby-vips-cast-uchar
+  timeout_seconds: 180
+  tags:
+  - usage
+  - image
+  - ruby
+- id: usage-ruby-vips-replicate-image
+  title: ruby-vips replicates image
+  description: Replicates a small image with ruby-vips and checks expanded dimensions.
+  kind: usage
+  client_application: ruby-vips
+  command:
+  - bash
+  - /validator/tests/libvips/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-ruby-vips-replicate-image
+  timeout_seconds: 180
+  tags:
+  - usage
+  - image
+  - ruby
+- id: usage-ruby-vips-threshold-image
+  title: ruby-vips relational threshold
+  description: Applies a threshold comparison with ruby-vips and verifies numeric output.
+  kind: usage
+  client_application: ruby-vips
+  command:
+  - bash
+  - /validator/tests/libvips/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-ruby-vips-threshold-image
+  timeout_seconds: 180
+  tags:
+  - usage
+  - image
+  - ruby
+- id: usage-ruby-vips-jpeg-buffer
+  title: ruby-vips JPEG buffer
+  description: Encodes a ruby-vips image to JPEG buffer bytes and checks nonempty output.
+  kind: usage
+  client_application: ruby-vips
+  command:
+  - bash
+  - /validator/tests/libvips/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-ruby-vips-jpeg-buffer
+  timeout_seconds: 180
+  tags:
+  - usage
+  - image
+  - ruby

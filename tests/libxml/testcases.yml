@@ -186,3 +186,143 @@ testcases:
   - usage
   - xml
   - cli
+- id: usage-python3-lxml-namespace-xpath
+  title: lxml namespace XPath
+  description: Evaluates a namespace-aware XPath expression with python3-lxml.
+  kind: usage
+  client_application: python3-lxml
+  command:
+  - bash
+  - /validator/tests/libxml/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-python3-lxml-namespace-xpath
+  timeout_seconds: 180
+  tags:
+  - usage
+  - xml
+  - python
+- id: usage-python3-lxml-pretty-print
+  title: lxml pretty print
+  description: Serializes parsed XML with lxml pretty-print formatting.
+  kind: usage
+  client_application: python3-lxml
+  command:
+  - bash
+  - /validator/tests/libxml/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-python3-lxml-pretty-print
+  timeout_seconds: 180
+  tags:
+  - usage
+  - xml
+  - python
+- id: usage-python3-lxml-dtd-validate
+  title: lxml DTD validation
+  description: Validates an XML document against an inline DTD with python3-lxml.
+  kind: usage
+  client_application: python3-lxml
+  command:
+  - bash
+  - /validator/tests/libxml/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-python3-lxml-dtd-validate
+  timeout_seconds: 180
+  tags:
+  - usage
+  - xml
+  - python
+- id: usage-python3-lxml-relaxng
+  title: lxml RelaxNG validation
+  description: Validates an XML document with a RelaxNG schema through python3-lxml.
+  kind: usage
+  client_application: python3-lxml
+  command:
+  - bash
+  - /validator/tests/libxml/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-python3-lxml-relaxng
+  timeout_seconds: 180
+  tags:
+  - usage
+  - xml
+  - python
+- id: usage-python3-lxml-recover-parser
+  title: lxml recover parser
+  description: Parses malformed XML with lxml recovery enabled and verifies recovered content.
+  kind: usage
+  client_application: python3-lxml
+  command:
+  - bash
+  - /validator/tests/libxml/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-python3-lxml-recover-parser
+  timeout_seconds: 180
+  tags:
+  - usage
+  - xml
+  - python
+- id: usage-xmlstarlet-namespace-select
+  title: xmlstarlet namespace select
+  description: Selects namespaced XML content with xmlstarlet namespace bindings.
+  kind: usage
+  client_application: xmlstarlet
+  command:
+  - bash
+  - /validator/tests/libxml/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-xmlstarlet-namespace-select
+  timeout_seconds: 180
+  tags:
+  - usage
+  - xml
+  - cli
+- id: usage-xmlstarlet-insert-attribute
+  title: xmlstarlet inserts attribute
+  description: Adds an XML attribute with xmlstarlet edit and verifies serialized output.
+  kind: usage
+  client_application: xmlstarlet
+  command:
+  - bash
+  - /validator/tests/libxml/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-xmlstarlet-insert-attribute
+  timeout_seconds: 180
+  tags:
+  - usage
+  - xml
+  - cli
+- id: usage-xmlstarlet-delete-node
+  title: xmlstarlet deletes node
+  description: Deletes one XML node with xmlstarlet edit and verifies remaining content.
+  kind: usage
+  client_application: xmlstarlet
+  command:
+  - bash
+  - /validator/tests/libxml/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-xmlstarlet-delete-node
+  timeout_seconds: 180
+  tags:
+  - usage
+  - xml
+  - cli
+- id: usage-xmlstarlet-c14n
+  title: xmlstarlet canonical XML
+  description: Canonicalizes XML with xmlstarlet and verifies stable element output.
+  kind: usage
+  client_application: xmlstarlet
+  command:
+  - bash
+  - /validator/tests/libxml/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-xmlstarlet-c14n
+  timeout_seconds: 180
+  tags:
+  - usage
+  - xml
+  - cli
+- id: usage-xmlstarlet-escape-text
+  title: xmlstarlet escapes text
+  description: Escapes text through xmlstarlet and verifies XML entities.
+  kind: usage
+  client_application: xmlstarlet
+  command:
+  - bash
+  - /validator/tests/libxml/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-xmlstarlet-escape-text
+  timeout_seconds: 180
+  tags:
+  - usage
+  - xml
+  - cli

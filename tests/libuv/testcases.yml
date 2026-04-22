@@ -181,3 +181,141 @@ testcases:
   - usage
   - event-loop
   - crypto
+- id: usage-nodejs-fs-promises
+  title: Node.js fs promises
+  description: Writes and reads a file through Node.js fs.promises callbacks backed by libuv.
+  kind: usage
+  client_application: nodejs
+  command:
+  - bash
+  - /validator/tests/libuv/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-nodejs-fs-promises
+  timeout_seconds: 180
+  tags:
+  - usage
+  - event-loop
+  - fs
+- id: usage-nodejs-opendir
+  title: Node.js opendir
+  description: Iterates a directory with Node.js fs.opendir and verifies entry names.
+  kind: usage
+  client_application: nodejs
+  command:
+  - bash
+  - /validator/tests/libuv/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-nodejs-opendir
+  timeout_seconds: 180
+  tags:
+  - usage
+  - event-loop
+  - fs
+- id: usage-nodejs-setimmediate
+  title: Node.js setImmediate
+  description: Schedules a setImmediate callback and verifies event loop completion.
+  kind: usage
+  client_application: nodejs
+  command:
+  - bash
+  - /validator/tests/libuv/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-nodejs-setimmediate
+  timeout_seconds: 180
+  tags:
+  - usage
+  - event-loop
+- id: usage-nodejs-nexttick-timeout
+  title: Node.js nextTick and timeout
+  description: Runs nextTick before a timeout and verifies callback ordering.
+  kind: usage
+  client_application: nodejs
+  command:
+  - bash
+  - /validator/tests/libuv/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-nodejs-nexttick-timeout
+  timeout_seconds: 180
+  tags:
+  - usage
+  - event-loop
+- id: usage-nodejs-randombytes-async
+  title: Node.js async randomBytes
+  description: Runs asynchronous crypto.randomBytes and verifies callback data length.
+  kind: usage
+  client_application: nodejs
+  command:
+  - bash
+  - /validator/tests/libuv/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-nodejs-randombytes-async
+  timeout_seconds: 180
+  tags:
+  - usage
+  - event-loop
+  - crypto
+- id: usage-nodejs-zlib-deflate
+  title: Node.js async zlib deflate
+  description: Compresses and decompresses data through Node.js asynchronous zlib callbacks.
+  kind: usage
+  client_application: nodejs
+  command:
+  - bash
+  - /validator/tests/libuv/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-nodejs-zlib-deflate
+  timeout_seconds: 180
+  tags:
+  - usage
+  - event-loop
+  - compression
+- id: usage-nodejs-spawn-stdio
+  title: Node.js spawn stdio
+  description: Spawns a child process with Node.js and reads stdout through evented streams.
+  kind: usage
+  client_application: nodejs
+  command:
+  - bash
+  - /validator/tests/libuv/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-nodejs-spawn-stdio
+  timeout_seconds: 180
+  tags:
+  - usage
+  - event-loop
+  - process
+- id: usage-nodejs-net-echo
+  title: Node.js net echo
+  description: Runs a loopback TCP echo exchange through Node.js net APIs.
+  kind: usage
+  client_application: nodejs
+  command:
+  - bash
+  - /validator/tests/libuv/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-nodejs-net-echo
+  timeout_seconds: 180
+  tags:
+  - usage
+  - event-loop
+  - network
+- id: usage-nodejs-dgram-connect
+  title: Node.js UDP connect
+  description: Sends a UDP datagram over loopback with Node.js dgram APIs.
+  kind: usage
+  client_application: nodejs
+  command:
+  - bash
+  - /validator/tests/libuv/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-nodejs-dgram-connect
+  timeout_seconds: 180
+  tags:
+  - usage
+  - event-loop
+  - network
+- id: usage-nodejs-readline-stream
+  title: Node.js readline stream
+  description: Consumes stream lines with Node.js readline and verifies line count.
+  kind: usage
+  client_application: nodejs
+  command:
+  - bash
+  - /validator/tests/libuv/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-nodejs-readline-stream
+  timeout_seconds: 180
+  tags:
+  - usage
+  - event-loop
+  - stream

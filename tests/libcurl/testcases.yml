@@ -195,3 +195,139 @@ testcases:
   tags:
   - usage
   - version
+- id: usage-curl-query-params
+  title: curl sends query parameters
+  description: Fetches a local HTTP endpoint and verifies curl transmits query parameters.
+  kind: usage
+  client_application: curl
+  command:
+  - bash
+  - /validator/tests/libcurl/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-curl-query-params
+  timeout_seconds: 180
+  tags:
+  - usage
+  - http
+- id: usage-curl-basic-auth
+  title: curl sends basic auth
+  description: Uses curl basic authentication against a local HTTP handler and verifies authorization.
+  kind: usage
+  client_application: curl
+  command:
+  - bash
+  - /validator/tests/libcurl/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-curl-basic-auth
+  timeout_seconds: 180
+  tags:
+  - usage
+  - http
+  - auth
+- id: usage-curl-cookie-jar
+  title: curl persists cookies
+  description: Stores a cookie from one local response and sends it on a later curl request.
+  kind: usage
+  client_application: curl
+  command:
+  - bash
+  - /validator/tests/libcurl/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-curl-cookie-jar
+  timeout_seconds: 180
+  tags:
+  - usage
+  - http
+  - cookies
+- id: usage-curl-range-request
+  title: curl range request
+  description: Requests a byte range from a local HTTP handler and checks the partial body.
+  kind: usage
+  client_application: curl
+  command:
+  - bash
+  - /validator/tests/libcurl/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-curl-range-request
+  timeout_seconds: 180
+  tags:
+  - usage
+  - http
+- id: usage-curl-compressed-response
+  title: curl decompresses HTTP body
+  description: Fetches a gzip-encoded local response with curl --compressed and verifies the decoded body.
+  kind: usage
+  client_application: curl
+  command:
+  - bash
+  - /validator/tests/libcurl/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-curl-compressed-response
+  timeout_seconds: 180
+  tags:
+  - usage
+  - http
+  - compression
+- id: usage-curl-put-upload
+  title: curl uploads PUT body
+  description: Sends a PUT request body to a local HTTP handler and verifies it is received.
+  kind: usage
+  client_application: curl
+  command:
+  - bash
+  - /validator/tests/libcurl/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-curl-put-upload
+  timeout_seconds: 180
+  tags:
+  - usage
+  - http
+  - upload
+- id: usage-curl-form-post
+  title: curl posts multipart form
+  description: Sends multipart form data with curl and verifies the local server receives the field.
+  kind: usage
+  client_application: curl
+  command:
+  - bash
+  - /validator/tests/libcurl/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-curl-form-post
+  timeout_seconds: 180
+  tags:
+  - usage
+  - http
+  - upload
+- id: usage-curl-http-code-variable
+  title: curl write-out content type
+  description: Uses curl write-out variables to report HTTP status and content type.
+  kind: usage
+  client_application: curl
+  command:
+  - bash
+  - /validator/tests/libcurl/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-curl-http-code-variable
+  timeout_seconds: 180
+  tags:
+  - usage
+  - http
+- id: usage-curl-remote-name
+  title: curl remote name output
+  description: Downloads a local file with curl remote-name handling and verifies the saved file.
+  kind: usage
+  client_application: curl
+  command:
+  - bash
+  - /validator/tests/libcurl/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-curl-remote-name
+  timeout_seconds: 180
+  tags:
+  - usage
+  - http
+- id: usage-curl-json-header
+  title: curl sends JSON content type
+  description: Posts JSON with curl and verifies the local handler sees the content type and body.
+  kind: usage
+  client_application: curl
+  command:
+  - bash
+  - /validator/tests/libcurl/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-curl-json-header
+  timeout_seconds: 180
+  tags:
+  - usage
+  - http
+  - json

@@ -179,3 +179,143 @@ testcases:
   tags:
   - usage
   - json
+- id: usage-iperf3-json-window-size
+  title: iperf3 JSON window sizing
+  description: Runs iperf3 with an explicit TCP window and checks JSON transfer totals.
+  kind: usage
+  client_application: iperf3
+  command:
+  - bash
+  - /validator/tests/cjson/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-iperf3-json-window-size
+  timeout_seconds: 180
+  tags:
+  - usage
+  - json
+  - network
+- id: usage-iperf3-json-length-buffer
+  title: iperf3 JSON buffer length
+  description: Runs iperf3 with a fixed buffer length and checks JSON sender totals.
+  kind: usage
+  client_application: iperf3
+  command:
+  - bash
+  - /validator/tests/cjson/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-iperf3-json-length-buffer
+  timeout_seconds: 180
+  tags:
+  - usage
+  - json
+  - network
+- id: usage-iperf3-json-mss-clamp
+  title: iperf3 JSON MSS clamp
+  description: Runs iperf3 with a requested TCP MSS and checks JSON byte accounting.
+  kind: usage
+  client_application: iperf3
+  command:
+  - bash
+  - /validator/tests/cjson/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-iperf3-json-mss-clamp
+  timeout_seconds: 180
+  tags:
+  - usage
+  - json
+  - network
+- id: usage-iperf3-json-nodelay
+  title: iperf3 JSON no-delay transfer
+  description: Runs iperf3 with TCP no-delay enabled and verifies JSON throughput data.
+  kind: usage
+  client_application: iperf3
+  command:
+  - bash
+  - /validator/tests/cjson/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-iperf3-json-nodelay
+  timeout_seconds: 180
+  tags:
+  - usage
+  - json
+  - network
+- id: usage-iperf3-json-bind-loopback
+  title: iperf3 JSON bound client
+  description: Runs iperf3 from an explicit loopback bind address and validates JSON connection data.
+  kind: usage
+  client_application: iperf3
+  command:
+  - bash
+  - /validator/tests/cjson/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-iperf3-json-bind-loopback
+  timeout_seconds: 180
+  tags:
+  - usage
+  - json
+  - network
+- id: usage-iperf3-json-format-kbits
+  title: iperf3 JSON kbit format
+  description: Runs iperf3 with kilobit reporting selected and verifies JSON summaries remain numeric.
+  kind: usage
+  client_application: iperf3
+  command:
+  - bash
+  - /validator/tests/cjson/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-iperf3-json-format-kbits
+  timeout_seconds: 180
+  tags:
+  - usage
+  - json
+  - network
+- id: usage-iperf3-json-udp-parallel
+  title: iperf3 JSON parallel UDP
+  description: Runs iperf3 UDP traffic with parallel streams and checks JSON interval data.
+  kind: usage
+  client_application: iperf3
+  command:
+  - bash
+  - /validator/tests/cjson/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-iperf3-json-udp-parallel
+  timeout_seconds: 180
+  tags:
+  - usage
+  - json
+  - network
+- id: usage-iperf3-json-udp-reverse
+  title: iperf3 JSON reverse UDP
+  description: Runs a reverse UDP iperf3 transfer and verifies JSON UDP summaries.
+  kind: usage
+  client_application: iperf3
+  command:
+  - bash
+  - /validator/tests/cjson/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-iperf3-json-udp-reverse
+  timeout_seconds: 180
+  tags:
+  - usage
+  - json
+  - network
+- id: usage-iperf3-json-tos-field
+  title: iperf3 JSON TOS transfer
+  description: Runs iperf3 with a TOS value and validates JSON transfer fields.
+  kind: usage
+  client_application: iperf3
+  command:
+  - bash
+  - /validator/tests/cjson/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-iperf3-json-tos-field
+  timeout_seconds: 180
+  tags:
+  - usage
+  - json
+  - network
+- id: usage-iperf3-json-small-fixed
+  title: iperf3 JSON small fixed transfer
+  description: Runs a small fixed-size iperf3 transfer and checks JSON byte totals.
+  kind: usage
+  client_application: iperf3
+  command:
+  - bash
+  - /validator/tests/cjson/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-iperf3-json-small-fixed
+  timeout_seconds: 180
+  tags:
+  - usage
+  - json
+  - network

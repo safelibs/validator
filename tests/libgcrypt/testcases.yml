@@ -194,3 +194,143 @@ testcases:
   tags:
   - usage
   - crypto
+- id: usage-gpg-print-md-sha1
+  title: gpg SHA1 digest
+  description: Computes a SHA1 message digest with gpg and checks digest output.
+  kind: usage
+  client_application: gpg
+  command:
+  - bash
+  - /validator/tests/libgcrypt/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-gpg-print-md-sha1
+  timeout_seconds: 180
+  tags:
+  - usage
+  - crypto
+  - digest
+- id: usage-gpg-print-md-sha512
+  title: gpg SHA512 digest
+  description: Computes a SHA512 message digest with gpg and checks digest output.
+  kind: usage
+  client_application: gpg
+  command:
+  - bash
+  - /validator/tests/libgcrypt/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-gpg-print-md-sha512
+  timeout_seconds: 180
+  tags:
+  - usage
+  - crypto
+  - digest
+- id: usage-gpg-symmetric-aes128
+  title: gpg AES128 symmetric round trip
+  description: Encrypts and decrypts a file with gpg AES128 symmetric encryption.
+  kind: usage
+  client_application: gpg
+  command:
+  - bash
+  - /validator/tests/libgcrypt/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-gpg-symmetric-aes128
+  timeout_seconds: 180
+  tags:
+  - usage
+  - crypto
+  - encryption
+- id: usage-gpg-symmetric-cast5
+  title: gpg CAST5 symmetric round trip
+  description: Encrypts and decrypts a file with gpg CAST5 symmetric encryption.
+  kind: usage
+  client_application: gpg
+  command:
+  - bash
+  - /validator/tests/libgcrypt/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-gpg-symmetric-cast5
+  timeout_seconds: 180
+  tags:
+  - usage
+  - crypto
+  - encryption
+- id: usage-gpg-detached-binary-sign
+  title: gpg binary detached signature
+  description: Creates a binary detached signature and verifies it with gpg.
+  kind: usage
+  client_application: gpg
+  command:
+  - bash
+  - /validator/tests/libgcrypt/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-gpg-detached-binary-sign
+  timeout_seconds: 180
+  tags:
+  - usage
+  - crypto
+  - signature
+- id: usage-gpg-fingerprint-list
+  title: gpg fingerprint listing
+  description: Generates a key and lists its fingerprint through gpg.
+  kind: usage
+  client_application: gpg
+  command:
+  - bash
+  - /validator/tests/libgcrypt/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-gpg-fingerprint-list
+  timeout_seconds: 180
+  tags:
+  - usage
+  - crypto
+  - keys
+- id: usage-gpg-armor-recipient-encrypt
+  title: gpg armored recipient encryption
+  description: Encrypts to a generated recipient with ASCII armor and decrypts the message.
+  kind: usage
+  client_application: gpg
+  command:
+  - bash
+  - /validator/tests/libgcrypt/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-gpg-armor-recipient-encrypt
+  timeout_seconds: 180
+  tags:
+  - usage
+  - crypto
+  - encryption
+- id: usage-gpg-import-ownertrust
+  title: gpg imports ownertrust
+  description: Imports ownertrust for a generated key and verifies trust database handling.
+  kind: usage
+  client_application: gpg
+  command:
+  - bash
+  - /validator/tests/libgcrypt/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-gpg-import-ownertrust
+  timeout_seconds: 180
+  tags:
+  - usage
+  - crypto
+  - keys
+- id: usage-gpg-export-secret-key
+  title: gpg exports secret key
+  description: Exports a generated secret key in armor form and checks the block header.
+  kind: usage
+  client_application: gpg
+  command:
+  - bash
+  - /validator/tests/libgcrypt/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-gpg-export-secret-key
+  timeout_seconds: 180
+  tags:
+  - usage
+  - crypto
+  - keys
+- id: usage-gpg-tampered-signature-reject
+  title: gpg rejects tampered signature
+  description: Verifies that gpg rejects a detached signature after the signed payload changes.
+  kind: usage
+  client_application: gpg
+  command:
+  - bash
+  - /validator/tests/libgcrypt/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-gpg-tampered-signature-reject
+  timeout_seconds: 180
+  tags:
+  - usage
+  - crypto
+  - negative

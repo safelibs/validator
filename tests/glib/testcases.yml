@@ -203,3 +203,143 @@ testcases:
   tags:
   - usage
   - python
+- id: usage-gio-move-file
+  title: gio moves a local file
+  description: Moves a local file with gio and verifies the destination content.
+  kind: usage
+  client_application: gio
+  command:
+  - bash
+  - /validator/tests/glib/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-gio-move-file
+  timeout_seconds: 180
+  tags:
+  - usage
+  - gio
+  - filesystem
+- id: usage-gio-list-directory
+  title: gio lists directory children
+  description: Lists a temporary directory with gio and checks expected child names.
+  kind: usage
+  client_application: gio
+  command:
+  - bash
+  - /validator/tests/glib/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-gio-list-directory
+  timeout_seconds: 180
+  tags:
+  - usage
+  - gio
+  - filesystem
+- id: usage-gio-info-size
+  title: gio reports file size
+  description: Reads the standard size attribute for a local file through gio info.
+  kind: usage
+  client_application: gio
+  command:
+  - bash
+  - /validator/tests/glib/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-gio-info-size
+  timeout_seconds: 180
+  tags:
+  - usage
+  - gio
+  - metadata
+- id: usage-glib-compile-resources
+  title: glib resource compilation
+  description: Compiles a small GResource bundle with glib-compile-resources and verifies output bytes.
+  kind: usage
+  client_application: gio
+  command:
+  - bash
+  - /validator/tests/glib/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-glib-compile-resources
+  timeout_seconds: 180
+  tags:
+  - usage
+  - glib
+  - resources
+- id: usage-glib-compile-schemas-boolean
+  title: gsettings boolean schema
+  description: Compiles a schema with a boolean key and reads it through gsettings.
+  kind: usage
+  client_application: gio
+  command:
+  - bash
+  - /validator/tests/glib/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-glib-compile-schemas-boolean
+  timeout_seconds: 180
+  tags:
+  - usage
+  - glib
+  - schema
+- id: usage-python3-gi-checksum
+  title: PyGObject GLib checksum
+  description: Computes a SHA-256 digest through GLib Checksum from PyGObject.
+  kind: usage
+  client_application: python3-gi
+  command:
+  - bash
+  - /validator/tests/glib/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-python3-gi-checksum
+  timeout_seconds: 180
+  tags:
+  - usage
+  - glib
+  - python
+- id: usage-python3-gi-uri-escape
+  title: PyGObject URI escaping
+  description: Escapes and unescapes a string through GLib URI helpers from PyGObject.
+  kind: usage
+  client_application: python3-gi
+  command:
+  - bash
+  - /validator/tests/glib/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-python3-gi-uri-escape
+  timeout_seconds: 180
+  tags:
+  - usage
+  - glib
+  - python
+- id: usage-python3-gi-bytes
+  title: PyGObject bytes object
+  description: Creates GLib.Bytes from Python and verifies size and data access.
+  kind: usage
+  client_application: python3-gi
+  command:
+  - bash
+  - /validator/tests/glib/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-python3-gi-bytes
+  timeout_seconds: 180
+  tags:
+  - usage
+  - glib
+  - python
+- id: usage-python3-gi-memory-stream
+  title: PyGObject memory stream
+  description: Reads bytes from a Gio memory input stream through PyGObject.
+  kind: usage
+  client_application: python3-gi
+  command:
+  - bash
+  - /validator/tests/glib/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-python3-gi-memory-stream
+  timeout_seconds: 180
+  tags:
+  - usage
+  - gio
+  - python
+- id: usage-python3-gi-idle-callback
+  title: PyGObject idle callback
+  description: Runs a GLib main loop until an idle callback updates state and quits.
+  kind: usage
+  client_application: python3-gi
+  command:
+  - bash
+  - /validator/tests/glib/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-python3-gi-idle-callback
+  timeout_seconds: 180
+  tags:
+  - usage
+  - glib
+  - python

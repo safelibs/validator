@@ -24,7 +24,7 @@ unit:
 	$(PYTHON) -m unittest discover -s unit -v
 
 check-testcases:
-	$(PYTHON) tools/testcases.py --config $(CONFIG) --tests-root $(TESTS_ROOT) --check --min-source-cases 120 --min-usage-cases 243 --min-cases 363
+	$(PYTHON) tools/testcases.py --config $(CONFIG) --tests-root $(TESTS_ROOT) --check --min-source-cases 120 --min-usage-cases 483 --min-cases 603
 
 fetch-port-debs:
 	$(PYTHON) tools/fetch_port_debs.py --config $(CONFIG) --port-repos $(PORT_REPOS) --output-root $(PORT_DEB_ROOT) --lock-output $(PORT_LOCK_PATH) $(LIBRARY_ARGS)

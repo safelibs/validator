@@ -190,3 +190,143 @@ testcases:
   - usage
   - cli
   - image
+- id: usage-giflib-tools-giftext-fire-header
+  title: giftext fire GIF header
+  description: Reads fire.gif with giftext and checks screen metadata.
+  kind: usage
+  client_application: giflib-tools
+  command:
+  - bash
+  - /validator/tests/giflib/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-giflib-tools-giftext-fire-header
+  timeout_seconds: 180
+  tags:
+  - usage
+  - gif
+  - metadata
+- id: usage-giflib-tools-giftext-grid-colormap
+  title: giftext grid color map
+  description: Reads gifgrid.gif with giftext color map output and checks palette metadata.
+  kind: usage
+  client_application: giflib-tools
+  command:
+  - bash
+  - /validator/tests/giflib/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-giflib-tools-giftext-grid-colormap
+  timeout_seconds: 180
+  tags:
+  - usage
+  - gif
+  - metadata
+- id: usage-giflib-tools-gif2rgb-interlaced
+  title: gif2rgb interlaced conversion
+  description: Converts an interlaced GIF fixture to RGB bytes and compares the expected output.
+  kind: usage
+  client_application: giflib-tools
+  command:
+  - bash
+  - /validator/tests/giflib/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-giflib-tools-gif2rgb-interlaced
+  timeout_seconds: 180
+  tags:
+  - usage
+  - gif
+  - conversion
+- id: usage-giflib-tools-gif2rgb-grid-planar
+  title: gif2rgb grid planar output
+  description: Converts gifgrid.gif to planar RGB files and verifies each channel file exists.
+  kind: usage
+  client_application: giflib-tools
+  command:
+  - bash
+  - /validator/tests/giflib/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-giflib-tools-gif2rgb-grid-planar
+  timeout_seconds: 180
+  tags:
+  - usage
+  - gif
+  - conversion
+- id: usage-giflib-tools-gifbuild-fire-roundtrip
+  title: gifbuild fire round trip
+  description: Dumps and rebuilds fire.gif with gifbuild and validates the rebuilt GIF metadata.
+  kind: usage
+  client_application: giflib-tools
+  command:
+  - bash
+  - /validator/tests/giflib/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-giflib-tools-gifbuild-fire-roundtrip
+  timeout_seconds: 180
+  tags:
+  - usage
+  - gif
+  - roundtrip
+- id: usage-giflib-tools-gifbuild-grid-dump
+  title: gifbuild grid dump
+  description: Dumps gifgrid.gif with gifbuild and checks for image records in the text form.
+  kind: usage
+  client_application: giflib-tools
+  command:
+  - bash
+  - /validator/tests/giflib/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-giflib-tools-gifbuild-grid-dump
+  timeout_seconds: 180
+  tags:
+  - usage
+  - gif
+  - metadata
+- id: usage-giflib-tools-giffix-grid
+  title: giffix grid copy
+  description: Runs giffix on a non-interlaced GIF fixture and verifies the repaired stream is readable.
+  kind: usage
+  client_application: giflib-tools
+  command:
+  - bash
+  - /validator/tests/giflib/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-giflib-tools-giffix-grid
+  timeout_seconds: 180
+  tags:
+  - usage
+  - gif
+  - repair
+- id: usage-giflib-tools-gifclrmp-fire
+  title: gifclrmp fire palette
+  description: Prints the fire.gif color map with gifclrmp and checks indexed RGB rows.
+  kind: usage
+  client_application: giflib-tools
+  command:
+  - bash
+  - /validator/tests/giflib/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-giflib-tools-gifclrmp-fire
+  timeout_seconds: 180
+  tags:
+  - usage
+  - gif
+  - palette
+- id: usage-giflib-tools-gif2rgb-fire-size
+  title: gif2rgb fire RGB size
+  description: Converts fire.gif to a single RGB file and checks the byte count is nonzero.
+  kind: usage
+  client_application: giflib-tools
+  command:
+  - bash
+  - /validator/tests/giflib/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-giflib-tools-gif2rgb-fire-size
+  timeout_seconds: 180
+  tags:
+  - usage
+  - gif
+  - conversion
+- id: usage-giflib-tools-giftext-treescap-images
+  title: giftext treescap image records
+  description: Reads treescap.gif with giftext and checks image descriptor output.
+  kind: usage
+  client_application: giflib-tools
+  command:
+  - bash
+  - /validator/tests/giflib/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-giflib-tools-giftext-treescap-images
+  timeout_seconds: 180
+  tags:
+  - usage
+  - gif
+  - metadata

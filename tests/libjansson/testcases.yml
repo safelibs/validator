@@ -194,3 +194,133 @@ testcases:
   tags:
   - usage
   - json
+- id: usage-jshon-root-object-type
+  title: jshon root object type
+  description: Reads a JSON object with jshon and verifies the reported root type.
+  kind: usage
+  client_application: jshon
+  command:
+  - bash
+  - /validator/tests/libjansson/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-jshon-root-object-type
+  timeout_seconds: 180
+  tags:
+  - usage
+  - json
+- id: usage-jshon-false-field
+  title: jshon false field
+  description: Extracts a false boolean field with jshon and verifies unpacked output.
+  kind: usage
+  client_application: jshon
+  command:
+  - bash
+  - /validator/tests/libjansson/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-jshon-false-field
+  timeout_seconds: 180
+  tags:
+  - usage
+  - json
+- id: usage-jshon-null-type
+  title: jshon null type
+  description: Extracts a null field with jshon and verifies type reporting.
+  kind: usage
+  client_application: jshon
+  command:
+  - bash
+  - /validator/tests/libjansson/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-jshon-null-type
+  timeout_seconds: 180
+  tags:
+  - usage
+  - json
+- id: usage-jshon-array-index
+  title: jshon array index
+  description: Extracts one array index with jshon and verifies the selected value.
+  kind: usage
+  client_application: jshon
+  command:
+  - bash
+  - /validator/tests/libjansson/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-jshon-array-index
+  timeout_seconds: 180
+  tags:
+  - usage
+  - json
+- id: usage-jshon-nested-array-value
+  title: jshon nested array value
+  description: Extracts a value from an object inside a JSON array with jshon.
+  kind: usage
+  client_application: jshon
+  command:
+  - bash
+  - /validator/tests/libjansson/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-jshon-nested-array-value
+  timeout_seconds: 180
+  tags:
+  - usage
+  - json
+- id: usage-jshon-object-length
+  title: jshon object key count
+  description: Counts keys in a JSON object with jshon length output.
+  kind: usage
+  client_application: jshon
+  command:
+  - bash
+  - /validator/tests/libjansson/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-jshon-object-length
+  timeout_seconds: 180
+  tags:
+  - usage
+  - json
+- id: usage-jshon-string-with-space
+  title: jshon string with spaces
+  description: Extracts a string containing spaces through jshon unpacking.
+  kind: usage
+  client_application: jshon
+  command:
+  - bash
+  - /validator/tests/libjansson/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-jshon-string-with-space
+  timeout_seconds: 180
+  tags:
+  - usage
+  - json
+- id: usage-jshon-number-array-sum
+  title: jshon number array values
+  description: Maps numeric array values with jshon and sums them in the shell.
+  kind: usage
+  client_application: jshon
+  command:
+  - bash
+  - /validator/tests/libjansson/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-jshon-number-array-sum
+  timeout_seconds: 180
+  tags:
+  - usage
+  - json
+- id: usage-jshon-file-root-array
+  title: jshon file root array
+  description: Reads a root array from a file with jshon and verifies its length.
+  kind: usage
+  client_application: jshon
+  command:
+  - bash
+  - /validator/tests/libjansson/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-jshon-file-root-array
+  timeout_seconds: 180
+  tags:
+  - usage
+  - json
+- id: usage-jshon-deep-object-keys
+  title: jshon deep object keys
+  description: Extracts a nested object and verifies jshon key listing output.
+  kind: usage
+  client_application: jshon
+  command:
+  - bash
+  - /validator/tests/libjansson/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-jshon-deep-object-keys
+  timeout_seconds: 180
+  tags:
+  - usage
+  - json

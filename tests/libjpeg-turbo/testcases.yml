@@ -193,3 +193,143 @@ testcases:
   - usage
   - image
   - cli
+- id: usage-python3-pil-crop-jpeg
+  title: Pillow crops JPEG
+  description: Opens a JPEG with Pillow, crops it, saves JPEG output, and verifies dimensions.
+  kind: usage
+  client_application: python3-pil
+  command:
+  - bash
+  - /validator/tests/libjpeg-turbo/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-python3-pil-crop-jpeg
+  timeout_seconds: 180
+  tags:
+  - usage
+  - jpeg
+  - python
+- id: usage-python3-pil-rotate-jpeg
+  title: Pillow rotates JPEG
+  description: Rotates a JPEG with Pillow and verifies the rotated dimensions.
+  kind: usage
+  client_application: python3-pil
+  command:
+  - bash
+  - /validator/tests/libjpeg-turbo/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-python3-pil-rotate-jpeg
+  timeout_seconds: 180
+  tags:
+  - usage
+  - jpeg
+  - python
+- id: usage-python3-pil-quality-jpeg
+  title: Pillow saves JPEG quality
+  description: Saves a JPEG with an explicit Pillow quality setting and reloads it.
+  kind: usage
+  client_application: python3-pil
+  command:
+  - bash
+  - /validator/tests/libjpeg-turbo/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-python3-pil-quality-jpeg
+  timeout_seconds: 180
+  tags:
+  - usage
+  - jpeg
+  - python
+- id: usage-python3-pil-cmyk-jpeg
+  title: Pillow handles CMYK JPEG
+  description: Writes and reopens a CMYK JPEG with Pillow.
+  kind: usage
+  client_application: python3-pil
+  command:
+  - bash
+  - /validator/tests/libjpeg-turbo/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-python3-pil-cmyk-jpeg
+  timeout_seconds: 180
+  tags:
+  - usage
+  - jpeg
+  - python
+- id: usage-python3-pil-exifless-jpeg
+  title: Pillow reads JPEG metadata
+  description: Loads a generated JPEG with Pillow and checks format and dimensions.
+  kind: usage
+  client_application: python3-pil
+  command:
+  - bash
+  - /validator/tests/libjpeg-turbo/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-python3-pil-exifless-jpeg
+  timeout_seconds: 180
+  tags:
+  - usage
+  - jpeg
+  - python
+- id: usage-vips-rotate-jpeg
+  title: vips rotates JPEG
+  description: Rotates a JPEG with vips and verifies the output header dimensions.
+  kind: usage
+  client_application: vips
+  command:
+  - bash
+  - /validator/tests/libjpeg-turbo/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-vips-rotate-jpeg
+  timeout_seconds: 180
+  tags:
+  - usage
+  - jpeg
+  - image
+- id: usage-vips-crop-jpeg
+  title: vips crops JPEG
+  description: Crops a JPEG with vips extract_area and checks the cropped image header.
+  kind: usage
+  client_application: vips
+  command:
+  - bash
+  - /validator/tests/libjpeg-turbo/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-vips-crop-jpeg
+  timeout_seconds: 180
+  tags:
+  - usage
+  - jpeg
+  - image
+- id: usage-vips-jpegsave-quality
+  title: vips saves JPEG quality
+  description: Copies a JPEG through vips with a quality option and verifies JPEG output.
+  kind: usage
+  client_application: vips
+  command:
+  - bash
+  - /validator/tests/libjpeg-turbo/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-vips-jpegsave-quality
+  timeout_seconds: 180
+  tags:
+  - usage
+  - jpeg
+  - image
+- id: usage-vips-flip-jpeg
+  title: vips flips JPEG
+  description: Flips a JPEG horizontally with vips and checks the resulting image header.
+  kind: usage
+  client_application: vips
+  command:
+  - bash
+  - /validator/tests/libjpeg-turbo/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-vips-flip-jpeg
+  timeout_seconds: 180
+  tags:
+  - usage
+  - jpeg
+  - image
+- id: usage-vips-shrink-jpeg
+  title: vips shrink-on-load JPEG
+  description: Loads a JPEG with a shrink option through vips and verifies a smaller header.
+  kind: usage
+  client_application: vips
+  command:
+  - bash
+  - /validator/tests/libjpeg-turbo/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-vips-shrink-jpeg
+  timeout_seconds: 180
+  tags:
+  - usage
+  - jpeg
+  - image

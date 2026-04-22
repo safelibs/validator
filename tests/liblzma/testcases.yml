@@ -192,3 +192,143 @@ testcases:
   - archive
   - compression
   - metadata
+- id: usage-libarchive-tools-xz-multi-file
+  title: libarchive-tools xz multi-file
+  description: Creates an xz-compressed tar archive containing multiple files and checks the listing.
+  kind: usage
+  client_application: libarchive-tools
+  command:
+  - bash
+  - /validator/tests/liblzma/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-libarchive-tools-xz-multi-file
+  timeout_seconds: 180
+  tags:
+  - usage
+  - archive
+  - xz
+- id: usage-libarchive-tools-xz-nested-extract
+  title: libarchive-tools xz nested extract
+  description: Extracts nested paths from an xz-compressed tar archive and verifies file content.
+  kind: usage
+  client_application: libarchive-tools
+  command:
+  - bash
+  - /validator/tests/liblzma/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-libarchive-tools-xz-nested-extract
+  timeout_seconds: 180
+  tags:
+  - usage
+  - archive
+  - xz
+- id: usage-libarchive-tools-xz-strip-components
+  title: libarchive-tools xz strip components
+  description: Extracts an xz-compressed archive with stripped path components and verifies the result.
+  kind: usage
+  client_application: libarchive-tools
+  command:
+  - bash
+  - /validator/tests/liblzma/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-libarchive-tools-xz-strip-components
+  timeout_seconds: 180
+  tags:
+  - usage
+  - archive
+  - xz
+- id: usage-libarchive-tools-xz-stdin-archive
+  title: libarchive-tools xz stdout archive
+  description: Streams an xz-compressed tar archive to stdout and lists it with bsdtar.
+  kind: usage
+  client_application: libarchive-tools
+  command:
+  - bash
+  - /validator/tests/liblzma/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-libarchive-tools-xz-stdin-archive
+  timeout_seconds: 180
+  tags:
+  - usage
+  - archive
+  - xz
+- id: usage-libarchive-tools-xz-single-file-extract
+  title: libarchive-tools xz single extract
+  description: Extracts one selected file from an xz-compressed tar archive.
+  kind: usage
+  client_application: libarchive-tools
+  command:
+  - bash
+  - /validator/tests/liblzma/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-libarchive-tools-xz-single-file-extract
+  timeout_seconds: 180
+  tags:
+  - usage
+  - archive
+  - xz
+- id: usage-libarchive-tools-xz-exclude-pattern
+  title: libarchive-tools xz exclude pattern
+  description: Creates an xz-compressed tar archive with an exclude pattern and verifies omitted files.
+  kind: usage
+  client_application: libarchive-tools
+  command:
+  - bash
+  - /validator/tests/liblzma/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-libarchive-tools-xz-exclude-pattern
+  timeout_seconds: 180
+  tags:
+  - usage
+  - archive
+  - xz
+- id: usage-libarchive-tools-xz-spaced-filename
+  title: libarchive-tools xz spaced filename
+  description: Archives and extracts a filename containing a space through xz compression.
+  kind: usage
+  client_application: libarchive-tools
+  command:
+  - bash
+  - /validator/tests/liblzma/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-libarchive-tools-xz-spaced-filename
+  timeout_seconds: 180
+  tags:
+  - usage
+  - archive
+  - xz
+- id: usage-libarchive-tools-xz-checksum-compare
+  title: libarchive-tools xz checksum compare
+  description: Compares checksums before and after extraction from an xz-compressed tar archive.
+  kind: usage
+  client_application: libarchive-tools
+  command:
+  - bash
+  - /validator/tests/liblzma/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-libarchive-tools-xz-checksum-compare
+  timeout_seconds: 180
+  tags:
+  - usage
+  - archive
+  - xz
+- id: usage-libarchive-tools-xz-verbose-list
+  title: libarchive-tools xz verbose list
+  description: Lists an xz-compressed tar archive verbosely and verifies mode metadata.
+  kind: usage
+  client_application: libarchive-tools
+  command:
+  - bash
+  - /validator/tests/liblzma/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-libarchive-tools-xz-verbose-list
+  timeout_seconds: 180
+  tags:
+  - usage
+  - archive
+  - xz
+- id: usage-libarchive-tools-xz-directory-only
+  title: libarchive-tools xz directory only
+  description: Archives and extracts an empty directory through xz compression.
+  kind: usage
+  client_application: libarchive-tools
+  command:
+  - bash
+  - /validator/tests/liblzma/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-libarchive-tools-xz-directory-only
+  timeout_seconds: 180
+  tags:
+  - usage
+  - archive
+  - xz

@@ -193,3 +193,143 @@ testcases:
   tags:
   - usage
   - json
+- id: usage-gdal-ogrinfo-json-summary
+  title: GDAL ogrinfo JSON summary
+  description: Reads a GeoJSON feature collection with ogrinfo JSON output and verifies feature metadata.
+  kind: usage
+  client_application: gdal
+  command:
+  - bash
+  - /validator/tests/libjson/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-gdal-ogrinfo-json-summary
+  timeout_seconds: 180
+  tags:
+  - usage
+  - json
+  - gdal
+- id: usage-gdal-ogrinfo-extent
+  title: GDAL ogrinfo extent
+  description: Reports layer extent for GeoJSON data and checks the coordinate bounds.
+  kind: usage
+  client_application: gdal
+  command:
+  - bash
+  - /validator/tests/libjson/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-gdal-ogrinfo-extent
+  timeout_seconds: 180
+  tags:
+  - usage
+  - json
+  - gdal
+- id: usage-gdal-ogr2ogr-limit-geojson
+  title: GDAL ogr2ogr limit
+  description: Copies a limited subset of GeoJSON features and verifies one output feature remains.
+  kind: usage
+  client_application: gdal
+  command:
+  - bash
+  - /validator/tests/libjson/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-gdal-ogr2ogr-limit-geojson
+  timeout_seconds: 180
+  tags:
+  - usage
+  - json
+  - gdal
+- id: usage-gdal-ogr2ogr-select-field
+  title: GDAL ogr2ogr field select
+  description: Selects one GeoJSON attribute with ogr2ogr and verifies the omitted field is absent.
+  kind: usage
+  client_application: gdal
+  command:
+  - bash
+  - /validator/tests/libjson/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-gdal-ogr2ogr-select-field
+  timeout_seconds: 180
+  tags:
+  - usage
+  - json
+  - gdal
+- id: usage-gdal-ogr2ogr-rename-layer
+  title: GDAL ogr2ogr layer rename
+  description: Copies GeoJSON while assigning a new layer name and verifies ogrinfo output.
+  kind: usage
+  client_application: gdal
+  command:
+  - bash
+  - /validator/tests/libjson/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-gdal-ogr2ogr-rename-layer
+  timeout_seconds: 180
+  tags:
+  - usage
+  - json
+  - gdal
+- id: usage-gdal-ogrinfo-sql-count
+  title: GDAL ogrinfo SQL count
+  description: Runs an SQL aggregate over GeoJSON data and verifies the count result.
+  kind: usage
+  client_application: gdal
+  command:
+  - bash
+  - /validator/tests/libjson/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-gdal-ogrinfo-sql-count
+  timeout_seconds: 180
+  tags:
+  - usage
+  - json
+  - gdal
+- id: usage-gdal-gdalinfo-json-checksum
+  title: GDAL gdalinfo JSON checksum
+  description: Runs gdalinfo JSON output with checksum metadata on the bundled GDAL icon.
+  kind: usage
+  client_application: gdal
+  command:
+  - bash
+  - /validator/tests/libjson/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-gdal-gdalinfo-json-checksum
+  timeout_seconds: 180
+  tags:
+  - usage
+  - json
+  - gdal
+- id: usage-gdal-gdalsrsinfo-wkt
+  title: GDAL SRS WKT output
+  description: Runs gdalsrsinfo WKT output for EPSG:4326 and checks coordinate system data.
+  kind: usage
+  client_application: gdal
+  command:
+  - bash
+  - /validator/tests/libjson/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-gdal-gdalsrsinfo-wkt
+  timeout_seconds: 180
+  tags:
+  - usage
+  - json
+  - gdal
+- id: usage-gdal-ogr2ogr-geojsonseq
+  title: GDAL GeoJSONSeq conversion
+  description: Converts GeoJSON to GeoJSONSeq and verifies serialized feature names.
+  kind: usage
+  client_application: gdal
+  command:
+  - bash
+  - /validator/tests/libjson/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-gdal-ogr2ogr-geojsonseq
+  timeout_seconds: 180
+  tags:
+  - usage
+  - json
+  - gdal
+- id: usage-gdal-ogrinfo-geom-no
+  title: GDAL ogrinfo without geometry
+  description: Runs ogrinfo with geometry suppression and verifies attribute output remains.
+  kind: usage
+  client_application: gdal
+  command:
+  - bash
+  - /validator/tests/libjson/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-gdal-ogrinfo-geom-no
+  timeout_seconds: 180
+  tags:
+  - usage
+  - json
+  - gdal

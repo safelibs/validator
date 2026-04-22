@@ -312,7 +312,7 @@ class RenderSiteTests(unittest.TestCase):
         self.assertIn('data-mode="port-04-test"', html_text)
         self.assertIn("<span>Tests</span>", html_text)
         self.assertIn("<span>Port tests passing</span>", html_text)
-        self.assertIn("<strong>15 / 15</strong>", html_text)
+        self.assertIn("<strong>25 / 25</strong>", html_text)
 
         completed = subprocess.run(
             [

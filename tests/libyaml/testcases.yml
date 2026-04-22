@@ -189,3 +189,143 @@ testcases:
   - usage
   - yaml
   - python
+- id: usage-python3-yaml-merge-keys
+  title: PyYAML merge keys
+  description: Loads YAML merge keys with PyYAML and verifies inherited mapping values.
+  kind: usage
+  client_application: python3-yaml
+  command:
+  - bash
+  - /validator/tests/libyaml/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-python3-yaml-merge-keys
+  timeout_seconds: 180
+  tags:
+  - usage
+  - yaml
+  - python
+- id: usage-python3-yaml-block-scalar
+  title: PyYAML block scalar
+  description: Loads a YAML block scalar with PyYAML and verifies multiline content.
+  kind: usage
+  client_application: python3-yaml
+  command:
+  - bash
+  - /validator/tests/libyaml/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-python3-yaml-block-scalar
+  timeout_seconds: 180
+  tags:
+  - usage
+  - yaml
+  - python
+- id: usage-python3-yaml-flow-style
+  title: PyYAML flow style dump
+  description: Dumps a mapping in flow style through PyYAML and checks serialized braces.
+  kind: usage
+  client_application: python3-yaml
+  command:
+  - bash
+  - /validator/tests/libyaml/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-python3-yaml-flow-style
+  timeout_seconds: 180
+  tags:
+  - usage
+  - yaml
+  - python
+- id: usage-python3-yaml-explicit-start
+  title: PyYAML explicit document start
+  description: Dumps YAML with an explicit start marker and verifies serialized output.
+  kind: usage
+  client_application: python3-yaml
+  command:
+  - bash
+  - /validator/tests/libyaml/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-python3-yaml-explicit-start
+  timeout_seconds: 180
+  tags:
+  - usage
+  - yaml
+  - python
+- id: usage-python3-yaml-csafe-multidoc
+  title: PyYAML CSafeLoader multiple docs
+  description: Loads multiple YAML documents with CSafeLoader and checks document count.
+  kind: usage
+  client_application: python3-yaml
+  command:
+  - bash
+  - /validator/tests/libyaml/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-python3-yaml-csafe-multidoc
+  timeout_seconds: 180
+  tags:
+  - usage
+  - yaml
+  - python
+- id: usage-python3-yaml-csafe-binary-dump
+  title: PyYAML CSafeDumper binary
+  description: Dumps bytes through CSafeDumper and verifies a binary scalar can be loaded.
+  kind: usage
+  client_application: python3-yaml
+  command:
+  - bash
+  - /validator/tests/libyaml/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-python3-yaml-csafe-binary-dump
+  timeout_seconds: 180
+  tags:
+  - usage
+  - yaml
+  - python
+- id: usage-python3-yaml-full-loader-date
+  title: PyYAML FullLoader date
+  description: Loads a YAML timestamp with FullLoader and verifies date parsing.
+  kind: usage
+  client_application: python3-yaml
+  command:
+  - bash
+  - /validator/tests/libyaml/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-python3-yaml-full-loader-date
+  timeout_seconds: 180
+  tags:
+  - usage
+  - yaml
+  - python
+- id: usage-python3-yaml-sorted-dump
+  title: PyYAML sorted dump
+  description: Dumps sorted keys with PyYAML and verifies deterministic key order.
+  kind: usage
+  client_application: python3-yaml
+  command:
+  - bash
+  - /validator/tests/libyaml/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-python3-yaml-sorted-dump
+  timeout_seconds: 180
+  tags:
+  - usage
+  - yaml
+  - python
+- id: usage-python3-yaml-alias-identity
+  title: PyYAML alias identity
+  description: Loads YAML aliases and verifies both references point to equivalent data.
+  kind: usage
+  client_application: python3-yaml
+  command:
+  - bash
+  - /validator/tests/libyaml/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-python3-yaml-alias-identity
+  timeout_seconds: 180
+  tags:
+  - usage
+  - yaml
+  - python
+- id: usage-python3-yaml-scan-tokens
+  title: PyYAML token scanner
+  description: Scans YAML tokens with PyYAML and verifies scalar tokens are emitted.
+  kind: usage
+  client_application: python3-yaml
+  command:
+  - bash
+  - /validator/tests/libyaml/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-python3-yaml-scan-tokens
+  timeout_seconds: 180
+  tags:
+  - usage
+  - yaml
+  - python

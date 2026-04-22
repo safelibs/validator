@@ -180,3 +180,135 @@ testcases:
   tags:
   - usage
   - compression
+- id: usage-bzip2-sample1-fixture
+  title: bzip2 sample1 fixture
+  description: Decompresses the sample1 fixture with bzip2 and compares the reference payload.
+  kind: usage
+  client_application: bzip2
+  command:
+  - bash
+  - /validator/tests/libbz2/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-bzip2-sample1-fixture
+  timeout_seconds: 180
+  tags:
+  - usage
+  - compression
+- id: usage-bzip2-sample2-fixture
+  title: bzip2 sample2 fixture
+  description: Decompresses the sample2 fixture with bzip2 and compares the reference payload.
+  kind: usage
+  client_application: bzip2
+  command:
+  - bash
+  - /validator/tests/libbz2/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-bzip2-sample2-fixture
+  timeout_seconds: 180
+  tags:
+  - usage
+  - compression
+- id: usage-bzip2-sample3-fixture
+  title: bzip2 sample3 fixture
+  description: Decompresses the sample3 fixture with bzip2 and compares the reference payload.
+  kind: usage
+  client_application: bzip2
+  command:
+  - bash
+  - /validator/tests/libbz2/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-bzip2-sample3-fixture
+  timeout_seconds: 180
+  tags:
+  - usage
+  - compression
+- id: usage-bzip2-best-stdout
+  title: bzip2 best stdout stream
+  description: Compresses data with the strongest bzip2 level and verifies stdout decompression.
+  kind: usage
+  client_application: bzip2
+  command:
+  - bash
+  - /validator/tests/libbz2/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-bzip2-best-stdout
+  timeout_seconds: 180
+  tags:
+  - usage
+  - compression
+- id: usage-bzip2-fast-stdout
+  title: bzip2 fast stdout stream
+  description: Compresses data with the fastest bzip2 level and verifies stdout decompression.
+  kind: usage
+  client_application: bzip2
+  command:
+  - bash
+  - /validator/tests/libbz2/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-bzip2-fast-stdout
+  timeout_seconds: 180
+  tags:
+  - usage
+  - compression
+- id: usage-bzip2-verbose-test
+  title: bzip2 verbose integrity check
+  description: Runs a verbose bzip2 integrity check on a generated compressed stream.
+  kind: usage
+  client_application: bzip2
+  command:
+  - bash
+  - /validator/tests/libbz2/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-bzip2-verbose-test
+  timeout_seconds: 180
+  tags:
+  - usage
+  - compression
+- id: usage-bzcat-alias
+  title: bzcat reads compressed data
+  description: Reads a bzip2 stream through the bzcat client alias and verifies output.
+  kind: usage
+  client_application: bzip2
+  command:
+  - bash
+  - /validator/tests/libbz2/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-bzcat-alias
+  timeout_seconds: 180
+  tags:
+  - usage
+  - compression
+- id: usage-bzgrep-search
+  title: bzgrep searches compressed data
+  description: Searches a compressed text file with bzgrep and checks the matching line.
+  kind: usage
+  client_application: bzip2
+  command:
+  - bash
+  - /validator/tests/libbz2/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-bzgrep-search
+  timeout_seconds: 180
+  tags:
+  - usage
+  - compression
+  - search
+- id: usage-bzdiff-identical
+  title: bzdiff compares matching streams
+  description: Compares two identical compressed files with bzdiff and expects no differences.
+  kind: usage
+  client_application: bzip2
+  command:
+  - bash
+  - /validator/tests/libbz2/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-bzdiff-identical
+  timeout_seconds: 180
+  tags:
+  - usage
+  - compression
+- id: usage-bzip2-corrupt-rejection
+  title: bzip2 rejects corrupt stream
+  description: Requires bzip2 integrity checking to reject a truncated compressed stream.
+  kind: usage
+  client_application: bzip2
+  command:
+  - bash
+  - /validator/tests/libbz2/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-bzip2-corrupt-rejection
+  timeout_seconds: 180
+  tags:
+  - usage
+  - compression
+  - negative

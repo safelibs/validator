@@ -193,3 +193,143 @@ testcases:
   - image
   - python
   - metadata
+- id: usage-python3-pil-grayscale-tiff
+  title: Pillow grayscale TIFF
+  description: Writes and reopens a grayscale TIFF with Pillow.
+  kind: usage
+  client_application: python3-pil
+  command:
+  - bash
+  - /validator/tests/libtiff/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-python3-pil-grayscale-tiff
+  timeout_seconds: 180
+  tags:
+  - usage
+  - tiff
+  - python
+- id: usage-python3-pil-bilevel-tiff
+  title: Pillow bilevel TIFF
+  description: Writes and reopens a 1-bit TIFF with Pillow.
+  kind: usage
+  client_application: python3-pil
+  command:
+  - bash
+  - /validator/tests/libtiff/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-python3-pil-bilevel-tiff
+  timeout_seconds: 180
+  tags:
+  - usage
+  - tiff
+  - python
+- id: usage-python3-pil-packbits-tiff
+  title: Pillow PackBits TIFF
+  description: Writes PackBits-compressed TIFF data with Pillow and verifies dimensions.
+  kind: usage
+  client_application: python3-pil
+  command:
+  - bash
+  - /validator/tests/libtiff/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-python3-pil-packbits-tiff
+  timeout_seconds: 180
+  tags:
+  - usage
+  - tiff
+  - python
+- id: usage-python3-pil-rotate-tiff
+  title: Pillow rotates TIFF
+  description: Rotates a TIFF fixture with Pillow and checks output dimensions.
+  kind: usage
+  client_application: python3-pil
+  command:
+  - bash
+  - /validator/tests/libtiff/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-python3-pil-rotate-tiff
+  timeout_seconds: 180
+  tags:
+  - usage
+  - tiff
+  - python
+- id: usage-python3-pil-transpose-tiff
+  title: Pillow transposes TIFF
+  description: Flips a TIFF fixture with Pillow and verifies the output size.
+  kind: usage
+  client_application: python3-pil
+  command:
+  - bash
+  - /validator/tests/libtiff/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-python3-pil-transpose-tiff
+  timeout_seconds: 180
+  tags:
+  - usage
+  - tiff
+  - python
+- id: usage-python3-pil-resize-tiff
+  title: Pillow resizes TIFF
+  description: Resizes a TIFF fixture with Pillow and saves TIFF output.
+  kind: usage
+  client_application: python3-pil
+  command:
+  - bash
+  - /validator/tests/libtiff/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-python3-pil-resize-tiff
+  timeout_seconds: 180
+  tags:
+  - usage
+  - tiff
+  - python
+- id: usage-python3-pil-palette-tiff
+  title: Pillow palette TIFF
+  description: Writes and reopens a palette TIFF image with Pillow.
+  kind: usage
+  client_application: python3-pil
+  command:
+  - bash
+  - /validator/tests/libtiff/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-python3-pil-palette-tiff
+  timeout_seconds: 180
+  tags:
+  - usage
+  - tiff
+  - python
+- id: usage-python3-pil-icc-info-tiff
+  title: Pillow TIFF info dictionary
+  description: Reads TIFF metadata through Pillow info and tag dictionaries.
+  kind: usage
+  client_application: python3-pil
+  command:
+  - bash
+  - /validator/tests/libtiff/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-python3-pil-icc-info-tiff
+  timeout_seconds: 180
+  tags:
+  - usage
+  - tiff
+  - python
+- id: usage-python3-pil-multiframe-seek-tiff
+  title: Pillow TIFF frame seek
+  description: Creates a multi-frame TIFF and seeks to the second frame.
+  kind: usage
+  client_application: python3-pil
+  command:
+  - bash
+  - /validator/tests/libtiff/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-python3-pil-multiframe-seek-tiff
+  timeout_seconds: 180
+  tags:
+  - usage
+  - tiff
+  - python
+- id: usage-python3-pil-tiff-to-png
+  title: Pillow TIFF to PNG
+  description: Converts a TIFF fixture to PNG with Pillow and verifies PNG output.
+  kind: usage
+  client_application: python3-pil
+  command:
+  - bash
+  - /validator/tests/libtiff/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-python3-pil-tiff-to-png
+  timeout_seconds: 180
+  tags:
+  - usage
+  - tiff
+  - python

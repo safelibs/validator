@@ -179,3 +179,135 @@ testcases:
   tags:
   - usage
   - csv
+- id: usage-readstat-dta-three-rows
+  title: readstat DTA three rows
+  description: Writes three CSV rows to DTA with readstat and verifies all rows return.
+  kind: usage
+  client_application: readstat
+  command:
+  - bash
+  - /validator/tests/libcsv/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-readstat-dta-three-rows
+  timeout_seconds: 180
+  tags:
+  - usage
+  - csv
+- id: usage-readstat-sav-long-string
+  title: readstat SAV long string
+  description: Converts a longer string field through SAV and verifies the text survives.
+  kind: usage
+  client_application: readstat
+  command:
+  - bash
+  - /validator/tests/libcsv/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-readstat-sav-long-string
+  timeout_seconds: 180
+  tags:
+  - usage
+  - csv
+- id: usage-readstat-dta-negative-number
+  title: readstat DTA negative number
+  description: Converts a negative numeric field through DTA and verifies the value.
+  kind: usage
+  client_application: readstat
+  command:
+  - bash
+  - /validator/tests/libcsv/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-readstat-dta-negative-number
+  timeout_seconds: 180
+  tags:
+  - usage
+  - csv
+- id: usage-readstat-sav-decimal-number
+  title: readstat SAV decimal number
+  description: Converts decimal numeric data through SAV and verifies numeric formatting.
+  kind: usage
+  client_application: readstat
+  command:
+  - bash
+  - /validator/tests/libcsv/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-readstat-sav-decimal-number
+  timeout_seconds: 180
+  tags:
+  - usage
+  - csv
+- id: usage-readstat-csv-empty-string
+  title: readstat empty string field
+  description: Converts an empty string field through DTA and verifies the row is preserved.
+  kind: usage
+  client_application: readstat
+  command:
+  - bash
+  - /validator/tests/libcsv/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-readstat-csv-empty-string
+  timeout_seconds: 180
+  tags:
+  - usage
+  - csv
+- id: usage-readstat-dta-column-count
+  title: readstat DTA column count
+  description: Writes five columns to DTA and checks readstat summary metadata.
+  kind: usage
+  client_application: readstat
+  command:
+  - bash
+  - /validator/tests/libcsv/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-readstat-dta-column-count
+  timeout_seconds: 180
+  tags:
+  - usage
+  - csv
+  - metadata
+- id: usage-readstat-sav-row-count
+  title: readstat SAV row count
+  description: Writes four rows to SAV and checks readstat summary row metadata.
+  kind: usage
+  client_application: readstat
+  command:
+  - bash
+  - /validator/tests/libcsv/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-readstat-sav-row-count
+  timeout_seconds: 180
+  tags:
+  - usage
+  - csv
+  - metadata
+- id: usage-readstat-dta-spaced-value
+  title: readstat spaced string value
+  description: Converts a string containing spaces through DTA and verifies output quoting.
+  kind: usage
+  client_application: readstat
+  command:
+  - bash
+  - /validator/tests/libcsv/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-readstat-dta-spaced-value
+  timeout_seconds: 180
+  tags:
+  - usage
+  - csv
+- id: usage-readstat-sav-comma-value
+  title: readstat comma string value
+  description: Converts a string containing a comma through SAV and verifies CSV escaping.
+  kind: usage
+  client_application: readstat
+  command:
+  - bash
+  - /validator/tests/libcsv/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-readstat-sav-comma-value
+  timeout_seconds: 180
+  tags:
+  - usage
+  - csv
+- id: usage-readstat-dta-zero-value
+  title: readstat zero numeric value
+  description: Converts zero-valued numeric data through DTA and verifies it remains numeric.
+  kind: usage
+  client_application: readstat
+  command:
+  - bash
+  - /validator/tests/libcsv/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-readstat-dta-zero-value
+  timeout_seconds: 180
+  tags:
+  - usage
+  - csv

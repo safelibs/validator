@@ -179,3 +179,143 @@ testcases:
   tags:
   - usage
   - metadata
+- id: usage-exif-cli-ifd-zero
+  title: exif IFD zero listing
+  description: Reads the primary IFD from a JPEG fixture and checks manufacturer metadata.
+  kind: usage
+  client_application: exif
+  command:
+  - bash
+  - /validator/tests/libexif/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-exif-cli-ifd-zero
+  timeout_seconds: 180
+  tags:
+  - usage
+  - jpeg
+  - metadata
+- id: usage-exif-cli-machine-model
+  title: exif machine-readable model
+  description: Prints the Model tag in machine-readable form and verifies the camera model.
+  kind: usage
+  client_application: exif
+  command:
+  - bash
+  - /validator/tests/libexif/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-exif-cli-machine-model
+  timeout_seconds: 180
+  tags:
+  - usage
+  - jpeg
+  - metadata
+- id: usage-exif-cli-machine-make
+  title: exif machine-readable make
+  description: Prints the Make tag in machine-readable form and verifies the manufacturer.
+  kind: usage
+  client_application: exif
+  command:
+  - bash
+  - /validator/tests/libexif/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-exif-cli-machine-make
+  timeout_seconds: 180
+  tags:
+  - usage
+  - jpeg
+  - metadata
+- id: usage-exif-cli-exposure-time
+  title: exif exposure time tag
+  description: Reads the ExposureTime EXIF tag from a JPEG fixture.
+  kind: usage
+  client_application: exif
+  command:
+  - bash
+  - /validator/tests/libexif/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-exif-cli-exposure-time
+  timeout_seconds: 180
+  tags:
+  - usage
+  - jpeg
+  - metadata
+- id: usage-exif-cli-fnumber
+  title: exif FNumber tag
+  description: Reads the FNumber EXIF tag from a JPEG fixture and checks that a value is present.
+  kind: usage
+  client_application: exif
+  command:
+  - bash
+  - /validator/tests/libexif/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-exif-cli-fnumber
+  timeout_seconds: 180
+  tags:
+  - usage
+  - jpeg
+  - metadata
+- id: usage-exif-cli-flash-tag
+  title: exif Flash tag
+  description: Reads the Flash EXIF tag from a JPEG fixture and checks that a value is present.
+  kind: usage
+  client_application: exif
+  command:
+  - bash
+  - /validator/tests/libexif/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-exif-cli-flash-tag
+  timeout_seconds: 180
+  tags:
+  - usage
+  - jpeg
+  - metadata
+- id: usage-exif-cli-white-balance-tag
+  title: exif white balance tag
+  description: Reads the WhiteBalance EXIF tag from a JPEG fixture and checks that a value is present.
+  kind: usage
+  client_application: exif
+  command:
+  - bash
+  - /validator/tests/libexif/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-exif-cli-white-balance-tag
+  timeout_seconds: 180
+  tags:
+  - usage
+  - jpeg
+  - metadata
+- id: usage-exif-cli-pixel-dimensions
+  title: exif pixel dimensions
+  description: Reads EXIF pixel dimension tags from a JPEG fixture.
+  kind: usage
+  client_application: exif
+  command:
+  - bash
+  - /validator/tests/libexif/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-exif-cli-pixel-dimensions
+  timeout_seconds: 180
+  tags:
+  - usage
+  - jpeg
+  - metadata
+- id: usage-exif-cli-xml-make
+  title: exif XML make tag
+  description: Emits XML metadata and verifies the manufacturer element.
+  kind: usage
+  client_application: exif
+  command:
+  - bash
+  - /validator/tests/libexif/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-exif-cli-xml-make
+  timeout_seconds: 180
+  tags:
+  - usage
+  - jpeg
+  - metadata
+- id: usage-exif-cli-thumbnail-size
+  title: exif extracted thumbnail size
+  description: Extracts a thumbnail from a JPEG fixture and checks it is nonempty.
+  kind: usage
+  client_application: exif
+  command:
+  - bash
+  - /validator/tests/libexif/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-exif-cli-thumbnail-size
+  timeout_seconds: 180
+  tags:
+  - usage
+  - jpeg
+  - metadata

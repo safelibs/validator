@@ -190,3 +190,143 @@ testcases:
   - usage
   - headless
   - python
+- id: usage-python3-pygame-rect-collision
+  title: Pygame rect collision
+  description: Uses Pygame Rect collision helpers with the SDL video driver in dummy mode.
+  kind: usage
+  client_application: python3-pygame
+  command:
+  - bash
+  - /validator/tests/libsdl/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-python3-pygame-rect-collision
+  timeout_seconds: 180
+  tags:
+  - usage
+  - sdl
+  - python
+- id: usage-python3-pygame-clock-tick
+  title: Pygame clock tick
+  description: Ticks a Pygame clock and verifies a nonnegative delta value.
+  kind: usage
+  client_application: python3-pygame
+  command:
+  - bash
+  - /validator/tests/libsdl/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-python3-pygame-clock-tick
+  timeout_seconds: 180
+  tags:
+  - usage
+  - sdl
+  - python
+- id: usage-python3-pygame-transform-rotate
+  title: Pygame rotates surface
+  description: Rotates a Pygame surface and checks the output dimensions.
+  kind: usage
+  client_application: python3-pygame
+  command:
+  - bash
+  - /validator/tests/libsdl/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-python3-pygame-transform-rotate
+  timeout_seconds: 180
+  tags:
+  - usage
+  - sdl
+  - python
+- id: usage-python3-pygame-draw-line
+  title: Pygame draws line
+  description: Draws a line on a Pygame surface and checks a colored pixel.
+  kind: usage
+  client_application: python3-pygame
+  command:
+  - bash
+  - /validator/tests/libsdl/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-python3-pygame-draw-line
+  timeout_seconds: 180
+  tags:
+  - usage
+  - sdl
+  - python
+- id: usage-python3-pygame-image-load
+  title: Pygame image load
+  description: Saves and reloads a bitmap image through Pygame image helpers.
+  kind: usage
+  client_application: python3-pygame
+  command:
+  - bash
+  - /validator/tests/libsdl/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-python3-pygame-image-load
+  timeout_seconds: 180
+  tags:
+  - usage
+  - sdl
+  - python
+- id: usage-python3-pygame-surfarray
+  title: Pygame surfarray view
+  description: Reads surface pixel data through Pygame surfarray and checks array shape.
+  kind: usage
+  client_application: python3-pygame
+  command:
+  - bash
+  - /validator/tests/libsdl/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-python3-pygame-surfarray
+  timeout_seconds: 180
+  tags:
+  - usage
+  - sdl
+  - python
+- id: usage-python3-pygame-mouse-event
+  title: Pygame mouse event
+  description: Posts and reads a Pygame mouse button event in dummy video mode.
+  kind: usage
+  client_application: python3-pygame
+  command:
+  - bash
+  - /validator/tests/libsdl/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-python3-pygame-mouse-event
+  timeout_seconds: 180
+  tags:
+  - usage
+  - sdl
+  - python
+- id: usage-python3-pygame-time-delay
+  title: Pygame time delay
+  description: Runs a short Pygame time delay and verifies elapsed ticks are monotonic.
+  kind: usage
+  client_application: python3-pygame
+  command:
+  - bash
+  - /validator/tests/libsdl/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-python3-pygame-time-delay
+  timeout_seconds: 180
+  tags:
+  - usage
+  - sdl
+  - python
+- id: usage-python3-pygame-font-metrics
+  title: Pygame font metrics
+  description: Loads the default Pygame font and verifies metrics for rendered text.
+  kind: usage
+  client_application: python3-pygame
+  command:
+  - bash
+  - /validator/tests/libsdl/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-python3-pygame-font-metrics
+  timeout_seconds: 180
+  tags:
+  - usage
+  - sdl
+  - python
+- id: usage-python3-pygame-alpha-blit
+  title: Pygame alpha blit
+  description: Blits an alpha surface onto another surface and checks the resulting pixel alpha.
+  kind: usage
+  client_application: python3-pygame
+  command:
+  - bash
+  - /validator/tests/libsdl/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-python3-pygame-alpha-blit
+  timeout_seconds: 180
+  tags:
+  - usage
+  - sdl
+  - python

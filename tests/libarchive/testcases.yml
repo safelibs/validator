@@ -180,3 +180,143 @@ testcases:
   tags:
   - usage
   - archive
+- id: usage-python-libarchive-c-empty-file
+  title: python-libarchive-c empty file
+  description: Writes and reads an empty file entry through python-libarchive-c.
+  kind: usage
+  client_application: python3-libarchive-c
+  command:
+  - bash
+  - /validator/tests/libarchive/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-python-libarchive-c-empty-file
+  timeout_seconds: 180
+  tags:
+  - usage
+  - archive
+  - python
+- id: usage-python-libarchive-c-many-files
+  title: python-libarchive-c many files
+  description: Writes several archive entries and verifies python-libarchive-c reads them all back.
+  kind: usage
+  client_application: python3-libarchive-c
+  command:
+  - bash
+  - /validator/tests/libarchive/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-python-libarchive-c-many-files
+  timeout_seconds: 180
+  tags:
+  - usage
+  - archive
+  - python
+- id: usage-python-libarchive-c-xz-filter
+  title: python-libarchive-c xz filter
+  description: Creates an xz-filtered tar archive and reads it through python-libarchive-c.
+  kind: usage
+  client_application: python3-libarchive-c
+  command:
+  - bash
+  - /validator/tests/libarchive/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-python-libarchive-c-xz-filter
+  timeout_seconds: 180
+  tags:
+  - usage
+  - archive
+  - python
+- id: usage-python-libarchive-c-bzip2-filter
+  title: python-libarchive-c bzip2 filter
+  description: Creates a bzip2-filtered tar archive and reads it through python-libarchive-c.
+  kind: usage
+  client_application: python3-libarchive-c
+  command:
+  - bash
+  - /validator/tests/libarchive/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-python-libarchive-c-bzip2-filter
+  timeout_seconds: 180
+  tags:
+  - usage
+  - archive
+  - python
+- id: usage-python-libarchive-c-zstd-filter
+  title: python-libarchive-c zstd filter
+  description: Creates a zstd-filtered tar archive and reads it through python-libarchive-c.
+  kind: usage
+  client_application: python3-libarchive-c
+  command:
+  - bash
+  - /validator/tests/libarchive/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-python-libarchive-c-zstd-filter
+  timeout_seconds: 180
+  tags:
+  - usage
+  - archive
+  - python
+- id: usage-python-libarchive-c-pax-format
+  title: python-libarchive-c pax format
+  description: Writes a pax archive with python-libarchive-c and verifies path and body data.
+  kind: usage
+  client_application: python3-libarchive-c
+  command:
+  - bash
+  - /validator/tests/libarchive/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-python-libarchive-c-pax-format
+  timeout_seconds: 180
+  tags:
+  - usage
+  - archive
+  - python
+- id: usage-python-libarchive-c-cpio-newc
+  title: python-libarchive-c newc format
+  description: Writes a newc cpio archive with python-libarchive-c and verifies the entry body.
+  kind: usage
+  client_application: python3-libarchive-c
+  command:
+  - bash
+  - /validator/tests/libarchive/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-python-libarchive-c-cpio-newc
+  timeout_seconds: 180
+  tags:
+  - usage
+  - archive
+  - python
+- id: usage-python-libarchive-c-large-entry
+  title: python-libarchive-c large entry
+  description: Archives a larger in-memory payload and checks size-preserving extraction.
+  kind: usage
+  client_application: python3-libarchive-c
+  command:
+  - bash
+  - /validator/tests/libarchive/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-python-libarchive-c-large-entry
+  timeout_seconds: 180
+  tags:
+  - usage
+  - archive
+  - python
+- id: usage-python-libarchive-c-spaced-name
+  title: python-libarchive-c spaced name
+  description: Stores a path containing spaces and verifies python-libarchive-c preserves it.
+  kind: usage
+  client_application: python3-libarchive-c
+  command:
+  - bash
+  - /validator/tests/libarchive/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-python-libarchive-c-spaced-name
+  timeout_seconds: 180
+  tags:
+  - usage
+  - archive
+  - python
+- id: usage-python-libarchive-c-zip-to-tar
+  title: python-libarchive-c zip to tar copy
+  description: Reads ZIP entries and writes them into a tar archive through python-libarchive-c.
+  kind: usage
+  client_application: python3-libarchive-c
+  command:
+  - bash
+  - /validator/tests/libarchive/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-python-libarchive-c-zip-to-tar
+  timeout_seconds: 180
+  tags:
+  - usage
+  - archive
+  - python

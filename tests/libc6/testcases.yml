@@ -198,3 +198,136 @@ testcases:
   tags:
   - usage
   - cli
+- id: usage-bash-array-expansion
+  title: bash array expansion
+  description: Runs bash array expansion and arithmetic through the libc-backed shell runtime.
+  kind: usage
+  client_application: bash
+  command:
+  - bash
+  - /validator/tests/libc6/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-bash-array-expansion
+  timeout_seconds: 180
+  tags:
+  - usage
+  - shell
+- id: usage-coreutils-stat-size
+  title: coreutils stat size
+  description: Reads file size metadata with GNU stat and checks the reported byte count.
+  kind: usage
+  client_application: coreutils
+  command:
+  - bash
+  - /validator/tests/libc6/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-coreutils-stat-size
+  timeout_seconds: 180
+  tags:
+  - usage
+  - coreutils
+  - filesystem
+- id: usage-coreutils-sha256sum
+  title: coreutils sha256sum digest
+  description: Computes a SHA-256 digest with coreutils and verifies the expected prefix.
+  kind: usage
+  client_application: coreutils
+  command:
+  - bash
+  - /validator/tests/libc6/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-coreutils-sha256sum
+  timeout_seconds: 180
+  tags:
+  - usage
+  - coreutils
+  - digest
+- id: usage-grep-invert-match
+  title: grep inverted match
+  description: Filters text with grep -v and verifies the excluded line is absent.
+  kind: usage
+  client_application: grep
+  command:
+  - bash
+  - /validator/tests/libc6/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-grep-invert-match
+  timeout_seconds: 180
+  tags:
+  - usage
+  - regex
+- id: usage-gawk-csv-aggregate
+  title: gawk CSV aggregation
+  description: Aggregates comma-separated numeric fields through gawk record processing.
+  kind: usage
+  client_application: gawk
+  command:
+  - bash
+  - /validator/tests/libc6/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-gawk-csv-aggregate
+  timeout_seconds: 180
+  tags:
+  - usage
+  - text
+- id: usage-sed-extended-regex
+  title: sed extended regex rewrite
+  description: Uses sed extended regular expressions to rewrite key-value text.
+  kind: usage
+  client_application: sed
+  command:
+  - bash
+  - /validator/tests/libc6/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-sed-extended-regex
+  timeout_seconds: 180
+  tags:
+  - usage
+  - text
+- id: usage-python3-file-io
+  title: Python file I/O runtime
+  description: Runs Python file creation and reading through the platform runtime.
+  kind: usage
+  client_application: python3-minimal
+  command:
+  - bash
+  - /validator/tests/libc6/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-python3-file-io
+  timeout_seconds: 180
+  tags:
+  - usage
+  - python
+  - filesystem
+- id: usage-findutils-type-filter
+  title: findutils type filtering
+  description: Filters directory entries by type with find and checks only regular files are returned.
+  kind: usage
+  client_application: findutils
+  command:
+  - bash
+  - /validator/tests/libc6/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-findutils-type-filter
+  timeout_seconds: 180
+  tags:
+  - usage
+  - filesystem
+- id: usage-tar-gzip-archive
+  title: tar gzip archive
+  description: Creates and extracts a gzip-compressed tar archive with libc-backed tools.
+  kind: usage
+  client_application: tar
+  command:
+  - bash
+  - /validator/tests/libc6/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-tar-gzip-archive
+  timeout_seconds: 180
+  tags:
+  - usage
+  - archive
+- id: usage-gzip-test-integrity
+  title: gzip integrity check
+  description: Runs gzip integrity validation on a generated compressed stream.
+  kind: usage
+  client_application: gzip
+  command:
+  - bash
+  - /validator/tests/libc6/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-gzip-test-integrity
+  timeout_seconds: 180
+  tags:
+  - usage
+  - compression

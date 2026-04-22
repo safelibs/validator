@@ -202,3 +202,143 @@ testcases:
   tags:
   - usage
   - image
+- id: usage-python3-pil-lossless-webp
+  title: Pillow lossless WebP
+  description: Saves and reloads a lossless WebP image with Pillow.
+  kind: usage
+  client_application: python3-pil
+  command:
+  - bash
+  - /validator/tests/libwebp/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-python3-pil-lossless-webp
+  timeout_seconds: 180
+  tags:
+  - usage
+  - webp
+  - python
+- id: usage-python3-pil-resize-webp
+  title: Pillow resizes WebP
+  description: Opens WebP data with Pillow, resizes it, and saves WebP output.
+  kind: usage
+  client_application: python3-pil
+  command:
+  - bash
+  - /validator/tests/libwebp/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-python3-pil-resize-webp
+  timeout_seconds: 180
+  tags:
+  - usage
+  - webp
+  - python
+- id: usage-python3-pil-thumbnail-webp
+  title: Pillow thumbnails WebP
+  description: Builds a thumbnail from WebP input with Pillow and verifies dimensions.
+  kind: usage
+  client_application: python3-pil
+  command:
+  - bash
+  - /validator/tests/libwebp/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-python3-pil-thumbnail-webp
+  timeout_seconds: 180
+  tags:
+  - usage
+  - webp
+  - python
+- id: usage-vips-webp-crop
+  title: vips crops WebP
+  description: Crops WebP input with vips and verifies PNG output dimensions.
+  kind: usage
+  client_application: vips
+  command:
+  - bash
+  - /validator/tests/libwebp/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-vips-webp-crop
+  timeout_seconds: 180
+  tags:
+  - usage
+  - webp
+  - image
+- id: usage-vips-webp-jpeg-copy
+  title: vips WebP to JPEG
+  description: Copies WebP input to JPEG with vips and verifies JPEG output.
+  kind: usage
+  client_application: vips
+  command:
+  - bash
+  - /validator/tests/libwebp/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-vips-webp-jpeg-copy
+  timeout_seconds: 180
+  tags:
+  - usage
+  - webp
+  - image
+- id: usage-ffmpeg-webp-bmp
+  title: ffmpeg WebP to BMP
+  description: Decodes WebP input to BMP with ffmpeg and verifies image output.
+  kind: usage
+  client_application: ffmpeg
+  command:
+  - bash
+  - /validator/tests/libwebp/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-ffmpeg-webp-bmp
+  timeout_seconds: 180
+  tags:
+  - usage
+  - webp
+  - video
+- id: usage-ffmpeg-webp-md5
+  title: ffmpeg WebP MD5
+  description: Decodes WebP input through ffmpeg md5 muxing and checks digest output.
+  kind: usage
+  client_application: ffmpeg
+  command:
+  - bash
+  - /validator/tests/libwebp/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-ffmpeg-webp-md5
+  timeout_seconds: 180
+  tags:
+  - usage
+  - webp
+  - video
+- id: usage-webp-pixbuf-loader-info
+  title: gdk-pixbuf WebP info
+  description: Loads WebP input with gdk-pixbuf-pixdata and verifies pixbuf data output.
+  kind: usage
+  client_application: webp-pixbuf-loader
+  command:
+  - bash
+  - /validator/tests/libwebp/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-webp-pixbuf-loader-info
+  timeout_seconds: 180
+  tags:
+  - usage
+  - webp
+  - pixbuf
+- id: usage-libsdl2-image-webp-alpha
+  title: SDL2_image WebP alpha
+  description: Compiles an SDL2_image client that loads alpha WebP data and checks dimensions.
+  kind: usage
+  client_application: libsdl2-image
+  command:
+  - bash
+  - /validator/tests/libwebp/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-libsdl2-image-webp-alpha
+  timeout_seconds: 180
+  tags:
+  - usage
+  - webp
+  - sdl
+- id: usage-python3-pil-webp-quality-save
+  title: Pillow WebP quality save
+  description: Saves WebP output with an explicit Pillow quality setting and reloads it.
+  kind: usage
+  client_application: python3-pil
+  command:
+  - bash
+  - /validator/tests/libwebp/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-python3-pil-webp-quality-save
+  timeout_seconds: 180
+  tags:
+  - usage
+  - webp
+  - python
