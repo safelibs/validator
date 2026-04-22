@@ -2,7 +2,5 @@ $ docker run --rm -t --mount type=bind,src=/tmp/validator-status-libvips-vips-cl
 /validator/tests/_shared/install_override_debs.sh
 exec /validator/tests/_shared/run_library_tests.sh "$@"' validator-testcase libvips vips-cli-load-save -- bash -c 'PS4=$1; shift; set -x; source "$@"' validator-xtrace '__VALIDATOR_XTRACE__ ' /validator/tests/libvips/tests/cases/source/vips-cli-load-save.sh
 no override packages found; continuing with apt originals
-290
-442
-290
-442
+/tmp/validator-tmp/out.png: 290x442 uchar, 3 bands, srgb, pngload
+/tmp/validator-tmp/out.png: 290x442 uchar, 3 bands, srgb, pngload

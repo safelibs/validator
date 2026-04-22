@@ -17,8 +17,8 @@
         <div class="metric" data-proof-total="cases"><strong>576</strong><span>Cases</span></div>
         <div class="metric" data-proof-total="source_cases"><strong>190</strong><span>Source</span></div>
         <div class="metric" data-proof-total="usage_cases"><strong>386</strong><span>Usage</span></div>
-        <div class="metric" data-proof-total="passed"><strong>576</strong><span>Passed</span></div>
-        <div class="metric" data-proof-total="failed"><strong>0</strong><span>Failed</span></div>
+        <div class="metric" data-proof-total="passed"><strong>570</strong><span>Passed</span></div>
+        <div class="metric" data-proof-total="failed"><strong>6</strong><span>Failed</span></div>
         <div class="metric" data-proof-total="casts"><strong>576 (100%)</strong><span>Casts</span></div>
         </div>
       </section>
@@ -254,16 +254,16 @@
             </div>
           </div>
         </details>
-        <details class="case-row" data-library="libsdl" data-testcase-id="usage-python3-pygame-event-queue" data-mode="original" data-kind="usage" data-status="passed" data-player-cast="../evidence/original/casts/libsdl/usage-python3-pygame-event-queue.cast" data-search="libsdl usage-python3-pygame-event-queue original Pygame event object Uses Pygame event APIs to allocate a custom event and verify its payload attributes. usage python3-pygame usage headless python">
+        <details class="case-row" data-library="libsdl" data-testcase-id="usage-python3-pygame-event-queue" data-mode="original" data-kind="usage" data-status="passed" data-player-cast="../evidence/original/casts/libsdl/usage-python3-pygame-event-queue.cast" data-search="libsdl usage-python3-pygame-event-queue original Pygame event queue Uses Pygame to run SDL event queue behavior. usage python3-pygame usage headless python">
           <summary>
             <span class="case-title">
-              <strong>Pygame event object</strong>
+              <strong>Pygame event queue</strong>
               <span class="case-id">original / libsdl / usage-python3-pygame-event-queue</span>
             </span>
             <span class="status-pill status-passed">Passed</span>
           </summary>
           <div class="case-body">
-            <p>Uses Pygame event APIs to allocate a custom event and verify its payload attributes.</p>
+            <p>Uses Pygame to run SDL event queue behavior.</p>
             <dl class="case-meta">
               <div><dt>Kind</dt><dd>usage</dd></div>
               <div><dt>Client</dt><dd>python3-pygame</dd></div>
@@ -446,16 +446,16 @@
             </div>
           </div>
         </details>
-        <details class="case-row" data-library="libsdl" data-testcase-id="usage-python3-pygame-key-event" data-mode="original" data-kind="usage" data-status="passed" data-player-cast="../evidence/original/casts/libsdl/usage-python3-pygame-key-event.cast" data-search="libsdl usage-python3-pygame-key-event original Pygame key event object Builds a Pygame keydown event and verifies the SDL-backed key constant and event name mapping. usage python3-pygame usage headless python">
+        <details class="case-row" data-library="libsdl" data-testcase-id="usage-python3-pygame-key-event" data-mode="original" data-kind="usage" data-status="passed" data-player-cast="../evidence/original/casts/libsdl/usage-python3-pygame-key-event.cast" data-search="libsdl usage-python3-pygame-key-event original Pygame key event dispatch Posts a Pygame keydown event and verifies the SDL-backed queue returns the same key. usage python3-pygame usage headless python">
           <summary>
             <span class="case-title">
-              <strong>Pygame key event object</strong>
+              <strong>Pygame key event dispatch</strong>
               <span class="case-id">original / libsdl / usage-python3-pygame-key-event</span>
             </span>
             <span class="status-pill status-passed">Passed</span>
           </summary>
           <div class="case-body">
-            <p>Builds a Pygame keydown event and verifies the SDL-backed key constant and event name mapping.</p>
+            <p>Posts a Pygame keydown event and verifies the SDL-backed queue returns the same key.</p>
             <dl class="case-meta">
               <div><dt>Kind</dt><dd>usage</dd></div>
               <div><dt>Client</dt><dd>python3-pygame</dd></div>
@@ -734,16 +734,16 @@
             </div>
           </div>
         </details>
-        <details class="case-row" data-library="libsdl" data-testcase-id="usage-python3-pygame-event-queue" data-mode="port-04-test" data-kind="usage" data-status="passed" data-player-cast="../evidence/port-04-test/casts/libsdl/usage-python3-pygame-event-queue.cast" data-search="libsdl usage-python3-pygame-event-queue port-04-test Pygame event object Uses Pygame event APIs to allocate a custom event and verify its payload attributes. usage python3-pygame usage headless python">
+        <details class="case-row" data-library="libsdl" data-testcase-id="usage-python3-pygame-event-queue" data-mode="port-04-test" data-kind="usage" data-status="failed" data-player-cast="../evidence/port-04-test/casts/libsdl/usage-python3-pygame-event-queue.cast" data-search="libsdl usage-python3-pygame-event-queue port-04-test Pygame event queue Uses Pygame to run SDL event queue behavior. usage python3-pygame usage headless python">
           <summary>
             <span class="case-title">
-              <strong>Pygame event object</strong>
+              <strong>Pygame event queue</strong>
               <span class="case-id">port-04-test / libsdl / usage-python3-pygame-event-queue</span>
             </span>
-            <span class="status-pill status-passed">Passed</span>
+            <span class="status-pill status-failed">Failed</span>
           </summary>
           <div class="case-body">
-            <p>Uses Pygame event APIs to allocate a custom event and verify its payload attributes.</p>
+            <p>Uses Pygame to run SDL event queue behavior.</p>
             <dl class="case-meta">
               <div><dt>Kind</dt><dd>usage</dd></div>
               <div><dt>Client</dt><dd>python3-pygame</dd></div>
@@ -894,13 +894,13 @@
             </div>
           </div>
         </details>
-        <details class="case-row" data-library="libsdl" data-testcase-id="usage-python3-pygame-transform-scale" data-mode="port-04-test" data-kind="usage" data-status="passed" data-player-cast="../evidence/port-04-test/casts/libsdl/usage-python3-pygame-transform-scale.cast" data-search="libsdl usage-python3-pygame-transform-scale port-04-test Pygame transform scale Uses Pygame to run SDL transform scale behavior. usage python3-pygame usage headless python">
+        <details class="case-row" data-library="libsdl" data-testcase-id="usage-python3-pygame-transform-scale" data-mode="port-04-test" data-kind="usage" data-status="failed" data-player-cast="../evidence/port-04-test/casts/libsdl/usage-python3-pygame-transform-scale.cast" data-search="libsdl usage-python3-pygame-transform-scale port-04-test Pygame transform scale Uses Pygame to run SDL transform scale behavior. usage python3-pygame usage headless python">
           <summary>
             <span class="case-title">
               <strong>Pygame transform scale</strong>
               <span class="case-id">port-04-test / libsdl / usage-python3-pygame-transform-scale</span>
             </span>
-            <span class="status-pill status-passed">Passed</span>
+            <span class="status-pill status-failed">Failed</span>
           </summary>
           <div class="case-body">
             <p>Uses Pygame to run SDL transform scale behavior.</p>
@@ -926,16 +926,16 @@
             </div>
           </div>
         </details>
-        <details class="case-row" data-library="libsdl" data-testcase-id="usage-python3-pygame-key-event" data-mode="port-04-test" data-kind="usage" data-status="passed" data-player-cast="../evidence/port-04-test/casts/libsdl/usage-python3-pygame-key-event.cast" data-search="libsdl usage-python3-pygame-key-event port-04-test Pygame key event object Builds a Pygame keydown event and verifies the SDL-backed key constant and event name mapping. usage python3-pygame usage headless python">
+        <details class="case-row" data-library="libsdl" data-testcase-id="usage-python3-pygame-key-event" data-mode="port-04-test" data-kind="usage" data-status="failed" data-player-cast="../evidence/port-04-test/casts/libsdl/usage-python3-pygame-key-event.cast" data-search="libsdl usage-python3-pygame-key-event port-04-test Pygame key event dispatch Posts a Pygame keydown event and verifies the SDL-backed queue returns the same key. usage python3-pygame usage headless python">
           <summary>
             <span class="case-title">
-              <strong>Pygame key event object</strong>
+              <strong>Pygame key event dispatch</strong>
               <span class="case-id">port-04-test / libsdl / usage-python3-pygame-key-event</span>
             </span>
-            <span class="status-pill status-passed">Passed</span>
+            <span class="status-pill status-failed">Failed</span>
           </summary>
           <div class="case-body">
-            <p>Builds a Pygame keydown event and verifies the SDL-backed key constant and event name mapping.</p>
+            <p>Posts a Pygame keydown event and verifies the SDL-backed queue returns the same key.</p>
             <dl class="case-meta">
               <div><dt>Kind</dt><dd>usage</dd></div>
               <div><dt>Client</dt><dd>python3-pygame</dd></div>

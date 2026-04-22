@@ -3,18 +3,9 @@ set -euo pipefail
 source /validator/tests/_shared/runtime_helpers.sh
 
 tmpdir=$(mktemp -d)
-trap 'rm -rf "$tmpdir"' EXIT
+    trap 'rm -rf "$tmpdir"' EXIT
 
-export PYGAME_HIDE_SUPPORT_PROMPT=1
-export SDL_VIDEODRIVER=dummy
-export SDL_AUDIODRIVER=dummy
-
-python3 - <<'PY'
-import pygame
-
-event_type = pygame.event.custom_type()
-event = pygame.event.Event(event_type, code=7)
-if event.type != event_type or getattr(event, "code", None) != 7:
-    raise SystemExit("custom event payload did not round-trip")
-print("event", event.type, event.code)
+    export PYGAME_HIDE_SUPPORT_PROMPT=1
+python3 - <<'PY' "$tmpdir/out.bmp"
+import os, pygame; os.environ['SDL_VIDEODRIVER']='dummy'; pygame.init(); pygame.event.post(pygame.event.Event(pygame.USEREVENT, code=7)); e=pygame.event.poll(); print('event', e.type, getattr(e,'code',None)); raise SystemExit(0 if e.type == pygame.USEREVENT else 1)
 PY

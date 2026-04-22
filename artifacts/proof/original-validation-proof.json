@@ -3726,8 +3726,8 @@
         },
         {
           "testcase_id": "usage-python3-pygame-event-queue",
-          "title": "Pygame event object",
-          "description": "Uses Pygame event APIs to allocate a custom event and verify its payload attributes.",
+          "title": "Pygame event queue",
+          "description": "Uses Pygame to run SDL event queue behavior.",
           "kind": "usage",
           "mode": "original",
           "client_application": "python3-pygame",
@@ -3743,9 +3743,9 @@
           "cast_path": "casts/libsdl/usage-python3-pygame-event-queue.cast",
           "duration_seconds": 0.0,
           "exit_code": 0,
-          "cast_events": 3,
-          "cast_bytes": 406,
-          "cast_duration_seconds": 0.002
+          "cast_events": 11,
+          "cast_bytes": 1077,
+          "cast_duration_seconds": 0.01
         },
         {
           "testcase_id": "usage-python3-pygame-audio-dummy",
@@ -3858,14 +3858,14 @@
           "cast_path": "casts/libsdl/usage-python3-pygame-transform-scale.cast",
           "duration_seconds": 0.0,
           "exit_code": 0,
-          "cast_events": 3,
-          "cast_bytes": 406,
-          "cast_duration_seconds": 0.002
+          "cast_events": 11,
+          "cast_bytes": 1077,
+          "cast_duration_seconds": 0.01
         },
         {
           "testcase_id": "usage-python3-pygame-key-event",
-          "title": "Pygame key event object",
-          "description": "Builds a Pygame keydown event and verifies the SDL-backed key constant and event name mapping.",
+          "title": "Pygame key event dispatch",
+          "description": "Posts a Pygame keydown event and verifies the SDL-backed queue returns the same key.",
           "kind": "usage",
           "mode": "original",
           "client_application": "python3-pygame",
@@ -3881,9 +3881,9 @@
           "cast_path": "casts/libsdl/usage-python3-pygame-key-event.cast",
           "duration_seconds": 0.0,
           "exit_code": 0,
-          "cast_events": 3,
-          "cast_bytes": 411,
-          "cast_duration_seconds": 0.002
+          "cast_events": 11,
+          "cast_bytes": 1074,
+          "cast_duration_seconds": 0.01
         },
         {
           "testcase_id": "usage-python3-pygame-mask-collision",
@@ -5024,9 +5024,9 @@
           "cast_path": "casts/libvips/vips-cli-load-save.cast",
           "duration_seconds": 0.0,
           "exit_code": 0,
-          "cast_events": 5,
-          "cast_bytes": 74,
-          "cast_duration_seconds": 0.004
+          "cast_events": 3,
+          "cast_bytes": 190,
+          "cast_duration_seconds": 0.002
         },
         {
           "testcase_id": "thumbnail-behavior",
@@ -5047,7 +5047,7 @@
           "duration_seconds": 0.0,
           "exit_code": 0,
           "cast_events": 2,
-          "cast_bytes": 124,
+          "cast_bytes": 125,
           "cast_duration_seconds": 0.001
         },
         {
@@ -5763,9 +5763,9 @@
           "cast_path": "casts/libxml/xmllint-parse-format.cast",
           "duration_seconds": 0.0,
           "exit_code": 0,
-          "cast_events": 4,
-          "cast_bytes": 158,
-          "cast_duration_seconds": 0.003
+          "cast_events": 6,
+          "cast_bytes": 151,
+          "cast_duration_seconds": 0.005
         },
         {
           "testcase_id": "xmlcatalog-lookup",

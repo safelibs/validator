@@ -11,8 +11,8 @@
     "cases": 288,
     "source_cases": 95,
     "usage_cases": 193,
-    "passed": 288,
-    "failed": 0,
+    "passed": 282,
+    "failed": 6,
     "casts": 288
   },
   "libraries": [
@@ -3819,8 +3819,8 @@
         "cases": 15,
         "source_cases": 5,
         "usage_cases": 10,
-        "passed": 15,
-        "failed": 0,
+        "passed": 12,
+        "failed": 3,
         "casts": 15
       },
       "port_repository": "safelibs/port-libsdl",
@@ -3870,9 +3870,9 @@
           "cast_path": "port-04-test/casts/libsdl/version-query-compile.cast",
           "duration_seconds": 0.0,
           "exit_code": 0,
-          "cast_events": 460,
-          "cast_bytes": 13618,
-          "cast_duration_seconds": 0.459
+          "cast_events": 61,
+          "cast_bytes": 14567,
+          "cast_duration_seconds": 0.06
         },
         {
           "testcase_id": "headless-event-timer",
@@ -3892,9 +3892,9 @@
           "cast_path": "port-04-test/casts/libsdl/headless-event-timer.cast",
           "duration_seconds": 0.0,
           "exit_code": 0,
-          "cast_events": 455,
-          "cast_bytes": 13806,
-          "cast_duration_seconds": 0.454
+          "cast_events": 61,
+          "cast_bytes": 13107,
+          "cast_duration_seconds": 0.06
         },
         {
           "testcase_id": "surface-blit-pixel-format",
@@ -3914,9 +3914,9 @@
           "cast_path": "port-04-test/casts/libsdl/surface-blit-pixel-format.cast",
           "duration_seconds": 0.0,
           "exit_code": 0,
-          "cast_events": 463,
-          "cast_bytes": 14227,
-          "cast_duration_seconds": 0.462
+          "cast_events": 61,
+          "cast_bytes": 12706,
+          "cast_duration_seconds": 0.06
         },
         {
           "testcase_id": "dummy-audio-queue",
@@ -3936,9 +3936,9 @@
           "cast_path": "port-04-test/casts/libsdl/dummy-audio-queue.cast",
           "duration_seconds": 0.0,
           "exit_code": 0,
-          "cast_events": 460,
-          "cast_bytes": 15217,
-          "cast_duration_seconds": 0.459
+          "cast_events": 61,
+          "cast_bytes": 13991,
+          "cast_duration_seconds": 0.06
         },
         {
           "testcase_id": "installed-test-binary",
@@ -3958,9 +3958,9 @@
           "cast_path": "port-04-test/casts/libsdl/installed-test-binary.cast",
           "duration_seconds": 0.0,
           "exit_code": 0,
-          "cast_events": 561,
-          "cast_bytes": 15647,
-          "cast_duration_seconds": 0.56
+          "cast_events": 114,
+          "cast_bytes": 15566,
+          "cast_duration_seconds": 0.113
         },
         {
           "testcase_id": "usage-python3-pygame-surface-fill",
@@ -3981,9 +3981,9 @@
           "cast_path": "port-04-test/casts/libsdl/usage-python3-pygame-surface-fill.cast",
           "duration_seconds": 0.0,
           "exit_code": 0,
-          "cast_events": 462,
-          "cast_bytes": 14245,
-          "cast_duration_seconds": 0.461
+          "cast_events": 62,
+          "cast_bytes": 13257,
+          "cast_duration_seconds": 0.061
         },
         {
           "testcase_id": "usage-python3-pygame-image-save",
@@ -4004,14 +4004,14 @@
           "cast_path": "port-04-test/casts/libsdl/usage-python3-pygame-image-save.cast",
           "duration_seconds": 0.0,
           "exit_code": 0,
-          "cast_events": 468,
-          "cast_bytes": 15888,
-          "cast_duration_seconds": 0.467
+          "cast_events": 62,
+          "cast_bytes": 14398,
+          "cast_duration_seconds": 0.061
         },
         {
           "testcase_id": "usage-python3-pygame-event-queue",
-          "title": "Pygame event object",
-          "description": "Uses Pygame event APIs to allocate a custom event and verify its payload attributes.",
+          "title": "Pygame event queue",
+          "description": "Uses Pygame to run SDL event queue behavior.",
           "kind": "usage",
           "mode": "port-04-test",
           "client_application": "python3-pygame",
@@ -4021,15 +4021,15 @@
             "python"
           ],
           "requires": [],
-          "status": "passed",
+          "status": "failed",
           "result_path": "port-04-test/results/libsdl/usage-python3-pygame-event-queue.json",
           "log_path": "port-04-test/logs/libsdl/usage-python3-pygame-event-queue.log",
           "cast_path": "port-04-test/casts/libsdl/usage-python3-pygame-event-queue.cast",
           "duration_seconds": 0.0,
-          "exit_code": 0,
-          "cast_events": 463,
-          "cast_bytes": 15429,
-          "cast_duration_seconds": 0.462
+          "exit_code": 124,
+          "cast_events": 63,
+          "cast_bytes": 13808,
+          "cast_duration_seconds": 0.062
         },
         {
           "testcase_id": "usage-python3-pygame-audio-dummy",
@@ -4050,9 +4050,9 @@
           "cast_path": "port-04-test/casts/libsdl/usage-python3-pygame-audio-dummy.cast",
           "duration_seconds": 0.0,
           "exit_code": 0,
-          "cast_events": 463,
-          "cast_bytes": 15666,
-          "cast_duration_seconds": 0.462
+          "cast_events": 62,
+          "cast_bytes": 14394,
+          "cast_duration_seconds": 0.061
         },
         {
           "testcase_id": "usage-python3-pygame-xvfb-display",
@@ -4073,9 +4073,9 @@
           "cast_path": "port-04-test/casts/libsdl/usage-python3-pygame-xvfb-display.cast",
           "duration_seconds": 0.0,
           "exit_code": 0,
-          "cast_events": 460,
-          "cast_bytes": 15211,
-          "cast_duration_seconds": 0.459
+          "cast_events": 62,
+          "cast_bytes": 14601,
+          "cast_duration_seconds": 0.061
         },
         {
           "testcase_id": "usage-python3-pygame-draw-rect",
@@ -4096,9 +4096,9 @@
           "cast_path": "port-04-test/casts/libsdl/usage-python3-pygame-draw-rect.cast",
           "duration_seconds": 0.0,
           "exit_code": 0,
-          "cast_events": 469,
-          "cast_bytes": 14453,
-          "cast_duration_seconds": 0.468
+          "cast_events": 62,
+          "cast_bytes": 13911,
+          "cast_duration_seconds": 0.061
         },
         {
           "testcase_id": "usage-python3-pygame-font-module",
@@ -4119,9 +4119,9 @@
           "cast_path": "port-04-test/casts/libsdl/usage-python3-pygame-font-module.cast",
           "duration_seconds": 0.0,
           "exit_code": 0,
-          "cast_events": 455,
-          "cast_bytes": 13988,
-          "cast_duration_seconds": 0.454
+          "cast_events": 62,
+          "cast_bytes": 13093,
+          "cast_duration_seconds": 0.061
         },
         {
           "testcase_id": "usage-python3-pygame-transform-scale",
@@ -4136,20 +4136,20 @@
             "python"
           ],
           "requires": [],
-          "status": "passed",
+          "status": "failed",
           "result_path": "port-04-test/results/libsdl/usage-python3-pygame-transform-scale.json",
           "log_path": "port-04-test/logs/libsdl/usage-python3-pygame-transform-scale.log",
           "cast_path": "port-04-test/casts/libsdl/usage-python3-pygame-transform-scale.cast",
           "duration_seconds": 0.0,
-          "exit_code": 0,
-          "cast_events": 460,
-          "cast_bytes": 14088,
-          "cast_duration_seconds": 0.459
+          "exit_code": 1,
+          "cast_events": 64,
+          "cast_bytes": 13612,
+          "cast_duration_seconds": 0.063
         },
         {
           "testcase_id": "usage-python3-pygame-key-event",
-          "title": "Pygame key event object",
-          "description": "Builds a Pygame keydown event and verifies the SDL-backed key constant and event name mapping.",
+          "title": "Pygame key event dispatch",
+          "description": "Posts a Pygame keydown event and verifies the SDL-backed queue returns the same key.",
           "kind": "usage",
           "mode": "port-04-test",
           "client_application": "python3-pygame",
@@ -4159,15 +4159,15 @@
             "python"
           ],
           "requires": [],
-          "status": "passed",
+          "status": "failed",
           "result_path": "port-04-test/results/libsdl/usage-python3-pygame-key-event.json",
           "log_path": "port-04-test/logs/libsdl/usage-python3-pygame-key-event.log",
           "cast_path": "port-04-test/casts/libsdl/usage-python3-pygame-key-event.cast",
           "duration_seconds": 0.0,
-          "exit_code": 0,
-          "cast_events": 454,
-          "cast_bytes": 13595,
-          "cast_duration_seconds": 0.453
+          "exit_code": 124,
+          "cast_events": 63,
+          "cast_bytes": 13493,
+          "cast_duration_seconds": 0.062
         },
         {
           "testcase_id": "usage-python3-pygame-mask-collision",
@@ -4188,9 +4188,9 @@
           "cast_path": "port-04-test/casts/libsdl/usage-python3-pygame-mask-collision.cast",
           "duration_seconds": 0.0,
           "exit_code": 0,
-          "cast_events": 458,
-          "cast_bytes": 14086,
-          "cast_duration_seconds": 0.457
+          "cast_events": 62,
+          "cast_bytes": 13184,
+          "cast_duration_seconds": 0.061
         }
       ]
     },
@@ -5362,8 +5362,8 @@
         "cases": 15,
         "source_cases": 5,
         "usage_cases": 10,
-        "passed": 15,
-        "failed": 0,
+        "passed": 13,
+        "failed": 2,
         "casts": 15
       },
       "port_repository": "safelibs/port-libvips",
@@ -5414,15 +5414,15 @@
             "media"
           ],
           "requires": [],
-          "status": "passed",
+          "status": "failed",
           "result_path": "port-04-test/results/libvips/vips-cli-load-save.json",
           "log_path": "port-04-test/logs/libvips/vips-cli-load-save.log",
           "cast_path": "port-04-test/casts/libvips/vips-cli-load-save.cast",
           "duration_seconds": 0.0,
-          "exit_code": 0,
-          "cast_events": 455,
-          "cast_bytes": 13391,
-          "cast_duration_seconds": 0.454
+          "exit_code": 1,
+          "cast_events": 60,
+          "cast_bytes": 12983,
+          "cast_duration_seconds": 0.059
         },
         {
           "testcase_id": "thumbnail-behavior",
@@ -5436,15 +5436,15 @@
             "thumbnail"
           ],
           "requires": [],
-          "status": "passed",
+          "status": "failed",
           "result_path": "port-04-test/results/libvips/thumbnail-behavior.json",
           "log_path": "port-04-test/logs/libvips/thumbnail-behavior.log",
           "cast_path": "port-04-test/casts/libvips/thumbnail-behavior.cast",
           "duration_seconds": 0.0,
-          "exit_code": 0,
-          "cast_events": 466,
-          "cast_bytes": 14516,
-          "cast_duration_seconds": 0.465
+          "exit_code": 255,
+          "cast_events": 61,
+          "cast_bytes": 13232,
+          "cast_duration_seconds": 0.06
         },
         {
           "testcase_id": "c-api-compile-smoke",
@@ -5464,9 +5464,9 @@
           "cast_path": "port-04-test/casts/libvips/c-api-compile-smoke.cast",
           "duration_seconds": 0.0,
           "exit_code": 0,
-          "cast_events": 463,
-          "cast_bytes": 13432,
-          "cast_duration_seconds": 0.462
+          "cast_events": 60,
+          "cast_bytes": 13850,
+          "cast_duration_seconds": 0.059
         },
         {
           "testcase_id": "gir-introspection-smoke",
@@ -5486,9 +5486,9 @@
           "cast_path": "port-04-test/casts/libvips/gir-introspection-smoke.cast",
           "duration_seconds": 0.0,
           "exit_code": 0,
-          "cast_events": 459,
-          "cast_bytes": 12713,
-          "cast_duration_seconds": 0.458
+          "cast_events": 60,
+          "cast_bytes": 12405,
+          "cast_duration_seconds": 0.059
         },
         {
           "testcase_id": "metadata-header-checks",
@@ -5508,9 +5508,9 @@
           "cast_path": "port-04-test/casts/libvips/metadata-header-checks.cast",
           "duration_seconds": 0.0,
           "exit_code": 0,
-          "cast_events": 497,
-          "cast_bytes": 14561,
-          "cast_duration_seconds": 0.496
+          "cast_events": 76,
+          "cast_bytes": 13214,
+          "cast_duration_seconds": 0.075
         },
         {
           "testcase_id": "usage-ruby-vips-create-image",
@@ -5531,9 +5531,9 @@
           "cast_path": "port-04-test/casts/libvips/usage-ruby-vips-create-image.cast",
           "duration_seconds": 0.0,
           "exit_code": 0,
-          "cast_events": 472,
-          "cast_bytes": 13704,
-          "cast_duration_seconds": 0.471
+          "cast_events": 59,
+          "cast_bytes": 12103,
+          "cast_duration_seconds": 0.058
         },
         {
           "testcase_id": "usage-ruby-vips-resize-image",
@@ -5554,9 +5554,9 @@
           "cast_path": "port-04-test/casts/libvips/usage-ruby-vips-resize-image.cast",
           "duration_seconds": 0.0,
           "exit_code": 0,
-          "cast_events": 467,
-          "cast_bytes": 12817,
-          "cast_duration_seconds": 0.466
+          "cast_events": 59,
+          "cast_bytes": 13443,
+          "cast_duration_seconds": 0.058
         },
         {
           "testcase_id": "usage-ruby-vips-average-image",
@@ -5577,9 +5577,9 @@
           "cast_path": "port-04-test/casts/libvips/usage-ruby-vips-average-image.cast",
           "duration_seconds": 0.0,
           "exit_code": 0,
-          "cast_events": 456,
-          "cast_bytes": 13325,
-          "cast_duration_seconds": 0.455
+          "cast_events": 59,
+          "cast_bytes": 12645,
+          "cast_duration_seconds": 0.058
         },
         {
           "testcase_id": "usage-ruby-vips-bandjoin-image",
@@ -5600,9 +5600,9 @@
           "cast_path": "port-04-test/casts/libvips/usage-ruby-vips-bandjoin-image.cast",
           "duration_seconds": 0.0,
           "exit_code": 0,
-          "cast_events": 460,
-          "cast_bytes": 14286,
-          "cast_duration_seconds": 0.459
+          "cast_events": 59,
+          "cast_bytes": 13708,
+          "cast_duration_seconds": 0.058
         },
         {
           "testcase_id": "usage-ruby-vips-crop-image",
@@ -5623,9 +5623,9 @@
           "cast_path": "port-04-test/casts/libvips/usage-ruby-vips-crop-image.cast",
           "duration_seconds": 0.0,
           "exit_code": 0,
-          "cast_events": 462,
-          "cast_bytes": 13942,
-          "cast_duration_seconds": 0.461
+          "cast_events": 59,
+          "cast_bytes": 13057,
+          "cast_duration_seconds": 0.058
         },
         {
           "testcase_id": "usage-ruby-vips-rotate-image",
@@ -5646,9 +5646,9 @@
           "cast_path": "port-04-test/casts/libvips/usage-ruby-vips-rotate-image.cast",
           "duration_seconds": 0.0,
           "exit_code": 0,
-          "cast_events": 469,
-          "cast_bytes": 14134,
-          "cast_duration_seconds": 0.468
+          "cast_events": 59,
+          "cast_bytes": 13416,
+          "cast_duration_seconds": 0.058
         },
         {
           "testcase_id": "usage-ruby-vips-linear-image",
@@ -5669,9 +5669,9 @@
           "cast_path": "port-04-test/casts/libvips/usage-ruby-vips-linear-image.cast",
           "duration_seconds": 0.0,
           "exit_code": 0,
-          "cast_events": 463,
-          "cast_bytes": 12956,
-          "cast_duration_seconds": 0.462
+          "cast_events": 59,
+          "cast_bytes": 12341,
+          "cast_duration_seconds": 0.058
         },
         {
           "testcase_id": "usage-ruby-vips-save-png",
@@ -5692,9 +5692,9 @@
           "cast_path": "port-04-test/casts/libvips/usage-ruby-vips-save-png.cast",
           "duration_seconds": 0.0,
           "exit_code": 0,
-          "cast_events": 462,
-          "cast_bytes": 13186,
-          "cast_duration_seconds": 0.461
+          "cast_events": 59,
+          "cast_bytes": 12463,
+          "cast_duration_seconds": 0.058
         },
         {
           "testcase_id": "usage-ruby-vips-gaussblur-image",
@@ -5715,9 +5715,9 @@
           "cast_path": "port-04-test/casts/libvips/usage-ruby-vips-gaussblur-image.cast",
           "duration_seconds": 0.0,
           "exit_code": 0,
-          "cast_events": 473,
-          "cast_bytes": 13879,
-          "cast_duration_seconds": 0.472
+          "cast_events": 59,
+          "cast_bytes": 12840,
+          "cast_duration_seconds": 0.058
         },
         {
           "testcase_id": "usage-ruby-vips-histogram-image",
@@ -5738,9 +5738,9 @@
           "cast_path": "port-04-test/casts/libvips/usage-ruby-vips-histogram-image.cast",
           "duration_seconds": 0.0,
           "exit_code": 0,
-          "cast_events": 454,
-          "cast_bytes": 12817,
-          "cast_duration_seconds": 0.453
+          "cast_events": 59,
+          "cast_bytes": 13191,
+          "cast_duration_seconds": 0.058
         }
       ]
     },
@@ -6199,8 +6199,8 @@
         "cases": 15,
         "source_cases": 5,
         "usage_cases": 10,
-        "passed": 15,
-        "failed": 0,
+        "passed": 14,
+        "failed": 1,
         "casts": 15
       },
       "port_repository": "safelibs/port-libxml",
@@ -6251,15 +6251,15 @@
             "xml"
           ],
           "requires": [],
-          "status": "passed",
+          "status": "failed",
           "result_path": "port-04-test/results/libxml/xmllint-parse-format.json",
           "log_path": "port-04-test/logs/libxml/xmllint-parse-format.log",
           "cast_path": "port-04-test/casts/libxml/xmllint-parse-format.cast",
           "duration_seconds": 0.0,
-          "exit_code": 0,
-          "cast_events": 466,
-          "cast_bytes": 15230,
-          "cast_duration_seconds": 0.465
+          "exit_code": 1,
+          "cast_events": 80,
+          "cast_bytes": 14406,
+          "cast_duration_seconds": 0.079
         },
         {
           "testcase_id": "xmlcatalog-lookup",
@@ -6279,9 +6279,9 @@
           "cast_path": "port-04-test/casts/libxml/xmlcatalog-lookup.cast",
           "duration_seconds": 0.0,
           "exit_code": 0,
-          "cast_events": 448,
-          "cast_bytes": 14163,
-          "cast_duration_seconds": 0.447
+          "cast_events": 56,
+          "cast_bytes": 12533,
+          "cast_duration_seconds": 0.055
         },
         {
           "testcase_id": "python-binding-smoke",
@@ -6301,9 +6301,9 @@
           "cast_path": "port-04-test/casts/libxml/python-binding-smoke.cast",
           "duration_seconds": 0.0,
           "exit_code": 0,
-          "cast_events": 452,
-          "cast_bytes": 14721,
-          "cast_duration_seconds": 0.451
+          "cast_events": 55,
+          "cast_bytes": 14237,
+          "cast_duration_seconds": 0.054
         },
         {
           "testcase_id": "reader-c-api-behavior",
@@ -6323,9 +6323,9 @@
           "cast_path": "port-04-test/casts/libxml/reader-c-api-behavior.cast",
           "duration_seconds": 0.0,
           "exit_code": 0,
-          "cast_events": 447,
-          "cast_bytes": 13374,
-          "cast_duration_seconds": 0.446
+          "cast_events": 56,
+          "cast_bytes": 12571,
+          "cast_duration_seconds": 0.055
         },
         {
           "testcase_id": "schema-xinclude-checks",
@@ -6345,9 +6345,9 @@
           "cast_path": "port-04-test/casts/libxml/schema-xinclude-checks.cast",
           "duration_seconds": 0.0,
           "exit_code": 0,
-          "cast_events": 463,
-          "cast_bytes": 14124,
-          "cast_duration_seconds": 0.462
+          "cast_events": 58,
+          "cast_bytes": 14220,
+          "cast_duration_seconds": 0.057
         },
         {
           "testcase_id": "usage-python3-lxml-parse-xml",
@@ -6367,9 +6367,9 @@
           "cast_path": "port-04-test/casts/libxml/usage-python3-lxml-parse-xml.cast",
           "duration_seconds": 0.0,
           "exit_code": 0,
-          "cast_events": 445,
-          "cast_bytes": 13274,
-          "cast_duration_seconds": 0.444
+          "cast_events": 55,
+          "cast_bytes": 13901,
+          "cast_duration_seconds": 0.054
         },
         {
           "testcase_id": "usage-python3-lxml-xpath-xml",
@@ -6389,9 +6389,9 @@
           "cast_path": "port-04-test/casts/libxml/usage-python3-lxml-xpath-xml.cast",
           "duration_seconds": 0.0,
           "exit_code": 0,
-          "cast_events": 455,
-          "cast_bytes": 14032,
-          "cast_duration_seconds": 0.454
+          "cast_events": 55,
+          "cast_bytes": 13427,
+          "cast_duration_seconds": 0.054
         },
         {
           "testcase_id": "usage-python3-lxml-xslt-xml",
@@ -6411,9 +6411,9 @@
           "cast_path": "port-04-test/casts/libxml/usage-python3-lxml-xslt-xml.cast",
           "duration_seconds": 0.0,
           "exit_code": 0,
-          "cast_events": 455,
-          "cast_bytes": 13767,
-          "cast_duration_seconds": 0.454
+          "cast_events": 57,
+          "cast_bytes": 13655,
+          "cast_duration_seconds": 0.056
         },
         {
           "testcase_id": "usage-python3-lxml-schema-xml",
@@ -6433,9 +6433,9 @@
           "cast_path": "port-04-test/casts/libxml/usage-python3-lxml-schema-xml.cast",
           "duration_seconds": 0.0,
           "exit_code": 0,
-          "cast_events": 451,
-          "cast_bytes": 13266,
-          "cast_duration_seconds": 0.45
+          "cast_events": 55,
+          "cast_bytes": 13318,
+          "cast_duration_seconds": 0.054
         },
         {
           "testcase_id": "usage-python3-lxml-xinclude-xml",
@@ -6455,9 +6455,9 @@
           "cast_path": "port-04-test/casts/libxml/usage-python3-lxml-xinclude-xml.cast",
           "duration_seconds": 0.0,
           "exit_code": 0,
-          "cast_events": 449,
-          "cast_bytes": 13081,
-          "cast_duration_seconds": 0.448
+          "cast_events": 55,
+          "cast_bytes": 13430,
+          "cast_duration_seconds": 0.054
         },
         {
           "testcase_id": "usage-xmlstarlet-select-xml",
@@ -6478,9 +6478,9 @@
           "cast_path": "port-04-test/casts/libxml/usage-xmlstarlet-select-xml.cast",
           "duration_seconds": 0.0,
           "exit_code": 0,
-          "cast_events": 451,
-          "cast_bytes": 13547,
-          "cast_duration_seconds": 0.45
+          "cast_events": 55,
+          "cast_bytes": 13690,
+          "cast_duration_seconds": 0.054
         },
         {
           "testcase_id": "usage-xmlstarlet-format-xml",
@@ -6501,9 +6501,9 @@
           "cast_path": "port-04-test/casts/libxml/usage-xmlstarlet-format-xml.cast",
           "duration_seconds": 0.0,
           "exit_code": 0,
-          "cast_events": 461,
-          "cast_bytes": 13591,
-          "cast_duration_seconds": 0.46
+          "cast_events": 59,
+          "cast_bytes": 12600,
+          "cast_duration_seconds": 0.058
         },
         {
           "testcase_id": "usage-xmlstarlet-edit-xml",
@@ -6524,9 +6524,9 @@
           "cast_path": "port-04-test/casts/libxml/usage-xmlstarlet-edit-xml.cast",
           "duration_seconds": 0.0,
           "exit_code": 0,
-          "cast_events": 465,
-          "cast_bytes": 14384,
-          "cast_duration_seconds": 0.464
+          "cast_events": 59,
+          "cast_bytes": 12786,
+          "cast_duration_seconds": 0.058
         },
         {
           "testcase_id": "usage-xmlstarlet-validate-xml",
@@ -6547,9 +6547,9 @@
           "cast_path": "port-04-test/casts/libxml/usage-xmlstarlet-validate-xml.cast",
           "duration_seconds": 0.0,
           "exit_code": 0,
-          "cast_events": 454,
-          "cast_bytes": 15073,
-          "cast_duration_seconds": 0.453
+          "cast_events": 55,
+          "cast_bytes": 14134,
+          "cast_duration_seconds": 0.054
         },
         {
           "testcase_id": "usage-xmlstarlet-transform-xml",
@@ -6570,9 +6570,9 @@
           "cast_path": "port-04-test/casts/libxml/usage-xmlstarlet-transform-xml.cast",
           "duration_seconds": 0.0,
           "exit_code": 0,
-          "cast_events": 451,
-          "cast_bytes": 13227,
-          "cast_duration_seconds": 0.45
+          "cast_events": 55,
+          "cast_bytes": 12133,
+          "cast_duration_seconds": 0.054
         }
       ]
     },

@@ -3,8 +3,8 @@
   "library": "libsdl",
   "mode": "original",
   "testcase_id": "usage-python3-pygame-key-event",
-  "title": "Pygame key event object",
-  "description": "Builds a Pygame keydown event and verifies the SDL-backed key constant and event name mapping.",
+  "title": "Pygame key event dispatch",
+  "description": "Posts a Pygame keydown event and verifies the SDL-backed queue returns the same key.",
   "kind": "usage",
   "client_application": "python3-pygame",
   "tags": [
