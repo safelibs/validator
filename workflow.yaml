@@ -1,1199 +1,1202 @@
-name: validator-more-dependent-usage-cases
+name: validator-dual-original-port-04-test
 backend: codex
 working_dir: .
 max_bounces: 999
-
+linear: true
+yaml_source_mode: inline-only
+verifier_encoding: explicit-phases
 vars:
-  GOAL: "add more testcases for all the libraries. Focus on triggering various library functionality through dependent applications."
-
+  GOAL: Run the existing reference tests on original Ubuntu packages and the same tests with latest safelibs port 04-test debs.
 phases:
-  - id: impl_phase_01_data_parser_usage_cases
-    type: implement
-    bounce_target: null
-    prompt: |
-      Implement phase 1 exactly as specified below. The phase file is the authoritative prompt content for this phase.
+- id: impl_phase_01_port_deb_resolver
+  type: implement
+  bounce_target: null
+  prompt: |-
+    Role: Software engineer implementing phase `impl_phase_01_port_deb_resolver` for the dual original and port 04-test validation workflow.
 
-      Use the listed Preexisting Inputs in place. Consume or update existing artifacts instead of refetching, recollecting, rediscovering, regenerating, expanding, or reordering them from scratch unless the phase explicitly tells you to run an existing tool for that purpose.
+    This prompt is self-contained; the agent sees only this prompt. Work from the repository root, follow existing project patterns, and keep changes scoped to this phase.
 
-      Commit all phase 1 scoped work to git before yielding. Do not yield with uncommitted phase 1 file changes.
+    Goal:
+    - Preserve the original Ubuntu-package reference validation.
+    - Add a resolver that consumes the existing safelibs port repository inventory and downloads the latest tagged `04-test` native deb assets with deterministic lock/provenance output.
 
-      # 1. Data, Parser, and Event-Loop Dependent Usage Cases
+    Workflow constraints:
+    - Consume existing workspace artifacts in place. Do not refetch, recollect, rediscover, or regenerate existing manifests, dependent inventories, testcase fixtures, Docker harnesses, original matrix artifacts, original proof data, or rendered site evidence from scratch.
+    - Use `inventory/github-port-repos.json` as the authoritative source of port repository identity. Do not scan GitHub, enumerate repositories, or rebuild that inventory.
+    - Keep `repositories.yml` limited to the original v2 manifest schema. Do not add port metadata to it.
+    - Do not duplicate or fork testcase manifests for port runs.
+    - Resolve commits dynamically at run time. Do not bake current hashes, release tags, or asset lists into source files.
+    - Preserve unrelated user work.
 
-      ## Phase Name
+    ## Preexisting Inputs
+    - `.plan/goal.md`
+    - `.plan/plan.md`
+    - `repositories.yml`
+    - `inventory/github-port-repos.json`
+    - `tools/github_auth.py`
+    - `tools/__init__.py`
+    - Existing unit fixture patterns under `unit/fixtures/`
+    - Existing original artifacts under `artifacts/results`, `artifacts/logs`, `artifacts/casts`, `artifacts/proof/original-validation-proof.json`, and `site/`; consume these in place and do not regenerate them in this phase.
+    - GitHub access through `GH_TOKEN`, `VALIDATOR_REPO_TOKEN`, or `gh auth token` when port repositories are private.
 
-      Data, Parser, and Event-Loop Dependent Usage Cases
+    ## New Outputs
+    - New resolver CLI `tools/fetch_port_debs.py`.
+    - New unit tests in `unit/test_port_debs.py`.
+    - New unit fixture `unit/fixtures/port-repos.json`.
+    - Generated ignored deb cache layout compatible with existing matrix override mounting: `<output-root>/<library>/*.deb`.
+    - Generated lock/provenance JSON at caller-provided `--lock-output`, suitable for committing later as `artifacts/proof/port-04-test-debs-lock.json`.
 
-      ## Implement Phase ID
+    ## Implementation Details
+    - Implement `tools/fetch_port_debs.py` as a direct CLI that works with `python3 tools/fetch_port_debs.py ...`.
+    - Set `sys.dont_write_bytecode = True` when invoked as a script, matching the style in `tools/testcases.py`.
+    - Define dataclasses:
+      - `PortRepo(library: str, name_with_owner: str, url: str, default_branch: str, tag_ref: str)`
+      - `ResolvedPortDeb(library: str, repository: str, tag_ref: str, commit: str, release_tag: str, package: str, filename: str, architecture: str, sha256: str, size: int, asset_url: str | None, browser_download_url: str | None)`
+    - CLI arguments:
+      - `--config`, required `Path`.
+      - `--port-repos`, required `Path`, normally `inventory/github-port-repos.json`.
+      - `--output-root`, required `Path`, written as `<output-root>/<library>/*.deb`.
+      - `--lock-output`, required `Path`.
+      - `--library`, repeatable optional selection using `select_libraries()` order.
+    - Validation rules:
+      - Load `repositories.yml` with `load_manifest()`.
+      - Load `inventory/github-port-repos.json` as a JSON list.
+      - Reject duplicate libraries and unknown libraries.
+      - For selected libraries, require exactly one port repo entry for each selected library.
+      - Require `nameWithOwner == "safelibs/port-<library>"`, preserving hyphens.
+      - Require `tag_ref == "refs/tags/<library>/04-test"`.
+    - Output cleanup:
+      - For each selected library, create `<output-root>/<library>`.
+      - Before writing new files for a selected library, remove existing `.deb` files in that selected library leaf only.
+      - Do not delete unselected library leaves and do not remove non-`.deb` files.
+    - Commit resolution:
+      - Use `tools.github_auth.github_git_url()` and `tools.github_auth.git_env()` with `tools.run(..., capture_output=True)` so tokens are redacted and noninteractive settings follow existing conventions.
+      - Do not use `tools.github_auth.run_git()` for this command because it does not return captured output.
+      - Resolve both `tag_ref` and peeled `tag_ref^{}` with `git ls-remote`; use the peeled object when present so annotated tags resolve to a commit hash.
+      - Validate the selected commit as a 40-character lowercase hex string.
+      - Derive `release_tag = "build-" + commit[:12]`.
+    - Release resolution and downloads:
+      - Query `https://api.github.com/repos/<owner>/<repo>/releases/tags/<release_tag>`.
+      - Use headers `Accept: application/vnd.github+json` and `X-GitHub-Api-Version: 2022-11-28`.
+      - Use a bearer token from `effective_github_token()` when available.
+      - Identify `.deb` assets whose Debian package name, parsed from the filename before the first `_`, is in the canonical `apt_packages` list for that library.
+      - Parse architecture from the final underscore segment before `.deb`; select only `amd64` and `all` assets.
+      - Ignore canonical package assets for other architectures.
+      - Reject duplicate selected assets for the same canonical package after architecture filtering.
+      - Require at least one selected port `.deb` for every selected library.
+      - Do not fail when a canonical package has no selected port asset; record that package in `unported_original_packages` in manifest order.
+      - Allow extra release assets, but ignore them unless they are in `repositories.yml` `apt_packages`.
+      - Download assets through the GitHub asset API URL with `Accept: application/octet-stream` and auth headers. Use `browser_download_url` only as display metadata.
+      - Write each file atomically through a temporary file in the target leaf directory, then rename.
+      - Compute SHA256 and size after download.
+      - Require `dpkg-deb`; verify `dpkg-deb --field <deb> Package` and `Architecture` match the selected package and architecture.
+      - Keep token-bearing URLs and bearer tokens out of exception text.
+    - Lock schema:
+      - Write deterministic JSON with two-space indentation and a trailing newline. Do not use wall-clock time.
+      - Top-level fields in this order: `schema_version: 1`, `mode: "port-04-test"`, `generated_at: "1970-01-01T00:00:00Z"`, `source_config`, `source_inventory`, `libraries`.
+      - `source_config` and `source_inventory` must be the POSIX path strings passed to `--config` and `--port-repos`.
+      - Per-library fields: `library`, `repository`, `url`, `tag_ref`, `commit`, `release_tag`, `debs`, `unported_original_packages`.
+      - Per-deb fields: `package`, `filename`, `architecture`, `sha256`, `size`, `asset_api_url`, `browser_download_url`.
+      - Preserve manifest order for libraries, canonical `apt_packages` order for selected debs, and canonical `apt_packages` order for `unported_original_packages`.
+      - For every library, `debs[*].package` plus `unported_original_packages` must be disjoint and must combine to the exact canonical `apt_packages` list in manifest order.
+    - Unit tests:
+      - Mock `git ls-remote` and GitHub API responses.
+      - Assert tag peeling and `build-<sha12>` release derivation.
+      - Assert canonical package filtering ignores extra assets, ignores non-native architecture assets, records missing canonical packages in `unported_original_packages`, requires at least one selected port asset per library, and fails duplicate selected assets for the same canonical package.
+      - Assert stale `.deb` cleanup in a selected library leaf.
+      - Assert lock output is deterministic and ordered.
+      - Assert tokens are not surfaced in exception text by relying on existing `tools.run()` redaction.
 
-      `impl_phase_01_data_parser_usage_cases`
+    ## Verification To Run Before Commit
+    ```bash
+    python3 -m unittest unit.test_port_debs -v
+    python3 -m unittest unit.test_inventory -v
+    python3 -m unittest unit.test_repository_hygiene -v
+    ```
 
-      ## Preexisting Inputs
+    Also run the live smoke command from `check_phase_01_live_resolution_smoke` when credentials/network are available, but write smoke outputs only under `/tmp/validator-port-debs-smoke`.
 
-      - `.plan/goal.md`
-      - `.plan/plan.md`
-      - `repositories.yml` canonical manifest and package list; consume it unchanged.
-      - `test.sh`
-      - `tools/testcases.py`
-      - `tools/run_matrix.py`
-      - `tools/verify_proof_artifacts.py`
-      - `tests/_shared/runtime_helpers.sh`
-      - `tests/_shared/run_library_tests.sh`
-      - Existing `tests/cjson/` manifest, Dockerfile, dependent fixture, sample fixtures, and usage scripts.
-      - Existing `tests/libcsv/` manifest, Dockerfile, dependent fixture, sample fixtures, and usage scripts.
-      - Existing `tests/libjson/` manifest, Dockerfile, dependent fixture, sample fixtures, and usage scripts.
-      - Existing `tests/libxml/` manifest, Dockerfile, dependent fixture, sample fixtures, and usage scripts.
-      - Existing `tests/libyaml/` manifest, Dockerfile, dependent fixture, sample fixtures, and usage scripts.
-      - Existing `tests/libuv/` manifest, Dockerfile, dependent fixture, sample fixtures, and usage scripts.
-      - Existing sample fixtures under each affected `tests/<library>/tests/fixtures/` directory.
-      - Existing tracked `artifacts/results/`, `artifacts/logs/`, `artifacts/casts/`, `artifacts/proof/original-validation-proof.json`, and `site/` evidence. Consume these artifacts in place; do not refetch, recollect, rediscover, regenerate, expand, or reorder dependent inventories.
+    ## Git Commit Requirement
+    Commit all phase 1 scoped work to git before yielding. Do not yield with uncommitted phase 1 file changes.
 
-      ## New Outputs
+- id: check_phase_01_fetcher_unit_contract
+  type: check
+  bounce_target: impl_phase_01_port_deb_resolver
+  prompt: |-
+    Reviewer Role: QA checker for the phase 1 port deb resolver unit contract.
 
-      - 12 new usage testcase manifest entries.
-      - 12 new executable usage scripts.
-      - Updated library-local common usage helpers for `cjson`, `libcsv`, and `libjson`.
+    Verify these specific things:
+    - `tools/fetch_port_debs.py` exists and implements the resolver/lock schema without modifying `repositories.yml` or `inventory/github-port-repos.json`.
+    - The resolver consumes `inventory/github-port-repos.json` as authoritative and does not scan GitHub repositories.
+    - The resolver dynamically resolves `refs/tags/<library>/04-test`, derives `build-<sha12>`, filters native canonical `.deb` assets, records `unported_original_packages`, and redacts tokens from errors.
+    - Unit tests cover tag peeling, asset filtering, native architecture selection, deterministic lock output, stale `.deb` cleanup, duplicate package rejection, and token redaction.
+    - Existing original artifacts, proof, site, testcase manifests, and fixtures were not regenerated or refetched.
+    - Phase 1 work was committed to git before yielding.
 
-      ## File Changes
+    Run these commands:
+    ```bash
+    python3 -m unittest unit.test_port_debs -v
+    python3 -m unittest unit.test_inventory -v
+    python3 -m unittest unit.test_repository_hygiene -v
+    ```
 
-      - Modify `tests/cjson/testcases.yml`.
-      - Modify `tests/cjson/tests/cases/usage/usage-iperf3-json-common.sh`.
-      - Add `tests/cjson/tests/cases/usage/usage-iperf3-json-zero-copy.sh`.
-      - Add `tests/cjson/tests/cases/usage/usage-iperf3-json-omit-warmup.sh`.
-      - Modify `tests/libcsv/testcases.yml`.
-      - Modify `tests/libcsv/tests/cases/usage/usage-readstat-common.sh`.
-      - Add `tests/libcsv/tests/cases/usage/usage-readstat-escaped-quotes-csv.sh`.
-      - Add `tests/libcsv/tests/cases/usage/usage-readstat-wide-csv.sh`.
-      - Modify `tests/libjson/testcases.yml`.
-      - Modify `tests/libjson/tests/cases/usage/usage-gdal-json-common.sh`.
-      - Add `tests/libjson/tests/cases/usage/usage-gdal-ogr2ogr-where-geojson.sh`.
-      - Add `tests/libjson/tests/cases/usage/usage-gdal-ogr2ogr-reproject-geojson.sh`.
-      - Modify `tests/libxml/testcases.yml`.
-      - Add `tests/libxml/tests/cases/usage/usage-python3-lxml-xinclude-xml.sh`.
-      - Add `tests/libxml/tests/cases/usage/usage-xmlstarlet-transform-xml.sh`.
-      - Modify `tests/libyaml/testcases.yml`.
-      - Add `tests/libyaml/tests/cases/usage/usage-python3-yaml-cbase-loader.sh`.
-      - Add `tests/libyaml/tests/cases/usage/usage-python3-yaml-binary-scalar.sh`.
-      - Modify `tests/libuv/testcases.yml`.
-      - Add `tests/libuv/tests/cases/usage/usage-nodejs-fs-watch.sh`.
-      - Add `tests/libuv/tests/cases/usage/usage-nodejs-crypto-pbkdf2.sh`.
+    If any command fails or any verification item is not satisfied, report a failing verdict with the concrete reason.
 
-      ## Implementation Details
+    End your response with exactly one of:
+    VERDICT: PASS
+    VERDICT: FAIL: <reason>
 
-      - Apply the global testcase entry contract to all 12 new manifest entries:
-        - Use the new script filename without `.sh` as each manifest entry `id`.
-        - Set `kind: usage`.
-        - Set `timeout_seconds: 180`.
-        - Use a semantic `title`.
-        - Use a client-behavior `description`.
-        - Set `client_application` to one of the existing identifiers named below.
-        - Set `command` exactly to `bash /validator/tests/<library>/tests/cases/usage/<script>.sh`.
-        - Tags must include `usage` and one or more behavior tags already consistent with the library's local manifest style, such as `json`, `compression`, `metadata`, `image`, `runtime`, or `crypto`.
-      - Wrapper scripts that call a library-local common helper must contain `#!/usr/bin/env bash`, `set -euo pipefail`, and then execute the common helper with the exact workload argument named here.
-      - Do not modify `repositories.yml`; it remains the fixed canonical manifest and package list.
-      - Do not modify any affected `tests/<library>/Dockerfile`; every dependent package required by the planned clients is already installed.
-      - Use only these existing `client_application` values:
-        - `cjson`: `iperf3`
-        - `libcsv`: `readstat`
-        - `libjson`: `gdal`
-        - `libxml`: `python3-lxml` and `xmlstarlet`
-        - `libyaml`: `python3-yaml`
-        - `libuv`: `nodejs`
-      - Do not modify any `tests/<library>/tests/fixtures/dependents.json`.
-      - `cjson`: extend `usage-iperf3-json-common.sh` with these workloads:
-        - `zero-copy`: start the existing one-shot loopback server, run `iperf3 -c 127.0.0.1 -p "$port" -J -Z -n 32K`, and assert with `jq -e` that `.end.sum_sent.bytes > 0` and `.end.sum_sent.bits_per_second > 0`.
-        - `omit-warmup`: run `iperf3 -c 127.0.0.1 -p "$port" -J -O 1 -t 2 -i 1`, and assert with `jq -e` that `.intervals` is non-empty, at least one interval is marked omitted through `.sum.omitted` or `.streams[].omitted`, and `.end` is an object.
-      - `libcsv`: extend `usage-readstat-common.sh` with these workloads:
-        - `escaped-quotes-csv`: create CSV containing an escaped double quote field such as `"alpha ""quoted"""`, convert through readstat metadata into DTA, read back to CSV with `readstat "$tmpdir/out.dta" -`, and assert the escaped quote text survives in the exported CSV.
-        - `wide-csv`: create a four-column CSV and matching four-variable metadata, convert to DTA, run `readstat "$tmpdir/out.dta"` for summary and assert `Columns: 4`, then export with `readstat "$tmpdir/out.dta" -` and assert a row value from the fourth column.
-      - `libjson`: extend `usage-gdal-json-common.sh` with these workloads:
-        - `ogr2ogr-where`: use the existing generated GeoJSON fixture, run `ogr2ogr -f GeoJSON "$tmpdir/filtered.geojson" "$geojson" -where 'value=2'`, assert `beta` is present, and assert `alpha` is absent.
-        - `ogr2ogr-reproject`: run `ogr2ogr -f GeoJSON "$tmpdir/reprojected.geojson" "$geojson" -s_srs EPSG:4326 -t_srs EPSG:3857`, then use `jq` to assert a FeatureCollection exists and coordinates were written.
-      - `libxml`:
-        - `usage-python3-lxml-xinclude-xml.sh`: create `main.xml` with an `xi:include` element and create `fragment.xml`, parse `main.xml` with `lxml.etree`, call `tree.xinclude()`, and assert the included element text is visible.
-        - `usage-xmlstarlet-transform-xml.sh`: create XML and XSLT fixtures, run `xmlstarlet tr`, and assert the transformed output contains the expected value.
-      - `libyaml`:
-        - `usage-python3-yaml-cbase-loader.sh`: in Python, assert `yaml.__with_libyaml__` is true, load nested YAML through `yaml.CBaseLoader`, assert scalar values are loaded as strings as expected for `BaseLoader`, and print a parsed value.
-        - `usage-python3-yaml-binary-scalar.sh`: load a `!!binary` scalar through `yaml.safe_load`, assert the decoded bytes, and print the decoded length.
-      - `libuv`:
-        - `usage-nodejs-fs-watch.sh`: create a temporary file, run a Node script using `fs.watch`, mutate the file, and assert a `change` event arrives before timeout.
-        - `usage-nodejs-crypto-pbkdf2.sh`: run Node's asynchronous `crypto.pbkdf2`, which uses libuv threadpool work, and assert the derived key length and callback completion.
-      - Make all new scripts executable.
+- id: check_phase_01_live_resolution_smoke
+  type: check
+  bounce_target: impl_phase_01_port_deb_resolver
+  prompt: |-
+    Reviewer Role: QA checker for live port deb resolution and lock smoke coverage.
 
-      ## Verification Phases
+    Verify these specific things:
+    - The resolver consumes the real `inventory/github-port-repos.json`.
+    - It resolves current `04-test` commits for `cjson`, `giflib`, `liblzma`, and `libuv`.
+    - It locates matching `build-<sha12>` releases and downloads only selected native canonical `.deb` assets.
+    - The smoke lock has deterministic schema fields, full 40-character commits, correct release tags, selected deb checksums, and explicit `unported_original_packages`.
+    - Downloaded `.deb` files are written only under `/tmp/validator-port-debs-smoke/debs`.
 
-      - Phase ID: `check_phase_01_manifest_contract`
-      - Type: `check`
-      - Fixed `bounce_target`: `impl_phase_01_data_parser_usage_cases`
-      - Purpose: validate manifest schema, executable scripts, dependent-client references, Dockerfile package coverage, and cumulative counts after phase 1.
-      - Commands:
+    Run these commands:
+    ```bash
+    rm -rf /tmp/validator-port-debs-smoke
+    python3 tools/fetch_port_debs.py \
+      --config repositories.yml \
+      --port-repos inventory/github-port-repos.json \
+      --output-root /tmp/validator-port-debs-smoke/debs \
+      --lock-output /tmp/validator-port-debs-smoke/port-04-test-debs-lock.json \
+      --library cjson \
+      --library giflib \
+      --library liblzma \
+      --library libuv
 
-      ```bash
-      python3 tools/testcases.py \
-        --config repositories.yml \
-        --tests-root tests \
-        --check \
-        --min-source-cases 95 \
-        --min-usage-cases 167 \
-        --min-cases 262
+    python3 - <<'PY'
+    import json
+    from pathlib import Path
+    import yaml
+    root = Path("/tmp/validator-port-debs-smoke")
+    lock = json.loads((root / "port-04-test-debs-lock.json").read_text())
+    manifest = yaml.safe_load(Path("repositories.yml").read_text())
+    packages = {entry["name"]: entry["apt_packages"] for entry in manifest["libraries"]}
+    assert lock["schema_version"] == 1
+    assert lock["mode"] == "port-04-test"
+    assert [entry["library"] for entry in lock["libraries"]] == ["cjson", "giflib", "liblzma", "libuv"]
+    for entry in lock["libraries"]:
+        assert entry["commit"] and len(entry["commit"]) == 40
+        assert entry["release_tag"] == "build-" + entry["commit"][:12]
+        assert entry["debs"]
+        assert len(entry["unported_original_packages"]) == len(set(entry["unported_original_packages"]))
+        ported = [deb["package"] for deb in entry["debs"]]
+        assert set(ported).issubset(packages[entry["library"]])
+        assert set(entry["unported_original_packages"]).issubset(packages[entry["library"]])
+        combined = []
+        for package in packages[entry["library"]]:
+            if package in ported or package in entry["unported_original_packages"]:
+                combined.append(package)
+        assert combined == packages[entry["library"]]
+        assert set(ported).isdisjoint(entry["unported_original_packages"])
+        leaf = root / "debs" / entry["library"]
+        assert leaf.is_dir()
+        assert sorted(path.name for path in leaf.glob("*.deb")) == sorted(deb["filename"] for deb in entry["debs"])
+        for deb in entry["debs"]:
+            assert (leaf / deb["filename"]).is_file()
+            assert deb["architecture"] in {"amd64", "all"}
+            assert deb["sha256"] and len(deb["sha256"]) == 64
+    PY
+    ```
 
-      python3 tools/testcases.py \
-        --config repositories.yml \
-        --tests-root tests \
-        --list-summary
+    If any command fails or any verification item is not satisfied, report a failing verdict with the concrete reason.
+
+    End your response with exactly one of:
+    VERDICT: PASS
+    VERDICT: FAIL: <reason>
+
+- id: impl_phase_02_mode_aware_matrix
+  type: implement
+  bounce_target: null
+  prompt: |-
+    Role: Software engineer implementing phase `impl_phase_02_mode_aware_matrix` for the dual original and port 04-test validation workflow.
+
+    This prompt is self-contained; the agent sees only this prompt. Work from the repository root, follow existing project patterns, and keep changes scoped to this phase.
+
+    Goal:
+    - Make the matrix runner mode-aware while preserving legacy original artifact paths.
+    - Add first-class port `04-test` result paths and provenance copied from the phase 1 lock.
+
+    Workflow constraints:
+    - Consume existing workspace artifacts in place. Do not move or regenerate checked-in original `artifacts/results`, `artifacts/logs`, or `artifacts/casts` in this phase.
+    - Do not duplicate or fork testcase manifests for port runs.
+    - Do not modify `test.sh`; it already forwards arguments to `tools/run_matrix.py`.
+    - Keep `repositories.yml` and `inventory/github-port-repos.json` unchanged.
+    - Preserve unrelated user work.
+
+    ## Preexisting Inputs
+    - `repositories.yml`
+    - `inventory/github-port-repos.json`
+    - `tools/run_matrix.py`
+    - `test.sh`
+    - `tests/_shared/install_override_debs.sh`
+    - `tests/_shared/run_library_tests.sh`
+    - `unit/test_run_matrix.py`
+    - `unit/fixtures/original-override-debs/original-demo/original-override-marker_1.0_all.deb`
+    - Phase 1 lock schema and resolver output contract.
+    - Existing original artifacts under `artifacts/results`, `artifacts/logs`, and `artifacts/casts`; consume these in place and do not move them.
+
+    ## New Outputs
+    - `tools/run_matrix.py` accepts `--mode original` and `--mode port-04-test`.
+    - Original mode continues writing legacy paths under `results/`, `logs/`, and `casts/`.
+    - Port mode writes under `port-04-test/results/`, `port-04-test/logs/`, and `port-04-test/casts/`.
+    - Port result JSONs include mode and port deb provenance from the lock file.
+    - Override install status includes enough information to verify that override debs were actually installed.
+    - Result JSONs normalize installed package status into canonical lock order.
+    - Port result JSONs include `unported_original_packages` from the lock file.
+
+    ## File Changes
+    - Modify `tools/run_matrix.py`.
+    - Modify `tests/_shared/install_override_debs.sh`.
+    - Modify `unit/test_run_matrix.py`.
+    - Do not modify `test.sh`.
+
+    ## Implementation Details
+    - Extend `MatrixArgs` with:
+      - `mode: str`, accepting exactly `"original"` and `"port-04-test"`.
+      - `port_deb_lock: Path | None`.
+    - CLI changes:
+      - Keep `--mode`, default `"original"`.
+      - Add `--port-deb-lock`, optional `Path`.
+    - Validation:
+      - Reject unknown modes.
+      - For `mode == "port-04-test"`, require both `--override-deb-root` and `--port-deb-lock`.
+      - For `mode == "original"`, do not require a lock. Existing generic `--override-deb-root` may continue to work as a local hook, but official proof will reject original results with overrides.
+    - Add a helper equivalent to:
+      ```python
+      def artifact_mode_parts(mode: str) -> tuple[str, ...]:
+          if mode == "original":
+              return ()
+          if mode == "port-04-test":
+              return ("port-04-test",)
+          raise ValidatorError(f"unsupported mode: {mode}")
       ```
+    - Use `artifact_mode_parts(mode)` everywhere result, log, cast, Docker build log, and summary paths are constructed.
+      - Original result path remains `results/<library>/<testcase>.json`.
+      - Port result path is `port-04-test/results/<library>/<testcase>.json`.
+      - Apply the same pattern for logs, casts, `docker-build.log`, and `summary.json`.
+    - Update `write_unrun_result()`, `run_testcase()`, and `write_library_summary()` to accept `mode`.
+    - Update `_result_payload()` to set `mode` from the run mode instead of hardcoding original.
+    - Add a lock loader in `run_matrix.py` or a shared helper:
+      - Validate top-level `schema_version == 1` and `mode == "port-04-test"`.
+      - Validate selected libraries are present.
+      - Validate each lock library has `repository`, `tag_ref`, `commit`, `release_tag`, `debs`, and `unported_original_packages`.
+      - Validate lock `debs[*].package` is a non-empty ordered subset of canonical apt packages, `unported_original_packages` is the complementary ordered subset, and the two lists combine to the exact canonical `apt_packages` list in manifest order.
+      - Validate every lock deb has `package`, `filename`, `architecture`, `sha256`, and `size`; architecture must be `amd64` or `all`.
+      - Validate deb files named in the lock exist in `--override-deb-root/<library>/` and have the recorded SHA256.
+      - Reject extra `.deb` files in a selected library leaf that are not named in the lock, because `install_override_debs.sh` installs every mounted `.deb`.
+      - Validate the lock and checksums before building Docker images or writing port result artifacts.
+    - Pass per-library port metadata into every port result using stable fields:
+      - `port_repository`
+      - `port_tag_ref`
+      - `port_commit`
+      - `port_release_tag`
+      - `port_debs`, a non-empty list of `{package, filename, architecture, sha256, size}`
+      - `unported_original_packages`
+    - Original results must not include `port_*` fields or `unported_original_packages`.
+    - Extend `tests/_shared/install_override_debs.sh`:
+      - Keep existing marker behavior.
+      - After successful install, write `${VALIDATOR_STATUS_DIR:-/validator/status}/override-installed-packages.tsv`.
+      - The TSV has no header, is sorted by input filename, and contains package, version, architecture, and filename as four tab-separated columns.
+      - Use `dpkg-deb --field` to avoid filename parsing inside the container.
+    - Update `run_testcase()` to read `override-installed-packages.tsv` before removing the status directory.
+    - For `mode == "port-04-test"`:
+      - Require the TSV to exist whenever `override_debs_installed` is true.
+      - Parse TSV records and validate every record matches exactly one lock `port_debs` entry by package, filename, and architecture.
+      - Reject missing or extra installed packages.
+      - Include `override_installed_packages` in every result as `{package, version, architecture, filename}` objects ordered to match `port_debs`.
+    - For `mode == "original"`, include `override_installed_packages` only for local override hook runs where the TSV exists.
+    - Keep Docker image caching keyed by library and shared image tag.
+    - Unit tests:
+      - Update the old original-only mode test to assert original and port modes are accepted and other modes are rejected.
+      - Add tests that port mode requires override root and lock path.
+      - Add tests that original mode preserves legacy artifact paths.
+      - Add tests that port mode writes prefixed artifact paths and `mode: port-04-test`.
+      - Add tests that lock metadata, including `unported_original_packages`, is copied into each port result.
+      - Add tests that hash mismatches and extra `.deb` files in selected port override leaves are rejected.
+      - Add tests that `override_installed_packages` is recorded in canonical `port_debs` order and that an install marker without package status fails.
+      - Keep existing override-root layout tests passing.
 
-      - Phase ID: `check_phase_01_matrix_smoke`
-      - Type: `check`
-      - Fixed `bounce_target`: `impl_phase_01_data_parser_usage_cases`
-      - Purpose: run the affected data/parser/event-loop libraries with casts and verify proof generation for the selected result set.
-      - Commands:
+    ## Verification To Run Before Commit
+    ```bash
+    python3 -m unittest unit.test_run_matrix -v
+    python3 -m unittest unit.test_port_debs -v
+    ```
 
+    Confirm `git diff -- artifacts/results artifacts/logs artifacts/casts` is empty after unit checks.
+
+    ## Git Commit Requirement
+    Commit all phase 2 scoped work to git before yielding. Do not yield with uncommitted phase 2 file changes.
+
+- id: check_phase_02_run_matrix_unit_contract
+  type: check
+  bounce_target: impl_phase_02_mode_aware_matrix
+  prompt: |-
+    Reviewer Role: QA checker for the phase 2 run-matrix unit contract.
+
+    Verify these specific things:
+    - `tools/run_matrix.py` accepts only `original` and `port-04-test` modes.
+    - Original mode preserves legacy result, log, cast, build-log, and summary paths.
+    - Port mode requires `--override-deb-root` and `--port-deb-lock`.
+    - Port mode validates lock schema, selected checksums, missing and extra debs, and canonical package ordering before running Docker work.
+    - Port result JSONs contain the required provenance and `override_installed_packages` in canonical `port_debs` order.
+    - Original official results do not contain port provenance fields.
+    - `tests/_shared/install_override_debs.sh` writes the TSV status file while preserving existing marker behavior.
+    - Checked-in original artifacts were not regenerated in this phase.
+    - Phase 2 work was committed to git before yielding.
+
+    Run these commands:
+    ```bash
+    python3 -m unittest unit.test_run_matrix -v
+    python3 -m unittest unit.test_port_debs -v
+    ```
+
+    If any command fails or any verification item is not satisfied, report a failing verdict with the concrete reason.
+
+    End your response with exactly one of:
+    VERDICT: PASS
+    VERDICT: FAIL: <reason>
+
+- id: check_phase_02_port_matrix_fixture_smoke
+  type: check
+  bounce_target: impl_phase_02_mode_aware_matrix
+  prompt: |-
+    Reviewer Role: QA checker for the phase 2 port matrix fixture smoke.
+
+    Verify these specific things:
+    - The expected unit smoke tests exist.
+    - The narrow unit fixture path verifies mode-specific result paths, override markers, install status, and summaries.
+    - Running the smoke does not mutate checked-in `artifacts/results`, `artifacts/logs`, or `artifacts/casts`.
+
+    Run these commands:
+    ```bash
+    python3 - <<'PY'
+    import json
+    from pathlib import Path
+    from unit.test_run_matrix import RunMatrixTests
+
+    assert hasattr(RunMatrixTests, "test_override_root_layout_and_installed_marker")
+    assert hasattr(RunMatrixTests, "test_port_mode_writes_prefixed_paths_and_install_status")
+    PY
+
+    python3 -m unittest unit.test_run_matrix.RunMatrixTests.test_writes_per_case_results_logs_casts_and_summary -v
+    python3 -m unittest unit.test_run_matrix.RunMatrixTests.test_override_root_layout_and_installed_marker -v
+    python3 -m unittest unit.test_run_matrix.RunMatrixTests.test_port_mode_writes_prefixed_paths_and_install_status -v
+    ```
+
+    If any command fails or any verification item is not satisfied, report a failing verdict with the concrete reason.
+
+    End your response with exactly one of:
+    VERDICT: PASS
+    VERDICT: FAIL: <reason>
+
+- id: impl_phase_03_mode_aware_proof_site
+  type: implement
+  bounce_target: null
+  prompt: |-
+    Role: Software engineer implementing phase `impl_phase_03_mode_aware_proof_site` for the dual original and port 04-test validation workflow.
+
+    This prompt is self-contained; the agent sees only this prompt. Work from the repository root, follow existing project patterns, and keep changes scoped to this phase.
+
+    Goal:
+    - Teach proof generation, site rendering, and site verification about original and port `04-test` modes.
+    - Preserve original proof compatibility while enabling a second port proof and collision-free dual-mode site evidence.
+
+    Workflow constraints:
+    - Consume existing original proof and site artifacts in place. Do not overwrite `artifacts/proof/original-validation-proof.json` or regenerate checked-in `site/` in this phase.
+    - Use temporary artifact/proof/site locations for smoke checks.
+    - Do not duplicate or fork testcase manifests.
+    - Keep `repositories.yml` unchanged.
+    - Preserve unrelated user work.
+
+    ## Preexisting Inputs
+    - `repositories.yml`
+    - `tools/proof.py`
+    - `tools/verify_proof_artifacts.py`
+    - `tools/render_site.py`
+    - `scripts/verify-site.sh`
+    - `unit/test_proof.py`
+    - `unit/test_render_site.py`
+    - Phase 2 result path and port result metadata contract.
+    - Existing original proof and site artifacts, to be preserved until phase 5 regenerates them.
+
+    ## New Outputs
+    - Proof generation supports `--mode original` and `--mode port-04-test`.
+    - Original proof generation remains path-compatible and gains top-level `mode: "original"` for dual-mode rendering.
+    - Port proof generation supports `artifacts/proof/port-04-test-validation-proof.json`; phase 5 generates and commits the real port proof.
+    - Site rendering accepts multiple `--proof-path` values and renders original and port rows without collisions.
+    - Site verification accepts multiple `--proof-path` values and rebuilds each proof using its mode.
+
+    ## File Changes
+    - Modify `tools/proof.py`.
+    - Modify `tools/verify_proof_artifacts.py`.
+    - Modify `tools/render_site.py`.
+    - Modify `scripts/verify-site.sh`.
+    - Modify `unit/test_proof.py`.
+    - Modify `unit/test_render_site.py`.
+
+    ## Implementation Details
+    - In `tools/proof.py`:
+      - Add valid modes `{"original", "port-04-test"}`.
+      - Add `mode: str = "original"` to `build_proof()`.
+      - Use mode-specific artifact path prefixes matching phase 2.
+      - Change `load_result()` to accept `expected_mode`.
+      - Keep original mode strict:
+        - `mode` must be `original`.
+        - `override_debs_installed` must be `false`.
+        - No `port_*` metadata fields, no `unported_original_packages`, and no `override_installed_packages` field may be present.
+      - Add port mode strictness:
+        - `mode` must be `port-04-test`.
+        - `override_debs_installed` must be `true`.
+        - Required port fields must be present: `port_repository`, `port_tag_ref`, `port_commit`, `port_release_tag`, `port_debs`, `unported_original_packages`, `override_installed_packages`.
+        - `port_commit` must be 40 lowercase hex characters.
+        - `port_release_tag` must equal `build-<commit[:12]>`.
+        - `port_debs` must be a non-empty list of `{package, filename, architecture, sha256, size}` objects ordered by the testcase manifest `apt_packages`; architecture must be `amd64` or `all`.
+        - `unported_original_packages` must be the complementary ordered subset of testcase manifest `apt_packages`.
+        - `port_debs[*].package` plus `unported_original_packages` must be disjoint and combine to the exact canonical `apt_packages` list in manifest order.
+        - `override_installed_packages` must be a list of `{package, version, architecture, filename}` objects whose package, filename, and architecture order equals `port_debs`.
+      - Update expected result/log/cast paths by mode:
+        - Original: `results/<library>/<testcase>.json`, `logs/...`, `casts/...`.
+        - Port: `port-04-test/results/<library>/<testcase>.json`, `port-04-test/logs/...`, `port-04-test/casts/...`.
+      - Keep proof shape compatible with top-level `proof_version: 2`, `mode`, `suite`, `totals`, and `libraries`.
+      - Original proof library objects keep existing `library`, `apt_packages`, `totals`, and `testcases`.
+      - Port proof library objects add this exact provenance shape after `totals` and before `testcases`: `port_repository`, `port_tag_ref`, `port_commit`, `port_release_tag`, `port_debs`, and `unported_original_packages`.
+      - In port proof library objects, provenance must equal every result JSON for that library. Reject per-case provenance mismatches.
+    - In `tools/verify_proof_artifacts.py`:
+      - Add `--mode`, default `original`, choices `original` and `port-04-test`.
+      - Pass mode to `build_proof()`.
+      - Keep existing `--proof-output` path validation.
+    - In `tools/render_site.py`:
+      - Change `--proof-path` to `action="append"` so one or more proof files can be provided.
+      - Load all proofs and validate each proof path stays under `--artifact-root`.
+      - Require each proof to have a top-level `mode`, and reject duplicate proof modes.
+      - For multi-proof renders, require every proof to contain the same selected library names in the same order.
+      - Preserve deterministic proof order in CLI order.
+      - Update `build_site_data()` to accept a list of proofs.
+      - Use this `site-data.json` schema:
+        ```json
+        {
+          "schema_version": 2,
+          "proofs": [],
+          "testcases": []
+        }
+        ```
+      - Include both original and port rows. Existing `TESTCASE_ROW_KEYS` already contains `mode`; keep that mode field as the row-level disambiguator.
+      - Keep detailed port provenance in proof objects and do not duplicate it into every site row.
+      - Store proof objects in `site-data.json["proofs"]` in the same order as `--proof-path` arguments.
+      - Preserve each port library's `port_debs` checksum provenance and `unported_original_packages`.
+      - Change evidence hrefs to include mode:
+        - `evidence/original/logs/<library>/<testcase>.log`
+        - `evidence/original/casts/<library>/<testcase>.cast`
+        - `evidence/port-04-test/logs/<library>/<testcase>.log`
+        - `evidence/port-04-test/casts/<library>/<testcase>.cast`
+      - Update summary cards to show total case runs, original case runs, port case runs, original failures, port failures, source case runs, usage case runs, and casts.
+      - Add a mode filter to existing status/kind filters.
+      - Keep generated HTML deterministic.
+    - In `scripts/verify-site.sh`:
+      - Accept repeated `--proof-path` values.
+      - Require proof paths to resolve inside `--artifacts-root`.
+      - Require unique proof modes.
+      - Require identical selected library order across proofs.
+      - Rebuild each proof with `proof_tools.build_proof(..., mode=<proof mode>, require_casts=True)`.
+      - Compare rebuilt proofs to the provided proof files in order.
+      - Validate `site-data.json` schema version 2 and exact top-level keys: `schema_version`, `proofs`, and `testcases`.
+      - Validate copied evidence bytes for both modes.
+      - Validate every HTML row includes library, testcase id, mode, and a unique mode-specific cast href.
+      - Keep the existing safe/unsafe language check.
+    - Unit tests:
+      - Keep original proof tests passing for original mode.
+      - Add port proof tests for override required, port metadata required, install status required, path prefix required, canonical deb package subset order, complementary `unported_original_packages`, library-level `port_debs` provenance, and rejection of inconsistent port provenance.
+      - Update render tests for `site-data.json` schema 2 and repeated proof paths.
+      - Add a collision test where the same `library/testcase_id` exists in original and port proofs and produces distinct evidence hrefs.
+      - Update verify-site tests for repeated proof paths, duplicate modes, mismatched library order, and mismatched proof order.
+
+    ## Verification To Run Before Commit
+    ```bash
+    python3 -m unittest unit.test_proof -v
+    python3 -m unittest unit.test_render_site -v
+
+    rm -rf /tmp/validator-phase03-original-artifacts
+    mkdir -p /tmp/validator-phase03-original-artifacts
+    cp -a artifacts/results artifacts/logs artifacts/casts /tmp/validator-phase03-original-artifacts/
+    python3 tools/verify_proof_artifacts.py \
+      --config repositories.yml \
+      --tests-root tests \
+      --artifact-root /tmp/validator-phase03-original-artifacts \
+      --proof-output /tmp/validator-phase03-original-artifacts/proof/original-validation-proof.json \
+      --mode original \
+      --min-source-cases 95 \
+      --min-usage-cases 193 \
+      --min-cases 288 \
+      --require-casts
+    ```
+
+    Do not mutate `artifacts/proof/original-validation-proof.json` or checked-in `site/` during this phase.
+
+    ## Git Commit Requirement
+    Commit all phase 3 scoped work to git before yielding. Do not yield with uncommitted phase 3 file changes.
+
+- id: check_phase_03_proof_site_unit_contract
+  type: check
+  bounce_target: impl_phase_03_mode_aware_proof_site
+  prompt: |-
+    Reviewer Role: QA checker for the phase 3 proof/site unit contract.
+
+    Verify these specific things:
+    - Proof generation validates original and port modes with the strict field rules described in the phase prompt.
+    - Original proof compatibility is preserved and original proof generation does not accept override or port metadata.
+    - Port proof generation validates install status, port deb provenance, complementary `unported_original_packages`, canonical ordering, and mode-specific paths.
+    - Site rendering accepts repeated proof paths, rejects duplicate modes, prevents evidence href collisions, and writes schema version 2 site data.
+    - Site verification accepts repeated proof paths, rebuilds proofs by mode, validates exact site-data shape, validates copied evidence bytes, and checks HTML row mode/cast href wiring.
+    - Existing tracked original proof and site artifacts were not regenerated in this phase.
+    - Phase 3 work was committed to git before yielding.
+
+    Run these commands:
+    ```bash
+    python3 -m unittest unit.test_proof -v
+    python3 -m unittest unit.test_render_site -v
+    ```
+
+    If any command fails or any verification item is not satisfied, report a failing verdict with the concrete reason.
+
+    End your response with exactly one of:
+    VERDICT: PASS
+    VERDICT: FAIL: <reason>
+
+- id: check_phase_03_dual_site_smoke
+  type: check
+  bounce_target: impl_phase_03_mode_aware_proof_site
+  prompt: |-
+    Reviewer Role: QA checker for the phase 3 dual-site smoke.
+
+    Verify these specific things:
+    - Synthetic original and port artifacts can produce valid proofs through unit helpers.
+    - Rendering a dual-mode site uses mode-specific evidence hrefs.
+    - The smoke is deterministic and uses temporary or fixture artifacts, not tracked `artifacts/proof/original-validation-proof.json` or checked-in `site/`.
+
+    Run these commands:
+    ```bash
+    python3 -m unittest \
+      unit.test_proof.ProofTests.test_valid_original_only_proof_generation \
+      unit.test_proof.ProofTests.test_valid_port_proof_generation_requires_install_status \
+      unit.test_render_site.RenderSiteTests.test_render_site_with_original_and_port_proofs_uses_mode_evidence_hrefs \
+      -v
+    ```
+
+    If any command fails or any verification item is not satisfied, report a failing verdict with the concrete reason.
+
+    End your response with exactly one of:
+    VERDICT: PASS
+    VERDICT: FAIL: <reason>
+
+- id: impl_phase_04_make_ci_docs
+  type: implement
+  bounce_target: null
+  prompt: |-
+    Role: Software engineer implementing phase `impl_phase_04_make_ci_docs` for the dual original and port 04-test validation workflow.
+
+    This prompt is self-contained; the agent sees only this prompt. Work from the repository root, follow existing project patterns, and keep changes scoped to this phase.
+
+    Goal:
+    - Wire Make targets, CI, Pages, README, and the root generated workflow around the dual original/port validation flow.
+    - Replace stale old workflow content and thresholds with the dual-port topology and 95/193/288 testcase totals.
+
+    Workflow constraints:
+    - Consume existing original matrix, proof, site commands, `repositories.yml`, and `inventory/github-port-repos.json` in place.
+    - Do not refetch or regenerate existing testcase inventories, manifests, sample fixtures, original artifacts, or site evidence except through the explicit Make/CI commands being added.
+    - Keep `repositories.yml` and `inventory/github-port-repos.json` unchanged.
+    - Preserve unrelated user work.
+
+    ## Preexisting Inputs
+    - `Makefile`
+    - `README.md`
+    - `.github/workflows/ci.yml`
+    - `.github/workflows/pages.yml`
+    - `workflow.yaml`
+    - `repositories.yml`
+    - `inventory/github-port-repos.json`
+    - Existing original matrix, proof, and site commands.
+    - Phase 1 through phase 3 CLIs.
+
+    ## New Outputs
+    - Make targets for fetching port debs, running port matrix, generating port proof, and rendering/verifying a dual-mode site.
+    - CI and Pages workflows that run original and port validations.
+    - README instructions for local and CI dual-mode validation.
+    - Stale CI/docs thresholds updated from 95/155/250 to 95/193/288.
+    - Root generated `workflow.yaml` updated to the dual-port plan's exact inline-only topology.
+
+    ## File Changes
+    - Modify `Makefile`.
+    - Modify `README.md`.
+    - Modify `.github/workflows/ci.yml`.
+    - Modify `.github/workflows/pages.yml`.
+    - Modify `workflow.yaml`.
+
+    ## Implementation Details
+    - In `Makefile`:
+      - Keep `CONFIG`, `TESTS_ROOT`, `ARTIFACT_ROOT`, `SITE_ROOT`, `LIBRARY`, `LIBRARIES`, and threshold variables.
+      - Keep `PROOF_OUTPUT` and `PROOF_PATH` as original-proof compatibility aliases.
+      - Add:
+        - `PORT_REPOS ?= inventory/github-port-repos.json`
+        - `PORT_MODE ?= port-04-test`
+        - `PORT_DEB_ROOT ?= $(ARTIFACT_ROOT)/debs/$(PORT_MODE)`
+        - `PORT_LOCK_PATH ?= $(ARTIFACT_ROOT)/proof/$(PORT_MODE)-debs-lock.json`
+        - `ORIGINAL_PROOF_PATH ?= $(ARTIFACT_ROOT)/proof/original-validation-proof.json`
+        - `PORT_PROOF_PATH ?= $(ARTIFACT_ROOT)/proof/$(PORT_MODE)-validation-proof.json`
+      - Add phony targets:
+        - `fetch-port-debs`: runs `tools/fetch_port_debs.py`.
+        - `matrix-original`: runs `test.sh --mode original`.
+        - `matrix-port`: runs `test.sh --mode $(PORT_MODE) --override-deb-root $(PORT_DEB_ROOT) --port-deb-lock $(PORT_LOCK_PATH)`.
+        - `matrix-dual`: runs original then port.
+        - `proof-original`: runs `verify_proof_artifacts.py --mode original`.
+        - `proof-port`: runs `verify_proof_artifacts.py --mode $(PORT_MODE)`.
+        - `proof-dual`: runs both proof targets.
+        - `site-dual`: renders with both proof paths.
+        - `verify-site-dual`: verifies with both proof paths.
+      - Keep existing `matrix`, `proof`, `site`, and `verify-site` original-only for compatibility.
+    - In `README.md`:
+      - Update the opening description to mention original Ubuntu packages plus port `04-test` override validation.
+      - Update "Override Packages" from local-only language to explain the official port `04-test` deb flow and preserve the generic override hook.
+      - Document `inventory/github-port-repos.json` as the authoritative port repo list.
+      - Document the release resolution rule: resolve `refs/tags/<library>/04-test`, derive `build-<sha12>`, download available native canonical `.deb` assets, record omitted canonical packages as `unported_original_packages`, and write `artifacts/proof/port-04-test-debs-lock.json`.
+      - Document authentication through `GH_TOKEN`, `VALIDATOR_REPO_TOKEN`, or `gh auth token`.
+      - Add local examples for `make fetch-port-debs`, `RECORD_CASTS=1 make matrix-original`, `RECORD_CASTS=1 make matrix-port`, `REQUIRE_CASTS=1 MIN_SOURCE_CASES=95 MIN_USAGE_CASES=193 MIN_CASES=288 make proof-dual`, `make site-dual`, and `make verify-site-dual`.
+      - Explain that downloaded `.deb` files under `artifacts/debs/` are ignored and the lock/proof/site files are reproducibility artifacts.
+    - In `.github/workflows/ci.yml`:
+      - Update manifest thresholds to 95/193/288.
+      - Keep smoke libraries fixed as `cjson`, `libarchive`, `libuv`, and `libwebp`; smoke thresholds are 20 source cases, 41 usage cases, and 61 total cases.
+      - In smoke and full jobs, fetch port debs before port matrix.
+      - Run original and port matrices into the same artifact root with separate mode namespaces.
+      - Generate original and port proofs, render a dual-mode site, and verify the dual-mode site.
+      - Upload artifact root and site root.
+      - Set `VALIDATOR_REPO_TOKEN` from the repository secret on every port deb fetch step. In workflow YAML, escape the GitHub expression if copied into generated prompts:
+        {% raw %}
+        VALIDATOR_REPO_TOKEN: ${{ secrets.VALIDATOR_REPO_TOKEN }}
+        {% endraw %}
+      - Capture `original_matrix_exit` and `port_matrix_exit`.
+      - Compute `original_proof_failed` and `port_proof_failed` from generated proof JSONs.
+      - Continue through proof/site rendering and artifact upload, then fail if either matrix exit code is nonzero or either proof has `totals.failed != 0`.
+    - In `.github/workflows/pages.yml`:
+      - Update thresholds to 95/193/288.
+      - Add port deb fetch, port full matrix, port proof, dual site render, and dual site verification.
+      - Publish the dual-mode `site/`.
+      - Include token env for private port repo access.
+      - Capture original and port matrix exit codes as full-matrix job outputs named `original_matrix_exit` and `port_matrix_exit`.
+      - Compute `original_proof_failed` and `port_proof_failed` from `proof["totals"]["failed"]`.
+      - Continue through proof/site/deploy so evidence is published.
+      - Fail the final report job if any gating matrix exit code is nonzero, either generated proof has `totals.failed != 0`, the full-matrix job failed for infrastructure/tooling, or deployment failed.
+    - In `workflow.yaml`:
+      - Regenerate or replace the root workflow with the exact phase topology:
+        - `impl_phase_01_port_deb_resolver`
+        - `check_phase_01_fetcher_unit_contract`
+        - `check_phase_01_live_resolution_smoke`
+        - `impl_phase_02_mode_aware_matrix`
+        - `check_phase_02_run_matrix_unit_contract`
+        - `check_phase_02_port_matrix_fixture_smoke`
+        - `impl_phase_03_mode_aware_proof_site`
+        - `check_phase_03_proof_site_unit_contract`
+        - `check_phase_03_dual_site_smoke`
+        - `impl_phase_04_make_ci_docs`
+        - `check_phase_04_unit_manifest_docs_contract`
+        - `check_phase_04_workflow_review`
+        - `impl_phase_05_full_artifacts`
+        - `check_phase_05_full_dual_artifact_contract`
+        - `check_phase_05_final_site_contract`
+      - Remove the previous workflow name and old phase IDs.
+      - Keep every prompt inline in the phase `prompt` field.
+      - Do not use `include`, `prompt_file`, `workflow_file`, `workflow_dir`, `checks`, `parallel_groups`, or `bounce_targets`.
+      - Each check phase must have a single fixed `bounce_target`.
+      - Each implement prompt must include `Preexisting Inputs`, `New Outputs`, concrete implementation details, and a git commit instruction.
+
+    ## Verification To Run Before Commit
+    ```bash
+    python3 -m unittest discover -s unit -v
+    python3 tools/testcases.py \
+      --config repositories.yml \
+      --tests-root tests \
+      --check \
+      --min-source-cases 95 \
+      --min-usage-cases 193 \
+      --min-cases 288
+    ```
+
+    Also run the workflow review command from `check_phase_04_workflow_review`.
+
+    ## Git Commit Requirement
+    Commit all phase 4 scoped work to git before yielding. Do not yield with uncommitted phase 4 file changes.
+
+- id: check_phase_04_unit_manifest_docs_contract
+  type: check
+  bounce_target: impl_phase_04_make_ci_docs
+  prompt: |-
+    Reviewer Role: QA checker for phase 4 unit, manifest, and documentation contract.
+
+    Verify these specific things:
+    - Unit tests pass after Make/CI/docs/workflow changes.
+    - Manifest validation passes with 95 source cases, 193 usage cases, and 288 total cases.
+    - README and Makefile document and expose the dual original/port workflow without stale 95/155/250 assumptions.
+    - Phase 4 work was committed to git before yielding.
+
+    Run these commands:
+    ```bash
+    python3 -m unittest discover -s unit -v
+    python3 tools/testcases.py \
+      --config repositories.yml \
+      --tests-root tests \
+      --check \
+      --min-source-cases 95 \
+      --min-usage-cases 193 \
+      --min-cases 288
+    ```
+
+    If any command fails or any verification item is not satisfied, report a failing verdict with the concrete reason.
+
+    End your response with exactly one of:
+    VERDICT: PASS
+    VERDICT: FAIL: <reason>
+
+- id: check_phase_04_workflow_review
+  type: check
+  bounce_target: impl_phase_04_make_ci_docs
+  prompt: |-
+    Reviewer Role: QA checker for phase 4 GitHub Actions, root workflow, and docs review.
+
+    Verify these specific things:
+    - `.github/workflows/ci.yml`, `.github/workflows/pages.yml`, `README.md`, and `Makefile` contain the updated 95/193/288 thresholds and no stale 155/250 thresholds.
+    - CI smoke thresholds for selected libraries are 20 source, 41 usage, and 61 total cases.
+    - CI and Pages fetch port debs, run original and port matrices, generate original and port proofs, render and verify a dual-mode site, preserve evidence upload/deploy, and gate on both matrix exit codes and proof failure totals.
+    - `VALIDATOR_REPO_TOKEN` is wired for private port repo fetch steps.
+    - `workflow.yaml` contains exactly the dual-port phase IDs in order, no stale old phase IDs, no YAML-source indirection, no `parallel_groups`, and fixed checker bounce targets.
+    - Every implement phase in `workflow.yaml` includes `Preexisting Inputs`, `New Outputs`, and a git commit instruction.
+
+    Run this command:
+    ```bash
+    python3 - <<'PY'
+    from pathlib import Path
+    import yaml
+
+    for path in [
+        Path(".github/workflows/ci.yml"),
+        Path(".github/workflows/pages.yml"),
+        Path("README.md"),
+        Path("Makefile"),
+    ]:
+        text = path.read_text()
+        assert "95" in text, path
+        assert "193" in text, path
+        assert "288" in text, path
+        assert "155" not in text, path
+        assert "250" not in text, path
+    ci_text = Path(".github/workflows/ci.yml").read_text()
+    assert "--min-source-cases 20" in ci_text
+    assert "--min-usage-cases 41" in ci_text
+    assert "--min-cases 61" in ci_text
+    ci = yaml.safe_load(Path(".github/workflows/ci.yml").read_text())
+    ci_jobs = ci["jobs"]
+    for job_name in ("matrix-smoke", "full-matrix"):
+        job = ci_jobs[job_name]
+        run_text = "\n".join(
+            step.get("run", "")
+            for step in job.get("steps", [])
+            if isinstance(step, dict)
+        )
+        assert "fetch_port_debs.py" in run_text or "fetch-port-debs" in run_text, job_name
+        assert "--mode original" in run_text or "matrix-original" in run_text, job_name
+        assert "--mode port-04-test" in run_text or "matrix-port" in run_text, job_name
+        assert "port-04-test-debs-lock.json" in run_text or "PORT_LOCK_PATH" in run_text, job_name
+        assert "port-04-test-validation-proof.json" in run_text or "PORT_PROOF_PATH" in run_text, job_name
+        assert "original_matrix_exit" in run_text, job_name
+        assert "port_matrix_exit" in run_text, job_name
+        assert "original_proof_failed" in run_text, job_name
+        assert "port_proof_failed" in run_text, job_name
+        assert '["totals"]["failed"]' in run_text or "totals.failed" in run_text, job_name
+        assert "VALIDATOR_REPO_TOKEN" in str(job), job_name
+    pages = yaml.safe_load(Path(".github/workflows/pages.yml").read_text())
+    pages_run_text = "\n".join(
+        step.get("run", "")
+        for job in pages["jobs"].values()
+        for step in job.get("steps", [])
+        if isinstance(step, dict)
+    )
+    assert "fetch_port_debs.py" in pages_run_text or "fetch-port-debs" in pages_run_text
+    assert "--mode original" in pages_run_text or "matrix-original" in pages_run_text
+    assert "--mode port-04-test" in pages_run_text or "matrix-port" in pages_run_text
+    assert "port-04-test-validation-proof.json" in pages_run_text or "PORT_PROOF_PATH" in pages_run_text
+    assert "original_matrix_exit" in pages_run_text
+    assert "port_matrix_exit" in pages_run_text
+    assert "original_proof_failed" in pages_run_text
+    assert "port_proof_failed" in pages_run_text
+    assert '["totals"]["failed"]' in pages_run_text or "totals.failed" in pages_run_text
+    assert "VALIDATOR_REPO_TOKEN" in str(pages)
+    assert "fetch-port-debs" in Path("Makefile").read_text()
+    assert "port-04-test" in Path("README.md").read_text()
+    assert "VALIDATOR_REPO_TOKEN" in Path("README.md").read_text()
+
+    workflow = yaml.safe_load(Path("workflow.yaml").read_text())
+    phase_ids = [phase["id"] for phase in workflow["phases"]]
+    assert phase_ids == [
+        "impl_phase_01_port_deb_resolver",
+        "check_phase_01_fetcher_unit_contract",
+        "check_phase_01_live_resolution_smoke",
+        "impl_phase_02_mode_aware_matrix",
+        "check_phase_02_run_matrix_unit_contract",
+        "check_phase_02_port_matrix_fixture_smoke",
+        "impl_phase_03_mode_aware_proof_site",
+        "check_phase_03_proof_site_unit_contract",
+        "check_phase_03_dual_site_smoke",
+        "impl_phase_04_make_ci_docs",
+        "check_phase_04_unit_manifest_docs_contract",
+        "check_phase_04_workflow_review",
+        "impl_phase_05_full_artifacts",
+        "check_phase_05_full_dual_artifact_contract",
+        "check_phase_05_final_site_contract",
+    ]
+    for forbidden in ("parallel_groups", "include", "prompt_file", "workflow_file", "workflow_dir", "checks", "bounce_targets"):
+        assert forbidden not in workflow, forbidden
+        for phase in workflow["phases"]:
+            assert forbidden not in phase, (phase["id"], forbidden)
+    expected_bounce_targets = {
+        "check_phase_01_fetcher_unit_contract": "impl_phase_01_port_deb_resolver",
+        "check_phase_01_live_resolution_smoke": "impl_phase_01_port_deb_resolver",
+        "check_phase_02_run_matrix_unit_contract": "impl_phase_02_mode_aware_matrix",
+        "check_phase_02_port_matrix_fixture_smoke": "impl_phase_02_mode_aware_matrix",
+        "check_phase_03_proof_site_unit_contract": "impl_phase_03_mode_aware_proof_site",
+        "check_phase_03_dual_site_smoke": "impl_phase_03_mode_aware_proof_site",
+        "check_phase_04_unit_manifest_docs_contract": "impl_phase_04_make_ci_docs",
+        "check_phase_04_workflow_review": "impl_phase_04_make_ci_docs",
+        "check_phase_05_full_dual_artifact_contract": "impl_phase_05_full_artifacts",
+        "check_phase_05_final_site_contract": "impl_phase_05_full_artifacts",
+    }
+    for phase in workflow["phases"]:
+        if phase["type"] == "check":
+            assert phase["bounce_target"] == expected_bounce_targets[phase["id"]], phase["id"]
+        if phase["type"] == "implement":
+            assert phase.get("bounce_target") is None, phase["id"]
+            assert "commit" in phase["prompt"].lower(), phase["id"]
+            assert "Preexisting Inputs" in phase["prompt"], phase["id"]
+            assert "New Outputs" in phase["prompt"], phase["id"]
+    PY
+    ```
+
+    If any command fails or any verification item is not satisfied, report a failing verdict with the concrete reason.
+
+    End your response with exactly one of:
+    VERDICT: PASS
+    VERDICT: FAIL: <reason>
+
+- id: impl_phase_05_full_artifacts
+  type: implement
+  bounce_target: null
+  prompt: |-
+    Role: Software engineer implementing phase `impl_phase_05_full_artifacts` for the dual original and port 04-test validation workflow.
+
+    This prompt is self-contained; the agent sees only this prompt. Work from the repository root, follow existing project patterns, and keep changes scoped to this phase.
+
+    Goal:
+    - Generate and commit the final original and port `04-test` evidence set, proofs, lock provenance, and dual-mode site.
+    - Keep downloaded `.deb` files ignored and uncommitted.
+
+    Workflow constraints:
+    - Consume all source files, tools, manifests, tests, original artifacts, and existing site evidence in place.
+    - Run the final artifact flow through the existing tools only. Do not manually edit generated JSON, logs, casts, or HTML.
+    - Do not refetch, recollect, rediscover, or regenerate testcase manifests, dependent inventories, sample fixtures, or Docker harnesses from scratch.
+    - Do not change testcase manifests in this phase unless a verifier finds a real broken test contract.
+    - Preserve unrelated user work and introduce no unrelated changes to `.plan/goal.md` or old phase files.
+
+    ## Preexisting Inputs
+    - All source files and tools from phases 1 through 4.
+    - Existing original artifacts under `artifacts/results`, `artifacts/logs`, `artifacts/casts`, `artifacts/proof/original-validation-proof.json`, and `site/`.
+    - Existing testcase manifests and fixtures under `tests/`.
+    - Existing `repositories.yml`.
+    - Existing `inventory/github-port-repos.json`.
+    - GitHub token access when resolving/downloading private port releases.
+
+    ## New Outputs
+    - Downloaded port deb cache under `artifacts/debs/port-04-test/<library>/*.deb`; these files stay ignored and must not be committed.
+    - Tracked provenance lock `artifacts/proof/port-04-test-debs-lock.json`.
+    - Port matrix artifacts under:
+      - `artifacts/port-04-test/results/<library>/*.json`
+      - `artifacts/port-04-test/logs/<library>/*.log`
+      - `artifacts/port-04-test/casts/<library>/*.cast`
+    - Updated original proof if original artifacts are regenerated.
+    - New `artifacts/proof/port-04-test-validation-proof.json`.
+    - Updated dual-mode `site/`.
+
+    ## File Changes
+    - Generated updates under `artifacts/proof/`.
+    - Generated additions under `artifacts/port-04-test/`.
+    - Generated updates under `site/`.
+    - Because `.gitignore` ignores `artifacts/proof/` and `site/`, force-add intended evidence files with `git add -f`, including `artifacts/proof/port-04-test-debs-lock.json`, `artifacts/proof/port-04-test-validation-proof.json`, and new `site/evidence/port-04-test/**` paths.
+    - Do not commit `artifacts/debs/`.
+
+    ## Implementation Details
+    - Run this command sequence:
       ```bash
-      rm -rf /tmp/validator-more-cases-phase01
+      python3 tools/fetch_port_debs.py \
+        --config repositories.yml \
+        --port-repos inventory/github-port-repos.json \
+        --output-root artifacts/debs/port-04-test \
+        --lock-output artifacts/proof/port-04-test-debs-lock.json
+
+      set +e
       bash test.sh \
         --config repositories.yml \
         --tests-root tests \
-        --artifact-root /tmp/validator-more-cases-phase01 \
-        --record-casts \
-        --library cjson \
-        --library libcsv \
-        --library libjson \
-        --library libxml \
-        --library libyaml \
-        --library libuv
+        --artifact-root artifacts \
+        --mode original \
+        --record-casts
+      original_matrix_exit=$?
+
+      bash test.sh \
+        --config repositories.yml \
+        --tests-root tests \
+        --artifact-root artifacts \
+        --mode port-04-test \
+        --override-deb-root artifacts/debs/port-04-test \
+        --port-deb-lock artifacts/proof/port-04-test-debs-lock.json \
+        --record-casts
+      port_matrix_exit=$?
+      set -e
 
       python3 tools/verify_proof_artifacts.py \
         --config repositories.yml \
         --tests-root tests \
-        --artifact-root /tmp/validator-more-cases-phase01 \
-        --proof-output /tmp/validator-more-cases-phase01/proof/original-validation-proof.json \
-        --library cjson \
-        --library libcsv \
-        --library libjson \
-        --library libxml \
-        --library libyaml \
-        --library libuv \
-        --min-source-cases 30 \
-        --min-usage-cases 61 \
-        --min-cases 91 \
-        --require-casts
-      ```
-
-      ## Success Criteria
-
-      - Phase 1 adds exactly 12 usage cases across `cjson`, `libcsv`, `libjson`, `libxml`, `libyaml`, and `libuv` while leaving source cases unchanged.
-      - Manifest validation reports at least 95 source cases, 167 usage cases, and 262 total cases.
-      - The phase 1 matrix smoke passes with casts and selected proof totals of at least 30 source cases, 61 usage cases, and 91 total cases.
-      - `/tmp/validator-more-cases-phase01/proof/original-validation-proof.json` is used only as a temporary verifier artifact and is not committed.
-      - `repositories.yml`, affected library Dockerfiles, dependent fixtures, prepared inventories, current tracked artifacts, proof data, and rendered site evidence are preserved unchanged unless explicitly updated by existing tools.
-
-      ## Git Commit Requirement
-
-      The implementer must commit all phase 1 scoped work to git before yielding. Do not yield with uncommitted phase 1 file changes.
-
-  - id: check_phase_01_manifest_contract
-    type: check
-    bounce_target: impl_phase_01_data_parser_usage_cases
-    prompt: |
-      Reviewer role: manifest contract reviewer for phase 1 data/parser/event-loop usage cases.
-
-      Verify all of the following:
-      - The workflow implementation added exactly the phase 1 scoped usage cases and did not modify `repositories.yml`, affected Dockerfiles, dependent fixtures, prepared inventories, tracked proof data, or rendered site evidence outside the phase requirements.
-      - The new manifest entries follow the global testcase entry contract: id equals script filename without `.sh`, `kind: usage`, `timeout_seconds: 180`, semantic title, client-behavior description, valid existing `client_application`, exact `/validator/tests/<library>/tests/cases/usage/<script>.sh` command, and appropriate tags.
-      - All 12 new usage scripts exist, are executable, and wrapper scripts call their common helpers with the specified workload arguments.
-      - Dependent-client references are covered by existing fixture and Dockerfile package coverage.
-      - Cumulative counts after phase 1 meet at least 95 source cases, 167 usage cases, and 262 total cases.
-
-      Run these commands:
-
-      ```bash
-      python3 tools/testcases.py \
-        --config repositories.yml \
-        --tests-root tests \
-        --check \
-        --min-source-cases 95 \
-        --min-usage-cases 167 \
-        --min-cases 262
-
-      python3 tools/testcases.py \
-        --config repositories.yml \
-        --tests-root tests \
-        --list-summary
-      ```
-
-      End with exactly one verdict line: `VERDICT: PASS` or `VERDICT: FAIL: <reason>`
-
-  - id: check_phase_01_matrix_smoke
-    type: check
-    bounce_target: impl_phase_01_data_parser_usage_cases
-    prompt: |
-      Reviewer role: matrix smoke reviewer for phase 1 data/parser/event-loop usage cases.
-
-      Verify all of the following:
-      - The affected libraries `cjson`, `libcsv`, `libjson`, `libxml`, `libyaml`, and `libuv` pass the matrix smoke run with casts recorded.
-      - The selected proof output is generated under `/tmp/validator-more-cases-phase01/proof/original-validation-proof.json`.
-      - The selected proof totals are at least 30 source cases, 61 usage cases, and 91 total cases.
-      - Casts are required and present for the selected phase 1 run.
-      - Temporary verifier output under `/tmp/validator-more-cases-phase01` is not committed.
-
-      Run these commands:
-
-      ```bash
-      rm -rf /tmp/validator-more-cases-phase01
-      bash test.sh \
-        --config repositories.yml \
-        --tests-root tests \
-        --artifact-root /tmp/validator-more-cases-phase01 \
-        --record-casts \
-        --library cjson \
-        --library libcsv \
-        --library libjson \
-        --library libxml \
-        --library libyaml \
-        --library libuv
-
-      python3 tools/verify_proof_artifacts.py \
-        --config repositories.yml \
-        --tests-root tests \
-        --artifact-root /tmp/validator-more-cases-phase01 \
-        --proof-output /tmp/validator-more-cases-phase01/proof/original-validation-proof.json \
-        --library cjson \
-        --library libcsv \
-        --library libjson \
-        --library libxml \
-        --library libyaml \
-        --library libuv \
-        --min-source-cases 30 \
-        --min-usage-cases 61 \
-        --min-cases 91 \
-        --require-casts
-      ```
-
-      End with exactly one verdict line: `VERDICT: PASS` or `VERDICT: FAIL: <reason>`
-
-  - id: impl_phase_02_archive_compression_usage_cases
-    type: implement
-    bounce_target: null
-    prompt: |
-      Implement phase 2 exactly as specified below. The phase file is the authoritative prompt content for this phase.
-
-      Use the listed Preexisting Inputs in place, including concrete outputs from phase 1. Consume or update existing artifacts instead of refetching, recollecting, rediscovering, regenerating, expanding, or reordering them from scratch unless the phase explicitly tells you to run an existing tool for that purpose.
-
-      Commit all phase 2 scoped work to git before yielding. Do not yield with uncommitted phase 2 file changes.
-
-      # 2. Archive and Compression Dependent Usage Cases
-
-      ## Phase Name
-
-      Archive and Compression Dependent Usage Cases
-
-      ## Implement Phase ID
-
-      `impl_phase_02_archive_compression_usage_cases`
-
-      ## Preexisting Inputs
-
-      - `tests/cjson/` concrete phase 1 output directory.
-      - `tests/libcsv/` concrete phase 1 output directory.
-      - `tests/libjson/` concrete phase 1 output directory.
-      - `tests/libxml/` concrete phase 1 output directory.
-      - `tests/libyaml/` concrete phase 1 output directory.
-      - `tests/libuv/` concrete phase 1 output directory.
-      - `repositories.yml` canonical manifest and package list; consume it unchanged.
-      - `test.sh`
-      - `tools/testcases.py`
-      - `tools/run_matrix.py`
-      - `tools/verify_proof_artifacts.py`
-      - `tests/_shared/run_library_tests.sh`
-      - Existing `tests/libarchive/` manifest, Dockerfile, dependent fixture, sample fixtures, and usage scripts.
-      - Existing `tests/libbz2/` manifest, Dockerfile, dependent fixture, sample fixtures, and usage scripts.
-      - Existing `tests/liblzma/` manifest, Dockerfile, dependent fixture, sample fixtures, and usage scripts.
-      - Existing `tests/libzstd/` manifest, Dockerfile, dependent fixture, sample fixtures, and usage scripts.
-      - Existing tracked `artifacts/results/`, `artifacts/logs/`, `artifacts/casts/`, `artifacts/proof/original-validation-proof.json`, and `site/` evidence. Consume these artifacts in place; do not refetch, recollect, rediscover, regenerate, expand, or reorder dependent inventories.
-
-      ## New Outputs
-
-      - 8 new usage testcase manifest entries.
-      - 8 new executable usage scripts.
-      - Updated `python-libarchive-c` common helper.
-
-      ## File Changes
-
-      - Modify `tests/libarchive/testcases.yml`.
-      - Modify `tests/libarchive/tests/cases/usage/usage-python-libarchive-c-common.sh`.
-      - Add `tests/libarchive/tests/cases/usage/usage-python-libarchive-c-zip-roundtrip.sh`.
-      - Add `tests/libarchive/tests/cases/usage/usage-python-libarchive-c-nested-paths.sh`.
-      - Modify `tests/libbz2/testcases.yml`.
-      - Add `tests/libbz2/tests/cases/usage/usage-bzip2-decompress-keep-input.sh`.
-      - Add `tests/libbz2/tests/cases/usage/usage-bzip2-force-overwrite.sh`.
-      - Modify `tests/liblzma/testcases.yml`.
-      - Add `tests/liblzma/tests/cases/usage/usage-libarchive-tools-xz-metadata-list.sh`.
-      - Add `tests/liblzma/tests/cases/usage/usage-libarchive-tools-xz-preserve-permissions.sh`.
-      - Modify `tests/libzstd/testcases.yml`.
-      - Add `tests/libzstd/tests/cases/usage/usage-libarchive-tools-zstd-metadata-list.sh`.
-      - Add `tests/libzstd/tests/cases/usage/usage-libarchive-tools-zstd-preserve-permissions.sh`.
-
-      ## Implementation Details
-
-      - Apply the global testcase entry contract to all 8 new manifest entries:
-        - Use the new script filename without `.sh` as each manifest entry `id`.
-        - Set `kind: usage`.
-        - Set `timeout_seconds: 180`.
-        - Use a semantic `title`.
-        - Use a client-behavior `description`.
-        - Set `client_application` to one of the existing identifiers named below.
-        - Set `command` exactly to `bash /validator/tests/<library>/tests/cases/usage/<script>.sh`.
-        - Tags must include `usage` and one or more behavior tags already consistent with the library's local manifest style, such as `compression`, `metadata`, or `archive`.
-      - Wrapper scripts that call a library-local common helper must contain `#!/usr/bin/env bash`, `set -euo pipefail`, and then execute the common helper with the exact workload argument named here.
-      - Do not modify `repositories.yml`; it remains the fixed canonical manifest and package list.
-      - Do not modify any affected `tests/<library>/Dockerfile`; every dependent package required by the planned clients is already installed.
-      - Use only these existing dependent client identifiers:
-        - `libarchive`: `python3-libarchive-c`
-        - `libbz2`: `bzip2`
-        - `liblzma`: `libarchive-tools`
-        - `libzstd`: `libarchive-tools`
-      - Do not modify any `tests/<library>/tests/fixtures/dependents.json`.
-      - `libarchive`: extend `usage-python-libarchive-c-common.sh` with these workloads:
-        - `zip-roundtrip`: write a ZIP archive through `libarchive.file_writer(..., "zip")`, read it back through `libarchive.file_reader`, and assert file names and contents.
-        - `nested-paths`: write entries such as `dir/sub.txt` and `dir/space name.txt`, read them back, and assert path names and byte contents.
-      - `libbz2`:
-        - `usage-bzip2-decompress-keep-input.sh`: write a payload through `bzip2 -c` to `payload.bz2`, run `bunzip2 -k "$tmpdir/payload.bz2"`, assert both `payload.bz2` and decompressed `payload` still exist, and compare content.
-        - `usage-bzip2-force-overwrite.sh`: create one compressed output, replace the source content, run `bzip2 -kf` to overwrite the existing `.bz2`, then decompress and assert the new content is present.
-      - `liblzma`:
-        - `usage-libarchive-tools-xz-metadata-list.sh`: create an executable file, archive with `bsdtar -cJf`, run `bsdtar -tvf`, and assert the listed path and executable mode marker.
-        - `usage-libarchive-tools-xz-preserve-permissions.sh`: archive and extract an executable file through `bsdtar -cJf` and `bsdtar -xf`, then assert `test -x`.
-      - `libzstd`:
-        - `usage-libarchive-tools-zstd-metadata-list.sh`: mirror the `liblzma` metadata listing test, using `bsdtar --zstd -cf` for creation and normal `bsdtar -tf` or `bsdtar -tvf` for reading.
-        - `usage-libarchive-tools-zstd-preserve-permissions.sh`: mirror the `liblzma` permission preservation test, using `bsdtar --zstd -cf` for creation and normal `bsdtar -xf` for extraction.
-      - Make all new scripts executable.
-
-      ## Verification Phases
-
-      - Phase ID: `check_phase_02_manifest_contract`
-      - Type: `check`
-      - Fixed `bounce_target`: `impl_phase_02_archive_compression_usage_cases`
-      - Purpose: validate manifest schema and cumulative counts after archive/compression additions.
-      - Commands:
-
-      ```bash
-      python3 tools/testcases.py \
-        --config repositories.yml \
-        --tests-root tests \
-        --check \
-        --min-source-cases 95 \
-        --min-usage-cases 175 \
-        --min-cases 270
-      ```
-
-      - Phase ID: `check_phase_02_matrix_smoke`
-      - Type: `check`
-      - Fixed `bounce_target`: `impl_phase_02_archive_compression_usage_cases`
-      - Purpose: run the affected archive/compression libraries with casts and verify selected proof output.
-      - Commands:
-
-      ```bash
-      rm -rf /tmp/validator-more-cases-phase02
-      bash test.sh \
-        --config repositories.yml \
-        --tests-root tests \
-        --artifact-root /tmp/validator-more-cases-phase02 \
-        --record-casts \
-        --library libarchive \
-        --library libbz2 \
-        --library liblzma \
-        --library libzstd
-
-      python3 tools/verify_proof_artifacts.py \
-        --config repositories.yml \
-        --tests-root tests \
-        --artifact-root /tmp/validator-more-cases-phase02 \
-        --proof-output /tmp/validator-more-cases-phase02/proof/original-validation-proof.json \
-        --library libarchive \
-        --library libbz2 \
-        --library liblzma \
-        --library libzstd \
-        --min-source-cases 20 \
-        --min-usage-cases 40 \
-        --min-cases 60 \
-        --require-casts
-      ```
-
-      ## Success Criteria
-
-      - Phase 2 adds exactly 8 usage cases across `libarchive`, `libbz2`, `liblzma`, and `libzstd` while leaving source cases unchanged.
-      - Manifest validation reports at least 95 source cases, 175 usage cases, and 270 total cases.
-      - The phase 2 matrix smoke passes with casts and selected proof totals of 20 source cases, 40 usage cases, and 60 total cases.
-      - New archive/compression logs have deterministic output and no host absolute paths.
-      - Temporary verifier output under `/tmp/validator-more-cases-phase02` is not committed.
-      - `repositories.yml`, affected library Dockerfiles, dependent fixtures, prepared inventories, current tracked artifacts, proof data, and rendered site evidence are preserved unchanged unless explicitly updated by existing tools.
-
-      ## Git Commit Requirement
-
-      The implementer must commit all phase 2 scoped work to git before yielding. Do not yield with uncommitted phase 2 file changes.
-
-  - id: check_phase_02_manifest_contract
-    type: check
-    bounce_target: impl_phase_02_archive_compression_usage_cases
-    prompt: |
-      Reviewer role: manifest contract reviewer for phase 2 archive/compression usage cases.
-
-      Verify all of the following:
-      - Phase 2 added exactly 8 scoped usage cases across `libarchive`, `libbz2`, `liblzma`, and `libzstd` while leaving source cases unchanged.
-      - The new manifest entries follow the global testcase entry contract: id equals script filename without `.sh`, `kind: usage`, `timeout_seconds: 180`, semantic title, client-behavior description, valid existing `client_application`, exact `/validator/tests/<library>/tests/cases/usage/<script>.sh` command, and appropriate tags.
-      - All new scripts exist, are executable, use deterministic output, and avoid host absolute paths in logs.
-      - `repositories.yml`, affected Dockerfiles, dependent fixtures, prepared inventories, tracked proof data, and rendered site evidence are preserved unchanged unless explicitly required by the phase.
-      - Cumulative counts after phase 2 meet at least 95 source cases, 175 usage cases, and 270 total cases.
-
-      Run this command:
-
-      ```bash
-      python3 tools/testcases.py \
-        --config repositories.yml \
-        --tests-root tests \
-        --check \
-        --min-source-cases 95 \
-        --min-usage-cases 175 \
-        --min-cases 270
-      ```
-
-      End with exactly one verdict line: `VERDICT: PASS` or `VERDICT: FAIL: <reason>`
-
-  - id: check_phase_02_matrix_smoke
-    type: check
-    bounce_target: impl_phase_02_archive_compression_usage_cases
-    prompt: |
-      Reviewer role: matrix smoke reviewer for phase 2 archive/compression usage cases.
-
-      Verify all of the following:
-      - The affected libraries `libarchive`, `libbz2`, `liblzma`, and `libzstd` pass the matrix smoke run with casts recorded.
-      - The selected proof output is generated under `/tmp/validator-more-cases-phase02/proof/original-validation-proof.json`.
-      - The selected proof totals are at least 20 source cases, 40 usage cases, and 60 total cases.
-      - Casts are required and present for the selected phase 2 run.
-      - Temporary verifier output under `/tmp/validator-more-cases-phase02` is not committed.
-
-      Run these commands:
-
-      ```bash
-      rm -rf /tmp/validator-more-cases-phase02
-      bash test.sh \
-        --config repositories.yml \
-        --tests-root tests \
-        --artifact-root /tmp/validator-more-cases-phase02 \
-        --record-casts \
-        --library libarchive \
-        --library libbz2 \
-        --library liblzma \
-        --library libzstd
-
-      python3 tools/verify_proof_artifacts.py \
-        --config repositories.yml \
-        --tests-root tests \
-        --artifact-root /tmp/validator-more-cases-phase02 \
-        --proof-output /tmp/validator-more-cases-phase02/proof/original-validation-proof.json \
-        --library libarchive \
-        --library libbz2 \
-        --library liblzma \
-        --library libzstd \
-        --min-source-cases 20 \
-        --min-usage-cases 40 \
-        --min-cases 60 \
-        --require-casts
-      ```
-
-      End with exactly one verdict line: `VERDICT: PASS` or `VERDICT: FAIL: <reason>`
-
-  - id: impl_phase_03_media_image_usage_cases
-    type: implement
-    bounce_target: null
-    prompt: |
-      Implement phase 3 exactly as specified below. The phase file is the authoritative prompt content for this phase.
-
-      Use the listed Preexisting Inputs in place, including concrete outputs from phases 1 and 2. Consume or update existing artifacts instead of refetching, recollecting, rediscovering, regenerating, expanding, or reordering them from scratch unless the phase explicitly tells you to run an existing tool for that purpose.
-
-      Commit all phase 3 scoped work to git before yielding. Do not yield with uncommitted phase 3 file changes.
-
-      # 3. Media, Image, and Metadata Dependent Usage Cases
-
-      ## Phase Name
-
-      Media, Image, and Metadata Dependent Usage Cases
-
-      ## Implement Phase ID
-
-      `impl_phase_03_media_image_usage_cases`
-
-      ## Preexisting Inputs
-
-      - `tests/cjson/` concrete phase 1 output directory.
-      - `tests/libcsv/` concrete phase 1 output directory.
-      - `tests/libjson/` concrete phase 1 output directory.
-      - `tests/libxml/` concrete phase 1 output directory.
-      - `tests/libyaml/` concrete phase 1 output directory.
-      - `tests/libuv/` concrete phase 1 output directory.
-      - `tests/libarchive/` concrete phase 2 output directory.
-      - `tests/libbz2/` concrete phase 2 output directory.
-      - `tests/liblzma/` concrete phase 2 output directory.
-      - `tests/libzstd/` concrete phase 2 output directory.
-      - `repositories.yml` canonical manifest and package list; consume it unchanged.
-      - `test.sh`
-      - `tools/testcases.py`
-      - `tools/run_matrix.py`
-      - `tools/verify_proof_artifacts.py`
-      - `tests/_shared/run_library_tests.sh`
-      - Existing `tests/giflib/` manifest, Dockerfile, dependent fixture, sample fixtures, and usage scripts.
-      - Existing `tests/libexif/` manifest, Dockerfile, dependent fixture, sample fixtures, and usage scripts.
-      - Existing `tests/libjpeg-turbo/` manifest, Dockerfile, dependent fixture, sample fixtures, and usage scripts.
-      - Existing `tests/libpng/` manifest, Dockerfile, dependent fixture, sample fixtures, and usage scripts.
-      - Existing `tests/libtiff/` manifest, Dockerfile, dependent fixture, sample fixtures, and usage scripts.
-      - Existing `tests/libvips/` manifest, Dockerfile, dependent fixture, sample fixtures, and usage scripts.
-      - Existing `tests/libwebp/` manifest, Dockerfile, dependent fixture, sample fixtures, and usage scripts.
-      - Existing tracked `artifacts/results/`, `artifacts/logs/`, `artifacts/casts/`, `artifacts/proof/original-validation-proof.json`, and `site/` evidence. Consume these artifacts in place; do not refetch, recollect, rediscover, regenerate, expand, or reorder dependent inventories.
-
-      ## New Outputs
-
-      - 14 new usage testcase manifest entries.
-      - 14 new executable usage scripts.
-      - Updated `exif` common helper.
-
-      ## File Changes
-
-      - Modify `tests/giflib/testcases.yml`.
-      - Add `tests/giflib/tests/cases/usage/usage-giflib-tools-gif2rgb-fire-fixture.sh`.
-      - Add `tests/giflib/tests/cases/usage/usage-giflib-tools-giftext-interlaced-fixture.sh`.
-      - Modify `tests/libexif/testcases.yml`.
-      - Modify `tests/libexif/tests/cases/usage/usage-exif-cli-common.sh`.
-      - Add `tests/libexif/tests/cases/usage/usage-exif-cli-tag-datetime.sh`.
-      - Add `tests/libexif/tests/cases/usage/usage-exif-cli-tag-datetime-original.sh`.
-      - Modify `tests/libjpeg-turbo/testcases.yml`.
-      - Add `tests/libjpeg-turbo/tests/cases/usage/usage-python3-pil-progressive-jpeg.sh`.
-      - Add `tests/libjpeg-turbo/tests/cases/usage/usage-vips-extract-band-jpeg.sh`.
-      - Modify `tests/libpng/testcases.yml`.
-      - Add `tests/libpng/tests/cases/usage/usage-pngquant-posterize-png.sh`.
-      - Add `tests/libpng/tests/cases/usage/usage-netpbm-pamflip-png.sh`.
-      - Modify `tests/libtiff/testcases.yml`.
-      - Add `tests/libtiff/tests/cases/usage/usage-python3-pil-deflate-tiff.sh`.
-      - Add `tests/libtiff/tests/cases/usage/usage-python3-pil-tiff-dpi-save.sh`.
-      - Modify `tests/libvips/testcases.yml`.
-      - Add `tests/libvips/tests/cases/usage/usage-ruby-vips-gaussblur-image.sh`.
-      - Add `tests/libvips/tests/cases/usage/usage-ruby-vips-histogram-image.sh`.
-      - Modify `tests/libwebp/testcases.yml`.
-      - Add `tests/libwebp/tests/cases/usage/usage-python3-pil-webp-alpha.sh`.
-      - Add `tests/libwebp/tests/cases/usage/usage-ffmpeg-webp-scale-filter.sh`.
-
-      ## Implementation Details
-
-      - Apply the global testcase entry contract to all 14 new manifest entries:
-        - Use the new script filename without `.sh` as each manifest entry `id`.
-        - Set `kind: usage`.
-        - Set `timeout_seconds: 180`.
-        - Use a semantic `title`.
-        - Use a client-behavior `description`.
-        - Set `client_application` to one of the existing identifiers named below.
-        - Set `command` exactly to `bash /validator/tests/<library>/tests/cases/usage/<script>.sh`.
-        - Tags must include `usage` and one or more behavior tags already consistent with the library's local manifest style, such as `metadata`, `image`, or `compression`.
-      - Wrapper scripts that call a library-local common helper must contain `#!/usr/bin/env bash`, `set -euo pipefail`, and then execute the common helper with the exact workload argument named here.
-      - Do not modify `repositories.yml`; it remains the fixed canonical manifest and package list.
-      - Do not modify any affected `tests/<library>/Dockerfile`; every dependent package required by the planned clients is already installed.
-      - Use only these existing dependent client identifiers:
-        - `giflib`: `giflib-tools`
-        - `libexif`: `exif`
-        - `libjpeg-turbo`: `python3-pil` and `vips`
-        - `libpng`: `pngquant` and `netpbm`
-        - `libtiff`: `python3-pil`
-        - `libvips`: `ruby-vips`
-        - `libwebp`: `python3-pil` and `ffmpeg`
-      - Do not modify any `tests/<library>/tests/fixtures/dependents.json`.
-      - `giflib`:
-        - `usage-giflib-tools-gif2rgb-fire-fixture.sh`: read `"$VALIDATOR_SAMPLE_ROOT/pic/fire.gif"`, run `gif2rgb -1 -o`, and compare output bytes to `"$VALIDATOR_SAMPLE_ROOT/tests/fire.rgb"` with `cmp`.
-        - `usage-giflib-tools-giftext-interlaced-fixture.sh`: read `treescap-interlaced.gif`, run `giftext`, assert `Screen Size`, and require a case-insensitive `interlace` match in the output.
-      - `libexif`: extend `usage-exif-cli-common.sh` with these workloads:
-        - `tag-datetime`: run `exif --tag=DateTime` and assert `2009:10:10 16:42:32`.
-        - `tag-datetime-original`: run `exif --tag=DateTimeOriginal` and assert `2009:10:10 16:42:32`.
-      - `libjpeg-turbo`:
-        - `usage-python3-pil-progressive-jpeg.sh`: generate a small PPM, encode it with `cjpeg -progressive`, open the output with Pillow, call `load()`, assert size and mode, and assert `im.info.get("progressive") == 1` or `im.info.get("progression") == 1`.
-        - `usage-vips-extract-band-jpeg.sh`: generate a JPEG with `cjpeg`, run `vips extract_band "$jpg" "$tmpdir/band.pgm" 0`, assert the output file exists, and assert `vipsheader "$tmpdir/band.pgm"` reports a one-band image.
-      - `libpng`:
-        - `usage-pngquant-posterize-png.sh`: run `pngquant --posterize 4 --force --output "$tmpdir/out.png"` against an existing PNGSuite fixture and assert `file` reports PNG for `"$tmpdir/out.png"`.
-        - `usage-netpbm-pamflip-png.sh`: run `pngtopam` on a PNGSuite fixture, rotate with `pamflip -r90`, write PNG with `pnmtopng`, assert `file` reports PNG, and assert the rotated dimensions with `pngtopam "$tmpdir/out.png" | pamfile -`.
-      - `libtiff`:
-        - `usage-python3-pil-deflate-tiff.sh`: create a deterministic RGB image with Pillow, save as TIFF using `compression="tiff_adobe_deflate"`, reopen it, and assert exact mode and size.
-        - `usage-python3-pil-tiff-dpi-save.sh`: create a deterministic RGB image, save a TIFF with `dpi=(300, 300)`, reopen it, and assert TIFF XResolution and YResolution tags decode to 300.
-      - `libvips`:
-        - `usage-ruby-vips-gaussblur-image.sh`: create an 8x8 image through ruby-vips, apply `gaussblur(1.2)`, assert width and height remain 8, and assert the blurred image average is greater than 0 and less than 255.
-        - `usage-ruby-vips-histogram-image.sh`: create a small uchar image, run `hist_find`, and assert the histogram width is 256 and its maximum value is greater than 0.
-      - `libwebp`:
-        - `usage-python3-pil-webp-alpha.sh`: use Pillow to save an RGBA WebP, reopen it, and assert alpha channel preservation.
-        - `usage-ffmpeg-webp-scale-filter.sh`: generate a WebP with `cwebp` from a deterministic PPM fixture, run `ffmpeg -hide_banner -loglevel error -i "$webp" -vf scale=2:2 "$tmpdir/out.png"`, assert `file` reports PNG, and assert `ffprobe` reports dimensions `2,2`.
-      - Make all new scripts executable.
-
-      ## Verification Phases
-
-      - Phase ID: `check_phase_03_manifest_contract`
-      - Type: `check`
-      - Fixed `bounce_target`: `impl_phase_03_media_image_usage_cases`
-      - Purpose: validate manifests and cumulative counts after media/image additions.
-      - Commands:
-
-      ```bash
-      python3 tools/testcases.py \
-        --config repositories.yml \
-        --tests-root tests \
-        --check \
-        --min-source-cases 95 \
-        --min-usage-cases 189 \
-        --min-cases 284
-      ```
-
-      - Phase ID: `check_phase_03_matrix_smoke`
-      - Type: `check`
-      - Fixed `bounce_target`: `impl_phase_03_media_image_usage_cases`
-      - Purpose: run the affected image/media libraries with casts and verify selected proof output.
-      - Commands:
-
-      ```bash
-      rm -rf /tmp/validator-more-cases-phase03
-      bash test.sh \
-        --config repositories.yml \
-        --tests-root tests \
-        --artifact-root /tmp/validator-more-cases-phase03 \
-        --record-casts \
-        --library giflib \
-        --library libexif \
-        --library libjpeg-turbo \
-        --library libpng \
-        --library libtiff \
-        --library libvips \
-        --library libwebp
-
-      python3 tools/verify_proof_artifacts.py \
-        --config repositories.yml \
-        --tests-root tests \
-        --artifact-root /tmp/validator-more-cases-phase03 \
-        --proof-output /tmp/validator-more-cases-phase03/proof/original-validation-proof.json \
-        --library giflib \
-        --library libexif \
-        --library libjpeg-turbo \
-        --library libpng \
-        --library libtiff \
-        --library libvips \
-        --library libwebp \
-        --min-source-cases 35 \
-        --min-usage-cases 71 \
-        --min-cases 106 \
-        --require-casts
-      ```
-
-      ## Success Criteria
-
-      - Phase 3 adds exactly 14 usage cases across `giflib`, `libexif`, `libjpeg-turbo`, `libpng`, `libtiff`, `libvips`, and `libwebp` while leaving source cases unchanged.
-      - Manifest validation reports at least 95 source cases, 189 usage cases, and 284 total cases.
-      - The phase 3 matrix smoke passes with casts and selected proof totals of 35 source cases, 71 usage cases, and 106 total cases.
-      - Image scripts use deterministic generated or checked-in fixtures and do not rely on network or display hardware.
-      - Temporary verifier output under `/tmp/validator-more-cases-phase03` is not committed.
-      - `repositories.yml`, affected library Dockerfiles, dependent fixtures, prepared inventories, current tracked artifacts, proof data, and rendered site evidence are preserved unchanged unless explicitly updated by existing tools.
-
-      ## Git Commit Requirement
-
-      The implementer must commit all phase 3 scoped work to git before yielding. Do not yield with uncommitted phase 3 file changes.
-
-  - id: check_phase_03_manifest_contract
-    type: check
-    bounce_target: impl_phase_03_media_image_usage_cases
-    prompt: |
-      Reviewer role: manifest contract reviewer for phase 3 media/image/metadata usage cases.
-
-      Verify all of the following:
-      - Phase 3 added exactly 14 scoped usage cases across `giflib`, `libexif`, `libjpeg-turbo`, `libpng`, `libtiff`, `libvips`, and `libwebp` while leaving source cases unchanged.
-      - The new manifest entries follow the global testcase entry contract: id equals script filename without `.sh`, `kind: usage`, `timeout_seconds: 180`, semantic title, client-behavior description, valid existing `client_application`, exact `/validator/tests/<library>/tests/cases/usage/<script>.sh` command, and appropriate tags.
-      - All new scripts exist, are executable, use deterministic generated or checked-in fixtures, and do not rely on network or display hardware.
-      - `repositories.yml`, affected Dockerfiles, dependent fixtures, prepared inventories, tracked proof data, and rendered site evidence are preserved unchanged unless explicitly required by the phase.
-      - Cumulative counts after phase 3 meet at least 95 source cases, 189 usage cases, and 284 total cases.
-
-      Run this command:
-
-      ```bash
-      python3 tools/testcases.py \
-        --config repositories.yml \
-        --tests-root tests \
-        --check \
-        --min-source-cases 95 \
-        --min-usage-cases 189 \
-        --min-cases 284
-      ```
-
-      End with exactly one verdict line: `VERDICT: PASS` or `VERDICT: FAIL: <reason>`
-
-  - id: check_phase_03_matrix_smoke
-    type: check
-    bounce_target: impl_phase_03_media_image_usage_cases
-    prompt: |
-      Reviewer role: matrix smoke reviewer for phase 3 media/image/metadata usage cases.
-
-      Verify all of the following:
-      - The affected libraries `giflib`, `libexif`, `libjpeg-turbo`, `libpng`, `libtiff`, `libvips`, and `libwebp` pass the matrix smoke run with casts recorded.
-      - The selected proof output is generated under `/tmp/validator-more-cases-phase03/proof/original-validation-proof.json`.
-      - The selected proof totals are at least 35 source cases, 71 usage cases, and 106 total cases.
-      - Casts are required and present for the selected phase 3 run.
-      - Temporary verifier output under `/tmp/validator-more-cases-phase03` is not committed.
-
-      Run these commands:
-
-      ```bash
-      rm -rf /tmp/validator-more-cases-phase03
-      bash test.sh \
-        --config repositories.yml \
-        --tests-root tests \
-        --artifact-root /tmp/validator-more-cases-phase03 \
-        --record-casts \
-        --library giflib \
-        --library libexif \
-        --library libjpeg-turbo \
-        --library libpng \
-        --library libtiff \
-        --library libvips \
-        --library libwebp
-
-      python3 tools/verify_proof_artifacts.py \
-        --config repositories.yml \
-        --tests-root tests \
-        --artifact-root /tmp/validator-more-cases-phase03 \
-        --proof-output /tmp/validator-more-cases-phase03/proof/original-validation-proof.json \
-        --library giflib \
-        --library libexif \
-        --library libjpeg-turbo \
-        --library libpng \
-        --library libtiff \
-        --library libvips \
-        --library libwebp \
-        --min-source-cases 35 \
-        --min-usage-cases 71 \
-        --min-cases 106 \
-        --require-casts
-      ```
-
-      End with exactly one verdict line: `VERDICT: PASS` or `VERDICT: FAIL: <reason>`
-
-  - id: impl_phase_04_runtime_crypto_usage_cases
-    type: implement
-    bounce_target: null
-    prompt: |
-      Implement phase 4 exactly as specified below. The phase file is the authoritative prompt content for this phase.
-
-      Use the listed Preexisting Inputs in place, including concrete outputs from phases 1 through 3. Consume or update existing artifacts instead of refetching, recollecting, rediscovering, regenerating, expanding, or reordering them from scratch unless the phase explicitly tells you to run an existing tool for that purpose.
-
-      Commit all phase 4 scoped work to git before yielding. Do not yield with uncommitted phase 4 file changes.
-
-      # 4. Runtime, GUI, and Crypto Dependent Usage Cases
-
-      ## Phase Name
-
-      Runtime, GUI, and Crypto Dependent Usage Cases
-
-      ## Implement Phase ID
-
-      `impl_phase_04_runtime_crypto_usage_cases`
-
-      ## Preexisting Inputs
-
-      - `tests/cjson/` concrete phase 1 output directory.
-      - `tests/libcsv/` concrete phase 1 output directory.
-      - `tests/libjson/` concrete phase 1 output directory.
-      - `tests/libxml/` concrete phase 1 output directory.
-      - `tests/libyaml/` concrete phase 1 output directory.
-      - `tests/libuv/` concrete phase 1 output directory.
-      - `tests/libarchive/` concrete phase 2 output directory.
-      - `tests/libbz2/` concrete phase 2 output directory.
-      - `tests/liblzma/` concrete phase 2 output directory.
-      - `tests/libzstd/` concrete phase 2 output directory.
-      - `tests/giflib/` concrete phase 3 output directory.
-      - `tests/libexif/` concrete phase 3 output directory.
-      - `tests/libjpeg-turbo/` concrete phase 3 output directory.
-      - `tests/libpng/` concrete phase 3 output directory.
-      - `tests/libtiff/` concrete phase 3 output directory.
-      - `tests/libvips/` concrete phase 3 output directory.
-      - `tests/libwebp/` concrete phase 3 output directory.
-      - `repositories.yml` canonical manifest and package list; consume it unchanged.
-      - `test.sh`
-      - `tools/testcases.py`
-      - `tools/run_matrix.py`
-      - `tools/verify_proof_artifacts.py`
-      - `tests/_shared/run_library_tests.sh`
-      - Existing `tests/libsdl/` manifest, Dockerfile, dependent fixture, sample fixtures, and usage scripts.
-      - Existing `tests/libsodium/` manifest, Dockerfile, dependent fixture, sample fixtures, and usage scripts.
-      - Existing tracked `artifacts/results/`, `artifacts/logs/`, `artifacts/casts/`, `artifacts/proof/original-validation-proof.json`, and `site/` evidence. Consume these artifacts in place; do not refetch, recollect, rediscover, regenerate, expand, or reorder dependent inventories.
-
-      ## New Outputs
-
-      - 4 new usage testcase manifest entries.
-      - 4 new executable usage scripts.
-
-      ## File Changes
-
-      - Modify `tests/libsdl/testcases.yml`.
-      - Add `tests/libsdl/tests/cases/usage/usage-python3-pygame-key-event.sh`.
-      - Add `tests/libsdl/tests/cases/usage/usage-python3-pygame-mask-collision.sh`.
-      - Modify `tests/libsodium/testcases.yml`.
-      - Add `tests/libsodium/tests/cases/usage/usage-python3-nacl-public-box.sh`.
-      - Add `tests/libsodium/tests/cases/usage/usage-php83-sodium-sign-detached.sh`.
-
-      ## Implementation Details
-
-      - Apply the global testcase entry contract to all 4 new manifest entries:
-        - Use the new script filename without `.sh` as each manifest entry `id`.
-        - Set `kind: usage`.
-        - Set `timeout_seconds: 180`.
-        - Use a semantic `title`.
-        - Use a client-behavior `description`.
-        - Set `client_application` to one of the existing identifiers named below.
-        - Set `command` exactly to `bash /validator/tests/<library>/tests/cases/usage/<script>.sh`.
-        - Tags must include `usage` and one or more behavior tags already consistent with the library's local manifest style, such as `runtime`, `gui`, or `crypto`.
-      - Use only these existing dependent client identifiers:
-        - `libsdl`: `python3-pygame`
-        - `libsodium`: `python3-nacl` and `php8.3-cli`
-      - Do not modify any `tests/<library>/tests/fixtures/dependents.json`.
-      - Do not modify `repositories.yml`; it remains the fixed canonical manifest and package list.
-      - Do not modify any affected `tests/<library>/Dockerfile`; every dependent package required by the planned clients is already installed.
-      - `libsdl`:
-        - `usage-python3-pygame-key-event.sh`: export `PYGAME_HIDE_SUPPORT_PROMPT=1` and `SDL_VIDEODRIVER=dummy` before Python starts, initialize pygame, post a `KEYDOWN` event for `pygame.K_a`, pump the event queue, and assert that exact key event is received.
-        - `usage-python3-pygame-mask-collision.sh`: export `PYGAME_HIDE_SUPPORT_PROMPT=1` and `SDL_VIDEODRIVER=dummy`, create two `pygame.Surface((10, 10), pygame.SRCALPHA)` objects, fill them transparent, draw opaque overlapping rectangles, build masks with `pygame.mask.from_surface`, call `overlap` with a fixed offset, and assert the returned collision coordinate is the expected tuple.
-      - `libsodium`:
-        - `usage-python3-nacl-public-box.sh`: use PyNaCl `PrivateKey.generate()`, derive two public keys, encrypt with `Box`, decrypt, and assert plaintext round trip.
-        - `usage-php83-sodium-sign-detached.sh`: run PHP CLI using `sodium_crypto_sign_keypair`, `sodium_crypto_sign_detached`, and `sodium_crypto_sign_verify_detached`, then assert verification returns true.
-      - Make all new scripts executable.
-
-      ## Verification Phases
-
-      - Phase ID: `check_phase_04_manifest_contract`
-      - Type: `check`
-      - Fixed `bounce_target`: `impl_phase_04_runtime_crypto_usage_cases`
-      - Purpose: validate all testcase additions and final cumulative counts before threshold/doc/artifact updates.
-      - Commands:
-
-      ```bash
-      python3 tools/testcases.py \
-        --config repositories.yml \
-        --tests-root tests \
-        --check \
+        --artifact-root artifacts \
+        --proof-output artifacts/proof/original-validation-proof.json \
+        --mode original \
         --min-source-cases 95 \
         --min-usage-cases 193 \
-        --min-cases 288
-
-      python3 tools/testcases.py \
-        --config repositories.yml \
-        --tests-root tests \
-        --list-summary
-      ```
-
-      - Phase ID: `check_phase_04_matrix_smoke`
-      - Type: `check`
-      - Fixed `bounce_target`: `impl_phase_04_runtime_crypto_usage_cases`
-      - Purpose: run the affected GUI/runtime/crypto libraries with casts and verify selected proof output.
-      - Commands:
-
-      ```bash
-      rm -rf /tmp/validator-more-cases-phase04
-      bash test.sh \
-        --config repositories.yml \
-        --tests-root tests \
-        --artifact-root /tmp/validator-more-cases-phase04 \
-        --record-casts \
-        --library libsdl \
-        --library libsodium
+        --min-cases 288 \
+        --require-casts
 
       python3 tools/verify_proof_artifacts.py \
         --config repositories.yml \
         --tests-root tests \
-        --artifact-root /tmp/validator-more-cases-phase04 \
-        --proof-output /tmp/validator-more-cases-phase04/proof/original-validation-proof.json \
-        --library libsdl \
-        --library libsodium \
-        --min-source-cases 10 \
-        --min-usage-cases 21 \
-        --min-cases 31 \
-        --require-casts
-      ```
-
-      ## Success Criteria
-
-      - Phase 4 adds exactly 4 usage cases across `libsdl` and `libsodium` while leaving source cases unchanged.
-      - Manifest validation reports final target totals of 95 source cases, 193 usage cases, and 288 total cases.
-      - The list summary shows the final target totals: 95 source, 193 usage, and 288 total.
-      - The phase 4 matrix smoke passes with casts and selected proof totals of 10 source cases, 21 usage cases, and 31 total cases.
-      - Runtime scripts execute headlessly and do not require a real display, audio device, entropy service beyond normal container support, or network.
-      - Temporary verifier output under `/tmp/validator-more-cases-phase04` is not committed.
-      - `repositories.yml`, affected library Dockerfiles, dependent fixtures, prepared inventories, current tracked artifacts, proof data, and rendered site evidence are preserved unchanged unless explicitly updated by existing tools.
-
-      ## Git Commit Requirement
-
-      The implementer must commit all phase 4 scoped work to git before yielding. Do not yield with uncommitted phase 4 file changes.
-
-  - id: check_phase_04_manifest_contract
-    type: check
-    bounce_target: impl_phase_04_runtime_crypto_usage_cases
-    prompt: |
-      Reviewer role: manifest contract reviewer for phase 4 runtime/GUI/crypto usage cases.
-
-      Verify all of the following:
-      - Phase 4 added exactly 4 scoped usage cases across `libsdl` and `libsodium` while leaving source cases unchanged.
-      - The new manifest entries follow the global testcase entry contract: id equals script filename without `.sh`, `kind: usage`, `timeout_seconds: 180`, semantic title, client-behavior description, valid existing `client_application`, exact `/validator/tests/<library>/tests/cases/usage/<script>.sh` command, and appropriate tags.
-      - All new scripts exist, are executable, run headlessly where required, and do not require a real display, audio device, entropy service beyond normal container support, or network.
-      - `repositories.yml`, affected Dockerfiles, dependent fixtures, prepared inventories, tracked proof data, and rendered site evidence are preserved unchanged unless explicitly required by the phase.
-      - Cumulative final testcase counts meet 95 source cases, 193 usage cases, and 288 total cases, and the summary reports those target totals.
-
-      Run these commands:
-
-      ```bash
-      python3 tools/testcases.py \
-        --config repositories.yml \
-        --tests-root tests \
-        --check \
+        --artifact-root artifacts \
+        --proof-output artifacts/proof/port-04-test-validation-proof.json \
+        --mode port-04-test \
         --min-source-cases 95 \
         --min-usage-cases 193 \
-        --min-cases 288
-
-      python3 tools/testcases.py \
-        --config repositories.yml \
-        --tests-root tests \
-        --list-summary
-      ```
-
-      End with exactly one verdict line: `VERDICT: PASS` or `VERDICT: FAIL: <reason>`
-
-  - id: check_phase_04_matrix_smoke
-    type: check
-    bounce_target: impl_phase_04_runtime_crypto_usage_cases
-    prompt: |
-      Reviewer role: matrix smoke reviewer for phase 4 runtime/GUI/crypto usage cases.
-
-      Verify all of the following:
-      - The affected libraries `libsdl` and `libsodium` pass the matrix smoke run with casts recorded.
-      - The selected proof output is generated under `/tmp/validator-more-cases-phase04/proof/original-validation-proof.json`.
-      - The selected proof totals are at least 10 source cases, 21 usage cases, and 31 total cases.
-      - Casts are required and present for the selected phase 4 run.
-      - Temporary verifier output under `/tmp/validator-more-cases-phase04` is not committed.
-
-      Run these commands:
-
-      ```bash
-      rm -rf /tmp/validator-more-cases-phase04
-      bash test.sh \
-        --config repositories.yml \
-        --tests-root tests \
-        --artifact-root /tmp/validator-more-cases-phase04 \
-        --record-casts \
-        --library libsdl \
-        --library libsodium
-
-      python3 tools/verify_proof_artifacts.py \
-        --config repositories.yml \
-        --tests-root tests \
-        --artifact-root /tmp/validator-more-cases-phase04 \
-        --proof-output /tmp/validator-more-cases-phase04/proof/original-validation-proof.json \
-        --library libsdl \
-        --library libsodium \
-        --min-source-cases 10 \
-        --min-usage-cases 21 \
-        --min-cases 31 \
+        --min-cases 288 \
         --require-casts
-      ```
 
-      End with exactly one verdict line: `VERDICT: PASS` or `VERDICT: FAIL: <reason>`
-
-  - id: impl_phase_05_thresholds_artifacts_site
-    type: implement
-    bounce_target: null
-    prompt: |
-      Implement phase 5 exactly as specified below. The phase file is the authoritative prompt content for this phase.
-
-      Use the listed Preexisting Inputs in place, including concrete outputs from phases 1 through 4. Consume or update existing artifacts instead of refetching, recollecting, rediscovering, regenerating, expanding, or reordering them from scratch unless the phase explicitly tells you to run an existing tool for that purpose.
-
-      Commit all phase 5 scoped work, including updated generated artifacts and site output, to git before yielding. Do not yield with uncommitted phase 5 file changes.
-
-      # 5. Thresholds, Artifacts, Proof, and Site
-
-      ## Phase Name
-
-      Thresholds, Artifacts, Proof, and Site
-
-      ## Implement Phase ID
-
-      `impl_phase_05_thresholds_artifacts_site`
-
-      ## Preexisting Inputs
-
-      - `tests/cjson/` concrete phase 1 output directory.
-      - `tests/libcsv/` concrete phase 1 output directory.
-      - `tests/libjson/` concrete phase 1 output directory.
-      - `tests/libxml/` concrete phase 1 output directory.
-      - `tests/libyaml/` concrete phase 1 output directory.
-      - `tests/libuv/` concrete phase 1 output directory.
-      - `tests/libarchive/` concrete phase 2 output directory.
-      - `tests/libbz2/` concrete phase 2 output directory.
-      - `tests/liblzma/` concrete phase 2 output directory.
-      - `tests/libzstd/` concrete phase 2 output directory.
-      - `tests/giflib/` concrete phase 3 output directory.
-      - `tests/libexif/` concrete phase 3 output directory.
-      - `tests/libjpeg-turbo/` concrete phase 3 output directory.
-      - `tests/libpng/` concrete phase 3 output directory.
-      - `tests/libtiff/` concrete phase 3 output directory.
-      - `tests/libvips/` concrete phase 3 output directory.
-      - `tests/libwebp/` concrete phase 3 output directory.
-      - `tests/libsdl/` concrete phase 4 output directory.
-      - `tests/libsodium/` concrete phase 4 output directory.
-      - Existing tracked `artifacts/results/`.
-      - Existing tracked `artifacts/logs/`.
-      - Existing tracked `artifacts/casts/`.
-      - Existing tracked `artifacts/proof/original-validation-proof.json`.
-      - Existing tracked `site/` rendered output and evidence copies.
-      - `Makefile`
-      - `README.md`
-      - `repositories.yml`
-      - `test.sh`
-      - `tools/testcases.py`
-      - `tools/run_matrix.py`
-      - `tools/verify_proof_artifacts.py`
-      - `tools/render_site.py`
-      - `scripts/verify-site.sh`
-      - Existing `tests/` manifests, Dockerfiles, dependent fixtures, sample fixtures, and usage scripts after phases 1 through 4. Consume dependent inventories in place; do not refetch, recollect, rediscover, regenerate, expand, or reorder them.
-
-      ## New Outputs
-
-      - Updated `Makefile` thresholds.
-      - Updated `README.md` proof/check examples and count text.
-      - Updated in-place matrix artifacts for all 288 cases:
-        - `artifacts/results/<library>/<testcase-id>.json`
-        - `artifacts/logs/<library>/<testcase-id>.log`
-        - `artifacts/casts/<library>/<testcase-id>.cast`
-        - `artifacts/results/<library>/summary.json`
-      - Updated `artifacts/proof/original-validation-proof.json` with 95 source, 193 usage, and 288 total cases.
-      - Updated `site/site-data.json`, `site/index.html`, `site/library/*.html`, `site/evidence/logs/**`, and `site/evidence/casts/**`.
-
-      ## File Changes
-
-      - Modify `Makefile`.
-      - Modify `README.md`.
-      - Update generated artifacts under `artifacts/results/`, `artifacts/logs/`, `artifacts/casts/`, and `artifacts/proof/original-validation-proof.json` by running the existing tools.
-      - Update generated site output under `site/` by running the existing tools.
-
-      ## Implementation Details
-
-      - Raise the `Makefile` `check-testcases` command to `--min-source-cases 95 --min-usage-cases 193 --min-cases 288`.
-      - Update `README.md:80-113` examples so proof and smoke documentation uses the final full thresholds where appropriate:
-        - Full proof example: `--min-source-cases 95 --min-usage-cases 193 --min-cases 288`.
-        - Make proof example: `MIN_SOURCE_CASES=95 MIN_USAGE_CASES=193 MIN_CASES=288`.
-      - If README keeps the default `make matrix-smoke` example for `SMOKE_LIBRARIES ?= cjson libarchive libuv libwebp`, update that selected-library proof example to `MIN_SOURCE_CASES=20 MIN_USAGE_CASES=41 MIN_CASES=61`.
-      - If README documents a different selected-library smoke set, compute its thresholds from the final manifests and write those exact selected-library values in the example.
-      - Run the full matrix with casts to update the existing tracked artifact tree in place. Do not delete or refetch dependent inventories.
-      - Regenerate proof and site through the existing tools only; do not manually edit generated JSON or HTML.
-      - Confirm proof totals and site totals match the new manifests exactly.
-      - Do not modify `repositories.yml`; it remains the fixed canonical manifest and package list.
-      - Do not modify any `tests/<library>/Dockerfile`; every dependent package required by the final client set is already installed.
-
-      ## Verification Phases
-
-      - Phase ID: `check_phase_05_unit_manifest_contract`
-      - Type: `check`
-      - Fixed `bounce_target`: `impl_phase_05_thresholds_artifacts_site`
-      - Purpose: verify tooling unit tests, final manifest thresholds, and documented counts.
-      - Commands:
-
-      ```bash
-      make unit
-      make check-testcases
-      python3 tools/testcases.py \
+      python3 tools/render_site.py \
         --config repositories.yml \
         --tests-root tests \
-        --list-summary
+        --artifact-root artifacts \
+        --proof-path artifacts/proof/original-validation-proof.json \
+        --proof-path artifacts/proof/port-04-test-validation-proof.json \
+        --output-root site
+
+      python3 - <<'PY'
+      import json
+      from pathlib import Path
+      for proof_path in [
+          Path("artifacts/proof/original-validation-proof.json"),
+          Path("artifacts/proof/port-04-test-validation-proof.json"),
+      ]:
+          proof = json.loads(proof_path.read_text())
+          if proof["totals"]["failed"] != 0:
+              raise SystemExit(f"{proof_path} has failed cases: {proof['totals']['failed']}")
+      PY
+
+      test "$original_matrix_exit" -eq 0
+      test "$port_matrix_exit" -eq 0
       ```
+    - Capture matrix exit codes and continue through proof and site generation so failed rows still have logs, casts, proofs, and rendered evidence.
+    - Do not hide or coerce failures. Original and port failures are both gating validation failures.
+    - Original mode must have 0 failures in final proof.
+    - Port mode must have 0 failures in final proof.
+    - Port mode must have exactly the same testcase IDs, order, source/usage split, and libraries as original mode.
+    - Port proof library objects and port result rows must prove that override debs were installed with `override_installed_packages`.
+    - Port proof/result provenance must carry port repository, commit, release, selected deb checksum/architecture provenance, and `unported_original_packages` that exactly match `artifacts/proof/port-04-test-debs-lock.json`.
+    - Commit final evidence:
+      - Force-add new intended ignored proof/site files.
+      - Do not add `artifacts/debs/`.
+      - Confirm `git ls-files artifacts/debs` prints nothing.
+      - Confirm `git ls-files artifacts/proof/port-04-test-debs-lock.json artifacts/proof/port-04-test-validation-proof.json site/site-data.json` prints all three paths.
 
-      - Phase ID: `check_phase_05_full_matrix_proof_site`
-      - Type: `check`
-      - Fixed `bounce_target`: `impl_phase_05_thresholds_artifacts_site`
-      - Purpose: update and verify the full tracked original-package evidence set, proof manifest, and rendered site in place.
-      - Commands:
+    ## Verification To Run Before Commit
+    Run both phase 5 check command sets after generating artifacts and before committing.
 
-      ```bash
-      RECORD_CASTS=1 make matrix
+    ## Git Commit Requirement
+    Commit all phase 5 scoped generated evidence to git before yielding. Do not yield with uncommitted phase 5 file changes. The `.deb` cache remains uncommitted.
 
-      REQUIRE_CASTS=1 \
-      MIN_SOURCE_CASES=95 \
-      MIN_USAGE_CASES=193 \
-      MIN_CASES=288 \
-      make proof
+- id: check_phase_05_full_dual_artifact_contract
+  type: check
+  bounce_target: impl_phase_05_full_artifacts
+  prompt: |-
+    Reviewer Role: QA checker for the full dual-artifact contract.
 
-      make site
-      make verify-site
-      ```
+    Verify these specific things:
+    - Unit tests and testcase manifest validation pass at 95 source, 193 usage, and 288 total cases.
+    - Original proof reports mode `original`, 19 libraries, 288 cases, 95 source cases, 193 usage cases, 0 failures, 288 passes, and 288 casts.
+    - Port proof reports mode `port-04-test`, the same totals, 0 failures, 288 passes, and 288 casts.
+    - Original and port proofs have identical library/testcase coverage and order.
+    - `artifacts/proof/port-04-test-debs-lock.json` has 19 libraries, mode `port-04-test`, and agrees exactly with every port proof library and every port result row.
+    - Port result rows are under `port-04-test/results`, logs under `port-04-test/logs`, and casts under `port-04-test/casts`.
+    - Every port result has `override_debs_installed: true`, matching port provenance, and `override_installed_packages` aligned with `port_debs`.
+    - New intended proof/site evidence files are tracked, while downloaded `artifacts/debs` remain untracked.
+    - No unrelated changes to `.plan/goal.md` or old phase files were introduced.
+    - Phase 5 work was committed to git before yielding.
 
-      ## Success Criteria
+    Run these commands:
+    ```bash
+    python3 -m unittest discover -s unit -v
+    python3 tools/testcases.py \
+      --config repositories.yml \
+      --tests-root tests \
+      --check \
+      --min-source-cases 95 \
+      --min-usage-cases 193 \
+      --min-cases 288
 
-      - `make unit` passes.
-      - `make check-testcases` passes with the raised final thresholds.
-      - The testcase summary reports 19 libraries, 95 source cases, 193 usage cases, and 288 total cases.
-      - Full matrix results pass with casts for all 288 cases.
-      - `artifacts/proof/original-validation-proof.json` reports totals of 19 libraries, 288 cases, 95 source cases, 193 usage cases, 0 failed cases, and 288 casts when casts are required.
-      - `make verify-site` passes against the tracked `site/` output.
-      - Generated artifacts and site output are produced through the existing tools only.
-      - `repositories.yml`, library Dockerfiles, and dependent fixture inventories remain intentionally unchanged.
+    python3 - <<'PY'
+    import json
+    import subprocess
+    from pathlib import Path
+    import yaml
+    artifact_root = Path("artifacts")
+    original = json.loads((artifact_root / "proof/original-validation-proof.json").read_text())
+    port = json.loads((artifact_root / "proof/port-04-test-validation-proof.json").read_text())
+    lock = json.loads((artifact_root / "proof/port-04-test-debs-lock.json").read_text())
+    manifest = yaml.safe_load(Path("repositories.yml").read_text())
+    packages = {entry["name"]: entry["apt_packages"] for entry in manifest["libraries"]}
+    assert original["totals"]["libraries"] == 19
+    assert original["totals"]["cases"] == 288
+    assert original["totals"]["source_cases"] == 95
+    assert original["totals"]["usage_cases"] == 193
+    assert original["totals"]["failed"] == 0
+    assert original["totals"]["passed"] == 288
+    assert original["totals"]["casts"] == 288
+    assert original["mode"] == "original"
+    assert port["totals"]["libraries"] == 19
+    assert port["totals"]["cases"] == 288
+    assert port["totals"]["source_cases"] == 95
+    assert port["totals"]["usage_cases"] == 193
+    assert port["totals"]["failed"] == 0
+    assert port["totals"]["passed"] == 288
+    assert port["totals"]["casts"] == 288
+    assert port["mode"] == "port-04-test"
+    assert lock["mode"] == "port-04-test"
+    assert len(lock["libraries"]) == 19
+    def ids(proof):
+        return {
+            entry["library"]: [case["testcase_id"] for case in entry["testcases"]]
+            for entry in proof["libraries"]
+        }
+    assert ids(original) == ids(port)
+    lock_libraries = [entry["library"] for entry in lock["libraries"]]
+    port_libraries = [entry["library"] for entry in port["libraries"]]
+    assert lock_libraries == port_libraries
+    lock_by_library = {entry["library"]: entry for entry in lock["libraries"]}
+    for entry in port["libraries"]:
+        lock_entry = lock_by_library[entry["library"]]
+        expected_debs = [
+            {key: deb[key] for key in ("package", "filename", "architecture", "sha256", "size")}
+            for deb in lock_entry["debs"]
+        ]
+        ported_packages = [deb["package"] for deb in expected_debs]
+        assert set(ported_packages).issubset(packages[entry["library"]])
+        assert set(lock_entry["unported_original_packages"]).issubset(packages[entry["library"]])
+        combined = []
+        for package in packages[entry["library"]]:
+            if package in ported_packages or package in lock_entry["unported_original_packages"]:
+                combined.append(package)
+        assert combined == packages[entry["library"]]
+        assert set(ported_packages).isdisjoint(lock_entry["unported_original_packages"])
+        assert expected_debs
+        assert all(deb["architecture"] in {"amd64", "all"} for deb in expected_debs)
+        assert lock_entry["release_tag"] == "build-" + lock_entry["commit"][:12]
+        assert entry["port_repository"] == lock_entry["repository"]
+        assert entry["port_tag_ref"] == lock_entry["tag_ref"]
+        assert entry["port_commit"] == lock_entry["commit"]
+        assert entry["port_release_tag"] == lock_entry["release_tag"]
+        assert entry["port_debs"] == expected_debs
+        assert entry["unported_original_packages"] == lock_entry["unported_original_packages"]
+        for case in entry["testcases"]:
+            assert case["mode"] == "port-04-test"
+            assert case["result_path"].startswith("port-04-test/results/")
+            assert case["log_path"].startswith("port-04-test/logs/")
+            assert case["cast_path"].startswith("port-04-test/casts/")
+            result = json.loads((artifact_root / case["result_path"]).read_text())
+            assert result["override_debs_installed"] is True
+            assert result["port_repository"] == lock_entry["repository"]
+            assert result["port_tag_ref"] == lock_entry["tag_ref"]
+            assert result["port_commit"] == lock_entry["commit"]
+            assert result["port_release_tag"] == lock_entry["release_tag"]
+            assert result["port_debs"] == expected_debs
+            assert result["unported_original_packages"] == lock_entry["unported_original_packages"]
+            assert result["override_installed_packages"]
+            assert [item["package"] for item in result["override_installed_packages"]] == [
+                item["package"] for item in result["port_debs"]
+            ]
+            assert [item["filename"] for item in result["override_installed_packages"]] == [
+                item["filename"] for item in result["port_debs"]
+            ]
+            assert [item["architecture"] for item in result["override_installed_packages"]] == [
+                item["architecture"] for item in result["port_debs"]
+            ]
+    tracked = set(subprocess.check_output([
+        "git",
+        "ls-files",
+        "artifacts/proof/port-04-test-debs-lock.json",
+        "artifacts/proof/port-04-test-validation-proof.json",
+        "site/site-data.json",
+    ], text=True).splitlines())
+    required = {
+        "artifacts/proof/port-04-test-debs-lock.json",
+        "artifacts/proof/port-04-test-validation-proof.json",
+        "site/site-data.json",
+    }
+    missing = sorted(required - tracked)
+    assert not missing, missing
+    tracked_debs = subprocess.check_output(["git", "ls-files", "artifacts/debs"], text=True).strip()
+    assert tracked_debs == "", tracked_debs
+    PY
+    ```
 
-      ## Git Commit Requirement
+    If any command fails or any verification item is not satisfied, report a failing verdict with the concrete reason.
 
-      The implementer must commit all phase 5 scoped work, including updated generated artifacts and site output, to git before yielding. Do not yield with uncommitted phase 5 file changes.
+    End your response with exactly one of:
+    VERDICT: PASS
+    VERDICT: FAIL: <reason>
 
-  - id: check_phase_05_unit_manifest_contract
-    type: check
-    bounce_target: impl_phase_05_thresholds_artifacts_site
-    prompt: |
-      Reviewer role: unit, manifest, and documentation reviewer for phase 5 thresholds/artifacts/site.
+- id: check_phase_05_final_site_contract
+  type: check
+  bounce_target: impl_phase_05_full_artifacts
+  prompt: |-
+    Reviewer Role: QA checker for the final dual-mode site contract.
 
-      Verify all of the following:
-      - Tooling unit tests pass.
-      - `Makefile` `check-testcases` thresholds are raised to `--min-source-cases 95 --min-usage-cases 193 --min-cases 288`.
-      - Final manifest validation passes with 95 source cases, 193 usage cases, and 288 total cases.
-      - The testcase summary reports 19 libraries, 95 source cases, 193 usage cases, and 288 total cases.
-      - `README.md` proof/check examples and count text use the final full thresholds where appropriate, and any selected-library smoke example uses thresholds computed from the final manifests.
-      - `repositories.yml`, library Dockerfiles, and dependent fixture inventories remain intentionally unchanged.
+    Verify these specific things:
+    - The final site verifies against both original and port proofs.
+    - `site/site-data.json` uses schema version 2 with original and port proofs plus mode-disambiguated testcase rows.
+    - Evidence bytes are copied for both modes and hrefs are mode-specific.
+    - HTML rows include library, testcase id, mode, and unique cast links.
+    - The safe/unsafe language check still passes.
+    - Final artifacts were produced through tools, not manual edits.
 
-      Run these commands:
+    Run this command:
+    ```bash
+    bash scripts/verify-site.sh \
+      --config repositories.yml \
+      --tests-root tests \
+      --artifacts-root artifacts \
+      --proof-path artifacts/proof/original-validation-proof.json \
+      --proof-path artifacts/proof/port-04-test-validation-proof.json \
+      --site-root site
+    ```
 
-      ```bash
-      make unit
-      make check-testcases
-      python3 tools/testcases.py \
-        --config repositories.yml \
-        --tests-root tests \
-        --list-summary
-      ```
+    If the command fails or any verification item is not satisfied, report a failing verdict with the concrete reason.
 
-      End with exactly one verdict line: `VERDICT: PASS` or `VERDICT: FAIL: <reason>`
-
-  - id: check_phase_05_full_matrix_proof_site
-    type: check
-    bounce_target: impl_phase_05_thresholds_artifacts_site
-    prompt: |
-      Reviewer role: full matrix, proof, and site reviewer for phase 5 thresholds/artifacts/site.
-
-      Verify all of the following:
-      - The full matrix runs with casts and updates the existing tracked artifact tree in place for all 288 cases.
-      - The proof is regenerated through existing tools only and reports 19 libraries, 288 cases, 95 source cases, 193 usage cases, 0 failed cases, and 288 casts when casts are required.
-      - The site is regenerated through existing tools only.
-      - `make verify-site` passes against the tracked `site/` output.
-      - Generated artifacts and site output are committed by the implementer as phase 5 scoped work.
-      - `repositories.yml`, library Dockerfiles, and dependent fixture inventories remain intentionally unchanged.
-
-      Run these commands:
-
-      ```bash
-      RECORD_CASTS=1 make matrix
-
-      REQUIRE_CASTS=1 \
-      MIN_SOURCE_CASES=95 \
-      MIN_USAGE_CASES=193 \
-      MIN_CASES=288 \
-      make proof
-
-      make site
-      make verify-site
-      ```
-
-      End with exactly one verdict line: `VERDICT: PASS` or `VERDICT: FAIL: <reason>`
+    End your response with exactly one of:
+    VERDICT: PASS
+    VERDICT: FAIL: <reason>
