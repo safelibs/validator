@@ -1,0 +1,2 @@
+$ docker build --tag validator-libpng-shared --file /tmp/validator-run-matrix-libpng/libpng/Dockerfile /tmp/validator-run-matrix-libpng
+docker build completed

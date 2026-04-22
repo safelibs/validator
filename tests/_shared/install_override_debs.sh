@@ -22,7 +22,7 @@ done
 
 echo "installing override packages from $override_deb_root"
 apt-get update
-apt-get install -y "${debs[@]}"
+apt-get install -y --allow-downgrades "${debs[@]}"
 
 mkdir -p "$status_dir"
 : >"$status_dir/override-installed"

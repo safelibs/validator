@@ -1,0 +1,67 @@
+{
+  "schema_version": 2,
+  "library": "libjson",
+  "mode": "port-04-test",
+  "testcase_id": "usage-gdal-ogr2ogr-copy-geojson",
+  "title": "GDAL copies GeoJSON",
+  "description": "Runs ogr2ogr to copy a GeoJSON fixture and verifies the copied feature data.",
+  "kind": "usage",
+  "client_application": "gdal",
+  "tags": [
+    "usage",
+    "json"
+  ],
+  "requires": [],
+  "status": "passed",
+  "started_at": "1970-01-01T00:00:00Z",
+  "finished_at": "1970-01-01T00:00:00Z",
+  "duration_seconds": 0.0,
+  "result_path": "port-04-test/results/libjson/usage-gdal-ogr2ogr-copy-geojson.json",
+  "log_path": "port-04-test/logs/libjson/usage-gdal-ogr2ogr-copy-geojson.log",
+  "cast_path": "port-04-test/casts/libjson/usage-gdal-ogr2ogr-copy-geojson.cast",
+  "exit_code": 0,
+  "command": [
+    "bash",
+    "/validator/tests/libjson/tests/cases/usage/usage-gdal-ogr2ogr-copy-geojson.sh"
+  ],
+  "apt_packages": [
+    "libjson-c5",
+    "libjson-c-dev"
+  ],
+  "override_debs_installed": true,
+  "port_repository": "safelibs/port-libjson",
+  "port_tag_ref": "refs/tags/libjson/04-test",
+  "port_commit": "e25f4b433d01b3ac8e68d8a9c52bc89d03e9cf42",
+  "port_release_tag": "build-e25f4b433d01",
+  "port_debs": [
+    {
+      "package": "libjson-c5",
+      "filename": "libjson-c5_0.17-1build1safe1_amd64.deb",
+      "architecture": "amd64",
+      "sha256": "266aa0bfe0a938f41172c3b5e5d47fd2254bf87711d33d929bc6152da5d276d5",
+      "size": 457502
+    },
+    {
+      "package": "libjson-c-dev",
+      "filename": "libjson-c-dev_0.17-1build1safe1_amd64.deb",
+      "architecture": "amd64",
+      "sha256": "0596a3f2440dc518d86a25bc7dd4bbd695c3245b1c510e5108615acce2fd67d5",
+      "size": 8624520
+    }
+  ],
+  "unported_original_packages": [],
+  "override_installed_packages": [
+    {
+      "package": "libjson-c5",
+      "version": "0.17-1build1safe1",
+      "architecture": "amd64",
+      "filename": "libjson-c5_0.17-1build1safe1_amd64.deb"
+    },
+    {
+      "package": "libjson-c-dev",
+      "version": "0.17-1build1safe1",
+      "architecture": "amd64",
+      "filename": "libjson-c-dev_0.17-1build1safe1_amd64.deb"
+    }
+  ]
+}

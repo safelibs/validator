@@ -76,6 +76,9 @@ def write_port_debs_and_lock(root: Path) -> tuple[Path, Path]:
 
 
 class RunMatrixTests(unittest.TestCase):
+    def test_normalize_log_text_strips_carriage_returns(self) -> None:
+        self.assertEqual(run_matrix.normalize_log_text("one\r\ntwo\r\n"), "one\ntwo\n")
+
     def run_root(self) -> Path:
         tempdir = tempfile.TemporaryDirectory()
         self.addCleanup(tempdir.cleanup)
@@ -522,7 +525,7 @@ class RunMatrixTests(unittest.TestCase):
 
         self.assertEqual(
             run_matrix.normalize_recorded_output_text(text),
-            "payload\r\n" "done\r\n",
+            "payload\n" "done\n",
         )
 
     def test_cast_recording_preserves_stream_timing(self) -> None:

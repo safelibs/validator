@@ -1,0 +1,67 @@
+{
+  "schema_version": 2,
+  "library": "cjson",
+  "mode": "port-04-test",
+  "testcase_id": "usage-iperf3-json-zero-copy",
+  "title": "iperf3 zero-copy JSON transfer",
+  "description": "Runs an iperf3 zero-copy loopback transfer and verifies JSON sender byte and throughput totals.",
+  "kind": "usage",
+  "client_application": "iperf3",
+  "tags": [
+    "usage",
+    "json"
+  ],
+  "requires": [],
+  "status": "passed",
+  "started_at": "1970-01-01T00:00:00Z",
+  "finished_at": "1970-01-01T00:00:00Z",
+  "duration_seconds": 0.0,
+  "result_path": "port-04-test/results/cjson/usage-iperf3-json-zero-copy.json",
+  "log_path": "port-04-test/logs/cjson/usage-iperf3-json-zero-copy.log",
+  "cast_path": "port-04-test/casts/cjson/usage-iperf3-json-zero-copy.cast",
+  "exit_code": 0,
+  "command": [
+    "bash",
+    "/validator/tests/cjson/tests/cases/usage/usage-iperf3-json-zero-copy.sh"
+  ],
+  "apt_packages": [
+    "libcjson1",
+    "libcjson-dev"
+  ],
+  "override_debs_installed": true,
+  "port_repository": "safelibs/port-cjson",
+  "port_tag_ref": "refs/tags/cjson/04-test",
+  "port_commit": "de29489668c1c42bf2f3528a26cc992a30e1ba9b",
+  "port_release_tag": "build-de29489668c1",
+  "port_debs": [
+    {
+      "package": "libcjson1",
+      "filename": "libcjson1_1.7.17-1safelibs1_amd64.deb",
+      "architecture": "amd64",
+      "sha256": "00201bde98f09f47686e1a884c0bf7a557f187f3cc422e113e4c46bccf204170",
+      "size": 557540
+    },
+    {
+      "package": "libcjson-dev",
+      "filename": "libcjson-dev_1.7.17-1safelibs1_amd64.deb",
+      "architecture": "amd64",
+      "sha256": "3fedd597e540ff349f93cc419dc22f452fcbcc5ff0a76b548e6ab30e975e31fd",
+      "size": 9818
+    }
+  ],
+  "unported_original_packages": [],
+  "override_installed_packages": [
+    {
+      "package": "libcjson1",
+      "version": "1.7.17-1safelibs1",
+      "architecture": "amd64",
+      "filename": "libcjson1_1.7.17-1safelibs1_amd64.deb"
+    },
+    {
+      "package": "libcjson-dev",
+      "version": "1.7.17-1safelibs1",
+      "architecture": "amd64",
+      "filename": "libcjson-dev_1.7.17-1safelibs1_amd64.deb"
+    }
+  ]
+}

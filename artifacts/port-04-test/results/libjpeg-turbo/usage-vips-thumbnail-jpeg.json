@@ -1,0 +1,110 @@
+{
+  "schema_version": 2,
+  "library": "libjpeg-turbo",
+  "mode": "port-04-test",
+  "testcase_id": "usage-vips-thumbnail-jpeg",
+  "title": "vips thumbnail jpeg",
+  "description": "Runs vipsthumbnail on a JPEG fixture through libjpeg-turbo.",
+  "kind": "usage",
+  "client_application": "vips",
+  "tags": [
+    "usage",
+    "image",
+    "cli"
+  ],
+  "requires": [],
+  "status": "passed",
+  "started_at": "1970-01-01T00:00:00Z",
+  "finished_at": "1970-01-01T00:00:00Z",
+  "duration_seconds": 0.0,
+  "result_path": "port-04-test/results/libjpeg-turbo/usage-vips-thumbnail-jpeg.json",
+  "log_path": "port-04-test/logs/libjpeg-turbo/usage-vips-thumbnail-jpeg.log",
+  "cast_path": "port-04-test/casts/libjpeg-turbo/usage-vips-thumbnail-jpeg.cast",
+  "exit_code": 0,
+  "command": [
+    "bash",
+    "/validator/tests/libjpeg-turbo/tests/cases/usage/usage-vips-thumbnail-jpeg.sh"
+  ],
+  "apt_packages": [
+    "libjpeg-turbo8",
+    "libjpeg-turbo8-dev",
+    "libturbojpeg",
+    "libturbojpeg0-dev",
+    "libjpeg-turbo-progs"
+  ],
+  "override_debs_installed": true,
+  "port_repository": "safelibs/port-libjpeg-turbo",
+  "port_tag_ref": "refs/tags/libjpeg-turbo/04-test",
+  "port_commit": "27e232c22936de7b2cfcefc549c229b9be0c64cc",
+  "port_release_tag": "build-27e232c22936",
+  "port_debs": [
+    {
+      "package": "libjpeg-turbo8",
+      "filename": "libjpeg-turbo8_2.1.5-2ubuntu2_amd64.deb",
+      "architecture": "amd64",
+      "sha256": "ce6ef2ac7e8c8522225b141cdf70a0d2287a179c704180bed1c9e59319c369b6",
+      "size": 611120
+    },
+    {
+      "package": "libjpeg-turbo8-dev",
+      "filename": "libjpeg-turbo8-dev_2.1.5-2ubuntu2_amd64.deb",
+      "architecture": "amd64",
+      "sha256": "82e3bbb09405e35d1b3bcfcea2dc6c70a1b000d958fecd2c57401e3ebc171bad",
+      "size": 954172
+    },
+    {
+      "package": "libturbojpeg",
+      "filename": "libturbojpeg_2.1.5-2ubuntu2_amd64.deb",
+      "architecture": "amd64",
+      "sha256": "0a2c1d771fafd804330d0c62408b79564d57fbc6b8fbe9db3a1643c246078bd0",
+      "size": 664486
+    },
+    {
+      "package": "libturbojpeg0-dev",
+      "filename": "libturbojpeg0-dev_2.1.5-2ubuntu2_amd64.deb",
+      "architecture": "amd64",
+      "sha256": "2c1e5b5683908f8e7f7cde519ad2c601ab6af491c0c0b394624279b656716d8c",
+      "size": 881762
+    },
+    {
+      "package": "libjpeg-turbo-progs",
+      "filename": "libjpeg-turbo-progs_2.1.5-2ubuntu2_amd64.deb",
+      "architecture": "amd64",
+      "sha256": "44c9f80ddb99fdfc0d37b4a4e56c6e30e6d8c3a62fb40147d2596e9f1e9591b2",
+      "size": 637522
+    }
+  ],
+  "unported_original_packages": [],
+  "override_installed_packages": [
+    {
+      "package": "libjpeg-turbo8",
+      "version": "2.1.5-2ubuntu2",
+      "architecture": "amd64",
+      "filename": "libjpeg-turbo8_2.1.5-2ubuntu2_amd64.deb"
+    },
+    {
+      "package": "libjpeg-turbo8-dev",
+      "version": "2.1.5-2ubuntu2",
+      "architecture": "amd64",
+      "filename": "libjpeg-turbo8-dev_2.1.5-2ubuntu2_amd64.deb"
+    },
+    {
+      "package": "libturbojpeg",
+      "version": "1:2.1.5-2ubuntu2",
+      "architecture": "amd64",
+      "filename": "libturbojpeg_2.1.5-2ubuntu2_amd64.deb"
+    },
+    {
+      "package": "libturbojpeg0-dev",
+      "version": "1:2.1.5-2ubuntu2",
+      "architecture": "amd64",
+      "filename": "libturbojpeg0-dev_2.1.5-2ubuntu2_amd64.deb"
+    },
+    {
+      "package": "libjpeg-turbo-progs",
+      "version": "2.1.5-2ubuntu2",
+      "architecture": "amd64",
+      "filename": "libjpeg-turbo-progs_2.1.5-2ubuntu2_amd64.deb"
+    }
+  ]
+}

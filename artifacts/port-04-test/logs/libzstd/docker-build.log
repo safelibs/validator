@@ -1,0 +1,2 @@
+$ docker build --tag validator-libzstd-shared --file /tmp/validator-run-matrix-libzstd/libzstd/Dockerfile /tmp/validator-run-matrix-libzstd
+docker build completed

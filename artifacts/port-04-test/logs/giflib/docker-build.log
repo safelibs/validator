@@ -1,0 +1,2 @@
+$ docker build --tag validator-giflib-shared --file /tmp/validator-run-matrix-giflib/giflib/Dockerfile /tmp/validator-run-matrix-giflib
+docker build completed

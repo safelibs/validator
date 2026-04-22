@@ -1,0 +1,2 @@
+$ docker build --tag validator-libwebp-shared --file /tmp/validator-run-matrix-libwebp/libwebp/Dockerfile /tmp/validator-run-matrix-libwebp
+docker build completed

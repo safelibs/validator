@@ -1,0 +1,76 @@
+$ docker run --rm -t --mount type=bind,src=/tmp/validator-status-libtiff-tiffdump-structure,dst=/validator/status --mount type=bind,src=/home/yans/safelibs/validator/artifacts/debs/port-04-test/libtiff,dst=/override-debs,readonly validator-libtiff-shared bash -lc 'set -euo pipefail
+/validator/tests/_shared/install_override_debs.sh
+exec /validator/tests/_shared/run_library_tests.sh "$@"' validator-testcase libtiff tiffdump-structure -- bash -c 'PS4=$1; shift; set -x; source "$@"' validator-xtrace '__VALIDATOR_XTRACE__ ' /validator/tests/libtiff/tests/cases/source/tiffdump-structure.sh
+installing override packages from /override-debs
+0% [Working]            Get:1 http://security.ubuntu.com/ubuntu noble-security InRelease [126 kB]
+0% [Waiting for headers] [1 InRelease 14.2 kB/126 kB 11%]                                                         Get:2 http://archive.ubuntu.com/ubuntu noble InRelease [256 kB]
+0% [2 InRelease 14.2 kB/256 kB 6%] [1 InRelease 14.2 kB/126 kB 11%]                                                                   0% [2 InRelease 99.6 kB/256 kB 39%]                                   0% [2 InRelease 156 kB/256 kB 61%]0% [Waiting for headers] [Waiting for headers]                                              Get:3 http://security.ubuntu.com/ubuntu noble-security/restricted amd64 Packages [3479 kB]
+0% [Waiting for headers] [3 Packages 5551 B/3479 kB 0%]0% [Waiting for headers] [3 Packages 76.5 kB/3479 kB 2%]                                                        Get:4 http://archive.ubuntu.com/ubuntu noble-updates InRelease [126 kB]
+0% [4 InRelease 6932 B/126 kB 5%] [3 Packages 105 kB/3479 kB 3%]                                                                0% [Waiting for headers] [3 Packages 157 kB/3479 kB 5%]0% [Waiting for headers] [3 Packages 212 kB/3479 kB 6%]                                                       Get:5 http://archive.ubuntu.com/ubuntu noble-backports InRelease [126 kB]
+0% [5 InRelease 6932 B/126 kB 5%] [3 Packages 317 kB/3479 kB 9%]                                                                0% [3 Packages 419 kB/3479 kB 12%]14% [Waiting for headers] [3 Packages 460 kB/3479 kB 13%]                                                         Get:6 http://archive.ubuntu.com/ubuntu noble/multiverse amd64 Packages [331 kB]
+14% [6 Packages 4105 B/331 kB 1%] [3 Packages 630 kB/3479 kB 18%]                                                                 Get:7 http://archive.ubuntu.com/ubuntu noble/restricted amd64 Packages [117 kB]
+16% [7 Packages 20.9 kB/117 kB 18%] [3 Packages 1149 kB/3479 kB 33%]16% [6 Packages store 0 B] [7 Packages 20.9 kB/117 kB 18%] [3 Packages 1149 kB/3479 kB 33%]                                                                                           17% [7 Packages 37.6 kB/117 kB 32%] [3 Packages 1185 kB/3479 kB 34%]                                                                    Get:8 http://archive.ubuntu.com/ubuntu noble/universe amd64 Packages [19.3 MB]
+18% [8 Packages 18.5 kB/19.3 MB 0%] [3 Packages 1388 kB/3479 kB 40%]18% [7 Packages store 0 B] [8 Packages 18.5 kB/19.3 MB 0%] [3 Packages 1388 kB/3479 kB 40%]                                                                                           18% [8 Packages 31.5 kB/19.3 MB 0%] [3 Packages 1394 kB/3479 kB 40%]                                                                    26% [8 Packages 1432 kB/19.3 MB 7%]26% [3 Packages store 0 B] [8 Packages 1432 kB/19.3 MB 7%]                                                          Get:9 http://security.ubuntu.com/ubuntu noble-security/main amd64 Packages [1980 kB]
+27% [3 Packages store 0 B] [8 Packages 2311 kB/19.3 MB 12%] [9 Packages 15.7 kB/1980 kB 1%]                                                                                           30% [8 Packages 2732 kB/19.3 MB 14%] [9 Packages 620 kB/1980 kB 31%]                                                                    Get:10 http://security.ubuntu.com/ubuntu noble-security/multiverse amd64 Packages [34.2 kB]
+36% [8 Packages 4087 kB/19.3 MB 21%] [10 Packages 12.3 kB/34.2 kB 36%]36% [9 Packages store 0 B] [8 Packages 4087 kB/19.3 MB 21%] [10 Packages 34.2 kB/34.2 kB 100%]                                                                                              36% [9 Packages store 0 B] [8 Packages 4087 kB/19.3 MB 21%] [Waiting for headers]                                                                                 Get:11 http://security.ubuntu.com/ubuntu noble-security/universe amd64 Packages [1498 kB]
+36% [9 Packages store 0 B] [8 Packages 4087 kB/19.3 MB 21%] [11 Packages 19.8 kB/1498 kB 1%]                                                                                            42% [8 Packages 5421 kB/19.3 MB 28%] [11 Packages 1347 kB/1498 kB 90%]42% [10 Packages store 0 B] [8 Packages 5421 kB/19.3 MB 28%] [11 Packages 1347 kB/1498 kB 90%]                                                                                              43% [8 Packages 5445 kB/19.3 MB 28%] [11 Packages 1347 kB/1498 kB 90%]                                                                      44% [8 Packages 5590 kB/19.3 MB 29%]44% [11 Packages store 0 B] [8 Packages 5590 kB/19.3 MB 29%]                                                            47% [8 Packages 6892 kB/19.3 MB 36%]                                    Get:12 http://archive.ubuntu.com/ubuntu noble/main amd64 Packages [1808 kB]
+74% [12 Packages 16.4 kB/1808 kB 1%]74% [8 Packages store 0 B] [12 Packages 16.4 kB/1808 kB 1%]                                                           Get:13 http://archive.ubuntu.com/ubuntu noble-updates/multiverse amd64 Packages [38.0 kB]
+77% [8 Packages store 0 B] [13 Packages 28.7 kB/38.0 kB 75%]                                                            Get:14 http://archive.ubuntu.com/ubuntu noble-updates/restricted amd64 Packages [3647 kB]
+                                                            78% [8 Packages store 0 B] [14 Packages 53.2 kB/3647 kB 1%]                                                           85% [8 Packages store 0 B]                          Get:15 http://archive.ubuntu.com/ubuntu noble-updates/universe amd64 Packages [2141 kB]
+85% [8 Packages store 0 B] [15 Packages 0 B/2141 kB 0%]                                                       90% [8 Packages store 0 B]                          Get:16 http://archive.ubuntu.com/ubuntu noble-updates/main amd64 Packages [2351 kB]
+90% [8 Packages store 0 B] [16 Packages 12.3 kB/2351 kB 1%]                                                           95% [8 Packages store 0 B] [Waiting for headers]                                                Get:17 http://archive.ubuntu.com/ubuntu noble-backports/main amd64 Packages [49.0 kB]
+95% [8 Packages store 0 B] [17 Packages 0 B/49.0 kB 0%]                                                       Get:18 http://archive.ubuntu.com/ubuntu noble-backports/multiverse amd64 Packages [671 B]
+                                                       Get:19 http://archive.ubuntu.com/ubuntu noble-backports/universe amd64 Packages [35.6 kB]
+95% [8 Packages store 0 B] [19 Packages 35.6 kB/35.6 kB 100%]                                                             95% [8 Packages store 0 B]                          96% [Working]96% [12 Packages store 0 B]                           96% [Working]96% [13 Packages store 0 B]                           97% [Working]97% [14 Packages store 0 B]                           97% [Working]97% [15 Packages store 0 B]                           98% [Working]98% [16 Packages store 0 B]                           98% [Working]98% [17 Packages store 0 B]                           99% [Working]99% [18 Packages store 921 B]                             99% [Working]99% [19 Packages store 0 B]                           100% [Working]              Fetched 37.5 MB in 2s (18.2 MB/s)
+Reading package lists... 0%Reading package lists... 0%Reading package lists... 0%Reading package lists... 4%Reading package lists... 4%Reading package lists... 51%Reading package lists... 51%Reading package lists... 52%Reading package lists... 52%Reading package lists... 52%Reading package lists... 52%Reading package lists... 59%Reading package lists... 59%Reading package lists... 66%Reading package lists... 66%Reading package lists... 77%Reading package lists... 77%Reading package lists... 77%Reading package lists... 77%Reading package lists... 78%Reading package lists... 78%Reading package lists... 78%Reading package lists... 78%Reading package lists... 78%Reading package lists... 78%Reading package lists... 84%Reading package lists... 84%Reading package lists... 88%Reading package lists... 88%Reading package lists... 99%Reading package lists... 99%Reading package lists... 99%Reading package lists... 99%Reading package lists... Done
+Reading package lists... 0%Reading package lists... 0%Reading package lists... 0%Reading package lists... 4%Reading package lists... 4%Reading package lists... 51%Reading package lists... 51%Reading package lists... 51%Reading package lists... 51%Reading package lists... 52%Reading package lists... 52%Reading package lists... 59%Reading package lists... 59%Reading package lists... 66%Reading package lists... 66%Reading package lists... 77%Reading package lists... 77%Reading package lists... 77%Reading package lists... 77%Reading package lists... 77%Reading package lists... 77%Reading package lists... 77%Reading package lists... 77%Reading package lists... 77%Reading package lists... 77%Reading package lists... 83%Reading package lists... 83%Reading package lists... 88%Reading package lists... 88%Reading package lists... 99%Reading package lists... 99%Reading package lists... 99%Reading package lists... 99%Reading package lists... 99%Reading package lists... 99%Reading package lists... 99%Reading package lists... 99%Reading package lists... 99%Reading package lists... 99%Reading package lists... 99%Reading package lists... 99%Reading package lists... Done
+Building dependency tree... 0%Building dependency tree... 0%Building dependency tree... 50%Building dependency tree... 50%Building dependency tree... Done
+Reading state information... 0% Reading state information... 0%Reading state information... Done
+Note, selecting 'libtiff-dev' instead of '/override-debs/libtiff-dev_4.5.1+git230720-4ubuntu2.5+safelibs1_amd64.deb'
+Note, selecting 'libtiff-tools' instead of '/override-debs/libtiff-tools_4.5.1+git230720-4ubuntu2.5+safelibs1_amd64.deb'
+Note, selecting 'libtiff6' instead of '/override-debs/libtiff6_4.5.1+git230720-4ubuntu2.5+safelibs1_amd64.deb'
+Note, selecting 'libtiffxx6' instead of '/override-debs/libtiffxx6_4.5.1+git230720-4ubuntu2.5+safelibs1_amd64.deb'
+The following packages will be upgraded:
+  libtiff-dev libtiff-tools libtiff6 libtiffxx6
+4 upgraded, 0 newly installed, 0 to remove and 18 not upgraded.
+Need to get 0 B/886 kB of archives.
+After this operation, 70.7 kB of additional disk space will be used.
+0% [Working]            Get:1 /override-debs/libtiff-dev_4.5.1+git230720-4ubuntu2.5+safelibs1_amd64.deb libtiff-dev amd64 1:4.5.1+git230720-4ubuntu2.5+safelibs1 [35.7 kB]
+8% [Working]            Get:2 /override-debs/libtiff6_4.5.1+git230720-4ubuntu2.5+safelibs1_amd64.deb libtiff6 amd64 1:4.5.1+git230720-4ubuntu2.5+safelibs1 [637 kB]
+71% [Working]             Get:3 /override-debs/libtiffxx6_4.5.1+git230720-4ubuntu2.5+safelibs1_amd64.deb libtiffxx6 amd64 1:4.5.1+git230720-4ubuntu2.5+safelibs1 [12.3 kB]
+77% [Working]             Get:4 /override-debs/libtiff-tools_4.5.1+git230720-4ubuntu2.5+safelibs1_amd64.deb libtiff-tools amd64 1:4.5.1+git230720-4ubuntu2.5+safelibs1 [200 kB]
+100% [Working]              debconf: delaying package configuration, since apt-utils is not installed
+(Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 15507 files and directories currently installed.)
+Preparing to unpack .../libtiff-dev_4.5.1+git230720-4ubuntu2.5+safelibs1_amd64.deb ...
+Unpacking libtiff-dev:amd64 (1:4.5.1+git230720-4ubuntu2.5+safelibs1) over (4.5.1+git230720-4ubuntu2.5) ...
+Preparing to unpack .../libtiff6_4.5.1+git230720-4ubuntu2.5+safelibs1_amd64.deb ...
+Unpacking libtiff6:amd64 (1:4.5.1+git230720-4ubuntu2.5+safelibs1) over (4.5.1+git230720-4ubuntu2.5) ...
+Preparing to unpack .../libtiffxx6_4.5.1+git230720-4ubuntu2.5+safelibs1_amd64.deb ...
+Unpacking libtiffxx6:amd64 (1:4.5.1+git230720-4ubuntu2.5+safelibs1) over (4.5.1+git230720-4ubuntu2.5) ...
+Preparing to unpack .../libtiff-tools_4.5.1+git230720-4ubuntu2.5+safelibs1_amd64.deb ...
+Unpacking libtiff-tools (1:4.5.1+git230720-4ubuntu2.5+safelibs1) over (4.5.1+git230720-4ubuntu2.5) ...
+Setting up libtiff6:amd64 (1:4.5.1+git230720-4ubuntu2.5+safelibs1) ...
+Setting up libtiffxx6:amd64 (1:4.5.1+git230720-4ubuntu2.5+safelibs1) ...
+Setting up libtiff-tools (1:4.5.1+git230720-4ubuntu2.5+safelibs1) ...
+Setting up libtiff-dev:amd64 (1:4.5.1+git230720-4ubuntu2.5+safelibs1) ...
+Processing triggers for libc-bin (2.39-0ubuntu8.7) ...
+N: Download is performed unsandboxed as root as file '/override-debs/libtiff-dev_4.5.1+git230720-4ubuntu2.5+safelibs1_amd64.deb' couldn't be accessed by user '_apt'. - pkgAcquire::Run (13: Permission denied)
+/validator/tests/libtiff/tests/fixtures/samples/test/images/minisblack-1c-8b.tiff:
+Magic: 0x4d4d <big-endian> Version: 0x2a <ClassicTIFF>
+Directory 0: offset 23716 (0x5ca4) next 0 (0)
+ImageWidth (256) SHORT (3) 1<157>
+ImageLength (257) SHORT (3) 1<151>
+BitsPerSample (258) SHORT (3) 1<8>
+Compression (259) SHORT (3) 1<1>
+Photometric (262) SHORT (3) 1<1>
+DocumentName (269) ASCII (2) 22<minisblack-1c-8b.tiff\0>
+StripOffsets (273) LONG (4) 3<8 8172 16336>
+SamplesPerPixel (277) SHORT (3) 1<1>
+RowsPerStrip (278) SHORT (3) 1<52>
+StripByteCounts (279) LONG (4) 3<8164 8164 7379>
+PlanarConfig (284) SHORT (3) 1<1>
+PageNumber (297) SHORT (3) 2<0 1>
+Software (305) ASCII (2) 65<GraphicsMagick 1.2 unrel ...>
+SampleFormat (339) SHORT (3) 1<1>
+ImageWidth (256) SHORT (3) 1<157>
+ImageLength (257) SHORT (3) 1<151>

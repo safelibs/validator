@@ -1,0 +1,151 @@
+{
+  "schema_version": 2,
+  "library": "libwebp",
+  "mode": "port-04-test",
+  "testcase_id": "malformed-webp-rejection",
+  "title": "Malformed WebP rejection",
+  "description": "Requires dwebp to fail on bytes that are not WebP data.",
+  "kind": "source",
+  "client_application": null,
+  "tags": [
+    "cli",
+    "negative"
+  ],
+  "requires": [],
+  "status": "passed",
+  "started_at": "1970-01-01T00:00:00Z",
+  "finished_at": "1970-01-01T00:00:00Z",
+  "duration_seconds": 0.0,
+  "result_path": "port-04-test/results/libwebp/malformed-webp-rejection.json",
+  "log_path": "port-04-test/logs/libwebp/malformed-webp-rejection.log",
+  "cast_path": "port-04-test/casts/libwebp/malformed-webp-rejection.cast",
+  "exit_code": 0,
+  "command": [
+    "bash",
+    "/validator/tests/libwebp/tests/cases/source/malformed-webp-rejection.sh"
+  ],
+  "apt_packages": [
+    "libwebp7",
+    "libwebpdemux2",
+    "libwebpmux3",
+    "libwebpdecoder3",
+    "libsharpyuv0",
+    "libwebp-dev",
+    "libsharpyuv-dev",
+    "webp"
+  ],
+  "override_debs_installed": true,
+  "port_repository": "safelibs/port-libwebp",
+  "port_tag_ref": "refs/tags/libwebp/04-test",
+  "port_commit": "d9437d8e3c872766d7684cbe6701bfed7243465f",
+  "port_release_tag": "build-d9437d8e3c87",
+  "port_debs": [
+    {
+      "package": "libwebp7",
+      "filename": "libwebp7_1.3.2-0.4build3+safelibs1_amd64.deb",
+      "architecture": "amd64",
+      "sha256": "d53e7aa9af7332ab3ba7155714043107e10df1e24655b6bdef4882262e9cae15",
+      "size": 271894
+    },
+    {
+      "package": "libwebpdemux2",
+      "filename": "libwebpdemux2_1.3.2-0.4build3+safelibs1_amd64.deb",
+      "architecture": "amd64",
+      "sha256": "ee831697509f1594e7ff489d3271dbf8ba2180db7799760ef738d3aa3ec5b571",
+      "size": 139234
+    },
+    {
+      "package": "libwebpmux3",
+      "filename": "libwebpmux3_1.3.2-0.4build3+safelibs1_amd64.deb",
+      "architecture": "amd64",
+      "sha256": "2d30b5a103d017dc4912b523f68d52f6eae4178f73e9a13327ec51f6f1b246bf",
+      "size": 292354
+    },
+    {
+      "package": "libwebpdecoder3",
+      "filename": "libwebpdecoder3_1.3.2-0.4build3+safelibs1_amd64.deb",
+      "architecture": "amd64",
+      "sha256": "3050ba41234d5eb92e85236d98498edbee544ceb6c7011f0f6c306e525a1a35d",
+      "size": 131772
+    },
+    {
+      "package": "libsharpyuv0",
+      "filename": "libsharpyuv0_1.3.2-0.4build3+safelibs1_amd64.deb",
+      "architecture": "amd64",
+      "sha256": "0d7997f9c888e3bc69d8b9e1b64e52e0ae0c4a676a6cc4f8ed65d4d3148e5e61",
+      "size": 91776
+    },
+    {
+      "package": "libwebp-dev",
+      "filename": "libwebp-dev_1.3.2-0.4build3+safelibs1_amd64.deb",
+      "architecture": "amd64",
+      "sha256": "c787944dc4a2cb3512169bf3b6aa66da457e92dd3bb5823060fb9103d04e3733",
+      "size": 444910
+    },
+    {
+      "package": "libsharpyuv-dev",
+      "filename": "libsharpyuv-dev_1.3.2-0.4build3+safelibs1_amd64.deb",
+      "architecture": "amd64",
+      "sha256": "db118f662844c623f4d7ca9ffa15e7161564a5e2e152e46fc3926aa0b05c7b19",
+      "size": 94194
+    },
+    {
+      "package": "webp",
+      "filename": "webp_1.3.2-0.4build3+safelibs1_amd64.deb",
+      "architecture": "amd64",
+      "sha256": "8abc4302e250c5333c6bf955d4f351d22e9e725f0aed96d258a253684c2ce54a",
+      "size": 98186
+    }
+  ],
+  "unported_original_packages": [],
+  "override_installed_packages": [
+    {
+      "package": "libwebp7",
+      "version": "1.3.2-0.4build3+safelibs1",
+      "architecture": "amd64",
+      "filename": "libwebp7_1.3.2-0.4build3+safelibs1_amd64.deb"
+    },
+    {
+      "package": "libwebpdemux2",
+      "version": "1.3.2-0.4build3+safelibs1",
+      "architecture": "amd64",
+      "filename": "libwebpdemux2_1.3.2-0.4build3+safelibs1_amd64.deb"
+    },
+    {
+      "package": "libwebpmux3",
+      "version": "1.3.2-0.4build3+safelibs1",
+      "architecture": "amd64",
+      "filename": "libwebpmux3_1.3.2-0.4build3+safelibs1_amd64.deb"
+    },
+    {
+      "package": "libwebpdecoder3",
+      "version": "1.3.2-0.4build3+safelibs1",
+      "architecture": "amd64",
+      "filename": "libwebpdecoder3_1.3.2-0.4build3+safelibs1_amd64.deb"
+    },
+    {
+      "package": "libsharpyuv0",
+      "version": "1.3.2-0.4build3+safelibs1",
+      "architecture": "amd64",
+      "filename": "libsharpyuv0_1.3.2-0.4build3+safelibs1_amd64.deb"
+    },
+    {
+      "package": "libwebp-dev",
+      "version": "1.3.2-0.4build3+safelibs1",
+      "architecture": "amd64",
+      "filename": "libwebp-dev_1.3.2-0.4build3+safelibs1_amd64.deb"
+    },
+    {
+      "package": "libsharpyuv-dev",
+      "version": "1.3.2-0.4build3+safelibs1",
+      "architecture": "amd64",
+      "filename": "libsharpyuv-dev_1.3.2-0.4build3+safelibs1_amd64.deb"
+    },
+    {
+      "package": "webp",
+      "version": "1.3.2-0.4build3+safelibs1",
+      "architecture": "amd64",
+      "filename": "webp_1.3.2-0.4build3+safelibs1_amd64.deb"
+    }
+  ]
+}

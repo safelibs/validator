@@ -1,0 +1,95 @@
+{
+  "schema_version": 2,
+  "library": "libxml",
+  "mode": "port-04-test",
+  "testcase_id": "python-binding-smoke",
+  "title": "Python libxml2 binding smoke",
+  "description": "Parses and queries XML through the packaged Python libxml2 binding.",
+  "kind": "source",
+  "client_application": null,
+  "tags": [
+    "python",
+    "binding"
+  ],
+  "requires": [],
+  "status": "passed",
+  "started_at": "1970-01-01T00:00:00Z",
+  "finished_at": "1970-01-01T00:00:00Z",
+  "duration_seconds": 0.0,
+  "result_path": "port-04-test/results/libxml/python-binding-smoke.json",
+  "log_path": "port-04-test/logs/libxml/python-binding-smoke.log",
+  "cast_path": "port-04-test/casts/libxml/python-binding-smoke.cast",
+  "exit_code": 0,
+  "command": [
+    "bash",
+    "/validator/tests/libxml/tests/cases/source/python-binding-smoke.sh"
+  ],
+  "apt_packages": [
+    "libxml2",
+    "libxml2-dev",
+    "libxml2-utils",
+    "python3-libxml2"
+  ],
+  "override_debs_installed": true,
+  "port_repository": "safelibs/port-libxml",
+  "port_tag_ref": "refs/tags/libxml/04-test",
+  "port_commit": "8af9d2976d2400327eb27c882c48b8556f27cc2a",
+  "port_release_tag": "build-8af9d2976d24",
+  "port_debs": [
+    {
+      "package": "libxml2",
+      "filename": "libxml2_2.9.14+dfsg-1.3ubuntu3.7+safelibs1_amd64.deb",
+      "architecture": "amd64",
+      "sha256": "f9b46aa84b67f2b823bf75d215b7d5e4fc56a666fccb66ad7b6485d772f64844",
+      "size": 1180668
+    },
+    {
+      "package": "libxml2-dev",
+      "filename": "libxml2-dev_2.9.14+dfsg-1.3ubuntu3.7+safelibs1_amd64.deb",
+      "architecture": "amd64",
+      "sha256": "db79517aa5cb5b9ebdad39cee6fa010a29e1a9c85e6f8bc8279b1f03a9bf6b6f",
+      "size": 4179786
+    },
+    {
+      "package": "libxml2-utils",
+      "filename": "libxml2-utils_2.9.14+dfsg-1.3ubuntu3.7+safelibs1_amd64.deb",
+      "architecture": "amd64",
+      "sha256": "ab2ae9f83b4bfae822782dce35c445b0fa2b9ccdf25042dd9dfff0c373070a26",
+      "size": 915638
+    },
+    {
+      "package": "python3-libxml2",
+      "filename": "python3-libxml2_2.9.14+dfsg-1.3ubuntu3.7+safelibs1_amd64.deb",
+      "architecture": "amd64",
+      "sha256": "0a17da0d8ee3b44c77d8a4a507d58cbebdf8f7db6e2ed164b4e2f081b872cdbd",
+      "size": 136252
+    }
+  ],
+  "unported_original_packages": [],
+  "override_installed_packages": [
+    {
+      "package": "libxml2",
+      "version": "2.9.14+dfsg-1.3ubuntu3.7+safelibs1",
+      "architecture": "amd64",
+      "filename": "libxml2_2.9.14+dfsg-1.3ubuntu3.7+safelibs1_amd64.deb"
+    },
+    {
+      "package": "libxml2-dev",
+      "version": "2.9.14+dfsg-1.3ubuntu3.7+safelibs1",
+      "architecture": "amd64",
+      "filename": "libxml2-dev_2.9.14+dfsg-1.3ubuntu3.7+safelibs1_amd64.deb"
+    },
+    {
+      "package": "libxml2-utils",
+      "version": "2.9.14+dfsg-1.3ubuntu3.7+safelibs1",
+      "architecture": "amd64",
+      "filename": "libxml2-utils_2.9.14+dfsg-1.3ubuntu3.7+safelibs1_amd64.deb"
+    },
+    {
+      "package": "python3-libxml2",
+      "version": "2.9.14+dfsg-1.3ubuntu3.7+safelibs1",
+      "architecture": "amd64",
+      "filename": "python3-libxml2_2.9.14+dfsg-1.3ubuntu3.7+safelibs1_amd64.deb"
+    }
+  ]
+}

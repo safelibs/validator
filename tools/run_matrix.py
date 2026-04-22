@@ -147,7 +147,7 @@ def shell_join(args: list[str]) -> str:
 
 
 def normalize_log_text(text: str, replacements: dict[str, str] | None = None) -> str:
-    normalized = text
+    normalized = text.replace("\r", "")
     if replacements:
         for source, target in sorted(replacements.items(), key=lambda item: len(item[0]), reverse=True):
             normalized = normalized.replace(source, target)

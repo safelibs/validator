@@ -1,0 +1,2 @@
+$ docker build --tag validator-libtiff-shared --file /tmp/validator-run-matrix-libtiff/libtiff/Dockerfile /tmp/validator-run-matrix-libtiff
+docker build completed

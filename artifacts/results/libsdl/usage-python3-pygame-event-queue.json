@@ -3,8 +3,8 @@
   "library": "libsdl",
   "mode": "original",
   "testcase_id": "usage-python3-pygame-event-queue",
-  "title": "Pygame event queue",
-  "description": "Uses Pygame to run SDL event queue behavior.",
+  "title": "Pygame event object",
+  "description": "Uses Pygame event APIs to allocate a custom event and verify its payload attributes.",
   "kind": "usage",
   "client_application": "python3-pygame",
   "tags": [

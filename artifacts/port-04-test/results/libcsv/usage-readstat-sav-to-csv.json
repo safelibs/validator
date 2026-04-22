@@ -1,0 +1,67 @@
+{
+  "schema_version": 2,
+  "library": "libcsv",
+  "mode": "port-04-test",
+  "testcase_id": "usage-readstat-sav-to-csv",
+  "title": "readstat SAV to CSV",
+  "description": "Runs readstat to read an SPSS SAV dataset generated from CSV and emit CSV rows.",
+  "kind": "usage",
+  "client_application": "readstat",
+  "tags": [
+    "usage",
+    "csv"
+  ],
+  "requires": [],
+  "status": "passed",
+  "started_at": "1970-01-01T00:00:00Z",
+  "finished_at": "1970-01-01T00:00:00Z",
+  "duration_seconds": 0.0,
+  "result_path": "port-04-test/results/libcsv/usage-readstat-sav-to-csv.json",
+  "log_path": "port-04-test/logs/libcsv/usage-readstat-sav-to-csv.log",
+  "cast_path": "port-04-test/casts/libcsv/usage-readstat-sav-to-csv.cast",
+  "exit_code": 0,
+  "command": [
+    "bash",
+    "/validator/tests/libcsv/tests/cases/usage/usage-readstat-sav-to-csv.sh"
+  ],
+  "apt_packages": [
+    "libcsv3",
+    "libcsv-dev"
+  ],
+  "override_debs_installed": true,
+  "port_repository": "safelibs/port-libcsv",
+  "port_tag_ref": "refs/tags/libcsv/04-test",
+  "port_commit": "91e798441fdd01840738ac7488cb064f9299b21d",
+  "port_release_tag": "build-91e798441fdd",
+  "port_debs": [
+    {
+      "package": "libcsv3",
+      "filename": "libcsv3_3.0.3+dfsg-6+safelibs1_amd64.deb",
+      "architecture": "amd64",
+      "sha256": "4eafbf63a0bfe37ded01eb8a067584160346048b5f3a28ecae745cc75303aeba",
+      "size": 8478
+    },
+    {
+      "package": "libcsv-dev",
+      "filename": "libcsv-dev_3.0.3+dfsg-6+safelibs1_amd64.deb",
+      "architecture": "amd64",
+      "sha256": "54f3476c90f9fed673984851ee244e01ea70e99cc39d043178f4cf11a2c4e3e3",
+      "size": 1074428
+    }
+  ],
+  "unported_original_packages": [],
+  "override_installed_packages": [
+    {
+      "package": "libcsv3",
+      "version": "3.0.3+dfsg-6+safelibs1",
+      "architecture": "amd64",
+      "filename": "libcsv3_3.0.3+dfsg-6+safelibs1_amd64.deb"
+    },
+    {
+      "package": "libcsv-dev",
+      "version": "3.0.3+dfsg-6+safelibs1",
+      "architecture": "amd64",
+      "filename": "libcsv-dev_3.0.3+dfsg-6+safelibs1_amd64.deb"
+    }
+  ]
+}

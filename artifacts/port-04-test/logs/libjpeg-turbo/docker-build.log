@@ -1,0 +1,2 @@
+$ docker build --tag validator-libjpeg-turbo-shared --file /tmp/validator-run-matrix-libjpeg-turbo/libjpeg-turbo/Dockerfile /tmp/validator-run-matrix-libjpeg-turbo
+docker build completed

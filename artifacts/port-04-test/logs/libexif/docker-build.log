@@ -1,0 +1,2 @@
+$ docker build --tag validator-libexif-shared --file /tmp/validator-run-matrix-libexif/libexif/Dockerfile /tmp/validator-run-matrix-libexif
+docker build completed

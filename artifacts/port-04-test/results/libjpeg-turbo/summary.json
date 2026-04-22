@@ -1,0 +1,12 @@
+{
+  "schema_version": 2,
+  "library": "libjpeg-turbo",
+  "mode": "port-04-test",
+  "cases": 15,
+  "source_cases": 5,
+  "usage_cases": 10,
+  "passed": 15,
+  "failed": 0,
+  "casts": 15,
+  "duration_seconds": 0.0
+}

@@ -1,0 +1,86 @@
+$ docker run --rm -t --mount type=bind,src=/tmp/validator-status-libwebp-webpmux-metadata,dst=/validator/status --mount type=bind,src=/home/yans/safelibs/validator/artifacts/debs/port-04-test/libwebp,dst=/override-debs,readonly validator-libwebp-shared bash -lc 'set -euo pipefail
+/validator/tests/_shared/install_override_debs.sh
+exec /validator/tests/_shared/run_library_tests.sh "$@"' validator-testcase libwebp webpmux-metadata -- bash -c 'PS4=$1; shift; set -x; source "$@"' validator-xtrace '__VALIDATOR_XTRACE__ ' /validator/tests/libwebp/tests/cases/source/webpmux-metadata.sh
+installing override packages from /override-debs
+0% [Working]            Get:1 http://archive.ubuntu.com/ubuntu noble InRelease [256 kB]
+0% [1 InRelease 2588 B/256 kB 1%] [Waiting for headers]                                                       Get:2 http://security.ubuntu.com/ubuntu noble-security InRelease [126 kB]
+0% [1 InRelease 14.2 kB/256 kB 6%] [2 InRelease 14.2 kB/126 kB 11%]0% [1 InRelease 186 kB/256 kB 73%] [2 InRelease 89.5 kB/126 kB 71%]                                                                   0% [Waiting for headers] [2 InRelease 121 kB/126 kB 96%]                                                        0% [Waiting for headers]0% [Waiting for headers]0% [Waiting for headers]                        Get:3 http://archive.ubuntu.com/ubuntu noble-updates InRelease [126 kB]
+0% [3 InRelease 5484 B/126 kB 4%] [Waiting for headers]                                                       0% [Waiting for headers]0% [Waiting for headers] [Waiting for headers]                                              Get:4 http://security.ubuntu.com/ubuntu noble-security/universe amd64 Packages [1498 kB]
+0% [Waiting for headers] [4 Packages 4396 B/1498 kB 0%]                                                       Get:5 http://archive.ubuntu.com/ubuntu noble-backports InRelease [126 kB]
+0% [5 InRelease 2588 B/126 kB 2%] [4 Packages 80.8 kB/1498 kB 5%]                                                                 0% [4 Packages 107 kB/1498 kB 7%]13% [Waiting for headers] [4 Packages 107 kB/1498 kB 7%]                                                        Get:6 http://archive.ubuntu.com/ubuntu noble/multiverse amd64 Packages [331 kB]
+13% [6 Packages 15.0 kB/331 kB 5%] [4 Packages 208 kB/1498 kB 14%]                                                                  15% [4 Packages 425 kB/1498 kB 28%]                                   Get:7 http://archive.ubuntu.com/ubuntu noble/universe amd64 Packages [19.3 MB]
+15% [7 Packages 5830 B/19.3 MB 0%] [4 Packages 425 kB/1498 kB 28%]15% [6 Packages store 0 B] [7 Packages 5830 B/19.3 MB 0%] [4 Packages 425 kB/1498 kB 28%]                                                                                         15% [7 Packages 17.4 kB/19.3 MB 0%] [4 Packages 431 kB/1498 kB 29%]22% [7 Packages 2083 kB/19.3 MB 11%] [4 Packages 1480 kB/1498 kB 99%]                                                                     23% [7 Packages 2398 kB/19.3 MB 12%]23% [4 Packages store 0 B] [7 Packages 2398 kB/19.3 MB 12%]                                                           24% [7 Packages 2849 kB/19.3 MB 15%] [Waiting for headers]                                                          Get:8 http://security.ubuntu.com/ubuntu noble-security/restricted amd64 Packages [3479 kB]
+27% [7 Packages 4103 kB/19.3 MB 21%] [8 Packages 21.5 kB/3479 kB 1%]56% [7 Packages 14.5 MB/19.3 MB 75%] [8 Packages 3378 kB/3479 kB 97%]                                                                     61% [7 Packages 16.5 MB/19.3 MB 86%] [Waiting for headers]                                                          Get:9 http://security.ubuntu.com/ubuntu noble-security/main amd64 Packages [1980 kB]
+61% [7 Packages 16.5 MB/19.3 MB 86%] [9 Packages 36.2 kB/1980 kB 2%]61% [8 Packages store 0 B] [7 Packages 16.5 MB/19.3 MB 86%] [9 Packages 53.2 kB/1980 kB 3%]                                                                                           67% [7 Packages 18.7 MB/19.3 MB 97%] [9 Packages 585 kB/1980 kB 30%]                                                                    70% [Waiting for headers] [9 Packages 1267 kB/1980 kB 64%]                                                          Get:10 http://archive.ubuntu.com/ubuntu noble/restricted amd64 Packages [117 kB]
+70% [10 Packages 28.7 kB/117 kB 24%] [9 Packages 1267 kB/1980 kB 64%]70% [7 Packages store 0 B] [10 Packages 28.7 kB/117 kB 24%] [9 Packages 1267 kB/1980 kB 64%]                                                                                            Get:11 http://archive.ubuntu.com/ubuntu noble/main amd64 Packages [1808 kB]
+70% [7 Packages store 0 B] [11 Packages 36.9 kB/1808 kB 2%] [9 Packages 1267 kB/1980 kB 64%]                                                                                            Get:12 http://archive.ubuntu.com/ubuntu noble-updates/universe amd64 Packages [2141 kB]
+75% [7 Packages store 0 B] [12 Packages 48.3 kB/2141 kB 2%] [9 Packages 1567 kB/1980 kB 79%]                                                                                            Get:13 http://archive.ubuntu.com/ubuntu noble-updates/multiverse amd64 Packages [38.0 kB]
+79% [7 Packages store 0 B] [13 Packages 24.6 kB/38.0 kB 65%] [9 Packages 1567 kB/1980 kB 79%]                                                                                             Get:14 http://archive.ubuntu.com/ubuntu noble-updates/restricted amd64 Packages [3647 kB]
+                                                                                             79% [7 Packages store 0 B] [14 Packages 49.2 kB/3647 kB 1%] [9 Packages 1567 kB/1980 kB 79%]                                                                                            Get:15 http://security.ubuntu.com/ubuntu noble-security/multiverse amd64 Packages [34.2 kB]
+85% [7 Packages store 0 B] [14 Packages 2199 kB/3647 kB 60%] [15 Packages 34.2 kB/34.2 kB 100%]                                                                                               85% [7 Packages store 0 B] [14 Packages 2199 kB/3647 kB 60%]                                                            Get:16 http://archive.ubuntu.com/ubuntu noble-updates/main amd64 Packages [2351 kB]
+                                                            88% [7 Packages store 0 B] [16 Packages 0 B/2351 kB 0%]                                                       Get:17 http://archive.ubuntu.com/ubuntu noble-backports/multiverse amd64 Packages [671 B]
+93% [7 Packages store 0 B] [17 Packages 671 B/671 B 100%]                                                         Get:18 http://archive.ubuntu.com/ubuntu noble-backports/main amd64 Packages [49.0 kB]
+93% [7 Packages store 0 B] [18 Packages 49.0 kB/49.0 kB 100%]                                                             93% [7 Packages store 0 B]                          Get:19 http://archive.ubuntu.com/ubuntu noble-backports/universe amd64 Packages [35.6 kB]
+93% [7 Packages store 0 B] [19 Packages 24.8 kB/35.6 kB 70%]                                                            93% [7 Packages store 0 B]                          94% [Working]94% [10 Packages store 0 B]                           94% [Working]94% [11 Packages store 0 B]                           95% [Working]95% [12 Packages store 0 B]                           96% [Working]96% [13 Packages store 0 B]                           96% [Working]96% [9 Packages store 0 B]                          97% [Working]97% [15 Packages store 0 B]                           97% [Working]97% [14 Packages store 0 B]                           98% [Working]98% [16 Packages store 0 B]                           98% [Working]98% [17 Packages store 0 B]                           99% [Working]99% [18 Packages store 0 B]                           99% [Working]99% [19 Packages store 0 B]                           100% [Working]              Fetched 37.5 MB in 4s (10.4 MB/s)
+Reading package lists... 0%Reading package lists... 0%Reading package lists... 0%Reading package lists... 4%Reading package lists... 4%Reading package lists... 51%Reading package lists... 51%Reading package lists... 51%Reading package lists... 51%Reading package lists... 52%Reading package lists... 52%Reading package lists... 59%Reading package lists... 59%Reading package lists... 66%Reading package lists... 66%Reading package lists... 77%Reading package lists... 77%Reading package lists... 77%Reading package lists... 77%Reading package lists... 78%Reading package lists... 78%Reading package lists... 78%Reading package lists... 78%Reading package lists... 78%Reading package lists... 78%Reading package lists... 83%Reading package lists... 83%Reading package lists... 88%Reading package lists... 88%Reading package lists... 99%Reading package lists... 99%Reading package lists... 99%Reading package lists... 99%Reading package lists... Done
+Reading package lists... 0%Reading package lists... 0%Reading package lists... 0%Reading package lists... 4%Reading package lists... 4%Reading package lists... 51%Reading package lists... 51%Reading package lists... 51%Reading package lists... 51%Reading package lists... 52%Reading package lists... 52%Reading package lists... 59%Reading package lists... 59%Reading package lists... 65%Reading package lists... 65%Reading package lists... 76%Reading package lists... 76%Reading package lists... 77%Reading package lists... 77%Reading package lists... 77%Reading package lists... 77%Reading package lists... 77%Reading package lists... 77%Reading package lists... 77%Reading package lists... 77%Reading package lists... 83%Reading package lists... 83%Reading package lists... 87%Reading package lists... 87%Reading package lists... 98%Reading package lists... 98%Reading package lists... 98%Reading package lists... 98%Reading package lists... 99%Reading package lists... 99%Reading package lists... 99%Reading package lists... 99%Reading package lists... 99%Reading package lists... 99%Reading package lists... 99%Reading package lists... 99%Reading package lists... 99%Reading package lists... 99%Reading package lists... 99%Reading package lists... 99%Reading package lists... 99%Reading package lists... 99%Reading package lists... 99%Reading package lists... 99%Reading package lists... Done
+Building dependency tree... 0%Building dependency tree... 0%Building dependency tree... 50%Building dependency tree... 50%Building dependency tree... Done
+Reading state information... 0% Reading state information... 0%Reading state information... Done
+Note, selecting 'libsharpyuv-dev' instead of '/override-debs/libsharpyuv-dev_1.3.2-0.4build3+safelibs1_amd64.deb'
+Note, selecting 'libsharpyuv0' instead of '/override-debs/libsharpyuv0_1.3.2-0.4build3+safelibs1_amd64.deb'
+Note, selecting 'libwebp-dev' instead of '/override-debs/libwebp-dev_1.3.2-0.4build3+safelibs1_amd64.deb'
+Note, selecting 'libwebp7' instead of '/override-debs/libwebp7_1.3.2-0.4build3+safelibs1_amd64.deb'
+Note, selecting 'libwebpdecoder3' instead of '/override-debs/libwebpdecoder3_1.3.2-0.4build3+safelibs1_amd64.deb'
+Note, selecting 'libwebpdemux2' instead of '/override-debs/libwebpdemux2_1.3.2-0.4build3+safelibs1_amd64.deb'
+Note, selecting 'libwebpmux3' instead of '/override-debs/libwebpmux3_1.3.2-0.4build3+safelibs1_amd64.deb'
+Note, selecting 'webp' instead of '/override-debs/webp_1.3.2-0.4build3+safelibs1_amd64.deb'
+The following package was automatically installed and is no longer required:
+  libopengl0
+Use 'apt autoremove' to remove it.
+The following packages will be upgraded:
+  libsharpyuv-dev libsharpyuv0 libwebp-dev libwebp7 libwebpdecoder3 libwebpdemux2 libwebpmux3 webp
+8 upgraded, 0 newly installed, 0 to remove and 9 not upgraded.
+Need to get 0 B/1564 kB of archives.
+After this operation, 1902 kB of additional disk space will be used.
+0% [Working]            Get:1 /override-debs/libsharpyuv-dev_1.3.2-0.4build3+safelibs1_amd64.deb libsharpyuv-dev amd64 1.3.2-0.4build3+safelibs1 [94.2 kB]
+7% [Working]            Get:2 /override-debs/libsharpyuv0_1.3.2-0.4build3+safelibs1_amd64.deb libsharpyuv0 amd64 1.3.2-0.4build3+safelibs1 [91.8 kB]
+15% [Working]             Get:3 /override-debs/libwebp-dev_1.3.2-0.4build3+safelibs1_amd64.deb libwebp-dev amd64 1.3.2-0.4build3+safelibs1 [445 kB]
+15% [3 libwebp-dev 0 B/445 kB 0%]                                 40% [Working]             Get:4 /override-debs/libwebp7_1.3.2-0.4build3+safelibs1_amd64.deb libwebp7 amd64 1.3.2-0.4build3+safelibs1 [272 kB]
+40% [4 libwebp7 0 B/272 kB 0%]                              56% [Working]             Get:5 /override-debs/libwebpdemux2_1.3.2-0.4build3+safelibs1_amd64.deb libwebpdemux2 amd64 1.3.2-0.4build3+safelibs1 [139 kB]
+56% [5 libwebpdemux2 0 B/139 kB 0%]                                   66% [Working]             Get:6 /override-debs/libwebpmux3_1.3.2-0.4build3+safelibs1_amd64.deb libwebpmux3 amd64 1.3.2-0.4build3+safelibs1 [292 kB]
+66% [6 libwebpmux3 0 B/292 kB 0%]                                 83% [Working]             Get:7 /override-debs/libwebpdecoder3_1.3.2-0.4build3+safelibs1_amd64.deb libwebpdecoder3 amd64 1.3.2-0.4build3+safelibs1 [132 kB]
+83% [7 libwebpdecoder3 0 B/132 kB 0%]                                     92% [Working]             Get:8 /override-debs/webp_1.3.2-0.4build3+safelibs1_amd64.deb webp amd64 1.3.2-0.4build3+safelibs1 [98.2 kB]
+92% [8 webp 0 B/98.2 kB 0%]                           100% [Working]              debconf: delaying package configuration, since apt-utils is not installed
+(Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 21627 files and directories currently installed.)
+Preparing to unpack .../0-libsharpyuv-dev_1.3.2-0.4build3+safelibs1_amd64.deb ...
+Unpacking libsharpyuv-dev:amd64 (1.3.2-0.4build3+safelibs1) over (1.3.2-0.4build3) ...
+Preparing to unpack .../1-libsharpyuv0_1.3.2-0.4build3+safelibs1_amd64.deb ...
+Unpacking libsharpyuv0:amd64 (1.3.2-0.4build3+safelibs1) over (1.3.2-0.4build3) ...
+Preparing to unpack .../2-libwebp-dev_1.3.2-0.4build3+safelibs1_amd64.deb ...
+Unpacking libwebp-dev:amd64 (1.3.2-0.4build3+safelibs1) over (1.3.2-0.4build3) ...
+Preparing to unpack .../3-libwebp7_1.3.2-0.4build3+safelibs1_amd64.deb ...
+Unpacking libwebp7:amd64 (1.3.2-0.4build3+safelibs1) over (1.3.2-0.4build3) ...
+Preparing to unpack .../4-libwebpdemux2_1.3.2-0.4build3+safelibs1_amd64.deb ...
+Unpacking libwebpdemux2:amd64 (1.3.2-0.4build3+safelibs1) over (1.3.2-0.4build3) ...
+Preparing to unpack .../5-libwebpmux3_1.3.2-0.4build3+safelibs1_amd64.deb ...
+Unpacking libwebpmux3:amd64 (1.3.2-0.4build3+safelibs1) over (1.3.2-0.4build3) ...
+Preparing to unpack .../6-libwebpdecoder3_1.3.2-0.4build3+safelibs1_amd64.deb ...
+Unpacking libwebpdecoder3:amd64 (1.3.2-0.4build3+safelibs1) over (1.3.2-0.4build3) ...
+Preparing to unpack .../7-webp_1.3.2-0.4build3+safelibs1_amd64.deb ...
+Unpacking webp (1.3.2-0.4build3+safelibs1) over (1.3.2-0.4build3) ...
+Setting up libsharpyuv0:amd64 (1.3.2-0.4build3+safelibs1) ...
+Setting up libwebpdecoder3:amd64 (1.3.2-0.4build3+safelibs1) ...
+Setting up libwebp7:amd64 (1.3.2-0.4build3+safelibs1) ...
+Setting up libsharpyuv-dev:amd64 (1.3.2-0.4build3+safelibs1) ...
+Setting up libwebpmux3:amd64 (1.3.2-0.4build3+safelibs1) ...
+Setting up libwebpdemux2:amd64 (1.3.2-0.4build3+safelibs1) ...
+Setting up libwebp-dev:amd64 (1.3.2-0.4build3+safelibs1) ...
+Setting up webp (1.3.2-0.4build3+safelibs1) ...
+Processing triggers for libc-bin (2.39-0ubuntu8.7) ...
+N: Download is performed unsandboxed as root as file '/override-debs/libsharpyuv-dev_1.3.2-0.4build3+safelibs1_amd64.deb' couldn't be accessed by user '_apt'. - pkgAcquire::Run (13: Permission denied)
+Saved file /tmp/validator-tmp/exif.webp (4920 bytes)
+Canvas size: 128 x 128
+Features present: EXIF metadata
+Size of the EXIF metadata: 13
+Features present: EXIF metadata
+Size of the EXIF metadata: 13

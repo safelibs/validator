@@ -1,6 +1,0 @@
-$ docker run --rm -t --mount type=bind,src=/tmp/validator-status-libsdl-usage-python3-pygame-audio-dummy,dst=/validator/status validator-libsdl-shared bash -lc 'set -euo pipefail
-/validator/tests/_shared/install_override_debs.sh
-exec /validator/tests/_shared/run_library_tests.sh "$@"' validator-testcase libsdl usage-python3-pygame-audio-dummy -- bash -c 'PS4=$1; shift; set -x; source "$@"' validator-xtrace '__VALIDATOR_XTRACE__ ' /validator/tests/libsdl/tests/cases/usage/usage-python3-pygame-audio-dummy.sh
-no override packages found; continuing with apt originals
-<frozen importlib._bootstrap>:488: RuntimeWarning: Your system is avx2 capable but pygame was not built with support for it. The performance of some of your blits could be adversely affected. Consider enabling compile time detection with environment variables like PYGAME_DETECT_AVX2=1 if you are compiling without cross compilation.
-mixer (22050, -16, 1)

@@ -1,0 +1,82 @@
+{
+  "schema_version": 2,
+  "library": "libsdl",
+  "mode": "port-04-test",
+  "testcase_id": "usage-python3-pygame-image-save",
+  "title": "Pygame image save",
+  "description": "Uses Pygame to run SDL image save behavior.",
+  "kind": "usage",
+  "client_application": "python3-pygame",
+  "tags": [
+    "usage",
+    "headless",
+    "python"
+  ],
+  "requires": [],
+  "status": "passed",
+  "started_at": "1970-01-01T00:00:00Z",
+  "finished_at": "1970-01-01T00:00:00Z",
+  "duration_seconds": 0.0,
+  "result_path": "port-04-test/results/libsdl/usage-python3-pygame-image-save.json",
+  "log_path": "port-04-test/logs/libsdl/usage-python3-pygame-image-save.log",
+  "cast_path": "port-04-test/casts/libsdl/usage-python3-pygame-image-save.cast",
+  "exit_code": 0,
+  "command": [
+    "bash",
+    "/validator/tests/libsdl/tests/cases/usage/usage-python3-pygame-image-save.sh"
+  ],
+  "apt_packages": [
+    "libsdl2-2.0-0",
+    "libsdl2-dev",
+    "libsdl2-tests"
+  ],
+  "override_debs_installed": true,
+  "port_repository": "safelibs/port-libsdl",
+  "port_tag_ref": "refs/tags/libsdl/04-test",
+  "port_commit": "14609a9a584435d4a12c46aa11e969a0f0f8a7d5",
+  "port_release_tag": "build-14609a9a5844",
+  "port_debs": [
+    {
+      "package": "libsdl2-2.0-0",
+      "filename": "libsdl2-2.0-0_2.30.0+dfsg-1ubuntu3.1+safelibs1_amd64.deb",
+      "architecture": "amd64",
+      "sha256": "f21f77cb0e382dbf6bf1f1e4a63a316850d9257b533290be404c549858dc9759",
+      "size": 492420
+    },
+    {
+      "package": "libsdl2-dev",
+      "filename": "libsdl2-dev_2.30.0+dfsg-1ubuntu3.1+safelibs1_amd64.deb",
+      "architecture": "amd64",
+      "sha256": "da73d1e3f4e0341de9e193b6af368321e938d7229dc0de71703251a556469bef",
+      "size": 10591960
+    },
+    {
+      "package": "libsdl2-tests",
+      "filename": "libsdl2-tests_2.30.0+dfsg-1ubuntu3.1+safelibs1_amd64.deb",
+      "architecture": "amd64",
+      "sha256": "1218466011abfe7679e1ba391479e8c7ee9888b16ab416f6c729f3beb87f1a36",
+      "size": 2843792
+    }
+  ],
+  "unported_original_packages": [],
+  "override_installed_packages": [
+    {
+      "package": "libsdl2-2.0-0",
+      "version": "2.30.0+dfsg-1ubuntu3.1+safelibs1",
+      "architecture": "amd64",
+      "filename": "libsdl2-2.0-0_2.30.0+dfsg-1ubuntu3.1+safelibs1_amd64.deb"
+    },
+    {
+      "package": "libsdl2-dev",
+      "version": "2.30.0+dfsg-1ubuntu3.1+safelibs1",
+      "architecture": "amd64",
+      "filename": "libsdl2-dev_2.30.0+dfsg-1ubuntu3.1+safelibs1_amd64.deb"
+    },
+    {
+      "package": "libsdl2-tests",
+      "version": "2.30.0+dfsg-1ubuntu3.1+safelibs1",
+      "architecture": "amd64",
+      "filename": "libsdl2-tests_2.30.0+dfsg-1ubuntu3.1+safelibs1_amd64.deb"
+    }
+  ]
+}

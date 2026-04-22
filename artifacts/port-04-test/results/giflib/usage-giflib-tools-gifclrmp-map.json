@@ -1,0 +1,71 @@
+{
+  "schema_version": 2,
+  "library": "giflib",
+  "mode": "port-04-test",
+  "testcase_id": "usage-giflib-tools-gifclrmp-map",
+  "title": "giflib-tools gifclrmp map",
+  "description": "Runs giflib-tools gifclrmp map on a GIF fixture and checks image metadata.",
+  "kind": "usage",
+  "client_application": "giflib-tools",
+  "tags": [
+    "usage",
+    "cli",
+    "image"
+  ],
+  "requires": [],
+  "status": "passed",
+  "started_at": "1970-01-01T00:00:00Z",
+  "finished_at": "1970-01-01T00:00:00Z",
+  "duration_seconds": 0.0,
+  "result_path": "port-04-test/results/giflib/usage-giflib-tools-gifclrmp-map.json",
+  "log_path": "port-04-test/logs/giflib/usage-giflib-tools-gifclrmp-map.log",
+  "cast_path": "port-04-test/casts/giflib/usage-giflib-tools-gifclrmp-map.cast",
+  "exit_code": 0,
+  "command": [
+    "bash",
+    "/validator/tests/giflib/tests/cases/usage/usage-giflib-tools-gifclrmp-map.sh"
+  ],
+  "apt_packages": [
+    "libgif7",
+    "libgif-dev",
+    "giflib-tools"
+  ],
+  "override_debs_installed": true,
+  "port_repository": "safelibs/port-giflib",
+  "port_tag_ref": "refs/tags/giflib/04-test",
+  "port_commit": "8dd3019a8e99e4b671fda486393daee138b487cc",
+  "port_release_tag": "build-8dd3019a8e99",
+  "port_debs": [
+    {
+      "package": "libgif7",
+      "filename": "libgif7_5.2.2-1ubuntu1+safelibs3_amd64.deb",
+      "architecture": "amd64",
+      "sha256": "9fe1684234fef963f07f782dc5273f41bcc318f2747bb6342aa0294f7faa8b83",
+      "size": 174784
+    },
+    {
+      "package": "libgif-dev",
+      "filename": "libgif-dev_5.2.2-1ubuntu1+safelibs3_amd64.deb",
+      "architecture": "amd64",
+      "sha256": "a5bf4eb3e84f0e9a96c65322834f70c7d309d70777cfa15873e0e490c8534c5e",
+      "size": 617898
+    }
+  ],
+  "unported_original_packages": [
+    "giflib-tools"
+  ],
+  "override_installed_packages": [
+    {
+      "package": "libgif7",
+      "version": "5.2.2-1ubuntu1+safelibs3",
+      "architecture": "amd64",
+      "filename": "libgif7_5.2.2-1ubuntu1+safelibs3_amd64.deb"
+    },
+    {
+      "package": "libgif-dev",
+      "version": "5.2.2-1ubuntu1+safelibs3",
+      "architecture": "amd64",
+      "filename": "libgif-dev_5.2.2-1ubuntu1+safelibs3_amd64.deb"
+    }
+  ]
+}

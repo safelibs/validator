@@ -1,5 +1,0 @@
-$ docker run --rm -t --mount type=bind,src=/tmp/validator-status-libsdl-version-query-compile,dst=/validator/status validator-libsdl-shared bash -lc 'set -euo pipefail
-/validator/tests/_shared/install_override_debs.sh
-exec /validator/tests/_shared/run_library_tests.sh "$@"' validator-testcase libsdl version-query-compile -- bash -c 'PS4=$1; shift; set -x; source "$@"' validator-xtrace '__VALIDATOR_XTRACE__ ' /validator/tests/libsdl/tests/cases/source/version-query-compile.sh
-no override packages found; continuing with apt originals
-SDL 2.30.0 platform=Linux

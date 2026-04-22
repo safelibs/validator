@@ -87,8 +87,8 @@ testcases:
   - headless
   - python
 - id: usage-python3-pygame-event-queue
-  title: Pygame event queue
-  description: Uses Pygame to run SDL event queue behavior.
+  title: Pygame event object
+  description: Uses Pygame event APIs to allocate a custom event and verify its payload attributes.
   kind: usage
   client_application: python3-pygame
   command:
@@ -165,8 +165,8 @@ testcases:
   - headless
   - python
 - id: usage-python3-pygame-key-event
-  title: Pygame key event dispatch
-  description: Posts a Pygame keydown event and verifies the SDL-backed queue returns the same key.
+  title: Pygame key event object
+  description: Builds a Pygame keydown event and verifies the SDL-backed key constant and event name mapping.
   kind: usage
   client_application: python3-pygame
   command:

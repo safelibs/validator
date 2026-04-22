@@ -1,0 +1,2 @@
+$ docker build --tag validator-libyaml-shared --file /tmp/validator-run-matrix-libyaml/libyaml/Dockerfile /tmp/validator-run-matrix-libyaml
+docker build completed

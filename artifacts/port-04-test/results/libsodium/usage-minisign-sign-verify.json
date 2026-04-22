@@ -1,0 +1,67 @@
+{
+  "schema_version": 2,
+  "library": "libsodium",
+  "mode": "port-04-test",
+  "testcase_id": "usage-minisign-sign-verify",
+  "title": "minisign signs and verifies",
+  "description": "Signs a payload with minisign and verifies it through libsodium-backed signatures.",
+  "kind": "usage",
+  "client_application": "minisign",
+  "tags": [
+    "usage",
+    "crypto"
+  ],
+  "requires": [],
+  "status": "passed",
+  "started_at": "1970-01-01T00:00:00Z",
+  "finished_at": "1970-01-01T00:00:00Z",
+  "duration_seconds": 0.0,
+  "result_path": "port-04-test/results/libsodium/usage-minisign-sign-verify.json",
+  "log_path": "port-04-test/logs/libsodium/usage-minisign-sign-verify.log",
+  "cast_path": "port-04-test/casts/libsodium/usage-minisign-sign-verify.cast",
+  "exit_code": 0,
+  "command": [
+    "bash",
+    "/validator/tests/libsodium/tests/cases/usage/usage-minisign-sign-verify.sh"
+  ],
+  "apt_packages": [
+    "libsodium23",
+    "libsodium-dev"
+  ],
+  "override_debs_installed": true,
+  "port_repository": "safelibs/port-libsodium",
+  "port_tag_ref": "refs/tags/libsodium/04-test",
+  "port_commit": "d1d241340f2eee1e11686fd035b6e46656c4c92b",
+  "port_release_tag": "build-d1d241340f2e",
+  "port_debs": [
+    {
+      "package": "libsodium23",
+      "filename": "libsodium23_1.0.18-1ubuntu0.24.04.1+safelibs1_amd64.deb",
+      "architecture": "amd64",
+      "sha256": "71e620b3938224ed14081523400f76592315db9bf0c5f8da502067cf77612870",
+      "size": 355452
+    },
+    {
+      "package": "libsodium-dev",
+      "filename": "libsodium-dev_1.0.18-1ubuntu0.24.04.1+safelibs1_amd64.deb",
+      "architecture": "amd64",
+      "sha256": "f332edf61c4413fd25348305727e3300697fc967f3eac88d217d25c8364d55b2",
+      "size": 3720704
+    }
+  ],
+  "unported_original_packages": [],
+  "override_installed_packages": [
+    {
+      "package": "libsodium23",
+      "version": "1.0.18-1ubuntu0.24.04.1+safelibs1",
+      "architecture": "amd64",
+      "filename": "libsodium23_1.0.18-1ubuntu0.24.04.1+safelibs1_amd64.deb"
+    },
+    {
+      "package": "libsodium-dev",
+      "version": "1.0.18-1ubuntu0.24.04.1+safelibs1",
+      "architecture": "amd64",
+      "filename": "libsodium-dev_1.0.18-1ubuntu0.24.04.1+safelibs1_amd64.deb"
+    }
+  ]
+}

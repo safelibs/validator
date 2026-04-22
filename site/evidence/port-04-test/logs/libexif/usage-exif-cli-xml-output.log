@@ -1,0 +1,97 @@
+$ docker run --rm -t --mount type=bind,src=/tmp/validator-status-libexif-usage-exif-cli-xml-output,dst=/validator/status --mount type=bind,src=/home/yans/safelibs/validator/artifacts/debs/port-04-test/libexif,dst=/override-debs,readonly validator-libexif-shared bash -lc 'set -euo pipefail
+/validator/tests/_shared/install_override_debs.sh
+exec /validator/tests/_shared/run_library_tests.sh "$@"' validator-testcase libexif usage-exif-cli-xml-output -- bash -c 'PS4=$1; shift; set -x; source "$@"' validator-xtrace '__VALIDATOR_XTRACE__ ' /validator/tests/libexif/tests/cases/usage/usage-exif-cli-xml-output.sh
+installing override packages from /override-debs
+0% [Working]            Get:1 http://archive.ubuntu.com/ubuntu noble InRelease [256 kB]
+0% [1 InRelease 9828 B/256 kB 4%] [Connecting to security.ubuntu.com (91.189.92.22)]                                                                                    Get:2 http://security.ubuntu.com/ubuntu noble-security InRelease [126 kB]
+                                                                                    0% [1 InRelease 111 kB/256 kB 43%] [2 InRelease 14.2 kB/126 kB 11%]                                                                   0% [Waiting for headers] [2 InRelease 14.2 kB/126 kB 11%]0% [Waiting for headers] [2 InRelease 14.2 kB/126 kB 11%]                                                         Get:3 http://archive.ubuntu.com/ubuntu noble-updates InRelease [126 kB]
+0% [3 InRelease 4036 B/126 kB 3%] [2 InRelease 14.2 kB/126 kB 11%]                                                                  0% [Waiting for headers] [2 InRelease 22.9 kB/126 kB 18%]0% [Waiting for headers] [2 InRelease 28.7 kB/126 kB 23%]                                                         Get:4 http://archive.ubuntu.com/ubuntu noble-backports InRelease [126 kB]
+0% [4 InRelease 15.6 kB/126 kB 12%] [2 InRelease 37.3 kB/126 kB 30%]                                                                    0% [2 InRelease 43.1 kB/126 kB 34%]0% [Waiting for headers] [2 InRelease 43.1 kB/126 kB 34%]                                                         Get:5 http://archive.ubuntu.com/ubuntu noble/main amd64 Packages [1808 kB]
+0% [5 Packages 11.3 kB/1808 kB 1%] [2 InRelease 48.9 kB/126 kB 39%]                                                                   0% [5 Packages 1310 kB/1808 kB 72%]16% [5 Packages 1530 kB/1808 kB 85%]                                    17% [Waiting for headers]                         Get:6 http://archive.ubuntu.com/ubuntu noble/universe amd64 Packages [19.3 MB]
+17% [6 Packages 59.8 kB/19.3 MB 0%] [Waiting for headers]17% [5 Packages store 0 B] [6 Packages 59.8 kB/19.3 MB 0%] [Waiting for headers]                                                                                19% [6 Packages 745 kB/19.3 MB 4%] [Waiting for headers]                                                        Get:7 http://security.ubuntu.com/ubuntu noble-security/universe amd64 Packages [1498 kB]
+23% [6 Packages 2578 kB/19.3 MB 13%] [7 Packages 2655 B/1498 kB 0%]                                                                   59% [Waiting for headers] [7 Packages 214 kB/1498 kB 14%]                                                         Get:8 http://archive.ubuntu.com/ubuntu noble/multiverse amd64 Packages [331 kB]
+59% [8 Packages 28.7 kB/331 kB 9%] [7 Packages 214 kB/1498 kB 14%]59% [6 Packages store 0 B] [8 Packages 93.8 kB/331 kB 28%] [7 Packages 214 kB/1498 kB 14%]                                                                                          Get:9 http://archive.ubuntu.com/ubuntu noble/restricted amd64 Packages [117 kB]
+60% [6 Packages store 0 B] [9 Packages 20.5 kB/117 kB 17%] [7 Packages 214 kB/1498 kB 14%]                                                                                          Get:10 http://archive.ubuntu.com/ubuntu noble-updates/multiverse amd64 Packages [38.0 kB]
+60% [6 Packages store 0 B] [10 Packages 28.7 kB/38.0 kB 75%] [7 Packages 214 kB/1498 kB 14%]                                                                                            60% [6 Packages store 0 B] [Waiting for headers] [7 Packages 214 kB/1498 kB 14%]                                                                                Get:11 http://archive.ubuntu.com/ubuntu noble-updates/main amd64 Packages [2351 kB]
+60% [6 Packages store 0 B] [11 Packages 30.0 kB/2351 kB 1%] [7 Packages 214 kB/1498 kB 14%]                                                                                           Get:12 http://archive.ubuntu.com/ubuntu noble-updates/universe amd64 Packages [2141 kB]
+65% [6 Packages store 0 B] [12 Packages 32.8 kB/2141 kB 2%] [7 Packages 214 kB/1498 kB 14%]                                                                                           Get:13 http://archive.ubuntu.com/ubuntu noble-updates/restricted amd64 Packages [3647 kB]
+70% [6 Packages store 0 B] [13 Packages 59.3 kB/3647 kB 2%] [7 Packages 262 kB/1498 kB 17%]                                                                                           Get:14 http://archive.ubuntu.com/ubuntu noble-backports/main amd64 Packages [49.0 kB]
+                                                                                           78% [6 Packages store 0 B] [14 Packages 865 B/49.0 kB 2%] [7 Packages 295 kB/1498 kB 20%]                                                                                         Get:15 http://archive.ubuntu.com/ubuntu noble-backports/multiverse amd64 Packages [671 B]
+                                                                                         78% [6 Packages store 0 B] [Waiting for headers] [7 Packages 327 kB/1498 kB 22%]                                                                                Get:16 http://archive.ubuntu.com/ubuntu noble-backports/universe amd64 Packages [35.6 kB]
+                                                                                78% [6 Packages store 0 B] [7 Packages 333 kB/1498 kB 22%]                                                          79% [7 Packages 605 kB/1498 kB 40%]79% [8 Packages store 0 B] [7 Packages 605 kB/1498 kB 40%]                                                          80% [7 Packages 633 kB/1498 kB 42%]80% [9 Packages store 0 B] [7 Packages 633 kB/1498 kB 42%]                                                          80% [7 Packages 638 kB/1498 kB 43%]80% [10 Packages store 0 B] [7 Packages 638 kB/1498 kB 43%]                                                           81% [7 Packages 638 kB/1498 kB 43%]81% [11 Packages store 0 B] [7 Packages 638 kB/1498 kB 43%]                                                           81% [7 Packages 667 kB/1498 kB 45%]81% [12 Packages store 0 B] [7 Packages 667 kB/1498 kB 45%]                                                           82% [7 Packages 735 kB/1498 kB 49%]82% [13 Packages store 0 B] [7 Packages 735 kB/1498 kB 49%]                                                           83% [7 Packages 895 kB/1498 kB 60%]83% [14 Packages store 0 B] [7 Packages 895 kB/1498 kB 60%]                                                           84% [7 Packages 895 kB/1498 kB 60%]84% [15 Packages store 0 B] [7 Packages 895 kB/1498 kB 60%]                                                           84% [7 Packages 895 kB/1498 kB 60%]84% [16 Packages store 0 B] [7 Packages 895 kB/1498 kB 60%]                                                           85% [7 Packages 908 kB/1498 kB 61%]                                   86% [Working]86% [7 Packages store 0 B] [Waiting for headers]                                                87% [Waiting for headers]                         Get:17 http://security.ubuntu.com/ubuntu noble-security/main amd64 Packages [1980 kB]
+87% [17 Packages 12.8 kB/1980 kB 1%]                                    91% [Waiting for headers]91% [17 Packages store 0 B] [Waiting for headers]                                                 Get:18 http://security.ubuntu.com/ubuntu noble-security/restricted amd64 Packages [3479 kB]
+91% [17 Packages store 0 B] [18 Packages 25.8 kB/3479 kB 1%]                                                            93% [18 Packages 534 kB/3479 kB 15%]                                    99% [Waiting for headers]                         Get:19 http://security.ubuntu.com/ubuntu noble-security/multiverse amd64 Packages [34.2 kB]
+                         99% [Working]99% [18 Packages store 0 B]                           99% [Working]99% [19 Packages store 0 B]                           100% [Working]              Fetched 37.5 MB in 3s (11.7 MB/s)
+Reading package lists... 0%Reading package lists... 0%Reading package lists... 0%Reading package lists... 4%Reading package lists... 4%Reading package lists... 51%Reading package lists... 51%Reading package lists... 52%Reading package lists... 52%Reading package lists... 52%Reading package lists... 52%Reading package lists... 59%Reading package lists... 59%Reading package lists... 66%Reading package lists... 66%Reading package lists... 77%Reading package lists... 77%Reading package lists... 78%Reading package lists... 78%Reading package lists... 78%Reading package lists... 78%Reading package lists... 78%Reading package lists... 78%Reading package lists... 78%Reading package lists... 78%Reading package lists... 84%Reading package lists... 84%Reading package lists... 88%Reading package lists... 88%Reading package lists... 99%Reading package lists... 99%Reading package lists... 99%Reading package lists... 99%Reading package lists... Done
+Reading package lists... 0%Reading package lists... 0%Reading package lists... 0%Reading package lists... 4%Reading package lists... 4%Reading package lists... 50%Reading package lists... 50%Reading package lists... 50%Reading package lists... 50%Reading package lists... 51%Reading package lists... 51%Reading package lists... 58%Reading package lists... 58%Reading package lists... 64%Reading package lists... 64%Reading package lists... 75%Reading package lists... 75%Reading package lists... 76%Reading package lists... 76%Reading package lists... 76%Reading package lists... 76%Reading package lists... 76%Reading package lists... 76%Reading package lists... 76%Reading package lists... 76%Reading package lists... 81%Reading package lists... 81%Reading package lists... 86%Reading package lists... 86%Reading package lists... 97%Reading package lists... 97%Reading package lists... 97%Reading package lists... 97%Reading package lists... 97%Reading package lists... 97%Reading package lists... 99%Reading package lists... 99%Reading package lists... Done
+Building dependency tree... 0%Building dependency tree... 0%Building dependency tree... 50%Building dependency tree... 50%Building dependency tree... Done
+Reading state information... 0% Reading state information... 1%Reading state information... Done
+Note, selecting 'libexif-dev' instead of '/override-debs/libexif-dev_0.6.24-1safelibs1_amd64.deb'
+Note, selecting 'libexif12' instead of '/override-debs/libexif12_0.6.24-1safelibs1_amd64.deb'
+Recommended packages:
+  libexif-doc
+The following packages will be upgraded:
+  libexif-dev libexif12
+2 upgraded, 0 newly installed, 0 to remove and 18 not upgraded.
+Need to get 0 B/4056 kB of archives.
+After this operation, 16.0 MB of additional disk space will be used.
+0% [Working]            Get:1 /override-debs/libexif-dev_0.6.24-1safelibs1_amd64.deb libexif-dev amd64 0.6.24-1safelibs1 [3437 kB]
+78% [Working]             Get:2 /override-debs/libexif12_0.6.24-1safelibs1_amd64.deb libexif12 amd64 0.6.24-1safelibs1 [619 kB]
+100% [Working]              debconf: delaying package configuration, since apt-utils is not installed
+(Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 12285 files and directories currently installed.)
+Preparing to unpack .../libexif-dev_0.6.24-1safelibs1_amd64.deb ...
+Unpacking libexif-dev:amd64 (0.6.24-1safelibs1) over (0.6.24-1build2) ...
+Preparing to unpack .../libexif12_0.6.24-1safelibs1_amd64.deb ...
+Unpacking libexif12:amd64 (0.6.24-1safelibs1) over (0.6.24-1build2) ...
+Setting up libexif12:amd64 (0.6.24-1safelibs1) ...
+Setting up libexif-dev:amd64 (0.6.24-1safelibs1) ...
+Processing triggers for libc-bin (2.39-0ubuntu8.7) ...
+N: Download is performed unsandboxed as root as file '/override-debs/libexif-dev_0.6.24-1safelibs1_amd64.deb' couldn't be accessed by user '_apt'. - pkgAcquire::Run (13: Permission denied)
+<exif>
+	<Manufacturer>Canon</Manufacturer>
+	<Model>Canon PowerShot S70</Model>
+	<Orientation>Right-top</Orientation>
+	<X-Resolution>180</X-Resolution>
+	<Y-Resolution>180</Y-Resolution>
+	<Resolution_Unit>Inch</Resolution_Unit>
+	<Date_and_Time>2009:10:10 16:42:32</Date_and_Time>
+	<YCbCr_Positioning>Centered</YCbCr_Positioning>
+	<Compression>JPEG compression</Compression>
+	<X-Resolution>180</X-Resolution>
+	<Y-Resolution>180</Y-Resolution>
+	<Resolution_Unit>Inch</Resolution_Unit>
+	<Exposure_Time>1 sec.</Exposure_Time>
+	<F-Number>f/2.8</F-Number>
+	<Exif_Version>Exif Version 2.2</Exif_Version>
+	<Date_and_Time__Original_>2009:10:10 16:42:32</Date_and_Time__Original_>
+	<Date_and_Time__Digitized_>2009:10:10 16:42:32</Date_and_Time__Digitized_>
+	<Components_Configuration>Y Cb Cr -</Components_Configuration>
+	<Compressed_Bits_per_Pixel> 5</Compressed_Bits_per_Pixel>
+	<Shutter_Speed>0.00 EV (1 sec.)</Shutter_Speed>
+	<Aperture>2.97 EV (f/2.8)</Aperture>
+	<Exposure_Bias>0.00 EV</Exposure_Bias>
+	<Maximum_Aperture_Value>2.97 EV (f/2.8)</Maximum_Aperture_Value>
+	<Metering_Mode>Pattern</Metering_Mode>
+	<Flash>Flash did not fire, compulsory flash mode</Flash>
+	<Focal_Length>5.8 mm</Focal_Length>
+	<Maker_Note>904 bytes undefined data</Maker_Note>
+	<User_Comment></User_Comment>
+	<FlashPixVersion>FlashPix Version 1.0</FlashPixVersion>
+	<Color_Space>sRGB</Color_Space>
+	<Pixel_X_Dimension>640</Pixel_X_Dimension>
+	<Pixel_Y_Dimension>480</Pixel_Y_Dimension>
+	<Focal_Plane_X-Resolution>2253.521</Focal_Plane_X-Resolution>
+	<Focal_Plane_Y-Resolution>2253.521</Focal_Plane_Y-Resolution>
+	<Focal_Plane_Resolution_Unit>Inch</Focal_Plane_Resolution_Unit>
+	<Sensing_Method>One-chip color area sensor</Sensing_Method>
+	<File_Source>DSC</File_Source>
+	<Custom_Rendered>Normal process</Custom_Rendered>
+	<Exposure_Mode>Auto exposure</Exposure_Mode>
+	<White_Balance>Auto white balance</White_Balance>
+	<Digital_Zoom_Ratio>1.0000</Digital_Zoom_Ratio>
+	<Scene_Capture_Type>Landscape</Scene_Capture_Type>
+	<Interoperability_Index>R98</Interoperability_Index>
+	<Interoperability_Version>0100</Interoperability_Version>
+	<RelatedImageWidth>640</RelatedImageWidth>
+	<RelatedImageLength>480</RelatedImageLength>
+</exif>

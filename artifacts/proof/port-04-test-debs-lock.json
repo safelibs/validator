@@ -1,0 +1,744 @@
+{
+  "schema_version": 1,
+  "mode": "port-04-test",
+  "generated_at": "1970-01-01T00:00:00Z",
+  "source_config": "repositories.yml",
+  "source_inventory": "inventory/github-port-repos.json",
+  "libraries": [
+    {
+      "library": "cjson",
+      "repository": "safelibs/port-cjson",
+      "url": "https://github.com/safelibs/port-cjson",
+      "tag_ref": "refs/tags/cjson/04-test",
+      "commit": "de29489668c1c42bf2f3528a26cc992a30e1ba9b",
+      "release_tag": "build-de29489668c1",
+      "debs": [
+        {
+          "package": "libcjson1",
+          "filename": "libcjson1_1.7.17-1safelibs1_amd64.deb",
+          "architecture": "amd64",
+          "sha256": "00201bde98f09f47686e1a884c0bf7a557f187f3cc422e113e4c46bccf204170",
+          "size": 557540,
+          "asset_api_url": "https://api.github.com/repos/safelibs/port-cjson/releases/assets/401827564",
+          "browser_download_url": "https://github.com/safelibs/port-cjson/releases/download/build-de29489668c1/libcjson1_1.7.17-1safelibs1_amd64.deb"
+        },
+        {
+          "package": "libcjson-dev",
+          "filename": "libcjson-dev_1.7.17-1safelibs1_amd64.deb",
+          "architecture": "amd64",
+          "sha256": "3fedd597e540ff349f93cc419dc22f452fcbcc5ff0a76b548e6ab30e975e31fd",
+          "size": 9818,
+          "asset_api_url": "https://api.github.com/repos/safelibs/port-cjson/releases/assets/401827562",
+          "browser_download_url": "https://github.com/safelibs/port-cjson/releases/download/build-de29489668c1/libcjson-dev_1.7.17-1safelibs1_amd64.deb"
+        }
+      ],
+      "unported_original_packages": []
+    },
+    {
+      "library": "giflib",
+      "repository": "safelibs/port-giflib",
+      "url": "https://github.com/safelibs/port-giflib",
+      "tag_ref": "refs/tags/giflib/04-test",
+      "commit": "8dd3019a8e99e4b671fda486393daee138b487cc",
+      "release_tag": "build-8dd3019a8e99",
+      "debs": [
+        {
+          "package": "libgif7",
+          "filename": "libgif7_5.2.2-1ubuntu1+safelibs3_amd64.deb",
+          "architecture": "amd64",
+          "sha256": "9fe1684234fef963f07f782dc5273f41bcc318f2747bb6342aa0294f7faa8b83",
+          "size": 174784,
+          "asset_api_url": "https://api.github.com/repos/safelibs/port-giflib/releases/assets/401827500",
+          "browser_download_url": "https://github.com/safelibs/port-giflib/releases/download/build-8dd3019a8e99/libgif7_5.2.2-1ubuntu1%2Bsafelibs3_amd64.deb"
+        },
+        {
+          "package": "libgif-dev",
+          "filename": "libgif-dev_5.2.2-1ubuntu1+safelibs3_amd64.deb",
+          "architecture": "amd64",
+          "sha256": "a5bf4eb3e84f0e9a96c65322834f70c7d309d70777cfa15873e0e490c8534c5e",
+          "size": 617898,
+          "asset_api_url": "https://api.github.com/repos/safelibs/port-giflib/releases/assets/401827501",
+          "browser_download_url": "https://github.com/safelibs/port-giflib/releases/download/build-8dd3019a8e99/libgif-dev_5.2.2-1ubuntu1%2Bsafelibs3_amd64.deb"
+        }
+      ],
+      "unported_original_packages": [
+        "giflib-tools"
+      ]
+    },
+    {
+      "library": "libarchive",
+      "repository": "safelibs/port-libarchive",
+      "url": "https://github.com/safelibs/port-libarchive",
+      "tag_ref": "refs/tags/libarchive/04-test",
+      "commit": "95a312cfb18fbb50bdc07a30d65e5b6caffa6bcd",
+      "release_tag": "build-95a312cfb18f",
+      "debs": [
+        {
+          "package": "libarchive13t64",
+          "filename": "libarchive13t64_3.7.2-2ubuntu0.6_amd64.deb",
+          "architecture": "amd64",
+          "sha256": "69d11f317a327440bb2c2ac70d93348e9b1e6fa43bbd2e04bf414aaa7a66c037",
+          "size": 3765450,
+          "asset_api_url": "https://api.github.com/repos/safelibs/port-libarchive/releases/assets/401828157",
+          "browser_download_url": "https://github.com/safelibs/port-libarchive/releases/download/build-95a312cfb18f/libarchive13t64_3.7.2-2ubuntu0.6_amd64.deb"
+        },
+        {
+          "package": "libarchive-dev",
+          "filename": "libarchive-dev_3.7.2-2ubuntu0.6_amd64.deb",
+          "architecture": "amd64",
+          "sha256": "5577714987eefe7dfb31c3e164cc2b9fb09fa13f8e975a97160f116db652996a",
+          "size": 18955064,
+          "asset_api_url": "https://api.github.com/repos/safelibs/port-libarchive/releases/assets/401828154",
+          "browser_download_url": "https://github.com/safelibs/port-libarchive/releases/download/build-95a312cfb18f/libarchive-dev_3.7.2-2ubuntu0.6_amd64.deb"
+        },
+        {
+          "package": "libarchive-tools",
+          "filename": "libarchive-tools_3.7.2-2ubuntu0.6_amd64.deb",
+          "architecture": "amd64",
+          "sha256": "aa2cd4a1d12e34aee89ad3902fb0243e5552e98da95a721fab8db0efea24fd1a",
+          "size": 198260,
+          "asset_api_url": "https://api.github.com/repos/safelibs/port-libarchive/releases/assets/401828155",
+          "browser_download_url": "https://github.com/safelibs/port-libarchive/releases/download/build-95a312cfb18f/libarchive-tools_3.7.2-2ubuntu0.6_amd64.deb"
+        }
+      ],
+      "unported_original_packages": []
+    },
+    {
+      "library": "libbz2",
+      "repository": "safelibs/port-libbz2",
+      "url": "https://github.com/safelibs/port-libbz2",
+      "tag_ref": "refs/tags/libbz2/04-test",
+      "commit": "8c4b1bee6d2536377f96a66426d39bdb77f60c94",
+      "release_tag": "build-8c4b1bee6d25",
+      "debs": [
+        {
+          "package": "libbz2-1.0",
+          "filename": "libbz2-1.0_1.0.8-5.1build0.1+safelibs1_amd64.deb",
+          "architecture": "amd64",
+          "sha256": "2331fe4951e3c351f2ab0099d8ef5362e106cded3917c7ab9f9a9c0efabf8c4a",
+          "size": 183426,
+          "asset_api_url": "https://api.github.com/repos/safelibs/port-libbz2/releases/assets/401827791",
+          "browser_download_url": "https://github.com/safelibs/port-libbz2/releases/download/build-8c4b1bee6d25/libbz2-1.0_1.0.8-5.1build0.1%2Bsafelibs1_amd64.deb"
+        },
+        {
+          "package": "libbz2-dev",
+          "filename": "libbz2-dev_1.0.8-5.1build0.1+safelibs1_amd64.deb",
+          "architecture": "amd64",
+          "sha256": "b4d228178bb1b279127d1d62fbe46b3a033fb332073145f8b62b742d7d1d0e3b",
+          "size": 8579926,
+          "asset_api_url": "https://api.github.com/repos/safelibs/port-libbz2/releases/assets/401827790",
+          "browser_download_url": "https://github.com/safelibs/port-libbz2/releases/download/build-8c4b1bee6d25/libbz2-dev_1.0.8-5.1build0.1%2Bsafelibs1_amd64.deb"
+        },
+        {
+          "package": "bzip2",
+          "filename": "bzip2_1.0.8-5.1build0.1+safelibs1_amd64.deb",
+          "architecture": "amd64",
+          "sha256": "decc20d84efcb50f7077ae09d2b846c4ee068b4ea6b76394863d660db44dfa6a",
+          "size": 35080,
+          "asset_api_url": "https://api.github.com/repos/safelibs/port-libbz2/releases/assets/401827789",
+          "browser_download_url": "https://github.com/safelibs/port-libbz2/releases/download/build-8c4b1bee6d25/bzip2_1.0.8-5.1build0.1%2Bsafelibs1_amd64.deb"
+        }
+      ],
+      "unported_original_packages": []
+    },
+    {
+      "library": "libcsv",
+      "repository": "safelibs/port-libcsv",
+      "url": "https://github.com/safelibs/port-libcsv",
+      "tag_ref": "refs/tags/libcsv/04-test",
+      "commit": "91e798441fdd01840738ac7488cb064f9299b21d",
+      "release_tag": "build-91e798441fdd",
+      "debs": [
+        {
+          "package": "libcsv3",
+          "filename": "libcsv3_3.0.3+dfsg-6+safelibs1_amd64.deb",
+          "architecture": "amd64",
+          "sha256": "4eafbf63a0bfe37ded01eb8a067584160346048b5f3a28ecae745cc75303aeba",
+          "size": 8478,
+          "asset_api_url": "https://api.github.com/repos/safelibs/port-libcsv/releases/assets/401827408",
+          "browser_download_url": "https://github.com/safelibs/port-libcsv/releases/download/build-91e798441fdd/libcsv3_3.0.3%2Bdfsg-6%2Bsafelibs1_amd64.deb"
+        },
+        {
+          "package": "libcsv-dev",
+          "filename": "libcsv-dev_3.0.3+dfsg-6+safelibs1_amd64.deb",
+          "architecture": "amd64",
+          "sha256": "54f3476c90f9fed673984851ee244e01ea70e99cc39d043178f4cf11a2c4e3e3",
+          "size": 1074428,
+          "asset_api_url": "https://api.github.com/repos/safelibs/port-libcsv/releases/assets/401827409",
+          "browser_download_url": "https://github.com/safelibs/port-libcsv/releases/download/build-91e798441fdd/libcsv-dev_3.0.3%2Bdfsg-6%2Bsafelibs1_amd64.deb"
+        }
+      ],
+      "unported_original_packages": []
+    },
+    {
+      "library": "libexif",
+      "repository": "safelibs/port-libexif",
+      "url": "https://github.com/safelibs/port-libexif",
+      "tag_ref": "refs/tags/libexif/04-test",
+      "commit": "9f7fcf07e3702f97d61ccb0d0b5eb48591d85b5c",
+      "release_tag": "build-9f7fcf07e370",
+      "debs": [
+        {
+          "package": "libexif12",
+          "filename": "libexif12_0.6.24-1safelibs1_amd64.deb",
+          "architecture": "amd64",
+          "sha256": "b7c8af668d92573bbac8644d976a466e2cc428eadc4acb075f6983362e2798e1",
+          "size": 618796,
+          "asset_api_url": "https://api.github.com/repos/safelibs/port-libexif/releases/assets/401827721",
+          "browser_download_url": "https://github.com/safelibs/port-libexif/releases/download/build-9f7fcf07e370/libexif12_0.6.24-1safelibs1_amd64.deb"
+        },
+        {
+          "package": "libexif-dev",
+          "filename": "libexif-dev_0.6.24-1safelibs1_amd64.deb",
+          "architecture": "amd64",
+          "sha256": "28fce2caa65ceb41334394f2e7b5c182096128bb9d5f8c2a3989d4a441d522df",
+          "size": 3437000,
+          "asset_api_url": "https://api.github.com/repos/safelibs/port-libexif/releases/assets/401827719",
+          "browser_download_url": "https://github.com/safelibs/port-libexif/releases/download/build-9f7fcf07e370/libexif-dev_0.6.24-1safelibs1_amd64.deb"
+        }
+      ],
+      "unported_original_packages": []
+    },
+    {
+      "library": "libjpeg-turbo",
+      "repository": "safelibs/port-libjpeg-turbo",
+      "url": "https://github.com/safelibs/port-libjpeg-turbo",
+      "tag_ref": "refs/tags/libjpeg-turbo/04-test",
+      "commit": "27e232c22936de7b2cfcefc549c229b9be0c64cc",
+      "release_tag": "build-27e232c22936",
+      "debs": [
+        {
+          "package": "libjpeg-turbo8",
+          "filename": "libjpeg-turbo8_2.1.5-2ubuntu2_amd64.deb",
+          "architecture": "amd64",
+          "sha256": "ce6ef2ac7e8c8522225b141cdf70a0d2287a179c704180bed1c9e59319c369b6",
+          "size": 611120,
+          "asset_api_url": "https://api.github.com/repos/safelibs/port-libjpeg-turbo/releases/assets/401828022",
+          "browser_download_url": "https://github.com/safelibs/port-libjpeg-turbo/releases/download/build-27e232c22936/libjpeg-turbo8_2.1.5-2ubuntu2_amd64.deb"
+        },
+        {
+          "package": "libjpeg-turbo8-dev",
+          "filename": "libjpeg-turbo8-dev_2.1.5-2ubuntu2_amd64.deb",
+          "architecture": "amd64",
+          "sha256": "82e3bbb09405e35d1b3bcfcea2dc6c70a1b000d958fecd2c57401e3ebc171bad",
+          "size": 954172,
+          "asset_api_url": "https://api.github.com/repos/safelibs/port-libjpeg-turbo/releases/assets/401828021",
+          "browser_download_url": "https://github.com/safelibs/port-libjpeg-turbo/releases/download/build-27e232c22936/libjpeg-turbo8-dev_2.1.5-2ubuntu2_amd64.deb"
+        },
+        {
+          "package": "libturbojpeg",
+          "filename": "libturbojpeg_2.1.5-2ubuntu2_amd64.deb",
+          "architecture": "amd64",
+          "sha256": "0a2c1d771fafd804330d0c62408b79564d57fbc6b8fbe9db3a1643c246078bd0",
+          "size": 664486,
+          "asset_api_url": "https://api.github.com/repos/safelibs/port-libjpeg-turbo/releases/assets/401828028",
+          "browser_download_url": "https://github.com/safelibs/port-libjpeg-turbo/releases/download/build-27e232c22936/libturbojpeg_2.1.5-2ubuntu2_amd64.deb"
+        },
+        {
+          "package": "libturbojpeg0-dev",
+          "filename": "libturbojpeg0-dev_2.1.5-2ubuntu2_amd64.deb",
+          "architecture": "amd64",
+          "sha256": "2c1e5b5683908f8e7f7cde519ad2c601ab6af491c0c0b394624279b656716d8c",
+          "size": 881762,
+          "asset_api_url": "https://api.github.com/repos/safelibs/port-libjpeg-turbo/releases/assets/401828023",
+          "browser_download_url": "https://github.com/safelibs/port-libjpeg-turbo/releases/download/build-27e232c22936/libturbojpeg0-dev_2.1.5-2ubuntu2_amd64.deb"
+        },
+        {
+          "package": "libjpeg-turbo-progs",
+          "filename": "libjpeg-turbo-progs_2.1.5-2ubuntu2_amd64.deb",
+          "architecture": "amd64",
+          "sha256": "44c9f80ddb99fdfc0d37b4a4e56c6e30e6d8c3a62fb40147d2596e9f1e9591b2",
+          "size": 637522,
+          "asset_api_url": "https://api.github.com/repos/safelibs/port-libjpeg-turbo/releases/assets/401828020",
+          "browser_download_url": "https://github.com/safelibs/port-libjpeg-turbo/releases/download/build-27e232c22936/libjpeg-turbo-progs_2.1.5-2ubuntu2_amd64.deb"
+        }
+      ],
+      "unported_original_packages": []
+    },
+    {
+      "library": "libjson",
+      "repository": "safelibs/port-libjson",
+      "url": "https://github.com/safelibs/port-libjson",
+      "tag_ref": "refs/tags/libjson/04-test",
+      "commit": "e25f4b433d01b3ac8e68d8a9c52bc89d03e9cf42",
+      "release_tag": "build-e25f4b433d01",
+      "debs": [
+        {
+          "package": "libjson-c5",
+          "filename": "libjson-c5_0.17-1build1safe1_amd64.deb",
+          "architecture": "amd64",
+          "sha256": "266aa0bfe0a938f41172c3b5e5d47fd2254bf87711d33d929bc6152da5d276d5",
+          "size": 457502,
+          "asset_api_url": "https://api.github.com/repos/safelibs/port-libjson/releases/assets/401827824",
+          "browser_download_url": "https://github.com/safelibs/port-libjson/releases/download/build-e25f4b433d01/libjson-c5_0.17-1build1safe1_amd64.deb"
+        },
+        {
+          "package": "libjson-c-dev",
+          "filename": "libjson-c-dev_0.17-1build1safe1_amd64.deb",
+          "architecture": "amd64",
+          "sha256": "0596a3f2440dc518d86a25bc7dd4bbd695c3245b1c510e5108615acce2fd67d5",
+          "size": 8624520,
+          "asset_api_url": "https://api.github.com/repos/safelibs/port-libjson/releases/assets/401827823",
+          "browser_download_url": "https://github.com/safelibs/port-libjson/releases/download/build-e25f4b433d01/libjson-c-dev_0.17-1build1safe1_amd64.deb"
+        }
+      ],
+      "unported_original_packages": []
+    },
+    {
+      "library": "liblzma",
+      "repository": "safelibs/port-liblzma",
+      "url": "https://github.com/safelibs/port-liblzma",
+      "tag_ref": "refs/tags/liblzma/04-test",
+      "commit": "ebba850f8faee3ef9ced72e8556201c642f95f33",
+      "release_tag": "build-ebba850f8fae",
+      "debs": [
+        {
+          "package": "liblzma5",
+          "filename": "liblzma5_5.6.1+really5.4.5-1ubuntu0.2+safelibs1_amd64.deb",
+          "architecture": "amd64",
+          "sha256": "4d2c9e04913f68aa422cd1fbd2cc4f8d8dfe8b18fb9e8ac94c0919d99f3eeb28",
+          "size": 659272,
+          "asset_api_url": "https://api.github.com/repos/safelibs/port-liblzma/releases/assets/401827857",
+          "browser_download_url": "https://github.com/safelibs/port-liblzma/releases/download/build-ebba850f8fae/liblzma5_5.6.1%2Breally5.4.5-1ubuntu0.2%2Bsafelibs1_amd64.deb"
+        },
+        {
+          "package": "liblzma-dev",
+          "filename": "liblzma-dev_5.6.1+really5.4.5-1ubuntu0.2+safelibs1_amd64.deb",
+          "architecture": "amd64",
+          "sha256": "a86b2888a1fbe66358a4015e3fef655dea0ce993e2b2c9dc18aa9e89fa364cd0",
+          "size": 3589808,
+          "asset_api_url": "https://api.github.com/repos/safelibs/port-liblzma/releases/assets/401827853",
+          "browser_download_url": "https://github.com/safelibs/port-liblzma/releases/download/build-ebba850f8fae/liblzma-dev_5.6.1%2Breally5.4.5-1ubuntu0.2%2Bsafelibs1_amd64.deb"
+        }
+      ],
+      "unported_original_packages": [
+        "xz-utils"
+      ]
+    },
+    {
+      "library": "libpng",
+      "repository": "safelibs/port-libpng",
+      "url": "https://github.com/safelibs/port-libpng",
+      "tag_ref": "refs/tags/libpng/04-test",
+      "commit": "57fa3d1171564df5b461faab81b69b3a5d58d1ed",
+      "release_tag": "build-57fa3d117156",
+      "debs": [
+        {
+          "package": "libpng16-16t64",
+          "filename": "libpng16-16t64_1.6.43-5ubuntu0.5+safelibs1_amd64.deb",
+          "architecture": "amd64",
+          "sha256": "082c66f62ca76e9dbca80a3455940b5a55ed1189d1ea8dbcf13df50646b29a53",
+          "size": 825568,
+          "asset_api_url": "https://api.github.com/repos/safelibs/port-libpng/releases/assets/401827483",
+          "browser_download_url": "https://github.com/safelibs/port-libpng/releases/download/build-57fa3d117156/libpng16-16t64_1.6.43-5ubuntu0.5%2Bsafelibs1_amd64.deb"
+        },
+        {
+          "package": "libpng-dev",
+          "filename": "libpng-dev_1.6.43-5ubuntu0.5+safelibs1_amd64.deb",
+          "architecture": "amd64",
+          "sha256": "c8e64907925b5ac67855774195bbe74c86dd67724887ad4646958e4aea449d1e",
+          "size": 3980964,
+          "asset_api_url": "https://api.github.com/repos/safelibs/port-libpng/releases/assets/401827482",
+          "browser_download_url": "https://github.com/safelibs/port-libpng/releases/download/build-57fa3d117156/libpng-dev_1.6.43-5ubuntu0.5%2Bsafelibs1_amd64.deb"
+        },
+        {
+          "package": "libpng-tools",
+          "filename": "libpng-tools_1.6.43-5ubuntu0.5+safelibs1_amd64.deb",
+          "architecture": "amd64",
+          "sha256": "69b42ea87177886a0e6ba458ea4768ab3fc165d60ee6e21a15f1d74e38ac6944",
+          "size": 27266,
+          "asset_api_url": "https://api.github.com/repos/safelibs/port-libpng/releases/assets/401827481",
+          "browser_download_url": "https://github.com/safelibs/port-libpng/releases/download/build-57fa3d117156/libpng-tools_1.6.43-5ubuntu0.5%2Bsafelibs1_amd64.deb"
+        }
+      ],
+      "unported_original_packages": []
+    },
+    {
+      "library": "libsdl",
+      "repository": "safelibs/port-libsdl",
+      "url": "https://github.com/safelibs/port-libsdl",
+      "tag_ref": "refs/tags/libsdl/04-test",
+      "commit": "14609a9a584435d4a12c46aa11e969a0f0f8a7d5",
+      "release_tag": "build-14609a9a5844",
+      "debs": [
+        {
+          "package": "libsdl2-2.0-0",
+          "filename": "libsdl2-2.0-0_2.30.0+dfsg-1ubuntu3.1+safelibs1_amd64.deb",
+          "architecture": "amd64",
+          "sha256": "f21f77cb0e382dbf6bf1f1e4a63a316850d9257b533290be404c549858dc9759",
+          "size": 492420,
+          "asset_api_url": "https://api.github.com/repos/safelibs/port-libsdl/releases/assets/401828397",
+          "browser_download_url": "https://github.com/safelibs/port-libsdl/releases/download/build-14609a9a5844/libsdl2-2.0-0_2.30.0%2Bdfsg-1ubuntu3.1%2Bsafelibs1_amd64.deb"
+        },
+        {
+          "package": "libsdl2-dev",
+          "filename": "libsdl2-dev_2.30.0+dfsg-1ubuntu3.1+safelibs1_amd64.deb",
+          "architecture": "amd64",
+          "sha256": "da73d1e3f4e0341de9e193b6af368321e938d7229dc0de71703251a556469bef",
+          "size": 10591960,
+          "asset_api_url": "https://api.github.com/repos/safelibs/port-libsdl/releases/assets/401828396",
+          "browser_download_url": "https://github.com/safelibs/port-libsdl/releases/download/build-14609a9a5844/libsdl2-dev_2.30.0%2Bdfsg-1ubuntu3.1%2Bsafelibs1_amd64.deb"
+        },
+        {
+          "package": "libsdl2-tests",
+          "filename": "libsdl2-tests_2.30.0+dfsg-1ubuntu3.1+safelibs1_amd64.deb",
+          "architecture": "amd64",
+          "sha256": "1218466011abfe7679e1ba391479e8c7ee9888b16ab416f6c729f3beb87f1a36",
+          "size": 2843792,
+          "asset_api_url": "https://api.github.com/repos/safelibs/port-libsdl/releases/assets/401828398",
+          "browser_download_url": "https://github.com/safelibs/port-libsdl/releases/download/build-14609a9a5844/libsdl2-tests_2.30.0%2Bdfsg-1ubuntu3.1%2Bsafelibs1_amd64.deb"
+        }
+      ],
+      "unported_original_packages": []
+    },
+    {
+      "library": "libsodium",
+      "repository": "safelibs/port-libsodium",
+      "url": "https://github.com/safelibs/port-libsodium",
+      "tag_ref": "refs/tags/libsodium/04-test",
+      "commit": "d1d241340f2eee1e11686fd035b6e46656c4c92b",
+      "release_tag": "build-d1d241340f2e",
+      "debs": [
+        {
+          "package": "libsodium23",
+          "filename": "libsodium23_1.0.18-1ubuntu0.24.04.1+safelibs1_amd64.deb",
+          "architecture": "amd64",
+          "sha256": "71e620b3938224ed14081523400f76592315db9bf0c5f8da502067cf77612870",
+          "size": 355452,
+          "asset_api_url": "https://api.github.com/repos/safelibs/port-libsodium/releases/assets/401828059",
+          "browser_download_url": "https://github.com/safelibs/port-libsodium/releases/download/build-d1d241340f2e/libsodium23_1.0.18-1ubuntu0.24.04.1%2Bsafelibs1_amd64.deb"
+        },
+        {
+          "package": "libsodium-dev",
+          "filename": "libsodium-dev_1.0.18-1ubuntu0.24.04.1+safelibs1_amd64.deb",
+          "architecture": "amd64",
+          "sha256": "f332edf61c4413fd25348305727e3300697fc967f3eac88d217d25c8364d55b2",
+          "size": 3720704,
+          "asset_api_url": "https://api.github.com/repos/safelibs/port-libsodium/releases/assets/401828057",
+          "browser_download_url": "https://github.com/safelibs/port-libsodium/releases/download/build-d1d241340f2e/libsodium-dev_1.0.18-1ubuntu0.24.04.1%2Bsafelibs1_amd64.deb"
+        }
+      ],
+      "unported_original_packages": []
+    },
+    {
+      "library": "libtiff",
+      "repository": "safelibs/port-libtiff",
+      "url": "https://github.com/safelibs/port-libtiff",
+      "tag_ref": "refs/tags/libtiff/04-test",
+      "commit": "9e34df3e07fc8800108b3987f16526a28f05fd24",
+      "release_tag": "build-9e34df3e07fc",
+      "debs": [
+        {
+          "package": "libtiff6",
+          "filename": "libtiff6_4.5.1+git230720-4ubuntu2.5+safelibs1_amd64.deb",
+          "architecture": "amd64",
+          "sha256": "fe5aeda0d85ead03ff7339b2211139c3b266eff0445f406d41f3a999b5dbbfbb",
+          "size": 637330,
+          "asset_api_url": "https://api.github.com/repos/safelibs/port-libtiff/releases/assets/401827963",
+          "browser_download_url": "https://github.com/safelibs/port-libtiff/releases/download/build-9e34df3e07fc/libtiff6_4.5.1%2Bgit230720-4ubuntu2.5%2Bsafelibs1_amd64.deb"
+        },
+        {
+          "package": "libtiffxx6",
+          "filename": "libtiffxx6_4.5.1+git230720-4ubuntu2.5+safelibs1_amd64.deb",
+          "architecture": "amd64",
+          "sha256": "a5affbcc197949f7f080b57a796addf04c72d43d3b1a3378bd08ef85f25c36e6",
+          "size": 12302,
+          "asset_api_url": "https://api.github.com/repos/safelibs/port-libtiff/releases/assets/401827965",
+          "browser_download_url": "https://github.com/safelibs/port-libtiff/releases/download/build-9e34df3e07fc/libtiffxx6_4.5.1%2Bgit230720-4ubuntu2.5%2Bsafelibs1_amd64.deb"
+        },
+        {
+          "package": "libtiff-dev",
+          "filename": "libtiff-dev_4.5.1+git230720-4ubuntu2.5+safelibs1_amd64.deb",
+          "architecture": "amd64",
+          "sha256": "08110829c0158d00eafe6f064398f45ebf0cce8218a71b6c07c436f3d4f72804",
+          "size": 35672,
+          "asset_api_url": "https://api.github.com/repos/safelibs/port-libtiff/releases/assets/401827966",
+          "browser_download_url": "https://github.com/safelibs/port-libtiff/releases/download/build-9e34df3e07fc/libtiff-dev_4.5.1%2Bgit230720-4ubuntu2.5%2Bsafelibs1_amd64.deb"
+        },
+        {
+          "package": "libtiff-tools",
+          "filename": "libtiff-tools_4.5.1+git230720-4ubuntu2.5+safelibs1_amd64.deb",
+          "architecture": "amd64",
+          "sha256": "9a0bd637ef14c47fd6c0409f4baea2f46ea6f46759941ef1aa1642fde99fc3ae",
+          "size": 200496,
+          "asset_api_url": "https://api.github.com/repos/safelibs/port-libtiff/releases/assets/401827964",
+          "browser_download_url": "https://github.com/safelibs/port-libtiff/releases/download/build-9e34df3e07fc/libtiff-tools_4.5.1%2Bgit230720-4ubuntu2.5%2Bsafelibs1_amd64.deb"
+        }
+      ],
+      "unported_original_packages": []
+    },
+    {
+      "library": "libuv",
+      "repository": "safelibs/port-libuv",
+      "url": "https://github.com/safelibs/port-libuv",
+      "tag_ref": "refs/tags/libuv/04-test",
+      "commit": "a2d0955c60f587f605b50846042a5007001d561b",
+      "release_tag": "build-a2d0955c60f5",
+      "debs": [
+        {
+          "package": "libuv1t64",
+          "filename": "libuv1t64_1.48.0-1.1build1+safelibs1_amd64.deb",
+          "architecture": "amd64",
+          "sha256": "5012959203d518a2e16af9930a339e7a55b1f21b9cbbd32c41791ac3b32f83a0",
+          "size": 256534,
+          "asset_api_url": "https://api.github.com/repos/safelibs/port-libuv/releases/assets/401710669",
+          "browser_download_url": "https://github.com/safelibs/port-libuv/releases/download/build-a2d0955c60f5/libuv1t64_1.48.0-1.1build1%2Bsafelibs1_amd64.deb"
+        },
+        {
+          "package": "libuv1-dev",
+          "filename": "libuv1-dev_1.48.0-1.1build1+safelibs1_amd64.deb",
+          "architecture": "amd64",
+          "sha256": "aab3d85ff429ddd4fbc61563e40f68115d17e63dbe9647a6a0cdbd80a1c87a60",
+          "size": 3587112,
+          "asset_api_url": "https://api.github.com/repos/safelibs/port-libuv/releases/assets/401710668",
+          "browser_download_url": "https://github.com/safelibs/port-libuv/releases/download/build-a2d0955c60f5/libuv1-dev_1.48.0-1.1build1%2Bsafelibs1_amd64.deb"
+        }
+      ],
+      "unported_original_packages": []
+    },
+    {
+      "library": "libvips",
+      "repository": "safelibs/port-libvips",
+      "url": "https://github.com/safelibs/port-libvips",
+      "tag_ref": "refs/tags/libvips/04-test",
+      "commit": "12543f951c24648d94d82e9809a02ed679602ef7",
+      "release_tag": "build-12543f951c24",
+      "debs": [
+        {
+          "package": "libvips42t64",
+          "filename": "libvips42t64_8.15.1-1.1build4_amd64.deb",
+          "architecture": "amd64",
+          "sha256": "217f97594ee4da20c85a79c35c86796ebcedcbf7c3e696304409fff4af391593",
+          "size": 1292950,
+          "asset_api_url": "https://api.github.com/repos/safelibs/port-libvips/releases/assets/401829697",
+          "browser_download_url": "https://github.com/safelibs/port-libvips/releases/download/build-12543f951c24/libvips42t64_8.15.1-1.1build4_amd64.deb"
+        },
+        {
+          "package": "libvips-dev",
+          "filename": "libvips-dev_8.15.1-1.1build4_amd64.deb",
+          "architecture": "amd64",
+          "sha256": "baa99134376d9bd7f0ebe33ab98a879a3c5555d6a57304c223871ec388e6ef98",
+          "size": 83304,
+          "asset_api_url": "https://api.github.com/repos/safelibs/port-libvips/releases/assets/401829699",
+          "browser_download_url": "https://github.com/safelibs/port-libvips/releases/download/build-12543f951c24/libvips-dev_8.15.1-1.1build4_amd64.deb"
+        },
+        {
+          "package": "libvips-tools",
+          "filename": "libvips-tools_8.15.1-1.1build4_amd64.deb",
+          "architecture": "amd64",
+          "sha256": "9000c4137b12d4c7a9d9819b37494d7827d7f5d1f213b748911293d015766d56",
+          "size": 27836,
+          "asset_api_url": "https://api.github.com/repos/safelibs/port-libvips/releases/assets/401829700",
+          "browser_download_url": "https://github.com/safelibs/port-libvips/releases/download/build-12543f951c24/libvips-tools_8.15.1-1.1build4_amd64.deb"
+        },
+        {
+          "package": "gir1.2-vips-8.0",
+          "filename": "gir1.2-vips-8.0_8.15.1-1.1build4_amd64.deb",
+          "architecture": "amd64",
+          "sha256": "362d0824adb9f58e64c4d0932175ac976330db5fb0f74ddbf96a1020ac790c82",
+          "size": 5104,
+          "asset_api_url": "https://api.github.com/repos/safelibs/port-libvips/releases/assets/401829698",
+          "browser_download_url": "https://github.com/safelibs/port-libvips/releases/download/build-12543f951c24/gir1.2-vips-8.0_8.15.1-1.1build4_amd64.deb"
+        }
+      ],
+      "unported_original_packages": []
+    },
+    {
+      "library": "libwebp",
+      "repository": "safelibs/port-libwebp",
+      "url": "https://github.com/safelibs/port-libwebp",
+      "tag_ref": "refs/tags/libwebp/04-test",
+      "commit": "d9437d8e3c872766d7684cbe6701bfed7243465f",
+      "release_tag": "build-d9437d8e3c87",
+      "debs": [
+        {
+          "package": "libwebp7",
+          "filename": "libwebp7_1.3.2-0.4build3+safelibs1_amd64.deb",
+          "architecture": "amd64",
+          "sha256": "d53e7aa9af7332ab3ba7155714043107e10df1e24655b6bdef4882262e9cae15",
+          "size": 271894,
+          "asset_api_url": "https://api.github.com/repos/safelibs/port-libwebp/releases/assets/401828400",
+          "browser_download_url": "https://github.com/safelibs/port-libwebp/releases/download/build-d9437d8e3c87/libwebp7_1.3.2-0.4build3%2Bsafelibs1_amd64.deb"
+        },
+        {
+          "package": "libwebpdemux2",
+          "filename": "libwebpdemux2_1.3.2-0.4build3+safelibs1_amd64.deb",
+          "architecture": "amd64",
+          "sha256": "ee831697509f1594e7ff489d3271dbf8ba2180db7799760ef738d3aa3ec5b571",
+          "size": 139234,
+          "asset_api_url": "https://api.github.com/repos/safelibs/port-libwebp/releases/assets/401828409",
+          "browser_download_url": "https://github.com/safelibs/port-libwebp/releases/download/build-d9437d8e3c87/libwebpdemux2_1.3.2-0.4build3%2Bsafelibs1_amd64.deb"
+        },
+        {
+          "package": "libwebpmux3",
+          "filename": "libwebpmux3_1.3.2-0.4build3+safelibs1_amd64.deb",
+          "architecture": "amd64",
+          "sha256": "2d30b5a103d017dc4912b523f68d52f6eae4178f73e9a13327ec51f6f1b246bf",
+          "size": 292354,
+          "asset_api_url": "https://api.github.com/repos/safelibs/port-libwebp/releases/assets/401828410",
+          "browser_download_url": "https://github.com/safelibs/port-libwebp/releases/download/build-d9437d8e3c87/libwebpmux3_1.3.2-0.4build3%2Bsafelibs1_amd64.deb"
+        },
+        {
+          "package": "libwebpdecoder3",
+          "filename": "libwebpdecoder3_1.3.2-0.4build3+safelibs1_amd64.deb",
+          "architecture": "amd64",
+          "sha256": "3050ba41234d5eb92e85236d98498edbee544ceb6c7011f0f6c306e525a1a35d",
+          "size": 131772,
+          "asset_api_url": "https://api.github.com/repos/safelibs/port-libwebp/releases/assets/401828401",
+          "browser_download_url": "https://github.com/safelibs/port-libwebp/releases/download/build-d9437d8e3c87/libwebpdecoder3_1.3.2-0.4build3%2Bsafelibs1_amd64.deb"
+        },
+        {
+          "package": "libsharpyuv0",
+          "filename": "libsharpyuv0_1.3.2-0.4build3+safelibs1_amd64.deb",
+          "architecture": "amd64",
+          "sha256": "0d7997f9c888e3bc69d8b9e1b64e52e0ae0c4a676a6cc4f8ed65d4d3148e5e61",
+          "size": 91776,
+          "asset_api_url": "https://api.github.com/repos/safelibs/port-libwebp/releases/assets/401828405",
+          "browser_download_url": "https://github.com/safelibs/port-libwebp/releases/download/build-d9437d8e3c87/libsharpyuv0_1.3.2-0.4build3%2Bsafelibs1_amd64.deb"
+        },
+        {
+          "package": "libwebp-dev",
+          "filename": "libwebp-dev_1.3.2-0.4build3+safelibs1_amd64.deb",
+          "architecture": "amd64",
+          "sha256": "c787944dc4a2cb3512169bf3b6aa66da457e92dd3bb5823060fb9103d04e3733",
+          "size": 444910,
+          "asset_api_url": "https://api.github.com/repos/safelibs/port-libwebp/releases/assets/401828403",
+          "browser_download_url": "https://github.com/safelibs/port-libwebp/releases/download/build-d9437d8e3c87/libwebp-dev_1.3.2-0.4build3%2Bsafelibs1_amd64.deb"
+        },
+        {
+          "package": "libsharpyuv-dev",
+          "filename": "libsharpyuv-dev_1.3.2-0.4build3+safelibs1_amd64.deb",
+          "architecture": "amd64",
+          "sha256": "db118f662844c623f4d7ca9ffa15e7161564a5e2e152e46fc3926aa0b05c7b19",
+          "size": 94194,
+          "asset_api_url": "https://api.github.com/repos/safelibs/port-libwebp/releases/assets/401828402",
+          "browser_download_url": "https://github.com/safelibs/port-libwebp/releases/download/build-d9437d8e3c87/libsharpyuv-dev_1.3.2-0.4build3%2Bsafelibs1_amd64.deb"
+        },
+        {
+          "package": "webp",
+          "filename": "webp_1.3.2-0.4build3+safelibs1_amd64.deb",
+          "architecture": "amd64",
+          "sha256": "8abc4302e250c5333c6bf955d4f351d22e9e725f0aed96d258a253684c2ce54a",
+          "size": 98186,
+          "asset_api_url": "https://api.github.com/repos/safelibs/port-libwebp/releases/assets/401828408",
+          "browser_download_url": "https://github.com/safelibs/port-libwebp/releases/download/build-d9437d8e3c87/webp_1.3.2-0.4build3%2Bsafelibs1_amd64.deb"
+        }
+      ],
+      "unported_original_packages": []
+    },
+    {
+      "library": "libxml",
+      "repository": "safelibs/port-libxml",
+      "url": "https://github.com/safelibs/port-libxml",
+      "tag_ref": "refs/tags/libxml/04-test",
+      "commit": "8af9d2976d2400327eb27c882c48b8556f27cc2a",
+      "release_tag": "build-8af9d2976d24",
+      "debs": [
+        {
+          "package": "libxml2",
+          "filename": "libxml2_2.9.14+dfsg-1.3ubuntu3.7+safelibs1_amd64.deb",
+          "architecture": "amd64",
+          "sha256": "f9b46aa84b67f2b823bf75d215b7d5e4fc56a666fccb66ad7b6485d772f64844",
+          "size": 1180668,
+          "asset_api_url": "https://api.github.com/repos/safelibs/port-libxml/releases/assets/401828641",
+          "browser_download_url": "https://github.com/safelibs/port-libxml/releases/download/build-8af9d2976d24/libxml2_2.9.14%2Bdfsg-1.3ubuntu3.7%2Bsafelibs1_amd64.deb"
+        },
+        {
+          "package": "libxml2-dev",
+          "filename": "libxml2-dev_2.9.14+dfsg-1.3ubuntu3.7+safelibs1_amd64.deb",
+          "architecture": "amd64",
+          "sha256": "db79517aa5cb5b9ebdad39cee6fa010a29e1a9c85e6f8bc8279b1f03a9bf6b6f",
+          "size": 4179786,
+          "asset_api_url": "https://api.github.com/repos/safelibs/port-libxml/releases/assets/401828638",
+          "browser_download_url": "https://github.com/safelibs/port-libxml/releases/download/build-8af9d2976d24/libxml2-dev_2.9.14%2Bdfsg-1.3ubuntu3.7%2Bsafelibs1_amd64.deb"
+        },
+        {
+          "package": "libxml2-utils",
+          "filename": "libxml2-utils_2.9.14+dfsg-1.3ubuntu3.7+safelibs1_amd64.deb",
+          "architecture": "amd64",
+          "sha256": "ab2ae9f83b4bfae822782dce35c445b0fa2b9ccdf25042dd9dfff0c373070a26",
+          "size": 915638,
+          "asset_api_url": "https://api.github.com/repos/safelibs/port-libxml/releases/assets/401828639",
+          "browser_download_url": "https://github.com/safelibs/port-libxml/releases/download/build-8af9d2976d24/libxml2-utils_2.9.14%2Bdfsg-1.3ubuntu3.7%2Bsafelibs1_amd64.deb"
+        },
+        {
+          "package": "python3-libxml2",
+          "filename": "python3-libxml2_2.9.14+dfsg-1.3ubuntu3.7+safelibs1_amd64.deb",
+          "architecture": "amd64",
+          "sha256": "0a17da0d8ee3b44c77d8a4a507d58cbebdf8f7db6e2ed164b4e2f081b872cdbd",
+          "size": 136252,
+          "asset_api_url": "https://api.github.com/repos/safelibs/port-libxml/releases/assets/401828634",
+          "browser_download_url": "https://github.com/safelibs/port-libxml/releases/download/build-8af9d2976d24/python3-libxml2_2.9.14%2Bdfsg-1.3ubuntu3.7%2Bsafelibs1_amd64.deb"
+        }
+      ],
+      "unported_original_packages": []
+    },
+    {
+      "library": "libyaml",
+      "repository": "safelibs/port-libyaml",
+      "url": "https://github.com/safelibs/port-libyaml",
+      "tag_ref": "refs/tags/libyaml/04-test",
+      "commit": "17f439b2dab04edb438ae7ad954bb7f2b625b59d",
+      "release_tag": "build-17f439b2dab0",
+      "debs": [
+        {
+          "package": "libyaml-0-2",
+          "filename": "libyaml-0-2_0.2.5-1build2_amd64.deb",
+          "architecture": "amd64",
+          "sha256": "f4d9fc17675f09eb2e5e991006bcdf637fab86ddee0d77a52d6a46bc4c487eb5",
+          "size": 197188,
+          "asset_api_url": "https://api.github.com/repos/safelibs/port-libyaml/releases/assets/401828076",
+          "browser_download_url": "https://github.com/safelibs/port-libyaml/releases/download/build-17f439b2dab0/libyaml-0-2_0.2.5-1build2_amd64.deb"
+        },
+        {
+          "package": "libyaml-dev",
+          "filename": "libyaml-dev_0.2.5-1build2_amd64.deb",
+          "architecture": "amd64",
+          "sha256": "35b42d3921740d9a87b5c1c94b99a1bcec3f4023f461ac29b0256fbcc92a93a9",
+          "size": 8619790,
+          "asset_api_url": "https://api.github.com/repos/safelibs/port-libyaml/releases/assets/401828073",
+          "browser_download_url": "https://github.com/safelibs/port-libyaml/releases/download/build-17f439b2dab0/libyaml-dev_0.2.5-1build2_amd64.deb"
+        }
+      ],
+      "unported_original_packages": []
+    },
+    {
+      "library": "libzstd",
+      "repository": "safelibs/port-libzstd",
+      "url": "https://github.com/safelibs/port-libzstd",
+      "tag_ref": "refs/tags/libzstd/04-test",
+      "commit": "64056ff8056fa059e64b982e16784eb86bdcb825",
+      "release_tag": "build-64056ff8056f",
+      "debs": [
+        {
+          "package": "libzstd1",
+          "filename": "libzstd1_1.5.5+dfsg2-2build1.1+safelibs1_amd64.deb",
+          "architecture": "amd64",
+          "sha256": "c22918befb988d5884e9ddfa8a8ce6115a95fa8a95dd241f29d9a6d8f4bde0e7",
+          "size": 376350,
+          "asset_api_url": "https://api.github.com/repos/safelibs/port-libzstd/releases/assets/401828891",
+          "browser_download_url": "https://github.com/safelibs/port-libzstd/releases/download/build-64056ff8056f/libzstd1_1.5.5%2Bdfsg2-2build1.1%2Bsafelibs1_amd64.deb"
+        },
+        {
+          "package": "libzstd-dev",
+          "filename": "libzstd-dev_1.5.5+dfsg2-2build1.1+safelibs1_amd64.deb",
+          "architecture": "amd64",
+          "sha256": "c6c2fff01b38f14db402b6ea13f92b96f6899671d1f0d96e175ea01bd5134c1f",
+          "size": 3700930,
+          "asset_api_url": "https://api.github.com/repos/safelibs/port-libzstd/releases/assets/401828890",
+          "browser_download_url": "https://github.com/safelibs/port-libzstd/releases/download/build-64056ff8056f/libzstd-dev_1.5.5%2Bdfsg2-2build1.1%2Bsafelibs1_amd64.deb"
+        },
+        {
+          "package": "zstd",
+          "filename": "zstd_1.5.5+dfsg2-2build1.1+safelibs1_amd64.deb",
+          "architecture": "amd64",
+          "sha256": "8d19c5e52f1c186e34a425c112c6b6a98be85390dc233456bc3f40da9d919f91",
+          "size": 159324,
+          "asset_api_url": "https://api.github.com/repos/safelibs/port-libzstd/releases/assets/401828889",
+          "browser_download_url": "https://github.com/safelibs/port-libzstd/releases/download/build-64056ff8056f/zstd_1.5.5%2Bdfsg2-2build1.1%2Bsafelibs1_amd64.deb"
+        }
+      ],
+      "unported_original_packages": []
+    }
+  ]
+}

@@ -1,0 +1,2 @@
+$ docker build --tag validator-libuv-shared --file /tmp/validator-run-matrix-libuv/libuv/Dockerfile /tmp/validator-run-matrix-libuv
+docker build completed
