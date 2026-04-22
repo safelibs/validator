@@ -9,56 +9,61 @@
     <script defer src="../assets/player.js"></script>
   </head>
   <body data-site-data="../site-data.json">
+    <a class="skip-link" href="#tests-heading">Skip to tests</a>
     <main>
-      <section class="dashboard" aria-label="Validation dashboard">
-        <h1>libjson Validation</h1>
+      <nav class="breadcrumb" aria-label="Breadcrumb"><a href="../index.html">All libraries</a></nav>
+      <section class="dashboard" aria-labelledby="dashboard-heading">
+        <h1 id="dashboard-heading">libjson Validation</h1>
         <div class="metric-grid">
-        <div class="metric" data-proof-total="libraries"><strong>19</strong><span>Libraries</span></div>
-        <div class="metric" data-proof-total="cases"><strong>576</strong><span>Cases</span></div>
-        <div class="metric" data-proof-total="source_cases"><strong>190</strong><span>Source</span></div>
-        <div class="metric" data-proof-total="usage_cases"><strong>386</strong><span>Usage</span></div>
-        <div class="metric" data-proof-total="passed"><strong>576</strong><span>Passed</span></div>
-        <div class="metric" data-proof-total="failed"><strong>0</strong><span>Failed</span></div>
-        <div class="metric" data-proof-total="casts"><strong>576 (100%)</strong><span>Casts</span></div>
+        <div class="metric" data-proof-total="libraries"><strong>1</strong><span>Libraries</span></div>
+        <div class="metric" data-proof-total="cases"><strong>16</strong><span>Tests</span></div>
+        <div class="metric" data-proof-total="source_cases"><strong>5</strong><span>Source tests</span></div>
+        <div class="metric" data-proof-total="usage_cases"><strong>11</strong><span>Usage tests</span></div>
+        <div class="metric" data-proof-total="passed"><strong>16 / 16</strong><span>Port tests passing</span></div>
+        <div class="metric" data-proof-total="failed"><strong>0</strong><span>Port tests failing</span></div>
+        <div class="metric" data-proof-total="casts"><strong>32 (100%)</strong><span>Evidence casts</span></div>
+        <div class="metric" data-proof-total="port_libraries"><strong>1 / 1</strong><span>Port libraries passing</span></div>
         </div>
       </section>
 
       <section class="controls" aria-label="Testcase filters">
-        <label class="search-label">Search <input id="search-input" type="search" autocomplete="off"></label>
+        <label class="search-label">Search <input id="search-input" type="search" autocomplete="off" name="search"></label>
+        <label>Run mode <select id="mode-filter" name="mode"><option value="all">All</option><option value="original">Original</option><option value="port-04-test">Port</option></select></label>
         <label>Status <select id="status-filter"><option value="all">All</option><option value="passed">Passed</option><option value="failed">Failed</option></select></label>
         <label>Kind <select id="kind-filter"><option value="all">All</option><option value="source">Source</option><option value="usage">Usage</option></select></label>
       </section>
-      <section class="testcases" aria-label="Testcases">
-        <h2>Testcases</h2>
+      <section id="testcases" class="testcases" aria-labelledby="tests-heading">
+        <h2 id="tests-heading">Tests</h2>
         <details class="case-row" data-library="libjson" data-testcase-id="tokener-parse" data-mode="original" data-kind="source" data-status="passed" data-player-cast="../evidence/original/casts/libjson/tokener-parse.cast" data-search="libjson tokener-parse original json-c tokener parse Parses nested JSON through json-c tokener APIs and reads fields. source api parser">
           <summary>
             <span class="case-title">
               <strong>json-c tokener parse</strong>
-              <span class="case-id">original / libjson / tokener-parse</span>
+              <span class="case-id">Original / libjson / tokener-parse</span>
             </span>
-            <span class="status-pill status-passed">Passed</span>
+            <span class="status-pill status-passed" aria-label="Original / libjson / tokener-parse status: Passed">Passed</span>
           </summary>
           <div class="case-body">
             <p>Parses nested JSON through json-c tokener APIs and reads fields.</p>
             <dl class="case-meta">
+              <div><dt>Run</dt><dd>Original</dd></div>
               <div><dt>Kind</dt><dd>source</dd></div>
               <div><dt>Client</dt><dd>none</dd></div>
               <div><dt>Duration</dt><dd>0.00s</dd></div>
               <div><dt>Tags</dt><dd class="tags"><span>api</span> <span>parser</span></dd></div>
             </dl>
             <div class="case-actions">
-              <a class="log-link" href="../evidence/original/logs/libjson/tokener-parse.log">Log</a>
-              <button type="button" class="play-button js-load-cast" data-cast="../evidence/original/casts/libjson/tokener-parse.cast">Play</button>
+              <a class="log-link" href="../evidence/original/logs/libjson/tokener-parse.log" aria-label="Open log for Original / libjson / tokener-parse">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/original/casts/libjson/tokener-parse.cast" aria-label="Play cast for Original / libjson / tokener-parse">Play</button>
             </div>
             <div class="cast-player" data-player>
               <div class="player-controls">
-                <button type="button" class="js-player-play">Play</button>
-                <button type="button" class="js-player-pause">Pause</button>
-                <button type="button" class="js-player-restart">Restart</button>
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Original / libjson / tokener-parse">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Original / libjson / tokener-parse">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Original / libjson / tokener-parse">Restart</button>
                 <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
                 <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
               </div>
-              <pre class="terminal" aria-live="polite"></pre>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Original / libjson / tokener-parse"></pre>
             </div>
           </div>
         </details>
@@ -66,31 +71,32 @@
           <summary>
             <span class="case-title">
               <strong>json-c serializer round trip</strong>
-              <span class="case-id">original / libjson / serializer-roundtrip</span>
+              <span class="case-id">Original / libjson / serializer-roundtrip</span>
             </span>
-            <span class="status-pill status-passed">Passed</span>
+            <span class="status-pill status-passed" aria-label="Original / libjson / serializer-roundtrip status: Passed">Passed</span>
           </summary>
           <div class="case-body">
             <p>Serializes an object then parses it again through json-c.</p>
             <dl class="case-meta">
+              <div><dt>Run</dt><dd>Original</dd></div>
               <div><dt>Kind</dt><dd>source</dd></div>
               <div><dt>Client</dt><dd>none</dd></div>
               <div><dt>Duration</dt><dd>0.00s</dd></div>
               <div><dt>Tags</dt><dd class="tags"><span>api</span> <span>roundtrip</span></dd></div>
             </dl>
             <div class="case-actions">
-              <a class="log-link" href="../evidence/original/logs/libjson/serializer-roundtrip.log">Log</a>
-              <button type="button" class="play-button js-load-cast" data-cast="../evidence/original/casts/libjson/serializer-roundtrip.cast">Play</button>
+              <a class="log-link" href="../evidence/original/logs/libjson/serializer-roundtrip.log" aria-label="Open log for Original / libjson / serializer-roundtrip">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/original/casts/libjson/serializer-roundtrip.cast" aria-label="Play cast for Original / libjson / serializer-roundtrip">Play</button>
             </div>
             <div class="cast-player" data-player>
               <div class="player-controls">
-                <button type="button" class="js-player-play">Play</button>
-                <button type="button" class="js-player-pause">Pause</button>
-                <button type="button" class="js-player-restart">Restart</button>
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Original / libjson / serializer-roundtrip">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Original / libjson / serializer-roundtrip">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Original / libjson / serializer-roundtrip">Restart</button>
                 <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
                 <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
               </div>
-              <pre class="terminal" aria-live="polite"></pre>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Original / libjson / serializer-roundtrip"></pre>
             </div>
           </div>
         </details>
@@ -98,31 +104,32 @@
           <summary>
             <span class="case-title">
               <strong>Refcount and object mutation</strong>
-              <span class="case-id">original / libjson / refcount-object-mutation</span>
+              <span class="case-id">Original / libjson / refcount-object-mutation</span>
             </span>
-            <span class="status-pill status-passed">Passed</span>
+            <span class="status-pill status-passed" aria-label="Original / libjson / refcount-object-mutation status: Passed">Passed</span>
           </summary>
           <div class="case-body">
             <p>Exercises json-c reference counting while mutating object members.</p>
             <dl class="case-meta">
+              <div><dt>Run</dt><dd>Original</dd></div>
               <div><dt>Kind</dt><dd>source</dd></div>
               <div><dt>Client</dt><dd>none</dd></div>
               <div><dt>Duration</dt><dd>0.00s</dd></div>
               <div><dt>Tags</dt><dd class="tags"><span>api</span> <span>refcount</span></dd></div>
             </dl>
             <div class="case-actions">
-              <a class="log-link" href="../evidence/original/logs/libjson/refcount-object-mutation.log">Log</a>
-              <button type="button" class="play-button js-load-cast" data-cast="../evidence/original/casts/libjson/refcount-object-mutation.cast">Play</button>
+              <a class="log-link" href="../evidence/original/logs/libjson/refcount-object-mutation.log" aria-label="Open log for Original / libjson / refcount-object-mutation">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/original/casts/libjson/refcount-object-mutation.cast" aria-label="Play cast for Original / libjson / refcount-object-mutation">Play</button>
             </div>
             <div class="cast-player" data-player>
               <div class="player-controls">
-                <button type="button" class="js-player-play">Play</button>
-                <button type="button" class="js-player-pause">Pause</button>
-                <button type="button" class="js-player-restart">Restart</button>
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Original / libjson / refcount-object-mutation">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Original / libjson / refcount-object-mutation">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Original / libjson / refcount-object-mutation">Restart</button>
                 <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
                 <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
               </div>
-              <pre class="terminal" aria-live="polite"></pre>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Original / libjson / refcount-object-mutation"></pre>
             </div>
           </div>
         </details>
@@ -130,31 +137,32 @@
           <summary>
             <span class="case-title">
               <strong>json-c compile link smoke</strong>
-              <span class="case-id">original / libjson / compile-link-smoke</span>
+              <span class="case-id">Original / libjson / compile-link-smoke</span>
             </span>
-            <span class="status-pill status-passed">Passed</span>
+            <span class="status-pill status-passed" aria-label="Original / libjson / compile-link-smoke status: Passed">Passed</span>
           </summary>
           <div class="case-body">
             <p>Compiles a small program against json-c headers and library.</p>
             <dl class="case-meta">
+              <div><dt>Run</dt><dd>Original</dd></div>
               <div><dt>Kind</dt><dd>source</dd></div>
               <div><dt>Client</dt><dd>none</dd></div>
               <div><dt>Duration</dt><dd>0.00s</dd></div>
               <div><dt>Tags</dt><dd class="tags"><span>api</span> <span>compile</span></dd></div>
             </dl>
             <div class="case-actions">
-              <a class="log-link" href="../evidence/original/logs/libjson/compile-link-smoke.log">Log</a>
-              <button type="button" class="play-button js-load-cast" data-cast="../evidence/original/casts/libjson/compile-link-smoke.cast">Play</button>
+              <a class="log-link" href="../evidence/original/logs/libjson/compile-link-smoke.log" aria-label="Open log for Original / libjson / compile-link-smoke">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/original/casts/libjson/compile-link-smoke.cast" aria-label="Play cast for Original / libjson / compile-link-smoke">Play</button>
             </div>
             <div class="cast-player" data-player>
               <div class="player-controls">
-                <button type="button" class="js-player-play">Play</button>
-                <button type="button" class="js-player-pause">Pause</button>
-                <button type="button" class="js-player-restart">Restart</button>
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Original / libjson / compile-link-smoke">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Original / libjson / compile-link-smoke">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Original / libjson / compile-link-smoke">Restart</button>
                 <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
                 <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
               </div>
-              <pre class="terminal" aria-live="polite"></pre>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Original / libjson / compile-link-smoke"></pre>
             </div>
           </div>
         </details>
@@ -162,31 +170,32 @@
           <summary>
             <span class="case-title">
               <strong>Malformed JSON handling</strong>
-              <span class="case-id">original / libjson / malformed-json-handling</span>
+              <span class="case-id">Original / libjson / malformed-json-handling</span>
             </span>
-            <span class="status-pill status-passed">Passed</span>
+            <span class="status-pill status-passed" aria-label="Original / libjson / malformed-json-handling status: Passed">Passed</span>
           </summary>
           <div class="case-body">
             <p>Requires json-c tokener to report an error for malformed JSON.</p>
             <dl class="case-meta">
+              <div><dt>Run</dt><dd>Original</dd></div>
               <div><dt>Kind</dt><dd>source</dd></div>
               <div><dt>Client</dt><dd>none</dd></div>
               <div><dt>Duration</dt><dd>0.00s</dd></div>
               <div><dt>Tags</dt><dd class="tags"><span>api</span> <span>negative</span></dd></div>
             </dl>
             <div class="case-actions">
-              <a class="log-link" href="../evidence/original/logs/libjson/malformed-json-handling.log">Log</a>
-              <button type="button" class="play-button js-load-cast" data-cast="../evidence/original/casts/libjson/malformed-json-handling.cast">Play</button>
+              <a class="log-link" href="../evidence/original/logs/libjson/malformed-json-handling.log" aria-label="Open log for Original / libjson / malformed-json-handling">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/original/casts/libjson/malformed-json-handling.cast" aria-label="Play cast for Original / libjson / malformed-json-handling">Play</button>
             </div>
             <div class="cast-player" data-player>
               <div class="player-controls">
-                <button type="button" class="js-player-play">Play</button>
-                <button type="button" class="js-player-pause">Pause</button>
-                <button type="button" class="js-player-restart">Restart</button>
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Original / libjson / malformed-json-handling">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Original / libjson / malformed-json-handling">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Original / libjson / malformed-json-handling">Restart</button>
                 <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
                 <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
               </div>
-              <pre class="terminal" aria-live="polite"></pre>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Original / libjson / malformed-json-handling"></pre>
             </div>
           </div>
         </details>
@@ -194,31 +203,32 @@
           <summary>
             <span class="case-title">
               <strong>GDAL reads GeoJSON</strong>
-              <span class="case-id">original / libjson / usage-gdal-ogrinfo-geojson</span>
+              <span class="case-id">Original / libjson / usage-gdal-ogrinfo-geojson</span>
             </span>
-            <span class="status-pill status-passed">Passed</span>
+            <span class="status-pill status-passed" aria-label="Original / libjson / usage-gdal-ogrinfo-geojson status: Passed">Passed</span>
           </summary>
           <div class="case-body">
             <p>Runs ogrinfo against a GeoJSON fixture to exercise json-c parsing through GDAL.</p>
             <dl class="case-meta">
+              <div><dt>Run</dt><dd>Original</dd></div>
               <div><dt>Kind</dt><dd>usage</dd></div>
               <div><dt>Client</dt><dd>gdal</dd></div>
               <div><dt>Duration</dt><dd>0.00s</dd></div>
               <div><dt>Tags</dt><dd class="tags"><span>usage</span> <span>json</span> <span>cli</span></dd></div>
             </dl>
             <div class="case-actions">
-              <a class="log-link" href="../evidence/original/logs/libjson/usage-gdal-ogrinfo-geojson.log">Log</a>
-              <button type="button" class="play-button js-load-cast" data-cast="../evidence/original/casts/libjson/usage-gdal-ogrinfo-geojson.cast">Play</button>
+              <a class="log-link" href="../evidence/original/logs/libjson/usage-gdal-ogrinfo-geojson.log" aria-label="Open log for Original / libjson / usage-gdal-ogrinfo-geojson">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/original/casts/libjson/usage-gdal-ogrinfo-geojson.cast" aria-label="Play cast for Original / libjson / usage-gdal-ogrinfo-geojson">Play</button>
             </div>
             <div class="cast-player" data-player>
               <div class="player-controls">
-                <button type="button" class="js-player-play">Play</button>
-                <button type="button" class="js-player-pause">Pause</button>
-                <button type="button" class="js-player-restart">Restart</button>
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Original / libjson / usage-gdal-ogrinfo-geojson">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Original / libjson / usage-gdal-ogrinfo-geojson">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Original / libjson / usage-gdal-ogrinfo-geojson">Restart</button>
                 <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
                 <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
               </div>
-              <pre class="terminal" aria-live="polite"></pre>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Original / libjson / usage-gdal-ogrinfo-geojson"></pre>
             </div>
           </div>
         </details>
@@ -226,31 +236,32 @@
           <summary>
             <span class="case-title">
               <strong>ttyd loopback web session</strong>
-              <span class="case-id">original / libjson / usage-ttyd-loopback-index</span>
+              <span class="case-id">Original / libjson / usage-ttyd-loopback-index</span>
             </span>
-            <span class="status-pill status-passed">Passed</span>
+            <span class="status-pill status-passed" aria-label="Original / libjson / usage-ttyd-loopback-index status: Passed">Passed</span>
           </summary>
           <div class="case-body">
             <p>Starts ttyd on loopback and requests its web page to exercise json-c through a service-style client.</p>
             <dl class="case-meta">
+              <div><dt>Run</dt><dd>Original</dd></div>
               <div><dt>Kind</dt><dd>usage</dd></div>
               <div><dt>Client</dt><dd>ttyd</dd></div>
               <div><dt>Duration</dt><dd>0.00s</dd></div>
               <div><dt>Tags</dt><dd class="tags"><span>usage</span> <span>service</span> <span>json</span></dd></div>
             </dl>
             <div class="case-actions">
-              <a class="log-link" href="../evidence/original/logs/libjson/usage-ttyd-loopback-index.log">Log</a>
-              <button type="button" class="play-button js-load-cast" data-cast="../evidence/original/casts/libjson/usage-ttyd-loopback-index.cast">Play</button>
+              <a class="log-link" href="../evidence/original/logs/libjson/usage-ttyd-loopback-index.log" aria-label="Open log for Original / libjson / usage-ttyd-loopback-index">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/original/casts/libjson/usage-ttyd-loopback-index.cast" aria-label="Play cast for Original / libjson / usage-ttyd-loopback-index">Play</button>
             </div>
             <div class="cast-player" data-player>
               <div class="player-controls">
-                <button type="button" class="js-player-play">Play</button>
-                <button type="button" class="js-player-pause">Pause</button>
-                <button type="button" class="js-player-restart">Restart</button>
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Original / libjson / usage-ttyd-loopback-index">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Original / libjson / usage-ttyd-loopback-index">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Original / libjson / usage-ttyd-loopback-index">Restart</button>
                 <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
                 <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
               </div>
-              <pre class="terminal" aria-live="polite"></pre>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Original / libjson / usage-ttyd-loopback-index"></pre>
             </div>
           </div>
         </details>
@@ -258,31 +269,32 @@
           <summary>
             <span class="case-title">
               <strong>GDAL filters GeoJSON</strong>
-              <span class="case-id">original / libjson / usage-gdal-ogrinfo-filter-geojson</span>
+              <span class="case-id">Original / libjson / usage-gdal-ogrinfo-filter-geojson</span>
             </span>
-            <span class="status-pill status-passed">Passed</span>
+            <span class="status-pill status-passed" aria-label="Original / libjson / usage-gdal-ogrinfo-filter-geojson status: Passed">Passed</span>
           </summary>
           <div class="case-body">
             <p>Runs ogrinfo with an attribute filter against a GeoJSON fixture and verifies the selected feature.</p>
             <dl class="case-meta">
+              <div><dt>Run</dt><dd>Original</dd></div>
               <div><dt>Kind</dt><dd>usage</dd></div>
               <div><dt>Client</dt><dd>gdal</dd></div>
               <div><dt>Duration</dt><dd>0.00s</dd></div>
               <div><dt>Tags</dt><dd class="tags"><span>usage</span> <span>json</span></dd></div>
             </dl>
             <div class="case-actions">
-              <a class="log-link" href="../evidence/original/logs/libjson/usage-gdal-ogrinfo-filter-geojson.log">Log</a>
-              <button type="button" class="play-button js-load-cast" data-cast="../evidence/original/casts/libjson/usage-gdal-ogrinfo-filter-geojson.cast">Play</button>
+              <a class="log-link" href="../evidence/original/logs/libjson/usage-gdal-ogrinfo-filter-geojson.log" aria-label="Open log for Original / libjson / usage-gdal-ogrinfo-filter-geojson">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/original/casts/libjson/usage-gdal-ogrinfo-filter-geojson.cast" aria-label="Play cast for Original / libjson / usage-gdal-ogrinfo-filter-geojson">Play</button>
             </div>
             <div class="cast-player" data-player>
               <div class="player-controls">
-                <button type="button" class="js-player-play">Play</button>
-                <button type="button" class="js-player-pause">Pause</button>
-                <button type="button" class="js-player-restart">Restart</button>
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Original / libjson / usage-gdal-ogrinfo-filter-geojson">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Original / libjson / usage-gdal-ogrinfo-filter-geojson">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Original / libjson / usage-gdal-ogrinfo-filter-geojson">Restart</button>
                 <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
                 <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
               </div>
-              <pre class="terminal" aria-live="polite"></pre>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Original / libjson / usage-gdal-ogrinfo-filter-geojson"></pre>
             </div>
           </div>
         </details>
@@ -290,31 +302,32 @@
           <summary>
             <span class="case-title">
               <strong>GDAL copies GeoJSON</strong>
-              <span class="case-id">original / libjson / usage-gdal-ogr2ogr-copy-geojson</span>
+              <span class="case-id">Original / libjson / usage-gdal-ogr2ogr-copy-geojson</span>
             </span>
-            <span class="status-pill status-passed">Passed</span>
+            <span class="status-pill status-passed" aria-label="Original / libjson / usage-gdal-ogr2ogr-copy-geojson status: Passed">Passed</span>
           </summary>
           <div class="case-body">
             <p>Runs ogr2ogr to copy a GeoJSON fixture and verifies the copied feature data.</p>
             <dl class="case-meta">
+              <div><dt>Run</dt><dd>Original</dd></div>
               <div><dt>Kind</dt><dd>usage</dd></div>
               <div><dt>Client</dt><dd>gdal</dd></div>
               <div><dt>Duration</dt><dd>0.00s</dd></div>
               <div><dt>Tags</dt><dd class="tags"><span>usage</span> <span>json</span></dd></div>
             </dl>
             <div class="case-actions">
-              <a class="log-link" href="../evidence/original/logs/libjson/usage-gdal-ogr2ogr-copy-geojson.log">Log</a>
-              <button type="button" class="play-button js-load-cast" data-cast="../evidence/original/casts/libjson/usage-gdal-ogr2ogr-copy-geojson.cast">Play</button>
+              <a class="log-link" href="../evidence/original/logs/libjson/usage-gdal-ogr2ogr-copy-geojson.log" aria-label="Open log for Original / libjson / usage-gdal-ogr2ogr-copy-geojson">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/original/casts/libjson/usage-gdal-ogr2ogr-copy-geojson.cast" aria-label="Play cast for Original / libjson / usage-gdal-ogr2ogr-copy-geojson">Play</button>
             </div>
             <div class="cast-player" data-player>
               <div class="player-controls">
-                <button type="button" class="js-player-play">Play</button>
-                <button type="button" class="js-player-pause">Pause</button>
-                <button type="button" class="js-player-restart">Restart</button>
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Original / libjson / usage-gdal-ogr2ogr-copy-geojson">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Original / libjson / usage-gdal-ogr2ogr-copy-geojson">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Original / libjson / usage-gdal-ogr2ogr-copy-geojson">Restart</button>
                 <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
                 <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
               </div>
-              <pre class="terminal" aria-live="polite"></pre>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Original / libjson / usage-gdal-ogr2ogr-copy-geojson"></pre>
             </div>
           </div>
         </details>
@@ -322,31 +335,32 @@
           <summary>
             <span class="case-title">
               <strong>GDAL converts GeoJSON to CSV</strong>
-              <span class="case-id">original / libjson / usage-gdal-ogr2ogr-csv-geojson</span>
+              <span class="case-id">Original / libjson / usage-gdal-ogr2ogr-csv-geojson</span>
             </span>
-            <span class="status-pill status-passed">Passed</span>
+            <span class="status-pill status-passed" aria-label="Original / libjson / usage-gdal-ogr2ogr-csv-geojson status: Passed">Passed</span>
           </summary>
           <div class="case-body">
             <p>Runs ogr2ogr to convert GeoJSON feature properties to CSV output.</p>
             <dl class="case-meta">
+              <div><dt>Run</dt><dd>Original</dd></div>
               <div><dt>Kind</dt><dd>usage</dd></div>
               <div><dt>Client</dt><dd>gdal</dd></div>
               <div><dt>Duration</dt><dd>0.00s</dd></div>
               <div><dt>Tags</dt><dd class="tags"><span>usage</span> <span>json</span></dd></div>
             </dl>
             <div class="case-actions">
-              <a class="log-link" href="../evidence/original/logs/libjson/usage-gdal-ogr2ogr-csv-geojson.log">Log</a>
-              <button type="button" class="play-button js-load-cast" data-cast="../evidence/original/casts/libjson/usage-gdal-ogr2ogr-csv-geojson.cast">Play</button>
+              <a class="log-link" href="../evidence/original/logs/libjson/usage-gdal-ogr2ogr-csv-geojson.log" aria-label="Open log for Original / libjson / usage-gdal-ogr2ogr-csv-geojson">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/original/casts/libjson/usage-gdal-ogr2ogr-csv-geojson.cast" aria-label="Play cast for Original / libjson / usage-gdal-ogr2ogr-csv-geojson">Play</button>
             </div>
             <div class="cast-player" data-player>
               <div class="player-controls">
-                <button type="button" class="js-player-play">Play</button>
-                <button type="button" class="js-player-pause">Pause</button>
-                <button type="button" class="js-player-restart">Restart</button>
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Original / libjson / usage-gdal-ogr2ogr-csv-geojson">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Original / libjson / usage-gdal-ogr2ogr-csv-geojson">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Original / libjson / usage-gdal-ogr2ogr-csv-geojson">Restart</button>
                 <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
                 <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
               </div>
-              <pre class="terminal" aria-live="polite"></pre>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Original / libjson / usage-gdal-ogr2ogr-csv-geojson"></pre>
             </div>
           </div>
         </details>
@@ -354,31 +368,32 @@
           <summary>
             <span class="case-title">
               <strong>GDAL converts GeoJSON to GeoPackage</strong>
-              <span class="case-id">original / libjson / usage-gdal-ogr2ogr-gpkg-geojson</span>
+              <span class="case-id">Original / libjson / usage-gdal-ogr2ogr-gpkg-geojson</span>
             </span>
-            <span class="status-pill status-passed">Passed</span>
+            <span class="status-pill status-passed" aria-label="Original / libjson / usage-gdal-ogr2ogr-gpkg-geojson status: Passed">Passed</span>
           </summary>
           <div class="case-body">
             <p>Runs ogr2ogr to convert GeoJSON into GeoPackage and verifies the resulting layer metadata.</p>
             <dl class="case-meta">
+              <div><dt>Run</dt><dd>Original</dd></div>
               <div><dt>Kind</dt><dd>usage</dd></div>
               <div><dt>Client</dt><dd>gdal</dd></div>
               <div><dt>Duration</dt><dd>0.00s</dd></div>
               <div><dt>Tags</dt><dd class="tags"><span>usage</span> <span>json</span></dd></div>
             </dl>
             <div class="case-actions">
-              <a class="log-link" href="../evidence/original/logs/libjson/usage-gdal-ogr2ogr-gpkg-geojson.log">Log</a>
-              <button type="button" class="play-button js-load-cast" data-cast="../evidence/original/casts/libjson/usage-gdal-ogr2ogr-gpkg-geojson.cast">Play</button>
+              <a class="log-link" href="../evidence/original/logs/libjson/usage-gdal-ogr2ogr-gpkg-geojson.log" aria-label="Open log for Original / libjson / usage-gdal-ogr2ogr-gpkg-geojson">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/original/casts/libjson/usage-gdal-ogr2ogr-gpkg-geojson.cast" aria-label="Play cast for Original / libjson / usage-gdal-ogr2ogr-gpkg-geojson">Play</button>
             </div>
             <div class="cast-player" data-player>
               <div class="player-controls">
-                <button type="button" class="js-player-play">Play</button>
-                <button type="button" class="js-player-pause">Pause</button>
-                <button type="button" class="js-player-restart">Restart</button>
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Original / libjson / usage-gdal-ogr2ogr-gpkg-geojson">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Original / libjson / usage-gdal-ogr2ogr-gpkg-geojson">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Original / libjson / usage-gdal-ogr2ogr-gpkg-geojson">Restart</button>
                 <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
                 <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
               </div>
-              <pre class="terminal" aria-live="polite"></pre>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Original / libjson / usage-gdal-ogr2ogr-gpkg-geojson"></pre>
             </div>
           </div>
         </details>
@@ -386,31 +401,32 @@
           <summary>
             <span class="case-title">
               <strong>GDAL SQL over GeoJSON</strong>
-              <span class="case-id">original / libjson / usage-gdal-ogrinfo-sql-geojson</span>
+              <span class="case-id">Original / libjson / usage-gdal-ogrinfo-sql-geojson</span>
             </span>
-            <span class="status-pill status-passed">Passed</span>
+            <span class="status-pill status-passed" aria-label="Original / libjson / usage-gdal-ogrinfo-sql-geojson status: Passed">Passed</span>
           </summary>
           <div class="case-body">
             <p>Runs ogrinfo SQL against a GeoJSON fixture and verifies the projected feature value.</p>
             <dl class="case-meta">
+              <div><dt>Run</dt><dd>Original</dd></div>
               <div><dt>Kind</dt><dd>usage</dd></div>
               <div><dt>Client</dt><dd>gdal</dd></div>
               <div><dt>Duration</dt><dd>0.00s</dd></div>
               <div><dt>Tags</dt><dd class="tags"><span>usage</span> <span>json</span></dd></div>
             </dl>
             <div class="case-actions">
-              <a class="log-link" href="../evidence/original/logs/libjson/usage-gdal-ogrinfo-sql-geojson.log">Log</a>
-              <button type="button" class="play-button js-load-cast" data-cast="../evidence/original/casts/libjson/usage-gdal-ogrinfo-sql-geojson.cast">Play</button>
+              <a class="log-link" href="../evidence/original/logs/libjson/usage-gdal-ogrinfo-sql-geojson.log" aria-label="Open log for Original / libjson / usage-gdal-ogrinfo-sql-geojson">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/original/casts/libjson/usage-gdal-ogrinfo-sql-geojson.cast" aria-label="Play cast for Original / libjson / usage-gdal-ogrinfo-sql-geojson">Play</button>
             </div>
             <div class="cast-player" data-player>
               <div class="player-controls">
-                <button type="button" class="js-player-play">Play</button>
-                <button type="button" class="js-player-pause">Pause</button>
-                <button type="button" class="js-player-restart">Restart</button>
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Original / libjson / usage-gdal-ogrinfo-sql-geojson">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Original / libjson / usage-gdal-ogrinfo-sql-geojson">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Original / libjson / usage-gdal-ogrinfo-sql-geojson">Restart</button>
                 <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
                 <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
               </div>
-              <pre class="terminal" aria-live="polite"></pre>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Original / libjson / usage-gdal-ogrinfo-sql-geojson"></pre>
             </div>
           </div>
         </details>
@@ -418,31 +434,32 @@
           <summary>
             <span class="case-title">
               <strong>GDAL spatial filter over GeoJSON</strong>
-              <span class="case-id">original / libjson / usage-gdal-ogrinfo-spatial-filter</span>
+              <span class="case-id">Original / libjson / usage-gdal-ogrinfo-spatial-filter</span>
             </span>
-            <span class="status-pill status-passed">Passed</span>
+            <span class="status-pill status-passed" aria-label="Original / libjson / usage-gdal-ogrinfo-spatial-filter status: Passed">Passed</span>
           </summary>
           <div class="case-body">
             <p>Runs ogrinfo with a spatial filter against GeoJSON and verifies the matching feature.</p>
             <dl class="case-meta">
+              <div><dt>Run</dt><dd>Original</dd></div>
               <div><dt>Kind</dt><dd>usage</dd></div>
               <div><dt>Client</dt><dd>gdal</dd></div>
               <div><dt>Duration</dt><dd>0.00s</dd></div>
               <div><dt>Tags</dt><dd class="tags"><span>usage</span> <span>json</span></dd></div>
             </dl>
             <div class="case-actions">
-              <a class="log-link" href="../evidence/original/logs/libjson/usage-gdal-ogrinfo-spatial-filter.log">Log</a>
-              <button type="button" class="play-button js-load-cast" data-cast="../evidence/original/casts/libjson/usage-gdal-ogrinfo-spatial-filter.cast">Play</button>
+              <a class="log-link" href="../evidence/original/logs/libjson/usage-gdal-ogrinfo-spatial-filter.log" aria-label="Open log for Original / libjson / usage-gdal-ogrinfo-spatial-filter">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/original/casts/libjson/usage-gdal-ogrinfo-spatial-filter.cast" aria-label="Play cast for Original / libjson / usage-gdal-ogrinfo-spatial-filter">Play</button>
             </div>
             <div class="cast-player" data-player>
               <div class="player-controls">
-                <button type="button" class="js-player-play">Play</button>
-                <button type="button" class="js-player-pause">Pause</button>
-                <button type="button" class="js-player-restart">Restart</button>
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Original / libjson / usage-gdal-ogrinfo-spatial-filter">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Original / libjson / usage-gdal-ogrinfo-spatial-filter">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Original / libjson / usage-gdal-ogrinfo-spatial-filter">Restart</button>
                 <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
                 <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
               </div>
-              <pre class="terminal" aria-live="polite"></pre>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Original / libjson / usage-gdal-ogrinfo-spatial-filter"></pre>
             </div>
           </div>
         </details>
@@ -450,31 +467,32 @@
           <summary>
             <span class="case-title">
               <strong>GDAL raster JSON metadata</strong>
-              <span class="case-id">original / libjson / usage-gdal-gdalinfo-json-raster</span>
+              <span class="case-id">Original / libjson / usage-gdal-gdalinfo-json-raster</span>
             </span>
-            <span class="status-pill status-passed">Passed</span>
+            <span class="status-pill status-passed" aria-label="Original / libjson / usage-gdal-gdalinfo-json-raster status: Passed">Passed</span>
           </summary>
           <div class="case-body">
             <p>Runs gdalinfo JSON output against a small raster fixture and verifies the reported driver metadata.</p>
             <dl class="case-meta">
+              <div><dt>Run</dt><dd>Original</dd></div>
               <div><dt>Kind</dt><dd>usage</dd></div>
               <div><dt>Client</dt><dd>gdal</dd></div>
               <div><dt>Duration</dt><dd>0.00s</dd></div>
               <div><dt>Tags</dt><dd class="tags"><span>usage</span> <span>json</span></dd></div>
             </dl>
             <div class="case-actions">
-              <a class="log-link" href="../evidence/original/logs/libjson/usage-gdal-gdalinfo-json-raster.log">Log</a>
-              <button type="button" class="play-button js-load-cast" data-cast="../evidence/original/casts/libjson/usage-gdal-gdalinfo-json-raster.cast">Play</button>
+              <a class="log-link" href="../evidence/original/logs/libjson/usage-gdal-gdalinfo-json-raster.log" aria-label="Open log for Original / libjson / usage-gdal-gdalinfo-json-raster">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/original/casts/libjson/usage-gdal-gdalinfo-json-raster.cast" aria-label="Play cast for Original / libjson / usage-gdal-gdalinfo-json-raster">Play</button>
             </div>
             <div class="cast-player" data-player>
               <div class="player-controls">
-                <button type="button" class="js-player-play">Play</button>
-                <button type="button" class="js-player-pause">Pause</button>
-                <button type="button" class="js-player-restart">Restart</button>
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Original / libjson / usage-gdal-gdalinfo-json-raster">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Original / libjson / usage-gdal-gdalinfo-json-raster">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Original / libjson / usage-gdal-gdalinfo-json-raster">Restart</button>
                 <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
                 <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
               </div>
-              <pre class="terminal" aria-live="polite"></pre>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Original / libjson / usage-gdal-gdalinfo-json-raster"></pre>
             </div>
           </div>
         </details>
@@ -482,31 +500,32 @@
           <summary>
             <span class="case-title">
               <strong>GDAL filters GeoJSON with ogr2ogr</strong>
-              <span class="case-id">original / libjson / usage-gdal-ogr2ogr-where-geojson</span>
+              <span class="case-id">Original / libjson / usage-gdal-ogr2ogr-where-geojson</span>
             </span>
-            <span class="status-pill status-passed">Passed</span>
+            <span class="status-pill status-passed" aria-label="Original / libjson / usage-gdal-ogr2ogr-where-geojson status: Passed">Passed</span>
           </summary>
           <div class="case-body">
             <p>Runs ogr2ogr with an attribute where clause and verifies only the matching GeoJSON feature is written.</p>
             <dl class="case-meta">
+              <div><dt>Run</dt><dd>Original</dd></div>
               <div><dt>Kind</dt><dd>usage</dd></div>
               <div><dt>Client</dt><dd>gdal</dd></div>
               <div><dt>Duration</dt><dd>0.00s</dd></div>
               <div><dt>Tags</dt><dd class="tags"><span>usage</span> <span>json</span></dd></div>
             </dl>
             <div class="case-actions">
-              <a class="log-link" href="../evidence/original/logs/libjson/usage-gdal-ogr2ogr-where-geojson.log">Log</a>
-              <button type="button" class="play-button js-load-cast" data-cast="../evidence/original/casts/libjson/usage-gdal-ogr2ogr-where-geojson.cast">Play</button>
+              <a class="log-link" href="../evidence/original/logs/libjson/usage-gdal-ogr2ogr-where-geojson.log" aria-label="Open log for Original / libjson / usage-gdal-ogr2ogr-where-geojson">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/original/casts/libjson/usage-gdal-ogr2ogr-where-geojson.cast" aria-label="Play cast for Original / libjson / usage-gdal-ogr2ogr-where-geojson">Play</button>
             </div>
             <div class="cast-player" data-player>
               <div class="player-controls">
-                <button type="button" class="js-player-play">Play</button>
-                <button type="button" class="js-player-pause">Pause</button>
-                <button type="button" class="js-player-restart">Restart</button>
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Original / libjson / usage-gdal-ogr2ogr-where-geojson">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Original / libjson / usage-gdal-ogr2ogr-where-geojson">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Original / libjson / usage-gdal-ogr2ogr-where-geojson">Restart</button>
                 <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
                 <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
               </div>
-              <pre class="terminal" aria-live="polite"></pre>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Original / libjson / usage-gdal-ogr2ogr-where-geojson"></pre>
             </div>
           </div>
         </details>
@@ -514,31 +533,32 @@
           <summary>
             <span class="case-title">
               <strong>GDAL reprojects GeoJSON</strong>
-              <span class="case-id">original / libjson / usage-gdal-ogr2ogr-reproject-geojson</span>
+              <span class="case-id">Original / libjson / usage-gdal-ogr2ogr-reproject-geojson</span>
             </span>
-            <span class="status-pill status-passed">Passed</span>
+            <span class="status-pill status-passed" aria-label="Original / libjson / usage-gdal-ogr2ogr-reproject-geojson status: Passed">Passed</span>
           </summary>
           <div class="case-body">
             <p>Runs ogr2ogr to reproject GeoJSON coordinates and verifies the resulting FeatureCollection.</p>
             <dl class="case-meta">
+              <div><dt>Run</dt><dd>Original</dd></div>
               <div><dt>Kind</dt><dd>usage</dd></div>
               <div><dt>Client</dt><dd>gdal</dd></div>
               <div><dt>Duration</dt><dd>0.00s</dd></div>
               <div><dt>Tags</dt><dd class="tags"><span>usage</span> <span>json</span></dd></div>
             </dl>
             <div class="case-actions">
-              <a class="log-link" href="../evidence/original/logs/libjson/usage-gdal-ogr2ogr-reproject-geojson.log">Log</a>
-              <button type="button" class="play-button js-load-cast" data-cast="../evidence/original/casts/libjson/usage-gdal-ogr2ogr-reproject-geojson.cast">Play</button>
+              <a class="log-link" href="../evidence/original/logs/libjson/usage-gdal-ogr2ogr-reproject-geojson.log" aria-label="Open log for Original / libjson / usage-gdal-ogr2ogr-reproject-geojson">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/original/casts/libjson/usage-gdal-ogr2ogr-reproject-geojson.cast" aria-label="Play cast for Original / libjson / usage-gdal-ogr2ogr-reproject-geojson">Play</button>
             </div>
             <div class="cast-player" data-player>
               <div class="player-controls">
-                <button type="button" class="js-player-play">Play</button>
-                <button type="button" class="js-player-pause">Pause</button>
-                <button type="button" class="js-player-restart">Restart</button>
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Original / libjson / usage-gdal-ogr2ogr-reproject-geojson">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Original / libjson / usage-gdal-ogr2ogr-reproject-geojson">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Original / libjson / usage-gdal-ogr2ogr-reproject-geojson">Restart</button>
                 <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
                 <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
               </div>
-              <pre class="terminal" aria-live="polite"></pre>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Original / libjson / usage-gdal-ogr2ogr-reproject-geojson"></pre>
             </div>
           </div>
         </details>
@@ -546,31 +566,32 @@
           <summary>
             <span class="case-title">
               <strong>json-c tokener parse</strong>
-              <span class="case-id">port-04-test / libjson / tokener-parse</span>
+              <span class="case-id">Port / libjson / tokener-parse</span>
             </span>
-            <span class="status-pill status-passed">Passed</span>
+            <span class="status-pill status-passed" aria-label="Port / libjson / tokener-parse status: Passed">Passed</span>
           </summary>
           <div class="case-body">
             <p>Parses nested JSON through json-c tokener APIs and reads fields.</p>
             <dl class="case-meta">
+              <div><dt>Run</dt><dd>Port</dd></div>
               <div><dt>Kind</dt><dd>source</dd></div>
               <div><dt>Client</dt><dd>none</dd></div>
               <div><dt>Duration</dt><dd>0.00s</dd></div>
               <div><dt>Tags</dt><dd class="tags"><span>api</span> <span>parser</span></dd></div>
             </dl>
             <div class="case-actions">
-              <a class="log-link" href="../evidence/port-04-test/logs/libjson/tokener-parse.log">Log</a>
-              <button type="button" class="play-button js-load-cast" data-cast="../evidence/port-04-test/casts/libjson/tokener-parse.cast">Play</button>
+              <a class="log-link" href="../evidence/port-04-test/logs/libjson/tokener-parse.log" aria-label="Open log for Port / libjson / tokener-parse">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/port-04-test/casts/libjson/tokener-parse.cast" aria-label="Play cast for Port / libjson / tokener-parse">Play</button>
             </div>
             <div class="cast-player" data-player>
               <div class="player-controls">
-                <button type="button" class="js-player-play">Play</button>
-                <button type="button" class="js-player-pause">Pause</button>
-                <button type="button" class="js-player-restart">Restart</button>
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Port / libjson / tokener-parse">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Port / libjson / tokener-parse">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Port / libjson / tokener-parse">Restart</button>
                 <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
                 <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
               </div>
-              <pre class="terminal" aria-live="polite"></pre>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Port / libjson / tokener-parse"></pre>
             </div>
           </div>
         </details>
@@ -578,31 +599,32 @@
           <summary>
             <span class="case-title">
               <strong>json-c serializer round trip</strong>
-              <span class="case-id">port-04-test / libjson / serializer-roundtrip</span>
+              <span class="case-id">Port / libjson / serializer-roundtrip</span>
             </span>
-            <span class="status-pill status-passed">Passed</span>
+            <span class="status-pill status-passed" aria-label="Port / libjson / serializer-roundtrip status: Passed">Passed</span>
           </summary>
           <div class="case-body">
             <p>Serializes an object then parses it again through json-c.</p>
             <dl class="case-meta">
+              <div><dt>Run</dt><dd>Port</dd></div>
               <div><dt>Kind</dt><dd>source</dd></div>
               <div><dt>Client</dt><dd>none</dd></div>
               <div><dt>Duration</dt><dd>0.00s</dd></div>
               <div><dt>Tags</dt><dd class="tags"><span>api</span> <span>roundtrip</span></dd></div>
             </dl>
             <div class="case-actions">
-              <a class="log-link" href="../evidence/port-04-test/logs/libjson/serializer-roundtrip.log">Log</a>
-              <button type="button" class="play-button js-load-cast" data-cast="../evidence/port-04-test/casts/libjson/serializer-roundtrip.cast">Play</button>
+              <a class="log-link" href="../evidence/port-04-test/logs/libjson/serializer-roundtrip.log" aria-label="Open log for Port / libjson / serializer-roundtrip">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/port-04-test/casts/libjson/serializer-roundtrip.cast" aria-label="Play cast for Port / libjson / serializer-roundtrip">Play</button>
             </div>
             <div class="cast-player" data-player>
               <div class="player-controls">
-                <button type="button" class="js-player-play">Play</button>
-                <button type="button" class="js-player-pause">Pause</button>
-                <button type="button" class="js-player-restart">Restart</button>
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Port / libjson / serializer-roundtrip">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Port / libjson / serializer-roundtrip">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Port / libjson / serializer-roundtrip">Restart</button>
                 <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
                 <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
               </div>
-              <pre class="terminal" aria-live="polite"></pre>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Port / libjson / serializer-roundtrip"></pre>
             </div>
           </div>
         </details>
@@ -610,31 +632,32 @@
           <summary>
             <span class="case-title">
               <strong>Refcount and object mutation</strong>
-              <span class="case-id">port-04-test / libjson / refcount-object-mutation</span>
+              <span class="case-id">Port / libjson / refcount-object-mutation</span>
             </span>
-            <span class="status-pill status-passed">Passed</span>
+            <span class="status-pill status-passed" aria-label="Port / libjson / refcount-object-mutation status: Passed">Passed</span>
           </summary>
           <div class="case-body">
             <p>Exercises json-c reference counting while mutating object members.</p>
             <dl class="case-meta">
+              <div><dt>Run</dt><dd>Port</dd></div>
               <div><dt>Kind</dt><dd>source</dd></div>
               <div><dt>Client</dt><dd>none</dd></div>
               <div><dt>Duration</dt><dd>0.00s</dd></div>
               <div><dt>Tags</dt><dd class="tags"><span>api</span> <span>refcount</span></dd></div>
             </dl>
             <div class="case-actions">
-              <a class="log-link" href="../evidence/port-04-test/logs/libjson/refcount-object-mutation.log">Log</a>
-              <button type="button" class="play-button js-load-cast" data-cast="../evidence/port-04-test/casts/libjson/refcount-object-mutation.cast">Play</button>
+              <a class="log-link" href="../evidence/port-04-test/logs/libjson/refcount-object-mutation.log" aria-label="Open log for Port / libjson / refcount-object-mutation">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/port-04-test/casts/libjson/refcount-object-mutation.cast" aria-label="Play cast for Port / libjson / refcount-object-mutation">Play</button>
             </div>
             <div class="cast-player" data-player>
               <div class="player-controls">
-                <button type="button" class="js-player-play">Play</button>
-                <button type="button" class="js-player-pause">Pause</button>
-                <button type="button" class="js-player-restart">Restart</button>
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Port / libjson / refcount-object-mutation">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Port / libjson / refcount-object-mutation">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Port / libjson / refcount-object-mutation">Restart</button>
                 <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
                 <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
               </div>
-              <pre class="terminal" aria-live="polite"></pre>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Port / libjson / refcount-object-mutation"></pre>
             </div>
           </div>
         </details>
@@ -642,31 +665,32 @@
           <summary>
             <span class="case-title">
               <strong>json-c compile link smoke</strong>
-              <span class="case-id">port-04-test / libjson / compile-link-smoke</span>
+              <span class="case-id">Port / libjson / compile-link-smoke</span>
             </span>
-            <span class="status-pill status-passed">Passed</span>
+            <span class="status-pill status-passed" aria-label="Port / libjson / compile-link-smoke status: Passed">Passed</span>
           </summary>
           <div class="case-body">
             <p>Compiles a small program against json-c headers and library.</p>
             <dl class="case-meta">
+              <div><dt>Run</dt><dd>Port</dd></div>
               <div><dt>Kind</dt><dd>source</dd></div>
               <div><dt>Client</dt><dd>none</dd></div>
               <div><dt>Duration</dt><dd>0.00s</dd></div>
               <div><dt>Tags</dt><dd class="tags"><span>api</span> <span>compile</span></dd></div>
             </dl>
             <div class="case-actions">
-              <a class="log-link" href="../evidence/port-04-test/logs/libjson/compile-link-smoke.log">Log</a>
-              <button type="button" class="play-button js-load-cast" data-cast="../evidence/port-04-test/casts/libjson/compile-link-smoke.cast">Play</button>
+              <a class="log-link" href="../evidence/port-04-test/logs/libjson/compile-link-smoke.log" aria-label="Open log for Port / libjson / compile-link-smoke">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/port-04-test/casts/libjson/compile-link-smoke.cast" aria-label="Play cast for Port / libjson / compile-link-smoke">Play</button>
             </div>
             <div class="cast-player" data-player>
               <div class="player-controls">
-                <button type="button" class="js-player-play">Play</button>
-                <button type="button" class="js-player-pause">Pause</button>
-                <button type="button" class="js-player-restart">Restart</button>
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Port / libjson / compile-link-smoke">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Port / libjson / compile-link-smoke">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Port / libjson / compile-link-smoke">Restart</button>
                 <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
                 <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
               </div>
-              <pre class="terminal" aria-live="polite"></pre>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Port / libjson / compile-link-smoke"></pre>
             </div>
           </div>
         </details>
@@ -674,31 +698,32 @@
           <summary>
             <span class="case-title">
               <strong>Malformed JSON handling</strong>
-              <span class="case-id">port-04-test / libjson / malformed-json-handling</span>
+              <span class="case-id">Port / libjson / malformed-json-handling</span>
             </span>
-            <span class="status-pill status-passed">Passed</span>
+            <span class="status-pill status-passed" aria-label="Port / libjson / malformed-json-handling status: Passed">Passed</span>
           </summary>
           <div class="case-body">
             <p>Requires json-c tokener to report an error for malformed JSON.</p>
             <dl class="case-meta">
+              <div><dt>Run</dt><dd>Port</dd></div>
               <div><dt>Kind</dt><dd>source</dd></div>
               <div><dt>Client</dt><dd>none</dd></div>
               <div><dt>Duration</dt><dd>0.00s</dd></div>
               <div><dt>Tags</dt><dd class="tags"><span>api</span> <span>negative</span></dd></div>
             </dl>
             <div class="case-actions">
-              <a class="log-link" href="../evidence/port-04-test/logs/libjson/malformed-json-handling.log">Log</a>
-              <button type="button" class="play-button js-load-cast" data-cast="../evidence/port-04-test/casts/libjson/malformed-json-handling.cast">Play</button>
+              <a class="log-link" href="../evidence/port-04-test/logs/libjson/malformed-json-handling.log" aria-label="Open log for Port / libjson / malformed-json-handling">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/port-04-test/casts/libjson/malformed-json-handling.cast" aria-label="Play cast for Port / libjson / malformed-json-handling">Play</button>
             </div>
             <div class="cast-player" data-player>
               <div class="player-controls">
-                <button type="button" class="js-player-play">Play</button>
-                <button type="button" class="js-player-pause">Pause</button>
-                <button type="button" class="js-player-restart">Restart</button>
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Port / libjson / malformed-json-handling">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Port / libjson / malformed-json-handling">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Port / libjson / malformed-json-handling">Restart</button>
                 <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
                 <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
               </div>
-              <pre class="terminal" aria-live="polite"></pre>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Port / libjson / malformed-json-handling"></pre>
             </div>
           </div>
         </details>
@@ -706,31 +731,32 @@
           <summary>
             <span class="case-title">
               <strong>GDAL reads GeoJSON</strong>
-              <span class="case-id">port-04-test / libjson / usage-gdal-ogrinfo-geojson</span>
+              <span class="case-id">Port / libjson / usage-gdal-ogrinfo-geojson</span>
             </span>
-            <span class="status-pill status-passed">Passed</span>
+            <span class="status-pill status-passed" aria-label="Port / libjson / usage-gdal-ogrinfo-geojson status: Passed">Passed</span>
           </summary>
           <div class="case-body">
             <p>Runs ogrinfo against a GeoJSON fixture to exercise json-c parsing through GDAL.</p>
             <dl class="case-meta">
+              <div><dt>Run</dt><dd>Port</dd></div>
               <div><dt>Kind</dt><dd>usage</dd></div>
               <div><dt>Client</dt><dd>gdal</dd></div>
               <div><dt>Duration</dt><dd>0.00s</dd></div>
               <div><dt>Tags</dt><dd class="tags"><span>usage</span> <span>json</span> <span>cli</span></dd></div>
             </dl>
             <div class="case-actions">
-              <a class="log-link" href="../evidence/port-04-test/logs/libjson/usage-gdal-ogrinfo-geojson.log">Log</a>
-              <button type="button" class="play-button js-load-cast" data-cast="../evidence/port-04-test/casts/libjson/usage-gdal-ogrinfo-geojson.cast">Play</button>
+              <a class="log-link" href="../evidence/port-04-test/logs/libjson/usage-gdal-ogrinfo-geojson.log" aria-label="Open log for Port / libjson / usage-gdal-ogrinfo-geojson">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/port-04-test/casts/libjson/usage-gdal-ogrinfo-geojson.cast" aria-label="Play cast for Port / libjson / usage-gdal-ogrinfo-geojson">Play</button>
             </div>
             <div class="cast-player" data-player>
               <div class="player-controls">
-                <button type="button" class="js-player-play">Play</button>
-                <button type="button" class="js-player-pause">Pause</button>
-                <button type="button" class="js-player-restart">Restart</button>
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Port / libjson / usage-gdal-ogrinfo-geojson">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Port / libjson / usage-gdal-ogrinfo-geojson">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Port / libjson / usage-gdal-ogrinfo-geojson">Restart</button>
                 <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
                 <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
               </div>
-              <pre class="terminal" aria-live="polite"></pre>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Port / libjson / usage-gdal-ogrinfo-geojson"></pre>
             </div>
           </div>
         </details>
@@ -738,31 +764,32 @@
           <summary>
             <span class="case-title">
               <strong>ttyd loopback web session</strong>
-              <span class="case-id">port-04-test / libjson / usage-ttyd-loopback-index</span>
+              <span class="case-id">Port / libjson / usage-ttyd-loopback-index</span>
             </span>
-            <span class="status-pill status-passed">Passed</span>
+            <span class="status-pill status-passed" aria-label="Port / libjson / usage-ttyd-loopback-index status: Passed">Passed</span>
           </summary>
           <div class="case-body">
             <p>Starts ttyd on loopback and requests its web page to exercise json-c through a service-style client.</p>
             <dl class="case-meta">
+              <div><dt>Run</dt><dd>Port</dd></div>
               <div><dt>Kind</dt><dd>usage</dd></div>
               <div><dt>Client</dt><dd>ttyd</dd></div>
               <div><dt>Duration</dt><dd>0.00s</dd></div>
               <div><dt>Tags</dt><dd class="tags"><span>usage</span> <span>service</span> <span>json</span></dd></div>
             </dl>
             <div class="case-actions">
-              <a class="log-link" href="../evidence/port-04-test/logs/libjson/usage-ttyd-loopback-index.log">Log</a>
-              <button type="button" class="play-button js-load-cast" data-cast="../evidence/port-04-test/casts/libjson/usage-ttyd-loopback-index.cast">Play</button>
+              <a class="log-link" href="../evidence/port-04-test/logs/libjson/usage-ttyd-loopback-index.log" aria-label="Open log for Port / libjson / usage-ttyd-loopback-index">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/port-04-test/casts/libjson/usage-ttyd-loopback-index.cast" aria-label="Play cast for Port / libjson / usage-ttyd-loopback-index">Play</button>
             </div>
             <div class="cast-player" data-player>
               <div class="player-controls">
-                <button type="button" class="js-player-play">Play</button>
-                <button type="button" class="js-player-pause">Pause</button>
-                <button type="button" class="js-player-restart">Restart</button>
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Port / libjson / usage-ttyd-loopback-index">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Port / libjson / usage-ttyd-loopback-index">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Port / libjson / usage-ttyd-loopback-index">Restart</button>
                 <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
                 <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
               </div>
-              <pre class="terminal" aria-live="polite"></pre>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Port / libjson / usage-ttyd-loopback-index"></pre>
             </div>
           </div>
         </details>
@@ -770,31 +797,32 @@
           <summary>
             <span class="case-title">
               <strong>GDAL filters GeoJSON</strong>
-              <span class="case-id">port-04-test / libjson / usage-gdal-ogrinfo-filter-geojson</span>
+              <span class="case-id">Port / libjson / usage-gdal-ogrinfo-filter-geojson</span>
             </span>
-            <span class="status-pill status-passed">Passed</span>
+            <span class="status-pill status-passed" aria-label="Port / libjson / usage-gdal-ogrinfo-filter-geojson status: Passed">Passed</span>
           </summary>
           <div class="case-body">
             <p>Runs ogrinfo with an attribute filter against a GeoJSON fixture and verifies the selected feature.</p>
             <dl class="case-meta">
+              <div><dt>Run</dt><dd>Port</dd></div>
               <div><dt>Kind</dt><dd>usage</dd></div>
               <div><dt>Client</dt><dd>gdal</dd></div>
               <div><dt>Duration</dt><dd>0.00s</dd></div>
               <div><dt>Tags</dt><dd class="tags"><span>usage</span> <span>json</span></dd></div>
             </dl>
             <div class="case-actions">
-              <a class="log-link" href="../evidence/port-04-test/logs/libjson/usage-gdal-ogrinfo-filter-geojson.log">Log</a>
-              <button type="button" class="play-button js-load-cast" data-cast="../evidence/port-04-test/casts/libjson/usage-gdal-ogrinfo-filter-geojson.cast">Play</button>
+              <a class="log-link" href="../evidence/port-04-test/logs/libjson/usage-gdal-ogrinfo-filter-geojson.log" aria-label="Open log for Port / libjson / usage-gdal-ogrinfo-filter-geojson">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/port-04-test/casts/libjson/usage-gdal-ogrinfo-filter-geojson.cast" aria-label="Play cast for Port / libjson / usage-gdal-ogrinfo-filter-geojson">Play</button>
             </div>
             <div class="cast-player" data-player>
               <div class="player-controls">
-                <button type="button" class="js-player-play">Play</button>
-                <button type="button" class="js-player-pause">Pause</button>
-                <button type="button" class="js-player-restart">Restart</button>
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Port / libjson / usage-gdal-ogrinfo-filter-geojson">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Port / libjson / usage-gdal-ogrinfo-filter-geojson">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Port / libjson / usage-gdal-ogrinfo-filter-geojson">Restart</button>
                 <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
                 <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
               </div>
-              <pre class="terminal" aria-live="polite"></pre>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Port / libjson / usage-gdal-ogrinfo-filter-geojson"></pre>
             </div>
           </div>
         </details>
@@ -802,31 +830,32 @@
           <summary>
             <span class="case-title">
               <strong>GDAL copies GeoJSON</strong>
-              <span class="case-id">port-04-test / libjson / usage-gdal-ogr2ogr-copy-geojson</span>
+              <span class="case-id">Port / libjson / usage-gdal-ogr2ogr-copy-geojson</span>
             </span>
-            <span class="status-pill status-passed">Passed</span>
+            <span class="status-pill status-passed" aria-label="Port / libjson / usage-gdal-ogr2ogr-copy-geojson status: Passed">Passed</span>
           </summary>
           <div class="case-body">
             <p>Runs ogr2ogr to copy a GeoJSON fixture and verifies the copied feature data.</p>
             <dl class="case-meta">
+              <div><dt>Run</dt><dd>Port</dd></div>
               <div><dt>Kind</dt><dd>usage</dd></div>
               <div><dt>Client</dt><dd>gdal</dd></div>
               <div><dt>Duration</dt><dd>0.00s</dd></div>
               <div><dt>Tags</dt><dd class="tags"><span>usage</span> <span>json</span></dd></div>
             </dl>
             <div class="case-actions">
-              <a class="log-link" href="../evidence/port-04-test/logs/libjson/usage-gdal-ogr2ogr-copy-geojson.log">Log</a>
-              <button type="button" class="play-button js-load-cast" data-cast="../evidence/port-04-test/casts/libjson/usage-gdal-ogr2ogr-copy-geojson.cast">Play</button>
+              <a class="log-link" href="../evidence/port-04-test/logs/libjson/usage-gdal-ogr2ogr-copy-geojson.log" aria-label="Open log for Port / libjson / usage-gdal-ogr2ogr-copy-geojson">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/port-04-test/casts/libjson/usage-gdal-ogr2ogr-copy-geojson.cast" aria-label="Play cast for Port / libjson / usage-gdal-ogr2ogr-copy-geojson">Play</button>
             </div>
             <div class="cast-player" data-player>
               <div class="player-controls">
-                <button type="button" class="js-player-play">Play</button>
-                <button type="button" class="js-player-pause">Pause</button>
-                <button type="button" class="js-player-restart">Restart</button>
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Port / libjson / usage-gdal-ogr2ogr-copy-geojson">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Port / libjson / usage-gdal-ogr2ogr-copy-geojson">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Port / libjson / usage-gdal-ogr2ogr-copy-geojson">Restart</button>
                 <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
                 <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
               </div>
-              <pre class="terminal" aria-live="polite"></pre>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Port / libjson / usage-gdal-ogr2ogr-copy-geojson"></pre>
             </div>
           </div>
         </details>
@@ -834,31 +863,32 @@
           <summary>
             <span class="case-title">
               <strong>GDAL converts GeoJSON to CSV</strong>
-              <span class="case-id">port-04-test / libjson / usage-gdal-ogr2ogr-csv-geojson</span>
+              <span class="case-id">Port / libjson / usage-gdal-ogr2ogr-csv-geojson</span>
             </span>
-            <span class="status-pill status-passed">Passed</span>
+            <span class="status-pill status-passed" aria-label="Port / libjson / usage-gdal-ogr2ogr-csv-geojson status: Passed">Passed</span>
           </summary>
           <div class="case-body">
             <p>Runs ogr2ogr to convert GeoJSON feature properties to CSV output.</p>
             <dl class="case-meta">
+              <div><dt>Run</dt><dd>Port</dd></div>
               <div><dt>Kind</dt><dd>usage</dd></div>
               <div><dt>Client</dt><dd>gdal</dd></div>
               <div><dt>Duration</dt><dd>0.00s</dd></div>
               <div><dt>Tags</dt><dd class="tags"><span>usage</span> <span>json</span></dd></div>
             </dl>
             <div class="case-actions">
-              <a class="log-link" href="../evidence/port-04-test/logs/libjson/usage-gdal-ogr2ogr-csv-geojson.log">Log</a>
-              <button type="button" class="play-button js-load-cast" data-cast="../evidence/port-04-test/casts/libjson/usage-gdal-ogr2ogr-csv-geojson.cast">Play</button>
+              <a class="log-link" href="../evidence/port-04-test/logs/libjson/usage-gdal-ogr2ogr-csv-geojson.log" aria-label="Open log for Port / libjson / usage-gdal-ogr2ogr-csv-geojson">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/port-04-test/casts/libjson/usage-gdal-ogr2ogr-csv-geojson.cast" aria-label="Play cast for Port / libjson / usage-gdal-ogr2ogr-csv-geojson">Play</button>
             </div>
             <div class="cast-player" data-player>
               <div class="player-controls">
-                <button type="button" class="js-player-play">Play</button>
-                <button type="button" class="js-player-pause">Pause</button>
-                <button type="button" class="js-player-restart">Restart</button>
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Port / libjson / usage-gdal-ogr2ogr-csv-geojson">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Port / libjson / usage-gdal-ogr2ogr-csv-geojson">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Port / libjson / usage-gdal-ogr2ogr-csv-geojson">Restart</button>
                 <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
                 <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
               </div>
-              <pre class="terminal" aria-live="polite"></pre>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Port / libjson / usage-gdal-ogr2ogr-csv-geojson"></pre>
             </div>
           </div>
         </details>
@@ -866,31 +896,32 @@
           <summary>
             <span class="case-title">
               <strong>GDAL converts GeoJSON to GeoPackage</strong>
-              <span class="case-id">port-04-test / libjson / usage-gdal-ogr2ogr-gpkg-geojson</span>
+              <span class="case-id">Port / libjson / usage-gdal-ogr2ogr-gpkg-geojson</span>
             </span>
-            <span class="status-pill status-passed">Passed</span>
+            <span class="status-pill status-passed" aria-label="Port / libjson / usage-gdal-ogr2ogr-gpkg-geojson status: Passed">Passed</span>
           </summary>
           <div class="case-body">
             <p>Runs ogr2ogr to convert GeoJSON into GeoPackage and verifies the resulting layer metadata.</p>
             <dl class="case-meta">
+              <div><dt>Run</dt><dd>Port</dd></div>
               <div><dt>Kind</dt><dd>usage</dd></div>
               <div><dt>Client</dt><dd>gdal</dd></div>
               <div><dt>Duration</dt><dd>0.00s</dd></div>
               <div><dt>Tags</dt><dd class="tags"><span>usage</span> <span>json</span></dd></div>
             </dl>
             <div class="case-actions">
-              <a class="log-link" href="../evidence/port-04-test/logs/libjson/usage-gdal-ogr2ogr-gpkg-geojson.log">Log</a>
-              <button type="button" class="play-button js-load-cast" data-cast="../evidence/port-04-test/casts/libjson/usage-gdal-ogr2ogr-gpkg-geojson.cast">Play</button>
+              <a class="log-link" href="../evidence/port-04-test/logs/libjson/usage-gdal-ogr2ogr-gpkg-geojson.log" aria-label="Open log for Port / libjson / usage-gdal-ogr2ogr-gpkg-geojson">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/port-04-test/casts/libjson/usage-gdal-ogr2ogr-gpkg-geojson.cast" aria-label="Play cast for Port / libjson / usage-gdal-ogr2ogr-gpkg-geojson">Play</button>
             </div>
             <div class="cast-player" data-player>
               <div class="player-controls">
-                <button type="button" class="js-player-play">Play</button>
-                <button type="button" class="js-player-pause">Pause</button>
-                <button type="button" class="js-player-restart">Restart</button>
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Port / libjson / usage-gdal-ogr2ogr-gpkg-geojson">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Port / libjson / usage-gdal-ogr2ogr-gpkg-geojson">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Port / libjson / usage-gdal-ogr2ogr-gpkg-geojson">Restart</button>
                 <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
                 <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
               </div>
-              <pre class="terminal" aria-live="polite"></pre>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Port / libjson / usage-gdal-ogr2ogr-gpkg-geojson"></pre>
             </div>
           </div>
         </details>
@@ -898,31 +929,32 @@
           <summary>
             <span class="case-title">
               <strong>GDAL SQL over GeoJSON</strong>
-              <span class="case-id">port-04-test / libjson / usage-gdal-ogrinfo-sql-geojson</span>
+              <span class="case-id">Port / libjson / usage-gdal-ogrinfo-sql-geojson</span>
             </span>
-            <span class="status-pill status-passed">Passed</span>
+            <span class="status-pill status-passed" aria-label="Port / libjson / usage-gdal-ogrinfo-sql-geojson status: Passed">Passed</span>
           </summary>
           <div class="case-body">
             <p>Runs ogrinfo SQL against a GeoJSON fixture and verifies the projected feature value.</p>
             <dl class="case-meta">
+              <div><dt>Run</dt><dd>Port</dd></div>
               <div><dt>Kind</dt><dd>usage</dd></div>
               <div><dt>Client</dt><dd>gdal</dd></div>
               <div><dt>Duration</dt><dd>0.00s</dd></div>
               <div><dt>Tags</dt><dd class="tags"><span>usage</span> <span>json</span></dd></div>
             </dl>
             <div class="case-actions">
-              <a class="log-link" href="../evidence/port-04-test/logs/libjson/usage-gdal-ogrinfo-sql-geojson.log">Log</a>
-              <button type="button" class="play-button js-load-cast" data-cast="../evidence/port-04-test/casts/libjson/usage-gdal-ogrinfo-sql-geojson.cast">Play</button>
+              <a class="log-link" href="../evidence/port-04-test/logs/libjson/usage-gdal-ogrinfo-sql-geojson.log" aria-label="Open log for Port / libjson / usage-gdal-ogrinfo-sql-geojson">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/port-04-test/casts/libjson/usage-gdal-ogrinfo-sql-geojson.cast" aria-label="Play cast for Port / libjson / usage-gdal-ogrinfo-sql-geojson">Play</button>
             </div>
             <div class="cast-player" data-player>
               <div class="player-controls">
-                <button type="button" class="js-player-play">Play</button>
-                <button type="button" class="js-player-pause">Pause</button>
-                <button type="button" class="js-player-restart">Restart</button>
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Port / libjson / usage-gdal-ogrinfo-sql-geojson">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Port / libjson / usage-gdal-ogrinfo-sql-geojson">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Port / libjson / usage-gdal-ogrinfo-sql-geojson">Restart</button>
                 <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
                 <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
               </div>
-              <pre class="terminal" aria-live="polite"></pre>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Port / libjson / usage-gdal-ogrinfo-sql-geojson"></pre>
             </div>
           </div>
         </details>
@@ -930,31 +962,32 @@
           <summary>
             <span class="case-title">
               <strong>GDAL spatial filter over GeoJSON</strong>
-              <span class="case-id">port-04-test / libjson / usage-gdal-ogrinfo-spatial-filter</span>
+              <span class="case-id">Port / libjson / usage-gdal-ogrinfo-spatial-filter</span>
             </span>
-            <span class="status-pill status-passed">Passed</span>
+            <span class="status-pill status-passed" aria-label="Port / libjson / usage-gdal-ogrinfo-spatial-filter status: Passed">Passed</span>
           </summary>
           <div class="case-body">
             <p>Runs ogrinfo with a spatial filter against GeoJSON and verifies the matching feature.</p>
             <dl class="case-meta">
+              <div><dt>Run</dt><dd>Port</dd></div>
               <div><dt>Kind</dt><dd>usage</dd></div>
               <div><dt>Client</dt><dd>gdal</dd></div>
               <div><dt>Duration</dt><dd>0.00s</dd></div>
               <div><dt>Tags</dt><dd class="tags"><span>usage</span> <span>json</span></dd></div>
             </dl>
             <div class="case-actions">
-              <a class="log-link" href="../evidence/port-04-test/logs/libjson/usage-gdal-ogrinfo-spatial-filter.log">Log</a>
-              <button type="button" class="play-button js-load-cast" data-cast="../evidence/port-04-test/casts/libjson/usage-gdal-ogrinfo-spatial-filter.cast">Play</button>
+              <a class="log-link" href="../evidence/port-04-test/logs/libjson/usage-gdal-ogrinfo-spatial-filter.log" aria-label="Open log for Port / libjson / usage-gdal-ogrinfo-spatial-filter">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/port-04-test/casts/libjson/usage-gdal-ogrinfo-spatial-filter.cast" aria-label="Play cast for Port / libjson / usage-gdal-ogrinfo-spatial-filter">Play</button>
             </div>
             <div class="cast-player" data-player>
               <div class="player-controls">
-                <button type="button" class="js-player-play">Play</button>
-                <button type="button" class="js-player-pause">Pause</button>
-                <button type="button" class="js-player-restart">Restart</button>
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Port / libjson / usage-gdal-ogrinfo-spatial-filter">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Port / libjson / usage-gdal-ogrinfo-spatial-filter">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Port / libjson / usage-gdal-ogrinfo-spatial-filter">Restart</button>
                 <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
                 <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
               </div>
-              <pre class="terminal" aria-live="polite"></pre>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Port / libjson / usage-gdal-ogrinfo-spatial-filter"></pre>
             </div>
           </div>
         </details>
@@ -962,31 +995,32 @@
           <summary>
             <span class="case-title">
               <strong>GDAL raster JSON metadata</strong>
-              <span class="case-id">port-04-test / libjson / usage-gdal-gdalinfo-json-raster</span>
+              <span class="case-id">Port / libjson / usage-gdal-gdalinfo-json-raster</span>
             </span>
-            <span class="status-pill status-passed">Passed</span>
+            <span class="status-pill status-passed" aria-label="Port / libjson / usage-gdal-gdalinfo-json-raster status: Passed">Passed</span>
           </summary>
           <div class="case-body">
             <p>Runs gdalinfo JSON output against a small raster fixture and verifies the reported driver metadata.</p>
             <dl class="case-meta">
+              <div><dt>Run</dt><dd>Port</dd></div>
               <div><dt>Kind</dt><dd>usage</dd></div>
               <div><dt>Client</dt><dd>gdal</dd></div>
               <div><dt>Duration</dt><dd>0.00s</dd></div>
               <div><dt>Tags</dt><dd class="tags"><span>usage</span> <span>json</span></dd></div>
             </dl>
             <div class="case-actions">
-              <a class="log-link" href="../evidence/port-04-test/logs/libjson/usage-gdal-gdalinfo-json-raster.log">Log</a>
-              <button type="button" class="play-button js-load-cast" data-cast="../evidence/port-04-test/casts/libjson/usage-gdal-gdalinfo-json-raster.cast">Play</button>
+              <a class="log-link" href="../evidence/port-04-test/logs/libjson/usage-gdal-gdalinfo-json-raster.log" aria-label="Open log for Port / libjson / usage-gdal-gdalinfo-json-raster">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/port-04-test/casts/libjson/usage-gdal-gdalinfo-json-raster.cast" aria-label="Play cast for Port / libjson / usage-gdal-gdalinfo-json-raster">Play</button>
             </div>
             <div class="cast-player" data-player>
               <div class="player-controls">
-                <button type="button" class="js-player-play">Play</button>
-                <button type="button" class="js-player-pause">Pause</button>
-                <button type="button" class="js-player-restart">Restart</button>
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Port / libjson / usage-gdal-gdalinfo-json-raster">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Port / libjson / usage-gdal-gdalinfo-json-raster">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Port / libjson / usage-gdal-gdalinfo-json-raster">Restart</button>
                 <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
                 <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
               </div>
-              <pre class="terminal" aria-live="polite"></pre>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Port / libjson / usage-gdal-gdalinfo-json-raster"></pre>
             </div>
           </div>
         </details>
@@ -994,31 +1028,32 @@
           <summary>
             <span class="case-title">
               <strong>GDAL filters GeoJSON with ogr2ogr</strong>
-              <span class="case-id">port-04-test / libjson / usage-gdal-ogr2ogr-where-geojson</span>
+              <span class="case-id">Port / libjson / usage-gdal-ogr2ogr-where-geojson</span>
             </span>
-            <span class="status-pill status-passed">Passed</span>
+            <span class="status-pill status-passed" aria-label="Port / libjson / usage-gdal-ogr2ogr-where-geojson status: Passed">Passed</span>
           </summary>
           <div class="case-body">
             <p>Runs ogr2ogr with an attribute where clause and verifies only the matching GeoJSON feature is written.</p>
             <dl class="case-meta">
+              <div><dt>Run</dt><dd>Port</dd></div>
               <div><dt>Kind</dt><dd>usage</dd></div>
               <div><dt>Client</dt><dd>gdal</dd></div>
               <div><dt>Duration</dt><dd>0.00s</dd></div>
               <div><dt>Tags</dt><dd class="tags"><span>usage</span> <span>json</span></dd></div>
             </dl>
             <div class="case-actions">
-              <a class="log-link" href="../evidence/port-04-test/logs/libjson/usage-gdal-ogr2ogr-where-geojson.log">Log</a>
-              <button type="button" class="play-button js-load-cast" data-cast="../evidence/port-04-test/casts/libjson/usage-gdal-ogr2ogr-where-geojson.cast">Play</button>
+              <a class="log-link" href="../evidence/port-04-test/logs/libjson/usage-gdal-ogr2ogr-where-geojson.log" aria-label="Open log for Port / libjson / usage-gdal-ogr2ogr-where-geojson">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/port-04-test/casts/libjson/usage-gdal-ogr2ogr-where-geojson.cast" aria-label="Play cast for Port / libjson / usage-gdal-ogr2ogr-where-geojson">Play</button>
             </div>
             <div class="cast-player" data-player>
               <div class="player-controls">
-                <button type="button" class="js-player-play">Play</button>
-                <button type="button" class="js-player-pause">Pause</button>
-                <button type="button" class="js-player-restart">Restart</button>
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Port / libjson / usage-gdal-ogr2ogr-where-geojson">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Port / libjson / usage-gdal-ogr2ogr-where-geojson">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Port / libjson / usage-gdal-ogr2ogr-where-geojson">Restart</button>
                 <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
                 <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
               </div>
-              <pre class="terminal" aria-live="polite"></pre>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Port / libjson / usage-gdal-ogr2ogr-where-geojson"></pre>
             </div>
           </div>
         </details>
@@ -1026,31 +1061,32 @@
           <summary>
             <span class="case-title">
               <strong>GDAL reprojects GeoJSON</strong>
-              <span class="case-id">port-04-test / libjson / usage-gdal-ogr2ogr-reproject-geojson</span>
+              <span class="case-id">Port / libjson / usage-gdal-ogr2ogr-reproject-geojson</span>
             </span>
-            <span class="status-pill status-passed">Passed</span>
+            <span class="status-pill status-passed" aria-label="Port / libjson / usage-gdal-ogr2ogr-reproject-geojson status: Passed">Passed</span>
           </summary>
           <div class="case-body">
             <p>Runs ogr2ogr to reproject GeoJSON coordinates and verifies the resulting FeatureCollection.</p>
             <dl class="case-meta">
+              <div><dt>Run</dt><dd>Port</dd></div>
               <div><dt>Kind</dt><dd>usage</dd></div>
               <div><dt>Client</dt><dd>gdal</dd></div>
               <div><dt>Duration</dt><dd>0.00s</dd></div>
               <div><dt>Tags</dt><dd class="tags"><span>usage</span> <span>json</span></dd></div>
             </dl>
             <div class="case-actions">
-              <a class="log-link" href="../evidence/port-04-test/logs/libjson/usage-gdal-ogr2ogr-reproject-geojson.log">Log</a>
-              <button type="button" class="play-button js-load-cast" data-cast="../evidence/port-04-test/casts/libjson/usage-gdal-ogr2ogr-reproject-geojson.cast">Play</button>
+              <a class="log-link" href="../evidence/port-04-test/logs/libjson/usage-gdal-ogr2ogr-reproject-geojson.log" aria-label="Open log for Port / libjson / usage-gdal-ogr2ogr-reproject-geojson">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/port-04-test/casts/libjson/usage-gdal-ogr2ogr-reproject-geojson.cast" aria-label="Play cast for Port / libjson / usage-gdal-ogr2ogr-reproject-geojson">Play</button>
             </div>
             <div class="cast-player" data-player>
               <div class="player-controls">
-                <button type="button" class="js-player-play">Play</button>
-                <button type="button" class="js-player-pause">Pause</button>
-                <button type="button" class="js-player-restart">Restart</button>
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Port / libjson / usage-gdal-ogr2ogr-reproject-geojson">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Port / libjson / usage-gdal-ogr2ogr-reproject-geojson">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Port / libjson / usage-gdal-ogr2ogr-reproject-geojson">Restart</button>
                 <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
                 <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
               </div>
-              <pre class="terminal" aria-live="polite"></pre>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Port / libjson / usage-gdal-ogr2ogr-reproject-geojson"></pre>
             </div>
           </div>
         </details>

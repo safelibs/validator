@@ -9,56 +9,61 @@
     <script defer src="../assets/player.js"></script>
   </head>
   <body data-site-data="../site-data.json">
+    <a class="skip-link" href="#tests-heading">Skip to tests</a>
     <main>
-      <section class="dashboard" aria-label="Validation dashboard">
-        <h1>libtiff Validation</h1>
+      <nav class="breadcrumb" aria-label="Breadcrumb"><a href="../index.html">All libraries</a></nav>
+      <section class="dashboard" aria-labelledby="dashboard-heading">
+        <h1 id="dashboard-heading">libtiff Validation</h1>
         <div class="metric-grid">
-        <div class="metric" data-proof-total="libraries"><strong>19</strong><span>Libraries</span></div>
-        <div class="metric" data-proof-total="cases"><strong>576</strong><span>Cases</span></div>
-        <div class="metric" data-proof-total="source_cases"><strong>190</strong><span>Source</span></div>
-        <div class="metric" data-proof-total="usage_cases"><strong>386</strong><span>Usage</span></div>
-        <div class="metric" data-proof-total="passed"><strong>576</strong><span>Passed</span></div>
-        <div class="metric" data-proof-total="failed"><strong>0</strong><span>Failed</span></div>
-        <div class="metric" data-proof-total="casts"><strong>576 (100%)</strong><span>Casts</span></div>
+        <div class="metric" data-proof-total="libraries"><strong>1</strong><span>Libraries</span></div>
+        <div class="metric" data-proof-total="cases"><strong>15</strong><span>Tests</span></div>
+        <div class="metric" data-proof-total="source_cases"><strong>5</strong><span>Source tests</span></div>
+        <div class="metric" data-proof-total="usage_cases"><strong>10</strong><span>Usage tests</span></div>
+        <div class="metric" data-proof-total="passed"><strong>15 / 15</strong><span>Port tests passing</span></div>
+        <div class="metric" data-proof-total="failed"><strong>0</strong><span>Port tests failing</span></div>
+        <div class="metric" data-proof-total="casts"><strong>30 (100%)</strong><span>Evidence casts</span></div>
+        <div class="metric" data-proof-total="port_libraries"><strong>1 / 1</strong><span>Port libraries passing</span></div>
         </div>
       </section>
 
       <section class="controls" aria-label="Testcase filters">
-        <label class="search-label">Search <input id="search-input" type="search" autocomplete="off"></label>
+        <label class="search-label">Search <input id="search-input" type="search" autocomplete="off" name="search"></label>
+        <label>Run mode <select id="mode-filter" name="mode"><option value="all">All</option><option value="original">Original</option><option value="port-04-test">Port</option></select></label>
         <label>Status <select id="status-filter"><option value="all">All</option><option value="passed">Passed</option><option value="failed">Failed</option></select></label>
         <label>Kind <select id="kind-filter"><option value="all">All</option><option value="source">Source</option><option value="usage">Usage</option></select></label>
       </section>
-      <section class="testcases" aria-label="Testcases">
-        <h2>Testcases</h2>
+      <section id="testcases" class="testcases" aria-labelledby="tests-heading">
+        <h2 id="tests-heading">Tests</h2>
         <details class="case-row" data-library="libtiff" data-testcase-id="tiffinfo-metadata" data-mode="original" data-kind="source" data-status="passed" data-player-cast="../evidence/original/casts/libtiff/tiffinfo-metadata.cast" data-search="libtiff tiffinfo-metadata original tiffinfo metadata inspection Runs tiffinfo on a checked-in TIFF image and inspects dimensions. source cli metadata">
           <summary>
             <span class="case-title">
               <strong>tiffinfo metadata inspection</strong>
-              <span class="case-id">original / libtiff / tiffinfo-metadata</span>
+              <span class="case-id">Original / libtiff / tiffinfo-metadata</span>
             </span>
-            <span class="status-pill status-passed">Passed</span>
+            <span class="status-pill status-passed" aria-label="Original / libtiff / tiffinfo-metadata status: Passed">Passed</span>
           </summary>
           <div class="case-body">
             <p>Runs tiffinfo on a checked-in TIFF image and inspects dimensions.</p>
             <dl class="case-meta">
+              <div><dt>Run</dt><dd>Original</dd></div>
               <div><dt>Kind</dt><dd>source</dd></div>
               <div><dt>Client</dt><dd>none</dd></div>
               <div><dt>Duration</dt><dd>0.00s</dd></div>
               <div><dt>Tags</dt><dd class="tags"><span>cli</span> <span>metadata</span></dd></div>
             </dl>
             <div class="case-actions">
-              <a class="log-link" href="../evidence/original/logs/libtiff/tiffinfo-metadata.log">Log</a>
-              <button type="button" class="play-button js-load-cast" data-cast="../evidence/original/casts/libtiff/tiffinfo-metadata.cast">Play</button>
+              <a class="log-link" href="../evidence/original/logs/libtiff/tiffinfo-metadata.log" aria-label="Open log for Original / libtiff / tiffinfo-metadata">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/original/casts/libtiff/tiffinfo-metadata.cast" aria-label="Play cast for Original / libtiff / tiffinfo-metadata">Play</button>
             </div>
             <div class="cast-player" data-player>
               <div class="player-controls">
-                <button type="button" class="js-player-play">Play</button>
-                <button type="button" class="js-player-pause">Pause</button>
-                <button type="button" class="js-player-restart">Restart</button>
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Original / libtiff / tiffinfo-metadata">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Original / libtiff / tiffinfo-metadata">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Original / libtiff / tiffinfo-metadata">Restart</button>
                 <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
                 <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
               </div>
-              <pre class="terminal" aria-live="polite"></pre>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Original / libtiff / tiffinfo-metadata"></pre>
             </div>
           </div>
         </details>
@@ -66,31 +71,32 @@
           <summary>
             <span class="case-title">
               <strong>tiffcp copy behavior</strong>
-              <span class="case-id">original / libtiff / tiffcp-copy</span>
+              <span class="case-id">Original / libtiff / tiffcp-copy</span>
             </span>
-            <span class="status-pill status-passed">Passed</span>
+            <span class="status-pill status-passed" aria-label="Original / libtiff / tiffcp-copy status: Passed">Passed</span>
           </summary>
           <div class="case-body">
             <p>Copies a TIFF fixture and confirms the copied image remains readable.</p>
             <dl class="case-meta">
+              <div><dt>Run</dt><dd>Original</dd></div>
               <div><dt>Kind</dt><dd>source</dd></div>
               <div><dt>Client</dt><dd>none</dd></div>
               <div><dt>Duration</dt><dd>0.00s</dd></div>
               <div><dt>Tags</dt><dd class="tags"><span>cli</span> <span>media</span></dd></div>
             </dl>
             <div class="case-actions">
-              <a class="log-link" href="../evidence/original/logs/libtiff/tiffcp-copy.log">Log</a>
-              <button type="button" class="play-button js-load-cast" data-cast="../evidence/original/casts/libtiff/tiffcp-copy.cast">Play</button>
+              <a class="log-link" href="../evidence/original/logs/libtiff/tiffcp-copy.log" aria-label="Open log for Original / libtiff / tiffcp-copy">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/original/casts/libtiff/tiffcp-copy.cast" aria-label="Play cast for Original / libtiff / tiffcp-copy">Play</button>
             </div>
             <div class="cast-player" data-player>
               <div class="player-controls">
-                <button type="button" class="js-player-play">Play</button>
-                <button type="button" class="js-player-pause">Pause</button>
-                <button type="button" class="js-player-restart">Restart</button>
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Original / libtiff / tiffcp-copy">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Original / libtiff / tiffcp-copy">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Original / libtiff / tiffcp-copy">Restart</button>
                 <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
                 <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
               </div>
-              <pre class="terminal" aria-live="polite"></pre>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Original / libtiff / tiffcp-copy"></pre>
             </div>
           </div>
         </details>
@@ -98,31 +104,32 @@
           <summary>
             <span class="case-title">
               <strong>tiffdump structure inspection</strong>
-              <span class="case-id">original / libtiff / tiffdump-structure</span>
+              <span class="case-id">Original / libtiff / tiffdump-structure</span>
             </span>
-            <span class="status-pill status-passed">Passed</span>
+            <span class="status-pill status-passed" aria-label="Original / libtiff / tiffdump-structure status: Passed">Passed</span>
           </summary>
           <div class="case-body">
             <p>Runs tiffdump and checks expected TIFF structural tags are present.</p>
             <dl class="case-meta">
+              <div><dt>Run</dt><dd>Original</dd></div>
               <div><dt>Kind</dt><dd>source</dd></div>
               <div><dt>Client</dt><dd>none</dd></div>
               <div><dt>Duration</dt><dd>0.00s</dd></div>
               <div><dt>Tags</dt><dd class="tags"><span>cli</span> <span>metadata</span></dd></div>
             </dl>
             <div class="case-actions">
-              <a class="log-link" href="../evidence/original/logs/libtiff/tiffdump-structure.log">Log</a>
-              <button type="button" class="play-button js-load-cast" data-cast="../evidence/original/casts/libtiff/tiffdump-structure.cast">Play</button>
+              <a class="log-link" href="../evidence/original/logs/libtiff/tiffdump-structure.log" aria-label="Open log for Original / libtiff / tiffdump-structure">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/original/casts/libtiff/tiffdump-structure.cast" aria-label="Play cast for Original / libtiff / tiffdump-structure">Play</button>
             </div>
             <div class="cast-player" data-player>
               <div class="player-controls">
-                <button type="button" class="js-player-play">Play</button>
-                <button type="button" class="js-player-pause">Pause</button>
-                <button type="button" class="js-player-restart">Restart</button>
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Original / libtiff / tiffdump-structure">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Original / libtiff / tiffdump-structure">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Original / libtiff / tiffdump-structure">Restart</button>
                 <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
                 <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
               </div>
-              <pre class="terminal" aria-live="polite"></pre>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Original / libtiff / tiffdump-structure"></pre>
             </div>
           </div>
         </details>
@@ -130,31 +137,32 @@
           <summary>
             <span class="case-title">
               <strong>libtiff C API read write</strong>
-              <span class="case-id">original / libtiff / c-api-read-write</span>
+              <span class="case-id">Original / libtiff / c-api-read-write</span>
             </span>
-            <span class="status-pill status-passed">Passed</span>
+            <span class="status-pill status-passed" aria-label="Original / libtiff / c-api-read-write status: Passed">Passed</span>
           </summary>
           <div class="case-body">
             <p>Compiles a libtiff program that writes and reads a small TIFF image.</p>
             <dl class="case-meta">
+              <div><dt>Run</dt><dd>Original</dd></div>
               <div><dt>Kind</dt><dd>source</dd></div>
               <div><dt>Client</dt><dd>none</dd></div>
               <div><dt>Duration</dt><dd>0.00s</dd></div>
               <div><dt>Tags</dt><dd class="tags"><span>api</span> <span>compile</span></dd></div>
             </dl>
             <div class="case-actions">
-              <a class="log-link" href="../evidence/original/logs/libtiff/c-api-read-write.log">Log</a>
-              <button type="button" class="play-button js-load-cast" data-cast="../evidence/original/casts/libtiff/c-api-read-write.cast">Play</button>
+              <a class="log-link" href="../evidence/original/logs/libtiff/c-api-read-write.log" aria-label="Open log for Original / libtiff / c-api-read-write">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/original/casts/libtiff/c-api-read-write.cast" aria-label="Play cast for Original / libtiff / c-api-read-write">Play</button>
             </div>
             <div class="cast-player" data-player>
               <div class="player-controls">
-                <button type="button" class="js-player-play">Play</button>
-                <button type="button" class="js-player-pause">Pause</button>
-                <button type="button" class="js-player-restart">Restart</button>
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Original / libtiff / c-api-read-write">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Original / libtiff / c-api-read-write">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Original / libtiff / c-api-read-write">Restart</button>
                 <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
                 <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
               </div>
-              <pre class="terminal" aria-live="polite"></pre>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Original / libtiff / c-api-read-write"></pre>
             </div>
           </div>
         </details>
@@ -162,31 +170,32 @@
           <summary>
             <span class="case-title">
               <strong>Malformed TIFF rejection</strong>
-              <span class="case-id">original / libtiff / malformed-tiff-rejection</span>
+              <span class="case-id">Original / libtiff / malformed-tiff-rejection</span>
             </span>
-            <span class="status-pill status-passed">Passed</span>
+            <span class="status-pill status-passed" aria-label="Original / libtiff / malformed-tiff-rejection status: Passed">Passed</span>
           </summary>
           <div class="case-body">
             <p>Requires tiffinfo to fail on bytes that are not a TIFF file.</p>
             <dl class="case-meta">
+              <div><dt>Run</dt><dd>Original</dd></div>
               <div><dt>Kind</dt><dd>source</dd></div>
               <div><dt>Client</dt><dd>none</dd></div>
               <div><dt>Duration</dt><dd>0.00s</dd></div>
               <div><dt>Tags</dt><dd class="tags"><span>cli</span> <span>negative</span></dd></div>
             </dl>
             <div class="case-actions">
-              <a class="log-link" href="../evidence/original/logs/libtiff/malformed-tiff-rejection.log">Log</a>
-              <button type="button" class="play-button js-load-cast" data-cast="../evidence/original/casts/libtiff/malformed-tiff-rejection.cast">Play</button>
+              <a class="log-link" href="../evidence/original/logs/libtiff/malformed-tiff-rejection.log" aria-label="Open log for Original / libtiff / malformed-tiff-rejection">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/original/casts/libtiff/malformed-tiff-rejection.cast" aria-label="Play cast for Original / libtiff / malformed-tiff-rejection">Play</button>
             </div>
             <div class="cast-player" data-player>
               <div class="player-controls">
-                <button type="button" class="js-player-play">Play</button>
-                <button type="button" class="js-player-pause">Pause</button>
-                <button type="button" class="js-player-restart">Restart</button>
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Original / libtiff / malformed-tiff-rejection">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Original / libtiff / malformed-tiff-rejection">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Original / libtiff / malformed-tiff-rejection">Restart</button>
                 <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
                 <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
               </div>
-              <pre class="terminal" aria-live="polite"></pre>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Original / libtiff / malformed-tiff-rejection"></pre>
             </div>
           </div>
         </details>
@@ -194,31 +203,32 @@
           <summary>
             <span class="case-title">
               <strong>Pillow open tiff</strong>
-              <span class="case-id">original / libtiff / usage-python3-pil-open-tiff</span>
+              <span class="case-id">Original / libtiff / usage-python3-pil-open-tiff</span>
             </span>
-            <span class="status-pill status-passed">Passed</span>
+            <span class="status-pill status-passed" aria-label="Original / libtiff / usage-python3-pil-open-tiff status: Passed">Passed</span>
           </summary>
           <div class="case-body">
             <p>Uses Pillow to run TIFF open tiff behavior through libtiff.</p>
             <dl class="case-meta">
+              <div><dt>Run</dt><dd>Original</dd></div>
               <div><dt>Kind</dt><dd>usage</dd></div>
               <div><dt>Client</dt><dd>python3-pil</dd></div>
               <div><dt>Duration</dt><dd>0.00s</dd></div>
               <div><dt>Tags</dt><dd class="tags"><span>usage</span> <span>image</span> <span>python</span></dd></div>
             </dl>
             <div class="case-actions">
-              <a class="log-link" href="../evidence/original/logs/libtiff/usage-python3-pil-open-tiff.log">Log</a>
-              <button type="button" class="play-button js-load-cast" data-cast="../evidence/original/casts/libtiff/usage-python3-pil-open-tiff.cast">Play</button>
+              <a class="log-link" href="../evidence/original/logs/libtiff/usage-python3-pil-open-tiff.log" aria-label="Open log for Original / libtiff / usage-python3-pil-open-tiff">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/original/casts/libtiff/usage-python3-pil-open-tiff.cast" aria-label="Play cast for Original / libtiff / usage-python3-pil-open-tiff">Play</button>
             </div>
             <div class="cast-player" data-player>
               <div class="player-controls">
-                <button type="button" class="js-player-play">Play</button>
-                <button type="button" class="js-player-pause">Pause</button>
-                <button type="button" class="js-player-restart">Restart</button>
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Original / libtiff / usage-python3-pil-open-tiff">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Original / libtiff / usage-python3-pil-open-tiff">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Original / libtiff / usage-python3-pil-open-tiff">Restart</button>
                 <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
                 <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
               </div>
-              <pre class="terminal" aria-live="polite"></pre>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Original / libtiff / usage-python3-pil-open-tiff"></pre>
             </div>
           </div>
         </details>
@@ -226,31 +236,32 @@
           <summary>
             <span class="case-title">
               <strong>Pillow convert tiff</strong>
-              <span class="case-id">original / libtiff / usage-python3-pil-convert-tiff</span>
+              <span class="case-id">Original / libtiff / usage-python3-pil-convert-tiff</span>
             </span>
-            <span class="status-pill status-passed">Passed</span>
+            <span class="status-pill status-passed" aria-label="Original / libtiff / usage-python3-pil-convert-tiff status: Passed">Passed</span>
           </summary>
           <div class="case-body">
             <p>Uses Pillow to run TIFF convert tiff behavior through libtiff.</p>
             <dl class="case-meta">
+              <div><dt>Run</dt><dd>Original</dd></div>
               <div><dt>Kind</dt><dd>usage</dd></div>
               <div><dt>Client</dt><dd>python3-pil</dd></div>
               <div><dt>Duration</dt><dd>0.00s</dd></div>
               <div><dt>Tags</dt><dd class="tags"><span>usage</span> <span>image</span> <span>python</span></dd></div>
             </dl>
             <div class="case-actions">
-              <a class="log-link" href="../evidence/original/logs/libtiff/usage-python3-pil-convert-tiff.log">Log</a>
-              <button type="button" class="play-button js-load-cast" data-cast="../evidence/original/casts/libtiff/usage-python3-pil-convert-tiff.cast">Play</button>
+              <a class="log-link" href="../evidence/original/logs/libtiff/usage-python3-pil-convert-tiff.log" aria-label="Open log for Original / libtiff / usage-python3-pil-convert-tiff">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/original/casts/libtiff/usage-python3-pil-convert-tiff.cast" aria-label="Play cast for Original / libtiff / usage-python3-pil-convert-tiff">Play</button>
             </div>
             <div class="cast-player" data-player>
               <div class="player-controls">
-                <button type="button" class="js-player-play">Play</button>
-                <button type="button" class="js-player-pause">Pause</button>
-                <button type="button" class="js-player-restart">Restart</button>
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Original / libtiff / usage-python3-pil-convert-tiff">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Original / libtiff / usage-python3-pil-convert-tiff">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Original / libtiff / usage-python3-pil-convert-tiff">Restart</button>
                 <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
                 <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
               </div>
-              <pre class="terminal" aria-live="polite"></pre>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Original / libtiff / usage-python3-pil-convert-tiff"></pre>
             </div>
           </div>
         </details>
@@ -258,31 +269,32 @@
           <summary>
             <span class="case-title">
               <strong>Pillow thumbnail tiff</strong>
-              <span class="case-id">original / libtiff / usage-python3-pil-thumbnail-tiff</span>
+              <span class="case-id">Original / libtiff / usage-python3-pil-thumbnail-tiff</span>
             </span>
-            <span class="status-pill status-passed">Passed</span>
+            <span class="status-pill status-passed" aria-label="Original / libtiff / usage-python3-pil-thumbnail-tiff status: Passed">Passed</span>
           </summary>
           <div class="case-body">
             <p>Uses Pillow to run TIFF thumbnail tiff behavior through libtiff.</p>
             <dl class="case-meta">
+              <div><dt>Run</dt><dd>Original</dd></div>
               <div><dt>Kind</dt><dd>usage</dd></div>
               <div><dt>Client</dt><dd>python3-pil</dd></div>
               <div><dt>Duration</dt><dd>0.00s</dd></div>
               <div><dt>Tags</dt><dd class="tags"><span>usage</span> <span>image</span> <span>python</span></dd></div>
             </dl>
             <div class="case-actions">
-              <a class="log-link" href="../evidence/original/logs/libtiff/usage-python3-pil-thumbnail-tiff.log">Log</a>
-              <button type="button" class="play-button js-load-cast" data-cast="../evidence/original/casts/libtiff/usage-python3-pil-thumbnail-tiff.cast">Play</button>
+              <a class="log-link" href="../evidence/original/logs/libtiff/usage-python3-pil-thumbnail-tiff.log" aria-label="Open log for Original / libtiff / usage-python3-pil-thumbnail-tiff">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/original/casts/libtiff/usage-python3-pil-thumbnail-tiff.cast" aria-label="Play cast for Original / libtiff / usage-python3-pil-thumbnail-tiff">Play</button>
             </div>
             <div class="cast-player" data-player>
               <div class="player-controls">
-                <button type="button" class="js-player-play">Play</button>
-                <button type="button" class="js-player-pause">Pause</button>
-                <button type="button" class="js-player-restart">Restart</button>
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Original / libtiff / usage-python3-pil-thumbnail-tiff">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Original / libtiff / usage-python3-pil-thumbnail-tiff">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Original / libtiff / usage-python3-pil-thumbnail-tiff">Restart</button>
                 <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
                 <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
               </div>
-              <pre class="terminal" aria-live="polite"></pre>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Original / libtiff / usage-python3-pil-thumbnail-tiff"></pre>
             </div>
           </div>
         </details>
@@ -290,31 +302,32 @@
           <summary>
             <span class="case-title">
               <strong>Pillow tags tiff</strong>
-              <span class="case-id">original / libtiff / usage-python3-pil-tags-tiff</span>
+              <span class="case-id">Original / libtiff / usage-python3-pil-tags-tiff</span>
             </span>
-            <span class="status-pill status-passed">Passed</span>
+            <span class="status-pill status-passed" aria-label="Original / libtiff / usage-python3-pil-tags-tiff status: Passed">Passed</span>
           </summary>
           <div class="case-body">
             <p>Uses Pillow to run TIFF tags tiff behavior through libtiff.</p>
             <dl class="case-meta">
+              <div><dt>Run</dt><dd>Original</dd></div>
               <div><dt>Kind</dt><dd>usage</dd></div>
               <div><dt>Client</dt><dd>python3-pil</dd></div>
               <div><dt>Duration</dt><dd>0.00s</dd></div>
               <div><dt>Tags</dt><dd class="tags"><span>usage</span> <span>image</span> <span>python</span></dd></div>
             </dl>
             <div class="case-actions">
-              <a class="log-link" href="../evidence/original/logs/libtiff/usage-python3-pil-tags-tiff.log">Log</a>
-              <button type="button" class="play-button js-load-cast" data-cast="../evidence/original/casts/libtiff/usage-python3-pil-tags-tiff.cast">Play</button>
+              <a class="log-link" href="../evidence/original/logs/libtiff/usage-python3-pil-tags-tiff.log" aria-label="Open log for Original / libtiff / usage-python3-pil-tags-tiff">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/original/casts/libtiff/usage-python3-pil-tags-tiff.cast" aria-label="Play cast for Original / libtiff / usage-python3-pil-tags-tiff">Play</button>
             </div>
             <div class="cast-player" data-player>
               <div class="player-controls">
-                <button type="button" class="js-player-play">Play</button>
-                <button type="button" class="js-player-pause">Pause</button>
-                <button type="button" class="js-player-restart">Restart</button>
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Original / libtiff / usage-python3-pil-tags-tiff">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Original / libtiff / usage-python3-pil-tags-tiff">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Original / libtiff / usage-python3-pil-tags-tiff">Restart</button>
                 <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
                 <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
               </div>
-              <pre class="terminal" aria-live="polite"></pre>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Original / libtiff / usage-python3-pil-tags-tiff"></pre>
             </div>
           </div>
         </details>
@@ -322,31 +335,32 @@
           <summary>
             <span class="case-title">
               <strong>Pillow multipage tiff</strong>
-              <span class="case-id">original / libtiff / usage-python3-pil-multipage-tiff</span>
+              <span class="case-id">Original / libtiff / usage-python3-pil-multipage-tiff</span>
             </span>
-            <span class="status-pill status-passed">Passed</span>
+            <span class="status-pill status-passed" aria-label="Original / libtiff / usage-python3-pil-multipage-tiff status: Passed">Passed</span>
           </summary>
           <div class="case-body">
             <p>Uses Pillow to run TIFF multipage tiff behavior through libtiff.</p>
             <dl class="case-meta">
+              <div><dt>Run</dt><dd>Original</dd></div>
               <div><dt>Kind</dt><dd>usage</dd></div>
               <div><dt>Client</dt><dd>python3-pil</dd></div>
               <div><dt>Duration</dt><dd>0.00s</dd></div>
               <div><dt>Tags</dt><dd class="tags"><span>usage</span> <span>image</span> <span>python</span></dd></div>
             </dl>
             <div class="case-actions">
-              <a class="log-link" href="../evidence/original/logs/libtiff/usage-python3-pil-multipage-tiff.log">Log</a>
-              <button type="button" class="play-button js-load-cast" data-cast="../evidence/original/casts/libtiff/usage-python3-pil-multipage-tiff.cast">Play</button>
+              <a class="log-link" href="../evidence/original/logs/libtiff/usage-python3-pil-multipage-tiff.log" aria-label="Open log for Original / libtiff / usage-python3-pil-multipage-tiff">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/original/casts/libtiff/usage-python3-pil-multipage-tiff.cast" aria-label="Play cast for Original / libtiff / usage-python3-pil-multipage-tiff">Play</button>
             </div>
             <div class="cast-player" data-player>
               <div class="player-controls">
-                <button type="button" class="js-player-play">Play</button>
-                <button type="button" class="js-player-pause">Pause</button>
-                <button type="button" class="js-player-restart">Restart</button>
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Original / libtiff / usage-python3-pil-multipage-tiff">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Original / libtiff / usage-python3-pil-multipage-tiff">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Original / libtiff / usage-python3-pil-multipage-tiff">Restart</button>
                 <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
                 <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
               </div>
-              <pre class="terminal" aria-live="polite"></pre>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Original / libtiff / usage-python3-pil-multipage-tiff"></pre>
             </div>
           </div>
         </details>
@@ -354,31 +368,32 @@
           <summary>
             <span class="case-title">
               <strong>Pillow lzw tiff</strong>
-              <span class="case-id">original / libtiff / usage-python3-pil-lzw-tiff</span>
+              <span class="case-id">Original / libtiff / usage-python3-pil-lzw-tiff</span>
             </span>
-            <span class="status-pill status-passed">Passed</span>
+            <span class="status-pill status-passed" aria-label="Original / libtiff / usage-python3-pil-lzw-tiff status: Passed">Passed</span>
           </summary>
           <div class="case-body">
             <p>Uses Pillow to run TIFF lzw tiff behavior through libtiff.</p>
             <dl class="case-meta">
+              <div><dt>Run</dt><dd>Original</dd></div>
               <div><dt>Kind</dt><dd>usage</dd></div>
               <div><dt>Client</dt><dd>python3-pil</dd></div>
               <div><dt>Duration</dt><dd>0.00s</dd></div>
               <div><dt>Tags</dt><dd class="tags"><span>usage</span> <span>image</span> <span>python</span></dd></div>
             </dl>
             <div class="case-actions">
-              <a class="log-link" href="../evidence/original/logs/libtiff/usage-python3-pil-lzw-tiff.log">Log</a>
-              <button type="button" class="play-button js-load-cast" data-cast="../evidence/original/casts/libtiff/usage-python3-pil-lzw-tiff.cast">Play</button>
+              <a class="log-link" href="../evidence/original/logs/libtiff/usage-python3-pil-lzw-tiff.log" aria-label="Open log for Original / libtiff / usage-python3-pil-lzw-tiff">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/original/casts/libtiff/usage-python3-pil-lzw-tiff.cast" aria-label="Play cast for Original / libtiff / usage-python3-pil-lzw-tiff">Play</button>
             </div>
             <div class="cast-player" data-player>
               <div class="player-controls">
-                <button type="button" class="js-player-play">Play</button>
-                <button type="button" class="js-player-pause">Pause</button>
-                <button type="button" class="js-player-restart">Restart</button>
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Original / libtiff / usage-python3-pil-lzw-tiff">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Original / libtiff / usage-python3-pil-lzw-tiff">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Original / libtiff / usage-python3-pil-lzw-tiff">Restart</button>
                 <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
                 <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
               </div>
-              <pre class="terminal" aria-live="polite"></pre>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Original / libtiff / usage-python3-pil-lzw-tiff"></pre>
             </div>
           </div>
         </details>
@@ -386,31 +401,32 @@
           <summary>
             <span class="case-title">
               <strong>Pillow RGB tiff load</strong>
-              <span class="case-id">original / libtiff / usage-python3-pil-rgb-tiff-load</span>
+              <span class="case-id">Original / libtiff / usage-python3-pil-rgb-tiff-load</span>
             </span>
-            <span class="status-pill status-passed">Passed</span>
+            <span class="status-pill status-passed" aria-label="Original / libtiff / usage-python3-pil-rgb-tiff-load status: Passed">Passed</span>
           </summary>
           <div class="case-body">
             <p>Opens an RGB TIFF fixture with Pillow to exercise libtiff-backed image decoding.</p>
             <dl class="case-meta">
+              <div><dt>Run</dt><dd>Original</dd></div>
               <div><dt>Kind</dt><dd>usage</dd></div>
               <div><dt>Client</dt><dd>python3-pil</dd></div>
               <div><dt>Duration</dt><dd>0.00s</dd></div>
               <div><dt>Tags</dt><dd class="tags"><span>usage</span> <span>image</span> <span>python</span></dd></div>
             </dl>
             <div class="case-actions">
-              <a class="log-link" href="../evidence/original/logs/libtiff/usage-python3-pil-rgb-tiff-load.log">Log</a>
-              <button type="button" class="play-button js-load-cast" data-cast="../evidence/original/casts/libtiff/usage-python3-pil-rgb-tiff-load.cast">Play</button>
+              <a class="log-link" href="../evidence/original/logs/libtiff/usage-python3-pil-rgb-tiff-load.log" aria-label="Open log for Original / libtiff / usage-python3-pil-rgb-tiff-load">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/original/casts/libtiff/usage-python3-pil-rgb-tiff-load.cast" aria-label="Play cast for Original / libtiff / usage-python3-pil-rgb-tiff-load">Play</button>
             </div>
             <div class="cast-player" data-player>
               <div class="player-controls">
-                <button type="button" class="js-player-play">Play</button>
-                <button type="button" class="js-player-pause">Pause</button>
-                <button type="button" class="js-player-restart">Restart</button>
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Original / libtiff / usage-python3-pil-rgb-tiff-load">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Original / libtiff / usage-python3-pil-rgb-tiff-load">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Original / libtiff / usage-python3-pil-rgb-tiff-load">Restart</button>
                 <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
                 <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
               </div>
-              <pre class="terminal" aria-live="polite"></pre>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Original / libtiff / usage-python3-pil-rgb-tiff-load"></pre>
             </div>
           </div>
         </details>
@@ -418,31 +434,32 @@
           <summary>
             <span class="case-title">
               <strong>Pillow crop tiff</strong>
-              <span class="case-id">original / libtiff / usage-python3-pil-crop-tiff</span>
+              <span class="case-id">Original / libtiff / usage-python3-pil-crop-tiff</span>
             </span>
-            <span class="status-pill status-passed">Passed</span>
+            <span class="status-pill status-passed" aria-label="Original / libtiff / usage-python3-pil-crop-tiff status: Passed">Passed</span>
           </summary>
           <div class="case-body">
             <p>Uses Pillow to run TIFF crop tiff behavior through libtiff.</p>
             <dl class="case-meta">
+              <div><dt>Run</dt><dd>Original</dd></div>
               <div><dt>Kind</dt><dd>usage</dd></div>
               <div><dt>Client</dt><dd>python3-pil</dd></div>
               <div><dt>Duration</dt><dd>0.00s</dd></div>
               <div><dt>Tags</dt><dd class="tags"><span>usage</span> <span>image</span> <span>python</span></dd></div>
             </dl>
             <div class="case-actions">
-              <a class="log-link" href="../evidence/original/logs/libtiff/usage-python3-pil-crop-tiff.log">Log</a>
-              <button type="button" class="play-button js-load-cast" data-cast="../evidence/original/casts/libtiff/usage-python3-pil-crop-tiff.cast">Play</button>
+              <a class="log-link" href="../evidence/original/logs/libtiff/usage-python3-pil-crop-tiff.log" aria-label="Open log for Original / libtiff / usage-python3-pil-crop-tiff">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/original/casts/libtiff/usage-python3-pil-crop-tiff.cast" aria-label="Play cast for Original / libtiff / usage-python3-pil-crop-tiff">Play</button>
             </div>
             <div class="cast-player" data-player>
               <div class="player-controls">
-                <button type="button" class="js-player-play">Play</button>
-                <button type="button" class="js-player-pause">Pause</button>
-                <button type="button" class="js-player-restart">Restart</button>
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Original / libtiff / usage-python3-pil-crop-tiff">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Original / libtiff / usage-python3-pil-crop-tiff">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Original / libtiff / usage-python3-pil-crop-tiff">Restart</button>
                 <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
                 <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
               </div>
-              <pre class="terminal" aria-live="polite"></pre>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Original / libtiff / usage-python3-pil-crop-tiff"></pre>
             </div>
           </div>
         </details>
@@ -450,31 +467,32 @@
           <summary>
             <span class="case-title">
               <strong>Pillow Deflate TIFF save</strong>
-              <span class="case-id">original / libtiff / usage-python3-pil-deflate-tiff</span>
+              <span class="case-id">Original / libtiff / usage-python3-pil-deflate-tiff</span>
             </span>
-            <span class="status-pill status-passed">Passed</span>
+            <span class="status-pill status-passed" aria-label="Original / libtiff / usage-python3-pil-deflate-tiff status: Passed">Passed</span>
           </summary>
           <div class="case-body">
             <p>Saves a Deflate-compressed TIFF with Pillow and verifies libtiff-backed reload behavior.</p>
             <dl class="case-meta">
+              <div><dt>Run</dt><dd>Original</dd></div>
               <div><dt>Kind</dt><dd>usage</dd></div>
               <div><dt>Client</dt><dd>python3-pil</dd></div>
               <div><dt>Duration</dt><dd>0.00s</dd></div>
               <div><dt>Tags</dt><dd class="tags"><span>usage</span> <span>image</span> <span>python</span> <span>compression</span></dd></div>
             </dl>
             <div class="case-actions">
-              <a class="log-link" href="../evidence/original/logs/libtiff/usage-python3-pil-deflate-tiff.log">Log</a>
-              <button type="button" class="play-button js-load-cast" data-cast="../evidence/original/casts/libtiff/usage-python3-pil-deflate-tiff.cast">Play</button>
+              <a class="log-link" href="../evidence/original/logs/libtiff/usage-python3-pil-deflate-tiff.log" aria-label="Open log for Original / libtiff / usage-python3-pil-deflate-tiff">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/original/casts/libtiff/usage-python3-pil-deflate-tiff.cast" aria-label="Play cast for Original / libtiff / usage-python3-pil-deflate-tiff">Play</button>
             </div>
             <div class="cast-player" data-player>
               <div class="player-controls">
-                <button type="button" class="js-player-play">Play</button>
-                <button type="button" class="js-player-pause">Pause</button>
-                <button type="button" class="js-player-restart">Restart</button>
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Original / libtiff / usage-python3-pil-deflate-tiff">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Original / libtiff / usage-python3-pil-deflate-tiff">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Original / libtiff / usage-python3-pil-deflate-tiff">Restart</button>
                 <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
                 <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
               </div>
-              <pre class="terminal" aria-live="polite"></pre>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Original / libtiff / usage-python3-pil-deflate-tiff"></pre>
             </div>
           </div>
         </details>
@@ -482,31 +500,32 @@
           <summary>
             <span class="case-title">
               <strong>Pillow TIFF DPI save</strong>
-              <span class="case-id">original / libtiff / usage-python3-pil-tiff-dpi-save</span>
+              <span class="case-id">Original / libtiff / usage-python3-pil-tiff-dpi-save</span>
             </span>
-            <span class="status-pill status-passed">Passed</span>
+            <span class="status-pill status-passed" aria-label="Original / libtiff / usage-python3-pil-tiff-dpi-save status: Passed">Passed</span>
           </summary>
           <div class="case-body">
             <p>Saves TIFF resolution metadata with Pillow and verifies the reloaded DPI tags.</p>
             <dl class="case-meta">
+              <div><dt>Run</dt><dd>Original</dd></div>
               <div><dt>Kind</dt><dd>usage</dd></div>
               <div><dt>Client</dt><dd>python3-pil</dd></div>
               <div><dt>Duration</dt><dd>0.00s</dd></div>
               <div><dt>Tags</dt><dd class="tags"><span>usage</span> <span>image</span> <span>python</span> <span>metadata</span></dd></div>
             </dl>
             <div class="case-actions">
-              <a class="log-link" href="../evidence/original/logs/libtiff/usage-python3-pil-tiff-dpi-save.log">Log</a>
-              <button type="button" class="play-button js-load-cast" data-cast="../evidence/original/casts/libtiff/usage-python3-pil-tiff-dpi-save.cast">Play</button>
+              <a class="log-link" href="../evidence/original/logs/libtiff/usage-python3-pil-tiff-dpi-save.log" aria-label="Open log for Original / libtiff / usage-python3-pil-tiff-dpi-save">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/original/casts/libtiff/usage-python3-pil-tiff-dpi-save.cast" aria-label="Play cast for Original / libtiff / usage-python3-pil-tiff-dpi-save">Play</button>
             </div>
             <div class="cast-player" data-player>
               <div class="player-controls">
-                <button type="button" class="js-player-play">Play</button>
-                <button type="button" class="js-player-pause">Pause</button>
-                <button type="button" class="js-player-restart">Restart</button>
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Original / libtiff / usage-python3-pil-tiff-dpi-save">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Original / libtiff / usage-python3-pil-tiff-dpi-save">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Original / libtiff / usage-python3-pil-tiff-dpi-save">Restart</button>
                 <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
                 <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
               </div>
-              <pre class="terminal" aria-live="polite"></pre>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Original / libtiff / usage-python3-pil-tiff-dpi-save"></pre>
             </div>
           </div>
         </details>
@@ -514,31 +533,32 @@
           <summary>
             <span class="case-title">
               <strong>tiffinfo metadata inspection</strong>
-              <span class="case-id">port-04-test / libtiff / tiffinfo-metadata</span>
+              <span class="case-id">Port / libtiff / tiffinfo-metadata</span>
             </span>
-            <span class="status-pill status-passed">Passed</span>
+            <span class="status-pill status-passed" aria-label="Port / libtiff / tiffinfo-metadata status: Passed">Passed</span>
           </summary>
           <div class="case-body">
             <p>Runs tiffinfo on a checked-in TIFF image and inspects dimensions.</p>
             <dl class="case-meta">
+              <div><dt>Run</dt><dd>Port</dd></div>
               <div><dt>Kind</dt><dd>source</dd></div>
               <div><dt>Client</dt><dd>none</dd></div>
               <div><dt>Duration</dt><dd>0.00s</dd></div>
               <div><dt>Tags</dt><dd class="tags"><span>cli</span> <span>metadata</span></dd></div>
             </dl>
             <div class="case-actions">
-              <a class="log-link" href="../evidence/port-04-test/logs/libtiff/tiffinfo-metadata.log">Log</a>
-              <button type="button" class="play-button js-load-cast" data-cast="../evidence/port-04-test/casts/libtiff/tiffinfo-metadata.cast">Play</button>
+              <a class="log-link" href="../evidence/port-04-test/logs/libtiff/tiffinfo-metadata.log" aria-label="Open log for Port / libtiff / tiffinfo-metadata">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/port-04-test/casts/libtiff/tiffinfo-metadata.cast" aria-label="Play cast for Port / libtiff / tiffinfo-metadata">Play</button>
             </div>
             <div class="cast-player" data-player>
               <div class="player-controls">
-                <button type="button" class="js-player-play">Play</button>
-                <button type="button" class="js-player-pause">Pause</button>
-                <button type="button" class="js-player-restart">Restart</button>
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Port / libtiff / tiffinfo-metadata">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Port / libtiff / tiffinfo-metadata">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Port / libtiff / tiffinfo-metadata">Restart</button>
                 <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
                 <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
               </div>
-              <pre class="terminal" aria-live="polite"></pre>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Port / libtiff / tiffinfo-metadata"></pre>
             </div>
           </div>
         </details>
@@ -546,31 +566,32 @@
           <summary>
             <span class="case-title">
               <strong>tiffcp copy behavior</strong>
-              <span class="case-id">port-04-test / libtiff / tiffcp-copy</span>
+              <span class="case-id">Port / libtiff / tiffcp-copy</span>
             </span>
-            <span class="status-pill status-passed">Passed</span>
+            <span class="status-pill status-passed" aria-label="Port / libtiff / tiffcp-copy status: Passed">Passed</span>
           </summary>
           <div class="case-body">
             <p>Copies a TIFF fixture and confirms the copied image remains readable.</p>
             <dl class="case-meta">
+              <div><dt>Run</dt><dd>Port</dd></div>
               <div><dt>Kind</dt><dd>source</dd></div>
               <div><dt>Client</dt><dd>none</dd></div>
               <div><dt>Duration</dt><dd>0.00s</dd></div>
               <div><dt>Tags</dt><dd class="tags"><span>cli</span> <span>media</span></dd></div>
             </dl>
             <div class="case-actions">
-              <a class="log-link" href="../evidence/port-04-test/logs/libtiff/tiffcp-copy.log">Log</a>
-              <button type="button" class="play-button js-load-cast" data-cast="../evidence/port-04-test/casts/libtiff/tiffcp-copy.cast">Play</button>
+              <a class="log-link" href="../evidence/port-04-test/logs/libtiff/tiffcp-copy.log" aria-label="Open log for Port / libtiff / tiffcp-copy">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/port-04-test/casts/libtiff/tiffcp-copy.cast" aria-label="Play cast for Port / libtiff / tiffcp-copy">Play</button>
             </div>
             <div class="cast-player" data-player>
               <div class="player-controls">
-                <button type="button" class="js-player-play">Play</button>
-                <button type="button" class="js-player-pause">Pause</button>
-                <button type="button" class="js-player-restart">Restart</button>
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Port / libtiff / tiffcp-copy">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Port / libtiff / tiffcp-copy">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Port / libtiff / tiffcp-copy">Restart</button>
                 <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
                 <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
               </div>
-              <pre class="terminal" aria-live="polite"></pre>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Port / libtiff / tiffcp-copy"></pre>
             </div>
           </div>
         </details>
@@ -578,31 +599,32 @@
           <summary>
             <span class="case-title">
               <strong>tiffdump structure inspection</strong>
-              <span class="case-id">port-04-test / libtiff / tiffdump-structure</span>
+              <span class="case-id">Port / libtiff / tiffdump-structure</span>
             </span>
-            <span class="status-pill status-passed">Passed</span>
+            <span class="status-pill status-passed" aria-label="Port / libtiff / tiffdump-structure status: Passed">Passed</span>
           </summary>
           <div class="case-body">
             <p>Runs tiffdump and checks expected TIFF structural tags are present.</p>
             <dl class="case-meta">
+              <div><dt>Run</dt><dd>Port</dd></div>
               <div><dt>Kind</dt><dd>source</dd></div>
               <div><dt>Client</dt><dd>none</dd></div>
               <div><dt>Duration</dt><dd>0.00s</dd></div>
               <div><dt>Tags</dt><dd class="tags"><span>cli</span> <span>metadata</span></dd></div>
             </dl>
             <div class="case-actions">
-              <a class="log-link" href="../evidence/port-04-test/logs/libtiff/tiffdump-structure.log">Log</a>
-              <button type="button" class="play-button js-load-cast" data-cast="../evidence/port-04-test/casts/libtiff/tiffdump-structure.cast">Play</button>
+              <a class="log-link" href="../evidence/port-04-test/logs/libtiff/tiffdump-structure.log" aria-label="Open log for Port / libtiff / tiffdump-structure">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/port-04-test/casts/libtiff/tiffdump-structure.cast" aria-label="Play cast for Port / libtiff / tiffdump-structure">Play</button>
             </div>
             <div class="cast-player" data-player>
               <div class="player-controls">
-                <button type="button" class="js-player-play">Play</button>
-                <button type="button" class="js-player-pause">Pause</button>
-                <button type="button" class="js-player-restart">Restart</button>
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Port / libtiff / tiffdump-structure">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Port / libtiff / tiffdump-structure">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Port / libtiff / tiffdump-structure">Restart</button>
                 <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
                 <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
               </div>
-              <pre class="terminal" aria-live="polite"></pre>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Port / libtiff / tiffdump-structure"></pre>
             </div>
           </div>
         </details>
@@ -610,31 +632,32 @@
           <summary>
             <span class="case-title">
               <strong>libtiff C API read write</strong>
-              <span class="case-id">port-04-test / libtiff / c-api-read-write</span>
+              <span class="case-id">Port / libtiff / c-api-read-write</span>
             </span>
-            <span class="status-pill status-passed">Passed</span>
+            <span class="status-pill status-passed" aria-label="Port / libtiff / c-api-read-write status: Passed">Passed</span>
           </summary>
           <div class="case-body">
             <p>Compiles a libtiff program that writes and reads a small TIFF image.</p>
             <dl class="case-meta">
+              <div><dt>Run</dt><dd>Port</dd></div>
               <div><dt>Kind</dt><dd>source</dd></div>
               <div><dt>Client</dt><dd>none</dd></div>
               <div><dt>Duration</dt><dd>0.00s</dd></div>
               <div><dt>Tags</dt><dd class="tags"><span>api</span> <span>compile</span></dd></div>
             </dl>
             <div class="case-actions">
-              <a class="log-link" href="../evidence/port-04-test/logs/libtiff/c-api-read-write.log">Log</a>
-              <button type="button" class="play-button js-load-cast" data-cast="../evidence/port-04-test/casts/libtiff/c-api-read-write.cast">Play</button>
+              <a class="log-link" href="../evidence/port-04-test/logs/libtiff/c-api-read-write.log" aria-label="Open log for Port / libtiff / c-api-read-write">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/port-04-test/casts/libtiff/c-api-read-write.cast" aria-label="Play cast for Port / libtiff / c-api-read-write">Play</button>
             </div>
             <div class="cast-player" data-player>
               <div class="player-controls">
-                <button type="button" class="js-player-play">Play</button>
-                <button type="button" class="js-player-pause">Pause</button>
-                <button type="button" class="js-player-restart">Restart</button>
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Port / libtiff / c-api-read-write">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Port / libtiff / c-api-read-write">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Port / libtiff / c-api-read-write">Restart</button>
                 <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
                 <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
               </div>
-              <pre class="terminal" aria-live="polite"></pre>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Port / libtiff / c-api-read-write"></pre>
             </div>
           </div>
         </details>
@@ -642,31 +665,32 @@
           <summary>
             <span class="case-title">
               <strong>Malformed TIFF rejection</strong>
-              <span class="case-id">port-04-test / libtiff / malformed-tiff-rejection</span>
+              <span class="case-id">Port / libtiff / malformed-tiff-rejection</span>
             </span>
-            <span class="status-pill status-passed">Passed</span>
+            <span class="status-pill status-passed" aria-label="Port / libtiff / malformed-tiff-rejection status: Passed">Passed</span>
           </summary>
           <div class="case-body">
             <p>Requires tiffinfo to fail on bytes that are not a TIFF file.</p>
             <dl class="case-meta">
+              <div><dt>Run</dt><dd>Port</dd></div>
               <div><dt>Kind</dt><dd>source</dd></div>
               <div><dt>Client</dt><dd>none</dd></div>
               <div><dt>Duration</dt><dd>0.00s</dd></div>
               <div><dt>Tags</dt><dd class="tags"><span>cli</span> <span>negative</span></dd></div>
             </dl>
             <div class="case-actions">
-              <a class="log-link" href="../evidence/port-04-test/logs/libtiff/malformed-tiff-rejection.log">Log</a>
-              <button type="button" class="play-button js-load-cast" data-cast="../evidence/port-04-test/casts/libtiff/malformed-tiff-rejection.cast">Play</button>
+              <a class="log-link" href="../evidence/port-04-test/logs/libtiff/malformed-tiff-rejection.log" aria-label="Open log for Port / libtiff / malformed-tiff-rejection">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/port-04-test/casts/libtiff/malformed-tiff-rejection.cast" aria-label="Play cast for Port / libtiff / malformed-tiff-rejection">Play</button>
             </div>
             <div class="cast-player" data-player>
               <div class="player-controls">
-                <button type="button" class="js-player-play">Play</button>
-                <button type="button" class="js-player-pause">Pause</button>
-                <button type="button" class="js-player-restart">Restart</button>
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Port / libtiff / malformed-tiff-rejection">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Port / libtiff / malformed-tiff-rejection">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Port / libtiff / malformed-tiff-rejection">Restart</button>
                 <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
                 <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
               </div>
-              <pre class="terminal" aria-live="polite"></pre>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Port / libtiff / malformed-tiff-rejection"></pre>
             </div>
           </div>
         </details>
@@ -674,31 +698,32 @@
           <summary>
             <span class="case-title">
               <strong>Pillow open tiff</strong>
-              <span class="case-id">port-04-test / libtiff / usage-python3-pil-open-tiff</span>
+              <span class="case-id">Port / libtiff / usage-python3-pil-open-tiff</span>
             </span>
-            <span class="status-pill status-passed">Passed</span>
+            <span class="status-pill status-passed" aria-label="Port / libtiff / usage-python3-pil-open-tiff status: Passed">Passed</span>
           </summary>
           <div class="case-body">
             <p>Uses Pillow to run TIFF open tiff behavior through libtiff.</p>
             <dl class="case-meta">
+              <div><dt>Run</dt><dd>Port</dd></div>
               <div><dt>Kind</dt><dd>usage</dd></div>
               <div><dt>Client</dt><dd>python3-pil</dd></div>
               <div><dt>Duration</dt><dd>0.00s</dd></div>
               <div><dt>Tags</dt><dd class="tags"><span>usage</span> <span>image</span> <span>python</span></dd></div>
             </dl>
             <div class="case-actions">
-              <a class="log-link" href="../evidence/port-04-test/logs/libtiff/usage-python3-pil-open-tiff.log">Log</a>
-              <button type="button" class="play-button js-load-cast" data-cast="../evidence/port-04-test/casts/libtiff/usage-python3-pil-open-tiff.cast">Play</button>
+              <a class="log-link" href="../evidence/port-04-test/logs/libtiff/usage-python3-pil-open-tiff.log" aria-label="Open log for Port / libtiff / usage-python3-pil-open-tiff">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/port-04-test/casts/libtiff/usage-python3-pil-open-tiff.cast" aria-label="Play cast for Port / libtiff / usage-python3-pil-open-tiff">Play</button>
             </div>
             <div class="cast-player" data-player>
               <div class="player-controls">
-                <button type="button" class="js-player-play">Play</button>
-                <button type="button" class="js-player-pause">Pause</button>
-                <button type="button" class="js-player-restart">Restart</button>
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Port / libtiff / usage-python3-pil-open-tiff">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Port / libtiff / usage-python3-pil-open-tiff">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Port / libtiff / usage-python3-pil-open-tiff">Restart</button>
                 <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
                 <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
               </div>
-              <pre class="terminal" aria-live="polite"></pre>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Port / libtiff / usage-python3-pil-open-tiff"></pre>
             </div>
           </div>
         </details>
@@ -706,31 +731,32 @@
           <summary>
             <span class="case-title">
               <strong>Pillow convert tiff</strong>
-              <span class="case-id">port-04-test / libtiff / usage-python3-pil-convert-tiff</span>
+              <span class="case-id">Port / libtiff / usage-python3-pil-convert-tiff</span>
             </span>
-            <span class="status-pill status-passed">Passed</span>
+            <span class="status-pill status-passed" aria-label="Port / libtiff / usage-python3-pil-convert-tiff status: Passed">Passed</span>
           </summary>
           <div class="case-body">
             <p>Uses Pillow to run TIFF convert tiff behavior through libtiff.</p>
             <dl class="case-meta">
+              <div><dt>Run</dt><dd>Port</dd></div>
               <div><dt>Kind</dt><dd>usage</dd></div>
               <div><dt>Client</dt><dd>python3-pil</dd></div>
               <div><dt>Duration</dt><dd>0.00s</dd></div>
               <div><dt>Tags</dt><dd class="tags"><span>usage</span> <span>image</span> <span>python</span></dd></div>
             </dl>
             <div class="case-actions">
-              <a class="log-link" href="../evidence/port-04-test/logs/libtiff/usage-python3-pil-convert-tiff.log">Log</a>
-              <button type="button" class="play-button js-load-cast" data-cast="../evidence/port-04-test/casts/libtiff/usage-python3-pil-convert-tiff.cast">Play</button>
+              <a class="log-link" href="../evidence/port-04-test/logs/libtiff/usage-python3-pil-convert-tiff.log" aria-label="Open log for Port / libtiff / usage-python3-pil-convert-tiff">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/port-04-test/casts/libtiff/usage-python3-pil-convert-tiff.cast" aria-label="Play cast for Port / libtiff / usage-python3-pil-convert-tiff">Play</button>
             </div>
             <div class="cast-player" data-player>
               <div class="player-controls">
-                <button type="button" class="js-player-play">Play</button>
-                <button type="button" class="js-player-pause">Pause</button>
-                <button type="button" class="js-player-restart">Restart</button>
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Port / libtiff / usage-python3-pil-convert-tiff">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Port / libtiff / usage-python3-pil-convert-tiff">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Port / libtiff / usage-python3-pil-convert-tiff">Restart</button>
                 <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
                 <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
               </div>
-              <pre class="terminal" aria-live="polite"></pre>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Port / libtiff / usage-python3-pil-convert-tiff"></pre>
             </div>
           </div>
         </details>
@@ -738,31 +764,32 @@
           <summary>
             <span class="case-title">
               <strong>Pillow thumbnail tiff</strong>
-              <span class="case-id">port-04-test / libtiff / usage-python3-pil-thumbnail-tiff</span>
+              <span class="case-id">Port / libtiff / usage-python3-pil-thumbnail-tiff</span>
             </span>
-            <span class="status-pill status-passed">Passed</span>
+            <span class="status-pill status-passed" aria-label="Port / libtiff / usage-python3-pil-thumbnail-tiff status: Passed">Passed</span>
           </summary>
           <div class="case-body">
             <p>Uses Pillow to run TIFF thumbnail tiff behavior through libtiff.</p>
             <dl class="case-meta">
+              <div><dt>Run</dt><dd>Port</dd></div>
               <div><dt>Kind</dt><dd>usage</dd></div>
               <div><dt>Client</dt><dd>python3-pil</dd></div>
               <div><dt>Duration</dt><dd>0.00s</dd></div>
               <div><dt>Tags</dt><dd class="tags"><span>usage</span> <span>image</span> <span>python</span></dd></div>
             </dl>
             <div class="case-actions">
-              <a class="log-link" href="../evidence/port-04-test/logs/libtiff/usage-python3-pil-thumbnail-tiff.log">Log</a>
-              <button type="button" class="play-button js-load-cast" data-cast="../evidence/port-04-test/casts/libtiff/usage-python3-pil-thumbnail-tiff.cast">Play</button>
+              <a class="log-link" href="../evidence/port-04-test/logs/libtiff/usage-python3-pil-thumbnail-tiff.log" aria-label="Open log for Port / libtiff / usage-python3-pil-thumbnail-tiff">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/port-04-test/casts/libtiff/usage-python3-pil-thumbnail-tiff.cast" aria-label="Play cast for Port / libtiff / usage-python3-pil-thumbnail-tiff">Play</button>
             </div>
             <div class="cast-player" data-player>
               <div class="player-controls">
-                <button type="button" class="js-player-play">Play</button>
-                <button type="button" class="js-player-pause">Pause</button>
-                <button type="button" class="js-player-restart">Restart</button>
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Port / libtiff / usage-python3-pil-thumbnail-tiff">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Port / libtiff / usage-python3-pil-thumbnail-tiff">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Port / libtiff / usage-python3-pil-thumbnail-tiff">Restart</button>
                 <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
                 <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
               </div>
-              <pre class="terminal" aria-live="polite"></pre>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Port / libtiff / usage-python3-pil-thumbnail-tiff"></pre>
             </div>
           </div>
         </details>
@@ -770,31 +797,32 @@
           <summary>
             <span class="case-title">
               <strong>Pillow tags tiff</strong>
-              <span class="case-id">port-04-test / libtiff / usage-python3-pil-tags-tiff</span>
+              <span class="case-id">Port / libtiff / usage-python3-pil-tags-tiff</span>
             </span>
-            <span class="status-pill status-passed">Passed</span>
+            <span class="status-pill status-passed" aria-label="Port / libtiff / usage-python3-pil-tags-tiff status: Passed">Passed</span>
           </summary>
           <div class="case-body">
             <p>Uses Pillow to run TIFF tags tiff behavior through libtiff.</p>
             <dl class="case-meta">
+              <div><dt>Run</dt><dd>Port</dd></div>
               <div><dt>Kind</dt><dd>usage</dd></div>
               <div><dt>Client</dt><dd>python3-pil</dd></div>
               <div><dt>Duration</dt><dd>0.00s</dd></div>
               <div><dt>Tags</dt><dd class="tags"><span>usage</span> <span>image</span> <span>python</span></dd></div>
             </dl>
             <div class="case-actions">
-              <a class="log-link" href="../evidence/port-04-test/logs/libtiff/usage-python3-pil-tags-tiff.log">Log</a>
-              <button type="button" class="play-button js-load-cast" data-cast="../evidence/port-04-test/casts/libtiff/usage-python3-pil-tags-tiff.cast">Play</button>
+              <a class="log-link" href="../evidence/port-04-test/logs/libtiff/usage-python3-pil-tags-tiff.log" aria-label="Open log for Port / libtiff / usage-python3-pil-tags-tiff">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/port-04-test/casts/libtiff/usage-python3-pil-tags-tiff.cast" aria-label="Play cast for Port / libtiff / usage-python3-pil-tags-tiff">Play</button>
             </div>
             <div class="cast-player" data-player>
               <div class="player-controls">
-                <button type="button" class="js-player-play">Play</button>
-                <button type="button" class="js-player-pause">Pause</button>
-                <button type="button" class="js-player-restart">Restart</button>
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Port / libtiff / usage-python3-pil-tags-tiff">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Port / libtiff / usage-python3-pil-tags-tiff">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Port / libtiff / usage-python3-pil-tags-tiff">Restart</button>
                 <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
                 <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
               </div>
-              <pre class="terminal" aria-live="polite"></pre>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Port / libtiff / usage-python3-pil-tags-tiff"></pre>
             </div>
           </div>
         </details>
@@ -802,31 +830,32 @@
           <summary>
             <span class="case-title">
               <strong>Pillow multipage tiff</strong>
-              <span class="case-id">port-04-test / libtiff / usage-python3-pil-multipage-tiff</span>
+              <span class="case-id">Port / libtiff / usage-python3-pil-multipage-tiff</span>
             </span>
-            <span class="status-pill status-passed">Passed</span>
+            <span class="status-pill status-passed" aria-label="Port / libtiff / usage-python3-pil-multipage-tiff status: Passed">Passed</span>
           </summary>
           <div class="case-body">
             <p>Uses Pillow to run TIFF multipage tiff behavior through libtiff.</p>
             <dl class="case-meta">
+              <div><dt>Run</dt><dd>Port</dd></div>
               <div><dt>Kind</dt><dd>usage</dd></div>
               <div><dt>Client</dt><dd>python3-pil</dd></div>
               <div><dt>Duration</dt><dd>0.00s</dd></div>
               <div><dt>Tags</dt><dd class="tags"><span>usage</span> <span>image</span> <span>python</span></dd></div>
             </dl>
             <div class="case-actions">
-              <a class="log-link" href="../evidence/port-04-test/logs/libtiff/usage-python3-pil-multipage-tiff.log">Log</a>
-              <button type="button" class="play-button js-load-cast" data-cast="../evidence/port-04-test/casts/libtiff/usage-python3-pil-multipage-tiff.cast">Play</button>
+              <a class="log-link" href="../evidence/port-04-test/logs/libtiff/usage-python3-pil-multipage-tiff.log" aria-label="Open log for Port / libtiff / usage-python3-pil-multipage-tiff">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/port-04-test/casts/libtiff/usage-python3-pil-multipage-tiff.cast" aria-label="Play cast for Port / libtiff / usage-python3-pil-multipage-tiff">Play</button>
             </div>
             <div class="cast-player" data-player>
               <div class="player-controls">
-                <button type="button" class="js-player-play">Play</button>
-                <button type="button" class="js-player-pause">Pause</button>
-                <button type="button" class="js-player-restart">Restart</button>
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Port / libtiff / usage-python3-pil-multipage-tiff">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Port / libtiff / usage-python3-pil-multipage-tiff">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Port / libtiff / usage-python3-pil-multipage-tiff">Restart</button>
                 <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
                 <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
               </div>
-              <pre class="terminal" aria-live="polite"></pre>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Port / libtiff / usage-python3-pil-multipage-tiff"></pre>
             </div>
           </div>
         </details>
@@ -834,31 +863,32 @@
           <summary>
             <span class="case-title">
               <strong>Pillow lzw tiff</strong>
-              <span class="case-id">port-04-test / libtiff / usage-python3-pil-lzw-tiff</span>
+              <span class="case-id">Port / libtiff / usage-python3-pil-lzw-tiff</span>
             </span>
-            <span class="status-pill status-passed">Passed</span>
+            <span class="status-pill status-passed" aria-label="Port / libtiff / usage-python3-pil-lzw-tiff status: Passed">Passed</span>
           </summary>
           <div class="case-body">
             <p>Uses Pillow to run TIFF lzw tiff behavior through libtiff.</p>
             <dl class="case-meta">
+              <div><dt>Run</dt><dd>Port</dd></div>
               <div><dt>Kind</dt><dd>usage</dd></div>
               <div><dt>Client</dt><dd>python3-pil</dd></div>
               <div><dt>Duration</dt><dd>0.00s</dd></div>
               <div><dt>Tags</dt><dd class="tags"><span>usage</span> <span>image</span> <span>python</span></dd></div>
             </dl>
             <div class="case-actions">
-              <a class="log-link" href="../evidence/port-04-test/logs/libtiff/usage-python3-pil-lzw-tiff.log">Log</a>
-              <button type="button" class="play-button js-load-cast" data-cast="../evidence/port-04-test/casts/libtiff/usage-python3-pil-lzw-tiff.cast">Play</button>
+              <a class="log-link" href="../evidence/port-04-test/logs/libtiff/usage-python3-pil-lzw-tiff.log" aria-label="Open log for Port / libtiff / usage-python3-pil-lzw-tiff">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/port-04-test/casts/libtiff/usage-python3-pil-lzw-tiff.cast" aria-label="Play cast for Port / libtiff / usage-python3-pil-lzw-tiff">Play</button>
             </div>
             <div class="cast-player" data-player>
               <div class="player-controls">
-                <button type="button" class="js-player-play">Play</button>
-                <button type="button" class="js-player-pause">Pause</button>
-                <button type="button" class="js-player-restart">Restart</button>
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Port / libtiff / usage-python3-pil-lzw-tiff">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Port / libtiff / usage-python3-pil-lzw-tiff">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Port / libtiff / usage-python3-pil-lzw-tiff">Restart</button>
                 <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
                 <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
               </div>
-              <pre class="terminal" aria-live="polite"></pre>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Port / libtiff / usage-python3-pil-lzw-tiff"></pre>
             </div>
           </div>
         </details>
@@ -866,31 +896,32 @@
           <summary>
             <span class="case-title">
               <strong>Pillow RGB tiff load</strong>
-              <span class="case-id">port-04-test / libtiff / usage-python3-pil-rgb-tiff-load</span>
+              <span class="case-id">Port / libtiff / usage-python3-pil-rgb-tiff-load</span>
             </span>
-            <span class="status-pill status-passed">Passed</span>
+            <span class="status-pill status-passed" aria-label="Port / libtiff / usage-python3-pil-rgb-tiff-load status: Passed">Passed</span>
           </summary>
           <div class="case-body">
             <p>Opens an RGB TIFF fixture with Pillow to exercise libtiff-backed image decoding.</p>
             <dl class="case-meta">
+              <div><dt>Run</dt><dd>Port</dd></div>
               <div><dt>Kind</dt><dd>usage</dd></div>
               <div><dt>Client</dt><dd>python3-pil</dd></div>
               <div><dt>Duration</dt><dd>0.00s</dd></div>
               <div><dt>Tags</dt><dd class="tags"><span>usage</span> <span>image</span> <span>python</span></dd></div>
             </dl>
             <div class="case-actions">
-              <a class="log-link" href="../evidence/port-04-test/logs/libtiff/usage-python3-pil-rgb-tiff-load.log">Log</a>
-              <button type="button" class="play-button js-load-cast" data-cast="../evidence/port-04-test/casts/libtiff/usage-python3-pil-rgb-tiff-load.cast">Play</button>
+              <a class="log-link" href="../evidence/port-04-test/logs/libtiff/usage-python3-pil-rgb-tiff-load.log" aria-label="Open log for Port / libtiff / usage-python3-pil-rgb-tiff-load">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/port-04-test/casts/libtiff/usage-python3-pil-rgb-tiff-load.cast" aria-label="Play cast for Port / libtiff / usage-python3-pil-rgb-tiff-load">Play</button>
             </div>
             <div class="cast-player" data-player>
               <div class="player-controls">
-                <button type="button" class="js-player-play">Play</button>
-                <button type="button" class="js-player-pause">Pause</button>
-                <button type="button" class="js-player-restart">Restart</button>
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Port / libtiff / usage-python3-pil-rgb-tiff-load">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Port / libtiff / usage-python3-pil-rgb-tiff-load">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Port / libtiff / usage-python3-pil-rgb-tiff-load">Restart</button>
                 <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
                 <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
               </div>
-              <pre class="terminal" aria-live="polite"></pre>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Port / libtiff / usage-python3-pil-rgb-tiff-load"></pre>
             </div>
           </div>
         </details>
@@ -898,31 +929,32 @@
           <summary>
             <span class="case-title">
               <strong>Pillow crop tiff</strong>
-              <span class="case-id">port-04-test / libtiff / usage-python3-pil-crop-tiff</span>
+              <span class="case-id">Port / libtiff / usage-python3-pil-crop-tiff</span>
             </span>
-            <span class="status-pill status-passed">Passed</span>
+            <span class="status-pill status-passed" aria-label="Port / libtiff / usage-python3-pil-crop-tiff status: Passed">Passed</span>
           </summary>
           <div class="case-body">
             <p>Uses Pillow to run TIFF crop tiff behavior through libtiff.</p>
             <dl class="case-meta">
+              <div><dt>Run</dt><dd>Port</dd></div>
               <div><dt>Kind</dt><dd>usage</dd></div>
               <div><dt>Client</dt><dd>python3-pil</dd></div>
               <div><dt>Duration</dt><dd>0.00s</dd></div>
               <div><dt>Tags</dt><dd class="tags"><span>usage</span> <span>image</span> <span>python</span></dd></div>
             </dl>
             <div class="case-actions">
-              <a class="log-link" href="../evidence/port-04-test/logs/libtiff/usage-python3-pil-crop-tiff.log">Log</a>
-              <button type="button" class="play-button js-load-cast" data-cast="../evidence/port-04-test/casts/libtiff/usage-python3-pil-crop-tiff.cast">Play</button>
+              <a class="log-link" href="../evidence/port-04-test/logs/libtiff/usage-python3-pil-crop-tiff.log" aria-label="Open log for Port / libtiff / usage-python3-pil-crop-tiff">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/port-04-test/casts/libtiff/usage-python3-pil-crop-tiff.cast" aria-label="Play cast for Port / libtiff / usage-python3-pil-crop-tiff">Play</button>
             </div>
             <div class="cast-player" data-player>
               <div class="player-controls">
-                <button type="button" class="js-player-play">Play</button>
-                <button type="button" class="js-player-pause">Pause</button>
-                <button type="button" class="js-player-restart">Restart</button>
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Port / libtiff / usage-python3-pil-crop-tiff">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Port / libtiff / usage-python3-pil-crop-tiff">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Port / libtiff / usage-python3-pil-crop-tiff">Restart</button>
                 <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
                 <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
               </div>
-              <pre class="terminal" aria-live="polite"></pre>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Port / libtiff / usage-python3-pil-crop-tiff"></pre>
             </div>
           </div>
         </details>
@@ -930,31 +962,32 @@
           <summary>
             <span class="case-title">
               <strong>Pillow Deflate TIFF save</strong>
-              <span class="case-id">port-04-test / libtiff / usage-python3-pil-deflate-tiff</span>
+              <span class="case-id">Port / libtiff / usage-python3-pil-deflate-tiff</span>
             </span>
-            <span class="status-pill status-passed">Passed</span>
+            <span class="status-pill status-passed" aria-label="Port / libtiff / usage-python3-pil-deflate-tiff status: Passed">Passed</span>
           </summary>
           <div class="case-body">
             <p>Saves a Deflate-compressed TIFF with Pillow and verifies libtiff-backed reload behavior.</p>
             <dl class="case-meta">
+              <div><dt>Run</dt><dd>Port</dd></div>
               <div><dt>Kind</dt><dd>usage</dd></div>
               <div><dt>Client</dt><dd>python3-pil</dd></div>
               <div><dt>Duration</dt><dd>0.00s</dd></div>
               <div><dt>Tags</dt><dd class="tags"><span>usage</span> <span>image</span> <span>python</span> <span>compression</span></dd></div>
             </dl>
             <div class="case-actions">
-              <a class="log-link" href="../evidence/port-04-test/logs/libtiff/usage-python3-pil-deflate-tiff.log">Log</a>
-              <button type="button" class="play-button js-load-cast" data-cast="../evidence/port-04-test/casts/libtiff/usage-python3-pil-deflate-tiff.cast">Play</button>
+              <a class="log-link" href="../evidence/port-04-test/logs/libtiff/usage-python3-pil-deflate-tiff.log" aria-label="Open log for Port / libtiff / usage-python3-pil-deflate-tiff">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/port-04-test/casts/libtiff/usage-python3-pil-deflate-tiff.cast" aria-label="Play cast for Port / libtiff / usage-python3-pil-deflate-tiff">Play</button>
             </div>
             <div class="cast-player" data-player>
               <div class="player-controls">
-                <button type="button" class="js-player-play">Play</button>
-                <button type="button" class="js-player-pause">Pause</button>
-                <button type="button" class="js-player-restart">Restart</button>
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Port / libtiff / usage-python3-pil-deflate-tiff">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Port / libtiff / usage-python3-pil-deflate-tiff">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Port / libtiff / usage-python3-pil-deflate-tiff">Restart</button>
                 <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
                 <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
               </div>
-              <pre class="terminal" aria-live="polite"></pre>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Port / libtiff / usage-python3-pil-deflate-tiff"></pre>
             </div>
           </div>
         </details>
@@ -962,31 +995,32 @@
           <summary>
             <span class="case-title">
               <strong>Pillow TIFF DPI save</strong>
-              <span class="case-id">port-04-test / libtiff / usage-python3-pil-tiff-dpi-save</span>
+              <span class="case-id">Port / libtiff / usage-python3-pil-tiff-dpi-save</span>
             </span>
-            <span class="status-pill status-passed">Passed</span>
+            <span class="status-pill status-passed" aria-label="Port / libtiff / usage-python3-pil-tiff-dpi-save status: Passed">Passed</span>
           </summary>
           <div class="case-body">
             <p>Saves TIFF resolution metadata with Pillow and verifies the reloaded DPI tags.</p>
             <dl class="case-meta">
+              <div><dt>Run</dt><dd>Port</dd></div>
               <div><dt>Kind</dt><dd>usage</dd></div>
               <div><dt>Client</dt><dd>python3-pil</dd></div>
               <div><dt>Duration</dt><dd>0.00s</dd></div>
               <div><dt>Tags</dt><dd class="tags"><span>usage</span> <span>image</span> <span>python</span> <span>metadata</span></dd></div>
             </dl>
             <div class="case-actions">
-              <a class="log-link" href="../evidence/port-04-test/logs/libtiff/usage-python3-pil-tiff-dpi-save.log">Log</a>
-              <button type="button" class="play-button js-load-cast" data-cast="../evidence/port-04-test/casts/libtiff/usage-python3-pil-tiff-dpi-save.cast">Play</button>
+              <a class="log-link" href="../evidence/port-04-test/logs/libtiff/usage-python3-pil-tiff-dpi-save.log" aria-label="Open log for Port / libtiff / usage-python3-pil-tiff-dpi-save">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/port-04-test/casts/libtiff/usage-python3-pil-tiff-dpi-save.cast" aria-label="Play cast for Port / libtiff / usage-python3-pil-tiff-dpi-save">Play</button>
             </div>
             <div class="cast-player" data-player>
               <div class="player-controls">
-                <button type="button" class="js-player-play">Play</button>
-                <button type="button" class="js-player-pause">Pause</button>
-                <button type="button" class="js-player-restart">Restart</button>
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Port / libtiff / usage-python3-pil-tiff-dpi-save">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Port / libtiff / usage-python3-pil-tiff-dpi-save">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Port / libtiff / usage-python3-pil-tiff-dpi-save">Restart</button>
                 <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
                 <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
               </div>
-              <pre class="terminal" aria-live="polite"></pre>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Port / libtiff / usage-python3-pil-tiff-dpi-save"></pre>
             </div>
           </div>
         </details>

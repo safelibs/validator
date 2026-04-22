@@ -9,56 +9,61 @@
     <script defer src="../assets/player.js"></script>
   </head>
   <body data-site-data="../site-data.json">
+    <a class="skip-link" href="#tests-heading">Skip to tests</a>
     <main>
-      <section class="dashboard" aria-label="Validation dashboard">
-        <h1>libsdl Validation</h1>
+      <nav class="breadcrumb" aria-label="Breadcrumb"><a href="../index.html">All libraries</a></nav>
+      <section class="dashboard" aria-labelledby="dashboard-heading">
+        <h1 id="dashboard-heading">libsdl Validation</h1>
         <div class="metric-grid">
-        <div class="metric" data-proof-total="libraries"><strong>19</strong><span>Libraries</span></div>
-        <div class="metric" data-proof-total="cases"><strong>576</strong><span>Cases</span></div>
-        <div class="metric" data-proof-total="source_cases"><strong>190</strong><span>Source</span></div>
-        <div class="metric" data-proof-total="usage_cases"><strong>386</strong><span>Usage</span></div>
-        <div class="metric" data-proof-total="passed"><strong>576</strong><span>Passed</span></div>
-        <div class="metric" data-proof-total="failed"><strong>0</strong><span>Failed</span></div>
-        <div class="metric" data-proof-total="casts"><strong>576 (100%)</strong><span>Casts</span></div>
+        <div class="metric" data-proof-total="libraries"><strong>1</strong><span>Libraries</span></div>
+        <div class="metric" data-proof-total="cases"><strong>15</strong><span>Tests</span></div>
+        <div class="metric" data-proof-total="source_cases"><strong>5</strong><span>Source tests</span></div>
+        <div class="metric" data-proof-total="usage_cases"><strong>10</strong><span>Usage tests</span></div>
+        <div class="metric" data-proof-total="passed"><strong>15 / 15</strong><span>Port tests passing</span></div>
+        <div class="metric" data-proof-total="failed"><strong>0</strong><span>Port tests failing</span></div>
+        <div class="metric" data-proof-total="casts"><strong>30 (100%)</strong><span>Evidence casts</span></div>
+        <div class="metric" data-proof-total="port_libraries"><strong>1 / 1</strong><span>Port libraries passing</span></div>
         </div>
       </section>
 
       <section class="controls" aria-label="Testcase filters">
-        <label class="search-label">Search <input id="search-input" type="search" autocomplete="off"></label>
+        <label class="search-label">Search <input id="search-input" type="search" autocomplete="off" name="search"></label>
+        <label>Run mode <select id="mode-filter" name="mode"><option value="all">All</option><option value="original">Original</option><option value="port-04-test">Port</option></select></label>
         <label>Status <select id="status-filter"><option value="all">All</option><option value="passed">Passed</option><option value="failed">Failed</option></select></label>
         <label>Kind <select id="kind-filter"><option value="all">All</option><option value="source">Source</option><option value="usage">Usage</option></select></label>
       </section>
-      <section class="testcases" aria-label="Testcases">
-        <h2>Testcases</h2>
+      <section id="testcases" class="testcases" aria-labelledby="tests-heading">
+        <h2 id="tests-heading">Tests</h2>
         <details class="case-row" data-library="libsdl" data-testcase-id="version-query-compile" data-mode="original" data-kind="source" data-status="passed" data-player-cast="../evidence/original/casts/libsdl/version-query-compile.cast" data-search="libsdl version-query-compile original SDL version query compile Compiles a small SDL program that reports version and platform details. source api compile">
           <summary>
             <span class="case-title">
               <strong>SDL version query compile</strong>
-              <span class="case-id">original / libsdl / version-query-compile</span>
+              <span class="case-id">Original / libsdl / version-query-compile</span>
             </span>
-            <span class="status-pill status-passed">Passed</span>
+            <span class="status-pill status-passed" aria-label="Original / libsdl / version-query-compile status: Passed">Passed</span>
           </summary>
           <div class="case-body">
             <p>Compiles a small SDL program that reports version and platform details.</p>
             <dl class="case-meta">
+              <div><dt>Run</dt><dd>Original</dd></div>
               <div><dt>Kind</dt><dd>source</dd></div>
               <div><dt>Client</dt><dd>none</dd></div>
               <div><dt>Duration</dt><dd>0.00s</dd></div>
               <div><dt>Tags</dt><dd class="tags"><span>api</span> <span>compile</span></dd></div>
             </dl>
             <div class="case-actions">
-              <a class="log-link" href="../evidence/original/logs/libsdl/version-query-compile.log">Log</a>
-              <button type="button" class="play-button js-load-cast" data-cast="../evidence/original/casts/libsdl/version-query-compile.cast">Play</button>
+              <a class="log-link" href="../evidence/original/logs/libsdl/version-query-compile.log" aria-label="Open log for Original / libsdl / version-query-compile">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/original/casts/libsdl/version-query-compile.cast" aria-label="Play cast for Original / libsdl / version-query-compile">Play</button>
             </div>
             <div class="cast-player" data-player>
               <div class="player-controls">
-                <button type="button" class="js-player-play">Play</button>
-                <button type="button" class="js-player-pause">Pause</button>
-                <button type="button" class="js-player-restart">Restart</button>
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Original / libsdl / version-query-compile">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Original / libsdl / version-query-compile">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Original / libsdl / version-query-compile">Restart</button>
                 <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
                 <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
               </div>
-              <pre class="terminal" aria-live="polite"></pre>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Original / libsdl / version-query-compile"></pre>
             </div>
           </div>
         </details>
@@ -66,31 +71,32 @@
           <summary>
             <span class="case-title">
               <strong>Headless event timer behavior</strong>
-              <span class="case-id">original / libsdl / headless-event-timer</span>
+              <span class="case-id">Original / libsdl / headless-event-timer</span>
             </span>
-            <span class="status-pill status-passed">Passed</span>
+            <span class="status-pill status-passed" aria-label="Original / libsdl / headless-event-timer status: Passed">Passed</span>
           </summary>
           <div class="case-body">
             <p>Runs SDL timer and event APIs under dummy video settings.</p>
             <dl class="case-meta">
+              <div><dt>Run</dt><dd>Original</dd></div>
               <div><dt>Kind</dt><dd>source</dd></div>
               <div><dt>Client</dt><dd>none</dd></div>
               <div><dt>Duration</dt><dd>0.00s</dd></div>
               <div><dt>Tags</dt><dd class="tags"><span>api</span> <span>event</span></dd></div>
             </dl>
             <div class="case-actions">
-              <a class="log-link" href="../evidence/original/logs/libsdl/headless-event-timer.log">Log</a>
-              <button type="button" class="play-button js-load-cast" data-cast="../evidence/original/casts/libsdl/headless-event-timer.cast">Play</button>
+              <a class="log-link" href="../evidence/original/logs/libsdl/headless-event-timer.log" aria-label="Open log for Original / libsdl / headless-event-timer">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/original/casts/libsdl/headless-event-timer.cast" aria-label="Play cast for Original / libsdl / headless-event-timer">Play</button>
             </div>
             <div class="cast-player" data-player>
               <div class="player-controls">
-                <button type="button" class="js-player-play">Play</button>
-                <button type="button" class="js-player-pause">Pause</button>
-                <button type="button" class="js-player-restart">Restart</button>
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Original / libsdl / headless-event-timer">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Original / libsdl / headless-event-timer">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Original / libsdl / headless-event-timer">Restart</button>
                 <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
                 <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
               </div>
-              <pre class="terminal" aria-live="polite"></pre>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Original / libsdl / headless-event-timer"></pre>
             </div>
           </div>
         </details>
@@ -98,31 +104,32 @@
           <summary>
             <span class="case-title">
               <strong>Surface pixel format blit</strong>
-              <span class="case-id">original / libsdl / surface-blit-pixel-format</span>
+              <span class="case-id">Original / libsdl / surface-blit-pixel-format</span>
             </span>
-            <span class="status-pill status-passed">Passed</span>
+            <span class="status-pill status-passed" aria-label="Original / libsdl / surface-blit-pixel-format status: Passed">Passed</span>
           </summary>
           <div class="case-body">
             <p>Creates RGB surfaces, fills pixels, and blits under SDL software surfaces.</p>
             <dl class="case-meta">
+              <div><dt>Run</dt><dd>Original</dd></div>
               <div><dt>Kind</dt><dd>source</dd></div>
               <div><dt>Client</dt><dd>none</dd></div>
               <div><dt>Duration</dt><dd>0.00s</dd></div>
               <div><dt>Tags</dt><dd class="tags"><span>api</span> <span>surface</span></dd></div>
             </dl>
             <div class="case-actions">
-              <a class="log-link" href="../evidence/original/logs/libsdl/surface-blit-pixel-format.log">Log</a>
-              <button type="button" class="play-button js-load-cast" data-cast="../evidence/original/casts/libsdl/surface-blit-pixel-format.cast">Play</button>
+              <a class="log-link" href="../evidence/original/logs/libsdl/surface-blit-pixel-format.log" aria-label="Open log for Original / libsdl / surface-blit-pixel-format">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/original/casts/libsdl/surface-blit-pixel-format.cast" aria-label="Play cast for Original / libsdl / surface-blit-pixel-format">Play</button>
             </div>
             <div class="cast-player" data-player>
               <div class="player-controls">
-                <button type="button" class="js-player-play">Play</button>
-                <button type="button" class="js-player-pause">Pause</button>
-                <button type="button" class="js-player-restart">Restart</button>
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Original / libsdl / surface-blit-pixel-format">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Original / libsdl / surface-blit-pixel-format">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Original / libsdl / surface-blit-pixel-format">Restart</button>
                 <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
                 <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
               </div>
-              <pre class="terminal" aria-live="polite"></pre>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Original / libsdl / surface-blit-pixel-format"></pre>
             </div>
           </div>
         </details>
@@ -130,31 +137,32 @@
           <summary>
             <span class="case-title">
               <strong>Dummy audio queue behavior</strong>
-              <span class="case-id">original / libsdl / dummy-audio-queue</span>
+              <span class="case-id">Original / libsdl / dummy-audio-queue</span>
             </span>
-            <span class="status-pill status-passed">Passed</span>
+            <span class="status-pill status-passed" aria-label="Original / libsdl / dummy-audio-queue status: Passed">Passed</span>
           </summary>
           <div class="case-body">
             <p>Opens the SDL dummy audio driver and queues sample bytes.</p>
             <dl class="case-meta">
+              <div><dt>Run</dt><dd>Original</dd></div>
               <div><dt>Kind</dt><dd>source</dd></div>
               <div><dt>Client</dt><dd>none</dd></div>
               <div><dt>Duration</dt><dd>0.00s</dd></div>
               <div><dt>Tags</dt><dd class="tags"><span>api</span> <span>audio</span></dd></div>
             </dl>
             <div class="case-actions">
-              <a class="log-link" href="../evidence/original/logs/libsdl/dummy-audio-queue.log">Log</a>
-              <button type="button" class="play-button js-load-cast" data-cast="../evidence/original/casts/libsdl/dummy-audio-queue.cast">Play</button>
+              <a class="log-link" href="../evidence/original/logs/libsdl/dummy-audio-queue.log" aria-label="Open log for Original / libsdl / dummy-audio-queue">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/original/casts/libsdl/dummy-audio-queue.cast" aria-label="Play cast for Original / libsdl / dummy-audio-queue">Play</button>
             </div>
             <div class="cast-player" data-player>
               <div class="player-controls">
-                <button type="button" class="js-player-play">Play</button>
-                <button type="button" class="js-player-pause">Pause</button>
-                <button type="button" class="js-player-restart">Restart</button>
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Original / libsdl / dummy-audio-queue">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Original / libsdl / dummy-audio-queue">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Original / libsdl / dummy-audio-queue">Restart</button>
                 <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
                 <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
               </div>
-              <pre class="terminal" aria-live="polite"></pre>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Original / libsdl / dummy-audio-queue"></pre>
             </div>
           </div>
         </details>
@@ -162,31 +170,32 @@
           <summary>
             <span class="case-title">
               <strong>Installed SDL test binary</strong>
-              <span class="case-id">original / libsdl / installed-test-binary</span>
+              <span class="case-id">Original / libsdl / installed-test-binary</span>
             </span>
-            <span class="status-pill status-passed">Passed</span>
+            <span class="status-pill status-passed" aria-label="Original / libsdl / installed-test-binary status: Passed">Passed</span>
           </summary>
           <div class="case-body">
             <p>Runs one packaged SDL installed test binary under dummy drivers.</p>
             <dl class="case-meta">
+              <div><dt>Run</dt><dd>Original</dd></div>
               <div><dt>Kind</dt><dd>source</dd></div>
               <div><dt>Client</dt><dd>none</dd></div>
               <div><dt>Duration</dt><dd>0.00s</dd></div>
               <div><dt>Tags</dt><dd class="tags"><span>cli</span> <span>installed-test</span></dd></div>
             </dl>
             <div class="case-actions">
-              <a class="log-link" href="../evidence/original/logs/libsdl/installed-test-binary.log">Log</a>
-              <button type="button" class="play-button js-load-cast" data-cast="../evidence/original/casts/libsdl/installed-test-binary.cast">Play</button>
+              <a class="log-link" href="../evidence/original/logs/libsdl/installed-test-binary.log" aria-label="Open log for Original / libsdl / installed-test-binary">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/original/casts/libsdl/installed-test-binary.cast" aria-label="Play cast for Original / libsdl / installed-test-binary">Play</button>
             </div>
             <div class="cast-player" data-player>
               <div class="player-controls">
-                <button type="button" class="js-player-play">Play</button>
-                <button type="button" class="js-player-pause">Pause</button>
-                <button type="button" class="js-player-restart">Restart</button>
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Original / libsdl / installed-test-binary">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Original / libsdl / installed-test-binary">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Original / libsdl / installed-test-binary">Restart</button>
                 <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
                 <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
               </div>
-              <pre class="terminal" aria-live="polite"></pre>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Original / libsdl / installed-test-binary"></pre>
             </div>
           </div>
         </details>
@@ -194,31 +203,32 @@
           <summary>
             <span class="case-title">
               <strong>Pygame surface fill</strong>
-              <span class="case-id">original / libsdl / usage-python3-pygame-surface-fill</span>
+              <span class="case-id">Original / libsdl / usage-python3-pygame-surface-fill</span>
             </span>
-            <span class="status-pill status-passed">Passed</span>
+            <span class="status-pill status-passed" aria-label="Original / libsdl / usage-python3-pygame-surface-fill status: Passed">Passed</span>
           </summary>
           <div class="case-body">
             <p>Uses Pygame to run SDL surface fill behavior.</p>
             <dl class="case-meta">
+              <div><dt>Run</dt><dd>Original</dd></div>
               <div><dt>Kind</dt><dd>usage</dd></div>
               <div><dt>Client</dt><dd>python3-pygame</dd></div>
               <div><dt>Duration</dt><dd>0.00s</dd></div>
               <div><dt>Tags</dt><dd class="tags"><span>usage</span> <span>headless</span> <span>python</span></dd></div>
             </dl>
             <div class="case-actions">
-              <a class="log-link" href="../evidence/original/logs/libsdl/usage-python3-pygame-surface-fill.log">Log</a>
-              <button type="button" class="play-button js-load-cast" data-cast="../evidence/original/casts/libsdl/usage-python3-pygame-surface-fill.cast">Play</button>
+              <a class="log-link" href="../evidence/original/logs/libsdl/usage-python3-pygame-surface-fill.log" aria-label="Open log for Original / libsdl / usage-python3-pygame-surface-fill">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/original/casts/libsdl/usage-python3-pygame-surface-fill.cast" aria-label="Play cast for Original / libsdl / usage-python3-pygame-surface-fill">Play</button>
             </div>
             <div class="cast-player" data-player>
               <div class="player-controls">
-                <button type="button" class="js-player-play">Play</button>
-                <button type="button" class="js-player-pause">Pause</button>
-                <button type="button" class="js-player-restart">Restart</button>
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Original / libsdl / usage-python3-pygame-surface-fill">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Original / libsdl / usage-python3-pygame-surface-fill">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Original / libsdl / usage-python3-pygame-surface-fill">Restart</button>
                 <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
                 <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
               </div>
-              <pre class="terminal" aria-live="polite"></pre>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Original / libsdl / usage-python3-pygame-surface-fill"></pre>
             </div>
           </div>
         </details>
@@ -226,31 +236,32 @@
           <summary>
             <span class="case-title">
               <strong>Pygame image save</strong>
-              <span class="case-id">original / libsdl / usage-python3-pygame-image-save</span>
+              <span class="case-id">Original / libsdl / usage-python3-pygame-image-save</span>
             </span>
-            <span class="status-pill status-passed">Passed</span>
+            <span class="status-pill status-passed" aria-label="Original / libsdl / usage-python3-pygame-image-save status: Passed">Passed</span>
           </summary>
           <div class="case-body">
             <p>Uses Pygame to run SDL image save behavior.</p>
             <dl class="case-meta">
+              <div><dt>Run</dt><dd>Original</dd></div>
               <div><dt>Kind</dt><dd>usage</dd></div>
               <div><dt>Client</dt><dd>python3-pygame</dd></div>
               <div><dt>Duration</dt><dd>0.00s</dd></div>
               <div><dt>Tags</dt><dd class="tags"><span>usage</span> <span>headless</span> <span>python</span></dd></div>
             </dl>
             <div class="case-actions">
-              <a class="log-link" href="../evidence/original/logs/libsdl/usage-python3-pygame-image-save.log">Log</a>
-              <button type="button" class="play-button js-load-cast" data-cast="../evidence/original/casts/libsdl/usage-python3-pygame-image-save.cast">Play</button>
+              <a class="log-link" href="../evidence/original/logs/libsdl/usage-python3-pygame-image-save.log" aria-label="Open log for Original / libsdl / usage-python3-pygame-image-save">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/original/casts/libsdl/usage-python3-pygame-image-save.cast" aria-label="Play cast for Original / libsdl / usage-python3-pygame-image-save">Play</button>
             </div>
             <div class="cast-player" data-player>
               <div class="player-controls">
-                <button type="button" class="js-player-play">Play</button>
-                <button type="button" class="js-player-pause">Pause</button>
-                <button type="button" class="js-player-restart">Restart</button>
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Original / libsdl / usage-python3-pygame-image-save">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Original / libsdl / usage-python3-pygame-image-save">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Original / libsdl / usage-python3-pygame-image-save">Restart</button>
                 <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
                 <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
               </div>
-              <pre class="terminal" aria-live="polite"></pre>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Original / libsdl / usage-python3-pygame-image-save"></pre>
             </div>
           </div>
         </details>
@@ -258,31 +269,32 @@
           <summary>
             <span class="case-title">
               <strong>Pygame event queue</strong>
-              <span class="case-id">original / libsdl / usage-python3-pygame-event-queue</span>
+              <span class="case-id">Original / libsdl / usage-python3-pygame-event-queue</span>
             </span>
-            <span class="status-pill status-passed">Passed</span>
+            <span class="status-pill status-passed" aria-label="Original / libsdl / usage-python3-pygame-event-queue status: Passed">Passed</span>
           </summary>
           <div class="case-body">
             <p>Uses Pygame to run SDL event queue behavior.</p>
             <dl class="case-meta">
+              <div><dt>Run</dt><dd>Original</dd></div>
               <div><dt>Kind</dt><dd>usage</dd></div>
               <div><dt>Client</dt><dd>python3-pygame</dd></div>
               <div><dt>Duration</dt><dd>0.00s</dd></div>
               <div><dt>Tags</dt><dd class="tags"><span>usage</span> <span>headless</span> <span>python</span></dd></div>
             </dl>
             <div class="case-actions">
-              <a class="log-link" href="../evidence/original/logs/libsdl/usage-python3-pygame-event-queue.log">Log</a>
-              <button type="button" class="play-button js-load-cast" data-cast="../evidence/original/casts/libsdl/usage-python3-pygame-event-queue.cast">Play</button>
+              <a class="log-link" href="../evidence/original/logs/libsdl/usage-python3-pygame-event-queue.log" aria-label="Open log for Original / libsdl / usage-python3-pygame-event-queue">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/original/casts/libsdl/usage-python3-pygame-event-queue.cast" aria-label="Play cast for Original / libsdl / usage-python3-pygame-event-queue">Play</button>
             </div>
             <div class="cast-player" data-player>
               <div class="player-controls">
-                <button type="button" class="js-player-play">Play</button>
-                <button type="button" class="js-player-pause">Pause</button>
-                <button type="button" class="js-player-restart">Restart</button>
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Original / libsdl / usage-python3-pygame-event-queue">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Original / libsdl / usage-python3-pygame-event-queue">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Original / libsdl / usage-python3-pygame-event-queue">Restart</button>
                 <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
                 <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
               </div>
-              <pre class="terminal" aria-live="polite"></pre>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Original / libsdl / usage-python3-pygame-event-queue"></pre>
             </div>
           </div>
         </details>
@@ -290,31 +302,32 @@
           <summary>
             <span class="case-title">
               <strong>Pygame audio dummy</strong>
-              <span class="case-id">original / libsdl / usage-python3-pygame-audio-dummy</span>
+              <span class="case-id">Original / libsdl / usage-python3-pygame-audio-dummy</span>
             </span>
-            <span class="status-pill status-passed">Passed</span>
+            <span class="status-pill status-passed" aria-label="Original / libsdl / usage-python3-pygame-audio-dummy status: Passed">Passed</span>
           </summary>
           <div class="case-body">
             <p>Uses Pygame to run SDL audio dummy behavior.</p>
             <dl class="case-meta">
+              <div><dt>Run</dt><dd>Original</dd></div>
               <div><dt>Kind</dt><dd>usage</dd></div>
               <div><dt>Client</dt><dd>python3-pygame</dd></div>
               <div><dt>Duration</dt><dd>0.00s</dd></div>
               <div><dt>Tags</dt><dd class="tags"><span>usage</span> <span>headless</span> <span>python</span></dd></div>
             </dl>
             <div class="case-actions">
-              <a class="log-link" href="../evidence/original/logs/libsdl/usage-python3-pygame-audio-dummy.log">Log</a>
-              <button type="button" class="play-button js-load-cast" data-cast="../evidence/original/casts/libsdl/usage-python3-pygame-audio-dummy.cast">Play</button>
+              <a class="log-link" href="../evidence/original/logs/libsdl/usage-python3-pygame-audio-dummy.log" aria-label="Open log for Original / libsdl / usage-python3-pygame-audio-dummy">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/original/casts/libsdl/usage-python3-pygame-audio-dummy.cast" aria-label="Play cast for Original / libsdl / usage-python3-pygame-audio-dummy">Play</button>
             </div>
             <div class="cast-player" data-player>
               <div class="player-controls">
-                <button type="button" class="js-player-play">Play</button>
-                <button type="button" class="js-player-pause">Pause</button>
-                <button type="button" class="js-player-restart">Restart</button>
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Original / libsdl / usage-python3-pygame-audio-dummy">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Original / libsdl / usage-python3-pygame-audio-dummy">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Original / libsdl / usage-python3-pygame-audio-dummy">Restart</button>
                 <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
                 <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
               </div>
-              <pre class="terminal" aria-live="polite"></pre>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Original / libsdl / usage-python3-pygame-audio-dummy"></pre>
             </div>
           </div>
         </details>
@@ -322,31 +335,32 @@
           <summary>
             <span class="case-title">
               <strong>Pygame xvfb display</strong>
-              <span class="case-id">original / libsdl / usage-python3-pygame-xvfb-display</span>
+              <span class="case-id">Original / libsdl / usage-python3-pygame-xvfb-display</span>
             </span>
-            <span class="status-pill status-passed">Passed</span>
+            <span class="status-pill status-passed" aria-label="Original / libsdl / usage-python3-pygame-xvfb-display status: Passed">Passed</span>
           </summary>
           <div class="case-body">
             <p>Uses Pygame to run SDL xvfb display behavior.</p>
             <dl class="case-meta">
+              <div><dt>Run</dt><dd>Original</dd></div>
               <div><dt>Kind</dt><dd>usage</dd></div>
               <div><dt>Client</dt><dd>python3-pygame</dd></div>
               <div><dt>Duration</dt><dd>0.00s</dd></div>
               <div><dt>Tags</dt><dd class="tags"><span>usage</span> <span>gui</span> <span>python</span></dd></div>
             </dl>
             <div class="case-actions">
-              <a class="log-link" href="../evidence/original/logs/libsdl/usage-python3-pygame-xvfb-display.log">Log</a>
-              <button type="button" class="play-button js-load-cast" data-cast="../evidence/original/casts/libsdl/usage-python3-pygame-xvfb-display.cast">Play</button>
+              <a class="log-link" href="../evidence/original/logs/libsdl/usage-python3-pygame-xvfb-display.log" aria-label="Open log for Original / libsdl / usage-python3-pygame-xvfb-display">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/original/casts/libsdl/usage-python3-pygame-xvfb-display.cast" aria-label="Play cast for Original / libsdl / usage-python3-pygame-xvfb-display">Play</button>
             </div>
             <div class="cast-player" data-player>
               <div class="player-controls">
-                <button type="button" class="js-player-play">Play</button>
-                <button type="button" class="js-player-pause">Pause</button>
-                <button type="button" class="js-player-restart">Restart</button>
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Original / libsdl / usage-python3-pygame-xvfb-display">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Original / libsdl / usage-python3-pygame-xvfb-display">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Original / libsdl / usage-python3-pygame-xvfb-display">Restart</button>
                 <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
                 <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
               </div>
-              <pre class="terminal" aria-live="polite"></pre>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Original / libsdl / usage-python3-pygame-xvfb-display"></pre>
             </div>
           </div>
         </details>
@@ -354,31 +368,32 @@
           <summary>
             <span class="case-title">
               <strong>Pygame draw rect</strong>
-              <span class="case-id">original / libsdl / usage-python3-pygame-draw-rect</span>
+              <span class="case-id">Original / libsdl / usage-python3-pygame-draw-rect</span>
             </span>
-            <span class="status-pill status-passed">Passed</span>
+            <span class="status-pill status-passed" aria-label="Original / libsdl / usage-python3-pygame-draw-rect status: Passed">Passed</span>
           </summary>
           <div class="case-body">
             <p>Uses Pygame to run SDL draw rect behavior.</p>
             <dl class="case-meta">
+              <div><dt>Run</dt><dd>Original</dd></div>
               <div><dt>Kind</dt><dd>usage</dd></div>
               <div><dt>Client</dt><dd>python3-pygame</dd></div>
               <div><dt>Duration</dt><dd>0.00s</dd></div>
               <div><dt>Tags</dt><dd class="tags"><span>usage</span> <span>headless</span> <span>python</span></dd></div>
             </dl>
             <div class="case-actions">
-              <a class="log-link" href="../evidence/original/logs/libsdl/usage-python3-pygame-draw-rect.log">Log</a>
-              <button type="button" class="play-button js-load-cast" data-cast="../evidence/original/casts/libsdl/usage-python3-pygame-draw-rect.cast">Play</button>
+              <a class="log-link" href="../evidence/original/logs/libsdl/usage-python3-pygame-draw-rect.log" aria-label="Open log for Original / libsdl / usage-python3-pygame-draw-rect">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/original/casts/libsdl/usage-python3-pygame-draw-rect.cast" aria-label="Play cast for Original / libsdl / usage-python3-pygame-draw-rect">Play</button>
             </div>
             <div class="cast-player" data-player>
               <div class="player-controls">
-                <button type="button" class="js-player-play">Play</button>
-                <button type="button" class="js-player-pause">Pause</button>
-                <button type="button" class="js-player-restart">Restart</button>
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Original / libsdl / usage-python3-pygame-draw-rect">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Original / libsdl / usage-python3-pygame-draw-rect">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Original / libsdl / usage-python3-pygame-draw-rect">Restart</button>
                 <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
                 <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
               </div>
-              <pre class="terminal" aria-live="polite"></pre>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Original / libsdl / usage-python3-pygame-draw-rect"></pre>
             </div>
           </div>
         </details>
@@ -386,31 +401,32 @@
           <summary>
             <span class="case-title">
               <strong>Pygame font module</strong>
-              <span class="case-id">original / libsdl / usage-python3-pygame-font-module</span>
+              <span class="case-id">Original / libsdl / usage-python3-pygame-font-module</span>
             </span>
-            <span class="status-pill status-passed">Passed</span>
+            <span class="status-pill status-passed" aria-label="Original / libsdl / usage-python3-pygame-font-module status: Passed">Passed</span>
           </summary>
           <div class="case-body">
             <p>Uses Pygame to run SDL font module behavior.</p>
             <dl class="case-meta">
+              <div><dt>Run</dt><dd>Original</dd></div>
               <div><dt>Kind</dt><dd>usage</dd></div>
               <div><dt>Client</dt><dd>python3-pygame</dd></div>
               <div><dt>Duration</dt><dd>0.00s</dd></div>
               <div><dt>Tags</dt><dd class="tags"><span>usage</span> <span>headless</span> <span>python</span></dd></div>
             </dl>
             <div class="case-actions">
-              <a class="log-link" href="../evidence/original/logs/libsdl/usage-python3-pygame-font-module.log">Log</a>
-              <button type="button" class="play-button js-load-cast" data-cast="../evidence/original/casts/libsdl/usage-python3-pygame-font-module.cast">Play</button>
+              <a class="log-link" href="../evidence/original/logs/libsdl/usage-python3-pygame-font-module.log" aria-label="Open log for Original / libsdl / usage-python3-pygame-font-module">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/original/casts/libsdl/usage-python3-pygame-font-module.cast" aria-label="Play cast for Original / libsdl / usage-python3-pygame-font-module">Play</button>
             </div>
             <div class="cast-player" data-player>
               <div class="player-controls">
-                <button type="button" class="js-player-play">Play</button>
-                <button type="button" class="js-player-pause">Pause</button>
-                <button type="button" class="js-player-restart">Restart</button>
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Original / libsdl / usage-python3-pygame-font-module">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Original / libsdl / usage-python3-pygame-font-module">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Original / libsdl / usage-python3-pygame-font-module">Restart</button>
                 <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
                 <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
               </div>
-              <pre class="terminal" aria-live="polite"></pre>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Original / libsdl / usage-python3-pygame-font-module"></pre>
             </div>
           </div>
         </details>
@@ -418,31 +434,32 @@
           <summary>
             <span class="case-title">
               <strong>Pygame transform scale</strong>
-              <span class="case-id">original / libsdl / usage-python3-pygame-transform-scale</span>
+              <span class="case-id">Original / libsdl / usage-python3-pygame-transform-scale</span>
             </span>
-            <span class="status-pill status-passed">Passed</span>
+            <span class="status-pill status-passed" aria-label="Original / libsdl / usage-python3-pygame-transform-scale status: Passed">Passed</span>
           </summary>
           <div class="case-body">
             <p>Uses Pygame to run SDL transform scale behavior.</p>
             <dl class="case-meta">
+              <div><dt>Run</dt><dd>Original</dd></div>
               <div><dt>Kind</dt><dd>usage</dd></div>
               <div><dt>Client</dt><dd>python3-pygame</dd></div>
               <div><dt>Duration</dt><dd>0.00s</dd></div>
               <div><dt>Tags</dt><dd class="tags"><span>usage</span> <span>headless</span> <span>python</span></dd></div>
             </dl>
             <div class="case-actions">
-              <a class="log-link" href="../evidence/original/logs/libsdl/usage-python3-pygame-transform-scale.log">Log</a>
-              <button type="button" class="play-button js-load-cast" data-cast="../evidence/original/casts/libsdl/usage-python3-pygame-transform-scale.cast">Play</button>
+              <a class="log-link" href="../evidence/original/logs/libsdl/usage-python3-pygame-transform-scale.log" aria-label="Open log for Original / libsdl / usage-python3-pygame-transform-scale">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/original/casts/libsdl/usage-python3-pygame-transform-scale.cast" aria-label="Play cast for Original / libsdl / usage-python3-pygame-transform-scale">Play</button>
             </div>
             <div class="cast-player" data-player>
               <div class="player-controls">
-                <button type="button" class="js-player-play">Play</button>
-                <button type="button" class="js-player-pause">Pause</button>
-                <button type="button" class="js-player-restart">Restart</button>
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Original / libsdl / usage-python3-pygame-transform-scale">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Original / libsdl / usage-python3-pygame-transform-scale">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Original / libsdl / usage-python3-pygame-transform-scale">Restart</button>
                 <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
                 <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
               </div>
-              <pre class="terminal" aria-live="polite"></pre>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Original / libsdl / usage-python3-pygame-transform-scale"></pre>
             </div>
           </div>
         </details>
@@ -450,31 +467,32 @@
           <summary>
             <span class="case-title">
               <strong>Pygame key event dispatch</strong>
-              <span class="case-id">original / libsdl / usage-python3-pygame-key-event</span>
+              <span class="case-id">Original / libsdl / usage-python3-pygame-key-event</span>
             </span>
-            <span class="status-pill status-passed">Passed</span>
+            <span class="status-pill status-passed" aria-label="Original / libsdl / usage-python3-pygame-key-event status: Passed">Passed</span>
           </summary>
           <div class="case-body">
             <p>Posts a Pygame keydown event and verifies the SDL-backed queue returns the same key.</p>
             <dl class="case-meta">
+              <div><dt>Run</dt><dd>Original</dd></div>
               <div><dt>Kind</dt><dd>usage</dd></div>
               <div><dt>Client</dt><dd>python3-pygame</dd></div>
               <div><dt>Duration</dt><dd>0.00s</dd></div>
               <div><dt>Tags</dt><dd class="tags"><span>usage</span> <span>headless</span> <span>python</span></dd></div>
             </dl>
             <div class="case-actions">
-              <a class="log-link" href="../evidence/original/logs/libsdl/usage-python3-pygame-key-event.log">Log</a>
-              <button type="button" class="play-button js-load-cast" data-cast="../evidence/original/casts/libsdl/usage-python3-pygame-key-event.cast">Play</button>
+              <a class="log-link" href="../evidence/original/logs/libsdl/usage-python3-pygame-key-event.log" aria-label="Open log for Original / libsdl / usage-python3-pygame-key-event">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/original/casts/libsdl/usage-python3-pygame-key-event.cast" aria-label="Play cast for Original / libsdl / usage-python3-pygame-key-event">Play</button>
             </div>
             <div class="cast-player" data-player>
               <div class="player-controls">
-                <button type="button" class="js-player-play">Play</button>
-                <button type="button" class="js-player-pause">Pause</button>
-                <button type="button" class="js-player-restart">Restart</button>
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Original / libsdl / usage-python3-pygame-key-event">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Original / libsdl / usage-python3-pygame-key-event">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Original / libsdl / usage-python3-pygame-key-event">Restart</button>
                 <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
                 <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
               </div>
-              <pre class="terminal" aria-live="polite"></pre>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Original / libsdl / usage-python3-pygame-key-event"></pre>
             </div>
           </div>
         </details>
@@ -482,31 +500,32 @@
           <summary>
             <span class="case-title">
               <strong>Pygame mask collision</strong>
-              <span class="case-id">original / libsdl / usage-python3-pygame-mask-collision</span>
+              <span class="case-id">Original / libsdl / usage-python3-pygame-mask-collision</span>
             </span>
-            <span class="status-pill status-passed">Passed</span>
+            <span class="status-pill status-passed" aria-label="Original / libsdl / usage-python3-pygame-mask-collision status: Passed">Passed</span>
           </summary>
           <div class="case-body">
             <p>Builds Pygame surface masks and checks the SDL-backed overlap result for intersecting sprites.</p>
             <dl class="case-meta">
+              <div><dt>Run</dt><dd>Original</dd></div>
               <div><dt>Kind</dt><dd>usage</dd></div>
               <div><dt>Client</dt><dd>python3-pygame</dd></div>
               <div><dt>Duration</dt><dd>0.00s</dd></div>
               <div><dt>Tags</dt><dd class="tags"><span>usage</span> <span>headless</span> <span>python</span></dd></div>
             </dl>
             <div class="case-actions">
-              <a class="log-link" href="../evidence/original/logs/libsdl/usage-python3-pygame-mask-collision.log">Log</a>
-              <button type="button" class="play-button js-load-cast" data-cast="../evidence/original/casts/libsdl/usage-python3-pygame-mask-collision.cast">Play</button>
+              <a class="log-link" href="../evidence/original/logs/libsdl/usage-python3-pygame-mask-collision.log" aria-label="Open log for Original / libsdl / usage-python3-pygame-mask-collision">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/original/casts/libsdl/usage-python3-pygame-mask-collision.cast" aria-label="Play cast for Original / libsdl / usage-python3-pygame-mask-collision">Play</button>
             </div>
             <div class="cast-player" data-player>
               <div class="player-controls">
-                <button type="button" class="js-player-play">Play</button>
-                <button type="button" class="js-player-pause">Pause</button>
-                <button type="button" class="js-player-restart">Restart</button>
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Original / libsdl / usage-python3-pygame-mask-collision">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Original / libsdl / usage-python3-pygame-mask-collision">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Original / libsdl / usage-python3-pygame-mask-collision">Restart</button>
                 <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
                 <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
               </div>
-              <pre class="terminal" aria-live="polite"></pre>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Original / libsdl / usage-python3-pygame-mask-collision"></pre>
             </div>
           </div>
         </details>
@@ -514,31 +533,32 @@
           <summary>
             <span class="case-title">
               <strong>SDL version query compile</strong>
-              <span class="case-id">port-04-test / libsdl / version-query-compile</span>
+              <span class="case-id">Port / libsdl / version-query-compile</span>
             </span>
-            <span class="status-pill status-passed">Passed</span>
+            <span class="status-pill status-passed" aria-label="Port / libsdl / version-query-compile status: Passed">Passed</span>
           </summary>
           <div class="case-body">
             <p>Compiles a small SDL program that reports version and platform details.</p>
             <dl class="case-meta">
+              <div><dt>Run</dt><dd>Port</dd></div>
               <div><dt>Kind</dt><dd>source</dd></div>
               <div><dt>Client</dt><dd>none</dd></div>
               <div><dt>Duration</dt><dd>0.00s</dd></div>
               <div><dt>Tags</dt><dd class="tags"><span>api</span> <span>compile</span></dd></div>
             </dl>
             <div class="case-actions">
-              <a class="log-link" href="../evidence/port-04-test/logs/libsdl/version-query-compile.log">Log</a>
-              <button type="button" class="play-button js-load-cast" data-cast="../evidence/port-04-test/casts/libsdl/version-query-compile.cast">Play</button>
+              <a class="log-link" href="../evidence/port-04-test/logs/libsdl/version-query-compile.log" aria-label="Open log for Port / libsdl / version-query-compile">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/port-04-test/casts/libsdl/version-query-compile.cast" aria-label="Play cast for Port / libsdl / version-query-compile">Play</button>
             </div>
             <div class="cast-player" data-player>
               <div class="player-controls">
-                <button type="button" class="js-player-play">Play</button>
-                <button type="button" class="js-player-pause">Pause</button>
-                <button type="button" class="js-player-restart">Restart</button>
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Port / libsdl / version-query-compile">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Port / libsdl / version-query-compile">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Port / libsdl / version-query-compile">Restart</button>
                 <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
                 <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
               </div>
-              <pre class="terminal" aria-live="polite"></pre>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Port / libsdl / version-query-compile"></pre>
             </div>
           </div>
         </details>
@@ -546,31 +566,32 @@
           <summary>
             <span class="case-title">
               <strong>Headless event timer behavior</strong>
-              <span class="case-id">port-04-test / libsdl / headless-event-timer</span>
+              <span class="case-id">Port / libsdl / headless-event-timer</span>
             </span>
-            <span class="status-pill status-passed">Passed</span>
+            <span class="status-pill status-passed" aria-label="Port / libsdl / headless-event-timer status: Passed">Passed</span>
           </summary>
           <div class="case-body">
             <p>Runs SDL timer and event APIs under dummy video settings.</p>
             <dl class="case-meta">
+              <div><dt>Run</dt><dd>Port</dd></div>
               <div><dt>Kind</dt><dd>source</dd></div>
               <div><dt>Client</dt><dd>none</dd></div>
               <div><dt>Duration</dt><dd>0.00s</dd></div>
               <div><dt>Tags</dt><dd class="tags"><span>api</span> <span>event</span></dd></div>
             </dl>
             <div class="case-actions">
-              <a class="log-link" href="../evidence/port-04-test/logs/libsdl/headless-event-timer.log">Log</a>
-              <button type="button" class="play-button js-load-cast" data-cast="../evidence/port-04-test/casts/libsdl/headless-event-timer.cast">Play</button>
+              <a class="log-link" href="../evidence/port-04-test/logs/libsdl/headless-event-timer.log" aria-label="Open log for Port / libsdl / headless-event-timer">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/port-04-test/casts/libsdl/headless-event-timer.cast" aria-label="Play cast for Port / libsdl / headless-event-timer">Play</button>
             </div>
             <div class="cast-player" data-player>
               <div class="player-controls">
-                <button type="button" class="js-player-play">Play</button>
-                <button type="button" class="js-player-pause">Pause</button>
-                <button type="button" class="js-player-restart">Restart</button>
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Port / libsdl / headless-event-timer">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Port / libsdl / headless-event-timer">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Port / libsdl / headless-event-timer">Restart</button>
                 <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
                 <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
               </div>
-              <pre class="terminal" aria-live="polite"></pre>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Port / libsdl / headless-event-timer"></pre>
             </div>
           </div>
         </details>
@@ -578,31 +599,32 @@
           <summary>
             <span class="case-title">
               <strong>Surface pixel format blit</strong>
-              <span class="case-id">port-04-test / libsdl / surface-blit-pixel-format</span>
+              <span class="case-id">Port / libsdl / surface-blit-pixel-format</span>
             </span>
-            <span class="status-pill status-passed">Passed</span>
+            <span class="status-pill status-passed" aria-label="Port / libsdl / surface-blit-pixel-format status: Passed">Passed</span>
           </summary>
           <div class="case-body">
             <p>Creates RGB surfaces, fills pixels, and blits under SDL software surfaces.</p>
             <dl class="case-meta">
+              <div><dt>Run</dt><dd>Port</dd></div>
               <div><dt>Kind</dt><dd>source</dd></div>
               <div><dt>Client</dt><dd>none</dd></div>
               <div><dt>Duration</dt><dd>0.00s</dd></div>
               <div><dt>Tags</dt><dd class="tags"><span>api</span> <span>surface</span></dd></div>
             </dl>
             <div class="case-actions">
-              <a class="log-link" href="../evidence/port-04-test/logs/libsdl/surface-blit-pixel-format.log">Log</a>
-              <button type="button" class="play-button js-load-cast" data-cast="../evidence/port-04-test/casts/libsdl/surface-blit-pixel-format.cast">Play</button>
+              <a class="log-link" href="../evidence/port-04-test/logs/libsdl/surface-blit-pixel-format.log" aria-label="Open log for Port / libsdl / surface-blit-pixel-format">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/port-04-test/casts/libsdl/surface-blit-pixel-format.cast" aria-label="Play cast for Port / libsdl / surface-blit-pixel-format">Play</button>
             </div>
             <div class="cast-player" data-player>
               <div class="player-controls">
-                <button type="button" class="js-player-play">Play</button>
-                <button type="button" class="js-player-pause">Pause</button>
-                <button type="button" class="js-player-restart">Restart</button>
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Port / libsdl / surface-blit-pixel-format">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Port / libsdl / surface-blit-pixel-format">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Port / libsdl / surface-blit-pixel-format">Restart</button>
                 <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
                 <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
               </div>
-              <pre class="terminal" aria-live="polite"></pre>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Port / libsdl / surface-blit-pixel-format"></pre>
             </div>
           </div>
         </details>
@@ -610,31 +632,32 @@
           <summary>
             <span class="case-title">
               <strong>Dummy audio queue behavior</strong>
-              <span class="case-id">port-04-test / libsdl / dummy-audio-queue</span>
+              <span class="case-id">Port / libsdl / dummy-audio-queue</span>
             </span>
-            <span class="status-pill status-passed">Passed</span>
+            <span class="status-pill status-passed" aria-label="Port / libsdl / dummy-audio-queue status: Passed">Passed</span>
           </summary>
           <div class="case-body">
             <p>Opens the SDL dummy audio driver and queues sample bytes.</p>
             <dl class="case-meta">
+              <div><dt>Run</dt><dd>Port</dd></div>
               <div><dt>Kind</dt><dd>source</dd></div>
               <div><dt>Client</dt><dd>none</dd></div>
               <div><dt>Duration</dt><dd>0.00s</dd></div>
               <div><dt>Tags</dt><dd class="tags"><span>api</span> <span>audio</span></dd></div>
             </dl>
             <div class="case-actions">
-              <a class="log-link" href="../evidence/port-04-test/logs/libsdl/dummy-audio-queue.log">Log</a>
-              <button type="button" class="play-button js-load-cast" data-cast="../evidence/port-04-test/casts/libsdl/dummy-audio-queue.cast">Play</button>
+              <a class="log-link" href="../evidence/port-04-test/logs/libsdl/dummy-audio-queue.log" aria-label="Open log for Port / libsdl / dummy-audio-queue">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/port-04-test/casts/libsdl/dummy-audio-queue.cast" aria-label="Play cast for Port / libsdl / dummy-audio-queue">Play</button>
             </div>
             <div class="cast-player" data-player>
               <div class="player-controls">
-                <button type="button" class="js-player-play">Play</button>
-                <button type="button" class="js-player-pause">Pause</button>
-                <button type="button" class="js-player-restart">Restart</button>
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Port / libsdl / dummy-audio-queue">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Port / libsdl / dummy-audio-queue">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Port / libsdl / dummy-audio-queue">Restart</button>
                 <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
                 <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
               </div>
-              <pre class="terminal" aria-live="polite"></pre>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Port / libsdl / dummy-audio-queue"></pre>
             </div>
           </div>
         </details>
@@ -642,31 +665,32 @@
           <summary>
             <span class="case-title">
               <strong>Installed SDL test binary</strong>
-              <span class="case-id">port-04-test / libsdl / installed-test-binary</span>
+              <span class="case-id">Port / libsdl / installed-test-binary</span>
             </span>
-            <span class="status-pill status-passed">Passed</span>
+            <span class="status-pill status-passed" aria-label="Port / libsdl / installed-test-binary status: Passed">Passed</span>
           </summary>
           <div class="case-body">
             <p>Runs one packaged SDL installed test binary under dummy drivers.</p>
             <dl class="case-meta">
+              <div><dt>Run</dt><dd>Port</dd></div>
               <div><dt>Kind</dt><dd>source</dd></div>
               <div><dt>Client</dt><dd>none</dd></div>
               <div><dt>Duration</dt><dd>0.00s</dd></div>
               <div><dt>Tags</dt><dd class="tags"><span>cli</span> <span>installed-test</span></dd></div>
             </dl>
             <div class="case-actions">
-              <a class="log-link" href="../evidence/port-04-test/logs/libsdl/installed-test-binary.log">Log</a>
-              <button type="button" class="play-button js-load-cast" data-cast="../evidence/port-04-test/casts/libsdl/installed-test-binary.cast">Play</button>
+              <a class="log-link" href="../evidence/port-04-test/logs/libsdl/installed-test-binary.log" aria-label="Open log for Port / libsdl / installed-test-binary">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/port-04-test/casts/libsdl/installed-test-binary.cast" aria-label="Play cast for Port / libsdl / installed-test-binary">Play</button>
             </div>
             <div class="cast-player" data-player>
               <div class="player-controls">
-                <button type="button" class="js-player-play">Play</button>
-                <button type="button" class="js-player-pause">Pause</button>
-                <button type="button" class="js-player-restart">Restart</button>
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Port / libsdl / installed-test-binary">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Port / libsdl / installed-test-binary">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Port / libsdl / installed-test-binary">Restart</button>
                 <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
                 <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
               </div>
-              <pre class="terminal" aria-live="polite"></pre>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Port / libsdl / installed-test-binary"></pre>
             </div>
           </div>
         </details>
@@ -674,31 +698,32 @@
           <summary>
             <span class="case-title">
               <strong>Pygame surface fill</strong>
-              <span class="case-id">port-04-test / libsdl / usage-python3-pygame-surface-fill</span>
+              <span class="case-id">Port / libsdl / usage-python3-pygame-surface-fill</span>
             </span>
-            <span class="status-pill status-passed">Passed</span>
+            <span class="status-pill status-passed" aria-label="Port / libsdl / usage-python3-pygame-surface-fill status: Passed">Passed</span>
           </summary>
           <div class="case-body">
             <p>Uses Pygame to run SDL surface fill behavior.</p>
             <dl class="case-meta">
+              <div><dt>Run</dt><dd>Port</dd></div>
               <div><dt>Kind</dt><dd>usage</dd></div>
               <div><dt>Client</dt><dd>python3-pygame</dd></div>
               <div><dt>Duration</dt><dd>0.00s</dd></div>
               <div><dt>Tags</dt><dd class="tags"><span>usage</span> <span>headless</span> <span>python</span></dd></div>
             </dl>
             <div class="case-actions">
-              <a class="log-link" href="../evidence/port-04-test/logs/libsdl/usage-python3-pygame-surface-fill.log">Log</a>
-              <button type="button" class="play-button js-load-cast" data-cast="../evidence/port-04-test/casts/libsdl/usage-python3-pygame-surface-fill.cast">Play</button>
+              <a class="log-link" href="../evidence/port-04-test/logs/libsdl/usage-python3-pygame-surface-fill.log" aria-label="Open log for Port / libsdl / usage-python3-pygame-surface-fill">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/port-04-test/casts/libsdl/usage-python3-pygame-surface-fill.cast" aria-label="Play cast for Port / libsdl / usage-python3-pygame-surface-fill">Play</button>
             </div>
             <div class="cast-player" data-player>
               <div class="player-controls">
-                <button type="button" class="js-player-play">Play</button>
-                <button type="button" class="js-player-pause">Pause</button>
-                <button type="button" class="js-player-restart">Restart</button>
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Port / libsdl / usage-python3-pygame-surface-fill">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Port / libsdl / usage-python3-pygame-surface-fill">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Port / libsdl / usage-python3-pygame-surface-fill">Restart</button>
                 <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
                 <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
               </div>
-              <pre class="terminal" aria-live="polite"></pre>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Port / libsdl / usage-python3-pygame-surface-fill"></pre>
             </div>
           </div>
         </details>
@@ -706,31 +731,32 @@
           <summary>
             <span class="case-title">
               <strong>Pygame image save</strong>
-              <span class="case-id">port-04-test / libsdl / usage-python3-pygame-image-save</span>
+              <span class="case-id">Port / libsdl / usage-python3-pygame-image-save</span>
             </span>
-            <span class="status-pill status-passed">Passed</span>
+            <span class="status-pill status-passed" aria-label="Port / libsdl / usage-python3-pygame-image-save status: Passed">Passed</span>
           </summary>
           <div class="case-body">
             <p>Uses Pygame to run SDL image save behavior.</p>
             <dl class="case-meta">
+              <div><dt>Run</dt><dd>Port</dd></div>
               <div><dt>Kind</dt><dd>usage</dd></div>
               <div><dt>Client</dt><dd>python3-pygame</dd></div>
               <div><dt>Duration</dt><dd>0.00s</dd></div>
               <div><dt>Tags</dt><dd class="tags"><span>usage</span> <span>headless</span> <span>python</span></dd></div>
             </dl>
             <div class="case-actions">
-              <a class="log-link" href="../evidence/port-04-test/logs/libsdl/usage-python3-pygame-image-save.log">Log</a>
-              <button type="button" class="play-button js-load-cast" data-cast="../evidence/port-04-test/casts/libsdl/usage-python3-pygame-image-save.cast">Play</button>
+              <a class="log-link" href="../evidence/port-04-test/logs/libsdl/usage-python3-pygame-image-save.log" aria-label="Open log for Port / libsdl / usage-python3-pygame-image-save">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/port-04-test/casts/libsdl/usage-python3-pygame-image-save.cast" aria-label="Play cast for Port / libsdl / usage-python3-pygame-image-save">Play</button>
             </div>
             <div class="cast-player" data-player>
               <div class="player-controls">
-                <button type="button" class="js-player-play">Play</button>
-                <button type="button" class="js-player-pause">Pause</button>
-                <button type="button" class="js-player-restart">Restart</button>
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Port / libsdl / usage-python3-pygame-image-save">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Port / libsdl / usage-python3-pygame-image-save">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Port / libsdl / usage-python3-pygame-image-save">Restart</button>
                 <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
                 <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
               </div>
-              <pre class="terminal" aria-live="polite"></pre>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Port / libsdl / usage-python3-pygame-image-save"></pre>
             </div>
           </div>
         </details>
@@ -738,31 +764,32 @@
           <summary>
             <span class="case-title">
               <strong>Pygame event queue</strong>
-              <span class="case-id">port-04-test / libsdl / usage-python3-pygame-event-queue</span>
+              <span class="case-id">Port / libsdl / usage-python3-pygame-event-queue</span>
             </span>
-            <span class="status-pill status-passed">Passed</span>
+            <span class="status-pill status-passed" aria-label="Port / libsdl / usage-python3-pygame-event-queue status: Passed">Passed</span>
           </summary>
           <div class="case-body">
             <p>Uses Pygame to run SDL event queue behavior.</p>
             <dl class="case-meta">
+              <div><dt>Run</dt><dd>Port</dd></div>
               <div><dt>Kind</dt><dd>usage</dd></div>
               <div><dt>Client</dt><dd>python3-pygame</dd></div>
               <div><dt>Duration</dt><dd>0.00s</dd></div>
               <div><dt>Tags</dt><dd class="tags"><span>usage</span> <span>headless</span> <span>python</span></dd></div>
             </dl>
             <div class="case-actions">
-              <a class="log-link" href="../evidence/port-04-test/logs/libsdl/usage-python3-pygame-event-queue.log">Log</a>
-              <button type="button" class="play-button js-load-cast" data-cast="../evidence/port-04-test/casts/libsdl/usage-python3-pygame-event-queue.cast">Play</button>
+              <a class="log-link" href="../evidence/port-04-test/logs/libsdl/usage-python3-pygame-event-queue.log" aria-label="Open log for Port / libsdl / usage-python3-pygame-event-queue">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/port-04-test/casts/libsdl/usage-python3-pygame-event-queue.cast" aria-label="Play cast for Port / libsdl / usage-python3-pygame-event-queue">Play</button>
             </div>
             <div class="cast-player" data-player>
               <div class="player-controls">
-                <button type="button" class="js-player-play">Play</button>
-                <button type="button" class="js-player-pause">Pause</button>
-                <button type="button" class="js-player-restart">Restart</button>
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Port / libsdl / usage-python3-pygame-event-queue">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Port / libsdl / usage-python3-pygame-event-queue">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Port / libsdl / usage-python3-pygame-event-queue">Restart</button>
                 <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
                 <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
               </div>
-              <pre class="terminal" aria-live="polite"></pre>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Port / libsdl / usage-python3-pygame-event-queue"></pre>
             </div>
           </div>
         </details>
@@ -770,31 +797,32 @@
           <summary>
             <span class="case-title">
               <strong>Pygame audio dummy</strong>
-              <span class="case-id">port-04-test / libsdl / usage-python3-pygame-audio-dummy</span>
+              <span class="case-id">Port / libsdl / usage-python3-pygame-audio-dummy</span>
             </span>
-            <span class="status-pill status-passed">Passed</span>
+            <span class="status-pill status-passed" aria-label="Port / libsdl / usage-python3-pygame-audio-dummy status: Passed">Passed</span>
           </summary>
           <div class="case-body">
             <p>Uses Pygame to run SDL audio dummy behavior.</p>
             <dl class="case-meta">
+              <div><dt>Run</dt><dd>Port</dd></div>
               <div><dt>Kind</dt><dd>usage</dd></div>
               <div><dt>Client</dt><dd>python3-pygame</dd></div>
               <div><dt>Duration</dt><dd>0.00s</dd></div>
               <div><dt>Tags</dt><dd class="tags"><span>usage</span> <span>headless</span> <span>python</span></dd></div>
             </dl>
             <div class="case-actions">
-              <a class="log-link" href="../evidence/port-04-test/logs/libsdl/usage-python3-pygame-audio-dummy.log">Log</a>
-              <button type="button" class="play-button js-load-cast" data-cast="../evidence/port-04-test/casts/libsdl/usage-python3-pygame-audio-dummy.cast">Play</button>
+              <a class="log-link" href="../evidence/port-04-test/logs/libsdl/usage-python3-pygame-audio-dummy.log" aria-label="Open log for Port / libsdl / usage-python3-pygame-audio-dummy">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/port-04-test/casts/libsdl/usage-python3-pygame-audio-dummy.cast" aria-label="Play cast for Port / libsdl / usage-python3-pygame-audio-dummy">Play</button>
             </div>
             <div class="cast-player" data-player>
               <div class="player-controls">
-                <button type="button" class="js-player-play">Play</button>
-                <button type="button" class="js-player-pause">Pause</button>
-                <button type="button" class="js-player-restart">Restart</button>
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Port / libsdl / usage-python3-pygame-audio-dummy">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Port / libsdl / usage-python3-pygame-audio-dummy">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Port / libsdl / usage-python3-pygame-audio-dummy">Restart</button>
                 <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
                 <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
               </div>
-              <pre class="terminal" aria-live="polite"></pre>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Port / libsdl / usage-python3-pygame-audio-dummy"></pre>
             </div>
           </div>
         </details>
@@ -802,31 +830,32 @@
           <summary>
             <span class="case-title">
               <strong>Pygame xvfb display</strong>
-              <span class="case-id">port-04-test / libsdl / usage-python3-pygame-xvfb-display</span>
+              <span class="case-id">Port / libsdl / usage-python3-pygame-xvfb-display</span>
             </span>
-            <span class="status-pill status-passed">Passed</span>
+            <span class="status-pill status-passed" aria-label="Port / libsdl / usage-python3-pygame-xvfb-display status: Passed">Passed</span>
           </summary>
           <div class="case-body">
             <p>Uses Pygame to run SDL xvfb display behavior.</p>
             <dl class="case-meta">
+              <div><dt>Run</dt><dd>Port</dd></div>
               <div><dt>Kind</dt><dd>usage</dd></div>
               <div><dt>Client</dt><dd>python3-pygame</dd></div>
               <div><dt>Duration</dt><dd>0.00s</dd></div>
               <div><dt>Tags</dt><dd class="tags"><span>usage</span> <span>gui</span> <span>python</span></dd></div>
             </dl>
             <div class="case-actions">
-              <a class="log-link" href="../evidence/port-04-test/logs/libsdl/usage-python3-pygame-xvfb-display.log">Log</a>
-              <button type="button" class="play-button js-load-cast" data-cast="../evidence/port-04-test/casts/libsdl/usage-python3-pygame-xvfb-display.cast">Play</button>
+              <a class="log-link" href="../evidence/port-04-test/logs/libsdl/usage-python3-pygame-xvfb-display.log" aria-label="Open log for Port / libsdl / usage-python3-pygame-xvfb-display">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/port-04-test/casts/libsdl/usage-python3-pygame-xvfb-display.cast" aria-label="Play cast for Port / libsdl / usage-python3-pygame-xvfb-display">Play</button>
             </div>
             <div class="cast-player" data-player>
               <div class="player-controls">
-                <button type="button" class="js-player-play">Play</button>
-                <button type="button" class="js-player-pause">Pause</button>
-                <button type="button" class="js-player-restart">Restart</button>
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Port / libsdl / usage-python3-pygame-xvfb-display">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Port / libsdl / usage-python3-pygame-xvfb-display">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Port / libsdl / usage-python3-pygame-xvfb-display">Restart</button>
                 <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
                 <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
               </div>
-              <pre class="terminal" aria-live="polite"></pre>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Port / libsdl / usage-python3-pygame-xvfb-display"></pre>
             </div>
           </div>
         </details>
@@ -834,31 +863,32 @@
           <summary>
             <span class="case-title">
               <strong>Pygame draw rect</strong>
-              <span class="case-id">port-04-test / libsdl / usage-python3-pygame-draw-rect</span>
+              <span class="case-id">Port / libsdl / usage-python3-pygame-draw-rect</span>
             </span>
-            <span class="status-pill status-passed">Passed</span>
+            <span class="status-pill status-passed" aria-label="Port / libsdl / usage-python3-pygame-draw-rect status: Passed">Passed</span>
           </summary>
           <div class="case-body">
             <p>Uses Pygame to run SDL draw rect behavior.</p>
             <dl class="case-meta">
+              <div><dt>Run</dt><dd>Port</dd></div>
               <div><dt>Kind</dt><dd>usage</dd></div>
               <div><dt>Client</dt><dd>python3-pygame</dd></div>
               <div><dt>Duration</dt><dd>0.00s</dd></div>
               <div><dt>Tags</dt><dd class="tags"><span>usage</span> <span>headless</span> <span>python</span></dd></div>
             </dl>
             <div class="case-actions">
-              <a class="log-link" href="../evidence/port-04-test/logs/libsdl/usage-python3-pygame-draw-rect.log">Log</a>
-              <button type="button" class="play-button js-load-cast" data-cast="../evidence/port-04-test/casts/libsdl/usage-python3-pygame-draw-rect.cast">Play</button>
+              <a class="log-link" href="../evidence/port-04-test/logs/libsdl/usage-python3-pygame-draw-rect.log" aria-label="Open log for Port / libsdl / usage-python3-pygame-draw-rect">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/port-04-test/casts/libsdl/usage-python3-pygame-draw-rect.cast" aria-label="Play cast for Port / libsdl / usage-python3-pygame-draw-rect">Play</button>
             </div>
             <div class="cast-player" data-player>
               <div class="player-controls">
-                <button type="button" class="js-player-play">Play</button>
-                <button type="button" class="js-player-pause">Pause</button>
-                <button type="button" class="js-player-restart">Restart</button>
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Port / libsdl / usage-python3-pygame-draw-rect">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Port / libsdl / usage-python3-pygame-draw-rect">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Port / libsdl / usage-python3-pygame-draw-rect">Restart</button>
                 <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
                 <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
               </div>
-              <pre class="terminal" aria-live="polite"></pre>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Port / libsdl / usage-python3-pygame-draw-rect"></pre>
             </div>
           </div>
         </details>
@@ -866,31 +896,32 @@
           <summary>
             <span class="case-title">
               <strong>Pygame font module</strong>
-              <span class="case-id">port-04-test / libsdl / usage-python3-pygame-font-module</span>
+              <span class="case-id">Port / libsdl / usage-python3-pygame-font-module</span>
             </span>
-            <span class="status-pill status-passed">Passed</span>
+            <span class="status-pill status-passed" aria-label="Port / libsdl / usage-python3-pygame-font-module status: Passed">Passed</span>
           </summary>
           <div class="case-body">
             <p>Uses Pygame to run SDL font module behavior.</p>
             <dl class="case-meta">
+              <div><dt>Run</dt><dd>Port</dd></div>
               <div><dt>Kind</dt><dd>usage</dd></div>
               <div><dt>Client</dt><dd>python3-pygame</dd></div>
               <div><dt>Duration</dt><dd>0.00s</dd></div>
               <div><dt>Tags</dt><dd class="tags"><span>usage</span> <span>headless</span> <span>python</span></dd></div>
             </dl>
             <div class="case-actions">
-              <a class="log-link" href="../evidence/port-04-test/logs/libsdl/usage-python3-pygame-font-module.log">Log</a>
-              <button type="button" class="play-button js-load-cast" data-cast="../evidence/port-04-test/casts/libsdl/usage-python3-pygame-font-module.cast">Play</button>
+              <a class="log-link" href="../evidence/port-04-test/logs/libsdl/usage-python3-pygame-font-module.log" aria-label="Open log for Port / libsdl / usage-python3-pygame-font-module">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/port-04-test/casts/libsdl/usage-python3-pygame-font-module.cast" aria-label="Play cast for Port / libsdl / usage-python3-pygame-font-module">Play</button>
             </div>
             <div class="cast-player" data-player>
               <div class="player-controls">
-                <button type="button" class="js-player-play">Play</button>
-                <button type="button" class="js-player-pause">Pause</button>
-                <button type="button" class="js-player-restart">Restart</button>
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Port / libsdl / usage-python3-pygame-font-module">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Port / libsdl / usage-python3-pygame-font-module">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Port / libsdl / usage-python3-pygame-font-module">Restart</button>
                 <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
                 <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
               </div>
-              <pre class="terminal" aria-live="polite"></pre>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Port / libsdl / usage-python3-pygame-font-module"></pre>
             </div>
           </div>
         </details>
@@ -898,31 +929,32 @@
           <summary>
             <span class="case-title">
               <strong>Pygame transform scale</strong>
-              <span class="case-id">port-04-test / libsdl / usage-python3-pygame-transform-scale</span>
+              <span class="case-id">Port / libsdl / usage-python3-pygame-transform-scale</span>
             </span>
-            <span class="status-pill status-passed">Passed</span>
+            <span class="status-pill status-passed" aria-label="Port / libsdl / usage-python3-pygame-transform-scale status: Passed">Passed</span>
           </summary>
           <div class="case-body">
             <p>Uses Pygame to run SDL transform scale behavior.</p>
             <dl class="case-meta">
+              <div><dt>Run</dt><dd>Port</dd></div>
               <div><dt>Kind</dt><dd>usage</dd></div>
               <div><dt>Client</dt><dd>python3-pygame</dd></div>
               <div><dt>Duration</dt><dd>0.00s</dd></div>
               <div><dt>Tags</dt><dd class="tags"><span>usage</span> <span>headless</span> <span>python</span></dd></div>
             </dl>
             <div class="case-actions">
-              <a class="log-link" href="../evidence/port-04-test/logs/libsdl/usage-python3-pygame-transform-scale.log">Log</a>
-              <button type="button" class="play-button js-load-cast" data-cast="../evidence/port-04-test/casts/libsdl/usage-python3-pygame-transform-scale.cast">Play</button>
+              <a class="log-link" href="../evidence/port-04-test/logs/libsdl/usage-python3-pygame-transform-scale.log" aria-label="Open log for Port / libsdl / usage-python3-pygame-transform-scale">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/port-04-test/casts/libsdl/usage-python3-pygame-transform-scale.cast" aria-label="Play cast for Port / libsdl / usage-python3-pygame-transform-scale">Play</button>
             </div>
             <div class="cast-player" data-player>
               <div class="player-controls">
-                <button type="button" class="js-player-play">Play</button>
-                <button type="button" class="js-player-pause">Pause</button>
-                <button type="button" class="js-player-restart">Restart</button>
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Port / libsdl / usage-python3-pygame-transform-scale">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Port / libsdl / usage-python3-pygame-transform-scale">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Port / libsdl / usage-python3-pygame-transform-scale">Restart</button>
                 <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
                 <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
               </div>
-              <pre class="terminal" aria-live="polite"></pre>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Port / libsdl / usage-python3-pygame-transform-scale"></pre>
             </div>
           </div>
         </details>
@@ -930,31 +962,32 @@
           <summary>
             <span class="case-title">
               <strong>Pygame key event dispatch</strong>
-              <span class="case-id">port-04-test / libsdl / usage-python3-pygame-key-event</span>
+              <span class="case-id">Port / libsdl / usage-python3-pygame-key-event</span>
             </span>
-            <span class="status-pill status-passed">Passed</span>
+            <span class="status-pill status-passed" aria-label="Port / libsdl / usage-python3-pygame-key-event status: Passed">Passed</span>
           </summary>
           <div class="case-body">
             <p>Posts a Pygame keydown event and verifies the SDL-backed queue returns the same key.</p>
             <dl class="case-meta">
+              <div><dt>Run</dt><dd>Port</dd></div>
               <div><dt>Kind</dt><dd>usage</dd></div>
               <div><dt>Client</dt><dd>python3-pygame</dd></div>
               <div><dt>Duration</dt><dd>0.00s</dd></div>
               <div><dt>Tags</dt><dd class="tags"><span>usage</span> <span>headless</span> <span>python</span></dd></div>
             </dl>
             <div class="case-actions">
-              <a class="log-link" href="../evidence/port-04-test/logs/libsdl/usage-python3-pygame-key-event.log">Log</a>
-              <button type="button" class="play-button js-load-cast" data-cast="../evidence/port-04-test/casts/libsdl/usage-python3-pygame-key-event.cast">Play</button>
+              <a class="log-link" href="../evidence/port-04-test/logs/libsdl/usage-python3-pygame-key-event.log" aria-label="Open log for Port / libsdl / usage-python3-pygame-key-event">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/port-04-test/casts/libsdl/usage-python3-pygame-key-event.cast" aria-label="Play cast for Port / libsdl / usage-python3-pygame-key-event">Play</button>
             </div>
             <div class="cast-player" data-player>
               <div class="player-controls">
-                <button type="button" class="js-player-play">Play</button>
-                <button type="button" class="js-player-pause">Pause</button>
-                <button type="button" class="js-player-restart">Restart</button>
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Port / libsdl / usage-python3-pygame-key-event">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Port / libsdl / usage-python3-pygame-key-event">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Port / libsdl / usage-python3-pygame-key-event">Restart</button>
                 <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
                 <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
               </div>
-              <pre class="terminal" aria-live="polite"></pre>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Port / libsdl / usage-python3-pygame-key-event"></pre>
             </div>
           </div>
         </details>
@@ -962,31 +995,32 @@
           <summary>
             <span class="case-title">
               <strong>Pygame mask collision</strong>
-              <span class="case-id">port-04-test / libsdl / usage-python3-pygame-mask-collision</span>
+              <span class="case-id">Port / libsdl / usage-python3-pygame-mask-collision</span>
             </span>
-            <span class="status-pill status-passed">Passed</span>
+            <span class="status-pill status-passed" aria-label="Port / libsdl / usage-python3-pygame-mask-collision status: Passed">Passed</span>
           </summary>
           <div class="case-body">
             <p>Builds Pygame surface masks and checks the SDL-backed overlap result for intersecting sprites.</p>
             <dl class="case-meta">
+              <div><dt>Run</dt><dd>Port</dd></div>
               <div><dt>Kind</dt><dd>usage</dd></div>
               <div><dt>Client</dt><dd>python3-pygame</dd></div>
               <div><dt>Duration</dt><dd>0.00s</dd></div>
               <div><dt>Tags</dt><dd class="tags"><span>usage</span> <span>headless</span> <span>python</span></dd></div>
             </dl>
             <div class="case-actions">
-              <a class="log-link" href="../evidence/port-04-test/logs/libsdl/usage-python3-pygame-mask-collision.log">Log</a>
-              <button type="button" class="play-button js-load-cast" data-cast="../evidence/port-04-test/casts/libsdl/usage-python3-pygame-mask-collision.cast">Play</button>
+              <a class="log-link" href="../evidence/port-04-test/logs/libsdl/usage-python3-pygame-mask-collision.log" aria-label="Open log for Port / libsdl / usage-python3-pygame-mask-collision">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/port-04-test/casts/libsdl/usage-python3-pygame-mask-collision.cast" aria-label="Play cast for Port / libsdl / usage-python3-pygame-mask-collision">Play</button>
             </div>
             <div class="cast-player" data-player>
               <div class="player-controls">
-                <button type="button" class="js-player-play">Play</button>
-                <button type="button" class="js-player-pause">Pause</button>
-                <button type="button" class="js-player-restart">Restart</button>
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Port / libsdl / usage-python3-pygame-mask-collision">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Port / libsdl / usage-python3-pygame-mask-collision">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Port / libsdl / usage-python3-pygame-mask-collision">Restart</button>
                 <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
                 <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
               </div>
-              <pre class="terminal" aria-live="polite"></pre>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Port / libsdl / usage-python3-pygame-mask-collision"></pre>
             </div>
           </div>
         </details>

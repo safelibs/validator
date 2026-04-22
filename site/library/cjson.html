@@ -9,56 +9,61 @@
     <script defer src="../assets/player.js"></script>
   </head>
   <body data-site-data="../site-data.json">
+    <a class="skip-link" href="#tests-heading">Skip to tests</a>
     <main>
-      <section class="dashboard" aria-label="Validation dashboard">
-        <h1>cjson Validation</h1>
+      <nav class="breadcrumb" aria-label="Breadcrumb"><a href="../index.html">All libraries</a></nav>
+      <section class="dashboard" aria-labelledby="dashboard-heading">
+        <h1 id="dashboard-heading">cjson Validation</h1>
         <div class="metric-grid">
-        <div class="metric" data-proof-total="libraries"><strong>19</strong><span>Libraries</span></div>
-        <div class="metric" data-proof-total="cases"><strong>576</strong><span>Cases</span></div>
-        <div class="metric" data-proof-total="source_cases"><strong>190</strong><span>Source</span></div>
-        <div class="metric" data-proof-total="usage_cases"><strong>386</strong><span>Usage</span></div>
-        <div class="metric" data-proof-total="passed"><strong>576</strong><span>Passed</span></div>
-        <div class="metric" data-proof-total="failed"><strong>0</strong><span>Failed</span></div>
-        <div class="metric" data-proof-total="casts"><strong>576 (100%)</strong><span>Casts</span></div>
+        <div class="metric" data-proof-total="libraries"><strong>1</strong><span>Libraries</span></div>
+        <div class="metric" data-proof-total="cases"><strong>15</strong><span>Tests</span></div>
+        <div class="metric" data-proof-total="source_cases"><strong>5</strong><span>Source tests</span></div>
+        <div class="metric" data-proof-total="usage_cases"><strong>10</strong><span>Usage tests</span></div>
+        <div class="metric" data-proof-total="passed"><strong>15 / 15</strong><span>Port tests passing</span></div>
+        <div class="metric" data-proof-total="failed"><strong>0</strong><span>Port tests failing</span></div>
+        <div class="metric" data-proof-total="casts"><strong>30 (100%)</strong><span>Evidence casts</span></div>
+        <div class="metric" data-proof-total="port_libraries"><strong>1 / 1</strong><span>Port libraries passing</span></div>
         </div>
       </section>
 
       <section class="controls" aria-label="Testcase filters">
-        <label class="search-label">Search <input id="search-input" type="search" autocomplete="off"></label>
+        <label class="search-label">Search <input id="search-input" type="search" autocomplete="off" name="search"></label>
+        <label>Run mode <select id="mode-filter" name="mode"><option value="all">All</option><option value="original">Original</option><option value="port-04-test">Port</option></select></label>
         <label>Status <select id="status-filter"><option value="all">All</option><option value="passed">Passed</option><option value="failed">Failed</option></select></label>
         <label>Kind <select id="kind-filter"><option value="all">All</option><option value="source">Source</option><option value="usage">Usage</option></select></label>
       </section>
-      <section class="testcases" aria-label="Testcases">
-        <h2>Testcases</h2>
+      <section id="testcases" class="testcases" aria-labelledby="tests-heading">
+        <h2 id="tests-heading">Tests</h2>
         <details class="case-row" data-library="cjson" data-testcase-id="parse-print-roundtrip" data-mode="original" data-kind="source" data-status="passed" data-player-cast="../evidence/original/casts/cjson/parse-print-roundtrip.cast" data-search="cjson parse-print-roundtrip original Parse and print JSON round trip Parses and prints representative JSON while preserving expected structure. source api roundtrip">
           <summary>
             <span class="case-title">
               <strong>Parse and print JSON round trip</strong>
-              <span class="case-id">original / cjson / parse-print-roundtrip</span>
+              <span class="case-id">Original / cjson / parse-print-roundtrip</span>
             </span>
-            <span class="status-pill status-passed">Passed</span>
+            <span class="status-pill status-passed" aria-label="Original / cjson / parse-print-roundtrip status: Passed">Passed</span>
           </summary>
           <div class="case-body">
             <p>Parses and prints representative JSON while preserving expected structure.</p>
             <dl class="case-meta">
+              <div><dt>Run</dt><dd>Original</dd></div>
               <div><dt>Kind</dt><dd>source</dd></div>
               <div><dt>Client</dt><dd>none</dd></div>
               <div><dt>Duration</dt><dd>0.00s</dd></div>
               <div><dt>Tags</dt><dd class="tags"><span>api</span> <span>roundtrip</span></dd></div>
             </dl>
             <div class="case-actions">
-              <a class="log-link" href="../evidence/original/logs/cjson/parse-print-roundtrip.log">Log</a>
-              <button type="button" class="play-button js-load-cast" data-cast="../evidence/original/casts/cjson/parse-print-roundtrip.cast">Play</button>
+              <a class="log-link" href="../evidence/original/logs/cjson/parse-print-roundtrip.log" aria-label="Open log for Original / cjson / parse-print-roundtrip">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/original/casts/cjson/parse-print-roundtrip.cast" aria-label="Play cast for Original / cjson / parse-print-roundtrip">Play</button>
             </div>
             <div class="cast-player" data-player>
               <div class="player-controls">
-                <button type="button" class="js-player-play">Play</button>
-                <button type="button" class="js-player-pause">Pause</button>
-                <button type="button" class="js-player-restart">Restart</button>
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Original / cjson / parse-print-roundtrip">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Original / cjson / parse-print-roundtrip">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Original / cjson / parse-print-roundtrip">Restart</button>
                 <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
                 <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
               </div>
-              <pre class="terminal" aria-live="polite"></pre>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Original / cjson / parse-print-roundtrip"></pre>
             </div>
           </div>
         </details>
@@ -66,31 +71,32 @@
           <summary>
             <span class="case-title">
               <strong>Minify JSON whitespace behavior</strong>
-              <span class="case-id">original / cjson / minify-whitespace</span>
+              <span class="case-id">Original / cjson / minify-whitespace</span>
             </span>
-            <span class="status-pill status-passed">Passed</span>
+            <span class="status-pill status-passed" aria-label="Original / cjson / minify-whitespace status: Passed">Passed</span>
           </summary>
           <div class="case-body">
             <p>Checks cJSON minification removes layout whitespace without altering string data.</p>
             <dl class="case-meta">
+              <div><dt>Run</dt><dd>Original</dd></div>
               <div><dt>Kind</dt><dd>source</dd></div>
               <div><dt>Client</dt><dd>none</dd></div>
               <div><dt>Duration</dt><dd>0.00s</dd></div>
               <div><dt>Tags</dt><dd class="tags"><span>api</span> <span>minify</span></dd></div>
             </dl>
             <div class="case-actions">
-              <a class="log-link" href="../evidence/original/logs/cjson/minify-whitespace.log">Log</a>
-              <button type="button" class="play-button js-load-cast" data-cast="../evidence/original/casts/cjson/minify-whitespace.cast">Play</button>
+              <a class="log-link" href="../evidence/original/logs/cjson/minify-whitespace.log" aria-label="Open log for Original / cjson / minify-whitespace">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/original/casts/cjson/minify-whitespace.cast" aria-label="Play cast for Original / cjson / minify-whitespace">Play</button>
             </div>
             <div class="cast-player" data-player>
               <div class="player-controls">
-                <button type="button" class="js-player-play">Play</button>
-                <button type="button" class="js-player-pause">Pause</button>
-                <button type="button" class="js-player-restart">Restart</button>
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Original / cjson / minify-whitespace">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Original / cjson / minify-whitespace">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Original / cjson / minify-whitespace">Restart</button>
                 <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
                 <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
               </div>
-              <pre class="terminal" aria-live="polite"></pre>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Original / cjson / minify-whitespace"></pre>
             </div>
           </div>
         </details>
@@ -98,31 +104,32 @@
           <summary>
             <span class="case-title">
               <strong>JSON pointer patch behavior</strong>
-              <span class="case-id">original / cjson / utils-patch-pointer</span>
+              <span class="case-id">Original / cjson / utils-patch-pointer</span>
             </span>
-            <span class="status-pill status-passed">Passed</span>
+            <span class="status-pill status-passed" aria-label="Original / cjson / utils-patch-pointer status: Passed">Passed</span>
           </summary>
           <div class="case-body">
             <p>Applies a JSON patch and resolves the changed value through cJSON utilities.</p>
             <dl class="case-meta">
+              <div><dt>Run</dt><dd>Original</dd></div>
               <div><dt>Kind</dt><dd>source</dd></div>
               <div><dt>Client</dt><dd>none</dd></div>
               <div><dt>Duration</dt><dd>0.00s</dd></div>
               <div><dt>Tags</dt><dd class="tags"><span>api</span> <span>patch</span></dd></div>
             </dl>
             <div class="case-actions">
-              <a class="log-link" href="../evidence/original/logs/cjson/utils-patch-pointer.log">Log</a>
-              <button type="button" class="play-button js-load-cast" data-cast="../evidence/original/casts/cjson/utils-patch-pointer.cast">Play</button>
+              <a class="log-link" href="../evidence/original/logs/cjson/utils-patch-pointer.log" aria-label="Open log for Original / cjson / utils-patch-pointer">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/original/casts/cjson/utils-patch-pointer.cast" aria-label="Play cast for Original / cjson / utils-patch-pointer">Play</button>
             </div>
             <div class="cast-player" data-player>
               <div class="player-controls">
-                <button type="button" class="js-player-play">Play</button>
-                <button type="button" class="js-player-pause">Pause</button>
-                <button type="button" class="js-player-restart">Restart</button>
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Original / cjson / utils-patch-pointer">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Original / cjson / utils-patch-pointer">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Original / cjson / utils-patch-pointer">Restart</button>
                 <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
                 <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
               </div>
-              <pre class="terminal" aria-live="polite"></pre>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Original / cjson / utils-patch-pointer"></pre>
             </div>
           </div>
         </details>
@@ -130,31 +137,32 @@
           <summary>
             <span class="case-title">
               <strong>Allocator hook edge behavior</strong>
-              <span class="case-id">original / cjson / allocator-hooks-edge</span>
+              <span class="case-id">Original / cjson / allocator-hooks-edge</span>
             </span>
-            <span class="status-pill status-passed">Passed</span>
+            <span class="status-pill status-passed" aria-label="Original / cjson / allocator-hooks-edge status: Passed">Passed</span>
           </summary>
           <div class="case-body">
             <p>Installs custom allocator hooks and verifies allocation accounting around deletion.</p>
             <dl class="case-meta">
+              <div><dt>Run</dt><dd>Original</dd></div>
               <div><dt>Kind</dt><dd>source</dd></div>
               <div><dt>Client</dt><dd>none</dd></div>
               <div><dt>Duration</dt><dd>0.00s</dd></div>
               <div><dt>Tags</dt><dd class="tags"><span>api</span> <span>allocator</span></dd></div>
             </dl>
             <div class="case-actions">
-              <a class="log-link" href="../evidence/original/logs/cjson/allocator-hooks-edge.log">Log</a>
-              <button type="button" class="play-button js-load-cast" data-cast="../evidence/original/casts/cjson/allocator-hooks-edge.cast">Play</button>
+              <a class="log-link" href="../evidence/original/logs/cjson/allocator-hooks-edge.log" aria-label="Open log for Original / cjson / allocator-hooks-edge">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/original/casts/cjson/allocator-hooks-edge.cast" aria-label="Play cast for Original / cjson / allocator-hooks-edge">Play</button>
             </div>
             <div class="cast-player" data-player>
               <div class="player-controls">
-                <button type="button" class="js-player-play">Play</button>
-                <button type="button" class="js-player-pause">Pause</button>
-                <button type="button" class="js-player-restart">Restart</button>
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Original / cjson / allocator-hooks-edge">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Original / cjson / allocator-hooks-edge">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Original / cjson / allocator-hooks-edge">Restart</button>
                 <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
                 <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
               </div>
-              <pre class="terminal" aria-live="polite"></pre>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Original / cjson / allocator-hooks-edge"></pre>
             </div>
           </div>
         </details>
@@ -162,31 +170,32 @@
           <summary>
             <span class="case-title">
               <strong>Malformed number rejection</strong>
-              <span class="case-id">original / cjson / malformed-number-rejection</span>
+              <span class="case-id">Original / cjson / malformed-number-rejection</span>
             </span>
-            <span class="status-pill status-passed">Passed</span>
+            <span class="status-pill status-passed" aria-label="Original / cjson / malformed-number-rejection status: Passed">Passed</span>
           </summary>
           <div class="case-body">
             <p>Requires cJSON to reject incomplete exponent notation in a number token.</p>
             <dl class="case-meta">
+              <div><dt>Run</dt><dd>Original</dd></div>
               <div><dt>Kind</dt><dd>source</dd></div>
               <div><dt>Client</dt><dd>none</dd></div>
               <div><dt>Duration</dt><dd>0.00s</dd></div>
               <div><dt>Tags</dt><dd class="tags"><span>api</span> <span>negative</span></dd></div>
             </dl>
             <div class="case-actions">
-              <a class="log-link" href="../evidence/original/logs/cjson/malformed-number-rejection.log">Log</a>
-              <button type="button" class="play-button js-load-cast" data-cast="../evidence/original/casts/cjson/malformed-number-rejection.cast">Play</button>
+              <a class="log-link" href="../evidence/original/logs/cjson/malformed-number-rejection.log" aria-label="Open log for Original / cjson / malformed-number-rejection">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/original/casts/cjson/malformed-number-rejection.cast" aria-label="Play cast for Original / cjson / malformed-number-rejection">Play</button>
             </div>
             <div class="cast-player" data-player>
               <div class="player-controls">
-                <button type="button" class="js-player-play">Play</button>
-                <button type="button" class="js-player-pause">Pause</button>
-                <button type="button" class="js-player-restart">Restart</button>
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Original / cjson / malformed-number-rejection">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Original / cjson / malformed-number-rejection">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Original / cjson / malformed-number-rejection">Restart</button>
                 <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
                 <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
               </div>
-              <pre class="terminal" aria-live="polite"></pre>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Original / cjson / malformed-number-rejection"></pre>
             </div>
           </div>
         </details>
@@ -194,31 +203,32 @@
           <summary>
             <span class="case-title">
               <strong>iperf3 TCP JSON throughput</strong>
-              <span class="case-id">original / cjson / usage-iperf3-json-tcp-throughput</span>
+              <span class="case-id">Original / cjson / usage-iperf3-json-tcp-throughput</span>
             </span>
-            <span class="status-pill status-passed">Passed</span>
+            <span class="status-pill status-passed" aria-label="Original / cjson / usage-iperf3-json-tcp-throughput status: Passed">Passed</span>
           </summary>
           <div class="case-body">
             <p>Runs an iperf3 loopback TCP test with JSON output and verifies throughput fields emitted by the client.</p>
             <dl class="case-meta">
+              <div><dt>Run</dt><dd>Original</dd></div>
               <div><dt>Kind</dt><dd>usage</dd></div>
               <div><dt>Client</dt><dd>iperf3</dd></div>
               <div><dt>Duration</dt><dd>0.00s</dd></div>
               <div><dt>Tags</dt><dd class="tags"><span>usage</span> <span>json</span></dd></div>
             </dl>
             <div class="case-actions">
-              <a class="log-link" href="../evidence/original/logs/cjson/usage-iperf3-json-tcp-throughput.log">Log</a>
-              <button type="button" class="play-button js-load-cast" data-cast="../evidence/original/casts/cjson/usage-iperf3-json-tcp-throughput.cast">Play</button>
+              <a class="log-link" href="../evidence/original/logs/cjson/usage-iperf3-json-tcp-throughput.log" aria-label="Open log for Original / cjson / usage-iperf3-json-tcp-throughput">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/original/casts/cjson/usage-iperf3-json-tcp-throughput.cast" aria-label="Play cast for Original / cjson / usage-iperf3-json-tcp-throughput">Play</button>
             </div>
             <div class="cast-player" data-player>
               <div class="player-controls">
-                <button type="button" class="js-player-play">Play</button>
-                <button type="button" class="js-player-pause">Pause</button>
-                <button type="button" class="js-player-restart">Restart</button>
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Original / cjson / usage-iperf3-json-tcp-throughput">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Original / cjson / usage-iperf3-json-tcp-throughput">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Original / cjson / usage-iperf3-json-tcp-throughput">Restart</button>
                 <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
                 <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
               </div>
-              <pre class="terminal" aria-live="polite"></pre>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Original / cjson / usage-iperf3-json-tcp-throughput"></pre>
             </div>
           </div>
         </details>
@@ -226,31 +236,32 @@
           <summary>
             <span class="case-title">
               <strong>iperf3 reverse JSON throughput</strong>
-              <span class="case-id">original / cjson / usage-iperf3-json-reverse-throughput</span>
+              <span class="case-id">Original / cjson / usage-iperf3-json-reverse-throughput</span>
             </span>
-            <span class="status-pill status-passed">Passed</span>
+            <span class="status-pill status-passed" aria-label="Original / cjson / usage-iperf3-json-reverse-throughput status: Passed">Passed</span>
           </summary>
           <div class="case-body">
             <p>Runs an iperf3 reverse loopback test with JSON output and verifies reverse throughput fields.</p>
             <dl class="case-meta">
+              <div><dt>Run</dt><dd>Original</dd></div>
               <div><dt>Kind</dt><dd>usage</dd></div>
               <div><dt>Client</dt><dd>iperf3</dd></div>
               <div><dt>Duration</dt><dd>0.00s</dd></div>
               <div><dt>Tags</dt><dd class="tags"><span>usage</span> <span>json</span></dd></div>
             </dl>
             <div class="case-actions">
-              <a class="log-link" href="../evidence/original/logs/cjson/usage-iperf3-json-reverse-throughput.log">Log</a>
-              <button type="button" class="play-button js-load-cast" data-cast="../evidence/original/casts/cjson/usage-iperf3-json-reverse-throughput.cast">Play</button>
+              <a class="log-link" href="../evidence/original/logs/cjson/usage-iperf3-json-reverse-throughput.log" aria-label="Open log for Original / cjson / usage-iperf3-json-reverse-throughput">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/original/casts/cjson/usage-iperf3-json-reverse-throughput.cast" aria-label="Play cast for Original / cjson / usage-iperf3-json-reverse-throughput">Play</button>
             </div>
             <div class="cast-player" data-player>
               <div class="player-controls">
-                <button type="button" class="js-player-play">Play</button>
-                <button type="button" class="js-player-pause">Pause</button>
-                <button type="button" class="js-player-restart">Restart</button>
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Original / cjson / usage-iperf3-json-reverse-throughput">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Original / cjson / usage-iperf3-json-reverse-throughput">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Original / cjson / usage-iperf3-json-reverse-throughput">Restart</button>
                 <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
                 <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
               </div>
-              <pre class="terminal" aria-live="polite"></pre>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Original / cjson / usage-iperf3-json-reverse-throughput"></pre>
             </div>
           </div>
         </details>
@@ -258,31 +269,32 @@
           <summary>
             <span class="case-title">
               <strong>iperf3 UDP JSON throughput</strong>
-              <span class="case-id">original / cjson / usage-iperf3-json-udp-throughput</span>
+              <span class="case-id">Original / cjson / usage-iperf3-json-udp-throughput</span>
             </span>
-            <span class="status-pill status-passed">Passed</span>
+            <span class="status-pill status-passed" aria-label="Original / cjson / usage-iperf3-json-udp-throughput status: Passed">Passed</span>
           </summary>
           <div class="case-body">
             <p>Runs an iperf3 loopback UDP test with JSON output and verifies UDP summary fields.</p>
             <dl class="case-meta">
+              <div><dt>Run</dt><dd>Original</dd></div>
               <div><dt>Kind</dt><dd>usage</dd></div>
               <div><dt>Client</dt><dd>iperf3</dd></div>
               <div><dt>Duration</dt><dd>0.00s</dd></div>
               <div><dt>Tags</dt><dd class="tags"><span>usage</span> <span>json</span></dd></div>
             </dl>
             <div class="case-actions">
-              <a class="log-link" href="../evidence/original/logs/cjson/usage-iperf3-json-udp-throughput.log">Log</a>
-              <button type="button" class="play-button js-load-cast" data-cast="../evidence/original/casts/cjson/usage-iperf3-json-udp-throughput.cast">Play</button>
+              <a class="log-link" href="../evidence/original/logs/cjson/usage-iperf3-json-udp-throughput.log" aria-label="Open log for Original / cjson / usage-iperf3-json-udp-throughput">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/original/casts/cjson/usage-iperf3-json-udp-throughput.cast" aria-label="Play cast for Original / cjson / usage-iperf3-json-udp-throughput">Play</button>
             </div>
             <div class="cast-player" data-player>
               <div class="player-controls">
-                <button type="button" class="js-player-play">Play</button>
-                <button type="button" class="js-player-pause">Pause</button>
-                <button type="button" class="js-player-restart">Restart</button>
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Original / cjson / usage-iperf3-json-udp-throughput">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Original / cjson / usage-iperf3-json-udp-throughput">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Original / cjson / usage-iperf3-json-udp-throughput">Restart</button>
                 <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
                 <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
               </div>
-              <pre class="terminal" aria-live="polite"></pre>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Original / cjson / usage-iperf3-json-udp-throughput"></pre>
             </div>
           </div>
         </details>
@@ -290,31 +302,32 @@
           <summary>
             <span class="case-title">
               <strong>iperf3 fixed-byte JSON run</strong>
-              <span class="case-id">original / cjson / usage-iperf3-json-fixed-bytes</span>
+              <span class="case-id">Original / cjson / usage-iperf3-json-fixed-bytes</span>
             </span>
-            <span class="status-pill status-passed">Passed</span>
+            <span class="status-pill status-passed" aria-label="Original / cjson / usage-iperf3-json-fixed-bytes status: Passed">Passed</span>
           </summary>
           <div class="case-body">
             <p>Runs an iperf3 loopback transfer with a fixed byte count and validates the emitted JSON totals.</p>
             <dl class="case-meta">
+              <div><dt>Run</dt><dd>Original</dd></div>
               <div><dt>Kind</dt><dd>usage</dd></div>
               <div><dt>Client</dt><dd>iperf3</dd></div>
               <div><dt>Duration</dt><dd>0.00s</dd></div>
               <div><dt>Tags</dt><dd class="tags"><span>usage</span> <span>json</span></dd></div>
             </dl>
             <div class="case-actions">
-              <a class="log-link" href="../evidence/original/logs/cjson/usage-iperf3-json-fixed-bytes.log">Log</a>
-              <button type="button" class="play-button js-load-cast" data-cast="../evidence/original/casts/cjson/usage-iperf3-json-fixed-bytes.cast">Play</button>
+              <a class="log-link" href="../evidence/original/logs/cjson/usage-iperf3-json-fixed-bytes.log" aria-label="Open log for Original / cjson / usage-iperf3-json-fixed-bytes">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/original/casts/cjson/usage-iperf3-json-fixed-bytes.cast" aria-label="Play cast for Original / cjson / usage-iperf3-json-fixed-bytes">Play</button>
             </div>
             <div class="cast-player" data-player>
               <div class="player-controls">
-                <button type="button" class="js-player-play">Play</button>
-                <button type="button" class="js-player-pause">Pause</button>
-                <button type="button" class="js-player-restart">Restart</button>
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Original / cjson / usage-iperf3-json-fixed-bytes">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Original / cjson / usage-iperf3-json-fixed-bytes">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Original / cjson / usage-iperf3-json-fixed-bytes">Restart</button>
                 <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
                 <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
               </div>
-              <pre class="terminal" aria-live="polite"></pre>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Original / cjson / usage-iperf3-json-fixed-bytes"></pre>
             </div>
           </div>
         </details>
@@ -322,31 +335,32 @@
           <summary>
             <span class="case-title">
               <strong>iperf3 parallel JSON streams</strong>
-              <span class="case-id">original / cjson / usage-iperf3-json-parallel-streams</span>
+              <span class="case-id">Original / cjson / usage-iperf3-json-parallel-streams</span>
             </span>
-            <span class="status-pill status-passed">Passed</span>
+            <span class="status-pill status-passed" aria-label="Original / cjson / usage-iperf3-json-parallel-streams status: Passed">Passed</span>
           </summary>
           <div class="case-body">
             <p>Runs an iperf3 loopback test with parallel streams and verifies stream details in JSON output.</p>
             <dl class="case-meta">
+              <div><dt>Run</dt><dd>Original</dd></div>
               <div><dt>Kind</dt><dd>usage</dd></div>
               <div><dt>Client</dt><dd>iperf3</dd></div>
               <div><dt>Duration</dt><dd>0.00s</dd></div>
               <div><dt>Tags</dt><dd class="tags"><span>usage</span> <span>json</span></dd></div>
             </dl>
             <div class="case-actions">
-              <a class="log-link" href="../evidence/original/logs/cjson/usage-iperf3-json-parallel-streams.log">Log</a>
-              <button type="button" class="play-button js-load-cast" data-cast="../evidence/original/casts/cjson/usage-iperf3-json-parallel-streams.cast">Play</button>
+              <a class="log-link" href="../evidence/original/logs/cjson/usage-iperf3-json-parallel-streams.log" aria-label="Open log for Original / cjson / usage-iperf3-json-parallel-streams">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/original/casts/cjson/usage-iperf3-json-parallel-streams.cast" aria-label="Play cast for Original / cjson / usage-iperf3-json-parallel-streams">Play</button>
             </div>
             <div class="cast-player" data-player>
               <div class="player-controls">
-                <button type="button" class="js-player-play">Play</button>
-                <button type="button" class="js-player-pause">Pause</button>
-                <button type="button" class="js-player-restart">Restart</button>
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Original / cjson / usage-iperf3-json-parallel-streams">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Original / cjson / usage-iperf3-json-parallel-streams">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Original / cjson / usage-iperf3-json-parallel-streams">Restart</button>
                 <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
                 <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
               </div>
-              <pre class="terminal" aria-live="polite"></pre>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Original / cjson / usage-iperf3-json-parallel-streams"></pre>
             </div>
           </div>
         </details>
@@ -354,31 +368,32 @@
           <summary>
             <span class="case-title">
               <strong>iperf3 interval JSON report</strong>
-              <span class="case-id">original / cjson / usage-iperf3-json-interval-report</span>
+              <span class="case-id">Original / cjson / usage-iperf3-json-interval-report</span>
             </span>
-            <span class="status-pill status-passed">Passed</span>
+            <span class="status-pill status-passed" aria-label="Original / cjson / usage-iperf3-json-interval-report status: Passed">Passed</span>
           </summary>
           <div class="case-body">
             <p>Runs an iperf3 loopback test with interval reporting and verifies interval objects in JSON output.</p>
             <dl class="case-meta">
+              <div><dt>Run</dt><dd>Original</dd></div>
               <div><dt>Kind</dt><dd>usage</dd></div>
               <div><dt>Client</dt><dd>iperf3</dd></div>
               <div><dt>Duration</dt><dd>0.00s</dd></div>
               <div><dt>Tags</dt><dd class="tags"><span>usage</span> <span>json</span></dd></div>
             </dl>
             <div class="case-actions">
-              <a class="log-link" href="../evidence/original/logs/cjson/usage-iperf3-json-interval-report.log">Log</a>
-              <button type="button" class="play-button js-load-cast" data-cast="../evidence/original/casts/cjson/usage-iperf3-json-interval-report.cast">Play</button>
+              <a class="log-link" href="../evidence/original/logs/cjson/usage-iperf3-json-interval-report.log" aria-label="Open log for Original / cjson / usage-iperf3-json-interval-report">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/original/casts/cjson/usage-iperf3-json-interval-report.cast" aria-label="Play cast for Original / cjson / usage-iperf3-json-interval-report">Play</button>
             </div>
             <div class="cast-player" data-player>
               <div class="player-controls">
-                <button type="button" class="js-player-play">Play</button>
-                <button type="button" class="js-player-pause">Pause</button>
-                <button type="button" class="js-player-restart">Restart</button>
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Original / cjson / usage-iperf3-json-interval-report">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Original / cjson / usage-iperf3-json-interval-report">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Original / cjson / usage-iperf3-json-interval-report">Restart</button>
                 <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
                 <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
               </div>
-              <pre class="terminal" aria-live="polite"></pre>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Original / cjson / usage-iperf3-json-interval-report"></pre>
             </div>
           </div>
         </details>
@@ -386,31 +401,32 @@
           <summary>
             <span class="case-title">
               <strong>iperf3 bidirectional JSON run</strong>
-              <span class="case-id">original / cjson / usage-iperf3-json-bidirectional</span>
+              <span class="case-id">Original / cjson / usage-iperf3-json-bidirectional</span>
             </span>
-            <span class="status-pill status-passed">Passed</span>
+            <span class="status-pill status-passed" aria-label="Original / cjson / usage-iperf3-json-bidirectional status: Passed">Passed</span>
           </summary>
           <div class="case-body">
             <p>Runs an iperf3 bidirectional loopback test and validates sender and receiver JSON summaries.</p>
             <dl class="case-meta">
+              <div><dt>Run</dt><dd>Original</dd></div>
               <div><dt>Kind</dt><dd>usage</dd></div>
               <div><dt>Client</dt><dd>iperf3</dd></div>
               <div><dt>Duration</dt><dd>0.00s</dd></div>
               <div><dt>Tags</dt><dd class="tags"><span>usage</span> <span>json</span></dd></div>
             </dl>
             <div class="case-actions">
-              <a class="log-link" href="../evidence/original/logs/cjson/usage-iperf3-json-bidirectional.log">Log</a>
-              <button type="button" class="play-button js-load-cast" data-cast="../evidence/original/casts/cjson/usage-iperf3-json-bidirectional.cast">Play</button>
+              <a class="log-link" href="../evidence/original/logs/cjson/usage-iperf3-json-bidirectional.log" aria-label="Open log for Original / cjson / usage-iperf3-json-bidirectional">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/original/casts/cjson/usage-iperf3-json-bidirectional.cast" aria-label="Play cast for Original / cjson / usage-iperf3-json-bidirectional">Play</button>
             </div>
             <div class="cast-player" data-player>
               <div class="player-controls">
-                <button type="button" class="js-player-play">Play</button>
-                <button type="button" class="js-player-pause">Pause</button>
-                <button type="button" class="js-player-restart">Restart</button>
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Original / cjson / usage-iperf3-json-bidirectional">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Original / cjson / usage-iperf3-json-bidirectional">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Original / cjson / usage-iperf3-json-bidirectional">Restart</button>
                 <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
                 <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
               </div>
-              <pre class="terminal" aria-live="polite"></pre>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Original / cjson / usage-iperf3-json-bidirectional"></pre>
             </div>
           </div>
         </details>
@@ -418,31 +434,32 @@
           <summary>
             <span class="case-title">
               <strong>iperf3 server JSON output</strong>
-              <span class="case-id">original / cjson / usage-iperf3-json-server-output</span>
+              <span class="case-id">Original / cjson / usage-iperf3-json-server-output</span>
             </span>
-            <span class="status-pill status-passed">Passed</span>
+            <span class="status-pill status-passed" aria-label="Original / cjson / usage-iperf3-json-server-output status: Passed">Passed</span>
           </summary>
           <div class="case-body">
             <p>Runs iperf3 with server-output capture and verifies the client JSON includes server-side results.</p>
             <dl class="case-meta">
+              <div><dt>Run</dt><dd>Original</dd></div>
               <div><dt>Kind</dt><dd>usage</dd></div>
               <div><dt>Client</dt><dd>iperf3</dd></div>
               <div><dt>Duration</dt><dd>0.00s</dd></div>
               <div><dt>Tags</dt><dd class="tags"><span>usage</span> <span>json</span></dd></div>
             </dl>
             <div class="case-actions">
-              <a class="log-link" href="../evidence/original/logs/cjson/usage-iperf3-json-server-output.log">Log</a>
-              <button type="button" class="play-button js-load-cast" data-cast="../evidence/original/casts/cjson/usage-iperf3-json-server-output.cast">Play</button>
+              <a class="log-link" href="../evidence/original/logs/cjson/usage-iperf3-json-server-output.log" aria-label="Open log for Original / cjson / usage-iperf3-json-server-output">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/original/casts/cjson/usage-iperf3-json-server-output.cast" aria-label="Play cast for Original / cjson / usage-iperf3-json-server-output">Play</button>
             </div>
             <div class="cast-player" data-player>
               <div class="player-controls">
-                <button type="button" class="js-player-play">Play</button>
-                <button type="button" class="js-player-pause">Pause</button>
-                <button type="button" class="js-player-restart">Restart</button>
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Original / cjson / usage-iperf3-json-server-output">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Original / cjson / usage-iperf3-json-server-output">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Original / cjson / usage-iperf3-json-server-output">Restart</button>
                 <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
                 <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
               </div>
-              <pre class="terminal" aria-live="polite"></pre>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Original / cjson / usage-iperf3-json-server-output"></pre>
             </div>
           </div>
         </details>
@@ -450,31 +467,32 @@
           <summary>
             <span class="case-title">
               <strong>iperf3 zero-copy JSON transfer</strong>
-              <span class="case-id">original / cjson / usage-iperf3-json-zero-copy</span>
+              <span class="case-id">Original / cjson / usage-iperf3-json-zero-copy</span>
             </span>
-            <span class="status-pill status-passed">Passed</span>
+            <span class="status-pill status-passed" aria-label="Original / cjson / usage-iperf3-json-zero-copy status: Passed">Passed</span>
           </summary>
           <div class="case-body">
             <p>Runs an iperf3 zero-copy loopback transfer and verifies JSON sender byte and throughput totals.</p>
             <dl class="case-meta">
+              <div><dt>Run</dt><dd>Original</dd></div>
               <div><dt>Kind</dt><dd>usage</dd></div>
               <div><dt>Client</dt><dd>iperf3</dd></div>
               <div><dt>Duration</dt><dd>0.00s</dd></div>
               <div><dt>Tags</dt><dd class="tags"><span>usage</span> <span>json</span></dd></div>
             </dl>
             <div class="case-actions">
-              <a class="log-link" href="../evidence/original/logs/cjson/usage-iperf3-json-zero-copy.log">Log</a>
-              <button type="button" class="play-button js-load-cast" data-cast="../evidence/original/casts/cjson/usage-iperf3-json-zero-copy.cast">Play</button>
+              <a class="log-link" href="../evidence/original/logs/cjson/usage-iperf3-json-zero-copy.log" aria-label="Open log for Original / cjson / usage-iperf3-json-zero-copy">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/original/casts/cjson/usage-iperf3-json-zero-copy.cast" aria-label="Play cast for Original / cjson / usage-iperf3-json-zero-copy">Play</button>
             </div>
             <div class="cast-player" data-player>
               <div class="player-controls">
-                <button type="button" class="js-player-play">Play</button>
-                <button type="button" class="js-player-pause">Pause</button>
-                <button type="button" class="js-player-restart">Restart</button>
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Original / cjson / usage-iperf3-json-zero-copy">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Original / cjson / usage-iperf3-json-zero-copy">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Original / cjson / usage-iperf3-json-zero-copy">Restart</button>
                 <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
                 <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
               </div>
-              <pre class="terminal" aria-live="polite"></pre>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Original / cjson / usage-iperf3-json-zero-copy"></pre>
             </div>
           </div>
         </details>
@@ -482,31 +500,32 @@
           <summary>
             <span class="case-title">
               <strong>iperf3 omitted warmup JSON intervals</strong>
-              <span class="case-id">original / cjson / usage-iperf3-json-omit-warmup</span>
+              <span class="case-id">Original / cjson / usage-iperf3-json-omit-warmup</span>
             </span>
-            <span class="status-pill status-passed">Passed</span>
+            <span class="status-pill status-passed" aria-label="Original / cjson / usage-iperf3-json-omit-warmup status: Passed">Passed</span>
           </summary>
           <div class="case-body">
             <p>Runs an iperf3 loopback test with omitted warmup time and verifies JSON interval omission markers.</p>
             <dl class="case-meta">
+              <div><dt>Run</dt><dd>Original</dd></div>
               <div><dt>Kind</dt><dd>usage</dd></div>
               <div><dt>Client</dt><dd>iperf3</dd></div>
               <div><dt>Duration</dt><dd>0.00s</dd></div>
               <div><dt>Tags</dt><dd class="tags"><span>usage</span> <span>json</span></dd></div>
             </dl>
             <div class="case-actions">
-              <a class="log-link" href="../evidence/original/logs/cjson/usage-iperf3-json-omit-warmup.log">Log</a>
-              <button type="button" class="play-button js-load-cast" data-cast="../evidence/original/casts/cjson/usage-iperf3-json-omit-warmup.cast">Play</button>
+              <a class="log-link" href="../evidence/original/logs/cjson/usage-iperf3-json-omit-warmup.log" aria-label="Open log for Original / cjson / usage-iperf3-json-omit-warmup">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/original/casts/cjson/usage-iperf3-json-omit-warmup.cast" aria-label="Play cast for Original / cjson / usage-iperf3-json-omit-warmup">Play</button>
             </div>
             <div class="cast-player" data-player>
               <div class="player-controls">
-                <button type="button" class="js-player-play">Play</button>
-                <button type="button" class="js-player-pause">Pause</button>
-                <button type="button" class="js-player-restart">Restart</button>
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Original / cjson / usage-iperf3-json-omit-warmup">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Original / cjson / usage-iperf3-json-omit-warmup">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Original / cjson / usage-iperf3-json-omit-warmup">Restart</button>
                 <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
                 <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
               </div>
-              <pre class="terminal" aria-live="polite"></pre>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Original / cjson / usage-iperf3-json-omit-warmup"></pre>
             </div>
           </div>
         </details>
@@ -514,31 +533,32 @@
           <summary>
             <span class="case-title">
               <strong>Parse and print JSON round trip</strong>
-              <span class="case-id">port-04-test / cjson / parse-print-roundtrip</span>
+              <span class="case-id">Port / cjson / parse-print-roundtrip</span>
             </span>
-            <span class="status-pill status-passed">Passed</span>
+            <span class="status-pill status-passed" aria-label="Port / cjson / parse-print-roundtrip status: Passed">Passed</span>
           </summary>
           <div class="case-body">
             <p>Parses and prints representative JSON while preserving expected structure.</p>
             <dl class="case-meta">
+              <div><dt>Run</dt><dd>Port</dd></div>
               <div><dt>Kind</dt><dd>source</dd></div>
               <div><dt>Client</dt><dd>none</dd></div>
               <div><dt>Duration</dt><dd>0.00s</dd></div>
               <div><dt>Tags</dt><dd class="tags"><span>api</span> <span>roundtrip</span></dd></div>
             </dl>
             <div class="case-actions">
-              <a class="log-link" href="../evidence/port-04-test/logs/cjson/parse-print-roundtrip.log">Log</a>
-              <button type="button" class="play-button js-load-cast" data-cast="../evidence/port-04-test/casts/cjson/parse-print-roundtrip.cast">Play</button>
+              <a class="log-link" href="../evidence/port-04-test/logs/cjson/parse-print-roundtrip.log" aria-label="Open log for Port / cjson / parse-print-roundtrip">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/port-04-test/casts/cjson/parse-print-roundtrip.cast" aria-label="Play cast for Port / cjson / parse-print-roundtrip">Play</button>
             </div>
             <div class="cast-player" data-player>
               <div class="player-controls">
-                <button type="button" class="js-player-play">Play</button>
-                <button type="button" class="js-player-pause">Pause</button>
-                <button type="button" class="js-player-restart">Restart</button>
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Port / cjson / parse-print-roundtrip">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Port / cjson / parse-print-roundtrip">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Port / cjson / parse-print-roundtrip">Restart</button>
                 <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
                 <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
               </div>
-              <pre class="terminal" aria-live="polite"></pre>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Port / cjson / parse-print-roundtrip"></pre>
             </div>
           </div>
         </details>
@@ -546,31 +566,32 @@
           <summary>
             <span class="case-title">
               <strong>Minify JSON whitespace behavior</strong>
-              <span class="case-id">port-04-test / cjson / minify-whitespace</span>
+              <span class="case-id">Port / cjson / minify-whitespace</span>
             </span>
-            <span class="status-pill status-passed">Passed</span>
+            <span class="status-pill status-passed" aria-label="Port / cjson / minify-whitespace status: Passed">Passed</span>
           </summary>
           <div class="case-body">
             <p>Checks cJSON minification removes layout whitespace without altering string data.</p>
             <dl class="case-meta">
+              <div><dt>Run</dt><dd>Port</dd></div>
               <div><dt>Kind</dt><dd>source</dd></div>
               <div><dt>Client</dt><dd>none</dd></div>
               <div><dt>Duration</dt><dd>0.00s</dd></div>
               <div><dt>Tags</dt><dd class="tags"><span>api</span> <span>minify</span></dd></div>
             </dl>
             <div class="case-actions">
-              <a class="log-link" href="../evidence/port-04-test/logs/cjson/minify-whitespace.log">Log</a>
-              <button type="button" class="play-button js-load-cast" data-cast="../evidence/port-04-test/casts/cjson/minify-whitespace.cast">Play</button>
+              <a class="log-link" href="../evidence/port-04-test/logs/cjson/minify-whitespace.log" aria-label="Open log for Port / cjson / minify-whitespace">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/port-04-test/casts/cjson/minify-whitespace.cast" aria-label="Play cast for Port / cjson / minify-whitespace">Play</button>
             </div>
             <div class="cast-player" data-player>
               <div class="player-controls">
-                <button type="button" class="js-player-play">Play</button>
-                <button type="button" class="js-player-pause">Pause</button>
-                <button type="button" class="js-player-restart">Restart</button>
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Port / cjson / minify-whitespace">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Port / cjson / minify-whitespace">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Port / cjson / minify-whitespace">Restart</button>
                 <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
                 <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
               </div>
-              <pre class="terminal" aria-live="polite"></pre>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Port / cjson / minify-whitespace"></pre>
             </div>
           </div>
         </details>
@@ -578,31 +599,32 @@
           <summary>
             <span class="case-title">
               <strong>JSON pointer patch behavior</strong>
-              <span class="case-id">port-04-test / cjson / utils-patch-pointer</span>
+              <span class="case-id">Port / cjson / utils-patch-pointer</span>
             </span>
-            <span class="status-pill status-passed">Passed</span>
+            <span class="status-pill status-passed" aria-label="Port / cjson / utils-patch-pointer status: Passed">Passed</span>
           </summary>
           <div class="case-body">
             <p>Applies a JSON patch and resolves the changed value through cJSON utilities.</p>
             <dl class="case-meta">
+              <div><dt>Run</dt><dd>Port</dd></div>
               <div><dt>Kind</dt><dd>source</dd></div>
               <div><dt>Client</dt><dd>none</dd></div>
               <div><dt>Duration</dt><dd>0.00s</dd></div>
               <div><dt>Tags</dt><dd class="tags"><span>api</span> <span>patch</span></dd></div>
             </dl>
             <div class="case-actions">
-              <a class="log-link" href="../evidence/port-04-test/logs/cjson/utils-patch-pointer.log">Log</a>
-              <button type="button" class="play-button js-load-cast" data-cast="../evidence/port-04-test/casts/cjson/utils-patch-pointer.cast">Play</button>
+              <a class="log-link" href="../evidence/port-04-test/logs/cjson/utils-patch-pointer.log" aria-label="Open log for Port / cjson / utils-patch-pointer">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/port-04-test/casts/cjson/utils-patch-pointer.cast" aria-label="Play cast for Port / cjson / utils-patch-pointer">Play</button>
             </div>
             <div class="cast-player" data-player>
               <div class="player-controls">
-                <button type="button" class="js-player-play">Play</button>
-                <button type="button" class="js-player-pause">Pause</button>
-                <button type="button" class="js-player-restart">Restart</button>
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Port / cjson / utils-patch-pointer">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Port / cjson / utils-patch-pointer">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Port / cjson / utils-patch-pointer">Restart</button>
                 <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
                 <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
               </div>
-              <pre class="terminal" aria-live="polite"></pre>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Port / cjson / utils-patch-pointer"></pre>
             </div>
           </div>
         </details>
@@ -610,31 +632,32 @@
           <summary>
             <span class="case-title">
               <strong>Allocator hook edge behavior</strong>
-              <span class="case-id">port-04-test / cjson / allocator-hooks-edge</span>
+              <span class="case-id">Port / cjson / allocator-hooks-edge</span>
             </span>
-            <span class="status-pill status-passed">Passed</span>
+            <span class="status-pill status-passed" aria-label="Port / cjson / allocator-hooks-edge status: Passed">Passed</span>
           </summary>
           <div class="case-body">
             <p>Installs custom allocator hooks and verifies allocation accounting around deletion.</p>
             <dl class="case-meta">
+              <div><dt>Run</dt><dd>Port</dd></div>
               <div><dt>Kind</dt><dd>source</dd></div>
               <div><dt>Client</dt><dd>none</dd></div>
               <div><dt>Duration</dt><dd>0.00s</dd></div>
               <div><dt>Tags</dt><dd class="tags"><span>api</span> <span>allocator</span></dd></div>
             </dl>
             <div class="case-actions">
-              <a class="log-link" href="../evidence/port-04-test/logs/cjson/allocator-hooks-edge.log">Log</a>
-              <button type="button" class="play-button js-load-cast" data-cast="../evidence/port-04-test/casts/cjson/allocator-hooks-edge.cast">Play</button>
+              <a class="log-link" href="../evidence/port-04-test/logs/cjson/allocator-hooks-edge.log" aria-label="Open log for Port / cjson / allocator-hooks-edge">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/port-04-test/casts/cjson/allocator-hooks-edge.cast" aria-label="Play cast for Port / cjson / allocator-hooks-edge">Play</button>
             </div>
             <div class="cast-player" data-player>
               <div class="player-controls">
-                <button type="button" class="js-player-play">Play</button>
-                <button type="button" class="js-player-pause">Pause</button>
-                <button type="button" class="js-player-restart">Restart</button>
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Port / cjson / allocator-hooks-edge">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Port / cjson / allocator-hooks-edge">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Port / cjson / allocator-hooks-edge">Restart</button>
                 <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
                 <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
               </div>
-              <pre class="terminal" aria-live="polite"></pre>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Port / cjson / allocator-hooks-edge"></pre>
             </div>
           </div>
         </details>
@@ -642,31 +665,32 @@
           <summary>
             <span class="case-title">
               <strong>Malformed number rejection</strong>
-              <span class="case-id">port-04-test / cjson / malformed-number-rejection</span>
+              <span class="case-id">Port / cjson / malformed-number-rejection</span>
             </span>
-            <span class="status-pill status-passed">Passed</span>
+            <span class="status-pill status-passed" aria-label="Port / cjson / malformed-number-rejection status: Passed">Passed</span>
           </summary>
           <div class="case-body">
             <p>Requires cJSON to reject incomplete exponent notation in a number token.</p>
             <dl class="case-meta">
+              <div><dt>Run</dt><dd>Port</dd></div>
               <div><dt>Kind</dt><dd>source</dd></div>
               <div><dt>Client</dt><dd>none</dd></div>
               <div><dt>Duration</dt><dd>0.00s</dd></div>
               <div><dt>Tags</dt><dd class="tags"><span>api</span> <span>negative</span></dd></div>
             </dl>
             <div class="case-actions">
-              <a class="log-link" href="../evidence/port-04-test/logs/cjson/malformed-number-rejection.log">Log</a>
-              <button type="button" class="play-button js-load-cast" data-cast="../evidence/port-04-test/casts/cjson/malformed-number-rejection.cast">Play</button>
+              <a class="log-link" href="../evidence/port-04-test/logs/cjson/malformed-number-rejection.log" aria-label="Open log for Port / cjson / malformed-number-rejection">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/port-04-test/casts/cjson/malformed-number-rejection.cast" aria-label="Play cast for Port / cjson / malformed-number-rejection">Play</button>
             </div>
             <div class="cast-player" data-player>
               <div class="player-controls">
-                <button type="button" class="js-player-play">Play</button>
-                <button type="button" class="js-player-pause">Pause</button>
-                <button type="button" class="js-player-restart">Restart</button>
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Port / cjson / malformed-number-rejection">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Port / cjson / malformed-number-rejection">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Port / cjson / malformed-number-rejection">Restart</button>
                 <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
                 <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
               </div>
-              <pre class="terminal" aria-live="polite"></pre>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Port / cjson / malformed-number-rejection"></pre>
             </div>
           </div>
         </details>
@@ -674,31 +698,32 @@
           <summary>
             <span class="case-title">
               <strong>iperf3 TCP JSON throughput</strong>
-              <span class="case-id">port-04-test / cjson / usage-iperf3-json-tcp-throughput</span>
+              <span class="case-id">Port / cjson / usage-iperf3-json-tcp-throughput</span>
             </span>
-            <span class="status-pill status-passed">Passed</span>
+            <span class="status-pill status-passed" aria-label="Port / cjson / usage-iperf3-json-tcp-throughput status: Passed">Passed</span>
           </summary>
           <div class="case-body">
             <p>Runs an iperf3 loopback TCP test with JSON output and verifies throughput fields emitted by the client.</p>
             <dl class="case-meta">
+              <div><dt>Run</dt><dd>Port</dd></div>
               <div><dt>Kind</dt><dd>usage</dd></div>
               <div><dt>Client</dt><dd>iperf3</dd></div>
               <div><dt>Duration</dt><dd>0.00s</dd></div>
               <div><dt>Tags</dt><dd class="tags"><span>usage</span> <span>json</span></dd></div>
             </dl>
             <div class="case-actions">
-              <a class="log-link" href="../evidence/port-04-test/logs/cjson/usage-iperf3-json-tcp-throughput.log">Log</a>
-              <button type="button" class="play-button js-load-cast" data-cast="../evidence/port-04-test/casts/cjson/usage-iperf3-json-tcp-throughput.cast">Play</button>
+              <a class="log-link" href="../evidence/port-04-test/logs/cjson/usage-iperf3-json-tcp-throughput.log" aria-label="Open log for Port / cjson / usage-iperf3-json-tcp-throughput">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/port-04-test/casts/cjson/usage-iperf3-json-tcp-throughput.cast" aria-label="Play cast for Port / cjson / usage-iperf3-json-tcp-throughput">Play</button>
             </div>
             <div class="cast-player" data-player>
               <div class="player-controls">
-                <button type="button" class="js-player-play">Play</button>
-                <button type="button" class="js-player-pause">Pause</button>
-                <button type="button" class="js-player-restart">Restart</button>
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Port / cjson / usage-iperf3-json-tcp-throughput">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Port / cjson / usage-iperf3-json-tcp-throughput">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Port / cjson / usage-iperf3-json-tcp-throughput">Restart</button>
                 <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
                 <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
               </div>
-              <pre class="terminal" aria-live="polite"></pre>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Port / cjson / usage-iperf3-json-tcp-throughput"></pre>
             </div>
           </div>
         </details>
@@ -706,31 +731,32 @@
           <summary>
             <span class="case-title">
               <strong>iperf3 reverse JSON throughput</strong>
-              <span class="case-id">port-04-test / cjson / usage-iperf3-json-reverse-throughput</span>
+              <span class="case-id">Port / cjson / usage-iperf3-json-reverse-throughput</span>
             </span>
-            <span class="status-pill status-passed">Passed</span>
+            <span class="status-pill status-passed" aria-label="Port / cjson / usage-iperf3-json-reverse-throughput status: Passed">Passed</span>
           </summary>
           <div class="case-body">
             <p>Runs an iperf3 reverse loopback test with JSON output and verifies reverse throughput fields.</p>
             <dl class="case-meta">
+              <div><dt>Run</dt><dd>Port</dd></div>
               <div><dt>Kind</dt><dd>usage</dd></div>
               <div><dt>Client</dt><dd>iperf3</dd></div>
               <div><dt>Duration</dt><dd>0.00s</dd></div>
               <div><dt>Tags</dt><dd class="tags"><span>usage</span> <span>json</span></dd></div>
             </dl>
             <div class="case-actions">
-              <a class="log-link" href="../evidence/port-04-test/logs/cjson/usage-iperf3-json-reverse-throughput.log">Log</a>
-              <button type="button" class="play-button js-load-cast" data-cast="../evidence/port-04-test/casts/cjson/usage-iperf3-json-reverse-throughput.cast">Play</button>
+              <a class="log-link" href="../evidence/port-04-test/logs/cjson/usage-iperf3-json-reverse-throughput.log" aria-label="Open log for Port / cjson / usage-iperf3-json-reverse-throughput">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/port-04-test/casts/cjson/usage-iperf3-json-reverse-throughput.cast" aria-label="Play cast for Port / cjson / usage-iperf3-json-reverse-throughput">Play</button>
             </div>
             <div class="cast-player" data-player>
               <div class="player-controls">
-                <button type="button" class="js-player-play">Play</button>
-                <button type="button" class="js-player-pause">Pause</button>
-                <button type="button" class="js-player-restart">Restart</button>
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Port / cjson / usage-iperf3-json-reverse-throughput">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Port / cjson / usage-iperf3-json-reverse-throughput">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Port / cjson / usage-iperf3-json-reverse-throughput">Restart</button>
                 <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
                 <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
               </div>
-              <pre class="terminal" aria-live="polite"></pre>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Port / cjson / usage-iperf3-json-reverse-throughput"></pre>
             </div>
           </div>
         </details>
@@ -738,31 +764,32 @@
           <summary>
             <span class="case-title">
               <strong>iperf3 UDP JSON throughput</strong>
-              <span class="case-id">port-04-test / cjson / usage-iperf3-json-udp-throughput</span>
+              <span class="case-id">Port / cjson / usage-iperf3-json-udp-throughput</span>
             </span>
-            <span class="status-pill status-passed">Passed</span>
+            <span class="status-pill status-passed" aria-label="Port / cjson / usage-iperf3-json-udp-throughput status: Passed">Passed</span>
           </summary>
           <div class="case-body">
             <p>Runs an iperf3 loopback UDP test with JSON output and verifies UDP summary fields.</p>
             <dl class="case-meta">
+              <div><dt>Run</dt><dd>Port</dd></div>
               <div><dt>Kind</dt><dd>usage</dd></div>
               <div><dt>Client</dt><dd>iperf3</dd></div>
               <div><dt>Duration</dt><dd>0.00s</dd></div>
               <div><dt>Tags</dt><dd class="tags"><span>usage</span> <span>json</span></dd></div>
             </dl>
             <div class="case-actions">
-              <a class="log-link" href="../evidence/port-04-test/logs/cjson/usage-iperf3-json-udp-throughput.log">Log</a>
-              <button type="button" class="play-button js-load-cast" data-cast="../evidence/port-04-test/casts/cjson/usage-iperf3-json-udp-throughput.cast">Play</button>
+              <a class="log-link" href="../evidence/port-04-test/logs/cjson/usage-iperf3-json-udp-throughput.log" aria-label="Open log for Port / cjson / usage-iperf3-json-udp-throughput">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/port-04-test/casts/cjson/usage-iperf3-json-udp-throughput.cast" aria-label="Play cast for Port / cjson / usage-iperf3-json-udp-throughput">Play</button>
             </div>
             <div class="cast-player" data-player>
               <div class="player-controls">
-                <button type="button" class="js-player-play">Play</button>
-                <button type="button" class="js-player-pause">Pause</button>
-                <button type="button" class="js-player-restart">Restart</button>
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Port / cjson / usage-iperf3-json-udp-throughput">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Port / cjson / usage-iperf3-json-udp-throughput">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Port / cjson / usage-iperf3-json-udp-throughput">Restart</button>
                 <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
                 <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
               </div>
-              <pre class="terminal" aria-live="polite"></pre>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Port / cjson / usage-iperf3-json-udp-throughput"></pre>
             </div>
           </div>
         </details>
@@ -770,31 +797,32 @@
           <summary>
             <span class="case-title">
               <strong>iperf3 fixed-byte JSON run</strong>
-              <span class="case-id">port-04-test / cjson / usage-iperf3-json-fixed-bytes</span>
+              <span class="case-id">Port / cjson / usage-iperf3-json-fixed-bytes</span>
             </span>
-            <span class="status-pill status-passed">Passed</span>
+            <span class="status-pill status-passed" aria-label="Port / cjson / usage-iperf3-json-fixed-bytes status: Passed">Passed</span>
           </summary>
           <div class="case-body">
             <p>Runs an iperf3 loopback transfer with a fixed byte count and validates the emitted JSON totals.</p>
             <dl class="case-meta">
+              <div><dt>Run</dt><dd>Port</dd></div>
               <div><dt>Kind</dt><dd>usage</dd></div>
               <div><dt>Client</dt><dd>iperf3</dd></div>
               <div><dt>Duration</dt><dd>0.00s</dd></div>
               <div><dt>Tags</dt><dd class="tags"><span>usage</span> <span>json</span></dd></div>
             </dl>
             <div class="case-actions">
-              <a class="log-link" href="../evidence/port-04-test/logs/cjson/usage-iperf3-json-fixed-bytes.log">Log</a>
-              <button type="button" class="play-button js-load-cast" data-cast="../evidence/port-04-test/casts/cjson/usage-iperf3-json-fixed-bytes.cast">Play</button>
+              <a class="log-link" href="../evidence/port-04-test/logs/cjson/usage-iperf3-json-fixed-bytes.log" aria-label="Open log for Port / cjson / usage-iperf3-json-fixed-bytes">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/port-04-test/casts/cjson/usage-iperf3-json-fixed-bytes.cast" aria-label="Play cast for Port / cjson / usage-iperf3-json-fixed-bytes">Play</button>
             </div>
             <div class="cast-player" data-player>
               <div class="player-controls">
-                <button type="button" class="js-player-play">Play</button>
-                <button type="button" class="js-player-pause">Pause</button>
-                <button type="button" class="js-player-restart">Restart</button>
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Port / cjson / usage-iperf3-json-fixed-bytes">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Port / cjson / usage-iperf3-json-fixed-bytes">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Port / cjson / usage-iperf3-json-fixed-bytes">Restart</button>
                 <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
                 <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
               </div>
-              <pre class="terminal" aria-live="polite"></pre>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Port / cjson / usage-iperf3-json-fixed-bytes"></pre>
             </div>
           </div>
         </details>
@@ -802,31 +830,32 @@
           <summary>
             <span class="case-title">
               <strong>iperf3 parallel JSON streams</strong>
-              <span class="case-id">port-04-test / cjson / usage-iperf3-json-parallel-streams</span>
+              <span class="case-id">Port / cjson / usage-iperf3-json-parallel-streams</span>
             </span>
-            <span class="status-pill status-passed">Passed</span>
+            <span class="status-pill status-passed" aria-label="Port / cjson / usage-iperf3-json-parallel-streams status: Passed">Passed</span>
           </summary>
           <div class="case-body">
             <p>Runs an iperf3 loopback test with parallel streams and verifies stream details in JSON output.</p>
             <dl class="case-meta">
+              <div><dt>Run</dt><dd>Port</dd></div>
               <div><dt>Kind</dt><dd>usage</dd></div>
               <div><dt>Client</dt><dd>iperf3</dd></div>
               <div><dt>Duration</dt><dd>0.00s</dd></div>
               <div><dt>Tags</dt><dd class="tags"><span>usage</span> <span>json</span></dd></div>
             </dl>
             <div class="case-actions">
-              <a class="log-link" href="../evidence/port-04-test/logs/cjson/usage-iperf3-json-parallel-streams.log">Log</a>
-              <button type="button" class="play-button js-load-cast" data-cast="../evidence/port-04-test/casts/cjson/usage-iperf3-json-parallel-streams.cast">Play</button>
+              <a class="log-link" href="../evidence/port-04-test/logs/cjson/usage-iperf3-json-parallel-streams.log" aria-label="Open log for Port / cjson / usage-iperf3-json-parallel-streams">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/port-04-test/casts/cjson/usage-iperf3-json-parallel-streams.cast" aria-label="Play cast for Port / cjson / usage-iperf3-json-parallel-streams">Play</button>
             </div>
             <div class="cast-player" data-player>
               <div class="player-controls">
-                <button type="button" class="js-player-play">Play</button>
-                <button type="button" class="js-player-pause">Pause</button>
-                <button type="button" class="js-player-restart">Restart</button>
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Port / cjson / usage-iperf3-json-parallel-streams">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Port / cjson / usage-iperf3-json-parallel-streams">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Port / cjson / usage-iperf3-json-parallel-streams">Restart</button>
                 <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
                 <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
               </div>
-              <pre class="terminal" aria-live="polite"></pre>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Port / cjson / usage-iperf3-json-parallel-streams"></pre>
             </div>
           </div>
         </details>
@@ -834,31 +863,32 @@
           <summary>
             <span class="case-title">
               <strong>iperf3 interval JSON report</strong>
-              <span class="case-id">port-04-test / cjson / usage-iperf3-json-interval-report</span>
+              <span class="case-id">Port / cjson / usage-iperf3-json-interval-report</span>
             </span>
-            <span class="status-pill status-passed">Passed</span>
+            <span class="status-pill status-passed" aria-label="Port / cjson / usage-iperf3-json-interval-report status: Passed">Passed</span>
           </summary>
           <div class="case-body">
             <p>Runs an iperf3 loopback test with interval reporting and verifies interval objects in JSON output.</p>
             <dl class="case-meta">
+              <div><dt>Run</dt><dd>Port</dd></div>
               <div><dt>Kind</dt><dd>usage</dd></div>
               <div><dt>Client</dt><dd>iperf3</dd></div>
               <div><dt>Duration</dt><dd>0.00s</dd></div>
               <div><dt>Tags</dt><dd class="tags"><span>usage</span> <span>json</span></dd></div>
             </dl>
             <div class="case-actions">
-              <a class="log-link" href="../evidence/port-04-test/logs/cjson/usage-iperf3-json-interval-report.log">Log</a>
-              <button type="button" class="play-button js-load-cast" data-cast="../evidence/port-04-test/casts/cjson/usage-iperf3-json-interval-report.cast">Play</button>
+              <a class="log-link" href="../evidence/port-04-test/logs/cjson/usage-iperf3-json-interval-report.log" aria-label="Open log for Port / cjson / usage-iperf3-json-interval-report">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/port-04-test/casts/cjson/usage-iperf3-json-interval-report.cast" aria-label="Play cast for Port / cjson / usage-iperf3-json-interval-report">Play</button>
             </div>
             <div class="cast-player" data-player>
               <div class="player-controls">
-                <button type="button" class="js-player-play">Play</button>
-                <button type="button" class="js-player-pause">Pause</button>
-                <button type="button" class="js-player-restart">Restart</button>
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Port / cjson / usage-iperf3-json-interval-report">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Port / cjson / usage-iperf3-json-interval-report">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Port / cjson / usage-iperf3-json-interval-report">Restart</button>
                 <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
                 <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
               </div>
-              <pre class="terminal" aria-live="polite"></pre>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Port / cjson / usage-iperf3-json-interval-report"></pre>
             </div>
           </div>
         </details>
@@ -866,31 +896,32 @@
           <summary>
             <span class="case-title">
               <strong>iperf3 bidirectional JSON run</strong>
-              <span class="case-id">port-04-test / cjson / usage-iperf3-json-bidirectional</span>
+              <span class="case-id">Port / cjson / usage-iperf3-json-bidirectional</span>
             </span>
-            <span class="status-pill status-passed">Passed</span>
+            <span class="status-pill status-passed" aria-label="Port / cjson / usage-iperf3-json-bidirectional status: Passed">Passed</span>
           </summary>
           <div class="case-body">
             <p>Runs an iperf3 bidirectional loopback test and validates sender and receiver JSON summaries.</p>
             <dl class="case-meta">
+              <div><dt>Run</dt><dd>Port</dd></div>
               <div><dt>Kind</dt><dd>usage</dd></div>
               <div><dt>Client</dt><dd>iperf3</dd></div>
               <div><dt>Duration</dt><dd>0.00s</dd></div>
               <div><dt>Tags</dt><dd class="tags"><span>usage</span> <span>json</span></dd></div>
             </dl>
             <div class="case-actions">
-              <a class="log-link" href="../evidence/port-04-test/logs/cjson/usage-iperf3-json-bidirectional.log">Log</a>
-              <button type="button" class="play-button js-load-cast" data-cast="../evidence/port-04-test/casts/cjson/usage-iperf3-json-bidirectional.cast">Play</button>
+              <a class="log-link" href="../evidence/port-04-test/logs/cjson/usage-iperf3-json-bidirectional.log" aria-label="Open log for Port / cjson / usage-iperf3-json-bidirectional">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/port-04-test/casts/cjson/usage-iperf3-json-bidirectional.cast" aria-label="Play cast for Port / cjson / usage-iperf3-json-bidirectional">Play</button>
             </div>
             <div class="cast-player" data-player>
               <div class="player-controls">
-                <button type="button" class="js-player-play">Play</button>
-                <button type="button" class="js-player-pause">Pause</button>
-                <button type="button" class="js-player-restart">Restart</button>
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Port / cjson / usage-iperf3-json-bidirectional">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Port / cjson / usage-iperf3-json-bidirectional">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Port / cjson / usage-iperf3-json-bidirectional">Restart</button>
                 <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
                 <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
               </div>
-              <pre class="terminal" aria-live="polite"></pre>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Port / cjson / usage-iperf3-json-bidirectional"></pre>
             </div>
           </div>
         </details>
@@ -898,31 +929,32 @@
           <summary>
             <span class="case-title">
               <strong>iperf3 server JSON output</strong>
-              <span class="case-id">port-04-test / cjson / usage-iperf3-json-server-output</span>
+              <span class="case-id">Port / cjson / usage-iperf3-json-server-output</span>
             </span>
-            <span class="status-pill status-passed">Passed</span>
+            <span class="status-pill status-passed" aria-label="Port / cjson / usage-iperf3-json-server-output status: Passed">Passed</span>
           </summary>
           <div class="case-body">
             <p>Runs iperf3 with server-output capture and verifies the client JSON includes server-side results.</p>
             <dl class="case-meta">
+              <div><dt>Run</dt><dd>Port</dd></div>
               <div><dt>Kind</dt><dd>usage</dd></div>
               <div><dt>Client</dt><dd>iperf3</dd></div>
               <div><dt>Duration</dt><dd>0.00s</dd></div>
               <div><dt>Tags</dt><dd class="tags"><span>usage</span> <span>json</span></dd></div>
             </dl>
             <div class="case-actions">
-              <a class="log-link" href="../evidence/port-04-test/logs/cjson/usage-iperf3-json-server-output.log">Log</a>
-              <button type="button" class="play-button js-load-cast" data-cast="../evidence/port-04-test/casts/cjson/usage-iperf3-json-server-output.cast">Play</button>
+              <a class="log-link" href="../evidence/port-04-test/logs/cjson/usage-iperf3-json-server-output.log" aria-label="Open log for Port / cjson / usage-iperf3-json-server-output">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/port-04-test/casts/cjson/usage-iperf3-json-server-output.cast" aria-label="Play cast for Port / cjson / usage-iperf3-json-server-output">Play</button>
             </div>
             <div class="cast-player" data-player>
               <div class="player-controls">
-                <button type="button" class="js-player-play">Play</button>
-                <button type="button" class="js-player-pause">Pause</button>
-                <button type="button" class="js-player-restart">Restart</button>
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Port / cjson / usage-iperf3-json-server-output">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Port / cjson / usage-iperf3-json-server-output">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Port / cjson / usage-iperf3-json-server-output">Restart</button>
                 <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
                 <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
               </div>
-              <pre class="terminal" aria-live="polite"></pre>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Port / cjson / usage-iperf3-json-server-output"></pre>
             </div>
           </div>
         </details>
@@ -930,31 +962,32 @@
           <summary>
             <span class="case-title">
               <strong>iperf3 zero-copy JSON transfer</strong>
-              <span class="case-id">port-04-test / cjson / usage-iperf3-json-zero-copy</span>
+              <span class="case-id">Port / cjson / usage-iperf3-json-zero-copy</span>
             </span>
-            <span class="status-pill status-passed">Passed</span>
+            <span class="status-pill status-passed" aria-label="Port / cjson / usage-iperf3-json-zero-copy status: Passed">Passed</span>
           </summary>
           <div class="case-body">
             <p>Runs an iperf3 zero-copy loopback transfer and verifies JSON sender byte and throughput totals.</p>
             <dl class="case-meta">
+              <div><dt>Run</dt><dd>Port</dd></div>
               <div><dt>Kind</dt><dd>usage</dd></div>
               <div><dt>Client</dt><dd>iperf3</dd></div>
               <div><dt>Duration</dt><dd>0.00s</dd></div>
               <div><dt>Tags</dt><dd class="tags"><span>usage</span> <span>json</span></dd></div>
             </dl>
             <div class="case-actions">
-              <a class="log-link" href="../evidence/port-04-test/logs/cjson/usage-iperf3-json-zero-copy.log">Log</a>
-              <button type="button" class="play-button js-load-cast" data-cast="../evidence/port-04-test/casts/cjson/usage-iperf3-json-zero-copy.cast">Play</button>
+              <a class="log-link" href="../evidence/port-04-test/logs/cjson/usage-iperf3-json-zero-copy.log" aria-label="Open log for Port / cjson / usage-iperf3-json-zero-copy">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/port-04-test/casts/cjson/usage-iperf3-json-zero-copy.cast" aria-label="Play cast for Port / cjson / usage-iperf3-json-zero-copy">Play</button>
             </div>
             <div class="cast-player" data-player>
               <div class="player-controls">
-                <button type="button" class="js-player-play">Play</button>
-                <button type="button" class="js-player-pause">Pause</button>
-                <button type="button" class="js-player-restart">Restart</button>
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Port / cjson / usage-iperf3-json-zero-copy">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Port / cjson / usage-iperf3-json-zero-copy">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Port / cjson / usage-iperf3-json-zero-copy">Restart</button>
                 <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
                 <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
               </div>
-              <pre class="terminal" aria-live="polite"></pre>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Port / cjson / usage-iperf3-json-zero-copy"></pre>
             </div>
           </div>
         </details>
@@ -962,31 +995,32 @@
           <summary>
             <span class="case-title">
               <strong>iperf3 omitted warmup JSON intervals</strong>
-              <span class="case-id">port-04-test / cjson / usage-iperf3-json-omit-warmup</span>
+              <span class="case-id">Port / cjson / usage-iperf3-json-omit-warmup</span>
             </span>
-            <span class="status-pill status-passed">Passed</span>
+            <span class="status-pill status-passed" aria-label="Port / cjson / usage-iperf3-json-omit-warmup status: Passed">Passed</span>
           </summary>
           <div class="case-body">
             <p>Runs an iperf3 loopback test with omitted warmup time and verifies JSON interval omission markers.</p>
             <dl class="case-meta">
+              <div><dt>Run</dt><dd>Port</dd></div>
               <div><dt>Kind</dt><dd>usage</dd></div>
               <div><dt>Client</dt><dd>iperf3</dd></div>
               <div><dt>Duration</dt><dd>0.00s</dd></div>
               <div><dt>Tags</dt><dd class="tags"><span>usage</span> <span>json</span></dd></div>
             </dl>
             <div class="case-actions">
-              <a class="log-link" href="../evidence/port-04-test/logs/cjson/usage-iperf3-json-omit-warmup.log">Log</a>
-              <button type="button" class="play-button js-load-cast" data-cast="../evidence/port-04-test/casts/cjson/usage-iperf3-json-omit-warmup.cast">Play</button>
+              <a class="log-link" href="../evidence/port-04-test/logs/cjson/usage-iperf3-json-omit-warmup.log" aria-label="Open log for Port / cjson / usage-iperf3-json-omit-warmup">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/port-04-test/casts/cjson/usage-iperf3-json-omit-warmup.cast" aria-label="Play cast for Port / cjson / usage-iperf3-json-omit-warmup">Play</button>
             </div>
             <div class="cast-player" data-player>
               <div class="player-controls">
-                <button type="button" class="js-player-play">Play</button>
-                <button type="button" class="js-player-pause">Pause</button>
-                <button type="button" class="js-player-restart">Restart</button>
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Port / cjson / usage-iperf3-json-omit-warmup">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Port / cjson / usage-iperf3-json-omit-warmup">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Port / cjson / usage-iperf3-json-omit-warmup">Restart</button>
                 <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
                 <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
               </div>
-              <pre class="terminal" aria-live="polite"></pre>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Port / cjson / usage-iperf3-json-omit-warmup"></pre>
             </div>
           </div>
         </details>

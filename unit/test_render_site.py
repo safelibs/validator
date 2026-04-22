@@ -261,12 +261,13 @@ class RenderSiteTests(unittest.TestCase):
         self.assertTrue((self.site_root / "library" / "cjson.html").is_file())
 
         html_text = (self.site_root / "index.html").read_text()
-        self.assertIn("Original Library Validation", html_text)
+        self.assertIn("Library Validation Matrix", html_text)
         self.assertIn('rel="icon" href="data:,"', html_text)
         self.assertIn('data-library="cjson"', html_text)
         self.assertIn('data-mode="original"', html_text)
         self.assertIn('data-player-cast="evidence/original/casts/cjson/', html_text)
         self.assertIn('id="search-input"', html_text)
+        self.assertIn('id="mode-filter"', html_text)
         self.assertIn("js-player-pause", html_text)
         self.assertNotIn('data-library="None"', html_text)
         self.assertNotIn("None /", html_text)
@@ -309,6 +310,9 @@ class RenderSiteTests(unittest.TestCase):
         html_text = (self.site_root / "index.html").read_text()
         self.assertIn('data-mode="original"', html_text)
         self.assertIn('data-mode="port-04-test"', html_text)
+        self.assertIn("<span>Tests</span>", html_text)
+        self.assertIn("<span>Port tests passing</span>", html_text)
+        self.assertIn("<strong>15 / 15</strong>", html_text)
 
         completed = subprocess.run(
             [

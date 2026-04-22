@@ -1,22 +1,26 @@
 (() => {
   const rows = Array.from(document.querySelectorAll(".case-row"));
   const searchInput = document.getElementById("search-input");
+  const modeFilter = document.getElementById("mode-filter");
   const statusFilter = document.getElementById("status-filter");
   const kindFilter = document.getElementById("kind-filter");
 
   function applyFilters() {
     const query = (searchInput?.value || "").trim().toLowerCase();
+    const mode = modeFilter?.value || "all";
     const status = statusFilter?.value || "all";
     const kind = kindFilter?.value || "all";
     for (const row of rows) {
       const matchesQuery = !query || (row.dataset.search || "").toLowerCase().includes(query);
+      const matchesMode = mode === "all" || row.dataset.mode === mode;
       const matchesStatus = status === "all" || row.dataset.status === status;
       const matchesKind = kind === "all" || row.dataset.kind === kind;
-      row.hidden = !(matchesQuery && matchesStatus && matchesKind);
+      row.hidden = !(matchesQuery && matchesMode && matchesStatus && matchesKind);
     }
   }
 
   searchInput?.addEventListener("input", applyFilters);
+  modeFilter?.addEventListener("change", applyFilters);
   statusFilter?.addEventListener("change", applyFilters);
   kindFilter?.addEventListener("change", applyFilters);
 

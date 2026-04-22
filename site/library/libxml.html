@@ -9,56 +9,61 @@
     <script defer src="../assets/player.js"></script>
   </head>
   <body data-site-data="../site-data.json">
+    <a class="skip-link" href="#tests-heading">Skip to tests</a>
     <main>
-      <section class="dashboard" aria-label="Validation dashboard">
-        <h1>libxml Validation</h1>
+      <nav class="breadcrumb" aria-label="Breadcrumb"><a href="../index.html">All libraries</a></nav>
+      <section class="dashboard" aria-labelledby="dashboard-heading">
+        <h1 id="dashboard-heading">libxml Validation</h1>
         <div class="metric-grid">
-        <div class="metric" data-proof-total="libraries"><strong>19</strong><span>Libraries</span></div>
-        <div class="metric" data-proof-total="cases"><strong>576</strong><span>Cases</span></div>
-        <div class="metric" data-proof-total="source_cases"><strong>190</strong><span>Source</span></div>
-        <div class="metric" data-proof-total="usage_cases"><strong>386</strong><span>Usage</span></div>
-        <div class="metric" data-proof-total="passed"><strong>576</strong><span>Passed</span></div>
-        <div class="metric" data-proof-total="failed"><strong>0</strong><span>Failed</span></div>
-        <div class="metric" data-proof-total="casts"><strong>576 (100%)</strong><span>Casts</span></div>
+        <div class="metric" data-proof-total="libraries"><strong>1</strong><span>Libraries</span></div>
+        <div class="metric" data-proof-total="cases"><strong>15</strong><span>Tests</span></div>
+        <div class="metric" data-proof-total="source_cases"><strong>5</strong><span>Source tests</span></div>
+        <div class="metric" data-proof-total="usage_cases"><strong>10</strong><span>Usage tests</span></div>
+        <div class="metric" data-proof-total="passed"><strong>15 / 15</strong><span>Port tests passing</span></div>
+        <div class="metric" data-proof-total="failed"><strong>0</strong><span>Port tests failing</span></div>
+        <div class="metric" data-proof-total="casts"><strong>30 (100%)</strong><span>Evidence casts</span></div>
+        <div class="metric" data-proof-total="port_libraries"><strong>1 / 1</strong><span>Port libraries passing</span></div>
         </div>
       </section>
 
       <section class="controls" aria-label="Testcase filters">
-        <label class="search-label">Search <input id="search-input" type="search" autocomplete="off"></label>
+        <label class="search-label">Search <input id="search-input" type="search" autocomplete="off" name="search"></label>
+        <label>Run mode <select id="mode-filter" name="mode"><option value="all">All</option><option value="original">Original</option><option value="port-04-test">Port</option></select></label>
         <label>Status <select id="status-filter"><option value="all">All</option><option value="passed">Passed</option><option value="failed">Failed</option></select></label>
         <label>Kind <select id="kind-filter"><option value="all">All</option><option value="source">Source</option><option value="usage">Usage</option></select></label>
       </section>
-      <section class="testcases" aria-label="Testcases">
-        <h2>Testcases</h2>
+      <section id="testcases" class="testcases" aria-labelledby="tests-heading">
+        <h2 id="tests-heading">Tests</h2>
         <details class="case-row" data-library="libxml" data-testcase-id="xmllint-parse-format" data-mode="original" data-kind="source" data-status="passed" data-player-cast="../evidence/original/casts/libxml/xmllint-parse-format.cast" data-search="libxml xmllint-parse-format original xmllint parse and format Parses and formats XML using the installed xmllint command. source cli xml">
           <summary>
             <span class="case-title">
               <strong>xmllint parse and format</strong>
-              <span class="case-id">original / libxml / xmllint-parse-format</span>
+              <span class="case-id">Original / libxml / xmllint-parse-format</span>
             </span>
-            <span class="status-pill status-passed">Passed</span>
+            <span class="status-pill status-passed" aria-label="Original / libxml / xmllint-parse-format status: Passed">Passed</span>
           </summary>
           <div class="case-body">
             <p>Parses and formats XML using the installed xmllint command.</p>
             <dl class="case-meta">
+              <div><dt>Run</dt><dd>Original</dd></div>
               <div><dt>Kind</dt><dd>source</dd></div>
               <div><dt>Client</dt><dd>none</dd></div>
               <div><dt>Duration</dt><dd>0.00s</dd></div>
               <div><dt>Tags</dt><dd class="tags"><span>cli</span> <span>xml</span></dd></div>
             </dl>
             <div class="case-actions">
-              <a class="log-link" href="../evidence/original/logs/libxml/xmllint-parse-format.log">Log</a>
-              <button type="button" class="play-button js-load-cast" data-cast="../evidence/original/casts/libxml/xmllint-parse-format.cast">Play</button>
+              <a class="log-link" href="../evidence/original/logs/libxml/xmllint-parse-format.log" aria-label="Open log for Original / libxml / xmllint-parse-format">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/original/casts/libxml/xmllint-parse-format.cast" aria-label="Play cast for Original / libxml / xmllint-parse-format">Play</button>
             </div>
             <div class="cast-player" data-player>
               <div class="player-controls">
-                <button type="button" class="js-player-play">Play</button>
-                <button type="button" class="js-player-pause">Pause</button>
-                <button type="button" class="js-player-restart">Restart</button>
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Original / libxml / xmllint-parse-format">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Original / libxml / xmllint-parse-format">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Original / libxml / xmllint-parse-format">Restart</button>
                 <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
                 <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
               </div>
-              <pre class="terminal" aria-live="polite"></pre>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Original / libxml / xmllint-parse-format"></pre>
             </div>
           </div>
         </details>
@@ -66,31 +71,32 @@
           <summary>
             <span class="case-title">
               <strong>xmlcatalog lookup behavior</strong>
-              <span class="case-id">original / libxml / xmlcatalog-lookup</span>
+              <span class="case-id">Original / libxml / xmlcatalog-lookup</span>
             </span>
-            <span class="status-pill status-passed">Passed</span>
+            <span class="status-pill status-passed" aria-label="Original / libxml / xmlcatalog-lookup status: Passed">Passed</span>
           </summary>
           <div class="case-body">
             <p>Resolves a public identifier from a local XML catalog file.</p>
             <dl class="case-meta">
+              <div><dt>Run</dt><dd>Original</dd></div>
               <div><dt>Kind</dt><dd>source</dd></div>
               <div><dt>Client</dt><dd>none</dd></div>
               <div><dt>Duration</dt><dd>0.00s</dd></div>
               <div><dt>Tags</dt><dd class="tags"><span>cli</span> <span>catalog</span></dd></div>
             </dl>
             <div class="case-actions">
-              <a class="log-link" href="../evidence/original/logs/libxml/xmlcatalog-lookup.log">Log</a>
-              <button type="button" class="play-button js-load-cast" data-cast="../evidence/original/casts/libxml/xmlcatalog-lookup.cast">Play</button>
+              <a class="log-link" href="../evidence/original/logs/libxml/xmlcatalog-lookup.log" aria-label="Open log for Original / libxml / xmlcatalog-lookup">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/original/casts/libxml/xmlcatalog-lookup.cast" aria-label="Play cast for Original / libxml / xmlcatalog-lookup">Play</button>
             </div>
             <div class="cast-player" data-player>
               <div class="player-controls">
-                <button type="button" class="js-player-play">Play</button>
-                <button type="button" class="js-player-pause">Pause</button>
-                <button type="button" class="js-player-restart">Restart</button>
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Original / libxml / xmlcatalog-lookup">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Original / libxml / xmlcatalog-lookup">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Original / libxml / xmlcatalog-lookup">Restart</button>
                 <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
                 <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
               </div>
-              <pre class="terminal" aria-live="polite"></pre>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Original / libxml / xmlcatalog-lookup"></pre>
             </div>
           </div>
         </details>
@@ -98,31 +104,32 @@
           <summary>
             <span class="case-title">
               <strong>Python libxml2 binding smoke</strong>
-              <span class="case-id">original / libxml / python-binding-smoke</span>
+              <span class="case-id">Original / libxml / python-binding-smoke</span>
             </span>
-            <span class="status-pill status-passed">Passed</span>
+            <span class="status-pill status-passed" aria-label="Original / libxml / python-binding-smoke status: Passed">Passed</span>
           </summary>
           <div class="case-body">
             <p>Parses and queries XML through the packaged Python libxml2 binding.</p>
             <dl class="case-meta">
+              <div><dt>Run</dt><dd>Original</dd></div>
               <div><dt>Kind</dt><dd>source</dd></div>
               <div><dt>Client</dt><dd>none</dd></div>
               <div><dt>Duration</dt><dd>0.00s</dd></div>
               <div><dt>Tags</dt><dd class="tags"><span>python</span> <span>binding</span></dd></div>
             </dl>
             <div class="case-actions">
-              <a class="log-link" href="../evidence/original/logs/libxml/python-binding-smoke.log">Log</a>
-              <button type="button" class="play-button js-load-cast" data-cast="../evidence/original/casts/libxml/python-binding-smoke.cast">Play</button>
+              <a class="log-link" href="../evidence/original/logs/libxml/python-binding-smoke.log" aria-label="Open log for Original / libxml / python-binding-smoke">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/original/casts/libxml/python-binding-smoke.cast" aria-label="Play cast for Original / libxml / python-binding-smoke">Play</button>
             </div>
             <div class="cast-player" data-player>
               <div class="player-controls">
-                <button type="button" class="js-player-play">Play</button>
-                <button type="button" class="js-player-pause">Pause</button>
-                <button type="button" class="js-player-restart">Restart</button>
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Original / libxml / python-binding-smoke">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Original / libxml / python-binding-smoke">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Original / libxml / python-binding-smoke">Restart</button>
                 <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
                 <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
               </div>
-              <pre class="terminal" aria-live="polite"></pre>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Original / libxml / python-binding-smoke"></pre>
             </div>
           </div>
         </details>
@@ -130,31 +137,32 @@
           <summary>
             <span class="case-title">
               <strong>libxml reader C API behavior</strong>
-              <span class="case-id">original / libxml / reader-c-api-behavior</span>
+              <span class="case-id">Original / libxml / reader-c-api-behavior</span>
             </span>
-            <span class="status-pill status-passed">Passed</span>
+            <span class="status-pill status-passed" aria-label="Original / libxml / reader-c-api-behavior status: Passed">Passed</span>
           </summary>
           <div class="case-body">
             <p>Compiles a program using xmlTextReader to stream element names.</p>
             <dl class="case-meta">
+              <div><dt>Run</dt><dd>Original</dd></div>
               <div><dt>Kind</dt><dd>source</dd></div>
               <div><dt>Client</dt><dd>none</dd></div>
               <div><dt>Duration</dt><dd>0.00s</dd></div>
               <div><dt>Tags</dt><dd class="tags"><span>api</span> <span>reader</span></dd></div>
             </dl>
             <div class="case-actions">
-              <a class="log-link" href="../evidence/original/logs/libxml/reader-c-api-behavior.log">Log</a>
-              <button type="button" class="play-button js-load-cast" data-cast="../evidence/original/casts/libxml/reader-c-api-behavior.cast">Play</button>
+              <a class="log-link" href="../evidence/original/logs/libxml/reader-c-api-behavior.log" aria-label="Open log for Original / libxml / reader-c-api-behavior">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/original/casts/libxml/reader-c-api-behavior.cast" aria-label="Play cast for Original / libxml / reader-c-api-behavior">Play</button>
             </div>
             <div class="cast-player" data-player>
               <div class="player-controls">
-                <button type="button" class="js-player-play">Play</button>
-                <button type="button" class="js-player-pause">Pause</button>
-                <button type="button" class="js-player-restart">Restart</button>
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Original / libxml / reader-c-api-behavior">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Original / libxml / reader-c-api-behavior">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Original / libxml / reader-c-api-behavior">Restart</button>
                 <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
                 <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
               </div>
-              <pre class="terminal" aria-live="polite"></pre>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Original / libxml / reader-c-api-behavior"></pre>
             </div>
           </div>
         </details>
@@ -162,31 +170,32 @@
           <summary>
             <span class="case-title">
               <strong>Schema and XInclude checks</strong>
-              <span class="case-id">original / libxml / schema-xinclude-checks</span>
+              <span class="case-id">Original / libxml / schema-xinclude-checks</span>
             </span>
-            <span class="status-pill status-passed">Passed</span>
+            <span class="status-pill status-passed" aria-label="Original / libxml / schema-xinclude-checks status: Passed">Passed</span>
           </summary>
           <div class="case-body">
             <p>Validates XML against a schema and expands an XInclude document.</p>
             <dl class="case-meta">
+              <div><dt>Run</dt><dd>Original</dd></div>
               <div><dt>Kind</dt><dd>source</dd></div>
               <div><dt>Client</dt><dd>none</dd></div>
               <div><dt>Duration</dt><dd>0.00s</dd></div>
               <div><dt>Tags</dt><dd class="tags"><span>cli</span> <span>schema</span></dd></div>
             </dl>
             <div class="case-actions">
-              <a class="log-link" href="../evidence/original/logs/libxml/schema-xinclude-checks.log">Log</a>
-              <button type="button" class="play-button js-load-cast" data-cast="../evidence/original/casts/libxml/schema-xinclude-checks.cast">Play</button>
+              <a class="log-link" href="../evidence/original/logs/libxml/schema-xinclude-checks.log" aria-label="Open log for Original / libxml / schema-xinclude-checks">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/original/casts/libxml/schema-xinclude-checks.cast" aria-label="Play cast for Original / libxml / schema-xinclude-checks">Play</button>
             </div>
             <div class="cast-player" data-player>
               <div class="player-controls">
-                <button type="button" class="js-player-play">Play</button>
-                <button type="button" class="js-player-pause">Pause</button>
-                <button type="button" class="js-player-restart">Restart</button>
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Original / libxml / schema-xinclude-checks">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Original / libxml / schema-xinclude-checks">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Original / libxml / schema-xinclude-checks">Restart</button>
                 <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
                 <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
               </div>
-              <pre class="terminal" aria-live="polite"></pre>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Original / libxml / schema-xinclude-checks"></pre>
             </div>
           </div>
         </details>
@@ -194,31 +203,32 @@
           <summary>
             <span class="case-title">
               <strong>python3-lxml parse xml</strong>
-              <span class="case-id">original / libxml / usage-python3-lxml-parse-xml</span>
+              <span class="case-id">Original / libxml / usage-python3-lxml-parse-xml</span>
             </span>
-            <span class="status-pill status-passed">Passed</span>
+            <span class="status-pill status-passed" aria-label="Original / libxml / usage-python3-lxml-parse-xml status: Passed">Passed</span>
           </summary>
           <div class="case-body">
             <p>Runs python3-lxml parse xml behavior through libxml2.</p>
             <dl class="case-meta">
+              <div><dt>Run</dt><dd>Original</dd></div>
               <div><dt>Kind</dt><dd>usage</dd></div>
               <div><dt>Client</dt><dd>python3-lxml</dd></div>
               <div><dt>Duration</dt><dd>0.00s</dd></div>
               <div><dt>Tags</dt><dd class="tags"><span>usage</span> <span>xml</span></dd></div>
             </dl>
             <div class="case-actions">
-              <a class="log-link" href="../evidence/original/logs/libxml/usage-python3-lxml-parse-xml.log">Log</a>
-              <button type="button" class="play-button js-load-cast" data-cast="../evidence/original/casts/libxml/usage-python3-lxml-parse-xml.cast">Play</button>
+              <a class="log-link" href="../evidence/original/logs/libxml/usage-python3-lxml-parse-xml.log" aria-label="Open log for Original / libxml / usage-python3-lxml-parse-xml">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/original/casts/libxml/usage-python3-lxml-parse-xml.cast" aria-label="Play cast for Original / libxml / usage-python3-lxml-parse-xml">Play</button>
             </div>
             <div class="cast-player" data-player>
               <div class="player-controls">
-                <button type="button" class="js-player-play">Play</button>
-                <button type="button" class="js-player-pause">Pause</button>
-                <button type="button" class="js-player-restart">Restart</button>
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Original / libxml / usage-python3-lxml-parse-xml">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Original / libxml / usage-python3-lxml-parse-xml">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Original / libxml / usage-python3-lxml-parse-xml">Restart</button>
                 <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
                 <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
               </div>
-              <pre class="terminal" aria-live="polite"></pre>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Original / libxml / usage-python3-lxml-parse-xml"></pre>
             </div>
           </div>
         </details>
@@ -226,31 +236,32 @@
           <summary>
             <span class="case-title">
               <strong>python3-lxml xpath xml</strong>
-              <span class="case-id">original / libxml / usage-python3-lxml-xpath-xml</span>
+              <span class="case-id">Original / libxml / usage-python3-lxml-xpath-xml</span>
             </span>
-            <span class="status-pill status-passed">Passed</span>
+            <span class="status-pill status-passed" aria-label="Original / libxml / usage-python3-lxml-xpath-xml status: Passed">Passed</span>
           </summary>
           <div class="case-body">
             <p>Runs python3-lxml xpath xml behavior through libxml2.</p>
             <dl class="case-meta">
+              <div><dt>Run</dt><dd>Original</dd></div>
               <div><dt>Kind</dt><dd>usage</dd></div>
               <div><dt>Client</dt><dd>python3-lxml</dd></div>
               <div><dt>Duration</dt><dd>0.00s</dd></div>
               <div><dt>Tags</dt><dd class="tags"><span>usage</span> <span>xml</span></dd></div>
             </dl>
             <div class="case-actions">
-              <a class="log-link" href="../evidence/original/logs/libxml/usage-python3-lxml-xpath-xml.log">Log</a>
-              <button type="button" class="play-button js-load-cast" data-cast="../evidence/original/casts/libxml/usage-python3-lxml-xpath-xml.cast">Play</button>
+              <a class="log-link" href="../evidence/original/logs/libxml/usage-python3-lxml-xpath-xml.log" aria-label="Open log for Original / libxml / usage-python3-lxml-xpath-xml">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/original/casts/libxml/usage-python3-lxml-xpath-xml.cast" aria-label="Play cast for Original / libxml / usage-python3-lxml-xpath-xml">Play</button>
             </div>
             <div class="cast-player" data-player>
               <div class="player-controls">
-                <button type="button" class="js-player-play">Play</button>
-                <button type="button" class="js-player-pause">Pause</button>
-                <button type="button" class="js-player-restart">Restart</button>
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Original / libxml / usage-python3-lxml-xpath-xml">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Original / libxml / usage-python3-lxml-xpath-xml">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Original / libxml / usage-python3-lxml-xpath-xml">Restart</button>
                 <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
                 <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
               </div>
-              <pre class="terminal" aria-live="polite"></pre>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Original / libxml / usage-python3-lxml-xpath-xml"></pre>
             </div>
           </div>
         </details>
@@ -258,31 +269,32 @@
           <summary>
             <span class="case-title">
               <strong>python3-lxml xslt xml</strong>
-              <span class="case-id">original / libxml / usage-python3-lxml-xslt-xml</span>
+              <span class="case-id">Original / libxml / usage-python3-lxml-xslt-xml</span>
             </span>
-            <span class="status-pill status-passed">Passed</span>
+            <span class="status-pill status-passed" aria-label="Original / libxml / usage-python3-lxml-xslt-xml status: Passed">Passed</span>
           </summary>
           <div class="case-body">
             <p>Runs python3-lxml xslt xml behavior through libxml2.</p>
             <dl class="case-meta">
+              <div><dt>Run</dt><dd>Original</dd></div>
               <div><dt>Kind</dt><dd>usage</dd></div>
               <div><dt>Client</dt><dd>python3-lxml</dd></div>
               <div><dt>Duration</dt><dd>0.00s</dd></div>
               <div><dt>Tags</dt><dd class="tags"><span>usage</span> <span>xml</span></dd></div>
             </dl>
             <div class="case-actions">
-              <a class="log-link" href="../evidence/original/logs/libxml/usage-python3-lxml-xslt-xml.log">Log</a>
-              <button type="button" class="play-button js-load-cast" data-cast="../evidence/original/casts/libxml/usage-python3-lxml-xslt-xml.cast">Play</button>
+              <a class="log-link" href="../evidence/original/logs/libxml/usage-python3-lxml-xslt-xml.log" aria-label="Open log for Original / libxml / usage-python3-lxml-xslt-xml">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/original/casts/libxml/usage-python3-lxml-xslt-xml.cast" aria-label="Play cast for Original / libxml / usage-python3-lxml-xslt-xml">Play</button>
             </div>
             <div class="cast-player" data-player>
               <div class="player-controls">
-                <button type="button" class="js-player-play">Play</button>
-                <button type="button" class="js-player-pause">Pause</button>
-                <button type="button" class="js-player-restart">Restart</button>
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Original / libxml / usage-python3-lxml-xslt-xml">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Original / libxml / usage-python3-lxml-xslt-xml">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Original / libxml / usage-python3-lxml-xslt-xml">Restart</button>
                 <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
                 <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
               </div>
-              <pre class="terminal" aria-live="polite"></pre>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Original / libxml / usage-python3-lxml-xslt-xml"></pre>
             </div>
           </div>
         </details>
@@ -290,31 +302,32 @@
           <summary>
             <span class="case-title">
               <strong>python3-lxml schema xml</strong>
-              <span class="case-id">original / libxml / usage-python3-lxml-schema-xml</span>
+              <span class="case-id">Original / libxml / usage-python3-lxml-schema-xml</span>
             </span>
-            <span class="status-pill status-passed">Passed</span>
+            <span class="status-pill status-passed" aria-label="Original / libxml / usage-python3-lxml-schema-xml status: Passed">Passed</span>
           </summary>
           <div class="case-body">
             <p>Runs python3-lxml schema xml behavior through libxml2.</p>
             <dl class="case-meta">
+              <div><dt>Run</dt><dd>Original</dd></div>
               <div><dt>Kind</dt><dd>usage</dd></div>
               <div><dt>Client</dt><dd>python3-lxml</dd></div>
               <div><dt>Duration</dt><dd>0.00s</dd></div>
               <div><dt>Tags</dt><dd class="tags"><span>usage</span> <span>xml</span></dd></div>
             </dl>
             <div class="case-actions">
-              <a class="log-link" href="../evidence/original/logs/libxml/usage-python3-lxml-schema-xml.log">Log</a>
-              <button type="button" class="play-button js-load-cast" data-cast="../evidence/original/casts/libxml/usage-python3-lxml-schema-xml.cast">Play</button>
+              <a class="log-link" href="../evidence/original/logs/libxml/usage-python3-lxml-schema-xml.log" aria-label="Open log for Original / libxml / usage-python3-lxml-schema-xml">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/original/casts/libxml/usage-python3-lxml-schema-xml.cast" aria-label="Play cast for Original / libxml / usage-python3-lxml-schema-xml">Play</button>
             </div>
             <div class="cast-player" data-player>
               <div class="player-controls">
-                <button type="button" class="js-player-play">Play</button>
-                <button type="button" class="js-player-pause">Pause</button>
-                <button type="button" class="js-player-restart">Restart</button>
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Original / libxml / usage-python3-lxml-schema-xml">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Original / libxml / usage-python3-lxml-schema-xml">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Original / libxml / usage-python3-lxml-schema-xml">Restart</button>
                 <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
                 <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
               </div>
-              <pre class="terminal" aria-live="polite"></pre>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Original / libxml / usage-python3-lxml-schema-xml"></pre>
             </div>
           </div>
         </details>
@@ -322,31 +335,32 @@
           <summary>
             <span class="case-title">
               <strong>python3-lxml XInclude XML expansion</strong>
-              <span class="case-id">original / libxml / usage-python3-lxml-xinclude-xml</span>
+              <span class="case-id">Original / libxml / usage-python3-lxml-xinclude-xml</span>
             </span>
-            <span class="status-pill status-passed">Passed</span>
+            <span class="status-pill status-passed" aria-label="Original / libxml / usage-python3-lxml-xinclude-xml status: Passed">Passed</span>
           </summary>
           <div class="case-body">
             <p>Runs lxml XInclude expansion and verifies included XML element text is visible to the client.</p>
             <dl class="case-meta">
+              <div><dt>Run</dt><dd>Original</dd></div>
               <div><dt>Kind</dt><dd>usage</dd></div>
               <div><dt>Client</dt><dd>python3-lxml</dd></div>
               <div><dt>Duration</dt><dd>0.00s</dd></div>
               <div><dt>Tags</dt><dd class="tags"><span>usage</span> <span>xml</span></dd></div>
             </dl>
             <div class="case-actions">
-              <a class="log-link" href="../evidence/original/logs/libxml/usage-python3-lxml-xinclude-xml.log">Log</a>
-              <button type="button" class="play-button js-load-cast" data-cast="../evidence/original/casts/libxml/usage-python3-lxml-xinclude-xml.cast">Play</button>
+              <a class="log-link" href="../evidence/original/logs/libxml/usage-python3-lxml-xinclude-xml.log" aria-label="Open log for Original / libxml / usage-python3-lxml-xinclude-xml">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/original/casts/libxml/usage-python3-lxml-xinclude-xml.cast" aria-label="Play cast for Original / libxml / usage-python3-lxml-xinclude-xml">Play</button>
             </div>
             <div class="cast-player" data-player>
               <div class="player-controls">
-                <button type="button" class="js-player-play">Play</button>
-                <button type="button" class="js-player-pause">Pause</button>
-                <button type="button" class="js-player-restart">Restart</button>
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Original / libxml / usage-python3-lxml-xinclude-xml">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Original / libxml / usage-python3-lxml-xinclude-xml">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Original / libxml / usage-python3-lxml-xinclude-xml">Restart</button>
                 <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
                 <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
               </div>
-              <pre class="terminal" aria-live="polite"></pre>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Original / libxml / usage-python3-lxml-xinclude-xml"></pre>
             </div>
           </div>
         </details>
@@ -354,31 +368,32 @@
           <summary>
             <span class="case-title">
               <strong>xmlstarlet select xml</strong>
-              <span class="case-id">original / libxml / usage-xmlstarlet-select-xml</span>
+              <span class="case-id">Original / libxml / usage-xmlstarlet-select-xml</span>
             </span>
-            <span class="status-pill status-passed">Passed</span>
+            <span class="status-pill status-passed" aria-label="Original / libxml / usage-xmlstarlet-select-xml status: Passed">Passed</span>
           </summary>
           <div class="case-body">
             <p>Runs xmlstarlet select xml behavior through libxml2.</p>
             <dl class="case-meta">
+              <div><dt>Run</dt><dd>Original</dd></div>
               <div><dt>Kind</dt><dd>usage</dd></div>
               <div><dt>Client</dt><dd>xmlstarlet</dd></div>
               <div><dt>Duration</dt><dd>0.00s</dd></div>
               <div><dt>Tags</dt><dd class="tags"><span>usage</span> <span>xml</span> <span>cli</span></dd></div>
             </dl>
             <div class="case-actions">
-              <a class="log-link" href="../evidence/original/logs/libxml/usage-xmlstarlet-select-xml.log">Log</a>
-              <button type="button" class="play-button js-load-cast" data-cast="../evidence/original/casts/libxml/usage-xmlstarlet-select-xml.cast">Play</button>
+              <a class="log-link" href="../evidence/original/logs/libxml/usage-xmlstarlet-select-xml.log" aria-label="Open log for Original / libxml / usage-xmlstarlet-select-xml">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/original/casts/libxml/usage-xmlstarlet-select-xml.cast" aria-label="Play cast for Original / libxml / usage-xmlstarlet-select-xml">Play</button>
             </div>
             <div class="cast-player" data-player>
               <div class="player-controls">
-                <button type="button" class="js-player-play">Play</button>
-                <button type="button" class="js-player-pause">Pause</button>
-                <button type="button" class="js-player-restart">Restart</button>
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Original / libxml / usage-xmlstarlet-select-xml">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Original / libxml / usage-xmlstarlet-select-xml">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Original / libxml / usage-xmlstarlet-select-xml">Restart</button>
                 <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
                 <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
               </div>
-              <pre class="terminal" aria-live="polite"></pre>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Original / libxml / usage-xmlstarlet-select-xml"></pre>
             </div>
           </div>
         </details>
@@ -386,31 +401,32 @@
           <summary>
             <span class="case-title">
               <strong>xmlstarlet format xml</strong>
-              <span class="case-id">original / libxml / usage-xmlstarlet-format-xml</span>
+              <span class="case-id">Original / libxml / usage-xmlstarlet-format-xml</span>
             </span>
-            <span class="status-pill status-passed">Passed</span>
+            <span class="status-pill status-passed" aria-label="Original / libxml / usage-xmlstarlet-format-xml status: Passed">Passed</span>
           </summary>
           <div class="case-body">
             <p>Runs xmlstarlet format xml behavior through libxml2.</p>
             <dl class="case-meta">
+              <div><dt>Run</dt><dd>Original</dd></div>
               <div><dt>Kind</dt><dd>usage</dd></div>
               <div><dt>Client</dt><dd>xmlstarlet</dd></div>
               <div><dt>Duration</dt><dd>0.00s</dd></div>
               <div><dt>Tags</dt><dd class="tags"><span>usage</span> <span>xml</span> <span>cli</span></dd></div>
             </dl>
             <div class="case-actions">
-              <a class="log-link" href="../evidence/original/logs/libxml/usage-xmlstarlet-format-xml.log">Log</a>
-              <button type="button" class="play-button js-load-cast" data-cast="../evidence/original/casts/libxml/usage-xmlstarlet-format-xml.cast">Play</button>
+              <a class="log-link" href="../evidence/original/logs/libxml/usage-xmlstarlet-format-xml.log" aria-label="Open log for Original / libxml / usage-xmlstarlet-format-xml">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/original/casts/libxml/usage-xmlstarlet-format-xml.cast" aria-label="Play cast for Original / libxml / usage-xmlstarlet-format-xml">Play</button>
             </div>
             <div class="cast-player" data-player>
               <div class="player-controls">
-                <button type="button" class="js-player-play">Play</button>
-                <button type="button" class="js-player-pause">Pause</button>
-                <button type="button" class="js-player-restart">Restart</button>
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Original / libxml / usage-xmlstarlet-format-xml">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Original / libxml / usage-xmlstarlet-format-xml">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Original / libxml / usage-xmlstarlet-format-xml">Restart</button>
                 <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
                 <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
               </div>
-              <pre class="terminal" aria-live="polite"></pre>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Original / libxml / usage-xmlstarlet-format-xml"></pre>
             </div>
           </div>
         </details>
@@ -418,31 +434,32 @@
           <summary>
             <span class="case-title">
               <strong>xmlstarlet edit xml</strong>
-              <span class="case-id">original / libxml / usage-xmlstarlet-edit-xml</span>
+              <span class="case-id">Original / libxml / usage-xmlstarlet-edit-xml</span>
             </span>
-            <span class="status-pill status-passed">Passed</span>
+            <span class="status-pill status-passed" aria-label="Original / libxml / usage-xmlstarlet-edit-xml status: Passed">Passed</span>
           </summary>
           <div class="case-body">
             <p>Runs xmlstarlet edit xml behavior through libxml2.</p>
             <dl class="case-meta">
+              <div><dt>Run</dt><dd>Original</dd></div>
               <div><dt>Kind</dt><dd>usage</dd></div>
               <div><dt>Client</dt><dd>xmlstarlet</dd></div>
               <div><dt>Duration</dt><dd>0.00s</dd></div>
               <div><dt>Tags</dt><dd class="tags"><span>usage</span> <span>xml</span> <span>cli</span></dd></div>
             </dl>
             <div class="case-actions">
-              <a class="log-link" href="../evidence/original/logs/libxml/usage-xmlstarlet-edit-xml.log">Log</a>
-              <button type="button" class="play-button js-load-cast" data-cast="../evidence/original/casts/libxml/usage-xmlstarlet-edit-xml.cast">Play</button>
+              <a class="log-link" href="../evidence/original/logs/libxml/usage-xmlstarlet-edit-xml.log" aria-label="Open log for Original / libxml / usage-xmlstarlet-edit-xml">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/original/casts/libxml/usage-xmlstarlet-edit-xml.cast" aria-label="Play cast for Original / libxml / usage-xmlstarlet-edit-xml">Play</button>
             </div>
             <div class="cast-player" data-player>
               <div class="player-controls">
-                <button type="button" class="js-player-play">Play</button>
-                <button type="button" class="js-player-pause">Pause</button>
-                <button type="button" class="js-player-restart">Restart</button>
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Original / libxml / usage-xmlstarlet-edit-xml">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Original / libxml / usage-xmlstarlet-edit-xml">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Original / libxml / usage-xmlstarlet-edit-xml">Restart</button>
                 <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
                 <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
               </div>
-              <pre class="terminal" aria-live="polite"></pre>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Original / libxml / usage-xmlstarlet-edit-xml"></pre>
             </div>
           </div>
         </details>
@@ -450,31 +467,32 @@
           <summary>
             <span class="case-title">
               <strong>xmlstarlet validate xml</strong>
-              <span class="case-id">original / libxml / usage-xmlstarlet-validate-xml</span>
+              <span class="case-id">Original / libxml / usage-xmlstarlet-validate-xml</span>
             </span>
-            <span class="status-pill status-passed">Passed</span>
+            <span class="status-pill status-passed" aria-label="Original / libxml / usage-xmlstarlet-validate-xml status: Passed">Passed</span>
           </summary>
           <div class="case-body">
             <p>Runs xmlstarlet validate xml behavior through libxml2.</p>
             <dl class="case-meta">
+              <div><dt>Run</dt><dd>Original</dd></div>
               <div><dt>Kind</dt><dd>usage</dd></div>
               <div><dt>Client</dt><dd>xmlstarlet</dd></div>
               <div><dt>Duration</dt><dd>0.00s</dd></div>
               <div><dt>Tags</dt><dd class="tags"><span>usage</span> <span>xml</span> <span>cli</span></dd></div>
             </dl>
             <div class="case-actions">
-              <a class="log-link" href="../evidence/original/logs/libxml/usage-xmlstarlet-validate-xml.log">Log</a>
-              <button type="button" class="play-button js-load-cast" data-cast="../evidence/original/casts/libxml/usage-xmlstarlet-validate-xml.cast">Play</button>
+              <a class="log-link" href="../evidence/original/logs/libxml/usage-xmlstarlet-validate-xml.log" aria-label="Open log for Original / libxml / usage-xmlstarlet-validate-xml">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/original/casts/libxml/usage-xmlstarlet-validate-xml.cast" aria-label="Play cast for Original / libxml / usage-xmlstarlet-validate-xml">Play</button>
             </div>
             <div class="cast-player" data-player>
               <div class="player-controls">
-                <button type="button" class="js-player-play">Play</button>
-                <button type="button" class="js-player-pause">Pause</button>
-                <button type="button" class="js-player-restart">Restart</button>
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Original / libxml / usage-xmlstarlet-validate-xml">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Original / libxml / usage-xmlstarlet-validate-xml">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Original / libxml / usage-xmlstarlet-validate-xml">Restart</button>
                 <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
                 <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
               </div>
-              <pre class="terminal" aria-live="polite"></pre>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Original / libxml / usage-xmlstarlet-validate-xml"></pre>
             </div>
           </div>
         </details>
@@ -482,31 +500,32 @@
           <summary>
             <span class="case-title">
               <strong>xmlstarlet transform XML</strong>
-              <span class="case-id">original / libxml / usage-xmlstarlet-transform-xml</span>
+              <span class="case-id">Original / libxml / usage-xmlstarlet-transform-xml</span>
             </span>
-            <span class="status-pill status-passed">Passed</span>
+            <span class="status-pill status-passed" aria-label="Original / libxml / usage-xmlstarlet-transform-xml status: Passed">Passed</span>
           </summary>
           <div class="case-body">
             <p>Runs xmlstarlet XSLT transformation and verifies the selected XML value is emitted.</p>
             <dl class="case-meta">
+              <div><dt>Run</dt><dd>Original</dd></div>
               <div><dt>Kind</dt><dd>usage</dd></div>
               <div><dt>Client</dt><dd>xmlstarlet</dd></div>
               <div><dt>Duration</dt><dd>0.00s</dd></div>
               <div><dt>Tags</dt><dd class="tags"><span>usage</span> <span>xml</span> <span>cli</span></dd></div>
             </dl>
             <div class="case-actions">
-              <a class="log-link" href="../evidence/original/logs/libxml/usage-xmlstarlet-transform-xml.log">Log</a>
-              <button type="button" class="play-button js-load-cast" data-cast="../evidence/original/casts/libxml/usage-xmlstarlet-transform-xml.cast">Play</button>
+              <a class="log-link" href="../evidence/original/logs/libxml/usage-xmlstarlet-transform-xml.log" aria-label="Open log for Original / libxml / usage-xmlstarlet-transform-xml">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/original/casts/libxml/usage-xmlstarlet-transform-xml.cast" aria-label="Play cast for Original / libxml / usage-xmlstarlet-transform-xml">Play</button>
             </div>
             <div class="cast-player" data-player>
               <div class="player-controls">
-                <button type="button" class="js-player-play">Play</button>
-                <button type="button" class="js-player-pause">Pause</button>
-                <button type="button" class="js-player-restart">Restart</button>
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Original / libxml / usage-xmlstarlet-transform-xml">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Original / libxml / usage-xmlstarlet-transform-xml">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Original / libxml / usage-xmlstarlet-transform-xml">Restart</button>
                 <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
                 <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
               </div>
-              <pre class="terminal" aria-live="polite"></pre>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Original / libxml / usage-xmlstarlet-transform-xml"></pre>
             </div>
           </div>
         </details>
@@ -514,31 +533,32 @@
           <summary>
             <span class="case-title">
               <strong>xmllint parse and format</strong>
-              <span class="case-id">port-04-test / libxml / xmllint-parse-format</span>
+              <span class="case-id">Port / libxml / xmllint-parse-format</span>
             </span>
-            <span class="status-pill status-passed">Passed</span>
+            <span class="status-pill status-passed" aria-label="Port / libxml / xmllint-parse-format status: Passed">Passed</span>
           </summary>
           <div class="case-body">
             <p>Parses and formats XML using the installed xmllint command.</p>
             <dl class="case-meta">
+              <div><dt>Run</dt><dd>Port</dd></div>
               <div><dt>Kind</dt><dd>source</dd></div>
               <div><dt>Client</dt><dd>none</dd></div>
               <div><dt>Duration</dt><dd>0.00s</dd></div>
               <div><dt>Tags</dt><dd class="tags"><span>cli</span> <span>xml</span></dd></div>
             </dl>
             <div class="case-actions">
-              <a class="log-link" href="../evidence/port-04-test/logs/libxml/xmllint-parse-format.log">Log</a>
-              <button type="button" class="play-button js-load-cast" data-cast="../evidence/port-04-test/casts/libxml/xmllint-parse-format.cast">Play</button>
+              <a class="log-link" href="../evidence/port-04-test/logs/libxml/xmllint-parse-format.log" aria-label="Open log for Port / libxml / xmllint-parse-format">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/port-04-test/casts/libxml/xmllint-parse-format.cast" aria-label="Play cast for Port / libxml / xmllint-parse-format">Play</button>
             </div>
             <div class="cast-player" data-player>
               <div class="player-controls">
-                <button type="button" class="js-player-play">Play</button>
-                <button type="button" class="js-player-pause">Pause</button>
-                <button type="button" class="js-player-restart">Restart</button>
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Port / libxml / xmllint-parse-format">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Port / libxml / xmllint-parse-format">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Port / libxml / xmllint-parse-format">Restart</button>
                 <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
                 <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
               </div>
-              <pre class="terminal" aria-live="polite"></pre>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Port / libxml / xmllint-parse-format"></pre>
             </div>
           </div>
         </details>
@@ -546,31 +566,32 @@
           <summary>
             <span class="case-title">
               <strong>xmlcatalog lookup behavior</strong>
-              <span class="case-id">port-04-test / libxml / xmlcatalog-lookup</span>
+              <span class="case-id">Port / libxml / xmlcatalog-lookup</span>
             </span>
-            <span class="status-pill status-passed">Passed</span>
+            <span class="status-pill status-passed" aria-label="Port / libxml / xmlcatalog-lookup status: Passed">Passed</span>
           </summary>
           <div class="case-body">
             <p>Resolves a public identifier from a local XML catalog file.</p>
             <dl class="case-meta">
+              <div><dt>Run</dt><dd>Port</dd></div>
               <div><dt>Kind</dt><dd>source</dd></div>
               <div><dt>Client</dt><dd>none</dd></div>
               <div><dt>Duration</dt><dd>0.00s</dd></div>
               <div><dt>Tags</dt><dd class="tags"><span>cli</span> <span>catalog</span></dd></div>
             </dl>
             <div class="case-actions">
-              <a class="log-link" href="../evidence/port-04-test/logs/libxml/xmlcatalog-lookup.log">Log</a>
-              <button type="button" class="play-button js-load-cast" data-cast="../evidence/port-04-test/casts/libxml/xmlcatalog-lookup.cast">Play</button>
+              <a class="log-link" href="../evidence/port-04-test/logs/libxml/xmlcatalog-lookup.log" aria-label="Open log for Port / libxml / xmlcatalog-lookup">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/port-04-test/casts/libxml/xmlcatalog-lookup.cast" aria-label="Play cast for Port / libxml / xmlcatalog-lookup">Play</button>
             </div>
             <div class="cast-player" data-player>
               <div class="player-controls">
-                <button type="button" class="js-player-play">Play</button>
-                <button type="button" class="js-player-pause">Pause</button>
-                <button type="button" class="js-player-restart">Restart</button>
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Port / libxml / xmlcatalog-lookup">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Port / libxml / xmlcatalog-lookup">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Port / libxml / xmlcatalog-lookup">Restart</button>
                 <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
                 <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
               </div>
-              <pre class="terminal" aria-live="polite"></pre>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Port / libxml / xmlcatalog-lookup"></pre>
             </div>
           </div>
         </details>
@@ -578,31 +599,32 @@
           <summary>
             <span class="case-title">
               <strong>Python libxml2 binding smoke</strong>
-              <span class="case-id">port-04-test / libxml / python-binding-smoke</span>
+              <span class="case-id">Port / libxml / python-binding-smoke</span>
             </span>
-            <span class="status-pill status-passed">Passed</span>
+            <span class="status-pill status-passed" aria-label="Port / libxml / python-binding-smoke status: Passed">Passed</span>
           </summary>
           <div class="case-body">
             <p>Parses and queries XML through the packaged Python libxml2 binding.</p>
             <dl class="case-meta">
+              <div><dt>Run</dt><dd>Port</dd></div>
               <div><dt>Kind</dt><dd>source</dd></div>
               <div><dt>Client</dt><dd>none</dd></div>
               <div><dt>Duration</dt><dd>0.00s</dd></div>
               <div><dt>Tags</dt><dd class="tags"><span>python</span> <span>binding</span></dd></div>
             </dl>
             <div class="case-actions">
-              <a class="log-link" href="../evidence/port-04-test/logs/libxml/python-binding-smoke.log">Log</a>
-              <button type="button" class="play-button js-load-cast" data-cast="../evidence/port-04-test/casts/libxml/python-binding-smoke.cast">Play</button>
+              <a class="log-link" href="../evidence/port-04-test/logs/libxml/python-binding-smoke.log" aria-label="Open log for Port / libxml / python-binding-smoke">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/port-04-test/casts/libxml/python-binding-smoke.cast" aria-label="Play cast for Port / libxml / python-binding-smoke">Play</button>
             </div>
             <div class="cast-player" data-player>
               <div class="player-controls">
-                <button type="button" class="js-player-play">Play</button>
-                <button type="button" class="js-player-pause">Pause</button>
-                <button type="button" class="js-player-restart">Restart</button>
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Port / libxml / python-binding-smoke">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Port / libxml / python-binding-smoke">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Port / libxml / python-binding-smoke">Restart</button>
                 <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
                 <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
               </div>
-              <pre class="terminal" aria-live="polite"></pre>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Port / libxml / python-binding-smoke"></pre>
             </div>
           </div>
         </details>
@@ -610,31 +632,32 @@
           <summary>
             <span class="case-title">
               <strong>libxml reader C API behavior</strong>
-              <span class="case-id">port-04-test / libxml / reader-c-api-behavior</span>
+              <span class="case-id">Port / libxml / reader-c-api-behavior</span>
             </span>
-            <span class="status-pill status-passed">Passed</span>
+            <span class="status-pill status-passed" aria-label="Port / libxml / reader-c-api-behavior status: Passed">Passed</span>
           </summary>
           <div class="case-body">
             <p>Compiles a program using xmlTextReader to stream element names.</p>
             <dl class="case-meta">
+              <div><dt>Run</dt><dd>Port</dd></div>
               <div><dt>Kind</dt><dd>source</dd></div>
               <div><dt>Client</dt><dd>none</dd></div>
               <div><dt>Duration</dt><dd>0.00s</dd></div>
               <div><dt>Tags</dt><dd class="tags"><span>api</span> <span>reader</span></dd></div>
             </dl>
             <div class="case-actions">
-              <a class="log-link" href="../evidence/port-04-test/logs/libxml/reader-c-api-behavior.log">Log</a>
-              <button type="button" class="play-button js-load-cast" data-cast="../evidence/port-04-test/casts/libxml/reader-c-api-behavior.cast">Play</button>
+              <a class="log-link" href="../evidence/port-04-test/logs/libxml/reader-c-api-behavior.log" aria-label="Open log for Port / libxml / reader-c-api-behavior">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/port-04-test/casts/libxml/reader-c-api-behavior.cast" aria-label="Play cast for Port / libxml / reader-c-api-behavior">Play</button>
             </div>
             <div class="cast-player" data-player>
               <div class="player-controls">
-                <button type="button" class="js-player-play">Play</button>
-                <button type="button" class="js-player-pause">Pause</button>
-                <button type="button" class="js-player-restart">Restart</button>
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Port / libxml / reader-c-api-behavior">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Port / libxml / reader-c-api-behavior">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Port / libxml / reader-c-api-behavior">Restart</button>
                 <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
                 <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
               </div>
-              <pre class="terminal" aria-live="polite"></pre>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Port / libxml / reader-c-api-behavior"></pre>
             </div>
           </div>
         </details>
@@ -642,31 +665,32 @@
           <summary>
             <span class="case-title">
               <strong>Schema and XInclude checks</strong>
-              <span class="case-id">port-04-test / libxml / schema-xinclude-checks</span>
+              <span class="case-id">Port / libxml / schema-xinclude-checks</span>
             </span>
-            <span class="status-pill status-passed">Passed</span>
+            <span class="status-pill status-passed" aria-label="Port / libxml / schema-xinclude-checks status: Passed">Passed</span>
           </summary>
           <div class="case-body">
             <p>Validates XML against a schema and expands an XInclude document.</p>
             <dl class="case-meta">
+              <div><dt>Run</dt><dd>Port</dd></div>
               <div><dt>Kind</dt><dd>source</dd></div>
               <div><dt>Client</dt><dd>none</dd></div>
               <div><dt>Duration</dt><dd>0.00s</dd></div>
               <div><dt>Tags</dt><dd class="tags"><span>cli</span> <span>schema</span></dd></div>
             </dl>
             <div class="case-actions">
-              <a class="log-link" href="../evidence/port-04-test/logs/libxml/schema-xinclude-checks.log">Log</a>
-              <button type="button" class="play-button js-load-cast" data-cast="../evidence/port-04-test/casts/libxml/schema-xinclude-checks.cast">Play</button>
+              <a class="log-link" href="../evidence/port-04-test/logs/libxml/schema-xinclude-checks.log" aria-label="Open log for Port / libxml / schema-xinclude-checks">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/port-04-test/casts/libxml/schema-xinclude-checks.cast" aria-label="Play cast for Port / libxml / schema-xinclude-checks">Play</button>
             </div>
             <div class="cast-player" data-player>
               <div class="player-controls">
-                <button type="button" class="js-player-play">Play</button>
-                <button type="button" class="js-player-pause">Pause</button>
-                <button type="button" class="js-player-restart">Restart</button>
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Port / libxml / schema-xinclude-checks">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Port / libxml / schema-xinclude-checks">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Port / libxml / schema-xinclude-checks">Restart</button>
                 <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
                 <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
               </div>
-              <pre class="terminal" aria-live="polite"></pre>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Port / libxml / schema-xinclude-checks"></pre>
             </div>
           </div>
         </details>
@@ -674,31 +698,32 @@
           <summary>
             <span class="case-title">
               <strong>python3-lxml parse xml</strong>
-              <span class="case-id">port-04-test / libxml / usage-python3-lxml-parse-xml</span>
+              <span class="case-id">Port / libxml / usage-python3-lxml-parse-xml</span>
             </span>
-            <span class="status-pill status-passed">Passed</span>
+            <span class="status-pill status-passed" aria-label="Port / libxml / usage-python3-lxml-parse-xml status: Passed">Passed</span>
           </summary>
           <div class="case-body">
             <p>Runs python3-lxml parse xml behavior through libxml2.</p>
             <dl class="case-meta">
+              <div><dt>Run</dt><dd>Port</dd></div>
               <div><dt>Kind</dt><dd>usage</dd></div>
               <div><dt>Client</dt><dd>python3-lxml</dd></div>
               <div><dt>Duration</dt><dd>0.00s</dd></div>
               <div><dt>Tags</dt><dd class="tags"><span>usage</span> <span>xml</span></dd></div>
             </dl>
             <div class="case-actions">
-              <a class="log-link" href="../evidence/port-04-test/logs/libxml/usage-python3-lxml-parse-xml.log">Log</a>
-              <button type="button" class="play-button js-load-cast" data-cast="../evidence/port-04-test/casts/libxml/usage-python3-lxml-parse-xml.cast">Play</button>
+              <a class="log-link" href="../evidence/port-04-test/logs/libxml/usage-python3-lxml-parse-xml.log" aria-label="Open log for Port / libxml / usage-python3-lxml-parse-xml">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/port-04-test/casts/libxml/usage-python3-lxml-parse-xml.cast" aria-label="Play cast for Port / libxml / usage-python3-lxml-parse-xml">Play</button>
             </div>
             <div class="cast-player" data-player>
               <div class="player-controls">
-                <button type="button" class="js-player-play">Play</button>
-                <button type="button" class="js-player-pause">Pause</button>
-                <button type="button" class="js-player-restart">Restart</button>
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Port / libxml / usage-python3-lxml-parse-xml">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Port / libxml / usage-python3-lxml-parse-xml">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Port / libxml / usage-python3-lxml-parse-xml">Restart</button>
                 <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
                 <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
               </div>
-              <pre class="terminal" aria-live="polite"></pre>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Port / libxml / usage-python3-lxml-parse-xml"></pre>
             </div>
           </div>
         </details>
@@ -706,31 +731,32 @@
           <summary>
             <span class="case-title">
               <strong>python3-lxml xpath xml</strong>
-              <span class="case-id">port-04-test / libxml / usage-python3-lxml-xpath-xml</span>
+              <span class="case-id">Port / libxml / usage-python3-lxml-xpath-xml</span>
             </span>
-            <span class="status-pill status-passed">Passed</span>
+            <span class="status-pill status-passed" aria-label="Port / libxml / usage-python3-lxml-xpath-xml status: Passed">Passed</span>
           </summary>
           <div class="case-body">
             <p>Runs python3-lxml xpath xml behavior through libxml2.</p>
             <dl class="case-meta">
+              <div><dt>Run</dt><dd>Port</dd></div>
               <div><dt>Kind</dt><dd>usage</dd></div>
               <div><dt>Client</dt><dd>python3-lxml</dd></div>
               <div><dt>Duration</dt><dd>0.00s</dd></div>
               <div><dt>Tags</dt><dd class="tags"><span>usage</span> <span>xml</span></dd></div>
             </dl>
             <div class="case-actions">
-              <a class="log-link" href="../evidence/port-04-test/logs/libxml/usage-python3-lxml-xpath-xml.log">Log</a>
-              <button type="button" class="play-button js-load-cast" data-cast="../evidence/port-04-test/casts/libxml/usage-python3-lxml-xpath-xml.cast">Play</button>
+              <a class="log-link" href="../evidence/port-04-test/logs/libxml/usage-python3-lxml-xpath-xml.log" aria-label="Open log for Port / libxml / usage-python3-lxml-xpath-xml">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/port-04-test/casts/libxml/usage-python3-lxml-xpath-xml.cast" aria-label="Play cast for Port / libxml / usage-python3-lxml-xpath-xml">Play</button>
             </div>
             <div class="cast-player" data-player>
               <div class="player-controls">
-                <button type="button" class="js-player-play">Play</button>
-                <button type="button" class="js-player-pause">Pause</button>
-                <button type="button" class="js-player-restart">Restart</button>
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Port / libxml / usage-python3-lxml-xpath-xml">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Port / libxml / usage-python3-lxml-xpath-xml">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Port / libxml / usage-python3-lxml-xpath-xml">Restart</button>
                 <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
                 <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
               </div>
-              <pre class="terminal" aria-live="polite"></pre>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Port / libxml / usage-python3-lxml-xpath-xml"></pre>
             </div>
           </div>
         </details>
@@ -738,31 +764,32 @@
           <summary>
             <span class="case-title">
               <strong>python3-lxml xslt xml</strong>
-              <span class="case-id">port-04-test / libxml / usage-python3-lxml-xslt-xml</span>
+              <span class="case-id">Port / libxml / usage-python3-lxml-xslt-xml</span>
             </span>
-            <span class="status-pill status-passed">Passed</span>
+            <span class="status-pill status-passed" aria-label="Port / libxml / usage-python3-lxml-xslt-xml status: Passed">Passed</span>
           </summary>
           <div class="case-body">
             <p>Runs python3-lxml xslt xml behavior through libxml2.</p>
             <dl class="case-meta">
+              <div><dt>Run</dt><dd>Port</dd></div>
               <div><dt>Kind</dt><dd>usage</dd></div>
               <div><dt>Client</dt><dd>python3-lxml</dd></div>
               <div><dt>Duration</dt><dd>0.00s</dd></div>
               <div><dt>Tags</dt><dd class="tags"><span>usage</span> <span>xml</span></dd></div>
             </dl>
             <div class="case-actions">
-              <a class="log-link" href="../evidence/port-04-test/logs/libxml/usage-python3-lxml-xslt-xml.log">Log</a>
-              <button type="button" class="play-button js-load-cast" data-cast="../evidence/port-04-test/casts/libxml/usage-python3-lxml-xslt-xml.cast">Play</button>
+              <a class="log-link" href="../evidence/port-04-test/logs/libxml/usage-python3-lxml-xslt-xml.log" aria-label="Open log for Port / libxml / usage-python3-lxml-xslt-xml">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/port-04-test/casts/libxml/usage-python3-lxml-xslt-xml.cast" aria-label="Play cast for Port / libxml / usage-python3-lxml-xslt-xml">Play</button>
             </div>
             <div class="cast-player" data-player>
               <div class="player-controls">
-                <button type="button" class="js-player-play">Play</button>
-                <button type="button" class="js-player-pause">Pause</button>
-                <button type="button" class="js-player-restart">Restart</button>
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Port / libxml / usage-python3-lxml-xslt-xml">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Port / libxml / usage-python3-lxml-xslt-xml">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Port / libxml / usage-python3-lxml-xslt-xml">Restart</button>
                 <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
                 <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
               </div>
-              <pre class="terminal" aria-live="polite"></pre>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Port / libxml / usage-python3-lxml-xslt-xml"></pre>
             </div>
           </div>
         </details>
@@ -770,31 +797,32 @@
           <summary>
             <span class="case-title">
               <strong>python3-lxml schema xml</strong>
-              <span class="case-id">port-04-test / libxml / usage-python3-lxml-schema-xml</span>
+              <span class="case-id">Port / libxml / usage-python3-lxml-schema-xml</span>
             </span>
-            <span class="status-pill status-passed">Passed</span>
+            <span class="status-pill status-passed" aria-label="Port / libxml / usage-python3-lxml-schema-xml status: Passed">Passed</span>
           </summary>
           <div class="case-body">
             <p>Runs python3-lxml schema xml behavior through libxml2.</p>
             <dl class="case-meta">
+              <div><dt>Run</dt><dd>Port</dd></div>
               <div><dt>Kind</dt><dd>usage</dd></div>
               <div><dt>Client</dt><dd>python3-lxml</dd></div>
               <div><dt>Duration</dt><dd>0.00s</dd></div>
               <div><dt>Tags</dt><dd class="tags"><span>usage</span> <span>xml</span></dd></div>
             </dl>
             <div class="case-actions">
-              <a class="log-link" href="../evidence/port-04-test/logs/libxml/usage-python3-lxml-schema-xml.log">Log</a>
-              <button type="button" class="play-button js-load-cast" data-cast="../evidence/port-04-test/casts/libxml/usage-python3-lxml-schema-xml.cast">Play</button>
+              <a class="log-link" href="../evidence/port-04-test/logs/libxml/usage-python3-lxml-schema-xml.log" aria-label="Open log for Port / libxml / usage-python3-lxml-schema-xml">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/port-04-test/casts/libxml/usage-python3-lxml-schema-xml.cast" aria-label="Play cast for Port / libxml / usage-python3-lxml-schema-xml">Play</button>
             </div>
             <div class="cast-player" data-player>
               <div class="player-controls">
-                <button type="button" class="js-player-play">Play</button>
-                <button type="button" class="js-player-pause">Pause</button>
-                <button type="button" class="js-player-restart">Restart</button>
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Port / libxml / usage-python3-lxml-schema-xml">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Port / libxml / usage-python3-lxml-schema-xml">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Port / libxml / usage-python3-lxml-schema-xml">Restart</button>
                 <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
                 <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
               </div>
-              <pre class="terminal" aria-live="polite"></pre>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Port / libxml / usage-python3-lxml-schema-xml"></pre>
             </div>
           </div>
         </details>
@@ -802,31 +830,32 @@
           <summary>
             <span class="case-title">
               <strong>python3-lxml XInclude XML expansion</strong>
-              <span class="case-id">port-04-test / libxml / usage-python3-lxml-xinclude-xml</span>
+              <span class="case-id">Port / libxml / usage-python3-lxml-xinclude-xml</span>
             </span>
-            <span class="status-pill status-passed">Passed</span>
+            <span class="status-pill status-passed" aria-label="Port / libxml / usage-python3-lxml-xinclude-xml status: Passed">Passed</span>
           </summary>
           <div class="case-body">
             <p>Runs lxml XInclude expansion and verifies included XML element text is visible to the client.</p>
             <dl class="case-meta">
+              <div><dt>Run</dt><dd>Port</dd></div>
               <div><dt>Kind</dt><dd>usage</dd></div>
               <div><dt>Client</dt><dd>python3-lxml</dd></div>
               <div><dt>Duration</dt><dd>0.00s</dd></div>
               <div><dt>Tags</dt><dd class="tags"><span>usage</span> <span>xml</span></dd></div>
             </dl>
             <div class="case-actions">
-              <a class="log-link" href="../evidence/port-04-test/logs/libxml/usage-python3-lxml-xinclude-xml.log">Log</a>
-              <button type="button" class="play-button js-load-cast" data-cast="../evidence/port-04-test/casts/libxml/usage-python3-lxml-xinclude-xml.cast">Play</button>
+              <a class="log-link" href="../evidence/port-04-test/logs/libxml/usage-python3-lxml-xinclude-xml.log" aria-label="Open log for Port / libxml / usage-python3-lxml-xinclude-xml">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/port-04-test/casts/libxml/usage-python3-lxml-xinclude-xml.cast" aria-label="Play cast for Port / libxml / usage-python3-lxml-xinclude-xml">Play</button>
             </div>
             <div class="cast-player" data-player>
               <div class="player-controls">
-                <button type="button" class="js-player-play">Play</button>
-                <button type="button" class="js-player-pause">Pause</button>
-                <button type="button" class="js-player-restart">Restart</button>
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Port / libxml / usage-python3-lxml-xinclude-xml">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Port / libxml / usage-python3-lxml-xinclude-xml">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Port / libxml / usage-python3-lxml-xinclude-xml">Restart</button>
                 <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
                 <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
               </div>
-              <pre class="terminal" aria-live="polite"></pre>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Port / libxml / usage-python3-lxml-xinclude-xml"></pre>
             </div>
           </div>
         </details>
@@ -834,31 +863,32 @@
           <summary>
             <span class="case-title">
               <strong>xmlstarlet select xml</strong>
-              <span class="case-id">port-04-test / libxml / usage-xmlstarlet-select-xml</span>
+              <span class="case-id">Port / libxml / usage-xmlstarlet-select-xml</span>
             </span>
-            <span class="status-pill status-passed">Passed</span>
+            <span class="status-pill status-passed" aria-label="Port / libxml / usage-xmlstarlet-select-xml status: Passed">Passed</span>
           </summary>
           <div class="case-body">
             <p>Runs xmlstarlet select xml behavior through libxml2.</p>
             <dl class="case-meta">
+              <div><dt>Run</dt><dd>Port</dd></div>
               <div><dt>Kind</dt><dd>usage</dd></div>
               <div><dt>Client</dt><dd>xmlstarlet</dd></div>
               <div><dt>Duration</dt><dd>0.00s</dd></div>
               <div><dt>Tags</dt><dd class="tags"><span>usage</span> <span>xml</span> <span>cli</span></dd></div>
             </dl>
             <div class="case-actions">
-              <a class="log-link" href="../evidence/port-04-test/logs/libxml/usage-xmlstarlet-select-xml.log">Log</a>
-              <button type="button" class="play-button js-load-cast" data-cast="../evidence/port-04-test/casts/libxml/usage-xmlstarlet-select-xml.cast">Play</button>
+              <a class="log-link" href="../evidence/port-04-test/logs/libxml/usage-xmlstarlet-select-xml.log" aria-label="Open log for Port / libxml / usage-xmlstarlet-select-xml">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/port-04-test/casts/libxml/usage-xmlstarlet-select-xml.cast" aria-label="Play cast for Port / libxml / usage-xmlstarlet-select-xml">Play</button>
             </div>
             <div class="cast-player" data-player>
               <div class="player-controls">
-                <button type="button" class="js-player-play">Play</button>
-                <button type="button" class="js-player-pause">Pause</button>
-                <button type="button" class="js-player-restart">Restart</button>
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Port / libxml / usage-xmlstarlet-select-xml">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Port / libxml / usage-xmlstarlet-select-xml">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Port / libxml / usage-xmlstarlet-select-xml">Restart</button>
                 <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
                 <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
               </div>
-              <pre class="terminal" aria-live="polite"></pre>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Port / libxml / usage-xmlstarlet-select-xml"></pre>
             </div>
           </div>
         </details>
@@ -866,31 +896,32 @@
           <summary>
             <span class="case-title">
               <strong>xmlstarlet format xml</strong>
-              <span class="case-id">port-04-test / libxml / usage-xmlstarlet-format-xml</span>
+              <span class="case-id">Port / libxml / usage-xmlstarlet-format-xml</span>
             </span>
-            <span class="status-pill status-passed">Passed</span>
+            <span class="status-pill status-passed" aria-label="Port / libxml / usage-xmlstarlet-format-xml status: Passed">Passed</span>
           </summary>
           <div class="case-body">
             <p>Runs xmlstarlet format xml behavior through libxml2.</p>
             <dl class="case-meta">
+              <div><dt>Run</dt><dd>Port</dd></div>
               <div><dt>Kind</dt><dd>usage</dd></div>
               <div><dt>Client</dt><dd>xmlstarlet</dd></div>
               <div><dt>Duration</dt><dd>0.00s</dd></div>
               <div><dt>Tags</dt><dd class="tags"><span>usage</span> <span>xml</span> <span>cli</span></dd></div>
             </dl>
             <div class="case-actions">
-              <a class="log-link" href="../evidence/port-04-test/logs/libxml/usage-xmlstarlet-format-xml.log">Log</a>
-              <button type="button" class="play-button js-load-cast" data-cast="../evidence/port-04-test/casts/libxml/usage-xmlstarlet-format-xml.cast">Play</button>
+              <a class="log-link" href="../evidence/port-04-test/logs/libxml/usage-xmlstarlet-format-xml.log" aria-label="Open log for Port / libxml / usage-xmlstarlet-format-xml">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/port-04-test/casts/libxml/usage-xmlstarlet-format-xml.cast" aria-label="Play cast for Port / libxml / usage-xmlstarlet-format-xml">Play</button>
             </div>
             <div class="cast-player" data-player>
               <div class="player-controls">
-                <button type="button" class="js-player-play">Play</button>
-                <button type="button" class="js-player-pause">Pause</button>
-                <button type="button" class="js-player-restart">Restart</button>
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Port / libxml / usage-xmlstarlet-format-xml">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Port / libxml / usage-xmlstarlet-format-xml">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Port / libxml / usage-xmlstarlet-format-xml">Restart</button>
                 <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
                 <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
               </div>
-              <pre class="terminal" aria-live="polite"></pre>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Port / libxml / usage-xmlstarlet-format-xml"></pre>
             </div>
           </div>
         </details>
@@ -898,31 +929,32 @@
           <summary>
             <span class="case-title">
               <strong>xmlstarlet edit xml</strong>
-              <span class="case-id">port-04-test / libxml / usage-xmlstarlet-edit-xml</span>
+              <span class="case-id">Port / libxml / usage-xmlstarlet-edit-xml</span>
             </span>
-            <span class="status-pill status-passed">Passed</span>
+            <span class="status-pill status-passed" aria-label="Port / libxml / usage-xmlstarlet-edit-xml status: Passed">Passed</span>
           </summary>
           <div class="case-body">
             <p>Runs xmlstarlet edit xml behavior through libxml2.</p>
             <dl class="case-meta">
+              <div><dt>Run</dt><dd>Port</dd></div>
               <div><dt>Kind</dt><dd>usage</dd></div>
               <div><dt>Client</dt><dd>xmlstarlet</dd></div>
               <div><dt>Duration</dt><dd>0.00s</dd></div>
               <div><dt>Tags</dt><dd class="tags"><span>usage</span> <span>xml</span> <span>cli</span></dd></div>
             </dl>
             <div class="case-actions">
-              <a class="log-link" href="../evidence/port-04-test/logs/libxml/usage-xmlstarlet-edit-xml.log">Log</a>
-              <button type="button" class="play-button js-load-cast" data-cast="../evidence/port-04-test/casts/libxml/usage-xmlstarlet-edit-xml.cast">Play</button>
+              <a class="log-link" href="../evidence/port-04-test/logs/libxml/usage-xmlstarlet-edit-xml.log" aria-label="Open log for Port / libxml / usage-xmlstarlet-edit-xml">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/port-04-test/casts/libxml/usage-xmlstarlet-edit-xml.cast" aria-label="Play cast for Port / libxml / usage-xmlstarlet-edit-xml">Play</button>
             </div>
             <div class="cast-player" data-player>
               <div class="player-controls">
-                <button type="button" class="js-player-play">Play</button>
-                <button type="button" class="js-player-pause">Pause</button>
-                <button type="button" class="js-player-restart">Restart</button>
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Port / libxml / usage-xmlstarlet-edit-xml">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Port / libxml / usage-xmlstarlet-edit-xml">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Port / libxml / usage-xmlstarlet-edit-xml">Restart</button>
                 <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
                 <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
               </div>
-              <pre class="terminal" aria-live="polite"></pre>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Port / libxml / usage-xmlstarlet-edit-xml"></pre>
             </div>
           </div>
         </details>
@@ -930,31 +962,32 @@
           <summary>
             <span class="case-title">
               <strong>xmlstarlet validate xml</strong>
-              <span class="case-id">port-04-test / libxml / usage-xmlstarlet-validate-xml</span>
+              <span class="case-id">Port / libxml / usage-xmlstarlet-validate-xml</span>
             </span>
-            <span class="status-pill status-passed">Passed</span>
+            <span class="status-pill status-passed" aria-label="Port / libxml / usage-xmlstarlet-validate-xml status: Passed">Passed</span>
           </summary>
           <div class="case-body">
             <p>Runs xmlstarlet validate xml behavior through libxml2.</p>
             <dl class="case-meta">
+              <div><dt>Run</dt><dd>Port</dd></div>
               <div><dt>Kind</dt><dd>usage</dd></div>
               <div><dt>Client</dt><dd>xmlstarlet</dd></div>
               <div><dt>Duration</dt><dd>0.00s</dd></div>
               <div><dt>Tags</dt><dd class="tags"><span>usage</span> <span>xml</span> <span>cli</span></dd></div>
             </dl>
             <div class="case-actions">
-              <a class="log-link" href="../evidence/port-04-test/logs/libxml/usage-xmlstarlet-validate-xml.log">Log</a>
-              <button type="button" class="play-button js-load-cast" data-cast="../evidence/port-04-test/casts/libxml/usage-xmlstarlet-validate-xml.cast">Play</button>
+              <a class="log-link" href="../evidence/port-04-test/logs/libxml/usage-xmlstarlet-validate-xml.log" aria-label="Open log for Port / libxml / usage-xmlstarlet-validate-xml">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/port-04-test/casts/libxml/usage-xmlstarlet-validate-xml.cast" aria-label="Play cast for Port / libxml / usage-xmlstarlet-validate-xml">Play</button>
             </div>
             <div class="cast-player" data-player>
               <div class="player-controls">
-                <button type="button" class="js-player-play">Play</button>
-                <button type="button" class="js-player-pause">Pause</button>
-                <button type="button" class="js-player-restart">Restart</button>
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Port / libxml / usage-xmlstarlet-validate-xml">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Port / libxml / usage-xmlstarlet-validate-xml">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Port / libxml / usage-xmlstarlet-validate-xml">Restart</button>
                 <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
                 <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
               </div>
-              <pre class="terminal" aria-live="polite"></pre>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Port / libxml / usage-xmlstarlet-validate-xml"></pre>
             </div>
           </div>
         </details>
@@ -962,31 +995,32 @@
           <summary>
             <span class="case-title">
               <strong>xmlstarlet transform XML</strong>
-              <span class="case-id">port-04-test / libxml / usage-xmlstarlet-transform-xml</span>
+              <span class="case-id">Port / libxml / usage-xmlstarlet-transform-xml</span>
             </span>
-            <span class="status-pill status-passed">Passed</span>
+            <span class="status-pill status-passed" aria-label="Port / libxml / usage-xmlstarlet-transform-xml status: Passed">Passed</span>
           </summary>
           <div class="case-body">
             <p>Runs xmlstarlet XSLT transformation and verifies the selected XML value is emitted.</p>
             <dl class="case-meta">
+              <div><dt>Run</dt><dd>Port</dd></div>
               <div><dt>Kind</dt><dd>usage</dd></div>
               <div><dt>Client</dt><dd>xmlstarlet</dd></div>
               <div><dt>Duration</dt><dd>0.00s</dd></div>
               <div><dt>Tags</dt><dd class="tags"><span>usage</span> <span>xml</span> <span>cli</span></dd></div>
             </dl>
             <div class="case-actions">
-              <a class="log-link" href="../evidence/port-04-test/logs/libxml/usage-xmlstarlet-transform-xml.log">Log</a>
-              <button type="button" class="play-button js-load-cast" data-cast="../evidence/port-04-test/casts/libxml/usage-xmlstarlet-transform-xml.cast">Play</button>
+              <a class="log-link" href="../evidence/port-04-test/logs/libxml/usage-xmlstarlet-transform-xml.log" aria-label="Open log for Port / libxml / usage-xmlstarlet-transform-xml">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/port-04-test/casts/libxml/usage-xmlstarlet-transform-xml.cast" aria-label="Play cast for Port / libxml / usage-xmlstarlet-transform-xml">Play</button>
             </div>
             <div class="cast-player" data-player>
               <div class="player-controls">
-                <button type="button" class="js-player-play">Play</button>
-                <button type="button" class="js-player-pause">Pause</button>
-                <button type="button" class="js-player-restart">Restart</button>
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Port / libxml / usage-xmlstarlet-transform-xml">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Port / libxml / usage-xmlstarlet-transform-xml">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Port / libxml / usage-xmlstarlet-transform-xml">Restart</button>
                 <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
                 <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
               </div>
-              <pre class="terminal" aria-live="polite"></pre>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Port / libxml / usage-xmlstarlet-transform-xml"></pre>
             </div>
           </div>
         </details>

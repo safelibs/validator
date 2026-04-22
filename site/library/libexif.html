@@ -9,56 +9,61 @@
     <script defer src="../assets/player.js"></script>
   </head>
   <body data-site-data="../site-data.json">
+    <a class="skip-link" href="#tests-heading">Skip to tests</a>
     <main>
-      <section class="dashboard" aria-label="Validation dashboard">
-        <h1>libexif Validation</h1>
+      <nav class="breadcrumb" aria-label="Breadcrumb"><a href="../index.html">All libraries</a></nav>
+      <section class="dashboard" aria-labelledby="dashboard-heading">
+        <h1 id="dashboard-heading">libexif Validation</h1>
         <div class="metric-grid">
-        <div class="metric" data-proof-total="libraries"><strong>19</strong><span>Libraries</span></div>
-        <div class="metric" data-proof-total="cases"><strong>576</strong><span>Cases</span></div>
-        <div class="metric" data-proof-total="source_cases"><strong>190</strong><span>Source</span></div>
-        <div class="metric" data-proof-total="usage_cases"><strong>386</strong><span>Usage</span></div>
-        <div class="metric" data-proof-total="passed"><strong>576</strong><span>Passed</span></div>
-        <div class="metric" data-proof-total="failed"><strong>0</strong><span>Failed</span></div>
-        <div class="metric" data-proof-total="casts"><strong>576 (100%)</strong><span>Casts</span></div>
+        <div class="metric" data-proof-total="libraries"><strong>1</strong><span>Libraries</span></div>
+        <div class="metric" data-proof-total="cases"><strong>15</strong><span>Tests</span></div>
+        <div class="metric" data-proof-total="source_cases"><strong>5</strong><span>Source tests</span></div>
+        <div class="metric" data-proof-total="usage_cases"><strong>10</strong><span>Usage tests</span></div>
+        <div class="metric" data-proof-total="passed"><strong>15 / 15</strong><span>Port tests passing</span></div>
+        <div class="metric" data-proof-total="failed"><strong>0</strong><span>Port tests failing</span></div>
+        <div class="metric" data-proof-total="casts"><strong>30 (100%)</strong><span>Evidence casts</span></div>
+        <div class="metric" data-proof-total="port_libraries"><strong>1 / 1</strong><span>Port libraries passing</span></div>
         </div>
       </section>
 
       <section class="controls" aria-label="Testcase filters">
-        <label class="search-label">Search <input id="search-input" type="search" autocomplete="off"></label>
+        <label class="search-label">Search <input id="search-input" type="search" autocomplete="off" name="search"></label>
+        <label>Run mode <select id="mode-filter" name="mode"><option value="all">All</option><option value="original">Original</option><option value="port-04-test">Port</option></select></label>
         <label>Status <select id="status-filter"><option value="all">All</option><option value="passed">Passed</option><option value="failed">Failed</option></select></label>
         <label>Kind <select id="kind-filter"><option value="all">All</option><option value="source">Source</option><option value="usage">Usage</option></select></label>
       </section>
-      <section class="testcases" aria-label="Testcases">
-        <h2>Testcases</h2>
+      <section id="testcases" class="testcases" aria-labelledby="tests-heading">
+        <h2 id="tests-heading">Tests</h2>
         <details class="case-row" data-library="libexif" data-testcase-id="jpeg-exif-c-api-parse" data-mode="original" data-kind="source" data-status="passed" data-player-cast="../evidence/original/casts/libexif/jpeg-exif-c-api-parse.cast" data-search="libexif jpeg-exif-c-api-parse original JPEG EXIF C API parse Parses representative JPEG EXIF metadata and reads make and model tags. source api metadata">
           <summary>
             <span class="case-title">
               <strong>JPEG EXIF C API parse</strong>
-              <span class="case-id">original / libexif / jpeg-exif-c-api-parse</span>
+              <span class="case-id">Original / libexif / jpeg-exif-c-api-parse</span>
             </span>
-            <span class="status-pill status-passed">Passed</span>
+            <span class="status-pill status-passed" aria-label="Original / libexif / jpeg-exif-c-api-parse status: Passed">Passed</span>
           </summary>
           <div class="case-body">
             <p>Parses representative JPEG EXIF metadata and reads make and model tags.</p>
             <dl class="case-meta">
+              <div><dt>Run</dt><dd>Original</dd></div>
               <div><dt>Kind</dt><dd>source</dd></div>
               <div><dt>Client</dt><dd>none</dd></div>
               <div><dt>Duration</dt><dd>0.00s</dd></div>
               <div><dt>Tags</dt><dd class="tags"><span>api</span> <span>metadata</span></dd></div>
             </dl>
             <div class="case-actions">
-              <a class="log-link" href="../evidence/original/logs/libexif/jpeg-exif-c-api-parse.log">Log</a>
-              <button type="button" class="play-button js-load-cast" data-cast="../evidence/original/casts/libexif/jpeg-exif-c-api-parse.cast">Play</button>
+              <a class="log-link" href="../evidence/original/logs/libexif/jpeg-exif-c-api-parse.log" aria-label="Open log for Original / libexif / jpeg-exif-c-api-parse">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/original/casts/libexif/jpeg-exif-c-api-parse.cast" aria-label="Play cast for Original / libexif / jpeg-exif-c-api-parse">Play</button>
             </div>
             <div class="cast-player" data-player>
               <div class="player-controls">
-                <button type="button" class="js-player-play">Play</button>
-                <button type="button" class="js-player-pause">Pause</button>
-                <button type="button" class="js-player-restart">Restart</button>
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Original / libexif / jpeg-exif-c-api-parse">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Original / libexif / jpeg-exif-c-api-parse">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Original / libexif / jpeg-exif-c-api-parse">Restart</button>
                 <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
                 <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
               </div>
-              <pre class="terminal" aria-live="polite"></pre>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Original / libexif / jpeg-exif-c-api-parse"></pre>
             </div>
           </div>
         </details>
@@ -66,31 +71,32 @@
           <summary>
             <span class="case-title">
               <strong>Maker note data handling</strong>
-              <span class="case-id">original / libexif / maker-note-handling</span>
+              <span class="case-id">Original / libexif / maker-note-handling</span>
             </span>
-            <span class="status-pill status-passed">Passed</span>
+            <span class="status-pill status-passed" aria-label="Original / libexif / maker-note-handling status: Passed">Passed</span>
           </summary>
           <div class="case-body">
             <p>Finds maker-note bytes in a JPEG fixture through libexif metadata APIs.</p>
             <dl class="case-meta">
+              <div><dt>Run</dt><dd>Original</dd></div>
               <div><dt>Kind</dt><dd>source</dd></div>
               <div><dt>Client</dt><dd>none</dd></div>
               <div><dt>Duration</dt><dd>0.00s</dd></div>
               <div><dt>Tags</dt><dd class="tags"><span>api</span> <span>metadata</span></dd></div>
             </dl>
             <div class="case-actions">
-              <a class="log-link" href="../evidence/original/logs/libexif/maker-note-handling.log">Log</a>
-              <button type="button" class="play-button js-load-cast" data-cast="../evidence/original/casts/libexif/maker-note-handling.cast">Play</button>
+              <a class="log-link" href="../evidence/original/logs/libexif/maker-note-handling.log" aria-label="Open log for Original / libexif / maker-note-handling">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/original/casts/libexif/maker-note-handling.cast" aria-label="Play cast for Original / libexif / maker-note-handling">Play</button>
             </div>
             <div class="cast-player" data-player>
               <div class="player-controls">
-                <button type="button" class="js-player-play">Play</button>
-                <button type="button" class="js-player-pause">Pause</button>
-                <button type="button" class="js-player-restart">Restart</button>
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Original / libexif / maker-note-handling">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Original / libexif / maker-note-handling">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Original / libexif / maker-note-handling">Restart</button>
                 <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
                 <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
               </div>
-              <pre class="terminal" aria-live="polite"></pre>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Original / libexif / maker-note-handling"></pre>
             </div>
           </div>
         </details>
@@ -98,31 +104,32 @@
           <summary>
             <span class="case-title">
               <strong>Tag lookup and value formatting</strong>
-              <span class="case-id">original / libexif / tag-lookup-value-formatting</span>
+              <span class="case-id">Original / libexif / tag-lookup-value-formatting</span>
             </span>
-            <span class="status-pill status-passed">Passed</span>
+            <span class="status-pill status-passed" aria-label="Original / libexif / tag-lookup-value-formatting status: Passed">Passed</span>
           </summary>
           <div class="case-body">
             <p>Looks up EXIF tag names and formats initialized entry values.</p>
             <dl class="case-meta">
+              <div><dt>Run</dt><dd>Original</dd></div>
               <div><dt>Kind</dt><dd>source</dd></div>
               <div><dt>Client</dt><dd>none</dd></div>
               <div><dt>Duration</dt><dd>0.00s</dd></div>
               <div><dt>Tags</dt><dd class="tags"><span>api</span> <span>format</span></dd></div>
             </dl>
             <div class="case-actions">
-              <a class="log-link" href="../evidence/original/logs/libexif/tag-lookup-value-formatting.log">Log</a>
-              <button type="button" class="play-button js-load-cast" data-cast="../evidence/original/casts/libexif/tag-lookup-value-formatting.cast">Play</button>
+              <a class="log-link" href="../evidence/original/logs/libexif/tag-lookup-value-formatting.log" aria-label="Open log for Original / libexif / tag-lookup-value-formatting">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/original/casts/libexif/tag-lookup-value-formatting.cast" aria-label="Play cast for Original / libexif / tag-lookup-value-formatting">Play</button>
             </div>
             <div class="cast-player" data-player>
               <div class="player-controls">
-                <button type="button" class="js-player-play">Play</button>
-                <button type="button" class="js-player-pause">Pause</button>
-                <button type="button" class="js-player-restart">Restart</button>
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Original / libexif / tag-lookup-value-formatting">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Original / libexif / tag-lookup-value-formatting">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Original / libexif / tag-lookup-value-formatting">Restart</button>
                 <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
                 <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
               </div>
-              <pre class="terminal" aria-live="polite"></pre>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Original / libexif / tag-lookup-value-formatting"></pre>
             </div>
           </div>
         </details>
@@ -130,31 +137,32 @@
           <summary>
             <span class="case-title">
               <strong>libexif compile link smoke</strong>
-              <span class="case-id">original / libexif / compile-link-smoke</span>
+              <span class="case-id">Original / libexif / compile-link-smoke</span>
             </span>
-            <span class="status-pill status-passed">Passed</span>
+            <span class="status-pill status-passed" aria-label="Original / libexif / compile-link-smoke status: Passed">Passed</span>
           </summary>
           <div class="case-body">
             <p>Compiles and runs a small program against the public libexif headers.</p>
             <dl class="case-meta">
+              <div><dt>Run</dt><dd>Original</dd></div>
               <div><dt>Kind</dt><dd>source</dd></div>
               <div><dt>Client</dt><dd>none</dd></div>
               <div><dt>Duration</dt><dd>0.00s</dd></div>
               <div><dt>Tags</dt><dd class="tags"><span>api</span> <span>compile</span></dd></div>
             </dl>
             <div class="case-actions">
-              <a class="log-link" href="../evidence/original/logs/libexif/compile-link-smoke.log">Log</a>
-              <button type="button" class="play-button js-load-cast" data-cast="../evidence/original/casts/libexif/compile-link-smoke.cast">Play</button>
+              <a class="log-link" href="../evidence/original/logs/libexif/compile-link-smoke.log" aria-label="Open log for Original / libexif / compile-link-smoke">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/original/casts/libexif/compile-link-smoke.cast" aria-label="Play cast for Original / libexif / compile-link-smoke">Play</button>
             </div>
             <div class="cast-player" data-player>
               <div class="player-controls">
-                <button type="button" class="js-player-play">Play</button>
-                <button type="button" class="js-player-pause">Pause</button>
-                <button type="button" class="js-player-restart">Restart</button>
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Original / libexif / compile-link-smoke">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Original / libexif / compile-link-smoke">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Original / libexif / compile-link-smoke">Restart</button>
                 <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
                 <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
               </div>
-              <pre class="terminal" aria-live="polite"></pre>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Original / libexif / compile-link-smoke"></pre>
             </div>
           </div>
         </details>
@@ -162,31 +170,32 @@
           <summary>
             <span class="case-title">
               <strong>Invalid EXIF data handling</strong>
-              <span class="case-id">original / libexif / invalid-data-handling</span>
+              <span class="case-id">Original / libexif / invalid-data-handling</span>
             </span>
-            <span class="status-pill status-passed">Passed</span>
+            <span class="status-pill status-passed" aria-label="Original / libexif / invalid-data-handling status: Passed">Passed</span>
           </summary>
           <div class="case-body">
             <p>Feeds invalid bytes through ExifLoader and confirms graceful empty handling.</p>
             <dl class="case-meta">
+              <div><dt>Run</dt><dd>Original</dd></div>
               <div><dt>Kind</dt><dd>source</dd></div>
               <div><dt>Client</dt><dd>none</dd></div>
               <div><dt>Duration</dt><dd>0.00s</dd></div>
               <div><dt>Tags</dt><dd class="tags"><span>api</span> <span>negative</span></dd></div>
             </dl>
             <div class="case-actions">
-              <a class="log-link" href="../evidence/original/logs/libexif/invalid-data-handling.log">Log</a>
-              <button type="button" class="play-button js-load-cast" data-cast="../evidence/original/casts/libexif/invalid-data-handling.cast">Play</button>
+              <a class="log-link" href="../evidence/original/logs/libexif/invalid-data-handling.log" aria-label="Open log for Original / libexif / invalid-data-handling">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/original/casts/libexif/invalid-data-handling.cast" aria-label="Play cast for Original / libexif / invalid-data-handling">Play</button>
             </div>
             <div class="cast-player" data-player>
               <div class="player-controls">
-                <button type="button" class="js-player-play">Play</button>
-                <button type="button" class="js-player-pause">Pause</button>
-                <button type="button" class="js-player-restart">Restart</button>
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Original / libexif / invalid-data-handling">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Original / libexif / invalid-data-handling">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Original / libexif / invalid-data-handling">Restart</button>
                 <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
                 <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
               </div>
-              <pre class="terminal" aria-live="polite"></pre>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Original / libexif / invalid-data-handling"></pre>
             </div>
           </div>
         </details>
@@ -194,31 +203,32 @@
           <summary>
             <span class="case-title">
               <strong>exif CLI lists camera tags</strong>
-              <span class="case-id">original / libexif / usage-exif-cli-list-tags</span>
+              <span class="case-id">Original / libexif / usage-exif-cli-list-tags</span>
             </span>
-            <span class="status-pill status-passed">Passed</span>
+            <span class="status-pill status-passed" aria-label="Original / libexif / usage-exif-cli-list-tags status: Passed">Passed</span>
           </summary>
           <div class="case-body">
             <p>Runs the exif CLI on a JPEG fixture and reads camera tag output.</p>
             <dl class="case-meta">
+              <div><dt>Run</dt><dd>Original</dd></div>
               <div><dt>Kind</dt><dd>usage</dd></div>
               <div><dt>Client</dt><dd>exif</dd></div>
               <div><dt>Duration</dt><dd>0.00s</dd></div>
               <div><dt>Tags</dt><dd class="tags"><span>usage</span> <span>metadata</span></dd></div>
             </dl>
             <div class="case-actions">
-              <a class="log-link" href="../evidence/original/logs/libexif/usage-exif-cli-list-tags.log">Log</a>
-              <button type="button" class="play-button js-load-cast" data-cast="../evidence/original/casts/libexif/usage-exif-cli-list-tags.cast">Play</button>
+              <a class="log-link" href="../evidence/original/logs/libexif/usage-exif-cli-list-tags.log" aria-label="Open log for Original / libexif / usage-exif-cli-list-tags">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/original/casts/libexif/usage-exif-cli-list-tags.cast" aria-label="Play cast for Original / libexif / usage-exif-cli-list-tags">Play</button>
             </div>
             <div class="cast-player" data-player>
               <div class="player-controls">
-                <button type="button" class="js-player-play">Play</button>
-                <button type="button" class="js-player-pause">Pause</button>
-                <button type="button" class="js-player-restart">Restart</button>
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Original / libexif / usage-exif-cli-list-tags">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Original / libexif / usage-exif-cli-list-tags">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Original / libexif / usage-exif-cli-list-tags">Restart</button>
                 <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
                 <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
               </div>
-              <pre class="terminal" aria-live="polite"></pre>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Original / libexif / usage-exif-cli-list-tags"></pre>
             </div>
           </div>
         </details>
@@ -226,31 +236,32 @@
           <summary>
             <span class="case-title">
               <strong>exif CLI machine output</strong>
-              <span class="case-id">original / libexif / usage-exif-cli-machine-readable</span>
+              <span class="case-id">Original / libexif / usage-exif-cli-machine-readable</span>
             </span>
-            <span class="status-pill status-passed">Passed</span>
+            <span class="status-pill status-passed" aria-label="Original / libexif / usage-exif-cli-machine-readable status: Passed">Passed</span>
           </summary>
           <div class="case-body">
             <p>Runs the exif CLI in machine-readable mode and reads structured tag output.</p>
             <dl class="case-meta">
+              <div><dt>Run</dt><dd>Original</dd></div>
               <div><dt>Kind</dt><dd>usage</dd></div>
               <div><dt>Client</dt><dd>exif</dd></div>
               <div><dt>Duration</dt><dd>0.00s</dd></div>
               <div><dt>Tags</dt><dd class="tags"><span>usage</span> <span>metadata</span></dd></div>
             </dl>
             <div class="case-actions">
-              <a class="log-link" href="../evidence/original/logs/libexif/usage-exif-cli-machine-readable.log">Log</a>
-              <button type="button" class="play-button js-load-cast" data-cast="../evidence/original/casts/libexif/usage-exif-cli-machine-readable.cast">Play</button>
+              <a class="log-link" href="../evidence/original/logs/libexif/usage-exif-cli-machine-readable.log" aria-label="Open log for Original / libexif / usage-exif-cli-machine-readable">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/original/casts/libexif/usage-exif-cli-machine-readable.cast" aria-label="Play cast for Original / libexif / usage-exif-cli-machine-readable">Play</button>
             </div>
             <div class="cast-player" data-player>
               <div class="player-controls">
-                <button type="button" class="js-player-play">Play</button>
-                <button type="button" class="js-player-pause">Pause</button>
-                <button type="button" class="js-player-restart">Restart</button>
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Original / libexif / usage-exif-cli-machine-readable">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Original / libexif / usage-exif-cli-machine-readable">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Original / libexif / usage-exif-cli-machine-readable">Restart</button>
                 <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
                 <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
               </div>
-              <pre class="terminal" aria-live="polite"></pre>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Original / libexif / usage-exif-cli-machine-readable"></pre>
             </div>
           </div>
         </details>
@@ -258,31 +269,32 @@
           <summary>
             <span class="case-title">
               <strong>exif CLI make tag</strong>
-              <span class="case-id">original / libexif / usage-exif-cli-tag-make</span>
+              <span class="case-id">Original / libexif / usage-exif-cli-tag-make</span>
             </span>
-            <span class="status-pill status-passed">Passed</span>
+            <span class="status-pill status-passed" aria-label="Original / libexif / usage-exif-cli-tag-make status: Passed">Passed</span>
           </summary>
           <div class="case-body">
             <p>Runs the exif CLI to read the camera Make tag from a JPEG fixture.</p>
             <dl class="case-meta">
+              <div><dt>Run</dt><dd>Original</dd></div>
               <div><dt>Kind</dt><dd>usage</dd></div>
               <div><dt>Client</dt><dd>exif</dd></div>
               <div><dt>Duration</dt><dd>0.00s</dd></div>
               <div><dt>Tags</dt><dd class="tags"><span>usage</span> <span>metadata</span></dd></div>
             </dl>
             <div class="case-actions">
-              <a class="log-link" href="../evidence/original/logs/libexif/usage-exif-cli-tag-make.log">Log</a>
-              <button type="button" class="play-button js-load-cast" data-cast="../evidence/original/casts/libexif/usage-exif-cli-tag-make.cast">Play</button>
+              <a class="log-link" href="../evidence/original/logs/libexif/usage-exif-cli-tag-make.log" aria-label="Open log for Original / libexif / usage-exif-cli-tag-make">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/original/casts/libexif/usage-exif-cli-tag-make.cast" aria-label="Play cast for Original / libexif / usage-exif-cli-tag-make">Play</button>
             </div>
             <div class="cast-player" data-player>
               <div class="player-controls">
-                <button type="button" class="js-player-play">Play</button>
-                <button type="button" class="js-player-pause">Pause</button>
-                <button type="button" class="js-player-restart">Restart</button>
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Original / libexif / usage-exif-cli-tag-make">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Original / libexif / usage-exif-cli-tag-make">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Original / libexif / usage-exif-cli-tag-make">Restart</button>
                 <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
                 <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
               </div>
-              <pre class="terminal" aria-live="polite"></pre>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Original / libexif / usage-exif-cli-tag-make"></pre>
             </div>
           </div>
         </details>
@@ -290,31 +302,32 @@
           <summary>
             <span class="case-title">
               <strong>exif CLI model tag</strong>
-              <span class="case-id">original / libexif / usage-exif-cli-tag-model</span>
+              <span class="case-id">Original / libexif / usage-exif-cli-tag-model</span>
             </span>
-            <span class="status-pill status-passed">Passed</span>
+            <span class="status-pill status-passed" aria-label="Original / libexif / usage-exif-cli-tag-model status: Passed">Passed</span>
           </summary>
           <div class="case-body">
             <p>Runs the exif CLI to read the camera Model tag from a JPEG fixture.</p>
             <dl class="case-meta">
+              <div><dt>Run</dt><dd>Original</dd></div>
               <div><dt>Kind</dt><dd>usage</dd></div>
               <div><dt>Client</dt><dd>exif</dd></div>
               <div><dt>Duration</dt><dd>0.00s</dd></div>
               <div><dt>Tags</dt><dd class="tags"><span>usage</span> <span>metadata</span></dd></div>
             </dl>
             <div class="case-actions">
-              <a class="log-link" href="../evidence/original/logs/libexif/usage-exif-cli-tag-model.log">Log</a>
-              <button type="button" class="play-button js-load-cast" data-cast="../evidence/original/casts/libexif/usage-exif-cli-tag-model.cast">Play</button>
+              <a class="log-link" href="../evidence/original/logs/libexif/usage-exif-cli-tag-model.log" aria-label="Open log for Original / libexif / usage-exif-cli-tag-model">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/original/casts/libexif/usage-exif-cli-tag-model.cast" aria-label="Play cast for Original / libexif / usage-exif-cli-tag-model">Play</button>
             </div>
             <div class="cast-player" data-player>
               <div class="player-controls">
-                <button type="button" class="js-player-play">Play</button>
-                <button type="button" class="js-player-pause">Pause</button>
-                <button type="button" class="js-player-restart">Restart</button>
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Original / libexif / usage-exif-cli-tag-model">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Original / libexif / usage-exif-cli-tag-model">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Original / libexif / usage-exif-cli-tag-model">Restart</button>
                 <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
                 <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
               </div>
-              <pre class="terminal" aria-live="polite"></pre>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Original / libexif / usage-exif-cli-tag-model"></pre>
             </div>
           </div>
         </details>
@@ -322,31 +335,32 @@
           <summary>
             <span class="case-title">
               <strong>exif CLI maker note</strong>
-              <span class="case-id">original / libexif / usage-exif-cli-maker-note</span>
+              <span class="case-id">Original / libexif / usage-exif-cli-maker-note</span>
             </span>
-            <span class="status-pill status-passed">Passed</span>
+            <span class="status-pill status-passed" aria-label="Original / libexif / usage-exif-cli-maker-note status: Passed">Passed</span>
           </summary>
           <div class="case-body">
             <p>Runs the exif CLI to decode maker-note metadata from a JPEG fixture.</p>
             <dl class="case-meta">
+              <div><dt>Run</dt><dd>Original</dd></div>
               <div><dt>Kind</dt><dd>usage</dd></div>
               <div><dt>Client</dt><dd>exif</dd></div>
               <div><dt>Duration</dt><dd>0.00s</dd></div>
               <div><dt>Tags</dt><dd class="tags"><span>usage</span> <span>metadata</span></dd></div>
             </dl>
             <div class="case-actions">
-              <a class="log-link" href="../evidence/original/logs/libexif/usage-exif-cli-maker-note.log">Log</a>
-              <button type="button" class="play-button js-load-cast" data-cast="../evidence/original/casts/libexif/usage-exif-cli-maker-note.cast">Play</button>
+              <a class="log-link" href="../evidence/original/logs/libexif/usage-exif-cli-maker-note.log" aria-label="Open log for Original / libexif / usage-exif-cli-maker-note">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/original/casts/libexif/usage-exif-cli-maker-note.cast" aria-label="Play cast for Original / libexif / usage-exif-cli-maker-note">Play</button>
             </div>
             <div class="cast-player" data-player>
               <div class="player-controls">
-                <button type="button" class="js-player-play">Play</button>
-                <button type="button" class="js-player-pause">Pause</button>
-                <button type="button" class="js-player-restart">Restart</button>
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Original / libexif / usage-exif-cli-maker-note">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Original / libexif / usage-exif-cli-maker-note">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Original / libexif / usage-exif-cli-maker-note">Restart</button>
                 <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
                 <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
               </div>
-              <pre class="terminal" aria-live="polite"></pre>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Original / libexif / usage-exif-cli-maker-note"></pre>
             </div>
           </div>
         </details>
@@ -354,31 +368,32 @@
           <summary>
             <span class="case-title">
               <strong>exif CLI thumbnail extraction</strong>
-              <span class="case-id">original / libexif / usage-exif-cli-extract-thumbnail</span>
+              <span class="case-id">Original / libexif / usage-exif-cli-extract-thumbnail</span>
             </span>
-            <span class="status-pill status-passed">Passed</span>
+            <span class="status-pill status-passed" aria-label="Original / libexif / usage-exif-cli-extract-thumbnail status: Passed">Passed</span>
           </summary>
           <div class="case-body">
             <p>Runs the exif CLI to extract the embedded JPEG thumbnail from camera metadata.</p>
             <dl class="case-meta">
+              <div><dt>Run</dt><dd>Original</dd></div>
               <div><dt>Kind</dt><dd>usage</dd></div>
               <div><dt>Client</dt><dd>exif</dd></div>
               <div><dt>Duration</dt><dd>0.00s</dd></div>
               <div><dt>Tags</dt><dd class="tags"><span>usage</span> <span>metadata</span></dd></div>
             </dl>
             <div class="case-actions">
-              <a class="log-link" href="../evidence/original/logs/libexif/usage-exif-cli-extract-thumbnail.log">Log</a>
-              <button type="button" class="play-button js-load-cast" data-cast="../evidence/original/casts/libexif/usage-exif-cli-extract-thumbnail.cast">Play</button>
+              <a class="log-link" href="../evidence/original/logs/libexif/usage-exif-cli-extract-thumbnail.log" aria-label="Open log for Original / libexif / usage-exif-cli-extract-thumbnail">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/original/casts/libexif/usage-exif-cli-extract-thumbnail.cast" aria-label="Play cast for Original / libexif / usage-exif-cli-extract-thumbnail">Play</button>
             </div>
             <div class="cast-player" data-player>
               <div class="player-controls">
-                <button type="button" class="js-player-play">Play</button>
-                <button type="button" class="js-player-pause">Pause</button>
-                <button type="button" class="js-player-restart">Restart</button>
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Original / libexif / usage-exif-cli-extract-thumbnail">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Original / libexif / usage-exif-cli-extract-thumbnail">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Original / libexif / usage-exif-cli-extract-thumbnail">Restart</button>
                 <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
                 <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
               </div>
-              <pre class="terminal" aria-live="polite"></pre>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Original / libexif / usage-exif-cli-extract-thumbnail"></pre>
             </div>
           </div>
         </details>
@@ -386,31 +401,32 @@
           <summary>
             <span class="case-title">
               <strong>exif CLI EXIF IFD</strong>
-              <span class="case-id">original / libexif / usage-exif-cli-ifd-exif</span>
+              <span class="case-id">Original / libexif / usage-exif-cli-ifd-exif</span>
             </span>
-            <span class="status-pill status-passed">Passed</span>
+            <span class="status-pill status-passed" aria-label="Original / libexif / usage-exif-cli-ifd-exif status: Passed">Passed</span>
           </summary>
           <div class="case-body">
             <p>Runs the exif CLI against the EXIF IFD and verifies exposure metadata is decoded.</p>
             <dl class="case-meta">
+              <div><dt>Run</dt><dd>Original</dd></div>
               <div><dt>Kind</dt><dd>usage</dd></div>
               <div><dt>Client</dt><dd>exif</dd></div>
               <div><dt>Duration</dt><dd>0.00s</dd></div>
               <div><dt>Tags</dt><dd class="tags"><span>usage</span> <span>metadata</span></dd></div>
             </dl>
             <div class="case-actions">
-              <a class="log-link" href="../evidence/original/logs/libexif/usage-exif-cli-ifd-exif.log">Log</a>
-              <button type="button" class="play-button js-load-cast" data-cast="../evidence/original/casts/libexif/usage-exif-cli-ifd-exif.cast">Play</button>
+              <a class="log-link" href="../evidence/original/logs/libexif/usage-exif-cli-ifd-exif.log" aria-label="Open log for Original / libexif / usage-exif-cli-ifd-exif">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/original/casts/libexif/usage-exif-cli-ifd-exif.cast" aria-label="Play cast for Original / libexif / usage-exif-cli-ifd-exif">Play</button>
             </div>
             <div class="cast-player" data-player>
               <div class="player-controls">
-                <button type="button" class="js-player-play">Play</button>
-                <button type="button" class="js-player-pause">Pause</button>
-                <button type="button" class="js-player-restart">Restart</button>
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Original / libexif / usage-exif-cli-ifd-exif">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Original / libexif / usage-exif-cli-ifd-exif">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Original / libexif / usage-exif-cli-ifd-exif">Restart</button>
                 <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
                 <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
               </div>
-              <pre class="terminal" aria-live="polite"></pre>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Original / libexif / usage-exif-cli-ifd-exif"></pre>
             </div>
           </div>
         </details>
@@ -418,31 +434,32 @@
           <summary>
             <span class="case-title">
               <strong>exif CLI XML output</strong>
-              <span class="case-id">original / libexif / usage-exif-cli-xml-output</span>
+              <span class="case-id">Original / libexif / usage-exif-cli-xml-output</span>
             </span>
-            <span class="status-pill status-passed">Passed</span>
+            <span class="status-pill status-passed" aria-label="Original / libexif / usage-exif-cli-xml-output status: Passed">Passed</span>
           </summary>
           <div class="case-body">
             <p>Runs the exif CLI XML output mode and verifies camera model metadata appears in XML.</p>
             <dl class="case-meta">
+              <div><dt>Run</dt><dd>Original</dd></div>
               <div><dt>Kind</dt><dd>usage</dd></div>
               <div><dt>Client</dt><dd>exif</dd></div>
               <div><dt>Duration</dt><dd>0.00s</dd></div>
               <div><dt>Tags</dt><dd class="tags"><span>usage</span> <span>metadata</span></dd></div>
             </dl>
             <div class="case-actions">
-              <a class="log-link" href="../evidence/original/logs/libexif/usage-exif-cli-xml-output.log">Log</a>
-              <button type="button" class="play-button js-load-cast" data-cast="../evidence/original/casts/libexif/usage-exif-cli-xml-output.cast">Play</button>
+              <a class="log-link" href="../evidence/original/logs/libexif/usage-exif-cli-xml-output.log" aria-label="Open log for Original / libexif / usage-exif-cli-xml-output">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/original/casts/libexif/usage-exif-cli-xml-output.cast" aria-label="Play cast for Original / libexif / usage-exif-cli-xml-output">Play</button>
             </div>
             <div class="cast-player" data-player>
               <div class="player-controls">
-                <button type="button" class="js-player-play">Play</button>
-                <button type="button" class="js-player-pause">Pause</button>
-                <button type="button" class="js-player-restart">Restart</button>
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Original / libexif / usage-exif-cli-xml-output">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Original / libexif / usage-exif-cli-xml-output">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Original / libexif / usage-exif-cli-xml-output">Restart</button>
                 <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
                 <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
               </div>
-              <pre class="terminal" aria-live="polite"></pre>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Original / libexif / usage-exif-cli-xml-output"></pre>
             </div>
           </div>
         </details>
@@ -450,31 +467,32 @@
           <summary>
             <span class="case-title">
               <strong>exif CLI DateTime tag</strong>
-              <span class="case-id">original / libexif / usage-exif-cli-tag-datetime</span>
+              <span class="case-id">Original / libexif / usage-exif-cli-tag-datetime</span>
             </span>
-            <span class="status-pill status-passed">Passed</span>
+            <span class="status-pill status-passed" aria-label="Original / libexif / usage-exif-cli-tag-datetime status: Passed">Passed</span>
           </summary>
           <div class="case-body">
             <p>Runs the exif CLI to read the image DateTime tag from a JPEG fixture.</p>
             <dl class="case-meta">
+              <div><dt>Run</dt><dd>Original</dd></div>
               <div><dt>Kind</dt><dd>usage</dd></div>
               <div><dt>Client</dt><dd>exif</dd></div>
               <div><dt>Duration</dt><dd>0.00s</dd></div>
               <div><dt>Tags</dt><dd class="tags"><span>usage</span> <span>metadata</span></dd></div>
             </dl>
             <div class="case-actions">
-              <a class="log-link" href="../evidence/original/logs/libexif/usage-exif-cli-tag-datetime.log">Log</a>
-              <button type="button" class="play-button js-load-cast" data-cast="../evidence/original/casts/libexif/usage-exif-cli-tag-datetime.cast">Play</button>
+              <a class="log-link" href="../evidence/original/logs/libexif/usage-exif-cli-tag-datetime.log" aria-label="Open log for Original / libexif / usage-exif-cli-tag-datetime">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/original/casts/libexif/usage-exif-cli-tag-datetime.cast" aria-label="Play cast for Original / libexif / usage-exif-cli-tag-datetime">Play</button>
             </div>
             <div class="cast-player" data-player>
               <div class="player-controls">
-                <button type="button" class="js-player-play">Play</button>
-                <button type="button" class="js-player-pause">Pause</button>
-                <button type="button" class="js-player-restart">Restart</button>
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Original / libexif / usage-exif-cli-tag-datetime">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Original / libexif / usage-exif-cli-tag-datetime">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Original / libexif / usage-exif-cli-tag-datetime">Restart</button>
                 <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
                 <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
               </div>
-              <pre class="terminal" aria-live="polite"></pre>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Original / libexif / usage-exif-cli-tag-datetime"></pre>
             </div>
           </div>
         </details>
@@ -482,31 +500,32 @@
           <summary>
             <span class="case-title">
               <strong>exif CLI DateTimeOriginal tag</strong>
-              <span class="case-id">original / libexif / usage-exif-cli-tag-datetime-original</span>
+              <span class="case-id">Original / libexif / usage-exif-cli-tag-datetime-original</span>
             </span>
-            <span class="status-pill status-passed">Passed</span>
+            <span class="status-pill status-passed" aria-label="Original / libexif / usage-exif-cli-tag-datetime-original status: Passed">Passed</span>
           </summary>
           <div class="case-body">
             <p>Runs the exif CLI to read the original capture timestamp from a JPEG fixture.</p>
             <dl class="case-meta">
+              <div><dt>Run</dt><dd>Original</dd></div>
               <div><dt>Kind</dt><dd>usage</dd></div>
               <div><dt>Client</dt><dd>exif</dd></div>
               <div><dt>Duration</dt><dd>0.00s</dd></div>
               <div><dt>Tags</dt><dd class="tags"><span>usage</span> <span>metadata</span></dd></div>
             </dl>
             <div class="case-actions">
-              <a class="log-link" href="../evidence/original/logs/libexif/usage-exif-cli-tag-datetime-original.log">Log</a>
-              <button type="button" class="play-button js-load-cast" data-cast="../evidence/original/casts/libexif/usage-exif-cli-tag-datetime-original.cast">Play</button>
+              <a class="log-link" href="../evidence/original/logs/libexif/usage-exif-cli-tag-datetime-original.log" aria-label="Open log for Original / libexif / usage-exif-cli-tag-datetime-original">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/original/casts/libexif/usage-exif-cli-tag-datetime-original.cast" aria-label="Play cast for Original / libexif / usage-exif-cli-tag-datetime-original">Play</button>
             </div>
             <div class="cast-player" data-player>
               <div class="player-controls">
-                <button type="button" class="js-player-play">Play</button>
-                <button type="button" class="js-player-pause">Pause</button>
-                <button type="button" class="js-player-restart">Restart</button>
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Original / libexif / usage-exif-cli-tag-datetime-original">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Original / libexif / usage-exif-cli-tag-datetime-original">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Original / libexif / usage-exif-cli-tag-datetime-original">Restart</button>
                 <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
                 <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
               </div>
-              <pre class="terminal" aria-live="polite"></pre>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Original / libexif / usage-exif-cli-tag-datetime-original"></pre>
             </div>
           </div>
         </details>
@@ -514,31 +533,32 @@
           <summary>
             <span class="case-title">
               <strong>JPEG EXIF C API parse</strong>
-              <span class="case-id">port-04-test / libexif / jpeg-exif-c-api-parse</span>
+              <span class="case-id">Port / libexif / jpeg-exif-c-api-parse</span>
             </span>
-            <span class="status-pill status-passed">Passed</span>
+            <span class="status-pill status-passed" aria-label="Port / libexif / jpeg-exif-c-api-parse status: Passed">Passed</span>
           </summary>
           <div class="case-body">
             <p>Parses representative JPEG EXIF metadata and reads make and model tags.</p>
             <dl class="case-meta">
+              <div><dt>Run</dt><dd>Port</dd></div>
               <div><dt>Kind</dt><dd>source</dd></div>
               <div><dt>Client</dt><dd>none</dd></div>
               <div><dt>Duration</dt><dd>0.00s</dd></div>
               <div><dt>Tags</dt><dd class="tags"><span>api</span> <span>metadata</span></dd></div>
             </dl>
             <div class="case-actions">
-              <a class="log-link" href="../evidence/port-04-test/logs/libexif/jpeg-exif-c-api-parse.log">Log</a>
-              <button type="button" class="play-button js-load-cast" data-cast="../evidence/port-04-test/casts/libexif/jpeg-exif-c-api-parse.cast">Play</button>
+              <a class="log-link" href="../evidence/port-04-test/logs/libexif/jpeg-exif-c-api-parse.log" aria-label="Open log for Port / libexif / jpeg-exif-c-api-parse">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/port-04-test/casts/libexif/jpeg-exif-c-api-parse.cast" aria-label="Play cast for Port / libexif / jpeg-exif-c-api-parse">Play</button>
             </div>
             <div class="cast-player" data-player>
               <div class="player-controls">
-                <button type="button" class="js-player-play">Play</button>
-                <button type="button" class="js-player-pause">Pause</button>
-                <button type="button" class="js-player-restart">Restart</button>
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Port / libexif / jpeg-exif-c-api-parse">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Port / libexif / jpeg-exif-c-api-parse">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Port / libexif / jpeg-exif-c-api-parse">Restart</button>
                 <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
                 <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
               </div>
-              <pre class="terminal" aria-live="polite"></pre>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Port / libexif / jpeg-exif-c-api-parse"></pre>
             </div>
           </div>
         </details>
@@ -546,31 +566,32 @@
           <summary>
             <span class="case-title">
               <strong>Maker note data handling</strong>
-              <span class="case-id">port-04-test / libexif / maker-note-handling</span>
+              <span class="case-id">Port / libexif / maker-note-handling</span>
             </span>
-            <span class="status-pill status-passed">Passed</span>
+            <span class="status-pill status-passed" aria-label="Port / libexif / maker-note-handling status: Passed">Passed</span>
           </summary>
           <div class="case-body">
             <p>Finds maker-note bytes in a JPEG fixture through libexif metadata APIs.</p>
             <dl class="case-meta">
+              <div><dt>Run</dt><dd>Port</dd></div>
               <div><dt>Kind</dt><dd>source</dd></div>
               <div><dt>Client</dt><dd>none</dd></div>
               <div><dt>Duration</dt><dd>0.00s</dd></div>
               <div><dt>Tags</dt><dd class="tags"><span>api</span> <span>metadata</span></dd></div>
             </dl>
             <div class="case-actions">
-              <a class="log-link" href="../evidence/port-04-test/logs/libexif/maker-note-handling.log">Log</a>
-              <button type="button" class="play-button js-load-cast" data-cast="../evidence/port-04-test/casts/libexif/maker-note-handling.cast">Play</button>
+              <a class="log-link" href="../evidence/port-04-test/logs/libexif/maker-note-handling.log" aria-label="Open log for Port / libexif / maker-note-handling">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/port-04-test/casts/libexif/maker-note-handling.cast" aria-label="Play cast for Port / libexif / maker-note-handling">Play</button>
             </div>
             <div class="cast-player" data-player>
               <div class="player-controls">
-                <button type="button" class="js-player-play">Play</button>
-                <button type="button" class="js-player-pause">Pause</button>
-                <button type="button" class="js-player-restart">Restart</button>
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Port / libexif / maker-note-handling">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Port / libexif / maker-note-handling">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Port / libexif / maker-note-handling">Restart</button>
                 <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
                 <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
               </div>
-              <pre class="terminal" aria-live="polite"></pre>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Port / libexif / maker-note-handling"></pre>
             </div>
           </div>
         </details>
@@ -578,31 +599,32 @@
           <summary>
             <span class="case-title">
               <strong>Tag lookup and value formatting</strong>
-              <span class="case-id">port-04-test / libexif / tag-lookup-value-formatting</span>
+              <span class="case-id">Port / libexif / tag-lookup-value-formatting</span>
             </span>
-            <span class="status-pill status-passed">Passed</span>
+            <span class="status-pill status-passed" aria-label="Port / libexif / tag-lookup-value-formatting status: Passed">Passed</span>
           </summary>
           <div class="case-body">
             <p>Looks up EXIF tag names and formats initialized entry values.</p>
             <dl class="case-meta">
+              <div><dt>Run</dt><dd>Port</dd></div>
               <div><dt>Kind</dt><dd>source</dd></div>
               <div><dt>Client</dt><dd>none</dd></div>
               <div><dt>Duration</dt><dd>0.00s</dd></div>
               <div><dt>Tags</dt><dd class="tags"><span>api</span> <span>format</span></dd></div>
             </dl>
             <div class="case-actions">
-              <a class="log-link" href="../evidence/port-04-test/logs/libexif/tag-lookup-value-formatting.log">Log</a>
-              <button type="button" class="play-button js-load-cast" data-cast="../evidence/port-04-test/casts/libexif/tag-lookup-value-formatting.cast">Play</button>
+              <a class="log-link" href="../evidence/port-04-test/logs/libexif/tag-lookup-value-formatting.log" aria-label="Open log for Port / libexif / tag-lookup-value-formatting">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/port-04-test/casts/libexif/tag-lookup-value-formatting.cast" aria-label="Play cast for Port / libexif / tag-lookup-value-formatting">Play</button>
             </div>
             <div class="cast-player" data-player>
               <div class="player-controls">
-                <button type="button" class="js-player-play">Play</button>
-                <button type="button" class="js-player-pause">Pause</button>
-                <button type="button" class="js-player-restart">Restart</button>
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Port / libexif / tag-lookup-value-formatting">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Port / libexif / tag-lookup-value-formatting">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Port / libexif / tag-lookup-value-formatting">Restart</button>
                 <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
                 <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
               </div>
-              <pre class="terminal" aria-live="polite"></pre>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Port / libexif / tag-lookup-value-formatting"></pre>
             </div>
           </div>
         </details>
@@ -610,31 +632,32 @@
           <summary>
             <span class="case-title">
               <strong>libexif compile link smoke</strong>
-              <span class="case-id">port-04-test / libexif / compile-link-smoke</span>
+              <span class="case-id">Port / libexif / compile-link-smoke</span>
             </span>
-            <span class="status-pill status-passed">Passed</span>
+            <span class="status-pill status-passed" aria-label="Port / libexif / compile-link-smoke status: Passed">Passed</span>
           </summary>
           <div class="case-body">
             <p>Compiles and runs a small program against the public libexif headers.</p>
             <dl class="case-meta">
+              <div><dt>Run</dt><dd>Port</dd></div>
               <div><dt>Kind</dt><dd>source</dd></div>
               <div><dt>Client</dt><dd>none</dd></div>
               <div><dt>Duration</dt><dd>0.00s</dd></div>
               <div><dt>Tags</dt><dd class="tags"><span>api</span> <span>compile</span></dd></div>
             </dl>
             <div class="case-actions">
-              <a class="log-link" href="../evidence/port-04-test/logs/libexif/compile-link-smoke.log">Log</a>
-              <button type="button" class="play-button js-load-cast" data-cast="../evidence/port-04-test/casts/libexif/compile-link-smoke.cast">Play</button>
+              <a class="log-link" href="../evidence/port-04-test/logs/libexif/compile-link-smoke.log" aria-label="Open log for Port / libexif / compile-link-smoke">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/port-04-test/casts/libexif/compile-link-smoke.cast" aria-label="Play cast for Port / libexif / compile-link-smoke">Play</button>
             </div>
             <div class="cast-player" data-player>
               <div class="player-controls">
-                <button type="button" class="js-player-play">Play</button>
-                <button type="button" class="js-player-pause">Pause</button>
-                <button type="button" class="js-player-restart">Restart</button>
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Port / libexif / compile-link-smoke">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Port / libexif / compile-link-smoke">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Port / libexif / compile-link-smoke">Restart</button>
                 <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
                 <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
               </div>
-              <pre class="terminal" aria-live="polite"></pre>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Port / libexif / compile-link-smoke"></pre>
             </div>
           </div>
         </details>
@@ -642,31 +665,32 @@
           <summary>
             <span class="case-title">
               <strong>Invalid EXIF data handling</strong>
-              <span class="case-id">port-04-test / libexif / invalid-data-handling</span>
+              <span class="case-id">Port / libexif / invalid-data-handling</span>
             </span>
-            <span class="status-pill status-passed">Passed</span>
+            <span class="status-pill status-passed" aria-label="Port / libexif / invalid-data-handling status: Passed">Passed</span>
           </summary>
           <div class="case-body">
             <p>Feeds invalid bytes through ExifLoader and confirms graceful empty handling.</p>
             <dl class="case-meta">
+              <div><dt>Run</dt><dd>Port</dd></div>
               <div><dt>Kind</dt><dd>source</dd></div>
               <div><dt>Client</dt><dd>none</dd></div>
               <div><dt>Duration</dt><dd>0.00s</dd></div>
               <div><dt>Tags</dt><dd class="tags"><span>api</span> <span>negative</span></dd></div>
             </dl>
             <div class="case-actions">
-              <a class="log-link" href="../evidence/port-04-test/logs/libexif/invalid-data-handling.log">Log</a>
-              <button type="button" class="play-button js-load-cast" data-cast="../evidence/port-04-test/casts/libexif/invalid-data-handling.cast">Play</button>
+              <a class="log-link" href="../evidence/port-04-test/logs/libexif/invalid-data-handling.log" aria-label="Open log for Port / libexif / invalid-data-handling">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/port-04-test/casts/libexif/invalid-data-handling.cast" aria-label="Play cast for Port / libexif / invalid-data-handling">Play</button>
             </div>
             <div class="cast-player" data-player>
               <div class="player-controls">
-                <button type="button" class="js-player-play">Play</button>
-                <button type="button" class="js-player-pause">Pause</button>
-                <button type="button" class="js-player-restart">Restart</button>
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Port / libexif / invalid-data-handling">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Port / libexif / invalid-data-handling">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Port / libexif / invalid-data-handling">Restart</button>
                 <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
                 <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
               </div>
-              <pre class="terminal" aria-live="polite"></pre>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Port / libexif / invalid-data-handling"></pre>
             </div>
           </div>
         </details>
@@ -674,31 +698,32 @@
           <summary>
             <span class="case-title">
               <strong>exif CLI lists camera tags</strong>
-              <span class="case-id">port-04-test / libexif / usage-exif-cli-list-tags</span>
+              <span class="case-id">Port / libexif / usage-exif-cli-list-tags</span>
             </span>
-            <span class="status-pill status-passed">Passed</span>
+            <span class="status-pill status-passed" aria-label="Port / libexif / usage-exif-cli-list-tags status: Passed">Passed</span>
           </summary>
           <div class="case-body">
             <p>Runs the exif CLI on a JPEG fixture and reads camera tag output.</p>
             <dl class="case-meta">
+              <div><dt>Run</dt><dd>Port</dd></div>
               <div><dt>Kind</dt><dd>usage</dd></div>
               <div><dt>Client</dt><dd>exif</dd></div>
               <div><dt>Duration</dt><dd>0.00s</dd></div>
               <div><dt>Tags</dt><dd class="tags"><span>usage</span> <span>metadata</span></dd></div>
             </dl>
             <div class="case-actions">
-              <a class="log-link" href="../evidence/port-04-test/logs/libexif/usage-exif-cli-list-tags.log">Log</a>
-              <button type="button" class="play-button js-load-cast" data-cast="../evidence/port-04-test/casts/libexif/usage-exif-cli-list-tags.cast">Play</button>
+              <a class="log-link" href="../evidence/port-04-test/logs/libexif/usage-exif-cli-list-tags.log" aria-label="Open log for Port / libexif / usage-exif-cli-list-tags">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/port-04-test/casts/libexif/usage-exif-cli-list-tags.cast" aria-label="Play cast for Port / libexif / usage-exif-cli-list-tags">Play</button>
             </div>
             <div class="cast-player" data-player>
               <div class="player-controls">
-                <button type="button" class="js-player-play">Play</button>
-                <button type="button" class="js-player-pause">Pause</button>
-                <button type="button" class="js-player-restart">Restart</button>
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Port / libexif / usage-exif-cli-list-tags">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Port / libexif / usage-exif-cli-list-tags">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Port / libexif / usage-exif-cli-list-tags">Restart</button>
                 <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
                 <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
               </div>
-              <pre class="terminal" aria-live="polite"></pre>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Port / libexif / usage-exif-cli-list-tags"></pre>
             </div>
           </div>
         </details>
@@ -706,31 +731,32 @@
           <summary>
             <span class="case-title">
               <strong>exif CLI machine output</strong>
-              <span class="case-id">port-04-test / libexif / usage-exif-cli-machine-readable</span>
+              <span class="case-id">Port / libexif / usage-exif-cli-machine-readable</span>
             </span>
-            <span class="status-pill status-passed">Passed</span>
+            <span class="status-pill status-passed" aria-label="Port / libexif / usage-exif-cli-machine-readable status: Passed">Passed</span>
           </summary>
           <div class="case-body">
             <p>Runs the exif CLI in machine-readable mode and reads structured tag output.</p>
             <dl class="case-meta">
+              <div><dt>Run</dt><dd>Port</dd></div>
               <div><dt>Kind</dt><dd>usage</dd></div>
               <div><dt>Client</dt><dd>exif</dd></div>
               <div><dt>Duration</dt><dd>0.00s</dd></div>
               <div><dt>Tags</dt><dd class="tags"><span>usage</span> <span>metadata</span></dd></div>
             </dl>
             <div class="case-actions">
-              <a class="log-link" href="../evidence/port-04-test/logs/libexif/usage-exif-cli-machine-readable.log">Log</a>
-              <button type="button" class="play-button js-load-cast" data-cast="../evidence/port-04-test/casts/libexif/usage-exif-cli-machine-readable.cast">Play</button>
+              <a class="log-link" href="../evidence/port-04-test/logs/libexif/usage-exif-cli-machine-readable.log" aria-label="Open log for Port / libexif / usage-exif-cli-machine-readable">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/port-04-test/casts/libexif/usage-exif-cli-machine-readable.cast" aria-label="Play cast for Port / libexif / usage-exif-cli-machine-readable">Play</button>
             </div>
             <div class="cast-player" data-player>
               <div class="player-controls">
-                <button type="button" class="js-player-play">Play</button>
-                <button type="button" class="js-player-pause">Pause</button>
-                <button type="button" class="js-player-restart">Restart</button>
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Port / libexif / usage-exif-cli-machine-readable">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Port / libexif / usage-exif-cli-machine-readable">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Port / libexif / usage-exif-cli-machine-readable">Restart</button>
                 <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
                 <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
               </div>
-              <pre class="terminal" aria-live="polite"></pre>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Port / libexif / usage-exif-cli-machine-readable"></pre>
             </div>
           </div>
         </details>
@@ -738,31 +764,32 @@
           <summary>
             <span class="case-title">
               <strong>exif CLI make tag</strong>
-              <span class="case-id">port-04-test / libexif / usage-exif-cli-tag-make</span>
+              <span class="case-id">Port / libexif / usage-exif-cli-tag-make</span>
             </span>
-            <span class="status-pill status-passed">Passed</span>
+            <span class="status-pill status-passed" aria-label="Port / libexif / usage-exif-cli-tag-make status: Passed">Passed</span>
           </summary>
           <div class="case-body">
             <p>Runs the exif CLI to read the camera Make tag from a JPEG fixture.</p>
             <dl class="case-meta">
+              <div><dt>Run</dt><dd>Port</dd></div>
               <div><dt>Kind</dt><dd>usage</dd></div>
               <div><dt>Client</dt><dd>exif</dd></div>
               <div><dt>Duration</dt><dd>0.00s</dd></div>
               <div><dt>Tags</dt><dd class="tags"><span>usage</span> <span>metadata</span></dd></div>
             </dl>
             <div class="case-actions">
-              <a class="log-link" href="../evidence/port-04-test/logs/libexif/usage-exif-cli-tag-make.log">Log</a>
-              <button type="button" class="play-button js-load-cast" data-cast="../evidence/port-04-test/casts/libexif/usage-exif-cli-tag-make.cast">Play</button>
+              <a class="log-link" href="../evidence/port-04-test/logs/libexif/usage-exif-cli-tag-make.log" aria-label="Open log for Port / libexif / usage-exif-cli-tag-make">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/port-04-test/casts/libexif/usage-exif-cli-tag-make.cast" aria-label="Play cast for Port / libexif / usage-exif-cli-tag-make">Play</button>
             </div>
             <div class="cast-player" data-player>
               <div class="player-controls">
-                <button type="button" class="js-player-play">Play</button>
-                <button type="button" class="js-player-pause">Pause</button>
-                <button type="button" class="js-player-restart">Restart</button>
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Port / libexif / usage-exif-cli-tag-make">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Port / libexif / usage-exif-cli-tag-make">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Port / libexif / usage-exif-cli-tag-make">Restart</button>
                 <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
                 <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
               </div>
-              <pre class="terminal" aria-live="polite"></pre>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Port / libexif / usage-exif-cli-tag-make"></pre>
             </div>
           </div>
         </details>
@@ -770,31 +797,32 @@
           <summary>
             <span class="case-title">
               <strong>exif CLI model tag</strong>
-              <span class="case-id">port-04-test / libexif / usage-exif-cli-tag-model</span>
+              <span class="case-id">Port / libexif / usage-exif-cli-tag-model</span>
             </span>
-            <span class="status-pill status-passed">Passed</span>
+            <span class="status-pill status-passed" aria-label="Port / libexif / usage-exif-cli-tag-model status: Passed">Passed</span>
           </summary>
           <div class="case-body">
             <p>Runs the exif CLI to read the camera Model tag from a JPEG fixture.</p>
             <dl class="case-meta">
+              <div><dt>Run</dt><dd>Port</dd></div>
               <div><dt>Kind</dt><dd>usage</dd></div>
               <div><dt>Client</dt><dd>exif</dd></div>
               <div><dt>Duration</dt><dd>0.00s</dd></div>
               <div><dt>Tags</dt><dd class="tags"><span>usage</span> <span>metadata</span></dd></div>
             </dl>
             <div class="case-actions">
-              <a class="log-link" href="../evidence/port-04-test/logs/libexif/usage-exif-cli-tag-model.log">Log</a>
-              <button type="button" class="play-button js-load-cast" data-cast="../evidence/port-04-test/casts/libexif/usage-exif-cli-tag-model.cast">Play</button>
+              <a class="log-link" href="../evidence/port-04-test/logs/libexif/usage-exif-cli-tag-model.log" aria-label="Open log for Port / libexif / usage-exif-cli-tag-model">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/port-04-test/casts/libexif/usage-exif-cli-tag-model.cast" aria-label="Play cast for Port / libexif / usage-exif-cli-tag-model">Play</button>
             </div>
             <div class="cast-player" data-player>
               <div class="player-controls">
-                <button type="button" class="js-player-play">Play</button>
-                <button type="button" class="js-player-pause">Pause</button>
-                <button type="button" class="js-player-restart">Restart</button>
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Port / libexif / usage-exif-cli-tag-model">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Port / libexif / usage-exif-cli-tag-model">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Port / libexif / usage-exif-cli-tag-model">Restart</button>
                 <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
                 <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
               </div>
-              <pre class="terminal" aria-live="polite"></pre>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Port / libexif / usage-exif-cli-tag-model"></pre>
             </div>
           </div>
         </details>
@@ -802,31 +830,32 @@
           <summary>
             <span class="case-title">
               <strong>exif CLI maker note</strong>
-              <span class="case-id">port-04-test / libexif / usage-exif-cli-maker-note</span>
+              <span class="case-id">Port / libexif / usage-exif-cli-maker-note</span>
             </span>
-            <span class="status-pill status-passed">Passed</span>
+            <span class="status-pill status-passed" aria-label="Port / libexif / usage-exif-cli-maker-note status: Passed">Passed</span>
           </summary>
           <div class="case-body">
             <p>Runs the exif CLI to decode maker-note metadata from a JPEG fixture.</p>
             <dl class="case-meta">
+              <div><dt>Run</dt><dd>Port</dd></div>
               <div><dt>Kind</dt><dd>usage</dd></div>
               <div><dt>Client</dt><dd>exif</dd></div>
               <div><dt>Duration</dt><dd>0.00s</dd></div>
               <div><dt>Tags</dt><dd class="tags"><span>usage</span> <span>metadata</span></dd></div>
             </dl>
             <div class="case-actions">
-              <a class="log-link" href="../evidence/port-04-test/logs/libexif/usage-exif-cli-maker-note.log">Log</a>
-              <button type="button" class="play-button js-load-cast" data-cast="../evidence/port-04-test/casts/libexif/usage-exif-cli-maker-note.cast">Play</button>
+              <a class="log-link" href="../evidence/port-04-test/logs/libexif/usage-exif-cli-maker-note.log" aria-label="Open log for Port / libexif / usage-exif-cli-maker-note">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/port-04-test/casts/libexif/usage-exif-cli-maker-note.cast" aria-label="Play cast for Port / libexif / usage-exif-cli-maker-note">Play</button>
             </div>
             <div class="cast-player" data-player>
               <div class="player-controls">
-                <button type="button" class="js-player-play">Play</button>
-                <button type="button" class="js-player-pause">Pause</button>
-                <button type="button" class="js-player-restart">Restart</button>
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Port / libexif / usage-exif-cli-maker-note">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Port / libexif / usage-exif-cli-maker-note">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Port / libexif / usage-exif-cli-maker-note">Restart</button>
                 <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
                 <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
               </div>
-              <pre class="terminal" aria-live="polite"></pre>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Port / libexif / usage-exif-cli-maker-note"></pre>
             </div>
           </div>
         </details>
@@ -834,31 +863,32 @@
           <summary>
             <span class="case-title">
               <strong>exif CLI thumbnail extraction</strong>
-              <span class="case-id">port-04-test / libexif / usage-exif-cli-extract-thumbnail</span>
+              <span class="case-id">Port / libexif / usage-exif-cli-extract-thumbnail</span>
             </span>
-            <span class="status-pill status-passed">Passed</span>
+            <span class="status-pill status-passed" aria-label="Port / libexif / usage-exif-cli-extract-thumbnail status: Passed">Passed</span>
           </summary>
           <div class="case-body">
             <p>Runs the exif CLI to extract the embedded JPEG thumbnail from camera metadata.</p>
             <dl class="case-meta">
+              <div><dt>Run</dt><dd>Port</dd></div>
               <div><dt>Kind</dt><dd>usage</dd></div>
               <div><dt>Client</dt><dd>exif</dd></div>
               <div><dt>Duration</dt><dd>0.00s</dd></div>
               <div><dt>Tags</dt><dd class="tags"><span>usage</span> <span>metadata</span></dd></div>
             </dl>
             <div class="case-actions">
-              <a class="log-link" href="../evidence/port-04-test/logs/libexif/usage-exif-cli-extract-thumbnail.log">Log</a>
-              <button type="button" class="play-button js-load-cast" data-cast="../evidence/port-04-test/casts/libexif/usage-exif-cli-extract-thumbnail.cast">Play</button>
+              <a class="log-link" href="../evidence/port-04-test/logs/libexif/usage-exif-cli-extract-thumbnail.log" aria-label="Open log for Port / libexif / usage-exif-cli-extract-thumbnail">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/port-04-test/casts/libexif/usage-exif-cli-extract-thumbnail.cast" aria-label="Play cast for Port / libexif / usage-exif-cli-extract-thumbnail">Play</button>
             </div>
             <div class="cast-player" data-player>
               <div class="player-controls">
-                <button type="button" class="js-player-play">Play</button>
-                <button type="button" class="js-player-pause">Pause</button>
-                <button type="button" class="js-player-restart">Restart</button>
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Port / libexif / usage-exif-cli-extract-thumbnail">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Port / libexif / usage-exif-cli-extract-thumbnail">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Port / libexif / usage-exif-cli-extract-thumbnail">Restart</button>
                 <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
                 <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
               </div>
-              <pre class="terminal" aria-live="polite"></pre>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Port / libexif / usage-exif-cli-extract-thumbnail"></pre>
             </div>
           </div>
         </details>
@@ -866,31 +896,32 @@
           <summary>
             <span class="case-title">
               <strong>exif CLI EXIF IFD</strong>
-              <span class="case-id">port-04-test / libexif / usage-exif-cli-ifd-exif</span>
+              <span class="case-id">Port / libexif / usage-exif-cli-ifd-exif</span>
             </span>
-            <span class="status-pill status-passed">Passed</span>
+            <span class="status-pill status-passed" aria-label="Port / libexif / usage-exif-cli-ifd-exif status: Passed">Passed</span>
           </summary>
           <div class="case-body">
             <p>Runs the exif CLI against the EXIF IFD and verifies exposure metadata is decoded.</p>
             <dl class="case-meta">
+              <div><dt>Run</dt><dd>Port</dd></div>
               <div><dt>Kind</dt><dd>usage</dd></div>
               <div><dt>Client</dt><dd>exif</dd></div>
               <div><dt>Duration</dt><dd>0.00s</dd></div>
               <div><dt>Tags</dt><dd class="tags"><span>usage</span> <span>metadata</span></dd></div>
             </dl>
             <div class="case-actions">
-              <a class="log-link" href="../evidence/port-04-test/logs/libexif/usage-exif-cli-ifd-exif.log">Log</a>
-              <button type="button" class="play-button js-load-cast" data-cast="../evidence/port-04-test/casts/libexif/usage-exif-cli-ifd-exif.cast">Play</button>
+              <a class="log-link" href="../evidence/port-04-test/logs/libexif/usage-exif-cli-ifd-exif.log" aria-label="Open log for Port / libexif / usage-exif-cli-ifd-exif">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/port-04-test/casts/libexif/usage-exif-cli-ifd-exif.cast" aria-label="Play cast for Port / libexif / usage-exif-cli-ifd-exif">Play</button>
             </div>
             <div class="cast-player" data-player>
               <div class="player-controls">
-                <button type="button" class="js-player-play">Play</button>
-                <button type="button" class="js-player-pause">Pause</button>
-                <button type="button" class="js-player-restart">Restart</button>
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Port / libexif / usage-exif-cli-ifd-exif">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Port / libexif / usage-exif-cli-ifd-exif">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Port / libexif / usage-exif-cli-ifd-exif">Restart</button>
                 <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
                 <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
               </div>
-              <pre class="terminal" aria-live="polite"></pre>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Port / libexif / usage-exif-cli-ifd-exif"></pre>
             </div>
           </div>
         </details>
@@ -898,31 +929,32 @@
           <summary>
             <span class="case-title">
               <strong>exif CLI XML output</strong>
-              <span class="case-id">port-04-test / libexif / usage-exif-cli-xml-output</span>
+              <span class="case-id">Port / libexif / usage-exif-cli-xml-output</span>
             </span>
-            <span class="status-pill status-passed">Passed</span>
+            <span class="status-pill status-passed" aria-label="Port / libexif / usage-exif-cli-xml-output status: Passed">Passed</span>
           </summary>
           <div class="case-body">
             <p>Runs the exif CLI XML output mode and verifies camera model metadata appears in XML.</p>
             <dl class="case-meta">
+              <div><dt>Run</dt><dd>Port</dd></div>
               <div><dt>Kind</dt><dd>usage</dd></div>
               <div><dt>Client</dt><dd>exif</dd></div>
               <div><dt>Duration</dt><dd>0.00s</dd></div>
               <div><dt>Tags</dt><dd class="tags"><span>usage</span> <span>metadata</span></dd></div>
             </dl>
             <div class="case-actions">
-              <a class="log-link" href="../evidence/port-04-test/logs/libexif/usage-exif-cli-xml-output.log">Log</a>
-              <button type="button" class="play-button js-load-cast" data-cast="../evidence/port-04-test/casts/libexif/usage-exif-cli-xml-output.cast">Play</button>
+              <a class="log-link" href="../evidence/port-04-test/logs/libexif/usage-exif-cli-xml-output.log" aria-label="Open log for Port / libexif / usage-exif-cli-xml-output">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/port-04-test/casts/libexif/usage-exif-cli-xml-output.cast" aria-label="Play cast for Port / libexif / usage-exif-cli-xml-output">Play</button>
             </div>
             <div class="cast-player" data-player>
               <div class="player-controls">
-                <button type="button" class="js-player-play">Play</button>
-                <button type="button" class="js-player-pause">Pause</button>
-                <button type="button" class="js-player-restart">Restart</button>
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Port / libexif / usage-exif-cli-xml-output">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Port / libexif / usage-exif-cli-xml-output">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Port / libexif / usage-exif-cli-xml-output">Restart</button>
                 <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
                 <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
               </div>
-              <pre class="terminal" aria-live="polite"></pre>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Port / libexif / usage-exif-cli-xml-output"></pre>
             </div>
           </div>
         </details>
@@ -930,31 +962,32 @@
           <summary>
             <span class="case-title">
               <strong>exif CLI DateTime tag</strong>
-              <span class="case-id">port-04-test / libexif / usage-exif-cli-tag-datetime</span>
+              <span class="case-id">Port / libexif / usage-exif-cli-tag-datetime</span>
             </span>
-            <span class="status-pill status-passed">Passed</span>
+            <span class="status-pill status-passed" aria-label="Port / libexif / usage-exif-cli-tag-datetime status: Passed">Passed</span>
           </summary>
           <div class="case-body">
             <p>Runs the exif CLI to read the image DateTime tag from a JPEG fixture.</p>
             <dl class="case-meta">
+              <div><dt>Run</dt><dd>Port</dd></div>
               <div><dt>Kind</dt><dd>usage</dd></div>
               <div><dt>Client</dt><dd>exif</dd></div>
               <div><dt>Duration</dt><dd>0.00s</dd></div>
               <div><dt>Tags</dt><dd class="tags"><span>usage</span> <span>metadata</span></dd></div>
             </dl>
             <div class="case-actions">
-              <a class="log-link" href="../evidence/port-04-test/logs/libexif/usage-exif-cli-tag-datetime.log">Log</a>
-              <button type="button" class="play-button js-load-cast" data-cast="../evidence/port-04-test/casts/libexif/usage-exif-cli-tag-datetime.cast">Play</button>
+              <a class="log-link" href="../evidence/port-04-test/logs/libexif/usage-exif-cli-tag-datetime.log" aria-label="Open log for Port / libexif / usage-exif-cli-tag-datetime">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/port-04-test/casts/libexif/usage-exif-cli-tag-datetime.cast" aria-label="Play cast for Port / libexif / usage-exif-cli-tag-datetime">Play</button>
             </div>
             <div class="cast-player" data-player>
               <div class="player-controls">
-                <button type="button" class="js-player-play">Play</button>
-                <button type="button" class="js-player-pause">Pause</button>
-                <button type="button" class="js-player-restart">Restart</button>
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Port / libexif / usage-exif-cli-tag-datetime">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Port / libexif / usage-exif-cli-tag-datetime">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Port / libexif / usage-exif-cli-tag-datetime">Restart</button>
                 <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
                 <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
               </div>
-              <pre class="terminal" aria-live="polite"></pre>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Port / libexif / usage-exif-cli-tag-datetime"></pre>
             </div>
           </div>
         </details>
@@ -962,31 +995,32 @@
           <summary>
             <span class="case-title">
               <strong>exif CLI DateTimeOriginal tag</strong>
-              <span class="case-id">port-04-test / libexif / usage-exif-cli-tag-datetime-original</span>
+              <span class="case-id">Port / libexif / usage-exif-cli-tag-datetime-original</span>
             </span>
-            <span class="status-pill status-passed">Passed</span>
+            <span class="status-pill status-passed" aria-label="Port / libexif / usage-exif-cli-tag-datetime-original status: Passed">Passed</span>
           </summary>
           <div class="case-body">
             <p>Runs the exif CLI to read the original capture timestamp from a JPEG fixture.</p>
             <dl class="case-meta">
+              <div><dt>Run</dt><dd>Port</dd></div>
               <div><dt>Kind</dt><dd>usage</dd></div>
               <div><dt>Client</dt><dd>exif</dd></div>
               <div><dt>Duration</dt><dd>0.00s</dd></div>
               <div><dt>Tags</dt><dd class="tags"><span>usage</span> <span>metadata</span></dd></div>
             </dl>
             <div class="case-actions">
-              <a class="log-link" href="../evidence/port-04-test/logs/libexif/usage-exif-cli-tag-datetime-original.log">Log</a>
-              <button type="button" class="play-button js-load-cast" data-cast="../evidence/port-04-test/casts/libexif/usage-exif-cli-tag-datetime-original.cast">Play</button>
+              <a class="log-link" href="../evidence/port-04-test/logs/libexif/usage-exif-cli-tag-datetime-original.log" aria-label="Open log for Port / libexif / usage-exif-cli-tag-datetime-original">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/port-04-test/casts/libexif/usage-exif-cli-tag-datetime-original.cast" aria-label="Play cast for Port / libexif / usage-exif-cli-tag-datetime-original">Play</button>
             </div>
             <div class="cast-player" data-player>
               <div class="player-controls">
-                <button type="button" class="js-player-play">Play</button>
-                <button type="button" class="js-player-pause">Pause</button>
-                <button type="button" class="js-player-restart">Restart</button>
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Port / libexif / usage-exif-cli-tag-datetime-original">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Port / libexif / usage-exif-cli-tag-datetime-original">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Port / libexif / usage-exif-cli-tag-datetime-original">Restart</button>
                 <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
                 <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
               </div>
-              <pre class="terminal" aria-live="polite"></pre>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Port / libexif / usage-exif-cli-tag-datetime-original"></pre>
             </div>
           </div>
         </details>

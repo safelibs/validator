@@ -9,56 +9,61 @@
     <script defer src="../assets/player.js"></script>
   </head>
   <body data-site-data="../site-data.json">
+    <a class="skip-link" href="#tests-heading">Skip to tests</a>
     <main>
-      <section class="dashboard" aria-label="Validation dashboard">
-        <h1>libbz2 Validation</h1>
+      <nav class="breadcrumb" aria-label="Breadcrumb"><a href="../index.html">All libraries</a></nav>
+      <section class="dashboard" aria-labelledby="dashboard-heading">
+        <h1 id="dashboard-heading">libbz2 Validation</h1>
         <div class="metric-grid">
-        <div class="metric" data-proof-total="libraries"><strong>19</strong><span>Libraries</span></div>
-        <div class="metric" data-proof-total="cases"><strong>576</strong><span>Cases</span></div>
-        <div class="metric" data-proof-total="source_cases"><strong>190</strong><span>Source</span></div>
-        <div class="metric" data-proof-total="usage_cases"><strong>386</strong><span>Usage</span></div>
-        <div class="metric" data-proof-total="passed"><strong>576</strong><span>Passed</span></div>
-        <div class="metric" data-proof-total="failed"><strong>0</strong><span>Failed</span></div>
-        <div class="metric" data-proof-total="casts"><strong>576 (100%)</strong><span>Casts</span></div>
+        <div class="metric" data-proof-total="libraries"><strong>1</strong><span>Libraries</span></div>
+        <div class="metric" data-proof-total="cases"><strong>15</strong><span>Tests</span></div>
+        <div class="metric" data-proof-total="source_cases"><strong>5</strong><span>Source tests</span></div>
+        <div class="metric" data-proof-total="usage_cases"><strong>10</strong><span>Usage tests</span></div>
+        <div class="metric" data-proof-total="passed"><strong>15 / 15</strong><span>Port tests passing</span></div>
+        <div class="metric" data-proof-total="failed"><strong>0</strong><span>Port tests failing</span></div>
+        <div class="metric" data-proof-total="casts"><strong>30 (100%)</strong><span>Evidence casts</span></div>
+        <div class="metric" data-proof-total="port_libraries"><strong>1 / 1</strong><span>Port libraries passing</span></div>
         </div>
       </section>
 
       <section class="controls" aria-label="Testcase filters">
-        <label class="search-label">Search <input id="search-input" type="search" autocomplete="off"></label>
+        <label class="search-label">Search <input id="search-input" type="search" autocomplete="off" name="search"></label>
+        <label>Run mode <select id="mode-filter" name="mode"><option value="all">All</option><option value="original">Original</option><option value="port-04-test">Port</option></select></label>
         <label>Status <select id="status-filter"><option value="all">All</option><option value="passed">Passed</option><option value="failed">Failed</option></select></label>
         <label>Kind <select id="kind-filter"><option value="all">All</option><option value="source">Source</option><option value="usage">Usage</option></select></label>
       </section>
-      <section class="testcases" aria-label="Testcases">
-        <h2>Testcases</h2>
+      <section id="testcases" class="testcases" aria-labelledby="tests-heading">
+        <h2 id="tests-heading">Tests</h2>
         <details class="case-row" data-library="libbz2" data-testcase-id="cli-compress-decompress" data-mode="original" data-kind="source" data-status="passed" data-player-cast="../evidence/original/casts/libbz2/cli-compress-decompress.cast" data-search="libbz2 cli-compress-decompress original bzip2 command round trip Compresses and decompresses text through the installed bzip2 commands. source cli roundtrip">
           <summary>
             <span class="case-title">
               <strong>bzip2 command round trip</strong>
-              <span class="case-id">original / libbz2 / cli-compress-decompress</span>
+              <span class="case-id">Original / libbz2 / cli-compress-decompress</span>
             </span>
-            <span class="status-pill status-passed">Passed</span>
+            <span class="status-pill status-passed" aria-label="Original / libbz2 / cli-compress-decompress status: Passed">Passed</span>
           </summary>
           <div class="case-body">
             <p>Compresses and decompresses text through the installed bzip2 commands.</p>
             <dl class="case-meta">
+              <div><dt>Run</dt><dd>Original</dd></div>
               <div><dt>Kind</dt><dd>source</dd></div>
               <div><dt>Client</dt><dd>none</dd></div>
               <div><dt>Duration</dt><dd>0.00s</dd></div>
               <div><dt>Tags</dt><dd class="tags"><span>cli</span> <span>roundtrip</span></dd></div>
             </dl>
             <div class="case-actions">
-              <a class="log-link" href="../evidence/original/logs/libbz2/cli-compress-decompress.log">Log</a>
-              <button type="button" class="play-button js-load-cast" data-cast="../evidence/original/casts/libbz2/cli-compress-decompress.cast">Play</button>
+              <a class="log-link" href="../evidence/original/logs/libbz2/cli-compress-decompress.log" aria-label="Open log for Original / libbz2 / cli-compress-decompress">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/original/casts/libbz2/cli-compress-decompress.cast" aria-label="Play cast for Original / libbz2 / cli-compress-decompress">Play</button>
             </div>
             <div class="cast-player" data-player>
               <div class="player-controls">
-                <button type="button" class="js-player-play">Play</button>
-                <button type="button" class="js-player-pause">Pause</button>
-                <button type="button" class="js-player-restart">Restart</button>
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Original / libbz2 / cli-compress-decompress">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Original / libbz2 / cli-compress-decompress">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Original / libbz2 / cli-compress-decompress">Restart</button>
                 <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
                 <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
               </div>
-              <pre class="terminal" aria-live="polite"></pre>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Original / libbz2 / cli-compress-decompress"></pre>
             </div>
           </div>
         </details>
@@ -66,31 +71,32 @@
           <summary>
             <span class="case-title">
               <strong>bzip2 stream concatenation</strong>
-              <span class="case-id">original / libbz2 / stream-concatenation</span>
+              <span class="case-id">Original / libbz2 / stream-concatenation</span>
             </span>
-            <span class="status-pill status-passed">Passed</span>
+            <span class="status-pill status-passed" aria-label="Original / libbz2 / stream-concatenation status: Passed">Passed</span>
           </summary>
           <div class="case-body">
             <p>Concatenates independent bzip2 streams and verifies continuous decompression output.</p>
             <dl class="case-meta">
+              <div><dt>Run</dt><dd>Original</dd></div>
               <div><dt>Kind</dt><dd>source</dd></div>
               <div><dt>Client</dt><dd>none</dd></div>
               <div><dt>Duration</dt><dd>0.00s</dd></div>
               <div><dt>Tags</dt><dd class="tags"><span>cli</span> <span>stream</span></dd></div>
             </dl>
             <div class="case-actions">
-              <a class="log-link" href="../evidence/original/logs/libbz2/stream-concatenation.log">Log</a>
-              <button type="button" class="play-button js-load-cast" data-cast="../evidence/original/casts/libbz2/stream-concatenation.cast">Play</button>
+              <a class="log-link" href="../evidence/original/logs/libbz2/stream-concatenation.log" aria-label="Open log for Original / libbz2 / stream-concatenation">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/original/casts/libbz2/stream-concatenation.cast" aria-label="Play cast for Original / libbz2 / stream-concatenation">Play</button>
             </div>
             <div class="cast-player" data-player>
               <div class="player-controls">
-                <button type="button" class="js-player-play">Play</button>
-                <button type="button" class="js-player-pause">Pause</button>
-                <button type="button" class="js-player-restart">Restart</button>
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Original / libbz2 / stream-concatenation">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Original / libbz2 / stream-concatenation">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Original / libbz2 / stream-concatenation">Restart</button>
                 <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
                 <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
               </div>
-              <pre class="terminal" aria-live="polite"></pre>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Original / libbz2 / stream-concatenation"></pre>
             </div>
           </div>
         </details>
@@ -98,31 +104,32 @@
           <summary>
             <span class="case-title">
               <strong>libbz2 C API round trip</strong>
-              <span class="case-id">original / libbz2 / c-api-buffer-roundtrip</span>
+              <span class="case-id">Original / libbz2 / c-api-buffer-roundtrip</span>
             </span>
-            <span class="status-pill status-passed">Passed</span>
+            <span class="status-pill status-passed" aria-label="Original / libbz2 / c-api-buffer-roundtrip status: Passed">Passed</span>
           </summary>
           <div class="case-body">
             <p>Compiles a libbz2 buffer compression and decompression round trip.</p>
             <dl class="case-meta">
+              <div><dt>Run</dt><dd>Original</dd></div>
               <div><dt>Kind</dt><dd>source</dd></div>
               <div><dt>Client</dt><dd>none</dd></div>
               <div><dt>Duration</dt><dd>0.00s</dd></div>
               <div><dt>Tags</dt><dd class="tags"><span>api</span> <span>compile</span></dd></div>
             </dl>
             <div class="case-actions">
-              <a class="log-link" href="../evidence/original/logs/libbz2/c-api-buffer-roundtrip.log">Log</a>
-              <button type="button" class="play-button js-load-cast" data-cast="../evidence/original/casts/libbz2/c-api-buffer-roundtrip.cast">Play</button>
+              <a class="log-link" href="../evidence/original/logs/libbz2/c-api-buffer-roundtrip.log" aria-label="Open log for Original / libbz2 / c-api-buffer-roundtrip">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/original/casts/libbz2/c-api-buffer-roundtrip.cast" aria-label="Play cast for Original / libbz2 / c-api-buffer-roundtrip">Play</button>
             </div>
             <div class="cast-player" data-player>
               <div class="player-controls">
-                <button type="button" class="js-player-play">Play</button>
-                <button type="button" class="js-player-pause">Pause</button>
-                <button type="button" class="js-player-restart">Restart</button>
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Original / libbz2 / c-api-buffer-roundtrip">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Original / libbz2 / c-api-buffer-roundtrip">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Original / libbz2 / c-api-buffer-roundtrip">Restart</button>
                 <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
                 <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
               </div>
-              <pre class="terminal" aria-live="polite"></pre>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Original / libbz2 / c-api-buffer-roundtrip"></pre>
             </div>
           </div>
         </details>
@@ -130,31 +137,32 @@
           <summary>
             <span class="case-title">
               <strong>bzip2 corrupted stream rejection</strong>
-              <span class="case-id">original / libbz2 / corrupted-stream-rejection</span>
+              <span class="case-id">Original / libbz2 / corrupted-stream-rejection</span>
             </span>
-            <span class="status-pill status-passed">Passed</span>
+            <span class="status-pill status-passed" aria-label="Original / libbz2 / corrupted-stream-rejection status: Passed">Passed</span>
           </summary>
           <div class="case-body">
             <p>Requires the decompressor to return failure for a corrupted stream.</p>
             <dl class="case-meta">
+              <div><dt>Run</dt><dd>Original</dd></div>
               <div><dt>Kind</dt><dd>source</dd></div>
               <div><dt>Client</dt><dd>none</dd></div>
               <div><dt>Duration</dt><dd>0.00s</dd></div>
               <div><dt>Tags</dt><dd class="tags"><span>cli</span> <span>negative</span></dd></div>
             </dl>
             <div class="case-actions">
-              <a class="log-link" href="../evidence/original/logs/libbz2/corrupted-stream-rejection.log">Log</a>
-              <button type="button" class="play-button js-load-cast" data-cast="../evidence/original/casts/libbz2/corrupted-stream-rejection.cast">Play</button>
+              <a class="log-link" href="../evidence/original/logs/libbz2/corrupted-stream-rejection.log" aria-label="Open log for Original / libbz2 / corrupted-stream-rejection">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/original/casts/libbz2/corrupted-stream-rejection.cast" aria-label="Play cast for Original / libbz2 / corrupted-stream-rejection">Play</button>
             </div>
             <div class="cast-player" data-player>
               <div class="player-controls">
-                <button type="button" class="js-player-play">Play</button>
-                <button type="button" class="js-player-pause">Pause</button>
-                <button type="button" class="js-player-restart">Restart</button>
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Original / libbz2 / corrupted-stream-rejection">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Original / libbz2 / corrupted-stream-rejection">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Original / libbz2 / corrupted-stream-rejection">Restart</button>
                 <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
                 <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
               </div>
-              <pre class="terminal" aria-live="polite"></pre>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Original / libbz2 / corrupted-stream-rejection"></pre>
             </div>
           </div>
         </details>
@@ -162,31 +170,32 @@
           <summary>
             <span class="case-title">
               <strong>Debian sample fixture parity</strong>
-              <span class="case-id">original / libbz2 / debian-sample-parity</span>
+              <span class="case-id">Original / libbz2 / debian-sample-parity</span>
             </span>
-            <span class="status-pill status-passed">Passed</span>
+            <span class="status-pill status-passed" aria-label="Original / libbz2 / debian-sample-parity status: Passed">Passed</span>
           </summary>
           <div class="case-body">
             <p>Decompresses packaged sample streams and compares them to reference fixtures.</p>
             <dl class="case-meta">
+              <div><dt>Run</dt><dd>Original</dd></div>
               <div><dt>Kind</dt><dd>source</dd></div>
               <div><dt>Client</dt><dd>none</dd></div>
               <div><dt>Duration</dt><dd>0.00s</dd></div>
               <div><dt>Tags</dt><dd class="tags"><span>cli</span> <span>fixture</span></dd></div>
             </dl>
             <div class="case-actions">
-              <a class="log-link" href="../evidence/original/logs/libbz2/debian-sample-parity.log">Log</a>
-              <button type="button" class="play-button js-load-cast" data-cast="../evidence/original/casts/libbz2/debian-sample-parity.cast">Play</button>
+              <a class="log-link" href="../evidence/original/logs/libbz2/debian-sample-parity.log" aria-label="Open log for Original / libbz2 / debian-sample-parity">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/original/casts/libbz2/debian-sample-parity.cast" aria-label="Play cast for Original / libbz2 / debian-sample-parity">Play</button>
             </div>
             <div class="cast-player" data-player>
               <div class="player-controls">
-                <button type="button" class="js-player-play">Play</button>
-                <button type="button" class="js-player-pause">Pause</button>
-                <button type="button" class="js-player-restart">Restart</button>
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Original / libbz2 / debian-sample-parity">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Original / libbz2 / debian-sample-parity">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Original / libbz2 / debian-sample-parity">Restart</button>
                 <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
                 <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
               </div>
-              <pre class="terminal" aria-live="polite"></pre>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Original / libbz2 / debian-sample-parity"></pre>
             </div>
           </div>
         </details>
@@ -194,31 +203,32 @@
           <summary>
             <span class="case-title">
               <strong>bzip2 compress file</strong>
-              <span class="case-id">original / libbz2 / usage-bzip2-compress-file</span>
+              <span class="case-id">Original / libbz2 / usage-bzip2-compress-file</span>
             </span>
-            <span class="status-pill status-passed">Passed</span>
+            <span class="status-pill status-passed" aria-label="Original / libbz2 / usage-bzip2-compress-file status: Passed">Passed</span>
           </summary>
           <div class="case-body">
             <p>Runs bzip2 client compress file behavior through libbz2.</p>
             <dl class="case-meta">
+              <div><dt>Run</dt><dd>Original</dd></div>
               <div><dt>Kind</dt><dd>usage</dd></div>
               <div><dt>Client</dt><dd>bzip2</dd></div>
               <div><dt>Duration</dt><dd>0.00s</dd></div>
               <div><dt>Tags</dt><dd class="tags"><span>usage</span> <span>compression</span></dd></div>
             </dl>
             <div class="case-actions">
-              <a class="log-link" href="../evidence/original/logs/libbz2/usage-bzip2-compress-file.log">Log</a>
-              <button type="button" class="play-button js-load-cast" data-cast="../evidence/original/casts/libbz2/usage-bzip2-compress-file.cast">Play</button>
+              <a class="log-link" href="../evidence/original/logs/libbz2/usage-bzip2-compress-file.log" aria-label="Open log for Original / libbz2 / usage-bzip2-compress-file">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/original/casts/libbz2/usage-bzip2-compress-file.cast" aria-label="Play cast for Original / libbz2 / usage-bzip2-compress-file">Play</button>
             </div>
             <div class="cast-player" data-player>
               <div class="player-controls">
-                <button type="button" class="js-player-play">Play</button>
-                <button type="button" class="js-player-pause">Pause</button>
-                <button type="button" class="js-player-restart">Restart</button>
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Original / libbz2 / usage-bzip2-compress-file">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Original / libbz2 / usage-bzip2-compress-file">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Original / libbz2 / usage-bzip2-compress-file">Restart</button>
                 <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
                 <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
               </div>
-              <pre class="terminal" aria-live="polite"></pre>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Original / libbz2 / usage-bzip2-compress-file"></pre>
             </div>
           </div>
         </details>
@@ -226,31 +236,32 @@
           <summary>
             <span class="case-title">
               <strong>bzip2 test stream</strong>
-              <span class="case-id">original / libbz2 / usage-bzip2-test-stream</span>
+              <span class="case-id">Original / libbz2 / usage-bzip2-test-stream</span>
             </span>
-            <span class="status-pill status-passed">Passed</span>
+            <span class="status-pill status-passed" aria-label="Original / libbz2 / usage-bzip2-test-stream status: Passed">Passed</span>
           </summary>
           <div class="case-body">
             <p>Runs bzip2 client test stream behavior through libbz2.</p>
             <dl class="case-meta">
+              <div><dt>Run</dt><dd>Original</dd></div>
               <div><dt>Kind</dt><dd>usage</dd></div>
               <div><dt>Client</dt><dd>bzip2</dd></div>
               <div><dt>Duration</dt><dd>0.00s</dd></div>
               <div><dt>Tags</dt><dd class="tags"><span>usage</span> <span>compression</span></dd></div>
             </dl>
             <div class="case-actions">
-              <a class="log-link" href="../evidence/original/logs/libbz2/usage-bzip2-test-stream.log">Log</a>
-              <button type="button" class="play-button js-load-cast" data-cast="../evidence/original/casts/libbz2/usage-bzip2-test-stream.cast">Play</button>
+              <a class="log-link" href="../evidence/original/logs/libbz2/usage-bzip2-test-stream.log" aria-label="Open log for Original / libbz2 / usage-bzip2-test-stream">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/original/casts/libbz2/usage-bzip2-test-stream.cast" aria-label="Play cast for Original / libbz2 / usage-bzip2-test-stream">Play</button>
             </div>
             <div class="cast-player" data-player>
               <div class="player-controls">
-                <button type="button" class="js-player-play">Play</button>
-                <button type="button" class="js-player-pause">Pause</button>
-                <button type="button" class="js-player-restart">Restart</button>
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Original / libbz2 / usage-bzip2-test-stream">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Original / libbz2 / usage-bzip2-test-stream">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Original / libbz2 / usage-bzip2-test-stream">Restart</button>
                 <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
                 <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
               </div>
-              <pre class="terminal" aria-live="polite"></pre>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Original / libbz2 / usage-bzip2-test-stream"></pre>
             </div>
           </div>
         </details>
@@ -258,31 +269,32 @@
           <summary>
             <span class="case-title">
               <strong>bzip2 small block</strong>
-              <span class="case-id">original / libbz2 / usage-bzip2-small-block</span>
+              <span class="case-id">Original / libbz2 / usage-bzip2-small-block</span>
             </span>
-            <span class="status-pill status-passed">Passed</span>
+            <span class="status-pill status-passed" aria-label="Original / libbz2 / usage-bzip2-small-block status: Passed">Passed</span>
           </summary>
           <div class="case-body">
             <p>Runs bzip2 client small block behavior through libbz2.</p>
             <dl class="case-meta">
+              <div><dt>Run</dt><dd>Original</dd></div>
               <div><dt>Kind</dt><dd>usage</dd></div>
               <div><dt>Client</dt><dd>bzip2</dd></div>
               <div><dt>Duration</dt><dd>0.00s</dd></div>
               <div><dt>Tags</dt><dd class="tags"><span>usage</span> <span>compression</span></dd></div>
             </dl>
             <div class="case-actions">
-              <a class="log-link" href="../evidence/original/logs/libbz2/usage-bzip2-small-block.log">Log</a>
-              <button type="button" class="play-button js-load-cast" data-cast="../evidence/original/casts/libbz2/usage-bzip2-small-block.cast">Play</button>
+              <a class="log-link" href="../evidence/original/logs/libbz2/usage-bzip2-small-block.log" aria-label="Open log for Original / libbz2 / usage-bzip2-small-block">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/original/casts/libbz2/usage-bzip2-small-block.cast" aria-label="Play cast for Original / libbz2 / usage-bzip2-small-block">Play</button>
             </div>
             <div class="cast-player" data-player>
               <div class="player-controls">
-                <button type="button" class="js-player-play">Play</button>
-                <button type="button" class="js-player-pause">Pause</button>
-                <button type="button" class="js-player-restart">Restart</button>
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Original / libbz2 / usage-bzip2-small-block">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Original / libbz2 / usage-bzip2-small-block">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Original / libbz2 / usage-bzip2-small-block">Restart</button>
                 <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
                 <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
               </div>
-              <pre class="terminal" aria-live="polite"></pre>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Original / libbz2 / usage-bzip2-small-block"></pre>
             </div>
           </div>
         </details>
@@ -290,31 +302,32 @@
           <summary>
             <span class="case-title">
               <strong>bzip2 large block</strong>
-              <span class="case-id">original / libbz2 / usage-bzip2-large-block</span>
+              <span class="case-id">Original / libbz2 / usage-bzip2-large-block</span>
             </span>
-            <span class="status-pill status-passed">Passed</span>
+            <span class="status-pill status-passed" aria-label="Original / libbz2 / usage-bzip2-large-block status: Passed">Passed</span>
           </summary>
           <div class="case-body">
             <p>Runs bzip2 client large block behavior through libbz2.</p>
             <dl class="case-meta">
+              <div><dt>Run</dt><dd>Original</dd></div>
               <div><dt>Kind</dt><dd>usage</dd></div>
               <div><dt>Client</dt><dd>bzip2</dd></div>
               <div><dt>Duration</dt><dd>0.00s</dd></div>
               <div><dt>Tags</dt><dd class="tags"><span>usage</span> <span>compression</span></dd></div>
             </dl>
             <div class="case-actions">
-              <a class="log-link" href="../evidence/original/logs/libbz2/usage-bzip2-large-block.log">Log</a>
-              <button type="button" class="play-button js-load-cast" data-cast="../evidence/original/casts/libbz2/usage-bzip2-large-block.cast">Play</button>
+              <a class="log-link" href="../evidence/original/logs/libbz2/usage-bzip2-large-block.log" aria-label="Open log for Original / libbz2 / usage-bzip2-large-block">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/original/casts/libbz2/usage-bzip2-large-block.cast" aria-label="Play cast for Original / libbz2 / usage-bzip2-large-block">Play</button>
             </div>
             <div class="cast-player" data-player>
               <div class="player-controls">
-                <button type="button" class="js-player-play">Play</button>
-                <button type="button" class="js-player-pause">Pause</button>
-                <button type="button" class="js-player-restart">Restart</button>
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Original / libbz2 / usage-bzip2-large-block">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Original / libbz2 / usage-bzip2-large-block">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Original / libbz2 / usage-bzip2-large-block">Restart</button>
                 <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
                 <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
               </div>
-              <pre class="terminal" aria-live="polite"></pre>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Original / libbz2 / usage-bzip2-large-block"></pre>
             </div>
           </div>
         </details>
@@ -322,31 +335,32 @@
           <summary>
             <span class="case-title">
               <strong>bzip2 concatenated streams</strong>
-              <span class="case-id">original / libbz2 / usage-bzip2-concatenated-streams</span>
+              <span class="case-id">Original / libbz2 / usage-bzip2-concatenated-streams</span>
             </span>
-            <span class="status-pill status-passed">Passed</span>
+            <span class="status-pill status-passed" aria-label="Original / libbz2 / usage-bzip2-concatenated-streams status: Passed">Passed</span>
           </summary>
           <div class="case-body">
             <p>Runs bzip2 client concatenated streams behavior through libbz2.</p>
             <dl class="case-meta">
+              <div><dt>Run</dt><dd>Original</dd></div>
               <div><dt>Kind</dt><dd>usage</dd></div>
               <div><dt>Client</dt><dd>bzip2</dd></div>
               <div><dt>Duration</dt><dd>0.00s</dd></div>
               <div><dt>Tags</dt><dd class="tags"><span>usage</span> <span>compression</span></dd></div>
             </dl>
             <div class="case-actions">
-              <a class="log-link" href="../evidence/original/logs/libbz2/usage-bzip2-concatenated-streams.log">Log</a>
-              <button type="button" class="play-button js-load-cast" data-cast="../evidence/original/casts/libbz2/usage-bzip2-concatenated-streams.cast">Play</button>
+              <a class="log-link" href="../evidence/original/logs/libbz2/usage-bzip2-concatenated-streams.log" aria-label="Open log for Original / libbz2 / usage-bzip2-concatenated-streams">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/original/casts/libbz2/usage-bzip2-concatenated-streams.cast" aria-label="Play cast for Original / libbz2 / usage-bzip2-concatenated-streams">Play</button>
             </div>
             <div class="cast-player" data-player>
               <div class="player-controls">
-                <button type="button" class="js-player-play">Play</button>
-                <button type="button" class="js-player-pause">Pause</button>
-                <button type="button" class="js-player-restart">Restart</button>
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Original / libbz2 / usage-bzip2-concatenated-streams">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Original / libbz2 / usage-bzip2-concatenated-streams">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Original / libbz2 / usage-bzip2-concatenated-streams">Restart</button>
                 <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
                 <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
               </div>
-              <pre class="terminal" aria-live="polite"></pre>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Original / libbz2 / usage-bzip2-concatenated-streams"></pre>
             </div>
           </div>
         </details>
@@ -354,31 +368,32 @@
           <summary>
             <span class="case-title">
               <strong>bzip2 stdout stream</strong>
-              <span class="case-id">original / libbz2 / usage-bzip2-stdout-stream</span>
+              <span class="case-id">Original / libbz2 / usage-bzip2-stdout-stream</span>
             </span>
-            <span class="status-pill status-passed">Passed</span>
+            <span class="status-pill status-passed" aria-label="Original / libbz2 / usage-bzip2-stdout-stream status: Passed">Passed</span>
           </summary>
           <div class="case-body">
             <p>Runs bzip2 client stdout stream behavior through libbz2.</p>
             <dl class="case-meta">
+              <div><dt>Run</dt><dd>Original</dd></div>
               <div><dt>Kind</dt><dd>usage</dd></div>
               <div><dt>Client</dt><dd>bzip2</dd></div>
               <div><dt>Duration</dt><dd>0.00s</dd></div>
               <div><dt>Tags</dt><dd class="tags"><span>usage</span> <span>compression</span></dd></div>
             </dl>
             <div class="case-actions">
-              <a class="log-link" href="../evidence/original/logs/libbz2/usage-bzip2-stdout-stream.log">Log</a>
-              <button type="button" class="play-button js-load-cast" data-cast="../evidence/original/casts/libbz2/usage-bzip2-stdout-stream.cast">Play</button>
+              <a class="log-link" href="../evidence/original/logs/libbz2/usage-bzip2-stdout-stream.log" aria-label="Open log for Original / libbz2 / usage-bzip2-stdout-stream">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/original/casts/libbz2/usage-bzip2-stdout-stream.cast" aria-label="Play cast for Original / libbz2 / usage-bzip2-stdout-stream">Play</button>
             </div>
             <div class="cast-player" data-player>
               <div class="player-controls">
-                <button type="button" class="js-player-play">Play</button>
-                <button type="button" class="js-player-pause">Pause</button>
-                <button type="button" class="js-player-restart">Restart</button>
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Original / libbz2 / usage-bzip2-stdout-stream">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Original / libbz2 / usage-bzip2-stdout-stream">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Original / libbz2 / usage-bzip2-stdout-stream">Restart</button>
                 <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
                 <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
               </div>
-              <pre class="terminal" aria-live="polite"></pre>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Original / libbz2 / usage-bzip2-stdout-stream"></pre>
             </div>
           </div>
         </details>
@@ -386,31 +401,32 @@
           <summary>
             <span class="case-title">
               <strong>bzip2 recover listing</strong>
-              <span class="case-id">original / libbz2 / usage-bzip2-recover-listing</span>
+              <span class="case-id">Original / libbz2 / usage-bzip2-recover-listing</span>
             </span>
-            <span class="status-pill status-passed">Passed</span>
+            <span class="status-pill status-passed" aria-label="Original / libbz2 / usage-bzip2-recover-listing status: Passed">Passed</span>
           </summary>
           <div class="case-body">
             <p>Runs bzip2 client recover listing behavior through libbz2.</p>
             <dl class="case-meta">
+              <div><dt>Run</dt><dd>Original</dd></div>
               <div><dt>Kind</dt><dd>usage</dd></div>
               <div><dt>Client</dt><dd>bzip2</dd></div>
               <div><dt>Duration</dt><dd>0.00s</dd></div>
               <div><dt>Tags</dt><dd class="tags"><span>usage</span> <span>compression</span></dd></div>
             </dl>
             <div class="case-actions">
-              <a class="log-link" href="../evidence/original/logs/libbz2/usage-bzip2-recover-listing.log">Log</a>
-              <button type="button" class="play-button js-load-cast" data-cast="../evidence/original/casts/libbz2/usage-bzip2-recover-listing.cast">Play</button>
+              <a class="log-link" href="../evidence/original/logs/libbz2/usage-bzip2-recover-listing.log" aria-label="Open log for Original / libbz2 / usage-bzip2-recover-listing">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/original/casts/libbz2/usage-bzip2-recover-listing.cast" aria-label="Play cast for Original / libbz2 / usage-bzip2-recover-listing">Play</button>
             </div>
             <div class="cast-player" data-player>
               <div class="player-controls">
-                <button type="button" class="js-player-play">Play</button>
-                <button type="button" class="js-player-pause">Pause</button>
-                <button type="button" class="js-player-restart">Restart</button>
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Original / libbz2 / usage-bzip2-recover-listing">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Original / libbz2 / usage-bzip2-recover-listing">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Original / libbz2 / usage-bzip2-recover-listing">Restart</button>
                 <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
                 <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
               </div>
-              <pre class="terminal" aria-live="polite"></pre>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Original / libbz2 / usage-bzip2-recover-listing"></pre>
             </div>
           </div>
         </details>
@@ -418,31 +434,32 @@
           <summary>
             <span class="case-title">
               <strong>bzip2 version query</strong>
-              <span class="case-id">original / libbz2 / usage-bzip2-version-query</span>
+              <span class="case-id">Original / libbz2 / usage-bzip2-version-query</span>
             </span>
-            <span class="status-pill status-passed">Passed</span>
+            <span class="status-pill status-passed" aria-label="Original / libbz2 / usage-bzip2-version-query status: Passed">Passed</span>
           </summary>
           <div class="case-body">
             <p>Runs bzip2 client version query behavior through libbz2.</p>
             <dl class="case-meta">
+              <div><dt>Run</dt><dd>Original</dd></div>
               <div><dt>Kind</dt><dd>usage</dd></div>
               <div><dt>Client</dt><dd>bzip2</dd></div>
               <div><dt>Duration</dt><dd>0.00s</dd></div>
               <div><dt>Tags</dt><dd class="tags"><span>usage</span> <span>compression</span></dd></div>
             </dl>
             <div class="case-actions">
-              <a class="log-link" href="../evidence/original/logs/libbz2/usage-bzip2-version-query.log">Log</a>
-              <button type="button" class="play-button js-load-cast" data-cast="../evidence/original/casts/libbz2/usage-bzip2-version-query.cast">Play</button>
+              <a class="log-link" href="../evidence/original/logs/libbz2/usage-bzip2-version-query.log" aria-label="Open log for Original / libbz2 / usage-bzip2-version-query">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/original/casts/libbz2/usage-bzip2-version-query.cast" aria-label="Play cast for Original / libbz2 / usage-bzip2-version-query">Play</button>
             </div>
             <div class="cast-player" data-player>
               <div class="player-controls">
-                <button type="button" class="js-player-play">Play</button>
-                <button type="button" class="js-player-pause">Pause</button>
-                <button type="button" class="js-player-restart">Restart</button>
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Original / libbz2 / usage-bzip2-version-query">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Original / libbz2 / usage-bzip2-version-query">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Original / libbz2 / usage-bzip2-version-query">Restart</button>
                 <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
                 <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
               </div>
-              <pre class="terminal" aria-live="polite"></pre>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Original / libbz2 / usage-bzip2-version-query"></pre>
             </div>
           </div>
         </details>
@@ -450,31 +467,32 @@
           <summary>
             <span class="case-title">
               <strong>bzip2 decompress keep input</strong>
-              <span class="case-id">original / libbz2 / usage-bzip2-decompress-keep-input</span>
+              <span class="case-id">Original / libbz2 / usage-bzip2-decompress-keep-input</span>
             </span>
-            <span class="status-pill status-passed">Passed</span>
+            <span class="status-pill status-passed" aria-label="Original / libbz2 / usage-bzip2-decompress-keep-input status: Passed">Passed</span>
           </summary>
           <div class="case-body">
             <p>Runs bunzip2 keep-input decompression and verifies the compressed file remains.</p>
             <dl class="case-meta">
+              <div><dt>Run</dt><dd>Original</dd></div>
               <div><dt>Kind</dt><dd>usage</dd></div>
               <div><dt>Client</dt><dd>bzip2</dd></div>
               <div><dt>Duration</dt><dd>0.00s</dd></div>
               <div><dt>Tags</dt><dd class="tags"><span>usage</span> <span>compression</span></dd></div>
             </dl>
             <div class="case-actions">
-              <a class="log-link" href="../evidence/original/logs/libbz2/usage-bzip2-decompress-keep-input.log">Log</a>
-              <button type="button" class="play-button js-load-cast" data-cast="../evidence/original/casts/libbz2/usage-bzip2-decompress-keep-input.cast">Play</button>
+              <a class="log-link" href="../evidence/original/logs/libbz2/usage-bzip2-decompress-keep-input.log" aria-label="Open log for Original / libbz2 / usage-bzip2-decompress-keep-input">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/original/casts/libbz2/usage-bzip2-decompress-keep-input.cast" aria-label="Play cast for Original / libbz2 / usage-bzip2-decompress-keep-input">Play</button>
             </div>
             <div class="cast-player" data-player>
               <div class="player-controls">
-                <button type="button" class="js-player-play">Play</button>
-                <button type="button" class="js-player-pause">Pause</button>
-                <button type="button" class="js-player-restart">Restart</button>
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Original / libbz2 / usage-bzip2-decompress-keep-input">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Original / libbz2 / usage-bzip2-decompress-keep-input">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Original / libbz2 / usage-bzip2-decompress-keep-input">Restart</button>
                 <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
                 <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
               </div>
-              <pre class="terminal" aria-live="polite"></pre>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Original / libbz2 / usage-bzip2-decompress-keep-input"></pre>
             </div>
           </div>
         </details>
@@ -482,31 +500,32 @@
           <summary>
             <span class="case-title">
               <strong>bzip2 force overwrite</strong>
-              <span class="case-id">original / libbz2 / usage-bzip2-force-overwrite</span>
+              <span class="case-id">Original / libbz2 / usage-bzip2-force-overwrite</span>
             </span>
-            <span class="status-pill status-passed">Passed</span>
+            <span class="status-pill status-passed" aria-label="Original / libbz2 / usage-bzip2-force-overwrite status: Passed">Passed</span>
           </summary>
           <div class="case-body">
             <p>Runs bzip2 forced recompression and verifies the replacement compressed payload is used.</p>
             <dl class="case-meta">
+              <div><dt>Run</dt><dd>Original</dd></div>
               <div><dt>Kind</dt><dd>usage</dd></div>
               <div><dt>Client</dt><dd>bzip2</dd></div>
               <div><dt>Duration</dt><dd>0.00s</dd></div>
               <div><dt>Tags</dt><dd class="tags"><span>usage</span> <span>compression</span></dd></div>
             </dl>
             <div class="case-actions">
-              <a class="log-link" href="../evidence/original/logs/libbz2/usage-bzip2-force-overwrite.log">Log</a>
-              <button type="button" class="play-button js-load-cast" data-cast="../evidence/original/casts/libbz2/usage-bzip2-force-overwrite.cast">Play</button>
+              <a class="log-link" href="../evidence/original/logs/libbz2/usage-bzip2-force-overwrite.log" aria-label="Open log for Original / libbz2 / usage-bzip2-force-overwrite">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/original/casts/libbz2/usage-bzip2-force-overwrite.cast" aria-label="Play cast for Original / libbz2 / usage-bzip2-force-overwrite">Play</button>
             </div>
             <div class="cast-player" data-player>
               <div class="player-controls">
-                <button type="button" class="js-player-play">Play</button>
-                <button type="button" class="js-player-pause">Pause</button>
-                <button type="button" class="js-player-restart">Restart</button>
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Original / libbz2 / usage-bzip2-force-overwrite">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Original / libbz2 / usage-bzip2-force-overwrite">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Original / libbz2 / usage-bzip2-force-overwrite">Restart</button>
                 <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
                 <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
               </div>
-              <pre class="terminal" aria-live="polite"></pre>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Original / libbz2 / usage-bzip2-force-overwrite"></pre>
             </div>
           </div>
         </details>
@@ -514,31 +533,32 @@
           <summary>
             <span class="case-title">
               <strong>bzip2 command round trip</strong>
-              <span class="case-id">port-04-test / libbz2 / cli-compress-decompress</span>
+              <span class="case-id">Port / libbz2 / cli-compress-decompress</span>
             </span>
-            <span class="status-pill status-passed">Passed</span>
+            <span class="status-pill status-passed" aria-label="Port / libbz2 / cli-compress-decompress status: Passed">Passed</span>
           </summary>
           <div class="case-body">
             <p>Compresses and decompresses text through the installed bzip2 commands.</p>
             <dl class="case-meta">
+              <div><dt>Run</dt><dd>Port</dd></div>
               <div><dt>Kind</dt><dd>source</dd></div>
               <div><dt>Client</dt><dd>none</dd></div>
               <div><dt>Duration</dt><dd>0.00s</dd></div>
               <div><dt>Tags</dt><dd class="tags"><span>cli</span> <span>roundtrip</span></dd></div>
             </dl>
             <div class="case-actions">
-              <a class="log-link" href="../evidence/port-04-test/logs/libbz2/cli-compress-decompress.log">Log</a>
-              <button type="button" class="play-button js-load-cast" data-cast="../evidence/port-04-test/casts/libbz2/cli-compress-decompress.cast">Play</button>
+              <a class="log-link" href="../evidence/port-04-test/logs/libbz2/cli-compress-decompress.log" aria-label="Open log for Port / libbz2 / cli-compress-decompress">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/port-04-test/casts/libbz2/cli-compress-decompress.cast" aria-label="Play cast for Port / libbz2 / cli-compress-decompress">Play</button>
             </div>
             <div class="cast-player" data-player>
               <div class="player-controls">
-                <button type="button" class="js-player-play">Play</button>
-                <button type="button" class="js-player-pause">Pause</button>
-                <button type="button" class="js-player-restart">Restart</button>
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Port / libbz2 / cli-compress-decompress">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Port / libbz2 / cli-compress-decompress">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Port / libbz2 / cli-compress-decompress">Restart</button>
                 <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
                 <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
               </div>
-              <pre class="terminal" aria-live="polite"></pre>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Port / libbz2 / cli-compress-decompress"></pre>
             </div>
           </div>
         </details>
@@ -546,31 +566,32 @@
           <summary>
             <span class="case-title">
               <strong>bzip2 stream concatenation</strong>
-              <span class="case-id">port-04-test / libbz2 / stream-concatenation</span>
+              <span class="case-id">Port / libbz2 / stream-concatenation</span>
             </span>
-            <span class="status-pill status-passed">Passed</span>
+            <span class="status-pill status-passed" aria-label="Port / libbz2 / stream-concatenation status: Passed">Passed</span>
           </summary>
           <div class="case-body">
             <p>Concatenates independent bzip2 streams and verifies continuous decompression output.</p>
             <dl class="case-meta">
+              <div><dt>Run</dt><dd>Port</dd></div>
               <div><dt>Kind</dt><dd>source</dd></div>
               <div><dt>Client</dt><dd>none</dd></div>
               <div><dt>Duration</dt><dd>0.00s</dd></div>
               <div><dt>Tags</dt><dd class="tags"><span>cli</span> <span>stream</span></dd></div>
             </dl>
             <div class="case-actions">
-              <a class="log-link" href="../evidence/port-04-test/logs/libbz2/stream-concatenation.log">Log</a>
-              <button type="button" class="play-button js-load-cast" data-cast="../evidence/port-04-test/casts/libbz2/stream-concatenation.cast">Play</button>
+              <a class="log-link" href="../evidence/port-04-test/logs/libbz2/stream-concatenation.log" aria-label="Open log for Port / libbz2 / stream-concatenation">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/port-04-test/casts/libbz2/stream-concatenation.cast" aria-label="Play cast for Port / libbz2 / stream-concatenation">Play</button>
             </div>
             <div class="cast-player" data-player>
               <div class="player-controls">
-                <button type="button" class="js-player-play">Play</button>
-                <button type="button" class="js-player-pause">Pause</button>
-                <button type="button" class="js-player-restart">Restart</button>
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Port / libbz2 / stream-concatenation">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Port / libbz2 / stream-concatenation">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Port / libbz2 / stream-concatenation">Restart</button>
                 <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
                 <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
               </div>
-              <pre class="terminal" aria-live="polite"></pre>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Port / libbz2 / stream-concatenation"></pre>
             </div>
           </div>
         </details>
@@ -578,31 +599,32 @@
           <summary>
             <span class="case-title">
               <strong>libbz2 C API round trip</strong>
-              <span class="case-id">port-04-test / libbz2 / c-api-buffer-roundtrip</span>
+              <span class="case-id">Port / libbz2 / c-api-buffer-roundtrip</span>
             </span>
-            <span class="status-pill status-passed">Passed</span>
+            <span class="status-pill status-passed" aria-label="Port / libbz2 / c-api-buffer-roundtrip status: Passed">Passed</span>
           </summary>
           <div class="case-body">
             <p>Compiles a libbz2 buffer compression and decompression round trip.</p>
             <dl class="case-meta">
+              <div><dt>Run</dt><dd>Port</dd></div>
               <div><dt>Kind</dt><dd>source</dd></div>
               <div><dt>Client</dt><dd>none</dd></div>
               <div><dt>Duration</dt><dd>0.00s</dd></div>
               <div><dt>Tags</dt><dd class="tags"><span>api</span> <span>compile</span></dd></div>
             </dl>
             <div class="case-actions">
-              <a class="log-link" href="../evidence/port-04-test/logs/libbz2/c-api-buffer-roundtrip.log">Log</a>
-              <button type="button" class="play-button js-load-cast" data-cast="../evidence/port-04-test/casts/libbz2/c-api-buffer-roundtrip.cast">Play</button>
+              <a class="log-link" href="../evidence/port-04-test/logs/libbz2/c-api-buffer-roundtrip.log" aria-label="Open log for Port / libbz2 / c-api-buffer-roundtrip">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/port-04-test/casts/libbz2/c-api-buffer-roundtrip.cast" aria-label="Play cast for Port / libbz2 / c-api-buffer-roundtrip">Play</button>
             </div>
             <div class="cast-player" data-player>
               <div class="player-controls">
-                <button type="button" class="js-player-play">Play</button>
-                <button type="button" class="js-player-pause">Pause</button>
-                <button type="button" class="js-player-restart">Restart</button>
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Port / libbz2 / c-api-buffer-roundtrip">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Port / libbz2 / c-api-buffer-roundtrip">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Port / libbz2 / c-api-buffer-roundtrip">Restart</button>
                 <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
                 <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
               </div>
-              <pre class="terminal" aria-live="polite"></pre>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Port / libbz2 / c-api-buffer-roundtrip"></pre>
             </div>
           </div>
         </details>
@@ -610,31 +632,32 @@
           <summary>
             <span class="case-title">
               <strong>bzip2 corrupted stream rejection</strong>
-              <span class="case-id">port-04-test / libbz2 / corrupted-stream-rejection</span>
+              <span class="case-id">Port / libbz2 / corrupted-stream-rejection</span>
             </span>
-            <span class="status-pill status-passed">Passed</span>
+            <span class="status-pill status-passed" aria-label="Port / libbz2 / corrupted-stream-rejection status: Passed">Passed</span>
           </summary>
           <div class="case-body">
             <p>Requires the decompressor to return failure for a corrupted stream.</p>
             <dl class="case-meta">
+              <div><dt>Run</dt><dd>Port</dd></div>
               <div><dt>Kind</dt><dd>source</dd></div>
               <div><dt>Client</dt><dd>none</dd></div>
               <div><dt>Duration</dt><dd>0.00s</dd></div>
               <div><dt>Tags</dt><dd class="tags"><span>cli</span> <span>negative</span></dd></div>
             </dl>
             <div class="case-actions">
-              <a class="log-link" href="../evidence/port-04-test/logs/libbz2/corrupted-stream-rejection.log">Log</a>
-              <button type="button" class="play-button js-load-cast" data-cast="../evidence/port-04-test/casts/libbz2/corrupted-stream-rejection.cast">Play</button>
+              <a class="log-link" href="../evidence/port-04-test/logs/libbz2/corrupted-stream-rejection.log" aria-label="Open log for Port / libbz2 / corrupted-stream-rejection">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/port-04-test/casts/libbz2/corrupted-stream-rejection.cast" aria-label="Play cast for Port / libbz2 / corrupted-stream-rejection">Play</button>
             </div>
             <div class="cast-player" data-player>
               <div class="player-controls">
-                <button type="button" class="js-player-play">Play</button>
-                <button type="button" class="js-player-pause">Pause</button>
-                <button type="button" class="js-player-restart">Restart</button>
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Port / libbz2 / corrupted-stream-rejection">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Port / libbz2 / corrupted-stream-rejection">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Port / libbz2 / corrupted-stream-rejection">Restart</button>
                 <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
                 <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
               </div>
-              <pre class="terminal" aria-live="polite"></pre>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Port / libbz2 / corrupted-stream-rejection"></pre>
             </div>
           </div>
         </details>
@@ -642,31 +665,32 @@
           <summary>
             <span class="case-title">
               <strong>Debian sample fixture parity</strong>
-              <span class="case-id">port-04-test / libbz2 / debian-sample-parity</span>
+              <span class="case-id">Port / libbz2 / debian-sample-parity</span>
             </span>
-            <span class="status-pill status-passed">Passed</span>
+            <span class="status-pill status-passed" aria-label="Port / libbz2 / debian-sample-parity status: Passed">Passed</span>
           </summary>
           <div class="case-body">
             <p>Decompresses packaged sample streams and compares them to reference fixtures.</p>
             <dl class="case-meta">
+              <div><dt>Run</dt><dd>Port</dd></div>
               <div><dt>Kind</dt><dd>source</dd></div>
               <div><dt>Client</dt><dd>none</dd></div>
               <div><dt>Duration</dt><dd>0.00s</dd></div>
               <div><dt>Tags</dt><dd class="tags"><span>cli</span> <span>fixture</span></dd></div>
             </dl>
             <div class="case-actions">
-              <a class="log-link" href="../evidence/port-04-test/logs/libbz2/debian-sample-parity.log">Log</a>
-              <button type="button" class="play-button js-load-cast" data-cast="../evidence/port-04-test/casts/libbz2/debian-sample-parity.cast">Play</button>
+              <a class="log-link" href="../evidence/port-04-test/logs/libbz2/debian-sample-parity.log" aria-label="Open log for Port / libbz2 / debian-sample-parity">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/port-04-test/casts/libbz2/debian-sample-parity.cast" aria-label="Play cast for Port / libbz2 / debian-sample-parity">Play</button>
             </div>
             <div class="cast-player" data-player>
               <div class="player-controls">
-                <button type="button" class="js-player-play">Play</button>
-                <button type="button" class="js-player-pause">Pause</button>
-                <button type="button" class="js-player-restart">Restart</button>
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Port / libbz2 / debian-sample-parity">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Port / libbz2 / debian-sample-parity">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Port / libbz2 / debian-sample-parity">Restart</button>
                 <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
                 <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
               </div>
-              <pre class="terminal" aria-live="polite"></pre>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Port / libbz2 / debian-sample-parity"></pre>
             </div>
           </div>
         </details>
@@ -674,31 +698,32 @@
           <summary>
             <span class="case-title">
               <strong>bzip2 compress file</strong>
-              <span class="case-id">port-04-test / libbz2 / usage-bzip2-compress-file</span>
+              <span class="case-id">Port / libbz2 / usage-bzip2-compress-file</span>
             </span>
-            <span class="status-pill status-passed">Passed</span>
+            <span class="status-pill status-passed" aria-label="Port / libbz2 / usage-bzip2-compress-file status: Passed">Passed</span>
           </summary>
           <div class="case-body">
             <p>Runs bzip2 client compress file behavior through libbz2.</p>
             <dl class="case-meta">
+              <div><dt>Run</dt><dd>Port</dd></div>
               <div><dt>Kind</dt><dd>usage</dd></div>
               <div><dt>Client</dt><dd>bzip2</dd></div>
               <div><dt>Duration</dt><dd>0.00s</dd></div>
               <div><dt>Tags</dt><dd class="tags"><span>usage</span> <span>compression</span></dd></div>
             </dl>
             <div class="case-actions">
-              <a class="log-link" href="../evidence/port-04-test/logs/libbz2/usage-bzip2-compress-file.log">Log</a>
-              <button type="button" class="play-button js-load-cast" data-cast="../evidence/port-04-test/casts/libbz2/usage-bzip2-compress-file.cast">Play</button>
+              <a class="log-link" href="../evidence/port-04-test/logs/libbz2/usage-bzip2-compress-file.log" aria-label="Open log for Port / libbz2 / usage-bzip2-compress-file">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/port-04-test/casts/libbz2/usage-bzip2-compress-file.cast" aria-label="Play cast for Port / libbz2 / usage-bzip2-compress-file">Play</button>
             </div>
             <div class="cast-player" data-player>
               <div class="player-controls">
-                <button type="button" class="js-player-play">Play</button>
-                <button type="button" class="js-player-pause">Pause</button>
-                <button type="button" class="js-player-restart">Restart</button>
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Port / libbz2 / usage-bzip2-compress-file">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Port / libbz2 / usage-bzip2-compress-file">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Port / libbz2 / usage-bzip2-compress-file">Restart</button>
                 <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
                 <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
               </div>
-              <pre class="terminal" aria-live="polite"></pre>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Port / libbz2 / usage-bzip2-compress-file"></pre>
             </div>
           </div>
         </details>
@@ -706,31 +731,32 @@
           <summary>
             <span class="case-title">
               <strong>bzip2 test stream</strong>
-              <span class="case-id">port-04-test / libbz2 / usage-bzip2-test-stream</span>
+              <span class="case-id">Port / libbz2 / usage-bzip2-test-stream</span>
             </span>
-            <span class="status-pill status-passed">Passed</span>
+            <span class="status-pill status-passed" aria-label="Port / libbz2 / usage-bzip2-test-stream status: Passed">Passed</span>
           </summary>
           <div class="case-body">
             <p>Runs bzip2 client test stream behavior through libbz2.</p>
             <dl class="case-meta">
+              <div><dt>Run</dt><dd>Port</dd></div>
               <div><dt>Kind</dt><dd>usage</dd></div>
               <div><dt>Client</dt><dd>bzip2</dd></div>
               <div><dt>Duration</dt><dd>0.00s</dd></div>
               <div><dt>Tags</dt><dd class="tags"><span>usage</span> <span>compression</span></dd></div>
             </dl>
             <div class="case-actions">
-              <a class="log-link" href="../evidence/port-04-test/logs/libbz2/usage-bzip2-test-stream.log">Log</a>
-              <button type="button" class="play-button js-load-cast" data-cast="../evidence/port-04-test/casts/libbz2/usage-bzip2-test-stream.cast">Play</button>
+              <a class="log-link" href="../evidence/port-04-test/logs/libbz2/usage-bzip2-test-stream.log" aria-label="Open log for Port / libbz2 / usage-bzip2-test-stream">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/port-04-test/casts/libbz2/usage-bzip2-test-stream.cast" aria-label="Play cast for Port / libbz2 / usage-bzip2-test-stream">Play</button>
             </div>
             <div class="cast-player" data-player>
               <div class="player-controls">
-                <button type="button" class="js-player-play">Play</button>
-                <button type="button" class="js-player-pause">Pause</button>
-                <button type="button" class="js-player-restart">Restart</button>
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Port / libbz2 / usage-bzip2-test-stream">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Port / libbz2 / usage-bzip2-test-stream">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Port / libbz2 / usage-bzip2-test-stream">Restart</button>
                 <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
                 <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
               </div>
-              <pre class="terminal" aria-live="polite"></pre>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Port / libbz2 / usage-bzip2-test-stream"></pre>
             </div>
           </div>
         </details>
@@ -738,31 +764,32 @@
           <summary>
             <span class="case-title">
               <strong>bzip2 small block</strong>
-              <span class="case-id">port-04-test / libbz2 / usage-bzip2-small-block</span>
+              <span class="case-id">Port / libbz2 / usage-bzip2-small-block</span>
             </span>
-            <span class="status-pill status-passed">Passed</span>
+            <span class="status-pill status-passed" aria-label="Port / libbz2 / usage-bzip2-small-block status: Passed">Passed</span>
           </summary>
           <div class="case-body">
             <p>Runs bzip2 client small block behavior through libbz2.</p>
             <dl class="case-meta">
+              <div><dt>Run</dt><dd>Port</dd></div>
               <div><dt>Kind</dt><dd>usage</dd></div>
               <div><dt>Client</dt><dd>bzip2</dd></div>
               <div><dt>Duration</dt><dd>0.00s</dd></div>
               <div><dt>Tags</dt><dd class="tags"><span>usage</span> <span>compression</span></dd></div>
             </dl>
             <div class="case-actions">
-              <a class="log-link" href="../evidence/port-04-test/logs/libbz2/usage-bzip2-small-block.log">Log</a>
-              <button type="button" class="play-button js-load-cast" data-cast="../evidence/port-04-test/casts/libbz2/usage-bzip2-small-block.cast">Play</button>
+              <a class="log-link" href="../evidence/port-04-test/logs/libbz2/usage-bzip2-small-block.log" aria-label="Open log for Port / libbz2 / usage-bzip2-small-block">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/port-04-test/casts/libbz2/usage-bzip2-small-block.cast" aria-label="Play cast for Port / libbz2 / usage-bzip2-small-block">Play</button>
             </div>
             <div class="cast-player" data-player>
               <div class="player-controls">
-                <button type="button" class="js-player-play">Play</button>
-                <button type="button" class="js-player-pause">Pause</button>
-                <button type="button" class="js-player-restart">Restart</button>
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Port / libbz2 / usage-bzip2-small-block">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Port / libbz2 / usage-bzip2-small-block">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Port / libbz2 / usage-bzip2-small-block">Restart</button>
                 <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
                 <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
               </div>
-              <pre class="terminal" aria-live="polite"></pre>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Port / libbz2 / usage-bzip2-small-block"></pre>
             </div>
           </div>
         </details>
@@ -770,31 +797,32 @@
           <summary>
             <span class="case-title">
               <strong>bzip2 large block</strong>
-              <span class="case-id">port-04-test / libbz2 / usage-bzip2-large-block</span>
+              <span class="case-id">Port / libbz2 / usage-bzip2-large-block</span>
             </span>
-            <span class="status-pill status-passed">Passed</span>
+            <span class="status-pill status-passed" aria-label="Port / libbz2 / usage-bzip2-large-block status: Passed">Passed</span>
           </summary>
           <div class="case-body">
             <p>Runs bzip2 client large block behavior through libbz2.</p>
             <dl class="case-meta">
+              <div><dt>Run</dt><dd>Port</dd></div>
               <div><dt>Kind</dt><dd>usage</dd></div>
               <div><dt>Client</dt><dd>bzip2</dd></div>
               <div><dt>Duration</dt><dd>0.00s</dd></div>
               <div><dt>Tags</dt><dd class="tags"><span>usage</span> <span>compression</span></dd></div>
             </dl>
             <div class="case-actions">
-              <a class="log-link" href="../evidence/port-04-test/logs/libbz2/usage-bzip2-large-block.log">Log</a>
-              <button type="button" class="play-button js-load-cast" data-cast="../evidence/port-04-test/casts/libbz2/usage-bzip2-large-block.cast">Play</button>
+              <a class="log-link" href="../evidence/port-04-test/logs/libbz2/usage-bzip2-large-block.log" aria-label="Open log for Port / libbz2 / usage-bzip2-large-block">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/port-04-test/casts/libbz2/usage-bzip2-large-block.cast" aria-label="Play cast for Port / libbz2 / usage-bzip2-large-block">Play</button>
             </div>
             <div class="cast-player" data-player>
               <div class="player-controls">
-                <button type="button" class="js-player-play">Play</button>
-                <button type="button" class="js-player-pause">Pause</button>
-                <button type="button" class="js-player-restart">Restart</button>
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Port / libbz2 / usage-bzip2-large-block">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Port / libbz2 / usage-bzip2-large-block">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Port / libbz2 / usage-bzip2-large-block">Restart</button>
                 <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
                 <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
               </div>
-              <pre class="terminal" aria-live="polite"></pre>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Port / libbz2 / usage-bzip2-large-block"></pre>
             </div>
           </div>
         </details>
@@ -802,31 +830,32 @@
           <summary>
             <span class="case-title">
               <strong>bzip2 concatenated streams</strong>
-              <span class="case-id">port-04-test / libbz2 / usage-bzip2-concatenated-streams</span>
+              <span class="case-id">Port / libbz2 / usage-bzip2-concatenated-streams</span>
             </span>
-            <span class="status-pill status-passed">Passed</span>
+            <span class="status-pill status-passed" aria-label="Port / libbz2 / usage-bzip2-concatenated-streams status: Passed">Passed</span>
           </summary>
           <div class="case-body">
             <p>Runs bzip2 client concatenated streams behavior through libbz2.</p>
             <dl class="case-meta">
+              <div><dt>Run</dt><dd>Port</dd></div>
               <div><dt>Kind</dt><dd>usage</dd></div>
               <div><dt>Client</dt><dd>bzip2</dd></div>
               <div><dt>Duration</dt><dd>0.00s</dd></div>
               <div><dt>Tags</dt><dd class="tags"><span>usage</span> <span>compression</span></dd></div>
             </dl>
             <div class="case-actions">
-              <a class="log-link" href="../evidence/port-04-test/logs/libbz2/usage-bzip2-concatenated-streams.log">Log</a>
-              <button type="button" class="play-button js-load-cast" data-cast="../evidence/port-04-test/casts/libbz2/usage-bzip2-concatenated-streams.cast">Play</button>
+              <a class="log-link" href="../evidence/port-04-test/logs/libbz2/usage-bzip2-concatenated-streams.log" aria-label="Open log for Port / libbz2 / usage-bzip2-concatenated-streams">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/port-04-test/casts/libbz2/usage-bzip2-concatenated-streams.cast" aria-label="Play cast for Port / libbz2 / usage-bzip2-concatenated-streams">Play</button>
             </div>
             <div class="cast-player" data-player>
               <div class="player-controls">
-                <button type="button" class="js-player-play">Play</button>
-                <button type="button" class="js-player-pause">Pause</button>
-                <button type="button" class="js-player-restart">Restart</button>
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Port / libbz2 / usage-bzip2-concatenated-streams">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Port / libbz2 / usage-bzip2-concatenated-streams">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Port / libbz2 / usage-bzip2-concatenated-streams">Restart</button>
                 <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
                 <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
               </div>
-              <pre class="terminal" aria-live="polite"></pre>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Port / libbz2 / usage-bzip2-concatenated-streams"></pre>
             </div>
           </div>
         </details>
@@ -834,31 +863,32 @@
           <summary>
             <span class="case-title">
               <strong>bzip2 stdout stream</strong>
-              <span class="case-id">port-04-test / libbz2 / usage-bzip2-stdout-stream</span>
+              <span class="case-id">Port / libbz2 / usage-bzip2-stdout-stream</span>
             </span>
-            <span class="status-pill status-passed">Passed</span>
+            <span class="status-pill status-passed" aria-label="Port / libbz2 / usage-bzip2-stdout-stream status: Passed">Passed</span>
           </summary>
           <div class="case-body">
             <p>Runs bzip2 client stdout stream behavior through libbz2.</p>
             <dl class="case-meta">
+              <div><dt>Run</dt><dd>Port</dd></div>
               <div><dt>Kind</dt><dd>usage</dd></div>
               <div><dt>Client</dt><dd>bzip2</dd></div>
               <div><dt>Duration</dt><dd>0.00s</dd></div>
               <div><dt>Tags</dt><dd class="tags"><span>usage</span> <span>compression</span></dd></div>
             </dl>
             <div class="case-actions">
-              <a class="log-link" href="../evidence/port-04-test/logs/libbz2/usage-bzip2-stdout-stream.log">Log</a>
-              <button type="button" class="play-button js-load-cast" data-cast="../evidence/port-04-test/casts/libbz2/usage-bzip2-stdout-stream.cast">Play</button>
+              <a class="log-link" href="../evidence/port-04-test/logs/libbz2/usage-bzip2-stdout-stream.log" aria-label="Open log for Port / libbz2 / usage-bzip2-stdout-stream">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/port-04-test/casts/libbz2/usage-bzip2-stdout-stream.cast" aria-label="Play cast for Port / libbz2 / usage-bzip2-stdout-stream">Play</button>
             </div>
             <div class="cast-player" data-player>
               <div class="player-controls">
-                <button type="button" class="js-player-play">Play</button>
-                <button type="button" class="js-player-pause">Pause</button>
-                <button type="button" class="js-player-restart">Restart</button>
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Port / libbz2 / usage-bzip2-stdout-stream">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Port / libbz2 / usage-bzip2-stdout-stream">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Port / libbz2 / usage-bzip2-stdout-stream">Restart</button>
                 <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
                 <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
               </div>
-              <pre class="terminal" aria-live="polite"></pre>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Port / libbz2 / usage-bzip2-stdout-stream"></pre>
             </div>
           </div>
         </details>
@@ -866,31 +896,32 @@
           <summary>
             <span class="case-title">
               <strong>bzip2 recover listing</strong>
-              <span class="case-id">port-04-test / libbz2 / usage-bzip2-recover-listing</span>
+              <span class="case-id">Port / libbz2 / usage-bzip2-recover-listing</span>
             </span>
-            <span class="status-pill status-passed">Passed</span>
+            <span class="status-pill status-passed" aria-label="Port / libbz2 / usage-bzip2-recover-listing status: Passed">Passed</span>
           </summary>
           <div class="case-body">
             <p>Runs bzip2 client recover listing behavior through libbz2.</p>
             <dl class="case-meta">
+              <div><dt>Run</dt><dd>Port</dd></div>
               <div><dt>Kind</dt><dd>usage</dd></div>
               <div><dt>Client</dt><dd>bzip2</dd></div>
               <div><dt>Duration</dt><dd>0.00s</dd></div>
               <div><dt>Tags</dt><dd class="tags"><span>usage</span> <span>compression</span></dd></div>
             </dl>
             <div class="case-actions">
-              <a class="log-link" href="../evidence/port-04-test/logs/libbz2/usage-bzip2-recover-listing.log">Log</a>
-              <button type="button" class="play-button js-load-cast" data-cast="../evidence/port-04-test/casts/libbz2/usage-bzip2-recover-listing.cast">Play</button>
+              <a class="log-link" href="../evidence/port-04-test/logs/libbz2/usage-bzip2-recover-listing.log" aria-label="Open log for Port / libbz2 / usage-bzip2-recover-listing">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/port-04-test/casts/libbz2/usage-bzip2-recover-listing.cast" aria-label="Play cast for Port / libbz2 / usage-bzip2-recover-listing">Play</button>
             </div>
             <div class="cast-player" data-player>
               <div class="player-controls">
-                <button type="button" class="js-player-play">Play</button>
-                <button type="button" class="js-player-pause">Pause</button>
-                <button type="button" class="js-player-restart">Restart</button>
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Port / libbz2 / usage-bzip2-recover-listing">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Port / libbz2 / usage-bzip2-recover-listing">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Port / libbz2 / usage-bzip2-recover-listing">Restart</button>
                 <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
                 <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
               </div>
-              <pre class="terminal" aria-live="polite"></pre>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Port / libbz2 / usage-bzip2-recover-listing"></pre>
             </div>
           </div>
         </details>
@@ -898,31 +929,32 @@
           <summary>
             <span class="case-title">
               <strong>bzip2 version query</strong>
-              <span class="case-id">port-04-test / libbz2 / usage-bzip2-version-query</span>
+              <span class="case-id">Port / libbz2 / usage-bzip2-version-query</span>
             </span>
-            <span class="status-pill status-passed">Passed</span>
+            <span class="status-pill status-passed" aria-label="Port / libbz2 / usage-bzip2-version-query status: Passed">Passed</span>
           </summary>
           <div class="case-body">
             <p>Runs bzip2 client version query behavior through libbz2.</p>
             <dl class="case-meta">
+              <div><dt>Run</dt><dd>Port</dd></div>
               <div><dt>Kind</dt><dd>usage</dd></div>
               <div><dt>Client</dt><dd>bzip2</dd></div>
               <div><dt>Duration</dt><dd>0.00s</dd></div>
               <div><dt>Tags</dt><dd class="tags"><span>usage</span> <span>compression</span></dd></div>
             </dl>
             <div class="case-actions">
-              <a class="log-link" href="../evidence/port-04-test/logs/libbz2/usage-bzip2-version-query.log">Log</a>
-              <button type="button" class="play-button js-load-cast" data-cast="../evidence/port-04-test/casts/libbz2/usage-bzip2-version-query.cast">Play</button>
+              <a class="log-link" href="../evidence/port-04-test/logs/libbz2/usage-bzip2-version-query.log" aria-label="Open log for Port / libbz2 / usage-bzip2-version-query">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/port-04-test/casts/libbz2/usage-bzip2-version-query.cast" aria-label="Play cast for Port / libbz2 / usage-bzip2-version-query">Play</button>
             </div>
             <div class="cast-player" data-player>
               <div class="player-controls">
-                <button type="button" class="js-player-play">Play</button>
-                <button type="button" class="js-player-pause">Pause</button>
-                <button type="button" class="js-player-restart">Restart</button>
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Port / libbz2 / usage-bzip2-version-query">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Port / libbz2 / usage-bzip2-version-query">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Port / libbz2 / usage-bzip2-version-query">Restart</button>
                 <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
                 <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
               </div>
-              <pre class="terminal" aria-live="polite"></pre>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Port / libbz2 / usage-bzip2-version-query"></pre>
             </div>
           </div>
         </details>
@@ -930,31 +962,32 @@
           <summary>
             <span class="case-title">
               <strong>bzip2 decompress keep input</strong>
-              <span class="case-id">port-04-test / libbz2 / usage-bzip2-decompress-keep-input</span>
+              <span class="case-id">Port / libbz2 / usage-bzip2-decompress-keep-input</span>
             </span>
-            <span class="status-pill status-passed">Passed</span>
+            <span class="status-pill status-passed" aria-label="Port / libbz2 / usage-bzip2-decompress-keep-input status: Passed">Passed</span>
           </summary>
           <div class="case-body">
             <p>Runs bunzip2 keep-input decompression and verifies the compressed file remains.</p>
             <dl class="case-meta">
+              <div><dt>Run</dt><dd>Port</dd></div>
               <div><dt>Kind</dt><dd>usage</dd></div>
               <div><dt>Client</dt><dd>bzip2</dd></div>
               <div><dt>Duration</dt><dd>0.00s</dd></div>
               <div><dt>Tags</dt><dd class="tags"><span>usage</span> <span>compression</span></dd></div>
             </dl>
             <div class="case-actions">
-              <a class="log-link" href="../evidence/port-04-test/logs/libbz2/usage-bzip2-decompress-keep-input.log">Log</a>
-              <button type="button" class="play-button js-load-cast" data-cast="../evidence/port-04-test/casts/libbz2/usage-bzip2-decompress-keep-input.cast">Play</button>
+              <a class="log-link" href="../evidence/port-04-test/logs/libbz2/usage-bzip2-decompress-keep-input.log" aria-label="Open log for Port / libbz2 / usage-bzip2-decompress-keep-input">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/port-04-test/casts/libbz2/usage-bzip2-decompress-keep-input.cast" aria-label="Play cast for Port / libbz2 / usage-bzip2-decompress-keep-input">Play</button>
             </div>
             <div class="cast-player" data-player>
               <div class="player-controls">
-                <button type="button" class="js-player-play">Play</button>
-                <button type="button" class="js-player-pause">Pause</button>
-                <button type="button" class="js-player-restart">Restart</button>
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Port / libbz2 / usage-bzip2-decompress-keep-input">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Port / libbz2 / usage-bzip2-decompress-keep-input">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Port / libbz2 / usage-bzip2-decompress-keep-input">Restart</button>
                 <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
                 <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
               </div>
-              <pre class="terminal" aria-live="polite"></pre>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Port / libbz2 / usage-bzip2-decompress-keep-input"></pre>
             </div>
           </div>
         </details>
@@ -962,31 +995,32 @@
           <summary>
             <span class="case-title">
               <strong>bzip2 force overwrite</strong>
-              <span class="case-id">port-04-test / libbz2 / usage-bzip2-force-overwrite</span>
+              <span class="case-id">Port / libbz2 / usage-bzip2-force-overwrite</span>
             </span>
-            <span class="status-pill status-passed">Passed</span>
+            <span class="status-pill status-passed" aria-label="Port / libbz2 / usage-bzip2-force-overwrite status: Passed">Passed</span>
           </summary>
           <div class="case-body">
             <p>Runs bzip2 forced recompression and verifies the replacement compressed payload is used.</p>
             <dl class="case-meta">
+              <div><dt>Run</dt><dd>Port</dd></div>
               <div><dt>Kind</dt><dd>usage</dd></div>
               <div><dt>Client</dt><dd>bzip2</dd></div>
               <div><dt>Duration</dt><dd>0.00s</dd></div>
               <div><dt>Tags</dt><dd class="tags"><span>usage</span> <span>compression</span></dd></div>
             </dl>
             <div class="case-actions">
-              <a class="log-link" href="../evidence/port-04-test/logs/libbz2/usage-bzip2-force-overwrite.log">Log</a>
-              <button type="button" class="play-button js-load-cast" data-cast="../evidence/port-04-test/casts/libbz2/usage-bzip2-force-overwrite.cast">Play</button>
+              <a class="log-link" href="../evidence/port-04-test/logs/libbz2/usage-bzip2-force-overwrite.log" aria-label="Open log for Port / libbz2 / usage-bzip2-force-overwrite">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/port-04-test/casts/libbz2/usage-bzip2-force-overwrite.cast" aria-label="Play cast for Port / libbz2 / usage-bzip2-force-overwrite">Play</button>
             </div>
             <div class="cast-player" data-player>
               <div class="player-controls">
-                <button type="button" class="js-player-play">Play</button>
-                <button type="button" class="js-player-pause">Pause</button>
-                <button type="button" class="js-player-restart">Restart</button>
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Port / libbz2 / usage-bzip2-force-overwrite">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Port / libbz2 / usage-bzip2-force-overwrite">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Port / libbz2 / usage-bzip2-force-overwrite">Restart</button>
                 <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
                 <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
               </div>
-              <pre class="terminal" aria-live="polite"></pre>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Port / libbz2 / usage-bzip2-force-overwrite"></pre>
             </div>
           </div>
         </details>

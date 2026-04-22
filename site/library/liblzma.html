@@ -9,56 +9,61 @@
     <script defer src="../assets/player.js"></script>
   </head>
   <body data-site-data="../site-data.json">
+    <a class="skip-link" href="#tests-heading">Skip to tests</a>
     <main>
-      <section class="dashboard" aria-label="Validation dashboard">
-        <h1>liblzma Validation</h1>
+      <nav class="breadcrumb" aria-label="Breadcrumb"><a href="../index.html">All libraries</a></nav>
+      <section class="dashboard" aria-labelledby="dashboard-heading">
+        <h1 id="dashboard-heading">liblzma Validation</h1>
         <div class="metric-grid">
-        <div class="metric" data-proof-total="libraries"><strong>19</strong><span>Libraries</span></div>
-        <div class="metric" data-proof-total="cases"><strong>576</strong><span>Cases</span></div>
-        <div class="metric" data-proof-total="source_cases"><strong>190</strong><span>Source</span></div>
-        <div class="metric" data-proof-total="usage_cases"><strong>386</strong><span>Usage</span></div>
-        <div class="metric" data-proof-total="passed"><strong>576</strong><span>Passed</span></div>
-        <div class="metric" data-proof-total="failed"><strong>0</strong><span>Failed</span></div>
-        <div class="metric" data-proof-total="casts"><strong>576 (100%)</strong><span>Casts</span></div>
+        <div class="metric" data-proof-total="libraries"><strong>1</strong><span>Libraries</span></div>
+        <div class="metric" data-proof-total="cases"><strong>15</strong><span>Tests</span></div>
+        <div class="metric" data-proof-total="source_cases"><strong>5</strong><span>Source tests</span></div>
+        <div class="metric" data-proof-total="usage_cases"><strong>10</strong><span>Usage tests</span></div>
+        <div class="metric" data-proof-total="passed"><strong>15 / 15</strong><span>Port tests passing</span></div>
+        <div class="metric" data-proof-total="failed"><strong>0</strong><span>Port tests failing</span></div>
+        <div class="metric" data-proof-total="casts"><strong>30 (100%)</strong><span>Evidence casts</span></div>
+        <div class="metric" data-proof-total="port_libraries"><strong>1 / 1</strong><span>Port libraries passing</span></div>
         </div>
       </section>
 
       <section class="controls" aria-label="Testcase filters">
-        <label class="search-label">Search <input id="search-input" type="search" autocomplete="off"></label>
+        <label class="search-label">Search <input id="search-input" type="search" autocomplete="off" name="search"></label>
+        <label>Run mode <select id="mode-filter" name="mode"><option value="all">All</option><option value="original">Original</option><option value="port-04-test">Port</option></select></label>
         <label>Status <select id="status-filter"><option value="all">All</option><option value="passed">Passed</option><option value="failed">Failed</option></select></label>
         <label>Kind <select id="kind-filter"><option value="all">All</option><option value="source">Source</option><option value="usage">Usage</option></select></label>
       </section>
-      <section class="testcases" aria-label="Testcases">
-        <h2>Testcases</h2>
+      <section id="testcases" class="testcases" aria-labelledby="tests-heading">
+        <h2 id="tests-heading">Tests</h2>
         <details class="case-row" data-library="liblzma" data-testcase-id="xz-compress-decompress" data-mode="original" data-kind="source" data-status="passed" data-player-cast="../evidence/original/casts/liblzma/xz-compress-decompress.cast" data-search="liblzma xz-compress-decompress original xz command round trip Compresses and decompresses text with xz command line tools. source cli roundtrip">
           <summary>
             <span class="case-title">
               <strong>xz command round trip</strong>
-              <span class="case-id">original / liblzma / xz-compress-decompress</span>
+              <span class="case-id">Original / liblzma / xz-compress-decompress</span>
             </span>
-            <span class="status-pill status-passed">Passed</span>
+            <span class="status-pill status-passed" aria-label="Original / liblzma / xz-compress-decompress status: Passed">Passed</span>
           </summary>
           <div class="case-body">
             <p>Compresses and decompresses text with xz command line tools.</p>
             <dl class="case-meta">
+              <div><dt>Run</dt><dd>Original</dd></div>
               <div><dt>Kind</dt><dd>source</dd></div>
               <div><dt>Client</dt><dd>none</dd></div>
               <div><dt>Duration</dt><dd>0.00s</dd></div>
               <div><dt>Tags</dt><dd class="tags"><span>cli</span> <span>roundtrip</span></dd></div>
             </dl>
             <div class="case-actions">
-              <a class="log-link" href="../evidence/original/logs/liblzma/xz-compress-decompress.log">Log</a>
-              <button type="button" class="play-button js-load-cast" data-cast="../evidence/original/casts/liblzma/xz-compress-decompress.cast">Play</button>
+              <a class="log-link" href="../evidence/original/logs/liblzma/xz-compress-decompress.log" aria-label="Open log for Original / liblzma / xz-compress-decompress">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/original/casts/liblzma/xz-compress-decompress.cast" aria-label="Play cast for Original / liblzma / xz-compress-decompress">Play</button>
             </div>
             <div class="cast-player" data-player>
               <div class="player-controls">
-                <button type="button" class="js-player-play">Play</button>
-                <button type="button" class="js-player-pause">Pause</button>
-                <button type="button" class="js-player-restart">Restart</button>
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Original / liblzma / xz-compress-decompress">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Original / liblzma / xz-compress-decompress">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Original / liblzma / xz-compress-decompress">Restart</button>
                 <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
                 <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
               </div>
-              <pre class="terminal" aria-live="polite"></pre>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Original / liblzma / xz-compress-decompress"></pre>
             </div>
           </div>
         </details>
@@ -66,31 +71,32 @@
           <summary>
             <span class="case-title">
               <strong>xz integrity check</strong>
-              <span class="case-id">original / liblzma / integrity-check</span>
+              <span class="case-id">Original / liblzma / integrity-check</span>
             </span>
-            <span class="status-pill status-passed">Passed</span>
+            <span class="status-pill status-passed" aria-label="Original / liblzma / integrity-check status: Passed">Passed</span>
           </summary>
           <div class="case-body">
             <p>Creates a CRC64 checked stream and verifies it with xz test mode.</p>
             <dl class="case-meta">
+              <div><dt>Run</dt><dd>Original</dd></div>
               <div><dt>Kind</dt><dd>source</dd></div>
               <div><dt>Client</dt><dd>none</dd></div>
               <div><dt>Duration</dt><dd>0.00s</dd></div>
               <div><dt>Tags</dt><dd class="tags"><span>cli</span> <span>integrity</span></dd></div>
             </dl>
             <div class="case-actions">
-              <a class="log-link" href="../evidence/original/logs/liblzma/integrity-check.log">Log</a>
-              <button type="button" class="play-button js-load-cast" data-cast="../evidence/original/casts/liblzma/integrity-check.cast">Play</button>
+              <a class="log-link" href="../evidence/original/logs/liblzma/integrity-check.log" aria-label="Open log for Original / liblzma / integrity-check">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/original/casts/liblzma/integrity-check.cast" aria-label="Play cast for Original / liblzma / integrity-check">Play</button>
             </div>
             <div class="cast-player" data-player>
               <div class="player-controls">
-                <button type="button" class="js-player-play">Play</button>
-                <button type="button" class="js-player-pause">Pause</button>
-                <button type="button" class="js-player-restart">Restart</button>
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Original / liblzma / integrity-check">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Original / liblzma / integrity-check">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Original / liblzma / integrity-check">Restart</button>
                 <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
                 <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
               </div>
-              <pre class="terminal" aria-live="polite"></pre>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Original / liblzma / integrity-check"></pre>
             </div>
           </div>
         </details>
@@ -98,31 +104,32 @@
           <summary>
             <span class="case-title">
               <strong>liblzma streaming C API smoke</strong>
-              <span class="case-id">original / liblzma / streaming-c-api-smoke</span>
+              <span class="case-id">Original / liblzma / streaming-c-api-smoke</span>
             </span>
-            <span class="status-pill status-passed">Passed</span>
+            <span class="status-pill status-passed" aria-label="Original / liblzma / streaming-c-api-smoke status: Passed">Passed</span>
           </summary>
           <div class="case-body">
             <p>Compiles and runs a liblzma streaming encoder smoke program.</p>
             <dl class="case-meta">
+              <div><dt>Run</dt><dd>Original</dd></div>
               <div><dt>Kind</dt><dd>source</dd></div>
               <div><dt>Client</dt><dd>none</dd></div>
               <div><dt>Duration</dt><dd>0.00s</dd></div>
               <div><dt>Tags</dt><dd class="tags"><span>api</span> <span>compile</span></dd></div>
             </dl>
             <div class="case-actions">
-              <a class="log-link" href="../evidence/original/logs/liblzma/streaming-c-api-smoke.log">Log</a>
-              <button type="button" class="play-button js-load-cast" data-cast="../evidence/original/casts/liblzma/streaming-c-api-smoke.cast">Play</button>
+              <a class="log-link" href="../evidence/original/logs/liblzma/streaming-c-api-smoke.log" aria-label="Open log for Original / liblzma / streaming-c-api-smoke">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/original/casts/liblzma/streaming-c-api-smoke.cast" aria-label="Play cast for Original / liblzma / streaming-c-api-smoke">Play</button>
             </div>
             <div class="cast-player" data-player>
               <div class="player-controls">
-                <button type="button" class="js-player-play">Play</button>
-                <button type="button" class="js-player-pause">Pause</button>
-                <button type="button" class="js-player-restart">Restart</button>
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Original / liblzma / streaming-c-api-smoke">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Original / liblzma / streaming-c-api-smoke">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Original / liblzma / streaming-c-api-smoke">Restart</button>
                 <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
                 <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
               </div>
-              <pre class="terminal" aria-live="polite"></pre>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Original / liblzma / streaming-c-api-smoke"></pre>
             </div>
           </div>
         </details>
@@ -130,31 +137,32 @@
           <summary>
             <span class="case-title">
               <strong>xz multi stream behavior</strong>
-              <span class="case-id">original / liblzma / multi-stream-behavior</span>
+              <span class="case-id">Original / liblzma / multi-stream-behavior</span>
             </span>
-            <span class="status-pill status-passed">Passed</span>
+            <span class="status-pill status-passed" aria-label="Original / liblzma / multi-stream-behavior status: Passed">Passed</span>
           </summary>
           <div class="case-body">
             <p>Concatenates xz streams and verifies decompression preserves both payloads.</p>
             <dl class="case-meta">
+              <div><dt>Run</dt><dd>Original</dd></div>
               <div><dt>Kind</dt><dd>source</dd></div>
               <div><dt>Client</dt><dd>none</dd></div>
               <div><dt>Duration</dt><dd>0.00s</dd></div>
               <div><dt>Tags</dt><dd class="tags"><span>cli</span> <span>stream</span></dd></div>
             </dl>
             <div class="case-actions">
-              <a class="log-link" href="../evidence/original/logs/liblzma/multi-stream-behavior.log">Log</a>
-              <button type="button" class="play-button js-load-cast" data-cast="../evidence/original/casts/liblzma/multi-stream-behavior.cast">Play</button>
+              <a class="log-link" href="../evidence/original/logs/liblzma/multi-stream-behavior.log" aria-label="Open log for Original / liblzma / multi-stream-behavior">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/original/casts/liblzma/multi-stream-behavior.cast" aria-label="Play cast for Original / liblzma / multi-stream-behavior">Play</button>
             </div>
             <div class="cast-player" data-player>
               <div class="player-controls">
-                <button type="button" class="js-player-play">Play</button>
-                <button type="button" class="js-player-pause">Pause</button>
-                <button type="button" class="js-player-restart">Restart</button>
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Original / liblzma / multi-stream-behavior">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Original / liblzma / multi-stream-behavior">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Original / liblzma / multi-stream-behavior">Restart</button>
                 <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
                 <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
               </div>
-              <pre class="terminal" aria-live="polite"></pre>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Original / liblzma / multi-stream-behavior"></pre>
             </div>
           </div>
         </details>
@@ -162,31 +170,32 @@
           <summary>
             <span class="case-title">
               <strong>xz corrupted stream rejection</strong>
-              <span class="case-id">original / liblzma / corrupted-stream-rejection</span>
+              <span class="case-id">Original / liblzma / corrupted-stream-rejection</span>
             </span>
-            <span class="status-pill status-passed">Passed</span>
+            <span class="status-pill status-passed" aria-label="Original / liblzma / corrupted-stream-rejection status: Passed">Passed</span>
           </summary>
           <div class="case-body">
             <p>Requires xz test mode to fail on a corrupted stream.</p>
             <dl class="case-meta">
+              <div><dt>Run</dt><dd>Original</dd></div>
               <div><dt>Kind</dt><dd>source</dd></div>
               <div><dt>Client</dt><dd>none</dd></div>
               <div><dt>Duration</dt><dd>0.00s</dd></div>
               <div><dt>Tags</dt><dd class="tags"><span>cli</span> <span>negative</span></dd></div>
             </dl>
             <div class="case-actions">
-              <a class="log-link" href="../evidence/original/logs/liblzma/corrupted-stream-rejection.log">Log</a>
-              <button type="button" class="play-button js-load-cast" data-cast="../evidence/original/casts/liblzma/corrupted-stream-rejection.cast">Play</button>
+              <a class="log-link" href="../evidence/original/logs/liblzma/corrupted-stream-rejection.log" aria-label="Open log for Original / liblzma / corrupted-stream-rejection">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/original/casts/liblzma/corrupted-stream-rejection.cast" aria-label="Play cast for Original / liblzma / corrupted-stream-rejection">Play</button>
             </div>
             <div class="cast-player" data-player>
               <div class="player-controls">
-                <button type="button" class="js-player-play">Play</button>
-                <button type="button" class="js-player-pause">Pause</button>
-                <button type="button" class="js-player-restart">Restart</button>
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Original / liblzma / corrupted-stream-rejection">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Original / liblzma / corrupted-stream-rejection">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Original / liblzma / corrupted-stream-rejection">Restart</button>
                 <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
                 <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
               </div>
-              <pre class="terminal" aria-live="polite"></pre>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Original / liblzma / corrupted-stream-rejection"></pre>
             </div>
           </div>
         </details>
@@ -194,31 +203,32 @@
           <summary>
             <span class="case-title">
               <strong>libarchive-tools xz tar list</strong>
-              <span class="case-id">original / liblzma / usage-libarchive-tools-xz-tar-list</span>
+              <span class="case-id">Original / liblzma / usage-libarchive-tools-xz-tar-list</span>
             </span>
-            <span class="status-pill status-passed">Passed</span>
+            <span class="status-pill status-passed" aria-label="Original / liblzma / usage-libarchive-tools-xz-tar-list status: Passed">Passed</span>
           </summary>
           <div class="case-body">
             <p>Runs bsdtar tar list on a xz-compressed archive through liblzma.</p>
             <dl class="case-meta">
+              <div><dt>Run</dt><dd>Original</dd></div>
               <div><dt>Kind</dt><dd>usage</dd></div>
               <div><dt>Client</dt><dd>libarchive-tools</dd></div>
               <div><dt>Duration</dt><dd>0.00s</dd></div>
               <div><dt>Tags</dt><dd class="tags"><span>usage</span> <span>archive</span> <span>compression</span></dd></div>
             </dl>
             <div class="case-actions">
-              <a class="log-link" href="../evidence/original/logs/liblzma/usage-libarchive-tools-xz-tar-list.log">Log</a>
-              <button type="button" class="play-button js-load-cast" data-cast="../evidence/original/casts/liblzma/usage-libarchive-tools-xz-tar-list.cast">Play</button>
+              <a class="log-link" href="../evidence/original/logs/liblzma/usage-libarchive-tools-xz-tar-list.log" aria-label="Open log for Original / liblzma / usage-libarchive-tools-xz-tar-list">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/original/casts/liblzma/usage-libarchive-tools-xz-tar-list.cast" aria-label="Play cast for Original / liblzma / usage-libarchive-tools-xz-tar-list">Play</button>
             </div>
             <div class="cast-player" data-player>
               <div class="player-controls">
-                <button type="button" class="js-player-play">Play</button>
-                <button type="button" class="js-player-pause">Pause</button>
-                <button type="button" class="js-player-restart">Restart</button>
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Original / liblzma / usage-libarchive-tools-xz-tar-list">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Original / liblzma / usage-libarchive-tools-xz-tar-list">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Original / liblzma / usage-libarchive-tools-xz-tar-list">Restart</button>
                 <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
                 <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
               </div>
-              <pre class="terminal" aria-live="polite"></pre>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Original / liblzma / usage-libarchive-tools-xz-tar-list"></pre>
             </div>
           </div>
         </details>
@@ -226,31 +236,32 @@
           <summary>
             <span class="case-title">
               <strong>libarchive-tools xz tar extract</strong>
-              <span class="case-id">original / liblzma / usage-libarchive-tools-xz-tar-extract</span>
+              <span class="case-id">Original / liblzma / usage-libarchive-tools-xz-tar-extract</span>
             </span>
-            <span class="status-pill status-passed">Passed</span>
+            <span class="status-pill status-passed" aria-label="Original / liblzma / usage-libarchive-tools-xz-tar-extract status: Passed">Passed</span>
           </summary>
           <div class="case-body">
             <p>Runs bsdtar tar extract on a xz-compressed archive through liblzma.</p>
             <dl class="case-meta">
+              <div><dt>Run</dt><dd>Original</dd></div>
               <div><dt>Kind</dt><dd>usage</dd></div>
               <div><dt>Client</dt><dd>libarchive-tools</dd></div>
               <div><dt>Duration</dt><dd>0.00s</dd></div>
               <div><dt>Tags</dt><dd class="tags"><span>usage</span> <span>archive</span> <span>compression</span></dd></div>
             </dl>
             <div class="case-actions">
-              <a class="log-link" href="../evidence/original/logs/liblzma/usage-libarchive-tools-xz-tar-extract.log">Log</a>
-              <button type="button" class="play-button js-load-cast" data-cast="../evidence/original/casts/liblzma/usage-libarchive-tools-xz-tar-extract.cast">Play</button>
+              <a class="log-link" href="../evidence/original/logs/liblzma/usage-libarchive-tools-xz-tar-extract.log" aria-label="Open log for Original / liblzma / usage-libarchive-tools-xz-tar-extract">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/original/casts/liblzma/usage-libarchive-tools-xz-tar-extract.cast" aria-label="Play cast for Original / liblzma / usage-libarchive-tools-xz-tar-extract">Play</button>
             </div>
             <div class="cast-player" data-player>
               <div class="player-controls">
-                <button type="button" class="js-player-play">Play</button>
-                <button type="button" class="js-player-pause">Pause</button>
-                <button type="button" class="js-player-restart">Restart</button>
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Original / liblzma / usage-libarchive-tools-xz-tar-extract">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Original / liblzma / usage-libarchive-tools-xz-tar-extract">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Original / liblzma / usage-libarchive-tools-xz-tar-extract">Restart</button>
                 <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
                 <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
               </div>
-              <pre class="terminal" aria-live="polite"></pre>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Original / liblzma / usage-libarchive-tools-xz-tar-extract"></pre>
             </div>
           </div>
         </details>
@@ -258,31 +269,32 @@
           <summary>
             <span class="case-title">
               <strong>libarchive-tools xz stdout stream</strong>
-              <span class="case-id">original / liblzma / usage-libarchive-tools-xz-stdout-stream</span>
+              <span class="case-id">Original / liblzma / usage-libarchive-tools-xz-stdout-stream</span>
             </span>
-            <span class="status-pill status-passed">Passed</span>
+            <span class="status-pill status-passed" aria-label="Original / liblzma / usage-libarchive-tools-xz-stdout-stream status: Passed">Passed</span>
           </summary>
           <div class="case-body">
             <p>Runs bsdtar stdout stream on a xz-compressed archive through liblzma.</p>
             <dl class="case-meta">
+              <div><dt>Run</dt><dd>Original</dd></div>
               <div><dt>Kind</dt><dd>usage</dd></div>
               <div><dt>Client</dt><dd>libarchive-tools</dd></div>
               <div><dt>Duration</dt><dd>0.00s</dd></div>
               <div><dt>Tags</dt><dd class="tags"><span>usage</span> <span>archive</span> <span>compression</span></dd></div>
             </dl>
             <div class="case-actions">
-              <a class="log-link" href="../evidence/original/logs/liblzma/usage-libarchive-tools-xz-stdout-stream.log">Log</a>
-              <button type="button" class="play-button js-load-cast" data-cast="../evidence/original/casts/liblzma/usage-libarchive-tools-xz-stdout-stream.cast">Play</button>
+              <a class="log-link" href="../evidence/original/logs/liblzma/usage-libarchive-tools-xz-stdout-stream.log" aria-label="Open log for Original / liblzma / usage-libarchive-tools-xz-stdout-stream">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/original/casts/liblzma/usage-libarchive-tools-xz-stdout-stream.cast" aria-label="Play cast for Original / liblzma / usage-libarchive-tools-xz-stdout-stream">Play</button>
             </div>
             <div class="cast-player" data-player>
               <div class="player-controls">
-                <button type="button" class="js-player-play">Play</button>
-                <button type="button" class="js-player-pause">Pause</button>
-                <button type="button" class="js-player-restart">Restart</button>
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Original / liblzma / usage-libarchive-tools-xz-stdout-stream">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Original / liblzma / usage-libarchive-tools-xz-stdout-stream">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Original / liblzma / usage-libarchive-tools-xz-stdout-stream">Restart</button>
                 <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
                 <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
               </div>
-              <pre class="terminal" aria-live="polite"></pre>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Original / liblzma / usage-libarchive-tools-xz-stdout-stream"></pre>
             </div>
           </div>
         </details>
@@ -290,31 +302,32 @@
           <summary>
             <span class="case-title">
               <strong>libarchive-tools xz large file</strong>
-              <span class="case-id">original / liblzma / usage-libarchive-tools-xz-large-file</span>
+              <span class="case-id">Original / liblzma / usage-libarchive-tools-xz-large-file</span>
             </span>
-            <span class="status-pill status-passed">Passed</span>
+            <span class="status-pill status-passed" aria-label="Original / liblzma / usage-libarchive-tools-xz-large-file status: Passed">Passed</span>
           </summary>
           <div class="case-body">
             <p>Runs bsdtar large file on a xz-compressed archive through liblzma.</p>
             <dl class="case-meta">
+              <div><dt>Run</dt><dd>Original</dd></div>
               <div><dt>Kind</dt><dd>usage</dd></div>
               <div><dt>Client</dt><dd>libarchive-tools</dd></div>
               <div><dt>Duration</dt><dd>0.00s</dd></div>
               <div><dt>Tags</dt><dd class="tags"><span>usage</span> <span>archive</span> <span>compression</span></dd></div>
             </dl>
             <div class="case-actions">
-              <a class="log-link" href="../evidence/original/logs/liblzma/usage-libarchive-tools-xz-large-file.log">Log</a>
-              <button type="button" class="play-button js-load-cast" data-cast="../evidence/original/casts/liblzma/usage-libarchive-tools-xz-large-file.cast">Play</button>
+              <a class="log-link" href="../evidence/original/logs/liblzma/usage-libarchive-tools-xz-large-file.log" aria-label="Open log for Original / liblzma / usage-libarchive-tools-xz-large-file">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/original/casts/liblzma/usage-libarchive-tools-xz-large-file.cast" aria-label="Play cast for Original / liblzma / usage-libarchive-tools-xz-large-file">Play</button>
             </div>
             <div class="cast-player" data-player>
               <div class="player-controls">
-                <button type="button" class="js-player-play">Play</button>
-                <button type="button" class="js-player-pause">Pause</button>
-                <button type="button" class="js-player-restart">Restart</button>
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Original / liblzma / usage-libarchive-tools-xz-large-file">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Original / liblzma / usage-libarchive-tools-xz-large-file">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Original / liblzma / usage-libarchive-tools-xz-large-file">Restart</button>
                 <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
                 <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
               </div>
-              <pre class="terminal" aria-live="polite"></pre>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Original / liblzma / usage-libarchive-tools-xz-large-file"></pre>
             </div>
           </div>
         </details>
@@ -322,31 +335,32 @@
           <summary>
             <span class="case-title">
               <strong>libarchive-tools xz symlink</strong>
-              <span class="case-id">original / liblzma / usage-libarchive-tools-xz-symlink</span>
+              <span class="case-id">Original / liblzma / usage-libarchive-tools-xz-symlink</span>
             </span>
-            <span class="status-pill status-passed">Passed</span>
+            <span class="status-pill status-passed" aria-label="Original / liblzma / usage-libarchive-tools-xz-symlink status: Passed">Passed</span>
           </summary>
           <div class="case-body">
             <p>Runs bsdtar symlink on a xz-compressed archive through liblzma.</p>
             <dl class="case-meta">
+              <div><dt>Run</dt><dd>Original</dd></div>
               <div><dt>Kind</dt><dd>usage</dd></div>
               <div><dt>Client</dt><dd>libarchive-tools</dd></div>
               <div><dt>Duration</dt><dd>0.00s</dd></div>
               <div><dt>Tags</dt><dd class="tags"><span>usage</span> <span>archive</span> <span>compression</span></dd></div>
             </dl>
             <div class="case-actions">
-              <a class="log-link" href="../evidence/original/logs/liblzma/usage-libarchive-tools-xz-symlink.log">Log</a>
-              <button type="button" class="play-button js-load-cast" data-cast="../evidence/original/casts/liblzma/usage-libarchive-tools-xz-symlink.cast">Play</button>
+              <a class="log-link" href="../evidence/original/logs/liblzma/usage-libarchive-tools-xz-symlink.log" aria-label="Open log for Original / liblzma / usage-libarchive-tools-xz-symlink">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/original/casts/liblzma/usage-libarchive-tools-xz-symlink.cast" aria-label="Play cast for Original / liblzma / usage-libarchive-tools-xz-symlink">Play</button>
             </div>
             <div class="cast-player" data-player>
               <div class="player-controls">
-                <button type="button" class="js-player-play">Play</button>
-                <button type="button" class="js-player-pause">Pause</button>
-                <button type="button" class="js-player-restart">Restart</button>
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Original / liblzma / usage-libarchive-tools-xz-symlink">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Original / liblzma / usage-libarchive-tools-xz-symlink">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Original / liblzma / usage-libarchive-tools-xz-symlink">Restart</button>
                 <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
                 <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
               </div>
-              <pre class="terminal" aria-live="polite"></pre>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Original / liblzma / usage-libarchive-tools-xz-symlink"></pre>
             </div>
           </div>
         </details>
@@ -354,31 +368,32 @@
           <summary>
             <span class="case-title">
               <strong>libarchive-tools xz empty dir</strong>
-              <span class="case-id">original / liblzma / usage-libarchive-tools-xz-empty-dir</span>
+              <span class="case-id">Original / liblzma / usage-libarchive-tools-xz-empty-dir</span>
             </span>
-            <span class="status-pill status-passed">Passed</span>
+            <span class="status-pill status-passed" aria-label="Original / liblzma / usage-libarchive-tools-xz-empty-dir status: Passed">Passed</span>
           </summary>
           <div class="case-body">
             <p>Runs bsdtar empty dir on a xz-compressed archive through liblzma.</p>
             <dl class="case-meta">
+              <div><dt>Run</dt><dd>Original</dd></div>
               <div><dt>Kind</dt><dd>usage</dd></div>
               <div><dt>Client</dt><dd>libarchive-tools</dd></div>
               <div><dt>Duration</dt><dd>0.00s</dd></div>
               <div><dt>Tags</dt><dd class="tags"><span>usage</span> <span>archive</span> <span>compression</span></dd></div>
             </dl>
             <div class="case-actions">
-              <a class="log-link" href="../evidence/original/logs/liblzma/usage-libarchive-tools-xz-empty-dir.log">Log</a>
-              <button type="button" class="play-button js-load-cast" data-cast="../evidence/original/casts/liblzma/usage-libarchive-tools-xz-empty-dir.cast">Play</button>
+              <a class="log-link" href="../evidence/original/logs/liblzma/usage-libarchive-tools-xz-empty-dir.log" aria-label="Open log for Original / liblzma / usage-libarchive-tools-xz-empty-dir">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/original/casts/liblzma/usage-libarchive-tools-xz-empty-dir.cast" aria-label="Play cast for Original / liblzma / usage-libarchive-tools-xz-empty-dir">Play</button>
             </div>
             <div class="cast-player" data-player>
               <div class="player-controls">
-                <button type="button" class="js-player-play">Play</button>
-                <button type="button" class="js-player-pause">Pause</button>
-                <button type="button" class="js-player-restart">Restart</button>
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Original / liblzma / usage-libarchive-tools-xz-empty-dir">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Original / liblzma / usage-libarchive-tools-xz-empty-dir">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Original / liblzma / usage-libarchive-tools-xz-empty-dir">Restart</button>
                 <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
                 <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
               </div>
-              <pre class="terminal" aria-live="polite"></pre>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Original / liblzma / usage-libarchive-tools-xz-empty-dir"></pre>
             </div>
           </div>
         </details>
@@ -386,31 +401,32 @@
           <summary>
             <span class="case-title">
               <strong>libarchive-tools xz filter auto</strong>
-              <span class="case-id">original / liblzma / usage-libarchive-tools-xz-filter-auto</span>
+              <span class="case-id">Original / liblzma / usage-libarchive-tools-xz-filter-auto</span>
             </span>
-            <span class="status-pill status-passed">Passed</span>
+            <span class="status-pill status-passed" aria-label="Original / liblzma / usage-libarchive-tools-xz-filter-auto status: Passed">Passed</span>
           </summary>
           <div class="case-body">
             <p>Runs bsdtar filter auto on a xz-compressed archive through liblzma.</p>
             <dl class="case-meta">
+              <div><dt>Run</dt><dd>Original</dd></div>
               <div><dt>Kind</dt><dd>usage</dd></div>
               <div><dt>Client</dt><dd>libarchive-tools</dd></div>
               <div><dt>Duration</dt><dd>0.00s</dd></div>
               <div><dt>Tags</dt><dd class="tags"><span>usage</span> <span>archive</span> <span>compression</span></dd></div>
             </dl>
             <div class="case-actions">
-              <a class="log-link" href="../evidence/original/logs/liblzma/usage-libarchive-tools-xz-filter-auto.log">Log</a>
-              <button type="button" class="play-button js-load-cast" data-cast="../evidence/original/casts/liblzma/usage-libarchive-tools-xz-filter-auto.cast">Play</button>
+              <a class="log-link" href="../evidence/original/logs/liblzma/usage-libarchive-tools-xz-filter-auto.log" aria-label="Open log for Original / liblzma / usage-libarchive-tools-xz-filter-auto">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/original/casts/liblzma/usage-libarchive-tools-xz-filter-auto.cast" aria-label="Play cast for Original / liblzma / usage-libarchive-tools-xz-filter-auto">Play</button>
             </div>
             <div class="cast-player" data-player>
               <div class="player-controls">
-                <button type="button" class="js-player-play">Play</button>
-                <button type="button" class="js-player-pause">Pause</button>
-                <button type="button" class="js-player-restart">Restart</button>
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Original / liblzma / usage-libarchive-tools-xz-filter-auto">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Original / liblzma / usage-libarchive-tools-xz-filter-auto">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Original / liblzma / usage-libarchive-tools-xz-filter-auto">Restart</button>
                 <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
                 <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
               </div>
-              <pre class="terminal" aria-live="polite"></pre>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Original / liblzma / usage-libarchive-tools-xz-filter-auto"></pre>
             </div>
           </div>
         </details>
@@ -418,31 +434,32 @@
           <summary>
             <span class="case-title">
               <strong>libarchive-tools xz copy mode</strong>
-              <span class="case-id">original / liblzma / usage-libarchive-tools-xz-copy-mode</span>
+              <span class="case-id">Original / liblzma / usage-libarchive-tools-xz-copy-mode</span>
             </span>
-            <span class="status-pill status-passed">Passed</span>
+            <span class="status-pill status-passed" aria-label="Original / liblzma / usage-libarchive-tools-xz-copy-mode status: Passed">Passed</span>
           </summary>
           <div class="case-body">
             <p>Runs bsdtar copy mode on a xz-compressed archive through liblzma.</p>
             <dl class="case-meta">
+              <div><dt>Run</dt><dd>Original</dd></div>
               <div><dt>Kind</dt><dd>usage</dd></div>
               <div><dt>Client</dt><dd>libarchive-tools</dd></div>
               <div><dt>Duration</dt><dd>0.00s</dd></div>
               <div><dt>Tags</dt><dd class="tags"><span>usage</span> <span>archive</span> <span>compression</span></dd></div>
             </dl>
             <div class="case-actions">
-              <a class="log-link" href="../evidence/original/logs/liblzma/usage-libarchive-tools-xz-copy-mode.log">Log</a>
-              <button type="button" class="play-button js-load-cast" data-cast="../evidence/original/casts/liblzma/usage-libarchive-tools-xz-copy-mode.cast">Play</button>
+              <a class="log-link" href="../evidence/original/logs/liblzma/usage-libarchive-tools-xz-copy-mode.log" aria-label="Open log for Original / liblzma / usage-libarchive-tools-xz-copy-mode">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/original/casts/liblzma/usage-libarchive-tools-xz-copy-mode.cast" aria-label="Play cast for Original / liblzma / usage-libarchive-tools-xz-copy-mode">Play</button>
             </div>
             <div class="cast-player" data-player>
               <div class="player-controls">
-                <button type="button" class="js-player-play">Play</button>
-                <button type="button" class="js-player-pause">Pause</button>
-                <button type="button" class="js-player-restart">Restart</button>
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Original / liblzma / usage-libarchive-tools-xz-copy-mode">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Original / liblzma / usage-libarchive-tools-xz-copy-mode">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Original / liblzma / usage-libarchive-tools-xz-copy-mode">Restart</button>
                 <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
                 <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
               </div>
-              <pre class="terminal" aria-live="polite"></pre>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Original / liblzma / usage-libarchive-tools-xz-copy-mode"></pre>
             </div>
           </div>
         </details>
@@ -450,31 +467,32 @@
           <summary>
             <span class="case-title">
               <strong>libarchive-tools xz metadata list</strong>
-              <span class="case-id">original / liblzma / usage-libarchive-tools-xz-metadata-list</span>
+              <span class="case-id">Original / liblzma / usage-libarchive-tools-xz-metadata-list</span>
             </span>
-            <span class="status-pill status-passed">Passed</span>
+            <span class="status-pill status-passed" aria-label="Original / liblzma / usage-libarchive-tools-xz-metadata-list status: Passed">Passed</span>
           </summary>
           <div class="case-body">
             <p>Runs bsdtar verbose listing on an xz archive and verifies executable metadata.</p>
             <dl class="case-meta">
+              <div><dt>Run</dt><dd>Original</dd></div>
               <div><dt>Kind</dt><dd>usage</dd></div>
               <div><dt>Client</dt><dd>libarchive-tools</dd></div>
               <div><dt>Duration</dt><dd>0.00s</dd></div>
               <div><dt>Tags</dt><dd class="tags"><span>usage</span> <span>archive</span> <span>compression</span> <span>metadata</span></dd></div>
             </dl>
             <div class="case-actions">
-              <a class="log-link" href="../evidence/original/logs/liblzma/usage-libarchive-tools-xz-metadata-list.log">Log</a>
-              <button type="button" class="play-button js-load-cast" data-cast="../evidence/original/casts/liblzma/usage-libarchive-tools-xz-metadata-list.cast">Play</button>
+              <a class="log-link" href="../evidence/original/logs/liblzma/usage-libarchive-tools-xz-metadata-list.log" aria-label="Open log for Original / liblzma / usage-libarchive-tools-xz-metadata-list">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/original/casts/liblzma/usage-libarchive-tools-xz-metadata-list.cast" aria-label="Play cast for Original / liblzma / usage-libarchive-tools-xz-metadata-list">Play</button>
             </div>
             <div class="cast-player" data-player>
               <div class="player-controls">
-                <button type="button" class="js-player-play">Play</button>
-                <button type="button" class="js-player-pause">Pause</button>
-                <button type="button" class="js-player-restart">Restart</button>
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Original / liblzma / usage-libarchive-tools-xz-metadata-list">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Original / liblzma / usage-libarchive-tools-xz-metadata-list">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Original / liblzma / usage-libarchive-tools-xz-metadata-list">Restart</button>
                 <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
                 <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
               </div>
-              <pre class="terminal" aria-live="polite"></pre>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Original / liblzma / usage-libarchive-tools-xz-metadata-list"></pre>
             </div>
           </div>
         </details>
@@ -482,31 +500,32 @@
           <summary>
             <span class="case-title">
               <strong>libarchive-tools xz preserve permissions</strong>
-              <span class="case-id">original / liblzma / usage-libarchive-tools-xz-preserve-permissions</span>
+              <span class="case-id">Original / liblzma / usage-libarchive-tools-xz-preserve-permissions</span>
             </span>
-            <span class="status-pill status-passed">Passed</span>
+            <span class="status-pill status-passed" aria-label="Original / liblzma / usage-libarchive-tools-xz-preserve-permissions status: Passed">Passed</span>
           </summary>
           <div class="case-body">
             <p>Runs bsdtar xz archive extraction and verifies executable permissions survive.</p>
             <dl class="case-meta">
+              <div><dt>Run</dt><dd>Original</dd></div>
               <div><dt>Kind</dt><dd>usage</dd></div>
               <div><dt>Client</dt><dd>libarchive-tools</dd></div>
               <div><dt>Duration</dt><dd>0.00s</dd></div>
               <div><dt>Tags</dt><dd class="tags"><span>usage</span> <span>archive</span> <span>compression</span> <span>metadata</span></dd></div>
             </dl>
             <div class="case-actions">
-              <a class="log-link" href="../evidence/original/logs/liblzma/usage-libarchive-tools-xz-preserve-permissions.log">Log</a>
-              <button type="button" class="play-button js-load-cast" data-cast="../evidence/original/casts/liblzma/usage-libarchive-tools-xz-preserve-permissions.cast">Play</button>
+              <a class="log-link" href="../evidence/original/logs/liblzma/usage-libarchive-tools-xz-preserve-permissions.log" aria-label="Open log for Original / liblzma / usage-libarchive-tools-xz-preserve-permissions">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/original/casts/liblzma/usage-libarchive-tools-xz-preserve-permissions.cast" aria-label="Play cast for Original / liblzma / usage-libarchive-tools-xz-preserve-permissions">Play</button>
             </div>
             <div class="cast-player" data-player>
               <div class="player-controls">
-                <button type="button" class="js-player-play">Play</button>
-                <button type="button" class="js-player-pause">Pause</button>
-                <button type="button" class="js-player-restart">Restart</button>
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Original / liblzma / usage-libarchive-tools-xz-preserve-permissions">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Original / liblzma / usage-libarchive-tools-xz-preserve-permissions">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Original / liblzma / usage-libarchive-tools-xz-preserve-permissions">Restart</button>
                 <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
                 <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
               </div>
-              <pre class="terminal" aria-live="polite"></pre>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Original / liblzma / usage-libarchive-tools-xz-preserve-permissions"></pre>
             </div>
           </div>
         </details>
@@ -514,31 +533,32 @@
           <summary>
             <span class="case-title">
               <strong>xz command round trip</strong>
-              <span class="case-id">port-04-test / liblzma / xz-compress-decompress</span>
+              <span class="case-id">Port / liblzma / xz-compress-decompress</span>
             </span>
-            <span class="status-pill status-passed">Passed</span>
+            <span class="status-pill status-passed" aria-label="Port / liblzma / xz-compress-decompress status: Passed">Passed</span>
           </summary>
           <div class="case-body">
             <p>Compresses and decompresses text with xz command line tools.</p>
             <dl class="case-meta">
+              <div><dt>Run</dt><dd>Port</dd></div>
               <div><dt>Kind</dt><dd>source</dd></div>
               <div><dt>Client</dt><dd>none</dd></div>
               <div><dt>Duration</dt><dd>0.00s</dd></div>
               <div><dt>Tags</dt><dd class="tags"><span>cli</span> <span>roundtrip</span></dd></div>
             </dl>
             <div class="case-actions">
-              <a class="log-link" href="../evidence/port-04-test/logs/liblzma/xz-compress-decompress.log">Log</a>
-              <button type="button" class="play-button js-load-cast" data-cast="../evidence/port-04-test/casts/liblzma/xz-compress-decompress.cast">Play</button>
+              <a class="log-link" href="../evidence/port-04-test/logs/liblzma/xz-compress-decompress.log" aria-label="Open log for Port / liblzma / xz-compress-decompress">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/port-04-test/casts/liblzma/xz-compress-decompress.cast" aria-label="Play cast for Port / liblzma / xz-compress-decompress">Play</button>
             </div>
             <div class="cast-player" data-player>
               <div class="player-controls">
-                <button type="button" class="js-player-play">Play</button>
-                <button type="button" class="js-player-pause">Pause</button>
-                <button type="button" class="js-player-restart">Restart</button>
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Port / liblzma / xz-compress-decompress">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Port / liblzma / xz-compress-decompress">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Port / liblzma / xz-compress-decompress">Restart</button>
                 <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
                 <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
               </div>
-              <pre class="terminal" aria-live="polite"></pre>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Port / liblzma / xz-compress-decompress"></pre>
             </div>
           </div>
         </details>
@@ -546,31 +566,32 @@
           <summary>
             <span class="case-title">
               <strong>xz integrity check</strong>
-              <span class="case-id">port-04-test / liblzma / integrity-check</span>
+              <span class="case-id">Port / liblzma / integrity-check</span>
             </span>
-            <span class="status-pill status-passed">Passed</span>
+            <span class="status-pill status-passed" aria-label="Port / liblzma / integrity-check status: Passed">Passed</span>
           </summary>
           <div class="case-body">
             <p>Creates a CRC64 checked stream and verifies it with xz test mode.</p>
             <dl class="case-meta">
+              <div><dt>Run</dt><dd>Port</dd></div>
               <div><dt>Kind</dt><dd>source</dd></div>
               <div><dt>Client</dt><dd>none</dd></div>
               <div><dt>Duration</dt><dd>0.00s</dd></div>
               <div><dt>Tags</dt><dd class="tags"><span>cli</span> <span>integrity</span></dd></div>
             </dl>
             <div class="case-actions">
-              <a class="log-link" href="../evidence/port-04-test/logs/liblzma/integrity-check.log">Log</a>
-              <button type="button" class="play-button js-load-cast" data-cast="../evidence/port-04-test/casts/liblzma/integrity-check.cast">Play</button>
+              <a class="log-link" href="../evidence/port-04-test/logs/liblzma/integrity-check.log" aria-label="Open log for Port / liblzma / integrity-check">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/port-04-test/casts/liblzma/integrity-check.cast" aria-label="Play cast for Port / liblzma / integrity-check">Play</button>
             </div>
             <div class="cast-player" data-player>
               <div class="player-controls">
-                <button type="button" class="js-player-play">Play</button>
-                <button type="button" class="js-player-pause">Pause</button>
-                <button type="button" class="js-player-restart">Restart</button>
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Port / liblzma / integrity-check">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Port / liblzma / integrity-check">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Port / liblzma / integrity-check">Restart</button>
                 <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
                 <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
               </div>
-              <pre class="terminal" aria-live="polite"></pre>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Port / liblzma / integrity-check"></pre>
             </div>
           </div>
         </details>
@@ -578,31 +599,32 @@
           <summary>
             <span class="case-title">
               <strong>liblzma streaming C API smoke</strong>
-              <span class="case-id">port-04-test / liblzma / streaming-c-api-smoke</span>
+              <span class="case-id">Port / liblzma / streaming-c-api-smoke</span>
             </span>
-            <span class="status-pill status-passed">Passed</span>
+            <span class="status-pill status-passed" aria-label="Port / liblzma / streaming-c-api-smoke status: Passed">Passed</span>
           </summary>
           <div class="case-body">
             <p>Compiles and runs a liblzma streaming encoder smoke program.</p>
             <dl class="case-meta">
+              <div><dt>Run</dt><dd>Port</dd></div>
               <div><dt>Kind</dt><dd>source</dd></div>
               <div><dt>Client</dt><dd>none</dd></div>
               <div><dt>Duration</dt><dd>0.00s</dd></div>
               <div><dt>Tags</dt><dd class="tags"><span>api</span> <span>compile</span></dd></div>
             </dl>
             <div class="case-actions">
-              <a class="log-link" href="../evidence/port-04-test/logs/liblzma/streaming-c-api-smoke.log">Log</a>
-              <button type="button" class="play-button js-load-cast" data-cast="../evidence/port-04-test/casts/liblzma/streaming-c-api-smoke.cast">Play</button>
+              <a class="log-link" href="../evidence/port-04-test/logs/liblzma/streaming-c-api-smoke.log" aria-label="Open log for Port / liblzma / streaming-c-api-smoke">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/port-04-test/casts/liblzma/streaming-c-api-smoke.cast" aria-label="Play cast for Port / liblzma / streaming-c-api-smoke">Play</button>
             </div>
             <div class="cast-player" data-player>
               <div class="player-controls">
-                <button type="button" class="js-player-play">Play</button>
-                <button type="button" class="js-player-pause">Pause</button>
-                <button type="button" class="js-player-restart">Restart</button>
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Port / liblzma / streaming-c-api-smoke">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Port / liblzma / streaming-c-api-smoke">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Port / liblzma / streaming-c-api-smoke">Restart</button>
                 <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
                 <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
               </div>
-              <pre class="terminal" aria-live="polite"></pre>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Port / liblzma / streaming-c-api-smoke"></pre>
             </div>
           </div>
         </details>
@@ -610,31 +632,32 @@
           <summary>
             <span class="case-title">
               <strong>xz multi stream behavior</strong>
-              <span class="case-id">port-04-test / liblzma / multi-stream-behavior</span>
+              <span class="case-id">Port / liblzma / multi-stream-behavior</span>
             </span>
-            <span class="status-pill status-passed">Passed</span>
+            <span class="status-pill status-passed" aria-label="Port / liblzma / multi-stream-behavior status: Passed">Passed</span>
           </summary>
           <div class="case-body">
             <p>Concatenates xz streams and verifies decompression preserves both payloads.</p>
             <dl class="case-meta">
+              <div><dt>Run</dt><dd>Port</dd></div>
               <div><dt>Kind</dt><dd>source</dd></div>
               <div><dt>Client</dt><dd>none</dd></div>
               <div><dt>Duration</dt><dd>0.00s</dd></div>
               <div><dt>Tags</dt><dd class="tags"><span>cli</span> <span>stream</span></dd></div>
             </dl>
             <div class="case-actions">
-              <a class="log-link" href="../evidence/port-04-test/logs/liblzma/multi-stream-behavior.log">Log</a>
-              <button type="button" class="play-button js-load-cast" data-cast="../evidence/port-04-test/casts/liblzma/multi-stream-behavior.cast">Play</button>
+              <a class="log-link" href="../evidence/port-04-test/logs/liblzma/multi-stream-behavior.log" aria-label="Open log for Port / liblzma / multi-stream-behavior">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/port-04-test/casts/liblzma/multi-stream-behavior.cast" aria-label="Play cast for Port / liblzma / multi-stream-behavior">Play</button>
             </div>
             <div class="cast-player" data-player>
               <div class="player-controls">
-                <button type="button" class="js-player-play">Play</button>
-                <button type="button" class="js-player-pause">Pause</button>
-                <button type="button" class="js-player-restart">Restart</button>
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Port / liblzma / multi-stream-behavior">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Port / liblzma / multi-stream-behavior">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Port / liblzma / multi-stream-behavior">Restart</button>
                 <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
                 <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
               </div>
-              <pre class="terminal" aria-live="polite"></pre>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Port / liblzma / multi-stream-behavior"></pre>
             </div>
           </div>
         </details>
@@ -642,31 +665,32 @@
           <summary>
             <span class="case-title">
               <strong>xz corrupted stream rejection</strong>
-              <span class="case-id">port-04-test / liblzma / corrupted-stream-rejection</span>
+              <span class="case-id">Port / liblzma / corrupted-stream-rejection</span>
             </span>
-            <span class="status-pill status-passed">Passed</span>
+            <span class="status-pill status-passed" aria-label="Port / liblzma / corrupted-stream-rejection status: Passed">Passed</span>
           </summary>
           <div class="case-body">
             <p>Requires xz test mode to fail on a corrupted stream.</p>
             <dl class="case-meta">
+              <div><dt>Run</dt><dd>Port</dd></div>
               <div><dt>Kind</dt><dd>source</dd></div>
               <div><dt>Client</dt><dd>none</dd></div>
               <div><dt>Duration</dt><dd>0.00s</dd></div>
               <div><dt>Tags</dt><dd class="tags"><span>cli</span> <span>negative</span></dd></div>
             </dl>
             <div class="case-actions">
-              <a class="log-link" href="../evidence/port-04-test/logs/liblzma/corrupted-stream-rejection.log">Log</a>
-              <button type="button" class="play-button js-load-cast" data-cast="../evidence/port-04-test/casts/liblzma/corrupted-stream-rejection.cast">Play</button>
+              <a class="log-link" href="../evidence/port-04-test/logs/liblzma/corrupted-stream-rejection.log" aria-label="Open log for Port / liblzma / corrupted-stream-rejection">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/port-04-test/casts/liblzma/corrupted-stream-rejection.cast" aria-label="Play cast for Port / liblzma / corrupted-stream-rejection">Play</button>
             </div>
             <div class="cast-player" data-player>
               <div class="player-controls">
-                <button type="button" class="js-player-play">Play</button>
-                <button type="button" class="js-player-pause">Pause</button>
-                <button type="button" class="js-player-restart">Restart</button>
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Port / liblzma / corrupted-stream-rejection">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Port / liblzma / corrupted-stream-rejection">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Port / liblzma / corrupted-stream-rejection">Restart</button>
                 <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
                 <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
               </div>
-              <pre class="terminal" aria-live="polite"></pre>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Port / liblzma / corrupted-stream-rejection"></pre>
             </div>
           </div>
         </details>
@@ -674,31 +698,32 @@
           <summary>
             <span class="case-title">
               <strong>libarchive-tools xz tar list</strong>
-              <span class="case-id">port-04-test / liblzma / usage-libarchive-tools-xz-tar-list</span>
+              <span class="case-id">Port / liblzma / usage-libarchive-tools-xz-tar-list</span>
             </span>
-            <span class="status-pill status-passed">Passed</span>
+            <span class="status-pill status-passed" aria-label="Port / liblzma / usage-libarchive-tools-xz-tar-list status: Passed">Passed</span>
           </summary>
           <div class="case-body">
             <p>Runs bsdtar tar list on a xz-compressed archive through liblzma.</p>
             <dl class="case-meta">
+              <div><dt>Run</dt><dd>Port</dd></div>
               <div><dt>Kind</dt><dd>usage</dd></div>
               <div><dt>Client</dt><dd>libarchive-tools</dd></div>
               <div><dt>Duration</dt><dd>0.00s</dd></div>
               <div><dt>Tags</dt><dd class="tags"><span>usage</span> <span>archive</span> <span>compression</span></dd></div>
             </dl>
             <div class="case-actions">
-              <a class="log-link" href="../evidence/port-04-test/logs/liblzma/usage-libarchive-tools-xz-tar-list.log">Log</a>
-              <button type="button" class="play-button js-load-cast" data-cast="../evidence/port-04-test/casts/liblzma/usage-libarchive-tools-xz-tar-list.cast">Play</button>
+              <a class="log-link" href="../evidence/port-04-test/logs/liblzma/usage-libarchive-tools-xz-tar-list.log" aria-label="Open log for Port / liblzma / usage-libarchive-tools-xz-tar-list">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/port-04-test/casts/liblzma/usage-libarchive-tools-xz-tar-list.cast" aria-label="Play cast for Port / liblzma / usage-libarchive-tools-xz-tar-list">Play</button>
             </div>
             <div class="cast-player" data-player>
               <div class="player-controls">
-                <button type="button" class="js-player-play">Play</button>
-                <button type="button" class="js-player-pause">Pause</button>
-                <button type="button" class="js-player-restart">Restart</button>
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Port / liblzma / usage-libarchive-tools-xz-tar-list">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Port / liblzma / usage-libarchive-tools-xz-tar-list">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Port / liblzma / usage-libarchive-tools-xz-tar-list">Restart</button>
                 <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
                 <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
               </div>
-              <pre class="terminal" aria-live="polite"></pre>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Port / liblzma / usage-libarchive-tools-xz-tar-list"></pre>
             </div>
           </div>
         </details>
@@ -706,31 +731,32 @@
           <summary>
             <span class="case-title">
               <strong>libarchive-tools xz tar extract</strong>
-              <span class="case-id">port-04-test / liblzma / usage-libarchive-tools-xz-tar-extract</span>
+              <span class="case-id">Port / liblzma / usage-libarchive-tools-xz-tar-extract</span>
             </span>
-            <span class="status-pill status-passed">Passed</span>
+            <span class="status-pill status-passed" aria-label="Port / liblzma / usage-libarchive-tools-xz-tar-extract status: Passed">Passed</span>
           </summary>
           <div class="case-body">
             <p>Runs bsdtar tar extract on a xz-compressed archive through liblzma.</p>
             <dl class="case-meta">
+              <div><dt>Run</dt><dd>Port</dd></div>
               <div><dt>Kind</dt><dd>usage</dd></div>
               <div><dt>Client</dt><dd>libarchive-tools</dd></div>
               <div><dt>Duration</dt><dd>0.00s</dd></div>
               <div><dt>Tags</dt><dd class="tags"><span>usage</span> <span>archive</span> <span>compression</span></dd></div>
             </dl>
             <div class="case-actions">
-              <a class="log-link" href="../evidence/port-04-test/logs/liblzma/usage-libarchive-tools-xz-tar-extract.log">Log</a>
-              <button type="button" class="play-button js-load-cast" data-cast="../evidence/port-04-test/casts/liblzma/usage-libarchive-tools-xz-tar-extract.cast">Play</button>
+              <a class="log-link" href="../evidence/port-04-test/logs/liblzma/usage-libarchive-tools-xz-tar-extract.log" aria-label="Open log for Port / liblzma / usage-libarchive-tools-xz-tar-extract">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/port-04-test/casts/liblzma/usage-libarchive-tools-xz-tar-extract.cast" aria-label="Play cast for Port / liblzma / usage-libarchive-tools-xz-tar-extract">Play</button>
             </div>
             <div class="cast-player" data-player>
               <div class="player-controls">
-                <button type="button" class="js-player-play">Play</button>
-                <button type="button" class="js-player-pause">Pause</button>
-                <button type="button" class="js-player-restart">Restart</button>
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Port / liblzma / usage-libarchive-tools-xz-tar-extract">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Port / liblzma / usage-libarchive-tools-xz-tar-extract">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Port / liblzma / usage-libarchive-tools-xz-tar-extract">Restart</button>
                 <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
                 <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
               </div>
-              <pre class="terminal" aria-live="polite"></pre>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Port / liblzma / usage-libarchive-tools-xz-tar-extract"></pre>
             </div>
           </div>
         </details>
@@ -738,31 +764,32 @@
           <summary>
             <span class="case-title">
               <strong>libarchive-tools xz stdout stream</strong>
-              <span class="case-id">port-04-test / liblzma / usage-libarchive-tools-xz-stdout-stream</span>
+              <span class="case-id">Port / liblzma / usage-libarchive-tools-xz-stdout-stream</span>
             </span>
-            <span class="status-pill status-passed">Passed</span>
+            <span class="status-pill status-passed" aria-label="Port / liblzma / usage-libarchive-tools-xz-stdout-stream status: Passed">Passed</span>
           </summary>
           <div class="case-body">
             <p>Runs bsdtar stdout stream on a xz-compressed archive through liblzma.</p>
             <dl class="case-meta">
+              <div><dt>Run</dt><dd>Port</dd></div>
               <div><dt>Kind</dt><dd>usage</dd></div>
               <div><dt>Client</dt><dd>libarchive-tools</dd></div>
               <div><dt>Duration</dt><dd>0.00s</dd></div>
               <div><dt>Tags</dt><dd class="tags"><span>usage</span> <span>archive</span> <span>compression</span></dd></div>
             </dl>
             <div class="case-actions">
-              <a class="log-link" href="../evidence/port-04-test/logs/liblzma/usage-libarchive-tools-xz-stdout-stream.log">Log</a>
-              <button type="button" class="play-button js-load-cast" data-cast="../evidence/port-04-test/casts/liblzma/usage-libarchive-tools-xz-stdout-stream.cast">Play</button>
+              <a class="log-link" href="../evidence/port-04-test/logs/liblzma/usage-libarchive-tools-xz-stdout-stream.log" aria-label="Open log for Port / liblzma / usage-libarchive-tools-xz-stdout-stream">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/port-04-test/casts/liblzma/usage-libarchive-tools-xz-stdout-stream.cast" aria-label="Play cast for Port / liblzma / usage-libarchive-tools-xz-stdout-stream">Play</button>
             </div>
             <div class="cast-player" data-player>
               <div class="player-controls">
-                <button type="button" class="js-player-play">Play</button>
-                <button type="button" class="js-player-pause">Pause</button>
-                <button type="button" class="js-player-restart">Restart</button>
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Port / liblzma / usage-libarchive-tools-xz-stdout-stream">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Port / liblzma / usage-libarchive-tools-xz-stdout-stream">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Port / liblzma / usage-libarchive-tools-xz-stdout-stream">Restart</button>
                 <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
                 <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
               </div>
-              <pre class="terminal" aria-live="polite"></pre>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Port / liblzma / usage-libarchive-tools-xz-stdout-stream"></pre>
             </div>
           </div>
         </details>
@@ -770,31 +797,32 @@
           <summary>
             <span class="case-title">
               <strong>libarchive-tools xz large file</strong>
-              <span class="case-id">port-04-test / liblzma / usage-libarchive-tools-xz-large-file</span>
+              <span class="case-id">Port / liblzma / usage-libarchive-tools-xz-large-file</span>
             </span>
-            <span class="status-pill status-passed">Passed</span>
+            <span class="status-pill status-passed" aria-label="Port / liblzma / usage-libarchive-tools-xz-large-file status: Passed">Passed</span>
           </summary>
           <div class="case-body">
             <p>Runs bsdtar large file on a xz-compressed archive through liblzma.</p>
             <dl class="case-meta">
+              <div><dt>Run</dt><dd>Port</dd></div>
               <div><dt>Kind</dt><dd>usage</dd></div>
               <div><dt>Client</dt><dd>libarchive-tools</dd></div>
               <div><dt>Duration</dt><dd>0.00s</dd></div>
               <div><dt>Tags</dt><dd class="tags"><span>usage</span> <span>archive</span> <span>compression</span></dd></div>
             </dl>
             <div class="case-actions">
-              <a class="log-link" href="../evidence/port-04-test/logs/liblzma/usage-libarchive-tools-xz-large-file.log">Log</a>
-              <button type="button" class="play-button js-load-cast" data-cast="../evidence/port-04-test/casts/liblzma/usage-libarchive-tools-xz-large-file.cast">Play</button>
+              <a class="log-link" href="../evidence/port-04-test/logs/liblzma/usage-libarchive-tools-xz-large-file.log" aria-label="Open log for Port / liblzma / usage-libarchive-tools-xz-large-file">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/port-04-test/casts/liblzma/usage-libarchive-tools-xz-large-file.cast" aria-label="Play cast for Port / liblzma / usage-libarchive-tools-xz-large-file">Play</button>
             </div>
             <div class="cast-player" data-player>
               <div class="player-controls">
-                <button type="button" class="js-player-play">Play</button>
-                <button type="button" class="js-player-pause">Pause</button>
-                <button type="button" class="js-player-restart">Restart</button>
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Port / liblzma / usage-libarchive-tools-xz-large-file">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Port / liblzma / usage-libarchive-tools-xz-large-file">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Port / liblzma / usage-libarchive-tools-xz-large-file">Restart</button>
                 <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
                 <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
               </div>
-              <pre class="terminal" aria-live="polite"></pre>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Port / liblzma / usage-libarchive-tools-xz-large-file"></pre>
             </div>
           </div>
         </details>
@@ -802,31 +830,32 @@
           <summary>
             <span class="case-title">
               <strong>libarchive-tools xz symlink</strong>
-              <span class="case-id">port-04-test / liblzma / usage-libarchive-tools-xz-symlink</span>
+              <span class="case-id">Port / liblzma / usage-libarchive-tools-xz-symlink</span>
             </span>
-            <span class="status-pill status-passed">Passed</span>
+            <span class="status-pill status-passed" aria-label="Port / liblzma / usage-libarchive-tools-xz-symlink status: Passed">Passed</span>
           </summary>
           <div class="case-body">
             <p>Runs bsdtar symlink on a xz-compressed archive through liblzma.</p>
             <dl class="case-meta">
+              <div><dt>Run</dt><dd>Port</dd></div>
               <div><dt>Kind</dt><dd>usage</dd></div>
               <div><dt>Client</dt><dd>libarchive-tools</dd></div>
               <div><dt>Duration</dt><dd>0.00s</dd></div>
               <div><dt>Tags</dt><dd class="tags"><span>usage</span> <span>archive</span> <span>compression</span></dd></div>
             </dl>
             <div class="case-actions">
-              <a class="log-link" href="../evidence/port-04-test/logs/liblzma/usage-libarchive-tools-xz-symlink.log">Log</a>
-              <button type="button" class="play-button js-load-cast" data-cast="../evidence/port-04-test/casts/liblzma/usage-libarchive-tools-xz-symlink.cast">Play</button>
+              <a class="log-link" href="../evidence/port-04-test/logs/liblzma/usage-libarchive-tools-xz-symlink.log" aria-label="Open log for Port / liblzma / usage-libarchive-tools-xz-symlink">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/port-04-test/casts/liblzma/usage-libarchive-tools-xz-symlink.cast" aria-label="Play cast for Port / liblzma / usage-libarchive-tools-xz-symlink">Play</button>
             </div>
             <div class="cast-player" data-player>
               <div class="player-controls">
-                <button type="button" class="js-player-play">Play</button>
-                <button type="button" class="js-player-pause">Pause</button>
-                <button type="button" class="js-player-restart">Restart</button>
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Port / liblzma / usage-libarchive-tools-xz-symlink">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Port / liblzma / usage-libarchive-tools-xz-symlink">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Port / liblzma / usage-libarchive-tools-xz-symlink">Restart</button>
                 <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
                 <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
               </div>
-              <pre class="terminal" aria-live="polite"></pre>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Port / liblzma / usage-libarchive-tools-xz-symlink"></pre>
             </div>
           </div>
         </details>
@@ -834,31 +863,32 @@
           <summary>
             <span class="case-title">
               <strong>libarchive-tools xz empty dir</strong>
-              <span class="case-id">port-04-test / liblzma / usage-libarchive-tools-xz-empty-dir</span>
+              <span class="case-id">Port / liblzma / usage-libarchive-tools-xz-empty-dir</span>
             </span>
-            <span class="status-pill status-passed">Passed</span>
+            <span class="status-pill status-passed" aria-label="Port / liblzma / usage-libarchive-tools-xz-empty-dir status: Passed">Passed</span>
           </summary>
           <div class="case-body">
             <p>Runs bsdtar empty dir on a xz-compressed archive through liblzma.</p>
             <dl class="case-meta">
+              <div><dt>Run</dt><dd>Port</dd></div>
               <div><dt>Kind</dt><dd>usage</dd></div>
               <div><dt>Client</dt><dd>libarchive-tools</dd></div>
               <div><dt>Duration</dt><dd>0.00s</dd></div>
               <div><dt>Tags</dt><dd class="tags"><span>usage</span> <span>archive</span> <span>compression</span></dd></div>
             </dl>
             <div class="case-actions">
-              <a class="log-link" href="../evidence/port-04-test/logs/liblzma/usage-libarchive-tools-xz-empty-dir.log">Log</a>
-              <button type="button" class="play-button js-load-cast" data-cast="../evidence/port-04-test/casts/liblzma/usage-libarchive-tools-xz-empty-dir.cast">Play</button>
+              <a class="log-link" href="../evidence/port-04-test/logs/liblzma/usage-libarchive-tools-xz-empty-dir.log" aria-label="Open log for Port / liblzma / usage-libarchive-tools-xz-empty-dir">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/port-04-test/casts/liblzma/usage-libarchive-tools-xz-empty-dir.cast" aria-label="Play cast for Port / liblzma / usage-libarchive-tools-xz-empty-dir">Play</button>
             </div>
             <div class="cast-player" data-player>
               <div class="player-controls">
-                <button type="button" class="js-player-play">Play</button>
-                <button type="button" class="js-player-pause">Pause</button>
-                <button type="button" class="js-player-restart">Restart</button>
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Port / liblzma / usage-libarchive-tools-xz-empty-dir">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Port / liblzma / usage-libarchive-tools-xz-empty-dir">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Port / liblzma / usage-libarchive-tools-xz-empty-dir">Restart</button>
                 <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
                 <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
               </div>
-              <pre class="terminal" aria-live="polite"></pre>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Port / liblzma / usage-libarchive-tools-xz-empty-dir"></pre>
             </div>
           </div>
         </details>
@@ -866,31 +896,32 @@
           <summary>
             <span class="case-title">
               <strong>libarchive-tools xz filter auto</strong>
-              <span class="case-id">port-04-test / liblzma / usage-libarchive-tools-xz-filter-auto</span>
+              <span class="case-id">Port / liblzma / usage-libarchive-tools-xz-filter-auto</span>
             </span>
-            <span class="status-pill status-passed">Passed</span>
+            <span class="status-pill status-passed" aria-label="Port / liblzma / usage-libarchive-tools-xz-filter-auto status: Passed">Passed</span>
           </summary>
           <div class="case-body">
             <p>Runs bsdtar filter auto on a xz-compressed archive through liblzma.</p>
             <dl class="case-meta">
+              <div><dt>Run</dt><dd>Port</dd></div>
               <div><dt>Kind</dt><dd>usage</dd></div>
               <div><dt>Client</dt><dd>libarchive-tools</dd></div>
               <div><dt>Duration</dt><dd>0.00s</dd></div>
               <div><dt>Tags</dt><dd class="tags"><span>usage</span> <span>archive</span> <span>compression</span></dd></div>
             </dl>
             <div class="case-actions">
-              <a class="log-link" href="../evidence/port-04-test/logs/liblzma/usage-libarchive-tools-xz-filter-auto.log">Log</a>
-              <button type="button" class="play-button js-load-cast" data-cast="../evidence/port-04-test/casts/liblzma/usage-libarchive-tools-xz-filter-auto.cast">Play</button>
+              <a class="log-link" href="../evidence/port-04-test/logs/liblzma/usage-libarchive-tools-xz-filter-auto.log" aria-label="Open log for Port / liblzma / usage-libarchive-tools-xz-filter-auto">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/port-04-test/casts/liblzma/usage-libarchive-tools-xz-filter-auto.cast" aria-label="Play cast for Port / liblzma / usage-libarchive-tools-xz-filter-auto">Play</button>
             </div>
             <div class="cast-player" data-player>
               <div class="player-controls">
-                <button type="button" class="js-player-play">Play</button>
-                <button type="button" class="js-player-pause">Pause</button>
-                <button type="button" class="js-player-restart">Restart</button>
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Port / liblzma / usage-libarchive-tools-xz-filter-auto">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Port / liblzma / usage-libarchive-tools-xz-filter-auto">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Port / liblzma / usage-libarchive-tools-xz-filter-auto">Restart</button>
                 <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
                 <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
               </div>
-              <pre class="terminal" aria-live="polite"></pre>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Port / liblzma / usage-libarchive-tools-xz-filter-auto"></pre>
             </div>
           </div>
         </details>
@@ -898,31 +929,32 @@
           <summary>
             <span class="case-title">
               <strong>libarchive-tools xz copy mode</strong>
-              <span class="case-id">port-04-test / liblzma / usage-libarchive-tools-xz-copy-mode</span>
+              <span class="case-id">Port / liblzma / usage-libarchive-tools-xz-copy-mode</span>
             </span>
-            <span class="status-pill status-passed">Passed</span>
+            <span class="status-pill status-passed" aria-label="Port / liblzma / usage-libarchive-tools-xz-copy-mode status: Passed">Passed</span>
           </summary>
           <div class="case-body">
             <p>Runs bsdtar copy mode on a xz-compressed archive through liblzma.</p>
             <dl class="case-meta">
+              <div><dt>Run</dt><dd>Port</dd></div>
               <div><dt>Kind</dt><dd>usage</dd></div>
               <div><dt>Client</dt><dd>libarchive-tools</dd></div>
               <div><dt>Duration</dt><dd>0.00s</dd></div>
               <div><dt>Tags</dt><dd class="tags"><span>usage</span> <span>archive</span> <span>compression</span></dd></div>
             </dl>
             <div class="case-actions">
-              <a class="log-link" href="../evidence/port-04-test/logs/liblzma/usage-libarchive-tools-xz-copy-mode.log">Log</a>
-              <button type="button" class="play-button js-load-cast" data-cast="../evidence/port-04-test/casts/liblzma/usage-libarchive-tools-xz-copy-mode.cast">Play</button>
+              <a class="log-link" href="../evidence/port-04-test/logs/liblzma/usage-libarchive-tools-xz-copy-mode.log" aria-label="Open log for Port / liblzma / usage-libarchive-tools-xz-copy-mode">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/port-04-test/casts/liblzma/usage-libarchive-tools-xz-copy-mode.cast" aria-label="Play cast for Port / liblzma / usage-libarchive-tools-xz-copy-mode">Play</button>
             </div>
             <div class="cast-player" data-player>
               <div class="player-controls">
-                <button type="button" class="js-player-play">Play</button>
-                <button type="button" class="js-player-pause">Pause</button>
-                <button type="button" class="js-player-restart">Restart</button>
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Port / liblzma / usage-libarchive-tools-xz-copy-mode">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Port / liblzma / usage-libarchive-tools-xz-copy-mode">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Port / liblzma / usage-libarchive-tools-xz-copy-mode">Restart</button>
                 <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
                 <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
               </div>
-              <pre class="terminal" aria-live="polite"></pre>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Port / liblzma / usage-libarchive-tools-xz-copy-mode"></pre>
             </div>
           </div>
         </details>
@@ -930,31 +962,32 @@
           <summary>
             <span class="case-title">
               <strong>libarchive-tools xz metadata list</strong>
-              <span class="case-id">port-04-test / liblzma / usage-libarchive-tools-xz-metadata-list</span>
+              <span class="case-id">Port / liblzma / usage-libarchive-tools-xz-metadata-list</span>
             </span>
-            <span class="status-pill status-passed">Passed</span>
+            <span class="status-pill status-passed" aria-label="Port / liblzma / usage-libarchive-tools-xz-metadata-list status: Passed">Passed</span>
           </summary>
           <div class="case-body">
             <p>Runs bsdtar verbose listing on an xz archive and verifies executable metadata.</p>
             <dl class="case-meta">
+              <div><dt>Run</dt><dd>Port</dd></div>
               <div><dt>Kind</dt><dd>usage</dd></div>
               <div><dt>Client</dt><dd>libarchive-tools</dd></div>
               <div><dt>Duration</dt><dd>0.00s</dd></div>
               <div><dt>Tags</dt><dd class="tags"><span>usage</span> <span>archive</span> <span>compression</span> <span>metadata</span></dd></div>
             </dl>
             <div class="case-actions">
-              <a class="log-link" href="../evidence/port-04-test/logs/liblzma/usage-libarchive-tools-xz-metadata-list.log">Log</a>
-              <button type="button" class="play-button js-load-cast" data-cast="../evidence/port-04-test/casts/liblzma/usage-libarchive-tools-xz-metadata-list.cast">Play</button>
+              <a class="log-link" href="../evidence/port-04-test/logs/liblzma/usage-libarchive-tools-xz-metadata-list.log" aria-label="Open log for Port / liblzma / usage-libarchive-tools-xz-metadata-list">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/port-04-test/casts/liblzma/usage-libarchive-tools-xz-metadata-list.cast" aria-label="Play cast for Port / liblzma / usage-libarchive-tools-xz-metadata-list">Play</button>
             </div>
             <div class="cast-player" data-player>
               <div class="player-controls">
-                <button type="button" class="js-player-play">Play</button>
-                <button type="button" class="js-player-pause">Pause</button>
-                <button type="button" class="js-player-restart">Restart</button>
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Port / liblzma / usage-libarchive-tools-xz-metadata-list">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Port / liblzma / usage-libarchive-tools-xz-metadata-list">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Port / liblzma / usage-libarchive-tools-xz-metadata-list">Restart</button>
                 <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
                 <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
               </div>
-              <pre class="terminal" aria-live="polite"></pre>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Port / liblzma / usage-libarchive-tools-xz-metadata-list"></pre>
             </div>
           </div>
         </details>
@@ -962,31 +995,32 @@
           <summary>
             <span class="case-title">
               <strong>libarchive-tools xz preserve permissions</strong>
-              <span class="case-id">port-04-test / liblzma / usage-libarchive-tools-xz-preserve-permissions</span>
+              <span class="case-id">Port / liblzma / usage-libarchive-tools-xz-preserve-permissions</span>
             </span>
-            <span class="status-pill status-passed">Passed</span>
+            <span class="status-pill status-passed" aria-label="Port / liblzma / usage-libarchive-tools-xz-preserve-permissions status: Passed">Passed</span>
           </summary>
           <div class="case-body">
             <p>Runs bsdtar xz archive extraction and verifies executable permissions survive.</p>
             <dl class="case-meta">
+              <div><dt>Run</dt><dd>Port</dd></div>
               <div><dt>Kind</dt><dd>usage</dd></div>
               <div><dt>Client</dt><dd>libarchive-tools</dd></div>
               <div><dt>Duration</dt><dd>0.00s</dd></div>
               <div><dt>Tags</dt><dd class="tags"><span>usage</span> <span>archive</span> <span>compression</span> <span>metadata</span></dd></div>
             </dl>
             <div class="case-actions">
-              <a class="log-link" href="../evidence/port-04-test/logs/liblzma/usage-libarchive-tools-xz-preserve-permissions.log">Log</a>
-              <button type="button" class="play-button js-load-cast" data-cast="../evidence/port-04-test/casts/liblzma/usage-libarchive-tools-xz-preserve-permissions.cast">Play</button>
+              <a class="log-link" href="../evidence/port-04-test/logs/liblzma/usage-libarchive-tools-xz-preserve-permissions.log" aria-label="Open log for Port / liblzma / usage-libarchive-tools-xz-preserve-permissions">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/port-04-test/casts/liblzma/usage-libarchive-tools-xz-preserve-permissions.cast" aria-label="Play cast for Port / liblzma / usage-libarchive-tools-xz-preserve-permissions">Play</button>
             </div>
             <div class="cast-player" data-player>
               <div class="player-controls">
-                <button type="button" class="js-player-play">Play</button>
-                <button type="button" class="js-player-pause">Pause</button>
-                <button type="button" class="js-player-restart">Restart</button>
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Port / liblzma / usage-libarchive-tools-xz-preserve-permissions">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Port / liblzma / usage-libarchive-tools-xz-preserve-permissions">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Port / liblzma / usage-libarchive-tools-xz-preserve-permissions">Restart</button>
                 <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
                 <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
               </div>
-              <pre class="terminal" aria-live="polite"></pre>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Port / liblzma / usage-libarchive-tools-xz-preserve-permissions"></pre>
             </div>
           </div>
         </details>

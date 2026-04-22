@@ -278,40 +278,89 @@ def _format_duration(value: Any) -> str:
     return str(value)
 
 
-def _summary_cards(site_data: dict[str, Any]) -> str:
-    totals = {
-        "libraries": 0,
-        "cases": 0,
-        "source_cases": 0,
-        "usage_cases": 0,
-        "passed": 0,
-        "failed": 0,
-        "casts": 0,
+def _mode_label(mode: str) -> str:
+    return {
+        "original": "Original",
+        "port-04-test": "Port",
+    }.get(mode, mode)
+
+
+def _scoped_rows(site_data: dict[str, Any], *, current_library: str | None = None) -> list[dict[str, Any]]:
+    rows = list(site_data["testcases"])
+    if current_library is not None:
+        rows = [row for row in rows if row["library"] == current_library]
+    return rows
+
+
+def _inventory_counts(rows: list[dict[str, Any]]) -> dict[str, int]:
+    libraries: set[str] = set()
+    testcases: dict[tuple[str, str], dict[str, Any]] = {}
+    for row in rows:
+        library = str(row["library"])
+        libraries.add(library)
+        key = (library, str(row["testcase_id"]))
+        testcases.setdefault(key, row)
+    return {
+        "libraries": len(libraries),
+        "cases": len(testcases),
+        "source_cases": sum(1 for row in testcases.values() if row["kind"] == "source"),
+        "usage_cases": sum(1 for row in testcases.values() if row["kind"] == "usage"),
     }
-    seen_libraries: set[str] = set()
-    for proof in site_data["proofs"]:
-        proof_totals = proof["totals"]
-        totals["cases"] += int(proof_totals.get("cases", 0))
-        totals["source_cases"] += int(proof_totals.get("source_cases", 0))
-        totals["usage_cases"] += int(proof_totals.get("usage_cases", 0))
-        totals["passed"] += int(proof_totals.get("passed", 0))
-        totals["failed"] += int(proof_totals.get("failed", 0))
-        totals["casts"] += int(proof_totals.get("casts", 0))
-        for entry in proof.get("libraries", []):
-            if isinstance(entry, dict):
-                seen_libraries.add(str(entry.get("library")))
-    totals["libraries"] = len(seen_libraries)
-    cast_total = int(totals.get("casts", 0))
-    case_total = int(totals.get("cases", 0))
-    cast_coverage = "0%" if case_total == 0 else f"{round((cast_total / case_total) * 100):d}%"
+
+
+def _port_counts(rows: list[dict[str, Any]]) -> dict[str, int]:
+    port_rows = [row for row in rows if row["mode"] == "port-04-test"]
+    by_library: dict[str, list[dict[str, Any]]] = {}
+    for row in port_rows:
+        by_library.setdefault(str(row["library"]), []).append(row)
+    passed = sum(1 for row in port_rows if row["status"] == "passed")
+    return {
+        "cases": len(port_rows),
+        "passed": passed,
+        "failed": len(port_rows) - passed,
+        "libraries": len(by_library),
+        "passing_libraries": sum(
+            1
+            for library_rows in by_library.values()
+            if library_rows and all(row["status"] == "passed" for row in library_rows)
+        ),
+    }
+
+
+def _ratio_text(numerator: int, denominator: int, *, empty: str = "Not run") -> str:
+    if denominator == 0:
+        return empty
+    return f"{numerator} / {denominator}"
+
+
+def _summary_cards(site_data: dict[str, Any], *, current_library: str | None = None) -> str:
+    rows = _scoped_rows(site_data, current_library=current_library)
+    inventory = _inventory_counts(rows)
+    ports = _port_counts(rows)
+    cast_total = sum(1 for row in rows if row.get("cast_href") is not None)
+    cast_coverage = "0%" if not rows else f"{round((cast_total / len(rows)) * 100):d}%"
+    totals = {
+        "libraries": inventory["libraries"],
+        "cases": inventory["cases"],
+        "source_cases": inventory["source_cases"],
+        "usage_cases": inventory["usage_cases"],
+        "passed": ports["passed"],
+        "failed": ports["failed"],
+        "casts": cast_total,
+    }
     cards = [
-        ("libraries", "Libraries", totals.get("libraries", 0)),
-        ("cases", "Cases", totals.get("cases", 0)),
-        ("source_cases", "Source", totals.get("source_cases", 0)),
-        ("usage_cases", "Usage", totals.get("usage_cases", 0)),
-        ("passed", "Passed", totals.get("passed", 0)),
-        ("failed", "Failed", totals.get("failed", 0)),
-        ("casts", "Casts", f"{cast_total} ({cast_coverage})"),
+        ("libraries", "Libraries", totals["libraries"]),
+        ("cases", "Tests", totals["cases"]),
+        ("source_cases", "Source tests", totals["source_cases"]),
+        ("usage_cases", "Usage tests", totals["usage_cases"]),
+        ("passed", "Port tests passing", _ratio_text(ports["passed"], ports["cases"])),
+        ("failed", "Port tests failing", ports["failed"] if ports["cases"] else "Not run"),
+        ("casts", "Evidence casts", f"{cast_total} ({cast_coverage})"),
+        (
+            "port_libraries",
+            "Port libraries passing",
+            _ratio_text(ports["passing_libraries"], ports["libraries"]),
+        ),
     ]
     return "\n".join(
         f'        <div class="metric" data-proof-total="{html.escape(field_name)}">'
@@ -322,31 +371,40 @@ def _summary_cards(site_data: dict[str, Any]) -> str:
 
 def _library_cards(site_data: dict[str, Any], *, page_depth: int) -> str:
     cards: list[str] = []
-    library_totals: dict[str, dict[str, int]] = {}
-    for proof_data in site_data["proofs"]:
-        for library_entry in proof_data["libraries"]:
-            library = str(library_entry["library"])
-            totals = library_entry["totals"]
-            bucket = library_totals.setdefault(library, {"cases": 0, "passed": 0, "failed": 0})
-            bucket["cases"] += int(totals["cases"])
-            bucket["passed"] += int(totals["passed"])
-            bucket["failed"] += int(totals["failed"])
-    for library in sorted(library_totals):
-        totals = library_totals[library]
+    library_rows: dict[str, list[dict[str, Any]]] = {}
+    for row in site_data["testcases"]:
+        library_rows.setdefault(str(row["library"]), []).append(row)
+    for library in sorted(library_rows):
+        rows = library_rows[library]
+        inventory = _inventory_counts(rows)
+        ports = _port_counts(rows)
+        state = "not-run"
+        state_label = "Not run"
+        if ports["cases"] > 0:
+            state = "passing" if ports["failed"] == 0 else "failing"
+            state_label = "Passing" if ports["failed"] == 0 else "Failing"
         href = _page_href(f"library/{library}.html", page_depth=page_depth)
         assert href is not None
+        port_ratio = _ratio_text(ports["passed"], ports["cases"])
+        aria_label = f"{library}: {inventory['cases']} tests, {port_ratio} port tests passing"
         cards.append(
             "\n".join(
                 [
-                    f'        <a class="library-card" href="{html.escape(href)}" data-library-card="{html.escape(library)}">',
-                    f"          <strong>{html.escape(library)}</strong>",
                     (
-                        "          <span>"
-                        f'{html.escape(str(totals["cases"]))} cases, '
-                        f'{html.escape(str(totals["passed"]))} passed, '
-                        f'{html.escape(str(totals["failed"]))} failed'
-                        "</span>"
+                        f'        <a class="library-card library-{html.escape(state)}" '
+                        f'href="{html.escape(href)}" data-library-card="{html.escape(library)}" '
+                        f'aria-label="{html.escape(aria_label)}">'
                     ),
+                    '          <span class="library-card-heading">',
+                    f"            <strong>{html.escape(library)}</strong>",
+                    f'            <span class="library-state">{html.escape(state_label)}</span>',
+                    "          </span>",
+                    '          <dl class="library-stats">',
+                    f'            <div><dt>Tests</dt><dd>{html.escape(str(inventory["cases"]))}</dd></div>',
+                    f'            <div><dt>Source</dt><dd>{html.escape(str(inventory["source_cases"]))}</dd></div>',
+                    f'            <div><dt>Usage</dt><dd>{html.escape(str(inventory["usage_cases"]))}</dd></div>',
+                    f"            <div><dt>Port pass</dt><dd>{html.escape(port_ratio)}</dd></div>",
+                    "          </dl>",
                     "        </a>",
                 ]
             )
@@ -388,8 +446,13 @@ def _case_details(rows: list[dict[str, Any]], *, page_depth: int) -> str:
         log_href = _page_href(str(row["log_href"]), page_depth=page_depth)
         cast_href = _page_href(row["cast_href"], page_depth=page_depth)
         cast_attr = cast_href or ""
+        case_label = f"{_mode_label(mode)} / {library} / {testcase_id}"
         play_button = (
-            f'<button type="button" class="play-button js-load-cast" data-cast="{html.escape(cast_attr)}">Play</button>'
+            (
+                f'<button type="button" class="play-button js-load-cast" '
+                f'data-cast="{html.escape(cast_attr)}" '
+                f'aria-label="Play cast for {html.escape(case_label)}">Play</button>'
+            )
             if cast_href is not None
             else '<span class="muted">No cast</span>'
         )
@@ -406,16 +469,18 @@ def _case_details(rows: list[dict[str, Any]], *, page_depth: int) -> str:
                     "          <summary>",
                     '            <span class="case-title">',
                     f"              <strong>{html.escape(title)}</strong>",
-                    f'              <span class="case-id">{html.escape(mode)} / {html.escape(library)} / {html.escape(testcase_id)}</span>',
+                    f'              <span class="case-id">{html.escape(case_label)}</span>',
                     "            </span>",
                     (
-                        f'            <span class="status-pill status-{html.escape(status)}">'
+                        f'            <span class="status-pill status-{html.escape(status)}" '
+                        f'aria-label="{html.escape(case_label)} status: {html.escape(_status_label(status))}">'
                         f"{html.escape(_status_label(status))}</span>"
                     ),
                     "          </summary>",
                     '          <div class="case-body">',
                     f"            <p>{html.escape(description)}</p>",
                     '            <dl class="case-meta">',
+                    f"              <div><dt>Run</dt><dd>{html.escape(_mode_label(mode))}</dd></div>",
                     f"              <div><dt>Kind</dt><dd>{html.escape(kind)}</dd></div>",
                     (
                         "              <div><dt>Client</dt><dd>"
@@ -426,18 +491,21 @@ def _case_details(rows: list[dict[str, Any]], *, page_depth: int) -> str:
                     f'              <div><dt>Tags</dt><dd class="tags">{_tag_list(row["tags"])}</dd></div>',
                     "            </dl>",
                     '            <div class="case-actions">',
-                    f'              <a class="log-link" href="{html.escape(str(log_href))}">Log</a>',
+                    (
+                        f'              <a class="log-link" href="{html.escape(str(log_href))}" '
+                        f'aria-label="Open log for {html.escape(case_label)}">Log</a>'
+                    ),
                     f"              {play_button}",
                     "            </div>",
                     '            <div class="cast-player" data-player>',
                     '              <div class="player-controls">',
-                    '                <button type="button" class="js-player-play">Play</button>',
-                    '                <button type="button" class="js-player-pause">Pause</button>',
-                    '                <button type="button" class="js-player-restart">Restart</button>',
+                    f'                <button type="button" class="js-player-play" aria-label="Play cast playback for {html.escape(case_label)}">Play</button>',
+                    f'                <button type="button" class="js-player-pause" aria-label="Pause cast playback for {html.escape(case_label)}">Pause</button>',
+                    f'                <button type="button" class="js-player-restart" aria-label="Restart cast playback for {html.escape(case_label)}">Restart</button>',
                     '                <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>',
                     '                <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>',
                     "              </div>",
-                    '              <pre class="terminal" aria-live="polite"></pre>',
+                    f'              <pre class="terminal" aria-live="polite" aria-label="Cast output for {html.escape(case_label)}"></pre>',
                     "            </div>",
                     "          </div>",
                     "        </details>",
@@ -447,11 +515,16 @@ def _case_details(rows: list[dict[str, Any]], *, page_depth: int) -> str:
     return "\n".join(rendered_rows)
 
 
-def _filters() -> str:
+def _filters(site_data: dict[str, Any]) -> str:
+    mode_options = ['<option value="all">All</option>']
+    for proof in site_data["proofs"]:
+        mode = str(proof["mode"])
+        mode_options.append(f'<option value="{html.escape(mode)}">{html.escape(_mode_label(mode))}</option>')
     return "\n".join(
         [
             '      <section class="controls" aria-label="Testcase filters">',
-            '        <label class="search-label">Search <input id="search-input" type="search" autocomplete="off"></label>',
+            '        <label class="search-label">Search <input id="search-input" type="search" autocomplete="off" name="search"></label>',
+            f'        <label>Run mode <select id="mode-filter" name="mode">{"".join(mode_options)}</select></label>',
             '        <label>Status <select id="status-filter"><option value="all">All</option><option value="passed">Passed</option><option value="failed">Failed</option></select></label>',
             '        <label>Kind <select id="kind-filter"><option value="all">All</option><option value="source">Source</option><option value="usage">Usage</option></select></label>',
             "      </section>",
@@ -465,29 +538,32 @@ def render_page(
     page_depth: int = 0,
     current_library: str | None = None,
 ) -> str:
-    rows = list(site_data["testcases"])
-    if current_library is not None:
-        rows = [row for row in rows if row["library"] == current_library]
-    title = "Original Library Validation"
+    rows = _scoped_rows(site_data, current_library=current_library)
+    title = "Library Validation Matrix"
     if current_library is not None:
         title = f"{current_library} Validation"
     css_href = _page_href("assets/site.css", page_depth=page_depth)
     js_href = _page_href("assets/player.js", page_depth=page_depth)
     data_href = _page_href("site-data.json", page_depth=page_depth)
     assert css_href is not None and js_href is not None and data_href is not None
+    index_href = _page_href("index.html", page_depth=page_depth)
 
     library_section = ""
     if current_library is None:
         library_section = "\n".join(
             [
-                '      <section class="library-overview" aria-label="Library summaries">',
-                "        <h2>Libraries</h2>",
+                '      <section class="library-overview" aria-labelledby="libraries-heading">',
+                '        <h2 id="libraries-heading">Libraries and Port Status</h2>',
                 '        <div class="library-grid">',
                 _library_cards(site_data, page_depth=page_depth),
                 "        </div>",
                 "      </section>",
             ]
         )
+    breadcrumb = ""
+    if current_library is not None:
+        assert index_href is not None
+        breadcrumb = f'      <nav class="breadcrumb" aria-label="Breadcrumb"><a href="{html.escape(index_href)}">All libraries</a></nav>'
 
     return "\n".join(
         [
@@ -502,17 +578,19 @@ def render_page(
             f'    <script defer src="{html.escape(js_href)}"></script>',
             "  </head>",
             f'  <body data-site-data="{html.escape(data_href)}">',
+            '    <a class="skip-link" href="#tests-heading">Skip to tests</a>',
             "    <main>",
-            '      <section class="dashboard" aria-label="Validation dashboard">',
-            f"        <h1>{html.escape(title)}</h1>",
+            breadcrumb,
+            '      <section class="dashboard" aria-labelledby="dashboard-heading">',
+            f'        <h1 id="dashboard-heading">{html.escape(title)}</h1>',
             '        <div class="metric-grid">',
-            _summary_cards(site_data),
+            _summary_cards(site_data, current_library=current_library),
             "        </div>",
             "      </section>",
             library_section,
-            _filters(),
-            '      <section class="testcases" aria-label="Testcases">',
-            "        <h2>Testcases</h2>",
+            _filters(site_data),
+            '      <section id="testcases" class="testcases" aria-labelledby="tests-heading">',
+            '        <h2 id="tests-heading">Tests</h2>',
             _case_details(rows, page_depth=page_depth),
             "      </section>",
             "    </main>",
@@ -528,28 +606,64 @@ SITE_CSS = """
   color-scheme: light;
   font-family: Inter, "Segoe UI", Arial, sans-serif;
   color: #18201f;
-  background: #f6f7f4;
+  background: #f7f8f6;
+  --page: #f7f8f6;
+  --surface: #ffffff;
+  --surface-muted: #eef2ef;
+  --border: #d7dfda;
+  --border-strong: #aebbb4;
+  --text: #18201f;
+  --muted: #4f5d58;
+  --accent: #1f6677;
+  --accent-strong: #164958;
+  --focus: #b46300;
+  --success-bg: #dcefe6;
+  --success-text: #145633;
+  --danger-bg: #f7ddd7;
+  --danger-text: #842719;
+  --warning-bg: #fff2c2;
+  --warning-text: #624300;
 }
 
 * { box-sizing: border-box; }
 
 body {
   margin: 0;
-  background: #f6f7f4;
+  background: var(--page);
+}
+
+a {
+  color: var(--accent);
+}
+
+.skip-link {
+  position: absolute;
+  top: -48px;
+  left: 16px;
+  z-index: 10;
+  border-radius: 6px;
+  background: var(--accent-strong);
+  color: #ffffff;
+  padding: 10px 12px;
+}
+
+.skip-link:focus {
+  top: 12px;
 }
 
 main {
-  width: min(1180px, calc(100% - 32px));
+  width: min(1220px, calc(100% - 32px));
   margin: 0 auto;
-  padding: 24px 0 48px;
+  padding: 32px 0 56px;
 }
 
 h1, h2, p { margin-top: 0; }
 
 h1 {
-  font-size: 2.25rem;
-  line-height: 1.08;
-  margin-bottom: 18px;
+  max-width: 760px;
+  font-size: 2.35rem;
+  line-height: 1.1;
+  margin-bottom: 20px;
 }
 
 h2 {
@@ -557,51 +671,157 @@ h2 {
   margin: 0 0 14px;
 }
 
-.dashboard {
-  padding: 16px 0 20px;
+.breadcrumb {
+  margin-bottom: 18px;
 }
 
-.metric-grid,
-.library-grid {
+.breadcrumb a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 38px;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  background: var(--surface);
+  padding: 8px 12px;
+  text-decoration: none;
+}
+
+.dashboard {
+  padding: 14px 0 24px;
+  border-bottom: 1px solid var(--border);
+}
+
+.metric-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-  gap: 10px;
+  gap: 12px;
+}
+
+.library-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 12px;
 }
 
 .metric,
 .library-card {
-  border: 1px solid #d8ddd6;
+  border: 1px solid var(--border);
   border-radius: 8px;
-  background: #ffffff;
+  background: var(--surface);
+}
+
+.metric {
+  display: grid;
+  align-content: space-between;
+  min-height: 108px;
+  border-top: 4px solid var(--accent);
   padding: 14px;
 }
 
-.metric strong,
-.library-card strong {
+.metric[data-proof-total="failed"] {
+  border-top-color: #aa3a26;
+}
+
+.metric[data-proof-total="port_libraries"] {
+  border-top-color: #6f5a99;
+}
+
+.metric strong {
   display: block;
-  color: #0f3b34;
+  color: var(--text);
   font-size: 1.45rem;
   line-height: 1.1;
   overflow-wrap: anywhere;
+  white-space: nowrap;
 }
 
-.metric span,
-.library-card span {
+.metric span {
   display: block;
-  color: #59635f;
+  color: var(--muted);
   font-size: 0.9rem;
-  margin-top: 5px;
+  margin-top: 8px;
 }
 
 .library-card {
   color: inherit;
+  display: grid;
+  gap: 12px;
+  padding: 14px;
   text-decoration: none;
 }
 
 .library-card:hover,
 .library-card:focus-visible {
-  border-color: #4f7f78;
-  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 8px 24px rgb(24 32 31 / 8%);
+}
+
+.library-card-heading {
+  display: flex;
+  gap: 10px;
+  align-items: start;
+  justify-content: space-between;
+}
+
+.library-card strong {
+  color: var(--text);
+  font-size: 1.15rem;
+  line-height: 1.2;
+  overflow-wrap: anywhere;
+}
+
+.library-state {
+  flex: 0 0 auto;
+  border-radius: 999px;
+  padding: 4px 8px;
+  font-size: 0.78rem;
+  font-weight: 700;
+}
+
+.library-passing .library-state {
+  background: var(--success-bg);
+  color: var(--success-text);
+}
+
+.library-failing .library-state {
+  background: var(--danger-bg);
+  color: var(--danger-text);
+}
+
+.library-not-run .library-state {
+  background: var(--warning-bg);
+  color: var(--warning-text);
+}
+
+.library-stats,
+.case-meta {
+  display: grid;
+  gap: 10px;
+}
+
+.library-stats {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  margin: 0;
+}
+
+.library-stats div {
+  min-width: 0;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  background: var(--surface-muted);
+  padding: 8px;
+}
+
+.library-stats dt,
+.case-meta dt {
+  color: var(--muted);
+  font-size: 0.8rem;
+}
+
+.library-stats dd,
+.case-meta dd {
+  margin: 3px 0 0;
+  overflow-wrap: anywhere;
 }
 
 .library-overview,
@@ -616,20 +836,20 @@ h2 {
   gap: 10px;
   align-items: end;
   padding: 12px;
-  border: 1px solid #d8ddd6;
+  border: 1px solid var(--border);
   border-radius: 8px;
-  background: #ffffff;
+  background: var(--surface);
 }
 
 label {
   display: grid;
   gap: 5px;
-  color: #4d5753;
+  color: var(--muted);
   font-size: 0.9rem;
 }
 
 .search-label {
-  flex: 1 1 260px;
+  flex: 1 1 300px;
 }
 
 input,
@@ -643,16 +863,16 @@ button,
 
 input,
 select {
-  border: 1px solid #bfc8c3;
-  background: #fbfcfa;
-  color: #18201f;
+  border: 1px solid var(--border-strong);
+  background: #fbfcfb;
+  color: var(--text);
   padding: 7px 9px;
 }
 
 button,
 .log-link {
-  border: 1px solid #24524c;
-  background: #24524c;
+  border: 1px solid var(--accent-strong);
+  background: var(--accent-strong);
   color: #ffffff;
   padding: 8px 12px;
   cursor: pointer;
@@ -660,17 +880,31 @@ button,
 }
 
 button:hover,
-button:focus-visible,
 .log-link:hover,
+.breadcrumb a:hover {
+  background: var(--accent);
+  color: #ffffff;
+}
+
+button:focus-visible,
+.log-link:focus-visible,
+.library-card:focus-visible,
+.breadcrumb a:focus-visible,
+input:focus-visible,
+select:focus-visible,
+.case-row summary:focus-visible {
+  outline: 3px solid var(--focus);
+  outline-offset: 2px;
+}
+
 .log-link:focus-visible {
-  background: #163a35;
-  outline: none;
+  background: var(--accent);
 }
 
 .case-row {
-  border: 1px solid #d8ddd6;
+  border: 1px solid var(--border);
   border-radius: 8px;
-  background: #ffffff;
+  background: var(--surface);
   margin-bottom: 10px;
   overflow: hidden;
 }
@@ -685,7 +919,11 @@ button:focus-visible,
   gap: 12px;
   align-items: center;
   cursor: pointer;
-  padding: 14px;
+  padding: 15px;
+}
+
+.case-row summary:hover {
+  background: #fbfcfb;
 }
 
 .case-title strong,
@@ -700,7 +938,7 @@ button:focus-visible,
 
 .case-id,
 .muted {
-  color: #66716d;
+  color: var(--muted);
   font-size: 0.88rem;
 }
 
@@ -712,17 +950,17 @@ button:focus-visible,
 }
 
 .status-passed {
-  background: #dcefe5;
-  color: #155b36;
+  background: var(--success-bg);
+  color: var(--success-text);
 }
 
 .status-failed {
-  background: #f8ded9;
-  color: #8a2a1d;
+  background: var(--danger-bg);
+  color: var(--danger-text);
 }
 
 .case-body {
-  border-top: 1px solid #edf0ec;
+  border-top: 1px solid var(--border);
   padding: 14px;
 }
 
@@ -732,31 +970,21 @@ button:focus-visible,
 }
 
 .case-meta {
-  display: grid;
   grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-  gap: 10px;
   margin: 0 0 14px;
 }
 
 .case-meta div {
   min-width: 0;
-}
-
-.case-meta dt {
-  color: #66716d;
-  font-size: 0.8rem;
-}
-
-.case-meta dd {
-  margin: 3px 0 0;
-  overflow-wrap: anywhere;
+  border-left: 3px solid var(--border);
+  padding-left: 9px;
 }
 
 .tags span {
   display: inline-block;
   margin: 0 5px 5px 0;
   border-radius: 999px;
-  background: #edf0ec;
+  background: var(--surface-muted);
   padding: 3px 7px;
   font-size: 0.82rem;
 }
@@ -787,7 +1015,7 @@ button:focus-visible,
   overflow: auto;
   margin: 0;
   border-radius: 8px;
-  background: #111817;
+  background: #101615;
   color: #e7f0ec;
   padding: 12px;
   white-space: pre-wrap;
@@ -811,6 +1039,10 @@ button:focus-visible,
     grid-template-columns: 1fr;
   }
 
+  .library-grid {
+    grid-template-columns: 1fr;
+  }
+
   .controls {
     align-items: stretch;
   }
@@ -827,22 +1059,26 @@ PLAYER_JS = r"""
 (() => {
   const rows = Array.from(document.querySelectorAll(".case-row"));
   const searchInput = document.getElementById("search-input");
+  const modeFilter = document.getElementById("mode-filter");
   const statusFilter = document.getElementById("status-filter");
   const kindFilter = document.getElementById("kind-filter");
 
   function applyFilters() {
     const query = (searchInput?.value || "").trim().toLowerCase();
+    const mode = modeFilter?.value || "all";
     const status = statusFilter?.value || "all";
     const kind = kindFilter?.value || "all";
     for (const row of rows) {
       const matchesQuery = !query || (row.dataset.search || "").toLowerCase().includes(query);
+      const matchesMode = mode === "all" || row.dataset.mode === mode;
       const matchesStatus = status === "all" || row.dataset.status === status;
       const matchesKind = kind === "all" || row.dataset.kind === kind;
-      row.hidden = !(matchesQuery && matchesStatus && matchesKind);
+      row.hidden = !(matchesQuery && matchesMode && matchesStatus && matchesKind);
     }
   }
 
   searchInput?.addEventListener("input", applyFilters);
+  modeFilter?.addEventListener("change", applyFilters);
   statusFilter?.addEventListener("change", applyFilters);
   kindFilter?.addEventListener("change", applyFilters);
 

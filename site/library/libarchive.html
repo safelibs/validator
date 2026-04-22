@@ -9,56 +9,61 @@
     <script defer src="../assets/player.js"></script>
   </head>
   <body data-site-data="../site-data.json">
+    <a class="skip-link" href="#tests-heading">Skip to tests</a>
     <main>
-      <section class="dashboard" aria-label="Validation dashboard">
-        <h1>libarchive Validation</h1>
+      <nav class="breadcrumb" aria-label="Breadcrumb"><a href="../index.html">All libraries</a></nav>
+      <section class="dashboard" aria-labelledby="dashboard-heading">
+        <h1 id="dashboard-heading">libarchive Validation</h1>
         <div class="metric-grid">
-        <div class="metric" data-proof-total="libraries"><strong>19</strong><span>Libraries</span></div>
-        <div class="metric" data-proof-total="cases"><strong>576</strong><span>Cases</span></div>
-        <div class="metric" data-proof-total="source_cases"><strong>190</strong><span>Source</span></div>
-        <div class="metric" data-proof-total="usage_cases"><strong>386</strong><span>Usage</span></div>
-        <div class="metric" data-proof-total="passed"><strong>576</strong><span>Passed</span></div>
-        <div class="metric" data-proof-total="failed"><strong>0</strong><span>Failed</span></div>
-        <div class="metric" data-proof-total="casts"><strong>576 (100%)</strong><span>Casts</span></div>
+        <div class="metric" data-proof-total="libraries"><strong>1</strong><span>Libraries</span></div>
+        <div class="metric" data-proof-total="cases"><strong>15</strong><span>Tests</span></div>
+        <div class="metric" data-proof-total="source_cases"><strong>5</strong><span>Source tests</span></div>
+        <div class="metric" data-proof-total="usage_cases"><strong>10</strong><span>Usage tests</span></div>
+        <div class="metric" data-proof-total="passed"><strong>15 / 15</strong><span>Port tests passing</span></div>
+        <div class="metric" data-proof-total="failed"><strong>0</strong><span>Port tests failing</span></div>
+        <div class="metric" data-proof-total="casts"><strong>30 (100%)</strong><span>Evidence casts</span></div>
+        <div class="metric" data-proof-total="port_libraries"><strong>1 / 1</strong><span>Port libraries passing</span></div>
         </div>
       </section>
 
       <section class="controls" aria-label="Testcase filters">
-        <label class="search-label">Search <input id="search-input" type="search" autocomplete="off"></label>
+        <label class="search-label">Search <input id="search-input" type="search" autocomplete="off" name="search"></label>
+        <label>Run mode <select id="mode-filter" name="mode"><option value="all">All</option><option value="original">Original</option><option value="port-04-test">Port</option></select></label>
         <label>Status <select id="status-filter"><option value="all">All</option><option value="passed">Passed</option><option value="failed">Failed</option></select></label>
         <label>Kind <select id="kind-filter"><option value="all">All</option><option value="source">Source</option><option value="usage">Usage</option></select></label>
       </section>
-      <section class="testcases" aria-label="Testcases">
-        <h2>Testcases</h2>
+      <section id="testcases" class="testcases" aria-labelledby="tests-heading">
+        <h2 id="tests-heading">Tests</h2>
         <details class="case-row" data-library="libarchive" data-testcase-id="bsdtar-tar-zip-roundtrip" data-mode="original" data-kind="source" data-status="passed" data-player-cast="../evidence/original/casts/libarchive/bsdtar-tar-zip-roundtrip.cast" data-search="libarchive bsdtar-tar-zip-roundtrip original bsdtar tar and zip round trip Creates tar and zip archives then extracts both with bsdtar. source cli archive">
           <summary>
             <span class="case-title">
               <strong>bsdtar tar and zip round trip</strong>
-              <span class="case-id">original / libarchive / bsdtar-tar-zip-roundtrip</span>
+              <span class="case-id">Original / libarchive / bsdtar-tar-zip-roundtrip</span>
             </span>
-            <span class="status-pill status-passed">Passed</span>
+            <span class="status-pill status-passed" aria-label="Original / libarchive / bsdtar-tar-zip-roundtrip status: Passed">Passed</span>
           </summary>
           <div class="case-body">
             <p>Creates tar and zip archives then extracts both with bsdtar.</p>
             <dl class="case-meta">
+              <div><dt>Run</dt><dd>Original</dd></div>
               <div><dt>Kind</dt><dd>source</dd></div>
               <div><dt>Client</dt><dd>none</dd></div>
               <div><dt>Duration</dt><dd>0.00s</dd></div>
               <div><dt>Tags</dt><dd class="tags"><span>cli</span> <span>archive</span></dd></div>
             </dl>
             <div class="case-actions">
-              <a class="log-link" href="../evidence/original/logs/libarchive/bsdtar-tar-zip-roundtrip.log">Log</a>
-              <button type="button" class="play-button js-load-cast" data-cast="../evidence/original/casts/libarchive/bsdtar-tar-zip-roundtrip.cast">Play</button>
+              <a class="log-link" href="../evidence/original/logs/libarchive/bsdtar-tar-zip-roundtrip.log" aria-label="Open log for Original / libarchive / bsdtar-tar-zip-roundtrip">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/original/casts/libarchive/bsdtar-tar-zip-roundtrip.cast" aria-label="Play cast for Original / libarchive / bsdtar-tar-zip-roundtrip">Play</button>
             </div>
             <div class="cast-player" data-player>
               <div class="player-controls">
-                <button type="button" class="js-player-play">Play</button>
-                <button type="button" class="js-player-pause">Pause</button>
-                <button type="button" class="js-player-restart">Restart</button>
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Original / libarchive / bsdtar-tar-zip-roundtrip">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Original / libarchive / bsdtar-tar-zip-roundtrip">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Original / libarchive / bsdtar-tar-zip-roundtrip">Restart</button>
                 <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
                 <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
               </div>
-              <pre class="terminal" aria-live="polite"></pre>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Original / libarchive / bsdtar-tar-zip-roundtrip"></pre>
             </div>
           </div>
         </details>
@@ -66,31 +71,32 @@
           <summary>
             <span class="case-title">
               <strong>bsdcpio copy archive round trip</strong>
-              <span class="case-id">original / libarchive / bsdcpio-copy-roundtrip</span>
+              <span class="case-id">Original / libarchive / bsdcpio-copy-roundtrip</span>
             </span>
-            <span class="status-pill status-passed">Passed</span>
+            <span class="status-pill status-passed" aria-label="Original / libarchive / bsdcpio-copy-roundtrip status: Passed">Passed</span>
           </summary>
           <div class="case-body">
             <p>Copies files into and out of a newc archive using bsdcpio.</p>
             <dl class="case-meta">
+              <div><dt>Run</dt><dd>Original</dd></div>
               <div><dt>Kind</dt><dd>source</dd></div>
               <div><dt>Client</dt><dd>none</dd></div>
               <div><dt>Duration</dt><dd>0.00s</dd></div>
               <div><dt>Tags</dt><dd class="tags"><span>cli</span> <span>archive</span></dd></div>
             </dl>
             <div class="case-actions">
-              <a class="log-link" href="../evidence/original/logs/libarchive/bsdcpio-copy-roundtrip.log">Log</a>
-              <button type="button" class="play-button js-load-cast" data-cast="../evidence/original/casts/libarchive/bsdcpio-copy-roundtrip.cast">Play</button>
+              <a class="log-link" href="../evidence/original/logs/libarchive/bsdcpio-copy-roundtrip.log" aria-label="Open log for Original / libarchive / bsdcpio-copy-roundtrip">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/original/casts/libarchive/bsdcpio-copy-roundtrip.cast" aria-label="Play cast for Original / libarchive / bsdcpio-copy-roundtrip">Play</button>
             </div>
             <div class="cast-player" data-player>
               <div class="player-controls">
-                <button type="button" class="js-player-play">Play</button>
-                <button type="button" class="js-player-pause">Pause</button>
-                <button type="button" class="js-player-restart">Restart</button>
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Original / libarchive / bsdcpio-copy-roundtrip">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Original / libarchive / bsdcpio-copy-roundtrip">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Original / libarchive / bsdcpio-copy-roundtrip">Restart</button>
                 <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
                 <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
               </div>
-              <pre class="terminal" aria-live="polite"></pre>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Original / libarchive / bsdcpio-copy-roundtrip"></pre>
             </div>
           </div>
         </details>
@@ -98,31 +104,32 @@
           <summary>
             <span class="case-title">
               <strong>Archive metadata listing behavior</strong>
-              <span class="case-id">original / libarchive / archive-metadata-listing</span>
+              <span class="case-id">Original / libarchive / archive-metadata-listing</span>
             </span>
-            <span class="status-pill status-passed">Passed</span>
+            <span class="status-pill status-passed" aria-label="Original / libarchive / archive-metadata-listing status: Passed">Passed</span>
           </summary>
           <div class="case-body">
             <p>Lists archive metadata including modes and symbolic link entries.</p>
             <dl class="case-meta">
+              <div><dt>Run</dt><dd>Original</dd></div>
               <div><dt>Kind</dt><dd>source</dd></div>
               <div><dt>Client</dt><dd>none</dd></div>
               <div><dt>Duration</dt><dd>0.00s</dd></div>
               <div><dt>Tags</dt><dd class="tags"><span>cli</span> <span>metadata</span></dd></div>
             </dl>
             <div class="case-actions">
-              <a class="log-link" href="../evidence/original/logs/libarchive/archive-metadata-listing.log">Log</a>
-              <button type="button" class="play-button js-load-cast" data-cast="../evidence/original/casts/libarchive/archive-metadata-listing.cast">Play</button>
+              <a class="log-link" href="../evidence/original/logs/libarchive/archive-metadata-listing.log" aria-label="Open log for Original / libarchive / archive-metadata-listing">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/original/casts/libarchive/archive-metadata-listing.cast" aria-label="Play cast for Original / libarchive / archive-metadata-listing">Play</button>
             </div>
             <div class="cast-player" data-player>
               <div class="player-controls">
-                <button type="button" class="js-player-play">Play</button>
-                <button type="button" class="js-player-pause">Pause</button>
-                <button type="button" class="js-player-restart">Restart</button>
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Original / libarchive / archive-metadata-listing">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Original / libarchive / archive-metadata-listing">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Original / libarchive / archive-metadata-listing">Restart</button>
                 <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
                 <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
               </div>
-              <pre class="terminal" aria-live="polite"></pre>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Original / libarchive / archive-metadata-listing"></pre>
             </div>
           </div>
         </details>
@@ -130,31 +137,32 @@
           <summary>
             <span class="case-title">
               <strong>Path traversal rejection</strong>
-              <span class="case-id">original / libarchive / path-traversal-rejection</span>
+              <span class="case-id">Original / libarchive / path-traversal-rejection</span>
             </span>
-            <span class="status-pill status-passed">Passed</span>
+            <span class="status-pill status-passed" aria-label="Original / libarchive / path-traversal-rejection status: Passed">Passed</span>
           </summary>
           <div class="case-body">
             <p>Verifies bsdtar rejects archive entries that would escape extraction.</p>
             <dl class="case-meta">
+              <div><dt>Run</dt><dd>Original</dd></div>
               <div><dt>Kind</dt><dd>source</dd></div>
               <div><dt>Client</dt><dd>none</dd></div>
               <div><dt>Duration</dt><dd>0.00s</dd></div>
               <div><dt>Tags</dt><dd class="tags"><span>cli</span> <span>negative</span></dd></div>
             </dl>
             <div class="case-actions">
-              <a class="log-link" href="../evidence/original/logs/libarchive/path-traversal-rejection.log">Log</a>
-              <button type="button" class="play-button js-load-cast" data-cast="../evidence/original/casts/libarchive/path-traversal-rejection.cast">Play</button>
+              <a class="log-link" href="../evidence/original/logs/libarchive/path-traversal-rejection.log" aria-label="Open log for Original / libarchive / path-traversal-rejection">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/original/casts/libarchive/path-traversal-rejection.cast" aria-label="Play cast for Original / libarchive / path-traversal-rejection">Play</button>
             </div>
             <div class="cast-player" data-player>
               <div class="player-controls">
-                <button type="button" class="js-player-play">Play</button>
-                <button type="button" class="js-player-pause">Pause</button>
-                <button type="button" class="js-player-restart">Restart</button>
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Original / libarchive / path-traversal-rejection">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Original / libarchive / path-traversal-rejection">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Original / libarchive / path-traversal-rejection">Restart</button>
                 <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
                 <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
               </div>
-              <pre class="terminal" aria-live="polite"></pre>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Original / libarchive / path-traversal-rejection"></pre>
             </div>
           </div>
         </details>
@@ -162,31 +170,32 @@
           <summary>
             <span class="case-title">
               <strong>archive read API smoke</strong>
-              <span class="case-id">original / libarchive / archive-read-api-smoke</span>
+              <span class="case-id">Original / libarchive / archive-read-api-smoke</span>
             </span>
-            <span class="status-pill status-passed">Passed</span>
+            <span class="status-pill status-passed" aria-label="Original / libarchive / archive-read-api-smoke status: Passed">Passed</span>
           </summary>
           <div class="case-body">
             <p>Compiles and runs a libarchive archive_read API listing program.</p>
             <dl class="case-meta">
+              <div><dt>Run</dt><dd>Original</dd></div>
               <div><dt>Kind</dt><dd>source</dd></div>
               <div><dt>Client</dt><dd>none</dd></div>
               <div><dt>Duration</dt><dd>0.00s</dd></div>
               <div><dt>Tags</dt><dd class="tags"><span>api</span> <span>compile</span></dd></div>
             </dl>
             <div class="case-actions">
-              <a class="log-link" href="../evidence/original/logs/libarchive/archive-read-api-smoke.log">Log</a>
-              <button type="button" class="play-button js-load-cast" data-cast="../evidence/original/casts/libarchive/archive-read-api-smoke.cast">Play</button>
+              <a class="log-link" href="../evidence/original/logs/libarchive/archive-read-api-smoke.log" aria-label="Open log for Original / libarchive / archive-read-api-smoke">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/original/casts/libarchive/archive-read-api-smoke.cast" aria-label="Play cast for Original / libarchive / archive-read-api-smoke">Play</button>
             </div>
             <div class="cast-player" data-player>
               <div class="player-controls">
-                <button type="button" class="js-player-play">Play</button>
-                <button type="button" class="js-player-pause">Pause</button>
-                <button type="button" class="js-player-restart">Restart</button>
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Original / libarchive / archive-read-api-smoke">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Original / libarchive / archive-read-api-smoke">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Original / libarchive / archive-read-api-smoke">Restart</button>
                 <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
                 <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
               </div>
-              <pre class="terminal" aria-live="polite"></pre>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Original / libarchive / archive-read-api-smoke"></pre>
             </div>
           </div>
         </details>
@@ -194,31 +203,32 @@
           <summary>
             <span class="case-title">
               <strong>python-libarchive-c tar list</strong>
-              <span class="case-id">original / libarchive / usage-python-libarchive-c-tar-list</span>
+              <span class="case-id">Original / libarchive / usage-python-libarchive-c-tar-list</span>
             </span>
-            <span class="status-pill status-passed">Passed</span>
+            <span class="status-pill status-passed" aria-label="Original / libarchive / usage-python-libarchive-c-tar-list status: Passed">Passed</span>
           </summary>
           <div class="case-body">
             <p>Uses python-libarchive-c to list entries from a tar archive through libarchive.</p>
             <dl class="case-meta">
+              <div><dt>Run</dt><dd>Original</dd></div>
               <div><dt>Kind</dt><dd>usage</dd></div>
               <div><dt>Client</dt><dd>python3-libarchive-c</dd></div>
               <div><dt>Duration</dt><dd>0.00s</dd></div>
               <div><dt>Tags</dt><dd class="tags"><span>usage</span> <span>archive</span></dd></div>
             </dl>
             <div class="case-actions">
-              <a class="log-link" href="../evidence/original/logs/libarchive/usage-python-libarchive-c-tar-list.log">Log</a>
-              <button type="button" class="play-button js-load-cast" data-cast="../evidence/original/casts/libarchive/usage-python-libarchive-c-tar-list.cast">Play</button>
+              <a class="log-link" href="../evidence/original/logs/libarchive/usage-python-libarchive-c-tar-list.log" aria-label="Open log for Original / libarchive / usage-python-libarchive-c-tar-list">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/original/casts/libarchive/usage-python-libarchive-c-tar-list.cast" aria-label="Play cast for Original / libarchive / usage-python-libarchive-c-tar-list">Play</button>
             </div>
             <div class="cast-player" data-player>
               <div class="player-controls">
-                <button type="button" class="js-player-play">Play</button>
-                <button type="button" class="js-player-pause">Pause</button>
-                <button type="button" class="js-player-restart">Restart</button>
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Original / libarchive / usage-python-libarchive-c-tar-list">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Original / libarchive / usage-python-libarchive-c-tar-list">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Original / libarchive / usage-python-libarchive-c-tar-list">Restart</button>
                 <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
                 <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
               </div>
-              <pre class="terminal" aria-live="polite"></pre>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Original / libarchive / usage-python-libarchive-c-tar-list"></pre>
             </div>
           </div>
         </details>
@@ -226,31 +236,32 @@
           <summary>
             <span class="case-title">
               <strong>python-libarchive-c tar extract</strong>
-              <span class="case-id">original / libarchive / usage-python-libarchive-c-tar-extract</span>
+              <span class="case-id">Original / libarchive / usage-python-libarchive-c-tar-extract</span>
             </span>
-            <span class="status-pill status-passed">Passed</span>
+            <span class="status-pill status-passed" aria-label="Original / libarchive / usage-python-libarchive-c-tar-extract status: Passed">Passed</span>
           </summary>
           <div class="case-body">
             <p>Uses python-libarchive-c to extract files from a tar archive through libarchive.</p>
             <dl class="case-meta">
+              <div><dt>Run</dt><dd>Original</dd></div>
               <div><dt>Kind</dt><dd>usage</dd></div>
               <div><dt>Client</dt><dd>python3-libarchive-c</dd></div>
               <div><dt>Duration</dt><dd>0.00s</dd></div>
               <div><dt>Tags</dt><dd class="tags"><span>usage</span> <span>archive</span></dd></div>
             </dl>
             <div class="case-actions">
-              <a class="log-link" href="../evidence/original/logs/libarchive/usage-python-libarchive-c-tar-extract.log">Log</a>
-              <button type="button" class="play-button js-load-cast" data-cast="../evidence/original/casts/libarchive/usage-python-libarchive-c-tar-extract.cast">Play</button>
+              <a class="log-link" href="../evidence/original/logs/libarchive/usage-python-libarchive-c-tar-extract.log" aria-label="Open log for Original / libarchive / usage-python-libarchive-c-tar-extract">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/original/casts/libarchive/usage-python-libarchive-c-tar-extract.cast" aria-label="Play cast for Original / libarchive / usage-python-libarchive-c-tar-extract">Play</button>
             </div>
             <div class="cast-player" data-player>
               <div class="player-controls">
-                <button type="button" class="js-player-play">Play</button>
-                <button type="button" class="js-player-pause">Pause</button>
-                <button type="button" class="js-player-restart">Restart</button>
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Original / libarchive / usage-python-libarchive-c-tar-extract">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Original / libarchive / usage-python-libarchive-c-tar-extract">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Original / libarchive / usage-python-libarchive-c-tar-extract">Restart</button>
                 <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
                 <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
               </div>
-              <pre class="terminal" aria-live="polite"></pre>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Original / libarchive / usage-python-libarchive-c-tar-extract"></pre>
             </div>
           </div>
         </details>
@@ -258,31 +269,32 @@
           <summary>
             <span class="case-title">
               <strong>python-libarchive-c metadata read</strong>
-              <span class="case-id">original / libarchive / usage-python-libarchive-c-metadata-read</span>
+              <span class="case-id">Original / libarchive / usage-python-libarchive-c-metadata-read</span>
             </span>
-            <span class="status-pill status-passed">Passed</span>
+            <span class="status-pill status-passed" aria-label="Original / libarchive / usage-python-libarchive-c-metadata-read status: Passed">Passed</span>
           </summary>
           <div class="case-body">
             <p>Uses python-libarchive-c to read archive entry paths and sizes through libarchive.</p>
             <dl class="case-meta">
+              <div><dt>Run</dt><dd>Original</dd></div>
               <div><dt>Kind</dt><dd>usage</dd></div>
               <div><dt>Client</dt><dd>python3-libarchive-c</dd></div>
               <div><dt>Duration</dt><dd>0.00s</dd></div>
               <div><dt>Tags</dt><dd class="tags"><span>usage</span> <span>archive</span></dd></div>
             </dl>
             <div class="case-actions">
-              <a class="log-link" href="../evidence/original/logs/libarchive/usage-python-libarchive-c-metadata-read.log">Log</a>
-              <button type="button" class="play-button js-load-cast" data-cast="../evidence/original/casts/libarchive/usage-python-libarchive-c-metadata-read.cast">Play</button>
+              <a class="log-link" href="../evidence/original/logs/libarchive/usage-python-libarchive-c-metadata-read.log" aria-label="Open log for Original / libarchive / usage-python-libarchive-c-metadata-read">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/original/casts/libarchive/usage-python-libarchive-c-metadata-read.cast" aria-label="Play cast for Original / libarchive / usage-python-libarchive-c-metadata-read">Play</button>
             </div>
             <div class="cast-player" data-player>
               <div class="player-controls">
-                <button type="button" class="js-player-play">Play</button>
-                <button type="button" class="js-player-pause">Pause</button>
-                <button type="button" class="js-player-restart">Restart</button>
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Original / libarchive / usage-python-libarchive-c-metadata-read">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Original / libarchive / usage-python-libarchive-c-metadata-read">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Original / libarchive / usage-python-libarchive-c-metadata-read">Restart</button>
                 <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
                 <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
               </div>
-              <pre class="terminal" aria-live="polite"></pre>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Original / libarchive / usage-python-libarchive-c-metadata-read"></pre>
             </div>
           </div>
         </details>
@@ -290,31 +302,32 @@
           <summary>
             <span class="case-title">
               <strong>python-libarchive-c stream read</strong>
-              <span class="case-id">original / libarchive / usage-python-libarchive-c-stream-read</span>
+              <span class="case-id">Original / libarchive / usage-python-libarchive-c-stream-read</span>
             </span>
-            <span class="status-pill status-passed">Passed</span>
+            <span class="status-pill status-passed" aria-label="Original / libarchive / usage-python-libarchive-c-stream-read status: Passed">Passed</span>
           </summary>
           <div class="case-body">
             <p>Uses python-libarchive-c to stream archive entries through libarchive.</p>
             <dl class="case-meta">
+              <div><dt>Run</dt><dd>Original</dd></div>
               <div><dt>Kind</dt><dd>usage</dd></div>
               <div><dt>Client</dt><dd>python3-libarchive-c</dd></div>
               <div><dt>Duration</dt><dd>0.00s</dd></div>
               <div><dt>Tags</dt><dd class="tags"><span>usage</span> <span>archive</span></dd></div>
             </dl>
             <div class="case-actions">
-              <a class="log-link" href="../evidence/original/logs/libarchive/usage-python-libarchive-c-stream-read.log">Log</a>
-              <button type="button" class="play-button js-load-cast" data-cast="../evidence/original/casts/libarchive/usage-python-libarchive-c-stream-read.cast">Play</button>
+              <a class="log-link" href="../evidence/original/logs/libarchive/usage-python-libarchive-c-stream-read.log" aria-label="Open log for Original / libarchive / usage-python-libarchive-c-stream-read">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/original/casts/libarchive/usage-python-libarchive-c-stream-read.cast" aria-label="Play cast for Original / libarchive / usage-python-libarchive-c-stream-read">Play</button>
             </div>
             <div class="cast-player" data-player>
               <div class="player-controls">
-                <button type="button" class="js-player-play">Play</button>
-                <button type="button" class="js-player-pause">Pause</button>
-                <button type="button" class="js-player-restart">Restart</button>
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Original / libarchive / usage-python-libarchive-c-stream-read">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Original / libarchive / usage-python-libarchive-c-stream-read">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Original / libarchive / usage-python-libarchive-c-stream-read">Restart</button>
                 <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
                 <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
               </div>
-              <pre class="terminal" aria-live="polite"></pre>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Original / libarchive / usage-python-libarchive-c-stream-read"></pre>
             </div>
           </div>
         </details>
@@ -322,31 +335,32 @@
           <summary>
             <span class="case-title">
               <strong>python-libarchive-c file roundtrip</strong>
-              <span class="case-id">original / libarchive / usage-python-libarchive-c-file-roundtrip</span>
+              <span class="case-id">Original / libarchive / usage-python-libarchive-c-file-roundtrip</span>
             </span>
-            <span class="status-pill status-passed">Passed</span>
+            <span class="status-pill status-passed" aria-label="Original / libarchive / usage-python-libarchive-c-file-roundtrip status: Passed">Passed</span>
           </summary>
           <div class="case-body">
             <p>Uses python-libarchive-c to write and read multiple files through libarchive.</p>
             <dl class="case-meta">
+              <div><dt>Run</dt><dd>Original</dd></div>
               <div><dt>Kind</dt><dd>usage</dd></div>
               <div><dt>Client</dt><dd>python3-libarchive-c</dd></div>
               <div><dt>Duration</dt><dd>0.00s</dd></div>
               <div><dt>Tags</dt><dd class="tags"><span>usage</span> <span>archive</span></dd></div>
             </dl>
             <div class="case-actions">
-              <a class="log-link" href="../evidence/original/logs/libarchive/usage-python-libarchive-c-file-roundtrip.log">Log</a>
-              <button type="button" class="play-button js-load-cast" data-cast="../evidence/original/casts/libarchive/usage-python-libarchive-c-file-roundtrip.cast">Play</button>
+              <a class="log-link" href="../evidence/original/logs/libarchive/usage-python-libarchive-c-file-roundtrip.log" aria-label="Open log for Original / libarchive / usage-python-libarchive-c-file-roundtrip">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/original/casts/libarchive/usage-python-libarchive-c-file-roundtrip.cast" aria-label="Play cast for Original / libarchive / usage-python-libarchive-c-file-roundtrip">Play</button>
             </div>
             <div class="cast-player" data-player>
               <div class="player-controls">
-                <button type="button" class="js-player-play">Play</button>
-                <button type="button" class="js-player-pause">Pause</button>
-                <button type="button" class="js-player-restart">Restart</button>
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Original / libarchive / usage-python-libarchive-c-file-roundtrip">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Original / libarchive / usage-python-libarchive-c-file-roundtrip">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Original / libarchive / usage-python-libarchive-c-file-roundtrip">Restart</button>
                 <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
                 <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
               </div>
-              <pre class="terminal" aria-live="polite"></pre>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Original / libarchive / usage-python-libarchive-c-file-roundtrip"></pre>
             </div>
           </div>
         </details>
@@ -354,31 +368,32 @@
           <summary>
             <span class="case-title">
               <strong>python-libarchive-c directory entry</strong>
-              <span class="case-id">original / libarchive / usage-python-libarchive-c-directory-entry</span>
+              <span class="case-id">Original / libarchive / usage-python-libarchive-c-directory-entry</span>
             </span>
-            <span class="status-pill status-passed">Passed</span>
+            <span class="status-pill status-passed" aria-label="Original / libarchive / usage-python-libarchive-c-directory-entry status: Passed">Passed</span>
           </summary>
           <div class="case-body">
             <p>Uses python-libarchive-c to handle directory entries through libarchive.</p>
             <dl class="case-meta">
+              <div><dt>Run</dt><dd>Original</dd></div>
               <div><dt>Kind</dt><dd>usage</dd></div>
               <div><dt>Client</dt><dd>python3-libarchive-c</dd></div>
               <div><dt>Duration</dt><dd>0.00s</dd></div>
               <div><dt>Tags</dt><dd class="tags"><span>usage</span> <span>archive</span></dd></div>
             </dl>
             <div class="case-actions">
-              <a class="log-link" href="../evidence/original/logs/libarchive/usage-python-libarchive-c-directory-entry.log">Log</a>
-              <button type="button" class="play-button js-load-cast" data-cast="../evidence/original/casts/libarchive/usage-python-libarchive-c-directory-entry.cast">Play</button>
+              <a class="log-link" href="../evidence/original/logs/libarchive/usage-python-libarchive-c-directory-entry.log" aria-label="Open log for Original / libarchive / usage-python-libarchive-c-directory-entry">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/original/casts/libarchive/usage-python-libarchive-c-directory-entry.cast" aria-label="Play cast for Original / libarchive / usage-python-libarchive-c-directory-entry">Play</button>
             </div>
             <div class="cast-player" data-player>
               <div class="player-controls">
-                <button type="button" class="js-player-play">Play</button>
-                <button type="button" class="js-player-pause">Pause</button>
-                <button type="button" class="js-player-restart">Restart</button>
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Original / libarchive / usage-python-libarchive-c-directory-entry">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Original / libarchive / usage-python-libarchive-c-directory-entry">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Original / libarchive / usage-python-libarchive-c-directory-entry">Restart</button>
                 <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
                 <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
               </div>
-              <pre class="terminal" aria-live="polite"></pre>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Original / libarchive / usage-python-libarchive-c-directory-entry"></pre>
             </div>
           </div>
         </details>
@@ -386,31 +401,32 @@
           <summary>
             <span class="case-title">
               <strong>python-libarchive-c copy mode</strong>
-              <span class="case-id">original / libarchive / usage-python-libarchive-c-copy-mode</span>
+              <span class="case-id">Original / libarchive / usage-python-libarchive-c-copy-mode</span>
             </span>
-            <span class="status-pill status-passed">Passed</span>
+            <span class="status-pill status-passed" aria-label="Original / libarchive / usage-python-libarchive-c-copy-mode status: Passed">Passed</span>
           </summary>
           <div class="case-body">
             <p>Uses python-libarchive-c to copy archived files through libarchive.</p>
             <dl class="case-meta">
+              <div><dt>Run</dt><dd>Original</dd></div>
               <div><dt>Kind</dt><dd>usage</dd></div>
               <div><dt>Client</dt><dd>python3-libarchive-c</dd></div>
               <div><dt>Duration</dt><dd>0.00s</dd></div>
               <div><dt>Tags</dt><dd class="tags"><span>usage</span> <span>archive</span></dd></div>
             </dl>
             <div class="case-actions">
-              <a class="log-link" href="../evidence/original/logs/libarchive/usage-python-libarchive-c-copy-mode.log">Log</a>
-              <button type="button" class="play-button js-load-cast" data-cast="../evidence/original/casts/libarchive/usage-python-libarchive-c-copy-mode.cast">Play</button>
+              <a class="log-link" href="../evidence/original/logs/libarchive/usage-python-libarchive-c-copy-mode.log" aria-label="Open log for Original / libarchive / usage-python-libarchive-c-copy-mode">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/original/casts/libarchive/usage-python-libarchive-c-copy-mode.cast" aria-label="Play cast for Original / libarchive / usage-python-libarchive-c-copy-mode">Play</button>
             </div>
             <div class="cast-player" data-player>
               <div class="player-controls">
-                <button type="button" class="js-player-play">Play</button>
-                <button type="button" class="js-player-pause">Pause</button>
-                <button type="button" class="js-player-restart">Restart</button>
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Original / libarchive / usage-python-libarchive-c-copy-mode">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Original / libarchive / usage-python-libarchive-c-copy-mode">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Original / libarchive / usage-python-libarchive-c-copy-mode">Restart</button>
                 <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
                 <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
               </div>
-              <pre class="terminal" aria-live="polite"></pre>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Original / libarchive / usage-python-libarchive-c-copy-mode"></pre>
             </div>
           </div>
         </details>
@@ -418,31 +434,32 @@
           <summary>
             <span class="case-title">
               <strong>python-libarchive-c gzip filter</strong>
-              <span class="case-id">original / libarchive / usage-python-libarchive-c-gzip-filter</span>
+              <span class="case-id">Original / libarchive / usage-python-libarchive-c-gzip-filter</span>
             </span>
-            <span class="status-pill status-passed">Passed</span>
+            <span class="status-pill status-passed" aria-label="Original / libarchive / usage-python-libarchive-c-gzip-filter status: Passed">Passed</span>
           </summary>
           <div class="case-body">
             <p>Uses python-libarchive-c to read a gzip-filtered archive through libarchive.</p>
             <dl class="case-meta">
+              <div><dt>Run</dt><dd>Original</dd></div>
               <div><dt>Kind</dt><dd>usage</dd></div>
               <div><dt>Client</dt><dd>python3-libarchive-c</dd></div>
               <div><dt>Duration</dt><dd>0.00s</dd></div>
               <div><dt>Tags</dt><dd class="tags"><span>usage</span> <span>archive</span></dd></div>
             </dl>
             <div class="case-actions">
-              <a class="log-link" href="../evidence/original/logs/libarchive/usage-python-libarchive-c-gzip-filter.log">Log</a>
-              <button type="button" class="play-button js-load-cast" data-cast="../evidence/original/casts/libarchive/usage-python-libarchive-c-gzip-filter.cast">Play</button>
+              <a class="log-link" href="../evidence/original/logs/libarchive/usage-python-libarchive-c-gzip-filter.log" aria-label="Open log for Original / libarchive / usage-python-libarchive-c-gzip-filter">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/original/casts/libarchive/usage-python-libarchive-c-gzip-filter.cast" aria-label="Play cast for Original / libarchive / usage-python-libarchive-c-gzip-filter">Play</button>
             </div>
             <div class="cast-player" data-player>
               <div class="player-controls">
-                <button type="button" class="js-player-play">Play</button>
-                <button type="button" class="js-player-pause">Pause</button>
-                <button type="button" class="js-player-restart">Restart</button>
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Original / libarchive / usage-python-libarchive-c-gzip-filter">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Original / libarchive / usage-python-libarchive-c-gzip-filter">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Original / libarchive / usage-python-libarchive-c-gzip-filter">Restart</button>
                 <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
                 <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
               </div>
-              <pre class="terminal" aria-live="polite"></pre>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Original / libarchive / usage-python-libarchive-c-gzip-filter"></pre>
             </div>
           </div>
         </details>
@@ -450,31 +467,32 @@
           <summary>
             <span class="case-title">
               <strong>python-libarchive-c zip roundtrip</strong>
-              <span class="case-id">original / libarchive / usage-python-libarchive-c-zip-roundtrip</span>
+              <span class="case-id">Original / libarchive / usage-python-libarchive-c-zip-roundtrip</span>
             </span>
-            <span class="status-pill status-passed">Passed</span>
+            <span class="status-pill status-passed" aria-label="Original / libarchive / usage-python-libarchive-c-zip-roundtrip status: Passed">Passed</span>
           </summary>
           <div class="case-body">
             <p>Uses python-libarchive-c to write and read ZIP archive entries through libarchive.</p>
             <dl class="case-meta">
+              <div><dt>Run</dt><dd>Original</dd></div>
               <div><dt>Kind</dt><dd>usage</dd></div>
               <div><dt>Client</dt><dd>python3-libarchive-c</dd></div>
               <div><dt>Duration</dt><dd>0.00s</dd></div>
               <div><dt>Tags</dt><dd class="tags"><span>usage</span> <span>archive</span></dd></div>
             </dl>
             <div class="case-actions">
-              <a class="log-link" href="../evidence/original/logs/libarchive/usage-python-libarchive-c-zip-roundtrip.log">Log</a>
-              <button type="button" class="play-button js-load-cast" data-cast="../evidence/original/casts/libarchive/usage-python-libarchive-c-zip-roundtrip.cast">Play</button>
+              <a class="log-link" href="../evidence/original/logs/libarchive/usage-python-libarchive-c-zip-roundtrip.log" aria-label="Open log for Original / libarchive / usage-python-libarchive-c-zip-roundtrip">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/original/casts/libarchive/usage-python-libarchive-c-zip-roundtrip.cast" aria-label="Play cast for Original / libarchive / usage-python-libarchive-c-zip-roundtrip">Play</button>
             </div>
             <div class="cast-player" data-player>
               <div class="player-controls">
-                <button type="button" class="js-player-play">Play</button>
-                <button type="button" class="js-player-pause">Pause</button>
-                <button type="button" class="js-player-restart">Restart</button>
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Original / libarchive / usage-python-libarchive-c-zip-roundtrip">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Original / libarchive / usage-python-libarchive-c-zip-roundtrip">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Original / libarchive / usage-python-libarchive-c-zip-roundtrip">Restart</button>
                 <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
                 <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
               </div>
-              <pre class="terminal" aria-live="polite"></pre>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Original / libarchive / usage-python-libarchive-c-zip-roundtrip"></pre>
             </div>
           </div>
         </details>
@@ -482,31 +500,32 @@
           <summary>
             <span class="case-title">
               <strong>python-libarchive-c nested paths</strong>
-              <span class="case-id">original / libarchive / usage-python-libarchive-c-nested-paths</span>
+              <span class="case-id">Original / libarchive / usage-python-libarchive-c-nested-paths</span>
             </span>
-            <span class="status-pill status-passed">Passed</span>
+            <span class="status-pill status-passed" aria-label="Original / libarchive / usage-python-libarchive-c-nested-paths status: Passed">Passed</span>
           </summary>
           <div class="case-body">
             <p>Uses python-libarchive-c to preserve nested and spaced entry paths through libarchive.</p>
             <dl class="case-meta">
+              <div><dt>Run</dt><dd>Original</dd></div>
               <div><dt>Kind</dt><dd>usage</dd></div>
               <div><dt>Client</dt><dd>python3-libarchive-c</dd></div>
               <div><dt>Duration</dt><dd>0.00s</dd></div>
               <div><dt>Tags</dt><dd class="tags"><span>usage</span> <span>archive</span></dd></div>
             </dl>
             <div class="case-actions">
-              <a class="log-link" href="../evidence/original/logs/libarchive/usage-python-libarchive-c-nested-paths.log">Log</a>
-              <button type="button" class="play-button js-load-cast" data-cast="../evidence/original/casts/libarchive/usage-python-libarchive-c-nested-paths.cast">Play</button>
+              <a class="log-link" href="../evidence/original/logs/libarchive/usage-python-libarchive-c-nested-paths.log" aria-label="Open log for Original / libarchive / usage-python-libarchive-c-nested-paths">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/original/casts/libarchive/usage-python-libarchive-c-nested-paths.cast" aria-label="Play cast for Original / libarchive / usage-python-libarchive-c-nested-paths">Play</button>
             </div>
             <div class="cast-player" data-player>
               <div class="player-controls">
-                <button type="button" class="js-player-play">Play</button>
-                <button type="button" class="js-player-pause">Pause</button>
-                <button type="button" class="js-player-restart">Restart</button>
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Original / libarchive / usage-python-libarchive-c-nested-paths">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Original / libarchive / usage-python-libarchive-c-nested-paths">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Original / libarchive / usage-python-libarchive-c-nested-paths">Restart</button>
                 <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
                 <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
               </div>
-              <pre class="terminal" aria-live="polite"></pre>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Original / libarchive / usage-python-libarchive-c-nested-paths"></pre>
             </div>
           </div>
         </details>
@@ -514,31 +533,32 @@
           <summary>
             <span class="case-title">
               <strong>bsdtar tar and zip round trip</strong>
-              <span class="case-id">port-04-test / libarchive / bsdtar-tar-zip-roundtrip</span>
+              <span class="case-id">Port / libarchive / bsdtar-tar-zip-roundtrip</span>
             </span>
-            <span class="status-pill status-passed">Passed</span>
+            <span class="status-pill status-passed" aria-label="Port / libarchive / bsdtar-tar-zip-roundtrip status: Passed">Passed</span>
           </summary>
           <div class="case-body">
             <p>Creates tar and zip archives then extracts both with bsdtar.</p>
             <dl class="case-meta">
+              <div><dt>Run</dt><dd>Port</dd></div>
               <div><dt>Kind</dt><dd>source</dd></div>
               <div><dt>Client</dt><dd>none</dd></div>
               <div><dt>Duration</dt><dd>0.00s</dd></div>
               <div><dt>Tags</dt><dd class="tags"><span>cli</span> <span>archive</span></dd></div>
             </dl>
             <div class="case-actions">
-              <a class="log-link" href="../evidence/port-04-test/logs/libarchive/bsdtar-tar-zip-roundtrip.log">Log</a>
-              <button type="button" class="play-button js-load-cast" data-cast="../evidence/port-04-test/casts/libarchive/bsdtar-tar-zip-roundtrip.cast">Play</button>
+              <a class="log-link" href="../evidence/port-04-test/logs/libarchive/bsdtar-tar-zip-roundtrip.log" aria-label="Open log for Port / libarchive / bsdtar-tar-zip-roundtrip">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/port-04-test/casts/libarchive/bsdtar-tar-zip-roundtrip.cast" aria-label="Play cast for Port / libarchive / bsdtar-tar-zip-roundtrip">Play</button>
             </div>
             <div class="cast-player" data-player>
               <div class="player-controls">
-                <button type="button" class="js-player-play">Play</button>
-                <button type="button" class="js-player-pause">Pause</button>
-                <button type="button" class="js-player-restart">Restart</button>
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Port / libarchive / bsdtar-tar-zip-roundtrip">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Port / libarchive / bsdtar-tar-zip-roundtrip">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Port / libarchive / bsdtar-tar-zip-roundtrip">Restart</button>
                 <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
                 <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
               </div>
-              <pre class="terminal" aria-live="polite"></pre>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Port / libarchive / bsdtar-tar-zip-roundtrip"></pre>
             </div>
           </div>
         </details>
@@ -546,31 +566,32 @@
           <summary>
             <span class="case-title">
               <strong>bsdcpio copy archive round trip</strong>
-              <span class="case-id">port-04-test / libarchive / bsdcpio-copy-roundtrip</span>
+              <span class="case-id">Port / libarchive / bsdcpio-copy-roundtrip</span>
             </span>
-            <span class="status-pill status-passed">Passed</span>
+            <span class="status-pill status-passed" aria-label="Port / libarchive / bsdcpio-copy-roundtrip status: Passed">Passed</span>
           </summary>
           <div class="case-body">
             <p>Copies files into and out of a newc archive using bsdcpio.</p>
             <dl class="case-meta">
+              <div><dt>Run</dt><dd>Port</dd></div>
               <div><dt>Kind</dt><dd>source</dd></div>
               <div><dt>Client</dt><dd>none</dd></div>
               <div><dt>Duration</dt><dd>0.00s</dd></div>
               <div><dt>Tags</dt><dd class="tags"><span>cli</span> <span>archive</span></dd></div>
             </dl>
             <div class="case-actions">
-              <a class="log-link" href="../evidence/port-04-test/logs/libarchive/bsdcpio-copy-roundtrip.log">Log</a>
-              <button type="button" class="play-button js-load-cast" data-cast="../evidence/port-04-test/casts/libarchive/bsdcpio-copy-roundtrip.cast">Play</button>
+              <a class="log-link" href="../evidence/port-04-test/logs/libarchive/bsdcpio-copy-roundtrip.log" aria-label="Open log for Port / libarchive / bsdcpio-copy-roundtrip">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/port-04-test/casts/libarchive/bsdcpio-copy-roundtrip.cast" aria-label="Play cast for Port / libarchive / bsdcpio-copy-roundtrip">Play</button>
             </div>
             <div class="cast-player" data-player>
               <div class="player-controls">
-                <button type="button" class="js-player-play">Play</button>
-                <button type="button" class="js-player-pause">Pause</button>
-                <button type="button" class="js-player-restart">Restart</button>
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Port / libarchive / bsdcpio-copy-roundtrip">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Port / libarchive / bsdcpio-copy-roundtrip">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Port / libarchive / bsdcpio-copy-roundtrip">Restart</button>
                 <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
                 <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
               </div>
-              <pre class="terminal" aria-live="polite"></pre>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Port / libarchive / bsdcpio-copy-roundtrip"></pre>
             </div>
           </div>
         </details>
@@ -578,31 +599,32 @@
           <summary>
             <span class="case-title">
               <strong>Archive metadata listing behavior</strong>
-              <span class="case-id">port-04-test / libarchive / archive-metadata-listing</span>
+              <span class="case-id">Port / libarchive / archive-metadata-listing</span>
             </span>
-            <span class="status-pill status-passed">Passed</span>
+            <span class="status-pill status-passed" aria-label="Port / libarchive / archive-metadata-listing status: Passed">Passed</span>
           </summary>
           <div class="case-body">
             <p>Lists archive metadata including modes and symbolic link entries.</p>
             <dl class="case-meta">
+              <div><dt>Run</dt><dd>Port</dd></div>
               <div><dt>Kind</dt><dd>source</dd></div>
               <div><dt>Client</dt><dd>none</dd></div>
               <div><dt>Duration</dt><dd>0.00s</dd></div>
               <div><dt>Tags</dt><dd class="tags"><span>cli</span> <span>metadata</span></dd></div>
             </dl>
             <div class="case-actions">
-              <a class="log-link" href="../evidence/port-04-test/logs/libarchive/archive-metadata-listing.log">Log</a>
-              <button type="button" class="play-button js-load-cast" data-cast="../evidence/port-04-test/casts/libarchive/archive-metadata-listing.cast">Play</button>
+              <a class="log-link" href="../evidence/port-04-test/logs/libarchive/archive-metadata-listing.log" aria-label="Open log for Port / libarchive / archive-metadata-listing">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/port-04-test/casts/libarchive/archive-metadata-listing.cast" aria-label="Play cast for Port / libarchive / archive-metadata-listing">Play</button>
             </div>
             <div class="cast-player" data-player>
               <div class="player-controls">
-                <button type="button" class="js-player-play">Play</button>
-                <button type="button" class="js-player-pause">Pause</button>
-                <button type="button" class="js-player-restart">Restart</button>
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Port / libarchive / archive-metadata-listing">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Port / libarchive / archive-metadata-listing">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Port / libarchive / archive-metadata-listing">Restart</button>
                 <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
                 <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
               </div>
-              <pre class="terminal" aria-live="polite"></pre>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Port / libarchive / archive-metadata-listing"></pre>
             </div>
           </div>
         </details>
@@ -610,31 +632,32 @@
           <summary>
             <span class="case-title">
               <strong>Path traversal rejection</strong>
-              <span class="case-id">port-04-test / libarchive / path-traversal-rejection</span>
+              <span class="case-id">Port / libarchive / path-traversal-rejection</span>
             </span>
-            <span class="status-pill status-passed">Passed</span>
+            <span class="status-pill status-passed" aria-label="Port / libarchive / path-traversal-rejection status: Passed">Passed</span>
           </summary>
           <div class="case-body">
             <p>Verifies bsdtar rejects archive entries that would escape extraction.</p>
             <dl class="case-meta">
+              <div><dt>Run</dt><dd>Port</dd></div>
               <div><dt>Kind</dt><dd>source</dd></div>
               <div><dt>Client</dt><dd>none</dd></div>
               <div><dt>Duration</dt><dd>0.00s</dd></div>
               <div><dt>Tags</dt><dd class="tags"><span>cli</span> <span>negative</span></dd></div>
             </dl>
             <div class="case-actions">
-              <a class="log-link" href="../evidence/port-04-test/logs/libarchive/path-traversal-rejection.log">Log</a>
-              <button type="button" class="play-button js-load-cast" data-cast="../evidence/port-04-test/casts/libarchive/path-traversal-rejection.cast">Play</button>
+              <a class="log-link" href="../evidence/port-04-test/logs/libarchive/path-traversal-rejection.log" aria-label="Open log for Port / libarchive / path-traversal-rejection">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/port-04-test/casts/libarchive/path-traversal-rejection.cast" aria-label="Play cast for Port / libarchive / path-traversal-rejection">Play</button>
             </div>
             <div class="cast-player" data-player>
               <div class="player-controls">
-                <button type="button" class="js-player-play">Play</button>
-                <button type="button" class="js-player-pause">Pause</button>
-                <button type="button" class="js-player-restart">Restart</button>
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Port / libarchive / path-traversal-rejection">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Port / libarchive / path-traversal-rejection">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Port / libarchive / path-traversal-rejection">Restart</button>
                 <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
                 <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
               </div>
-              <pre class="terminal" aria-live="polite"></pre>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Port / libarchive / path-traversal-rejection"></pre>
             </div>
           </div>
         </details>
@@ -642,31 +665,32 @@
           <summary>
             <span class="case-title">
               <strong>archive read API smoke</strong>
-              <span class="case-id">port-04-test / libarchive / archive-read-api-smoke</span>
+              <span class="case-id">Port / libarchive / archive-read-api-smoke</span>
             </span>
-            <span class="status-pill status-passed">Passed</span>
+            <span class="status-pill status-passed" aria-label="Port / libarchive / archive-read-api-smoke status: Passed">Passed</span>
           </summary>
           <div class="case-body">
             <p>Compiles and runs a libarchive archive_read API listing program.</p>
             <dl class="case-meta">
+              <div><dt>Run</dt><dd>Port</dd></div>
               <div><dt>Kind</dt><dd>source</dd></div>
               <div><dt>Client</dt><dd>none</dd></div>
               <div><dt>Duration</dt><dd>0.00s</dd></div>
               <div><dt>Tags</dt><dd class="tags"><span>api</span> <span>compile</span></dd></div>
             </dl>
             <div class="case-actions">
-              <a class="log-link" href="../evidence/port-04-test/logs/libarchive/archive-read-api-smoke.log">Log</a>
-              <button type="button" class="play-button js-load-cast" data-cast="../evidence/port-04-test/casts/libarchive/archive-read-api-smoke.cast">Play</button>
+              <a class="log-link" href="../evidence/port-04-test/logs/libarchive/archive-read-api-smoke.log" aria-label="Open log for Port / libarchive / archive-read-api-smoke">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/port-04-test/casts/libarchive/archive-read-api-smoke.cast" aria-label="Play cast for Port / libarchive / archive-read-api-smoke">Play</button>
             </div>
             <div class="cast-player" data-player>
               <div class="player-controls">
-                <button type="button" class="js-player-play">Play</button>
-                <button type="button" class="js-player-pause">Pause</button>
-                <button type="button" class="js-player-restart">Restart</button>
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Port / libarchive / archive-read-api-smoke">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Port / libarchive / archive-read-api-smoke">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Port / libarchive / archive-read-api-smoke">Restart</button>
                 <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
                 <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
               </div>
-              <pre class="terminal" aria-live="polite"></pre>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Port / libarchive / archive-read-api-smoke"></pre>
             </div>
           </div>
         </details>
@@ -674,31 +698,32 @@
           <summary>
             <span class="case-title">
               <strong>python-libarchive-c tar list</strong>
-              <span class="case-id">port-04-test / libarchive / usage-python-libarchive-c-tar-list</span>
+              <span class="case-id">Port / libarchive / usage-python-libarchive-c-tar-list</span>
             </span>
-            <span class="status-pill status-passed">Passed</span>
+            <span class="status-pill status-passed" aria-label="Port / libarchive / usage-python-libarchive-c-tar-list status: Passed">Passed</span>
           </summary>
           <div class="case-body">
             <p>Uses python-libarchive-c to list entries from a tar archive through libarchive.</p>
             <dl class="case-meta">
+              <div><dt>Run</dt><dd>Port</dd></div>
               <div><dt>Kind</dt><dd>usage</dd></div>
               <div><dt>Client</dt><dd>python3-libarchive-c</dd></div>
               <div><dt>Duration</dt><dd>0.00s</dd></div>
               <div><dt>Tags</dt><dd class="tags"><span>usage</span> <span>archive</span></dd></div>
             </dl>
             <div class="case-actions">
-              <a class="log-link" href="../evidence/port-04-test/logs/libarchive/usage-python-libarchive-c-tar-list.log">Log</a>
-              <button type="button" class="play-button js-load-cast" data-cast="../evidence/port-04-test/casts/libarchive/usage-python-libarchive-c-tar-list.cast">Play</button>
+              <a class="log-link" href="../evidence/port-04-test/logs/libarchive/usage-python-libarchive-c-tar-list.log" aria-label="Open log for Port / libarchive / usage-python-libarchive-c-tar-list">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/port-04-test/casts/libarchive/usage-python-libarchive-c-tar-list.cast" aria-label="Play cast for Port / libarchive / usage-python-libarchive-c-tar-list">Play</button>
             </div>
             <div class="cast-player" data-player>
               <div class="player-controls">
-                <button type="button" class="js-player-play">Play</button>
-                <button type="button" class="js-player-pause">Pause</button>
-                <button type="button" class="js-player-restart">Restart</button>
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Port / libarchive / usage-python-libarchive-c-tar-list">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Port / libarchive / usage-python-libarchive-c-tar-list">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Port / libarchive / usage-python-libarchive-c-tar-list">Restart</button>
                 <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
                 <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
               </div>
-              <pre class="terminal" aria-live="polite"></pre>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Port / libarchive / usage-python-libarchive-c-tar-list"></pre>
             </div>
           </div>
         </details>
@@ -706,31 +731,32 @@
           <summary>
             <span class="case-title">
               <strong>python-libarchive-c tar extract</strong>
-              <span class="case-id">port-04-test / libarchive / usage-python-libarchive-c-tar-extract</span>
+              <span class="case-id">Port / libarchive / usage-python-libarchive-c-tar-extract</span>
             </span>
-            <span class="status-pill status-passed">Passed</span>
+            <span class="status-pill status-passed" aria-label="Port / libarchive / usage-python-libarchive-c-tar-extract status: Passed">Passed</span>
           </summary>
           <div class="case-body">
             <p>Uses python-libarchive-c to extract files from a tar archive through libarchive.</p>
             <dl class="case-meta">
+              <div><dt>Run</dt><dd>Port</dd></div>
               <div><dt>Kind</dt><dd>usage</dd></div>
               <div><dt>Client</dt><dd>python3-libarchive-c</dd></div>
               <div><dt>Duration</dt><dd>0.00s</dd></div>
               <div><dt>Tags</dt><dd class="tags"><span>usage</span> <span>archive</span></dd></div>
             </dl>
             <div class="case-actions">
-              <a class="log-link" href="../evidence/port-04-test/logs/libarchive/usage-python-libarchive-c-tar-extract.log">Log</a>
-              <button type="button" class="play-button js-load-cast" data-cast="../evidence/port-04-test/casts/libarchive/usage-python-libarchive-c-tar-extract.cast">Play</button>
+              <a class="log-link" href="../evidence/port-04-test/logs/libarchive/usage-python-libarchive-c-tar-extract.log" aria-label="Open log for Port / libarchive / usage-python-libarchive-c-tar-extract">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/port-04-test/casts/libarchive/usage-python-libarchive-c-tar-extract.cast" aria-label="Play cast for Port / libarchive / usage-python-libarchive-c-tar-extract">Play</button>
             </div>
             <div class="cast-player" data-player>
               <div class="player-controls">
-                <button type="button" class="js-player-play">Play</button>
-                <button type="button" class="js-player-pause">Pause</button>
-                <button type="button" class="js-player-restart">Restart</button>
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Port / libarchive / usage-python-libarchive-c-tar-extract">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Port / libarchive / usage-python-libarchive-c-tar-extract">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Port / libarchive / usage-python-libarchive-c-tar-extract">Restart</button>
                 <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
                 <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
               </div>
-              <pre class="terminal" aria-live="polite"></pre>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Port / libarchive / usage-python-libarchive-c-tar-extract"></pre>
             </div>
           </div>
         </details>
@@ -738,31 +764,32 @@
           <summary>
             <span class="case-title">
               <strong>python-libarchive-c metadata read</strong>
-              <span class="case-id">port-04-test / libarchive / usage-python-libarchive-c-metadata-read</span>
+              <span class="case-id">Port / libarchive / usage-python-libarchive-c-metadata-read</span>
             </span>
-            <span class="status-pill status-passed">Passed</span>
+            <span class="status-pill status-passed" aria-label="Port / libarchive / usage-python-libarchive-c-metadata-read status: Passed">Passed</span>
           </summary>
           <div class="case-body">
             <p>Uses python-libarchive-c to read archive entry paths and sizes through libarchive.</p>
             <dl class="case-meta">
+              <div><dt>Run</dt><dd>Port</dd></div>
               <div><dt>Kind</dt><dd>usage</dd></div>
               <div><dt>Client</dt><dd>python3-libarchive-c</dd></div>
               <div><dt>Duration</dt><dd>0.00s</dd></div>
               <div><dt>Tags</dt><dd class="tags"><span>usage</span> <span>archive</span></dd></div>
             </dl>
             <div class="case-actions">
-              <a class="log-link" href="../evidence/port-04-test/logs/libarchive/usage-python-libarchive-c-metadata-read.log">Log</a>
-              <button type="button" class="play-button js-load-cast" data-cast="../evidence/port-04-test/casts/libarchive/usage-python-libarchive-c-metadata-read.cast">Play</button>
+              <a class="log-link" href="../evidence/port-04-test/logs/libarchive/usage-python-libarchive-c-metadata-read.log" aria-label="Open log for Port / libarchive / usage-python-libarchive-c-metadata-read">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/port-04-test/casts/libarchive/usage-python-libarchive-c-metadata-read.cast" aria-label="Play cast for Port / libarchive / usage-python-libarchive-c-metadata-read">Play</button>
             </div>
             <div class="cast-player" data-player>
               <div class="player-controls">
-                <button type="button" class="js-player-play">Play</button>
-                <button type="button" class="js-player-pause">Pause</button>
-                <button type="button" class="js-player-restart">Restart</button>
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Port / libarchive / usage-python-libarchive-c-metadata-read">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Port / libarchive / usage-python-libarchive-c-metadata-read">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Port / libarchive / usage-python-libarchive-c-metadata-read">Restart</button>
                 <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
                 <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
               </div>
-              <pre class="terminal" aria-live="polite"></pre>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Port / libarchive / usage-python-libarchive-c-metadata-read"></pre>
             </div>
           </div>
         </details>
@@ -770,31 +797,32 @@
           <summary>
             <span class="case-title">
               <strong>python-libarchive-c stream read</strong>
-              <span class="case-id">port-04-test / libarchive / usage-python-libarchive-c-stream-read</span>
+              <span class="case-id">Port / libarchive / usage-python-libarchive-c-stream-read</span>
             </span>
-            <span class="status-pill status-passed">Passed</span>
+            <span class="status-pill status-passed" aria-label="Port / libarchive / usage-python-libarchive-c-stream-read status: Passed">Passed</span>
           </summary>
           <div class="case-body">
             <p>Uses python-libarchive-c to stream archive entries through libarchive.</p>
             <dl class="case-meta">
+              <div><dt>Run</dt><dd>Port</dd></div>
               <div><dt>Kind</dt><dd>usage</dd></div>
               <div><dt>Client</dt><dd>python3-libarchive-c</dd></div>
               <div><dt>Duration</dt><dd>0.00s</dd></div>
               <div><dt>Tags</dt><dd class="tags"><span>usage</span> <span>archive</span></dd></div>
             </dl>
             <div class="case-actions">
-              <a class="log-link" href="../evidence/port-04-test/logs/libarchive/usage-python-libarchive-c-stream-read.log">Log</a>
-              <button type="button" class="play-button js-load-cast" data-cast="../evidence/port-04-test/casts/libarchive/usage-python-libarchive-c-stream-read.cast">Play</button>
+              <a class="log-link" href="../evidence/port-04-test/logs/libarchive/usage-python-libarchive-c-stream-read.log" aria-label="Open log for Port / libarchive / usage-python-libarchive-c-stream-read">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/port-04-test/casts/libarchive/usage-python-libarchive-c-stream-read.cast" aria-label="Play cast for Port / libarchive / usage-python-libarchive-c-stream-read">Play</button>
             </div>
             <div class="cast-player" data-player>
               <div class="player-controls">
-                <button type="button" class="js-player-play">Play</button>
-                <button type="button" class="js-player-pause">Pause</button>
-                <button type="button" class="js-player-restart">Restart</button>
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Port / libarchive / usage-python-libarchive-c-stream-read">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Port / libarchive / usage-python-libarchive-c-stream-read">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Port / libarchive / usage-python-libarchive-c-stream-read">Restart</button>
                 <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
                 <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
               </div>
-              <pre class="terminal" aria-live="polite"></pre>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Port / libarchive / usage-python-libarchive-c-stream-read"></pre>
             </div>
           </div>
         </details>
@@ -802,31 +830,32 @@
           <summary>
             <span class="case-title">
               <strong>python-libarchive-c file roundtrip</strong>
-              <span class="case-id">port-04-test / libarchive / usage-python-libarchive-c-file-roundtrip</span>
+              <span class="case-id">Port / libarchive / usage-python-libarchive-c-file-roundtrip</span>
             </span>
-            <span class="status-pill status-passed">Passed</span>
+            <span class="status-pill status-passed" aria-label="Port / libarchive / usage-python-libarchive-c-file-roundtrip status: Passed">Passed</span>
           </summary>
           <div class="case-body">
             <p>Uses python-libarchive-c to write and read multiple files through libarchive.</p>
             <dl class="case-meta">
+              <div><dt>Run</dt><dd>Port</dd></div>
               <div><dt>Kind</dt><dd>usage</dd></div>
               <div><dt>Client</dt><dd>python3-libarchive-c</dd></div>
               <div><dt>Duration</dt><dd>0.00s</dd></div>
               <div><dt>Tags</dt><dd class="tags"><span>usage</span> <span>archive</span></dd></div>
             </dl>
             <div class="case-actions">
-              <a class="log-link" href="../evidence/port-04-test/logs/libarchive/usage-python-libarchive-c-file-roundtrip.log">Log</a>
-              <button type="button" class="play-button js-load-cast" data-cast="../evidence/port-04-test/casts/libarchive/usage-python-libarchive-c-file-roundtrip.cast">Play</button>
+              <a class="log-link" href="../evidence/port-04-test/logs/libarchive/usage-python-libarchive-c-file-roundtrip.log" aria-label="Open log for Port / libarchive / usage-python-libarchive-c-file-roundtrip">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/port-04-test/casts/libarchive/usage-python-libarchive-c-file-roundtrip.cast" aria-label="Play cast for Port / libarchive / usage-python-libarchive-c-file-roundtrip">Play</button>
             </div>
             <div class="cast-player" data-player>
               <div class="player-controls">
-                <button type="button" class="js-player-play">Play</button>
-                <button type="button" class="js-player-pause">Pause</button>
-                <button type="button" class="js-player-restart">Restart</button>
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Port / libarchive / usage-python-libarchive-c-file-roundtrip">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Port / libarchive / usage-python-libarchive-c-file-roundtrip">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Port / libarchive / usage-python-libarchive-c-file-roundtrip">Restart</button>
                 <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
                 <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
               </div>
-              <pre class="terminal" aria-live="polite"></pre>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Port / libarchive / usage-python-libarchive-c-file-roundtrip"></pre>
             </div>
           </div>
         </details>
@@ -834,31 +863,32 @@
           <summary>
             <span class="case-title">
               <strong>python-libarchive-c directory entry</strong>
-              <span class="case-id">port-04-test / libarchive / usage-python-libarchive-c-directory-entry</span>
+              <span class="case-id">Port / libarchive / usage-python-libarchive-c-directory-entry</span>
             </span>
-            <span class="status-pill status-passed">Passed</span>
+            <span class="status-pill status-passed" aria-label="Port / libarchive / usage-python-libarchive-c-directory-entry status: Passed">Passed</span>
           </summary>
           <div class="case-body">
             <p>Uses python-libarchive-c to handle directory entries through libarchive.</p>
             <dl class="case-meta">
+              <div><dt>Run</dt><dd>Port</dd></div>
               <div><dt>Kind</dt><dd>usage</dd></div>
               <div><dt>Client</dt><dd>python3-libarchive-c</dd></div>
               <div><dt>Duration</dt><dd>0.00s</dd></div>
               <div><dt>Tags</dt><dd class="tags"><span>usage</span> <span>archive</span></dd></div>
             </dl>
             <div class="case-actions">
-              <a class="log-link" href="../evidence/port-04-test/logs/libarchive/usage-python-libarchive-c-directory-entry.log">Log</a>
-              <button type="button" class="play-button js-load-cast" data-cast="../evidence/port-04-test/casts/libarchive/usage-python-libarchive-c-directory-entry.cast">Play</button>
+              <a class="log-link" href="../evidence/port-04-test/logs/libarchive/usage-python-libarchive-c-directory-entry.log" aria-label="Open log for Port / libarchive / usage-python-libarchive-c-directory-entry">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/port-04-test/casts/libarchive/usage-python-libarchive-c-directory-entry.cast" aria-label="Play cast for Port / libarchive / usage-python-libarchive-c-directory-entry">Play</button>
             </div>
             <div class="cast-player" data-player>
               <div class="player-controls">
-                <button type="button" class="js-player-play">Play</button>
-                <button type="button" class="js-player-pause">Pause</button>
-                <button type="button" class="js-player-restart">Restart</button>
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Port / libarchive / usage-python-libarchive-c-directory-entry">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Port / libarchive / usage-python-libarchive-c-directory-entry">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Port / libarchive / usage-python-libarchive-c-directory-entry">Restart</button>
                 <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
                 <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
               </div>
-              <pre class="terminal" aria-live="polite"></pre>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Port / libarchive / usage-python-libarchive-c-directory-entry"></pre>
             </div>
           </div>
         </details>
@@ -866,31 +896,32 @@
           <summary>
             <span class="case-title">
               <strong>python-libarchive-c copy mode</strong>
-              <span class="case-id">port-04-test / libarchive / usage-python-libarchive-c-copy-mode</span>
+              <span class="case-id">Port / libarchive / usage-python-libarchive-c-copy-mode</span>
             </span>
-            <span class="status-pill status-passed">Passed</span>
+            <span class="status-pill status-passed" aria-label="Port / libarchive / usage-python-libarchive-c-copy-mode status: Passed">Passed</span>
           </summary>
           <div class="case-body">
             <p>Uses python-libarchive-c to copy archived files through libarchive.</p>
             <dl class="case-meta">
+              <div><dt>Run</dt><dd>Port</dd></div>
               <div><dt>Kind</dt><dd>usage</dd></div>
               <div><dt>Client</dt><dd>python3-libarchive-c</dd></div>
               <div><dt>Duration</dt><dd>0.00s</dd></div>
               <div><dt>Tags</dt><dd class="tags"><span>usage</span> <span>archive</span></dd></div>
             </dl>
             <div class="case-actions">
-              <a class="log-link" href="../evidence/port-04-test/logs/libarchive/usage-python-libarchive-c-copy-mode.log">Log</a>
-              <button type="button" class="play-button js-load-cast" data-cast="../evidence/port-04-test/casts/libarchive/usage-python-libarchive-c-copy-mode.cast">Play</button>
+              <a class="log-link" href="../evidence/port-04-test/logs/libarchive/usage-python-libarchive-c-copy-mode.log" aria-label="Open log for Port / libarchive / usage-python-libarchive-c-copy-mode">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/port-04-test/casts/libarchive/usage-python-libarchive-c-copy-mode.cast" aria-label="Play cast for Port / libarchive / usage-python-libarchive-c-copy-mode">Play</button>
             </div>
             <div class="cast-player" data-player>
               <div class="player-controls">
-                <button type="button" class="js-player-play">Play</button>
-                <button type="button" class="js-player-pause">Pause</button>
-                <button type="button" class="js-player-restart">Restart</button>
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Port / libarchive / usage-python-libarchive-c-copy-mode">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Port / libarchive / usage-python-libarchive-c-copy-mode">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Port / libarchive / usage-python-libarchive-c-copy-mode">Restart</button>
                 <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
                 <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
               </div>
-              <pre class="terminal" aria-live="polite"></pre>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Port / libarchive / usage-python-libarchive-c-copy-mode"></pre>
             </div>
           </div>
         </details>
@@ -898,31 +929,32 @@
           <summary>
             <span class="case-title">
               <strong>python-libarchive-c gzip filter</strong>
-              <span class="case-id">port-04-test / libarchive / usage-python-libarchive-c-gzip-filter</span>
+              <span class="case-id">Port / libarchive / usage-python-libarchive-c-gzip-filter</span>
             </span>
-            <span class="status-pill status-passed">Passed</span>
+            <span class="status-pill status-passed" aria-label="Port / libarchive / usage-python-libarchive-c-gzip-filter status: Passed">Passed</span>
           </summary>
           <div class="case-body">
             <p>Uses python-libarchive-c to read a gzip-filtered archive through libarchive.</p>
             <dl class="case-meta">
+              <div><dt>Run</dt><dd>Port</dd></div>
               <div><dt>Kind</dt><dd>usage</dd></div>
               <div><dt>Client</dt><dd>python3-libarchive-c</dd></div>
               <div><dt>Duration</dt><dd>0.00s</dd></div>
               <div><dt>Tags</dt><dd class="tags"><span>usage</span> <span>archive</span></dd></div>
             </dl>
             <div class="case-actions">
-              <a class="log-link" href="../evidence/port-04-test/logs/libarchive/usage-python-libarchive-c-gzip-filter.log">Log</a>
-              <button type="button" class="play-button js-load-cast" data-cast="../evidence/port-04-test/casts/libarchive/usage-python-libarchive-c-gzip-filter.cast">Play</button>
+              <a class="log-link" href="../evidence/port-04-test/logs/libarchive/usage-python-libarchive-c-gzip-filter.log" aria-label="Open log for Port / libarchive / usage-python-libarchive-c-gzip-filter">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/port-04-test/casts/libarchive/usage-python-libarchive-c-gzip-filter.cast" aria-label="Play cast for Port / libarchive / usage-python-libarchive-c-gzip-filter">Play</button>
             </div>
             <div class="cast-player" data-player>
               <div class="player-controls">
-                <button type="button" class="js-player-play">Play</button>
-                <button type="button" class="js-player-pause">Pause</button>
-                <button type="button" class="js-player-restart">Restart</button>
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Port / libarchive / usage-python-libarchive-c-gzip-filter">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Port / libarchive / usage-python-libarchive-c-gzip-filter">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Port / libarchive / usage-python-libarchive-c-gzip-filter">Restart</button>
                 <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
                 <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
               </div>
-              <pre class="terminal" aria-live="polite"></pre>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Port / libarchive / usage-python-libarchive-c-gzip-filter"></pre>
             </div>
           </div>
         </details>
@@ -930,31 +962,32 @@
           <summary>
             <span class="case-title">
               <strong>python-libarchive-c zip roundtrip</strong>
-              <span class="case-id">port-04-test / libarchive / usage-python-libarchive-c-zip-roundtrip</span>
+              <span class="case-id">Port / libarchive / usage-python-libarchive-c-zip-roundtrip</span>
             </span>
-            <span class="status-pill status-passed">Passed</span>
+            <span class="status-pill status-passed" aria-label="Port / libarchive / usage-python-libarchive-c-zip-roundtrip status: Passed">Passed</span>
           </summary>
           <div class="case-body">
             <p>Uses python-libarchive-c to write and read ZIP archive entries through libarchive.</p>
             <dl class="case-meta">
+              <div><dt>Run</dt><dd>Port</dd></div>
               <div><dt>Kind</dt><dd>usage</dd></div>
               <div><dt>Client</dt><dd>python3-libarchive-c</dd></div>
               <div><dt>Duration</dt><dd>0.00s</dd></div>
               <div><dt>Tags</dt><dd class="tags"><span>usage</span> <span>archive</span></dd></div>
             </dl>
             <div class="case-actions">
-              <a class="log-link" href="../evidence/port-04-test/logs/libarchive/usage-python-libarchive-c-zip-roundtrip.log">Log</a>
-              <button type="button" class="play-button js-load-cast" data-cast="../evidence/port-04-test/casts/libarchive/usage-python-libarchive-c-zip-roundtrip.cast">Play</button>
+              <a class="log-link" href="../evidence/port-04-test/logs/libarchive/usage-python-libarchive-c-zip-roundtrip.log" aria-label="Open log for Port / libarchive / usage-python-libarchive-c-zip-roundtrip">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/port-04-test/casts/libarchive/usage-python-libarchive-c-zip-roundtrip.cast" aria-label="Play cast for Port / libarchive / usage-python-libarchive-c-zip-roundtrip">Play</button>
             </div>
             <div class="cast-player" data-player>
               <div class="player-controls">
-                <button type="button" class="js-player-play">Play</button>
-                <button type="button" class="js-player-pause">Pause</button>
-                <button type="button" class="js-player-restart">Restart</button>
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Port / libarchive / usage-python-libarchive-c-zip-roundtrip">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Port / libarchive / usage-python-libarchive-c-zip-roundtrip">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Port / libarchive / usage-python-libarchive-c-zip-roundtrip">Restart</button>
                 <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
                 <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
               </div>
-              <pre class="terminal" aria-live="polite"></pre>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Port / libarchive / usage-python-libarchive-c-zip-roundtrip"></pre>
             </div>
           </div>
         </details>
@@ -962,31 +995,32 @@
           <summary>
             <span class="case-title">
               <strong>python-libarchive-c nested paths</strong>
-              <span class="case-id">port-04-test / libarchive / usage-python-libarchive-c-nested-paths</span>
+              <span class="case-id">Port / libarchive / usage-python-libarchive-c-nested-paths</span>
             </span>
-            <span class="status-pill status-passed">Passed</span>
+            <span class="status-pill status-passed" aria-label="Port / libarchive / usage-python-libarchive-c-nested-paths status: Passed">Passed</span>
           </summary>
           <div class="case-body">
             <p>Uses python-libarchive-c to preserve nested and spaced entry paths through libarchive.</p>
             <dl class="case-meta">
+              <div><dt>Run</dt><dd>Port</dd></div>
               <div><dt>Kind</dt><dd>usage</dd></div>
               <div><dt>Client</dt><dd>python3-libarchive-c</dd></div>
               <div><dt>Duration</dt><dd>0.00s</dd></div>
               <div><dt>Tags</dt><dd class="tags"><span>usage</span> <span>archive</span></dd></div>
             </dl>
             <div class="case-actions">
-              <a class="log-link" href="../evidence/port-04-test/logs/libarchive/usage-python-libarchive-c-nested-paths.log">Log</a>
-              <button type="button" class="play-button js-load-cast" data-cast="../evidence/port-04-test/casts/libarchive/usage-python-libarchive-c-nested-paths.cast">Play</button>
+              <a class="log-link" href="../evidence/port-04-test/logs/libarchive/usage-python-libarchive-c-nested-paths.log" aria-label="Open log for Port / libarchive / usage-python-libarchive-c-nested-paths">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/port-04-test/casts/libarchive/usage-python-libarchive-c-nested-paths.cast" aria-label="Play cast for Port / libarchive / usage-python-libarchive-c-nested-paths">Play</button>
             </div>
             <div class="cast-player" data-player>
               <div class="player-controls">
-                <button type="button" class="js-player-play">Play</button>
-                <button type="button" class="js-player-pause">Pause</button>
-                <button type="button" class="js-player-restart">Restart</button>
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Port / libarchive / usage-python-libarchive-c-nested-paths">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Port / libarchive / usage-python-libarchive-c-nested-paths">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Port / libarchive / usage-python-libarchive-c-nested-paths">Restart</button>
                 <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
                 <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
               </div>
-              <pre class="terminal" aria-live="polite"></pre>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Port / libarchive / usage-python-libarchive-c-nested-paths"></pre>
             </div>
           </div>
         </details>

@@ -9,56 +9,61 @@
     <script defer src="../assets/player.js"></script>
   </head>
   <body data-site-data="../site-data.json">
+    <a class="skip-link" href="#tests-heading">Skip to tests</a>
     <main>
-      <section class="dashboard" aria-label="Validation dashboard">
-        <h1>libwebp Validation</h1>
+      <nav class="breadcrumb" aria-label="Breadcrumb"><a href="../index.html">All libraries</a></nav>
+      <section class="dashboard" aria-labelledby="dashboard-heading">
+        <h1 id="dashboard-heading">libwebp Validation</h1>
         <div class="metric-grid">
-        <div class="metric" data-proof-total="libraries"><strong>19</strong><span>Libraries</span></div>
-        <div class="metric" data-proof-total="cases"><strong>576</strong><span>Cases</span></div>
-        <div class="metric" data-proof-total="source_cases"><strong>190</strong><span>Source</span></div>
-        <div class="metric" data-proof-total="usage_cases"><strong>386</strong><span>Usage</span></div>
-        <div class="metric" data-proof-total="passed"><strong>576</strong><span>Passed</span></div>
-        <div class="metric" data-proof-total="failed"><strong>0</strong><span>Failed</span></div>
-        <div class="metric" data-proof-total="casts"><strong>576 (100%)</strong><span>Casts</span></div>
+        <div class="metric" data-proof-total="libraries"><strong>1</strong><span>Libraries</span></div>
+        <div class="metric" data-proof-total="cases"><strong>16</strong><span>Tests</span></div>
+        <div class="metric" data-proof-total="source_cases"><strong>5</strong><span>Source tests</span></div>
+        <div class="metric" data-proof-total="usage_cases"><strong>11</strong><span>Usage tests</span></div>
+        <div class="metric" data-proof-total="passed"><strong>16 / 16</strong><span>Port tests passing</span></div>
+        <div class="metric" data-proof-total="failed"><strong>0</strong><span>Port tests failing</span></div>
+        <div class="metric" data-proof-total="casts"><strong>32 (100%)</strong><span>Evidence casts</span></div>
+        <div class="metric" data-proof-total="port_libraries"><strong>1 / 1</strong><span>Port libraries passing</span></div>
         </div>
       </section>
 
       <section class="controls" aria-label="Testcase filters">
-        <label class="search-label">Search <input id="search-input" type="search" autocomplete="off"></label>
+        <label class="search-label">Search <input id="search-input" type="search" autocomplete="off" name="search"></label>
+        <label>Run mode <select id="mode-filter" name="mode"><option value="all">All</option><option value="original">Original</option><option value="port-04-test">Port</option></select></label>
         <label>Status <select id="status-filter"><option value="all">All</option><option value="passed">Passed</option><option value="failed">Failed</option></select></label>
         <label>Kind <select id="kind-filter"><option value="all">All</option><option value="source">Source</option><option value="usage">Usage</option></select></label>
       </section>
-      <section class="testcases" aria-label="Testcases">
-        <h2>Testcases</h2>
+      <section id="testcases" class="testcases" aria-labelledby="tests-heading">
+        <h2 id="tests-heading">Tests</h2>
         <details class="case-row" data-library="libwebp" data-testcase-id="cwebp-dwebp-roundtrip" data-mode="original" data-kind="source" data-status="passed" data-player-cast="../evidence/original/casts/libwebp/cwebp-dwebp-roundtrip.cast" data-search="libwebp cwebp-dwebp-roundtrip original cwebp dwebp round trip Encodes a generated PPM image to WebP and decodes it. source cli media">
           <summary>
             <span class="case-title">
               <strong>cwebp dwebp round trip</strong>
-              <span class="case-id">original / libwebp / cwebp-dwebp-roundtrip</span>
+              <span class="case-id">Original / libwebp / cwebp-dwebp-roundtrip</span>
             </span>
-            <span class="status-pill status-passed">Passed</span>
+            <span class="status-pill status-passed" aria-label="Original / libwebp / cwebp-dwebp-roundtrip status: Passed">Passed</span>
           </summary>
           <div class="case-body">
             <p>Encodes a generated PPM image to WebP and decodes it.</p>
             <dl class="case-meta">
+              <div><dt>Run</dt><dd>Original</dd></div>
               <div><dt>Kind</dt><dd>source</dd></div>
               <div><dt>Client</dt><dd>none</dd></div>
               <div><dt>Duration</dt><dd>0.00s</dd></div>
               <div><dt>Tags</dt><dd class="tags"><span>cli</span> <span>media</span></dd></div>
             </dl>
             <div class="case-actions">
-              <a class="log-link" href="../evidence/original/logs/libwebp/cwebp-dwebp-roundtrip.log">Log</a>
-              <button type="button" class="play-button js-load-cast" data-cast="../evidence/original/casts/libwebp/cwebp-dwebp-roundtrip.cast">Play</button>
+              <a class="log-link" href="../evidence/original/logs/libwebp/cwebp-dwebp-roundtrip.log" aria-label="Open log for Original / libwebp / cwebp-dwebp-roundtrip">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/original/casts/libwebp/cwebp-dwebp-roundtrip.cast" aria-label="Play cast for Original / libwebp / cwebp-dwebp-roundtrip">Play</button>
             </div>
             <div class="cast-player" data-player>
               <div class="player-controls">
-                <button type="button" class="js-player-play">Play</button>
-                <button type="button" class="js-player-pause">Pause</button>
-                <button type="button" class="js-player-restart">Restart</button>
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Original / libwebp / cwebp-dwebp-roundtrip">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Original / libwebp / cwebp-dwebp-roundtrip">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Original / libwebp / cwebp-dwebp-roundtrip">Restart</button>
                 <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
                 <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
               </div>
-              <pre class="terminal" aria-live="polite"></pre>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Original / libwebp / cwebp-dwebp-roundtrip"></pre>
             </div>
           </div>
         </details>
@@ -66,31 +71,32 @@
           <summary>
             <span class="case-title">
               <strong>webpinfo inspection</strong>
-              <span class="case-id">original / libwebp / webpinfo-inspection</span>
+              <span class="case-id">Original / libwebp / webpinfo-inspection</span>
             </span>
-            <span class="status-pill status-passed">Passed</span>
+            <span class="status-pill status-passed" aria-label="Original / libwebp / webpinfo-inspection status: Passed">Passed</span>
           </summary>
           <div class="case-body">
             <p>Inspects a checked-in WebP example through the webpinfo tool.</p>
             <dl class="case-meta">
+              <div><dt>Run</dt><dd>Original</dd></div>
               <div><dt>Kind</dt><dd>source</dd></div>
               <div><dt>Client</dt><dd>none</dd></div>
               <div><dt>Duration</dt><dd>0.00s</dd></div>
               <div><dt>Tags</dt><dd class="tags"><span>cli</span> <span>metadata</span></dd></div>
             </dl>
             <div class="case-actions">
-              <a class="log-link" href="../evidence/original/logs/libwebp/webpinfo-inspection.log">Log</a>
-              <button type="button" class="play-button js-load-cast" data-cast="../evidence/original/casts/libwebp/webpinfo-inspection.cast">Play</button>
+              <a class="log-link" href="../evidence/original/logs/libwebp/webpinfo-inspection.log" aria-label="Open log for Original / libwebp / webpinfo-inspection">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/original/casts/libwebp/webpinfo-inspection.cast" aria-label="Play cast for Original / libwebp / webpinfo-inspection">Play</button>
             </div>
             <div class="cast-player" data-player>
               <div class="player-controls">
-                <button type="button" class="js-player-play">Play</button>
-                <button type="button" class="js-player-pause">Pause</button>
-                <button type="button" class="js-player-restart">Restart</button>
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Original / libwebp / webpinfo-inspection">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Original / libwebp / webpinfo-inspection">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Original / libwebp / webpinfo-inspection">Restart</button>
                 <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
                 <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
               </div>
-              <pre class="terminal" aria-live="polite"></pre>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Original / libwebp / webpinfo-inspection"></pre>
             </div>
           </div>
         </details>
@@ -98,31 +104,32 @@
           <summary>
             <span class="case-title">
               <strong>webpmux metadata behavior</strong>
-              <span class="case-id">original / libwebp / webpmux-metadata</span>
+              <span class="case-id">Original / libwebp / webpmux-metadata</span>
             </span>
-            <span class="status-pill status-passed">Passed</span>
+            <span class="status-pill status-passed" aria-label="Original / libwebp / webpmux-metadata status: Passed">Passed</span>
           </summary>
           <div class="case-body">
             <p>Adds EXIF metadata to a WebP file and reads mux information.</p>
             <dl class="case-meta">
+              <div><dt>Run</dt><dd>Original</dd></div>
               <div><dt>Kind</dt><dd>source</dd></div>
               <div><dt>Client</dt><dd>none</dd></div>
               <div><dt>Duration</dt><dd>0.00s</dd></div>
               <div><dt>Tags</dt><dd class="tags"><span>cli</span> <span>metadata</span></dd></div>
             </dl>
             <div class="case-actions">
-              <a class="log-link" href="../evidence/original/logs/libwebp/webpmux-metadata.log">Log</a>
-              <button type="button" class="play-button js-load-cast" data-cast="../evidence/original/casts/libwebp/webpmux-metadata.cast">Play</button>
+              <a class="log-link" href="../evidence/original/logs/libwebp/webpmux-metadata.log" aria-label="Open log for Original / libwebp / webpmux-metadata">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/original/casts/libwebp/webpmux-metadata.cast" aria-label="Play cast for Original / libwebp / webpmux-metadata">Play</button>
             </div>
             <div class="cast-player" data-player>
               <div class="player-controls">
-                <button type="button" class="js-player-play">Play</button>
-                <button type="button" class="js-player-pause">Pause</button>
-                <button type="button" class="js-player-restart">Restart</button>
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Original / libwebp / webpmux-metadata">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Original / libwebp / webpmux-metadata">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Original / libwebp / webpmux-metadata">Restart</button>
                 <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
                 <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
               </div>
-              <pre class="terminal" aria-live="polite"></pre>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Original / libwebp / webpmux-metadata"></pre>
             </div>
           </div>
         </details>
@@ -130,31 +137,32 @@
           <summary>
             <span class="case-title">
               <strong>libwebp C API decode smoke</strong>
-              <span class="case-id">original / libwebp / decode-c-api-smoke</span>
+              <span class="case-id">Original / libwebp / decode-c-api-smoke</span>
             </span>
-            <span class="status-pill status-passed">Passed</span>
+            <span class="status-pill status-passed" aria-label="Original / libwebp / decode-c-api-smoke status: Passed">Passed</span>
           </summary>
           <div class="case-body">
             <p>Compiles and runs a WebP decode API program against a fixture.</p>
             <dl class="case-meta">
+              <div><dt>Run</dt><dd>Original</dd></div>
               <div><dt>Kind</dt><dd>source</dd></div>
               <div><dt>Client</dt><dd>none</dd></div>
               <div><dt>Duration</dt><dd>0.00s</dd></div>
               <div><dt>Tags</dt><dd class="tags"><span>api</span> <span>compile</span></dd></div>
             </dl>
             <div class="case-actions">
-              <a class="log-link" href="../evidence/original/logs/libwebp/decode-c-api-smoke.log">Log</a>
-              <button type="button" class="play-button js-load-cast" data-cast="../evidence/original/casts/libwebp/decode-c-api-smoke.cast">Play</button>
+              <a class="log-link" href="../evidence/original/logs/libwebp/decode-c-api-smoke.log" aria-label="Open log for Original / libwebp / decode-c-api-smoke">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/original/casts/libwebp/decode-c-api-smoke.cast" aria-label="Play cast for Original / libwebp / decode-c-api-smoke">Play</button>
             </div>
             <div class="cast-player" data-player>
               <div class="player-controls">
-                <button type="button" class="js-player-play">Play</button>
-                <button type="button" class="js-player-pause">Pause</button>
-                <button type="button" class="js-player-restart">Restart</button>
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Original / libwebp / decode-c-api-smoke">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Original / libwebp / decode-c-api-smoke">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Original / libwebp / decode-c-api-smoke">Restart</button>
                 <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
                 <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
               </div>
-              <pre class="terminal" aria-live="polite"></pre>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Original / libwebp / decode-c-api-smoke"></pre>
             </div>
           </div>
         </details>
@@ -162,31 +170,32 @@
           <summary>
             <span class="case-title">
               <strong>Malformed WebP rejection</strong>
-              <span class="case-id">original / libwebp / malformed-webp-rejection</span>
+              <span class="case-id">Original / libwebp / malformed-webp-rejection</span>
             </span>
-            <span class="status-pill status-passed">Passed</span>
+            <span class="status-pill status-passed" aria-label="Original / libwebp / malformed-webp-rejection status: Passed">Passed</span>
           </summary>
           <div class="case-body">
             <p>Requires dwebp to fail on bytes that are not WebP data.</p>
             <dl class="case-meta">
+              <div><dt>Run</dt><dd>Original</dd></div>
               <div><dt>Kind</dt><dd>source</dd></div>
               <div><dt>Client</dt><dd>none</dd></div>
               <div><dt>Duration</dt><dd>0.00s</dd></div>
               <div><dt>Tags</dt><dd class="tags"><span>cli</span> <span>negative</span></dd></div>
             </dl>
             <div class="case-actions">
-              <a class="log-link" href="../evidence/original/logs/libwebp/malformed-webp-rejection.log">Log</a>
-              <button type="button" class="play-button js-load-cast" data-cast="../evidence/original/casts/libwebp/malformed-webp-rejection.cast">Play</button>
+              <a class="log-link" href="../evidence/original/logs/libwebp/malformed-webp-rejection.log" aria-label="Open log for Original / libwebp / malformed-webp-rejection">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/original/casts/libwebp/malformed-webp-rejection.cast" aria-label="Play cast for Original / libwebp / malformed-webp-rejection">Play</button>
             </div>
             <div class="cast-player" data-player>
               <div class="player-controls">
-                <button type="button" class="js-player-play">Play</button>
-                <button type="button" class="js-player-pause">Pause</button>
-                <button type="button" class="js-player-restart">Restart</button>
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Original / libwebp / malformed-webp-rejection">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Original / libwebp / malformed-webp-rejection">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Original / libwebp / malformed-webp-rejection">Restart</button>
                 <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
                 <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
               </div>
-              <pre class="terminal" aria-live="polite"></pre>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Original / libwebp / malformed-webp-rejection"></pre>
             </div>
           </div>
         </details>
@@ -194,31 +203,32 @@
           <summary>
             <span class="case-title">
               <strong>Pillow open webp</strong>
-              <span class="case-id">original / libwebp / usage-python3-pil-open-webp</span>
+              <span class="case-id">Original / libwebp / usage-python3-pil-open-webp</span>
             </span>
-            <span class="status-pill status-passed">Passed</span>
+            <span class="status-pill status-passed" aria-label="Original / libwebp / usage-python3-pil-open-webp status: Passed">Passed</span>
           </summary>
           <div class="case-body">
             <p>Opens a WebP fixture with Pillow and reads dimensions through libwebp.</p>
             <dl class="case-meta">
+              <div><dt>Run</dt><dd>Original</dd></div>
               <div><dt>Kind</dt><dd>usage</dd></div>
               <div><dt>Client</dt><dd>python3-pil</dd></div>
               <div><dt>Duration</dt><dd>0.00s</dd></div>
               <div><dt>Tags</dt><dd class="tags"><span>usage</span> <span>image</span> <span>python</span></dd></div>
             </dl>
             <div class="case-actions">
-              <a class="log-link" href="../evidence/original/logs/libwebp/usage-python3-pil-open-webp.log">Log</a>
-              <button type="button" class="play-button js-load-cast" data-cast="../evidence/original/casts/libwebp/usage-python3-pil-open-webp.cast">Play</button>
+              <a class="log-link" href="../evidence/original/logs/libwebp/usage-python3-pil-open-webp.log" aria-label="Open log for Original / libwebp / usage-python3-pil-open-webp">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/original/casts/libwebp/usage-python3-pil-open-webp.cast" aria-label="Play cast for Original / libwebp / usage-python3-pil-open-webp">Play</button>
             </div>
             <div class="cast-player" data-player>
               <div class="player-controls">
-                <button type="button" class="js-player-play">Play</button>
-                <button type="button" class="js-player-pause">Pause</button>
-                <button type="button" class="js-player-restart">Restart</button>
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Original / libwebp / usage-python3-pil-open-webp">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Original / libwebp / usage-python3-pil-open-webp">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Original / libwebp / usage-python3-pil-open-webp">Restart</button>
                 <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
                 <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
               </div>
-              <pre class="terminal" aria-live="polite"></pre>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Original / libwebp / usage-python3-pil-open-webp"></pre>
             </div>
           </div>
         </details>
@@ -226,31 +236,32 @@
           <summary>
             <span class="case-title">
               <strong>Pillow convert webp</strong>
-              <span class="case-id">original / libwebp / usage-python3-pil-convert-webp</span>
+              <span class="case-id">Original / libwebp / usage-python3-pil-convert-webp</span>
             </span>
-            <span class="status-pill status-passed">Passed</span>
+            <span class="status-pill status-passed" aria-label="Original / libwebp / usage-python3-pil-convert-webp status: Passed">Passed</span>
           </summary>
           <div class="case-body">
             <p>Converts a WebP fixture to PNG with Pillow through libwebp decoding.</p>
             <dl class="case-meta">
+              <div><dt>Run</dt><dd>Original</dd></div>
               <div><dt>Kind</dt><dd>usage</dd></div>
               <div><dt>Client</dt><dd>python3-pil</dd></div>
               <div><dt>Duration</dt><dd>0.00s</dd></div>
               <div><dt>Tags</dt><dd class="tags"><span>usage</span> <span>image</span> <span>python</span></dd></div>
             </dl>
             <div class="case-actions">
-              <a class="log-link" href="../evidence/original/logs/libwebp/usage-python3-pil-convert-webp.log">Log</a>
-              <button type="button" class="play-button js-load-cast" data-cast="../evidence/original/casts/libwebp/usage-python3-pil-convert-webp.cast">Play</button>
+              <a class="log-link" href="../evidence/original/logs/libwebp/usage-python3-pil-convert-webp.log" aria-label="Open log for Original / libwebp / usage-python3-pil-convert-webp">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/original/casts/libwebp/usage-python3-pil-convert-webp.cast" aria-label="Play cast for Original / libwebp / usage-python3-pil-convert-webp">Play</button>
             </div>
             <div class="cast-player" data-player>
               <div class="player-controls">
-                <button type="button" class="js-player-play">Play</button>
-                <button type="button" class="js-player-pause">Pause</button>
-                <button type="button" class="js-player-restart">Restart</button>
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Original / libwebp / usage-python3-pil-convert-webp">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Original / libwebp / usage-python3-pil-convert-webp">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Original / libwebp / usage-python3-pil-convert-webp">Restart</button>
                 <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
                 <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
               </div>
-              <pre class="terminal" aria-live="polite"></pre>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Original / libwebp / usage-python3-pil-convert-webp"></pre>
             </div>
           </div>
         </details>
@@ -258,31 +269,32 @@
           <summary>
             <span class="case-title">
               <strong>Pillow save webp</strong>
-              <span class="case-id">original / libwebp / usage-python3-pil-save-webp</span>
+              <span class="case-id">Original / libwebp / usage-python3-pil-save-webp</span>
             </span>
-            <span class="status-pill status-passed">Passed</span>
+            <span class="status-pill status-passed" aria-label="Original / libwebp / usage-python3-pil-save-webp status: Passed">Passed</span>
           </summary>
           <div class="case-body">
             <p>Writes a WebP image with Pillow through libwebp encoding.</p>
             <dl class="case-meta">
+              <div><dt>Run</dt><dd>Original</dd></div>
               <div><dt>Kind</dt><dd>usage</dd></div>
               <div><dt>Client</dt><dd>python3-pil</dd></div>
               <div><dt>Duration</dt><dd>0.00s</dd></div>
               <div><dt>Tags</dt><dd class="tags"><span>usage</span> <span>image</span> <span>python</span></dd></div>
             </dl>
             <div class="case-actions">
-              <a class="log-link" href="../evidence/original/logs/libwebp/usage-python3-pil-save-webp.log">Log</a>
-              <button type="button" class="play-button js-load-cast" data-cast="../evidence/original/casts/libwebp/usage-python3-pil-save-webp.cast">Play</button>
+              <a class="log-link" href="../evidence/original/logs/libwebp/usage-python3-pil-save-webp.log" aria-label="Open log for Original / libwebp / usage-python3-pil-save-webp">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/original/casts/libwebp/usage-python3-pil-save-webp.cast" aria-label="Play cast for Original / libwebp / usage-python3-pil-save-webp">Play</button>
             </div>
             <div class="cast-player" data-player>
               <div class="player-controls">
-                <button type="button" class="js-player-play">Play</button>
-                <button type="button" class="js-player-pause">Pause</button>
-                <button type="button" class="js-player-restart">Restart</button>
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Original / libwebp / usage-python3-pil-save-webp">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Original / libwebp / usage-python3-pil-save-webp">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Original / libwebp / usage-python3-pil-save-webp">Restart</button>
                 <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
                 <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
               </div>
-              <pre class="terminal" aria-live="polite"></pre>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Original / libwebp / usage-python3-pil-save-webp"></pre>
             </div>
           </div>
         </details>
@@ -290,31 +302,32 @@
           <summary>
             <span class="case-title">
               <strong>vips webp header</strong>
-              <span class="case-id">original / libwebp / usage-vips-webp-header</span>
+              <span class="case-id">Original / libwebp / usage-vips-webp-header</span>
             </span>
-            <span class="status-pill status-passed">Passed</span>
+            <span class="status-pill status-passed" aria-label="Original / libwebp / usage-vips-webp-header status: Passed">Passed</span>
           </summary>
           <div class="case-body">
             <p>Reads WebP image metadata with vips through libwebp.</p>
             <dl class="case-meta">
+              <div><dt>Run</dt><dd>Original</dd></div>
               <div><dt>Kind</dt><dd>usage</dd></div>
               <div><dt>Client</dt><dd>vips</dd></div>
               <div><dt>Duration</dt><dd>0.00s</dd></div>
               <div><dt>Tags</dt><dd class="tags"><span>usage</span> <span>image</span></dd></div>
             </dl>
             <div class="case-actions">
-              <a class="log-link" href="../evidence/original/logs/libwebp/usage-vips-webp-header.log">Log</a>
-              <button type="button" class="play-button js-load-cast" data-cast="../evidence/original/casts/libwebp/usage-vips-webp-header.cast">Play</button>
+              <a class="log-link" href="../evidence/original/logs/libwebp/usage-vips-webp-header.log" aria-label="Open log for Original / libwebp / usage-vips-webp-header">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/original/casts/libwebp/usage-vips-webp-header.cast" aria-label="Play cast for Original / libwebp / usage-vips-webp-header">Play</button>
             </div>
             <div class="cast-player" data-player>
               <div class="player-controls">
-                <button type="button" class="js-player-play">Play</button>
-                <button type="button" class="js-player-pause">Pause</button>
-                <button type="button" class="js-player-restart">Restart</button>
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Original / libwebp / usage-vips-webp-header">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Original / libwebp / usage-vips-webp-header">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Original / libwebp / usage-vips-webp-header">Restart</button>
                 <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
                 <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
               </div>
-              <pre class="terminal" aria-live="polite"></pre>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Original / libwebp / usage-vips-webp-header"></pre>
             </div>
           </div>
         </details>
@@ -322,31 +335,32 @@
           <summary>
             <span class="case-title">
               <strong>vips webp resize</strong>
-              <span class="case-id">original / libwebp / usage-vips-webp-resize</span>
+              <span class="case-id">Original / libwebp / usage-vips-webp-resize</span>
             </span>
-            <span class="status-pill status-passed">Passed</span>
+            <span class="status-pill status-passed" aria-label="Original / libwebp / usage-vips-webp-resize status: Passed">Passed</span>
           </summary>
           <div class="case-body">
             <p>Resizes a WebP fixture with vips through libwebp decoding.</p>
             <dl class="case-meta">
+              <div><dt>Run</dt><dd>Original</dd></div>
               <div><dt>Kind</dt><dd>usage</dd></div>
               <div><dt>Client</dt><dd>vips</dd></div>
               <div><dt>Duration</dt><dd>0.00s</dd></div>
               <div><dt>Tags</dt><dd class="tags"><span>usage</span> <span>image</span></dd></div>
             </dl>
             <div class="case-actions">
-              <a class="log-link" href="../evidence/original/logs/libwebp/usage-vips-webp-resize.log">Log</a>
-              <button type="button" class="play-button js-load-cast" data-cast="../evidence/original/casts/libwebp/usage-vips-webp-resize.cast">Play</button>
+              <a class="log-link" href="../evidence/original/logs/libwebp/usage-vips-webp-resize.log" aria-label="Open log for Original / libwebp / usage-vips-webp-resize">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/original/casts/libwebp/usage-vips-webp-resize.cast" aria-label="Play cast for Original / libwebp / usage-vips-webp-resize">Play</button>
             </div>
             <div class="cast-player" data-player>
               <div class="player-controls">
-                <button type="button" class="js-player-play">Play</button>
-                <button type="button" class="js-player-pause">Pause</button>
-                <button type="button" class="js-player-restart">Restart</button>
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Original / libwebp / usage-vips-webp-resize">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Original / libwebp / usage-vips-webp-resize">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Original / libwebp / usage-vips-webp-resize">Restart</button>
                 <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
                 <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
               </div>
-              <pre class="terminal" aria-live="polite"></pre>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Original / libwebp / usage-vips-webp-resize"></pre>
             </div>
           </div>
         </details>
@@ -354,31 +368,32 @@
           <summary>
             <span class="case-title">
               <strong>ffmpeg webp decode</strong>
-              <span class="case-id">original / libwebp / usage-ffmpeg-webp-decode</span>
+              <span class="case-id">Original / libwebp / usage-ffmpeg-webp-decode</span>
             </span>
-            <span class="status-pill status-passed">Passed</span>
+            <span class="status-pill status-passed" aria-label="Original / libwebp / usage-ffmpeg-webp-decode status: Passed">Passed</span>
           </summary>
           <div class="case-body">
             <p>Decodes a WebP fixture to PNG with FFmpeg through libwebp.</p>
             <dl class="case-meta">
+              <div><dt>Run</dt><dd>Original</dd></div>
               <div><dt>Kind</dt><dd>usage</dd></div>
               <div><dt>Client</dt><dd>ffmpeg</dd></div>
               <div><dt>Duration</dt><dd>0.00s</dd></div>
               <div><dt>Tags</dt><dd class="tags"><span>usage</span> <span>image</span></dd></div>
             </dl>
             <div class="case-actions">
-              <a class="log-link" href="../evidence/original/logs/libwebp/usage-ffmpeg-webp-decode.log">Log</a>
-              <button type="button" class="play-button js-load-cast" data-cast="../evidence/original/casts/libwebp/usage-ffmpeg-webp-decode.cast">Play</button>
+              <a class="log-link" href="../evidence/original/logs/libwebp/usage-ffmpeg-webp-decode.log" aria-label="Open log for Original / libwebp / usage-ffmpeg-webp-decode">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/original/casts/libwebp/usage-ffmpeg-webp-decode.cast" aria-label="Play cast for Original / libwebp / usage-ffmpeg-webp-decode">Play</button>
             </div>
             <div class="cast-player" data-player>
               <div class="player-controls">
-                <button type="button" class="js-player-play">Play</button>
-                <button type="button" class="js-player-pause">Pause</button>
-                <button type="button" class="js-player-restart">Restart</button>
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Original / libwebp / usage-ffmpeg-webp-decode">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Original / libwebp / usage-ffmpeg-webp-decode">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Original / libwebp / usage-ffmpeg-webp-decode">Restart</button>
                 <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
                 <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
               </div>
-              <pre class="terminal" aria-live="polite"></pre>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Original / libwebp / usage-ffmpeg-webp-decode"></pre>
             </div>
           </div>
         </details>
@@ -386,31 +401,32 @@
           <summary>
             <span class="case-title">
               <strong>ffmpeg webp probe</strong>
-              <span class="case-id">original / libwebp / usage-ffmpeg-webp-probe</span>
+              <span class="case-id">Original / libwebp / usage-ffmpeg-webp-probe</span>
             </span>
-            <span class="status-pill status-passed">Passed</span>
+            <span class="status-pill status-passed" aria-label="Original / libwebp / usage-ffmpeg-webp-probe status: Passed">Passed</span>
           </summary>
           <div class="case-body">
             <p>Probes a WebP fixture with FFmpeg to read stream metadata through libwebp.</p>
             <dl class="case-meta">
+              <div><dt>Run</dt><dd>Original</dd></div>
               <div><dt>Kind</dt><dd>usage</dd></div>
               <div><dt>Client</dt><dd>ffmpeg</dd></div>
               <div><dt>Duration</dt><dd>0.00s</dd></div>
               <div><dt>Tags</dt><dd class="tags"><span>usage</span> <span>image</span></dd></div>
             </dl>
             <div class="case-actions">
-              <a class="log-link" href="../evidence/original/logs/libwebp/usage-ffmpeg-webp-probe.log">Log</a>
-              <button type="button" class="play-button js-load-cast" data-cast="../evidence/original/casts/libwebp/usage-ffmpeg-webp-probe.cast">Play</button>
+              <a class="log-link" href="../evidence/original/logs/libwebp/usage-ffmpeg-webp-probe.log" aria-label="Open log for Original / libwebp / usage-ffmpeg-webp-probe">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/original/casts/libwebp/usage-ffmpeg-webp-probe.cast" aria-label="Play cast for Original / libwebp / usage-ffmpeg-webp-probe">Play</button>
             </div>
             <div class="cast-player" data-player>
               <div class="player-controls">
-                <button type="button" class="js-player-play">Play</button>
-                <button type="button" class="js-player-pause">Pause</button>
-                <button type="button" class="js-player-restart">Restart</button>
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Original / libwebp / usage-ffmpeg-webp-probe">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Original / libwebp / usage-ffmpeg-webp-probe">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Original / libwebp / usage-ffmpeg-webp-probe">Restart</button>
                 <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
                 <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
               </div>
-              <pre class="terminal" aria-live="polite"></pre>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Original / libwebp / usage-ffmpeg-webp-probe"></pre>
             </div>
           </div>
         </details>
@@ -418,31 +434,32 @@
           <summary>
             <span class="case-title">
               <strong>webp-pixbuf-loader pixbuf thumbnail</strong>
-              <span class="case-id">original / libwebp / usage-webp-pixbuf-loader-pixbuf-thumbnail</span>
+              <span class="case-id">Original / libwebp / usage-webp-pixbuf-loader-pixbuf-thumbnail</span>
             </span>
-            <span class="status-pill status-passed">Passed</span>
+            <span class="status-pill status-passed" aria-label="Original / libwebp / usage-webp-pixbuf-loader-pixbuf-thumbnail status: Passed">Passed</span>
           </summary>
           <div class="case-body">
             <p>Creates a GDK Pixbuf thumbnail from a WebP fixture through webp-pixbuf-loader.</p>
             <dl class="case-meta">
+              <div><dt>Run</dt><dd>Original</dd></div>
               <div><dt>Kind</dt><dd>usage</dd></div>
               <div><dt>Client</dt><dd>webp-pixbuf-loader</dd></div>
               <div><dt>Duration</dt><dd>0.00s</dd></div>
               <div><dt>Tags</dt><dd class="tags"><span>usage</span> <span>image</span></dd></div>
             </dl>
             <div class="case-actions">
-              <a class="log-link" href="../evidence/original/logs/libwebp/usage-webp-pixbuf-loader-pixbuf-thumbnail.log">Log</a>
-              <button type="button" class="play-button js-load-cast" data-cast="../evidence/original/casts/libwebp/usage-webp-pixbuf-loader-pixbuf-thumbnail.cast">Play</button>
+              <a class="log-link" href="../evidence/original/logs/libwebp/usage-webp-pixbuf-loader-pixbuf-thumbnail.log" aria-label="Open log for Original / libwebp / usage-webp-pixbuf-loader-pixbuf-thumbnail">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/original/casts/libwebp/usage-webp-pixbuf-loader-pixbuf-thumbnail.cast" aria-label="Play cast for Original / libwebp / usage-webp-pixbuf-loader-pixbuf-thumbnail">Play</button>
             </div>
             <div class="cast-player" data-player>
               <div class="player-controls">
-                <button type="button" class="js-player-play">Play</button>
-                <button type="button" class="js-player-pause">Pause</button>
-                <button type="button" class="js-player-restart">Restart</button>
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Original / libwebp / usage-webp-pixbuf-loader-pixbuf-thumbnail">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Original / libwebp / usage-webp-pixbuf-loader-pixbuf-thumbnail">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Original / libwebp / usage-webp-pixbuf-loader-pixbuf-thumbnail">Restart</button>
                 <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
                 <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
               </div>
-              <pre class="terminal" aria-live="polite"></pre>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Original / libwebp / usage-webp-pixbuf-loader-pixbuf-thumbnail"></pre>
             </div>
           </div>
         </details>
@@ -450,31 +467,32 @@
           <summary>
             <span class="case-title">
               <strong>SDL2_image loads WebP</strong>
-              <span class="case-id">original / libwebp / usage-libsdl2-image-load-webp</span>
+              <span class="case-id">Original / libwebp / usage-libsdl2-image-load-webp</span>
             </span>
-            <span class="status-pill status-passed">Passed</span>
+            <span class="status-pill status-passed" aria-label="Original / libwebp / usage-libsdl2-image-load-webp status: Passed">Passed</span>
           </summary>
           <div class="case-body">
             <p>Loads a WebP fixture with SDL2_image to exercise libwebp-backed image loading.</p>
             <dl class="case-meta">
+              <div><dt>Run</dt><dd>Original</dd></div>
               <div><dt>Kind</dt><dd>usage</dd></div>
               <div><dt>Client</dt><dd>libsdl2-image</dd></div>
               <div><dt>Duration</dt><dd>0.00s</dd></div>
               <div><dt>Tags</dt><dd class="tags"><span>usage</span> <span>image</span> <span>compile</span></dd></div>
             </dl>
             <div class="case-actions">
-              <a class="log-link" href="../evidence/original/logs/libwebp/usage-libsdl2-image-load-webp.log">Log</a>
-              <button type="button" class="play-button js-load-cast" data-cast="../evidence/original/casts/libwebp/usage-libsdl2-image-load-webp.cast">Play</button>
+              <a class="log-link" href="../evidence/original/logs/libwebp/usage-libsdl2-image-load-webp.log" aria-label="Open log for Original / libwebp / usage-libsdl2-image-load-webp">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/original/casts/libwebp/usage-libsdl2-image-load-webp.cast" aria-label="Play cast for Original / libwebp / usage-libsdl2-image-load-webp">Play</button>
             </div>
             <div class="cast-player" data-player>
               <div class="player-controls">
-                <button type="button" class="js-player-play">Play</button>
-                <button type="button" class="js-player-pause">Pause</button>
-                <button type="button" class="js-player-restart">Restart</button>
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Original / libwebp / usage-libsdl2-image-load-webp">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Original / libwebp / usage-libsdl2-image-load-webp">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Original / libwebp / usage-libsdl2-image-load-webp">Restart</button>
                 <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
                 <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
               </div>
-              <pre class="terminal" aria-live="polite"></pre>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Original / libwebp / usage-libsdl2-image-load-webp"></pre>
             </div>
           </div>
         </details>
@@ -482,31 +500,32 @@
           <summary>
             <span class="case-title">
               <strong>Pillow WebP alpha channel</strong>
-              <span class="case-id">original / libwebp / usage-python3-pil-webp-alpha</span>
+              <span class="case-id">Original / libwebp / usage-python3-pil-webp-alpha</span>
             </span>
-            <span class="status-pill status-passed">Passed</span>
+            <span class="status-pill status-passed" aria-label="Original / libwebp / usage-python3-pil-webp-alpha status: Passed">Passed</span>
           </summary>
           <div class="case-body">
             <p>Saves an RGBA WebP with Pillow and verifies alpha channel preservation through libwebp.</p>
             <dl class="case-meta">
+              <div><dt>Run</dt><dd>Original</dd></div>
               <div><dt>Kind</dt><dd>usage</dd></div>
               <div><dt>Client</dt><dd>python3-pil</dd></div>
               <div><dt>Duration</dt><dd>0.00s</dd></div>
               <div><dt>Tags</dt><dd class="tags"><span>usage</span> <span>image</span> <span>python</span></dd></div>
             </dl>
             <div class="case-actions">
-              <a class="log-link" href="../evidence/original/logs/libwebp/usage-python3-pil-webp-alpha.log">Log</a>
-              <button type="button" class="play-button js-load-cast" data-cast="../evidence/original/casts/libwebp/usage-python3-pil-webp-alpha.cast">Play</button>
+              <a class="log-link" href="../evidence/original/logs/libwebp/usage-python3-pil-webp-alpha.log" aria-label="Open log for Original / libwebp / usage-python3-pil-webp-alpha">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/original/casts/libwebp/usage-python3-pil-webp-alpha.cast" aria-label="Play cast for Original / libwebp / usage-python3-pil-webp-alpha">Play</button>
             </div>
             <div class="cast-player" data-player>
               <div class="player-controls">
-                <button type="button" class="js-player-play">Play</button>
-                <button type="button" class="js-player-pause">Pause</button>
-                <button type="button" class="js-player-restart">Restart</button>
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Original / libwebp / usage-python3-pil-webp-alpha">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Original / libwebp / usage-python3-pil-webp-alpha">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Original / libwebp / usage-python3-pil-webp-alpha">Restart</button>
                 <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
                 <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
               </div>
-              <pre class="terminal" aria-live="polite"></pre>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Original / libwebp / usage-python3-pil-webp-alpha"></pre>
             </div>
           </div>
         </details>
@@ -514,31 +533,32 @@
           <summary>
             <span class="case-title">
               <strong>FFmpeg WebP scale filter</strong>
-              <span class="case-id">original / libwebp / usage-ffmpeg-webp-scale-filter</span>
+              <span class="case-id">Original / libwebp / usage-ffmpeg-webp-scale-filter</span>
             </span>
-            <span class="status-pill status-passed">Passed</span>
+            <span class="status-pill status-passed" aria-label="Original / libwebp / usage-ffmpeg-webp-scale-filter status: Passed">Passed</span>
           </summary>
           <div class="case-body">
             <p>Scales a WebP image with FFmpeg and verifies the PNG output stream dimensions.</p>
             <dl class="case-meta">
+              <div><dt>Run</dt><dd>Original</dd></div>
               <div><dt>Kind</dt><dd>usage</dd></div>
               <div><dt>Client</dt><dd>ffmpeg</dd></div>
               <div><dt>Duration</dt><dd>0.00s</dd></div>
               <div><dt>Tags</dt><dd class="tags"><span>usage</span> <span>image</span></dd></div>
             </dl>
             <div class="case-actions">
-              <a class="log-link" href="../evidence/original/logs/libwebp/usage-ffmpeg-webp-scale-filter.log">Log</a>
-              <button type="button" class="play-button js-load-cast" data-cast="../evidence/original/casts/libwebp/usage-ffmpeg-webp-scale-filter.cast">Play</button>
+              <a class="log-link" href="../evidence/original/logs/libwebp/usage-ffmpeg-webp-scale-filter.log" aria-label="Open log for Original / libwebp / usage-ffmpeg-webp-scale-filter">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/original/casts/libwebp/usage-ffmpeg-webp-scale-filter.cast" aria-label="Play cast for Original / libwebp / usage-ffmpeg-webp-scale-filter">Play</button>
             </div>
             <div class="cast-player" data-player>
               <div class="player-controls">
-                <button type="button" class="js-player-play">Play</button>
-                <button type="button" class="js-player-pause">Pause</button>
-                <button type="button" class="js-player-restart">Restart</button>
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Original / libwebp / usage-ffmpeg-webp-scale-filter">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Original / libwebp / usage-ffmpeg-webp-scale-filter">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Original / libwebp / usage-ffmpeg-webp-scale-filter">Restart</button>
                 <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
                 <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
               </div>
-              <pre class="terminal" aria-live="polite"></pre>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Original / libwebp / usage-ffmpeg-webp-scale-filter"></pre>
             </div>
           </div>
         </details>
@@ -546,31 +566,32 @@
           <summary>
             <span class="case-title">
               <strong>cwebp dwebp round trip</strong>
-              <span class="case-id">port-04-test / libwebp / cwebp-dwebp-roundtrip</span>
+              <span class="case-id">Port / libwebp / cwebp-dwebp-roundtrip</span>
             </span>
-            <span class="status-pill status-passed">Passed</span>
+            <span class="status-pill status-passed" aria-label="Port / libwebp / cwebp-dwebp-roundtrip status: Passed">Passed</span>
           </summary>
           <div class="case-body">
             <p>Encodes a generated PPM image to WebP and decodes it.</p>
             <dl class="case-meta">
+              <div><dt>Run</dt><dd>Port</dd></div>
               <div><dt>Kind</dt><dd>source</dd></div>
               <div><dt>Client</dt><dd>none</dd></div>
               <div><dt>Duration</dt><dd>0.00s</dd></div>
               <div><dt>Tags</dt><dd class="tags"><span>cli</span> <span>media</span></dd></div>
             </dl>
             <div class="case-actions">
-              <a class="log-link" href="../evidence/port-04-test/logs/libwebp/cwebp-dwebp-roundtrip.log">Log</a>
-              <button type="button" class="play-button js-load-cast" data-cast="../evidence/port-04-test/casts/libwebp/cwebp-dwebp-roundtrip.cast">Play</button>
+              <a class="log-link" href="../evidence/port-04-test/logs/libwebp/cwebp-dwebp-roundtrip.log" aria-label="Open log for Port / libwebp / cwebp-dwebp-roundtrip">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/port-04-test/casts/libwebp/cwebp-dwebp-roundtrip.cast" aria-label="Play cast for Port / libwebp / cwebp-dwebp-roundtrip">Play</button>
             </div>
             <div class="cast-player" data-player>
               <div class="player-controls">
-                <button type="button" class="js-player-play">Play</button>
-                <button type="button" class="js-player-pause">Pause</button>
-                <button type="button" class="js-player-restart">Restart</button>
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Port / libwebp / cwebp-dwebp-roundtrip">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Port / libwebp / cwebp-dwebp-roundtrip">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Port / libwebp / cwebp-dwebp-roundtrip">Restart</button>
                 <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
                 <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
               </div>
-              <pre class="terminal" aria-live="polite"></pre>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Port / libwebp / cwebp-dwebp-roundtrip"></pre>
             </div>
           </div>
         </details>
@@ -578,31 +599,32 @@
           <summary>
             <span class="case-title">
               <strong>webpinfo inspection</strong>
-              <span class="case-id">port-04-test / libwebp / webpinfo-inspection</span>
+              <span class="case-id">Port / libwebp / webpinfo-inspection</span>
             </span>
-            <span class="status-pill status-passed">Passed</span>
+            <span class="status-pill status-passed" aria-label="Port / libwebp / webpinfo-inspection status: Passed">Passed</span>
           </summary>
           <div class="case-body">
             <p>Inspects a checked-in WebP example through the webpinfo tool.</p>
             <dl class="case-meta">
+              <div><dt>Run</dt><dd>Port</dd></div>
               <div><dt>Kind</dt><dd>source</dd></div>
               <div><dt>Client</dt><dd>none</dd></div>
               <div><dt>Duration</dt><dd>0.00s</dd></div>
               <div><dt>Tags</dt><dd class="tags"><span>cli</span> <span>metadata</span></dd></div>
             </dl>
             <div class="case-actions">
-              <a class="log-link" href="../evidence/port-04-test/logs/libwebp/webpinfo-inspection.log">Log</a>
-              <button type="button" class="play-button js-load-cast" data-cast="../evidence/port-04-test/casts/libwebp/webpinfo-inspection.cast">Play</button>
+              <a class="log-link" href="../evidence/port-04-test/logs/libwebp/webpinfo-inspection.log" aria-label="Open log for Port / libwebp / webpinfo-inspection">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/port-04-test/casts/libwebp/webpinfo-inspection.cast" aria-label="Play cast for Port / libwebp / webpinfo-inspection">Play</button>
             </div>
             <div class="cast-player" data-player>
               <div class="player-controls">
-                <button type="button" class="js-player-play">Play</button>
-                <button type="button" class="js-player-pause">Pause</button>
-                <button type="button" class="js-player-restart">Restart</button>
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Port / libwebp / webpinfo-inspection">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Port / libwebp / webpinfo-inspection">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Port / libwebp / webpinfo-inspection">Restart</button>
                 <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
                 <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
               </div>
-              <pre class="terminal" aria-live="polite"></pre>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Port / libwebp / webpinfo-inspection"></pre>
             </div>
           </div>
         </details>
@@ -610,31 +632,32 @@
           <summary>
             <span class="case-title">
               <strong>webpmux metadata behavior</strong>
-              <span class="case-id">port-04-test / libwebp / webpmux-metadata</span>
+              <span class="case-id">Port / libwebp / webpmux-metadata</span>
             </span>
-            <span class="status-pill status-passed">Passed</span>
+            <span class="status-pill status-passed" aria-label="Port / libwebp / webpmux-metadata status: Passed">Passed</span>
           </summary>
           <div class="case-body">
             <p>Adds EXIF metadata to a WebP file and reads mux information.</p>
             <dl class="case-meta">
+              <div><dt>Run</dt><dd>Port</dd></div>
               <div><dt>Kind</dt><dd>source</dd></div>
               <div><dt>Client</dt><dd>none</dd></div>
               <div><dt>Duration</dt><dd>0.00s</dd></div>
               <div><dt>Tags</dt><dd class="tags"><span>cli</span> <span>metadata</span></dd></div>
             </dl>
             <div class="case-actions">
-              <a class="log-link" href="../evidence/port-04-test/logs/libwebp/webpmux-metadata.log">Log</a>
-              <button type="button" class="play-button js-load-cast" data-cast="../evidence/port-04-test/casts/libwebp/webpmux-metadata.cast">Play</button>
+              <a class="log-link" href="../evidence/port-04-test/logs/libwebp/webpmux-metadata.log" aria-label="Open log for Port / libwebp / webpmux-metadata">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/port-04-test/casts/libwebp/webpmux-metadata.cast" aria-label="Play cast for Port / libwebp / webpmux-metadata">Play</button>
             </div>
             <div class="cast-player" data-player>
               <div class="player-controls">
-                <button type="button" class="js-player-play">Play</button>
-                <button type="button" class="js-player-pause">Pause</button>
-                <button type="button" class="js-player-restart">Restart</button>
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Port / libwebp / webpmux-metadata">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Port / libwebp / webpmux-metadata">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Port / libwebp / webpmux-metadata">Restart</button>
                 <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
                 <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
               </div>
-              <pre class="terminal" aria-live="polite"></pre>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Port / libwebp / webpmux-metadata"></pre>
             </div>
           </div>
         </details>
@@ -642,31 +665,32 @@
           <summary>
             <span class="case-title">
               <strong>libwebp C API decode smoke</strong>
-              <span class="case-id">port-04-test / libwebp / decode-c-api-smoke</span>
+              <span class="case-id">Port / libwebp / decode-c-api-smoke</span>
             </span>
-            <span class="status-pill status-passed">Passed</span>
+            <span class="status-pill status-passed" aria-label="Port / libwebp / decode-c-api-smoke status: Passed">Passed</span>
           </summary>
           <div class="case-body">
             <p>Compiles and runs a WebP decode API program against a fixture.</p>
             <dl class="case-meta">
+              <div><dt>Run</dt><dd>Port</dd></div>
               <div><dt>Kind</dt><dd>source</dd></div>
               <div><dt>Client</dt><dd>none</dd></div>
               <div><dt>Duration</dt><dd>0.00s</dd></div>
               <div><dt>Tags</dt><dd class="tags"><span>api</span> <span>compile</span></dd></div>
             </dl>
             <div class="case-actions">
-              <a class="log-link" href="../evidence/port-04-test/logs/libwebp/decode-c-api-smoke.log">Log</a>
-              <button type="button" class="play-button js-load-cast" data-cast="../evidence/port-04-test/casts/libwebp/decode-c-api-smoke.cast">Play</button>
+              <a class="log-link" href="../evidence/port-04-test/logs/libwebp/decode-c-api-smoke.log" aria-label="Open log for Port / libwebp / decode-c-api-smoke">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/port-04-test/casts/libwebp/decode-c-api-smoke.cast" aria-label="Play cast for Port / libwebp / decode-c-api-smoke">Play</button>
             </div>
             <div class="cast-player" data-player>
               <div class="player-controls">
-                <button type="button" class="js-player-play">Play</button>
-                <button type="button" class="js-player-pause">Pause</button>
-                <button type="button" class="js-player-restart">Restart</button>
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Port / libwebp / decode-c-api-smoke">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Port / libwebp / decode-c-api-smoke">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Port / libwebp / decode-c-api-smoke">Restart</button>
                 <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
                 <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
               </div>
-              <pre class="terminal" aria-live="polite"></pre>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Port / libwebp / decode-c-api-smoke"></pre>
             </div>
           </div>
         </details>
@@ -674,31 +698,32 @@
           <summary>
             <span class="case-title">
               <strong>Malformed WebP rejection</strong>
-              <span class="case-id">port-04-test / libwebp / malformed-webp-rejection</span>
+              <span class="case-id">Port / libwebp / malformed-webp-rejection</span>
             </span>
-            <span class="status-pill status-passed">Passed</span>
+            <span class="status-pill status-passed" aria-label="Port / libwebp / malformed-webp-rejection status: Passed">Passed</span>
           </summary>
           <div class="case-body">
             <p>Requires dwebp to fail on bytes that are not WebP data.</p>
             <dl class="case-meta">
+              <div><dt>Run</dt><dd>Port</dd></div>
               <div><dt>Kind</dt><dd>source</dd></div>
               <div><dt>Client</dt><dd>none</dd></div>
               <div><dt>Duration</dt><dd>0.00s</dd></div>
               <div><dt>Tags</dt><dd class="tags"><span>cli</span> <span>negative</span></dd></div>
             </dl>
             <div class="case-actions">
-              <a class="log-link" href="../evidence/port-04-test/logs/libwebp/malformed-webp-rejection.log">Log</a>
-              <button type="button" class="play-button js-load-cast" data-cast="../evidence/port-04-test/casts/libwebp/malformed-webp-rejection.cast">Play</button>
+              <a class="log-link" href="../evidence/port-04-test/logs/libwebp/malformed-webp-rejection.log" aria-label="Open log for Port / libwebp / malformed-webp-rejection">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/port-04-test/casts/libwebp/malformed-webp-rejection.cast" aria-label="Play cast for Port / libwebp / malformed-webp-rejection">Play</button>
             </div>
             <div class="cast-player" data-player>
               <div class="player-controls">
-                <button type="button" class="js-player-play">Play</button>
-                <button type="button" class="js-player-pause">Pause</button>
-                <button type="button" class="js-player-restart">Restart</button>
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Port / libwebp / malformed-webp-rejection">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Port / libwebp / malformed-webp-rejection">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Port / libwebp / malformed-webp-rejection">Restart</button>
                 <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
                 <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
               </div>
-              <pre class="terminal" aria-live="polite"></pre>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Port / libwebp / malformed-webp-rejection"></pre>
             </div>
           </div>
         </details>
@@ -706,31 +731,32 @@
           <summary>
             <span class="case-title">
               <strong>Pillow open webp</strong>
-              <span class="case-id">port-04-test / libwebp / usage-python3-pil-open-webp</span>
+              <span class="case-id">Port / libwebp / usage-python3-pil-open-webp</span>
             </span>
-            <span class="status-pill status-passed">Passed</span>
+            <span class="status-pill status-passed" aria-label="Port / libwebp / usage-python3-pil-open-webp status: Passed">Passed</span>
           </summary>
           <div class="case-body">
             <p>Opens a WebP fixture with Pillow and reads dimensions through libwebp.</p>
             <dl class="case-meta">
+              <div><dt>Run</dt><dd>Port</dd></div>
               <div><dt>Kind</dt><dd>usage</dd></div>
               <div><dt>Client</dt><dd>python3-pil</dd></div>
               <div><dt>Duration</dt><dd>0.00s</dd></div>
               <div><dt>Tags</dt><dd class="tags"><span>usage</span> <span>image</span> <span>python</span></dd></div>
             </dl>
             <div class="case-actions">
-              <a class="log-link" href="../evidence/port-04-test/logs/libwebp/usage-python3-pil-open-webp.log">Log</a>
-              <button type="button" class="play-button js-load-cast" data-cast="../evidence/port-04-test/casts/libwebp/usage-python3-pil-open-webp.cast">Play</button>
+              <a class="log-link" href="../evidence/port-04-test/logs/libwebp/usage-python3-pil-open-webp.log" aria-label="Open log for Port / libwebp / usage-python3-pil-open-webp">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/port-04-test/casts/libwebp/usage-python3-pil-open-webp.cast" aria-label="Play cast for Port / libwebp / usage-python3-pil-open-webp">Play</button>
             </div>
             <div class="cast-player" data-player>
               <div class="player-controls">
-                <button type="button" class="js-player-play">Play</button>
-                <button type="button" class="js-player-pause">Pause</button>
-                <button type="button" class="js-player-restart">Restart</button>
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Port / libwebp / usage-python3-pil-open-webp">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Port / libwebp / usage-python3-pil-open-webp">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Port / libwebp / usage-python3-pil-open-webp">Restart</button>
                 <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
                 <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
               </div>
-              <pre class="terminal" aria-live="polite"></pre>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Port / libwebp / usage-python3-pil-open-webp"></pre>
             </div>
           </div>
         </details>
@@ -738,31 +764,32 @@
           <summary>
             <span class="case-title">
               <strong>Pillow convert webp</strong>
-              <span class="case-id">port-04-test / libwebp / usage-python3-pil-convert-webp</span>
+              <span class="case-id">Port / libwebp / usage-python3-pil-convert-webp</span>
             </span>
-            <span class="status-pill status-passed">Passed</span>
+            <span class="status-pill status-passed" aria-label="Port / libwebp / usage-python3-pil-convert-webp status: Passed">Passed</span>
           </summary>
           <div class="case-body">
             <p>Converts a WebP fixture to PNG with Pillow through libwebp decoding.</p>
             <dl class="case-meta">
+              <div><dt>Run</dt><dd>Port</dd></div>
               <div><dt>Kind</dt><dd>usage</dd></div>
               <div><dt>Client</dt><dd>python3-pil</dd></div>
               <div><dt>Duration</dt><dd>0.00s</dd></div>
               <div><dt>Tags</dt><dd class="tags"><span>usage</span> <span>image</span> <span>python</span></dd></div>
             </dl>
             <div class="case-actions">
-              <a class="log-link" href="../evidence/port-04-test/logs/libwebp/usage-python3-pil-convert-webp.log">Log</a>
-              <button type="button" class="play-button js-load-cast" data-cast="../evidence/port-04-test/casts/libwebp/usage-python3-pil-convert-webp.cast">Play</button>
+              <a class="log-link" href="../evidence/port-04-test/logs/libwebp/usage-python3-pil-convert-webp.log" aria-label="Open log for Port / libwebp / usage-python3-pil-convert-webp">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/port-04-test/casts/libwebp/usage-python3-pil-convert-webp.cast" aria-label="Play cast for Port / libwebp / usage-python3-pil-convert-webp">Play</button>
             </div>
             <div class="cast-player" data-player>
               <div class="player-controls">
-                <button type="button" class="js-player-play">Play</button>
-                <button type="button" class="js-player-pause">Pause</button>
-                <button type="button" class="js-player-restart">Restart</button>
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Port / libwebp / usage-python3-pil-convert-webp">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Port / libwebp / usage-python3-pil-convert-webp">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Port / libwebp / usage-python3-pil-convert-webp">Restart</button>
                 <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
                 <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
               </div>
-              <pre class="terminal" aria-live="polite"></pre>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Port / libwebp / usage-python3-pil-convert-webp"></pre>
             </div>
           </div>
         </details>
@@ -770,31 +797,32 @@
           <summary>
             <span class="case-title">
               <strong>Pillow save webp</strong>
-              <span class="case-id">port-04-test / libwebp / usage-python3-pil-save-webp</span>
+              <span class="case-id">Port / libwebp / usage-python3-pil-save-webp</span>
             </span>
-            <span class="status-pill status-passed">Passed</span>
+            <span class="status-pill status-passed" aria-label="Port / libwebp / usage-python3-pil-save-webp status: Passed">Passed</span>
           </summary>
           <div class="case-body">
             <p>Writes a WebP image with Pillow through libwebp encoding.</p>
             <dl class="case-meta">
+              <div><dt>Run</dt><dd>Port</dd></div>
               <div><dt>Kind</dt><dd>usage</dd></div>
               <div><dt>Client</dt><dd>python3-pil</dd></div>
               <div><dt>Duration</dt><dd>0.00s</dd></div>
               <div><dt>Tags</dt><dd class="tags"><span>usage</span> <span>image</span> <span>python</span></dd></div>
             </dl>
             <div class="case-actions">
-              <a class="log-link" href="../evidence/port-04-test/logs/libwebp/usage-python3-pil-save-webp.log">Log</a>
-              <button type="button" class="play-button js-load-cast" data-cast="../evidence/port-04-test/casts/libwebp/usage-python3-pil-save-webp.cast">Play</button>
+              <a class="log-link" href="../evidence/port-04-test/logs/libwebp/usage-python3-pil-save-webp.log" aria-label="Open log for Port / libwebp / usage-python3-pil-save-webp">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/port-04-test/casts/libwebp/usage-python3-pil-save-webp.cast" aria-label="Play cast for Port / libwebp / usage-python3-pil-save-webp">Play</button>
             </div>
             <div class="cast-player" data-player>
               <div class="player-controls">
-                <button type="button" class="js-player-play">Play</button>
-                <button type="button" class="js-player-pause">Pause</button>
-                <button type="button" class="js-player-restart">Restart</button>
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Port / libwebp / usage-python3-pil-save-webp">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Port / libwebp / usage-python3-pil-save-webp">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Port / libwebp / usage-python3-pil-save-webp">Restart</button>
                 <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
                 <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
               </div>
-              <pre class="terminal" aria-live="polite"></pre>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Port / libwebp / usage-python3-pil-save-webp"></pre>
             </div>
           </div>
         </details>
@@ -802,31 +830,32 @@
           <summary>
             <span class="case-title">
               <strong>vips webp header</strong>
-              <span class="case-id">port-04-test / libwebp / usage-vips-webp-header</span>
+              <span class="case-id">Port / libwebp / usage-vips-webp-header</span>
             </span>
-            <span class="status-pill status-passed">Passed</span>
+            <span class="status-pill status-passed" aria-label="Port / libwebp / usage-vips-webp-header status: Passed">Passed</span>
           </summary>
           <div class="case-body">
             <p>Reads WebP image metadata with vips through libwebp.</p>
             <dl class="case-meta">
+              <div><dt>Run</dt><dd>Port</dd></div>
               <div><dt>Kind</dt><dd>usage</dd></div>
               <div><dt>Client</dt><dd>vips</dd></div>
               <div><dt>Duration</dt><dd>0.00s</dd></div>
               <div><dt>Tags</dt><dd class="tags"><span>usage</span> <span>image</span></dd></div>
             </dl>
             <div class="case-actions">
-              <a class="log-link" href="../evidence/port-04-test/logs/libwebp/usage-vips-webp-header.log">Log</a>
-              <button type="button" class="play-button js-load-cast" data-cast="../evidence/port-04-test/casts/libwebp/usage-vips-webp-header.cast">Play</button>
+              <a class="log-link" href="../evidence/port-04-test/logs/libwebp/usage-vips-webp-header.log" aria-label="Open log for Port / libwebp / usage-vips-webp-header">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/port-04-test/casts/libwebp/usage-vips-webp-header.cast" aria-label="Play cast for Port / libwebp / usage-vips-webp-header">Play</button>
             </div>
             <div class="cast-player" data-player>
               <div class="player-controls">
-                <button type="button" class="js-player-play">Play</button>
-                <button type="button" class="js-player-pause">Pause</button>
-                <button type="button" class="js-player-restart">Restart</button>
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Port / libwebp / usage-vips-webp-header">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Port / libwebp / usage-vips-webp-header">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Port / libwebp / usage-vips-webp-header">Restart</button>
                 <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
                 <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
               </div>
-              <pre class="terminal" aria-live="polite"></pre>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Port / libwebp / usage-vips-webp-header"></pre>
             </div>
           </div>
         </details>
@@ -834,31 +863,32 @@
           <summary>
             <span class="case-title">
               <strong>vips webp resize</strong>
-              <span class="case-id">port-04-test / libwebp / usage-vips-webp-resize</span>
+              <span class="case-id">Port / libwebp / usage-vips-webp-resize</span>
             </span>
-            <span class="status-pill status-passed">Passed</span>
+            <span class="status-pill status-passed" aria-label="Port / libwebp / usage-vips-webp-resize status: Passed">Passed</span>
           </summary>
           <div class="case-body">
             <p>Resizes a WebP fixture with vips through libwebp decoding.</p>
             <dl class="case-meta">
+              <div><dt>Run</dt><dd>Port</dd></div>
               <div><dt>Kind</dt><dd>usage</dd></div>
               <div><dt>Client</dt><dd>vips</dd></div>
               <div><dt>Duration</dt><dd>0.00s</dd></div>
               <div><dt>Tags</dt><dd class="tags"><span>usage</span> <span>image</span></dd></div>
             </dl>
             <div class="case-actions">
-              <a class="log-link" href="../evidence/port-04-test/logs/libwebp/usage-vips-webp-resize.log">Log</a>
-              <button type="button" class="play-button js-load-cast" data-cast="../evidence/port-04-test/casts/libwebp/usage-vips-webp-resize.cast">Play</button>
+              <a class="log-link" href="../evidence/port-04-test/logs/libwebp/usage-vips-webp-resize.log" aria-label="Open log for Port / libwebp / usage-vips-webp-resize">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/port-04-test/casts/libwebp/usage-vips-webp-resize.cast" aria-label="Play cast for Port / libwebp / usage-vips-webp-resize">Play</button>
             </div>
             <div class="cast-player" data-player>
               <div class="player-controls">
-                <button type="button" class="js-player-play">Play</button>
-                <button type="button" class="js-player-pause">Pause</button>
-                <button type="button" class="js-player-restart">Restart</button>
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Port / libwebp / usage-vips-webp-resize">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Port / libwebp / usage-vips-webp-resize">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Port / libwebp / usage-vips-webp-resize">Restart</button>
                 <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
                 <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
               </div>
-              <pre class="terminal" aria-live="polite"></pre>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Port / libwebp / usage-vips-webp-resize"></pre>
             </div>
           </div>
         </details>
@@ -866,31 +896,32 @@
           <summary>
             <span class="case-title">
               <strong>ffmpeg webp decode</strong>
-              <span class="case-id">port-04-test / libwebp / usage-ffmpeg-webp-decode</span>
+              <span class="case-id">Port / libwebp / usage-ffmpeg-webp-decode</span>
             </span>
-            <span class="status-pill status-passed">Passed</span>
+            <span class="status-pill status-passed" aria-label="Port / libwebp / usage-ffmpeg-webp-decode status: Passed">Passed</span>
           </summary>
           <div class="case-body">
             <p>Decodes a WebP fixture to PNG with FFmpeg through libwebp.</p>
             <dl class="case-meta">
+              <div><dt>Run</dt><dd>Port</dd></div>
               <div><dt>Kind</dt><dd>usage</dd></div>
               <div><dt>Client</dt><dd>ffmpeg</dd></div>
               <div><dt>Duration</dt><dd>0.00s</dd></div>
               <div><dt>Tags</dt><dd class="tags"><span>usage</span> <span>image</span></dd></div>
             </dl>
             <div class="case-actions">
-              <a class="log-link" href="../evidence/port-04-test/logs/libwebp/usage-ffmpeg-webp-decode.log">Log</a>
-              <button type="button" class="play-button js-load-cast" data-cast="../evidence/port-04-test/casts/libwebp/usage-ffmpeg-webp-decode.cast">Play</button>
+              <a class="log-link" href="../evidence/port-04-test/logs/libwebp/usage-ffmpeg-webp-decode.log" aria-label="Open log for Port / libwebp / usage-ffmpeg-webp-decode">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/port-04-test/casts/libwebp/usage-ffmpeg-webp-decode.cast" aria-label="Play cast for Port / libwebp / usage-ffmpeg-webp-decode">Play</button>
             </div>
             <div class="cast-player" data-player>
               <div class="player-controls">
-                <button type="button" class="js-player-play">Play</button>
-                <button type="button" class="js-player-pause">Pause</button>
-                <button type="button" class="js-player-restart">Restart</button>
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Port / libwebp / usage-ffmpeg-webp-decode">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Port / libwebp / usage-ffmpeg-webp-decode">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Port / libwebp / usage-ffmpeg-webp-decode">Restart</button>
                 <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
                 <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
               </div>
-              <pre class="terminal" aria-live="polite"></pre>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Port / libwebp / usage-ffmpeg-webp-decode"></pre>
             </div>
           </div>
         </details>
@@ -898,31 +929,32 @@
           <summary>
             <span class="case-title">
               <strong>ffmpeg webp probe</strong>
-              <span class="case-id">port-04-test / libwebp / usage-ffmpeg-webp-probe</span>
+              <span class="case-id">Port / libwebp / usage-ffmpeg-webp-probe</span>
             </span>
-            <span class="status-pill status-passed">Passed</span>
+            <span class="status-pill status-passed" aria-label="Port / libwebp / usage-ffmpeg-webp-probe status: Passed">Passed</span>
           </summary>
           <div class="case-body">
             <p>Probes a WebP fixture with FFmpeg to read stream metadata through libwebp.</p>
             <dl class="case-meta">
+              <div><dt>Run</dt><dd>Port</dd></div>
               <div><dt>Kind</dt><dd>usage</dd></div>
               <div><dt>Client</dt><dd>ffmpeg</dd></div>
               <div><dt>Duration</dt><dd>0.00s</dd></div>
               <div><dt>Tags</dt><dd class="tags"><span>usage</span> <span>image</span></dd></div>
             </dl>
             <div class="case-actions">
-              <a class="log-link" href="../evidence/port-04-test/logs/libwebp/usage-ffmpeg-webp-probe.log">Log</a>
-              <button type="button" class="play-button js-load-cast" data-cast="../evidence/port-04-test/casts/libwebp/usage-ffmpeg-webp-probe.cast">Play</button>
+              <a class="log-link" href="../evidence/port-04-test/logs/libwebp/usage-ffmpeg-webp-probe.log" aria-label="Open log for Port / libwebp / usage-ffmpeg-webp-probe">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/port-04-test/casts/libwebp/usage-ffmpeg-webp-probe.cast" aria-label="Play cast for Port / libwebp / usage-ffmpeg-webp-probe">Play</button>
             </div>
             <div class="cast-player" data-player>
               <div class="player-controls">
-                <button type="button" class="js-player-play">Play</button>
-                <button type="button" class="js-player-pause">Pause</button>
-                <button type="button" class="js-player-restart">Restart</button>
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Port / libwebp / usage-ffmpeg-webp-probe">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Port / libwebp / usage-ffmpeg-webp-probe">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Port / libwebp / usage-ffmpeg-webp-probe">Restart</button>
                 <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
                 <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
               </div>
-              <pre class="terminal" aria-live="polite"></pre>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Port / libwebp / usage-ffmpeg-webp-probe"></pre>
             </div>
           </div>
         </details>
@@ -930,31 +962,32 @@
           <summary>
             <span class="case-title">
               <strong>webp-pixbuf-loader pixbuf thumbnail</strong>
-              <span class="case-id">port-04-test / libwebp / usage-webp-pixbuf-loader-pixbuf-thumbnail</span>
+              <span class="case-id">Port / libwebp / usage-webp-pixbuf-loader-pixbuf-thumbnail</span>
             </span>
-            <span class="status-pill status-passed">Passed</span>
+            <span class="status-pill status-passed" aria-label="Port / libwebp / usage-webp-pixbuf-loader-pixbuf-thumbnail status: Passed">Passed</span>
           </summary>
           <div class="case-body">
             <p>Creates a GDK Pixbuf thumbnail from a WebP fixture through webp-pixbuf-loader.</p>
             <dl class="case-meta">
+              <div><dt>Run</dt><dd>Port</dd></div>
               <div><dt>Kind</dt><dd>usage</dd></div>
               <div><dt>Client</dt><dd>webp-pixbuf-loader</dd></div>
               <div><dt>Duration</dt><dd>0.00s</dd></div>
               <div><dt>Tags</dt><dd class="tags"><span>usage</span> <span>image</span></dd></div>
             </dl>
             <div class="case-actions">
-              <a class="log-link" href="../evidence/port-04-test/logs/libwebp/usage-webp-pixbuf-loader-pixbuf-thumbnail.log">Log</a>
-              <button type="button" class="play-button js-load-cast" data-cast="../evidence/port-04-test/casts/libwebp/usage-webp-pixbuf-loader-pixbuf-thumbnail.cast">Play</button>
+              <a class="log-link" href="../evidence/port-04-test/logs/libwebp/usage-webp-pixbuf-loader-pixbuf-thumbnail.log" aria-label="Open log for Port / libwebp / usage-webp-pixbuf-loader-pixbuf-thumbnail">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/port-04-test/casts/libwebp/usage-webp-pixbuf-loader-pixbuf-thumbnail.cast" aria-label="Play cast for Port / libwebp / usage-webp-pixbuf-loader-pixbuf-thumbnail">Play</button>
             </div>
             <div class="cast-player" data-player>
               <div class="player-controls">
-                <button type="button" class="js-player-play">Play</button>
-                <button type="button" class="js-player-pause">Pause</button>
-                <button type="button" class="js-player-restart">Restart</button>
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Port / libwebp / usage-webp-pixbuf-loader-pixbuf-thumbnail">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Port / libwebp / usage-webp-pixbuf-loader-pixbuf-thumbnail">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Port / libwebp / usage-webp-pixbuf-loader-pixbuf-thumbnail">Restart</button>
                 <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
                 <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
               </div>
-              <pre class="terminal" aria-live="polite"></pre>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Port / libwebp / usage-webp-pixbuf-loader-pixbuf-thumbnail"></pre>
             </div>
           </div>
         </details>
@@ -962,31 +995,32 @@
           <summary>
             <span class="case-title">
               <strong>SDL2_image loads WebP</strong>
-              <span class="case-id">port-04-test / libwebp / usage-libsdl2-image-load-webp</span>
+              <span class="case-id">Port / libwebp / usage-libsdl2-image-load-webp</span>
             </span>
-            <span class="status-pill status-passed">Passed</span>
+            <span class="status-pill status-passed" aria-label="Port / libwebp / usage-libsdl2-image-load-webp status: Passed">Passed</span>
           </summary>
           <div class="case-body">
             <p>Loads a WebP fixture with SDL2_image to exercise libwebp-backed image loading.</p>
             <dl class="case-meta">
+              <div><dt>Run</dt><dd>Port</dd></div>
               <div><dt>Kind</dt><dd>usage</dd></div>
               <div><dt>Client</dt><dd>libsdl2-image</dd></div>
               <div><dt>Duration</dt><dd>0.00s</dd></div>
               <div><dt>Tags</dt><dd class="tags"><span>usage</span> <span>image</span> <span>compile</span></dd></div>
             </dl>
             <div class="case-actions">
-              <a class="log-link" href="../evidence/port-04-test/logs/libwebp/usage-libsdl2-image-load-webp.log">Log</a>
-              <button type="button" class="play-button js-load-cast" data-cast="../evidence/port-04-test/casts/libwebp/usage-libsdl2-image-load-webp.cast">Play</button>
+              <a class="log-link" href="../evidence/port-04-test/logs/libwebp/usage-libsdl2-image-load-webp.log" aria-label="Open log for Port / libwebp / usage-libsdl2-image-load-webp">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/port-04-test/casts/libwebp/usage-libsdl2-image-load-webp.cast" aria-label="Play cast for Port / libwebp / usage-libsdl2-image-load-webp">Play</button>
             </div>
             <div class="cast-player" data-player>
               <div class="player-controls">
-                <button type="button" class="js-player-play">Play</button>
-                <button type="button" class="js-player-pause">Pause</button>
-                <button type="button" class="js-player-restart">Restart</button>
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Port / libwebp / usage-libsdl2-image-load-webp">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Port / libwebp / usage-libsdl2-image-load-webp">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Port / libwebp / usage-libsdl2-image-load-webp">Restart</button>
                 <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
                 <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
               </div>
-              <pre class="terminal" aria-live="polite"></pre>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Port / libwebp / usage-libsdl2-image-load-webp"></pre>
             </div>
           </div>
         </details>
@@ -994,31 +1028,32 @@
           <summary>
             <span class="case-title">
               <strong>Pillow WebP alpha channel</strong>
-              <span class="case-id">port-04-test / libwebp / usage-python3-pil-webp-alpha</span>
+              <span class="case-id">Port / libwebp / usage-python3-pil-webp-alpha</span>
             </span>
-            <span class="status-pill status-passed">Passed</span>
+            <span class="status-pill status-passed" aria-label="Port / libwebp / usage-python3-pil-webp-alpha status: Passed">Passed</span>
           </summary>
           <div class="case-body">
             <p>Saves an RGBA WebP with Pillow and verifies alpha channel preservation through libwebp.</p>
             <dl class="case-meta">
+              <div><dt>Run</dt><dd>Port</dd></div>
               <div><dt>Kind</dt><dd>usage</dd></div>
               <div><dt>Client</dt><dd>python3-pil</dd></div>
               <div><dt>Duration</dt><dd>0.00s</dd></div>
               <div><dt>Tags</dt><dd class="tags"><span>usage</span> <span>image</span> <span>python</span></dd></div>
             </dl>
             <div class="case-actions">
-              <a class="log-link" href="../evidence/port-04-test/logs/libwebp/usage-python3-pil-webp-alpha.log">Log</a>
-              <button type="button" class="play-button js-load-cast" data-cast="../evidence/port-04-test/casts/libwebp/usage-python3-pil-webp-alpha.cast">Play</button>
+              <a class="log-link" href="../evidence/port-04-test/logs/libwebp/usage-python3-pil-webp-alpha.log" aria-label="Open log for Port / libwebp / usage-python3-pil-webp-alpha">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/port-04-test/casts/libwebp/usage-python3-pil-webp-alpha.cast" aria-label="Play cast for Port / libwebp / usage-python3-pil-webp-alpha">Play</button>
             </div>
             <div class="cast-player" data-player>
               <div class="player-controls">
-                <button type="button" class="js-player-play">Play</button>
-                <button type="button" class="js-player-pause">Pause</button>
-                <button type="button" class="js-player-restart">Restart</button>
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Port / libwebp / usage-python3-pil-webp-alpha">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Port / libwebp / usage-python3-pil-webp-alpha">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Port / libwebp / usage-python3-pil-webp-alpha">Restart</button>
                 <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
                 <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
               </div>
-              <pre class="terminal" aria-live="polite"></pre>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Port / libwebp / usage-python3-pil-webp-alpha"></pre>
             </div>
           </div>
         </details>
@@ -1026,31 +1061,32 @@
           <summary>
             <span class="case-title">
               <strong>FFmpeg WebP scale filter</strong>
-              <span class="case-id">port-04-test / libwebp / usage-ffmpeg-webp-scale-filter</span>
+              <span class="case-id">Port / libwebp / usage-ffmpeg-webp-scale-filter</span>
             </span>
-            <span class="status-pill status-passed">Passed</span>
+            <span class="status-pill status-passed" aria-label="Port / libwebp / usage-ffmpeg-webp-scale-filter status: Passed">Passed</span>
           </summary>
           <div class="case-body">
             <p>Scales a WebP image with FFmpeg and verifies the PNG output stream dimensions.</p>
             <dl class="case-meta">
+              <div><dt>Run</dt><dd>Port</dd></div>
               <div><dt>Kind</dt><dd>usage</dd></div>
               <div><dt>Client</dt><dd>ffmpeg</dd></div>
               <div><dt>Duration</dt><dd>0.00s</dd></div>
               <div><dt>Tags</dt><dd class="tags"><span>usage</span> <span>image</span></dd></div>
             </dl>
             <div class="case-actions">
-              <a class="log-link" href="../evidence/port-04-test/logs/libwebp/usage-ffmpeg-webp-scale-filter.log">Log</a>
-              <button type="button" class="play-button js-load-cast" data-cast="../evidence/port-04-test/casts/libwebp/usage-ffmpeg-webp-scale-filter.cast">Play</button>
+              <a class="log-link" href="../evidence/port-04-test/logs/libwebp/usage-ffmpeg-webp-scale-filter.log" aria-label="Open log for Port / libwebp / usage-ffmpeg-webp-scale-filter">Log</a>
+              <button type="button" class="play-button js-load-cast" data-cast="../evidence/port-04-test/casts/libwebp/usage-ffmpeg-webp-scale-filter.cast" aria-label="Play cast for Port / libwebp / usage-ffmpeg-webp-scale-filter">Play</button>
             </div>
             <div class="cast-player" data-player>
               <div class="player-controls">
-                <button type="button" class="js-player-play">Play</button>
-                <button type="button" class="js-player-pause">Pause</button>
-                <button type="button" class="js-player-restart">Restart</button>
+                <button type="button" class="js-player-play" aria-label="Play cast playback for Port / libwebp / usage-ffmpeg-webp-scale-filter">Play</button>
+                <button type="button" class="js-player-pause" aria-label="Pause cast playback for Port / libwebp / usage-ffmpeg-webp-scale-filter">Pause</button>
+                <button type="button" class="js-player-restart" aria-label="Restart cast playback for Port / libwebp / usage-ffmpeg-webp-scale-filter">Restart</button>
                 <label>Speed <select class="js-player-speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select></label>
                 <label class="scrub-label">Position <input class="js-player-scrub" type="range" min="0" max="1000" value="0"></label>
               </div>
-              <pre class="terminal" aria-live="polite"></pre>
+              <pre class="terminal" aria-live="polite" aria-label="Cast output for Port / libwebp / usage-ffmpeg-webp-scale-filter"></pre>
             </div>
           </div>
         </details>
