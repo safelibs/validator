@@ -32,9 +32,9 @@
   ],
   "override_debs_installed": true,
   "port_repository": "safelibs/port-libxml",
-  "port_tag_ref": "refs/tags/libxml/04-test",
-  "port_commit": "8af9d2976d2400327eb27c882c48b8556f27cc2a",
-  "port_release_tag": "build-8af9d2976d24",
+  "port_tag_ref": "refs/tags/build-30fa22b99c42",
+  "port_commit": "30fa22b99c4247500dfaff9eac1651326003c172",
+  "port_release_tag": "build-30fa22b99c42",
   "port_debs": [
     {
       "package": "libxml2",

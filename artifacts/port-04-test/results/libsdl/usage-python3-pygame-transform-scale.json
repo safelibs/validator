@@ -13,14 +13,14 @@
     "python"
   ],
   "requires": [],
-  "status": "failed",
+  "status": "passed",
   "started_at": "1970-01-01T00:00:00Z",
   "finished_at": "1970-01-01T00:00:00Z",
   "duration_seconds": 0.0,
   "result_path": "port-04-test/results/libsdl/usage-python3-pygame-transform-scale.json",
   "log_path": "port-04-test/logs/libsdl/usage-python3-pygame-transform-scale.log",
   "cast_path": "port-04-test/casts/libsdl/usage-python3-pygame-transform-scale.cast",
-  "exit_code": 1,
+  "exit_code": 0,
   "command": [
     "bash",
     "/validator/tests/libsdl/tests/cases/usage/usage-python3-pygame-transform-scale.sh"
@@ -32,9 +32,9 @@
   ],
   "override_debs_installed": true,
   "port_repository": "safelibs/port-libsdl",
-  "port_tag_ref": "refs/tags/libsdl/04-test",
-  "port_commit": "14609a9a584435d4a12c46aa11e969a0f0f8a7d5",
-  "port_release_tag": "build-14609a9a5844",
+  "port_tag_ref": "refs/tags/build-1b1de4b6d3a8",
+  "port_commit": "1b1de4b6d3a882632479a82218e431f56350bc1e",
+  "port_release_tag": "build-1b1de4b6d3a8",
   "port_debs": [
     {
       "package": "libsdl2-2.0-0",
@@ -78,6 +78,5 @@
       "architecture": "amd64",
       "filename": "libsdl2-tests_2.30.0+dfsg-1ubuntu3.1+safelibs1_amd64.deb"
     }
-  ],
-  "error": "testcase command exited with status 1"
+  ]
 }

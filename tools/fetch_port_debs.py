@@ -54,6 +54,14 @@ class ResolvedPortDeb:
     browser_download_url: str | None
 
 
+@dataclass(frozen=True)
+class ResolvedPortRef:
+    tag_ref: str
+    commit: str
+    minimum_tag_ref: str
+    minimum_commit: str
+
+
 def _require_string(value: Any, *, field_name: str, context: str) -> str:
     if not isinstance(value, str) or not value.strip():
         raise ValidatorError(f"{context} must define non-empty {field_name}")
@@ -106,7 +114,7 @@ def port_repos_by_library(repos: list[PortRepo]) -> dict[str, PortRepo]:
 def validate_port_repo(repo: PortRepo) -> None:
     expected_repository = f"safelibs/port-{repo.library}"
     expected_url = f"https://github.com/{expected_repository}"
-    expected_tag_ref = f"refs/tags/{repo.library}/04-test"
+    expected_minimum_tag_ref = f"refs/tags/{repo.library}/04-test"
     if repo.name_with_owner != expected_repository:
         raise ValidatorError(
             f"port repository for {repo.library} must be {expected_repository!r}, "
@@ -114,11 +122,30 @@ def validate_port_repo(repo: PortRepo) -> None:
         )
     if repo.url != expected_url:
         raise ValidatorError(f"port repository URL for {repo.library} must be {expected_url!r}")
-    if repo.tag_ref != expected_tag_ref:
+    if repo.tag_ref != expected_minimum_tag_ref:
         raise ValidatorError(
-            f"port repository tag_ref for {repo.library} must be {expected_tag_ref!r}, "
+            f"port repository tag_ref for {repo.library} must be {expected_minimum_tag_ref!r}, "
             f"got {repo.tag_ref!r}"
         )
+
+
+def parse_ls_remote_refs(stdout: str) -> dict[str, str]:
+    refs: dict[str, str] = {}
+    for line in stdout.splitlines():
+        parts = line.split()
+        if len(parts) != 2:
+            continue
+        commit, ref_name = parts
+        refs[ref_name] = commit
+    return refs
+
+
+def require_commit(value: str | None, *, description: str) -> str:
+    if value is None:
+        raise ValidatorError(f"missing {description}")
+    if COMMIT_RE.fullmatch(value) is None:
+        raise ValidatorError(f"{description} did not resolve to a commit hash")
+    return value
 
 
 def resolve_tag_commit(repo: PortRepo) -> str:
@@ -128,25 +155,74 @@ def resolve_tag_commit(repo: PortRepo) -> str:
         env=git_env(),
         capture_output=True,
     )
-    refs: dict[str, str] = {}
-    for line in completed.stdout.splitlines():
-        parts = line.split()
-        if len(parts) != 2:
-            continue
-        commit, ref_name = parts
-        refs[ref_name] = commit
+    refs = parse_ls_remote_refs(completed.stdout)
     commit = refs.get(f"{repo.tag_ref}^{{}}") or refs.get(repo.tag_ref)
-    if commit is None:
-        raise ValidatorError(f"missing tag {repo.tag_ref} in {repo.name_with_owner}")
-    if COMMIT_RE.fullmatch(commit) is None:
-        raise ValidatorError(f"tag {repo.tag_ref} in {repo.name_with_owner} did not resolve to a commit hash")
-    return commit
+    return require_commit(commit, description=f"tag {repo.tag_ref} in {repo.name_with_owner}")
 
 
 def release_tag_for_commit(commit: str) -> str:
     if COMMIT_RE.fullmatch(commit) is None:
         raise ValidatorError(f"invalid commit hash: {commit!r}")
     return f"build-{commit[:12]}"
+
+
+def build_tag_ref_for_commit(commit: str) -> str:
+    return f"refs/tags/{release_tag_for_commit(commit)}"
+
+
+def resolve_build_tag_commit(repo: PortRepo, tag_ref: str) -> str | None:
+    git_url = github_git_url(repo.name_with_owner)
+    refs = parse_ls_remote_refs(
+        run(
+            ["git", "ls-remote", git_url, tag_ref, f"{tag_ref}^{{}}"],
+            env=git_env(),
+            capture_output=True,
+        ).stdout
+    )
+    commit = refs.get(f"{tag_ref}^{{}}") or refs.get(tag_ref)
+    if commit is None:
+        return None
+    return require_commit(commit, description=f"build tag {tag_ref} in {repo.name_with_owner}")
+
+
+def resolve_port_ref(repo: PortRepo) -> ResolvedPortRef:
+    minimum_commit = resolve_tag_commit(repo)
+    branch_ref = f"refs/heads/{repo.default_branch}"
+    git_url = github_git_url(repo.name_with_owner)
+    branch_refs = parse_ls_remote_refs(
+        run(
+            ["git", "ls-remote", git_url, branch_ref],
+            env=git_env(),
+            capture_output=True,
+        ).stdout
+    )
+    branch_commit = require_commit(
+        branch_refs.get(branch_ref),
+        description=f"default branch {branch_ref} in {repo.name_with_owner}",
+    )
+    build_tag_ref = build_tag_ref_for_commit(branch_commit)
+    build_commit = resolve_build_tag_commit(repo, build_tag_ref)
+    if build_commit is not None and build_commit != branch_commit:
+        raise ValidatorError(
+            f"build tag {build_tag_ref} in {repo.name_with_owner} points to {build_commit}, "
+            f"not default branch commit {branch_commit}"
+        )
+    if build_commit is None:
+        build_tag_ref = build_tag_ref_for_commit(minimum_commit)
+        build_commit = resolve_build_tag_commit(repo, build_tag_ref)
+        if build_commit is None:
+            raise ValidatorError(f"missing build tag {build_tag_ref} in {repo.name_with_owner}")
+        if build_commit != minimum_commit:
+            raise ValidatorError(
+                f"build tag {build_tag_ref} in {repo.name_with_owner} points to {build_commit}, "
+                f"not minimum tag commit {minimum_commit}"
+            )
+    return ResolvedPortRef(
+        tag_ref=build_tag_ref,
+        commit=build_commit,
+        minimum_tag_ref=repo.tag_ref,
+        minimum_commit=minimum_commit,
+    )
 
 
 def github_headers(*, accept: str) -> dict[str, str]:
@@ -313,8 +389,8 @@ def resolve_library(
     output_root: Path,
 ) -> dict[str, Any]:
     validate_port_repo(repo)
-    commit = resolve_tag_commit(repo)
-    release_tag = release_tag_for_commit(commit)
+    resolved_ref = resolve_port_ref(repo)
+    release_tag = release_tag_for_commit(resolved_ref.commit)
     release = load_release(repo, release_tag)
     assets, unported = selected_assets(
         release=release,
@@ -352,8 +428,8 @@ def resolve_library(
             ResolvedPortDeb(
                 library=repo.library,
                 repository=repo.name_with_owner,
-                tag_ref=repo.tag_ref,
-                commit=commit,
+                tag_ref=resolved_ref.tag_ref,
+                commit=resolved_ref.commit,
                 release_tag=release_tag,
                 package=parsed_package,
                 filename=filename,
@@ -369,8 +445,8 @@ def resolve_library(
         "library": repo.library,
         "repository": repo.name_with_owner,
         "url": repo.url,
-        "tag_ref": repo.tag_ref,
-        "commit": commit,
+        "tag_ref": resolved_ref.tag_ref,
+        "commit": resolved_ref.commit,
         "release_tag": release_tag,
         "debs": [deb_lock_entry(deb) for deb in selected_debs],
         "unported_original_packages": unported,

@@ -31,9 +31,9 @@
   ],
   "override_debs_installed": true,
   "port_repository": "safelibs/port-libzstd",
-  "port_tag_ref": "refs/tags/libzstd/04-test",
-  "port_commit": "64056ff8056fa059e64b982e16784eb86bdcb825",
-  "port_release_tag": "build-64056ff8056f",
+  "port_tag_ref": "refs/tags/build-fcfe23e6d9a5",
+  "port_commit": "fcfe23e6d9a5adbc57b6956490fbe8301a3a6e3d",
+  "port_release_tag": "build-fcfe23e6d9a5",
   "port_debs": [
     {
       "package": "libzstd1",

@@ -30,9 +30,9 @@
   ],
   "override_debs_installed": true,
   "port_repository": "safelibs/port-libyaml",
-  "port_tag_ref": "refs/tags/libyaml/04-test",
-  "port_commit": "17f439b2dab04edb438ae7ad954bb7f2b625b59d",
-  "port_release_tag": "build-17f439b2dab0",
+  "port_tag_ref": "refs/tags/build-c308cb99f5bf",
+  "port_commit": "c308cb99f5bf6610e877a04b1fc58764d6b82bc6",
+  "port_release_tag": "build-c308cb99f5bf",
   "port_debs": [
     {
       "package": "libyaml-0-2",

@@ -31,9 +31,9 @@
   ],
   "override_debs_installed": true,
   "port_repository": "safelibs/port-giflib",
-  "port_tag_ref": "refs/tags/giflib/04-test",
-  "port_commit": "8dd3019a8e99e4b671fda486393daee138b487cc",
-  "port_release_tag": "build-8dd3019a8e99",
+  "port_tag_ref": "refs/tags/build-8a2a69b84035",
+  "port_commit": "8a2a69b84035ab8058e5b5e16a1c791652e6a2cf",
+  "port_release_tag": "build-8a2a69b84035",
   "port_debs": [
     {
       "package": "libgif7",

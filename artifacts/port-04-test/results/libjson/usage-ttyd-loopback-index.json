@@ -31,9 +31,9 @@
   ],
   "override_debs_installed": true,
   "port_repository": "safelibs/port-libjson",
-  "port_tag_ref": "refs/tags/libjson/04-test",
-  "port_commit": "e25f4b433d01b3ac8e68d8a9c52bc89d03e9cf42",
-  "port_release_tag": "build-e25f4b433d01",
+  "port_tag_ref": "refs/tags/build-451073b48788",
+  "port_commit": "451073b487885fd9a8b7182f5852a9bcd4da8305",
+  "port_release_tag": "build-451073b48788",
   "port_debs": [
     {
       "package": "libjson-c5",

@@ -36,9 +36,9 @@
   ],
   "override_debs_installed": true,
   "port_repository": "safelibs/port-libwebp",
-  "port_tag_ref": "refs/tags/libwebp/04-test",
-  "port_commit": "d9437d8e3c872766d7684cbe6701bfed7243465f",
-  "port_release_tag": "build-d9437d8e3c87",
+  "port_tag_ref": "refs/tags/build-c8b5e109144c",
+  "port_commit": "c8b5e109144cb6bea8a4a40accf635ebac959f39",
+  "port_release_tag": "build-c8b5e109144c",
   "port_debs": [
     {
       "package": "libwebp7",

@@ -33,9 +33,9 @@
   ],
   "override_debs_installed": true,
   "port_repository": "safelibs/port-libvips",
-  "port_tag_ref": "refs/tags/libvips/04-test",
-  "port_commit": "12543f951c24648d94d82e9809a02ed679602ef7",
-  "port_release_tag": "build-12543f951c24",
+  "port_tag_ref": "refs/tags/build-e8c2d20b32c5",
+  "port_commit": "e8c2d20b32c560f208feb2af53f85844c6698341",
+  "port_release_tag": "build-e8c2d20b32c5",
   "port_debs": [
     {
       "package": "libvips42t64",
