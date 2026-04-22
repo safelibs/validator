@@ -11,7 +11,8 @@ from tools import ValidatorError, select_libraries
 from tools.testcases import Testcase, TestcaseManifest, load_manifests
 
 
-REQUIRED_RESULT_FIELDS = {
+VALID_MODES = {"original", "port-04-test"}
+BASE_REQUIRED_RESULT_FIELDS = {
     "schema_version",
     "library",
     "mode",
@@ -34,8 +35,18 @@ REQUIRED_RESULT_FIELDS = {
     "apt_packages",
     "override_debs_installed",
 }
+PORT_REQUIRED_RESULT_FIELDS = {
+    "port_repository",
+    "port_tag_ref",
+    "port_commit",
+    "port_release_tag",
+    "port_debs",
+    "unported_original_packages",
+    "override_installed_packages",
+}
 OPTIONAL_RESULT_FIELDS = {"error"}
 UTC_TIMESTAMP_RE = re.compile(r"^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(?:\.\d+)?Z$")
+COMMIT_RE = re.compile(r"^[0-9a-f]{40}$")
 PROOF_STATUSES = {"passed", "failed"}
 
 
@@ -170,6 +181,125 @@ def _require_string_list(value: Any, *, field_name: str, source_path: Path) -> l
     return normalized
 
 
+def _require_mode(value: Any, *, source_path: Path) -> str:
+    mode = _require_string(value, field_name="mode", source_path=source_path)
+    if mode not in VALID_MODES:
+        raise ValidatorError(f"mode must be original or port-04-test in {source_path}")
+    return mode
+
+
+def _require_port_debs(value: Any, *, source_path: Path) -> list[dict[str, Any]]:
+    if not isinstance(value, list) or not value:
+        raise ValidatorError(f"port_debs must be a non-empty list in {source_path}")
+    debs: list[dict[str, Any]] = []
+    seen: set[str] = set()
+    for item in value:
+        if not isinstance(item, dict):
+            raise ValidatorError(f"port_debs entries must be objects in {source_path}")
+        deb = {
+            "package": _require_string(item.get("package"), field_name="port_debs.package", source_path=source_path),
+            "filename": _require_string(item.get("filename"), field_name="port_debs.filename", source_path=source_path),
+            "architecture": _require_string(
+                item.get("architecture"),
+                field_name="port_debs.architecture",
+                source_path=source_path,
+            ),
+            "sha256": _require_string(item.get("sha256"), field_name="port_debs.sha256", source_path=source_path),
+            "size": _require_int(item.get("size"), field_name="port_debs.size", source_path=source_path),
+        }
+        if deb["architecture"] not in {"amd64", "all"}:
+            raise ValidatorError(f"port_debs architecture must be amd64 or all in {source_path}")
+        if deb["package"] in seen:
+            raise ValidatorError(f"port_debs package entries must be unique in {source_path}")
+        seen.add(deb["package"])
+        if deb["size"] < 0:
+            raise ValidatorError(f"port_debs size must be non-negative in {source_path}")
+        debs.append(deb)
+    return debs
+
+
+def _require_override_installed_packages(value: Any, *, source_path: Path) -> list[dict[str, str]]:
+    if not isinstance(value, list) or not value:
+        raise ValidatorError(f"override_installed_packages must be a non-empty list in {source_path}")
+    records: list[dict[str, str]] = []
+    for item in value:
+        if not isinstance(item, dict):
+            raise ValidatorError(f"override_installed_packages entries must be objects in {source_path}")
+        records.append(
+            {
+                "package": _require_string(
+                    item.get("package"),
+                    field_name="override_installed_packages.package",
+                    source_path=source_path,
+                ),
+                "version": _require_string(
+                    item.get("version"),
+                    field_name="override_installed_packages.version",
+                    source_path=source_path,
+                ),
+                "architecture": _require_string(
+                    item.get("architecture"),
+                    field_name="override_installed_packages.architecture",
+                    source_path=source_path,
+                ),
+                "filename": _require_string(
+                    item.get("filename"),
+                    field_name="override_installed_packages.filename",
+                    source_path=source_path,
+                ),
+            }
+        )
+    return records
+
+
+def validate_port_result_metadata(
+    payload: dict[str, Any],
+    *,
+    apt_packages: list[str],
+    source_path: Path,
+) -> dict[str, Any]:
+    port_repository = _require_string(payload.get("port_repository"), field_name="port_repository", source_path=source_path)
+    port_tag_ref = _require_string(payload.get("port_tag_ref"), field_name="port_tag_ref", source_path=source_path)
+    port_commit = _require_string(payload.get("port_commit"), field_name="port_commit", source_path=source_path)
+    if COMMIT_RE.fullmatch(port_commit) is None:
+        raise ValidatorError(f"port_commit must be a 40-character lowercase hex commit in {source_path}")
+    port_release_tag = _require_string(payload.get("port_release_tag"), field_name="port_release_tag", source_path=source_path)
+    if port_release_tag != f"build-{port_commit[:12]}":
+        raise ValidatorError(f"port_release_tag must equal build-<commit[:12]> in {source_path}")
+    port_debs = _require_port_debs(payload.get("port_debs"), source_path=source_path)
+    unported = _require_string_list(
+        payload.get("unported_original_packages"),
+        field_name="unported_original_packages",
+        source_path=source_path,
+    )
+    installed = _require_override_installed_packages(
+        payload.get("override_installed_packages"),
+        source_path=source_path,
+    )
+    ported_packages = [deb["package"] for deb in port_debs]
+    if set(ported_packages).intersection(unported):
+        raise ValidatorError(f"port_debs and unported_original_packages must be disjoint in {source_path}")
+    combined = [package for package in apt_packages if package in ported_packages or package in unported]
+    if combined != apt_packages:
+        raise ValidatorError(
+            f"port_debs plus unported_original_packages must equal canonical apt_packages in {source_path}"
+        )
+    if ported_packages != [package for package in apt_packages if package in ported_packages]:
+        raise ValidatorError(f"port_debs must follow canonical apt_packages order in {source_path}")
+    installed_keys = [(item["package"], item["filename"], item["architecture"]) for item in installed]
+    expected_keys = [(deb["package"], deb["filename"], deb["architecture"]) for deb in port_debs]
+    if installed_keys != expected_keys:
+        raise ValidatorError(f"override_installed_packages must align with port_debs in {source_path}")
+    return {
+        "port_repository": port_repository,
+        "port_tag_ref": port_tag_ref,
+        "port_commit": port_commit,
+        "port_release_tag": port_release_tag,
+        "port_debs": port_debs,
+        "unported_original_packages": unported,
+    }
+
+
 def inspect_cast(cast_path: Path) -> dict[str, Any]:
     try:
         with cast_path.open(encoding="utf-8") as handle:
@@ -232,7 +362,13 @@ def inspect_cast(cast_path: Path) -> dict[str, Any]:
     }
 
 
-def load_result(path: Path, *, artifacts_root: Path, require_casts: bool = False) -> dict[str, Any]:
+def load_result(
+    path: Path,
+    *,
+    artifacts_root: Path,
+    mode: str,
+    require_casts: bool = False,
+) -> dict[str, Any]:
     _validate_existing_artifact_file_path(
         path,
         field_name="result path",
@@ -240,19 +376,24 @@ def load_result(path: Path, *, artifacts_root: Path, require_casts: bool = False
         source_path=path,
     )
     payload = _load_json_object(path, description="result")
-    missing = sorted(REQUIRED_RESULT_FIELDS - set(payload))
+    missing = sorted(BASE_REQUIRED_RESULT_FIELDS - set(payload))
     if missing:
         raise ValidatorError(f"result schema mismatch in {path}: missing {', '.join(missing)}")
-    extras = sorted(set(payload) - REQUIRED_RESULT_FIELDS - OPTIONAL_RESULT_FIELDS)
-    if extras:
-        raise ValidatorError(f"unsupported result fields in {path}: {', '.join(extras)}")
-
     if payload.get("schema_version") != 2:
         raise ValidatorError(f"schema_version must be 2 in {path}")
     library = _require_string(payload.get("library"), field_name="library", source_path=path)
-    mode = _require_string(payload.get("mode"), field_name="mode", source_path=path)
-    if mode != "original":
-        raise ValidatorError(f"mode must be original in {path}")
+    result_mode = _require_mode(payload.get("mode"), source_path=path)
+    if result_mode != mode:
+        raise ValidatorError(f"mode must be {mode} in {path}")
+    required_fields = set(BASE_REQUIRED_RESULT_FIELDS)
+    if mode == "port-04-test":
+        required_fields.update(PORT_REQUIRED_RESULT_FIELDS)
+        missing_port = sorted(PORT_REQUIRED_RESULT_FIELDS - set(payload))
+        if missing_port:
+            raise ValidatorError(f"port result schema mismatch in {path}: missing {', '.join(missing_port)}")
+    extras = sorted(set(payload) - required_fields - OPTIONAL_RESULT_FIELDS)
+    if extras:
+        raise ValidatorError(f"unsupported result fields in {path}: {', '.join(extras)}")
     testcase_id = _require_string(payload.get("testcase_id"), field_name="testcase_id", source_path=path)
     _require_string(payload.get("title"), field_name="title", source_path=path)
     _require_string(payload.get("description"), field_name="description", source_path=path)
@@ -292,12 +433,17 @@ def load_result(path: Path, *, artifacts_root: Path, require_casts: bool = False
         field_name="override_debs_installed",
         source_path=path,
     )
-    if override_debs_installed:
+    if mode == "original" and override_debs_installed:
         raise ValidatorError(f"override_debs_installed must be false for proof generation in {path}")
+    if mode == "port-04-test" and not override_debs_installed:
+        raise ValidatorError(f"override_debs_installed must be true for port proof generation in {path}")
+    if mode == "port-04-test":
+        validate_port_result_metadata(payload, apt_packages=apt_packages, source_path=path)
 
-    expected_result_path = f"results/{library}/{testcase_id}.json"
-    expected_log_path = f"logs/{library}/{testcase_id}.log"
-    expected_cast_path = f"casts/{library}/{testcase_id}.cast"
+    prefix = "" if mode == "original" else f"{mode}/"
+    expected_result_path = f"{prefix}results/{library}/{testcase_id}.json"
+    expected_log_path = f"{prefix}logs/{library}/{testcase_id}.log"
+    expected_cast_path = f"{prefix}casts/{library}/{testcase_id}.cast"
 
     result_target = validate_artifact_relative_path(
         payload.get("result_path"),
@@ -361,11 +507,12 @@ def _validate_result_matches_testcase(
     *,
     testcase: Testcase,
     testcase_manifest: TestcaseManifest,
+    mode: str,
     result_path: Path,
 ) -> None:
     expected = {
         "library": testcase_manifest.library,
-        "mode": "original",
+        "mode": mode,
         "testcase_id": testcase.id,
         "title": testcase.title,
         "description": testcase.description,
@@ -402,8 +549,11 @@ def _validate_exact_result_set(
     *,
     artifact_root: Path,
     testcase_manifest: TestcaseManifest,
+    mode: str,
 ) -> None:
     result_dir = artifact_root / "results" / testcase_manifest.library
+    if mode != "original":
+        result_dir = artifact_root / mode / "results" / testcase_manifest.library
     expected_ids = [testcase.id for testcase in testcase_manifest.testcases]
     expected_set = set(expected_ids)
     if len(expected_set) != len(expected_ids):
@@ -443,13 +593,13 @@ def _case_proof(
         "title": testcase.title,
         "description": testcase.description,
         "kind": testcase.kind,
-        "mode": "original",
+        "mode": result["mode"],
         "client_application": testcase.client_application,
         "tags": list(testcase.tags),
         "requires": list(testcase.requires),
         "status": result["status"],
-        "result_path": f"results/{result['library']}/{testcase.id}.json",
-        "log_path": f"logs/{result['library']}/{testcase.id}.log",
+        "result_path": result["result_path"],
+        "log_path": result["log_path"],
         "cast_path": result.get("cast_path"),
         "duration_seconds": result["duration_seconds"],
         "exit_code": result["exit_code"],
@@ -482,12 +632,15 @@ def build_proof(
     *,
     artifact_root: Path,
     tests_root: Path,
+    mode: str = "original",
     libraries: list[str] | None = None,
     min_cases: int = 0,
     min_source_cases: int = 0,
     min_usage_cases: int = 0,
     require_casts: bool = False,
 ) -> dict[str, Any]:
+    if mode not in VALID_MODES:
+        raise ValidatorError("mode must be original or port-04-test")
     if min_cases < 0 or min_source_cases < 0 or min_usage_cases < 0:
         raise ValidatorError("case thresholds must be non-negative")
 
@@ -511,18 +664,37 @@ def build_proof(
     for entry in selected_entries:
         library = str(entry["name"])
         testcase_manifest = testcase_manifests[library]
-        _validate_exact_result_set(artifact_root=artifact_root, testcase_manifest=testcase_manifest)
+        _validate_exact_result_set(artifact_root=artifact_root, testcase_manifest=testcase_manifest, mode=mode)
 
         case_rows: list[dict[str, Any]] = []
+        port_library_metadata: dict[str, Any] | None = None
         for testcase in testcase_manifest.testcases:
             result_path = artifact_root / "results" / library / f"{testcase.id}.json"
-            result = load_result(result_path, artifacts_root=artifact_root, require_casts=require_casts)
+            if mode != "original":
+                result_path = artifact_root / mode / "results" / library / f"{testcase.id}.json"
+            result = load_result(
+                result_path,
+                artifacts_root=artifact_root,
+                mode=mode,
+                require_casts=require_casts,
+            )
             _validate_result_matches_testcase(
                 result,
                 testcase=testcase,
                 testcase_manifest=testcase_manifest,
+                mode=mode,
                 result_path=result_path,
             )
+            if mode == "port-04-test":
+                metadata = validate_port_result_metadata(
+                    result,
+                    apt_packages=list(testcase_manifest.apt_packages),
+                    source_path=result_path,
+                )
+                if port_library_metadata is None:
+                    port_library_metadata = metadata
+                elif port_library_metadata != metadata:
+                    raise ValidatorError(f"inconsistent port provenance for {library}")
             case_rows.append(
                 _case_proof(
                     result=result,
@@ -533,14 +705,17 @@ def build_proof(
             )
 
         library_totals = _library_totals(case_rows)
-        proof_libraries.append(
-            {
-                "library": library,
-                "apt_packages": list(testcase_manifest.apt_packages),
-                "totals": library_totals,
-                "testcases": case_rows,
-            }
-        )
+        library_proof: dict[str, Any] = {
+            "library": library,
+            "apt_packages": list(testcase_manifest.apt_packages),
+            "totals": library_totals,
+        }
+        if mode == "port-04-test":
+            if port_library_metadata is None:
+                raise ValidatorError(f"missing port provenance for {library}")
+            library_proof.update(port_library_metadata)
+        library_proof["testcases"] = case_rows
+        proof_libraries.append(library_proof)
         totals["libraries"] += 1
         for field_name in ("cases", "source_cases", "usage_cases", "passed", "failed", "casts"):
             totals[field_name] += library_totals[field_name]
@@ -554,6 +729,7 @@ def build_proof(
 
     return {
         "proof_version": 2,
+        "mode": mode,
         "suite": _suite_from_manifest(manifest),
         "totals": totals,
         "libraries": proof_libraries,

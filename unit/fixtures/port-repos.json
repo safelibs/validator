@@ -1,0 +1,9 @@
+[
+  {
+    "library": "original-demo",
+    "nameWithOwner": "safelibs/port-original-demo",
+    "url": "https://github.com/safelibs/port-original-demo",
+    "default_branch": "main",
+    "tag_ref": "refs/tags/original-demo/04-test"
+  }
+]

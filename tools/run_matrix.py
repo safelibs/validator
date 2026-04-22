@@ -4,6 +4,7 @@ import argparse
 import codecs
 import errno
 import fcntl
+import hashlib
 import json
 import os
 import pty
@@ -30,6 +31,7 @@ from tools.inventory import load_manifest
 from tools.testcases import Testcase, TestcaseManifest, load_manifests
 
 
+VALID_MODES = {"original", "port-04-test"}
 CAST_COLUMNS = 120
 CAST_ROWS = 40
 CAST_HEADER_TIMESTAMP = 0
@@ -84,6 +86,7 @@ class MatrixArgs:
     tests_root: Path
     artifact_root: Path
     override_deb_root: Path | None
+    port_deb_lock: Path | None
     mode: str
     record_casts: bool
     library: list[str] | None
@@ -119,6 +122,18 @@ def artifact_path(artifact_root: Path, *parts: str) -> Path:
     except ValueError as exc:
         raise ValidatorError(f"artifact path escapes artifact root: {target}") from exc
     return target
+
+
+def mode_artifact_parts(mode: str) -> tuple[str, ...]:
+    if mode == "original":
+        return ()
+    if mode == "port-04-test":
+        return ("port-04-test",)
+    raise ValidatorError(f"unsupported mode: {mode}")
+
+
+def mode_artifact_path(artifact_root: Path, mode: str, *parts: str) -> Path:
+    return artifact_path(artifact_root, *mode_artifact_parts(mode), *parts)
 
 
 def append_log(log_path: Path, text: str) -> None:
@@ -420,6 +435,202 @@ def resolve_override_deb_dir(root: Path, library: str) -> Path:
     return library_root
 
 
+def _reject_json_constant(value: str) -> None:
+    raise ValueError(f"invalid JSON constant: {value}")
+
+
+def _load_json_object(path: Path, *, description: str) -> dict[str, object]:
+    try:
+        payload = json.loads(path.read_text(), parse_constant=_reject_json_constant)
+    except FileNotFoundError as exc:
+        raise ValidatorError(f"missing {description}: {path}") from exc
+    except ValueError as exc:
+        raise ValidatorError(f"invalid {description} JSON at {path}: {exc}") from exc
+    if not isinstance(payload, dict):
+        raise ValidatorError(f"{description} must be a JSON object: {path}")
+    return payload
+
+
+def _require_string(value: object, *, field_name: str, context: str) -> str:
+    if not isinstance(value, str) or not value.strip():
+        raise ValidatorError(f"{field_name} must be a non-empty string in {context}")
+    return value
+
+
+def _require_int(value: object, *, field_name: str, context: str) -> int:
+    if isinstance(value, bool) or not isinstance(value, int):
+        raise ValidatorError(f"{field_name} must be an integer in {context}")
+    return value
+
+
+def _require_list(value: object, *, field_name: str, context: str) -> list[object]:
+    if not isinstance(value, list):
+        raise ValidatorError(f"{field_name} must be a list in {context}")
+    return value
+
+
+def file_sha256(path: Path) -> str:
+    digest = hashlib.sha256()
+    with path.open("rb") as handle:
+        for chunk in iter(lambda: handle.read(1024 * 1024), b""):
+            digest.update(chunk)
+    return digest.hexdigest()
+
+
+def _validate_port_lock_entry(
+    entry: object,
+    *,
+    canonical_packages: list[str],
+    library: str,
+) -> dict[str, object]:
+    if not isinstance(entry, dict):
+        raise ValidatorError(f"port lock library entry for {library} must be an object")
+    context = f"port lock library {library}"
+    if entry.get("library") != library:
+        raise ValidatorError(f"port lock library order mismatch: expected {library!r}")
+    repository = _require_string(entry.get("repository"), field_name="repository", context=context)
+    tag_ref = _require_string(entry.get("tag_ref"), field_name="tag_ref", context=context)
+    commit = _require_string(entry.get("commit"), field_name="commit", context=context)
+    release_tag = _require_string(entry.get("release_tag"), field_name="release_tag", context=context)
+    if release_tag != f"build-{commit[:12]}":
+        raise ValidatorError(f"port lock release_tag must equal build-<commit[:12]> in {context}")
+
+    raw_debs = _require_list(entry.get("debs"), field_name="debs", context=context)
+    if not raw_debs:
+        raise ValidatorError(f"port lock library {library} must select at least one deb")
+    raw_unported = _require_list(
+        entry.get("unported_original_packages"),
+        field_name="unported_original_packages",
+        context=context,
+    )
+    unported: list[str] = []
+    for package in raw_unported:
+        unported.append(_require_string(package, field_name="unported package", context=context))
+
+    debs_by_package: dict[str, dict[str, object]] = {}
+    for raw_deb in raw_debs:
+        if not isinstance(raw_deb, dict):
+            raise ValidatorError(f"port lock deb entries for {library} must be objects")
+        deb_context = f"port lock {library} deb"
+        package = _require_string(raw_deb.get("package"), field_name="package", context=deb_context)
+        filename = _require_string(raw_deb.get("filename"), field_name="filename", context=deb_context)
+        architecture = _require_string(raw_deb.get("architecture"), field_name="architecture", context=deb_context)
+        sha256 = _require_string(raw_deb.get("sha256"), field_name="sha256", context=deb_context)
+        size = _require_int(raw_deb.get("size"), field_name="size", context=deb_context)
+        if architecture not in {"amd64", "all"}:
+            raise ValidatorError(f"port lock deb architecture must be amd64 or all for {library}/{package}")
+        if package in debs_by_package:
+            raise ValidatorError(f"port lock has duplicate deb package for {library}: {package}")
+        if package not in canonical_packages:
+            raise ValidatorError(f"port lock selects non-canonical package for {library}: {package}")
+        if not filename.endswith(".deb"):
+            raise ValidatorError(f"port lock deb filename must end with .deb for {library}/{package}")
+        if len(sha256) != 64 or any(char not in "0123456789abcdef" for char in sha256):
+            raise ValidatorError(f"port lock deb sha256 must be lowercase hex for {library}/{package}")
+        if size < 0:
+            raise ValidatorError(f"port lock deb size must be non-negative for {library}/{package}")
+        debs_by_package[package] = {
+            "package": package,
+            "filename": filename,
+            "architecture": architecture,
+            "sha256": sha256,
+            "size": size,
+        }
+
+    ported_packages = list(debs_by_package)
+    if set(ported_packages).intersection(unported):
+        raise ValidatorError(f"port lock debs and unported packages overlap for {library}")
+    combined = [
+        package
+        for package in canonical_packages
+        if package in debs_by_package or package in unported
+    ]
+    if combined != canonical_packages:
+        raise ValidatorError(
+            f"port lock debs plus unported_original_packages must equal canonical apt packages for {library}"
+        )
+
+    ordered_debs = [debs_by_package[package] for package in canonical_packages if package in debs_by_package]
+    ordered_unported = [package for package in canonical_packages if package in unported]
+    return {
+        "repository": repository,
+        "tag_ref": tag_ref,
+        "commit": commit,
+        "release_tag": release_tag,
+        "port_debs": ordered_debs,
+        "unported_original_packages": ordered_unported,
+    }
+
+
+def load_port_deb_lock(
+    lock_path: Path,
+    *,
+    selected_entries: list[dict[str, object]],
+) -> dict[str, dict[str, object]]:
+    lock = _load_json_object(lock_path, description="port deb lock")
+    if lock.get("schema_version") != 1:
+        raise ValidatorError("port deb lock schema_version must be 1")
+    if lock.get("mode") != "port-04-test":
+        raise ValidatorError("port deb lock mode must be port-04-test")
+    raw_libraries = _require_list(lock.get("libraries"), field_name="libraries", context="port deb lock")
+    lock_by_library: dict[str, object] = {}
+    for entry in raw_libraries:
+        if not isinstance(entry, dict):
+            raise ValidatorError("port deb lock library entries must be objects")
+        library = _require_string(entry.get("library"), field_name="library", context="port deb lock")
+        if library in lock_by_library:
+            raise ValidatorError(f"port deb lock contains duplicate library: {library}")
+        lock_by_library[library] = entry
+
+    validated: dict[str, dict[str, object]] = {}
+    for selected in selected_entries:
+        library = str(selected["name"])
+        raw_entry = lock_by_library.get(library)
+        if raw_entry is None:
+            raise ValidatorError(f"port deb lock missing selected library: {library}")
+        validated[library] = _validate_port_lock_entry(
+            raw_entry,
+            canonical_packages=list(selected["apt_packages"]),
+            library=library,
+        )
+    return validated
+
+
+def validate_port_override_files(
+    *,
+    override_deb_dir: Path,
+    library: str,
+    lock_metadata: dict[str, object],
+) -> None:
+    expected_debs = lock_metadata["port_debs"]
+    assert isinstance(expected_debs, list)
+    expected_by_filename = {
+        str(deb["filename"]): deb
+        for deb in expected_debs
+        if isinstance(deb, dict)
+    }
+    actual_debs = sorted(path for path in override_deb_dir.glob("*.deb") if path.is_file())
+    actual_names = {path.name for path in actual_debs}
+    expected_names = set(expected_by_filename)
+    missing = sorted(expected_names - actual_names)
+    extra = sorted(actual_names - expected_names)
+    if missing or extra:
+        details: list[str] = []
+        if missing:
+            details.append(f"missing {', '.join(missing)}")
+        if extra:
+            details.append(f"extra {', '.join(extra)}")
+        raise ValidatorError(f"override deb files for {library} do not match port lock: " + "; ".join(details))
+    for path in actual_debs:
+        deb = expected_by_filename[path.name]
+        expected_size = int(deb["size"])
+        expected_sha256 = str(deb["sha256"])
+        if path.stat().st_size != expected_size:
+            raise ValidatorError(f"override deb size mismatch for {library}/{path.name}")
+        if file_sha256(path) != expected_sha256:
+            raise ValidatorError(f"override deb sha256 mismatch for {library}/{path.name}")
+
+
 def shared_root(repo_root: Path) -> Path:
     shared = repo_root / "tests" / "_shared"
     if not shared.is_dir():
@@ -610,6 +821,7 @@ def _result_payload(
     *,
     testcase_manifest: TestcaseManifest,
     testcase: Testcase,
+    mode: str,
     status: str,
     started_at: str,
     finished_at: str,
@@ -620,12 +832,14 @@ def _result_payload(
     artifact_root: Path,
     exit_code: int,
     override_debs_installed: bool,
+    port_metadata: dict[str, object] | None = None,
+    override_installed_packages: list[dict[str, str]] | None = None,
     error: str | None = None,
 ) -> dict[str, object]:
     payload: dict[str, object] = {
         "schema_version": 2,
         "library": testcase_manifest.library,
-        "mode": "original",
+        "mode": mode,
         "testcase_id": testcase.id,
         "title": testcase.title,
         "description": testcase.description,
@@ -645,6 +859,20 @@ def _result_payload(
         "apt_packages": list(testcase_manifest.apt_packages),
         "override_debs_installed": override_debs_installed,
     }
+    if mode == "port-04-test":
+        if port_metadata is None:
+            raise ValidatorError("port metadata is required for port-04-test result payloads")
+        payload.update(
+            {
+                "port_repository": port_metadata["repository"],
+                "port_tag_ref": port_metadata["tag_ref"],
+                "port_commit": port_metadata["commit"],
+                "port_release_tag": port_metadata["release_tag"],
+                "port_debs": port_metadata["port_debs"],
+                "unported_original_packages": port_metadata["unported_original_packages"],
+                "override_installed_packages": override_installed_packages or [],
+            }
+        )
     if error is not None:
         payload["error"] = error
     return payload
@@ -655,10 +883,12 @@ def write_unrun_result(
     testcase_manifest: TestcaseManifest,
     testcase: Testcase,
     artifact_root: Path,
+    mode: str,
+    port_metadata: dict[str, object] | None,
     error: str,
 ) -> dict[str, object]:
-    result_path = artifact_path(artifact_root, "results", testcase_manifest.library, f"{testcase.id}.json")
-    log_path = artifact_path(artifact_root, "logs", testcase_manifest.library, f"{testcase.id}.log")
+    result_path = mode_artifact_path(artifact_root, mode, "results", testcase_manifest.library, f"{testcase.id}.json")
+    log_path = mode_artifact_path(artifact_root, mode, "logs", testcase_manifest.library, f"{testcase.id}.log")
     if log_path.exists():
         log_path.unlink()
     append_log(log_path, f"{error}\n")
@@ -666,6 +896,7 @@ def write_unrun_result(
     result = _result_payload(
         testcase_manifest=testcase_manifest,
         testcase=testcase,
+        mode=mode,
         status="failed",
         started_at=now,
         finished_at=now,
@@ -676,10 +907,63 @@ def write_unrun_result(
         artifact_root=artifact_root,
         exit_code=1,
         override_debs_installed=False,
+        port_metadata=port_metadata,
+        override_installed_packages=[],
         error=error,
     )
     write_json(result_path, result)
     return result
+
+
+def read_override_installed_packages(
+    status_dir: Path,
+    *,
+    port_metadata: dict[str, object],
+) -> list[dict[str, str]]:
+    status_path = status_dir / "override-installed-packages.tsv"
+    if not status_path.is_file():
+        raise ValidatorError("override-installed marker exists but package status file is missing")
+    raw_lines = [line for line in status_path.read_text(encoding="utf-8").splitlines() if line.strip()]
+    records: list[dict[str, str]] = []
+    for line_number, line in enumerate(raw_lines, start=1):
+        parts = line.split("\t")
+        if len(parts) != 4 or any(not part for part in parts):
+            raise ValidatorError(f"invalid override-installed-packages.tsv line {line_number}")
+        package, version, architecture, filename = parts
+        records.append(
+            {
+                "package": package,
+                "version": version,
+                "architecture": architecture,
+                "filename": filename,
+            }
+        )
+
+    expected_debs = port_metadata["port_debs"]
+    assert isinstance(expected_debs, list)
+    expected_keys = [
+        (str(deb["package"]), str(deb["filename"]), str(deb["architecture"]))
+        for deb in expected_debs
+        if isinstance(deb, dict)
+    ]
+    records_by_key: dict[tuple[str, str, str], dict[str, str]] = {}
+    for record in records:
+        key = (record["package"], record["filename"], record["architecture"])
+        if key in records_by_key:
+            raise ValidatorError(f"duplicate override install status for package {record['package']}")
+        records_by_key[key] = record
+    actual_keys = set(records_by_key)
+    expected_key_set = set(expected_keys)
+    if actual_keys != expected_key_set:
+        missing = sorted(expected_key_set - actual_keys)
+        extra = sorted(actual_keys - expected_key_set)
+        details: list[str] = []
+        if missing:
+            details.append(f"missing {missing!r}")
+        if extra:
+            details.append(f"extra {extra!r}")
+        raise ValidatorError("override install status does not match port lock: " + "; ".join(details))
+    return [records_by_key[key] for key in expected_keys]
 
 
 def run_testcase(
@@ -688,13 +972,15 @@ def run_testcase(
     testcase: Testcase,
     image_tag: str,
     artifact_root: Path,
+    mode: str,
+    port_metadata: dict[str, object] | None,
     override_deb_dir: Path | None,
     record_casts: bool,
 ) -> dict[str, object]:
     library = testcase_manifest.library
-    result_path = artifact_path(artifact_root, "results", library, f"{testcase.id}.json")
-    log_path = artifact_path(artifact_root, "logs", library, f"{testcase.id}.log")
-    cast_path = artifact_path(artifact_root, "casts", library, f"{testcase.id}.cast") if record_casts else None
+    result_path = mode_artifact_path(artifact_root, mode, "results", library, f"{testcase.id}.json")
+    log_path = mode_artifact_path(artifact_root, mode, "logs", library, f"{testcase.id}.log")
+    cast_path = mode_artifact_path(artifact_root, mode, "casts", library, f"{testcase.id}.cast") if record_casts else None
     for path in (result_path, log_path, cast_path):
         if path is not None and path.exists():
             path.unlink()
@@ -703,6 +989,7 @@ def run_testcase(
     started_at = iso_utc_now()
     outcome = RunOutcome(1)
     error: str | None = None
+    override_installed_packages: list[dict[str, str]] = []
     try:
         command = _container_command(
             image_tag=image_tag,
@@ -729,6 +1016,24 @@ def run_testcase(
             error = f"testcase command exited with status {outcome.exit_code}"
     finally:
         override_debs_installed = (status_dir / "override-installed").is_file()
+        if mode == "port-04-test":
+            if not override_debs_installed:
+                status_error = "port override debs were not installed"
+                append_log(log_path, f"{status_error}\n")
+                error = status_error if error is None else f"{error}; {status_error}"
+                outcome = RunOutcome(1, timed_out=outcome.timed_out)
+            else:
+                assert port_metadata is not None
+                try:
+                    override_installed_packages = read_override_installed_packages(
+                        status_dir,
+                        port_metadata=port_metadata,
+                    )
+                except ValidatorError as exc:
+                    status_error = str(exc)
+                    append_log(log_path, f"{status_error}\n")
+                    error = status_error if error is None else f"{error}; {status_error}"
+                    outcome = RunOutcome(1, timed_out=outcome.timed_out)
         shutil.rmtree(status_dir, ignore_errors=True)
 
     finished_at = iso_utc_now()
@@ -737,6 +1042,7 @@ def run_testcase(
     result = _result_payload(
         testcase_manifest=testcase_manifest,
         testcase=testcase,
+        mode=mode,
         status=status,
         started_at=started_at,
         finished_at=finished_at,
@@ -747,6 +1053,8 @@ def run_testcase(
         artifact_root=artifact_root,
         exit_code=outcome.exit_code,
         override_debs_installed=override_debs_installed,
+        port_metadata=port_metadata,
+        override_installed_packages=override_installed_packages,
         error=error,
     )
     write_json(result_path, result)
@@ -757,14 +1065,15 @@ def write_library_summary(
     *,
     artifact_root: Path,
     testcase_manifest: TestcaseManifest,
+    mode: str,
     results: list[dict[str, object]],
 ) -> dict[str, object]:
     library = testcase_manifest.library
-    summary_path = artifact_path(artifact_root, "results", library, "summary.json")
+    summary_path = mode_artifact_path(artifact_root, mode, "results", library, "summary.json")
     summary = {
         "schema_version": 2,
         "library": library,
-        "mode": "original",
+        "mode": mode,
         "cases": len(results),
         "source_cases": sum(1 for result in results if result.get("kind") == "source"),
         "usage_cases": sum(1 for result in results if result.get("kind") == "usage"),
@@ -786,12 +1095,14 @@ def run_library_cases(
     tests_root: Path,
     artifact_root: Path,
     testcase_manifest: TestcaseManifest,
+    mode: str,
+    port_metadata: dict[str, object] | None,
     override_deb_dir: Path | None,
     record_casts: bool,
     state: LibraryState,
 ) -> list[dict[str, object]]:
     library = testcase_manifest.library
-    build_log_path = artifact_path(artifact_root, "logs", library, "docker-build.log")
+    build_log_path = mode_artifact_path(artifact_root, mode, "logs", library, "docker-build.log")
     results: list[dict[str, object]] = []
     try:
         image_tag = ensure_library_image(
@@ -809,12 +1120,15 @@ def run_library_cases(
                     testcase_manifest=testcase_manifest,
                     testcase=testcase,
                     artifact_root=artifact_root,
+                    mode=mode,
+                    port_metadata=port_metadata,
                     error=error,
                 )
             )
         write_library_summary(
             artifact_root=artifact_root,
             testcase_manifest=testcase_manifest,
+            mode=mode,
             results=results,
         )
         return results
@@ -826,6 +1140,8 @@ def run_library_cases(
                 testcase=testcase,
                 image_tag=image_tag,
                 artifact_root=artifact_root,
+                mode=mode,
+                port_metadata=port_metadata,
                 override_deb_dir=override_deb_dir,
                 record_casts=record_casts,
             )
@@ -833,6 +1149,7 @@ def run_library_cases(
     write_library_summary(
         artifact_root=artifact_root,
         testcase_manifest=testcase_manifest,
+        mode=mode,
         results=results,
     )
     return results
@@ -845,6 +1162,7 @@ def build_parser() -> argparse.ArgumentParser:
     parser.add_argument("--tests-root", type=Path, default=repo_root / "tests")
     parser.add_argument("--artifact-root", type=Path, default=repo_root / ".work" / "artifacts")
     parser.add_argument("--override-deb-root", type=Path)
+    parser.add_argument("--port-deb-lock", type=Path)
     parser.add_argument("--mode", default="original")
     parser.add_argument("--record-casts", action="store_true")
     parser.add_argument("--library", action="append")
@@ -855,13 +1173,18 @@ def build_parser() -> argparse.ArgumentParser:
 def parse_args(argv: list[str] | None = None) -> MatrixArgs:
     namespace = build_parser().parse_args(argv)
     mode = str(namespace.mode)
-    if mode != "original":
-        raise ValidatorError("--mode accepts only 'original' during the original-only runner phase")
+    if mode not in VALID_MODES:
+        raise ValidatorError("--mode accepts only 'original' or 'port-04-test'")
+    if mode == "port-04-test" and namespace.override_deb_root is None:
+        raise ValidatorError("--override-deb-root is required for --mode port-04-test")
+    if mode == "port-04-test" and namespace.port_deb_lock is None:
+        raise ValidatorError("--port-deb-lock is required for --mode port-04-test")
     return MatrixArgs(
         config=namespace.config,
         tests_root=namespace.tests_root,
         artifact_root=namespace.artifact_root,
         override_deb_root=namespace.override_deb_root,
+        port_deb_lock=namespace.port_deb_lock,
         mode=mode,
         record_casts=namespace.record_casts,
         library=namespace.library or None,
@@ -884,6 +1207,11 @@ def main(argv: list[str] | None = None) -> int:
     selected_manifest["libraries"] = selected
     testcase_manifests = load_manifests(selected_manifest, tests_root=args.tests_root)
 
+    port_lock: dict[str, dict[str, object]] = {}
+    if args.mode == "port-04-test":
+        assert args.port_deb_lock is not None
+        port_lock = load_port_deb_lock(args.port_deb_lock, selected_entries=selected)
+
     override_deb_dirs: dict[str, Path | None] = {library: None for library in libraries}
     if args.override_deb_root is not None:
         validate_matrix_override_deb_root(args.override_deb_root)
@@ -891,6 +1219,14 @@ def main(argv: list[str] | None = None) -> int:
             library: resolve_override_deb_dir(args.override_deb_root, library)
             for library in libraries
         }
+        if args.mode == "port-04-test":
+            for library in libraries:
+                assert override_deb_dirs[library] is not None
+                validate_port_override_files(
+                    override_deb_dir=override_deb_dirs[library],
+                    library=library,
+                    lock_metadata=port_lock[library],
+                )
 
     repo_root = Path(__file__).resolve().parents[1]
     args.artifact_root.mkdir(parents=True, exist_ok=True)
@@ -903,6 +1239,8 @@ def main(argv: list[str] | None = None) -> int:
                 tests_root=args.tests_root,
                 artifact_root=args.artifact_root,
                 testcase_manifest=testcase_manifests[library],
+                mode=args.mode,
+                port_metadata=port_lock.get(library),
                 override_deb_dir=override_deb_dirs[library],
                 record_casts=args.record_casts,
                 state=states[library],

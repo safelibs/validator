@@ -81,6 +81,73 @@ class RenderSiteTests(unittest.TestCase):
                 payload["error"] = "synthetic failure"
             write_json(result_path, payload)
 
+    def write_port_library_artifacts(self, library: str, *, casts: bool = True) -> None:
+        testcase_manifest = self.load_selected_testcase_manifests([library])[library]
+        first_package = testcase_manifest.apt_packages[0]
+        port_debs = [
+            {
+                "package": first_package,
+                "filename": f"{first_package}_1.0_amd64.deb",
+                "architecture": "amd64",
+                "sha256": "a" * 64,
+                "size": 10,
+            }
+        ]
+        unported = list(testcase_manifest.apt_packages[1:])
+        for index, testcase in enumerate(testcase_manifest.testcases, start=1):
+            log_path = self.artifacts_root / "port-04-test" / "logs" / library / f"{testcase.id}.log"
+            result_path = self.artifacts_root / "port-04-test" / "results" / library / f"{testcase.id}.json"
+            cast_path = self.artifacts_root / "port-04-test" / "casts" / library / f"{testcase.id}.cast"
+            log_path.parent.mkdir(parents=True, exist_ok=True)
+            result_path.parent.mkdir(parents=True, exist_ok=True)
+            log_path.write_text(f"port log for {library}/{testcase.id}\n")
+            cast_value: str | None = None
+            if casts:
+                cast_path.parent.mkdir(parents=True, exist_ok=True)
+                cast_path.write_text(
+                    '{"version": 2, "width": 120, "height": 40}\n'
+                    f'[{index / 10:.1f}, "o", "port {library} {testcase.id}\\n"]\n'
+                )
+                cast_value = f"port-04-test/casts/{library}/{testcase.id}.cast"
+            payload: dict[str, object] = {
+                "schema_version": 2,
+                "library": library,
+                "mode": "port-04-test",
+                "testcase_id": testcase.id,
+                "title": testcase.title,
+                "description": testcase.description,
+                "kind": testcase.kind,
+                "client_application": testcase.client_application,
+                "tags": list(testcase.tags),
+                "requires": list(testcase.requires),
+                "status": "passed",
+                "started_at": "2026-04-19T00:00:00Z",
+                "finished_at": "2026-04-19T00:00:01Z",
+                "duration_seconds": float(index),
+                "result_path": f"port-04-test/results/{library}/{testcase.id}.json",
+                "log_path": f"port-04-test/logs/{library}/{testcase.id}.log",
+                "cast_path": cast_value,
+                "exit_code": 0,
+                "command": list(testcase.command),
+                "apt_packages": list(testcase_manifest.apt_packages),
+                "override_debs_installed": True,
+                "port_repository": f"safelibs/port-{library}",
+                "port_tag_ref": f"refs/tags/{library}/04-test",
+                "port_commit": "abcdef1234567890abcdef1234567890abcdef12",
+                "port_release_tag": "build-abcdef123456",
+                "port_debs": port_debs,
+                "unported_original_packages": unported,
+                "override_installed_packages": [
+                    {
+                        "package": first_package,
+                        "version": "1.0",
+                        "architecture": "amd64",
+                        "filename": f"{first_package}_1.0_amd64.deb",
+                    }
+                ],
+            }
+            write_json(result_path, payload)
+
     def write_proof(self, libraries: list[str], *, require_casts: bool = True) -> Path:
         proof_data = proof.build_proof(
             self.manifest,
@@ -90,6 +157,19 @@ class RenderSiteTests(unittest.TestCase):
             require_casts=require_casts,
         )
         proof_path = self.artifacts_root / "proof" / "original-validation-proof.json"
+        write_json(proof_path, proof_data)
+        return proof_path
+
+    def write_port_proof(self, libraries: list[str], *, require_casts: bool = True) -> Path:
+        proof_data = proof.build_proof(
+            self.manifest,
+            artifact_root=self.artifacts_root,
+            tests_root=self.tests_root,
+            mode="port-04-test",
+            libraries=libraries,
+            require_casts=require_casts,
+        )
+        proof_path = self.artifacts_root / "proof" / "port-04-test-validation-proof.json"
         write_json(proof_path, proof_data)
         return proof_path
 
@@ -139,8 +219,8 @@ class RenderSiteTests(unittest.TestCase):
         self.render(proof_path)
 
         site_data = json.loads((self.site_root / "site-data.json").read_text())
-        self.assertEqual(list(site_data), ["schema_version", "proof", "testcases"])
-        self.assertEqual(site_data["schema_version"], 1)
+        self.assertEqual(list(site_data), ["schema_version", "proofs", "testcases"])
+        self.assertEqual(site_data["schema_version"], 2)
         expected_site_data = render_site.build_site_data(
             json.loads(proof_path.read_text()),
             artifact_root=self.artifacts_root,
@@ -184,13 +264,77 @@ class RenderSiteTests(unittest.TestCase):
         self.assertIn("Original Library Validation", html_text)
         self.assertIn('rel="icon" href="data:,"', html_text)
         self.assertIn('data-library="cjson"', html_text)
-        self.assertIn('data-player-cast="evidence/casts/cjson/', html_text)
+        self.assertIn('data-mode="original"', html_text)
+        self.assertIn('data-player-cast="evidence/original/casts/cjson/', html_text)
         self.assertIn('id="search-input"', html_text)
         self.assertIn("js-player-pause", html_text)
         self.assertNotIn('data-library="None"', html_text)
         self.assertNotIn("None /", html_text)
         self.assertNotIn("Safe", html_text)
         self.assertNotIn("safe workload", html_text.lower())
+
+    def test_render_site_with_original_and_port_proofs_uses_mode_evidence_hrefs(self) -> None:
+        self.write_library_artifacts("cjson")
+        self.write_port_library_artifacts("cjson")
+        original_proof = self.write_proof(["cjson"])
+        port_proof = self.write_port_proof(["cjson"])
+
+        render_site.main(
+            [
+                "--config",
+                str(self.config_path),
+                "--tests-root",
+                str(self.tests_root),
+                "--artifact-root",
+                str(self.artifacts_root),
+                "--proof-path",
+                str(original_proof),
+                "--proof-path",
+                str(port_proof),
+                "--output-root",
+                str(self.site_root),
+            ]
+        )
+
+        site_data = json.loads((self.site_root / "site-data.json").read_text())
+        self.assertEqual(site_data["schema_version"], 2)
+        self.assertEqual([proof["mode"] for proof in site_data["proofs"]], ["original", "port-04-test"])
+        modes = {row["mode"] for row in site_data["testcases"]}
+        self.assertEqual(modes, {"original", "port-04-test"})
+        first_original = next(row for row in site_data["testcases"] if row["mode"] == "original")
+        first_port = next(row for row in site_data["testcases"] if row["mode"] == "port-04-test")
+        self.assertIn("evidence/original/logs/cjson/", first_original["log_href"])
+        self.assertIn("evidence/port-04-test/logs/cjson/", first_port["log_href"])
+        self.assertNotEqual(first_original["cast_href"], first_port["cast_href"])
+        html_text = (self.site_root / "index.html").read_text()
+        self.assertIn('data-mode="original"', html_text)
+        self.assertIn('data-mode="port-04-test"', html_text)
+
+        completed = subprocess.run(
+            [
+                "bash",
+                str(self.repo_root / "scripts" / "verify-site.sh"),
+                "--config",
+                str(self.config_path),
+                "--tests-root",
+                str(self.tests_root),
+                "--artifacts-root",
+                str(self.artifacts_root),
+                "--proof-path",
+                str(original_proof),
+                "--proof-path",
+                str(port_proof),
+                "--site-root",
+                str(self.site_root),
+                "--library",
+                "cjson",
+            ],
+            cwd=self.repo_root,
+            capture_output=True,
+            text=True,
+            check=False,
+        )
+        self.assertEqual(completed.returncode, 0, completed.stderr + completed.stdout)
 
     def test_render_site_is_deterministic(self) -> None:
         self.write_library_artifacts("cjson")
@@ -238,9 +382,10 @@ class RenderSiteTests(unittest.TestCase):
 
     def test_render_page_escapes_html_and_keeps_player_wiring(self) -> None:
         site_data = {
-            "schema_version": 1,
-            "proof": {
+            "schema_version": 2,
+            "proofs": [{
                 "proof_version": 2,
+                "mode": "original",
                 "totals": {
                     "libraries": 1,
                     "cases": 1,
@@ -264,7 +409,7 @@ class RenderSiteTests(unittest.TestCase):
                         "testcases": [],
                     }
                 ],
-            },
+            }],
             "testcases": [
                 {
                     "library": "demo",
@@ -280,8 +425,8 @@ class RenderSiteTests(unittest.TestCase):
                     "result_path": "results/demo/source-demo-case.json",
                     "log_path": "logs/demo/source-demo-case.log",
                     "cast_path": "casts/demo/source-demo-case.cast",
-                    "log_href": "evidence/logs/demo/source-demo-case.log",
-                    "cast_href": "evidence/casts/demo/source-demo-case.cast",
+                    "log_href": "evidence/original/logs/demo/source-demo-case.log",
+                    "cast_href": "evidence/original/casts/demo/source-demo-case.cast",
                 }
             ],
         }
@@ -290,7 +435,8 @@ class RenderSiteTests(unittest.TestCase):
 
         self.assertIn("&lt;script&gt;alert(1)&lt;/script&gt;", html_text)
         self.assertNotIn("<script>alert(1)</script>", html_text)
-        self.assertIn("data-player-cast=\"evidence/casts/demo/source-demo-case.cast\"", html_text)
+        self.assertIn("data-mode=\"original\"", html_text)
+        self.assertIn("data-player-cast=\"evidence/original/casts/demo/source-demo-case.cast\"", html_text)
         self.assertIn("js-player-restart", html_text)
         self.assertIn("js-player-scrub", html_text)
 

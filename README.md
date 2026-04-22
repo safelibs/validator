@@ -1,9 +1,11 @@
 # Validator Matrix
 
-This repository performs thorough validation of original Ubuntu 24.04 apt
-library packages. It keeps Docker harnesses, testcase manifests, proof tooling,
-and a static evidence site together so the package behavior can be rerun and
-reviewed from one checkout.
+This repository validates Ubuntu 24.04 library behavior in two modes: the
+original Ubuntu apt packages, and the same reference tests with native `.deb`
+assets from the safelibs port `04-test` releases installed as overrides. It
+keeps Docker harnesses, testcase manifests, proof tooling, and a static evidence
+site together so both package behaviors can be rerun and reviewed from one
+checkout.
 
 ## Repository Layout
 
@@ -20,8 +22,10 @@ reviewed from one checkout.
 - `tools/`: manifest, matrix, proof, and site rendering tools.
 - `scripts/verify-site.sh`: deterministic site verification.
 - `unit/`: unit tests for the tooling.
-- `inventory/`: retained historical discovery snapshots; normal validation
-  commands do not read them.
+- `inventory/github-port-repos.json`: authoritative safelibs port repository
+  list for resolving port `04-test` debs.
+- `inventory/`: retained historical discovery snapshots; other normal
+  validation commands do not read them.
 - `artifacts/`: generated matrix logs, casts, results, and proof.
 - `site/`: generated static review site.
 
@@ -62,7 +66,15 @@ make check-testcases
 Run the full original-package matrix with terminal casts:
 
 ```bash
-RECORD_CASTS=1 make matrix
+RECORD_CASTS=1 make matrix-original
+```
+
+Fetch current port `04-test` debs, then run the same testcase matrix against
+the override packages:
+
+```bash
+make fetch-port-debs
+RECORD_CASTS=1 make matrix-port
 ```
 
 Run selected libraries:
@@ -90,11 +102,23 @@ python3 tools/verify_proof_artifacts.py \
   --min-cases 288 \
   --require-casts
 
+python3 tools/verify_proof_artifacts.py \
+  --config repositories.yml \
+  --tests-root tests \
+  --artifact-root artifacts \
+  --proof-output artifacts/proof/port-04-test-validation-proof.json \
+  --mode port-04-test \
+  --min-source-cases 95 \
+  --min-usage-cases 193 \
+  --min-cases 288 \
+  --require-casts
+
 python3 tools/render_site.py \
   --config repositories.yml \
   --tests-root tests \
   --artifact-root artifacts \
   --proof-path artifacts/proof/original-validation-proof.json \
+  --proof-path artifacts/proof/port-04-test-validation-proof.json \
   --output-root site
 
 bash scripts/verify-site.sh \
@@ -102,15 +126,16 @@ bash scripts/verify-site.sh \
   --tests-root tests \
   --artifacts-root artifacts \
   --proof-path artifacts/proof/original-validation-proof.json \
+  --proof-path artifacts/proof/port-04-test-validation-proof.json \
   --site-root site
 ```
 
 The same flow is available through Make targets:
 
 ```bash
-REQUIRE_CASTS=1 MIN_SOURCE_CASES=95 MIN_USAGE_CASES=193 MIN_CASES=288 make proof
-make site
-make verify-site
+REQUIRE_CASTS=1 MIN_SOURCE_CASES=95 MIN_USAGE_CASES=193 MIN_CASES=288 make proof-dual
+make site-dual
+make verify-site-dual
 ```
 
 For a faster local representative run:
@@ -127,30 +152,41 @@ LIBRARIES="cjson libarchive libuv libwebp" \
 
 ## Override Packages
 
-The matrix runner can install caller-provided replacement `.deb` files before
-executing testcases. The root must be laid out as
-`<override-deb-root>/<library>/*.deb`.
+The official port flow resolves repositories from
+`inventory/github-port-repos.json`. For each selected library it resolves
+`refs/tags/<library>/04-test`, derives release tag `build-<sha12>` from that
+commit hash, downloads available native `amd64` or `all` `.deb` assets matching
+the canonical `apt_packages`, and records omitted canonical packages as
+`unported_original_packages` in
+`artifacts/proof/port-04-test-debs-lock.json`.
+
+Port repositories and releases can be private. Authentication is read from
+`GH_TOKEN`, `VALIDATOR_REPO_TOKEN`, or `gh auth token`.
+
+Downloaded debs are cached under `artifacts/debs/port-04-test/` and are ignored
+by git. The lock, port proof, and rendered site evidence are reproducibility
+artifacts.
+
+The matrix runner also keeps the generic local override hook. The root must be
+laid out as `<override-deb-root>/<library>/*.deb`.
 
 ```bash
 bash test.sh \
   --config repositories.yml \
   --tests-root tests \
   --artifact-root artifacts \
+  --mode original \
   --override-deb-root /path/to/override-debs \
   --record-casts
 ```
 
-This is a generic local validation hook. Normal repository CI and proof
-thresholds validate the original Ubuntu apt packages and require
-`override_debs_installed` to be false in proof inputs.
-
 ## GitHub Pages
 
 `.github/workflows/pages.yml` runs on pushes to `main` and on manual dispatch.
-It runs unit tests, validates testcase manifests, executes the full matrix,
-generates `artifacts/proof/original-validation-proof.json`, renders `site/`,
-verifies the rendered output, and publishes the verified `site/` directory with
-GitHub Pages.
+It runs unit tests, validates testcase manifests, fetches port debs, executes
+the original and port matrices, generates original and port proofs, renders the
+dual-mode `site/`, verifies the rendered output, and publishes the verified
+site directory with GitHub Pages.
 
 ## Variables
 
@@ -162,6 +198,14 @@ GitHub Pages.
   `proof/original-validation-proof.json`.
 - `PROOF_PATH`: full proof path shared by proof, site, and site verification
   targets, defaults to `$(ARTIFACT_ROOT)/$(PROOF_OUTPUT)`.
+- `PORT_REPOS`: port repo inventory, defaults to `inventory/github-port-repos.json`.
+- `PORT_MODE`: port validation mode, defaults to `port-04-test`.
+- `PORT_DEB_ROOT`: downloaded port deb root, defaults to
+  `$(ARTIFACT_ROOT)/debs/$(PORT_MODE)`.
+- `PORT_LOCK_PATH`: port deb lock path, defaults to
+  `$(ARTIFACT_ROOT)/proof/$(PORT_MODE)-debs-lock.json`.
+- `ORIGINAL_PROOF_PATH`, `PORT_PROOF_PATH`: proof inputs for dual-mode site
+  rendering and verification.
 - `LIBRARY`: optional single library selection for matrix and proof targets.
 - `LIBRARIES`: optional space-separated library selections for matrix, proof,
   and site verification targets.

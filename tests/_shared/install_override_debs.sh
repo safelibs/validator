@@ -26,3 +26,11 @@ apt-get install -y "${debs[@]}"
 
 mkdir -p "$status_dir"
 : >"$status_dir/override-installed"
+: >"$status_dir/override-installed-packages.tsv"
+for deb_name in "${deb_names[@]}"; do
+  deb_path="$override_deb_root/$deb_name"
+  package=$(dpkg-deb --field "$deb_path" Package)
+  architecture=$(dpkg-deb --field "$deb_path" Architecture)
+  version=$(dpkg-query -W -f='${Version}' "$package")
+  printf '%s\t%s\t%s\t%s\n' "$package" "$version" "$architecture" "$deb_name" >>"$status_dir/override-installed-packages.tsv"
+done

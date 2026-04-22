@@ -108,6 +108,84 @@ class ProofTests(unittest.TestCase):
             payload.update(updates)
         result_path.write_text(json.dumps(payload, indent=2) + "\n")
 
+    def write_port_result(
+        self,
+        case_id: str,
+        *,
+        status: object = "passed",
+        cast: bool = True,
+        updates: dict[str, object] | None = None,
+    ) -> None:
+        cases = {case.id: case for case in self.case_manifest.testcases}
+        testcase = cases[case_id]
+        result_path = self.artifacts_root / "port-04-test" / "results" / "original-demo" / f"{case_id}.json"
+        log_path = self.artifacts_root / "port-04-test" / "logs" / "original-demo" / f"{case_id}.log"
+        cast_path = self.artifacts_root / "port-04-test" / "casts" / "original-demo" / f"{case_id}.cast"
+        result_path.parent.mkdir(parents=True, exist_ok=True)
+        log_path.parent.mkdir(parents=True, exist_ok=True)
+        log_path.write_text(f"port log for {case_id}\n")
+        cast_value: str | None = None
+        if cast:
+            cast_path.parent.mkdir(parents=True, exist_ok=True)
+            cast_path.write_text(
+                '{"version": 2, "width": 120, "height": 40}\n'
+                f'[0.1, "o", "{case_id}\\n"]\n'
+            )
+            cast_value = f"port-04-test/casts/original-demo/{case_id}.cast"
+        port_debs = [
+            {
+                "package": "demo-runtime",
+                "filename": "demo-runtime_1.0_amd64.deb",
+                "architecture": "amd64",
+                "sha256": "a" * 64,
+                "size": 10,
+            }
+        ]
+        payload: dict[str, object] = {
+            "schema_version": 2,
+            "library": "original-demo",
+            "mode": "port-04-test",
+            "testcase_id": testcase.id,
+            "title": testcase.title,
+            "description": testcase.description,
+            "kind": testcase.kind,
+            "client_application": testcase.client_application,
+            "tags": list(testcase.tags),
+            "requires": list(testcase.requires),
+            "status": status,
+            "started_at": "2026-04-18T00:00:00Z",
+            "finished_at": "2026-04-18T00:00:01Z",
+            "duration_seconds": 1.0,
+            "result_path": f"port-04-test/results/original-demo/{case_id}.json",
+            "log_path": f"port-04-test/logs/original-demo/{case_id}.log",
+            "cast_path": cast_value,
+            "exit_code": 0 if status == "passed" else 1,
+            "command": list(testcase.command),
+            "apt_packages": list(self.case_manifest.apt_packages),
+            "override_debs_installed": True,
+            "port_repository": "safelibs/port-original-demo",
+            "port_tag_ref": "refs/tags/original-demo/04-test",
+            "port_commit": "abcdef1234567890abcdef1234567890abcdef12",
+            "port_release_tag": "build-abcdef123456",
+            "port_debs": port_debs,
+            "unported_original_packages": ["demo-dev"],
+            "override_installed_packages": [
+                {
+                    "package": "demo-runtime",
+                    "version": "1.0",
+                    "architecture": "amd64",
+                    "filename": "demo-runtime_1.0_amd64.deb",
+                }
+            ],
+        }
+        if updates:
+            payload.update(updates)
+        result_path.write_text(json.dumps(payload, indent=2) + "\n")
+
+    def write_port_library(self, *, cast: bool = True) -> None:
+        for testcase in self.case_manifest.testcases:
+            self.write_port_result(testcase.id, cast=cast)
+
     def write_library(self, *, cast: bool = True) -> None:
         for testcase in self.case_manifest.testcases:
             self.write_result(testcase.id, cast=cast)
@@ -125,8 +203,9 @@ class ProofTests(unittest.TestCase):
 
         result = self.build(require_casts=True)
 
-        self.assertEqual(set(result), {"proof_version", "suite", "totals", "libraries"})
+        self.assertEqual(set(result), {"proof_version", "mode", "suite", "totals", "libraries"})
         self.assertEqual(result["proof_version"], 2)
+        self.assertEqual(result["mode"], "original")
         self.assertEqual(result["suite"], self.config["suite"])
         self.assertEqual(
             result["totals"],
@@ -148,6 +227,72 @@ class ProofTests(unittest.TestCase):
         self.assertEqual(library["testcases"][0]["mode"], "original")
         self.assertEqual(library["testcases"][0]["cast_events"], 1)
         self.assertEqual(library["testcases"][0]["cast_bytes"], len("source-echo-roundtrip\n"))
+
+    def test_valid_port_proof_generation_requires_install_status(self) -> None:
+        self.write_port_library()
+
+        result = self.build(mode="port-04-test", require_casts=True)
+
+        self.assertEqual(result["mode"], "port-04-test")
+        library = result["libraries"][0]
+        self.assertEqual(library["port_repository"], "safelibs/port-original-demo")
+        self.assertEqual(library["port_tag_ref"], "refs/tags/original-demo/04-test")
+        self.assertEqual(library["port_commit"], "abcdef1234567890abcdef1234567890abcdef12")
+        self.assertEqual(library["port_release_tag"], "build-abcdef123456")
+        self.assertEqual([deb["package"] for deb in library["port_debs"]], ["demo-runtime"])
+        self.assertEqual(library["unported_original_packages"], ["demo-dev"])
+        testcase = library["testcases"][0]
+        self.assertEqual(testcase["mode"], "port-04-test")
+        self.assertEqual(testcase["result_path"], "port-04-test/results/original-demo/source-echo-roundtrip.json")
+        self.assertEqual(testcase["log_path"], "port-04-test/logs/original-demo/source-echo-roundtrip.log")
+
+        self.tempdir.cleanup()
+        self.setUp()
+        self.write_port_library()
+        self.write_port_result("source-echo-roundtrip", updates={"override_installed_packages": []})
+        with self.assertRaisesRegex(ValidatorError, "override_installed_packages"):
+            self.build(mode="port-04-test")
+
+    def test_port_proof_rejects_bad_provenance_and_paths(self) -> None:
+        cases = [
+            ({"override_debs_installed": False}, "must be true"),
+            ({"port_release_tag": "build-wrong"}, "port_release_tag"),
+            ({"port_debs": []}, "port_debs"),
+            ({"unported_original_packages": []}, "canonical apt_packages"),
+            ({"result_path": "results/original-demo/source-echo-roundtrip.json"}, "result_path must equal"),
+            (
+                {
+                    "override_installed_packages": [
+                        {
+                            "package": "demo-runtime",
+                            "version": "1.0",
+                            "architecture": "all",
+                            "filename": "demo-runtime_1.0_amd64.deb",
+                        }
+                    ]
+                },
+                "align with port_debs",
+            ),
+        ]
+        for updates, message in cases:
+            with self.subTest(updates=updates):
+                self.write_port_library()
+                self.write_port_result("source-echo-roundtrip", updates=updates)
+                with self.assertRaisesRegex(ValidatorError, message):
+                    self.build(mode="port-04-test")
+                self.tempdir.cleanup()
+                self.setUp()
+
+        self.write_port_library()
+        self.write_port_result(
+            "usage-client-echo",
+            updates={
+                "port_commit": "bbbbbb1234567890abcdef1234567890abcdef12",
+                "port_release_tag": "build-bbbbbb123456",
+            },
+        )
+        with self.assertRaisesRegex(ValidatorError, "inconsistent port provenance"):
+            self.build(mode="port-04-test")
 
     def test_result_status_must_be_passed_or_failed(self) -> None:
         for status in ("skipped", "warned", "excluded", None, "", "errored"):

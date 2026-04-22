@@ -17,7 +17,7 @@ from tools.inventory import load_manifest
 from tools import proof as proof_tools
 
 
-SITE_DATA_KEYS = ("schema_version", "proof", "testcases")
+SITE_DATA_KEYS = ("schema_version", "proofs", "testcases")
 TESTCASE_ROW_KEYS = (
     "library",
     "testcase_id",
@@ -83,10 +83,11 @@ def _require_dict(value: Any, *, field_name: str) -> dict[str, Any]:
     return value
 
 
-def _evidence_href(*, kind: str, library: str, testcase_id: str, suffix: str) -> str:
+def _evidence_href(*, mode: str, kind: str, library: str, testcase_id: str, suffix: str) -> str:
+    mode_component = _safe_site_component(mode, field_name="mode")
     library_component = _safe_site_component(library, field_name="library")
     testcase_component = _safe_site_component(testcase_id, field_name="testcase_id")
-    return f"evidence/{kind}/{library_component}/{testcase_component}.{suffix}"
+    return f"evidence/{mode_component}/{kind}/{library_component}/{testcase_component}.{suffix}"
 
 
 def _page_href(root_href: str | None, *, page_depth: int) -> str | None:
@@ -124,6 +125,8 @@ def load_proof(proof_path: Path, *, artifact_root: Path) -> dict[str, Any]:
     proof_data = _load_json_object(proof_path, description="proof manifest")
     if proof_data.get("proof_version") != 2:
         raise ValidatorError(f"proof manifest must use proof_version 2: {proof_path}")
+    if proof_data.get("mode") not in {"original", "port-04-test"}:
+        raise ValidatorError(f"proof manifest mode must be original or port-04-test: {proof_path}")
     return proof_data
 
 
@@ -154,10 +157,12 @@ def validate_proof_matches_artifacts(
 ) -> None:
     manifest = load_manifest(config_path)
     selected_libraries = selected_libraries_from_proof(proof_data)
+    mode = str(proof_data.get("mode"))
     expected_proof = proof_tools.build_proof(
         manifest,
         artifact_root=artifact_root,
         tests_root=tests_root,
+        mode=mode,
         libraries=selected_libraries,
         require_casts=False,
     )
@@ -166,73 +171,99 @@ def validate_proof_matches_artifacts(
 
 
 def build_site_data(
-    proof_data: dict[str, Any],
+    proof_data: dict[str, Any] | list[dict[str, Any]],
     *,
     artifact_root: Path,
     output_root: Path,
     copy_evidence: bool = False,
 ) -> dict[str, Any]:
-    if proof_data.get("proof_version") != 2:
-        raise ValidatorError("site rendering requires proof_version 2")
+    proofs_input = [proof_data] if isinstance(proof_data, dict) else list(proof_data)
+    if not proofs_input:
+        raise ValidatorError("site rendering requires at least one proof")
 
     artifact_root = artifact_root.resolve(strict=False)
     output_root = output_root.resolve(strict=False)
-    site_proof = copy.deepcopy(proof_data)
+    site_proofs = [copy.deepcopy(proof) for proof in proofs_input]
     rows: list[dict[str, Any]] = []
+    seen_modes: set[str] = set()
 
-    for library_entry in _proof_libraries(site_proof):
-        library = _safe_site_component(library_entry.get("library"), field_name="library")
-        testcases = _require_list(library_entry.get("testcases"), field_name=f"{library} testcases")
-        for raw_case in testcases:
-            case = _require_dict(raw_case, field_name=f"{library} testcase")
-            testcase_id = _safe_site_component(case.get("testcase_id"), field_name="testcase_id")
+    for site_proof in site_proofs:
+        if site_proof.get("proof_version") != 2:
+            raise ValidatorError("site rendering requires proof_version 2")
+        mode = _safe_site_component(site_proof.get("mode"), field_name="mode")
+        if mode in seen_modes:
+            raise ValidatorError(f"proof modes must be unique: {mode}")
+        seen_modes.add(mode)
 
-            log_path = case.get("log_path")
-            if not isinstance(log_path, str) or not log_path:
-                raise ValidatorError(f"log_path must be present for {library}/{testcase_id}")
-            log_source = proof_tools.validate_artifact_relative_path(
-                log_path,
-                field_name="log_path",
-                artifacts_root=artifact_root,
-                source_path=Path(f"proof:{library}/{testcase_id}"),
-            )
-            assert log_source is not None
-            if not log_source.is_file():
-                raise ValidatorError(f"proof log_path does not exist: {log_path}")
-            log_href = _evidence_href(kind="logs", library=library, testcase_id=testcase_id, suffix="log")
-            case["log_href"] = log_href
-            if copy_evidence:
-                _copy_evidence(source=log_source, output_root=output_root, href=log_href)
+        for library_entry in _proof_libraries(site_proof):
+            library = _safe_site_component(library_entry.get("library"), field_name="library")
+            testcases = _require_list(library_entry.get("testcases"), field_name=f"{library} testcases")
+            for raw_case in testcases:
+                case = _require_dict(raw_case, field_name=f"{library} testcase")
+                testcase_id = _safe_site_component(case.get("testcase_id"), field_name="testcase_id")
+                case_mode = _safe_site_component(case.get("mode"), field_name="mode")
+                if case_mode != mode:
+                    raise ValidatorError(f"testcase mode must match proof mode for {library}/{testcase_id}")
 
-            cast_path = case.get("cast_path")
-            if cast_path is None:
-                cast_href = None
-            else:
-                if not isinstance(cast_path, str) or not cast_path:
-                    raise ValidatorError(f"cast_path must be null or non-empty for {library}/{testcase_id}")
-                cast_source = proof_tools.validate_artifact_relative_path(
-                    cast_path,
-                    field_name="cast_path",
+                log_path = case.get("log_path")
+                if not isinstance(log_path, str) or not log_path:
+                    raise ValidatorError(f"log_path must be present for {library}/{testcase_id}")
+                log_source = proof_tools.validate_artifact_relative_path(
+                    log_path,
+                    field_name="log_path",
                     artifacts_root=artifact_root,
-                    source_path=Path(f"proof:{library}/{testcase_id}"),
+                    source_path=Path(f"proof:{mode}/{library}/{testcase_id}"),
                 )
-                assert cast_source is not None
-                if not cast_source.is_file():
-                    raise ValidatorError(f"proof cast_path does not exist: {cast_path}")
-                cast_href = _evidence_href(kind="casts", library=library, testcase_id=testcase_id, suffix="cast")
+                assert log_source is not None
+                if not log_source.is_file():
+                    raise ValidatorError(f"proof log_path does not exist: {log_path}")
+                log_href = _evidence_href(
+                    mode=mode,
+                    kind="logs",
+                    library=library,
+                    testcase_id=testcase_id,
+                    suffix="log",
+                )
+                case["log_href"] = log_href
                 if copy_evidence:
-                    _copy_evidence(source=cast_source, output_root=output_root, href=cast_href)
-            case["cast_href"] = cast_href
+                    _copy_evidence(source=log_source, output_root=output_root, href=log_href)
 
-            row = {key: case.get(key) for key in TESTCASE_ROW_KEYS}
-            row["library"] = library
-            if set(row) != set(TESTCASE_ROW_KEYS):
-                raise ValidatorError("internal testcase row shape mismatch")
-            rows.append(row)
+                cast_path = case.get("cast_path")
+                if cast_path is None:
+                    cast_href = None
+                else:
+                    if not isinstance(cast_path, str) or not cast_path:
+                        raise ValidatorError(f"cast_path must be null or non-empty for {library}/{testcase_id}")
+                    cast_source = proof_tools.validate_artifact_relative_path(
+                        cast_path,
+                        field_name="cast_path",
+                        artifacts_root=artifact_root,
+                        source_path=Path(f"proof:{mode}/{library}/{testcase_id}"),
+                    )
+                    assert cast_source is not None
+                    if not cast_source.is_file():
+                        raise ValidatorError(f"proof cast_path does not exist: {cast_path}")
+                    cast_href = _evidence_href(
+                        mode=mode,
+                        kind="casts",
+                        library=library,
+                        testcase_id=testcase_id,
+                        suffix="cast",
+                    )
+                    if copy_evidence:
+                        _copy_evidence(source=cast_source, output_root=output_root, href=cast_href)
+                case["cast_href"] = cast_href
+
+                row = {key: case.get(key) for key in TESTCASE_ROW_KEYS}
+                row["library"] = library
+                row["mode"] = mode
+                if set(row) != set(TESTCASE_ROW_KEYS):
+                    raise ValidatorError("internal testcase row shape mismatch")
+                rows.append(row)
 
     return {
-        "schema_version": 1,
-        "proof": site_proof,
+        "schema_version": 2,
+        "proofs": site_proofs,
         "testcases": rows,
     }
 
@@ -248,7 +279,28 @@ def _format_duration(value: Any) -> str:
 
 
 def _summary_cards(site_data: dict[str, Any]) -> str:
-    totals = site_data["proof"]["totals"]
+    totals = {
+        "libraries": 0,
+        "cases": 0,
+        "source_cases": 0,
+        "usage_cases": 0,
+        "passed": 0,
+        "failed": 0,
+        "casts": 0,
+    }
+    seen_libraries: set[str] = set()
+    for proof in site_data["proofs"]:
+        proof_totals = proof["totals"]
+        totals["cases"] += int(proof_totals.get("cases", 0))
+        totals["source_cases"] += int(proof_totals.get("source_cases", 0))
+        totals["usage_cases"] += int(proof_totals.get("usage_cases", 0))
+        totals["passed"] += int(proof_totals.get("passed", 0))
+        totals["failed"] += int(proof_totals.get("failed", 0))
+        totals["casts"] += int(proof_totals.get("casts", 0))
+        for entry in proof.get("libraries", []):
+            if isinstance(entry, dict):
+                seen_libraries.add(str(entry.get("library")))
+    totals["libraries"] = len(seen_libraries)
     cast_total = int(totals.get("casts", 0))
     case_total = int(totals.get("cases", 0))
     cast_coverage = "0%" if case_total == 0 else f"{round((cast_total / case_total) * 100):d}%"
@@ -270,9 +322,17 @@ def _summary_cards(site_data: dict[str, Any]) -> str:
 
 def _library_cards(site_data: dict[str, Any], *, page_depth: int) -> str:
     cards: list[str] = []
-    for library_entry in site_data["proof"]["libraries"]:
-        library = str(library_entry["library"])
-        totals = library_entry["totals"]
+    library_totals: dict[str, dict[str, int]] = {}
+    for proof_data in site_data["proofs"]:
+        for library_entry in proof_data["libraries"]:
+            library = str(library_entry["library"])
+            totals = library_entry["totals"]
+            bucket = library_totals.setdefault(library, {"cases": 0, "passed": 0, "failed": 0})
+            bucket["cases"] += int(totals["cases"])
+            bucket["passed"] += int(totals["passed"])
+            bucket["failed"] += int(totals["failed"])
+    for library in sorted(library_totals):
+        totals = library_totals[library]
         href = _page_href(f"library/{library}.html", page_depth=page_depth)
         assert href is not None
         cards.append(
@@ -304,6 +364,7 @@ def _case_search_text(row: dict[str, Any]) -> str:
     parts = [
         row.get("library"),
         row.get("testcase_id"),
+        row.get("mode"),
         row.get("title"),
         row.get("description"),
         row.get("kind"),
@@ -318,6 +379,7 @@ def _case_details(rows: list[dict[str, Any]], *, page_depth: int) -> str:
     for row in rows:
         library = str(row["library"])
         testcase_id = str(row["testcase_id"])
+        mode = str(row["mode"])
         title = str(row["title"])
         description = str(row["description"])
         kind = str(row["kind"])
@@ -336,14 +398,15 @@ def _case_details(rows: list[dict[str, Any]], *, page_depth: int) -> str:
                 [
                     (
                         f'        <details class="case-row" data-library="{html.escape(library)}" '
-                        f'data-testcase-id="{html.escape(testcase_id)}" data-kind="{html.escape(kind)}" '
+                        f'data-testcase-id="{html.escape(testcase_id)}" data-mode="{html.escape(mode)}" '
+                        f'data-kind="{html.escape(kind)}" '
                         f'data-status="{html.escape(status)}" data-player-cast="{html.escape(cast_attr)}" '
                         f'data-search="{html.escape(_case_search_text(row))}">'
                     ),
                     "          <summary>",
                     '            <span class="case-title">',
                     f"              <strong>{html.escape(title)}</strong>",
-                    f'              <span class="case-id">{html.escape(library)} / {html.escape(testcase_id)}</span>',
+                    f'              <span class="case-id">{html.escape(mode)} / {html.escape(library)} / {html.escape(testcase_id)}</span>',
                     "            </span>",
                     (
                         f'            <span class="status-pill status-{html.escape(status)}">'
@@ -954,7 +1017,7 @@ def build_parser() -> argparse.ArgumentParser:
     parser.add_argument("--config", required=True, type=Path)
     parser.add_argument("--tests-root", required=True, type=Path)
     parser.add_argument("--artifact-root", required=True, type=Path)
-    parser.add_argument("--proof-path", required=True, type=Path)
+    parser.add_argument("--proof-path", required=True, action="append", type=Path)
     parser.add_argument("--output-root", required=True, type=Path)
     return parser
 
@@ -963,17 +1026,20 @@ def main(argv: list[str] | None = None) -> int:
     args = build_parser().parse_args(argv)
     artifact_root = args.artifact_root.resolve(strict=False)
     output_root = args.output_root.resolve(strict=False)
-    proof_data = load_proof(args.proof_path, artifact_root=artifact_root)
-    validate_proof_matches_artifacts(
-        proof_data,
-        config_path=args.config,
-        tests_root=args.tests_root,
-        artifact_root=artifact_root,
-    )
+    proofs = []
+    for proof_path in args.proof_path:
+        proof_data = load_proof(proof_path, artifact_root=artifact_root)
+        validate_proof_matches_artifacts(
+            proof_data,
+            config_path=args.config,
+            tests_root=args.tests_root,
+            artifact_root=artifact_root,
+        )
+        proofs.append(proof_data)
 
     reset_dir(output_root)
     site_data = build_site_data(
-        proof_data,
+        proofs,
         artifact_root=artifact_root,
         output_root=output_root,
         copy_evidence=True,
@@ -990,7 +1056,12 @@ def main(argv: list[str] | None = None) -> int:
 
     library_root = output_root / "library"
     library_root.mkdir(parents=True, exist_ok=True)
-    for library in selected_libraries_from_proof(proof_data):
+    libraries = []
+    for proof_data in proofs:
+        for library in selected_libraries_from_proof(proof_data):
+            if library not in libraries:
+                libraries.append(library)
+    for library in libraries:
         target = _resolve_inside(library_root, library_root / f"{library}.html", description="library page")
         target.write_text(
             render_page(site_data, page_depth=1, current_library=library),

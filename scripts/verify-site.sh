@@ -4,7 +4,7 @@ set -euo pipefail
 config=
 tests_root=
 artifacts_root=
-proof_path=
+proof_paths=()
 site_root=
 libraries=()
 
@@ -23,7 +23,7 @@ while (($# > 0)); do
       shift 2
       ;;
     --proof-path)
-      proof_path=${2:-}
+      proof_paths+=("${2:-}")
       shift 2
       ;;
     --site-root)
@@ -41,14 +41,14 @@ while (($# > 0)); do
   esac
 done
 
-if [[ -z "$config" || -z "$tests_root" || -z "$artifacts_root" || -z "$proof_path" || -z "$site_root" ]]; then
+if [[ -z "$config" || -z "$tests_root" || -z "$artifacts_root" || ${#proof_paths[@]} -eq 0 || -z "$site_root" ]]; then
   echo "usage: verify-site.sh --config <repositories.yml> --tests-root <tests-dir> --artifacts-root <artifacts-dir> --proof-path <proof-json> --site-root <site-dir> [--library <name> ...]" >&2
   exit 1
 fi
 
 repo_root=$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)
 
-python3 - "$repo_root" "$config" "$tests_root" "$artifacts_root" "$proof_path" "$site_root" "${libraries[@]}" <<'PY'
+python3 - "$repo_root" "$config" "$tests_root" "$artifacts_root" "$site_root" "${#proof_paths[@]}" "${proof_paths[@]}" -- "${libraries[@]}" <<'PY'
 from __future__ import annotations
 
 import html
@@ -129,15 +129,20 @@ def artifact_source(value: str | None, *, field_name: str, source: str, artifact
 config_path = Path(sys.argv[2])
 tests_root = Path(sys.argv[3])
 artifacts_root = Path(sys.argv[4]).resolve(strict=False)
-proof_path = Path(sys.argv[5])
-site_root = Path(sys.argv[6]).resolve(strict=False)
-cli_libraries = sys.argv[7:]
+site_root = Path(sys.argv[5]).resolve(strict=False)
+proof_count = int(sys.argv[6])
+proof_paths = [Path(value) for value in sys.argv[7:7 + proof_count]]
+separator_index = 7 + proof_count
+if separator_index >= len(sys.argv) or sys.argv[separator_index] != "--":
+    fail("internal argument separator missing")
+cli_libraries = sys.argv[separator_index + 1:]
 
-proof_path_resolved = proof_path.resolve(strict=False)
-try:
-    proof_path_resolved.relative_to(artifacts_root)
-except ValueError:
-    fail(f"proof path must resolve inside the artifact root: {proof_path}")
+for proof_path in proof_paths:
+    proof_path_resolved = proof_path.resolve(strict=False)
+    try:
+        proof_path_resolved.relative_to(artifacts_root)
+    except ValueError:
+        fail(f"proof path must resolve inside the artifact root: {proof_path}")
 
 manifest = validator_call("load manifest", load_manifest, config_path)
 validator_call("load testcase manifests", load_manifests, manifest, tests_root=tests_root)
@@ -145,53 +150,73 @@ manifest_libraries = [str(entry["name"]) for entry in manifest["libraries"]]
 manifest_set = set(manifest_libraries)
 reject_duplicates(manifest_libraries, field_name="repositories.yml libraries")
 
-proof_file = load_json_object(proof_path, description="proof manifest")
-if proof_file.get("proof_version") != 2:
-    fail("proof manifest must use proof_version 2")
-proof_libraries = render_site.selected_libraries_from_proof(proof_file)
-reject_duplicates(proof_libraries, field_name="proof libraries")
-unknown_proof_libraries = [library for library in proof_libraries if library not in manifest_set]
-if unknown_proof_libraries:
-    fail(f"proof libraries contain unknown names: {', '.join(unknown_proof_libraries)}")
+proof_files = [load_json_object(path, description="proof manifest") for path in proof_paths]
+proof_modes = []
+for proof_file in proof_files:
+    if proof_file.get("proof_version") != 2:
+        fail("proof manifest must use proof_version 2")
+    mode = proof_file.get("mode")
+    if mode not in {"original", "port-04-test"}:
+        fail("proof manifest mode must be original or port-04-test")
+    proof_modes.append(str(mode))
+reject_duplicates(proof_modes, field_name="proof modes")
+
+proof_libraries_by_mode = {
+    str(proof_file["mode"]): render_site.selected_libraries_from_proof(proof_file)
+    for proof_file in proof_files
+}
+for mode, proof_libraries in proof_libraries_by_mode.items():
+    reject_duplicates(proof_libraries, field_name=f"{mode} proof libraries")
+    unknown_proof_libraries = [library for library in proof_libraries if library not in manifest_set]
+    if unknown_proof_libraries:
+        fail(f"{mode} proof libraries contain unknown names: {', '.join(unknown_proof_libraries)}")
+
+first_proof_libraries = next(iter(proof_libraries_by_mode.values()))
+for mode, proof_libraries in proof_libraries_by_mode.items():
+    if proof_libraries != first_proof_libraries:
+        fail(f"{mode} proof libraries must match the first proof library order")
 
 reject_duplicates(cli_libraries, field_name="--library")
 unknown_cli_libraries = [library for library in cli_libraries if library not in manifest_set]
 if unknown_cli_libraries:
     fail(f"--library contains unknown names: {', '.join(unknown_cli_libraries)}")
 if cli_libraries:
-    if cli_libraries != proof_libraries:
+    if cli_libraries != first_proof_libraries:
         fail("--library selections must exactly match proof libraries in proof order")
     selected_libraries = cli_libraries
 else:
-    selected_libraries = proof_libraries
+    selected_libraries = first_proof_libraries
 
-expected_proof = validator_call(
-    "rebuild proof",
-    proof_tools.build_proof,
-    manifest,
-    artifact_root=artifacts_root,
-    tests_root=tests_root,
-    libraries=selected_libraries,
-    require_casts=True,
-)
-if expected_proof != proof_file:
-    fail("proof manifest does not match rebuilt proof")
+for proof_file in proof_files:
+    mode = str(proof_file["mode"])
+    expected_proof = validator_call(
+        f"rebuild {mode} proof",
+        proof_tools.build_proof,
+        manifest,
+        artifact_root=artifacts_root,
+        tests_root=tests_root,
+        mode=mode,
+        libraries=selected_libraries,
+        require_casts=True,
+    )
+    if expected_proof != proof_file:
+        fail(f"{mode} proof manifest does not match rebuilt proof")
 
 site_data_path = site_root / "site-data.json"
 site_data = load_json_object(site_data_path, description="site-data.json")
-if set(site_data) != {"schema_version", "proof", "testcases"}:
-    fail("site-data.json must define exactly schema_version, proof, and testcases")
-if site_data.get("schema_version") != 1:
-    fail("site-data.json schema_version must be 1")
-if not isinstance(site_data.get("proof"), dict):
-    fail("site-data.json proof must be an object")
+if set(site_data) != {"schema_version", "proofs", "testcases"}:
+    fail("site-data.json must define exactly schema_version, proofs, and testcases")
+if site_data.get("schema_version") != 2:
+    fail("site-data.json schema_version must be 2")
+if not isinstance(site_data.get("proofs"), list):
+    fail("site-data.json proofs must be a list")
 if not isinstance(site_data.get("testcases"), list):
     fail("site-data.json testcases must be a list")
 
 expected_site_data = validator_call(
     "build expected site data",
     render_site.build_site_data,
-    proof_file,
+    proof_files,
     artifact_root=artifacts_root,
     output_root=site_root,
     copy_evidence=False,
@@ -268,16 +293,18 @@ if re.search(r"\bsafe\b|\bunsafe\b|safe[- ]workload", html_without_case_rows, fl
 for row in expected_rows:
     escaped_library = html.escape(str(row["library"]))
     escaped_case = html.escape(str(row["testcase_id"]))
+    escaped_mode = html.escape(str(row["mode"]))
     escaped_cast = html.escape(str(row["cast_href"]))
     pattern = (
         rf'data-library="{re.escape(escaped_library)}"'
         rf'[^>]*data-testcase-id="{re.escape(escaped_case)}"'
+        rf'[^>]*data-mode="{re.escape(escaped_mode)}"'
         rf'[^>]*data-player-cast="{re.escape(escaped_cast)}"'
     )
     if re.search(pattern, html_text) is None:
-        fail(f"missing testcase HTML row for {row['library']}/{row['testcase_id']}")
+        fail(f"missing testcase HTML row for {row['mode']}/{row['library']}/{row['testcase_id']}")
 
-proof_totals = proof_file.get("totals")
+proof_totals = proof_files[0].get("totals")
 if not isinstance(proof_totals, dict):
     fail("proof totals must be an object")
 for field_name in ("libraries", "cases", "source_cases", "usage_cases", "passed", "failed", "casts"):
@@ -289,7 +316,7 @@ library_root = site_root / "library"
 expected_html_by_path = {
     index_path: render_site.render_page(expected_site_data),
 }
-for library in proof_libraries:
+for library in first_proof_libraries:
     expected_html_by_path[library_root / f"{library}.html"] = render_site.render_page(
         expected_site_data,
         page_depth=1,

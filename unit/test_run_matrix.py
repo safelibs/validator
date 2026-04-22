@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import json
+import hashlib
 import shutil
 import subprocess
 import sys
@@ -26,6 +27,52 @@ def original_demo_config() -> dict[str, object]:
             }
         ]
     }
+
+
+def write_port_debs_and_lock(root: Path) -> tuple[Path, Path]:
+    deb_root = root / "port-debs"
+    library_root = deb_root / "original-demo"
+    library_root.mkdir(parents=True, exist_ok=True)
+    debs = []
+    for filename, package, architecture in [
+        ("demo-runtime_1.0_amd64.deb", "demo-runtime", "amd64"),
+        ("demo-dev_1.0_all.deb", "demo-dev", "all"),
+    ]:
+        path = library_root / filename
+        path.write_bytes(f"{filename}\n".encode("utf-8"))
+        debs.append(
+            {
+                "package": package,
+                "filename": filename,
+                "architecture": architecture,
+                "sha256": hashlib.sha256(path.read_bytes()).hexdigest(),
+                "size": path.stat().st_size,
+                "asset_api_url": f"https://api.github.com/assets/{package}",
+                "browser_download_url": f"https://github.com/assets/{filename}",
+            }
+        )
+    lock_path = root / "port-lock.json"
+    lock = {
+        "schema_version": 1,
+        "mode": "port-04-test",
+        "generated_at": "1970-01-01T00:00:00Z",
+        "source_config": "repositories.yml",
+        "source_inventory": "inventory/github-port-repos.json",
+        "libraries": [
+            {
+                "library": "original-demo",
+                "repository": "safelibs/port-original-demo",
+                "url": "https://github.com/safelibs/port-original-demo",
+                "tag_ref": "refs/tags/original-demo/04-test",
+                "commit": "abcdef1234567890abcdef1234567890abcdef12",
+                "release_tag": "build-abcdef123456",
+                "debs": debs,
+                "unported_original_packages": [],
+            }
+        ],
+    }
+    lock_path.write_text(json.dumps(lock, indent=2) + "\n")
+    return deb_root, lock_path
 
 
 class RunMatrixTests(unittest.TestCase):
@@ -60,8 +107,16 @@ class RunMatrixTests(unittest.TestCase):
                 if value == "--mount" and index + 1 < len(args) and "dst=/validator/status" in args[index + 1]:
                     mount = args[index + 1]
                     src = mount.split("src=", 1)[1].split(",", 1)[0]
-                    if any("dst=/override-debs" in item for item in args):
+                    override_mounts = [item for item in args if "dst=/override-debs" in item]
+                    if override_mounts:
                         Path(src, "override-installed").write_text("")
+                        override_src = override_mounts[0].split("src=", 1)[1].split(",", 1)[0]
+                        lines = []
+                        for deb in sorted(Path(override_src).glob("*.deb")):
+                            parts = deb.name[:-4].split("_")
+                            if len(parts) >= 3:
+                                lines.append(f"{parts[0]}\t{parts[1]}\t{parts[-1]}\t{deb.name}\n")
+                        Path(src, "override-installed-packages.tsv").write_text("".join(lines))
 
             command_text = " ".join(args)
             if any(marker in command_text for marker in failures):
@@ -70,7 +125,7 @@ class RunMatrixTests(unittest.TestCase):
 
         return _fake
 
-    def test_accepts_original_mode_only(self) -> None:
+    def test_accepts_original_and_port_modes_only(self) -> None:
         invalid_mode_args = (
             ["--mode", "replacement"],
             ["--mode", "dual"],
@@ -79,11 +134,38 @@ class RunMatrixTests(unittest.TestCase):
         )
         for extra_args in invalid_mode_args:
             with self.subTest(extra_args=extra_args):
-                with self.assertRaisesRegex(ValidatorError, "original"):
+                with self.assertRaisesRegex(ValidatorError, "original.*port-04-test"):
                     run_matrix.parse_args(["--config", "repositories.yml", *extra_args])
 
         args = run_matrix.parse_args(["--config", "repositories.yml"])
         self.assertEqual(args.mode, "original")
+        with self.assertRaisesRegex(ValidatorError, "--override-deb-root"):
+            run_matrix.parse_args(["--config", "repositories.yml", "--mode", "port-04-test"])
+        with self.assertRaisesRegex(ValidatorError, "--port-deb-lock"):
+            run_matrix.parse_args(
+                [
+                    "--config",
+                    "repositories.yml",
+                    "--mode",
+                    "port-04-test",
+                    "--override-deb-root",
+                    "debs",
+                ]
+            )
+        args = run_matrix.parse_args(
+            [
+                "--config",
+                "repositories.yml",
+                "--mode",
+                "port-04-test",
+                "--override-deb-root",
+                "debs",
+                "--port-deb-lock",
+                "lock.json",
+            ]
+        )
+        self.assertEqual(args.mode, "port-04-test")
+        self.assertEqual(args.port_deb_lock, Path("lock.json"))
 
     def test_writes_per_case_results_logs_casts_and_summary(self) -> None:
         root = self.run_root()
@@ -221,6 +303,147 @@ class RunMatrixTests(unittest.TestCase):
             (artifact_root / "results" / "original-demo" / "source-echo-roundtrip.json").read_text()
         )
         self.assertTrue(result["override_debs_installed"])
+
+    def test_port_mode_writes_prefixed_paths_and_install_status(self) -> None:
+        root = self.run_root()
+        artifact_root = root / "artifacts"
+        deb_root, lock_path = write_port_debs_and_lock(root)
+
+        with mock.patch("tools.run_matrix.load_manifest", return_value=original_demo_config()), mock.patch(
+            "tools.run_matrix.ensure_library_image",
+            return_value="validator-original-demo",
+        ), mock.patch(
+            "tools.run_matrix.run_logged",
+            side_effect=self.fake_logged_run(),
+        ):
+            exit_code = run_matrix.main(
+                [
+                    "--config",
+                    str(FIXTURES / "original-only-manifest.yml"),
+                    "--tests-root",
+                    str(FIXTURES / "original-only-tests"),
+                    "--artifact-root",
+                    str(artifact_root),
+                    "--mode",
+                    "port-04-test",
+                    "--override-deb-root",
+                    str(deb_root),
+                    "--port-deb-lock",
+                    str(lock_path),
+                    "--record-casts",
+                ]
+            )
+
+        self.assertEqual(exit_code, 0)
+        result_path = artifact_root / "port-04-test" / "results" / "original-demo" / "source-echo-roundtrip.json"
+        result = json.loads(result_path.read_text())
+        self.assertEqual(result["mode"], "port-04-test")
+        self.assertEqual(result["result_path"], "port-04-test/results/original-demo/source-echo-roundtrip.json")
+        self.assertEqual(result["log_path"], "port-04-test/logs/original-demo/source-echo-roundtrip.log")
+        self.assertEqual(result["cast_path"], "port-04-test/casts/original-demo/source-echo-roundtrip.cast")
+        self.assertTrue(result["override_debs_installed"])
+        self.assertEqual(result["port_repository"], "safelibs/port-original-demo")
+        self.assertEqual(result["port_release_tag"], "build-abcdef123456")
+        self.assertEqual([deb["package"] for deb in result["port_debs"]], ["demo-runtime", "demo-dev"])
+        self.assertEqual(result["unported_original_packages"], [])
+        self.assertEqual(
+            [item["package"] for item in result["override_installed_packages"]],
+            ["demo-runtime", "demo-dev"],
+        )
+        summary = json.loads(
+            (artifact_root / "port-04-test" / "results" / "original-demo" / "summary.json").read_text()
+        )
+        self.assertEqual(summary["mode"], "port-04-test")
+
+    def test_port_mode_rejects_hash_mismatch_and_extra_debs(self) -> None:
+        root = self.run_root()
+        deb_root, lock_path = write_port_debs_and_lock(root)
+        (deb_root / "original-demo" / "extra_1.0_amd64.deb").write_text("extra")
+
+        with mock.patch("tools.run_matrix.load_manifest", return_value=original_demo_config()):
+            with self.assertRaisesRegex(ValidatorError, "extra"):
+                run_matrix.main(
+                    [
+                        "--config",
+                        str(FIXTURES / "original-only-manifest.yml"),
+                        "--tests-root",
+                        str(FIXTURES / "original-only-tests"),
+                        "--artifact-root",
+                        str(root / "artifacts"),
+                        "--mode",
+                        "port-04-test",
+                        "--override-deb-root",
+                        str(deb_root),
+                        "--port-deb-lock",
+                        str(lock_path),
+                    ]
+        )
+
+        (deb_root / "original-demo" / "extra_1.0_amd64.deb").unlink()
+        runtime_deb = deb_root / "original-demo" / "demo-runtime_1.0_amd64.deb"
+        runtime_deb.write_bytes(b"x" * runtime_deb.stat().st_size)
+        with mock.patch("tools.run_matrix.load_manifest", return_value=original_demo_config()):
+            with self.assertRaisesRegex(ValidatorError, "sha256 mismatch"):
+                run_matrix.main(
+                    [
+                        "--config",
+                        str(FIXTURES / "original-only-manifest.yml"),
+                        "--tests-root",
+                        str(FIXTURES / "original-only-tests"),
+                        "--artifact-root",
+                        str(root / "artifacts"),
+                        "--mode",
+                        "port-04-test",
+                        "--override-deb-root",
+                        str(deb_root),
+                        "--port-deb-lock",
+                        str(lock_path),
+                    ]
+                )
+
+    def test_port_install_marker_without_package_status_fails(self) -> None:
+        root = self.run_root()
+        artifact_root = root / "artifacts"
+        deb_root, lock_path = write_port_debs_and_lock(root)
+
+        def fake_without_tsv(*args: object, **kwargs: object) -> run_matrix.RunOutcome:
+            command = args[0]
+            log_path = kwargs["log_path"]
+            log_path.parent.mkdir(parents=True, exist_ok=True)
+            log_path.write_text("fixture run\n")
+            for index, value in enumerate(command):
+                if value == "--mount" and index + 1 < len(command) and "dst=/validator/status" in command[index + 1]:
+                    src = command[index + 1].split("src=", 1)[1].split(",", 1)[0]
+                    Path(src, "override-installed").write_text("")
+            return run_matrix.RunOutcome(0)
+
+        with mock.patch("tools.run_matrix.load_manifest", return_value=original_demo_config()), mock.patch(
+            "tools.run_matrix.ensure_library_image",
+            return_value="validator-original-demo",
+        ), mock.patch("tools.run_matrix.run_logged", side_effect=fake_without_tsv):
+            exit_code = run_matrix.main(
+                [
+                    "--config",
+                    str(FIXTURES / "original-only-manifest.yml"),
+                    "--tests-root",
+                    str(FIXTURES / "original-only-tests"),
+                    "--artifact-root",
+                    str(artifact_root),
+                    "--mode",
+                    "port-04-test",
+                    "--override-deb-root",
+                    str(deb_root),
+                    "--port-deb-lock",
+                    str(lock_path),
+                ]
+            )
+
+        self.assertNotEqual(exit_code, 0)
+        result = json.loads(
+            (artifact_root / "port-04-test" / "results" / "original-demo" / "source-echo-roundtrip.json").read_text()
+        )
+        self.assertEqual(result["status"], "failed")
+        self.assertIn("package status file is missing", result["error"])
 
     def test_override_deb_fixture_is_valid_debian_package(self) -> None:
         if shutil.which("dpkg-deb") is None:

@@ -15,11 +15,17 @@ jobs:
   full-matrix:
     runs-on: ubuntu-24.04
     outputs:
-      matrix_exit_code: ${{ steps.matrix.outputs.matrix_exit_code }}
+      original_matrix_exit: ${{ steps.matrix.outputs.original_matrix_exit }}
+      port_matrix_exit: ${{ steps.matrix.outputs.port_matrix_exit }}
+      original_proof_failed: ${{ steps.proof-failures.outputs.original_proof_failed }}
+      port_proof_failed: ${{ steps.proof-failures.outputs.port_proof_failed }}
     env:
       ARTIFACT_ROOT: .work/pages-artifacts
       SITE_ROOT: site
-      PROOF_PATH: .work/pages-artifacts/proof/original-validation-proof.json
+      PORT_DEB_ROOT: .work/pages-artifacts/debs/port-04-test
+      PORT_LOCK_PATH: .work/pages-artifacts/proof/port-04-test-debs-lock.json
+      ORIGINAL_PROOF_PATH: .work/pages-artifacts/proof/original-validation-proof.json
+      PORT_PROOF_PATH: .work/pages-artifacts/proof/port-04-test-validation-proof.json
     steps:
       - uses: actions/checkout@v4
 
@@ -32,9 +38,19 @@ jobs:
         run: python3 -m unittest discover -s unit -v
 
       - name: Check testcase manifests
-        run: python3 tools/testcases.py --config repositories.yml --tests-root tests --check --min-source-cases 95 --min-usage-cases 155 --min-cases 250
+        run: python3 tools/testcases.py --config repositories.yml --tests-root tests --check --min-source-cases 95 --min-usage-cases 193 --min-cases 288
 
-      - name: Run full matrix
+      - name: Fetch port debs
+        env:
+          VALIDATOR_REPO_TOKEN: ${{ secrets.VALIDATOR_REPO_TOKEN }}
+        run: |
+          python3 tools/fetch_port_debs.py \
+            --config repositories.yml \
+            --port-repos inventory/github-port-repos.json \
+            --output-root "$PORT_DEB_ROOT" \
+            --lock-output "$PORT_LOCK_PATH"
+
+      - name: Run full matrices
         id: matrix
         run: |
           set +e
@@ -42,39 +58,74 @@ jobs:
             --config repositories.yml \
             --tests-root tests \
             --artifact-root "$ARTIFACT_ROOT" \
+            --mode original \
             --record-casts
-          matrix_exit_code=$?
+          original_matrix_exit=$?
+          bash test.sh \
+            --config repositories.yml \
+            --tests-root tests \
+            --artifact-root "$ARTIFACT_ROOT" \
+            --mode port-04-test \
+            --override-deb-root "$PORT_DEB_ROOT" \
+            --port-deb-lock "$PORT_LOCK_PATH" \
+            --record-casts
+          port_matrix_exit=$?
           set -e
-          echo "matrix_exit_code=$matrix_exit_code" >> "$GITHUB_OUTPUT"
+          echo "original_matrix_exit=$original_matrix_exit" >> "$GITHUB_OUTPUT"
+          echo "port_matrix_exit=$port_matrix_exit" >> "$GITHUB_OUTPUT"
 
-      - name: Generate proof
+      - name: Generate proofs
         run: |
           python3 tools/verify_proof_artifacts.py \
             --config repositories.yml \
             --tests-root tests \
             --artifact-root "$ARTIFACT_ROOT" \
-            --proof-output "$PROOF_PATH" \
+            --proof-output "$ORIGINAL_PROOF_PATH" \
+            --mode original \
             --min-source-cases 95 \
-            --min-usage-cases 155 \
-            --min-cases 250 \
+            --min-usage-cases 193 \
+            --min-cases 288 \
+            --require-casts
+          python3 tools/verify_proof_artifacts.py \
+            --config repositories.yml \
+            --tests-root tests \
+            --artifact-root "$ARTIFACT_ROOT" \
+            --proof-output "$PORT_PROOF_PATH" \
+            --mode port-04-test \
+            --min-source-cases 95 \
+            --min-usage-cases 193 \
+            --min-cases 288 \
             --require-casts
 
+      - name: Evaluate proof failures
+        id: proof-failures
+        if: always()
+        run: |
+          original_proof_failed=$(python3 -c 'import json, os; print(json.load(open(os.environ["ORIGINAL_PROOF_PATH"]))["totals"]["failed"])' 2>/dev/null || echo 1)
+          port_proof_failed=$(python3 -c 'import json, os; print(json.load(open(os.environ["PORT_PROOF_PATH"]))["totals"]["failed"])' 2>/dev/null || echo 1)
+          echo "original_proof_failed=$original_proof_failed" >> "$GITHUB_OUTPUT"
+          echo "port_proof_failed=$port_proof_failed" >> "$GITHUB_OUTPUT"
+
       - name: Render site
+        if: always()
         run: |
           python3 tools/render_site.py \
             --config repositories.yml \
             --tests-root tests \
             --artifact-root "$ARTIFACT_ROOT" \
-            --proof-path "$PROOF_PATH" \
+            --proof-path "$ORIGINAL_PROOF_PATH" \
+            --proof-path "$PORT_PROOF_PATH" \
             --output-root "$SITE_ROOT"
 
       - name: Verify site
+        if: always()
         run: |
           bash scripts/verify-site.sh \
             --config repositories.yml \
             --tests-root tests \
             --artifacts-root "$ARTIFACT_ROOT" \
-            --proof-path "$PROOF_PATH" \
+            --proof-path "$ORIGINAL_PROOF_PATH" \
+            --proof-path "$PORT_PROOF_PATH" \
             --site-root "$SITE_ROOT"
 
       - uses: actions/configure-pages@v5
@@ -110,10 +161,22 @@ jobs:
           if [ "${{ needs.deploy-pages.result }}" != "success" ]; then
             exit 1
           fi
-          matrix_exit_code="${{ needs.full-matrix.outputs.matrix_exit_code }}"
-          if [ -z "$matrix_exit_code" ]; then
+          original_matrix_exit="${{ needs.full-matrix.outputs.original_matrix_exit }}"
+          port_matrix_exit="${{ needs.full-matrix.outputs.port_matrix_exit }}"
+          original_proof_failed="${{ needs.full-matrix.outputs.original_proof_failed }}"
+          port_proof_failed="${{ needs.full-matrix.outputs.port_proof_failed }}"
+          if [ -z "$original_matrix_exit" ] || [ -z "$port_matrix_exit" ]; then
             exit 1
           fi
-          if [ "$matrix_exit_code" -ne 0 ]; then
-            exit "$matrix_exit_code"
+          if [ "$original_matrix_exit" -ne 0 ]; then
+            exit "$original_matrix_exit"
+          fi
+          if [ "$port_matrix_exit" -ne 0 ]; then
+            exit "$port_matrix_exit"
+          fi
+          if [ -z "$original_proof_failed" ] || [ "$original_proof_failed" -ne 0 ]; then
+            exit 1
+          fi
+          if [ -z "$port_proof_failed" ] || [ "$port_proof_failed" -ne 0 ]; then
+            exit 1
           fi
