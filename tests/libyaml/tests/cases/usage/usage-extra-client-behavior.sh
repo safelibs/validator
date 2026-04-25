@@ -10,6 +10,7 @@ python3 - <<'PY' "$case_id" | tee "$tmpdir/out"
 import datetime
 import sys
 import yaml
+from yaml.events import ScalarEvent
 from yaml.tokens import ScalarToken
 
 case_id = sys.argv[1]
@@ -58,6 +59,48 @@ elif case_id == "usage-python3-yaml-scan-tokens":
     tokens = list(yaml.scan('name: alpha\n'))
     assert any(isinstance(token, ScalarToken) and token.value == 'alpha' for token in tokens)
     print('tokens', len(tokens))
+elif case_id == "usage-python3-yaml-safe-load-all":
+    docs = list(yaml.safe_load_all('---\na: 1\n---\nb: 2\n'))
+    assert docs == [{'a': 1}, {'b': 2}]
+    print('docs', len(docs))
+elif case_id == "usage-python3-yaml-folded-scalar":
+    data = yaml.safe_load('text: >\n  alpha\n  beta\n')
+    assert data['text'] == 'alpha beta\n'
+    print(data['text'].strip())
+elif case_id == "usage-python3-yaml-safe-dump-unicode":
+    dumped = yaml.safe_dump({'name': 'caf\u00e9'}, allow_unicode=True)
+    assert 'caf\u00e9' in dumped
+    print(dumped.strip())
+elif case_id == "usage-python3-yaml-full-loader-bool":
+    data = yaml.load('flag: true\n', Loader=yaml.FullLoader)
+    assert data['flag'] is True
+    print(data['flag'])
+elif case_id == "usage-python3-yaml-parse-events":
+    events = list(yaml.parse('name: alpha\n'))
+    assert any(isinstance(event, ScalarEvent) and event.value == 'alpha' for event in events)
+    print('events', len(events))
+elif case_id == "usage-python3-yaml-compose-node":
+    node = yaml.compose('root:\n  child: 1\n')
+    assert node.value[0][0].value == 'root'
+    print(node.tag)
+elif case_id == "usage-python3-yaml-explicit-end":
+    dumped = yaml.safe_dump({'alpha': 1}, explicit_end=True)
+    assert dumped.endswith('...\n')
+    print(dumped.splitlines()[-1])
+elif case_id == "usage-python3-yaml-csafe-sequence":
+    loader = getattr(yaml, 'CSafeLoader', yaml.SafeLoader)
+    data = yaml.load('- 1\n- 2\n', Loader=loader)
+    assert data == [1, 2]
+    print(data)
+elif case_id == "usage-python3-yaml-base-loader-bool-string":
+    data = yaml.load('flag: true\n', Loader=yaml.BaseLoader)
+    assert data['flag'] == 'true'
+    print(data['flag'])
+elif case_id == "usage-python3-yaml-safe-roundtrip-list":
+    payload = ['alpha', 'beta', 'gamma']
+    dumped = yaml.safe_dump(payload)
+    assert yaml.safe_load(dumped) == payload
+    print(len(payload))
 else:
     raise SystemExit(f"unknown libyaml extra usage case: {case_id}")
 PY

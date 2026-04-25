@@ -55,6 +55,49 @@ case "$case_id" in
     validator_assert_contains "$tmpdir/out" 'label'
     validator_assert_contains "$tmpdir/out" 'value'
     ;;
+  usage-jshon-true-field)
+    run_jshon "$json" -e active -u
+    validator_assert_contains "$tmpdir/out" 'true'
+    ;;
+  usage-jshon-nested-type)
+    run_jshon "$json" -e nested -t
+    validator_assert_contains "$tmpdir/out" 'object'
+    ;;
+  usage-jshon-records-length)
+    run_jshon "$json" -e records -l
+    validator_assert_contains "$tmpdir/out" '2'
+    ;;
+  usage-jshon-first-record-name)
+    run_jshon "$json" -e records -e 0 -e name -u
+    validator_assert_contains "$tmpdir/out" 'alpha'
+    ;;
+  usage-jshon-root-key-list)
+    run_jshon "$json" -k
+    validator_assert_contains "$tmpdir/out" 'active'
+    validator_assert_contains "$tmpdir/out" 'name'
+    ;;
+  usage-jshon-file-root-object)
+    printf '%s' "$json" >"$tmpdir/input.json"
+    jshon -F "$tmpdir/input.json" -t >"$tmpdir/out"
+    validator_assert_contains "$tmpdir/out" 'object'
+    ;;
+  usage-jshon-file-nested-label)
+    printf '%s' "$json" >"$tmpdir/input.json"
+    jshon -F "$tmpdir/input.json" -e nested -e label -u >"$tmpdir/out"
+    validator_assert_contains "$tmpdir/out" 'hello world'
+    ;;
+  usage-jshon-third-array-value)
+    run_jshon "$json" -e items -e 2 -u
+    validator_assert_contains "$tmpdir/out" '3'
+    ;;
+  usage-jshon-name-field)
+    run_jshon "$json" -e name -u
+    validator_assert_contains "$tmpdir/out" 'demo'
+    ;;
+  usage-jshon-nested-object-length)
+    run_jshon "$json" -e nested -l
+    validator_assert_contains "$tmpdir/out" '2'
+    ;;
   *)
     printf 'unknown libjansson extra usage case: %s\n' "$case_id" >&2
     exit 2

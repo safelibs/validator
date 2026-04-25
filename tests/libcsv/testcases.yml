@@ -311,3 +311,133 @@ testcases:
   tags:
   - usage
   - csv
+- id: usage-readstat-sav-negative-number
+  title: readstat SAV negative number
+  description: Converts a negative numeric field through SAV and verifies the value survives export.
+  kind: usage
+  client_application: readstat
+  command:
+  - bash
+  - /validator/tests/libcsv/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-readstat-sav-negative-number
+  timeout_seconds: 180
+  tags:
+  - usage
+  - csv
+- id: usage-readstat-dta-decimal-number
+  title: readstat DTA decimal number
+  description: Converts decimal numeric data through DTA and verifies numeric formatting.
+  kind: usage
+  client_application: readstat
+  command:
+  - bash
+  - /validator/tests/libcsv/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-readstat-dta-decimal-number
+  timeout_seconds: 180
+  tags:
+  - usage
+  - csv
+- id: usage-readstat-sav-empty-string
+  title: readstat SAV empty string
+  description: Converts an empty string field through SAV and verifies the row is preserved.
+  kind: usage
+  client_application: readstat
+  command:
+  - bash
+  - /validator/tests/libcsv/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-readstat-sav-empty-string
+  timeout_seconds: 180
+  tags:
+  - usage
+  - csv
+- id: usage-readstat-dta-long-string
+  title: readstat DTA long string
+  description: Converts a longer string field through DTA and verifies the text survives.
+  kind: usage
+  client_application: readstat
+  command:
+  - bash
+  - /validator/tests/libcsv/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-readstat-dta-long-string
+  timeout_seconds: 180
+  tags:
+  - usage
+  - csv
+- id: usage-readstat-sav-column-count
+  title: readstat SAV column count
+  description: Writes a SAV dataset and verifies readstat reports the expected column count.
+  kind: usage
+  client_application: readstat
+  command:
+  - bash
+  - /validator/tests/libcsv/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-readstat-sav-column-count
+  timeout_seconds: 180
+  tags:
+  - usage
+  - csv
+- id: usage-readstat-dta-row-count
+  title: readstat DTA row count
+  description: Writes a multi-row DTA dataset and verifies readstat reports the expected row count.
+  kind: usage
+  client_application: readstat
+  command:
+  - bash
+  - /validator/tests/libcsv/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-readstat-dta-row-count
+  timeout_seconds: 180
+  tags:
+  - usage
+  - csv
+- id: usage-readstat-dta-comma-value
+  title: readstat DTA comma value
+  description: Converts a quoted comma-containing string through DTA and verifies the field survives export.
+  kind: usage
+  client_application: readstat
+  command:
+  - bash
+  - /validator/tests/libcsv/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-readstat-dta-comma-value
+  timeout_seconds: 180
+  tags:
+  - usage
+  - csv
+- id: usage-readstat-sav-zero-value
+  title: readstat SAV zero value
+  description: Converts a zero numeric field through SAV and verifies the zero value is preserved.
+  kind: usage
+  client_application: readstat
+  command:
+  - bash
+  - /validator/tests/libcsv/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-readstat-sav-zero-value
+  timeout_seconds: 180
+  tags:
+  - usage
+  - csv
+- id: usage-readstat-sav-spaced-value
+  title: readstat SAV spaced value
+  description: Converts a spaced string field through SAV and verifies the text survives export.
+  kind: usage
+  client_application: readstat
+  command:
+  - bash
+  - /validator/tests/libcsv/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-readstat-sav-spaced-value
+  timeout_seconds: 180
+  tags:
+  - usage
+  - csv
+- id: usage-readstat-sav-three-rows
+  title: readstat SAV three rows
+  description: Writes three CSV rows to SAV with readstat and verifies all rows return.
+  kind: usage
+  client_application: readstat
+  command:
+  - bash
+  - /validator/tests/libcsv/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-readstat-sav-three-rows
+  timeout_seconds: 180
+  tags:
+  - usage
+  - csv

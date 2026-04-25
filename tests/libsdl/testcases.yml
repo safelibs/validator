@@ -330,3 +330,143 @@ testcases:
   - usage
   - sdl
   - python
+- id: usage-python3-pygame-draw-circle
+  title: Pygame draws circle
+  description: Draws a circle on a Pygame surface and checks a colored pixel on the outline.
+  kind: usage
+  client_application: python3-pygame
+  command:
+  - bash
+  - /validator/tests/libsdl/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-python3-pygame-draw-circle
+  timeout_seconds: 180
+  tags:
+  - usage
+  - sdl
+  - python
+- id: usage-python3-pygame-transform-flip
+  title: Pygame flips surface
+  description: Flips a Pygame surface and verifies the output dimensions remain stable.
+  kind: usage
+  client_application: python3-pygame
+  command:
+  - bash
+  - /validator/tests/libsdl/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-python3-pygame-transform-flip
+  timeout_seconds: 180
+  tags:
+  - usage
+  - sdl
+  - python
+- id: usage-python3-pygame-surface-copy
+  title: Pygame surface copy
+  description: Copies a Pygame surface and verifies the copied pixel data matches the original.
+  kind: usage
+  client_application: python3-pygame
+  command:
+  - bash
+  - /validator/tests/libsdl/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-python3-pygame-surface-copy
+  timeout_seconds: 180
+  tags:
+  - usage
+  - sdl
+  - python
+- id: usage-python3-pygame-color-lerp
+  title: Pygame color lerp
+  description: Interpolates a Pygame color and verifies the resulting channel value.
+  kind: usage
+  client_application: python3-pygame
+  command:
+  - bash
+  - /validator/tests/libsdl/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-python3-pygame-color-lerp
+  timeout_seconds: 180
+  tags:
+  - usage
+  - sdl
+  - python
+- id: usage-python3-pygame-pixelarray
+  title: Pygame pixelarray write
+  description: Writes a pixel through Pygame PixelArray and verifies the updated surface color.
+  kind: usage
+  client_application: python3-pygame
+  command:
+  - bash
+  - /validator/tests/libsdl/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-python3-pygame-pixelarray
+  timeout_seconds: 180
+  tags:
+  - usage
+  - sdl
+  - python
+- id: usage-python3-pygame-custom-event
+  title: Pygame custom event
+  description: Posts a custom Pygame user event and verifies the SDL-backed queue returns it.
+  kind: usage
+  client_application: python3-pygame
+  command:
+  - bash
+  - /validator/tests/libsdl/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-python3-pygame-custom-event
+  timeout_seconds: 180
+  tags:
+  - usage
+  - sdl
+  - python
+- id: usage-python3-pygame-font-render
+  title: Pygame font render
+  description: Renders text with the default Pygame font and verifies the resulting surface dimensions.
+  kind: usage
+  client_application: python3-pygame
+  command:
+  - bash
+  - /validator/tests/libsdl/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-python3-pygame-font-render
+  timeout_seconds: 180
+  tags:
+  - usage
+  - sdl
+  - python
+- id: usage-python3-pygame-mask-overlap-area
+  title: Pygame mask overlap area
+  description: Computes overlap area between two Pygame masks and verifies the nonzero result.
+  kind: usage
+  client_application: python3-pygame
+  command:
+  - bash
+  - /validator/tests/libsdl/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-python3-pygame-mask-overlap-area
+  timeout_seconds: 180
+  tags:
+  - usage
+  - sdl
+  - python
+- id: usage-python3-pygame-image-tostring
+  title: Pygame image tostring
+  description: Serializes a Pygame surface to RGB bytes and verifies the expected byte length.
+  kind: usage
+  client_application: python3-pygame
+  command:
+  - bash
+  - /validator/tests/libsdl/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-python3-pygame-image-tostring
+  timeout_seconds: 180
+  tags:
+  - usage
+  - sdl
+  - python
+- id: usage-python3-pygame-rect-union
+  title: Pygame rect union
+  description: Unions two Pygame Rect values and verifies the combined rectangle dimensions.
+  kind: usage
+  client_application: python3-pygame
+  command:
+  - bash
+  - /validator/tests/libsdl/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-python3-pygame-rect-union
+  timeout_seconds: 180
+  tags:
+  - usage
+  - sdl
+  - python

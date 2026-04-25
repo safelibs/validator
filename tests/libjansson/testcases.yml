@@ -324,3 +324,133 @@ testcases:
   tags:
   - usage
   - json
+- id: usage-jshon-true-field
+  title: jshon true field
+  description: Reads a true boolean field with jshon and verifies the unquoted boolean value.
+  kind: usage
+  client_application: jshon
+  command:
+  - bash
+  - /validator/tests/libjansson/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-jshon-true-field
+  timeout_seconds: 180
+  tags:
+  - usage
+  - json
+- id: usage-jshon-nested-type
+  title: jshon nested object type
+  description: Selects a nested object with jshon and verifies the reported JSON type.
+  kind: usage
+  client_application: jshon
+  command:
+  - bash
+  - /validator/tests/libjansson/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-jshon-nested-type
+  timeout_seconds: 180
+  tags:
+  - usage
+  - json
+- id: usage-jshon-records-length
+  title: jshon records length
+  description: Measures a nested JSON array length with jshon and verifies the element count.
+  kind: usage
+  client_application: jshon
+  command:
+  - bash
+  - /validator/tests/libjansson/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-jshon-records-length
+  timeout_seconds: 180
+  tags:
+  - usage
+  - json
+- id: usage-jshon-first-record-name
+  title: jshon first record name
+  description: Selects the first nested record with jshon and verifies the extracted name field.
+  kind: usage
+  client_application: jshon
+  command:
+  - bash
+  - /validator/tests/libjansson/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-jshon-first-record-name
+  timeout_seconds: 180
+  tags:
+  - usage
+  - json
+- id: usage-jshon-root-key-list
+  title: jshon root key list
+  description: Lists top-level JSON keys with jshon and verifies multiple expected keys appear.
+  kind: usage
+  client_application: jshon
+  command:
+  - bash
+  - /validator/tests/libjansson/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-jshon-root-key-list
+  timeout_seconds: 180
+  tags:
+  - usage
+  - json
+- id: usage-jshon-file-root-object
+  title: jshon file root object
+  description: Reads a JSON file with jshon and verifies the root type remains object.
+  kind: usage
+  client_application: jshon
+  command:
+  - bash
+  - /validator/tests/libjansson/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-jshon-file-root-object
+  timeout_seconds: 180
+  tags:
+  - usage
+  - json
+- id: usage-jshon-file-nested-label
+  title: jshon file nested label
+  description: Reads a nested string field from a JSON file with jshon and verifies the label text.
+  kind: usage
+  client_application: jshon
+  command:
+  - bash
+  - /validator/tests/libjansson/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-jshon-file-nested-label
+  timeout_seconds: 180
+  tags:
+  - usage
+  - json
+- id: usage-jshon-third-array-value
+  title: jshon third array value
+  description: Reads the third value from a JSON array with jshon and verifies the number.
+  kind: usage
+  client_application: jshon
+  command:
+  - bash
+  - /validator/tests/libjansson/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-jshon-third-array-value
+  timeout_seconds: 180
+  tags:
+  - usage
+  - json
+- id: usage-jshon-name-field
+  title: jshon name field
+  description: Reads a top-level JSON string field with jshon and verifies the extracted value.
+  kind: usage
+  client_application: jshon
+  command:
+  - bash
+  - /validator/tests/libjansson/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-jshon-name-field
+  timeout_seconds: 180
+  tags:
+  - usage
+  - json
+- id: usage-jshon-nested-object-length
+  title: jshon nested object length
+  description: Measures the number of keys in a nested JSON object with jshon.
+  kind: usage
+  client_application: jshon
+  command:
+  - bash
+  - /validator/tests/libjansson/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-jshon-nested-object-length
+  timeout_seconds: 180
+  tags:
+  - usage
+  - json

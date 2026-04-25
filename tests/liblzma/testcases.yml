@@ -332,3 +332,143 @@ testcases:
   - usage
   - archive
   - xz
+- id: usage-libarchive-tools-xz-filelist-input
+  title: libarchive-tools xz file list input
+  description: Creates an xz-compressed tar archive from a file list and verifies the archived members.
+  kind: usage
+  client_application: libarchive-tools
+  command:
+  - bash
+  - /validator/tests/liblzma/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-libarchive-tools-xz-filelist-input
+  timeout_seconds: 180
+  tags:
+  - usage
+  - archive
+  - xz
+- id: usage-libarchive-tools-xz-extract-stdout
+  title: libarchive-tools xz extract to stdout
+  description: Extracts one archived file to stdout from an xz-compressed tar archive.
+  kind: usage
+  client_application: libarchive-tools
+  command:
+  - bash
+  - /validator/tests/liblzma/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-libarchive-tools-xz-extract-stdout
+  timeout_seconds: 180
+  tags:
+  - usage
+  - archive
+  - xz
+- id: usage-libarchive-tools-xz-dotfile
+  title: libarchive-tools xz dotfile
+  description: Archives and extracts a hidden file through xz compression.
+  kind: usage
+  client_application: libarchive-tools
+  command:
+  - bash
+  - /validator/tests/liblzma/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-libarchive-tools-xz-dotfile
+  timeout_seconds: 180
+  tags:
+  - usage
+  - archive
+  - xz
+- id: usage-libarchive-tools-xz-leading-dash
+  title: libarchive-tools xz leading dash filename
+  description: Archives and extracts a filename beginning with a dash through xz compression.
+  kind: usage
+  client_application: libarchive-tools
+  command:
+  - bash
+  - /validator/tests/liblzma/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-libarchive-tools-xz-leading-dash
+  timeout_seconds: 180
+  tags:
+  - usage
+  - archive
+  - xz
+- id: usage-libarchive-tools-xz-hardlink-pair
+  title: libarchive-tools xz hardlink pair
+  description: Archives and extracts hardlinked files through xz compression and checks their content matches.
+  kind: usage
+  client_application: libarchive-tools
+  command:
+  - bash
+  - /validator/tests/liblzma/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-libarchive-tools-xz-hardlink-pair
+  timeout_seconds: 180
+  tags:
+  - usage
+  - archive
+  - xz
+- id: usage-libarchive-tools-xz-subtree-only
+  title: libarchive-tools xz subtree only
+  description: Archives only a nested subtree through xz compression and verifies unrelated files are omitted.
+  kind: usage
+  client_application: libarchive-tools
+  command:
+  - bash
+  - /validator/tests/liblzma/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-libarchive-tools-xz-subtree-only
+  timeout_seconds: 180
+  tags:
+  - usage
+  - archive
+  - xz
+- id: usage-libarchive-tools-xz-overwrite-existing
+  title: libarchive-tools xz overwrite existing
+  description: Extracts an xz-compressed tar archive over an existing file and verifies the archived content wins.
+  kind: usage
+  client_application: libarchive-tools
+  command:
+  - bash
+  - /validator/tests/liblzma/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-libarchive-tools-xz-overwrite-existing
+  timeout_seconds: 180
+  tags:
+  - usage
+  - archive
+  - xz
+- id: usage-libarchive-tools-xz-empty-file
+  title: libarchive-tools xz empty file
+  description: Archives and extracts an empty file through xz compression and verifies it stays empty.
+  kind: usage
+  client_application: libarchive-tools
+  command:
+  - bash
+  - /validator/tests/liblzma/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-libarchive-tools-xz-empty-file
+  timeout_seconds: 180
+  tags:
+  - usage
+  - archive
+  - xz
+- id: usage-libarchive-tools-xz-stream-list
+  title: libarchive-tools xz stream list
+  description: Streams an xz-compressed tar archive through stdin and lists its members.
+  kind: usage
+  client_application: libarchive-tools
+  command:
+  - bash
+  - /validator/tests/liblzma/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-libarchive-tools-xz-stream-list
+  timeout_seconds: 180
+  tags:
+  - usage
+  - archive
+  - xz
+- id: usage-libarchive-tools-xz-stream-extract
+  title: libarchive-tools xz stream extract
+  description: Streams an xz-compressed tar archive through stdin and extracts its contents.
+  kind: usage
+  client_application: libarchive-tools
+  command:
+  - bash
+  - /validator/tests/liblzma/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-libarchive-tools-xz-stream-extract
+  timeout_seconds: 180
+  tags:
+  - usage
+  - archive
+  - xz

@@ -76,6 +76,73 @@ case "$case_id" in
     giftext "$gif" | tee "$tmpdir/out"
     grep -Eiq 'image' "$tmpdir/out"
     ;;
+  usage-giflib-tools-giftext-fire-colormap)
+    gif="$VALIDATOR_SAMPLE_ROOT/pic/fire.gif"
+    validator_require_file "$gif"
+    giftext -c "$gif" | tee "$tmpdir/out"
+    validator_assert_contains "$tmpdir/out" 'Global Color Map'
+    ;;
+  usage-giflib-tools-giftext-grid-screen)
+    gif="$VALIDATOR_SAMPLE_ROOT/pic/gifgrid.gif"
+    validator_require_file "$gif"
+    giftext "$gif" | tee "$tmpdir/out"
+    validator_assert_contains "$tmpdir/out" 'Screen Size'
+    ;;
+  usage-giflib-tools-giftext-interlaced-header)
+    gif="$VALIDATOR_SAMPLE_ROOT/pic/treescap-interlaced.gif"
+    validator_require_file "$gif"
+    giftext "$gif" | tee "$tmpdir/out"
+    validator_assert_contains "$tmpdir/out" 'Screen Size'
+    ;;
+  usage-giflib-tools-gif2rgb-fire-planar)
+    gif="$VALIDATOR_SAMPLE_ROOT/pic/fire.gif"
+    validator_require_file "$gif"
+    gif2rgb -o "$tmpdir/fire" "$gif"
+    validator_require_file "$tmpdir/fire.R"
+    validator_require_file "$tmpdir/fire.G"
+    validator_require_file "$tmpdir/fire.B"
+    ;;
+  usage-giflib-tools-gif2rgb-grid-rgb)
+    gif="$VALIDATOR_SAMPLE_ROOT/pic/gifgrid.gif"
+    validator_require_file "$gif"
+    gif2rgb -1 -o "$tmpdir/grid.rgb" "$gif"
+    test "$(wc -c <"$tmpdir/grid.rgb")" -gt 0
+    ;;
+  usage-giflib-tools-giffix-treescap)
+    gif="$VALIDATOR_SAMPLE_ROOT/pic/treescap.gif"
+    validator_require_file "$gif"
+    giffix "$gif" >"$tmpdir/fixed.gif"
+    giftext "$tmpdir/fixed.gif" | tee "$tmpdir/out"
+    validator_assert_contains "$tmpdir/out" 'Screen Size'
+    ;;
+  usage-giflib-tools-giffix-grid-colormap)
+    gif="$VALIDATOR_SAMPLE_ROOT/pic/gifgrid.gif"
+    validator_require_file "$gif"
+    giffix "$gif" >"$tmpdir/fixed.gif"
+    gifclrmp "$tmpdir/fixed.gif" | tee "$tmpdir/out"
+    grep -Eq '^[[:space:]]*0[[:space:]]+[0-9]+[[:space:]]+[0-9]+[[:space:]]+[0-9]+' "$tmpdir/out"
+    ;;
+  usage-giflib-tools-gifclrmp-grid)
+    gif="$VALIDATOR_SAMPLE_ROOT/pic/gifgrid.gif"
+    validator_require_file "$gif"
+    gifclrmp "$gif" | tee "$tmpdir/out"
+    grep -Eq '^[[:space:]]*0[[:space:]]+[0-9]+[[:space:]]+[0-9]+[[:space:]]+[0-9]+' "$tmpdir/out"
+    ;;
+  usage-giflib-tools-gifbuild-treescap-dump)
+    gif="$VALIDATOR_SAMPLE_ROOT/pic/treescap.gif"
+    validator_require_file "$gif"
+    gifbuild -d "$gif" >"$tmpdir/dump.txt"
+    grep -Ei 'screen|image' "$tmpdir/dump.txt" | tee "$tmpdir/out"
+    grep -Eiq 'screen|image' "$tmpdir/out"
+    ;;
+  usage-giflib-tools-gifbuild-treescap-roundtrip)
+    gif="$VALIDATOR_SAMPLE_ROOT/pic/treescap.gif"
+    validator_require_file "$gif"
+    gifbuild -d "$gif" >"$tmpdir/treescap.txt"
+    gifbuild "$tmpdir/treescap.txt" >"$tmpdir/rebuilt.gif"
+    giftext "$tmpdir/rebuilt.gif" | tee "$tmpdir/out"
+    validator_assert_contains "$tmpdir/out" 'Screen Size'
+    ;;
   *)
     printf 'unknown giflib extra usage case: %s\n' "$case_id" >&2
     exit 2

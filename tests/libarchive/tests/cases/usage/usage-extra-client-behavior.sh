@@ -26,6 +26,14 @@ def read(path):
             result[entry.pathname] = b"".join(entry.get_blocks())
     return result
 
+def metadata(path):
+    rows = []
+    with libarchive.file_reader(str(path)) as archive:
+        for entry in archive:
+            rows.append((entry.pathname, entry.size))
+            b"".join(entry.get_blocks())
+    return rows
+
 if case_id == "usage-python-libarchive-c-empty-file":
     path = tmpdir / "empty.tar"
     write(path, {"empty.txt": b""})
@@ -90,6 +98,77 @@ elif case_id == "usage-python-libarchive-c-zip-to-tar":
         writer.add_entries(entries)
     assert read(tar_path) == expected
     print("zip-to-tar")
+elif case_id == "usage-python-libarchive-c-lz4-filter":
+    path = tmpdir / "data.tar.lz4"
+    expected = {"lz4.txt": b"lz4 payload\n"}
+    write(path, expected, filt="lz4")
+    assert read(path) == expected
+    print("lz4")
+elif case_id == "usage-python-libarchive-c-lzop-filter":
+    path = tmpdir / "data.tar.lzo"
+    expected = {"lzop.txt": b"lzop payload\n"}
+    write(path, expected, filt="lzop")
+    assert read(path) == expected
+    print("lzop")
+elif case_id == "usage-python-libarchive-c-lzip-filter":
+    path = tmpdir / "data.tar.lz"
+    expected = {"lzip.txt": b"lzip payload\n"}
+    write(path, expected, filt="lzip")
+    assert read(path) == expected
+    print("lzip")
+elif case_id == "usage-python-libarchive-c-lzma-filter":
+    path = tmpdir / "data.tar.lzma"
+    expected = {"lzma.txt": b"lzma payload\n"}
+    write(path, expected, filt="lzma")
+    assert read(path) == expected
+    print("lzma")
+elif case_id == "usage-python-libarchive-c-ustar-format":
+    path = tmpdir / "data.ustar"
+    expected = {"ustar.txt": b"ustar payload\n"}
+    write(path, expected, fmt="ustar")
+    assert read(path) == expected
+    print("ustar")
+elif case_id == "usage-python-libarchive-c-tar-to-zip":
+    tar_path = tmpdir / "input.tar"
+    zip_path = tmpdir / "output.zip"
+    expected = {"alpha.txt": b"alpha\n", "beta.txt": b"beta\n"}
+    write(tar_path, expected)
+    with libarchive.file_reader(str(tar_path)) as entries, libarchive.file_writer(str(zip_path), "zip") as writer:
+        writer.add_entries(entries)
+    assert read(zip_path) == expected
+    print("tar-to-zip")
+elif case_id == "usage-python-libarchive-c-long-path":
+    path = tmpdir / "long.tar"
+    expected = {"alpha/beta/gamma/delta/epsilon.txt": b"long path payload\n"}
+    write(path, expected)
+    assert read(path) == expected
+    print("long-path")
+elif case_id == "usage-python-libarchive-c-size-metadata":
+    path = tmpdir / "sizes.tar"
+    expected = {
+        "zero.txt": b"",
+        "short.txt": b"abc\n",
+        "long.txt": b"0123456789abcdef",
+    }
+    write(path, expected)
+    rows = metadata(path)
+    assert ("zero.txt", 0) in rows
+    assert ("short.txt", 4) in rows
+    assert ("long.txt", 16) in rows
+    print("sizes", len(rows))
+elif case_id == "usage-python-libarchive-c-repeat-read":
+    path = tmpdir / "repeat.tar"
+    expected = {"repeat.txt": b"repeat payload\n"}
+    write(path, expected)
+    assert read(path) == expected
+    assert read(path) == expected
+    print("repeat")
+elif case_id == "usage-python-libarchive-c-zip-many-files":
+    path = tmpdir / "many.zip"
+    expected = {f"file-{i}.txt": f"value-{i}\n".encode() for i in range(12)}
+    write(path, expected, fmt="zip")
+    assert read(path) == expected
+    print("zip-many", len(expected))
 else:
     raise SystemExit(f"unknown libarchive extra usage case: {case_id}")
 PY

@@ -331,3 +331,143 @@ testcases:
   - usage
   - http
   - json
+- id: usage-curl-head-request-content-type
+  title: curl HEAD request content type
+  description: Sends an HTTP HEAD request with curl and verifies the content type response header is returned.
+  kind: usage
+  client_application: curl
+  command:
+  - bash
+  - /validator/tests/libcurl/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-curl-head-request-content-type
+  timeout_seconds: 180
+  tags:
+  - usage
+  - http
+  - cli
+- id: usage-curl-follow-redirect
+  title: curl follows redirect
+  description: Follows a local HTTP redirect with curl and verifies the final response body.
+  kind: usage
+  client_application: curl
+  command:
+  - bash
+  - /validator/tests/libcurl/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-curl-follow-redirect
+  timeout_seconds: 180
+  tags:
+  - usage
+  - http
+  - cli
+- id: usage-curl-download-file
+  title: curl downloads file
+  description: Downloads a local file to disk with curl and verifies the saved payload contents.
+  kind: usage
+  client_application: curl
+  command:
+  - bash
+  - /validator/tests/libcurl/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-curl-download-file
+  timeout_seconds: 180
+  tags:
+  - usage
+  - http
+  - cli
+- id: usage-curl-header-dump
+  title: curl dumps headers
+  description: Writes HTTP response headers to a file with curl and checks the response metadata.
+  kind: usage
+  client_application: curl
+  command:
+  - bash
+  - /validator/tests/libcurl/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-curl-header-dump
+  timeout_seconds: 180
+  tags:
+  - usage
+  - http
+  - cli
+- id: usage-curl-user-agent-header
+  title: curl sends user agent
+  description: Sends a custom User-Agent header with curl and verifies the server receives it.
+  kind: usage
+  client_application: curl
+  command:
+  - bash
+  - /validator/tests/libcurl/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-curl-user-agent-header
+  timeout_seconds: 180
+  tags:
+  - usage
+  - http
+  - cli
+- id: usage-curl-custom-header-extra-value
+  title: curl sends custom header value
+  description: Sends a custom HTTP header with curl and verifies the echoed multi-word header value.
+  kind: usage
+  client_application: curl
+  command:
+  - bash
+  - /validator/tests/libcurl/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-curl-custom-header-extra-value
+  timeout_seconds: 180
+  tags:
+  - usage
+  - http
+  - cli
+- id: usage-curl-urlencoded-post
+  title: curl URL-encoded post
+  description: Posts URL-encoded form data with curl and verifies the encoded request body.
+  kind: usage
+  client_application: curl
+  command:
+  - bash
+  - /validator/tests/libcurl/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-curl-urlencoded-post
+  timeout_seconds: 180
+  tags:
+  - usage
+  - http
+  - cli
+- id: usage-curl-writeout-size
+  title: curl write-out size
+  description: Uses curl write-out variables to report the downloaded byte count for a response body.
+  kind: usage
+  client_application: curl
+  command:
+  - bash
+  - /validator/tests/libcurl/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-curl-writeout-size
+  timeout_seconds: 180
+  tags:
+  - usage
+  - http
+  - cli
+- id: usage-curl-fail-404
+  title: curl fails on 404
+  description: Requests a missing resource with curl fail mode and verifies the HTTP 404 error path.
+  kind: usage
+  client_application: curl
+  command:
+  - bash
+  - /validator/tests/libcurl/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-curl-fail-404
+  timeout_seconds: 180
+  tags:
+  - usage
+  - http
+  - cli
+- id: usage-curl-post-file-binary
+  title: curl posts binary file
+  description: Uploads file bytes with curl data-binary mode and verifies the echoed payload.
+  kind: usage
+  client_application: curl
+  command:
+  - bash
+  - /validator/tests/libcurl/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-curl-post-file-binary
+  timeout_seconds: 180
+  tags:
+  - usage
+  - http
+  - cli

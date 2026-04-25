@@ -54,6 +54,46 @@ case "$case_id" in
     validator_require_file "$tmpdir/thumb.jpg"
     test "$(wc -c <"$tmpdir/thumb.jpg")" -gt 0
     ;;
+  usage-exif-cli-orientation-tag)
+    exif --tag=Orientation "$img" | tee "$tmpdir/out"
+    validator_assert_contains "$tmpdir/out" 'Right-top'
+    ;;
+  usage-exif-cli-metering-mode-tag)
+    exif --tag=MeteringMode "$img" | tee "$tmpdir/out"
+    validator_assert_contains "$tmpdir/out" 'Pattern'
+    ;;
+  usage-exif-cli-focal-length-tag)
+    exif --tag=FocalLength "$img" | tee "$tmpdir/out"
+    validator_assert_contains "$tmpdir/out" '5.8 mm'
+    ;;
+  usage-exif-cli-color-space-tag)
+    exif --tag=ColorSpace "$img" | tee "$tmpdir/out"
+    validator_assert_contains "$tmpdir/out" 'sRGB'
+    ;;
+  usage-exif-cli-scene-capture-tag)
+    exif --tag=SceneCaptureType "$img" | tee "$tmpdir/out"
+    validator_assert_contains "$tmpdir/out" 'Landscape'
+    ;;
+  usage-exif-cli-exposure-mode-tag)
+    exif --tag=ExposureMode "$img" | tee "$tmpdir/out"
+    validator_assert_contains "$tmpdir/out" 'Auto exposure'
+    ;;
+  usage-exif-cli-custom-rendered-tag)
+    exif --tag=CustomRendered "$img" | tee "$tmpdir/out"
+    validator_assert_contains "$tmpdir/out" 'Normal process'
+    ;;
+  usage-exif-cli-related-image-width)
+    exif --tag=RelatedImageWidth "$img" | tee "$tmpdir/out"
+    validator_assert_contains "$tmpdir/out" '640'
+    ;;
+  usage-exif-cli-related-image-length)
+    exif --tag=RelatedImageLength "$img" | tee "$tmpdir/out"
+    validator_assert_contains "$tmpdir/out" '480'
+    ;;
+  usage-exif-cli-xml-orientation)
+    exif --xml-output "$img" | tee "$tmpdir/out"
+    validator_assert_contains "$tmpdir/out" '<Orientation>Right-top</Orientation>'
+    ;;
   *)
     printf 'unknown libexif extra usage case: %s\n' "$case_id" >&2
     exit 2

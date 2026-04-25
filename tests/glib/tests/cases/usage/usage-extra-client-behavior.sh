@@ -19,6 +19,19 @@ write_bool_schema() {
 XML
 }
 
+write_string_schema() {
+  mkdir -p "$tmpdir/schemas-string"
+  cat >"$tmpdir/schemas-string/org.validator.extra-string.gschema.xml" <<'XML'
+<schemalist>
+  <schema id="org.validator.extra-string" path="/org/validator/extra-string/">
+    <key name="label" type="s">
+      <default>'alpha'</default>
+    </key>
+  </schema>
+</schemalist>
+XML
+}
+
 case "$case_id" in
   usage-gio-move-file)
     printf 'move payload\n' >"$tmpdir/input.txt"
@@ -111,6 +124,98 @@ loop.run()
 print("done=%s" % state["done"])
 PY
     validator_assert_contains "$tmpdir/out" 'done=True'
+    ;;
+  usage-gio-mkdir-directory)
+    gio mkdir "$tmpdir/tree"
+    validator_require_dir "$tmpdir/tree"
+    ;;
+  usage-gio-remove-file)
+    printf 'remove payload\n' >"$tmpdir/input.txt"
+    gio remove "$tmpdir/input.txt"
+    test ! -e "$tmpdir/input.txt"
+    ;;
+  usage-gio-info-display-name)
+    printf 'display payload\n' >"$tmpdir/input.txt"
+    gio info -a standard::display-name "$tmpdir/input.txt" | tee "$tmpdir/out"
+    validator_assert_contains "$tmpdir/out" 'input.txt'
+    ;;
+  usage-glib-compile-schemas-string)
+    write_string_schema
+    glib-compile-schemas "$tmpdir/schemas-string"
+    GSETTINGS_SCHEMA_DIR="$tmpdir/schemas-string" gsettings get org.validator.extra-string label | tee "$tmpdir/out"
+    validator_assert_contains "$tmpdir/out" "'alpha'"
+    ;;
+  usage-python3-gi-base64)
+    python3 >"$tmpdir/out" <<'PY'
+from gi.repository import GLib
+encoded = GLib.base64_encode(b"hello world")
+decoded = GLib.base64_decode(encoded).decode()
+print(encoded)
+print(decoded)
+PY
+    validator_assert_contains "$tmpdir/out" 'hello world'
+    ;;
+  usage-python3-gi-timeout-callback)
+    python3 >"$tmpdir/out" <<'PY'
+from gi.repository import GLib
+loop = GLib.MainLoop()
+state = []
+def callback():
+    state.append("timeout")
+    loop.quit()
+    return GLib.SOURCE_REMOVE
+GLib.timeout_add(5, callback)
+loop.run()
+print(state[0])
+PY
+    validator_assert_contains "$tmpdir/out" 'timeout'
+    ;;
+  usage-python3-gi-variant-dict)
+    python3 >"$tmpdir/out" <<'PY'
+from gi.repository import GLib
+mapping = GLib.VariantDict.new(None)
+mapping.insert_value("name", GLib.Variant("s", "alpha"))
+variant = mapping.end()
+print(variant.lookup_value("name", GLib.VariantType("s")).unpack())
+PY
+    validator_assert_contains "$tmpdir/out" 'alpha'
+    ;;
+  usage-python3-gi-file-enumerator)
+    printf 'alpha\n' >"$tmpdir/alpha.txt"
+    printf 'beta\n' >"$tmpdir/beta.txt"
+    python3 - "$tmpdir" >"$tmpdir/out" <<'PY'
+from gi.repository import Gio
+import sys
+directory = Gio.File.new_for_path(sys.argv[1])
+enumerator = directory.enumerate_children("standard::name", Gio.FileQueryInfoFlags.NONE, None)
+names = []
+while True:
+    info = enumerator.next_file(None)
+    if info is None:
+        break
+    names.append(info.get_name())
+enumerator.close(None)
+print(",".join(sorted(names)))
+PY
+    validator_assert_contains "$tmpdir/out" 'alpha.txt'
+    validator_assert_contains "$tmpdir/out" 'beta.txt'
+    ;;
+  usage-python3-gi-date-time)
+    python3 >"$tmpdir/out" <<'PY'
+from gi.repository import GLib
+moment = GLib.DateTime.new_from_iso8601("2024-01-02T03:04:05Z", None)
+print(moment.format("%Y-%m-%d"))
+PY
+    validator_assert_contains "$tmpdir/out" '2024-01-02'
+    ;;
+  usage-python3-gi-uuid-string)
+    python3 >"$tmpdir/out" <<'PY'
+from gi.repository import GLib
+value = GLib.uuid_string_random()
+assert len(value) == 36
+print(value)
+PY
+    grep -Eq '^[0-9a-f-]{36}$' "$tmpdir/out"
     ;;
   *)
     printf 'unknown glib extra usage case: %s\n' "$case_id" >&2

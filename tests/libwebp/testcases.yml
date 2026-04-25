@@ -342,3 +342,143 @@ testcases:
   - usage
   - webp
   - python
+- id: usage-python3-pil-crop-webp
+  title: Pillow crops WebP
+  description: Opens WebP data with Pillow, crops it, and saves WebP output.
+  kind: usage
+  client_application: python3-pil
+  command:
+  - bash
+  - /validator/tests/libwebp/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-python3-pil-crop-webp
+  timeout_seconds: 180
+  tags:
+  - usage
+  - webp
+  - python
+- id: usage-python3-pil-rotate-webp
+  title: Pillow rotates WebP
+  description: Rotates WebP input with Pillow and verifies the rotated dimensions.
+  kind: usage
+  client_application: python3-pil
+  command:
+  - bash
+  - /validator/tests/libwebp/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-python3-pil-rotate-webp
+  timeout_seconds: 180
+  tags:
+  - usage
+  - webp
+  - python
+- id: usage-python3-pil-flip-webp
+  title: Pillow flips WebP
+  description: Flips WebP input horizontally with Pillow and verifies saved output dimensions.
+  kind: usage
+  client_application: python3-pil
+  command:
+  - bash
+  - /validator/tests/libwebp/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-python3-pil-flip-webp
+  timeout_seconds: 180
+  tags:
+  - usage
+  - webp
+  - python
+- id: usage-python3-pil-lossless-alpha-webp
+  title: Pillow lossless alpha WebP
+  description: Saves an RGBA lossless WebP image with Pillow and verifies alpha-capable output.
+  kind: usage
+  client_application: python3-pil
+  command:
+  - bash
+  - /validator/tests/libwebp/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-python3-pil-lossless-alpha-webp
+  timeout_seconds: 180
+  tags:
+  - usage
+  - webp
+  - python
+- id: usage-vips-webp-rotate
+  title: vips rotates WebP
+  description: Rotates WebP input with vips and verifies PNG output dimensions.
+  kind: usage
+  client_application: vips
+  command:
+  - bash
+  - /validator/tests/libwebp/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-vips-webp-rotate
+  timeout_seconds: 180
+  tags:
+  - usage
+  - webp
+  - image
+- id: usage-vips-webp-flip
+  title: vips flips WebP
+  description: Flips WebP input with vips and verifies PNG output dimensions.
+  kind: usage
+  client_application: vips
+  command:
+  - bash
+  - /validator/tests/libwebp/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-vips-webp-flip
+  timeout_seconds: 180
+  tags:
+  - usage
+  - webp
+  - image
+- id: usage-vips-webp-png-copy
+  title: vips WebP to PNG
+  description: Copies WebP input to PNG with vips and verifies PNG output.
+  kind: usage
+  client_application: vips
+  command:
+  - bash
+  - /validator/tests/libwebp/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-vips-webp-png-copy
+  timeout_seconds: 180
+  tags:
+  - usage
+  - webp
+  - image
+- id: usage-ffmpeg-webp-png
+  title: ffmpeg WebP to PNG
+  description: Decodes WebP input to PNG with ffmpeg and verifies image output.
+  kind: usage
+  client_application: ffmpeg
+  command:
+  - bash
+  - /validator/tests/libwebp/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-ffmpeg-webp-png
+  timeout_seconds: 180
+  tags:
+  - usage
+  - webp
+  - video
+- id: usage-ffmpeg-webp-null-output
+  title: ffmpeg WebP null output
+  description: Decodes WebP input through ffmpeg null output mode and verifies processing statistics are printed.
+  kind: usage
+  client_application: ffmpeg
+  command:
+  - bash
+  - /validator/tests/libwebp/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-ffmpeg-webp-null-output
+  timeout_seconds: 180
+  tags:
+  - usage
+  - webp
+  - video
+- id: usage-libsdl2-image-webp-rwops
+  title: SDL2_image WebP RWops
+  description: Compiles an SDL2_image client that loads WebP data from SDL_RWops memory and checks dimensions.
+  kind: usage
+  client_application: libsdl2-image
+  command:
+  - bash
+  - /validator/tests/libwebp/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-libsdl2-image-webp-rwops
+  timeout_seconds: 180
+  tags:
+  - usage
+  - webp
+  - sdl

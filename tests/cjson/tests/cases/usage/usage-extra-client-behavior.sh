@@ -73,6 +73,36 @@ case "$case_id" in
   usage-iperf3-json-small-fixed)
     run_iperf_json -n 8K -l 1K
     ;;
+  usage-iperf3-json-reverse-tcp)
+    run_iperf_json -R -n 32K
+    ;;
+  usage-iperf3-json-parallel-tcp)
+    run_iperf_json -P 2 -n 32K
+    ;;
+  usage-iperf3-json-time-based)
+    run_iperf_json -t 1
+    ;;
+  usage-iperf3-json-omit-second)
+    run_iperf_json -t 2 -O 1
+    ;;
+  usage-iperf3-json-ipv4-family)
+    run_iperf_json -4 -n 32K
+    ;;
+  usage-iperf3-json-blockcount)
+    run_iperf_json -k 8K
+    ;;
+  usage-iperf3-json-zerocopy)
+    run_iperf_json -Z -n 32K
+    ;;
+  usage-iperf3-json-udp-length)
+    run_iperf_json -u -l 1200 -b 256K -t 1
+    ;;
+  usage-iperf3-json-udp-bind-loopback)
+    run_iperf_json -u -B 127.0.0.1 -b 128K -t 1
+    ;;
+  usage-iperf3-json-udp-interval-report)
+    run_iperf_json -u -i 1 -b 128K -t 1
+    ;;
   *)
     printf 'unknown cjson extra usage case: %s\n' "$case_id" >&2
     exit 2

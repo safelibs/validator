@@ -333,3 +333,143 @@ testcases:
   - usage
   - tiff
   - python
+- id: usage-python3-pil-rgba-tiff
+  title: Pillow RGBA TIFF
+  description: Writes and reopens an RGBA TIFF with Pillow.
+  kind: usage
+  client_application: python3-pil
+  command:
+  - bash
+  - /validator/tests/libtiff/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-python3-pil-rgba-tiff
+  timeout_seconds: 180
+  tags:
+  - usage
+  - tiff
+  - python
+- id: usage-python3-pil-float-tiff
+  title: Pillow floating point TIFF
+  description: Writes and reopens a floating-point TIFF with Pillow.
+  kind: usage
+  client_application: python3-pil
+  command:
+  - bash
+  - /validator/tests/libtiff/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-python3-pil-float-tiff
+  timeout_seconds: 180
+  tags:
+  - usage
+  - tiff
+  - python
+- id: usage-python3-pil-tiff-to-jpeg
+  title: Pillow TIFF to JPEG
+  description: Converts a TIFF fixture to JPEG with Pillow and verifies JPEG output.
+  kind: usage
+  client_application: python3-pil
+  command:
+  - bash
+  - /validator/tests/libtiff/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-python3-pil-tiff-to-jpeg
+  timeout_seconds: 180
+  tags:
+  - usage
+  - tiff
+  - python
+- id: usage-python3-pil-flip-topbottom-tiff
+  title: Pillow flips TIFF vertically
+  description: Flips a TIFF fixture vertically with Pillow and verifies the output size.
+  kind: usage
+  client_application: python3-pil
+  command:
+  - bash
+  - /validator/tests/libtiff/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-python3-pil-flip-topbottom-tiff
+  timeout_seconds: 180
+  tags:
+  - usage
+  - tiff
+  - python
+- id: usage-python3-pil-split-bands-tiff
+  title: Pillow splits TIFF bands
+  description: Opens a TIFF fixture with Pillow, splits the color bands, and verifies channel count.
+  kind: usage
+  client_application: python3-pil
+  command:
+  - bash
+  - /validator/tests/libtiff/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-python3-pil-split-bands-tiff
+  timeout_seconds: 180
+  tags:
+  - usage
+  - tiff
+  - python
+- id: usage-python3-pil-uncompressed-tiff
+  title: Pillow uncompressed TIFF
+  description: Saves an uncompressed TIFF with Pillow and verifies the image can be reopened.
+  kind: usage
+  client_application: python3-pil
+  command:
+  - bash
+  - /validator/tests/libtiff/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-python3-pil-uncompressed-tiff
+  timeout_seconds: 180
+  tags:
+  - usage
+  - tiff
+  - python
+- id: usage-python3-pil-multiframe-count-tiff
+  title: Pillow multiframe TIFF count
+  description: Creates a multi-frame TIFF and verifies the total frame count with Pillow iteration.
+  kind: usage
+  client_application: python3-pil
+  command:
+  - bash
+  - /validator/tests/libtiff/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-python3-pil-multiframe-count-tiff
+  timeout_seconds: 180
+  tags:
+  - usage
+  - tiff
+  - python
+- id: usage-python3-pil-bilinear-resize-tiff
+  title: Pillow bilinear resize TIFF
+  description: Resizes a TIFF fixture with bilinear resampling and verifies saved TIFF dimensions.
+  kind: usage
+  client_application: python3-pil
+  command:
+  - bash
+  - /validator/tests/libtiff/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-python3-pil-bilinear-resize-tiff
+  timeout_seconds: 180
+  tags:
+  - usage
+  - tiff
+  - python
+- id: usage-python3-pil-cmyk-tiff
+  title: Pillow CMYK TIFF
+  description: Writes and reopens a CMYK TIFF with Pillow.
+  kind: usage
+  client_application: python3-pil
+  command:
+  - bash
+  - /validator/tests/libtiff/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-python3-pil-cmyk-tiff
+  timeout_seconds: 180
+  tags:
+  - usage
+  - tiff
+  - python
+- id: usage-python3-pil-tiff-to-bmp
+  title: Pillow TIFF to BMP
+  description: Converts a TIFF fixture to BMP with Pillow and verifies BMP output.
+  kind: usage
+  client_application: python3-pil
+  command:
+  - bash
+  - /validator/tests/libtiff/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-python3-pil-tiff-to-bmp
+  timeout_seconds: 180
+  tags:
+  - usage
+  - tiff
+  - python

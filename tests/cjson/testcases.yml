@@ -319,3 +319,143 @@ testcases:
   - usage
   - json
   - network
+- id: usage-iperf3-json-reverse-tcp
+  title: iperf3 JSON reverse TCP
+  description: Runs a reverse TCP iperf3 transfer and verifies the JSON transfer summary.
+  kind: usage
+  client_application: iperf3
+  command:
+  - bash
+  - /validator/tests/cjson/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-iperf3-json-reverse-tcp
+  timeout_seconds: 180
+  tags:
+  - usage
+  - json
+  - network
+- id: usage-iperf3-json-parallel-tcp
+  title: iperf3 JSON parallel TCP
+  description: Runs parallel TCP streams with iperf3 and checks the emitted JSON summary.
+  kind: usage
+  client_application: iperf3
+  command:
+  - bash
+  - /validator/tests/cjson/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-iperf3-json-parallel-tcp
+  timeout_seconds: 180
+  tags:
+  - usage
+  - json
+  - network
+- id: usage-iperf3-json-time-based
+  title: iperf3 JSON time based
+  description: Runs a short time-based iperf3 transfer and validates the resulting JSON payload.
+  kind: usage
+  client_application: iperf3
+  command:
+  - bash
+  - /validator/tests/cjson/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-iperf3-json-time-based
+  timeout_seconds: 180
+  tags:
+  - usage
+  - json
+  - network
+- id: usage-iperf3-json-omit-second
+  title: iperf3 JSON omitted warmup second
+  description: Runs iperf3 with an omitted first second and verifies JSON totals remain available.
+  kind: usage
+  client_application: iperf3
+  command:
+  - bash
+  - /validator/tests/cjson/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-iperf3-json-omit-second
+  timeout_seconds: 180
+  tags:
+  - usage
+  - json
+  - network
+- id: usage-iperf3-json-ipv4-family
+  title: iperf3 JSON IPv4 client
+  description: Forces iperf3 to IPv4 loopback and validates that JSON throughput data is still produced.
+  kind: usage
+  client_application: iperf3
+  command:
+  - bash
+  - /validator/tests/cjson/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-iperf3-json-ipv4-family
+  timeout_seconds: 180
+  tags:
+  - usage
+  - json
+  - network
+- id: usage-iperf3-json-blockcount
+  title: iperf3 JSON block count
+  description: Runs iperf3 with a fixed block count and verifies JSON transfer accounting.
+  kind: usage
+  client_application: iperf3
+  command:
+  - bash
+  - /validator/tests/cjson/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-iperf3-json-blockcount
+  timeout_seconds: 180
+  tags:
+  - usage
+  - json
+  - network
+- id: usage-iperf3-json-zerocopy
+  title: iperf3 JSON zero copy
+  description: Runs iperf3 with zero-copy sending enabled and checks the JSON summary fields.
+  kind: usage
+  client_application: iperf3
+  command:
+  - bash
+  - /validator/tests/cjson/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-iperf3-json-zerocopy
+  timeout_seconds: 180
+  tags:
+  - usage
+  - json
+  - network
+- id: usage-iperf3-json-udp-length
+  title: iperf3 JSON UDP packet length
+  description: Runs UDP iperf3 traffic with an explicit datagram length and validates the JSON report.
+  kind: usage
+  client_application: iperf3
+  command:
+  - bash
+  - /validator/tests/cjson/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-iperf3-json-udp-length
+  timeout_seconds: 180
+  tags:
+  - usage
+  - json
+  - network
+- id: usage-iperf3-json-udp-bind-loopback
+  title: iperf3 JSON bound UDP client
+  description: Runs UDP iperf3 traffic from an explicit loopback bind address and checks JSON output.
+  kind: usage
+  client_application: iperf3
+  command:
+  - bash
+  - /validator/tests/cjson/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-iperf3-json-udp-bind-loopback
+  timeout_seconds: 180
+  tags:
+  - usage
+  - json
+  - network
+- id: usage-iperf3-json-udp-interval-report
+  title: iperf3 JSON UDP interval report
+  description: Requests interval reporting during a short UDP iperf3 run and verifies the JSON output still contains summary data.
+  kind: usage
+  client_application: iperf3
+  command:
+  - bash
+  - /validator/tests/cjson/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-iperf3-json-udp-interval-report
+  timeout_seconds: 180
+  tags:
+  - usage
+  - json
+  - network

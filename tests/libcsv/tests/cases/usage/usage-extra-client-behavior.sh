@@ -109,6 +109,95 @@ CSV
     convert_and_dump dta
     validator_assert_contains "$tmpdir/out.csv" '"zero",0.000000'
     ;;
+  usage-readstat-sav-negative-number)
+    cat >"$tmpdir/in.csv" <<'CSV'
+name,score,note,group,count
+alpha,-7,negative,A,1
+CSV
+    convert_and_dump sav
+    validator_assert_contains "$tmpdir/out.csv" '"alpha",-7.000000'
+    ;;
+  usage-readstat-dta-decimal-number)
+    cat >"$tmpdir/in.csv" <<'CSV'
+name,score,note,group,count
+alpha,3.5,decimal,A,1
+CSV
+    convert_and_dump dta
+    validator_assert_contains "$tmpdir/out.csv" '3.500000'
+    ;;
+  usage-readstat-sav-empty-string)
+    cat >"$tmpdir/in.csv" <<'CSV'
+name,score,note,group,count
+alpha,1,,A,1
+CSV
+    convert_and_dump sav
+    validator_assert_contains "$tmpdir/out.csv" '"alpha",1.000000,'
+    ;;
+  usage-readstat-dta-long-string)
+    cat >"$tmpdir/in.csv" <<'CSV'
+name,score,note,group,count
+alpha,1,this is a longer string value,A,10
+CSV
+    convert_and_dump dta
+    validator_assert_contains "$tmpdir/out.csv" 'this is a longer string value'
+    ;;
+  usage-readstat-sav-column-count)
+    cat >"$tmpdir/in.csv" <<'CSV'
+name,score,note,group,count
+alpha,1,first,A,10
+CSV
+    write_meta
+    readstat "$tmpdir/in.csv" "$tmpdir/meta.json" "$tmpdir/out.sav"
+    readstat "$tmpdir/out.sav" >"$tmpdir/summary"
+    validator_assert_contains "$tmpdir/summary" 'Columns: 5'
+    ;;
+  usage-readstat-dta-row-count)
+    cat >"$tmpdir/in.csv" <<'CSV'
+name,score,note,group,count
+alpha,1,first,A,10
+beta,2,second,B,20
+gamma,3,third,C,30
+delta,4,fourth,D,40
+CSV
+    write_meta
+    readstat "$tmpdir/in.csv" "$tmpdir/meta.json" "$tmpdir/out.dta"
+    readstat "$tmpdir/out.dta" >"$tmpdir/summary"
+    validator_assert_contains "$tmpdir/summary" 'Rows: 4'
+    ;;
+  usage-readstat-dta-comma-value)
+    cat >"$tmpdir/in.csv" <<'CSV'
+name,score,note,group,count
+alpha,1,"comma, inside",A,10
+CSV
+    convert_and_dump dta
+    validator_assert_contains "$tmpdir/out.csv" '"comma, inside"'
+    ;;
+  usage-readstat-sav-zero-value)
+    cat >"$tmpdir/in.csv" <<'CSV'
+name,score,note,group,count
+zero,0,zero,A,0
+CSV
+    convert_and_dump sav
+    validator_assert_contains "$tmpdir/out.csv" '"zero",0.000000'
+    ;;
+  usage-readstat-sav-spaced-value)
+    cat >"$tmpdir/in.csv" <<'CSV'
+name,score,note,group,count
+alpha,1,space separated words,A,10
+CSV
+    convert_and_dump sav
+    validator_assert_contains "$tmpdir/out.csv" 'space separated words'
+    ;;
+  usage-readstat-sav-three-rows)
+    cat >"$tmpdir/in.csv" <<'CSV'
+name,score,note,group,count
+alpha,1,first,A,10
+beta,2,second,B,20
+gamma,3,third,C,30
+CSV
+    convert_and_dump sav
+    validator_assert_contains "$tmpdir/out.csv" '"gamma",3.000000,"third","C",30.000000'
+    ;;
   *)
     printf 'unknown libcsv extra usage case: %s\n' "$case_id" >&2
     exit 2

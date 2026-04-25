@@ -343,3 +343,143 @@ testcases:
   - usage
   - glib
   - python
+- id: usage-gio-mkdir-directory
+  title: gio creates directory
+  description: Creates a local directory with gio mkdir and verifies the directory exists.
+  kind: usage
+  client_application: gio
+  command:
+  - bash
+  - /validator/tests/glib/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-gio-mkdir-directory
+  timeout_seconds: 180
+  tags:
+  - usage
+  - gio
+  - filesystem
+- id: usage-gio-remove-file
+  title: gio removes file
+  description: Removes a local file with gio and verifies the file is deleted.
+  kind: usage
+  client_application: gio
+  command:
+  - bash
+  - /validator/tests/glib/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-gio-remove-file
+  timeout_seconds: 180
+  tags:
+  - usage
+  - gio
+  - filesystem
+- id: usage-gio-info-display-name
+  title: gio reports display name
+  description: Reads the display name attribute for a local file through gio info.
+  kind: usage
+  client_application: gio
+  command:
+  - bash
+  - /validator/tests/glib/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-gio-info-display-name
+  timeout_seconds: 180
+  tags:
+  - usage
+  - gio
+  - metadata
+- id: usage-glib-compile-schemas-string
+  title: gsettings string schema
+  description: Compiles a schema with a string key and reads it through gsettings.
+  kind: usage
+  client_application: gio
+  command:
+  - bash
+  - /validator/tests/glib/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-glib-compile-schemas-string
+  timeout_seconds: 180
+  tags:
+  - usage
+  - glib
+  - schema
+- id: usage-python3-gi-base64
+  title: PyGObject base64 helpers
+  description: Encodes and decodes base64 data through GLib helpers from PyGObject.
+  kind: usage
+  client_application: python3-gi
+  command:
+  - bash
+  - /validator/tests/glib/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-python3-gi-base64
+  timeout_seconds: 180
+  tags:
+  - usage
+  - glib
+  - python
+- id: usage-python3-gi-timeout-callback
+  title: PyGObject timeout callback
+  description: Runs a GLib timeout callback through PyGObject and verifies the main loop exits.
+  kind: usage
+  client_application: python3-gi
+  command:
+  - bash
+  - /validator/tests/glib/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-python3-gi-timeout-callback
+  timeout_seconds: 180
+  tags:
+  - usage
+  - glib
+  - python
+- id: usage-python3-gi-variant-dict
+  title: PyGObject variant dict
+  description: Builds a GLib.VariantDict from Python and verifies lookup of the stored value.
+  kind: usage
+  client_application: python3-gi
+  command:
+  - bash
+  - /validator/tests/glib/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-python3-gi-variant-dict
+  timeout_seconds: 180
+  tags:
+  - usage
+  - glib
+  - python
+- id: usage-python3-gi-file-enumerator
+  title: PyGObject file enumerator
+  description: Enumerates local files with Gio.File enumerator APIs from PyGObject.
+  kind: usage
+  client_application: python3-gi
+  command:
+  - bash
+  - /validator/tests/glib/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-python3-gi-file-enumerator
+  timeout_seconds: 180
+  tags:
+  - usage
+  - gio
+  - python
+- id: usage-python3-gi-date-time
+  title: PyGObject date time
+  description: Parses an ISO-8601 timestamp through GLib DateTime and verifies formatting output.
+  kind: usage
+  client_application: python3-gi
+  command:
+  - bash
+  - /validator/tests/glib/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-python3-gi-date-time
+  timeout_seconds: 180
+  tags:
+  - usage
+  - glib
+  - python
+- id: usage-python3-gi-uuid-string
+  title: PyGObject UUID string
+  description: Generates a UUID string through GLib and verifies canonical formatting.
+  kind: usage
+  client_application: python3-gi
+  command:
+  - bash
+  - /validator/tests/glib/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-python3-gi-uuid-string
+  timeout_seconds: 180
+  tags:
+  - usage
+  - glib
+  - python

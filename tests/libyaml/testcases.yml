@@ -329,3 +329,143 @@ testcases:
   - usage
   - yaml
   - python
+- id: usage-python3-yaml-safe-load-all
+  title: PyYAML safe_load_all
+  description: Loads multiple YAML documents with safe_load_all and verifies both documents are returned.
+  kind: usage
+  client_application: python3-yaml
+  command:
+  - bash
+  - /validator/tests/libyaml/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-python3-yaml-safe-load-all
+  timeout_seconds: 180
+  tags:
+  - usage
+  - yaml
+  - python
+- id: usage-python3-yaml-folded-scalar
+  title: PyYAML folded scalar
+  description: Loads a folded block scalar with PyYAML and verifies newline folding behavior.
+  kind: usage
+  client_application: python3-yaml
+  command:
+  - bash
+  - /validator/tests/libyaml/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-python3-yaml-folded-scalar
+  timeout_seconds: 180
+  tags:
+  - usage
+  - yaml
+  - python
+- id: usage-python3-yaml-safe-dump-unicode
+  title: PyYAML unicode dump
+  description: Dumps Unicode text with PyYAML and verifies non-ASCII content is preserved.
+  kind: usage
+  client_application: python3-yaml
+  command:
+  - bash
+  - /validator/tests/libyaml/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-python3-yaml-safe-dump-unicode
+  timeout_seconds: 180
+  tags:
+  - usage
+  - yaml
+  - python
+- id: usage-python3-yaml-full-loader-bool
+  title: PyYAML FullLoader boolean
+  description: Loads a boolean scalar through FullLoader and verifies it becomes a Python bool.
+  kind: usage
+  client_application: python3-yaml
+  command:
+  - bash
+  - /validator/tests/libyaml/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-python3-yaml-full-loader-bool
+  timeout_seconds: 180
+  tags:
+  - usage
+  - yaml
+  - python
+- id: usage-python3-yaml-parse-events
+  title: PyYAML parse events
+  description: Parses YAML events with PyYAML and verifies scalar events are emitted for values.
+  kind: usage
+  client_application: python3-yaml
+  command:
+  - bash
+  - /validator/tests/libyaml/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-python3-yaml-parse-events
+  timeout_seconds: 180
+  tags:
+  - usage
+  - yaml
+  - python
+- id: usage-python3-yaml-compose-node
+  title: PyYAML compose node
+  description: Composes YAML into a node tree with PyYAML and verifies the root mapping node.
+  kind: usage
+  client_application: python3-yaml
+  command:
+  - bash
+  - /validator/tests/libyaml/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-python3-yaml-compose-node
+  timeout_seconds: 180
+  tags:
+  - usage
+  - yaml
+  - python
+- id: usage-python3-yaml-explicit-end
+  title: PyYAML explicit end marker
+  description: Dumps YAML with an explicit end marker and verifies the document terminator is present.
+  kind: usage
+  client_application: python3-yaml
+  command:
+  - bash
+  - /validator/tests/libyaml/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-python3-yaml-explicit-end
+  timeout_seconds: 180
+  tags:
+  - usage
+  - yaml
+  - python
+- id: usage-python3-yaml-csafe-sequence
+  title: PyYAML CSafeLoader sequence
+  description: Loads a YAML sequence through CSafeLoader and verifies list ordering.
+  kind: usage
+  client_application: python3-yaml
+  command:
+  - bash
+  - /validator/tests/libyaml/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-python3-yaml-csafe-sequence
+  timeout_seconds: 180
+  tags:
+  - usage
+  - yaml
+  - python
+- id: usage-python3-yaml-base-loader-bool-string
+  title: PyYAML BaseLoader boolean string
+  description: Loads a boolean-like scalar with BaseLoader and verifies it remains a string.
+  kind: usage
+  client_application: python3-yaml
+  command:
+  - bash
+  - /validator/tests/libyaml/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-python3-yaml-base-loader-bool-string
+  timeout_seconds: 180
+  tags:
+  - usage
+  - yaml
+  - python
+- id: usage-python3-yaml-safe-roundtrip-list
+  title: PyYAML list round trip
+  description: Dumps and reloads a YAML list with PyYAML and verifies the values survive round trip.
+  kind: usage
+  client_application: python3-yaml
+  command:
+  - bash
+  - /validator/tests/libyaml/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-python3-yaml-safe-roundtrip-list
+  timeout_seconds: 180
+  tags:
+  - usage
+  - yaml
+  - python

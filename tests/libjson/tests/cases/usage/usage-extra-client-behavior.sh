@@ -58,6 +58,51 @@ case "$case_id" in
     validator_assert_contains "$tmpdir/out" 'name (String) = beta'
     if grep -Fq 'POINT (' "$tmpdir/out"; then exit 1; fi
     ;;
+  usage-gdal-gdalsrsinfo-projjson)
+    gdalsrsinfo -o projjson EPSG:4326 >"$tmpdir/out.json"
+    jq -e '.type == "GeographicCRS"' "$tmpdir/out.json"
+    ;;
+  usage-gdal-gdalinfo-json-size)
+    raster=/usr/share/gdal/gdalicon.png
+    validator_require_file "$raster"
+    gdalinfo -json "$raster" >"$tmpdir/out.json"
+    jq -e '(.size[0] > 0) and (.size[1] > 0)' "$tmpdir/out.json"
+    ;;
+  usage-gdal-ogr2ogr-where-value)
+    ogr2ogr -f GeoJSON "$tmpdir/filtered.geojson" "$geojson" -where "value >= 2"
+    jq -e '.features | length == 2' "$tmpdir/filtered.geojson"
+    ;;
+  usage-gdal-ogr2ogr-sql-group-b)
+    ogr2ogr -f GeoJSON "$tmpdir/group-b.geojson" "$geojson" -sql "SELECT name, value FROM points WHERE group = 'b'"
+    jq -e '(.features | length == 2) and (.features[0].properties.name != null)' "$tmpdir/group-b.geojson"
+    ;;
+  usage-gdal-ogr2ogr-csv-export)
+    ogr2ogr -f CSV "$tmpdir/csv" "$geojson" -lco GEOMETRY=AS_WKT
+    csv=$(find "$tmpdir/csv" -name '*.csv' -print -quit)
+    validator_require_file "$csv"
+    validator_assert_contains "$csv" 'POINT'
+    ;;
+  usage-gdal-ogrinfo-where-name)
+    ogrinfo "$geojson" -where "name = 'alpha'" -al | tee "$tmpdir/out"
+    validator_assert_contains "$tmpdir/out" 'alpha'
+    if grep -Fq 'gamma' "$tmpdir/out"; then exit 1; fi
+    ;;
+  usage-gdal-ogrinfo-json-where)
+    ogrinfo -json "$geojson" -where "group = 'b'" >"$tmpdir/out.json"
+    jq -e '.layers[0].featureCount == 2' "$tmpdir/out.json"
+    ;;
+  usage-gdal-ogr2ogr-multipoint)
+    ogr2ogr -f GeoJSON "$tmpdir/multipoint.geojson" "$geojson" -nlt MULTIPOINT
+    jq -e '.features[0].geometry.type == "MultiPoint"' "$tmpdir/multipoint.geojson"
+    ;;
+  usage-gdal-ogr2ogr-spatial-filter)
+    ogr2ogr -f GeoJSON "$tmpdir/spatial.geojson" "$geojson" -spat 0 0 4 5
+    jq -e '.features | length == 2' "$tmpdir/spatial.geojson"
+    ;;
+  usage-gdal-ogrinfo-summary-only)
+    ogrinfo "$geojson" -al -so | tee "$tmpdir/out"
+    validator_assert_contains "$tmpdir/out" 'Feature Count: 3'
+    ;;
   *)
     printf 'unknown libjson extra usage case: %s\n' "$case_id" >&2
     exit 2

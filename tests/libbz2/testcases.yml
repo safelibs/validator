@@ -312,3 +312,140 @@ testcases:
   - usage
   - compression
   - negative
+- id: usage-bunzip2-alias
+  title: bunzip2 alias decompress
+  description: Decompresses a bzip2 stream with the bunzip2 alias and verifies the restored payload.
+  kind: usage
+  client_application: bzip2
+  command:
+  - bash
+  - /validator/tests/libbz2/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-bunzip2-alias
+  timeout_seconds: 180
+  tags:
+  - usage
+  - compression
+  - cli
+- id: usage-bzcmp-identical
+  title: bzcmp identical archives
+  description: Compares two identical compressed files with bzcmp and verifies no diff output is produced.
+  kind: usage
+  client_application: bzip2
+  command:
+  - bash
+  - /validator/tests/libbz2/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-bzcmp-identical
+  timeout_seconds: 180
+  tags:
+  - usage
+  - compression
+  - cli
+- id: usage-bzgrep-line-number
+  title: bzgrep line number output
+  description: Searches a compressed file with bzgrep -n and verifies the matching line number is reported.
+  kind: usage
+  client_application: bzip2
+  command:
+  - bash
+  - /validator/tests/libbz2/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-bzgrep-line-number
+  timeout_seconds: 180
+  tags:
+  - usage
+  - compression
+  - cli
+- id: usage-bzip2-empty-file
+  title: bzip2 empty file round trip
+  description: Compresses and decompresses an empty file through bzip2 standard streams.
+  kind: usage
+  client_application: bzip2
+  command:
+  - bash
+  - /validator/tests/libbz2/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-bzip2-empty-file
+  timeout_seconds: 180
+  tags:
+  - usage
+  - compression
+- id: usage-bzip2-medium-stdout
+  title: bzip2 medium block stdout
+  description: Uses a medium bzip2 block size over stdout and verifies decompressed output matches.
+  kind: usage
+  client_application: bzip2
+  command:
+  - bash
+  - /validator/tests/libbz2/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-bzip2-medium-stdout
+  timeout_seconds: 180
+  tags:
+  - usage
+  - compression
+- id: usage-bzip2-test-sample1
+  title: bzip2 tests sample1 fixture
+  description: Runs bzip2 test mode against the bundled sample1 fixture and verifies stream integrity.
+  kind: usage
+  client_application: bzip2
+  command:
+  - bash
+  - /validator/tests/libbz2/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-bzip2-test-sample1
+  timeout_seconds: 180
+  tags:
+  - usage
+  - compression
+  - fixture
+- id: usage-bzip2-test-sample2
+  title: bzip2 tests sample2 fixture
+  description: Runs bzip2 test mode against the bundled sample2 fixture and verifies stream integrity.
+  kind: usage
+  client_application: bzip2
+  command:
+  - bash
+  - /validator/tests/libbz2/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-bzip2-test-sample2
+  timeout_seconds: 180
+  tags:
+  - usage
+  - compression
+  - fixture
+- id: usage-bzip2-test-sample3
+  title: bzip2 tests sample3 fixture
+  description: Runs bzip2 test mode against the bundled sample3 fixture and verifies stream integrity.
+  kind: usage
+  client_application: bzip2
+  command:
+  - bash
+  - /validator/tests/libbz2/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-bzip2-test-sample3
+  timeout_seconds: 180
+  tags:
+  - usage
+  - compression
+  - fixture
+- id: usage-bzip2-recompress-file
+  title: bzip2 recompresses file
+  description: Decompresses and recompresses a payload through bzip2 and verifies the restored bytes match.
+  kind: usage
+  client_application: bzip2
+  command:
+  - bash
+  - /validator/tests/libbz2/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-bzip2-recompress-file
+  timeout_seconds: 180
+  tags:
+  - usage
+  - compression
+- id: usage-bzip2-decompress-suffix
+  title: bunzip2 strips suffix
+  description: Decompresses a .bz2 file in place with bunzip2 and verifies the suffixless file is restored.
+  kind: usage
+  client_application: bzip2
+  command:
+  - bash
+  - /validator/tests/libbz2/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-bzip2-decompress-suffix
+  timeout_seconds: 180
+  tags:
+  - usage
+  - compression
+  - cli

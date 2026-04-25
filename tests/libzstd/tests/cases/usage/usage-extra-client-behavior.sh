@@ -80,6 +80,78 @@ case "$case_id" in
     bsdtar -xf "$tmpdir/a.tar.zstd" -C "$tmpdir/out"
     validator_require_dir "$tmpdir/out/empty"
     ;;
+  usage-libarchive-tools-zstd-filelist-input)
+    make_tree
+    printf 'alpha.txt\ndir/beta.txt\n' >"$tmpdir/files.txt"
+    bsdtar --zstd -cf "$tmpdir/a.tar.zstd" -C "$tmpdir/in" -T "$tmpdir/files.txt"
+    bsdtar -tf "$tmpdir/a.tar.zstd" | tee "$tmpdir/list"
+    validator_assert_contains "$tmpdir/list" 'alpha.txt'
+    validator_assert_contains "$tmpdir/list" 'dir/beta.txt'
+    ;;
+  usage-libarchive-tools-zstd-extract-stdout)
+    make_tree
+    bsdtar --zstd -cf "$tmpdir/a.tar.zstd" -C "$tmpdir/in" dir/beta.txt
+    bsdtar -xOf "$tmpdir/a.tar.zstd" dir/beta.txt >"$tmpdir/stdout.txt"
+    validator_assert_contains "$tmpdir/stdout.txt" 'beta payload'
+    ;;
+  usage-libarchive-tools-zstd-dotfile)
+    mkdir -p "$tmpdir/in" "$tmpdir/out"
+    printf 'hidden payload\n' >"$tmpdir/in/.hidden"
+    bsdtar --zstd -cf "$tmpdir/a.tar.zstd" -C "$tmpdir/in" .hidden
+    bsdtar -xf "$tmpdir/a.tar.zstd" -C "$tmpdir/out"
+    validator_assert_contains "$tmpdir/out/.hidden" 'hidden payload'
+    ;;
+  usage-libarchive-tools-zstd-leading-dash)
+    mkdir -p "$tmpdir/in" "$tmpdir/out"
+    printf 'dash payload\n' >"$tmpdir/in/-dash.txt"
+    bsdtar --zstd -cf "$tmpdir/a.tar.zstd" -C "$tmpdir/in" -- '-dash.txt'
+    bsdtar -xf "$tmpdir/a.tar.zstd" -C "$tmpdir/out"
+    validator_assert_contains "$tmpdir/out/-dash.txt" 'dash payload'
+    ;;
+  usage-libarchive-tools-zstd-hardlink-pair)
+    mkdir -p "$tmpdir/in" "$tmpdir/out"
+    printf 'link payload\n' >"$tmpdir/in/original.txt"
+    ln "$tmpdir/in/original.txt" "$tmpdir/in/original.link"
+    bsdtar --zstd -cf "$tmpdir/a.tar.zstd" -C "$tmpdir/in" original.txt original.link
+    bsdtar -xf "$tmpdir/a.tar.zstd" -C "$tmpdir/out"
+    cmp -s "$tmpdir/out/original.txt" "$tmpdir/out/original.link"
+    ;;
+  usage-libarchive-tools-zstd-subtree-only)
+    make_tree
+    bsdtar --zstd -cf "$tmpdir/a.tar.zstd" -C "$tmpdir/in" dir/sub
+    bsdtar -tf "$tmpdir/a.tar.zstd" | tee "$tmpdir/list"
+    validator_assert_contains "$tmpdir/list" 'dir/sub/gamma.txt'
+    if grep -Fq 'alpha.txt' "$tmpdir/list"; then exit 1; fi
+    ;;
+  usage-libarchive-tools-zstd-overwrite-existing)
+    make_tree
+    bsdtar --zstd -cf "$tmpdir/a.tar.zstd" -C "$tmpdir/in" alpha.txt
+    mkdir -p "$tmpdir/out"
+    printf 'old payload\n' >"$tmpdir/out/alpha.txt"
+    bsdtar -xf "$tmpdir/a.tar.zstd" -C "$tmpdir/out"
+    validator_assert_contains "$tmpdir/out/alpha.txt" 'alpha payload'
+    ;;
+  usage-libarchive-tools-zstd-empty-file)
+    mkdir -p "$tmpdir/in" "$tmpdir/out"
+    : >"$tmpdir/in/empty.txt"
+    bsdtar --zstd -cf "$tmpdir/a.tar.zstd" -C "$tmpdir/in" empty.txt
+    bsdtar -xf "$tmpdir/a.tar.zstd" -C "$tmpdir/out"
+    test "$(wc -c <"$tmpdir/out/empty.txt")" -eq 0
+    ;;
+  usage-libarchive-tools-zstd-stream-list)
+    make_tree
+    bsdtar --zstd -cf "$tmpdir/a.tar.zstd" -C "$tmpdir/in" alpha.txt dir/sub/gamma.txt
+    cat "$tmpdir/a.tar.zstd" | bsdtar -tf - | tee "$tmpdir/list"
+    validator_assert_contains "$tmpdir/list" 'alpha.txt'
+    validator_assert_contains "$tmpdir/list" 'dir/sub/gamma.txt'
+    ;;
+  usage-libarchive-tools-zstd-stream-extract)
+    make_tree
+    bsdtar --zstd -cf "$tmpdir/a.tar.zstd" -C "$tmpdir/in" alpha.txt
+    mkdir -p "$tmpdir/out"
+    cat "$tmpdir/a.tar.zstd" | bsdtar -xf - -C "$tmpdir/out"
+    validator_assert_contains "$tmpdir/out/alpha.txt" 'alpha payload'
+    ;;
   *)
     printf 'unknown libzstd extra usage case: %s\n' "$case_id" >&2
     exit 2

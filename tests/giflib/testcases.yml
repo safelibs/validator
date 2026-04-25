@@ -330,3 +330,143 @@ testcases:
   - usage
   - gif
   - metadata
+- id: usage-giflib-tools-giftext-fire-colormap
+  title: giftext fire color map
+  description: Reads fire.gif with giftext color map output and checks palette metadata.
+  kind: usage
+  client_application: giflib-tools
+  command:
+  - bash
+  - /validator/tests/giflib/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-giflib-tools-giftext-fire-colormap
+  timeout_seconds: 180
+  tags:
+  - usage
+  - gif
+  - metadata
+- id: usage-giflib-tools-giftext-grid-screen
+  title: giftext grid screen header
+  description: Reads gifgrid.gif with giftext and checks screen metadata.
+  kind: usage
+  client_application: giflib-tools
+  command:
+  - bash
+  - /validator/tests/giflib/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-giflib-tools-giftext-grid-screen
+  timeout_seconds: 180
+  tags:
+  - usage
+  - gif
+  - metadata
+- id: usage-giflib-tools-giftext-interlaced-header
+  title: giftext interlaced header
+  description: Reads an interlaced GIF fixture with giftext and checks screen metadata.
+  kind: usage
+  client_application: giflib-tools
+  command:
+  - bash
+  - /validator/tests/giflib/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-giflib-tools-giftext-interlaced-header
+  timeout_seconds: 180
+  tags:
+  - usage
+  - gif
+  - metadata
+- id: usage-giflib-tools-gif2rgb-fire-planar
+  title: gif2rgb fire planar output
+  description: Converts fire.gif to planar RGB files and verifies each channel file exists.
+  kind: usage
+  client_application: giflib-tools
+  command:
+  - bash
+  - /validator/tests/giflib/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-giflib-tools-gif2rgb-fire-planar
+  timeout_seconds: 180
+  tags:
+  - usage
+  - gif
+  - conversion
+- id: usage-giflib-tools-gif2rgb-grid-rgb
+  title: gif2rgb grid RGB output
+  description: Converts gifgrid.gif to a single RGB file and checks the byte count is nonzero.
+  kind: usage
+  client_application: giflib-tools
+  command:
+  - bash
+  - /validator/tests/giflib/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-giflib-tools-gif2rgb-grid-rgb
+  timeout_seconds: 180
+  tags:
+  - usage
+  - gif
+  - conversion
+- id: usage-giflib-tools-giffix-treescap
+  title: giffix treescap copy
+  description: Runs giffix on treescap.gif and verifies the repaired stream is readable.
+  kind: usage
+  client_application: giflib-tools
+  command:
+  - bash
+  - /validator/tests/giflib/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-giflib-tools-giffix-treescap
+  timeout_seconds: 180
+  tags:
+  - usage
+  - gif
+  - repair
+- id: usage-giflib-tools-giffix-grid-colormap
+  title: giffix grid color map
+  description: Runs giffix on gifgrid.gif and verifies the repaired stream still exposes palette data.
+  kind: usage
+  client_application: giflib-tools
+  command:
+  - bash
+  - /validator/tests/giflib/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-giflib-tools-giffix-grid-colormap
+  timeout_seconds: 180
+  tags:
+  - usage
+  - gif
+  - repair
+- id: usage-giflib-tools-gifclrmp-grid
+  title: gifclrmp grid palette
+  description: Prints the gifgrid.gif color map with gifclrmp and checks indexed RGB rows.
+  kind: usage
+  client_application: giflib-tools
+  command:
+  - bash
+  - /validator/tests/giflib/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-giflib-tools-gifclrmp-grid
+  timeout_seconds: 180
+  tags:
+  - usage
+  - gif
+  - palette
+- id: usage-giflib-tools-gifbuild-treescap-dump
+  title: gifbuild treescap dump
+  description: Dumps treescap.gif with gifbuild and checks for image records in the text form.
+  kind: usage
+  client_application: giflib-tools
+  command:
+  - bash
+  - /validator/tests/giflib/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-giflib-tools-gifbuild-treescap-dump
+  timeout_seconds: 180
+  tags:
+  - usage
+  - gif
+  - metadata
+- id: usage-giflib-tools-gifbuild-treescap-roundtrip
+  title: gifbuild treescap round trip
+  description: Dumps and rebuilds treescap.gif with gifbuild and validates the rebuilt GIF metadata.
+  kind: usage
+  client_application: giflib-tools
+  command:
+  - bash
+  - /validator/tests/giflib/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-giflib-tools-gifbuild-treescap-roundtrip
+  timeout_seconds: 180
+  tags:
+  - usage
+  - gif
+  - roundtrip

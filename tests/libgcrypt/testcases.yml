@@ -334,3 +334,143 @@ testcases:
   - usage
   - crypto
   - negative
+- id: usage-gpg-print-md-sha224
+  title: gpg SHA224 digest
+  description: Computes a SHA224 message digest with gpg and checks digest output.
+  kind: usage
+  client_application: gpg
+  command:
+  - bash
+  - /validator/tests/libgcrypt/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-gpg-print-md-sha224
+  timeout_seconds: 180
+  tags:
+  - usage
+  - crypto
+  - digest
+- id: usage-gpg-print-md-sha384
+  title: gpg SHA384 digest
+  description: Computes a SHA384 message digest with gpg and checks digest output.
+  kind: usage
+  client_application: gpg
+  command:
+  - bash
+  - /validator/tests/libgcrypt/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-gpg-print-md-sha384
+  timeout_seconds: 180
+  tags:
+  - usage
+  - crypto
+  - digest
+- id: usage-gpg-symmetric-aes192
+  title: gpg AES192 symmetric round trip
+  description: Encrypts and decrypts a file with gpg AES192 symmetric encryption.
+  kind: usage
+  client_application: gpg
+  command:
+  - bash
+  - /validator/tests/libgcrypt/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-gpg-symmetric-aes192
+  timeout_seconds: 180
+  tags:
+  - usage
+  - crypto
+  - encryption
+- id: usage-gpg-symmetric-aes256
+  title: gpg AES256 symmetric round trip
+  description: Encrypts and decrypts a file with gpg AES256 symmetric encryption.
+  kind: usage
+  client_application: gpg
+  command:
+  - bash
+  - /validator/tests/libgcrypt/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-gpg-symmetric-aes256
+  timeout_seconds: 180
+  tags:
+  - usage
+  - crypto
+  - encryption
+- id: usage-gpg-armor-detached-sign
+  title: gpg armored detached signature
+  description: Creates an armored detached signature and verifies it with gpg.
+  kind: usage
+  client_application: gpg
+  command:
+  - bash
+  - /validator/tests/libgcrypt/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-gpg-armor-detached-sign
+  timeout_seconds: 180
+  tags:
+  - usage
+  - crypto
+  - signature
+- id: usage-gpg-export-public-key
+  title: gpg exports public key
+  description: Exports a generated public key in armor form and checks the block header.
+  kind: usage
+  client_application: gpg
+  command:
+  - bash
+  - /validator/tests/libgcrypt/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-gpg-export-public-key
+  timeout_seconds: 180
+  tags:
+  - usage
+  - crypto
+  - keys
+- id: usage-gpg-list-secret-keys
+  title: gpg lists secret keys
+  description: Generates a signing key and verifies it appears in the local secret key listing.
+  kind: usage
+  client_application: gpg
+  command:
+  - bash
+  - /validator/tests/libgcrypt/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-gpg-list-secret-keys
+  timeout_seconds: 180
+  tags:
+  - usage
+  - crypto
+  - keys
+- id: usage-gpg-dearmor-public-key
+  title: gpg dearmors public key
+  description: Dearmors an exported public key and verifies the binary keyring file is produced.
+  kind: usage
+  client_application: gpg
+  command:
+  - bash
+  - /validator/tests/libgcrypt/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-gpg-dearmor-public-key
+  timeout_seconds: 180
+  tags:
+  - usage
+  - crypto
+  - keys
+- id: usage-gpg-import-public-key
+  title: gpg imports public key
+  description: Imports an exported public key into a second GNUPGHOME and verifies key listing output.
+  kind: usage
+  client_application: gpg
+  command:
+  - bash
+  - /validator/tests/libgcrypt/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-gpg-import-public-key
+  timeout_seconds: 180
+  tags:
+  - usage
+  - crypto
+  - keys
+- id: usage-gpg-recipient-binary-encrypt
+  title: gpg binary recipient encryption
+  description: Encrypts a file to a generated recipient without armor and decrypts it through gpg.
+  kind: usage
+  client_application: gpg
+  command:
+  - bash
+  - /validator/tests/libgcrypt/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-gpg-recipient-binary-encrypt
+  timeout_seconds: 180
+  tags:
+  - usage
+  - crypto
+  - encryption

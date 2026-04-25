@@ -332,3 +332,143 @@ testcases:
   - usage
   - archive
   - zstd
+- id: usage-libarchive-tools-zstd-filelist-input
+  title: libarchive-tools zstd file list input
+  description: Creates a zstd-compressed tar archive from a file list and verifies the archived members.
+  kind: usage
+  client_application: libarchive-tools
+  command:
+  - bash
+  - /validator/tests/libzstd/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-libarchive-tools-zstd-filelist-input
+  timeout_seconds: 180
+  tags:
+  - usage
+  - archive
+  - zstd
+- id: usage-libarchive-tools-zstd-extract-stdout
+  title: libarchive-tools zstd extract to stdout
+  description: Extracts one archived file to stdout from a zstd-compressed tar archive.
+  kind: usage
+  client_application: libarchive-tools
+  command:
+  - bash
+  - /validator/tests/libzstd/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-libarchive-tools-zstd-extract-stdout
+  timeout_seconds: 180
+  tags:
+  - usage
+  - archive
+  - zstd
+- id: usage-libarchive-tools-zstd-dotfile
+  title: libarchive-tools zstd dotfile
+  description: Archives and extracts a hidden file through zstd compression.
+  kind: usage
+  client_application: libarchive-tools
+  command:
+  - bash
+  - /validator/tests/libzstd/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-libarchive-tools-zstd-dotfile
+  timeout_seconds: 180
+  tags:
+  - usage
+  - archive
+  - zstd
+- id: usage-libarchive-tools-zstd-leading-dash
+  title: libarchive-tools zstd leading dash filename
+  description: Archives and extracts a filename beginning with a dash through zstd compression.
+  kind: usage
+  client_application: libarchive-tools
+  command:
+  - bash
+  - /validator/tests/libzstd/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-libarchive-tools-zstd-leading-dash
+  timeout_seconds: 180
+  tags:
+  - usage
+  - archive
+  - zstd
+- id: usage-libarchive-tools-zstd-hardlink-pair
+  title: libarchive-tools zstd hardlink pair
+  description: Archives and extracts hardlinked files through zstd compression and checks their content matches.
+  kind: usage
+  client_application: libarchive-tools
+  command:
+  - bash
+  - /validator/tests/libzstd/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-libarchive-tools-zstd-hardlink-pair
+  timeout_seconds: 180
+  tags:
+  - usage
+  - archive
+  - zstd
+- id: usage-libarchive-tools-zstd-subtree-only
+  title: libarchive-tools zstd subtree only
+  description: Archives only a nested subtree through zstd compression and verifies unrelated files are omitted.
+  kind: usage
+  client_application: libarchive-tools
+  command:
+  - bash
+  - /validator/tests/libzstd/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-libarchive-tools-zstd-subtree-only
+  timeout_seconds: 180
+  tags:
+  - usage
+  - archive
+  - zstd
+- id: usage-libarchive-tools-zstd-overwrite-existing
+  title: libarchive-tools zstd overwrite existing
+  description: Extracts a zstd-compressed tar archive over an existing file and verifies the archived content wins.
+  kind: usage
+  client_application: libarchive-tools
+  command:
+  - bash
+  - /validator/tests/libzstd/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-libarchive-tools-zstd-overwrite-existing
+  timeout_seconds: 180
+  tags:
+  - usage
+  - archive
+  - zstd
+- id: usage-libarchive-tools-zstd-empty-file
+  title: libarchive-tools zstd empty file
+  description: Archives and extracts an empty file through zstd compression and verifies it stays empty.
+  kind: usage
+  client_application: libarchive-tools
+  command:
+  - bash
+  - /validator/tests/libzstd/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-libarchive-tools-zstd-empty-file
+  timeout_seconds: 180
+  tags:
+  - usage
+  - archive
+  - zstd
+- id: usage-libarchive-tools-zstd-stream-list
+  title: libarchive-tools zstd stream list
+  description: Streams a zstd-compressed tar archive through stdin and lists its members.
+  kind: usage
+  client_application: libarchive-tools
+  command:
+  - bash
+  - /validator/tests/libzstd/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-libarchive-tools-zstd-stream-list
+  timeout_seconds: 180
+  tags:
+  - usage
+  - archive
+  - zstd
+- id: usage-libarchive-tools-zstd-stream-extract
+  title: libarchive-tools zstd stream extract
+  description: Streams a zstd-compressed tar archive through stdin and extracts its contents.
+  kind: usage
+  client_application: libarchive-tools
+  command:
+  - bash
+  - /validator/tests/libzstd/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-libarchive-tools-zstd-stream-extract
+  timeout_seconds: 180
+  tags:
+  - usage
+  - archive
+  - zstd

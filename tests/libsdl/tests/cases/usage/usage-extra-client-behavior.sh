@@ -77,6 +77,63 @@ try:
         base.blit(overlay, (0, 0))
         assert base.get_at((1, 1)).a == 128
         print("alpha", base.get_at((1, 1)).a)
+    elif case_id == "usage-python3-pygame-draw-circle":
+        surface = pygame.Surface((10, 10))
+        pygame.draw.circle(surface, (0, 255, 0), (5, 5), 3)
+        assert surface.get_at((5, 2)).g == 255
+        print("circle", surface.get_at((5, 2)))
+    elif case_id == "usage-python3-pygame-transform-flip":
+        surface = pygame.Surface((6, 4))
+        flipped = pygame.transform.flip(surface, True, False)
+        assert flipped.get_size() == (6, 4)
+        print("flip", flipped.get_size())
+    elif case_id == "usage-python3-pygame-surface-copy":
+        surface = pygame.Surface((4, 4))
+        surface.fill((20, 30, 40))
+        copied = surface.copy()
+        assert copied.get_at((0, 0)) == surface.get_at((0, 0))
+        print("copy", copied.get_at((0, 0)))
+    elif case_id == "usage-python3-pygame-color-lerp":
+        color = pygame.Color(0, 0, 0).lerp((255, 0, 0), 0.5)
+        assert color.r > 0
+        print("color", color.r)
+    elif case_id == "usage-python3-pygame-pixelarray":
+        surface = pygame.Surface((4, 4))
+        pixels = pygame.PixelArray(surface)
+        pixels[1][1] = surface.map_rgb((255, 0, 0))
+        del pixels
+        assert surface.get_at((1, 1)).r == 255
+        print("pixel", surface.get_at((1, 1)))
+    elif case_id == "usage-python3-pygame-custom-event":
+        event_type = pygame.USEREVENT + 1
+        pygame.event.clear()
+        pygame.event.post(pygame.event.Event(event_type, value="ok"))
+        event = pygame.event.poll()
+        assert event.type == event_type and event.value == "ok"
+        print("event", event.value)
+    elif case_id == "usage-python3-pygame-font-render":
+        pygame.font.init()
+        font = pygame.font.Font(None, 24)
+        surface = font.render("hello", True, (255, 255, 255))
+        assert surface.get_width() > 0 and surface.get_height() > 0
+        print("font", surface.get_size())
+    elif case_id == "usage-python3-pygame-mask-overlap-area":
+        first = pygame.mask.Mask((4, 4), fill=True)
+        second = pygame.mask.Mask((4, 4), fill=True)
+        area = first.overlap_area(second, (1, 1))
+        assert area > 0
+        print("area", area)
+    elif case_id == "usage-python3-pygame-image-tostring":
+        surface = pygame.Surface((4, 4))
+        data = pygame.image.tostring(surface, "RGB")
+        assert len(data) == 4 * 4 * 3
+        print("bytes", len(data))
+    elif case_id == "usage-python3-pygame-rect-union":
+        first = pygame.Rect(0, 0, 2, 2)
+        second = pygame.Rect(2, 1, 3, 2)
+        union = first.union(second)
+        assert union.size == (5, 3)
+        print("union", union.size)
     else:
         raise SystemExit(f"unknown libsdl extra usage case: {case_id}")
 finally:

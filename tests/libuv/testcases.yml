@@ -319,3 +319,142 @@ testcases:
   - usage
   - event-loop
   - stream
+- id: usage-nodejs-fs-mkdir-recursive
+  title: Node.js recursive mkdir
+  description: Creates nested directories through fs.promises.mkdir and verifies the directory exists.
+  kind: usage
+  client_application: nodejs
+  command:
+  - bash
+  - /validator/tests/libuv/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-nodejs-fs-mkdir-recursive
+  timeout_seconds: 180
+  tags:
+  - usage
+  - event-loop
+  - fs
+- id: usage-nodejs-fs-stat-size
+  title: Node.js fs stat size
+  description: Writes a file with Node.js and verifies fs.stat reports the expected byte size.
+  kind: usage
+  client_application: nodejs
+  command:
+  - bash
+  - /validator/tests/libuv/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-nodejs-fs-stat-size
+  timeout_seconds: 180
+  tags:
+  - usage
+  - event-loop
+  - fs
+- id: usage-nodejs-execfile
+  title: Node.js execFile
+  description: Executes a small child process through Node.js execFile and verifies stdout.
+  kind: usage
+  client_application: nodejs
+  command:
+  - bash
+  - /validator/tests/libuv/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-nodejs-execfile
+  timeout_seconds: 180
+  tags:
+  - usage
+  - event-loop
+  - process
+- id: usage-nodejs-stream-pipeline
+  title: Node.js stream pipeline
+  description: Pipes stream data into a file with Node.js pipeline and verifies the saved output.
+  kind: usage
+  client_application: nodejs
+  command:
+  - bash
+  - /validator/tests/libuv/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-nodejs-stream-pipeline
+  timeout_seconds: 180
+  tags:
+  - usage
+  - event-loop
+  - stream
+- id: usage-nodejs-timers-promises
+  title: Node.js timers promises
+  description: Awaits a timers/promises timeout result and verifies the resolved value.
+  kind: usage
+  client_application: nodejs
+  command:
+  - bash
+  - /validator/tests/libuv/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-nodejs-timers-promises
+  timeout_seconds: 180
+  tags:
+  - usage
+  - event-loop
+- id: usage-nodejs-crypto-createhash
+  title: Node.js crypto hash
+  description: Computes a SHA-256 digest with Node.js crypto.createHash and verifies the prefix.
+  kind: usage
+  client_application: nodejs
+  command:
+  - bash
+  - /validator/tests/libuv/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-nodejs-crypto-createhash
+  timeout_seconds: 180
+  tags:
+  - usage
+  - event-loop
+  - crypto
+- id: usage-nodejs-zlib-gzip-stream
+  title: Node.js gzip stream
+  description: Compresses data through a Node.js gzip stream and verifies the decompressed bytes.
+  kind: usage
+  client_application: nodejs
+  command:
+  - bash
+  - /validator/tests/libuv/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-nodejs-zlib-gzip-stream
+  timeout_seconds: 180
+  tags:
+  - usage
+  - event-loop
+  - compression
+- id: usage-nodejs-net-server-address
+  title: Node.js net server address
+  description: Opens a loopback TCP server with Node.js and verifies the assigned ephemeral port.
+  kind: usage
+  client_application: nodejs
+  command:
+  - bash
+  - /validator/tests/libuv/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-nodejs-net-server-address
+  timeout_seconds: 180
+  tags:
+  - usage
+  - event-loop
+  - network
+- id: usage-nodejs-dgram-two-messages
+  title: Node.js UDP two messages
+  description: Sends two UDP datagrams over loopback with Node.js and verifies both are received.
+  kind: usage
+  client_application: nodejs
+  command:
+  - bash
+  - /validator/tests/libuv/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-nodejs-dgram-two-messages
+  timeout_seconds: 180
+  tags:
+  - usage
+  - event-loop
+  - network
+- id: usage-nodejs-readfile-buffer
+  title: Node.js readFile buffer
+  description: Reads a file as a Buffer through fs.promises.readFile and verifies the payload bytes.
+  kind: usage
+  client_application: nodejs
+  command:
+  - bash
+  - /validator/tests/libuv/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-nodejs-readfile-buffer
+  timeout_seconds: 180
+  tags:
+  - usage
+  - event-loop
+  - fs

@@ -320,3 +320,143 @@ testcases:
   - usage
   - archive
   - python
+- id: usage-python-libarchive-c-lz4-filter
+  title: python-libarchive-c lz4 filter
+  description: Creates an lz4-filtered tar archive and reads it back through python-libarchive-c.
+  kind: usage
+  client_application: python3-libarchive-c
+  command:
+  - bash
+  - /validator/tests/libarchive/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-python-libarchive-c-lz4-filter
+  timeout_seconds: 180
+  tags:
+  - usage
+  - archive
+  - python
+- id: usage-python-libarchive-c-lzop-filter
+  title: python-libarchive-c lzop filter
+  description: Creates an lzop-filtered tar archive and reads it back through python-libarchive-c.
+  kind: usage
+  client_application: python3-libarchive-c
+  command:
+  - bash
+  - /validator/tests/libarchive/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-python-libarchive-c-lzop-filter
+  timeout_seconds: 180
+  tags:
+  - usage
+  - archive
+  - python
+- id: usage-python-libarchive-c-lzip-filter
+  title: python-libarchive-c lzip filter
+  description: Creates an lzip-filtered tar archive and reads it back through python-libarchive-c.
+  kind: usage
+  client_application: python3-libarchive-c
+  command:
+  - bash
+  - /validator/tests/libarchive/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-python-libarchive-c-lzip-filter
+  timeout_seconds: 180
+  tags:
+  - usage
+  - archive
+  - python
+- id: usage-python-libarchive-c-lzma-filter
+  title: python-libarchive-c lzma filter
+  description: Creates an lzma-filtered tar archive and reads it back through python-libarchive-c.
+  kind: usage
+  client_application: python3-libarchive-c
+  command:
+  - bash
+  - /validator/tests/libarchive/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-python-libarchive-c-lzma-filter
+  timeout_seconds: 180
+  tags:
+  - usage
+  - archive
+  - python
+- id: usage-python-libarchive-c-ustar-format
+  title: python-libarchive-c ustar format
+  description: Writes a ustar archive with python-libarchive-c and verifies the stored file payload.
+  kind: usage
+  client_application: python3-libarchive-c
+  command:
+  - bash
+  - /validator/tests/libarchive/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-python-libarchive-c-ustar-format
+  timeout_seconds: 180
+  tags:
+  - usage
+  - archive
+  - python
+- id: usage-python-libarchive-c-tar-to-zip
+  title: python-libarchive-c tar to zip copy
+  description: Reads tar entries and writes them into a ZIP archive through python-libarchive-c.
+  kind: usage
+  client_application: python3-libarchive-c
+  command:
+  - bash
+  - /validator/tests/libarchive/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-python-libarchive-c-tar-to-zip
+  timeout_seconds: 180
+  tags:
+  - usage
+  - archive
+  - python
+- id: usage-python-libarchive-c-long-path
+  title: python-libarchive-c long path
+  description: Stores a deeper nested path and verifies python-libarchive-c preserves the full pathname.
+  kind: usage
+  client_application: python3-libarchive-c
+  command:
+  - bash
+  - /validator/tests/libarchive/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-python-libarchive-c-long-path
+  timeout_seconds: 180
+  tags:
+  - usage
+  - archive
+  - python
+- id: usage-python-libarchive-c-size-metadata
+  title: python-libarchive-c size metadata
+  description: Reads archive entry sizes through python-libarchive-c and verifies the recorded metadata.
+  kind: usage
+  client_application: python3-libarchive-c
+  command:
+  - bash
+  - /validator/tests/libarchive/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-python-libarchive-c-size-metadata
+  timeout_seconds: 180
+  tags:
+  - usage
+  - archive
+  - python
+- id: usage-python-libarchive-c-repeat-read
+  title: python-libarchive-c repeat read
+  description: Reopens the same archive twice through python-libarchive-c and verifies both reads match.
+  kind: usage
+  client_application: python3-libarchive-c
+  command:
+  - bash
+  - /validator/tests/libarchive/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-python-libarchive-c-repeat-read
+  timeout_seconds: 180
+  tags:
+  - usage
+  - archive
+  - python
+- id: usage-python-libarchive-c-zip-many-files
+  title: python-libarchive-c many ZIP files
+  description: Writes many ZIP entries through python-libarchive-c and verifies every file round-trips.
+  kind: usage
+  client_application: python3-libarchive-c
+  command:
+  - bash
+  - /validator/tests/libarchive/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-python-libarchive-c-zip-many-files
+  timeout_seconds: 180
+  tags:
+  - usage
+  - archive
+  - python

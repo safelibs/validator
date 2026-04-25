@@ -17,37 +17,49 @@ import sys
 class Handler(BaseHTTPRequestHandler):
     def log_message(self, fmt, *args):
         return
-    def _send(self, body, status=200, headers=None):
+    def _send(self, body, status=200, headers=None, head_only=False):
         self.send_response(status)
         for key, value in (headers or {}).items():
             self.send_header(key, value)
         self.send_header("Content-Length", str(len(body)))
         self.end_headers()
-        self.wfile.write(body)
-    def do_GET(self):
+        if not head_only:
+            self.wfile.write(body)
+    def _response(self):
         if self.path.startswith("/query"):
-            self._send(self.path.encode())
-        elif self.path == "/auth":
+            return self.path.encode(), 200, {}
+        if self.path == "/auth":
             expected = "Basic " + base64.b64encode(b"user:pass").decode()
-            self._send(b"auth ok\n" if self.headers.get("Authorization") == expected else b"auth missing\n", 200)
-        elif self.path == "/set-cookie":
-            self._send(b"cookie set\n", headers={"Set-Cookie": "validator=present; Path=/"})
-        elif self.path == "/check-cookie":
-            self._send((self.headers.get("Cookie", "missing") + "\n").encode())
-        elif self.path == "/range":
+            body = b"auth ok\n" if self.headers.get("Authorization") == expected else b"auth missing\n"
+            return body, 200, {}
+        if self.path == "/set-cookie":
+            return b"cookie set\n", 200, {"Set-Cookie": "validator=present; Path=/"}
+        if self.path == "/check-cookie":
+            return (self.headers.get("Cookie", "missing") + "\n").encode(), 200, {}
+        if self.path == "/range":
             body = b"0123456789"
             if self.headers.get("Range") == "bytes=2-5":
-                self._send(body[2:6], 206, {"Content-Range": "bytes 2-5/10"})
-            else:
-                self._send(body)
-        elif self.path == "/gzip":
-            self._send(gzip.compress(b"compressed body\n"), headers={"Content-Encoding": "gzip"})
-        elif self.path == "/files/plain.txt":
-            self._send(b"remote-name payload\n", headers={"Content-Type": "text/plain"})
-        elif self.path == "/type":
-            self._send(b"typed body\n", headers={"Content-Type": "text/plain"})
-        else:
-            self._send(b"missing\n", 404)
+                return body[2:6], 206, {"Content-Range": "bytes 2-5/10"}
+            return body, 200, {}
+        if self.path == "/gzip":
+            return gzip.compress(b"compressed body\n"), 200, {"Content-Encoding": "gzip"}
+        if self.path == "/files/plain.txt":
+            return b"remote-name payload\n", 200, {"Content-Type": "text/plain"}
+        if self.path == "/type":
+            return b"typed body\n", 200, {"Content-Type": "text/plain"}
+        if self.path == "/redirect":
+            return b"", 302, {"Location": "/type"}
+        if self.path == "/user-agent":
+            return (self.headers.get("User-Agent", "missing") + "\n").encode(), 200, {}
+        if self.path == "/custom-header":
+            return (self.headers.get("X-Validator", "missing") + "\n").encode(), 200, {}
+        return b"missing\n", 404, {}
+    def do_GET(self):
+        body, status, headers = self._response()
+        self._send(body, status, headers)
+    def do_HEAD(self):
+        body, status, headers = self._response()
+        self._send(body, status, headers, head_only=True)
     def do_PUT(self):
         size = int(self.headers.get("Content-Length", "0"))
         self._send(b"put:" + self.rfile.read(size))
@@ -57,6 +69,10 @@ class Handler(BaseHTTPRequestHandler):
         ctype = self.headers.get("Content-Type", "")
         if self.path == "/json":
             self._send((ctype + "\n").encode() + body)
+        elif self.path == "/form-urlencoded":
+            self._send((ctype + "\n").encode() + body)
+        elif self.path == "/echo":
+            self._send(body)
         else:
             self._send(body)
 
@@ -119,6 +135,51 @@ case "$case_id" in
     curl -fsS -H 'Content-Type: application/json' --data '{"name":"alpha"}' "$base/json" >"$tmpdir/out"
     validator_assert_contains "$tmpdir/out" 'application/json'
     validator_assert_contains "$tmpdir/out" '"name":"alpha"'
+    ;;
+  usage-curl-head-request-content-type)
+    curl -fsSI "$base/type" >"$tmpdir/out"
+    validator_assert_contains "$tmpdir/out" 'Content-Type: text/plain'
+    ;;
+  usage-curl-follow-redirect)
+    curl -fsSL "$base/redirect" >"$tmpdir/out"
+    validator_assert_contains "$tmpdir/out" 'typed body'
+    ;;
+  usage-curl-download-file)
+    curl -fsS -o "$tmpdir/download.txt" "$base/files/plain.txt"
+    validator_assert_contains "$tmpdir/download.txt" 'remote-name payload'
+    ;;
+  usage-curl-header-dump)
+    curl -fsS -D "$tmpdir/headers" "$base/type" -o /dev/null
+    validator_assert_contains "$tmpdir/headers" 'Content-Length'
+    ;;
+  usage-curl-user-agent-header)
+    curl -fsS -A 'validator-agent/1.0' "$base/user-agent" >"$tmpdir/out"
+    validator_assert_contains "$tmpdir/out" 'validator-agent/1.0'
+    ;;
+  usage-curl-custom-header-extra-value)
+    curl -fsS -H 'X-Validator: extra value' "$base/custom-header" >"$tmpdir/out"
+    validator_assert_contains "$tmpdir/out" 'extra value'
+    ;;
+  usage-curl-urlencoded-post)
+    curl -fsS --data-urlencode 'field=space value' "$base/form-urlencoded" >"$tmpdir/out"
+    validator_assert_contains "$tmpdir/out" 'application/x-www-form-urlencoded'
+    validator_assert_contains "$tmpdir/out" 'field=space'
+    ;;
+  usage-curl-writeout-size)
+    curl -fsS -o /dev/null -w 'download=%{size_download}\n' "$base/type" >"$tmpdir/out"
+    validator_assert_contains "$tmpdir/out" 'download='
+    ;;
+  usage-curl-fail-404)
+    if curl -fsS "$base/missing" >"$tmpdir/out" 2>"$tmpdir/err"; then
+      printf 'curl unexpectedly succeeded on 404 response\n' >&2
+      exit 1
+    fi
+    validator_assert_contains "$tmpdir/err" '404'
+    ;;
+  usage-curl-post-file-binary)
+    printf 'binary payload\n' >"$tmpdir/input.txt"
+    curl -fsS --data-binary "@$tmpdir/input.txt" "$base/echo" >"$tmpdir/out"
+    validator_assert_contains "$tmpdir/out" 'binary payload'
     ;;
   *)
     printf 'unknown libcurl extra usage case: %s\n' "$case_id" >&2

@@ -61,6 +61,56 @@ case "$case_id" in
     fi
     test -s "$tmpdir/err"
     ;;
+  usage-bunzip2-alias)
+    printf 'bunzip2 payload\n' >"$tmpdir/in.txt"
+    bzip2 -c "$tmpdir/in.txt" >"$tmpdir/in.txt.bz2"
+    bunzip2 -c "$tmpdir/in.txt.bz2" >"$tmpdir/out"
+    validator_assert_contains "$tmpdir/out" 'bunzip2 payload'
+    ;;
+  usage-bzcmp-identical)
+    printf 'same payload\n' >"$tmpdir/a.txt"
+    cp "$tmpdir/a.txt" "$tmpdir/b.txt"
+    bzip2 -c "$tmpdir/a.txt" >"$tmpdir/a.txt.bz2"
+    bzip2 -c "$tmpdir/b.txt" >"$tmpdir/b.txt.bz2"
+    bzcmp "$tmpdir/a.txt.bz2" "$tmpdir/b.txt.bz2" >"$tmpdir/out"
+    test ! -s "$tmpdir/out"
+    ;;
+  usage-bzgrep-line-number)
+    printf 'alpha\nbeta\ngamma\n' >"$tmpdir/in.txt"
+    bzip2 -c "$tmpdir/in.txt" >"$tmpdir/in.txt.bz2"
+    bzgrep -n '^beta$' "$tmpdir/in.txt.bz2" >"$tmpdir/out"
+    validator_assert_contains "$tmpdir/out" '2:beta'
+    ;;
+  usage-bzip2-empty-file)
+    : >"$tmpdir/empty.txt"
+    bzip2 -c "$tmpdir/empty.txt" | bzip2 -dc >"$tmpdir/out"
+    test ! -s "$tmpdir/out"
+    ;;
+  usage-bzip2-medium-stdout)
+    for i in $(seq 1 20); do printf 'medium compression payload %02d\n' "$i"; done >"$tmpdir/in.txt"
+    bzip2 -7 -c "$tmpdir/in.txt" | bzip2 -dc >"$tmpdir/out"
+    cmp "$tmpdir/in.txt" "$tmpdir/out"
+    ;;
+  usage-bzip2-test-sample1|usage-bzip2-test-sample2|usage-bzip2-test-sample3)
+    sample=${case_id#usage-bzip2-test-}
+    validator_require_file "$VALIDATOR_SAMPLE_ROOT/${sample}.bz2"
+    bzip2 -t "$VALIDATOR_SAMPLE_ROOT/${sample}.bz2"
+    printf '%s ok\n' "$sample"
+    ;;
+  usage-bzip2-recompress-file)
+    printf 'recompress payload\n' >"$tmpdir/in.txt"
+    bzip2 -c "$tmpdir/in.txt" >"$tmpdir/one.bz2"
+    bunzip2 -c "$tmpdir/one.bz2" >"$tmpdir/plain.txt"
+    bzip2 -c "$tmpdir/plain.txt" >"$tmpdir/two.bz2"
+    cmp "$tmpdir/plain.txt" <(bzip2 -dc "$tmpdir/two.bz2")
+    ;;
+  usage-bzip2-decompress-suffix)
+    printf 'suffix payload\n' >"$tmpdir/name.txt"
+    bzip2 -c "$tmpdir/name.txt" >"$tmpdir/name.txt.bz2"
+    rm "$tmpdir/name.txt"
+    bunzip2 "$tmpdir/name.txt.bz2"
+    validator_assert_contains "$tmpdir/name.txt" 'suffix payload'
+    ;;
   *)
     printf 'unknown libbz2 extra usage case: %s\n' "$case_id" >&2
     exit 2

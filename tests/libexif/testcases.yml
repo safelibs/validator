@@ -319,3 +319,143 @@ testcases:
   - usage
   - jpeg
   - metadata
+- id: usage-exif-cli-orientation-tag
+  title: exif orientation tag
+  description: Reads the Orientation EXIF tag from a JPEG fixture and verifies the reported value.
+  kind: usage
+  client_application: exif
+  command:
+  - bash
+  - /validator/tests/libexif/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-exif-cli-orientation-tag
+  timeout_seconds: 180
+  tags:
+  - usage
+  - jpeg
+  - metadata
+- id: usage-exif-cli-metering-mode-tag
+  title: exif metering mode tag
+  description: Reads the MeteringMode EXIF tag from a JPEG fixture.
+  kind: usage
+  client_application: exif
+  command:
+  - bash
+  - /validator/tests/libexif/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-exif-cli-metering-mode-tag
+  timeout_seconds: 180
+  tags:
+  - usage
+  - jpeg
+  - metadata
+- id: usage-exif-cli-focal-length-tag
+  title: exif focal length tag
+  description: Reads the FocalLength EXIF tag from a JPEG fixture and verifies the focal length text.
+  kind: usage
+  client_application: exif
+  command:
+  - bash
+  - /validator/tests/libexif/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-exif-cli-focal-length-tag
+  timeout_seconds: 180
+  tags:
+  - usage
+  - jpeg
+  - metadata
+- id: usage-exif-cli-color-space-tag
+  title: exif color space tag
+  description: Reads the ColorSpace EXIF tag from a JPEG fixture and verifies the color space value.
+  kind: usage
+  client_application: exif
+  command:
+  - bash
+  - /validator/tests/libexif/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-exif-cli-color-space-tag
+  timeout_seconds: 180
+  tags:
+  - usage
+  - jpeg
+  - metadata
+- id: usage-exif-cli-scene-capture-tag
+  title: exif scene capture type
+  description: Reads the SceneCaptureType EXIF tag from a JPEG fixture.
+  kind: usage
+  client_application: exif
+  command:
+  - bash
+  - /validator/tests/libexif/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-exif-cli-scene-capture-tag
+  timeout_seconds: 180
+  tags:
+  - usage
+  - jpeg
+  - metadata
+- id: usage-exif-cli-exposure-mode-tag
+  title: exif exposure mode tag
+  description: Reads the ExposureMode EXIF tag from a JPEG fixture.
+  kind: usage
+  client_application: exif
+  command:
+  - bash
+  - /validator/tests/libexif/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-exif-cli-exposure-mode-tag
+  timeout_seconds: 180
+  tags:
+  - usage
+  - jpeg
+  - metadata
+- id: usage-exif-cli-custom-rendered-tag
+  title: exif custom rendered tag
+  description: Reads the CustomRendered EXIF tag from a JPEG fixture.
+  kind: usage
+  client_application: exif
+  command:
+  - bash
+  - /validator/tests/libexif/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-exif-cli-custom-rendered-tag
+  timeout_seconds: 180
+  tags:
+  - usage
+  - jpeg
+  - metadata
+- id: usage-exif-cli-related-image-width
+  title: exif related image width
+  description: Reads the RelatedImageWidth EXIF tag from a JPEG fixture.
+  kind: usage
+  client_application: exif
+  command:
+  - bash
+  - /validator/tests/libexif/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-exif-cli-related-image-width
+  timeout_seconds: 180
+  tags:
+  - usage
+  - jpeg
+  - metadata
+- id: usage-exif-cli-related-image-length
+  title: exif related image length
+  description: Reads the RelatedImageLength EXIF tag from a JPEG fixture.
+  kind: usage
+  client_application: exif
+  command:
+  - bash
+  - /validator/tests/libexif/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-exif-cli-related-image-length
+  timeout_seconds: 180
+  tags:
+  - usage
+  - jpeg
+  - metadata
+- id: usage-exif-cli-xml-orientation
+  title: exif XML orientation tag
+  description: Emits XML metadata and verifies the orientation element in the serialized output.
+  kind: usage
+  client_application: exif
+  command:
+  - bash
+  - /validator/tests/libexif/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-exif-cli-xml-orientation
+  timeout_seconds: 180
+  tags:
+  - usage
+  - jpeg
+  - metadata

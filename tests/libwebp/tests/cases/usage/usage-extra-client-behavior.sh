@@ -122,6 +122,117 @@ with Image.open(sys.argv[2]) as im:
     im.load(); assert im.format == "WEBP"; print("quality", im.size)
 PY
     ;;
+  usage-python3-pil-crop-webp)
+    make_webp
+    python3 - <<'PY' "$tmpdir/in.webp" "$tmpdir/out.webp"
+from PIL import Image
+import sys
+with Image.open(sys.argv[1]) as im:
+    out = im.crop((1, 0, 4, 2))
+    out.save(sys.argv[2], "WEBP")
+with Image.open(sys.argv[2]) as im:
+    assert im.size == (3, 2); print("crop", im.size)
+PY
+    ;;
+  usage-python3-pil-rotate-webp)
+    make_webp
+    python3 - <<'PY' "$tmpdir/in.webp" "$tmpdir/out.webp"
+from PIL import Image
+import sys
+with Image.open(sys.argv[1]) as im:
+    out = im.transpose(Image.Transpose.ROTATE_90)
+    out.save(sys.argv[2], "WEBP")
+with Image.open(sys.argv[2]) as im:
+    assert im.size == (3, 4); print("rotate", im.size)
+PY
+    ;;
+  usage-python3-pil-flip-webp)
+    make_webp
+    python3 - <<'PY' "$tmpdir/in.webp" "$tmpdir/out.webp"
+from PIL import Image
+import sys
+with Image.open(sys.argv[1]) as im:
+    out = im.transpose(Image.Transpose.FLIP_LEFT_RIGHT)
+    out.save(sys.argv[2], "WEBP")
+with Image.open(sys.argv[2]) as im:
+    assert im.size == (4, 3); print("flip", im.size)
+PY
+    ;;
+  usage-python3-pil-lossless-alpha-webp)
+    python3 - <<'PY' "$tmpdir/alpha-lossless.webp"
+from PIL import Image
+import sys
+im = Image.new("RGBA", (3, 2), (255, 0, 0, 128))
+im.save(sys.argv[1], "WEBP", lossless=True)
+with Image.open(sys.argv[1]) as reopened:
+    reopened.load(); assert reopened.mode == "RGBA"; print("alpha", reopened.size)
+PY
+    ;;
+  usage-vips-webp-rotate)
+    make_webp
+    vips rot "$tmpdir/in.webp" "$tmpdir/out.png" d90
+    vipsheader "$tmpdir/out.png" | tee "$tmpdir/out"
+    validator_assert_contains "$tmpdir/out" '3x4'
+    ;;
+  usage-vips-webp-flip)
+    make_webp
+    vips flip "$tmpdir/in.webp" "$tmpdir/out.png" horizontal
+    vipsheader "$tmpdir/out.png" | tee "$tmpdir/out"
+    validator_assert_contains "$tmpdir/out" '4x3'
+    ;;
+  usage-vips-webp-png-copy)
+    make_webp
+    vips copy "$tmpdir/in.webp" "$tmpdir/out.png"
+    file "$tmpdir/out.png" | tee "$tmpdir/out"
+    validator_assert_contains "$tmpdir/out" 'PNG image data'
+    ;;
+  usage-ffmpeg-webp-png)
+    make_webp
+    ffmpeg -hide_banner -loglevel error -i "$tmpdir/in.webp" "$tmpdir/out.png"
+    file "$tmpdir/out.png" | tee "$tmpdir/out"
+    validator_assert_contains "$tmpdir/out" 'PNG image data'
+    ;;
+  usage-ffmpeg-webp-null-output)
+    make_webp
+    ffmpeg -hide_banner -loglevel info -i "$tmpdir/in.webp" -f null - >"$tmpdir/out" 2>&1
+    validator_assert_contains "$tmpdir/out" 'video:'
+    ;;
+  usage-libsdl2-image-webp-rwops)
+    make_webp
+    cat >"$tmpdir/t.c" <<'C'
+#include <SDL2/SDL.h>
+#include <SDL2/SDL_image.h>
+#include <stdio.h>
+#include <stdlib.h>
+int main(int argc, char **argv) {
+  FILE *fp = fopen(argv[1], "rb");
+  if (!fp) return 1;
+  fseek(fp, 0, SEEK_END);
+  long size = ftell(fp);
+  rewind(fp);
+  unsigned char *data = malloc((size_t) size);
+  if (!data) return 2;
+  if (fread(data, 1, (size_t) size, fp) != (size_t) size) return 3;
+  fclose(fp);
+  SDL_SetHint(SDL_HINT_VIDEODRIVER, "dummy");
+  if (SDL_Init(SDL_INIT_VIDEO) != 0) return 4;
+  if ((IMG_Init(IMG_INIT_WEBP) & IMG_INIT_WEBP) == 0) return 5;
+  SDL_RWops *rw = SDL_RWFromConstMem(data, (int) size);
+  if (!rw) return 6;
+  SDL_Surface *surface = IMG_Load_RW(rw, 1);
+  if (!surface) return 7;
+  printf("webp-rwops %dx%d\n", surface->w, surface->h);
+  int ok = surface->w == 4 && surface->h == 3;
+  SDL_FreeSurface(surface);
+  IMG_Quit();
+  SDL_Quit();
+  free(data);
+  return ok ? 0 : 8;
+}
+C
+    gcc "$tmpdir/t.c" -o "$tmpdir/t" $(pkg-config --cflags --libs SDL2_image)
+    "$tmpdir/t" "$tmpdir/in.webp"
+    ;;
   *)
     printf 'unknown libwebp extra usage case: %s\n' "$case_id" >&2
     exit 2

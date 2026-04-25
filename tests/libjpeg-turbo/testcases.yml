@@ -333,3 +333,143 @@ testcases:
   - usage
   - jpeg
   - image
+- id: usage-python3-pil-resize-jpeg
+  title: Pillow resizes JPEG
+  description: Opens a JPEG with Pillow, resizes it, saves JPEG output, and verifies dimensions.
+  kind: usage
+  client_application: python3-pil
+  command:
+  - bash
+  - /validator/tests/libjpeg-turbo/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-python3-pil-resize-jpeg
+  timeout_seconds: 180
+  tags:
+  - usage
+  - jpeg
+  - python
+- id: usage-python3-pil-flip-topbottom-jpeg
+  title: Pillow flips JPEG vertically
+  description: Flips a JPEG vertically with Pillow and verifies the saved dimensions.
+  kind: usage
+  client_application: python3-pil
+  command:
+  - bash
+  - /validator/tests/libjpeg-turbo/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-python3-pil-flip-topbottom-jpeg
+  timeout_seconds: 180
+  tags:
+  - usage
+  - jpeg
+  - python
+- id: usage-python3-pil-jpeg-to-png
+  title: Pillow JPEG to PNG
+  description: Converts a generated JPEG to PNG with Pillow and verifies the output format.
+  kind: usage
+  client_application: python3-pil
+  command:
+  - bash
+  - /validator/tests/libjpeg-turbo/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-python3-pil-jpeg-to-png
+  timeout_seconds: 180
+  tags:
+  - usage
+  - jpeg
+  - python
+- id: usage-python3-pil-band-split-jpeg
+  title: Pillow splits JPEG bands
+  description: Opens a JPEG with Pillow, splits its bands, and verifies RGB channel count.
+  kind: usage
+  client_application: python3-pil
+  command:
+  - bash
+  - /validator/tests/libjpeg-turbo/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-python3-pil-band-split-jpeg
+  timeout_seconds: 180
+  tags:
+  - usage
+  - jpeg
+  - python
+- id: usage-python3-pil-optimize-jpeg
+  title: Pillow optimized JPEG
+  description: Saves a JPEG with Pillow optimize mode and verifies the reloaded image format.
+  kind: usage
+  client_application: python3-pil
+  command:
+  - bash
+  - /validator/tests/libjpeg-turbo/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-python3-pil-optimize-jpeg
+  timeout_seconds: 180
+  tags:
+  - usage
+  - jpeg
+  - python
+- id: usage-vips-rot180-jpeg
+  title: vips rotates JPEG 180
+  description: Rotates a JPEG 180 degrees with vips and verifies the output header dimensions.
+  kind: usage
+  client_application: vips
+  command:
+  - bash
+  - /validator/tests/libjpeg-turbo/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-vips-rot180-jpeg
+  timeout_seconds: 180
+  tags:
+  - usage
+  - jpeg
+  - image
+- id: usage-vips-bandmean-jpeg
+  title: vips bandmean JPEG
+  description: Averages JPEG color bands with vips and verifies the output image header.
+  kind: usage
+  client_application: vips
+  command:
+  - bash
+  - /validator/tests/libjpeg-turbo/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-vips-bandmean-jpeg
+  timeout_seconds: 180
+  tags:
+  - usage
+  - jpeg
+  - image
+- id: usage-vips-linear-jpeg
+  title: vips linear JPEG transform
+  description: Applies a linear transform to a JPEG with vips and verifies the output image header.
+  kind: usage
+  client_application: vips
+  command:
+  - bash
+  - /validator/tests/libjpeg-turbo/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-vips-linear-jpeg
+  timeout_seconds: 180
+  tags:
+  - usage
+  - jpeg
+  - image
+- id: usage-vips-jpeg-to-tiff
+  title: vips JPEG to TIFF
+  description: Copies JPEG input to TIFF with vips and verifies TIFF output is produced.
+  kind: usage
+  client_application: vips
+  command:
+  - bash
+  - /validator/tests/libjpeg-turbo/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-vips-jpeg-to-tiff
+  timeout_seconds: 180
+  tags:
+  - usage
+  - jpeg
+  - image
+- id: usage-vips-embed-jpeg
+  title: vips embeds JPEG
+  description: Embeds a JPEG into a larger canvas with vips and verifies the output dimensions.
+  kind: usage
+  client_application: vips
+  command:
+  - bash
+  - /validator/tests/libjpeg-turbo/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-vips-embed-jpeg
+  timeout_seconds: 180
+  tags:
+  - usage
+  - jpeg
+  - image

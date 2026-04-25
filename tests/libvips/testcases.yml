@@ -331,3 +331,143 @@ testcases:
   - usage
   - image
   - ruby
+- id: usage-ruby-vips-resize-sample-png
+  title: ruby-vips resize sample PNG
+  description: Loads a PNG fixture with ruby-vips, resizes it, and verifies the dimensions shrink.
+  kind: usage
+  client_application: ruby-vips
+  command:
+  - bash
+  - /validator/tests/libvips/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-ruby-vips-resize-sample-png
+  timeout_seconds: 180
+  tags:
+  - usage
+  - image
+  - ruby
+- id: usage-ruby-vips-crop-sample-jpeg
+  title: ruby-vips crop sample JPEG
+  description: Loads a JPEG fixture with ruby-vips, crops the top-left region, and checks the output size.
+  kind: usage
+  client_application: ruby-vips
+  command:
+  - bash
+  - /validator/tests/libvips/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-ruby-vips-crop-sample-jpeg
+  timeout_seconds: 180
+  tags:
+  - usage
+  - image
+  - ruby
+- id: usage-ruby-vips-rot90-sample-png
+  title: ruby-vips rotate sample PNG
+  description: Rotates a PNG fixture by 90 degrees with ruby-vips and verifies swapped dimensions.
+  kind: usage
+  client_application: ruby-vips
+  command:
+  - bash
+  - /validator/tests/libvips/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-ruby-vips-rot90-sample-png
+  timeout_seconds: 180
+  tags:
+  - usage
+  - image
+  - ruby
+- id: usage-ruby-vips-bandjoin-three
+  title: ruby-vips bandjoin three
+  description: Combines three single-band images into one multi-band image with ruby-vips.
+  kind: usage
+  client_application: ruby-vips
+  command:
+  - bash
+  - /validator/tests/libvips/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-ruby-vips-bandjoin-three
+  timeout_seconds: 180
+  tags:
+  - usage
+  - image
+  - ruby
+- id: usage-ruby-vips-linear-constant
+  title: ruby-vips linear constant
+  description: Applies a linear transform to a constant image with ruby-vips and verifies the output average.
+  kind: usage
+  client_application: ruby-vips
+  command:
+  - bash
+  - /validator/tests/libvips/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-ruby-vips-linear-constant
+  timeout_seconds: 180
+  tags:
+  - usage
+  - image
+  - ruby
+- id: usage-ruby-vips-gaussblur-sample
+  title: ruby-vips gaussblur sample
+  description: Applies Gaussian blur to a PNG fixture with ruby-vips and verifies the dimensions stay constant.
+  kind: usage
+  client_application: ruby-vips
+  command:
+  - bash
+  - /validator/tests/libvips/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-ruby-vips-gaussblur-sample
+  timeout_seconds: 180
+  tags:
+  - usage
+  - image
+  - ruby
+- id: usage-ruby-vips-replicate-sample
+  title: ruby-vips replicate sample
+  description: Replicates a PNG fixture with ruby-vips and verifies the output dimensions double.
+  kind: usage
+  client_application: ruby-vips
+  command:
+  - bash
+  - /validator/tests/libvips/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-ruby-vips-replicate-sample
+  timeout_seconds: 180
+  tags:
+  - usage
+  - image
+  - ruby
+- id: usage-ruby-vips-write-read-png
+  title: ruby-vips write and read PNG
+  description: Writes a synthetic PNG with ruby-vips, reloads it, and verifies the round-trip dimensions.
+  kind: usage
+  client_application: ruby-vips
+  command:
+  - bash
+  - /validator/tests/libvips/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-ruby-vips-write-read-png
+  timeout_seconds: 180
+  tags:
+  - usage
+  - image
+  - ruby
+- id: usage-ruby-vips-threshold-empty
+  title: ruby-vips empty threshold
+  description: Applies a threshold that no pixels exceed and verifies the resulting mask is empty.
+  kind: usage
+  client_application: ruby-vips
+  command:
+  - bash
+  - /validator/tests/libvips/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-ruby-vips-threshold-empty
+  timeout_seconds: 180
+  tags:
+  - usage
+  - image
+  - ruby
+- id: usage-ruby-vips-jpeg-file-output
+  title: ruby-vips JPEG file output
+  description: Saves a synthetic JPEG with ruby-vips, reloads it, and checks the output file is nonempty.
+  kind: usage
+  client_application: ruby-vips
+  command:
+  - bash
+  - /validator/tests/libvips/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-ruby-vips-jpeg-file-output
+  timeout_seconds: 180
+  tags:
+  - usage
+  - image
+  - ruby

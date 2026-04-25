@@ -114,6 +114,98 @@ PY
     vipsheader "$tmpdir/shrink.png" | tee "$tmpdir/out"
     grep -Eq '2x2|2x1' "$tmpdir/out"
     ;;
+  usage-python3-pil-resize-jpeg)
+    make_jpeg
+    python3 - <<'PY' "$tmpdir/in.jpg" "$tmpdir/out.jpg"
+from PIL import Image
+import sys
+with Image.open(sys.argv[1]) as im:
+    out = im.resize((2, 2))
+    out.save(sys.argv[2], "JPEG")
+with Image.open(sys.argv[2]) as im:
+    assert im.size == (2, 2), im.size
+    print("resize", im.size)
+PY
+    ;;
+  usage-python3-pil-flip-topbottom-jpeg)
+    make_jpeg
+    python3 - <<'PY' "$tmpdir/in.jpg" "$tmpdir/out.jpg"
+from PIL import Image
+import sys
+with Image.open(sys.argv[1]) as im:
+    out = im.transpose(Image.Transpose.FLIP_TOP_BOTTOM)
+    out.save(sys.argv[2], "JPEG")
+with Image.open(sys.argv[2]) as im:
+    assert im.size == (4, 3), im.size
+    print("flip", im.size)
+PY
+    ;;
+  usage-python3-pil-jpeg-to-png)
+    make_jpeg
+    python3 - <<'PY' "$tmpdir/in.jpg" "$tmpdir/out.png"
+from PIL import Image
+import sys
+with Image.open(sys.argv[1]) as im:
+    im.save(sys.argv[2], "PNG")
+with Image.open(sys.argv[2]) as im:
+    assert im.format == "PNG"
+    print("png", im.size)
+PY
+    ;;
+  usage-python3-pil-band-split-jpeg)
+    make_jpeg
+    python3 - <<'PY' "$tmpdir/in.jpg"
+from PIL import Image
+import sys
+with Image.open(sys.argv[1]) as im:
+    bands = im.split()
+    assert len(bands) == 3
+    print("bands", len(bands))
+PY
+    ;;
+  usage-python3-pil-optimize-jpeg)
+    make_jpeg
+    python3 - <<'PY' "$tmpdir/in.jpg" "$tmpdir/out.jpg"
+from PIL import Image
+import sys
+with Image.open(sys.argv[1]) as im:
+    im.save(sys.argv[2], "JPEG", optimize=True)
+with Image.open(sys.argv[2]) as im:
+    im.load()
+    assert im.format == "JPEG"
+    print("optimize", im.size)
+PY
+    ;;
+  usage-vips-rot180-jpeg)
+    make_jpeg
+    vips rot "$tmpdir/in.jpg" "$tmpdir/out.jpg" d180
+    vipsheader "$tmpdir/out.jpg" | tee "$tmpdir/out"
+    validator_assert_contains "$tmpdir/out" '4x3'
+    ;;
+  usage-vips-bandmean-jpeg)
+    make_jpeg
+    vips bandmean "$tmpdir/in.jpg" "$tmpdir/out.png"
+    vipsheader "$tmpdir/out.png" | tee "$tmpdir/out"
+    validator_assert_contains "$tmpdir/out" '4x3'
+    ;;
+  usage-vips-linear-jpeg)
+    make_jpeg
+    vips linear "$tmpdir/in.jpg" "$tmpdir/out.png" 1 10
+    vipsheader "$tmpdir/out.png" | tee "$tmpdir/out"
+    validator_assert_contains "$tmpdir/out" '4x3'
+    ;;
+  usage-vips-jpeg-to-tiff)
+    make_jpeg
+    vips copy "$tmpdir/in.jpg" "$tmpdir/out.tif"
+    file "$tmpdir/out.tif" | tee "$tmpdir/out"
+    validator_assert_contains "$tmpdir/out" 'TIFF image data'
+    ;;
+  usage-vips-embed-jpeg)
+    make_jpeg
+    vips embed "$tmpdir/in.jpg" "$tmpdir/embed.png" 1 2 6 7
+    vipsheader "$tmpdir/embed.png" | tee "$tmpdir/out"
+    validator_assert_contains "$tmpdir/out" '6x7'
+    ;;
   *)
     printf 'unknown libjpeg-turbo extra usage case: %s\n' "$case_id" >&2
     exit 2

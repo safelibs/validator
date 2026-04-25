@@ -326,3 +326,143 @@ testcases:
   - usage
   - xml
   - cli
+- id: usage-python3-lxml-html-parse
+  title: lxml HTML parse
+  description: Parses simple HTML through lxml.html and verifies text extraction from the document tree.
+  kind: usage
+  client_application: python3-lxml
+  command:
+  - bash
+  - /validator/tests/libxml/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-python3-lxml-html-parse
+  timeout_seconds: 180
+  tags:
+  - usage
+  - xml
+  - python
+- id: usage-python3-lxml-iterparse
+  title: lxml iterparse
+  description: Iterates over XML elements with lxml iterparse and verifies parsed tag names.
+  kind: usage
+  client_application: python3-lxml
+  command:
+  - bash
+  - /validator/tests/libxml/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-python3-lxml-iterparse
+  timeout_seconds: 180
+  tags:
+  - usage
+  - xml
+  - python
+- id: usage-python3-lxml-xslt-param
+  title: lxml XSLT parameter
+  description: Applies an XSLT transform with a string parameter through python3-lxml.
+  kind: usage
+  client_application: python3-lxml
+  command:
+  - bash
+  - /validator/tests/libxml/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-python3-lxml-xslt-param
+  timeout_seconds: 180
+  tags:
+  - usage
+  - xml
+  - python
+- id: usage-python3-lxml-cdata-node
+  title: lxml CDATA node
+  description: Serializes a CDATA section with python3-lxml and verifies the CDATA wrapper is preserved.
+  kind: usage
+  client_application: python3-lxml
+  command:
+  - bash
+  - /validator/tests/libxml/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-python3-lxml-cdata-node
+  timeout_seconds: 180
+  tags:
+  - usage
+  - xml
+  - python
+- id: usage-python3-lxml-element-maker
+  title: lxml element maker
+  description: Builds XML with lxml.builder element helpers and verifies serialized output.
+  kind: usage
+  client_application: python3-lxml
+  command:
+  - bash
+  - /validator/tests/libxml/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-python3-lxml-element-maker
+  timeout_seconds: 180
+  tags:
+  - usage
+  - xml
+  - python
+- id: usage-xmlstarlet-update-node
+  title: xmlstarlet updates node
+  description: Updates XML text content with xmlstarlet edit and verifies the new serialized value.
+  kind: usage
+  client_application: xmlstarlet
+  command:
+  - bash
+  - /validator/tests/libxml/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-xmlstarlet-update-node
+  timeout_seconds: 180
+  tags:
+  - usage
+  - xml
+  - cli
+- id: usage-xmlstarlet-append-node
+  title: xmlstarlet appends node
+  description: Appends a new XML element with xmlstarlet edit and verifies the inserted node.
+  kind: usage
+  client_application: xmlstarlet
+  command:
+  - bash
+  - /validator/tests/libxml/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-xmlstarlet-append-node
+  timeout_seconds: 180
+  tags:
+  - usage
+  - xml
+  - cli
+- id: usage-xmlstarlet-rename-node
+  title: xmlstarlet renames node
+  description: Renames an XML element with xmlstarlet edit and verifies the new tag name.
+  kind: usage
+  client_application: xmlstarlet
+  command:
+  - bash
+  - /validator/tests/libxml/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-xmlstarlet-rename-node
+  timeout_seconds: 180
+  tags:
+  - usage
+  - xml
+  - cli
+- id: usage-xmlstarlet-select-count
+  title: xmlstarlet selects count
+  description: Counts XML nodes with xmlstarlet select and verifies the numeric result.
+  kind: usage
+  client_application: xmlstarlet
+  command:
+  - bash
+  - /validator/tests/libxml/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-xmlstarlet-select-count
+  timeout_seconds: 180
+  tags:
+  - usage
+  - xml
+  - cli
+- id: usage-xmlstarlet-concat-values
+  title: xmlstarlet concatenates values
+  description: Concatenates XML values with xmlstarlet select and verifies the combined string.
+  kind: usage
+  client_application: xmlstarlet
+  command:
+  - bash
+  - /validator/tests/libxml/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-xmlstarlet-concat-values
+  timeout_seconds: 180
+  tags:
+  - usage
+  - xml
+  - cli

@@ -331,3 +331,137 @@ testcases:
   tags:
   - usage
   - compression
+- id: usage-bash-substring-expansion
+  title: bash substring expansion
+  description: Expands a bash substring and verifies the sliced text is returned correctly.
+  kind: usage
+  client_application: bash
+  command:
+  - bash
+  - /validator/tests/libc6/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-bash-substring-expansion
+  timeout_seconds: 180
+  tags:
+  - usage
+  - shell
+- id: usage-coreutils-paste-columns
+  title: coreutils paste columns
+  description: Joins two text columns with paste and verifies the merged output.
+  kind: usage
+  client_application: coreutils
+  command:
+  - bash
+  - /validator/tests/libc6/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-coreutils-paste-columns
+  timeout_seconds: 180
+  tags:
+  - usage
+  - coreutils
+  - text
+- id: usage-coreutils-tr-uppercase
+  title: coreutils tr uppercase
+  description: Transforms lowercase text to uppercase with tr and verifies the result.
+  kind: usage
+  client_application: coreutils
+  command:
+  - bash
+  - /validator/tests/libc6/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-coreutils-tr-uppercase
+  timeout_seconds: 180
+  tags:
+  - usage
+  - coreutils
+  - text
+- id: usage-coreutils-uniq-count
+  title: coreutils uniq count
+  description: Counts repeated lines with uniq -c and verifies the aggregate count.
+  kind: usage
+  client_application: coreutils
+  command:
+  - bash
+  - /validator/tests/libc6/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-coreutils-uniq-count
+  timeout_seconds: 180
+  tags:
+  - usage
+  - coreutils
+  - text
+- id: usage-grep-count-match
+  title: grep count matches
+  description: Counts matching lines with grep -c and verifies the numeric result.
+  kind: usage
+  client_application: grep
+  command:
+  - bash
+  - /validator/tests/libc6/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-grep-count-match
+  timeout_seconds: 180
+  tags:
+  - usage
+  - regex
+- id: usage-gawk-assoc-array
+  title: gawk associative array
+  description: Aggregates repeated words with a gawk associative array and verifies the counter.
+  kind: usage
+  client_application: gawk
+  command:
+  - bash
+  - /validator/tests/libc6/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-gawk-assoc-array
+  timeout_seconds: 180
+  tags:
+  - usage
+  - text
+- id: usage-sed-delete-blank-lines
+  title: sed deletes blank lines
+  description: Removes blank lines with sed and verifies only non-empty lines remain.
+  kind: usage
+  client_application: sed
+  command:
+  - bash
+  - /validator/tests/libc6/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-sed-delete-blank-lines
+  timeout_seconds: 180
+  tags:
+  - usage
+  - text
+- id: usage-python3-pathlib-runtime
+  title: Python pathlib runtime
+  description: Uses Python pathlib helpers to write and inspect a file path and verifies the result.
+  kind: usage
+  client_application: python3-minimal
+  command:
+  - bash
+  - /validator/tests/libc6/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-python3-pathlib-runtime
+  timeout_seconds: 180
+  tags:
+  - usage
+  - python
+  - text
+- id: usage-findutils-maxdepth
+  title: findutils maxdepth filter
+  description: Limits find traversal depth and verifies deeper files are excluded from the result set.
+  kind: usage
+  client_application: findutils
+  command:
+  - bash
+  - /validator/tests/libc6/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-findutils-maxdepth
+  timeout_seconds: 180
+  tags:
+  - usage
+  - filesystem
+- id: usage-tar-list-archive
+  title: tar lists archive
+  description: Creates a tar archive and verifies tar list mode reports all stored file names.
+  kind: usage
+  client_application: tar
+  command:
+  - bash
+  - /validator/tests/libc6/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-tar-list-archive
+  timeout_seconds: 180
+  tags:
+  - usage
+  - archive

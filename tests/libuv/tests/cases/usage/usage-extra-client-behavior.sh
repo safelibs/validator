@@ -17,6 +17,8 @@ const net = require('net');
 const dgram = require('dgram');
 const readline = require('readline');
 const { Readable } = require('stream');
+const { pipeline } = require('stream/promises');
+const timers = require('timers/promises');
 
 const caseId = process.argv[2];
 const tmpdir = process.argv[3];
@@ -95,6 +97,82 @@ async function main() {
     for await (const line of rl) lines.push(line);
     if (lines.length !== 2 || lines[1] !== 'beta') throw new Error(lines.join(','));
     console.log(lines.join(','));
+  } else if (caseId === 'usage-nodejs-fs-mkdir-recursive') {
+    const dir = path.join(tmpdir, 'one', 'two', 'three');
+    await fsp.mkdir(dir, { recursive: true });
+    const stat = await fsp.stat(dir);
+    if (!stat.isDirectory()) throw new Error('not a directory');
+    console.log(path.relative(tmpdir, dir));
+  } else if (caseId === 'usage-nodejs-fs-stat-size') {
+    const file = path.join(tmpdir, 'stat.txt');
+    await fsp.writeFile(file, 'stat payload\n');
+    const stat = await fsp.stat(file);
+    if (stat.size !== 13) throw new Error(String(stat.size));
+    console.log('size', stat.size);
+  } else if (caseId === 'usage-nodejs-execfile') {
+    const out = await new Promise((resolve, reject) => {
+      child_process.execFile('/bin/printf', ['execfile payload\\n'], (err, stdout) => err ? reject(err) : resolve(stdout));
+    });
+    if (!out.includes('execfile payload')) throw new Error(out);
+    console.log(out.trim());
+  } else if (caseId === 'usage-nodejs-stream-pipeline') {
+    const file = path.join(tmpdir, 'pipeline.txt');
+    await pipeline(Readable.from(['pipe ', 'payload\n']), fs.createWriteStream(file));
+    const body = await fsp.readFile(file, 'utf8');
+    if (body !== 'pipe payload\n') throw new Error(body);
+    console.log(body.trim());
+  } else if (caseId === 'usage-nodejs-timers-promises') {
+    const value = await timers.setTimeout(5, 'timer done');
+    if (value !== 'timer done') throw new Error(String(value));
+    console.log(value);
+  } else if (caseId === 'usage-nodejs-crypto-createhash') {
+    const digest = crypto.createHash('sha256').update('payload').digest('hex');
+    if (!digest.startsWith('239f59ed')) throw new Error(digest);
+    console.log(digest.slice(0, 16));
+  } else if (caseId === 'usage-nodejs-zlib-gzip-stream') {
+    const gz = path.join(tmpdir, 'payload.gz');
+    await pipeline(Readable.from(['stream payload\n']), zlib.createGzip(), fs.createWriteStream(gz));
+    const plain = zlib.gunzipSync(await fsp.readFile(gz)).toString('utf8');
+    if (plain !== 'stream payload\n') throw new Error(plain);
+    console.log(plain.trim());
+  } else if (caseId === 'usage-nodejs-net-server-address') {
+    const port = await new Promise((resolve, reject) => {
+      const server = net.createServer();
+      server.listen(0, '127.0.0.1', () => {
+        const address = server.address();
+        server.close(() => resolve(address.port));
+      });
+      server.on('error', reject);
+    });
+    if (!(port > 0)) throw new Error(String(port));
+    console.log('port', port);
+  } else if (caseId === 'usage-nodejs-dgram-two-messages') {
+    await new Promise((resolve, reject) => {
+      let count = 0;
+      const server = dgram.createSocket('udp4');
+      server.on('message', (msg) => {
+        count += 1;
+        if (count === 2) {
+          server.close();
+          resolve();
+        } else if (msg.toString() !== 'first' && msg.toString() !== 'second') {
+          reject(new Error(msg.toString()));
+        }
+      });
+      server.bind(0, '127.0.0.1', () => {
+        const client = dgram.createSocket('udp4');
+        client.send(Buffer.from('first'), server.address().port, '127.0.0.1');
+        client.send(Buffer.from('second'), server.address().port, '127.0.0.1', () => client.close());
+      });
+      server.on('error', reject);
+    });
+    console.log('messages', 2);
+  } else if (caseId === 'usage-nodejs-readfile-buffer') {
+    const file = path.join(tmpdir, 'buffer.txt');
+    await fsp.writeFile(file, 'buffer payload\n');
+    const body = await fsp.readFile(file);
+    if (!Buffer.isBuffer(body) || body.toString('utf8') !== 'buffer payload\n') throw new Error(String(body));
+    console.log('buffer', body.length);
   } else {
     throw new Error(`unknown libuv extra usage case: ${caseId}`);
   }

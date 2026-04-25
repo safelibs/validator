@@ -333,3 +333,143 @@ testcases:
   - usage
   - json
   - gdal
+- id: usage-gdal-gdalsrsinfo-projjson
+  title: GDAL SRS PROJJSON output
+  description: Runs gdalsrsinfo PROJJSON output for EPSG:4326 and verifies JSON coordinate system data.
+  kind: usage
+  client_application: gdal
+  command:
+  - bash
+  - /validator/tests/libjson/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-gdal-gdalsrsinfo-projjson
+  timeout_seconds: 180
+  tags:
+  - usage
+  - json
+  - gdal
+- id: usage-gdal-gdalinfo-json-size
+  title: GDAL gdalinfo JSON size
+  description: Runs gdalinfo JSON output on the bundled GDAL icon and verifies raster dimensions.
+  kind: usage
+  client_application: gdal
+  command:
+  - bash
+  - /validator/tests/libjson/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-gdal-gdalinfo-json-size
+  timeout_seconds: 180
+  tags:
+  - usage
+  - json
+  - gdal
+- id: usage-gdal-ogr2ogr-where-value
+  title: GDAL ogr2ogr where filter
+  description: Filters GeoJSON features by attribute value with ogr2ogr and verifies the output count.
+  kind: usage
+  client_application: gdal
+  command:
+  - bash
+  - /validator/tests/libjson/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-gdal-ogr2ogr-where-value
+  timeout_seconds: 180
+  tags:
+  - usage
+  - json
+  - gdal
+- id: usage-gdal-ogr2ogr-sql-group-b
+  title: GDAL ogr2ogr SQL subset
+  description: Runs an SQL query over GeoJSON data with ogr2ogr and verifies the subset output.
+  kind: usage
+  client_application: gdal
+  command:
+  - bash
+  - /validator/tests/libjson/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-gdal-ogr2ogr-sql-group-b
+  timeout_seconds: 180
+  tags:
+  - usage
+  - json
+  - gdal
+- id: usage-gdal-ogr2ogr-csv-export
+  title: GDAL ogr2ogr CSV export
+  description: Exports GeoJSON features to CSV with WKT geometry and verifies the serialized output.
+  kind: usage
+  client_application: gdal
+  command:
+  - bash
+  - /validator/tests/libjson/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-gdal-ogr2ogr-csv-export
+  timeout_seconds: 180
+  tags:
+  - usage
+  - json
+  - gdal
+- id: usage-gdal-ogrinfo-where-name
+  title: GDAL ogrinfo where filter
+  description: Filters GeoJSON features with ogrinfo where syntax and verifies only the matching feature remains.
+  kind: usage
+  client_application: gdal
+  command:
+  - bash
+  - /validator/tests/libjson/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-gdal-ogrinfo-where-name
+  timeout_seconds: 180
+  tags:
+  - usage
+  - json
+  - gdal
+- id: usage-gdal-ogrinfo-json-where
+  title: GDAL ogrinfo JSON where
+  description: Runs ogrinfo JSON output with an attribute filter and verifies the filtered feature count.
+  kind: usage
+  client_application: gdal
+  command:
+  - bash
+  - /validator/tests/libjson/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-gdal-ogrinfo-json-where
+  timeout_seconds: 180
+  tags:
+  - usage
+  - json
+  - gdal
+- id: usage-gdal-ogr2ogr-multipoint
+  title: GDAL ogr2ogr multipoint
+  description: Forces GeoJSON output geometry to MultiPoint with ogr2ogr and verifies the geometry type.
+  kind: usage
+  client_application: gdal
+  command:
+  - bash
+  - /validator/tests/libjson/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-gdal-ogr2ogr-multipoint
+  timeout_seconds: 180
+  tags:
+  - usage
+  - json
+  - gdal
+- id: usage-gdal-ogr2ogr-spatial-filter
+  title: GDAL ogr2ogr spatial filter
+  description: Applies a spatial filter during GeoJSON export with ogr2ogr and verifies the reduced feature set.
+  kind: usage
+  client_application: gdal
+  command:
+  - bash
+  - /validator/tests/libjson/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-gdal-ogr2ogr-spatial-filter
+  timeout_seconds: 180
+  tags:
+  - usage
+  - json
+  - gdal
+- id: usage-gdal-ogrinfo-summary-only
+  title: GDAL ogrinfo summary only
+  description: Runs ogrinfo summary mode on GeoJSON data and verifies feature count output.
+  kind: usage
+  client_application: gdal
+  command:
+  - bash
+  - /validator/tests/libjson/tests/cases/usage/usage-extra-client-behavior.sh
+  - usage-gdal-ogrinfo-summary-only
+  timeout_seconds: 180
+  tags:
+  - usage
+  - json
+  - gdal
