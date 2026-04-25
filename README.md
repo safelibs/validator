@@ -192,7 +192,9 @@ bash test.sh \
 It runs unit tests, validates testcase manifests, fetches port debs, executes
 the original and port matrices, generates original and port proofs, renders the
 dual-mode `site/`, verifies the rendered output, and publishes the verified
-site directory with GitHub Pages.
+site directory with GitHub Pages. Workflow success requires the original proof
+and rendered site verification to pass; port proof failures remain published as
+validation findings and do not by themselves fail the workflows.
 
 ## Variables
 

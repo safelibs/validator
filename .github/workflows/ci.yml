@@ -135,14 +135,6 @@ jobs:
             --proof-path "$PORT_PROOF_PATH" \
             --site-root "$SITE_ROOT"
 
-      - name: Evaluate proof failures
-        if: always()
-        run: |
-          original_proof_failed=$(python3 -c 'import json, os; print(json.load(open(os.environ["ORIGINAL_PROOF_PATH"]))["totals"]["failed"])' 2>/dev/null || echo 1)
-          port_proof_failed=$(python3 -c 'import json, os; print(json.load(open(os.environ["PORT_PROOF_PATH"]))["totals"]["failed"])' 2>/dev/null || echo 1)
-          echo "original_proof_failed=$original_proof_failed" >> "$GITHUB_ENV"
-          echo "port_proof_failed=$port_proof_failed" >> "$GITHUB_ENV"
-
       - name: Upload validation artifacts
         uses: actions/upload-artifact@v4
         if: always()
@@ -152,21 +144,14 @@ jobs:
             ${{ env.ARTIFACT_ROOT }}
             ${{ env.SITE_ROOT }}
 
-      - name: Report matrix status
+      - name: Report validation status
         if: always()
         run: |
-          if [ "${original_matrix_exit:-0}" -ne 0 ]; then
-            exit "$original_matrix_exit"
-          fi
-          if [ "${port_matrix_exit:-0}" -ne 0 ]; then
-            exit "$port_matrix_exit"
-          fi
-          if [ "${original_proof_failed:-1}" -ne 0 ]; then
-            exit 1
-          fi
-          if [ "${port_proof_failed:-1}" -ne 0 ]; then
-            exit 1
-          fi
+          python3 tools/report_ci_status.py \
+            --original-matrix-exit "${original_matrix_exit:-0}" \
+            --port-matrix-exit "${port_matrix_exit:-0}" \
+            --original-proof-path "$ORIGINAL_PROOF_PATH" \
+            --port-proof-path "$PORT_PROOF_PATH"
 
   full-matrix:
     needs: preflight
@@ -263,14 +248,6 @@ jobs:
             --proof-path "$PORT_PROOF_PATH" \
             --site-root "$SITE_ROOT"
 
-      - name: Evaluate proof failures
-        if: always()
-        run: |
-          original_proof_failed=$(python3 -c 'import json, os; print(json.load(open(os.environ["ORIGINAL_PROOF_PATH"]))["totals"]["failed"])' 2>/dev/null || echo 1)
-          port_proof_failed=$(python3 -c 'import json, os; print(json.load(open(os.environ["PORT_PROOF_PATH"]))["totals"]["failed"])' 2>/dev/null || echo 1)
-          echo "original_proof_failed=$original_proof_failed" >> "$GITHUB_ENV"
-          echo "port_proof_failed=$port_proof_failed" >> "$GITHUB_ENV"
-
       - name: Upload validation artifacts
         uses: actions/upload-artifact@v4
         if: always()
@@ -280,18 +257,11 @@ jobs:
             ${{ env.ARTIFACT_ROOT }}
             ${{ env.SITE_ROOT }}
 
-      - name: Report matrix status
+      - name: Report validation status
         if: always()
         run: |
-          if [ "${original_matrix_exit:-0}" -ne 0 ]; then
-            exit "$original_matrix_exit"
-          fi
-          if [ "${port_matrix_exit:-0}" -ne 0 ]; then
-            exit "$port_matrix_exit"
-          fi
-          if [ "${original_proof_failed:-1}" -ne 0 ]; then
-            exit 1
-          fi
-          if [ "${port_proof_failed:-1}" -ne 0 ]; then
-            exit 1
-          fi
+          python3 tools/report_ci_status.py \
+            --original-matrix-exit "${original_matrix_exit:-0}" \
+            --port-matrix-exit "${port_matrix_exit:-0}" \
+            --original-proof-path "$ORIGINAL_PROOF_PATH" \
+            --port-proof-path "$PORT_PROOF_PATH"

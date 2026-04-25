@@ -14,11 +14,6 @@ permissions:
 jobs:
   full-matrix:
     runs-on: ubuntu-24.04
-    outputs:
-      original_matrix_exit: ${{ steps.matrix.outputs.original_matrix_exit }}
-      port_matrix_exit: ${{ steps.matrix.outputs.port_matrix_exit }}
-      original_proof_failed: ${{ steps.proof-failures.outputs.original_proof_failed }}
-      port_proof_failed: ${{ steps.proof-failures.outputs.port_proof_failed }}
     env:
       ARTIFACT_ROOT: .work/pages-artifacts
       SITE_ROOT: site
@@ -97,15 +92,6 @@ jobs:
             --min-cases 843 \
             --require-casts
 
-      - name: Evaluate proof failures
-        id: proof-failures
-        if: always()
-        run: |
-          original_proof_failed=$(python3 -c 'import json, os; print(json.load(open(os.environ["ORIGINAL_PROOF_PATH"]))["totals"]["failed"])' 2>/dev/null || echo 1)
-          port_proof_failed=$(python3 -c 'import json, os; print(json.load(open(os.environ["PORT_PROOF_PATH"]))["totals"]["failed"])' 2>/dev/null || echo 1)
-          echo "original_proof_failed=$original_proof_failed" >> "$GITHUB_OUTPUT"
-          echo "port_proof_failed=$port_proof_failed" >> "$GITHUB_OUTPUT"
-
       - name: Render site
         if: always()
         run: |
@@ -135,6 +121,15 @@ jobs:
         with:
           path: site
 
+      - name: Report validation status
+        if: always()
+        run: |
+          python3 tools/report_ci_status.py \
+            --original-matrix-exit "${{ steps.matrix.outputs.original_matrix_exit }}" \
+            --port-matrix-exit "${{ steps.matrix.outputs.port_matrix_exit }}" \
+            --original-proof-path "$ORIGINAL_PROOF_PATH" \
+            --port-proof-path "$PORT_PROOF_PATH"
+
   deploy-pages:
     needs: full-matrix
     runs-on: ubuntu-24.04
@@ -159,24 +154,5 @@ jobs:
             exit 1
           fi
           if [ "${{ needs.deploy-pages.result }}" != "success" ]; then
-            exit 1
-          fi
-          original_matrix_exit="${{ needs.full-matrix.outputs.original_matrix_exit }}"
-          port_matrix_exit="${{ needs.full-matrix.outputs.port_matrix_exit }}"
-          original_proof_failed="${{ needs.full-matrix.outputs.original_proof_failed }}"
-          port_proof_failed="${{ needs.full-matrix.outputs.port_proof_failed }}"
-          if [ -z "$original_matrix_exit" ] || [ -z "$port_matrix_exit" ]; then
-            exit 1
-          fi
-          if [ "$original_matrix_exit" -ne 0 ]; then
-            exit "$original_matrix_exit"
-          fi
-          if [ "$port_matrix_exit" -ne 0 ]; then
-            exit "$port_matrix_exit"
-          fi
-          if [ -z "$original_proof_failed" ] || [ "$original_proof_failed" -ne 0 ]; then
-            exit 1
-          fi
-          if [ -z "$port_proof_failed" ] || [ "$port_proof_failed" -ne 0 ]; then
             exit 1
           fi
