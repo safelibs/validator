@@ -814,10 +814,10 @@ testcases:
   - usage
 
 - id: usage-pngquant-posterize-three-png
-  title: pngquant posterize three PNG
-  description: Exercises pngquant posterize three png through a dependent-client usage scenario.
+  title: netpbm crop generated PNG border
+  description: Converts a generated PNG through Netpbm and verifies pnmcrop removes a zero border down to the populated center pixels.
   kind: usage
-  client_application: pngquant
+  client_application: netpbm
   command:
   - bash
   - /validator/tests/libpng/tests/cases/usage/usage-further-client-behavior.sh

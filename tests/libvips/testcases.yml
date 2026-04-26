@@ -733,8 +733,8 @@ testcases:
   - usage
 
 - id: usage-ruby-vips-rot90-generated
-  title: ruby-vips generated rot90
-  description: Exercises ruby-vips generated rot90 through a dependent-client usage scenario.
+  title: ruby-vips generated gravity crop
+  description: Crops a generated grayscale image with ruby-vips gravity and verifies the centered pixel payload.
   kind: usage
   client_application: ruby-vips
   command:
@@ -850,8 +850,8 @@ testcases:
   - usage
 
 - id: usage-ruby-vips-bandjoin-array-generated
-  title: ruby-vips generated bandjoin array
-  description: Exercises ruby-vips generated bandjoin array through a dependent-client usage scenario.
+  title: ruby-vips generated ifthenelse
+  description: Applies ruby-vips ifthenelse to generated mask and image inputs and verifies the selected pixel payload.
   kind: usage
   client_application: ruby-vips
   command:

@@ -815,8 +815,8 @@ testcases:
   - gif
   - gifbuild
 - id: usage-giflib-tools-gifbuild-treescap-dump-lines
-  title: gifbuild treescap dump lines
-  description: Dumps the treescap fixture with gifbuild and verifies the textual dump contains at least one line.
+  title: gifbuild interlace flag dump
+  description: Dumps plain and interlaced treescap fixtures with gifbuild and verifies only the interlaced dump reports the interlace flag.
   kind: usage
   client_application: giflib-tools
   command:

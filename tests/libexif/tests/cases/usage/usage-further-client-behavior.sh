@@ -71,10 +71,8 @@ PYCASE
     ;;
   usage-exif-cli-machine-record-count)
     exif --machine-readable "$img" >"$tmpdir/out"
-    if [[ $(wc -l <"$tmpdir/out") -lt 10 ]]; then
-      printf 'expected machine-readable output to contain many rows\n' >&2
-      exit 1
-    fi
+    grep -Fx $'Maker Note\t904 bytes undefined data' "$tmpdir/out" >"$tmpdir/maker"
+    grep -Fx $'ThumbnailSize\t4' "$tmpdir/out" >"$tmpdir/thumb"
     ;;
   *)
     printf 'unknown libexif further usage case: %s\n' "$case_id" >&2

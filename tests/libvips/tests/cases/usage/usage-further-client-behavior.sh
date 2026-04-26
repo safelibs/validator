@@ -23,10 +23,11 @@ end
 
 case case_id
 when 'usage-ruby-vips-rot90-generated'
-  image = gray_image(2, 3, [1, 2, 3, 4, 5, 6])
-  out = image.rot90
-  raise 'bad size' unless out.width == 3 && out.height == 2
-  puts "rot90 #{out.width}x#{out.height}"
+  image = gray_image(3, 3, [1, 2, 3, 4, 5, 6, 7, 8, 9])
+  out = image.gravity(:centre, 2, 2)
+  raise 'gravity mismatch' unless out.width == 2 && out.height == 2
+  raise 'gravity payload mismatch' unless out.write_to_memory.bytes == [1, 2, 4, 5]
+  puts "gravity #{out.width}x#{out.height}"
 when 'usage-ruby-vips-zoom-generated'
   image = gray_image(2, 2, [10, 20, 30, 40])
   out = image.zoom(2, 3)
@@ -66,10 +67,12 @@ when 'usage-ruby-vips-write-memory-generated'
   raise 'memory mismatch' unless bytes.length == 4
   puts "memory #{bytes.length}"
 when 'usage-ruby-vips-bandjoin-array-generated'
-  image = gray_image(1, 1, [12])
-  out = image.bandjoin([30, 200])
-  raise 'bandjoin array mismatch' unless out.bands == 3
-  puts "bands #{out.bands}"
+  mask = gray_image(2, 1, [0, 255])
+  then_image = gray_image(2, 1, [10, 20])
+  else_image = gray_image(2, 1, [30, 40])
+  out = mask.ifthenelse(then_image, else_image)
+  raise 'ifthenelse mismatch' unless out.write_to_memory.bytes == [30, 20]
+  puts "ifthenelse #{out.write_to_memory.bytes.join(',')}"
 else
   raise "unknown libvips further usage case: #{case_id}"
 end

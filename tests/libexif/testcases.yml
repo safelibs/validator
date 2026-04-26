@@ -838,8 +838,8 @@ testcases:
   - usage
 
 - id: usage-exif-cli-machine-record-count
-  title: exif machine-readable record count
-  description: Counts rows in machine-readable exif output to verify structured metadata is emitted.
+  title: exif machine-readable maker note
+  description: Emits full machine-readable EXIF metadata and verifies Maker Note and ThumbnailSize rows from the structured output.
   kind: usage
   client_application: exif
   command:

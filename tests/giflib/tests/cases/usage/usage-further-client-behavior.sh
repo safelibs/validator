@@ -47,8 +47,13 @@ case "$case_id" in
     color_row "$tmpdir/out"
     ;;
   usage-giflib-tools-gifbuild-treescap-dump-lines)
-    gifbuild -d "$samples/treescap.gif" >"$tmpdir/dump.txt"
-    test "$(wc -l <"$tmpdir/dump.txt")" -gt 0
+    gifbuild -d "$samples/treescap.gif" >"$tmpdir/plain.txt"
+    gifbuild -d "$samples/treescap-interlaced.gif" >"$tmpdir/interlaced.txt"
+    if grep -Fq 'image interlaced' "$tmpdir/plain.txt"; then
+      printf 'plain treescap dump unexpectedly reported interlacing\n' >&2
+      exit 1
+    fi
+    validator_assert_contains "$tmpdir/interlaced.txt" 'image interlaced'
     ;;
   usage-giflib-tools-giffix-fire-colormap)
     giffix "$samples/gifgrid.gif" >"$tmpdir/fixed.gif"

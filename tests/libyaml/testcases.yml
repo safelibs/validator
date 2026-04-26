@@ -814,8 +814,8 @@ testcases:
   - yaml
   - python
 - id: usage-python3-yaml-safe-dump-list-indent
-  title: PyYAML safe dump list indent
-  description: Dumps a nested list with safe_dump and a custom indent value and verifies the emitted indentation.
+  title: PyYAML compose_all documents
+  description: Composes multiple YAML documents with compose_all and verifies both document roots are available in order.
   kind: usage
   client_application: python3-yaml
   command:

@@ -172,17 +172,18 @@ EOF
     assert_unique_rgb_max "$tmpdir/out.ppm" 16
     ;;
   usage-pngquant-posterize-three-png)
-    python3 - <<'PYCASE' "$tmpdir/input.pgm"
-import sys
-with open(sys.argv[1], 'w', encoding='ascii') as handle:
-    handle.write('P2\n16 1\n255\n')
-    for value in range(16):
-        handle.write(f'{value * 16} ')
-PYCASE
+    cat >"$tmpdir/input.pgm" <<'EOF'
+P2
+4 3
+255
+0 0 0 0
+0 5 6 0
+0 7 8 0
+EOF
     pnmtopng "$tmpdir/input.pgm" >"$tmpdir/input.png"
-    pngquant --force --posterize 3 --output "$tmpdir/out.png" 256 "$tmpdir/input.png"
-    pngtopnm "$tmpdir/out.png" >"$tmpdir/out.pnm"
-    test -s "$tmpdir/out.pnm"
+    pngtopnm "$tmpdir/input.png" >"$tmpdir/raw.pgm"
+    pnmcrop "$tmpdir/raw.pgm" >"$tmpdir/out.pgm"
+    assert_values "$tmpdir/out.pgm" 2 2 1 '[5, 6, 7, 8]'
     ;;
   usage-pngquant-quality-high-png)
     cat >"$tmpdir/input.ppm" <<'EOF'

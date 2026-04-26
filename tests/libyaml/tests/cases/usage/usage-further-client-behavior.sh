@@ -61,11 +61,10 @@ PYCASE
   usage-python3-yaml-safe-dump-list-indent)
     python3 >"$tmpdir/out" <<'PYCASE'
 import yaml
-text = yaml.safe_dump({'items': ['alpha', 'beta']}, sort_keys=False, indent=4)
-print(text, end='')
+docs = list(yaml.compose_all('---\na: 1\n---\nb: 2\n'))
+print(len(docs), docs[0].value[0][0].value, docs[1].value[0][0].value)
 PYCASE
-    validator_assert_contains "$tmpdir/out" 'items:'
-    validator_assert_contains "$tmpdir/out" '- alpha'
+    validator_assert_contains "$tmpdir/out" '2 a b'
     ;;
   usage-python3-yaml-compose-scalar-tag)
     python3 >"$tmpdir/out" <<'PYCASE'
