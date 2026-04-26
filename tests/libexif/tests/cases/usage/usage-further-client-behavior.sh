@@ -69,7 +69,7 @@ print(match.group(1))
 PYCASE
     validator_assert_contains "$tmpdir/out" 'Canon PowerShot S70'
     ;;
-  usage-exif-cli-machine-record-count)
+  usage-exif-cli-machine-maker-note-thumbnail)
     exif --machine-readable "$img" >"$tmpdir/out"
     grep -Fx $'Maker Note\t904 bytes undefined data' "$tmpdir/out" >"$tmpdir/maker"
     grep -Fx $'ThumbnailSize\t4' "$tmpdir/out" >"$tmpdir/thumb"

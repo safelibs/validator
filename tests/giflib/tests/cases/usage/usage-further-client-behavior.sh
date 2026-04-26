@@ -46,7 +46,7 @@ case "$case_id" in
     gifclrmp "$tmpdir/rebuilt.gif" | tee "$tmpdir/out"
     color_row "$tmpdir/out"
     ;;
-  usage-giflib-tools-gifbuild-treescap-dump-lines)
+  usage-giflib-tools-gifbuild-interlace-flag)
     gifbuild -d "$samples/treescap.gif" >"$tmpdir/plain.txt"
     gifbuild -d "$samples/treescap-interlaced.gif" >"$tmpdir/interlaced.txt"
     if grep -Fq 'image interlaced' "$tmpdir/plain.txt"; then
@@ -55,10 +55,10 @@ case "$case_id" in
     fi
     validator_assert_contains "$tmpdir/interlaced.txt" 'image interlaced'
     ;;
-  usage-giflib-tools-giffix-fire-colormap)
+  usage-giflib-tools-giffix-grid-screen)
     giffix "$samples/gifgrid.gif" >"$tmpdir/fixed.gif"
-    gifclrmp "$tmpdir/fixed.gif" | tee "$tmpdir/out"
-    color_row "$tmpdir/out"
+    giftext "$tmpdir/fixed.gif" | tee "$tmpdir/out"
+    validator_assert_contains "$tmpdir/out" 'Screen Size'
     ;;
   usage-giflib-tools-giffix-treescap-colormap)
     giffix "$samples/treescap.gif" >"$tmpdir/fixed.gif"

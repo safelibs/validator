@@ -813,7 +813,7 @@ testcases:
   tags:
   - usage
 
-- id: usage-pngquant-posterize-three-png
+- id: usage-netpbm-pnmcrop-border-png
   title: netpbm crop generated PNG border
   description: Converts a generated PNG through Netpbm and verifies pnmcrop removes a zero border down to the populated center pixels.
   kind: usage
@@ -821,7 +821,7 @@ testcases:
   command:
   - bash
   - /validator/tests/libpng/tests/cases/usage/usage-further-client-behavior.sh
-  - usage-pngquant-posterize-three-png
+  - usage-netpbm-pnmcrop-border-png
   timeout_seconds: 120
   tags:
   - usage

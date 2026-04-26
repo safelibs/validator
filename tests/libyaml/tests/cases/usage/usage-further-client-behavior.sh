@@ -58,7 +58,7 @@ PYCASE
     validator_assert_contains "$tmpdir/out" 'items:'
     validator_assert_contains "$tmpdir/out" '- 1'
     ;;
-  usage-python3-yaml-safe-dump-list-indent)
+  usage-python3-yaml-compose-all-documents)
     python3 >"$tmpdir/out" <<'PYCASE'
 import yaml
 docs = list(yaml.compose_all('---\na: 1\n---\nb: 2\n'))

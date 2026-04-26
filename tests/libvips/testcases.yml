@@ -732,7 +732,7 @@ testcases:
   tags:
   - usage
 
-- id: usage-ruby-vips-rot90-generated
+- id: usage-ruby-vips-gravity-generated
   title: ruby-vips generated gravity crop
   description: Crops a generated grayscale image with ruby-vips gravity and verifies the centered pixel payload.
   kind: usage
@@ -740,7 +740,7 @@ testcases:
   command:
   - bash
   - /validator/tests/libvips/tests/cases/usage/usage-further-client-behavior.sh
-  - usage-ruby-vips-rot90-generated
+  - usage-ruby-vips-gravity-generated
   timeout_seconds: 120
   tags:
   - usage
@@ -849,7 +849,7 @@ testcases:
   tags:
   - usage
 
-- id: usage-ruby-vips-bandjoin-array-generated
+- id: usage-ruby-vips-ifthenelse-generated
   title: ruby-vips generated ifthenelse
   description: Applies ruby-vips ifthenelse to generated mask and image inputs and verifies the selected pixel payload.
   kind: usage
@@ -857,7 +857,7 @@ testcases:
   command:
   - bash
   - /validator/tests/libvips/tests/cases/usage/usage-further-client-behavior.sh
-  - usage-ruby-vips-bandjoin-array-generated
+  - usage-ruby-vips-ifthenelse-generated
   timeout_seconds: 120
   tags:
   - usage

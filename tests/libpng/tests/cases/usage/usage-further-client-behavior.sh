@@ -184,7 +184,7 @@ PYCASE
     pngtopnm "$tmpdir/out.png" >"$tmpdir/out.ppm"
     assert_unique_rgb_max "$tmpdir/out.ppm" 16
     ;;
-  usage-pngquant-posterize-three-png)
+  usage-netpbm-pnmcrop-border-png)
     cat >"$tmpdir/input.pgm" <<'EOF'
 P2
 4 3

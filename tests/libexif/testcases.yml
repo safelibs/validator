@@ -837,7 +837,7 @@ testcases:
   tags:
   - usage
 
-- id: usage-exif-cli-machine-record-count
+- id: usage-exif-cli-machine-maker-note-thumbnail
   title: exif machine-readable maker note
   description: Emits full machine-readable EXIF metadata and verifies Maker Note and ThumbnailSize rows from the structured output.
   kind: usage
@@ -845,7 +845,7 @@ testcases:
   command:
   - bash
   - /validator/tests/libexif/tests/cases/usage/usage-further-client-behavior.sh
-  - usage-exif-cli-machine-record-count
+  - usage-exif-cli-machine-maker-note-thumbnail
   timeout_seconds: 120
   tags:
   - usage

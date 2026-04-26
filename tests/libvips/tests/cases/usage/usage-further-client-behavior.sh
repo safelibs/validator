@@ -22,7 +22,7 @@ def gray_pixel(image, x, y)
 end
 
 case case_id
-when 'usage-ruby-vips-rot90-generated'
+when 'usage-ruby-vips-gravity-generated'
   image = gray_image(3, 3, [1, 2, 3, 4, 5, 6, 7, 8, 9])
   out = image.gravity(:centre, 2, 2)
   raise 'gravity mismatch' unless out.width == 2 && out.height == 2
@@ -66,7 +66,7 @@ when 'usage-ruby-vips-write-memory-generated'
   bytes = image.write_to_memory.bytes
   raise 'memory mismatch' unless bytes.length == 4
   puts "memory #{bytes.length}"
-when 'usage-ruby-vips-bandjoin-array-generated'
+when 'usage-ruby-vips-ifthenelse-generated'
   mask = gray_image(2, 1, [0, 255])
   then_image = gray_image(2, 1, [10, 20])
   else_image = gray_image(2, 1, [30, 40])

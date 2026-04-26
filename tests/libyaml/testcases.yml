@@ -813,7 +813,7 @@ testcases:
   - usage
   - yaml
   - python
-- id: usage-python3-yaml-safe-dump-list-indent
+- id: usage-python3-yaml-compose-all-documents
   title: PyYAML compose_all documents
   description: Composes multiple YAML documents with compose_all and verifies both document roots are available in order.
   kind: usage
@@ -821,7 +821,7 @@ testcases:
   command:
   - bash
   - /validator/tests/libyaml/tests/cases/usage/usage-further-client-behavior.sh
-  - usage-python3-yaml-safe-dump-list-indent
+  - usage-python3-yaml-compose-all-documents
   timeout_seconds: 180
   tags:
   - usage
