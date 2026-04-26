@@ -441,3 +441,133 @@ testcases:
   tags:
   - usage
   - csv
+- id: usage-readstat-dta-header-fields
+  title: readstat DTA header fields
+  description: Converts CSV to DTA with readstat and verifies the exported CSV header row preserves the expected field order.
+  kind: usage
+  client_application: readstat
+  command:
+  - bash
+  - /validator/tests/libcsv/tests/cases/usage/usage-more-client-behavior.sh
+  - usage-readstat-dta-header-fields
+  timeout_seconds: 180
+  tags:
+  - usage
+  - csv
+- id: usage-readstat-sav-header-fields
+  title: readstat SAV header fields
+  description: Converts CSV to SAV with readstat and verifies the exported CSV header row preserves the expected field order.
+  kind: usage
+  client_application: readstat
+  command:
+  - bash
+  - /validator/tests/libcsv/tests/cases/usage/usage-more-client-behavior.sh
+  - usage-readstat-sav-header-fields
+  timeout_seconds: 180
+  tags:
+  - usage
+  - csv
+- id: usage-readstat-dta-leading-zero-string
+  title: readstat DTA leading zero string
+  description: Converts a string field with leading zeros through DTA and verifies the leading zeros survive export.
+  kind: usage
+  client_application: readstat
+  command:
+  - bash
+  - /validator/tests/libcsv/tests/cases/usage/usage-more-client-behavior.sh
+  - usage-readstat-dta-leading-zero-string
+  timeout_seconds: 180
+  tags:
+  - usage
+  - csv
+- id: usage-readstat-sav-leading-zero-string
+  title: readstat SAV leading zero string
+  description: Converts a string field with leading zeros through SAV and verifies the leading zeros survive export.
+  kind: usage
+  client_application: readstat
+  command:
+  - bash
+  - /validator/tests/libcsv/tests/cases/usage/usage-more-client-behavior.sh
+  - usage-readstat-sav-leading-zero-string
+  timeout_seconds: 180
+  tags:
+  - usage
+  - csv
+- id: usage-readstat-dta-slash-note
+  title: readstat DTA slash note
+  description: Converts a slash-delimited text field through DTA and verifies the punctuation survives export.
+  kind: usage
+  client_application: readstat
+  command:
+  - bash
+  - /validator/tests/libcsv/tests/cases/usage/usage-more-client-behavior.sh
+  - usage-readstat-dta-slash-note
+  timeout_seconds: 180
+  tags:
+  - usage
+  - csv
+- id: usage-readstat-sav-slash-note
+  title: readstat SAV slash note
+  description: Converts a slash-delimited text field through SAV and verifies the punctuation survives export.
+  kind: usage
+  client_application: readstat
+  command:
+  - bash
+  - /validator/tests/libcsv/tests/cases/usage/usage-more-client-behavior.sh
+  - usage-readstat-sav-slash-note
+  timeout_seconds: 180
+  tags:
+  - usage
+  - csv
+- id: usage-readstat-dta-score-sum
+  title: readstat DTA score sum
+  description: Converts multiple CSV rows through DTA and verifies numeric score aggregation over the exported data.
+  kind: usage
+  client_application: readstat
+  command:
+  - bash
+  - /validator/tests/libcsv/tests/cases/usage/usage-more-client-behavior.sh
+  - usage-readstat-dta-score-sum
+  timeout_seconds: 180
+  tags:
+  - usage
+  - csv
+- id: usage-readstat-sav-score-sum
+  title: readstat SAV score sum
+  description: Converts multiple CSV rows through SAV and verifies numeric score aggregation over the exported data.
+  kind: usage
+  client_application: readstat
+  command:
+  - bash
+  - /validator/tests/libcsv/tests/cases/usage/usage-more-client-behavior.sh
+  - usage-readstat-sav-score-sum
+  timeout_seconds: 180
+  tags:
+  - usage
+  - csv
+- id: usage-readstat-dta-row-order
+  title: readstat DTA row order
+  description: Converts multiple CSV rows through DTA and verifies row ordering is preserved in exported data.
+  kind: usage
+  client_application: readstat
+  command:
+  - bash
+  - /validator/tests/libcsv/tests/cases/usage/usage-more-client-behavior.sh
+  - usage-readstat-dta-row-order
+  timeout_seconds: 180
+  tags:
+  - usage
+  - csv
+- id: usage-readstat-sav-row-order
+  title: readstat SAV row order
+  description: Converts multiple CSV rows through SAV and verifies row ordering is preserved in exported data.
+  kind: usage
+  client_application: readstat
+  command:
+  - bash
+  - /validator/tests/libcsv/tests/cases/usage/usage-more-client-behavior.sh
+  - usage-readstat-sav-row-order
+  timeout_seconds: 180
+  tags:
+  - usage
+  - csv

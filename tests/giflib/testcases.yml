@@ -470,3 +470,143 @@ testcases:
   - usage
   - gif
   - roundtrip
+- id: usage-giflib-tools-giftext-fire-image-count
+  title: giftext fire image count
+  description: Dumps fire.gif with giftext and verifies image records are reported in the textual metadata output.
+  kind: usage
+  client_application: giflib-tools
+  command:
+  - bash
+  - /validator/tests/giflib/tests/cases/usage/usage-more-client-behavior.sh
+  - usage-giflib-tools-giftext-fire-image-count
+  timeout_seconds: 180
+  tags:
+  - usage
+  - gif
+  - metadata
+- id: usage-giflib-tools-giftext-grid-color-resolution
+  title: giftext grid color resolution
+  description: Dumps gifgrid.gif with giftext and verifies the color resolution field is present.
+  kind: usage
+  client_application: giflib-tools
+  command:
+  - bash
+  - /validator/tests/giflib/tests/cases/usage/usage-more-client-behavior.sh
+  - usage-giflib-tools-giftext-grid-color-resolution
+  timeout_seconds: 180
+  tags:
+  - usage
+  - gif
+  - metadata
+- id: usage-giflib-tools-gif2rgb-treescap-rgb-size
+  title: gif2rgb treescap RGB size
+  description: Converts treescap.gif to packed RGB output with gif2rgb and verifies the emitted byte stream is nonempty.
+  kind: usage
+  client_application: giflib-tools
+  command:
+  - bash
+  - /validator/tests/giflib/tests/cases/usage/usage-more-client-behavior.sh
+  - usage-giflib-tools-gif2rgb-treescap-rgb-size
+  timeout_seconds: 180
+  tags:
+  - usage
+  - gif
+  - image
+- id: usage-giflib-tools-gif2rgb-grid-planar-size
+  title: gif2rgb grid planar size
+  description: Converts gifgrid.gif to planar RGB files with gif2rgb and verifies the three color planes have matching nonzero sizes.
+  kind: usage
+  client_application: giflib-tools
+  command:
+  - bash
+  - /validator/tests/giflib/tests/cases/usage/usage-more-client-behavior.sh
+  - usage-giflib-tools-gif2rgb-grid-planar-size
+  timeout_seconds: 180
+  tags:
+  - usage
+  - gif
+  - image
+- id: usage-giflib-tools-gifbuild-fire-dump-lines
+  title: gifbuild fire dump lines
+  description: Dumps fire.gif with gifbuild and verifies the textual description contains content.
+  kind: usage
+  client_application: giflib-tools
+  command:
+  - bash
+  - /validator/tests/giflib/tests/cases/usage/usage-more-client-behavior.sh
+  - usage-giflib-tools-gifbuild-fire-dump-lines
+  timeout_seconds: 180
+  tags:
+  - usage
+  - gif
+  - roundtrip
+- id: usage-giflib-tools-gifbuild-interlaced-roundtrip
+  title: gifbuild interlaced round trip
+  description: Dumps and rebuilds the interlaced treescap fixture with gifbuild and verifies the rebuilt GIF metadata.
+  kind: usage
+  client_application: giflib-tools
+  command:
+  - bash
+  - /validator/tests/giflib/tests/cases/usage/usage-more-client-behavior.sh
+  - usage-giflib-tools-gifbuild-interlaced-roundtrip
+  timeout_seconds: 180
+  tags:
+  - usage
+  - gif
+  - roundtrip
+- id: usage-giflib-tools-giffix-interlaced
+  title: giffix interlaced fixture
+  description: Repairs the interlaced treescap fixture with giffix and verifies the fixed GIF remains readable by giftext.
+  kind: usage
+  client_application: giflib-tools
+  command:
+  - bash
+  - /validator/tests/giflib/tests/cases/usage/usage-more-client-behavior.sh
+  - usage-giflib-tools-giffix-interlaced
+  timeout_seconds: 180
+  tags:
+  - usage
+  - gif
+  - repair
+- id: usage-giflib-tools-gifclrmp-treescap
+  title: gifclrmp treescap colormap
+  description: Lists treescap.gif color map entries with gifclrmp and verifies numeric color rows are emitted.
+  kind: usage
+  client_application: giflib-tools
+  command:
+  - bash
+  - /validator/tests/giflib/tests/cases/usage/usage-more-client-behavior.sh
+  - usage-giflib-tools-gifclrmp-treescap
+  timeout_seconds: 180
+  tags:
+  - usage
+  - gif
+  - metadata
+- id: usage-giflib-tools-giftext-fire-color-count
+  title: giftext fire color count
+  description: Dumps fire.gif colormap text with giftext and verifies numeric color table rows are present.
+  kind: usage
+  client_application: giflib-tools
+  command:
+  - bash
+  - /validator/tests/giflib/tests/cases/usage/usage-more-client-behavior.sh
+  - usage-giflib-tools-giftext-fire-color-count
+  timeout_seconds: 180
+  tags:
+  - usage
+  - gif
+  - metadata
+- id: usage-giflib-tools-gifbuild-grid-roundtrip
+  title: gifbuild grid round trip
+  description: Dumps and rebuilds gifgrid.gif with gifbuild and verifies the rebuilt GIF metadata remains readable.
+  kind: usage
+  client_application: giflib-tools
+  command:
+  - bash
+  - /validator/tests/giflib/tests/cases/usage/usage-more-client-behavior.sh
+  - usage-giflib-tools-gifbuild-grid-roundtrip
+  timeout_seconds: 180
+  tags:
+  - usage
+  - gif
+  - roundtrip

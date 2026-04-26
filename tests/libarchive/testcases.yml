@@ -460,3 +460,143 @@ testcases:
   - usage
   - archive
   - python
+- id: usage-python-libarchive-c-tar-binary-payload
+  title: python-libarchive-c tar binary payload
+  description: Writes binary bytes through a tar archive in python-libarchive-c and verifies the exact payload round-trips.
+  kind: usage
+  client_application: python3-libarchive-c
+  command:
+  - bash
+  - /validator/tests/libarchive/tests/cases/usage/usage-more-client-behavior.sh
+  - usage-python-libarchive-c-tar-binary-payload
+  timeout_seconds: 180
+  tags:
+  - usage
+  - archive
+  - python
+- id: usage-python-libarchive-c-zip-empty-file
+  title: python-libarchive-c empty ZIP file
+  description: Writes an empty ZIP member through python-libarchive-c and verifies the entry size remains zero when read back.
+  kind: usage
+  client_application: python3-libarchive-c
+  command:
+  - bash
+  - /validator/tests/libarchive/tests/cases/usage/usage-more-client-behavior.sh
+  - usage-python-libarchive-c-zip-empty-file
+  timeout_seconds: 180
+  tags:
+  - usage
+  - archive
+  - python
+- id: usage-python-libarchive-c-memory-reader-zip
+  title: python-libarchive-c memory reader ZIP
+  description: Reads a ZIP archive from in-memory bytes with python-libarchive-c and verifies every entry is decoded.
+  kind: usage
+  client_application: python3-libarchive-c
+  command:
+  - bash
+  - /validator/tests/libarchive/tests/cases/usage/usage-more-client-behavior.sh
+  - usage-python-libarchive-c-memory-reader-zip
+  timeout_seconds: 180
+  tags:
+  - usage
+  - archive
+  - python
+- id: usage-python-libarchive-c-memory-reader-tar
+  title: python-libarchive-c memory reader tar
+  description: Reads a tar archive from in-memory bytes with python-libarchive-c and verifies every entry is decoded.
+  kind: usage
+  client_application: python3-libarchive-c
+  command:
+  - bash
+  - /validator/tests/libarchive/tests/cases/usage/usage-more-client-behavior.sh
+  - usage-python-libarchive-c-memory-reader-tar
+  timeout_seconds: 180
+  tags:
+  - usage
+  - archive
+  - python
+- id: usage-python-libarchive-c-cpio-many-files
+  title: python-libarchive-c many CPIO files
+  description: Writes multiple CPIO members through python-libarchive-c and verifies all files round-trip correctly.
+  kind: usage
+  client_application: python3-libarchive-c
+  command:
+  - bash
+  - /validator/tests/libarchive/tests/cases/usage/usage-more-client-behavior.sh
+  - usage-python-libarchive-c-cpio-many-files
+  timeout_seconds: 180
+  tags:
+  - usage
+  - archive
+  - python
+- id: usage-python-libarchive-c-pax-long-path
+  title: python-libarchive-c pax long path
+  description: Writes a long nested path through python-libarchive-c in pax format and verifies the stored pathname survives readback.
+  kind: usage
+  client_application: python3-libarchive-c
+  command:
+  - bash
+  - /validator/tests/libarchive/tests/cases/usage/usage-more-client-behavior.sh
+  - usage-python-libarchive-c-pax-long-path
+  timeout_seconds: 180
+  tags:
+  - usage
+  - archive
+  - python
+- id: usage-python-libarchive-c-tar-binary-nul
+  title: python-libarchive-c tar NUL bytes
+  description: Stores NUL-delimited binary content in a tar archive with python-libarchive-c and verifies the exact bytes are preserved.
+  kind: usage
+  client_application: python3-libarchive-c
+  command:
+  - bash
+  - /validator/tests/libarchive/tests/cases/usage/usage-more-client-behavior.sh
+  - usage-python-libarchive-c-tar-binary-nul
+  timeout_seconds: 180
+  tags:
+  - usage
+  - archive
+  - python
+- id: usage-python-libarchive-c-zip-repeat-read
+  title: python-libarchive-c ZIP repeat read
+  description: Reads the same ZIP archive twice through python-libarchive-c and verifies repeated reads stay consistent.
+  kind: usage
+  client_application: python3-libarchive-c
+  command:
+  - bash
+  - /validator/tests/libarchive/tests/cases/usage/usage-more-client-behavior.sh
+  - usage-python-libarchive-c-zip-repeat-read
+  timeout_seconds: 180
+  tags:
+  - usage
+  - archive
+  - python
+- id: usage-python-libarchive-c-metadata-count
+  title: python-libarchive-c metadata count
+  description: Reads archive metadata through python-libarchive-c and verifies the expected entry count and byte sizes.
+  kind: usage
+  client_application: python3-libarchive-c
+  command:
+  - bash
+  - /validator/tests/libarchive/tests/cases/usage/usage-more-client-behavior.sh
+  - usage-python-libarchive-c-metadata-count
+  timeout_seconds: 180
+  tags:
+  - usage
+  - archive
+  - python
+- id: usage-python-libarchive-c-zip-binary-payload
+  title: python-libarchive-c ZIP binary payload
+  description: Writes raw binary bytes into a ZIP archive with python-libarchive-c and verifies the exact payload round-trips.
+  kind: usage
+  client_application: python3-libarchive-c
+  command:
+  - bash
+  - /validator/tests/libarchive/tests/cases/usage/usage-more-client-behavior.sh
+  - usage-python-libarchive-c-zip-binary-payload
+  timeout_seconds: 180
+  tags:
+  - usage
+  - archive
+  - python

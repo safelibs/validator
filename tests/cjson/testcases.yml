@@ -459,3 +459,143 @@ testcases:
   - usage
   - json
   - network
+- id: usage-iperf3-json-tcp-protocol-field
+  title: iperf3 JSON TCP protocol field
+  description: Runs a short TCP iperf3 transfer and verifies the emitted JSON records the TCP protocol name.
+  kind: usage
+  client_application: iperf3
+  command:
+  - bash
+  - /validator/tests/cjson/tests/cases/usage/usage-more-client-behavior.sh
+  - usage-iperf3-json-tcp-protocol-field
+  timeout_seconds: 180
+  tags:
+  - usage
+  - json
+  - network
+- id: usage-iperf3-json-udp-protocol-field
+  title: iperf3 JSON UDP protocol field
+  description: Runs a short UDP iperf3 transfer and verifies the emitted JSON records the UDP protocol name.
+  kind: usage
+  client_application: iperf3
+  command:
+  - bash
+  - /validator/tests/cjson/tests/cases/usage/usage-more-client-behavior.sh
+  - usage-iperf3-json-udp-protocol-field
+  timeout_seconds: 180
+  tags:
+  - usage
+  - json
+  - network
+- id: usage-iperf3-json-local-host-loopback
+  title: iperf3 JSON local host loopback
+  description: Verifies iperf3 JSON connection metadata reports the loopback local host during a client run.
+  kind: usage
+  client_application: iperf3
+  command:
+  - bash
+  - /validator/tests/cjson/tests/cases/usage/usage-more-client-behavior.sh
+  - usage-iperf3-json-local-host-loopback
+  timeout_seconds: 180
+  tags:
+  - usage
+  - json
+  - network
+- id: usage-iperf3-json-remote-host-loopback
+  title: iperf3 JSON remote host loopback
+  description: Verifies iperf3 JSON connection metadata reports the loopback remote host during a client run.
+  kind: usage
+  client_application: iperf3
+  command:
+  - bash
+  - /validator/tests/cjson/tests/cases/usage/usage-more-client-behavior.sh
+  - usage-iperf3-json-remote-host-loopback
+  timeout_seconds: 180
+  tags:
+  - usage
+  - json
+  - network
+- id: usage-iperf3-json-blksize-field
+  title: iperf3 JSON block size field
+  description: Sets a custom application block size in iperf3 and verifies the JSON metadata preserves that block size.
+  kind: usage
+  client_application: iperf3
+  command:
+  - bash
+  - /validator/tests/cjson/tests/cases/usage/usage-more-client-behavior.sh
+  - usage-iperf3-json-blksize-field
+  timeout_seconds: 180
+  tags:
+  - usage
+  - json
+  - network
+- id: usage-iperf3-json-omit-field
+  title: iperf3 JSON omit field
+  description: Uses iperf3 warmup omission and verifies the omit interval is recorded in the JSON test metadata.
+  kind: usage
+  client_application: iperf3
+  command:
+  - bash
+  - /validator/tests/cjson/tests/cases/usage/usage-more-client-behavior.sh
+  - usage-iperf3-json-omit-field
+  timeout_seconds: 180
+  tags:
+  - usage
+  - json
+  - network
+- id: usage-iperf3-json-parallel-stream-count
+  title: iperf3 JSON parallel stream count
+  description: Runs iperf3 with parallel client streams and verifies the JSON test metadata records the stream count.
+  kind: usage
+  client_application: iperf3
+  command:
+  - bash
+  - /validator/tests/cjson/tests/cases/usage/usage-more-client-behavior.sh
+  - usage-iperf3-json-parallel-stream-count
+  timeout_seconds: 180
+  tags:
+  - usage
+  - json
+  - network
+- id: usage-iperf3-json-intervals-array
+  title: iperf3 JSON intervals array
+  description: Requests interval reporting from iperf3 and verifies the JSON output includes at least one interval record.
+  kind: usage
+  client_application: iperf3
+  command:
+  - bash
+  - /validator/tests/cjson/tests/cases/usage/usage-more-client-behavior.sh
+  - usage-iperf3-json-intervals-array
+  timeout_seconds: 180
+  tags:
+  - usage
+  - json
+  - network
+- id: usage-iperf3-json-fixed-bytes-accounting
+  title: iperf3 JSON fixed bytes accounting
+  description: Transfers a fixed byte count through iperf3 and verifies the JSON summary reports at least that many sent bytes.
+  kind: usage
+  client_application: iperf3
+  command:
+  - bash
+  - /validator/tests/cjson/tests/cases/usage/usage-more-client-behavior.sh
+  - usage-iperf3-json-fixed-bytes-accounting
+  timeout_seconds: 180
+  tags:
+  - usage
+  - json
+  - network
+- id: usage-iperf3-json-udp-loss-percent
+  title: iperf3 JSON UDP loss percent
+  description: Runs a short UDP iperf3 transfer and verifies the JSON summary exposes the packet loss percentage field.
+  kind: usage
+  client_application: iperf3
+  command:
+  - bash
+  - /validator/tests/cjson/tests/cases/usage/usage-more-client-behavior.sh
+  - usage-iperf3-json-udp-loss-percent
+  timeout_seconds: 180
+  tags:
+  - usage
+  - json
+  - network

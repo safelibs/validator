@@ -471,3 +471,143 @@ testcases:
   - usage
   - image
   - ruby
+- id: usage-ruby-vips-fliphor-sample
+  title: ruby-vips horizontal flip sample
+  description: Flips the bundled PNG sample horizontally with ruby-vips and verifies the image dimensions stay unchanged.
+  kind: usage
+  client_application: ruby-vips
+  command:
+  - bash
+  - /validator/tests/libvips/tests/cases/usage/usage-more-client-behavior.sh
+  - usage-ruby-vips-fliphor-sample
+  timeout_seconds: 180
+  tags:
+  - usage
+  - image
+  - ruby
+- id: usage-ruby-vips-flipver-sample
+  title: ruby-vips vertical flip sample
+  description: Flips the bundled PNG sample vertically with ruby-vips and verifies the image dimensions stay unchanged.
+  kind: usage
+  client_application: ruby-vips
+  command:
+  - bash
+  - /validator/tests/libvips/tests/cases/usage/usage-more-client-behavior.sh
+  - usage-ruby-vips-flipver-sample
+  timeout_seconds: 180
+  tags:
+  - usage
+  - image
+  - ruby
+- id: usage-ruby-vips-rot180-sample
+  title: ruby-vips 180 degree rotation
+  description: Rotates the bundled JPEG sample by 180 degrees with ruby-vips and verifies the image dimensions remain stable.
+  kind: usage
+  client_application: ruby-vips
+  command:
+  - bash
+  - /validator/tests/libvips/tests/cases/usage/usage-more-client-behavior.sh
+  - usage-ruby-vips-rot180-sample
+  timeout_seconds: 180
+  tags:
+  - usage
+  - image
+  - ruby
+- id: usage-ruby-vips-insert-generated
+  title: ruby-vips insert generated image
+  description: Inserts a smaller synthetic image into a base canvas with ruby-vips and verifies the output dimensions.
+  kind: usage
+  client_application: ruby-vips
+  command:
+  - bash
+  - /validator/tests/libvips/tests/cases/usage/usage-more-client-behavior.sh
+  - usage-ruby-vips-insert-generated
+  timeout_seconds: 180
+  tags:
+  - usage
+  - image
+  - ruby
+- id: usage-ruby-vips-read-buffer-png
+  title: ruby-vips read PNG buffer
+  description: Writes a synthetic PNG buffer with ruby-vips, reloads it from memory, and verifies the decoded dimensions.
+  kind: usage
+  client_application: ruby-vips
+  command:
+  - bash
+  - /validator/tests/libvips/tests/cases/usage/usage-more-client-behavior.sh
+  - usage-ruby-vips-read-buffer-png
+  timeout_seconds: 180
+  tags:
+  - usage
+  - image
+  - ruby
+- id: usage-ruby-vips-extract-area-generated
+  title: ruby-vips extract area generated
+  description: Crops a generated image with ruby-vips extract_area and verifies the selected output dimensions.
+  kind: usage
+  client_application: ruby-vips
+  command:
+  - bash
+  - /validator/tests/libvips/tests/cases/usage/usage-more-client-behavior.sh
+  - usage-ruby-vips-extract-area-generated
+  timeout_seconds: 180
+  tags:
+  - usage
+  - image
+  - ruby
+- id: usage-ruby-vips-bandmean-generated
+  title: ruby-vips bandmean generated
+  description: Computes a band-mean image from generated RGB data with ruby-vips and verifies the result becomes single-band.
+  kind: usage
+  client_application: ruby-vips
+  command:
+  - bash
+  - /validator/tests/libvips/tests/cases/usage/usage-more-client-behavior.sh
+  - usage-ruby-vips-bandmean-generated
+  timeout_seconds: 180
+  tags:
+  - usage
+  - image
+  - ruby
+- id: usage-ruby-vips-embed-generated
+  title: ruby-vips embed generated image
+  description: Embeds a generated image inside a larger canvas with ruby-vips and verifies the expanded output size.
+  kind: usage
+  client_application: ruby-vips
+  command:
+  - bash
+  - /validator/tests/libvips/tests/cases/usage/usage-more-client-behavior.sh
+  - usage-ruby-vips-embed-generated
+  timeout_seconds: 180
+  tags:
+  - usage
+  - image
+  - ruby
+- id: usage-ruby-vips-flatten-background
+  title: ruby-vips flatten background
+  description: Flattens a generated RGBA image onto a solid background with ruby-vips and verifies the alpha channel is removed.
+  kind: usage
+  client_application: ruby-vips
+  command:
+  - bash
+  - /validator/tests/libvips/tests/cases/usage/usage-more-client-behavior.sh
+  - usage-ruby-vips-flatten-background
+  timeout_seconds: 180
+  tags:
+  - usage
+  - image
+  - ruby
+- id: usage-ruby-vips-png-file-output
+  title: ruby-vips PNG file output
+  description: Saves a synthetic PNG with ruby-vips, reloads it, and verifies the output file is nonempty and decodable.
+  kind: usage
+  client_application: ruby-vips
+  command:
+  - bash
+  - /validator/tests/libvips/tests/cases/usage/usage-more-client-behavior.sh
+  - usage-ruby-vips-png-file-output
+  timeout_seconds: 180
+  tags:
+  - usage
+  - image
+  - ruby

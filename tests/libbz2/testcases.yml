@@ -449,3 +449,143 @@ testcases:
   - usage
   - compression
   - cli
+- id: usage-bzip2-stdin-stdout-roundtrip
+  title: bzip2 stdin stdout round trip
+  description: Compresses data from stdin with bzip2, decompresses to stdout, and verifies the original payload returns intact.
+  kind: usage
+  client_application: bzip2
+  command:
+  - bash
+  - /validator/tests/libbz2/tests/cases/usage/usage-more-client-behavior.sh
+  - usage-bzip2-stdin-stdout-roundtrip
+  timeout_seconds: 180
+  tags:
+  - usage
+  - compression
+  - cli
+- id: usage-bunzip2-stdout-sample1
+  title: bunzip2 stdout sample1
+  description: Decompresses the bundled sample1 fixture to stdout with bunzip2 and verifies byte-for-byte parity with the reference file.
+  kind: usage
+  client_application: bzip2
+  command:
+  - bash
+  - /validator/tests/libbz2/tests/cases/usage/usage-more-client-behavior.sh
+  - usage-bunzip2-stdout-sample1
+  timeout_seconds: 180
+  tags:
+  - usage
+  - compression
+  - cli
+- id: usage-bzcat-sample2-lines
+  title: bzcat sample2 lines
+  description: Streams the bundled sample2 fixture through bzcat and verifies the decompressed text is nonempty.
+  kind: usage
+  client_application: bzip2
+  command:
+  - bash
+  - /validator/tests/libbz2/tests/cases/usage/usage-more-client-behavior.sh
+  - usage-bzcat-sample2-lines
+  timeout_seconds: 180
+  tags:
+  - usage
+  - compression
+  - cli
+- id: usage-bzgrep-fixed-string
+  title: bzgrep fixed string
+  description: Searches compressed text with bzgrep fixed-string mode and verifies the matching line is returned.
+  kind: usage
+  client_application: bzip2
+  command:
+  - bash
+  - /validator/tests/libbz2/tests/cases/usage/usage-more-client-behavior.sh
+  - usage-bzgrep-fixed-string
+  timeout_seconds: 180
+  tags:
+  - usage
+  - compression
+  - cli
+- id: usage-bzgrep-count
+  title: bzgrep count matches
+  description: Counts compressed-text matches with bzgrep and verifies the reported total.
+  kind: usage
+  client_application: bzip2
+  command:
+  - bash
+  - /validator/tests/libbz2/tests/cases/usage/usage-more-client-behavior.sh
+  - usage-bzgrep-count
+  timeout_seconds: 180
+  tags:
+  - usage
+  - compression
+  - cli
+- id: usage-bzdiff-different-exit
+  title: bzdiff different files
+  description: Diffs two different compressed files with bzdiff and verifies the command reports a textual difference.
+  kind: usage
+  client_application: bzip2
+  command:
+  - bash
+  - /validator/tests/libbz2/tests/cases/usage/usage-more-client-behavior.sh
+  - usage-bzdiff-different-exit
+  timeout_seconds: 180
+  tags:
+  - usage
+  - compression
+  - cli
+- id: usage-bzcmp-different-exit
+  title: bzcmp different files
+  description: Compares two different compressed files with bzcmp and verifies the command reports a textual difference.
+  kind: usage
+  client_application: bzip2
+  command:
+  - bash
+  - /validator/tests/libbz2/tests/cases/usage/usage-more-client-behavior.sh
+  - usage-bzcmp-different-exit
+  timeout_seconds: 180
+  tags:
+  - usage
+  - compression
+  - cli
+- id: usage-bzip2-best-compress-file
+  title: bzip2 best compression file
+  description: Compresses a file at the highest bzip2 block setting and verifies decompression restores the original payload.
+  kind: usage
+  client_application: bzip2
+  command:
+  - bash
+  - /validator/tests/libbz2/tests/cases/usage/usage-more-client-behavior.sh
+  - usage-bzip2-best-compress-file
+  timeout_seconds: 180
+  tags:
+  - usage
+  - compression
+  - cli
+- id: usage-bzip2-fast-compress-file
+  title: bzip2 fast compression file
+  description: Compresses a file at the fastest bzip2 block setting and verifies decompression restores the original payload.
+  kind: usage
+  client_application: bzip2
+  command:
+  - bash
+  - /validator/tests/libbz2/tests/cases/usage/usage-more-client-behavior.sh
+  - usage-bzip2-fast-compress-file
+  timeout_seconds: 180
+  tags:
+  - usage
+  - compression
+  - cli
+- id: usage-bzip2-empty-stdout
+  title: bzip2 empty stdout stream
+  description: Compresses and decompresses an empty file through stdout and verifies the reconstructed output is still empty.
+  kind: usage
+  client_application: bzip2
+  command:
+  - bash
+  - /validator/tests/libbz2/tests/cases/usage/usage-more-client-behavior.sh
+  - usage-bzip2-empty-stdout
+  timeout_seconds: 180
+  tags:
+  - usage
+  - compression
+  - cli

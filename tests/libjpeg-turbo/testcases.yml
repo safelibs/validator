@@ -473,3 +473,143 @@ testcases:
   - usage
   - jpeg
   - image
+- id: usage-python3-pil-mirror-jpeg
+  title: Pillow mirrors JPEG
+  description: Mirrors a JPEG horizontally with Pillow and verifies the output dimensions remain unchanged.
+  kind: usage
+  client_application: python3-pil
+  command:
+  - bash
+  - /validator/tests/libjpeg-turbo/tests/cases/usage/usage-more-client-behavior.sh
+  - usage-python3-pil-mirror-jpeg
+  timeout_seconds: 180
+  tags:
+  - usage
+  - jpeg
+  - image
+- id: usage-python3-pil-memory-open-jpeg
+  title: Pillow opens JPEG from memory
+  description: Loads a JPEG from an in-memory byte buffer with Pillow and verifies the decoded dimensions.
+  kind: usage
+  client_application: python3-pil
+  command:
+  - bash
+  - /validator/tests/libjpeg-turbo/tests/cases/usage/usage-more-client-behavior.sh
+  - usage-python3-pil-memory-open-jpeg
+  timeout_seconds: 180
+  tags:
+  - usage
+  - jpeg
+  - image
+- id: usage-python3-pil-paste-canvas-jpeg
+  title: Pillow pastes JPEG onto canvas
+  description: Pastes a JPEG onto a larger RGB canvas with Pillow and verifies the saved output dimensions.
+  kind: usage
+  client_application: python3-pil
+  command:
+  - bash
+  - /validator/tests/libjpeg-turbo/tests/cases/usage/usage-more-client-behavior.sh
+  - usage-python3-pil-paste-canvas-jpeg
+  timeout_seconds: 180
+  tags:
+  - usage
+  - jpeg
+  - image
+- id: usage-python3-pil-point-offset-jpeg
+  title: Pillow point offset JPEG
+  description: Applies a point-wise channel offset to a JPEG with Pillow and verifies the transformed image remains decodable.
+  kind: usage
+  client_application: python3-pil
+  command:
+  - bash
+  - /validator/tests/libjpeg-turbo/tests/cases/usage/usage-more-client-behavior.sh
+  - usage-python3-pil-point-offset-jpeg
+  timeout_seconds: 180
+  tags:
+  - usage
+  - jpeg
+  - image
+- id: usage-python3-pil-rotate-270-jpeg
+  title: Pillow rotates JPEG 270 degrees
+  description: Rotates a JPEG by 270 degrees with Pillow and verifies the swapped output dimensions.
+  kind: usage
+  client_application: python3-pil
+  command:
+  - bash
+  - /validator/tests/libjpeg-turbo/tests/cases/usage/usage-more-client-behavior.sh
+  - usage-python3-pil-rotate-270-jpeg
+  timeout_seconds: 180
+  tags:
+  - usage
+  - jpeg
+  - image
+- id: usage-vips-rot270-jpeg
+  title: vips rotates JPEG 270 degrees
+  description: Rotates a JPEG by 270 degrees with vips and verifies the output dimensions.
+  kind: usage
+  client_application: vips
+  command:
+  - bash
+  - /validator/tests/libjpeg-turbo/tests/cases/usage/usage-more-client-behavior.sh
+  - usage-vips-rot270-jpeg
+  timeout_seconds: 180
+  tags:
+  - usage
+  - jpeg
+  - image
+- id: usage-vips-flip-vertical-jpeg
+  title: vips vertical flip JPEG
+  description: Flips a JPEG vertically with vips and verifies the output dimensions remain unchanged.
+  kind: usage
+  client_application: vips
+  command:
+  - bash
+  - /validator/tests/libjpeg-turbo/tests/cases/usage/usage-more-client-behavior.sh
+  - usage-vips-flip-vertical-jpeg
+  timeout_seconds: 180
+  tags:
+  - usage
+  - jpeg
+  - image
+- id: usage-vips-extract-strip-jpeg
+  title: vips extracts JPEG strip
+  description: Extracts a one-pixel-high strip from a JPEG with vips and verifies the cropped output dimensions.
+  kind: usage
+  client_application: vips
+  command:
+  - bash
+  - /validator/tests/libjpeg-turbo/tests/cases/usage/usage-more-client-behavior.sh
+  - usage-vips-extract-strip-jpeg
+  timeout_seconds: 180
+  tags:
+  - usage
+  - jpeg
+  - image
+- id: usage-vips-resize-double-jpeg
+  title: vips doubles JPEG size
+  description: Resizes a JPEG by a factor of two with vips and verifies the expanded output dimensions.
+  kind: usage
+  client_application: vips
+  command:
+  - bash
+  - /validator/tests/libjpeg-turbo/tests/cases/usage/usage-more-client-behavior.sh
+  - usage-vips-resize-double-jpeg
+  timeout_seconds: 180
+  tags:
+  - usage
+  - jpeg
+  - image
+- id: usage-vips-copy-ppm-jpeg
+  title: vips copies JPEG to PPM
+  description: Converts a JPEG to PPM with vips copy and verifies the resulting Netpbm file is produced.
+  kind: usage
+  client_application: vips
+  command:
+  - bash
+  - /validator/tests/libjpeg-turbo/tests/cases/usage/usage-more-client-behavior.sh
+  - usage-vips-copy-ppm-jpeg
+  timeout_seconds: 180
+  tags:
+  - usage
+  - jpeg
+  - image

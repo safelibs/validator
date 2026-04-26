@@ -454,3 +454,133 @@ testcases:
   tags:
   - usage
   - json
+- id: usage-jshon-root-bool-type
+  title: jshon rejects root bool document
+  description: Runs jshon against a root boolean document and verifies the client rejects primitive-root JSON input.
+  kind: usage
+  client_application: jshon
+  command:
+  - bash
+  - /validator/tests/libjansson/tests/cases/usage/usage-more-client-behavior.sh
+  - usage-jshon-root-bool-type
+  timeout_seconds: 180
+  tags:
+  - usage
+  - json
+- id: usage-jshon-root-null-type
+  title: jshon rejects root null document
+  description: Runs jshon against a root null document and verifies the client rejects primitive-root JSON input.
+  kind: usage
+  client_application: jshon
+  command:
+  - bash
+  - /validator/tests/libjansson/tests/cases/usage/usage-more-client-behavior.sh
+  - usage-jshon-root-null-type
+  timeout_seconds: 180
+  tags:
+  - usage
+  - json
+- id: usage-jshon-empty-array-length
+  title: jshon empty array length
+  description: Measures the length of an empty root JSON array with jshon and verifies the result is zero.
+  kind: usage
+  client_application: jshon
+  command:
+  - bash
+  - /validator/tests/libjansson/tests/cases/usage/usage-more-client-behavior.sh
+  - usage-jshon-empty-array-length
+  timeout_seconds: 180
+  tags:
+  - usage
+  - json
+- id: usage-jshon-empty-object-length
+  title: jshon empty object length
+  description: Measures the length of an empty root JSON object with jshon and verifies the result is zero.
+  kind: usage
+  client_application: jshon
+  command:
+  - bash
+  - /validator/tests/libjansson/tests/cases/usage/usage-more-client-behavior.sh
+  - usage-jshon-empty-object-length
+  timeout_seconds: 180
+  tags:
+  - usage
+  - json
+- id: usage-jshon-root-string-type
+  title: jshon rejects root string document
+  description: Runs jshon against a root JSON string and verifies the client rejects primitive-root JSON input.
+  kind: usage
+  client_application: jshon
+  command:
+  - bash
+  - /validator/tests/libjansson/tests/cases/usage/usage-more-client-behavior.sh
+  - usage-jshon-root-string-type
+  timeout_seconds: 180
+  tags:
+  - usage
+  - json
+- id: usage-jshon-unicode-string
+  title: jshon unicode string
+  description: Extracts a JSON string containing escaped Unicode through jshon and verifies the decoded text is emitted.
+  kind: usage
+  client_application: jshon
+  command:
+  - bash
+  - /validator/tests/libjansson/tests/cases/usage/usage-more-client-behavior.sh
+  - usage-jshon-unicode-string
+  timeout_seconds: 180
+  tags:
+  - usage
+  - json
+- id: usage-jshon-escaped-string
+  title: jshon escaped string
+  description: Extracts a JSON string containing escape sequences with jshon and verifies the unescaped text is emitted.
+  kind: usage
+  client_application: jshon
+  command:
+  - bash
+  - /validator/tests/libjansson/tests/cases/usage/usage-more-client-behavior.sh
+  - usage-jshon-escaped-string
+  timeout_seconds: 180
+  tags:
+  - usage
+  - json
+- id: usage-jshon-file-empty-object
+  title: jshon file empty object
+  description: Loads an empty object from a JSON file path with jshon and verifies the document type.
+  kind: usage
+  client_application: jshon
+  command:
+  - bash
+  - /validator/tests/libjansson/tests/cases/usage/usage-more-client-behavior.sh
+  - usage-jshon-file-empty-object
+  timeout_seconds: 180
+  tags:
+  - usage
+  - json
+- id: usage-jshon-file-array-object-key
+  title: jshon file array object key
+  description: Traverses an object inside a JSON array loaded from file and verifies the selected field value.
+  kind: usage
+  client_application: jshon
+  command:
+  - bash
+  - /validator/tests/libjansson/tests/cases/usage/usage-more-client-behavior.sh
+  - usage-jshon-file-array-object-key
+  timeout_seconds: 180
+  tags:
+  - usage
+  - json
+- id: usage-jshon-boolean-array-values
+  title: jshon boolean array values
+  description: Expands a JSON boolean array with jshon and verifies true and false values are emitted.
+  kind: usage
+  client_application: jshon
+  command:
+  - bash
+  - /validator/tests/libjansson/tests/cases/usage/usage-more-client-behavior.sh
+  - usage-jshon-boolean-array-values
+  timeout_seconds: 180
+  tags:
+  - usage
+  - json

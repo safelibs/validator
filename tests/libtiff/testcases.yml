@@ -473,3 +473,143 @@ testcases:
   - usage
   - tiff
   - python
+- id: usage-python3-pil-mirror-left-right-tiff
+  title: Pillow mirrors TIFF left right
+  description: Mirrors a TIFF horizontally with Pillow and verifies the output dimensions remain unchanged.
+  kind: usage
+  client_application: python3-pil
+  command:
+  - bash
+  - /validator/tests/libtiff/tests/cases/usage/usage-more-client-behavior.sh
+  - usage-python3-pil-mirror-left-right-tiff
+  timeout_seconds: 180
+  tags:
+  - usage
+  - tiff
+  - python
+- id: usage-python3-pil-bytesio-open-tiff
+  title: Pillow opens TIFF from memory
+  description: Loads a TIFF from an in-memory byte buffer with Pillow and verifies the decoded image dimensions.
+  kind: usage
+  client_application: python3-pil
+  command:
+  - bash
+  - /validator/tests/libtiff/tests/cases/usage/usage-more-client-behavior.sh
+  - usage-python3-pil-bytesio-open-tiff
+  timeout_seconds: 180
+  tags:
+  - usage
+  - tiff
+  - python
+- id: usage-python3-pil-point-shift-tiff
+  title: Pillow point shift TIFF
+  description: Applies a point-wise channel offset to a TIFF with Pillow and verifies the saved output remains decodable.
+  kind: usage
+  client_application: python3-pil
+  command:
+  - bash
+  - /validator/tests/libtiff/tests/cases/usage/usage-more-client-behavior.sh
+  - usage-python3-pil-point-shift-tiff
+  timeout_seconds: 180
+  tags:
+  - usage
+  - tiff
+  - python
+- id: usage-python3-pil-paste-region-tiff
+  title: Pillow pastes TIFF region
+  description: Pastes a TIFF onto a larger canvas with Pillow and verifies the saved output dimensions.
+  kind: usage
+  client_application: python3-pil
+  command:
+  - bash
+  - /validator/tests/libtiff/tests/cases/usage/usage-more-client-behavior.sh
+  - usage-python3-pil-paste-region-tiff
+  timeout_seconds: 180
+  tags:
+  - usage
+  - tiff
+  - python
+- id: usage-python3-pil-split-merge-tiff
+  title: Pillow split and merge TIFF
+  description: Splits a TIFF into bands with Pillow, merges the bands again, and verifies the result stays decodable.
+  kind: usage
+  client_application: python3-pil
+  command:
+  - bash
+  - /validator/tests/libtiff/tests/cases/usage/usage-more-client-behavior.sh
+  - usage-python3-pil-split-merge-tiff
+  timeout_seconds: 180
+  tags:
+  - usage
+  - tiff
+  - python
+- id: usage-python3-pil-rotate-270-tiff
+  title: Pillow rotates TIFF 270 degrees
+  description: Rotates a TIFF by 270 degrees with Pillow and verifies the swapped output dimensions.
+  kind: usage
+  client_application: python3-pil
+  command:
+  - bash
+  - /validator/tests/libtiff/tests/cases/usage/usage-more-client-behavior.sh
+  - usage-python3-pil-rotate-270-tiff
+  timeout_seconds: 180
+  tags:
+  - usage
+  - tiff
+  - python
+- id: usage-python3-pil-resize-nearest-tiff
+  title: Pillow nearest resize TIFF
+  description: Resizes a TIFF with nearest-neighbor sampling in Pillow and verifies the requested output dimensions.
+  kind: usage
+  client_application: python3-pil
+  command:
+  - bash
+  - /validator/tests/libtiff/tests/cases/usage/usage-more-client-behavior.sh
+  - usage-python3-pil-resize-nearest-tiff
+  timeout_seconds: 180
+  tags:
+  - usage
+  - tiff
+  - python
+- id: usage-python3-pil-getbbox-tiff
+  title: Pillow TIFF bounding box
+  description: Computes a bounding box for a TIFF with Pillow and verifies a valid four-value rectangle is returned.
+  kind: usage
+  client_application: python3-pil
+  command:
+  - bash
+  - /validator/tests/libtiff/tests/cases/usage/usage-more-client-behavior.sh
+  - usage-python3-pil-getbbox-tiff
+  timeout_seconds: 180
+  tags:
+  - usage
+  - tiff
+  - python
+- id: usage-python3-pil-la-mode-tiff
+  title: Pillow LA mode TIFF
+  description: Saves an LA-mode TIFF with Pillow and verifies the reloaded image preserves the grayscale-plus-alpha mode.
+  kind: usage
+  client_application: python3-pil
+  command:
+  - bash
+  - /validator/tests/libtiff/tests/cases/usage/usage-more-client-behavior.sh
+  - usage-python3-pil-la-mode-tiff
+  timeout_seconds: 180
+  tags:
+  - usage
+  - tiff
+  - python
+- id: usage-python3-pil-save-memory-tiff
+  title: Pillow saves TIFF to memory
+  description: Saves a TIFF into an in-memory buffer with Pillow, reloads it, and verifies the buffered image stays decodable.
+  kind: usage
+  client_application: python3-pil
+  command:
+  - bash
+  - /validator/tests/libtiff/tests/cases/usage/usage-more-client-behavior.sh
+  - usage-python3-pil-save-memory-tiff
+  timeout_seconds: 180
+  tags:
+  - usage
+  - tiff
+  - python

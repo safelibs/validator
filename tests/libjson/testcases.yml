@@ -473,3 +473,143 @@ testcases:
   - usage
   - json
   - gdal
+- id: usage-gdal-ogrinfo-layer-name
+  title: GDAL ogrinfo layer name
+  description: Runs ogrinfo in summary mode for the named GeoJSON layer and verifies the reported layer name.
+  kind: usage
+  client_application: gdal
+  command:
+  - bash
+  - /validator/tests/libjson/tests/cases/usage/usage-more-client-behavior.sh
+  - usage-gdal-ogrinfo-layer-name
+  timeout_seconds: 180
+  tags:
+  - usage
+  - json
+  - gdal
+- id: usage-gdal-ogrinfo-sql-order
+  title: GDAL ogrinfo SQL order
+  description: Queries GeoJSON data with ordered SQL through ogrinfo and verifies the highest-valued feature appears first.
+  kind: usage
+  client_application: gdal
+  command:
+  - bash
+  - /validator/tests/libjson/tests/cases/usage/usage-more-client-behavior.sh
+  - usage-gdal-ogrinfo-sql-order
+  timeout_seconds: 180
+  tags:
+  - usage
+  - json
+  - gdal
+- id: usage-gdal-ogr2ogr-append-gpkg
+  title: GDAL ogr2ogr append GPKG
+  description: Appends a second copy of the GeoJSON dataset into a GeoPackage through ogr2ogr and verifies the expanded feature count.
+  kind: usage
+  client_application: gdal
+  command:
+  - bash
+  - /validator/tests/libjson/tests/cases/usage/usage-more-client-behavior.sh
+  - usage-gdal-ogr2ogr-append-gpkg
+  timeout_seconds: 180
+  tags:
+  - usage
+  - json
+  - gdal
+- id: usage-gdal-ogr2ogr-coordinate-precision
+  title: GDAL ogr2ogr coordinate precision
+  description: Rewrites GeoJSON with rounded coordinate precision through ogr2ogr and verifies integral coordinates are emitted.
+  kind: usage
+  client_application: gdal
+  command:
+  - bash
+  - /validator/tests/libjson/tests/cases/usage/usage-more-client-behavior.sh
+  - usage-gdal-ogr2ogr-coordinate-precision
+  timeout_seconds: 180
+  tags:
+  - usage
+  - json
+  - gdal
+- id: usage-gdal-ogr2ogr-select-two-fields
+  title: GDAL ogr2ogr select two fields
+  description: Selects two named fields from GeoJSON through ogr2ogr and verifies omitted properties are absent in the result.
+  kind: usage
+  client_application: gdal
+  command:
+  - bash
+  - /validator/tests/libjson/tests/cases/usage/usage-more-client-behavior.sh
+  - usage-gdal-ogr2ogr-select-two-fields
+  timeout_seconds: 180
+  tags:
+  - usage
+  - json
+  - gdal
+- id: usage-gdal-ogrinfo-json-all-features
+  title: GDAL ogrinfo JSON all features
+  description: Emits JSON layer output from ogrinfo with -al and verifies the reported layer name and feature count.
+  kind: usage
+  client_application: gdal
+  command:
+  - bash
+  - /validator/tests/libjson/tests/cases/usage/usage-more-client-behavior.sh
+  - usage-gdal-ogrinfo-json-all-features
+  timeout_seconds: 180
+  tags:
+  - usage
+  - json
+  - gdal
+- id: usage-gdal-gdalinfo-json-bands-count
+  title: GDAL gdalinfo JSON bands count
+  description: Emits raster JSON metadata from gdalinfo and verifies at least one raster band is described.
+  kind: usage
+  client_application: gdal
+  command:
+  - bash
+  - /validator/tests/libjson/tests/cases/usage/usage-more-client-behavior.sh
+  - usage-gdal-gdalinfo-json-bands-count
+  timeout_seconds: 180
+  tags:
+  - usage
+  - json
+  - gdal
+- id: usage-gdal-ogr2ogr-sql-rename-field
+  title: GDAL ogr2ogr SQL rename field
+  description: Renames a selected field through ogr2ogr SQL output and verifies the renamed property appears in the result.
+  kind: usage
+  client_application: gdal
+  command:
+  - bash
+  - /validator/tests/libjson/tests/cases/usage/usage-more-client-behavior.sh
+  - usage-gdal-ogr2ogr-sql-rename-field
+  timeout_seconds: 180
+  tags:
+  - usage
+  - json
+  - gdal
+- id: usage-gdal-ogr2ogr-csv-headers
+  title: GDAL ogr2ogr CSV headers
+  description: Exports GeoJSON to CSV through ogr2ogr and verifies the emitted header row names the geometry and property columns.
+  kind: usage
+  client_application: gdal
+  command:
+  - bash
+  - /validator/tests/libjson/tests/cases/usage/usage-more-client-behavior.sh
+  - usage-gdal-ogr2ogr-csv-headers
+  timeout_seconds: 180
+  tags:
+  - usage
+  - json
+  - gdal
+- id: usage-gdalsrsinfo-epsg
+  title: GDAL gdalsrsinfo EPSG
+  description: Resolves a spatial reference through gdalsrsinfo and verifies the EPSG authority code is reported.
+  kind: usage
+  client_application: gdal
+  command:
+  - bash
+  - /validator/tests/libjson/tests/cases/usage/usage-more-client-behavior.sh
+  - usage-gdalsrsinfo-epsg
+  timeout_seconds: 180
+  tags:
+  - usage
+  - json
+  - gdal

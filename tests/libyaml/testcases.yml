@@ -469,3 +469,143 @@ testcases:
   - usage
   - yaml
   - python
+- id: usage-python3-yaml-safe-load-nested-map
+  title: PyYAML safe load nested map
+  description: Safely loads a nested YAML mapping with PyYAML and verifies a deeply nested scalar value.
+  kind: usage
+  client_application: python3-yaml
+  command:
+  - bash
+  - /validator/tests/libyaml/tests/cases/usage/usage-more-client-behavior.sh
+  - usage-python3-yaml-safe-load-nested-map
+  timeout_seconds: 180
+  tags:
+  - usage
+  - yaml
+  - python
+- id: usage-python3-yaml-safe-dump-width
+  title: PyYAML safe dump width
+  description: Safely dumps YAML with a narrow width setting and verifies the emitted text still contains the expected sequence values.
+  kind: usage
+  client_application: python3-yaml
+  command:
+  - bash
+  - /validator/tests/libyaml/tests/cases/usage/usage-more-client-behavior.sh
+  - usage-python3-yaml-safe-dump-width
+  timeout_seconds: 180
+  tags:
+  - usage
+  - yaml
+  - python
+- id: usage-python3-yaml-safe-load-bool-list
+  title: PyYAML safe load bool list
+  description: Safely loads a YAML boolean list with PyYAML and verifies the decoded truth values.
+  kind: usage
+  client_application: python3-yaml
+  command:
+  - bash
+  - /validator/tests/libyaml/tests/cases/usage/usage-more-client-behavior.sh
+  - usage-python3-yaml-safe-load-bool-list
+  timeout_seconds: 180
+  tags:
+  - usage
+  - yaml
+  - python
+- id: usage-python3-yaml-full-load-hex-int
+  title: PyYAML full load hex int
+  description: Fully loads a hexadecimal scalar with PyYAML and verifies it is decoded to the expected integer value.
+  kind: usage
+  client_application: python3-yaml
+  command:
+  - bash
+  - /validator/tests/libyaml/tests/cases/usage/usage-more-client-behavior.sh
+  - usage-python3-yaml-full-load-hex-int
+  timeout_seconds: 180
+  tags:
+  - usage
+  - yaml
+  - python
+- id: usage-python3-yaml-compose-sequence
+  title: PyYAML compose sequence
+  description: Composes a YAML sequence node with PyYAML and verifies the parsed node kind and element count.
+  kind: usage
+  client_application: python3-yaml
+  command:
+  - bash
+  - /validator/tests/libyaml/tests/cases/usage/usage-more-client-behavior.sh
+  - usage-python3-yaml-compose-sequence
+  timeout_seconds: 180
+  tags:
+  - usage
+  - yaml
+  - python
+- id: usage-python3-yaml-scan-anchor-token
+  title: PyYAML scan anchor token
+  description: Scans YAML tokens with PyYAML and verifies an anchor token is emitted for anchored input.
+  kind: usage
+  client_application: python3-yaml
+  command:
+  - bash
+  - /validator/tests/libyaml/tests/cases/usage/usage-more-client-behavior.sh
+  - usage-python3-yaml-scan-anchor-token
+  timeout_seconds: 180
+  tags:
+  - usage
+  - yaml
+  - python
+- id: usage-python3-yaml-parse-alias-event
+  title: PyYAML parse alias event
+  description: Parses YAML events with PyYAML and verifies an alias event is emitted for aliased input.
+  kind: usage
+  client_application: python3-yaml
+  command:
+  - bash
+  - /validator/tests/libyaml/tests/cases/usage/usage-more-client-behavior.sh
+  - usage-python3-yaml-parse-alias-event
+  timeout_seconds: 180
+  tags:
+  - usage
+  - yaml
+  - python
+- id: usage-python3-yaml-csafe-dump-flow
+  title: PyYAML CSafeDumper flow style
+  description: Dumps a mapping with PyYAML CSafeDumper in flow style and verifies flow-style YAML is emitted.
+  kind: usage
+  client_application: python3-yaml
+  command:
+  - bash
+  - /validator/tests/libyaml/tests/cases/usage/usage-more-client-behavior.sh
+  - usage-python3-yaml-csafe-dump-flow
+  timeout_seconds: 180
+  tags:
+  - usage
+  - yaml
+  - python
+- id: usage-python3-yaml-csafe-load-mapping
+  title: PyYAML CSafeLoader mapping
+  description: Loads a YAML mapping with PyYAML CSafeLoader and verifies the decoded key-value pairs.
+  kind: usage
+  client_application: python3-yaml
+  command:
+  - bash
+  - /validator/tests/libyaml/tests/cases/usage/usage-more-client-behavior.sh
+  - usage-python3-yaml-csafe-load-mapping
+  timeout_seconds: 180
+  tags:
+  - usage
+  - yaml
+  - python
+- id: usage-python3-yaml-dump-all-explicit-start
+  title: PyYAML dump_all explicit start
+  description: Dumps multiple YAML documents with explicit document starts and verifies both start markers are emitted.
+  kind: usage
+  client_application: python3-yaml
+  command:
+  - bash
+  - /validator/tests/libyaml/tests/cases/usage/usage-more-client-behavior.sh
+  - usage-python3-yaml-dump-all-explicit-start
+  timeout_seconds: 180
+  tags:
+  - usage
+  - yaml
+  - python

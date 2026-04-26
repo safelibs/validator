@@ -459,3 +459,143 @@ testcases:
   - usage
   - jpeg
   - metadata
+- id: usage-exif-cli-machine-orientation
+  title: exif machine orientation
+  description: Reads the Orientation tag in machine-readable mode and verifies the decoded orientation value.
+  kind: usage
+  client_application: exif
+  command:
+  - bash
+  - /validator/tests/libexif/tests/cases/usage/usage-more-client-behavior.sh
+  - usage-exif-cli-machine-orientation
+  timeout_seconds: 180
+  tags:
+  - usage
+  - jpeg
+  - metadata
+- id: usage-exif-cli-machine-focal-length
+  title: exif machine focal length
+  description: Reads the FocalLength tag in machine-readable mode and verifies the decoded focal length value.
+  kind: usage
+  client_application: exif
+  command:
+  - bash
+  - /validator/tests/libexif/tests/cases/usage/usage-more-client-behavior.sh
+  - usage-exif-cli-machine-focal-length
+  timeout_seconds: 180
+  tags:
+  - usage
+  - jpeg
+  - metadata
+- id: usage-exif-cli-machine-color-space
+  title: exif machine color space
+  description: Reads the ColorSpace tag in machine-readable mode and verifies the decoded colorspace value.
+  kind: usage
+  client_application: exif
+  command:
+  - bash
+  - /validator/tests/libexif/tests/cases/usage/usage-more-client-behavior.sh
+  - usage-exif-cli-machine-color-space
+  timeout_seconds: 180
+  tags:
+  - usage
+  - jpeg
+  - metadata
+- id: usage-exif-cli-tag-pixel-x-dimension
+  title: exif pixel X dimension tag
+  description: Reads the PixelXDimension tag and verifies the reported horizontal pixel dimension.
+  kind: usage
+  client_application: exif
+  command:
+  - bash
+  - /validator/tests/libexif/tests/cases/usage/usage-more-client-behavior.sh
+  - usage-exif-cli-tag-pixel-x-dimension
+  timeout_seconds: 180
+  tags:
+  - usage
+  - jpeg
+  - metadata
+- id: usage-exif-cli-tag-pixel-y-dimension
+  title: exif pixel Y dimension tag
+  description: Reads the PixelYDimension tag and verifies the reported vertical pixel dimension.
+  kind: usage
+  client_application: exif
+  command:
+  - bash
+  - /validator/tests/libexif/tests/cases/usage/usage-more-client-behavior.sh
+  - usage-exif-cli-tag-pixel-y-dimension
+  timeout_seconds: 180
+  tags:
+  - usage
+  - jpeg
+  - metadata
+- id: usage-exif-cli-ifd-zero-model
+  title: exif IFD0 model tag
+  description: Dumps the IFD0 tag set and verifies the camera model entry is present in the textual output.
+  kind: usage
+  client_application: exif
+  command:
+  - bash
+  - /validator/tests/libexif/tests/cases/usage/usage-more-client-behavior.sh
+  - usage-exif-cli-ifd-zero-model
+  timeout_seconds: 180
+  tags:
+  - usage
+  - jpeg
+  - metadata
+- id: usage-exif-cli-ifd-zero-orientation
+  title: exif IFD0 orientation tag
+  description: Dumps the IFD0 tag set and verifies the orientation entry is present in the textual output.
+  kind: usage
+  client_application: exif
+  command:
+  - bash
+  - /validator/tests/libexif/tests/cases/usage/usage-more-client-behavior.sh
+  - usage-exif-cli-ifd-zero-orientation
+  timeout_seconds: 180
+  tags:
+  - usage
+  - jpeg
+  - metadata
+- id: usage-exif-cli-list-orientation
+  title: exif list orientation
+  description: Lists EXIF metadata for the sample JPEG and verifies the orientation line and decoded value are present.
+  kind: usage
+  client_application: exif
+  command:
+  - bash
+  - /validator/tests/libexif/tests/cases/usage/usage-more-client-behavior.sh
+  - usage-exif-cli-list-orientation
+  timeout_seconds: 180
+  tags:
+  - usage
+  - jpeg
+  - metadata
+- id: usage-exif-cli-list-focal-length
+  title: exif list focal length
+  description: Lists EXIF metadata for the sample JPEG and verifies the focal length line and decoded value are present.
+  kind: usage
+  client_application: exif
+  command:
+  - bash
+  - /validator/tests/libexif/tests/cases/usage/usage-more-client-behavior.sh
+  - usage-exif-cli-list-focal-length
+  timeout_seconds: 180
+  tags:
+  - usage
+  - jpeg
+  - metadata
+- id: usage-exif-cli-xml-model
+  title: exif XML model tag
+  description: Emits XML metadata and verifies the model element for the sample JPEG is present.
+  kind: usage
+  client_application: exif
+  command:
+  - bash
+  - /validator/tests/libexif/tests/cases/usage/usage-more-client-behavior.sh
+  - usage-exif-cli-xml-model
+  timeout_seconds: 180
+  tags:
+  - usage
+  - jpeg
+  - metadata

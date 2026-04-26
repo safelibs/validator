@@ -461,3 +461,143 @@ testcases:
   - usage
   - image
   - png
+- id: usage-netpbm-pnmflip-topbottom-png
+  title: netpbm top-bottom flip PNG
+  description: Converts a PNG fixture to PNM, flips it top-to-bottom, and verifies the reconstructed PNG output.
+  kind: usage
+  client_application: netpbm
+  command:
+  - bash
+  - /validator/tests/libpng/tests/cases/usage/usage-more-client-behavior.sh
+  - usage-netpbm-pnmflip-topbottom-png
+  timeout_seconds: 180
+  tags:
+  - usage
+  - image
+  - png
+- id: usage-netpbm-pnmcut-corner-png
+  title: netpbm corner cut PNG
+  description: Cuts a corner region from a PNG fixture through PNM tools and verifies the reconstructed PNG output.
+  kind: usage
+  client_application: netpbm
+  command:
+  - bash
+  - /validator/tests/libpng/tests/cases/usage/usage-more-client-behavior.sh
+  - usage-netpbm-pnmcut-corner-png
+  timeout_seconds: 180
+  tags:
+  - usage
+  - image
+  - png
+- id: usage-netpbm-pnmscale-double-png
+  title: netpbm double scale PNG
+  description: Doubles a PNG fixture through PNM scaling tools and verifies the reconstructed PNG output.
+  kind: usage
+  client_application: netpbm
+  command:
+  - bash
+  - /validator/tests/libpng/tests/cases/usage/usage-more-client-behavior.sh
+  - usage-netpbm-pnmscale-double-png
+  timeout_seconds: 180
+  tags:
+  - usage
+  - image
+  - png
+- id: usage-netpbm-pamchannel-green-png
+  title: netpbm green channel PNG
+  description: Extracts the green channel from a PNG fixture with PAM tools and verifies the single-channel output metadata.
+  kind: usage
+  client_application: netpbm
+  command:
+  - bash
+  - /validator/tests/libpng/tests/cases/usage/usage-more-client-behavior.sh
+  - usage-netpbm-pamchannel-green-png
+  timeout_seconds: 180
+  tags:
+  - usage
+  - image
+  - png
+- id: usage-netpbm-pnmfile-roundtrip-png
+  title: netpbm pnmfile round trip PNG
+  description: Round-trips a PNG fixture through PNM conversion tools and verifies pnmfile reports valid image dimensions afterward.
+  kind: usage
+  client_application: netpbm
+  command:
+  - bash
+  - /validator/tests/libpng/tests/cases/usage/usage-more-client-behavior.sh
+  - usage-netpbm-pnmfile-roundtrip-png
+  timeout_seconds: 180
+  tags:
+  - usage
+  - image
+  - png
+- id: usage-pngquant-colors-two-png
+  title: pngquant two colors PNG
+  description: Quantizes a PNG fixture down to two colors with pngquant and verifies PNG output is produced.
+  kind: usage
+  client_application: pngquant
+  command:
+  - bash
+  - /validator/tests/libpng/tests/cases/usage/usage-more-client-behavior.sh
+  - usage-pngquant-colors-two-png
+  timeout_seconds: 180
+  tags:
+  - usage
+  - image
+  - png
+- id: usage-pngquant-quality-low-png
+  title: pngquant low quality range
+  description: Quantizes a PNG fixture with a low quality range in pngquant and verifies PNG output is produced.
+  kind: usage
+  client_application: pngquant
+  command:
+  - bash
+  - /validator/tests/libpng/tests/cases/usage/usage-more-client-behavior.sh
+  - usage-pngquant-quality-low-png
+  timeout_seconds: 180
+  tags:
+  - usage
+  - image
+  - png
+- id: usage-pngquant-speed-eleven-png
+  title: pngquant speed eleven
+  description: Quantizes a PNG fixture at the fastest pngquant speed setting and verifies PNG output is produced.
+  kind: usage
+  client_application: pngquant
+  command:
+  - bash
+  - /validator/tests/libpng/tests/cases/usage/usage-more-client-behavior.sh
+  - usage-pngquant-speed-eleven-png
+  timeout_seconds: 180
+  tags:
+  - usage
+  - image
+  - png
+- id: usage-pngquant-strip-output-png
+  title: pngquant stripped output
+  description: Quantizes a PNG fixture with metadata stripping enabled in pngquant and verifies PNG output is produced.
+  kind: usage
+  client_application: pngquant
+  command:
+  - bash
+  - /validator/tests/libpng/tests/cases/usage/usage-more-client-behavior.sh
+  - usage-pngquant-strip-output-png
+  timeout_seconds: 180
+  tags:
+  - usage
+  - image
+  - png
+- id: usage-pngquant-posterize-two-png
+  title: pngquant posterize two
+  description: Quantizes a PNG fixture with a two-bit posterization setting in pngquant and verifies PNG output is produced.
+  kind: usage
+  client_application: pngquant
+  command:
+  - bash
+  - /validator/tests/libpng/tests/cases/usage/usage-more-client-behavior.sh
+  - usage-pngquant-posterize-two-png
+  timeout_seconds: 180
+  tags:
+  - usage
+  - image
+  - png

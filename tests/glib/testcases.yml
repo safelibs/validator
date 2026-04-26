@@ -483,3 +483,143 @@ testcases:
   - usage
   - glib
   - python
+- id: usage-gio-copy-directory-tree
+  title: gio copies file into directory
+  description: Copies a local file into an existing directory with gio copy and verifies the copied filename and content.
+  kind: usage
+  client_application: gio
+  command:
+  - bash
+  - /validator/tests/glib/tests/cases/usage/usage-more-client-behavior.sh
+  - usage-gio-copy-directory-tree
+  timeout_seconds: 180
+  tags:
+  - usage
+  - gio
+  - filesystem
+- id: usage-gio-info-hidden-flag
+  title: gio reports hidden file flag
+  description: Queries gio file metadata for a dotfile and verifies the hidden attribute is reported as true.
+  kind: usage
+  client_application: gio
+  command:
+  - bash
+  - /validator/tests/glib/tests/cases/usage/usage-more-client-behavior.sh
+  - usage-gio-info-hidden-flag
+  timeout_seconds: 180
+  tags:
+  - usage
+  - gio
+  - metadata
+- id: usage-gio-info-symlink-target
+  title: gio reports symlink target
+  description: Queries gio file metadata for a symbolic link and verifies the target path is reported.
+  kind: usage
+  client_application: gio
+  command:
+  - bash
+  - /validator/tests/glib/tests/cases/usage/usage-more-client-behavior.sh
+  - usage-gio-info-symlink-target
+  timeout_seconds: 180
+  tags:
+  - usage
+  - gio
+  - metadata
+- id: usage-glib-compile-schemas-int
+  title: glib compiles integer schema
+  description: Compiles a GSettings schema with an integer key and verifies gsettings reads the default value.
+  kind: usage
+  client_application: gio
+  command:
+  - bash
+  - /validator/tests/glib/tests/cases/usage/usage-more-client-behavior.sh
+  - usage-glib-compile-schemas-int
+  timeout_seconds: 180
+  tags:
+  - usage
+  - glib
+  - schema
+- id: usage-glib-compile-schemas-string-array
+  title: glib compiles string array schema
+  description: Compiles a GSettings schema with a string-array key and verifies gsettings reads the default list.
+  kind: usage
+  client_application: gio
+  command:
+  - bash
+  - /validator/tests/glib/tests/cases/usage/usage-more-client-behavior.sh
+  - usage-glib-compile-schemas-string-array
+  timeout_seconds: 180
+  tags:
+  - usage
+  - glib
+  - schema
+- id: usage-python3-gi-keyfile-keys
+  title: PyGObject KeyFile keys
+  description: Loads a GLib KeyFile through PyGObject and verifies the declared key names can be enumerated.
+  kind: usage
+  client_application: python3-gi
+  command:
+  - bash
+  - /validator/tests/glib/tests/cases/usage/usage-more-client-behavior.sh
+  - usage-python3-gi-keyfile-keys
+  timeout_seconds: 180
+  tags:
+  - usage
+  - glib
+  - python
+- id: usage-python3-gi-checksum-md5
+  title: PyGObject MD5 checksum
+  description: Computes an MD5 checksum through GLib in PyGObject and verifies the expected digest string.
+  kind: usage
+  client_application: python3-gi
+  command:
+  - bash
+  - /validator/tests/glib/tests/cases/usage/usage-more-client-behavior.sh
+  - usage-python3-gi-checksum-md5
+  timeout_seconds: 180
+  tags:
+  - usage
+  - glib
+  - python
+- id: usage-python3-gi-memory-output-stream
+  title: PyGObject memory output stream
+  description: Writes bytes into a Gio memory output stream through PyGObject and verifies the captured payload.
+  kind: usage
+  client_application: python3-gi
+  command:
+  - bash
+  - /validator/tests/glib/tests/cases/usage/usage-more-client-behavior.sh
+  - usage-python3-gi-memory-output-stream
+  timeout_seconds: 180
+  tags:
+  - usage
+  - glib
+  - python
+- id: usage-python3-gi-uri-parse
+  title: PyGObject URI parse
+  description: Parses a URI through GLib in PyGObject and verifies the scheme, host, and path components.
+  kind: usage
+  client_application: python3-gi
+  command:
+  - bash
+  - /validator/tests/glib/tests/cases/usage/usage-more-client-behavior.sh
+  - usage-python3-gi-uri-parse
+  timeout_seconds: 180
+  tags:
+  - usage
+  - glib
+  - python
+- id: usage-python3-gi-file-query-exists
+  title: PyGObject file exists query
+  description: Uses Gio.File through PyGObject to query whether a local path exists and verifies the boolean result.
+  kind: usage
+  client_application: python3-gi
+  command:
+  - bash
+  - /validator/tests/glib/tests/cases/usage/usage-more-client-behavior.sh
+  - usage-python3-gi-file-query-exists
+  timeout_seconds: 180
+  tags:
+  - usage
+  - glib
+  - python

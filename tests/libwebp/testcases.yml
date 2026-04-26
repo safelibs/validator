@@ -482,3 +482,143 @@ testcases:
   - usage
   - webp
   - sdl
+- id: usage-python3-pil-mirror-webp
+  title: Pillow mirrors WebP
+  description: Mirrors a WebP image horizontally with Pillow and verifies the output dimensions remain unchanged.
+  kind: usage
+  client_application: python3-pil
+  command:
+  - bash
+  - /validator/tests/libwebp/tests/cases/usage/usage-more-client-behavior.sh
+  - usage-python3-pil-mirror-webp
+  timeout_seconds: 180
+  tags:
+  - usage
+  - webp
+  - image
+- id: usage-python3-pil-memory-open-webp
+  title: Pillow opens WebP from memory
+  description: Loads a WebP image from an in-memory byte buffer with Pillow and verifies the decoded dimensions.
+  kind: usage
+  client_application: python3-pil
+  command:
+  - bash
+  - /validator/tests/libwebp/tests/cases/usage/usage-more-client-behavior.sh
+  - usage-python3-pil-memory-open-webp
+  timeout_seconds: 180
+  tags:
+  - usage
+  - webp
+  - image
+- id: usage-python3-pil-paste-canvas-webp
+  title: Pillow pastes WebP onto canvas
+  description: Pastes a WebP image onto a larger RGB canvas with Pillow and verifies the saved output dimensions.
+  kind: usage
+  client_application: python3-pil
+  command:
+  - bash
+  - /validator/tests/libwebp/tests/cases/usage/usage-more-client-behavior.sh
+  - usage-python3-pil-paste-canvas-webp
+  timeout_seconds: 180
+  tags:
+  - usage
+  - webp
+  - image
+- id: usage-python3-pil-point-offset-webp
+  title: Pillow point offset WebP
+  description: Applies a point-wise channel offset to a WebP image with Pillow and verifies the transformed output remains decodable.
+  kind: usage
+  client_application: python3-pil
+  command:
+  - bash
+  - /validator/tests/libwebp/tests/cases/usage/usage-more-client-behavior.sh
+  - usage-python3-pil-point-offset-webp
+  timeout_seconds: 180
+  tags:
+  - usage
+  - webp
+  - image
+- id: usage-python3-pil-rotate-270-webp
+  title: Pillow rotates WebP 270 degrees
+  description: Rotates a WebP image by 270 degrees with Pillow and verifies the swapped output dimensions.
+  kind: usage
+  client_application: python3-pil
+  command:
+  - bash
+  - /validator/tests/libwebp/tests/cases/usage/usage-more-client-behavior.sh
+  - usage-python3-pil-rotate-270-webp
+  timeout_seconds: 180
+  tags:
+  - usage
+  - webp
+  - image
+- id: usage-vips-rot180-webp
+  title: vips rotates WebP 180 degrees
+  description: Rotates a WebP image by 180 degrees with vips and verifies the output dimensions remain unchanged.
+  kind: usage
+  client_application: vips
+  command:
+  - bash
+  - /validator/tests/libwebp/tests/cases/usage/usage-more-client-behavior.sh
+  - usage-vips-rot180-webp
+  timeout_seconds: 180
+  tags:
+  - usage
+  - webp
+  - image
+- id: usage-vips-flip-vertical-webp
+  title: vips vertical flip WebP
+  description: Flips a WebP image vertically with vips and verifies the output dimensions remain unchanged.
+  kind: usage
+  client_application: vips
+  command:
+  - bash
+  - /validator/tests/libwebp/tests/cases/usage/usage-more-client-behavior.sh
+  - usage-vips-flip-vertical-webp
+  timeout_seconds: 180
+  tags:
+  - usage
+  - webp
+  - image
+- id: usage-vips-embed-webp
+  title: vips embeds WebP
+  description: Embeds a WebP image into a larger canvas with vips and verifies the output dimensions.
+  kind: usage
+  client_application: vips
+  command:
+  - bash
+  - /validator/tests/libwebp/tests/cases/usage/usage-more-client-behavior.sh
+  - usage-vips-embed-webp
+  timeout_seconds: 180
+  tags:
+  - usage
+  - webp
+  - image
+- id: usage-ffmpeg-webp-jpeg
+  title: ffmpeg converts WebP to JPEG
+  description: Decodes a WebP image through ffmpeg and writes JPEG output, then verifies the resulting JPEG file format.
+  kind: usage
+  client_application: ffmpeg
+  command:
+  - bash
+  - /validator/tests/libwebp/tests/cases/usage/usage-more-client-behavior.sh
+  - usage-ffmpeg-webp-jpeg
+  timeout_seconds: 180
+  tags:
+  - usage
+  - webp
+  - video
+- id: usage-ffprobe-webp-dimensions
+  title: ffprobe reads WebP dimensions
+  description: Probes a WebP image with ffprobe and verifies the reported width and height fields.
+  kind: usage
+  client_application: ffmpeg
+  command:
+  - bash
+  - /validator/tests/libwebp/tests/cases/usage/usage-more-client-behavior.sh
+  - usage-ffprobe-webp-dimensions
+  timeout_seconds: 180
+  tags:
+  - usage
+  - webp
+  - video

@@ -470,3 +470,143 @@ testcases:
   - usage
   - sdl
   - python
+- id: usage-python3-pygame-draw-ellipse
+  title: Pygame draws ellipse
+  description: Draws an ellipse on a headless Pygame surface and verifies a painted pixel along the outline.
+  kind: usage
+  client_application: python3-pygame
+  command:
+  - bash
+  - /validator/tests/libsdl/tests/cases/usage/usage-more-client-behavior.sh
+  - usage-python3-pygame-draw-ellipse
+  timeout_seconds: 180
+  tags:
+  - usage
+  - sdl
+  - python
+- id: usage-python3-pygame-draw-polygon
+  title: Pygame draws polygon
+  description: Draws a filled polygon on a headless Pygame surface and verifies an interior pixel is colored.
+  kind: usage
+  client_application: python3-pygame
+  command:
+  - bash
+  - /validator/tests/libsdl/tests/cases/usage/usage-more-client-behavior.sh
+  - usage-python3-pygame-draw-polygon
+  timeout_seconds: 180
+  tags:
+  - usage
+  - sdl
+  - python
+- id: usage-python3-pygame-transform-smoothscale
+  title: Pygame smoothscale transform
+  description: Resizes a Pygame surface with smoothscale and verifies the transformed dimensions.
+  kind: usage
+  client_application: python3-pygame
+  command:
+  - bash
+  - /validator/tests/libsdl/tests/cases/usage/usage-more-client-behavior.sh
+  - usage-python3-pygame-transform-smoothscale
+  timeout_seconds: 180
+  tags:
+  - usage
+  - sdl
+  - python
+- id: usage-python3-pygame-rect-clip
+  title: Pygame rect clip
+  description: Intersects two Pygame rectangles and verifies the clipped rectangle dimensions.
+  kind: usage
+  client_application: python3-pygame
+  command:
+  - bash
+  - /validator/tests/libsdl/tests/cases/usage/usage-more-client-behavior.sh
+  - usage-python3-pygame-rect-clip
+  timeout_seconds: 180
+  tags:
+  - usage
+  - sdl
+  - python
+- id: usage-python3-pygame-surface-scroll
+  title: Pygame surface scroll
+  description: Scrolls a Pygame surface and verifies a previously painted pixel moves to the expected location.
+  kind: usage
+  client_application: python3-pygame
+  command:
+  - bash
+  - /validator/tests/libsdl/tests/cases/usage/usage-more-client-behavior.sh
+  - usage-python3-pygame-surface-scroll
+  timeout_seconds: 180
+  tags:
+  - usage
+  - sdl
+  - python
+- id: usage-python3-pygame-timer-event
+  title: Pygame timer event
+  description: Schedules a one-shot timer event in Pygame and verifies the expected user event arrives.
+  kind: usage
+  client_application: python3-pygame
+  command:
+  - bash
+  - /validator/tests/libsdl/tests/cases/usage/usage-more-client-behavior.sh
+  - usage-python3-pygame-timer-event
+  timeout_seconds: 180
+  tags:
+  - usage
+  - sdl
+  - python
+- id: usage-python3-pygame-event-peek
+  title: Pygame event peek
+  description: Posts a custom event in Pygame and verifies event.peek observes the queued event type.
+  kind: usage
+  client_application: python3-pygame
+  command:
+  - bash
+  - /validator/tests/libsdl/tests/cases/usage/usage-more-client-behavior.sh
+  - usage-python3-pygame-event-peek
+  timeout_seconds: 180
+  tags:
+  - usage
+  - sdl
+  - python
+- id: usage-python3-pygame-image-fromstring
+  title: Pygame image fromstring
+  description: Builds a Pygame surface from raw RGB bytes and verifies the decoded dimensions and pixel data.
+  kind: usage
+  client_application: python3-pygame
+  command:
+  - bash
+  - /validator/tests/libsdl/tests/cases/usage/usage-more-client-behavior.sh
+  - usage-python3-pygame-image-fromstring
+  timeout_seconds: 180
+  tags:
+  - usage
+  - sdl
+  - python
+- id: usage-python3-pygame-mask-count
+  title: Pygame mask count
+  description: Creates a Pygame mask from a surface and verifies the number of opaque pixels in the mask.
+  kind: usage
+  client_application: python3-pygame
+  command:
+  - bash
+  - /validator/tests/libsdl/tests/cases/usage/usage-more-client-behavior.sh
+  - usage-python3-pygame-mask-count
+  timeout_seconds: 180
+  tags:
+  - usage
+  - sdl
+  - python
+- id: usage-python3-pygame-display-set-mode
+  title: Pygame display set mode
+  description: Creates a dummy SDL display surface through Pygame and verifies the requested window dimensions.
+  kind: usage
+  client_application: python3-pygame
+  command:
+  - bash
+  - /validator/tests/libsdl/tests/cases/usage/usage-more-client-behavior.sh
+  - usage-python3-pygame-display-set-mode
+  timeout_seconds: 180
+  tags:
+  - usage
+  - sdl
+  - python

@@ -458,3 +458,143 @@ testcases:
   - usage
   - event-loop
   - fs
+- id: usage-nodejs-fs-readdir-names
+  title: Node.js fs readdir names
+  description: Lists directory children through fs.promises.readdir and verifies the expected filenames are returned.
+  kind: usage
+  client_application: nodejs
+  command:
+  - bash
+  - /validator/tests/libuv/tests/cases/usage/usage-more-client-behavior.sh
+  - usage-nodejs-fs-readdir-names
+  timeout_seconds: 180
+  tags:
+  - usage
+  - event-loop
+  - fs
+- id: usage-nodejs-fs-realpath
+  title: Node.js fs realpath
+  description: Resolves a file path through fs.promises.realpath and verifies the canonical path suffix.
+  kind: usage
+  client_application: nodejs
+  command:
+  - bash
+  - /validator/tests/libuv/tests/cases/usage/usage-more-client-behavior.sh
+  - usage-nodejs-fs-realpath
+  timeout_seconds: 180
+  tags:
+  - usage
+  - event-loop
+  - fs
+- id: usage-nodejs-fs-utimes
+  title: Node.js fs utimes
+  description: Updates file timestamps through fs.promises.utimes and verifies modified-time metadata changes.
+  kind: usage
+  client_application: nodejs
+  command:
+  - bash
+  - /validator/tests/libuv/tests/cases/usage/usage-more-client-behavior.sh
+  - usage-nodejs-fs-utimes
+  timeout_seconds: 180
+  tags:
+  - usage
+  - event-loop
+  - fs
+- id: usage-nodejs-crypto-scrypt
+  title: Node.js crypto scrypt
+  description: Derives a key through asynchronous crypto.scrypt and verifies the requested key length.
+  kind: usage
+  client_application: nodejs
+  command:
+  - bash
+  - /validator/tests/libuv/tests/cases/usage/usage-more-client-behavior.sh
+  - usage-nodejs-crypto-scrypt
+  timeout_seconds: 180
+  tags:
+  - usage
+  - event-loop
+  - crypto
+- id: usage-nodejs-child-process-exec
+  title: Node.js child_process exec
+  description: Executes a subprocess through child_process.exec and verifies the captured stdout payload.
+  kind: usage
+  client_application: nodejs
+  command:
+  - bash
+  - /validator/tests/libuv/tests/cases/usage/usage-more-client-behavior.sh
+  - usage-nodejs-child-process-exec
+  timeout_seconds: 180
+  tags:
+  - usage
+  - event-loop
+  - process
+- id: usage-nodejs-timers-setinterval
+  title: Node.js timers setInterval
+  description: Runs repeated timer callbacks with setInterval and verifies the event loop executes the expected sequence.
+  kind: usage
+  client_application: nodejs
+  command:
+  - bash
+  - /validator/tests/libuv/tests/cases/usage/usage-more-client-behavior.sh
+  - usage-nodejs-timers-setinterval
+  timeout_seconds: 180
+  tags:
+  - usage
+  - event-loop
+  - timer
+- id: usage-nodejs-dgram-bind-address
+  title: Node.js dgram bind address
+  description: Binds a UDP socket through dgram and verifies the reported local loopback address and port.
+  kind: usage
+  client_application: nodejs
+  command:
+  - bash
+  - /validator/tests/libuv/tests/cases/usage/usage-more-client-behavior.sh
+  - usage-nodejs-dgram-bind-address
+  timeout_seconds: 180
+  tags:
+  - usage
+  - event-loop
+  - network
+- id: usage-nodejs-net-client-local-address
+  title: Node.js net client local address
+  description: Connects to a loopback TCP server through net and verifies the client local address is reported as loopback.
+  kind: usage
+  client_application: nodejs
+  command:
+  - bash
+  - /validator/tests/libuv/tests/cases/usage/usage-more-client-behavior.sh
+  - usage-nodejs-net-client-local-address
+  timeout_seconds: 180
+  tags:
+  - usage
+  - event-loop
+  - network
+- id: usage-nodejs-zlib-gunzip-buffer
+  title: Node.js zlib gunzip buffer
+  description: Gunzips an in-memory buffer through zlib and verifies the decompressed payload bytes.
+  kind: usage
+  client_application: nodejs
+  command:
+  - bash
+  - /validator/tests/libuv/tests/cases/usage/usage-more-client-behavior.sh
+  - usage-nodejs-zlib-gunzip-buffer
+  timeout_seconds: 180
+  tags:
+  - usage
+  - event-loop
+  - compression
+- id: usage-nodejs-fs-copy-file
+  title: Node.js fs copyFile
+  description: Copies file bytes through fs.promises.copyFile and verifies the destination payload matches the source.
+  kind: usage
+  client_application: nodejs
+  command:
+  - bash
+  - /validator/tests/libuv/tests/cases/usage/usage-more-client-behavior.sh
+  - usage-nodejs-fs-copy-file
+  timeout_seconds: 180
+  tags:
+  - usage
+  - event-loop
+  - fs

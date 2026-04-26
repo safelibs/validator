@@ -471,3 +471,143 @@ testcases:
   - usage
   - crypto
   - php
+- id: usage-python3-nacl-box-roundtrip
+  title: PyNaCl public box round trip
+  description: Encrypts and decrypts a message through a PyNaCl public-key Box and verifies the plaintext round-trips.
+  kind: usage
+  client_application: python3-nacl
+  command:
+  - bash
+  - /validator/tests/libsodium/tests/cases/usage/usage-more-client-behavior.sh
+  - usage-python3-nacl-box-roundtrip
+  timeout_seconds: 180
+  tags:
+  - usage
+  - crypto
+  - python
+- id: usage-python3-nacl-hex-public-key
+  title: PyNaCl hex public key
+  description: Encodes a PyNaCl public key as hexadecimal and verifies the expected encoded length.
+  kind: usage
+  client_application: python3-nacl
+  command:
+  - bash
+  - /validator/tests/libsodium/tests/cases/usage/usage-more-client-behavior.sh
+  - usage-python3-nacl-hex-public-key
+  timeout_seconds: 180
+  tags:
+  - usage
+  - crypto
+  - python
+- id: usage-python3-nacl-detached-verify
+  title: PyNaCl detached verify
+  description: Signs a message with PyNaCl, verifies the detached signature, and confirms the original plaintext is returned.
+  kind: usage
+  client_application: python3-nacl
+  command:
+  - bash
+  - /validator/tests/libsodium/tests/cases/usage/usage-more-client-behavior.sh
+  - usage-python3-nacl-detached-verify
+  timeout_seconds: 180
+  tags:
+  - usage
+  - crypto
+  - python
+- id: usage-python3-nacl-base64-signature
+  title: PyNaCl base64 signature
+  description: Produces a base64-encoded signed message with PyNaCl and verifies encoded output is emitted.
+  kind: usage
+  client_application: python3-nacl
+  command:
+  - bash
+  - /validator/tests/libsodium/tests/cases/usage/usage-more-client-behavior.sh
+  - usage-python3-nacl-base64-signature
+  timeout_seconds: 180
+  tags:
+  - usage
+  - crypto
+  - python
+- id: usage-python3-nacl-secretbox-nonce-size
+  title: PyNaCl SecretBox nonce size
+  description: Encrypts data with PyNaCl SecretBox and verifies the generated nonce uses the expected libsodium size.
+  kind: usage
+  client_application: python3-nacl
+  command:
+  - bash
+  - /validator/tests/libsodium/tests/cases/usage/usage-more-client-behavior.sh
+  - usage-python3-nacl-secretbox-nonce-size
+  timeout_seconds: 180
+  tags:
+  - usage
+  - crypto
+  - python
+- id: usage-php83-sodium-hex-roundtrip
+  title: PHP sodium hex round trip
+  description: Encodes and decodes bytes through PHP sodium hexadecimal helpers and verifies the original payload returns intact.
+  kind: usage
+  client_application: php8.3-cli
+  command:
+  - bash
+  - /validator/tests/libsodium/tests/cases/usage/usage-more-client-behavior.sh
+  - usage-php83-sodium-hex-roundtrip
+  timeout_seconds: 180
+  tags:
+  - usage
+  - crypto
+  - php
+- id: usage-php83-sodium-auth-verify
+  title: PHP sodium auth verify
+  description: Computes and verifies a message authentication code with PHP sodium and confirms verification succeeds.
+  kind: usage
+  client_application: php8.3-cli
+  command:
+  - bash
+  - /validator/tests/libsodium/tests/cases/usage/usage-more-client-behavior.sh
+  - usage-php83-sodium-auth-verify
+  timeout_seconds: 180
+  tags:
+  - usage
+  - crypto
+  - php
+- id: usage-php83-sodium-stream-xor
+  title: PHP sodium stream xor
+  description: Encrypts and decrypts a short payload with PHP sodium stream-xor APIs and verifies round-trip parity.
+  kind: usage
+  client_application: php8.3-cli
+  command:
+  - bash
+  - /validator/tests/libsodium/tests/cases/usage/usage-more-client-behavior.sh
+  - usage-php83-sodium-stream-xor
+  timeout_seconds: 180
+  tags:
+  - usage
+  - crypto
+  - php
+- id: usage-php83-sodium-scalarmult-base
+  title: PHP sodium scalarmult base
+  description: Derives a Curve25519 public point from a random scalar with PHP sodium and verifies the output length.
+  kind: usage
+  client_application: php8.3-cli
+  command:
+  - bash
+  - /validator/tests/libsodium/tests/cases/usage/usage-more-client-behavior.sh
+  - usage-php83-sodium-scalarmult-base
+  timeout_seconds: 180
+  tags:
+  - usage
+  - crypto
+  - php
+- id: usage-php83-sodium-pad-unpad
+  title: PHP sodium pad and unpad
+  description: Pads and unpads a payload with PHP sodium and verifies the unpadded text matches the original bytes.
+  kind: usage
+  client_application: php8.3-cli
+  command:
+  - bash
+  - /validator/tests/libsodium/tests/cases/usage/usage-more-client-behavior.sh
+  - usage-php83-sodium-pad-unpad
+  timeout_seconds: 180
+  tags:
+  - usage
+  - crypto
+  - php

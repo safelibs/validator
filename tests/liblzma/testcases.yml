@@ -472,3 +472,143 @@ testcases:
   - usage
   - archive
   - xz
+- id: usage-libarchive-tools-xz-topdir-strip-one
+  title: libarchive-tools xz topdir strip one
+  description: Archives a top-level directory under xz compression and extracts it with one stripped path component.
+  kind: usage
+  client_application: libarchive-tools
+  command:
+  - bash
+  - /validator/tests/liblzma/tests/cases/usage/usage-more-client-behavior.sh
+  - usage-libarchive-tools-xz-topdir-strip-one
+  timeout_seconds: 180
+  tags:
+  - usage
+  - archive
+  - xz
+- id: usage-libarchive-tools-xz-filelist-stdin
+  title: libarchive-tools xz file list stdin
+  description: Feeds a bsdtar file list over stdin while creating an xz-compressed archive and verifies the selected members.
+  kind: usage
+  client_application: libarchive-tools
+  command:
+  - bash
+  - /validator/tests/liblzma/tests/cases/usage/usage-more-client-behavior.sh
+  - usage-libarchive-tools-xz-filelist-stdin
+  timeout_seconds: 180
+  tags:
+  - usage
+  - archive
+  - xz
+- id: usage-libarchive-tools-xz-dotdir-entry
+  title: libarchive-tools xz dotdir entry
+  description: Archives a hidden directory tree with xz compression and verifies hidden nested files extract correctly.
+  kind: usage
+  client_application: libarchive-tools
+  command:
+  - bash
+  - /validator/tests/liblzma/tests/cases/usage/usage-more-client-behavior.sh
+  - usage-libarchive-tools-xz-dotdir-entry
+  timeout_seconds: 180
+  tags:
+  - usage
+  - archive
+  - xz
+- id: usage-libarchive-tools-xz-symlink-listing
+  title: libarchive-tools xz symlink listing
+  description: Lists an xz-compressed archive containing a symbolic link and verifies the link member appears in verbose output.
+  kind: usage
+  client_application: libarchive-tools
+  command:
+  - bash
+  - /validator/tests/liblzma/tests/cases/usage/usage-more-client-behavior.sh
+  - usage-libarchive-tools-xz-symlink-listing
+  timeout_seconds: 180
+  tags:
+  - usage
+  - archive
+  - xz
+- id: usage-libarchive-tools-xz-member-order
+  title: libarchive-tools xz member order
+  description: Creates an xz-compressed archive with a specific member order and verifies bsdtar list mode preserves that order.
+  kind: usage
+  client_application: libarchive-tools
+  command:
+  - bash
+  - /validator/tests/liblzma/tests/cases/usage/usage-more-client-behavior.sh
+  - usage-libarchive-tools-xz-member-order
+  timeout_seconds: 180
+  tags:
+  - usage
+  - archive
+  - xz
+- id: usage-libarchive-tools-xz-space-dir
+  title: libarchive-tools xz spaced directory
+  description: Archives a directory with spaces under xz compression and verifies the nested file extracts correctly.
+  kind: usage
+  client_application: libarchive-tools
+  command:
+  - bash
+  - /validator/tests/liblzma/tests/cases/usage/usage-more-client-behavior.sh
+  - usage-libarchive-tools-xz-space-dir
+  timeout_seconds: 180
+  tags:
+  - usage
+  - archive
+  - xz
+- id: usage-libarchive-tools-xz-extract-dotfile
+  title: libarchive-tools xz extract dotfile
+  description: Extracts only a hidden file from an xz-compressed archive and verifies nonselected members are left out.
+  kind: usage
+  client_application: libarchive-tools
+  command:
+  - bash
+  - /validator/tests/liblzma/tests/cases/usage/usage-more-client-behavior.sh
+  - usage-libarchive-tools-xz-extract-dotfile
+  timeout_seconds: 180
+  tags:
+  - usage
+  - archive
+  - xz
+- id: usage-libarchive-tools-xz-multi-empty-files
+  title: libarchive-tools xz multiple empty files
+  description: Archives multiple empty files under xz compression and verifies both extracted files remain zero bytes.
+  kind: usage
+  client_application: libarchive-tools
+  command:
+  - bash
+  - /validator/tests/liblzma/tests/cases/usage/usage-more-client-behavior.sh
+  - usage-libarchive-tools-xz-multi-empty-files
+  timeout_seconds: 180
+  tags:
+  - usage
+  - archive
+  - xz
+- id: usage-libarchive-tools-xz-hardlink-listing
+  title: libarchive-tools xz hardlink listing
+  description: Lists an xz-compressed archive containing a hard link and verifies the linked member appears in verbose output.
+  kind: usage
+  client_application: libarchive-tools
+  command:
+  - bash
+  - /validator/tests/liblzma/tests/cases/usage/usage-more-client-behavior.sh
+  - usage-libarchive-tools-xz-hardlink-listing
+  timeout_seconds: 180
+  tags:
+  - usage
+  - archive
+  - xz
+- id: usage-libarchive-tools-xz-dotdir-subtree
+  title: libarchive-tools xz dotdir subtree
+  description: Archives a hidden subtree under xz compression and verifies the nested member path appears in the archive listing.
+  kind: usage
+  client_application: libarchive-tools
+  command:
+  - bash
+  - /validator/tests/liblzma/tests/cases/usage/usage-more-client-behavior.sh
+  - usage-libarchive-tools-xz-dotdir-subtree
+  timeout_seconds: 180
+  tags:
+  - usage
+  - archive
+  - xz

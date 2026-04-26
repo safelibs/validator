@@ -472,3 +472,143 @@ testcases:
   - usage
   - archive
   - zstd
+- id: usage-libarchive-tools-zstd-topdir-strip-one
+  title: libarchive-tools zstd topdir strip one
+  description: Archives a top-level directory under zstd compression and extracts it with one stripped path component.
+  kind: usage
+  client_application: libarchive-tools
+  command:
+  - bash
+  - /validator/tests/libzstd/tests/cases/usage/usage-more-client-behavior.sh
+  - usage-libarchive-tools-zstd-topdir-strip-one
+  timeout_seconds: 180
+  tags:
+  - usage
+  - archive
+  - zstd
+- id: usage-libarchive-tools-zstd-filelist-stdin
+  title: libarchive-tools zstd file list stdin
+  description: Feeds a bsdtar file list over stdin while creating a zstd-compressed archive and verifies the selected members.
+  kind: usage
+  client_application: libarchive-tools
+  command:
+  - bash
+  - /validator/tests/libzstd/tests/cases/usage/usage-more-client-behavior.sh
+  - usage-libarchive-tools-zstd-filelist-stdin
+  timeout_seconds: 180
+  tags:
+  - usage
+  - archive
+  - zstd
+- id: usage-libarchive-tools-zstd-dotdir-entry
+  title: libarchive-tools zstd dotdir entry
+  description: Archives a hidden directory tree with zstd compression and verifies hidden nested files extract correctly.
+  kind: usage
+  client_application: libarchive-tools
+  command:
+  - bash
+  - /validator/tests/libzstd/tests/cases/usage/usage-more-client-behavior.sh
+  - usage-libarchive-tools-zstd-dotdir-entry
+  timeout_seconds: 180
+  tags:
+  - usage
+  - archive
+  - zstd
+- id: usage-libarchive-tools-zstd-symlink-listing
+  title: libarchive-tools zstd symlink listing
+  description: Lists a zstd-compressed archive containing a symbolic link and verifies the link member appears in verbose output.
+  kind: usage
+  client_application: libarchive-tools
+  command:
+  - bash
+  - /validator/tests/libzstd/tests/cases/usage/usage-more-client-behavior.sh
+  - usage-libarchive-tools-zstd-symlink-listing
+  timeout_seconds: 180
+  tags:
+  - usage
+  - archive
+  - zstd
+- id: usage-libarchive-tools-zstd-member-order
+  title: libarchive-tools zstd member order
+  description: Creates a zstd-compressed archive with a specific member order and verifies bsdtar list mode preserves that order.
+  kind: usage
+  client_application: libarchive-tools
+  command:
+  - bash
+  - /validator/tests/libzstd/tests/cases/usage/usage-more-client-behavior.sh
+  - usage-libarchive-tools-zstd-member-order
+  timeout_seconds: 180
+  tags:
+  - usage
+  - archive
+  - zstd
+- id: usage-libarchive-tools-zstd-space-dir
+  title: libarchive-tools zstd spaced directory
+  description: Archives a directory with spaces under zstd compression and verifies the nested file extracts correctly.
+  kind: usage
+  client_application: libarchive-tools
+  command:
+  - bash
+  - /validator/tests/libzstd/tests/cases/usage/usage-more-client-behavior.sh
+  - usage-libarchive-tools-zstd-space-dir
+  timeout_seconds: 180
+  tags:
+  - usage
+  - archive
+  - zstd
+- id: usage-libarchive-tools-zstd-extract-dotfile
+  title: libarchive-tools zstd extract dotfile
+  description: Extracts only a hidden file from a zstd-compressed archive and verifies nonselected members are left out.
+  kind: usage
+  client_application: libarchive-tools
+  command:
+  - bash
+  - /validator/tests/libzstd/tests/cases/usage/usage-more-client-behavior.sh
+  - usage-libarchive-tools-zstd-extract-dotfile
+  timeout_seconds: 180
+  tags:
+  - usage
+  - archive
+  - zstd
+- id: usage-libarchive-tools-zstd-multi-empty-files
+  title: libarchive-tools zstd multiple empty files
+  description: Archives multiple empty files under zstd compression and verifies both extracted files remain zero bytes.
+  kind: usage
+  client_application: libarchive-tools
+  command:
+  - bash
+  - /validator/tests/libzstd/tests/cases/usage/usage-more-client-behavior.sh
+  - usage-libarchive-tools-zstd-multi-empty-files
+  timeout_seconds: 180
+  tags:
+  - usage
+  - archive
+  - zstd
+- id: usage-libarchive-tools-zstd-hardlink-listing
+  title: libarchive-tools zstd hardlink listing
+  description: Lists a zstd-compressed archive containing a hard link and verifies the linked member appears in verbose output.
+  kind: usage
+  client_application: libarchive-tools
+  command:
+  - bash
+  - /validator/tests/libzstd/tests/cases/usage/usage-more-client-behavior.sh
+  - usage-libarchive-tools-zstd-hardlink-listing
+  timeout_seconds: 180
+  tags:
+  - usage
+  - archive
+  - zstd
+- id: usage-libarchive-tools-zstd-dotdir-subtree
+  title: libarchive-tools zstd dotdir subtree
+  description: Archives a hidden subtree under zstd compression and verifies the nested member path appears in the archive listing.
+  kind: usage
+  client_application: libarchive-tools
+  command:
+  - bash
+  - /validator/tests/libzstd/tests/cases/usage/usage-more-client-behavior.sh
+  - usage-libarchive-tools-zstd-dotdir-subtree
+  timeout_seconds: 180
+  tags:
+  - usage
+  - archive
+  - zstd

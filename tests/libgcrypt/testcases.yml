@@ -474,3 +474,143 @@ testcases:
   - usage
   - crypto
   - encryption
+- id: usage-gpg-print-md-ripemd160
+  title: gpg RIPEMD160 digest
+  description: Computes a RIPEMD160 message digest with gpg and verifies hexadecimal output is produced.
+  kind: usage
+  client_application: gpg
+  command:
+  - bash
+  - /validator/tests/libgcrypt/tests/cases/usage/usage-more-client-behavior.sh
+  - usage-gpg-print-md-ripemd160
+  timeout_seconds: 180
+  tags:
+  - usage
+  - crypto
+  - digest
+- id: usage-gpg-enarmor-roundtrip
+  title: gpg enarmor round trip
+  description: Converts binary data to ASCII armor with gpg enarmor, dearmors it again, and verifies the bytes match.
+  kind: usage
+  client_application: gpg
+  command:
+  - bash
+  - /validator/tests/libgcrypt/tests/cases/usage/usage-more-client-behavior.sh
+  - usage-gpg-enarmor-roundtrip
+  timeout_seconds: 180
+  tags:
+  - usage
+  - crypto
+  - armor
+- id: usage-gpg-symmetric-passphrase-file
+  title: gpg symmetric passphrase file
+  description: Encrypts and decrypts with gpg symmetric mode using a passphrase file and verifies the plaintext round-trips.
+  kind: usage
+  client_application: gpg
+  command:
+  - bash
+  - /validator/tests/libgcrypt/tests/cases/usage/usage-more-client-behavior.sh
+  - usage-gpg-symmetric-passphrase-file
+  timeout_seconds: 180
+  tags:
+  - usage
+  - crypto
+  - encryption
+- id: usage-gpg-symmetric-stdin
+  title: gpg symmetric stdin
+  description: Encrypts stdin through gpg symmetric mode and verifies decrypted output matches the original streamed payload.
+  kind: usage
+  client_application: gpg
+  command:
+  - bash
+  - /validator/tests/libgcrypt/tests/cases/usage/usage-more-client-behavior.sh
+  - usage-gpg-symmetric-stdin
+  timeout_seconds: 180
+  tags:
+  - usage
+  - crypto
+  - encryption
+- id: usage-gpg-decrypt-stdout
+  title: gpg decrypts to stdout
+  description: Decrypts a symmetric gpg message directly to stdout and verifies the recovered plaintext stream.
+  kind: usage
+  client_application: gpg
+  command:
+  - bash
+  - /validator/tests/libgcrypt/tests/cases/usage/usage-more-client-behavior.sh
+  - usage-gpg-decrypt-stdout
+  timeout_seconds: 180
+  tags:
+  - usage
+  - crypto
+  - encryption
+- id: usage-gpg-list-packets-armor
+  title: gpg list packets armor
+  description: Lists packets from an armored detached signature and verifies packet metadata is emitted.
+  kind: usage
+  client_application: gpg
+  command:
+  - bash
+  - /validator/tests/libgcrypt/tests/cases/usage/usage-more-client-behavior.sh
+  - usage-gpg-list-packets-armor
+  timeout_seconds: 180
+  tags:
+  - usage
+  - crypto
+  - packets
+- id: usage-gpg-export-ownertrust
+  title: gpg exports ownertrust
+  description: Imports ownertrust for a generated key and verifies gpg export-ownertrust writes the fingerprint record.
+  kind: usage
+  client_application: gpg
+  command:
+  - bash
+  - /validator/tests/libgcrypt/tests/cases/usage/usage-more-client-behavior.sh
+  - usage-gpg-export-ownertrust
+  timeout_seconds: 180
+  tags:
+  - usage
+  - crypto
+  - trust
+- id: usage-gpg-with-colons-fingerprint
+  title: gpg with-colons fingerprint
+  description: Lists a generated key with with-colons mode and verifies the machine-readable fingerprint format.
+  kind: usage
+  client_application: gpg
+  command:
+  - bash
+  - /validator/tests/libgcrypt/tests/cases/usage/usage-more-client-behavior.sh
+  - usage-gpg-with-colons-fingerprint
+  timeout_seconds: 180
+  tags:
+  - usage
+  - crypto
+  - keys
+- id: usage-gpg-import-secret-key
+  title: gpg imports secret key
+  description: Exports a generated secret key and imports it into a second keyring, then verifies the secret key is listed.
+  kind: usage
+  client_application: gpg
+  command:
+  - bash
+  - /validator/tests/libgcrypt/tests/cases/usage/usage-more-client-behavior.sh
+  - usage-gpg-import-secret-key
+  timeout_seconds: 180
+  tags:
+  - usage
+  - crypto
+  - keys
+- id: usage-gpg-list-secret-keys-colons
+  title: gpg list secret keys with colons
+  description: Lists secret keys in machine-readable format with gpg and verifies secret-key and fingerprint records are present.
+  kind: usage
+  client_application: gpg
+  command:
+  - bash
+  - /validator/tests/libgcrypt/tests/cases/usage/usage-more-client-behavior.sh
+  - usage-gpg-list-secret-keys-colons
+  timeout_seconds: 180
+  tags:
+  - usage
+  - crypto
+  - keys

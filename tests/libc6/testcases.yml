@@ -465,3 +465,133 @@ testcases:
   tags:
   - usage
   - archive
+- id: usage-coreutils-cut-fields
+  title: coreutils cuts delimited fields
+  description: Extracts delimited columns with cut and verifies the selected field values are preserved.
+  kind: usage
+  client_application: coreutils
+  command:
+  - bash
+  - /validator/tests/libc6/tests/cases/usage/usage-more-client-behavior.sh
+  - usage-coreutils-cut-fields
+  timeout_seconds: 180
+  tags:
+  - usage
+  - cli
+- id: usage-coreutils-wc-lines
+  title: coreutils counts lines
+  description: Counts lines in a text file with wc and verifies the reported total.
+  kind: usage
+  client_application: coreutils
+  command:
+  - bash
+  - /validator/tests/libc6/tests/cases/usage/usage-more-client-behavior.sh
+  - usage-coreutils-wc-lines
+  timeout_seconds: 180
+  tags:
+  - usage
+  - cli
+- id: usage-coreutils-join-files
+  title: coreutils joins files
+  description: Joins two sorted text files on a shared key with join and verifies the merged rows.
+  kind: usage
+  client_application: coreutils
+  command:
+  - bash
+  - /validator/tests/libc6/tests/cases/usage/usage-more-client-behavior.sh
+  - usage-coreutils-join-files
+  timeout_seconds: 180
+  tags:
+  - usage
+  - cli
+- id: usage-grep-word-match
+  title: grep whole-word match
+  description: Matches a whole-word pattern with grep and verifies partial words are excluded.
+  kind: usage
+  client_application: grep
+  command:
+  - bash
+  - /validator/tests/libc6/tests/cases/usage/usage-more-client-behavior.sh
+  - usage-grep-word-match
+  timeout_seconds: 180
+  tags:
+  - usage
+  - cli
+- id: usage-gawk-number-format
+  title: gawk numeric formatting
+  description: Aggregates decimal values with gawk and verifies formatted numeric output.
+  kind: usage
+  client_application: gawk
+  command:
+  - bash
+  - /validator/tests/libc6/tests/cases/usage/usage-more-client-behavior.sh
+  - usage-gawk-number-format
+  timeout_seconds: 180
+  tags:
+  - usage
+  - cli
+- id: usage-sed-global-replace
+  title: sed global replacement
+  description: Rewrites all matching tokens in a stream with sed global substitution and verifies the output text.
+  kind: usage
+  client_application: sed
+  command:
+  - bash
+  - /validator/tests/libc6/tests/cases/usage/usage-more-client-behavior.sh
+  - usage-sed-global-replace
+  timeout_seconds: 180
+  tags:
+  - usage
+  - cli
+- id: usage-python3-json-roundtrip
+  title: Python literal round trip
+  description: Serializes and reloads a structured Python literal with Python and verifies the decoded values survive round trip.
+  kind: usage
+  client_application: python3-minimal
+  command:
+  - bash
+  - /validator/tests/libc6/tests/cases/usage/usage-more-client-behavior.sh
+  - usage-python3-json-roundtrip
+  timeout_seconds: 180
+  tags:
+  - usage
+  - python
+- id: usage-findutils-name-pattern
+  title: findutils name pattern
+  description: Filters files by shell glob with find and verifies only matching paths are returned.
+  kind: usage
+  client_application: findutils
+  command:
+  - bash
+  - /validator/tests/libc6/tests/cases/usage/usage-more-client-behavior.sh
+  - usage-findutils-name-pattern
+  timeout_seconds: 180
+  tags:
+  - usage
+  - filesystem
+- id: usage-tar-append-archive
+  title: tar appends archive member
+  description: Appends a new member to an existing tar archive and verifies list mode shows both entries.
+  kind: usage
+  client_application: tar
+  command:
+  - bash
+  - /validator/tests/libc6/tests/cases/usage/usage-more-client-behavior.sh
+  - usage-tar-append-archive
+  timeout_seconds: 180
+  tags:
+  - usage
+  - archive
+- id: usage-gzip-stdout-roundtrip
+  title: gzip stdout round trip
+  description: Compresses to stdout with gzip, decompresses from stdout, and verifies the original payload returns intact.
+  kind: usage
+  client_application: gzip
+  command:
+  - bash
+  - /validator/tests/libc6/tests/cases/usage/usage-more-client-behavior.sh
+  - usage-gzip-stdout-roundtrip
+  timeout_seconds: 180
+  tags:
+  - usage
+  - archive

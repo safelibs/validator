@@ -466,3 +466,143 @@ testcases:
   - usage
   - xml
   - cli
+- id: usage-python3-lxml-attribute-update
+  title: lxml attribute update
+  description: Updates an XML attribute through lxml and verifies the serialized output contains the new attribute value.
+  kind: usage
+  client_application: python3-lxml
+  command:
+  - bash
+  - /validator/tests/libxml/tests/cases/usage/usage-more-client-behavior.sh
+  - usage-python3-lxml-attribute-update
+  timeout_seconds: 180
+  tags:
+  - usage
+  - xml
+  - python
+- id: usage-python3-lxml-comment-node
+  title: lxml comment node
+  description: Creates an XML comment node through lxml and verifies the serialized output preserves the comment text.
+  kind: usage
+  client_application: python3-lxml
+  command:
+  - bash
+  - /validator/tests/libxml/tests/cases/usage/usage-more-client-behavior.sh
+  - usage-python3-lxml-comment-node
+  timeout_seconds: 180
+  tags:
+  - usage
+  - xml
+  - python
+- id: usage-python3-lxml-xpath-string
+  title: lxml XPath string
+  description: Evaluates an XPath string concatenation through lxml and verifies the combined text value.
+  kind: usage
+  client_application: python3-lxml
+  command:
+  - bash
+  - /validator/tests/libxml/tests/cases/usage/usage-more-client-behavior.sh
+  - usage-python3-lxml-xpath-string
+  timeout_seconds: 180
+  tags:
+  - usage
+  - xml
+  - python
+- id: usage-python3-lxml-bytesio-parse
+  title: lxml BytesIO parse
+  description: Parses XML from an in-memory byte stream through lxml and verifies the selected text node.
+  kind: usage
+  client_application: python3-lxml
+  command:
+  - bash
+  - /validator/tests/libxml/tests/cases/usage/usage-more-client-behavior.sh
+  - usage-python3-lxml-bytesio-parse
+  timeout_seconds: 180
+  tags:
+  - usage
+  - xml
+  - python
+- id: usage-python3-lxml-namespace-attribute
+  title: lxml namespaced attribute
+  description: Reads a namespaced XML attribute through lxml XPath and verifies the decoded attribute value.
+  kind: usage
+  client_application: python3-lxml
+  command:
+  - bash
+  - /validator/tests/libxml/tests/cases/usage/usage-more-client-behavior.sh
+  - usage-python3-lxml-namespace-attribute
+  timeout_seconds: 180
+  tags:
+  - usage
+  - xml
+  - python
+- id: usage-python3-lxml-itertext-join
+  title: lxml itertext join
+  description: Iterates mixed XML text content through lxml itertext and verifies the concatenated text order.
+  kind: usage
+  client_application: python3-lxml
+  command:
+  - bash
+  - /validator/tests/libxml/tests/cases/usage/usage-more-client-behavior.sh
+  - usage-python3-lxml-itertext-join
+  timeout_seconds: 180
+  tags:
+  - usage
+  - xml
+  - python
+- id: usage-python3-lxml-tree-write
+  title: lxml tree write
+  description: Writes an XML tree to disk through lxml and verifies the resulting file contains the expected declaration and node text.
+  kind: usage
+  client_application: python3-lxml
+  command:
+  - bash
+  - /validator/tests/libxml/tests/cases/usage/usage-more-client-behavior.sh
+  - usage-python3-lxml-tree-write
+  timeout_seconds: 180
+  tags:
+  - usage
+  - xml
+  - python
+- id: usage-python3-lxml-strip-text
+  title: lxml normalize-space text
+  description: Uses lxml XPath normalize-space to trim XML text content and verifies the normalized result.
+  kind: usage
+  client_application: python3-lxml
+  command:
+  - bash
+  - /validator/tests/libxml/tests/cases/usage/usage-more-client-behavior.sh
+  - usage-python3-lxml-strip-text
+  timeout_seconds: 180
+  tags:
+  - usage
+  - xml
+  - python
+- id: usage-xmlstarlet-move-node
+  title: xmlstarlet moves node
+  description: Moves an XML node with xmlstarlet edit mode and verifies the relocated node appears under the target element.
+  kind: usage
+  client_application: xmlstarlet
+  command:
+  - bash
+  - /validator/tests/libxml/tests/cases/usage/usage-more-client-behavior.sh
+  - usage-xmlstarlet-move-node
+  timeout_seconds: 180
+  tags:
+  - usage
+  - xml
+  - cli
+- id: usage-xmlstarlet-delete-attribute
+  title: xmlstarlet deletes attribute
+  description: Deletes an XML attribute with xmlstarlet edit mode and verifies the serialized element no longer carries the attribute.
+  kind: usage
+  client_application: xmlstarlet
+  command:
+  - bash
+  - /validator/tests/libxml/tests/cases/usage/usage-more-client-behavior.sh
+  - usage-xmlstarlet-delete-attribute
+  timeout_seconds: 180
+  tags:
+  - usage
+  - xml
+  - cli
