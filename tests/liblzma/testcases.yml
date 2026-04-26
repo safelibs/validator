@@ -732,3 +732,143 @@ testcases:
   timeout_seconds: 120
   tags:
   - usage
+- id: usage-libarchive-tools-xz-two-topdirs-list
+  title: libarchive-tools xz two topdirs list
+  description: Creates an xz-compressed tar with two top-level directories and verifies both paths appear in the archive listing.
+  kind: usage
+  client_application: libarchive-tools
+  command:
+  - bash
+  - /validator/tests/liblzma/tests/cases/usage/usage-further-client-behavior.sh
+  - usage-libarchive-tools-xz-two-topdirs-list
+  timeout_seconds: 180
+  tags:
+  - usage
+  - archive
+  - xz
+- id: usage-libarchive-tools-xz-rootdir-hidden-file
+  title: libarchive-tools xz root hidden file
+  description: Archives and extracts a hidden file under a root directory in an xz-compressed tar and verifies the restored payload.
+  kind: usage
+  client_application: libarchive-tools
+  command:
+  - bash
+  - /validator/tests/liblzma/tests/cases/usage/usage-further-client-behavior.sh
+  - usage-libarchive-tools-xz-rootdir-hidden-file
+  timeout_seconds: 180
+  tags:
+  - usage
+  - archive
+  - xz
+- id: usage-libarchive-tools-xz-nested-space-file
+  title: libarchive-tools xz nested spaced file
+  description: Archives and extracts a nested filename containing spaces in an xz-compressed tar and verifies the restored payload.
+  kind: usage
+  client_application: libarchive-tools
+  command:
+  - bash
+  - /validator/tests/liblzma/tests/cases/usage/usage-further-client-behavior.sh
+  - usage-libarchive-tools-xz-nested-space-file
+  timeout_seconds: 180
+  tags:
+  - usage
+  - archive
+  - xz
+- id: usage-libarchive-tools-xz-filelist-dotfile
+  title: libarchive-tools xz filelist dotfile
+  description: Builds an xz-compressed tar from a file list containing a dotfile and verifies both listed members are present.
+  kind: usage
+  client_application: libarchive-tools
+  command:
+  - bash
+  - /validator/tests/liblzma/tests/cases/usage/usage-further-client-behavior.sh
+  - usage-libarchive-tools-xz-filelist-dotfile
+  timeout_seconds: 180
+  tags:
+  - usage
+  - archive
+  - xz
+- id: usage-libarchive-tools-xz-extract-two-members
+  title: libarchive-tools xz extract two members
+  description: Extracts two selected members from an xz-compressed tar and verifies only the requested files are restored.
+  kind: usage
+  client_application: libarchive-tools
+  command:
+  - bash
+  - /validator/tests/liblzma/tests/cases/usage/usage-further-client-behavior.sh
+  - usage-libarchive-tools-xz-extract-two-members
+  timeout_seconds: 180
+  tags:
+  - usage
+  - archive
+  - xz
+- id: usage-libarchive-tools-xz-double-strip-components
+  title: libarchive-tools xz double strip components
+  description: Extracts a deeply nested member from an xz-compressed tar with multiple stripped path components.
+  kind: usage
+  client_application: libarchive-tools
+  command:
+  - bash
+  - /validator/tests/liblzma/tests/cases/usage/usage-further-client-behavior.sh
+  - usage-libarchive-tools-xz-double-strip-components
+  timeout_seconds: 180
+  tags:
+  - usage
+  - archive
+  - xz
+- id: usage-libarchive-tools-xz-stream-subdir-list
+  title: libarchive-tools xz stream subdir list
+  description: Streams an xz-compressed tar through bsdtar and verifies a nested subdirectory member appears in the listing.
+  kind: usage
+  client_application: libarchive-tools
+  command:
+  - bash
+  - /validator/tests/liblzma/tests/cases/usage/usage-further-client-behavior.sh
+  - usage-libarchive-tools-xz-stream-subdir-list
+  timeout_seconds: 180
+  tags:
+  - usage
+  - archive
+  - xz
+- id: usage-libarchive-tools-xz-space-rootdir-extract
+  title: libarchive-tools xz spaced root extract
+  description: Archives and extracts a top-level directory containing spaces in an xz-compressed tar.
+  kind: usage
+  client_application: libarchive-tools
+  command:
+  - bash
+  - /validator/tests/liblzma/tests/cases/usage/usage-further-client-behavior.sh
+  - usage-libarchive-tools-xz-space-rootdir-extract
+  timeout_seconds: 180
+  tags:
+  - usage
+  - archive
+  - xz
+- id: usage-libarchive-tools-xz-hidden-and-visible-list
+  title: libarchive-tools xz hidden and visible list
+  description: Archives a hidden file and a visible file together in an xz-compressed tar and verifies both entries appear in the listing.
+  kind: usage
+  client_application: libarchive-tools
+  command:
+  - bash
+  - /validator/tests/liblzma/tests/cases/usage/usage-further-client-behavior.sh
+  - usage-libarchive-tools-xz-hidden-and-visible-list
+  timeout_seconds: 180
+  tags:
+  - usage
+  - archive
+  - xz
+- id: usage-libarchive-tools-xz-space-rootdir-list
+  title: libarchive-tools xz spaced root list
+  description: Lists an xz-compressed tar whose top-level directory name contains spaces and verifies the nested path.
+  kind: usage
+  client_application: libarchive-tools
+  command:
+  - bash
+  - /validator/tests/liblzma/tests/cases/usage/usage-further-client-behavior.sh
+  - usage-libarchive-tools-xz-space-rootdir-list
+  timeout_seconds: 180
+  tags:
+  - usage
+  - archive
+  - xz

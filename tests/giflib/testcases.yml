@@ -730,3 +730,143 @@ testcases:
   timeout_seconds: 120
   tags:
   - usage
+- id: usage-giflib-tools-giftext-treescap-background
+  title: giftext treescap background
+  description: Reads the treescap fixture with giftext and verifies the background field is reported.
+  kind: usage
+  client_application: giflib-tools
+  command:
+  - bash
+  - /validator/tests/giflib/tests/cases/usage/usage-further-client-behavior.sh
+  - usage-giflib-tools-giftext-treescap-background
+  timeout_seconds: 180
+  tags:
+  - usage
+  - gif
+  - giftext
+- id: usage-giflib-tools-giftext-grid-background
+  title: giftext grid background
+  description: Reads the gifgrid fixture with giftext and verifies the background field is reported.
+  kind: usage
+  client_application: giflib-tools
+  command:
+  - bash
+  - /validator/tests/giflib/tests/cases/usage/usage-further-client-behavior.sh
+  - usage-giflib-tools-giftext-grid-background
+  timeout_seconds: 180
+  tags:
+  - usage
+  - gif
+  - giftext
+- id: usage-giflib-tools-giftext-treescap-color-resolution
+  title: giftext treescap color resolution
+  description: Reads the treescap fixture with giftext and verifies the color resolution metadata is reported.
+  kind: usage
+  client_application: giflib-tools
+  command:
+  - bash
+  - /validator/tests/giflib/tests/cases/usage/usage-further-client-behavior.sh
+  - usage-giflib-tools-giftext-treescap-color-resolution
+  timeout_seconds: 180
+  tags:
+  - usage
+  - gif
+  - giftext
+- id: usage-giflib-tools-gif2rgb-treescap-planar
+  title: gif2rgb treescap planar output
+  description: Converts the treescap fixture to planar RGB output with gif2rgb and verifies the three channel files exist.
+  kind: usage
+  client_application: giflib-tools
+  command:
+  - bash
+  - /validator/tests/giflib/tests/cases/usage/usage-further-client-behavior.sh
+  - usage-giflib-tools-gif2rgb-treescap-planar
+  timeout_seconds: 180
+  tags:
+  - usage
+  - gif
+  - gif2rgb
+- id: usage-giflib-tools-gif2rgb-fire-planar-size
+  title: gif2rgb fire planar sizes
+  description: Converts the fire fixture to planar RGB output with gif2rgb and verifies all three channel files have equal non-zero size.
+  kind: usage
+  client_application: giflib-tools
+  command:
+  - bash
+  - /validator/tests/giflib/tests/cases/usage/usage-further-client-behavior.sh
+  - usage-giflib-tools-gif2rgb-fire-planar-size
+  timeout_seconds: 180
+  tags:
+  - usage
+  - gif
+  - gif2rgb
+- id: usage-giflib-tools-gifbuild-fire-roundtrip-colormap
+  title: gifbuild fire roundtrip colormap
+  description: Dumps and rebuilds the fire fixture with gifbuild and verifies the rebuilt GIF still exposes a color map through gifclrmp.
+  kind: usage
+  client_application: giflib-tools
+  command:
+  - bash
+  - /validator/tests/giflib/tests/cases/usage/usage-further-client-behavior.sh
+  - usage-giflib-tools-gifbuild-fire-roundtrip-colormap
+  timeout_seconds: 180
+  tags:
+  - usage
+  - gif
+  - gifbuild
+- id: usage-giflib-tools-gifbuild-treescap-dump-lines
+  title: gifbuild treescap dump lines
+  description: Dumps the treescap fixture with gifbuild and verifies the textual dump contains at least one line.
+  kind: usage
+  client_application: giflib-tools
+  command:
+  - bash
+  - /validator/tests/giflib/tests/cases/usage/usage-further-client-behavior.sh
+  - usage-giflib-tools-gifbuild-treescap-dump-lines
+  timeout_seconds: 180
+  tags:
+  - usage
+  - gif
+  - gifbuild
+- id: usage-giflib-tools-giffix-fire-colormap
+  title: giffix fire colormap
+  description: Runs giffix on the fire fixture and verifies the fixed GIF still exposes a color map through gifclrmp.
+  kind: usage
+  client_application: giflib-tools
+  command:
+  - bash
+  - /validator/tests/giflib/tests/cases/usage/usage-further-client-behavior.sh
+  - usage-giflib-tools-giffix-fire-colormap
+  timeout_seconds: 180
+  tags:
+  - usage
+  - gif
+  - giffix
+- id: usage-giflib-tools-giffix-treescap-colormap
+  title: giffix treescap colormap
+  description: Runs giffix on the treescap fixture and verifies the fixed GIF still exposes a color map through gifclrmp.
+  kind: usage
+  client_application: giflib-tools
+  command:
+  - bash
+  - /validator/tests/giflib/tests/cases/usage/usage-further-client-behavior.sh
+  - usage-giflib-tools-giffix-treescap-colormap
+  timeout_seconds: 180
+  tags:
+  - usage
+  - gif
+  - giffix
+- id: usage-giflib-tools-gifclrmp-interlaced
+  title: gifclrmp interlaced fixture
+  description: Prints the color map for the interlaced treescap fixture with gifclrmp and verifies a palette row is emitted.
+  kind: usage
+  client_application: giflib-tools
+  command:
+  - bash
+  - /validator/tests/giflib/tests/cases/usage/usage-further-client-behavior.sh
+  - usage-giflib-tools-gifclrmp-interlaced
+  timeout_seconds: 180
+  tags:
+  - usage
+  - gif
+  - gifclrmp

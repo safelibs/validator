@@ -715,3 +715,143 @@ testcases:
   timeout_seconds: 120
   tags:
   - usage
+- id: usage-bash-case-switch
+  title: bash case dispatch
+  description: Executes a bash case statement and verifies the matching branch output.
+  kind: usage
+  client_application: bash
+  command:
+  - bash
+  - /validator/tests/libc6/tests/cases/usage/usage-further-client-behavior.sh
+  - usage-bash-case-switch
+  timeout_seconds: 180
+  tags:
+  - usage
+  - bash
+  - shell
+- id: usage-coreutils-head-lines
+  title: coreutils head lines
+  description: Reads the first two lines of a file with head and verifies the selected output.
+  kind: usage
+  client_application: coreutils
+  command:
+  - bash
+  - /validator/tests/libc6/tests/cases/usage/usage-further-client-behavior.sh
+  - usage-coreutils-head-lines
+  timeout_seconds: 180
+  tags:
+  - usage
+  - coreutils
+  - text
+- id: usage-coreutils-tail-lines
+  title: coreutils tail line
+  description: Reads the final line of a file with tail and verifies the selected output.
+  kind: usage
+  client_application: coreutils
+  command:
+  - bash
+  - /validator/tests/libc6/tests/cases/usage/usage-further-client-behavior.sh
+  - usage-coreutils-tail-lines
+  timeout_seconds: 180
+  tags:
+  - usage
+  - coreutils
+  - text
+- id: usage-coreutils-nl-lines
+  title: coreutils nl numbering
+  description: Numbers text lines with nl and checks the emitted line numbers.
+  kind: usage
+  client_application: coreutils
+  command:
+  - bash
+  - /validator/tests/libc6/tests/cases/usage/usage-further-client-behavior.sh
+  - usage-coreutils-nl-lines
+  timeout_seconds: 180
+  tags:
+  - usage
+  - coreutils
+  - text
+- id: usage-grep-fixed-string
+  title: grep fixed string
+  description: Matches a literal string with grep -F and verifies the selected line.
+  kind: usage
+  client_application: grep
+  command:
+  - bash
+  - /validator/tests/libc6/tests/cases/usage/usage-further-client-behavior.sh
+  - usage-grep-fixed-string
+  timeout_seconds: 180
+  tags:
+  - usage
+  - grep
+  - text
+- id: usage-gawk-string-upper
+  title: gawk uppercase transform
+  description: Converts a field to uppercase with gawk and verifies the transformed output.
+  kind: usage
+  client_application: gawk
+  command:
+  - bash
+  - /validator/tests/libc6/tests/cases/usage/usage-further-client-behavior.sh
+  - usage-gawk-string-upper
+  timeout_seconds: 180
+  tags:
+  - usage
+  - gawk
+  - text
+- id: usage-sed-insert-line
+  title: sed insert line
+  description: Inserts a line with sed and verifies the resulting text order.
+  kind: usage
+  client_application: sed
+  command:
+  - bash
+  - /validator/tests/libc6/tests/cases/usage/usage-further-client-behavior.sh
+  - usage-sed-insert-line
+  timeout_seconds: 180
+  tags:
+  - usage
+  - sed
+  - text
+- id: usage-python3-hashlib-md5
+  title: python3 hashlib md5
+  description: Computes a known MD5 digest through the Python standard library runtime.
+  kind: usage
+  client_application: python3-minimal
+  command:
+  - bash
+  - /validator/tests/libc6/tests/cases/usage/usage-further-client-behavior.sh
+  - usage-python3-hashlib-md5
+  timeout_seconds: 180
+  tags:
+  - usage
+  - python
+  - runtime
+- id: usage-findutils-mindepth
+  title: findutils mindepth filter
+  description: Filters nested files with find -mindepth and verifies only deeper matches are returned.
+  kind: usage
+  client_application: findutils
+  command:
+  - bash
+  - /validator/tests/libc6/tests/cases/usage/usage-further-client-behavior.sh
+  - usage-findutils-mindepth
+  timeout_seconds: 180
+  tags:
+  - usage
+  - findutils
+  - filesystem
+- id: usage-tar-strip-components
+  title: tar strip components
+  description: Extracts a tar archive with stripped leading path segments and verifies the flattened output file.
+  kind: usage
+  client_application: tar
+  command:
+  - bash
+  - /validator/tests/libc6/tests/cases/usage/usage-further-client-behavior.sh
+  - usage-tar-strip-components
+  timeout_seconds: 180
+  tags:
+  - usage
+  - tar
+  - archive

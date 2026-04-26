@@ -733,3 +733,133 @@ testcases:
   timeout_seconds: 120
   tags:
   - usage
+
+- id: usage-python3-pil-equalize-tiff
+  title: python PIL equalize TIFF
+  description: Exercises python pil equalize tiff through a dependent-client usage scenario.
+  kind: usage
+  client_application: python3-pil
+  command:
+  - bash
+  - /validator/tests/libtiff/tests/cases/usage/usage-further-client-behavior.sh
+  - usage-python3-pil-equalize-tiff
+  timeout_seconds: 120
+  tags:
+  - usage
+
+- id: usage-python3-pil-fit-tiff
+  title: python PIL fit TIFF
+  description: Exercises python pil fit tiff through a dependent-client usage scenario.
+  kind: usage
+  client_application: python3-pil
+  command:
+  - bash
+  - /validator/tests/libtiff/tests/cases/usage/usage-further-client-behavior.sh
+  - usage-python3-pil-fit-tiff
+  timeout_seconds: 120
+  tags:
+  - usage
+
+- id: usage-python3-pil-pad-tiff
+  title: python PIL pad TIFF
+  description: Exercises python pil pad tiff through a dependent-client usage scenario.
+  kind: usage
+  client_application: python3-pil
+  command:
+  - bash
+  - /validator/tests/libtiff/tests/cases/usage/usage-further-client-behavior.sh
+  - usage-python3-pil-pad-tiff
+  timeout_seconds: 120
+  tags:
+  - usage
+
+- id: usage-python3-pil-offset-tiff
+  title: python PIL offset TIFF
+  description: Exercises python pil offset tiff through a dependent-client usage scenario.
+  kind: usage
+  client_application: python3-pil
+  command:
+  - bash
+  - /validator/tests/libtiff/tests/cases/usage/usage-further-client-behavior.sh
+  - usage-python3-pil-offset-tiff
+  timeout_seconds: 120
+  tags:
+  - usage
+
+- id: usage-python3-pil-getextrema-tiff
+  title: python PIL getextrema TIFF
+  description: Exercises python pil getextrema tiff through a dependent-client usage scenario.
+  kind: usage
+  client_application: python3-pil
+  command:
+  - bash
+  - /validator/tests/libtiff/tests/cases/usage/usage-further-client-behavior.sh
+  - usage-python3-pil-getextrema-tiff
+  timeout_seconds: 120
+  tags:
+  - usage
+
+- id: usage-python3-pil-red-channel-tiff
+  title: python PIL red channel TIFF
+  description: Exercises python pil red channel tiff through a dependent-client usage scenario.
+  kind: usage
+  client_application: python3-pil
+  command:
+  - bash
+  - /validator/tests/libtiff/tests/cases/usage/usage-further-client-behavior.sh
+  - usage-python3-pil-red-channel-tiff
+  timeout_seconds: 120
+  tags:
+  - usage
+
+- id: usage-python3-pil-rotate-expand-tiff
+  title: python PIL rotate expand TIFF
+  description: Exercises python pil rotate expand tiff through a dependent-client usage scenario.
+  kind: usage
+  client_application: python3-pil
+  command:
+  - bash
+  - /validator/tests/libtiff/tests/cases/usage/usage-further-client-behavior.sh
+  - usage-python3-pil-rotate-expand-tiff
+  timeout_seconds: 120
+  tags:
+  - usage
+
+- id: usage-python3-pil-quantize-tiff
+  title: python PIL quantize TIFF
+  description: Exercises python pil quantize tiff through a dependent-client usage scenario.
+  kind: usage
+  client_application: python3-pil
+  command:
+  - bash
+  - /validator/tests/libtiff/tests/cases/usage/usage-further-client-behavior.sh
+  - usage-python3-pil-quantize-tiff
+  timeout_seconds: 120
+  tags:
+  - usage
+
+- id: usage-python3-pil-stat-mean-tiff
+  title: python PIL stat mean TIFF
+  description: Exercises python pil stat mean tiff through a dependent-client usage scenario.
+  kind: usage
+  client_application: python3-pil
+  command:
+  - bash
+  - /validator/tests/libtiff/tests/cases/usage/usage-further-client-behavior.sh
+  - usage-python3-pil-stat-mean-tiff
+  timeout_seconds: 120
+  tags:
+  - usage
+
+- id: usage-python3-pil-sequence-iterator-tiff
+  title: python PIL sequence iterator TIFF
+  description: Exercises python pil sequence iterator tiff through a dependent-client usage scenario.
+  kind: usage
+  client_application: python3-pil
+  command:
+  - bash
+  - /validator/tests/libtiff/tests/cases/usage/usage-further-client-behavior.sh
+  - usage-python3-pil-sequence-iterator-tiff
+  timeout_seconds: 120
+  tags:
+  - usage

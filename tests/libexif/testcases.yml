@@ -719,3 +719,133 @@ testcases:
   timeout_seconds: 120
   tags:
   - usage
+
+- id: usage-exif-cli-tag-make-sed
+  title: exif tag make via sed
+  description: Extracts the exif Make tag value through shell text processing and verifies the parsed camera make.
+  kind: usage
+  client_application: exif
+  command:
+  - bash
+  - /validator/tests/libexif/tests/cases/usage/usage-further-client-behavior.sh
+  - usage-exif-cli-tag-make-sed
+  timeout_seconds: 120
+  tags:
+  - usage
+
+- id: usage-exif-cli-tag-model-sed
+  title: exif tag model via sed
+  description: Extracts the exif Model tag value through shell text processing and verifies the parsed camera model.
+  kind: usage
+  client_application: exif
+  command:
+  - bash
+  - /validator/tests/libexif/tests/cases/usage/usage-further-client-behavior.sh
+  - usage-exif-cli-tag-model-sed
+  timeout_seconds: 120
+  tags:
+  - usage
+
+- id: usage-exif-cli-tag-datetime-sed
+  title: exif tag date time via sed
+  description: Extracts the exif DateTime tag value through shell text processing and verifies the parsed timestamp.
+  kind: usage
+  client_application: exif
+  command:
+  - bash
+  - /validator/tests/libexif/tests/cases/usage/usage-further-client-behavior.sh
+  - usage-exif-cli-tag-datetime-sed
+  timeout_seconds: 120
+  tags:
+  - usage
+
+- id: usage-exif-cli-tag-orientation-sed
+  title: exif tag orientation via sed
+  description: Extracts the exif Orientation tag value through shell text processing and verifies the parsed orientation.
+  kind: usage
+  client_application: exif
+  command:
+  - bash
+  - /validator/tests/libexif/tests/cases/usage/usage-further-client-behavior.sh
+  - usage-exif-cli-tag-orientation-sed
+  timeout_seconds: 120
+  tags:
+  - usage
+
+- id: usage-exif-cli-tag-focal-length-sed
+  title: exif tag focal length via sed
+  description: Extracts the exif FocalLength tag value through shell text processing and verifies the parsed focal length.
+  kind: usage
+  client_application: exif
+  command:
+  - bash
+  - /validator/tests/libexif/tests/cases/usage/usage-further-client-behavior.sh
+  - usage-exif-cli-tag-focal-length-sed
+  timeout_seconds: 120
+  tags:
+  - usage
+
+- id: usage-exif-cli-tag-color-space-sed
+  title: exif tag color space via sed
+  description: Extracts the exif ColorSpace tag value through shell text processing and verifies the parsed color space.
+  kind: usage
+  client_application: exif
+  command:
+  - bash
+  - /validator/tests/libexif/tests/cases/usage/usage-further-client-behavior.sh
+  - usage-exif-cli-tag-color-space-sed
+  timeout_seconds: 120
+  tags:
+  - usage
+
+- id: usage-exif-cli-tag-pixel-x-sed
+  title: exif tag pixel x via sed
+  description: Extracts the exif PixelXDimension tag value through shell text processing and verifies the parsed width.
+  kind: usage
+  client_application: exif
+  command:
+  - bash
+  - /validator/tests/libexif/tests/cases/usage/usage-further-client-behavior.sh
+  - usage-exif-cli-tag-pixel-x-sed
+  timeout_seconds: 120
+  tags:
+  - usage
+
+- id: usage-exif-cli-tag-pixel-y-sed
+  title: exif tag pixel y via sed
+  description: Extracts the exif PixelYDimension tag value through shell text processing and verifies the parsed height.
+  kind: usage
+  client_application: exif
+  command:
+  - bash
+  - /validator/tests/libexif/tests/cases/usage/usage-further-client-behavior.sh
+  - usage-exif-cli-tag-pixel-y-sed
+  timeout_seconds: 120
+  tags:
+  - usage
+
+- id: usage-exif-cli-xml-model-regex
+  title: exif XML model via regex
+  description: Parses exif XML output through Python regex matching and verifies the extracted model tag content.
+  kind: usage
+  client_application: exif
+  command:
+  - bash
+  - /validator/tests/libexif/tests/cases/usage/usage-further-client-behavior.sh
+  - usage-exif-cli-xml-model-regex
+  timeout_seconds: 120
+  tags:
+  - usage
+
+- id: usage-exif-cli-machine-record-count
+  title: exif machine-readable record count
+  description: Counts rows in machine-readable exif output to verify structured metadata is emitted.
+  kind: usage
+  client_application: exif
+  command:
+  - bash
+  - /validator/tests/libexif/tests/cases/usage/usage-further-client-behavior.sh
+  - usage-exif-cli-machine-record-count
+  timeout_seconds: 120
+  tags:
+  - usage

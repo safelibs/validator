@@ -726,3 +726,144 @@ testcases:
   timeout_seconds: 120
   tags:
   - usage
+- id: usage-xmlstarlet-select-attribute
+  title: xmlstarlet select attribute
+  description: Selects an XML attribute with xmlstarlet and verifies the returned value.
+  kind: usage
+  client_application: xmlstarlet
+  command:
+  - bash
+  - /validator/tests/libxml/tests/cases/usage/usage-further-client-behavior.sh
+  - usage-xmlstarlet-select-attribute
+  timeout_seconds: 180
+  tags:
+  - usage
+  - xml
+  - xmlstarlet
+- id: usage-xmlstarlet-count-nodes
+  title: xmlstarlet count nodes
+  description: Counts repeated XML nodes with xmlstarlet XPath evaluation and verifies the numeric result.
+  kind: usage
+  client_application: xmlstarlet
+  command:
+  - bash
+  - /validator/tests/libxml/tests/cases/usage/usage-further-client-behavior.sh
+  - usage-xmlstarlet-count-nodes
+  timeout_seconds: 180
+  tags:
+  - usage
+  - xml
+  - xmlstarlet
+- id: usage-xmlstarlet-edit-update-attr
+  title: xmlstarlet edit update attribute
+  description: Updates an XML attribute with xmlstarlet edit and verifies the rewritten output.
+  kind: usage
+  client_application: xmlstarlet
+  command:
+  - bash
+  - /validator/tests/libxml/tests/cases/usage/usage-further-client-behavior.sh
+  - usage-xmlstarlet-edit-update-attr
+  timeout_seconds: 180
+  tags:
+  - usage
+  - xml
+  - xmlstarlet
+- id: usage-xmlstarlet-edit-delete-node
+  title: xmlstarlet edit delete node
+  description: Deletes an XML node with xmlstarlet edit and verifies the removed text no longer appears in the output.
+  kind: usage
+  client_application: xmlstarlet
+  command:
+  - bash
+  - /validator/tests/libxml/tests/cases/usage/usage-further-client-behavior.sh
+  - usage-xmlstarlet-edit-delete-node
+  timeout_seconds: 180
+  tags:
+  - usage
+  - xml
+  - xmlstarlet
+- id: usage-xmlstarlet-select-sum-value
+  title: xmlstarlet select numeric sum
+  description: Evaluates an XPath numeric sum with xmlstarlet and verifies the computed value.
+  kind: usage
+  client_application: xmlstarlet
+  command:
+  - bash
+  - /validator/tests/libxml/tests/cases/usage/usage-further-client-behavior.sh
+  - usage-xmlstarlet-select-sum-value
+  timeout_seconds: 180
+  tags:
+  - usage
+  - xml
+  - xmlstarlet
+- id: usage-python3-lxml-itertext
+  title: python3-lxml itertext
+  description: Iterates text nodes with lxml and verifies the collected text order.
+  kind: usage
+  client_application: python3-lxml
+  command:
+  - bash
+  - /validator/tests/libxml/tests/cases/usage/usage-further-client-behavior.sh
+  - usage-python3-lxml-itertext
+  timeout_seconds: 180
+  tags:
+  - usage
+  - xml
+  - python
+- id: usage-python3-lxml-fromstring-attribute
+  title: python3-lxml fromstring attribute
+  description: Parses XML from bytes with lxml.fromstring and verifies an attribute value.
+  kind: usage
+  client_application: python3-lxml
+  command:
+  - bash
+  - /validator/tests/libxml/tests/cases/usage/usage-further-client-behavior.sh
+  - usage-python3-lxml-fromstring-attribute
+  timeout_seconds: 180
+  tags:
+  - usage
+  - xml
+  - python
+- id: usage-python3-lxml-xpath-count
+  title: python3-lxml XPath count
+  description: Evaluates an XPath count through lxml and verifies the numeric result.
+  kind: usage
+  client_application: python3-lxml
+  command:
+  - bash
+  - /validator/tests/libxml/tests/cases/usage/usage-further-client-behavior.sh
+  - usage-python3-lxml-xpath-count
+  timeout_seconds: 180
+  tags:
+  - usage
+  - xml
+  - python
+
+- id: usage-python3-lxml-item-id-join
+  title: python3-lxml item id join
+  description: Collects item identifiers through lxml and verifies the joined id list.
+  kind: usage
+  client_application: python3-lxml
+  command:
+  - bash
+  - /validator/tests/libxml/tests/cases/usage/usage-further-client-behavior.sh
+  - usage-python3-lxml-item-id-join
+  timeout_seconds: 180
+  tags:
+  - usage
+  - xml
+  - python
+
+- id: usage-xmlstarlet-select-namespace-note
+  title: xmlstarlet namespaced note select
+  description: Queries a namespaced XML element through xmlstarlet and verifies the selected note text.
+  kind: usage
+  client_application: xmlstarlet
+  command:
+  - bash
+  - /validator/tests/libxml/tests/cases/usage/usage-further-client-behavior.sh
+  - usage-xmlstarlet-select-namespace-note
+  timeout_seconds: 180
+  tags:
+  - usage
+  - xml

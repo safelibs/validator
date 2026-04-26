@@ -730,3 +730,133 @@ testcases:
   timeout_seconds: 120
   tags:
   - usage
+
+- id: usage-python3-pygame-rect-fit
+  title: pygame rect fit
+  description: Exercises pygame rect fit through a dependent-client usage scenario.
+  kind: usage
+  client_application: python3-pygame
+  command:
+  - bash
+  - /validator/tests/libsdl/tests/cases/usage/usage-further-client-behavior.sh
+  - usage-python3-pygame-rect-fit
+  timeout_seconds: 120
+  tags:
+  - usage
+
+- id: usage-python3-pygame-rect-normalize
+  title: pygame rect normalize
+  description: Exercises pygame rect normalize through a dependent-client usage scenario.
+  kind: usage
+  client_application: python3-pygame
+  command:
+  - bash
+  - /validator/tests/libsdl/tests/cases/usage/usage-further-client-behavior.sh
+  - usage-python3-pygame-rect-normalize
+  timeout_seconds: 120
+  tags:
+  - usage
+
+- id: usage-python3-pygame-vector2-rotate
+  title: pygame Vector2 rotate
+  description: Exercises pygame vector2 rotate through a dependent-client usage scenario.
+  kind: usage
+  client_application: python3-pygame
+  command:
+  - bash
+  - /validator/tests/libsdl/tests/cases/usage/usage-further-client-behavior.sh
+  - usage-python3-pygame-vector2-rotate
+  timeout_seconds: 120
+  tags:
+  - usage
+
+- id: usage-python3-pygame-draw-aaline
+  title: pygame draw aaline
+  description: Exercises pygame draw aaline through a dependent-client usage scenario.
+  kind: usage
+  client_application: python3-pygame
+  command:
+  - bash
+  - /validator/tests/libsdl/tests/cases/usage/usage-further-client-behavior.sh
+  - usage-python3-pygame-draw-aaline
+  timeout_seconds: 120
+  tags:
+  - usage
+
+- id: usage-python3-pygame-mask-outline
+  title: pygame mask outline
+  description: Exercises pygame mask outline through a dependent-client usage scenario.
+  kind: usage
+  client_application: python3-pygame
+  command:
+  - bash
+  - /validator/tests/libsdl/tests/cases/usage/usage-further-client-behavior.sh
+  - usage-python3-pygame-mask-outline
+  timeout_seconds: 120
+  tags:
+  - usage
+
+- id: usage-python3-pygame-event-clear
+  title: pygame event clear
+  description: Exercises pygame event clear through a dependent-client usage scenario.
+  kind: usage
+  client_application: python3-pygame
+  command:
+  - bash
+  - /validator/tests/libsdl/tests/cases/usage/usage-further-client-behavior.sh
+  - usage-python3-pygame-event-clear
+  timeout_seconds: 120
+  tags:
+  - usage
+
+- id: usage-python3-pygame-surface-map-rgb
+  title: pygame surface map rgb
+  description: Exercises pygame surface map rgb through a dependent-client usage scenario.
+  kind: usage
+  client_application: python3-pygame
+  command:
+  - bash
+  - /validator/tests/libsdl/tests/cases/usage/usage-further-client-behavior.sh
+  - usage-python3-pygame-surface-map-rgb
+  timeout_seconds: 120
+  tags:
+  - usage
+
+- id: usage-python3-pygame-surface-bounding-rect
+  title: pygame surface bounding rect
+  description: Exercises pygame surface bounding rect through a dependent-client usage scenario.
+  kind: usage
+  client_application: python3-pygame
+  command:
+  - bash
+  - /validator/tests/libsdl/tests/cases/usage/usage-further-client-behavior.sh
+  - usage-python3-pygame-surface-bounding-rect
+  timeout_seconds: 120
+  tags:
+  - usage
+
+- id: usage-python3-pygame-font-size
+  title: pygame font size
+  description: Exercises pygame font size through a dependent-client usage scenario.
+  kind: usage
+  client_application: python3-pygame
+  command:
+  - bash
+  - /validator/tests/libsdl/tests/cases/usage/usage-further-client-behavior.sh
+  - usage-python3-pygame-font-size
+  timeout_seconds: 120
+  tags:
+  - usage
+
+- id: usage-python3-pygame-color-hsva
+  title: pygame color HSVA
+  description: Exercises pygame color hsva through a dependent-client usage scenario.
+  kind: usage
+  client_application: python3-pygame
+  command:
+  - bash
+  - /validator/tests/libsdl/tests/cases/usage/usage-further-client-behavior.sh
+  - usage-python3-pygame-color-hsva
+  timeout_seconds: 120
+  tags:
+  - usage

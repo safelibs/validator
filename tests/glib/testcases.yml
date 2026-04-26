@@ -743,3 +743,143 @@ testcases:
   timeout_seconds: 120
   tags:
   - usage
+- id: usage-gio-save-stdin-file
+  title: gio saves stdin to file
+  description: Writes bytes through gio save and verifies the created file content.
+  kind: usage
+  client_application: gio
+  command:
+  - bash
+  - /validator/tests/glib/tests/cases/usage/usage-further-client-behavior.sh
+  - usage-gio-save-stdin-file
+  timeout_seconds: 180
+  tags:
+  - usage
+  - gio
+  - filesystem
+- id: usage-python3-gi-regex-match
+  title: PyGObject GLib regex match
+  description: Matches a string with GLib.regex_match_simple through PyGObject and verifies the boolean result.
+  kind: usage
+  client_application: python3-gi
+  command:
+  - bash
+  - /validator/tests/glib/tests/cases/usage/usage-further-client-behavior.sh
+  - usage-python3-gi-regex-match
+  timeout_seconds: 180
+  tags:
+  - usage
+  - python
+  - regex
+- id: usage-python3-gi-keyfile-integer-list
+  title: PyGObject GLib KeyFile integer list
+  description: Stores and reads an integer list through GLib KeyFile in PyGObject.
+  kind: usage
+  client_application: python3-gi
+  command:
+  - bash
+  - /validator/tests/glib/tests/cases/usage/usage-further-client-behavior.sh
+  - usage-python3-gi-keyfile-integer-list
+  timeout_seconds: 180
+  tags:
+  - usage
+  - python
+  - keyfile
+- id: usage-python3-gi-variant-builder-array
+  title: PyGObject GLib VariantBuilder array
+  description: Builds a string array with GLib VariantBuilder and unpacks the members through PyGObject.
+  kind: usage
+  client_application: python3-gi
+  command:
+  - bash
+  - /validator/tests/glib/tests/cases/usage/usage-further-client-behavior.sh
+  - usage-python3-gi-variant-builder-array
+  timeout_seconds: 180
+  tags:
+  - usage
+  - python
+  - variant
+- id: usage-python3-gi-file-replace-contents
+  title: PyGObject Gio replace contents
+  description: Replaces file contents with Gio.File.replace_contents through PyGObject and reads the new payload back.
+  kind: usage
+  client_application: python3-gi
+  command:
+  - bash
+  - /validator/tests/glib/tests/cases/usage/usage-further-client-behavior.sh
+  - usage-python3-gi-file-replace-contents
+  timeout_seconds: 180
+  tags:
+  - usage
+  - python
+  - gio
+- id: usage-python3-gi-data-input-stream-line
+  title: PyGObject Gio data input stream
+  description: Reads the first line of a file through Gio.DataInputStream in PyGObject.
+  kind: usage
+  client_application: python3-gi
+  command:
+  - bash
+  - /validator/tests/glib/tests/cases/usage/usage-further-client-behavior.sh
+  - usage-python3-gi-data-input-stream-line
+  timeout_seconds: 180
+  tags:
+  - usage
+  - python
+  - gio
+- id: usage-python3-gi-markup-escape
+  title: PyGObject GLib markup escape
+  description: Escapes markup-sensitive text with GLib.markup_escape_text through PyGObject.
+  kind: usage
+  client_application: python3-gi
+  command:
+  - bash
+  - /validator/tests/glib/tests/cases/usage/usage-further-client-behavior.sh
+  - usage-python3-gi-markup-escape
+  timeout_seconds: 180
+  tags:
+  - usage
+  - python
+  - glib
+- id: usage-python3-gi-checksum-sha1
+  title: PyGObject GLib SHA1 checksum
+  description: Computes a SHA1 digest through GLib Checksum from PyGObject.
+  kind: usage
+  client_application: python3-gi
+  command:
+  - bash
+  - /validator/tests/glib/tests/cases/usage/usage-further-client-behavior.sh
+  - usage-python3-gi-checksum-sha1
+  timeout_seconds: 180
+  tags:
+  - usage
+  - python
+  - checksum
+- id: usage-python3-gi-keyfile-groups
+  title: PyGObject GLib KeyFile groups
+  description: Loads multiple INI groups through GLib KeyFile and lists the group names with PyGObject.
+  kind: usage
+  client_application: python3-gi
+  command:
+  - bash
+  - /validator/tests/glib/tests/cases/usage/usage-further-client-behavior.sh
+  - usage-python3-gi-keyfile-groups
+  timeout_seconds: 180
+  tags:
+  - usage
+  - python
+  - keyfile
+- id: usage-python3-gi-variant-lookup
+  title: PyGObject GLib variant lookup
+  description: Looks up a typed integer value inside a GLib dictionary variant through PyGObject.
+  kind: usage
+  client_application: python3-gi
+  command:
+  - bash
+  - /validator/tests/glib/tests/cases/usage/usage-further-client-behavior.sh
+  - usage-python3-gi-variant-lookup
+  timeout_seconds: 180
+  tags:
+  - usage
+  - python
+  - variant

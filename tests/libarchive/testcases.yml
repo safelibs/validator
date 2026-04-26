@@ -720,3 +720,143 @@ testcases:
   timeout_seconds: 120
   tags:
   - usage
+- id: usage-python-libarchive-c-tar-dotfile
+  title: python-libarchive-c tar dotfile
+  description: Writes and reads a tar archive containing a dotfile through python-libarchive-c.
+  kind: usage
+  client_application: python3-libarchive-c
+  command:
+  - bash
+  - /validator/tests/libarchive/tests/cases/usage/usage-further-client-behavior.sh
+  - usage-python-libarchive-c-tar-dotfile
+  timeout_seconds: 180
+  tags:
+  - usage
+  - archive
+  - python
+- id: usage-python-libarchive-c-zip-dotfile
+  title: python-libarchive-c zip dotfile
+  description: Writes and reads a zip archive containing a dotfile through python-libarchive-c.
+  kind: usage
+  client_application: python3-libarchive-c
+  command:
+  - bash
+  - /validator/tests/libarchive/tests/cases/usage/usage-further-client-behavior.sh
+  - usage-python-libarchive-c-zip-dotfile
+  timeout_seconds: 180
+  tags:
+  - usage
+  - archive
+  - python
+- id: usage-python-libarchive-c-tar-many-empty-files
+  title: python-libarchive-c tar many empty files
+  description: Writes and reads a tar archive containing several empty files through python-libarchive-c.
+  kind: usage
+  client_application: python3-libarchive-c
+  command:
+  - bash
+  - /validator/tests/libarchive/tests/cases/usage/usage-further-client-behavior.sh
+  - usage-python-libarchive-c-tar-many-empty-files
+  timeout_seconds: 180
+  tags:
+  - usage
+  - archive
+  - python
+- id: usage-python-libarchive-c-zip-directory-entry
+  title: python-libarchive-c zip directory entry
+  description: Writes a zip archive with an explicit directory entry through python-libarchive-c and verifies the listed members.
+  kind: usage
+  client_application: python3-libarchive-c
+  command:
+  - bash
+  - /validator/tests/libarchive/tests/cases/usage/usage-further-client-behavior.sh
+  - usage-python-libarchive-c-zip-directory-entry
+  timeout_seconds: 180
+  tags:
+  - usage
+  - archive
+  - python
+- id: usage-python-libarchive-c-cpio-empty-file
+  title: python-libarchive-c cpio empty file
+  description: Writes and reads an empty-file cpio archive through python-libarchive-c.
+  kind: usage
+  client_application: python3-libarchive-c
+  command:
+  - bash
+  - /validator/tests/libarchive/tests/cases/usage/usage-further-client-behavior.sh
+  - usage-python-libarchive-c-cpio-empty-file
+  timeout_seconds: 180
+  tags:
+  - usage
+  - archive
+  - python
+- id: usage-python-libarchive-c-pax-directory-entry
+  title: python-libarchive-c pax directory entry
+  description: Writes a pax archive with an explicit directory entry through python-libarchive-c and verifies the listed members.
+  kind: usage
+  client_application: python3-libarchive-c
+  command:
+  - bash
+  - /validator/tests/libarchive/tests/cases/usage/usage-further-client-behavior.sh
+  - usage-python-libarchive-c-pax-directory-entry
+  timeout_seconds: 180
+  tags:
+  - usage
+  - archive
+  - python
+- id: usage-python-libarchive-c-memory-reader-zip-directory
+  title: python-libarchive-c memory reader zip directory
+  description: Reads a zip archive with a directory entry through the python-libarchive-c memory reader and verifies member order.
+  kind: usage
+  client_application: python3-libarchive-c
+  command:
+  - bash
+  - /validator/tests/libarchive/tests/cases/usage/usage-further-client-behavior.sh
+  - usage-python-libarchive-c-memory-reader-zip-directory
+  timeout_seconds: 180
+  tags:
+  - usage
+  - archive
+  - python
+- id: usage-python-libarchive-c-tar-subdir-order
+  title: python-libarchive-c tar subdir order
+  description: Writes nested tar entries through python-libarchive-c and verifies the preserved member order.
+  kind: usage
+  client_application: python3-libarchive-c
+  command:
+  - bash
+  - /validator/tests/libarchive/tests/cases/usage/usage-further-client-behavior.sh
+  - usage-python-libarchive-c-tar-subdir-order
+  timeout_seconds: 180
+  tags:
+  - usage
+  - archive
+  - python
+- id: usage-python-libarchive-c-zip-nested-directory
+  title: python-libarchive-c zip nested directory
+  description: Writes and reads a zip archive containing a nested directory path through python-libarchive-c.
+  kind: usage
+  client_application: python3-libarchive-c
+  command:
+  - bash
+  - /validator/tests/libarchive/tests/cases/usage/usage-further-client-behavior.sh
+  - usage-python-libarchive-c-zip-nested-directory
+  timeout_seconds: 180
+  tags:
+  - usage
+  - archive
+  - python
+- id: usage-python-libarchive-c-tar-hidden-directory-file
+  title: python-libarchive-c tar hidden directory file
+  description: Writes and reads a tar archive containing a hidden directory path through python-libarchive-c.
+  kind: usage
+  client_application: python3-libarchive-c
+  command:
+  - bash
+  - /validator/tests/libarchive/tests/cases/usage/usage-further-client-behavior.sh
+  - usage-python-libarchive-c-tar-hidden-directory-file
+  timeout_seconds: 180
+  tags:
+  - usage
+  - archive
+  - python

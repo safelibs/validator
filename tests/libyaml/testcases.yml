@@ -729,3 +729,143 @@ testcases:
   timeout_seconds: 120
   tags:
   - usage
+- id: usage-python3-yaml-safe-load-set
+  title: PyYAML safe load set
+  description: Loads a YAML set with safe_load and verifies the decoded set members.
+  kind: usage
+  client_application: python3-yaml
+  command:
+  - bash
+  - /validator/tests/libyaml/tests/cases/usage/usage-further-client-behavior.sh
+  - usage-python3-yaml-safe-load-set
+  timeout_seconds: 180
+  tags:
+  - usage
+  - yaml
+  - python
+- id: usage-python3-yaml-safe-load-null-list
+  title: PyYAML safe load null list
+  description: Loads YAML null scalars with safe_load and verifies the decoded Python None values.
+  kind: usage
+  client_application: python3-yaml
+  command:
+  - bash
+  - /validator/tests/libyaml/tests/cases/usage/usage-further-client-behavior.sh
+  - usage-python3-yaml-safe-load-null-list
+  timeout_seconds: 180
+  tags:
+  - usage
+  - yaml
+  - python
+- id: usage-python3-yaml-full-load-timestamp
+  title: PyYAML full load timestamp
+  description: Loads a YAML timestamp with full_load and verifies the decoded date value.
+  kind: usage
+  client_application: python3-yaml
+  command:
+  - bash
+  - /validator/tests/libyaml/tests/cases/usage/usage-further-client-behavior.sh
+  - usage-python3-yaml-full-load-timestamp
+  timeout_seconds: 180
+  tags:
+  - usage
+  - yaml
+  - python
+- id: usage-python3-yaml-base-loader-null-string
+  title: PyYAML base loader null string
+  description: Loads a YAML null scalar with the base loader and verifies it remains a string value.
+  kind: usage
+  client_application: python3-yaml
+  command:
+  - bash
+  - /validator/tests/libyaml/tests/cases/usage/usage-further-client-behavior.sh
+  - usage-python3-yaml-base-loader-null-string
+  timeout_seconds: 180
+  tags:
+  - usage
+  - yaml
+  - python
+- id: usage-python3-yaml-csafe-load-bool-map
+  title: PyYAML CSafeLoader bool map
+  description: Loads booleans with CSafeLoader and verifies the decoded truth values.
+  kind: usage
+  client_application: python3-yaml
+  command:
+  - bash
+  - /validator/tests/libyaml/tests/cases/usage/usage-further-client-behavior.sh
+  - usage-python3-yaml-csafe-load-bool-map
+  timeout_seconds: 180
+  tags:
+  - usage
+  - yaml
+  - python
+- id: usage-python3-yaml-safe-dump-default-style
+  title: PyYAML safe dump default style
+  description: Dumps a nested structure with safe_dump and verifies the default block-style list formatting.
+  kind: usage
+  client_application: python3-yaml
+  command:
+  - bash
+  - /validator/tests/libyaml/tests/cases/usage/usage-further-client-behavior.sh
+  - usage-python3-yaml-safe-dump-default-style
+  timeout_seconds: 180
+  tags:
+  - usage
+  - yaml
+  - python
+- id: usage-python3-yaml-safe-dump-list-indent
+  title: PyYAML safe dump list indent
+  description: Dumps a nested list with safe_dump and a custom indent value and verifies the emitted indentation.
+  kind: usage
+  client_application: python3-yaml
+  command:
+  - bash
+  - /validator/tests/libyaml/tests/cases/usage/usage-further-client-behavior.sh
+  - usage-python3-yaml-safe-dump-list-indent
+  timeout_seconds: 180
+  tags:
+  - usage
+  - yaml
+  - python
+- id: usage-python3-yaml-compose-scalar-tag
+  title: PyYAML compose scalar tag
+  description: Composes a YAML document and verifies the scalar node tag for an integer value.
+  kind: usage
+  client_application: python3-yaml
+  command:
+  - bash
+  - /validator/tests/libyaml/tests/cases/usage/usage-further-client-behavior.sh
+  - usage-python3-yaml-compose-scalar-tag
+  timeout_seconds: 180
+  tags:
+  - usage
+  - yaml
+  - python
+- id: usage-python3-yaml-safe-load-ordered-keys
+  title: PyYAML safe load ordered keys
+  description: Loads a mapping with safe_load and verifies the insertion order of the decoded keys.
+  kind: usage
+  client_application: python3-yaml
+  command:
+  - bash
+  - /validator/tests/libyaml/tests/cases/usage/usage-further-client-behavior.sh
+  - usage-python3-yaml-safe-load-ordered-keys
+  timeout_seconds: 180
+  tags:
+  - usage
+  - yaml
+  - python
+- id: usage-python3-yaml-csafe-dump-explicit-end
+  title: PyYAML CSafeDumper explicit end
+  description: Dumps multiple YAML documents with explicit end markers and verifies the terminator appears in the emitted text.
+  kind: usage
+  client_application: python3-yaml
+  command:
+  - bash
+  - /validator/tests/libyaml/tests/cases/usage/usage-further-client-behavior.sh
+  - usage-python3-yaml-csafe-dump-explicit-end
+  timeout_seconds: 180
+  tags:
+  - usage
+  - yaml
+  - python

@@ -731,3 +731,133 @@ testcases:
   timeout_seconds: 120
   tags:
   - usage
+
+- id: usage-ruby-vips-rot90-generated
+  title: ruby-vips generated rot90
+  description: Exercises ruby-vips generated rot90 through a dependent-client usage scenario.
+  kind: usage
+  client_application: ruby-vips
+  command:
+  - bash
+  - /validator/tests/libvips/tests/cases/usage/usage-further-client-behavior.sh
+  - usage-ruby-vips-rot90-generated
+  timeout_seconds: 120
+  tags:
+  - usage
+
+- id: usage-ruby-vips-zoom-generated
+  title: ruby-vips generated zoom
+  description: Exercises ruby-vips generated zoom through a dependent-client usage scenario.
+  kind: usage
+  client_application: ruby-vips
+  command:
+  - bash
+  - /validator/tests/libvips/tests/cases/usage/usage-further-client-behavior.sh
+  - usage-ruby-vips-zoom-generated
+  timeout_seconds: 120
+  tags:
+  - usage
+
+- id: usage-ruby-vips-subsample-generated
+  title: ruby-vips generated subsample
+  description: Exercises ruby-vips generated subsample through a dependent-client usage scenario.
+  kind: usage
+  client_application: ruby-vips
+  command:
+  - bash
+  - /validator/tests/libvips/tests/cases/usage/usage-further-client-behavior.sh
+  - usage-ruby-vips-subsample-generated
+  timeout_seconds: 120
+  tags:
+  - usage
+
+- id: usage-ruby-vips-bandsplit-generated
+  title: ruby-vips generated bandsplit
+  description: Exercises ruby-vips generated bandsplit through a dependent-client usage scenario.
+  kind: usage
+  client_application: ruby-vips
+  command:
+  - bash
+  - /validator/tests/libvips/tests/cases/usage/usage-further-client-behavior.sh
+  - usage-ruby-vips-bandsplit-generated
+  timeout_seconds: 120
+  tags:
+  - usage
+
+- id: usage-ruby-vips-max-generated
+  title: ruby-vips generated max
+  description: Exercises ruby-vips generated max through a dependent-client usage scenario.
+  kind: usage
+  client_application: ruby-vips
+  command:
+  - bash
+  - /validator/tests/libvips/tests/cases/usage/usage-further-client-behavior.sh
+  - usage-ruby-vips-max-generated
+  timeout_seconds: 120
+  tags:
+  - usage
+
+- id: usage-ruby-vips-min-generated
+  title: ruby-vips generated min
+  description: Exercises ruby-vips generated min through a dependent-client usage scenario.
+  kind: usage
+  client_application: ruby-vips
+  command:
+  - bash
+  - /validator/tests/libvips/tests/cases/usage/usage-further-client-behavior.sh
+  - usage-ruby-vips-min-generated
+  timeout_seconds: 120
+  tags:
+  - usage
+
+- id: usage-ruby-vips-add-constant-generated
+  title: ruby-vips generated add constant
+  description: Exercises ruby-vips generated add constant through a dependent-client usage scenario.
+  kind: usage
+  client_application: ruby-vips
+  command:
+  - bash
+  - /validator/tests/libvips/tests/cases/usage/usage-further-client-behavior.sh
+  - usage-ruby-vips-add-constant-generated
+  timeout_seconds: 120
+  tags:
+  - usage
+
+- id: usage-ruby-vips-multiply-constant-generated
+  title: ruby-vips generated multiply constant
+  description: Exercises ruby-vips generated multiply constant through a dependent-client usage scenario.
+  kind: usage
+  client_application: ruby-vips
+  command:
+  - bash
+  - /validator/tests/libvips/tests/cases/usage/usage-further-client-behavior.sh
+  - usage-ruby-vips-multiply-constant-generated
+  timeout_seconds: 120
+  tags:
+  - usage
+
+- id: usage-ruby-vips-write-memory-generated
+  title: ruby-vips generated write memory
+  description: Exercises ruby-vips generated write memory through a dependent-client usage scenario.
+  kind: usage
+  client_application: ruby-vips
+  command:
+  - bash
+  - /validator/tests/libvips/tests/cases/usage/usage-further-client-behavior.sh
+  - usage-ruby-vips-write-memory-generated
+  timeout_seconds: 120
+  tags:
+  - usage
+
+- id: usage-ruby-vips-bandjoin-array-generated
+  title: ruby-vips generated bandjoin array
+  description: Exercises ruby-vips generated bandjoin array through a dependent-client usage scenario.
+  kind: usage
+  client_application: ruby-vips
+  command:
+  - bash
+  - /validator/tests/libvips/tests/cases/usage/usage-further-client-behavior.sh
+  - usage-ruby-vips-bandjoin-array-generated
+  timeout_seconds: 120
+  tags:
+  - usage

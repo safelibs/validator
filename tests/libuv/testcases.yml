@@ -718,3 +718,143 @@ testcases:
   timeout_seconds: 120
   tags:
   - usage
+- id: usage-nodejs-fs-mkdtemp
+  title: Node.js fs mkdtemp
+  description: Creates a temporary directory with fs.mkdtempSync and verifies the generated prefix.
+  kind: usage
+  client_application: nodejs
+  command:
+  - bash
+  - /validator/tests/libuv/tests/cases/usage/usage-further-client-behavior.sh
+  - usage-nodejs-fs-mkdtemp
+  timeout_seconds: 180
+  tags:
+  - usage
+  - nodejs
+  - fs
+- id: usage-nodejs-fs-chmod
+  title: Node.js fs chmod
+  description: Changes file permissions with fs.chmod and verifies the resulting mode bits.
+  kind: usage
+  client_application: nodejs
+  command:
+  - bash
+  - /validator/tests/libuv/tests/cases/usage/usage-further-client-behavior.sh
+  - usage-nodejs-fs-chmod
+  timeout_seconds: 180
+  tags:
+  - usage
+  - nodejs
+  - fs
+- id: usage-nodejs-fs-symlink-readlink
+  title: Node.js fs symlink readlink
+  description: Creates a symlink with Node.js fs APIs and verifies the link target with readlink.
+  kind: usage
+  client_application: nodejs
+  command:
+  - bash
+  - /validator/tests/libuv/tests/cases/usage/usage-further-client-behavior.sh
+  - usage-nodejs-fs-symlink-readlink
+  timeout_seconds: 180
+  tags:
+  - usage
+  - nodejs
+  - fs
+- id: usage-nodejs-child-process-execsync
+  title: Node.js child_process execSync
+  description: Runs a synchronous subprocess with execSync and verifies the captured output.
+  kind: usage
+  client_application: nodejs
+  command:
+  - bash
+  - /validator/tests/libuv/tests/cases/usage/usage-further-client-behavior.sh
+  - usage-nodejs-child-process-execsync
+  timeout_seconds: 180
+  tags:
+  - usage
+  - nodejs
+  - process
+- id: usage-nodejs-net-end-event
+  title: Node.js net end event
+  description: Exchanges data over a loopback TCP socket and verifies the client end event payload.
+  kind: usage
+  client_application: nodejs
+  command:
+  - bash
+  - /validator/tests/libuv/tests/cases/usage/usage-further-client-behavior.sh
+  - usage-nodejs-net-end-event
+  timeout_seconds: 180
+  tags:
+  - usage
+  - nodejs
+  - net
+- id: usage-nodejs-dgram-message-size
+  title: Node.js dgram message size
+  description: Receives a UDP datagram over loopback and verifies the reported message length.
+  kind: usage
+  client_application: nodejs
+  command:
+  - bash
+  - /validator/tests/libuv/tests/cases/usage/usage-further-client-behavior.sh
+  - usage-nodejs-dgram-message-size
+  timeout_seconds: 180
+  tags:
+  - usage
+  - nodejs
+  - udp
+- id: usage-nodejs-stream-finished
+  title: Node.js stream finished callback
+  description: Uses stream.finished on a PassThrough stream and verifies the collected payload.
+  kind: usage
+  client_application: nodejs
+  command:
+  - bash
+  - /validator/tests/libuv/tests/cases/usage/usage-further-client-behavior.sh
+  - usage-nodejs-stream-finished
+  timeout_seconds: 180
+  tags:
+  - usage
+  - nodejs
+  - stream
+- id: usage-nodejs-crypto-randomfill
+  title: Node.js crypto randomFill
+  description: Fills a buffer asynchronously with crypto.randomFill and verifies the resulting buffer length.
+  kind: usage
+  client_application: nodejs
+  command:
+  - bash
+  - /validator/tests/libuv/tests/cases/usage/usage-further-client-behavior.sh
+  - usage-nodejs-crypto-randomfill
+  timeout_seconds: 180
+  tags:
+  - usage
+  - nodejs
+  - crypto
+- id: usage-nodejs-zlib-brotli-compress
+  title: Node.js zlib Brotli round trip
+  description: Compresses and decompresses a payload with Node.js Brotli helpers and verifies the restored text.
+  kind: usage
+  client_application: nodejs
+  command:
+  - bash
+  - /validator/tests/libuv/tests/cases/usage/usage-further-client-behavior.sh
+  - usage-nodejs-zlib-brotli-compress
+  timeout_seconds: 180
+  tags:
+  - usage
+  - nodejs
+  - zlib
+- id: usage-nodejs-timers-timeout-refresh
+  title: Node.js timeout refresh
+  description: Refreshes a pending timeout and verifies that the timer callback still runs exactly once.
+  kind: usage
+  client_application: nodejs
+  command:
+  - bash
+  - /validator/tests/libuv/tests/cases/usage/usage-further-client-behavior.sh
+  - usage-nodejs-timers-timeout-refresh
+  timeout_seconds: 180
+  tags:
+  - usage
+  - nodejs
+  - timers

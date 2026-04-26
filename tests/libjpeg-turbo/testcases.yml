@@ -733,3 +733,133 @@ testcases:
   timeout_seconds: 120
   tags:
   - usage
+
+- id: usage-python3-pil-equalize-jpeg
+  title: python PIL equalize JPEG
+  description: Exercises python pil equalize jpeg through a dependent-client usage scenario.
+  kind: usage
+  client_application: python3-pil
+  command:
+  - bash
+  - /validator/tests/libjpeg-turbo/tests/cases/usage/usage-further-client-behavior.sh
+  - usage-python3-pil-equalize-jpeg
+  timeout_seconds: 120
+  tags:
+  - usage
+
+- id: usage-python3-pil-fit-jpeg
+  title: python PIL fit JPEG
+  description: Exercises python pil fit jpeg through a dependent-client usage scenario.
+  kind: usage
+  client_application: python3-pil
+  command:
+  - bash
+  - /validator/tests/libjpeg-turbo/tests/cases/usage/usage-further-client-behavior.sh
+  - usage-python3-pil-fit-jpeg
+  timeout_seconds: 120
+  tags:
+  - usage
+
+- id: usage-python3-pil-pad-jpeg
+  title: python PIL pad JPEG
+  description: Exercises python pil pad jpeg through a dependent-client usage scenario.
+  kind: usage
+  client_application: python3-pil
+  command:
+  - bash
+  - /validator/tests/libjpeg-turbo/tests/cases/usage/usage-further-client-behavior.sh
+  - usage-python3-pil-pad-jpeg
+  timeout_seconds: 120
+  tags:
+  - usage
+
+- id: usage-python3-pil-offset-jpeg
+  title: python PIL offset JPEG
+  description: Exercises python pil offset jpeg through a dependent-client usage scenario.
+  kind: usage
+  client_application: python3-pil
+  command:
+  - bash
+  - /validator/tests/libjpeg-turbo/tests/cases/usage/usage-further-client-behavior.sh
+  - usage-python3-pil-offset-jpeg
+  timeout_seconds: 120
+  tags:
+  - usage
+
+- id: usage-python3-pil-getextrema-jpeg
+  title: python PIL getextrema JPEG
+  description: Exercises python pil getextrema jpeg through a dependent-client usage scenario.
+  kind: usage
+  client_application: python3-pil
+  command:
+  - bash
+  - /validator/tests/libjpeg-turbo/tests/cases/usage/usage-further-client-behavior.sh
+  - usage-python3-pil-getextrema-jpeg
+  timeout_seconds: 120
+  tags:
+  - usage
+
+- id: usage-python3-pil-red-channel-jpeg
+  title: python PIL red channel JPEG
+  description: Exercises python pil red channel jpeg through a dependent-client usage scenario.
+  kind: usage
+  client_application: python3-pil
+  command:
+  - bash
+  - /validator/tests/libjpeg-turbo/tests/cases/usage/usage-further-client-behavior.sh
+  - usage-python3-pil-red-channel-jpeg
+  timeout_seconds: 120
+  tags:
+  - usage
+
+- id: usage-python3-pil-rotate-expand-jpeg
+  title: python PIL rotate expand JPEG
+  description: Exercises python pil rotate expand jpeg through a dependent-client usage scenario.
+  kind: usage
+  client_application: python3-pil
+  command:
+  - bash
+  - /validator/tests/libjpeg-turbo/tests/cases/usage/usage-further-client-behavior.sh
+  - usage-python3-pil-rotate-expand-jpeg
+  timeout_seconds: 120
+  tags:
+  - usage
+
+- id: usage-python3-pil-contain-jpeg
+  title: python PIL contain JPEG
+  description: Exercises python pil contain jpeg through a dependent-client usage scenario.
+  kind: usage
+  client_application: python3-pil
+  command:
+  - bash
+  - /validator/tests/libjpeg-turbo/tests/cases/usage/usage-further-client-behavior.sh
+  - usage-python3-pil-contain-jpeg
+  timeout_seconds: 120
+  tags:
+  - usage
+
+- id: usage-python3-pil-quantize-jpeg
+  title: python PIL quantize JPEG
+  description: Exercises python pil quantize jpeg through a dependent-client usage scenario.
+  kind: usage
+  client_application: python3-pil
+  command:
+  - bash
+  - /validator/tests/libjpeg-turbo/tests/cases/usage/usage-further-client-behavior.sh
+  - usage-python3-pil-quantize-jpeg
+  timeout_seconds: 120
+  tags:
+  - usage
+
+- id: usage-python3-pil-stat-mean-jpeg
+  title: python PIL stat mean JPEG
+  description: Exercises python pil stat mean jpeg through a dependent-client usage scenario.
+  kind: usage
+  client_application: python3-pil
+  command:
+  - bash
+  - /validator/tests/libjpeg-turbo/tests/cases/usage/usage-further-client-behavior.sh
+  - usage-python3-pil-stat-mean-jpeg
+  timeout_seconds: 120
+  tags:
+  - usage

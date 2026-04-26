@@ -731,3 +731,133 @@ testcases:
   timeout_seconds: 120
   tags:
   - usage
+
+- id: usage-python3-nacl-signing-key-bytes
+  title: python3-nacl signing key bytes
+  description: Exercises python3-nacl signing key bytes through a dependent-client usage scenario.
+  kind: usage
+  client_application: python3-nacl
+  command:
+  - bash
+  - /validator/tests/libsodium/tests/cases/usage/usage-further-client-behavior.sh
+  - usage-python3-nacl-signing-key-bytes
+  timeout_seconds: 120
+  tags:
+  - usage
+
+- id: usage-python3-nacl-verify-key-base64
+  title: python3-nacl verify key base64
+  description: Exercises python3-nacl verify key base64 through a dependent-client usage scenario.
+  kind: usage
+  client_application: python3-nacl
+  command:
+  - bash
+  - /validator/tests/libsodium/tests/cases/usage/usage-further-client-behavior.sh
+  - usage-python3-nacl-verify-key-base64
+  timeout_seconds: 120
+  tags:
+  - usage
+
+- id: usage-python3-nacl-blake2b-raw-digest
+  title: python3-nacl blake2b raw digest
+  description: Exercises python3-nacl blake2b raw digest through a dependent-client usage scenario.
+  kind: usage
+  client_application: python3-nacl
+  command:
+  - bash
+  - /validator/tests/libsodium/tests/cases/usage/usage-further-client-behavior.sh
+  - usage-python3-nacl-blake2b-raw-digest
+  timeout_seconds: 120
+  tags:
+  - usage
+
+- id: usage-python3-nacl-sealed-box-empty
+  title: python3-nacl sealed box empty payload
+  description: Exercises python3-nacl sealed box empty payload through a dependent-client usage scenario.
+  kind: usage
+  client_application: python3-nacl
+  command:
+  - bash
+  - /validator/tests/libsodium/tests/cases/usage/usage-further-client-behavior.sh
+  - usage-python3-nacl-sealed-box-empty
+  timeout_seconds: 120
+  tags:
+  - usage
+
+- id: usage-python3-nacl-secretbox-base64
+  title: python3-nacl secretbox base64
+  description: Exercises python3-nacl secretbox base64 through a dependent-client usage scenario.
+  kind: usage
+  client_application: python3-nacl
+  command:
+  - bash
+  - /validator/tests/libsodium/tests/cases/usage/usage-further-client-behavior.sh
+  - usage-python3-nacl-secretbox-base64
+  timeout_seconds: 120
+  tags:
+  - usage
+
+- id: usage-php83-sodium-generichash-state
+  title: PHP sodium generichash state
+  description: Exercises php sodium generichash state through a dependent-client usage scenario.
+  kind: usage
+  client_application: php8.3-cli
+  command:
+  - bash
+  - /validator/tests/libsodium/tests/cases/usage/usage-further-client-behavior.sh
+  - usage-php83-sodium-generichash-state
+  timeout_seconds: 120
+  tags:
+  - usage
+
+- id: usage-php83-sodium-sign-seed-keypair
+  title: PHP sodium sign seed keypair
+  description: Exercises php sodium sign seed keypair through a dependent-client usage scenario.
+  kind: usage
+  client_application: php8.3-cli
+  command:
+  - bash
+  - /validator/tests/libsodium/tests/cases/usage/usage-further-client-behavior.sh
+  - usage-php83-sodium-sign-seed-keypair
+  timeout_seconds: 120
+  tags:
+  - usage
+
+- id: usage-php83-sodium-base64-urlsafe
+  title: PHP sodium base64 urlsafe
+  description: Exercises php sodium base64 urlsafe through a dependent-client usage scenario.
+  kind: usage
+  client_application: php8.3-cli
+  command:
+  - bash
+  - /validator/tests/libsodium/tests/cases/usage/usage-further-client-behavior.sh
+  - usage-php83-sodium-base64-urlsafe
+  timeout_seconds: 120
+  tags:
+  - usage
+
+- id: usage-php83-sodium-increment
+  title: PHP sodium increment
+  description: Exercises php sodium increment through a dependent-client usage scenario.
+  kind: usage
+  client_application: php8.3-cli
+  command:
+  - bash
+  - /validator/tests/libsodium/tests/cases/usage/usage-further-client-behavior.sh
+  - usage-php83-sodium-increment
+  timeout_seconds: 120
+  tags:
+  - usage
+
+- id: usage-php83-sodium-memcmp
+  title: PHP sodium memcmp
+  description: Exercises php sodium memcmp through a dependent-client usage scenario.
+  kind: usage
+  client_application: php8.3-cli
+  command:
+  - bash
+  - /validator/tests/libsodium/tests/cases/usage/usage-further-client-behavior.sh
+  - usage-php83-sodium-memcmp
+  timeout_seconds: 120
+  tags:
+  - usage

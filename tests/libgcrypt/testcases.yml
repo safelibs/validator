@@ -734,3 +734,143 @@ testcases:
   timeout_seconds: 120
   tags:
   - usage
+- id: usage-gpg-print-md-md5
+  title: gpg MD5 digest
+  description: Prints an MD5 digest with gpg and verifies digest text is emitted.
+  kind: usage
+  client_application: gpg
+  command:
+  - bash
+  - /validator/tests/libgcrypt/tests/cases/usage/usage-further-client-behavior.sh
+  - usage-gpg-print-md-md5
+  timeout_seconds: 180
+  tags:
+  - usage
+  - gpg
+  - digest
+- id: usage-gpg-symmetric-3des
+  title: gpg 3DES symmetric round trip
+  description: Encrypts and decrypts a file with gpg symmetric 3DES mode and verifies the recovered payload.
+  kind: usage
+  client_application: gpg
+  command:
+  - bash
+  - /validator/tests/libgcrypt/tests/cases/usage/usage-further-client-behavior.sh
+  - usage-gpg-symmetric-3des
+  timeout_seconds: 180
+  tags:
+  - usage
+  - gpg
+  - crypto
+- id: usage-gpg-list-packets-symmetric-aes256
+  title: gpg AES256 packet listing
+  description: Lists AES256 symmetric packet metadata with gpg --list-packets and verifies the encrypted packet description.
+  kind: usage
+  client_application: gpg
+  command:
+  - bash
+  - /validator/tests/libgcrypt/tests/cases/usage/usage-further-client-behavior.sh
+  - usage-gpg-list-packets-symmetric-aes256
+  timeout_seconds: 180
+  tags:
+  - usage
+  - gpg
+  - metadata
+- id: usage-gpg-verify-detached-status-fd
+  title: gpg detached verify status-fd
+  description: Verifies a detached signature with gpg status output and checks for the GOODSIG status record.
+  kind: usage
+  client_application: gpg
+  command:
+  - bash
+  - /validator/tests/libgcrypt/tests/cases/usage/usage-further-client-behavior.sh
+  - usage-gpg-verify-detached-status-fd
+  timeout_seconds: 180
+  tags:
+  - usage
+  - gpg
+  - signature
+- id: usage-gpg-export-public-minimal
+  title: gpg export minimal public key
+  description: Exports a minimal armored public key with gpg export options and verifies the ASCII armor header.
+  kind: usage
+  client_application: gpg
+  command:
+  - bash
+  - /validator/tests/libgcrypt/tests/cases/usage/usage-further-client-behavior.sh
+  - usage-gpg-export-public-minimal
+  timeout_seconds: 180
+  tags:
+  - usage
+  - gpg
+  - keyring
+- id: usage-gpg-import-show-only
+  title: gpg import show-only
+  description: Inspects an exported public key with gpg import show-only mode and verifies public key metadata is displayed.
+  kind: usage
+  client_application: gpg
+  command:
+  - bash
+  - /validator/tests/libgcrypt/tests/cases/usage/usage-further-client-behavior.sh
+  - usage-gpg-import-show-only
+  timeout_seconds: 180
+  tags:
+  - usage
+  - gpg
+  - keyring
+- id: usage-gpg-list-secret-keys-keygrip
+  title: gpg secret key keygrip listing
+  description: Lists secret keys with gpg --with-keygrip and verifies keygrip metadata is shown.
+  kind: usage
+  client_application: gpg
+  command:
+  - bash
+  - /validator/tests/libgcrypt/tests/cases/usage/usage-further-client-behavior.sh
+  - usage-gpg-list-secret-keys-keygrip
+  timeout_seconds: 180
+  tags:
+  - usage
+  - gpg
+  - keyring
+- id: usage-gpg-symmetric-zlib-compress
+  title: gpg symmetric zlib compression
+  description: Encrypts with gpg symmetric mode using ZLIB compression and verifies the decrypted payload.
+  kind: usage
+  client_application: gpg
+  command:
+  - bash
+  - /validator/tests/libgcrypt/tests/cases/usage/usage-further-client-behavior.sh
+  - usage-gpg-symmetric-zlib-compress
+  timeout_seconds: 180
+  tags:
+  - usage
+  - gpg
+  - crypto
+- id: usage-gpg-symmetric-bzip2-compress
+  title: gpg symmetric bzip2 compression
+  description: Encrypts with gpg symmetric mode using BZIP2 compression and verifies the decrypted payload.
+  kind: usage
+  client_application: gpg
+  command:
+  - bash
+  - /validator/tests/libgcrypt/tests/cases/usage/usage-further-client-behavior.sh
+  - usage-gpg-symmetric-bzip2-compress
+  timeout_seconds: 180
+  tags:
+  - usage
+  - gpg
+  - crypto
+- id: usage-gpg-decrypt-clearsigned-message
+  title: gpg decrypt clearsigned message
+  description: Decrypts a clearsigned message with gpg and verifies the extracted cleartext body.
+  kind: usage
+  client_application: gpg
+  command:
+  - bash
+  - /validator/tests/libgcrypt/tests/cases/usage/usage-further-client-behavior.sh
+  - usage-gpg-decrypt-clearsigned-message
+  timeout_seconds: 180
+  tags:
+  - usage
+  - gpg
+  - signature

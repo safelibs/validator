@@ -742,3 +742,133 @@ testcases:
   timeout_seconds: 120
   tags:
   - usage
+
+- id: usage-python3-pil-equalize-webp
+  title: python PIL equalize WebP
+  description: Exercises python pil equalize webp through a dependent-client usage scenario.
+  kind: usage
+  client_application: python3-pil
+  command:
+  - bash
+  - /validator/tests/libwebp/tests/cases/usage/usage-further-client-behavior.sh
+  - usage-python3-pil-equalize-webp
+  timeout_seconds: 120
+  tags:
+  - usage
+
+- id: usage-python3-pil-fit-webp
+  title: python PIL fit WebP
+  description: Exercises python pil fit webp through a dependent-client usage scenario.
+  kind: usage
+  client_application: python3-pil
+  command:
+  - bash
+  - /validator/tests/libwebp/tests/cases/usage/usage-further-client-behavior.sh
+  - usage-python3-pil-fit-webp
+  timeout_seconds: 120
+  tags:
+  - usage
+
+- id: usage-python3-pil-pad-webp
+  title: python PIL pad WebP
+  description: Exercises python pil pad webp through a dependent-client usage scenario.
+  kind: usage
+  client_application: python3-pil
+  command:
+  - bash
+  - /validator/tests/libwebp/tests/cases/usage/usage-further-client-behavior.sh
+  - usage-python3-pil-pad-webp
+  timeout_seconds: 120
+  tags:
+  - usage
+
+- id: usage-python3-pil-offset-webp
+  title: python PIL offset WebP
+  description: Exercises python pil offset webp through a dependent-client usage scenario.
+  kind: usage
+  client_application: python3-pil
+  command:
+  - bash
+  - /validator/tests/libwebp/tests/cases/usage/usage-further-client-behavior.sh
+  - usage-python3-pil-offset-webp
+  timeout_seconds: 120
+  tags:
+  - usage
+
+- id: usage-python3-pil-getextrema-webp
+  title: python PIL getextrema WebP
+  description: Exercises python pil getextrema webp through a dependent-client usage scenario.
+  kind: usage
+  client_application: python3-pil
+  command:
+  - bash
+  - /validator/tests/libwebp/tests/cases/usage/usage-further-client-behavior.sh
+  - usage-python3-pil-getextrema-webp
+  timeout_seconds: 120
+  tags:
+  - usage
+
+- id: usage-python3-pil-red-channel-webp
+  title: python PIL red channel WebP
+  description: Exercises python pil red channel webp through a dependent-client usage scenario.
+  kind: usage
+  client_application: python3-pil
+  command:
+  - bash
+  - /validator/tests/libwebp/tests/cases/usage/usage-further-client-behavior.sh
+  - usage-python3-pil-red-channel-webp
+  timeout_seconds: 120
+  tags:
+  - usage
+
+- id: usage-python3-pil-rotate-expand-webp
+  title: python PIL rotate expand WebP
+  description: Exercises python pil rotate expand webp through a dependent-client usage scenario.
+  kind: usage
+  client_application: python3-pil
+  command:
+  - bash
+  - /validator/tests/libwebp/tests/cases/usage/usage-further-client-behavior.sh
+  - usage-python3-pil-rotate-expand-webp
+  timeout_seconds: 120
+  tags:
+  - usage
+
+- id: usage-python3-pil-contain-webp
+  title: python PIL contain WebP
+  description: Exercises python pil contain webp through a dependent-client usage scenario.
+  kind: usage
+  client_application: python3-pil
+  command:
+  - bash
+  - /validator/tests/libwebp/tests/cases/usage/usage-further-client-behavior.sh
+  - usage-python3-pil-contain-webp
+  timeout_seconds: 120
+  tags:
+  - usage
+
+- id: usage-python3-pil-quantize-webp
+  title: python PIL quantize WebP
+  description: Exercises python pil quantize webp through a dependent-client usage scenario.
+  kind: usage
+  client_application: python3-pil
+  command:
+  - bash
+  - /validator/tests/libwebp/tests/cases/usage/usage-further-client-behavior.sh
+  - usage-python3-pil-quantize-webp
+  timeout_seconds: 120
+  tags:
+  - usage
+
+- id: usage-python3-pil-stat-mean-webp
+  title: python PIL stat mean WebP
+  description: Exercises python pil stat mean webp through a dependent-client usage scenario.
+  kind: usage
+  client_application: python3-pil
+  command:
+  - bash
+  - /validator/tests/libwebp/tests/cases/usage/usage-further-client-behavior.sh
+  - usage-python3-pil-stat-mean-webp
+  timeout_seconds: 120
+  tags:
+  - usage

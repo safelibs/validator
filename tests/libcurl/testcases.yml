@@ -731,3 +731,143 @@ testcases:
   timeout_seconds: 120
   tags:
   - usage
+- id: usage-curl-patch-request
+  title: curl PATCH request
+  description: Sends a PATCH request with curl and verifies the echoed method and body.
+  kind: usage
+  client_application: curl
+  command:
+  - bash
+  - /validator/tests/libcurl/tests/cases/usage/usage-further-client-behavior.sh
+  - usage-curl-patch-request
+  timeout_seconds: 180
+  tags:
+  - usage
+  - curl
+  - http
+- id: usage-curl-options-request
+  title: curl OPTIONS request
+  description: Requests HTTP OPTIONS with curl and checks the Allow header returned by the server.
+  kind: usage
+  client_application: curl
+  command:
+  - bash
+  - /validator/tests/libcurl/tests/cases/usage/usage-further-client-behavior.sh
+  - usage-curl-options-request
+  timeout_seconds: 180
+  tags:
+  - usage
+  - curl
+  - http
+- id: usage-curl-trace-request
+  title: curl TRACE request
+  description: Sends an HTTP TRACE request with curl and verifies the reflected request line.
+  kind: usage
+  client_application: curl
+  command:
+  - bash
+  - /validator/tests/libcurl/tests/cases/usage/usage-further-client-behavior.sh
+  - usage-curl-trace-request
+  timeout_seconds: 180
+  tags:
+  - usage
+  - curl
+  - http
+- id: usage-curl-json-option
+  title: curl JSON convenience option
+  description: Posts JSON with curl --json and verifies the echoed content type and payload.
+  kind: usage
+  client_application: curl
+  command:
+  - bash
+  - /validator/tests/libcurl/tests/cases/usage/usage-further-client-behavior.sh
+  - usage-curl-json-option
+  timeout_seconds: 180
+  tags:
+  - usage
+  - curl
+  - http
+- id: usage-curl-retry-success
+  title: curl retry on transient failure
+  description: Retries a transient HTTP 503 response with curl and verifies the eventual successful body.
+  kind: usage
+  client_application: curl
+  command:
+  - bash
+  - /validator/tests/libcurl/tests/cases/usage/usage-further-client-behavior.sh
+  - usage-curl-retry-success
+  timeout_seconds: 180
+  tags:
+  - usage
+  - curl
+  - http
+- id: usage-curl-cookie-file-send
+  title: curl cookie file send
+  description: Loads a Netscape cookie jar with curl and verifies the sent Cookie header on the server.
+  kind: usage
+  client_application: curl
+  command:
+  - bash
+  - /validator/tests/libcurl/tests/cases/usage/usage-further-client-behavior.sh
+  - usage-curl-cookie-file-send
+  timeout_seconds: 180
+  tags:
+  - usage
+  - curl
+  - http
+- id: usage-curl-writeout-content-type
+  title: curl write-out content type
+  description: Uses curl write-out variables to capture the response content type from a local server.
+  kind: usage
+  client_application: curl
+  command:
+  - bash
+  - /validator/tests/libcurl/tests/cases/usage/usage-further-client-behavior.sh
+  - usage-curl-writeout-content-type
+  timeout_seconds: 180
+  tags:
+  - usage
+  - curl
+  - http
+- id: usage-curl-http1-0-request
+  title: curl HTTP/1.0 request
+  description: Forces an HTTP/1.0 request with curl and verifies the request version observed by the server.
+  kind: usage
+  client_application: curl
+  command:
+  - bash
+  - /validator/tests/libcurl/tests/cases/usage/usage-further-client-behavior.sh
+  - usage-curl-http1-0-request
+  timeout_seconds: 180
+  tags:
+  - usage
+  - curl
+  - http
+- id: usage-curl-interface-loopback
+  title: curl interface loopback
+  description: Binds a curl request to the loopback interface and verifies the local server response.
+  kind: usage
+  client_application: curl
+  command:
+  - bash
+  - /validator/tests/libcurl/tests/cases/usage/usage-further-client-behavior.sh
+  - usage-curl-interface-loopback
+  timeout_seconds: 180
+  tags:
+  - usage
+  - curl
+  - http
+- id: usage-curl-form-string-post
+  title: curl form-string post
+  description: Posts multipart form data with curl --form-string and verifies the encoded field payload.
+  kind: usage
+  client_application: curl
+  command:
+  - bash
+  - /validator/tests/libcurl/tests/cases/usage/usage-further-client-behavior.sh
+  - usage-curl-form-string-post
+  timeout_seconds: 180
+  tags:
+  - usage
+  - curl
+  - http

@@ -733,3 +733,143 @@ testcases:
   timeout_seconds: 120
   tags:
   - usage
+- id: usage-ttyd-loopback-content-type
+  title: ttyd loopback content type
+  description: Starts ttyd on loopback and verifies the HTTP response content type header from the index page.
+  kind: usage
+  client_application: ttyd
+  command:
+  - bash
+  - /validator/tests/libjson/tests/cases/usage/usage-further-client-behavior.sh
+  - usage-ttyd-loopback-content-type
+  timeout_seconds: 180
+  tags:
+  - usage
+  - ttyd
+  - http
+- id: usage-ttyd-loopback-websocket-script
+  title: ttyd loopback websocket path
+  description: Starts ttyd on loopback and verifies the served index page references the websocket endpoint.
+  kind: usage
+  client_application: ttyd
+  command:
+  - bash
+  - /validator/tests/libjson/tests/cases/usage/usage-further-client-behavior.sh
+  - usage-ttyd-loopback-websocket-script
+  timeout_seconds: 180
+  tags:
+  - usage
+  - ttyd
+  - http
+- id: usage-ttyd-loopback-xterm-asset
+  title: ttyd loopback xterm asset
+  description: Starts ttyd on loopback and verifies the served index page references xterm assets.
+  kind: usage
+  client_application: ttyd
+  command:
+  - bash
+  - /validator/tests/libjson/tests/cases/usage/usage-further-client-behavior.sh
+  - usage-ttyd-loopback-xterm-asset
+  timeout_seconds: 180
+  tags:
+  - usage
+  - ttyd
+  - http
+- id: usage-gdal-ogrinfo-sql-average-value
+  title: gdal ogrinfo SQL average value
+  description: Runs an ogrinfo SQL aggregate query over GeoJSON and verifies the average value result.
+  kind: usage
+  client_application: gdal
+  command:
+  - bash
+  - /validator/tests/libjson/tests/cases/usage/usage-further-client-behavior.sh
+  - usage-gdal-ogrinfo-sql-average-value
+  timeout_seconds: 180
+  tags:
+  - usage
+  - gdal
+  - geojson
+- id: usage-gdal-ogrinfo-json-geometry-type
+  title: gdal ogrinfo JSON geometry type
+  description: Runs ogrinfo JSON output over GeoJSON and verifies the first feature geometry type.
+  kind: usage
+  client_application: gdal
+  command:
+  - bash
+  - /validator/tests/libjson/tests/cases/usage/usage-further-client-behavior.sh
+  - usage-gdal-ogrinfo-json-geometry-type
+  timeout_seconds: 180
+  tags:
+  - usage
+  - gdal
+  - geojson
+- id: usage-gdal-ogr2ogr-sql-group-count
+  title: gdal ogr2ogr SQL group count
+  description: Runs an ogr2ogr grouped SQL query over GeoJSON and verifies the grouped count results.
+  kind: usage
+  client_application: gdal
+  command:
+  - bash
+  - /validator/tests/libjson/tests/cases/usage/usage-further-client-behavior.sh
+  - usage-gdal-ogr2ogr-sql-group-count
+  timeout_seconds: 180
+  tags:
+  - usage
+  - gdal
+  - geojson
+- id: usage-gdal-ogr2ogr-csv-group-b
+  title: gdal ogr2ogr CSV group filter
+  description: Exports a filtered GeoJSON subset to CSV with ogr2ogr and verifies only the selected group rows remain.
+  kind: usage
+  client_application: gdal
+  command:
+  - bash
+  - /validator/tests/libjson/tests/cases/usage/usage-further-client-behavior.sh
+  - usage-gdal-ogr2ogr-csv-group-b
+  timeout_seconds: 180
+  tags:
+  - usage
+  - gdal
+  - geojson
+- id: usage-gdal-gdalsrsinfo-proj4
+  title: gdal gdalsrsinfo proj4
+  description: Renders EPSG:4326 as PROJ.4 text with gdalsrsinfo and verifies the longlat projection token.
+  kind: usage
+  client_application: gdal
+  command:
+  - bash
+  - /validator/tests/libjson/tests/cases/usage/usage-further-client-behavior.sh
+  - usage-gdal-gdalsrsinfo-proj4
+  timeout_seconds: 180
+  tags:
+  - usage
+  - gdal
+  - srs
+- id: usage-gdal-gdalsrsinfo-xml
+  title: gdal gdalsrsinfo XML
+  description: Renders EPSG:4326 as XML with gdalsrsinfo and verifies the WGS 84 label is present.
+  kind: usage
+  client_application: gdal
+  command:
+  - bash
+  - /validator/tests/libjson/tests/cases/usage/usage-further-client-behavior.sh
+  - usage-gdal-gdalsrsinfo-xml
+  timeout_seconds: 180
+  tags:
+  - usage
+  - gdal
+  - srs
+- id: usage-gdal-gdalinfo-json-colorinterp
+  title: gdal gdalinfo JSON color interpretation
+  description: Reads raster JSON metadata with gdalinfo and verifies the first band reports a color interpretation string.
+  kind: usage
+  client_application: gdal
+  command:
+  - bash
+  - /validator/tests/libjson/tests/cases/usage/usage-further-client-behavior.sh
+  - usage-gdal-gdalinfo-json-colorinterp
+  timeout_seconds: 180
+  tags:
+  - usage
+  - gdal
+  - raster

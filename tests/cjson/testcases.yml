@@ -719,3 +719,143 @@ testcases:
   timeout_seconds: 180
   tags:
   - usage
+- id: usage-iperf3-json-title-field
+  title: iperf3 JSON title field
+  description: Runs iperf3 JSON output with a test title and verifies the title field recorded in the JSON document.
+  kind: usage
+  client_application: iperf3
+  command:
+  - bash
+  - /validator/tests/cjson/tests/cases/usage/usage-further-client-behavior.sh
+  - usage-iperf3-json-title-field
+  timeout_seconds: 180
+  tags:
+  - usage
+  - json
+  - iperf3
+- id: usage-iperf3-json-extra-data-field
+  title: iperf3 JSON extra data field
+  description: Runs iperf3 JSON output with extra data and verifies the extra_data field in the JSON document.
+  kind: usage
+  client_application: iperf3
+  command:
+  - bash
+  - /validator/tests/cjson/tests/cases/usage/usage-further-client-behavior.sh
+  - usage-iperf3-json-extra-data-field
+  timeout_seconds: 180
+  tags:
+  - usage
+  - json
+  - iperf3
+- id: usage-iperf3-json-duration-field
+  title: iperf3 JSON duration field
+  description: Runs a time-based iperf3 test and verifies the duration value stored in the JSON metadata.
+  kind: usage
+  client_application: iperf3
+  command:
+  - bash
+  - /validator/tests/cjson/tests/cases/usage/usage-further-client-behavior.sh
+  - usage-iperf3-json-duration-field
+  timeout_seconds: 180
+  tags:
+  - usage
+  - json
+  - iperf3
+- id: usage-iperf3-json-udp-target-bitrate
+  title: iperf3 JSON UDP target bitrate
+  description: Runs a UDP iperf3 test and verifies the JSON metadata records a target bitrate.
+  kind: usage
+  client_application: iperf3
+  command:
+  - bash
+  - /validator/tests/cjson/tests/cases/usage/usage-further-client-behavior.sh
+  - usage-iperf3-json-udp-target-bitrate
+  timeout_seconds: 180
+  tags:
+  - usage
+  - json
+  - iperf3
+- id: usage-iperf3-json-end-stream-count
+  title: iperf3 JSON end stream count
+  description: Runs a parallel iperf3 test and verifies the number of stream summaries in the JSON end section.
+  kind: usage
+  client_application: iperf3
+  command:
+  - bash
+  - /validator/tests/cjson/tests/cases/usage/usage-further-client-behavior.sh
+  - usage-iperf3-json-end-stream-count
+  timeout_seconds: 180
+  tags:
+  - usage
+  - json
+  - iperf3
+- id: usage-iperf3-json-interval-sum-seconds
+  title: iperf3 JSON interval sum seconds
+  description: Runs an interval-reporting iperf3 test and verifies the first interval sum records elapsed seconds.
+  kind: usage
+  client_application: iperf3
+  command:
+  - bash
+  - /validator/tests/cjson/tests/cases/usage/usage-further-client-behavior.sh
+  - usage-iperf3-json-interval-sum-seconds
+  timeout_seconds: 180
+  tags:
+  - usage
+  - json
+  - iperf3
+- id: usage-iperf3-json-bytes-8k-fixed
+  title: iperf3 JSON fixed 8K bytes
+  description: Runs a fixed-byte iperf3 test and verifies the requested byte count stored in the JSON metadata.
+  kind: usage
+  client_application: iperf3
+  command:
+  - bash
+  - /validator/tests/cjson/tests/cases/usage/usage-further-client-behavior.sh
+  - usage-iperf3-json-bytes-8k-fixed
+  timeout_seconds: 180
+  tags:
+  - usage
+  - json
+  - iperf3
+- id: usage-iperf3-json-reverse-received-bytes
+  title: iperf3 JSON reverse received bytes
+  description: Runs a reverse iperf3 test and verifies the received byte count reported in the JSON end section.
+  kind: usage
+  client_application: iperf3
+  command:
+  - bash
+  - /validator/tests/cjson/tests/cases/usage/usage-further-client-behavior.sh
+  - usage-iperf3-json-reverse-received-bytes
+  timeout_seconds: 180
+  tags:
+  - usage
+  - json
+  - iperf3
+- id: usage-iperf3-json-udp-jitter-field
+  title: iperf3 JSON UDP jitter field
+  description: Runs a UDP iperf3 test and verifies the jitter field is present in the JSON end summary.
+  kind: usage
+  client_application: iperf3
+  command:
+  - bash
+  - /validator/tests/cjson/tests/cases/usage/usage-further-client-behavior.sh
+  - usage-iperf3-json-udp-jitter-field
+  timeout_seconds: 180
+  tags:
+  - usage
+  - json
+  - iperf3
+- id: usage-iperf3-json-port-match
+  title: iperf3 JSON connected port match
+  description: Runs an iperf3 loopback test and verifies the connected remote port recorded in JSON matches the server port.
+  kind: usage
+  client_application: iperf3
+  command:
+  - bash
+  - /validator/tests/cjson/tests/cases/usage/usage-further-client-behavior.sh
+  - usage-iperf3-json-port-match
+  timeout_seconds: 180
+  tags:
+  - usage
+  - json
+  - iperf3

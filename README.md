@@ -98,8 +98,8 @@ python3 tools/verify_proof_artifacts.py \
   --artifact-root artifacts \
   --proof-output artifacts/proof/original-validation-proof.json \
   --min-source-cases 120 \
-  --min-usage-cases 1203 \
-  --min-cases 1323 \
+  --min-usage-cases 1443 \
+  --min-cases 1563 \
   --require-casts
 
 python3 tools/verify_proof_artifacts.py \
@@ -109,8 +109,8 @@ python3 tools/verify_proof_artifacts.py \
   --proof-output artifacts/proof/port-04-test-validation-proof.json \
   --mode port-04-test \
   --min-source-cases 120 \
-  --min-usage-cases 1203 \
-  --min-cases 1323 \
+  --min-usage-cases 1443 \
+  --min-cases 1563 \
   --require-casts
 
 python3 tools/render_site.py \
@@ -133,7 +133,7 @@ bash scripts/verify-site.sh \
 The same flow is available through Make targets:
 
 ```bash
-REQUIRE_CASTS=1 MIN_SOURCE_CASES=120 MIN_USAGE_CASES=1203 MIN_CASES=1323 make proof-dual
+REQUIRE_CASTS=1 MIN_SOURCE_CASES=120 MIN_USAGE_CASES=1443 MIN_CASES=1563 make proof-dual
 make site-dual
 make verify-site-dual
 ```

@@ -709,3 +709,143 @@ testcases:
   timeout_seconds: 120
   tags:
   - usage
+- id: usage-bzip2-multi-file-compress
+  title: bzip2 multi-file compress
+  description: Compresses two files with bzip2 in one invocation and verifies both .bz2 outputs are created.
+  kind: usage
+  client_application: bzip2
+  command:
+  - bash
+  - /validator/tests/libbz2/tests/cases/usage/usage-further-client-behavior.sh
+  - usage-bzip2-multi-file-compress
+  timeout_seconds: 180
+  tags:
+  - usage
+  - bzip2
+  - compression
+- id: usage-bzip2-multi-file-decompress
+  title: bzip2 multi-file decompress
+  description: Decompresses two .bz2 files with bunzip2 in one invocation and verifies both restored payloads.
+  kind: usage
+  client_application: bzip2
+  command:
+  - bash
+  - /validator/tests/libbz2/tests/cases/usage/usage-further-client-behavior.sh
+  - usage-bzip2-multi-file-decompress
+  timeout_seconds: 180
+  tags:
+  - usage
+  - bzip2
+  - compression
+- id: usage-bzip2-keep-multi-file-compress
+  title: bzip2 keep multi-file compress
+  description: Compresses two files with bzip2 -k and verifies the originals and compressed outputs both remain present.
+  kind: usage
+  client_application: bzip2
+  command:
+  - bash
+  - /validator/tests/libbz2/tests/cases/usage/usage-further-client-behavior.sh
+  - usage-bzip2-keep-multi-file-compress
+  timeout_seconds: 180
+  tags:
+  - usage
+  - bzip2
+  - compression
+- id: usage-bzip2-space-filename-compress
+  title: bzip2 space filename compress
+  description: Compresses a filename containing spaces with bzip2 and verifies the .bz2 output is created.
+  kind: usage
+  client_application: bzip2
+  command:
+  - bash
+  - /validator/tests/libbz2/tests/cases/usage/usage-further-client-behavior.sh
+  - usage-bzip2-space-filename-compress
+  timeout_seconds: 180
+  tags:
+  - usage
+  - bzip2
+  - filesystem
+- id: usage-bzip2-space-filename-decompress
+  title: bzip2 space filename decompress
+  description: Decompresses a spaced filename with bunzip2 and verifies the restored payload.
+  kind: usage
+  client_application: bzip2
+  command:
+  - bash
+  - /validator/tests/libbz2/tests/cases/usage/usage-further-client-behavior.sh
+  - usage-bzip2-space-filename-decompress
+  timeout_seconds: 180
+  tags:
+  - usage
+  - bzip2
+  - filesystem
+- id: usage-bunzip2-test-alias
+  title: bunzip2 test alias
+  description: Runs bunzip2 -t against a valid .bz2 stream and verifies the integrity check succeeds.
+  kind: usage
+  client_application: bzip2
+  command:
+  - bash
+  - /validator/tests/libbz2/tests/cases/usage/usage-further-client-behavior.sh
+  - usage-bunzip2-test-alias
+  timeout_seconds: 180
+  tags:
+  - usage
+  - bzip2
+  - integrity
+- id: usage-bzgrep-word-regexp
+  title: bzgrep word regexp
+  description: Searches a compressed text stream with bzgrep -w and verifies the matched line output.
+  kind: usage
+  client_application: bzip2
+  command:
+  - bash
+  - /validator/tests/libbz2/tests/cases/usage/usage-further-client-behavior.sh
+  - usage-bzgrep-word-regexp
+  timeout_seconds: 180
+  tags:
+  - usage
+  - bzip2
+  - search
+- id: usage-bzgrep-only-matching
+  title: bzgrep only matching
+  description: Searches a compressed text stream with bzgrep -o and verifies the matched token output.
+  kind: usage
+  client_application: bzip2
+  command:
+  - bash
+  - /validator/tests/libbz2/tests/cases/usage/usage-further-client-behavior.sh
+  - usage-bzgrep-only-matching
+  timeout_seconds: 180
+  tags:
+  - usage
+  - bzip2
+  - search
+- id: usage-bzcat-concatenated-streams
+  title: bzcat concatenated streams
+  description: Concatenates two bzip2 streams and verifies bzcat expands both member payloads.
+  kind: usage
+  client_application: bzip2
+  command:
+  - bash
+  - /validator/tests/libbz2/tests/cases/usage/usage-further-client-behavior.sh
+  - usage-bzcat-concatenated-streams
+  timeout_seconds: 180
+  tags:
+  - usage
+  - bzip2
+  - stream
+- id: usage-bzip2-stdout-space-file
+  title: bzip2 stdout spaced file
+  description: Compresses a spaced filename to stdout with bzip2 and verifies a later decompression round trip.
+  kind: usage
+  client_application: bzip2
+  command:
+  - bash
+  - /validator/tests/libbz2/tests/cases/usage/usage-further-client-behavior.sh
+  - usage-bzip2-stdout-space-file
+  timeout_seconds: 180
+  tags:
+  - usage
+  - bzip2
+  - stream

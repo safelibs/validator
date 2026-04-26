@@ -691,3 +691,143 @@ testcases:
   timeout_seconds: 120
   tags:
   - usage
+- id: usage-readstat-dta-unicode-string
+  title: readstat DTA Unicode string
+  description: Converts a CSV containing Unicode text to DTA with readstat and verifies the decoded string survives the round trip.
+  kind: usage
+  client_application: readstat
+  command:
+  - bash
+  - /validator/tests/libcsv/tests/cases/usage/usage-further-client-behavior.sh
+  - usage-readstat-dta-unicode-string
+  timeout_seconds: 180
+  tags:
+  - usage
+  - csv
+  - readstat
+- id: usage-readstat-sav-unicode-string
+  title: readstat SAV Unicode string
+  description: Converts a CSV containing Unicode text to SAV with readstat and verifies the decoded string survives the round trip.
+  kind: usage
+  client_application: readstat
+  command:
+  - bash
+  - /validator/tests/libcsv/tests/cases/usage/usage-further-client-behavior.sh
+  - usage-readstat-sav-unicode-string
+  timeout_seconds: 180
+  tags:
+  - usage
+  - csv
+  - readstat
+- id: usage-readstat-dta-tab-note
+  title: readstat DTA tab note
+  description: Converts a CSV field containing a tab to DTA with readstat and verifies the tab survives the round trip.
+  kind: usage
+  client_application: readstat
+  command:
+  - bash
+  - /validator/tests/libcsv/tests/cases/usage/usage-further-client-behavior.sh
+  - usage-readstat-dta-tab-note
+  timeout_seconds: 180
+  tags:
+  - usage
+  - csv
+  - readstat
+- id: usage-readstat-sav-tab-note
+  title: readstat SAV tab note
+  description: Converts a CSV field containing a tab to SAV with readstat and verifies the tab survives the round trip.
+  kind: usage
+  client_application: readstat
+  command:
+  - bash
+  - /validator/tests/libcsv/tests/cases/usage/usage-further-client-behavior.sh
+  - usage-readstat-sav-tab-note
+  timeout_seconds: 180
+  tags:
+  - usage
+  - csv
+  - readstat
+- id: usage-readstat-dta-scientific-number
+  title: readstat DTA scientific number
+  description: Converts a scientific-notation numeric CSV field to DTA with readstat and verifies the normalized numeric output.
+  kind: usage
+  client_application: readstat
+  command:
+  - bash
+  - /validator/tests/libcsv/tests/cases/usage/usage-further-client-behavior.sh
+  - usage-readstat-dta-scientific-number
+  timeout_seconds: 180
+  tags:
+  - usage
+  - csv
+  - readstat
+- id: usage-readstat-sav-scientific-number
+  title: readstat SAV scientific number
+  description: Converts a scientific-notation numeric CSV field to SAV with readstat and verifies the normalized numeric output.
+  kind: usage
+  client_application: readstat
+  command:
+  - bash
+  - /validator/tests/libcsv/tests/cases/usage/usage-further-client-behavior.sh
+  - usage-readstat-sav-scientific-number
+  timeout_seconds: 180
+  tags:
+  - usage
+  - csv
+  - readstat
+- id: usage-readstat-dta-single-column
+  title: readstat DTA single column
+  description: Converts a single-column CSV to DTA with readstat and verifies the summary reports one column.
+  kind: usage
+  client_application: readstat
+  command:
+  - bash
+  - /validator/tests/libcsv/tests/cases/usage/usage-further-client-behavior.sh
+  - usage-readstat-dta-single-column
+  timeout_seconds: 180
+  tags:
+  - usage
+  - csv
+  - readstat
+- id: usage-readstat-sav-single-column
+  title: readstat SAV single column
+  description: Converts a single-column CSV to SAV with readstat and verifies the summary reports one column.
+  kind: usage
+  client_application: readstat
+  command:
+  - bash
+  - /validator/tests/libcsv/tests/cases/usage/usage-further-client-behavior.sh
+  - usage-readstat-sav-single-column
+  timeout_seconds: 180
+  tags:
+  - usage
+  - csv
+  - readstat
+- id: usage-readstat-dta-mixed-decimal-sign
+  title: readstat DTA mixed decimal sign
+  description: Converts signed decimal numbers to DTA with readstat and verifies both formatted values in the output CSV.
+  kind: usage
+  client_application: readstat
+  command:
+  - bash
+  - /validator/tests/libcsv/tests/cases/usage/usage-further-client-behavior.sh
+  - usage-readstat-dta-mixed-decimal-sign
+  timeout_seconds: 180
+  tags:
+  - usage
+  - csv
+  - readstat
+- id: usage-readstat-sav-mixed-decimal-sign
+  title: readstat SAV mixed decimal sign
+  description: Converts signed decimal numbers to SAV with readstat and verifies both formatted values in the output CSV.
+  kind: usage
+  client_application: readstat
+  command:
+  - bash
+  - /validator/tests/libcsv/tests/cases/usage/usage-further-client-behavior.sh
+  - usage-readstat-sav-mixed-decimal-sign
+  timeout_seconds: 180
+  tags:
+  - usage
+  - csv
+  - readstat
