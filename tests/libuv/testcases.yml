@@ -598,3 +598,123 @@ testcases:
   - usage
   - event-loop
   - fs
+- id: usage-nodejs-fs-access
+  title: Node.js fs access
+  description: Exercises node.js fs access through a dependent-client usage scenario.
+  kind: usage
+  client_application: nodejs
+  command:
+  - bash
+  - /validator/tests/libuv/tests/cases/usage/usage-even-more-client-behavior.sh
+  - usage-nodejs-fs-access
+  timeout_seconds: 120
+  tags:
+  - usage
+- id: usage-nodejs-fs-rename
+  title: Node.js fs rename
+  description: Exercises node.js fs rename through a dependent-client usage scenario.
+  kind: usage
+  client_application: nodejs
+  command:
+  - bash
+  - /validator/tests/libuv/tests/cases/usage/usage-even-more-client-behavior.sh
+  - usage-nodejs-fs-rename
+  timeout_seconds: 120
+  tags:
+  - usage
+- id: usage-nodejs-fs-append-file
+  title: Node.js fs append file
+  description: Exercises node.js fs append file through a dependent-client usage scenario.
+  kind: usage
+  client_application: nodejs
+  command:
+  - bash
+  - /validator/tests/libuv/tests/cases/usage/usage-even-more-client-behavior.sh
+  - usage-nodejs-fs-append-file
+  timeout_seconds: 120
+  tags:
+  - usage
+- id: usage-nodejs-crypto-hmac
+  title: Node.js crypto HMAC
+  description: Exercises node.js crypto hmac through a dependent-client usage scenario.
+  kind: usage
+  client_application: nodejs
+  command:
+  - bash
+  - /validator/tests/libuv/tests/cases/usage/usage-even-more-client-behavior.sh
+  - usage-nodejs-crypto-hmac
+  timeout_seconds: 120
+  tags:
+  - usage
+- id: usage-nodejs-child-process-spawnsync
+  title: Node.js child process spawnSync
+  description: Exercises node.js child process spawnsync through a dependent-client usage scenario.
+  kind: usage
+  client_application: nodejs
+  command:
+  - bash
+  - /validator/tests/libuv/tests/cases/usage/usage-even-more-client-behavior.sh
+  - usage-nodejs-child-process-spawnsync
+  timeout_seconds: 120
+  tags:
+  - usage
+- id: usage-nodejs-timers-microtask-order
+  title: Node.js timers microtask order
+  description: Exercises node.js timers microtask order through a dependent-client usage scenario.
+  kind: usage
+  client_application: nodejs
+  command:
+  - bash
+  - /validator/tests/libuv/tests/cases/usage/usage-even-more-client-behavior.sh
+  - usage-nodejs-timers-microtask-order
+  timeout_seconds: 120
+  tags:
+  - usage
+- id: usage-nodejs-net-server-close-callback
+  title: Node.js net server close callback
+  description: Exercises node.js net server close callback through a dependent-client usage scenario.
+  kind: usage
+  client_application: nodejs
+  command:
+  - bash
+  - /validator/tests/libuv/tests/cases/usage/usage-even-more-client-behavior.sh
+  - usage-nodejs-net-server-close-callback
+  timeout_seconds: 120
+  tags:
+  - usage
+- id: usage-nodejs-dgram-connect-send
+  title: Node.js dgram connect send
+  description: Exercises node.js dgram connect send through a dependent-client usage scenario.
+  kind: usage
+  client_application: nodejs
+  command:
+  - bash
+  - /validator/tests/libuv/tests/cases/usage/usage-even-more-client-behavior.sh
+  - usage-nodejs-dgram-connect-send
+  timeout_seconds: 120
+  tags:
+  - usage
+- id: usage-nodejs-stream-readable-collect
+  title: Node.js stream readable collect
+  description: Exercises node.js stream readable collect through a dependent-client usage scenario.
+  kind: usage
+  client_application: nodejs
+  command:
+  - bash
+  - /validator/tests/libuv/tests/cases/usage/usage-even-more-client-behavior.sh
+  - usage-nodejs-stream-readable-collect
+  timeout_seconds: 120
+  tags:
+  - usage
+- id: usage-nodejs-zlib-gzipsync
+  title: Node.js zlib gzipSync
+  description: Exercises node.js zlib gzipsync through a dependent-client usage scenario.
+  kind: usage
+  client_application: nodejs
+  command:
+  - bash
+  - /validator/tests/libuv/tests/cases/usage/usage-even-more-client-behavior.sh
+  - usage-nodejs-zlib-gzipsync
+  timeout_seconds: 120
+  tags:
+  - usage

@@ -600,3 +600,123 @@ testcases:
   - usage
   - archive
   - python
+- id: usage-python-libarchive-c-memory-reader-cpio
+  title: python libarchive cpio memory reader
+  description: Exercises python libarchive cpio memory reader through a dependent-client usage scenario.
+  kind: usage
+  client_application: python3-libarchive-c
+  command:
+  - bash
+  - /validator/tests/libarchive/tests/cases/usage/usage-even-more-client-behavior.sh
+  - usage-python-libarchive-c-memory-reader-cpio
+  timeout_seconds: 120
+  tags:
+  - usage
+- id: usage-python-libarchive-c-memory-reader-pax
+  title: python libarchive pax memory reader
+  description: Exercises python libarchive pax memory reader through a dependent-client usage scenario.
+  kind: usage
+  client_application: python3-libarchive-c
+  command:
+  - bash
+  - /validator/tests/libarchive/tests/cases/usage/usage-even-more-client-behavior.sh
+  - usage-python-libarchive-c-memory-reader-pax
+  timeout_seconds: 120
+  tags:
+  - usage
+- id: usage-python-libarchive-c-file-order-stable
+  title: python libarchive stable file order
+  description: Exercises python libarchive stable file order through a dependent-client usage scenario.
+  kind: usage
+  client_application: python3-libarchive-c
+  command:
+  - bash
+  - /validator/tests/libarchive/tests/cases/usage/usage-even-more-client-behavior.sh
+  - usage-python-libarchive-c-file-order-stable
+  timeout_seconds: 120
+  tags:
+  - usage
+- id: usage-python-libarchive-c-zip-spaced-name
+  title: python libarchive zip spaced name
+  description: Exercises python libarchive zip spaced name through a dependent-client usage scenario.
+  kind: usage
+  client_application: python3-libarchive-c
+  command:
+  - bash
+  - /validator/tests/libarchive/tests/cases/usage/usage-even-more-client-behavior.sh
+  - usage-python-libarchive-c-zip-spaced-name
+  timeout_seconds: 120
+  tags:
+  - usage
+- id: usage-python-libarchive-c-cpio-binary-payload
+  title: python libarchive cpio binary payload
+  description: Exercises python libarchive cpio binary payload through a dependent-client usage scenario.
+  kind: usage
+  client_application: python3-libarchive-c
+  command:
+  - bash
+  - /validator/tests/libarchive/tests/cases/usage/usage-even-more-client-behavior.sh
+  - usage-python-libarchive-c-cpio-binary-payload
+  timeout_seconds: 120
+  tags:
+  - usage
+- id: usage-python-libarchive-c-pax-empty-file
+  title: python libarchive pax empty file
+  description: Exercises python libarchive pax empty file through a dependent-client usage scenario.
+  kind: usage
+  client_application: python3-libarchive-c
+  command:
+  - bash
+  - /validator/tests/libarchive/tests/cases/usage/usage-even-more-client-behavior.sh
+  - usage-python-libarchive-c-pax-empty-file
+  timeout_seconds: 120
+  tags:
+  - usage
+- id: usage-python-libarchive-c-zip-nul-bytes
+  title: python libarchive zip NUL bytes
+  description: Exercises python libarchive zip nul bytes through a dependent-client usage scenario.
+  kind: usage
+  client_application: python3-libarchive-c
+  command:
+  - bash
+  - /validator/tests/libarchive/tests/cases/usage/usage-even-more-client-behavior.sh
+  - usage-python-libarchive-c-zip-nul-bytes
+  timeout_seconds: 120
+  tags:
+  - usage
+- id: usage-python-libarchive-c-zip-long-path
+  title: python libarchive zip long path
+  description: Exercises python libarchive zip long path through a dependent-client usage scenario.
+  kind: usage
+  client_application: python3-libarchive-c
+  command:
+  - bash
+  - /validator/tests/libarchive/tests/cases/usage/usage-even-more-client-behavior.sh
+  - usage-python-libarchive-c-zip-long-path
+  timeout_seconds: 120
+  tags:
+  - usage
+- id: usage-python-libarchive-c-add-entries-pax-to-zip
+  title: python libarchive add entries pax to zip
+  description: Exercises python libarchive add entries pax to zip through a dependent-client usage scenario.
+  kind: usage
+  client_application: python3-libarchive-c
+  command:
+  - bash
+  - /validator/tests/libarchive/tests/cases/usage/usage-even-more-client-behavior.sh
+  - usage-python-libarchive-c-add-entries-pax-to-zip
+  timeout_seconds: 120
+  tags:
+  - usage
+- id: usage-python-libarchive-c-zip-many-empty-files
+  title: python libarchive zip many empty files
+  description: Exercises python libarchive zip many empty files through a dependent-client usage scenario.
+  kind: usage
+  client_application: python3-libarchive-c
+  command:
+  - bash
+  - /validator/tests/libarchive/tests/cases/usage/usage-even-more-client-behavior.sh
+  - usage-python-libarchive-c-zip-many-empty-files
+  timeout_seconds: 120
+  tags:
+  - usage

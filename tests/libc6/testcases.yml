@@ -595,3 +595,123 @@ testcases:
   tags:
   - usage
   - archive
+- id: usage-bash-here-string
+  title: bash here string
+  description: Exercises bash here string through a dependent-client usage scenario.
+  kind: usage
+  client_application: bash
+  command:
+  - bash
+  - /validator/tests/libc6/tests/cases/usage/usage-even-more-client-behavior.sh
+  - usage-bash-here-string
+  timeout_seconds: 120
+  tags:
+  - usage
+- id: usage-coreutils-sort-numeric
+  title: coreutils numeric sort
+  description: Exercises coreutils numeric sort through a dependent-client usage scenario.
+  kind: usage
+  client_application: coreutils
+  command:
+  - bash
+  - /validator/tests/libc6/tests/cases/usage/usage-even-more-client-behavior.sh
+  - usage-coreutils-sort-numeric
+  timeout_seconds: 120
+  tags:
+  - usage
+- id: usage-coreutils-fold-width
+  title: coreutils fold width
+  description: Exercises coreutils fold width through a dependent-client usage scenario.
+  kind: usage
+  client_application: coreutils
+  command:
+  - bash
+  - /validator/tests/libc6/tests/cases/usage/usage-even-more-client-behavior.sh
+  - usage-coreutils-fold-width
+  timeout_seconds: 120
+  tags:
+  - usage
+- id: usage-grep-extended-regex
+  title: grep extended regular expression
+  description: Exercises grep extended regular expression through a dependent-client usage scenario.
+  kind: usage
+  client_application: grep
+  command:
+  - bash
+  - /validator/tests/libc6/tests/cases/usage/usage-even-more-client-behavior.sh
+  - usage-grep-extended-regex
+  timeout_seconds: 120
+  tags:
+  - usage
+- id: usage-gawk-csv-sum
+  title: gawk field sum
+  description: Exercises gawk CSV field sum through a dependent-client usage scenario.
+  kind: usage
+  client_application: gawk
+  command:
+  - bash
+  - /validator/tests/libc6/tests/cases/usage/usage-even-more-client-behavior.sh
+  - usage-gawk-csv-sum
+  timeout_seconds: 120
+  tags:
+  - usage
+- id: usage-sed-capture-group
+  title: sed capture group replacement
+  description: Exercises sed capture group replacement through a dependent-client usage scenario.
+  kind: usage
+  client_application: sed
+  command:
+  - bash
+  - /validator/tests/libc6/tests/cases/usage/usage-even-more-client-behavior.sh
+  - usage-sed-capture-group
+  timeout_seconds: 120
+  tags:
+  - usage
+- id: usage-python3-csv-roundtrip
+  title: python csv round trip
+  description: Exercises python csv round trip through a dependent-client usage scenario.
+  kind: usage
+  client_application: python3-minimal
+  command:
+  - bash
+  - /validator/tests/libc6/tests/cases/usage/usage-even-more-client-behavior.sh
+  - usage-python3-csv-roundtrip
+  timeout_seconds: 120
+  tags:
+  - usage
+- id: usage-findutils-empty-files
+  title: findutils empty file filter
+  description: Exercises findutils empty file filter through a dependent-client usage scenario.
+  kind: usage
+  client_application: findutils
+  command:
+  - bash
+  - /validator/tests/libc6/tests/cases/usage/usage-even-more-client-behavior.sh
+  - usage-findutils-empty-files
+  timeout_seconds: 120
+  tags:
+  - usage
+- id: usage-tar-subdir-extract
+  title: tar subdirectory extract
+  description: Exercises tar subdirectory extract through a dependent-client usage scenario.
+  kind: usage
+  client_application: tar
+  command:
+  - bash
+  - /validator/tests/libc6/tests/cases/usage/usage-even-more-client-behavior.sh
+  - usage-tar-subdir-extract
+  timeout_seconds: 120
+  tags:
+  - usage
+- id: usage-gzip-stdin-roundtrip
+  title: gzip stdin round trip
+  description: Exercises gzip stdin round trip through a dependent-client usage scenario.
+  kind: usage
+  client_application: gzip
+  command:
+  - bash
+  - /validator/tests/libc6/tests/cases/usage/usage-even-more-client-behavior.sh
+  - usage-gzip-stdin-roundtrip
+  timeout_seconds: 120
+  tags:
+  - usage

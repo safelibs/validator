@@ -611,3 +611,123 @@ testcases:
   - usage
   - image
   - ruby
+- id: usage-ruby-vips-rot270-generated
+  title: ruby-vips rot270 generated image
+  description: Exercises ruby-vips rot270 generated image through a dependent-client usage scenario.
+  kind: usage
+  client_application: ruby-vips
+  command:
+  - bash
+  - /validator/tests/libvips/tests/cases/usage/usage-even-more-client-behavior.sh
+  - usage-ruby-vips-rot270-generated
+  timeout_seconds: 120
+  tags:
+  - usage
+- id: usage-ruby-vips-crop-generated
+  title: ruby-vips crop generated image
+  description: Exercises ruby-vips crop generated image through a dependent-client usage scenario.
+  kind: usage
+  client_application: ruby-vips
+  command:
+  - bash
+  - /validator/tests/libvips/tests/cases/usage/usage-even-more-client-behavior.sh
+  - usage-ruby-vips-crop-generated
+  timeout_seconds: 120
+  tags:
+  - usage
+- id: usage-ruby-vips-resize-generated
+  title: ruby-vips resize generated image
+  description: Exercises ruby-vips resize generated image through a dependent-client usage scenario.
+  kind: usage
+  client_application: ruby-vips
+  command:
+  - bash
+  - /validator/tests/libvips/tests/cases/usage/usage-even-more-client-behavior.sh
+  - usage-ruby-vips-resize-generated
+  timeout_seconds: 120
+  tags:
+  - usage
+- id: usage-ruby-vips-avg-generated
+  title: ruby-vips average generated image
+  description: Exercises ruby-vips average generated image through a dependent-client usage scenario.
+  kind: usage
+  client_application: ruby-vips
+  command:
+  - bash
+  - /validator/tests/libvips/tests/cases/usage/usage-even-more-client-behavior.sh
+  - usage-ruby-vips-avg-generated
+  timeout_seconds: 120
+  tags:
+  - usage
+- id: usage-ruby-vips-read-buffer-jpeg
+  title: ruby-vips read JPEG buffer
+  description: Exercises ruby-vips read jpeg buffer through a dependent-client usage scenario.
+  kind: usage
+  client_application: ruby-vips
+  command:
+  - bash
+  - /validator/tests/libvips/tests/cases/usage/usage-even-more-client-behavior.sh
+  - usage-ruby-vips-read-buffer-jpeg
+  timeout_seconds: 120
+  tags:
+  - usage
+- id: usage-ruby-vips-png-buffer-roundtrip
+  title: ruby-vips PNG buffer round trip
+  description: Exercises ruby-vips png buffer round trip through a dependent-client usage scenario.
+  kind: usage
+  client_application: ruby-vips
+  command:
+  - bash
+  - /validator/tests/libvips/tests/cases/usage/usage-even-more-client-behavior.sh
+  - usage-ruby-vips-png-buffer-roundtrip
+  timeout_seconds: 120
+  tags:
+  - usage
+- id: usage-ruby-vips-jpeg-buffer-roundtrip
+  title: ruby-vips JPEG buffer round trip
+  description: Exercises ruby-vips jpeg buffer round trip through a dependent-client usage scenario.
+  kind: usage
+  client_application: ruby-vips
+  command:
+  - bash
+  - /validator/tests/libvips/tests/cases/usage/usage-even-more-client-behavior.sh
+  - usage-ruby-vips-jpeg-buffer-roundtrip
+  timeout_seconds: 120
+  tags:
+  - usage
+- id: usage-ruby-vips-join-horizontal
+  title: ruby-vips horizontal join
+  description: Exercises ruby-vips horizontal join through a dependent-client usage scenario.
+  kind: usage
+  client_application: ruby-vips
+  command:
+  - bash
+  - /validator/tests/libvips/tests/cases/usage/usage-even-more-client-behavior.sh
+  - usage-ruby-vips-join-horizontal
+  timeout_seconds: 120
+  tags:
+  - usage
+- id: usage-ruby-vips-bandjoin-constant
+  title: ruby-vips bandjoin constant
+  description: Exercises ruby-vips bandjoin constant through a dependent-client usage scenario.
+  kind: usage
+  client_application: ruby-vips
+  command:
+  - bash
+  - /validator/tests/libvips/tests/cases/usage/usage-even-more-client-behavior.sh
+  - usage-ruby-vips-bandjoin-constant
+  timeout_seconds: 120
+  tags:
+  - usage
+- id: usage-ruby-vips-insert-generated-overlay
+  title: ruby-vips generated overlay insert
+  description: Exercises ruby-vips generated overlay insert through a dependent-client usage scenario.
+  kind: usage
+  client_application: ruby-vips
+  command:
+  - bash
+  - /validator/tests/libvips/tests/cases/usage/usage-even-more-client-behavior.sh
+  - usage-ruby-vips-insert-generated-overlay
+  timeout_seconds: 120
+  tags:
+  - usage

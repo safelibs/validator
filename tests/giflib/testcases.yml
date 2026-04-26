@@ -610,3 +610,123 @@ testcases:
   - usage
   - gif
   - roundtrip
+- id: usage-giflib-tools-giftext-fire-color-resolution
+  title: giftext fire color resolution
+  description: Exercises giftext fire color resolution through a dependent-client usage scenario.
+  kind: usage
+  client_application: giflib-tools
+  command:
+  - bash
+  - /validator/tests/giflib/tests/cases/usage/usage-even-more-client-behavior.sh
+  - usage-giflib-tools-giftext-fire-color-resolution
+  timeout_seconds: 120
+  tags:
+  - usage
+- id: usage-giflib-tools-giftext-fire-background
+  title: giftext fire background field
+  description: Exercises giftext fire background field through a dependent-client usage scenario.
+  kind: usage
+  client_application: giflib-tools
+  command:
+  - bash
+  - /validator/tests/giflib/tests/cases/usage/usage-even-more-client-behavior.sh
+  - usage-giflib-tools-giftext-fire-background
+  timeout_seconds: 120
+  tags:
+  - usage
+- id: usage-giflib-tools-giftext-treescap-colormap
+  title: giftext treescap color map
+  description: Exercises giftext treescap color map through a dependent-client usage scenario.
+  kind: usage
+  client_application: giflib-tools
+  command:
+  - bash
+  - /validator/tests/giflib/tests/cases/usage/usage-even-more-client-behavior.sh
+  - usage-giflib-tools-giftext-treescap-colormap
+  timeout_seconds: 120
+  tags:
+  - usage
+- id: usage-giflib-tools-giftext-interlaced-colormap
+  title: giftext interlaced color map
+  description: Exercises giftext interlaced color map through a dependent-client usage scenario.
+  kind: usage
+  client_application: giflib-tools
+  command:
+  - bash
+  - /validator/tests/giflib/tests/cases/usage/usage-even-more-client-behavior.sh
+  - usage-giflib-tools-giftext-interlaced-colormap
+  timeout_seconds: 120
+  tags:
+  - usage
+- id: usage-giflib-tools-gif2rgb-fire-compare
+  title: gif2rgb fire RGB compare
+  description: Exercises gif2rgb fire rgb compare through a dependent-client usage scenario.
+  kind: usage
+  client_application: giflib-tools
+  command:
+  - bash
+  - /validator/tests/giflib/tests/cases/usage/usage-even-more-client-behavior.sh
+  - usage-giflib-tools-gif2rgb-fire-compare
+  timeout_seconds: 120
+  tags:
+  - usage
+- id: usage-giflib-tools-gif2rgb-interlaced-planar
+  title: gif2rgb interlaced planar output
+  description: Exercises gif2rgb interlaced planar output through a dependent-client usage scenario.
+  kind: usage
+  client_application: giflib-tools
+  command:
+  - bash
+  - /validator/tests/giflib/tests/cases/usage/usage-even-more-client-behavior.sh
+  - usage-giflib-tools-gif2rgb-interlaced-planar
+  timeout_seconds: 120
+  tags:
+  - usage
+- id: usage-giflib-tools-gifbuild-interlaced-dump
+  title: gifbuild interlaced dump
+  description: Exercises gifbuild interlaced dump through a dependent-client usage scenario.
+  kind: usage
+  client_application: giflib-tools
+  command:
+  - bash
+  - /validator/tests/giflib/tests/cases/usage/usage-even-more-client-behavior.sh
+  - usage-giflib-tools-gifbuild-interlaced-dump
+  timeout_seconds: 120
+  tags:
+  - usage
+- id: usage-giflib-tools-gifbuild-grid-roundtrip-colormap
+  title: gifbuild grid round trip color map
+  description: Exercises gifbuild grid round trip color map through a dependent-client usage scenario.
+  kind: usage
+  client_application: giflib-tools
+  command:
+  - bash
+  - /validator/tests/giflib/tests/cases/usage/usage-even-more-client-behavior.sh
+  - usage-giflib-tools-gifbuild-grid-roundtrip-colormap
+  timeout_seconds: 120
+  tags:
+  - usage
+- id: usage-giflib-tools-giffix-fire-giftext
+  title: giffix giftext output
+  description: Exercises giffix giftext output through a dependent-client usage scenario.
+  kind: usage
+  client_application: giflib-tools
+  command:
+  - bash
+  - /validator/tests/giflib/tests/cases/usage/usage-even-more-client-behavior.sh
+  - usage-giflib-tools-giffix-fire-giftext
+  timeout_seconds: 120
+  tags:
+  - usage
+- id: usage-giflib-tools-giffix-interlaced-colormap
+  title: giffix color map
+  description: Exercises giffix color map through a dependent-client usage scenario.
+  kind: usage
+  client_application: giflib-tools
+  command:
+  - bash
+  - /validator/tests/giflib/tests/cases/usage/usage-even-more-client-behavior.sh
+  - usage-giflib-tools-giffix-interlaced-colormap
+  timeout_seconds: 120
+  tags:
+  - usage

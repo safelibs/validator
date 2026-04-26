@@ -589,3 +589,123 @@ testcases:
   - usage
   - compression
   - cli
+- id: usage-bzip2-keep-input-compress
+  title: bzip2 keep input on compress
+  description: Exercises bzip2 keep input on compress through a dependent-client usage scenario.
+  kind: usage
+  client_application: bzip2
+  command:
+  - bash
+  - /validator/tests/libbz2/tests/cases/usage/usage-even-more-client-behavior.sh
+  - usage-bzip2-keep-input-compress
+  timeout_seconds: 120
+  tags:
+  - usage
+- id: usage-bzip2-stdin-file-output
+  title: bzip2 stdin file output
+  description: Exercises bzip2 stdin file output through a dependent-client usage scenario.
+  kind: usage
+  client_application: bzip2
+  command:
+  - bash
+  - /validator/tests/libbz2/tests/cases/usage/usage-even-more-client-behavior.sh
+  - usage-bzip2-stdin-file-output
+  timeout_seconds: 120
+  tags:
+  - usage
+- id: usage-bunzip2-stdin-output
+  title: bunzip2 stdin output
+  description: Exercises bunzip2 stdin output through a dependent-client usage scenario.
+  kind: usage
+  client_application: bzip2
+  command:
+  - bash
+  - /validator/tests/libbz2/tests/cases/usage/usage-even-more-client-behavior.sh
+  - usage-bunzip2-stdin-output
+  timeout_seconds: 120
+  tags:
+  - usage
+- id: usage-bzgrep-ignore-case
+  title: bzgrep ignore case search
+  description: Exercises bzgrep ignore case search through a dependent-client usage scenario.
+  kind: usage
+  client_application: bzip2
+  command:
+  - bash
+  - /validator/tests/libbz2/tests/cases/usage/usage-even-more-client-behavior.sh
+  - usage-bzgrep-ignore-case
+  timeout_seconds: 120
+  tags:
+  - usage
+- id: usage-bzgrep-filename-space
+  title: bzgrep spaced filename search
+  description: Exercises bzgrep spaced filename search through a dependent-client usage scenario.
+  kind: usage
+  client_application: bzip2
+  command:
+  - bash
+  - /validator/tests/libbz2/tests/cases/usage/usage-even-more-client-behavior.sh
+  - usage-bzgrep-filename-space
+  timeout_seconds: 120
+  tags:
+  - usage
+- id: usage-bzip2-verbose-test-file
+  title: bzip2 verbose test file
+  description: Exercises bzip2 verbose test file through a dependent-client usage scenario.
+  kind: usage
+  client_application: bzip2
+  command:
+  - bash
+  - /validator/tests/libbz2/tests/cases/usage/usage-even-more-client-behavior.sh
+  - usage-bzip2-verbose-test-file
+  timeout_seconds: 120
+  tags:
+  - usage
+- id: usage-bzcat-sample3-compare
+  title: bzcat sample three compare
+  description: Exercises bzcat sample three compare through a dependent-client usage scenario.
+  kind: usage
+  client_application: bzip2
+  command:
+  - bash
+  - /validator/tests/libbz2/tests/cases/usage/usage-even-more-client-behavior.sh
+  - usage-bzcat-sample3-compare
+  timeout_seconds: 120
+  tags:
+  - usage
+- id: usage-bzip2-sample3-stdout
+  title: bzip2 sample three stdout
+  description: Exercises bzip2 sample three stdout through a dependent-client usage scenario.
+  kind: usage
+  client_application: bzip2
+  command:
+  - bash
+  - /validator/tests/libbz2/tests/cases/usage/usage-even-more-client-behavior.sh
+  - usage-bzip2-sample3-stdout
+  timeout_seconds: 120
+  tags:
+  - usage
+- id: usage-bzip2-custom-suffix-roundtrip
+  title: bzip2 custom suffix round trip
+  description: Exercises bzip2 custom suffix round trip through a dependent-client usage scenario.
+  kind: usage
+  client_application: bzip2
+  command:
+  - bash
+  - /validator/tests/libbz2/tests/cases/usage/usage-even-more-client-behavior.sh
+  - usage-bzip2-custom-suffix-roundtrip
+  timeout_seconds: 120
+  tags:
+  - usage
+- id: usage-bzdiff-space-filenames
+  title: bzdiff changed-line output
+  description: Exercises bzdiff changed-line output through a dependent-client usage scenario.
+  kind: usage
+  client_application: bzip2
+  command:
+  - bash
+  - /validator/tests/libbz2/tests/cases/usage/usage-even-more-client-behavior.sh
+  - usage-bzdiff-space-filenames
+  timeout_seconds: 120
+  tags:
+  - usage

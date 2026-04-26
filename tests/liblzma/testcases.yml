@@ -612,3 +612,123 @@ testcases:
   - usage
   - archive
   - xz
+- id: usage-libarchive-tools-xz-rootdir-list
+  title: libarchive tools xz root directory list
+  description: Exercises libarchive tools xz root directory list through a dependent-client usage scenario.
+  kind: usage
+  client_application: libarchive-tools
+  command:
+  - bash
+  - /validator/tests/liblzma/tests/cases/usage/usage-even-more-client-behavior.sh
+  - usage-libarchive-tools-xz-rootdir-list
+  timeout_seconds: 120
+  tags:
+  - usage
+- id: usage-libarchive-tools-xz-rootdir-extract-gamma
+  title: libarchive tools xz root directory extract gamma
+  description: Exercises libarchive tools xz root directory extract gamma through a dependent-client usage scenario.
+  kind: usage
+  client_application: libarchive-tools
+  command:
+  - bash
+  - /validator/tests/liblzma/tests/cases/usage/usage-even-more-client-behavior.sh
+  - usage-libarchive-tools-xz-rootdir-extract-gamma
+  timeout_seconds: 120
+  tags:
+  - usage
+- id: usage-libarchive-tools-xz-symlink-extract-target
+  title: libarchive tools xz symlink extract target
+  description: Exercises libarchive tools xz symlink extract target through a dependent-client usage scenario.
+  kind: usage
+  client_application: libarchive-tools
+  command:
+  - bash
+  - /validator/tests/liblzma/tests/cases/usage/usage-even-more-client-behavior.sh
+  - usage-libarchive-tools-xz-symlink-extract-target
+  timeout_seconds: 120
+  tags:
+  - usage
+- id: usage-libarchive-tools-xz-filelist-space-name
+  title: libarchive tools xz file list spaced name
+  description: Exercises libarchive tools xz file list spaced name through a dependent-client usage scenario.
+  kind: usage
+  client_application: libarchive-tools
+  command:
+  - bash
+  - /validator/tests/liblzma/tests/cases/usage/usage-even-more-client-behavior.sh
+  - usage-libarchive-tools-xz-filelist-space-name
+  timeout_seconds: 120
+  tags:
+  - usage
+- id: usage-libarchive-tools-xz-stream-member-stdout
+  title: libarchive tools xz stream member stdout
+  description: Exercises libarchive tools xz stream member stdout through a dependent-client usage scenario.
+  kind: usage
+  client_application: libarchive-tools
+  command:
+  - bash
+  - /validator/tests/liblzma/tests/cases/usage/usage-even-more-client-behavior.sh
+  - usage-libarchive-tools-xz-stream-member-stdout
+  timeout_seconds: 120
+  tags:
+  - usage
+- id: usage-libarchive-tools-xz-hidden-visible-list
+  title: libarchive tools xz hidden visible list
+  description: Exercises libarchive tools xz hidden visible list through a dependent-client usage scenario.
+  kind: usage
+  client_application: libarchive-tools
+  command:
+  - bash
+  - /validator/tests/liblzma/tests/cases/usage/usage-even-more-client-behavior.sh
+  - usage-libarchive-tools-xz-hidden-visible-list
+  timeout_seconds: 120
+  tags:
+  - usage
+- id: usage-libarchive-tools-xz-hardlink-extract-compare
+  title: libarchive tools xz hardlink extract compare
+  description: Exercises libarchive tools xz hardlink extract compare through a dependent-client usage scenario.
+  kind: usage
+  client_application: libarchive-tools
+  command:
+  - bash
+  - /validator/tests/liblzma/tests/cases/usage/usage-even-more-client-behavior.sh
+  - usage-libarchive-tools-xz-hardlink-extract-compare
+  timeout_seconds: 120
+  tags:
+  - usage
+- id: usage-libarchive-tools-xz-empty-subdir-extract
+  title: libarchive tools xz empty subdirectory extract
+  description: Exercises libarchive tools xz empty subdirectory extract through a dependent-client usage scenario.
+  kind: usage
+  client_application: libarchive-tools
+  command:
+  - bash
+  - /validator/tests/liblzma/tests/cases/usage/usage-even-more-client-behavior.sh
+  - usage-libarchive-tools-xz-empty-subdir-extract
+  timeout_seconds: 120
+  tags:
+  - usage
+- id: usage-libarchive-tools-xz-space-dir-list
+  title: libarchive tools xz space directory list
+  description: Exercises libarchive tools xz space directory list through a dependent-client usage scenario.
+  kind: usage
+  client_application: libarchive-tools
+  command:
+  - bash
+  - /validator/tests/liblzma/tests/cases/usage/usage-even-more-client-behavior.sh
+  - usage-libarchive-tools-xz-space-dir-list
+  timeout_seconds: 120
+  tags:
+  - usage
+- id: usage-libarchive-tools-xz-dotfile-stream-extract
+  title: libarchive tools xz dotfile stream extract
+  description: Exercises libarchive tools xz dotfile stream extract through a dependent-client usage scenario.
+  kind: usage
+  client_application: libarchive-tools
+  command:
+  - bash
+  - /validator/tests/liblzma/tests/cases/usage/usage-even-more-client-behavior.sh
+  - usage-libarchive-tools-xz-dotfile-stream-extract
+  timeout_seconds: 120
+  tags:
+  - usage

@@ -611,3 +611,123 @@ testcases:
   - usage
   - crypto
   - php
+- id: usage-python3-nacl-sign-hex
+  title: PyNaCl sign hex
+  description: Exercises pynacl sign hex through a dependent-client usage scenario.
+  kind: usage
+  client_application: python3-nacl
+  command:
+  - bash
+  - /validator/tests/libsodium/tests/cases/usage/usage-even-more-client-behavior.sh
+  - usage-python3-nacl-sign-hex
+  timeout_seconds: 120
+  tags:
+  - usage
+- id: usage-python3-nacl-sha512
+  title: PyNaCl SHA512 hash
+  description: Exercises pynacl sha512 hash through a dependent-client usage scenario.
+  kind: usage
+  client_application: python3-nacl
+  command:
+  - bash
+  - /validator/tests/libsodium/tests/cases/usage/usage-even-more-client-behavior.sh
+  - usage-python3-nacl-sha512
+  timeout_seconds: 120
+  tags:
+  - usage
+- id: usage-python3-nacl-pwhash-verify
+  title: PyNaCl password hash verify
+  description: Exercises pynacl password hash verify through a dependent-client usage scenario.
+  kind: usage
+  client_application: python3-nacl
+  command:
+  - bash
+  - /validator/tests/libsodium/tests/cases/usage/usage-even-more-client-behavior.sh
+  - usage-python3-nacl-pwhash-verify
+  timeout_seconds: 120
+  tags:
+  - usage
+- id: usage-python3-nacl-secretbox-memoryview
+  title: PyNaCl secretbox memoryview
+  description: Exercises pynacl secretbox memoryview through a dependent-client usage scenario.
+  kind: usage
+  client_application: python3-nacl
+  command:
+  - bash
+  - /validator/tests/libsodium/tests/cases/usage/usage-even-more-client-behavior.sh
+  - usage-python3-nacl-secretbox-memoryview
+  timeout_seconds: 120
+  tags:
+  - usage
+- id: usage-python3-nacl-random-size
+  title: PyNaCl random size
+  description: Exercises pynacl random size through a dependent-client usage scenario.
+  kind: usage
+  client_application: python3-nacl
+  command:
+  - bash
+  - /validator/tests/libsodium/tests/cases/usage/usage-even-more-client-behavior.sh
+  - usage-python3-nacl-random-size
+  timeout_seconds: 120
+  tags:
+  - usage
+- id: usage-php83-sodium-secretbox-roundtrip
+  title: PHP sodium secretbox round trip
+  description: Exercises php sodium secretbox round trip through a dependent-client usage scenario.
+  kind: usage
+  client_application: php8.3-cli
+  command:
+  - bash
+  - /validator/tests/libsodium/tests/cases/usage/usage-even-more-client-behavior.sh
+  - usage-php83-sodium-secretbox-roundtrip
+  timeout_seconds: 120
+  tags:
+  - usage
+- id: usage-php83-sodium-sign-detached-verify
+  title: PHP sodium detached sign verify
+  description: Exercises php sodium detached sign verify through a dependent-client usage scenario.
+  kind: usage
+  client_application: php8.3-cli
+  command:
+  - bash
+  - /validator/tests/libsodium/tests/cases/usage/usage-even-more-client-behavior.sh
+  - usage-php83-sodium-sign-detached-verify
+  timeout_seconds: 120
+  tags:
+  - usage
+- id: usage-php83-sodium-compare-hex2bin
+  title: PHP sodium compare hex to bin
+  description: Exercises php sodium compare hex to bin through a dependent-client usage scenario.
+  kind: usage
+  client_application: php8.3-cli
+  command:
+  - bash
+  - /validator/tests/libsodium/tests/cases/usage/usage-even-more-client-behavior.sh
+  - usage-php83-sodium-compare-hex2bin
+  timeout_seconds: 120
+  tags:
+  - usage
+- id: usage-php83-sodium-randombytes-size
+  title: PHP sodium random bytes size
+  description: Exercises php sodium random bytes size through a dependent-client usage scenario.
+  kind: usage
+  client_application: php8.3-cli
+  command:
+  - bash
+  - /validator/tests/libsodium/tests/cases/usage/usage-even-more-client-behavior.sh
+  - usage-php83-sodium-randombytes-size
+  timeout_seconds: 120
+  tags:
+  - usage
+- id: usage-libzmq5-z85-roundtrip
+  title: libzmq5 Z85 round trip
+  description: Exercises libzmq5 z85 round trip through a dependent-client usage scenario.
+  kind: usage
+  client_application: libzmq5
+  command:
+  - bash
+  - /validator/tests/libsodium/tests/cases/usage/usage-even-more-client-behavior.sh
+  - usage-libzmq5-z85-roundtrip
+  timeout_seconds: 120
+  tags:
+  - usage

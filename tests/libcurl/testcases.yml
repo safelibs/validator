@@ -611,3 +611,123 @@ testcases:
   - usage
   - http
   - cli
+- id: usage-curl-get-urlencode-query
+  title: curl GET URL encoded query
+  description: Exercises curl get url encoded query through a dependent-client usage scenario.
+  kind: usage
+  client_application: curl
+  command:
+  - bash
+  - /validator/tests/libcurl/tests/cases/usage/usage-even-more-client-behavior.sh
+  - usage-curl-get-urlencode-query
+  timeout_seconds: 120
+  tags:
+  - usage
+- id: usage-curl-upload-file
+  title: curl upload file
+  description: Exercises curl upload file through a dependent-client usage scenario.
+  kind: usage
+  client_application: curl
+  command:
+  - bash
+  - /validator/tests/libcurl/tests/cases/usage/usage-even-more-client-behavior.sh
+  - usage-curl-upload-file
+  timeout_seconds: 120
+  tags:
+  - usage
+- id: usage-curl-create-dirs-output
+  title: curl create directories output
+  description: Exercises curl create directories output through a dependent-client usage scenario.
+  kind: usage
+  client_application: curl
+  command:
+  - bash
+  - /validator/tests/libcurl/tests/cases/usage/usage-even-more-client-behavior.sh
+  - usage-curl-create-dirs-output
+  timeout_seconds: 120
+  tags:
+  - usage
+- id: usage-curl-effective-url-writeout
+  title: curl effective URL writeout
+  description: Exercises curl effective url writeout through a dependent-client usage scenario.
+  kind: usage
+  client_application: curl
+  command:
+  - bash
+  - /validator/tests/libcurl/tests/cases/usage/usage-even-more-client-behavior.sh
+  - usage-curl-effective-url-writeout
+  timeout_seconds: 120
+  tags:
+  - usage
+- id: usage-curl-redirect-count-writeout
+  title: curl redirect count writeout
+  description: Exercises curl redirect count writeout through a dependent-client usage scenario.
+  kind: usage
+  client_application: curl
+  command:
+  - bash
+  - /validator/tests/libcurl/tests/cases/usage/usage-even-more-client-behavior.sh
+  - usage-curl-redirect-count-writeout
+  timeout_seconds: 120
+  tags:
+  - usage
+- id: usage-curl-post-empty-body
+  title: curl POST empty body
+  description: Exercises curl post empty body through a dependent-client usage scenario.
+  kind: usage
+  client_application: curl
+  command:
+  - bash
+  - /validator/tests/libcurl/tests/cases/usage/usage-even-more-client-behavior.sh
+  - usage-curl-post-empty-body
+  timeout_seconds: 120
+  tags:
+  - usage
+- id: usage-curl-accept-header
+  title: curl Accept header echo
+  description: Exercises curl accept header echo through a dependent-client usage scenario.
+  kind: usage
+  client_application: curl
+  command:
+  - bash
+  - /validator/tests/libcurl/tests/cases/usage/usage-even-more-client-behavior.sh
+  - usage-curl-accept-header
+  timeout_seconds: 120
+  tags:
+  - usage
+- id: usage-curl-http1-1-request
+  title: curl HTTP 1.1 request
+  description: Exercises curl http 1.1 request through a dependent-client usage scenario.
+  kind: usage
+  client_application: curl
+  command:
+  - bash
+  - /validator/tests/libcurl/tests/cases/usage/usage-even-more-client-behavior.sh
+  - usage-curl-http1-1-request
+  timeout_seconds: 120
+  tags:
+  - usage
+- id: usage-curl-delete-include-headers
+  title: curl DELETE include headers
+  description: Exercises curl delete include headers through a dependent-client usage scenario.
+  kind: usage
+  client_application: curl
+  command:
+  - bash
+  - /validator/tests/libcurl/tests/cases/usage/usage-even-more-client-behavior.sh
+  - usage-curl-delete-include-headers
+  timeout_seconds: 120
+  tags:
+  - usage
+- id: usage-curl-data-urlencode-plus
+  title: curl data urlencode plus
+  description: Exercises curl data urlencode plus through a dependent-client usage scenario.
+  kind: usage
+  client_application: curl
+  command:
+  - bash
+  - /validator/tests/libcurl/tests/cases/usage/usage-even-more-client-behavior.sh
+  - usage-curl-data-urlencode-plus
+  timeout_seconds: 120
+  tags:
+  - usage

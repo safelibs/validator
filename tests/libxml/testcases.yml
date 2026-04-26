@@ -606,3 +606,123 @@ testcases:
   - usage
   - xml
   - cli
+- id: usage-python3-lxml-fromstring-bytes
+  title: lxml fromstring bytes
+  description: Exercises lxml fromstring bytes through a dependent-client usage scenario.
+  kind: usage
+  client_application: python3-lxml
+  command:
+  - bash
+  - /validator/tests/libxml/tests/cases/usage/usage-even-more-client-behavior.sh
+  - usage-python3-lxml-fromstring-bytes
+  timeout_seconds: 120
+  tags:
+  - usage
+- id: usage-python3-lxml-xmlid-map
+  title: lxml XMLID map
+  description: Exercises lxml xmlid map through a dependent-client usage scenario.
+  kind: usage
+  client_application: python3-lxml
+  command:
+  - bash
+  - /validator/tests/libxml/tests/cases/usage/usage-even-more-client-behavior.sh
+  - usage-python3-lxml-xmlid-map
+  timeout_seconds: 120
+  tags:
+  - usage
+- id: usage-python3-lxml-qname-localname
+  title: lxml QName localname
+  description: Exercises lxml qname localname through a dependent-client usage scenario.
+  kind: usage
+  client_application: python3-lxml
+  command:
+  - bash
+  - /validator/tests/libxml/tests/cases/usage/usage-even-more-client-behavior.sh
+  - usage-python3-lxml-qname-localname
+  timeout_seconds: 120
+  tags:
+  - usage
+- id: usage-python3-lxml-elementpath-findtext
+  title: lxml elementpath findtext
+  description: Exercises lxml elementpath findtext through a dependent-client usage scenario.
+  kind: usage
+  client_application: python3-lxml
+  command:
+  - bash
+  - /validator/tests/libxml/tests/cases/usage/usage-even-more-client-behavior.sh
+  - usage-python3-lxml-elementpath-findtext
+  timeout_seconds: 120
+  tags:
+  - usage
+- id: usage-python3-lxml-cdata-serialize
+  title: lxml CDATA serialize
+  description: Exercises lxml cdata serialize through a dependent-client usage scenario.
+  kind: usage
+  client_application: python3-lxml
+  command:
+  - bash
+  - /validator/tests/libxml/tests/cases/usage/usage-even-more-client-behavior.sh
+  - usage-python3-lxml-cdata-serialize
+  timeout_seconds: 120
+  tags:
+  - usage
+- id: usage-python3-lxml-tostring-pretty
+  title: lxml tostring pretty
+  description: Exercises lxml tostring pretty through a dependent-client usage scenario.
+  kind: usage
+  client_application: python3-lxml
+  command:
+  - bash
+  - /validator/tests/libxml/tests/cases/usage/usage-even-more-client-behavior.sh
+  - usage-python3-lxml-tostring-pretty
+  timeout_seconds: 120
+  tags:
+  - usage
+- id: usage-xmlstarlet-update-attribute
+  title: xmlstarlet update attribute
+  description: Exercises xmlstarlet update attribute through a dependent-client usage scenario.
+  kind: usage
+  client_application: xmlstarlet
+  command:
+  - bash
+  - /validator/tests/libxml/tests/cases/usage/usage-even-more-client-behavior.sh
+  - usage-xmlstarlet-update-attribute
+  timeout_seconds: 120
+  tags:
+  - usage
+- id: usage-xmlstarlet-concat-text
+  title: xmlstarlet concat text
+  description: Exercises xmlstarlet concat text through a dependent-client usage scenario.
+  kind: usage
+  client_application: xmlstarlet
+  command:
+  - bash
+  - /validator/tests/libxml/tests/cases/usage/usage-even-more-client-behavior.sh
+  - usage-xmlstarlet-concat-text
+  timeout_seconds: 120
+  tags:
+  - usage
+- id: usage-xmlstarlet-omit-decl-format
+  title: xmlstarlet omit declaration format
+  description: Exercises xmlstarlet omit declaration format through a dependent-client usage scenario.
+  kind: usage
+  client_application: xmlstarlet
+  command:
+  - bash
+  - /validator/tests/libxml/tests/cases/usage/usage-even-more-client-behavior.sh
+  - usage-xmlstarlet-omit-decl-format
+  timeout_seconds: 120
+  tags:
+  - usage
+- id: usage-xmlstarlet-append-attribute
+  title: xmlstarlet append attribute
+  description: Exercises xmlstarlet append attribute through a dependent-client usage scenario.
+  kind: usage
+  client_application: xmlstarlet
+  command:
+  - bash
+  - /validator/tests/libxml/tests/cases/usage/usage-even-more-client-behavior.sh
+  - usage-xmlstarlet-append-attribute
+  timeout_seconds: 120
+  tags:
+  - usage

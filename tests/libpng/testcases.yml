@@ -601,3 +601,123 @@ testcases:
   - usage
   - image
   - png
+- id: usage-netpbm-pnmflip-leftright-generated-png
+  title: netpbm left right generated PNG flip
+  description: Exercises netpbm left right generated png flip through a dependent-client usage scenario.
+  kind: usage
+  client_application: netpbm
+  command:
+  - bash
+  - /validator/tests/libpng/tests/cases/usage/usage-even-more-client-behavior.sh
+  - usage-netpbm-pnmflip-leftright-generated-png
+  timeout_seconds: 120
+  tags:
+  - usage
+- id: usage-netpbm-pnmflip-transpose-png
+  title: netpbm transpose PNG flip
+  description: Exercises netpbm transpose png flip through a dependent-client usage scenario.
+  kind: usage
+  client_application: netpbm
+  command:
+  - bash
+  - /validator/tests/libpng/tests/cases/usage/usage-even-more-client-behavior.sh
+  - usage-netpbm-pnmflip-transpose-png
+  timeout_seconds: 120
+  tags:
+  - usage
+- id: usage-netpbm-pnmcut-bottom-row-png
+  title: netpbm bottom row PNG cut
+  description: Exercises netpbm bottom row png cut through a dependent-client usage scenario.
+  kind: usage
+  client_application: netpbm
+  command:
+  - bash
+  - /validator/tests/libpng/tests/cases/usage/usage-even-more-client-behavior.sh
+  - usage-netpbm-pnmcut-bottom-row-png
+  timeout_seconds: 120
+  tags:
+  - usage
+- id: usage-netpbm-pnmscale-triple-png
+  title: netpbm triple PNG scale
+  description: Exercises netpbm triple png scale through a dependent-client usage scenario.
+  kind: usage
+  client_application: netpbm
+  command:
+  - bash
+  - /validator/tests/libpng/tests/cases/usage/usage-even-more-client-behavior.sh
+  - usage-netpbm-pnmscale-triple-png
+  timeout_seconds: 120
+  tags:
+  - usage
+- id: usage-netpbm-pamchannel-red-generated-png
+  title: netpbm generated PNG red channel
+  description: Exercises netpbm generated png red channel through a dependent-client usage scenario.
+  kind: usage
+  client_application: netpbm
+  command:
+  - bash
+  - /validator/tests/libpng/tests/cases/usage/usage-even-more-client-behavior.sh
+  - usage-netpbm-pamchannel-red-generated-png
+  timeout_seconds: 120
+  tags:
+  - usage
+- id: usage-netpbm-pamchannel-blue-generated-png
+  title: netpbm generated PNG blue channel
+  description: Exercises netpbm generated png blue channel through a dependent-client usage scenario.
+  kind: usage
+  client_application: netpbm
+  command:
+  - bash
+  - /validator/tests/libpng/tests/cases/usage/usage-even-more-client-behavior.sh
+  - usage-netpbm-pamchannel-blue-generated-png
+  timeout_seconds: 120
+  tags:
+  - usage
+- id: usage-pngquant-colors-three-png
+  title: pngquant three color PNG
+  description: Exercises pngquant three color png through a dependent-client usage scenario.
+  kind: usage
+  client_application: pngquant
+  command:
+  - bash
+  - /validator/tests/libpng/tests/cases/usage/usage-even-more-client-behavior.sh
+  - usage-pngquant-colors-three-png
+  timeout_seconds: 120
+  tags:
+  - usage
+- id: usage-pngquant-posterize-one-png
+  title: pngquant posterize one PNG
+  description: Exercises pngquant posterize one png through a dependent-client usage scenario.
+  kind: usage
+  client_application: pngquant
+  command:
+  - bash
+  - /validator/tests/libpng/tests/cases/usage/usage-even-more-client-behavior.sh
+  - usage-pngquant-posterize-one-png
+  timeout_seconds: 120
+  tags:
+  - usage
+- id: usage-pngquant-quality-mid-png
+  title: pngquant mid quality PNG
+  description: Exercises pngquant mid quality png through a dependent-client usage scenario.
+  kind: usage
+  client_application: pngquant
+  command:
+  - bash
+  - /validator/tests/libpng/tests/cases/usage/usage-even-more-client-behavior.sh
+  - usage-pngquant-quality-mid-png
+  timeout_seconds: 120
+  tags:
+  - usage
+- id: usage-pngquant-speed-three-png
+  title: pngquant speed three PNG
+  description: Exercises pngquant speed three png through a dependent-client usage scenario.
+  kind: usage
+  client_application: pngquant
+  command:
+  - bash
+  - /validator/tests/libpng/tests/cases/usage/usage-even-more-client-behavior.sh
+  - usage-pngquant-speed-three-png
+  timeout_seconds: 120
+  tags:
+  - usage

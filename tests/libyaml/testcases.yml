@@ -609,3 +609,123 @@ testcases:
   - usage
   - yaml
   - python
+- id: usage-python3-yaml-safe-load-int-list
+  title: PyYAML safe load integer list
+  description: Exercises pyyaml safe load integer list through a dependent-client usage scenario.
+  kind: usage
+  client_application: python3-yaml
+  command:
+  - bash
+  - /validator/tests/libyaml/tests/cases/usage/usage-even-more-client-behavior.sh
+  - usage-python3-yaml-safe-load-int-list
+  timeout_seconds: 120
+  tags:
+  - usage
+- id: usage-python3-yaml-safe-dump-indent
+  title: PyYAML safe dump indent
+  description: Exercises pyyaml safe dump indent through a dependent-client usage scenario.
+  kind: usage
+  client_application: python3-yaml
+  command:
+  - bash
+  - /validator/tests/libyaml/tests/cases/usage/usage-even-more-client-behavior.sh
+  - usage-python3-yaml-safe-dump-indent
+  timeout_seconds: 120
+  tags:
+  - usage
+- id: usage-python3-yaml-full-load-scientific
+  title: PyYAML full load scientific number
+  description: Exercises pyyaml full load scientific number through a dependent-client usage scenario.
+  kind: usage
+  client_application: python3-yaml
+  command:
+  - bash
+  - /validator/tests/libyaml/tests/cases/usage/usage-even-more-client-behavior.sh
+  - usage-python3-yaml-full-load-scientific
+  timeout_seconds: 120
+  tags:
+  - usage
+- id: usage-python3-yaml-base-loader-int-string
+  title: PyYAML base loader integer string
+  description: Exercises pyyaml base loader integer string through a dependent-client usage scenario.
+  kind: usage
+  client_application: python3-yaml
+  command:
+  - bash
+  - /validator/tests/libyaml/tests/cases/usage/usage-even-more-client-behavior.sh
+  - usage-python3-yaml-base-loader-int-string
+  timeout_seconds: 120
+  tags:
+  - usage
+- id: usage-python3-yaml-dump-all-explicit-end
+  title: PyYAML dump all explicit end
+  description: Exercises pyyaml dump all explicit end through a dependent-client usage scenario.
+  kind: usage
+  client_application: python3-yaml
+  command:
+  - bash
+  - /validator/tests/libyaml/tests/cases/usage/usage-even-more-client-behavior.sh
+  - usage-python3-yaml-dump-all-explicit-end
+  timeout_seconds: 120
+  tags:
+  - usage
+- id: usage-python3-yaml-scan-scalar-count
+  title: PyYAML scan scalar count
+  description: Exercises pyyaml scan scalar count through a dependent-client usage scenario.
+  kind: usage
+  client_application: python3-yaml
+  command:
+  - bash
+  - /validator/tests/libyaml/tests/cases/usage/usage-even-more-client-behavior.sh
+  - usage-python3-yaml-scan-scalar-count
+  timeout_seconds: 120
+  tags:
+  - usage
+- id: usage-python3-yaml-parse-mapping-start
+  title: PyYAML parse mapping start
+  description: Exercises pyyaml parse mapping start through a dependent-client usage scenario.
+  kind: usage
+  client_application: python3-yaml
+  command:
+  - bash
+  - /validator/tests/libyaml/tests/cases/usage/usage-even-more-client-behavior.sh
+  - usage-python3-yaml-parse-mapping-start
+  timeout_seconds: 120
+  tags:
+  - usage
+- id: usage-python3-yaml-compose-mapping-node
+  title: PyYAML compose mapping node
+  description: Exercises pyyaml compose mapping node through a dependent-client usage scenario.
+  kind: usage
+  client_application: python3-yaml
+  command:
+  - bash
+  - /validator/tests/libyaml/tests/cases/usage/usage-even-more-client-behavior.sh
+  - usage-python3-yaml-compose-mapping-node
+  timeout_seconds: 120
+  tags:
+  - usage
+- id: usage-python3-yaml-csafe-roundtrip-dict
+  title: PyYAML CSafe round trip dict
+  description: Exercises pyyaml csafe round trip dict through a dependent-client usage scenario.
+  kind: usage
+  client_application: python3-yaml
+  command:
+  - bash
+  - /validator/tests/libyaml/tests/cases/usage/usage-even-more-client-behavior.sh
+  - usage-python3-yaml-csafe-roundtrip-dict
+  timeout_seconds: 120
+  tags:
+  - usage
+- id: usage-python3-yaml-safe-load-nested-sequence
+  title: PyYAML safe load nested sequence
+  description: Exercises pyyaml safe load nested sequence through a dependent-client usage scenario.
+  kind: usage
+  client_application: python3-yaml
+  command:
+  - bash
+  - /validator/tests/libyaml/tests/cases/usage/usage-even-more-client-behavior.sh
+  - usage-python3-yaml-safe-load-nested-sequence
+  timeout_seconds: 120
+  tags:
+  - usage

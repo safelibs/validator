@@ -614,3 +614,123 @@ testcases:
   - usage
   - crypto
   - keys
+- id: usage-gpg-clearsign-verify-status
+  title: gpg clearsign verify status
+  description: Exercises gpg clearsign verify status through a dependent-client usage scenario.
+  kind: usage
+  client_application: gpg
+  command:
+  - bash
+  - /validator/tests/libgcrypt/tests/cases/usage/usage-even-more-client-behavior.sh
+  - usage-gpg-clearsign-verify-status
+  timeout_seconds: 120
+  tags:
+  - usage
+- id: usage-gpg-symmetric-armored-message
+  title: gpg symmetric armored message
+  description: Exercises gpg symmetric armored message through a dependent-client usage scenario.
+  kind: usage
+  client_application: gpg
+  command:
+  - bash
+  - /validator/tests/libgcrypt/tests/cases/usage/usage-even-more-client-behavior.sh
+  - usage-gpg-symmetric-armored-message
+  timeout_seconds: 120
+  tags:
+  - usage
+- id: usage-gpg-recipient-encrypt-decrypt-output
+  title: gpg recipient encrypt decrypt output
+  description: Exercises gpg recipient encrypt decrypt output through a dependent-client usage scenario.
+  kind: usage
+  client_application: gpg
+  command:
+  - bash
+  - /validator/tests/libgcrypt/tests/cases/usage/usage-even-more-client-behavior.sh
+  - usage-gpg-recipient-encrypt-decrypt-output
+  timeout_seconds: 120
+  tags:
+  - usage
+- id: usage-gpg-armored-message-header-only
+  title: gpg armored message header only
+  description: Exercises gpg armored message header only through a dependent-client usage scenario.
+  kind: usage
+  client_application: gpg
+  command:
+  - bash
+  - /validator/tests/libgcrypt/tests/cases/usage/usage-even-more-client-behavior.sh
+  - usage-gpg-armored-message-header-only
+  timeout_seconds: 120
+  tags:
+  - usage
+- id: usage-gpg-list-packets-binary-detached
+  title: gpg list packets binary detached
+  description: Exercises gpg list packets binary detached through a dependent-client usage scenario.
+  kind: usage
+  client_application: gpg
+  command:
+  - bash
+  - /validator/tests/libgcrypt/tests/cases/usage/usage-even-more-client-behavior.sh
+  - usage-gpg-list-packets-binary-detached
+  timeout_seconds: 120
+  tags:
+  - usage
+- id: usage-gpg-verify-status-stream
+  title: gpg verify status stream
+  description: Exercises gpg verify status stream through a dependent-client usage scenario.
+  kind: usage
+  client_application: gpg
+  command:
+  - bash
+  - /validator/tests/libgcrypt/tests/cases/usage/usage-even-more-client-behavior.sh
+  - usage-gpg-verify-status-stream
+  timeout_seconds: 120
+  tags:
+  - usage
+- id: usage-gpg-sign-file-roundtrip
+  title: gpg sign file round trip
+  description: Exercises gpg sign file round trip through a dependent-client usage scenario.
+  kind: usage
+  client_application: gpg
+  command:
+  - bash
+  - /validator/tests/libgcrypt/tests/cases/usage/usage-even-more-client-behavior.sh
+  - usage-gpg-sign-file-roundtrip
+  timeout_seconds: 120
+  tags:
+  - usage
+- id: usage-gpg-encrypt-decrypt-stdout-pipe
+  title: gpg encrypt decrypt stdout pipe
+  description: Exercises gpg encrypt decrypt stdout pipe through a dependent-client usage scenario.
+  kind: usage
+  client_application: gpg
+  command:
+  - bash
+  - /validator/tests/libgcrypt/tests/cases/usage/usage-even-more-client-behavior.sh
+  - usage-gpg-encrypt-decrypt-stdout-pipe
+  timeout_seconds: 120
+  tags:
+  - usage
+- id: usage-gpg-ownertrust-export-check
+  title: gpg ownertrust export check
+  description: Exercises gpg ownertrust export check through a dependent-client usage scenario.
+  kind: usage
+  client_application: gpg
+  command:
+  - bash
+  - /validator/tests/libgcrypt/tests/cases/usage/usage-even-more-client-behavior.sh
+  - usage-gpg-ownertrust-export-check
+  timeout_seconds: 120
+  tags:
+  - usage
+- id: usage-gpg-import-public-key-listing
+  title: gpg import public key listing
+  description: Exercises gpg import public key listing through a dependent-client usage scenario.
+  kind: usage
+  client_application: gpg
+  command:
+  - bash
+  - /validator/tests/libgcrypt/tests/cases/usage/usage-even-more-client-behavior.sh
+  - usage-gpg-import-public-key-listing
+  timeout_seconds: 120
+  tags:
+  - usage

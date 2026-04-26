@@ -613,3 +613,123 @@ testcases:
   - usage
   - jpeg
   - image
+- id: usage-python3-pil-autocontrast-jpeg
+  title: python PIL autocontrast JPEG
+  description: Exercises python pil autocontrast jpeg through a dependent-client usage scenario.
+  kind: usage
+  client_application: python3-pil
+  command:
+  - bash
+  - /validator/tests/libjpeg-turbo/tests/cases/usage/usage-even-more-client-behavior.sh
+  - usage-python3-pil-autocontrast-jpeg
+  timeout_seconds: 120
+  tags:
+  - usage
+- id: usage-python3-pil-filter-blur-jpeg
+  title: python PIL blur filter JPEG
+  description: Exercises python pil blur filter jpeg through a dependent-client usage scenario.
+  kind: usage
+  client_application: python3-pil
+  command:
+  - bash
+  - /validator/tests/libjpeg-turbo/tests/cases/usage/usage-even-more-client-behavior.sh
+  - usage-python3-pil-filter-blur-jpeg
+  timeout_seconds: 120
+  tags:
+  - usage
+- id: usage-python3-pil-border-expand-jpeg
+  title: python PIL border expand JPEG
+  description: Exercises python pil border expand jpeg through a dependent-client usage scenario.
+  kind: usage
+  client_application: python3-pil
+  command:
+  - bash
+  - /validator/tests/libjpeg-turbo/tests/cases/usage/usage-even-more-client-behavior.sh
+  - usage-python3-pil-border-expand-jpeg
+  timeout_seconds: 120
+  tags:
+  - usage
+- id: usage-python3-pil-split-merge-jpeg
+  title: python PIL split merge JPEG
+  description: Exercises python pil split merge jpeg through a dependent-client usage scenario.
+  kind: usage
+  client_application: python3-pil
+  command:
+  - bash
+  - /validator/tests/libjpeg-turbo/tests/cases/usage/usage-even-more-client-behavior.sh
+  - usage-python3-pil-split-merge-jpeg
+  timeout_seconds: 120
+  tags:
+  - usage
+- id: usage-python3-pil-l-mode-jpeg
+  title: python PIL L mode JPEG
+  description: Exercises python pil l mode jpeg through a dependent-client usage scenario.
+  kind: usage
+  client_application: python3-pil
+  command:
+  - bash
+  - /validator/tests/libjpeg-turbo/tests/cases/usage/usage-even-more-client-behavior.sh
+  - usage-python3-pil-l-mode-jpeg
+  timeout_seconds: 120
+  tags:
+  - usage
+- id: usage-python3-pil-solarize-jpeg
+  title: python PIL solarize JPEG
+  description: Exercises python pil solarize jpeg through a dependent-client usage scenario.
+  kind: usage
+  client_application: python3-pil
+  command:
+  - bash
+  - /validator/tests/libjpeg-turbo/tests/cases/usage/usage-even-more-client-behavior.sh
+  - usage-python3-pil-solarize-jpeg
+  timeout_seconds: 120
+  tags:
+  - usage
+- id: usage-python3-pil-posterize-jpeg
+  title: python PIL posterize JPEG
+  description: Exercises python pil posterize jpeg through a dependent-client usage scenario.
+  kind: usage
+  client_application: python3-pil
+  command:
+  - bash
+  - /validator/tests/libjpeg-turbo/tests/cases/usage/usage-even-more-client-behavior.sh
+  - usage-python3-pil-posterize-jpeg
+  timeout_seconds: 120
+  tags:
+  - usage
+- id: usage-python3-pil-transpose-swap-jpeg
+  title: python PIL transpose JPEG
+  description: Exercises python pil transpose jpeg through a dependent-client usage scenario.
+  kind: usage
+  client_application: python3-pil
+  command:
+  - bash
+  - /validator/tests/libjpeg-turbo/tests/cases/usage/usage-even-more-client-behavior.sh
+  - usage-python3-pil-transpose-swap-jpeg
+  timeout_seconds: 120
+  tags:
+  - usage
+- id: usage-python3-pil-canvas-paste-jpeg
+  title: python PIL canvas paste JPEG
+  description: Exercises python pil canvas paste jpeg through a dependent-client usage scenario.
+  kind: usage
+  client_application: python3-pil
+  command:
+  - bash
+  - /validator/tests/libjpeg-turbo/tests/cases/usage/usage-even-more-client-behavior.sh
+  - usage-python3-pil-canvas-paste-jpeg
+  timeout_seconds: 120
+  tags:
+  - usage
+- id: usage-python3-pil-histogram-jpeg
+  title: python PIL histogram JPEG
+  description: Exercises python pil histogram jpeg through a dependent-client usage scenario.
+  kind: usage
+  client_application: python3-pil
+  command:
+  - bash
+  - /validator/tests/libjpeg-turbo/tests/cases/usage/usage-even-more-client-behavior.sh
+  - usage-python3-pil-histogram-jpeg
+  timeout_seconds: 120
+  tags:
+  - usage

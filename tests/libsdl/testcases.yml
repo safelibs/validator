@@ -610,3 +610,123 @@ testcases:
   - usage
   - sdl
   - python
+- id: usage-python3-pygame-rect-clamp
+  title: pygame rectangle clamp
+  description: Exercises pygame rectangle clamp through a dependent-client usage scenario.
+  kind: usage
+  client_application: python3-pygame
+  command:
+  - bash
+  - /validator/tests/libsdl/tests/cases/usage/usage-even-more-client-behavior.sh
+  - usage-python3-pygame-rect-clamp
+  timeout_seconds: 120
+  tags:
+  - usage
+- id: usage-python3-pygame-subsurface-size
+  title: pygame subsurface size
+  description: Exercises pygame subsurface size through a dependent-client usage scenario.
+  kind: usage
+  client_application: python3-pygame
+  command:
+  - bash
+  - /validator/tests/libsdl/tests/cases/usage/usage-even-more-client-behavior.sh
+  - usage-python3-pygame-subsurface-size
+  timeout_seconds: 120
+  tags:
+  - usage
+- id: usage-python3-pygame-vector2-length
+  title: pygame vector2 length
+  description: Exercises pygame vector2 length through a dependent-client usage scenario.
+  kind: usage
+  client_application: python3-pygame
+  command:
+  - bash
+  - /validator/tests/libsdl/tests/cases/usage/usage-even-more-client-behavior.sh
+  - usage-python3-pygame-vector2-length
+  timeout_seconds: 120
+  tags:
+  - usage
+- id: usage-python3-pygame-draw-arc
+  title: pygame draw arc
+  description: Exercises pygame draw arc through a dependent-client usage scenario.
+  kind: usage
+  client_application: python3-pygame
+  command:
+  - bash
+  - /validator/tests/libsdl/tests/cases/usage/usage-even-more-client-behavior.sh
+  - usage-python3-pygame-draw-arc
+  timeout_seconds: 120
+  tags:
+  - usage
+- id: usage-python3-pygame-surface-colorkey
+  title: pygame surface color key
+  description: Exercises pygame surface color key through a dependent-client usage scenario.
+  kind: usage
+  client_application: python3-pygame
+  command:
+  - bash
+  - /validator/tests/libsdl/tests/cases/usage/usage-even-more-client-behavior.sh
+  - usage-python3-pygame-surface-colorkey
+  timeout_seconds: 120
+  tags:
+  - usage
+- id: usage-python3-pygame-display-caption
+  title: pygame display caption
+  description: Exercises pygame display caption through a dependent-client usage scenario.
+  kind: usage
+  client_application: python3-pygame
+  command:
+  - bash
+  - /validator/tests/libsdl/tests/cases/usage/usage-even-more-client-behavior.sh
+  - usage-python3-pygame-display-caption
+  timeout_seconds: 120
+  tags:
+  - usage
+- id: usage-python3-pygame-time-wait
+  title: pygame time wait
+  description: Exercises pygame time wait through a dependent-client usage scenario.
+  kind: usage
+  client_application: python3-pygame
+  command:
+  - bash
+  - /validator/tests/libsdl/tests/cases/usage/usage-even-more-client-behavior.sh
+  - usage-python3-pygame-time-wait
+  timeout_seconds: 120
+  tags:
+  - usage
+- id: usage-python3-pygame-transform-scale2x
+  title: pygame transform scale2x
+  description: Exercises pygame transform scale2x through a dependent-client usage scenario.
+  kind: usage
+  client_application: python3-pygame
+  command:
+  - bash
+  - /validator/tests/libsdl/tests/cases/usage/usage-even-more-client-behavior.sh
+  - usage-python3-pygame-transform-scale2x
+  timeout_seconds: 120
+  tags:
+  - usage
+- id: usage-python3-pygame-mask-from-threshold
+  title: pygame mask from threshold
+  description: Exercises pygame mask from threshold through a dependent-client usage scenario.
+  kind: usage
+  client_application: python3-pygame
+  command:
+  - bash
+  - /validator/tests/libsdl/tests/cases/usage/usage-even-more-client-behavior.sh
+  - usage-python3-pygame-mask-from-threshold
+  timeout_seconds: 120
+  tags:
+  - usage
+- id: usage-python3-pygame-event-set-blocked
+  title: pygame event set blocked
+  description: Exercises pygame event set blocked through a dependent-client usage scenario.
+  kind: usage
+  client_application: python3-pygame
+  command:
+  - bash
+  - /validator/tests/libsdl/tests/cases/usage/usage-even-more-client-behavior.sh
+  - usage-python3-pygame-event-set-blocked
+  timeout_seconds: 120
+  tags:
+  - usage

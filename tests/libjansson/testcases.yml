@@ -584,3 +584,123 @@ testcases:
   tags:
   - usage
   - json
+- id: usage-jshon-nested-empty-array-length
+  title: jshon nested empty array length
+  description: Exercises jshon nested empty array length through a dependent-client usage scenario.
+  kind: usage
+  client_application: jshon
+  command:
+  - bash
+  - /validator/tests/libjansson/tests/cases/usage/usage-even-more-client-behavior.sh
+  - usage-jshon-nested-empty-array-length
+  timeout_seconds: 120
+  tags:
+  - usage
+- id: usage-jshon-nested-key-list
+  title: jshon nested key list
+  description: Exercises jshon nested key list through a dependent-client usage scenario.
+  kind: usage
+  client_application: jshon
+  command:
+  - bash
+  - /validator/tests/libjansson/tests/cases/usage/usage-even-more-client-behavior.sh
+  - usage-jshon-nested-key-list
+  timeout_seconds: 120
+  tags:
+  - usage
+- id: usage-jshon-count-field
+  title: jshon number field
+  description: Exercises jshon count field through a dependent-client usage scenario.
+  kind: usage
+  client_application: jshon
+  command:
+  - bash
+  - /validator/tests/libjansson/tests/cases/usage/usage-even-more-client-behavior.sh
+  - usage-jshon-count-field
+  timeout_seconds: 120
+  tags:
+  - usage
+- id: usage-jshon-float-field
+  title: jshon float field
+  description: Exercises jshon float field through a dependent-client usage scenario.
+  kind: usage
+  client_application: jshon
+  command:
+  - bash
+  - /validator/tests/libjansson/tests/cases/usage/usage-even-more-client-behavior.sh
+  - usage-jshon-float-field
+  timeout_seconds: 120
+  tags:
+  - usage
+- id: usage-jshon-file-array-sum
+  title: jshon file array sum
+  description: Exercises jshon file array sum through a dependent-client usage scenario.
+  kind: usage
+  client_application: jshon
+  command:
+  - bash
+  - /validator/tests/libjansson/tests/cases/usage/usage-even-more-client-behavior.sh
+  - usage-jshon-file-array-sum
+  timeout_seconds: 120
+  tags:
+  - usage
+- id: usage-jshon-array-root-type
+  title: jshon root array type
+  description: Exercises jshon array root type through a dependent-client usage scenario.
+  kind: usage
+  client_application: jshon
+  command:
+  - bash
+  - /validator/tests/libjansson/tests/cases/usage/usage-even-more-client-behavior.sh
+  - usage-jshon-array-root-type
+  timeout_seconds: 120
+  tags:
+  - usage
+- id: usage-jshon-object-array-second-type
+  title: jshon object array second type
+  description: Exercises jshon object array second type through a dependent-client usage scenario.
+  kind: usage
+  client_application: jshon
+  command:
+  - bash
+  - /validator/tests/libjansson/tests/cases/usage/usage-even-more-client-behavior.sh
+  - usage-jshon-object-array-second-type
+  timeout_seconds: 120
+  tags:
+  - usage
+- id: usage-jshon-escaped-slash-string
+  title: jshon escaped slash string
+  description: Exercises jshon escaped slash string through a dependent-client usage scenario.
+  kind: usage
+  client_application: jshon
+  command:
+  - bash
+  - /validator/tests/libjansson/tests/cases/usage/usage-even-more-client-behavior.sh
+  - usage-jshon-escaped-slash-string
+  timeout_seconds: 120
+  tags:
+  - usage
+- id: usage-jshon-file-unicode-label
+  title: jshon file unicode label
+  description: Exercises jshon file unicode label through a dependent-client usage scenario.
+  kind: usage
+  client_application: jshon
+  command:
+  - bash
+  - /validator/tests/libjansson/tests/cases/usage/usage-even-more-client-behavior.sh
+  - usage-jshon-file-unicode-label
+  timeout_seconds: 120
+  tags:
+  - usage
+- id: usage-jshon-nested-object-field
+  title: jshon nested object field
+  description: Exercises jshon nested object field through a dependent-client usage scenario.
+  kind: usage
+  client_application: jshon
+  command:
+  - bash
+  - /validator/tests/libjansson/tests/cases/usage/usage-even-more-client-behavior.sh
+  - usage-jshon-nested-object-field
+  timeout_seconds: 120
+  tags:
+  - usage

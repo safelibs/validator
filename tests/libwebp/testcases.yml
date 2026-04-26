@@ -622,3 +622,123 @@ testcases:
   - usage
   - webp
   - video
+- id: usage-python3-pil-autocontrast-webp
+  title: python PIL autocontrast WebP
+  description: Exercises python pil autocontrast webp through a dependent-client usage scenario.
+  kind: usage
+  client_application: python3-pil
+  command:
+  - bash
+  - /validator/tests/libwebp/tests/cases/usage/usage-even-more-client-behavior.sh
+  - usage-python3-pil-autocontrast-webp
+  timeout_seconds: 120
+  tags:
+  - usage
+- id: usage-python3-pil-filter-blur-webp
+  title: python PIL blur filter WebP
+  description: Exercises python pil blur filter webp through a dependent-client usage scenario.
+  kind: usage
+  client_application: python3-pil
+  command:
+  - bash
+  - /validator/tests/libwebp/tests/cases/usage/usage-even-more-client-behavior.sh
+  - usage-python3-pil-filter-blur-webp
+  timeout_seconds: 120
+  tags:
+  - usage
+- id: usage-python3-pil-border-expand-webp
+  title: python PIL border expand WebP
+  description: Exercises python pil border expand webp through a dependent-client usage scenario.
+  kind: usage
+  client_application: python3-pil
+  command:
+  - bash
+  - /validator/tests/libwebp/tests/cases/usage/usage-even-more-client-behavior.sh
+  - usage-python3-pil-border-expand-webp
+  timeout_seconds: 120
+  tags:
+  - usage
+- id: usage-python3-pil-split-merge-webp
+  title: python PIL split merge WebP
+  description: Exercises python pil split merge webp through a dependent-client usage scenario.
+  kind: usage
+  client_application: python3-pil
+  command:
+  - bash
+  - /validator/tests/libwebp/tests/cases/usage/usage-even-more-client-behavior.sh
+  - usage-python3-pil-split-merge-webp
+  timeout_seconds: 120
+  tags:
+  - usage
+- id: usage-python3-pil-l-mode-webp
+  title: python PIL L mode WebP
+  description: Exercises python pil l mode webp through a dependent-client usage scenario.
+  kind: usage
+  client_application: python3-pil
+  command:
+  - bash
+  - /validator/tests/libwebp/tests/cases/usage/usage-even-more-client-behavior.sh
+  - usage-python3-pil-l-mode-webp
+  timeout_seconds: 120
+  tags:
+  - usage
+- id: usage-python3-pil-solarize-webp
+  title: python PIL solarize WebP
+  description: Exercises python pil solarize webp through a dependent-client usage scenario.
+  kind: usage
+  client_application: python3-pil
+  command:
+  - bash
+  - /validator/tests/libwebp/tests/cases/usage/usage-even-more-client-behavior.sh
+  - usage-python3-pil-solarize-webp
+  timeout_seconds: 120
+  tags:
+  - usage
+- id: usage-python3-pil-posterize-webp
+  title: python PIL posterize WebP
+  description: Exercises python pil posterize webp through a dependent-client usage scenario.
+  kind: usage
+  client_application: python3-pil
+  command:
+  - bash
+  - /validator/tests/libwebp/tests/cases/usage/usage-even-more-client-behavior.sh
+  - usage-python3-pil-posterize-webp
+  timeout_seconds: 120
+  tags:
+  - usage
+- id: usage-python3-pil-transpose-webp
+  title: python PIL transpose WebP
+  description: Exercises python pil transpose webp through a dependent-client usage scenario.
+  kind: usage
+  client_application: python3-pil
+  command:
+  - bash
+  - /validator/tests/libwebp/tests/cases/usage/usage-even-more-client-behavior.sh
+  - usage-python3-pil-transpose-webp
+  timeout_seconds: 120
+  tags:
+  - usage
+- id: usage-python3-pil-canvas-paste-webp
+  title: python PIL canvas paste WebP
+  description: Exercises python pil canvas paste webp through a dependent-client usage scenario.
+  kind: usage
+  client_application: python3-pil
+  command:
+  - bash
+  - /validator/tests/libwebp/tests/cases/usage/usage-even-more-client-behavior.sh
+  - usage-python3-pil-canvas-paste-webp
+  timeout_seconds: 120
+  tags:
+  - usage
+- id: usage-python3-pil-histogram-webp
+  title: python PIL histogram WebP
+  description: Exercises python pil histogram webp through a dependent-client usage scenario.
+  kind: usage
+  client_application: python3-pil
+  command:
+  - bash
+  - /validator/tests/libwebp/tests/cases/usage/usage-even-more-client-behavior.sh
+  - usage-python3-pil-histogram-webp
+  timeout_seconds: 120
+  tags:
+  - usage

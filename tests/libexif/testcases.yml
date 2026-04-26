@@ -599,3 +599,123 @@ testcases:
   - usage
   - jpeg
   - metadata
+- id: usage-exif-cli-machine-datetime
+  title: exif machine DateTime
+  description: Exercises exif machine datetime through a dependent-client usage scenario.
+  kind: usage
+  client_application: exif
+  command:
+  - bash
+  - /validator/tests/libexif/tests/cases/usage/usage-even-more-client-behavior.sh
+  - usage-exif-cli-machine-datetime
+  timeout_seconds: 120
+  tags:
+  - usage
+- id: usage-exif-cli-machine-datetime-original
+  title: exif machine DateTimeOriginal
+  description: Exercises exif machine datetimeoriginal through a dependent-client usage scenario.
+  kind: usage
+  client_application: exif
+  command:
+  - bash
+  - /validator/tests/libexif/tests/cases/usage/usage-even-more-client-behavior.sh
+  - usage-exif-cli-machine-datetime-original
+  timeout_seconds: 120
+  tags:
+  - usage
+- id: usage-exif-cli-machine-model-value
+  title: exif machine model
+  description: Exercises exif machine model value through a dependent-client usage scenario.
+  kind: usage
+  client_application: exif
+  command:
+  - bash
+  - /validator/tests/libexif/tests/cases/usage/usage-even-more-client-behavior.sh
+  - usage-exif-cli-machine-model-value
+  timeout_seconds: 120
+  tags:
+  - usage
+- id: usage-exif-cli-ifd-exif-exposure-time
+  title: exif IFD EXIF exposure time
+  description: Exercises exif ifd exif exposure time through a dependent-client usage scenario.
+  kind: usage
+  client_application: exif
+  command:
+  - bash
+  - /validator/tests/libexif/tests/cases/usage/usage-even-more-client-behavior.sh
+  - usage-exif-cli-ifd-exif-exposure-time
+  timeout_seconds: 120
+  tags:
+  - usage
+- id: usage-exif-cli-ifd-exif-fnumber
+  title: exif IFD EXIF F number
+  description: Exercises exif ifd exif f number through a dependent-client usage scenario.
+  kind: usage
+  client_application: exif
+  command:
+  - bash
+  - /validator/tests/libexif/tests/cases/usage/usage-even-more-client-behavior.sh
+  - usage-exif-cli-ifd-exif-fnumber
+  timeout_seconds: 120
+  tags:
+  - usage
+- id: usage-exif-cli-ifd-zero-make
+  title: exif IFD zero make
+  description: Exercises exif ifd zero make through a dependent-client usage scenario.
+  kind: usage
+  client_application: exif
+  command:
+  - bash
+  - /validator/tests/libexif/tests/cases/usage/usage-even-more-client-behavior.sh
+  - usage-exif-cli-ifd-zero-make
+  timeout_seconds: 120
+  tags:
+  - usage
+- id: usage-exif-cli-list-pixel-dimensions
+  title: exif list pixel dimensions
+  description: Exercises exif list pixel dimensions through a dependent-client usage scenario.
+  kind: usage
+  client_application: exif
+  command:
+  - bash
+  - /validator/tests/libexif/tests/cases/usage/usage-even-more-client-behavior.sh
+  - usage-exif-cli-list-pixel-dimensions
+  timeout_seconds: 120
+  tags:
+  - usage
+- id: usage-exif-cli-list-color-space
+  title: exif list color space
+  description: Exercises exif list color space through a dependent-client usage scenario.
+  kind: usage
+  client_application: exif
+  command:
+  - bash
+  - /validator/tests/libexif/tests/cases/usage/usage-even-more-client-behavior.sh
+  - usage-exif-cli-list-color-space
+  timeout_seconds: 120
+  tags:
+  - usage
+- id: usage-exif-cli-xml-orientation-tag
+  title: exif XML orientation tag
+  description: Exercises exif xml orientation through a dependent-client usage scenario.
+  kind: usage
+  client_application: exif
+  command:
+  - bash
+  - /validator/tests/libexif/tests/cases/usage/usage-even-more-client-behavior.sh
+  - usage-exif-cli-xml-orientation-tag
+  timeout_seconds: 120
+  tags:
+  - usage
+- id: usage-exif-cli-xml-focal-length
+  title: exif XML focal length
+  description: Exercises exif xml focal length through a dependent-client usage scenario.
+  kind: usage
+  client_application: exif
+  command:
+  - bash
+  - /validator/tests/libexif/tests/cases/usage/usage-even-more-client-behavior.sh
+  - usage-exif-cli-xml-focal-length
+  timeout_seconds: 120
+  tags:
+  - usage

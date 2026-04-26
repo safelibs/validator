@@ -571,3 +571,123 @@ testcases:
   tags:
   - usage
   - csv
+- id: usage-readstat-dta-leading-space-note
+  title: readstat DTA leading space note
+  description: Exercises readstat dta leading space note through a dependent-client usage scenario.
+  kind: usage
+  client_application: readstat
+  command:
+  - bash
+  - /validator/tests/libcsv/tests/cases/usage/usage-even-more-client-behavior.sh
+  - usage-readstat-dta-leading-space-note
+  timeout_seconds: 120
+  tags:
+  - usage
+- id: usage-readstat-sav-leading-space-note
+  title: readstat SAV leading space note
+  description: Exercises readstat sav leading space note through a dependent-client usage scenario.
+  kind: usage
+  client_application: readstat
+  command:
+  - bash
+  - /validator/tests/libcsv/tests/cases/usage/usage-even-more-client-behavior.sh
+  - usage-readstat-sav-leading-space-note
+  timeout_seconds: 120
+  tags:
+  - usage
+- id: usage-readstat-dta-pipe-note
+  title: readstat DTA pipe note
+  description: Exercises readstat dta pipe note through a dependent-client usage scenario.
+  kind: usage
+  client_application: readstat
+  command:
+  - bash
+  - /validator/tests/libcsv/tests/cases/usage/usage-even-more-client-behavior.sh
+  - usage-readstat-dta-pipe-note
+  timeout_seconds: 120
+  tags:
+  - usage
+- id: usage-readstat-sav-pipe-note
+  title: readstat SAV pipe note
+  description: Exercises readstat sav pipe note through a dependent-client usage scenario.
+  kind: usage
+  client_application: readstat
+  command:
+  - bash
+  - /validator/tests/libcsv/tests/cases/usage/usage-even-more-client-behavior.sh
+  - usage-readstat-sav-pipe-note
+  timeout_seconds: 120
+  tags:
+  - usage
+- id: usage-readstat-dta-count-sum
+  title: readstat DTA count sum
+  description: Exercises readstat dta count sum through a dependent-client usage scenario.
+  kind: usage
+  client_application: readstat
+  command:
+  - bash
+  - /validator/tests/libcsv/tests/cases/usage/usage-even-more-client-behavior.sh
+  - usage-readstat-dta-count-sum
+  timeout_seconds: 120
+  tags:
+  - usage
+- id: usage-readstat-sav-count-sum
+  title: readstat SAV count sum
+  description: Exercises readstat sav count sum through a dependent-client usage scenario.
+  kind: usage
+  client_application: readstat
+  command:
+  - bash
+  - /validator/tests/libcsv/tests/cases/usage/usage-even-more-client-behavior.sh
+  - usage-readstat-sav-count-sum
+  timeout_seconds: 120
+  tags:
+  - usage
+- id: usage-readstat-dta-mixed-group
+  title: readstat DTA mixed group value
+  description: Exercises readstat dta mixed group value through a dependent-client usage scenario.
+  kind: usage
+  client_application: readstat
+  command:
+  - bash
+  - /validator/tests/libcsv/tests/cases/usage/usage-even-more-client-behavior.sh
+  - usage-readstat-dta-mixed-group
+  timeout_seconds: 120
+  tags:
+  - usage
+- id: usage-readstat-sav-mixed-group
+  title: readstat SAV mixed group value
+  description: Exercises readstat sav mixed group value through a dependent-client usage scenario.
+  kind: usage
+  client_application: readstat
+  command:
+  - bash
+  - /validator/tests/libcsv/tests/cases/usage/usage-even-more-client-behavior.sh
+  - usage-readstat-sav-mixed-group
+  timeout_seconds: 120
+  tags:
+  - usage
+- id: usage-readstat-dta-summary-single-row
+  title: readstat DTA single row summary
+  description: Exercises readstat dta single row summary through a dependent-client usage scenario.
+  kind: usage
+  client_application: readstat
+  command:
+  - bash
+  - /validator/tests/libcsv/tests/cases/usage/usage-even-more-client-behavior.sh
+  - usage-readstat-dta-summary-single-row
+  timeout_seconds: 120
+  tags:
+  - usage
+- id: usage-readstat-sav-summary-single-row
+  title: readstat SAV single row summary
+  description: Exercises readstat sav single row summary through a dependent-client usage scenario.
+  kind: usage
+  client_application: readstat
+  command:
+  - bash
+  - /validator/tests/libcsv/tests/cases/usage/usage-even-more-client-behavior.sh
+  - usage-readstat-sav-summary-single-row
+  timeout_seconds: 120
+  tags:
+  - usage

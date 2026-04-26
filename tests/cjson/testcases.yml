@@ -599,3 +599,123 @@ testcases:
   - usage
   - json
   - network
+- id: usage-iperf3-json-version-field
+  title: iperf3 JSON version field
+  description: Exercises iperf3 json version field through a dependent-client usage scenario.
+  kind: usage
+  client_application: iperf3
+  command:
+  - bash
+  - /validator/tests/cjson/tests/cases/usage/usage-even-more-client-behavior.sh
+  - usage-iperf3-json-version-field
+  timeout_seconds: 180
+  tags:
+  - usage
+- id: usage-iperf3-json-system-info-field
+  title: iperf3 JSON system info field
+  description: Exercises iperf3 json system info field through a dependent-client usage scenario.
+  kind: usage
+  client_application: iperf3
+  command:
+  - bash
+  - /validator/tests/cjson/tests/cases/usage/usage-even-more-client-behavior.sh
+  - usage-iperf3-json-system-info-field
+  timeout_seconds: 180
+  tags:
+  - usage
+- id: usage-iperf3-json-cookie-field
+  title: iperf3 JSON cookie field
+  description: Exercises iperf3 json cookie field through a dependent-client usage scenario.
+  kind: usage
+  client_application: iperf3
+  command:
+  - bash
+  - /validator/tests/cjson/tests/cases/usage/usage-even-more-client-behavior.sh
+  - usage-iperf3-json-cookie-field
+  timeout_seconds: 180
+  tags:
+  - usage
+- id: usage-iperf3-json-timestamp-field
+  title: iperf3 JSON timestamp field
+  description: Exercises iperf3 json timestamp field through a dependent-client usage scenario.
+  kind: usage
+  client_application: iperf3
+  command:
+  - bash
+  - /validator/tests/cjson/tests/cases/usage/usage-even-more-client-behavior.sh
+  - usage-iperf3-json-timestamp-field
+  timeout_seconds: 180
+  tags:
+  - usage
+- id: usage-iperf3-json-connected-count
+  title: iperf3 JSON connected count
+  description: Exercises iperf3 json connected count through a dependent-client usage scenario.
+  kind: usage
+  client_application: iperf3
+  command:
+  - bash
+  - /validator/tests/cjson/tests/cases/usage/usage-even-more-client-behavior.sh
+  - usage-iperf3-json-connected-count
+  timeout_seconds: 180
+  tags:
+  - usage
+- id: usage-iperf3-json-local-port-field
+  title: iperf3 JSON local port field
+  description: Exercises iperf3 json local port field through a dependent-client usage scenario.
+  kind: usage
+  client_application: iperf3
+  command:
+  - bash
+  - /validator/tests/cjson/tests/cases/usage/usage-even-more-client-behavior.sh
+  - usage-iperf3-json-local-port-field
+  timeout_seconds: 180
+  tags:
+  - usage
+- id: usage-iperf3-json-remote-port-field
+  title: iperf3 JSON remote port field
+  description: Exercises iperf3 json remote port field through a dependent-client usage scenario.
+  kind: usage
+  client_application: iperf3
+  command:
+  - bash
+  - /validator/tests/cjson/tests/cases/usage/usage-even-more-client-behavior.sh
+  - usage-iperf3-json-remote-port-field
+  timeout_seconds: 180
+  tags:
+  - usage
+- id: usage-iperf3-json-bytes-field
+  title: iperf3 JSON bytes field
+  description: Exercises iperf3 json bytes field through a dependent-client usage scenario.
+  kind: usage
+  client_application: iperf3
+  command:
+  - bash
+  - /validator/tests/cjson/tests/cases/usage/usage-even-more-client-behavior.sh
+  - usage-iperf3-json-bytes-field
+  timeout_seconds: 180
+  tags:
+  - usage
+- id: usage-iperf3-json-reverse-flag-field
+  title: iperf3 JSON reverse flag field
+  description: Exercises iperf3 json reverse flag field through a dependent-client usage scenario.
+  kind: usage
+  client_application: iperf3
+  command:
+  - bash
+  - /validator/tests/cjson/tests/cases/usage/usage-even-more-client-behavior.sh
+  - usage-iperf3-json-reverse-flag-field
+  timeout_seconds: 180
+  tags:
+  - usage
+- id: usage-iperf3-json-tos-flag-field
+  title: iperf3 JSON TOS flag field
+  description: Exercises iperf3 json tos flag field through a dependent-client usage scenario.
+  kind: usage
+  client_application: iperf3
+  command:
+  - bash
+  - /validator/tests/cjson/tests/cases/usage/usage-even-more-client-behavior.sh
+  - usage-iperf3-json-tos-flag-field
+  timeout_seconds: 180
+  tags:
+  - usage

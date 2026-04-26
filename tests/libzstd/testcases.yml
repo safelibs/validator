@@ -612,3 +612,123 @@ testcases:
   - usage
   - archive
   - zstd
+- id: usage-libarchive-tools-zstd-rootdir-list
+  title: libarchive tools zstd root directory list
+  description: Exercises libarchive tools zstd root directory list through a dependent-client usage scenario.
+  kind: usage
+  client_application: libarchive-tools
+  command:
+  - bash
+  - /validator/tests/libzstd/tests/cases/usage/usage-even-more-client-behavior.sh
+  - usage-libarchive-tools-zstd-rootdir-list
+  timeout_seconds: 120
+  tags:
+  - usage
+- id: usage-libarchive-tools-zstd-rootdir-extract-gamma
+  title: libarchive tools zstd root directory extract gamma
+  description: Exercises libarchive tools zstd root directory extract gamma through a dependent-client usage scenario.
+  kind: usage
+  client_application: libarchive-tools
+  command:
+  - bash
+  - /validator/tests/libzstd/tests/cases/usage/usage-even-more-client-behavior.sh
+  - usage-libarchive-tools-zstd-rootdir-extract-gamma
+  timeout_seconds: 120
+  tags:
+  - usage
+- id: usage-libarchive-tools-zstd-symlink-extract-target
+  title: libarchive tools zstd symlink extract target
+  description: Exercises libarchive tools zstd symlink extract target through a dependent-client usage scenario.
+  kind: usage
+  client_application: libarchive-tools
+  command:
+  - bash
+  - /validator/tests/libzstd/tests/cases/usage/usage-even-more-client-behavior.sh
+  - usage-libarchive-tools-zstd-symlink-extract-target
+  timeout_seconds: 120
+  tags:
+  - usage
+- id: usage-libarchive-tools-zstd-filelist-space-name
+  title: libarchive tools zstd file list spaced name
+  description: Exercises libarchive tools zstd file list spaced name through a dependent-client usage scenario.
+  kind: usage
+  client_application: libarchive-tools
+  command:
+  - bash
+  - /validator/tests/libzstd/tests/cases/usage/usage-even-more-client-behavior.sh
+  - usage-libarchive-tools-zstd-filelist-space-name
+  timeout_seconds: 120
+  tags:
+  - usage
+- id: usage-libarchive-tools-zstd-stream-member-stdout
+  title: libarchive tools zstd stream member stdout
+  description: Exercises libarchive tools zstd stream member stdout through a dependent-client usage scenario.
+  kind: usage
+  client_application: libarchive-tools
+  command:
+  - bash
+  - /validator/tests/libzstd/tests/cases/usage/usage-even-more-client-behavior.sh
+  - usage-libarchive-tools-zstd-stream-member-stdout
+  timeout_seconds: 120
+  tags:
+  - usage
+- id: usage-libarchive-tools-zstd-hidden-visible-list
+  title: libarchive tools zstd hidden visible list
+  description: Exercises libarchive tools zstd hidden visible list through a dependent-client usage scenario.
+  kind: usage
+  client_application: libarchive-tools
+  command:
+  - bash
+  - /validator/tests/libzstd/tests/cases/usage/usage-even-more-client-behavior.sh
+  - usage-libarchive-tools-zstd-hidden-visible-list
+  timeout_seconds: 120
+  tags:
+  - usage
+- id: usage-libarchive-tools-zstd-hardlink-extract-compare
+  title: libarchive tools zstd hardlink extract compare
+  description: Exercises libarchive tools zstd hardlink extract compare through a dependent-client usage scenario.
+  kind: usage
+  client_application: libarchive-tools
+  command:
+  - bash
+  - /validator/tests/libzstd/tests/cases/usage/usage-even-more-client-behavior.sh
+  - usage-libarchive-tools-zstd-hardlink-extract-compare
+  timeout_seconds: 120
+  tags:
+  - usage
+- id: usage-libarchive-tools-zstd-empty-subdir-extract
+  title: libarchive tools zstd empty subdirectory extract
+  description: Exercises libarchive tools zstd empty subdirectory extract through a dependent-client usage scenario.
+  kind: usage
+  client_application: libarchive-tools
+  command:
+  - bash
+  - /validator/tests/libzstd/tests/cases/usage/usage-even-more-client-behavior.sh
+  - usage-libarchive-tools-zstd-empty-subdir-extract
+  timeout_seconds: 120
+  tags:
+  - usage
+- id: usage-libarchive-tools-zstd-space-dir-list
+  title: libarchive tools zstd space directory list
+  description: Exercises libarchive tools zstd space directory list through a dependent-client usage scenario.
+  kind: usage
+  client_application: libarchive-tools
+  command:
+  - bash
+  - /validator/tests/libzstd/tests/cases/usage/usage-even-more-client-behavior.sh
+  - usage-libarchive-tools-zstd-space-dir-list
+  timeout_seconds: 120
+  tags:
+  - usage
+- id: usage-libarchive-tools-zstd-dotfile-stream-extract
+  title: libarchive tools zstd dotfile stream extract
+  description: Exercises libarchive tools zstd dotfile stream extract through a dependent-client usage scenario.
+  kind: usage
+  client_application: libarchive-tools
+  command:
+  - bash
+  - /validator/tests/libzstd/tests/cases/usage/usage-even-more-client-behavior.sh
+  - usage-libarchive-tools-zstd-dotfile-stream-extract
+  timeout_seconds: 120
+  tags:
+  - usage

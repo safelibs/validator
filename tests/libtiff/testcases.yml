@@ -613,3 +613,123 @@ testcases:
   - usage
   - tiff
   - python
+- id: usage-python3-pil-autocontrast-tiff
+  title: python PIL autocontrast TIFF
+  description: Exercises python pil autocontrast tiff through a dependent-client usage scenario.
+  kind: usage
+  client_application: python3-pil
+  command:
+  - bash
+  - /validator/tests/libtiff/tests/cases/usage/usage-even-more-client-behavior.sh
+  - usage-python3-pil-autocontrast-tiff
+  timeout_seconds: 120
+  tags:
+  - usage
+- id: usage-python3-pil-filter-detail-tiff
+  title: python PIL detail filter TIFF
+  description: Exercises python pil detail filter tiff through a dependent-client usage scenario.
+  kind: usage
+  client_application: python3-pil
+  command:
+  - bash
+  - /validator/tests/libtiff/tests/cases/usage/usage-even-more-client-behavior.sh
+  - usage-python3-pil-filter-detail-tiff
+  timeout_seconds: 120
+  tags:
+  - usage
+- id: usage-python3-pil-border-expand-tiff
+  title: python PIL border expand TIFF
+  description: Exercises python pil border expand tiff through a dependent-client usage scenario.
+  kind: usage
+  client_application: python3-pil
+  command:
+  - bash
+  - /validator/tests/libtiff/tests/cases/usage/usage-even-more-client-behavior.sh
+  - usage-python3-pil-border-expand-tiff
+  timeout_seconds: 120
+  tags:
+  - usage
+- id: usage-python3-pil-split-merge-bands-tiff
+  title: python PIL split merge TIFF
+  description: Exercises python pil split merge tiff through a dependent-client usage scenario.
+  kind: usage
+  client_application: python3-pil
+  command:
+  - bash
+  - /validator/tests/libtiff/tests/cases/usage/usage-even-more-client-behavior.sh
+  - usage-python3-pil-split-merge-bands-tiff
+  timeout_seconds: 120
+  tags:
+  - usage
+- id: usage-python3-pil-l-mode-tiff
+  title: python PIL L mode TIFF
+  description: Exercises python pil l mode tiff through a dependent-client usage scenario.
+  kind: usage
+  client_application: python3-pil
+  command:
+  - bash
+  - /validator/tests/libtiff/tests/cases/usage/usage-even-more-client-behavior.sh
+  - usage-python3-pil-l-mode-tiff
+  timeout_seconds: 120
+  tags:
+  - usage
+- id: usage-python3-pil-invert-point-tiff
+  title: python PIL invert point TIFF
+  description: Exercises python pil invert point tiff through a dependent-client usage scenario.
+  kind: usage
+  client_application: python3-pil
+  command:
+  - bash
+  - /validator/tests/libtiff/tests/cases/usage/usage-even-more-client-behavior.sh
+  - usage-python3-pil-invert-point-tiff
+  timeout_seconds: 120
+  tags:
+  - usage
+- id: usage-python3-pil-histogram-tiff
+  title: python PIL histogram TIFF
+  description: Exercises python pil histogram tiff through a dependent-client usage scenario.
+  kind: usage
+  client_application: python3-pil
+  command:
+  - bash
+  - /validator/tests/libtiff/tests/cases/usage/usage-even-more-client-behavior.sh
+  - usage-python3-pil-histogram-tiff
+  timeout_seconds: 120
+  tags:
+  - usage
+- id: usage-python3-pil-rotate-180-tiff
+  title: python PIL rotate 180 TIFF
+  description: Exercises python pil rotate 180 tiff through a dependent-client usage scenario.
+  kind: usage
+  client_application: python3-pil
+  command:
+  - bash
+  - /validator/tests/libtiff/tests/cases/usage/usage-even-more-client-behavior.sh
+  - usage-python3-pil-rotate-180-tiff
+  timeout_seconds: 120
+  tags:
+  - usage
+- id: usage-python3-pil-canvas-paste-tiff
+  title: python PIL canvas paste TIFF
+  description: Exercises python pil canvas paste tiff through a dependent-client usage scenario.
+  kind: usage
+  client_application: python3-pil
+  command:
+  - bash
+  - /validator/tests/libtiff/tests/cases/usage/usage-even-more-client-behavior.sh
+  - usage-python3-pil-canvas-paste-tiff
+  timeout_seconds: 120
+  tags:
+  - usage
+- id: usage-python3-pil-crop-generated-tiff
+  title: python PIL crop generated TIFF
+  description: Exercises python pil crop generated tiff through a dependent-client usage scenario.
+  kind: usage
+  client_application: python3-pil
+  command:
+  - bash
+  - /validator/tests/libtiff/tests/cases/usage/usage-even-more-client-behavior.sh
+  - usage-python3-pil-crop-generated-tiff
+  timeout_seconds: 120
+  tags:
+  - usage

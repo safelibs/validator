@@ -623,3 +623,123 @@ testcases:
   - usage
   - glib
   - python
+- id: usage-gio-copy-overwrite-file
+  title: gio copy overwrite file
+  description: Exercises gio copy overwrite file through a dependent-client usage scenario.
+  kind: usage
+  client_application: gio
+  command:
+  - bash
+  - /validator/tests/glib/tests/cases/usage/usage-even-more-client-behavior.sh
+  - usage-gio-copy-overwrite-file
+  timeout_seconds: 120
+  tags:
+  - usage
+- id: usage-gio-move-renamed-file
+  title: gio move renamed file
+  description: Exercises gio move renamed file through a dependent-client usage scenario.
+  kind: usage
+  client_application: gio
+  command:
+  - bash
+  - /validator/tests/glib/tests/cases/usage/usage-even-more-client-behavior.sh
+  - usage-gio-move-renamed-file
+  timeout_seconds: 120
+  tags:
+  - usage
+- id: usage-gio-info-content-type
+  title: gio info content type
+  description: Exercises gio info content type through a dependent-client usage scenario.
+  kind: usage
+  client_application: gio
+  command:
+  - bash
+  - /validator/tests/glib/tests/cases/usage/usage-even-more-client-behavior.sh
+  - usage-gio-info-content-type
+  timeout_seconds: 120
+  tags:
+  - usage
+- id: usage-gio-info-standard-name
+  title: gio info standard name
+  description: Exercises gio info standard name through a dependent-client usage scenario.
+  kind: usage
+  client_application: gio
+  command:
+  - bash
+  - /validator/tests/glib/tests/cases/usage/usage-even-more-client-behavior.sh
+  - usage-gio-info-standard-name
+  timeout_seconds: 120
+  tags:
+  - usage
+- id: usage-glib-compile-schemas-double
+  title: glib compile schemas double default
+  description: Exercises glib compile schemas double default through a dependent-client usage scenario.
+  kind: usage
+  client_application: gio
+  command:
+  - bash
+  - /validator/tests/glib/tests/cases/usage/usage-even-more-client-behavior.sh
+  - usage-glib-compile-schemas-double
+  timeout_seconds: 120
+  tags:
+  - usage
+- id: usage-glib-compile-schemas-int-array
+  title: glib compile schemas int array default
+  description: Exercises glib compile schemas int array default through a dependent-client usage scenario.
+  kind: usage
+  client_application: gio
+  command:
+  - bash
+  - /validator/tests/glib/tests/cases/usage/usage-even-more-client-behavior.sh
+  - usage-glib-compile-schemas-int-array
+  timeout_seconds: 120
+  tags:
+  - usage
+- id: usage-python3-gi-keyfile-roundtrip
+  title: PyGObject keyfile round trip
+  description: Exercises pygobject keyfile round trip through a dependent-client usage scenario.
+  kind: usage
+  client_application: python3-gi
+  command:
+  - bash
+  - /validator/tests/glib/tests/cases/usage/usage-even-more-client-behavior.sh
+  - usage-python3-gi-keyfile-roundtrip
+  timeout_seconds: 120
+  tags:
+  - usage
+- id: usage-python3-gi-bytes-size
+  title: PyGObject bytes size
+  description: Exercises pygobject bytes size through a dependent-client usage scenario.
+  kind: usage
+  client_application: python3-gi
+  command:
+  - bash
+  - /validator/tests/glib/tests/cases/usage/usage-even-more-client-behavior.sh
+  - usage-python3-gi-bytes-size
+  timeout_seconds: 120
+  tags:
+  - usage
+- id: usage-python3-gi-file-load-contents
+  title: PyGObject file load contents
+  description: Exercises pygobject file load contents through a dependent-client usage scenario.
+  kind: usage
+  client_application: python3-gi
+  command:
+  - bash
+  - /validator/tests/glib/tests/cases/usage/usage-even-more-client-behavior.sh
+  - usage-python3-gi-file-load-contents
+  timeout_seconds: 120
+  tags:
+  - usage
+- id: usage-python3-gi-memory-input-stream-read
+  title: PyGObject memory input stream read
+  description: Exercises pygobject memory input stream read through a dependent-client usage scenario.
+  kind: usage
+  client_application: python3-gi
+  command:
+  - bash
+  - /validator/tests/glib/tests/cases/usage/usage-even-more-client-behavior.sh
+  - usage-python3-gi-memory-input-stream-read
+  timeout_seconds: 120
+  tags:
+  - usage
