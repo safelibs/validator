@@ -69,7 +69,7 @@ case "$case_id" in
     run_iperf_json_check '(.end.sum_received.bytes // 0) >= 16384' -R -n 16K
     ;;
   usage-iperf3-json-udp-jitter-field)
-    run_iperf_json_check '(.end.sum.jitter_ms // 0) >= 0' -u -b 128K -t 1
+    run_iperf_json_check '(.end.sum | has("jitter_ms")) and (.end.sum.jitter_ms >= 0)' -u -b 128K -t 1
     ;;
   usage-iperf3-json-port-match)
     run_iperf_json_check '.start.connected[0].remote_port == $expected_port' -n 16K

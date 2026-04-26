@@ -57,6 +57,11 @@ elif cmd == 'unique-rgb-max':
     colors = {tuple(payload[i:i+channels]) for i in range(0, len(payload), channels)}
     if len(colors) > int(sys.argv[3]):
         raise SystemExit(f'too many colors: {len(colors)}')
+elif cmd == 'unique-rgb-min':
+    width, height, channels, payload = read_image(sys.argv[2])
+    colors = {tuple(payload[i:i+channels]) for i in range(0, len(payload), channels)}
+    if len(colors) < int(sys.argv[3]):
+        raise SystemExit(f'too few colors: {len(colors)}')
 else:
     raise SystemExit(f'unknown command {cmd}')
 PYCASE
@@ -66,6 +71,9 @@ assert_values() {
 }
 assert_unique_rgb_max() {
   python3 "$tmpdir/netpbm_assert.py" unique-rgb-max "$1" "$2"
+}
+assert_unique_rgb_min() {
+  python3 "$tmpdir/netpbm_assert.py" unique-rgb-min "$1" "$2"
 }
 
 case "$case_id" in
@@ -159,14 +167,19 @@ EOF
     assert_values "$tmpdir/out.pgm" 1 1 1 '[77]'
     ;;
   usage-pngquant-colors-sixteen-png)
-    cat >"$tmpdir/input.ppm" <<'EOF'
-P3
-8 2
-255
-255 0 0   0 255 0   0 0 255   255 255 0   255 0 255   0 255 255   30 30 30   220 220 220
-10 20 30   40 50 60   70 80 90   100 110 120   130 140 150   160 170 180   190 200 210   240 240 240
-EOF
+    python3 - <<'PYCASE' "$tmpdir/input.ppm"
+import sys
+with open(sys.argv[1], 'w', encoding='ascii') as handle:
+    handle.write('P3\n8 4\n255\n')
+    for value in range(32):
+        red = (value * 17) % 256
+        green = (value * 29) % 256
+        blue = (value * 43) % 256
+        handle.write(f'{red} {green} {blue} ')
+PYCASE
     pnmtopng "$tmpdir/input.ppm" >"$tmpdir/input.png"
+    pngtopnm "$tmpdir/input.png" >"$tmpdir/raw.ppm"
+    assert_unique_rgb_min "$tmpdir/raw.ppm" 17
     pngquant --force --output "$tmpdir/out.png" 16 "$tmpdir/input.png"
     pngtopnm "$tmpdir/out.png" >"$tmpdir/out.ppm"
     assert_unique_rgb_max "$tmpdir/out.ppm" 16
@@ -186,26 +199,37 @@ EOF
     assert_values "$tmpdir/out.pgm" 2 2 1 '[5, 6, 7, 8]'
     ;;
   usage-pngquant-quality-high-png)
-    cat >"$tmpdir/input.ppm" <<'EOF'
-P3
-4 2
-255
-255 0 0   0 255 0   0 0 255   255 255 0
-255 0 255   0 255 255   40 40 40   220 220 220
-EOF
+    python3 - <<'PYCASE' "$tmpdir/input.ppm"
+import sys
+with open(sys.argv[1], 'w', encoding='ascii') as handle:
+    handle.write('P3\n3 3\n255\n')
+    for value in range(9):
+        red = 60 + value * 8
+        green = 70 + value * 8
+        blue = 80 + value * 8
+        handle.write(f'{red} {green} {blue} ')
+PYCASE
     pnmtopng "$tmpdir/input.ppm" >"$tmpdir/input.png"
+    pngtopnm "$tmpdir/input.png" >"$tmpdir/raw.ppm"
+    assert_unique_rgb_min "$tmpdir/raw.ppm" 9
     pngquant --force --quality=80-100 --output "$tmpdir/out.png" 8 "$tmpdir/input.png"
     pngtopnm "$tmpdir/out.png" >"$tmpdir/out.ppm"
     assert_unique_rgb_max "$tmpdir/out.ppm" 8
     ;;
   usage-pngquant-speed-five-png)
-    cat >"$tmpdir/input.ppm" <<'EOF'
-P3
-4 1
-255
-255 0 0   0 255 0   0 0 255   255 255 255
-EOF
+    python3 - <<'PYCASE' "$tmpdir/input.ppm"
+import sys
+with open(sys.argv[1], 'w', encoding='ascii') as handle:
+    handle.write('P3\n3 3\n255\n')
+    for value in range(9):
+        red = (value * 23) % 256
+        green = (value * 47) % 256
+        blue = (value * 71) % 256
+        handle.write(f'{red} {green} {blue} ')
+PYCASE
     pnmtopng "$tmpdir/input.ppm" >"$tmpdir/input.png"
+    pngtopnm "$tmpdir/input.png" >"$tmpdir/raw.ppm"
+    assert_unique_rgb_min "$tmpdir/raw.ppm" 5
     pngquant --force --speed 5 --output "$tmpdir/out.png" 4 "$tmpdir/input.png"
     pngtopnm "$tmpdir/out.png" >"$tmpdir/out.ppm"
     assert_unique_rgb_max "$tmpdir/out.ppm" 4
