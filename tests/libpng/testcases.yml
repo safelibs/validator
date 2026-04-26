@@ -573,15 +573,15 @@ testcases:
   - usage
   - image
   - png
-- id: usage-pngquant-strip-output-png
-  title: pngquant stripped output
-  description: Quantizes a PNG fixture with metadata stripping enabled in pngquant and verifies PNG output is produced.
+- id: usage-netpbm-pnminvert-png
+  title: netpbm inverts PNG grayscale
+  description: Converts a tiny grayscale PNG through Netpbm inversion and verifies the inverted sample values survive a PNG round trip.
   kind: usage
-  client_application: pngquant
+  client_application: netpbm
   command:
   - bash
   - /validator/tests/libpng/tests/cases/usage/usage-more-client-behavior.sh
-  - usage-pngquant-strip-output-png
+  - usage-netpbm-pnminvert-png
   timeout_seconds: 180
   tags:
   - usage

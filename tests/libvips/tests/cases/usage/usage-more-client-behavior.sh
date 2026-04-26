@@ -6,69 +6,113 @@ case_id=${1:?missing testcase id}
 tmpdir=$(mktemp -d)
 trap 'rm -rf "$tmpdir"' EXIT
 
-ruby -rvips - "$case_id" "$tmpdir" "$VALIDATOR_SAMPLE_ROOT" <<'RUBY'
+ruby -rvips - "$case_id" "$tmpdir" <<'RUBY'
 case_id = ARGV[0]
 tmpdir = ARGV[1]
-sample_root = ARGV[2]
+
+def gray_image(width, height, pixels)
+  Vips::Image.new_from_memory(pixels.pack("C*"), width, height, 1, :uchar)
+end
+
+def multiband_image(width, height, bands, pixels)
+  Vips::Image.new_from_memory(pixels.pack("C*"), width, height, bands, :uchar)
+end
+
+def pixel_values(image, x, y)
+  image.extract_area(x, y, 1, 1).write_to_memory.bytes
+end
+
+def gray_pixel(image, x, y)
+  pixel_values(image, x, y)[0]
+end
+
+def assert_close_rgb(image, x, y, expected)
+  actual = pixel_values(image, x, y)
+  unless actual.zip(expected).all? { |value, want| (value - want).abs <= 1 }
+    raise "unexpected rgb #{actual.inspect} != #{expected.inspect}"
+  end
+end
 
 case case_id
 when "usage-ruby-vips-fliphor-sample"
-  path = File.join(sample_root, "test/test-suite/images/sample.png")
-  image = Vips::Image.new_from_file(path)
+  image = gray_image(2, 1, [10, 200])
   out = image.fliphor
-  raise "unexpected dimensions" unless out.width == image.width && out.height == image.height
-  puts "fliphor #{out.width}x#{out.height}"
+  raise "fliphor mismatch" unless gray_pixel(out, 0, 0) == 200 && gray_pixel(out, 1, 0) == 10
+  puts "fliphor #{gray_pixel(out, 0, 0)} #{gray_pixel(out, 1, 0)}"
 when "usage-ruby-vips-flipver-sample"
-  path = File.join(sample_root, "test/test-suite/images/sample.png")
-  image = Vips::Image.new_from_file(path)
+  image = gray_image(1, 2, [10, 200])
   out = image.flipver
-  raise "unexpected dimensions" unless out.width == image.width && out.height == image.height
-  puts "flipver #{out.width}x#{out.height}"
+  raise "flipver mismatch" unless gray_pixel(out, 0, 0) == 200 && gray_pixel(out, 0, 1) == 10
+  puts "flipver #{gray_pixel(out, 0, 0)} #{gray_pixel(out, 0, 1)}"
 when "usage-ruby-vips-rot180-sample"
-  path = File.join(sample_root, "test/test-suite/images/sample.jpg")
-  image = Vips::Image.new_from_file(path)
+  image = gray_image(2, 2, [10, 20, 30, 40])
   out = image.rot180
-  raise "unexpected dimensions" unless out.width == image.width && out.height == image.height
-  puts "rot180 #{out.width}x#{out.height}"
+  expected = [40, 30, 20, 10]
+  actual = [
+    gray_pixel(out, 0, 0),
+    gray_pixel(out, 1, 0),
+    gray_pixel(out, 0, 1),
+    gray_pixel(out, 1, 1),
+  ]
+  raise "rot180 mismatch #{actual.inspect}" unless actual == expected
+  puts "rot180 #{actual.join(',')}"
 when "usage-ruby-vips-insert-generated"
-  base = Vips::Image.black(6, 6, bands: 3) + [10, 20, 30]
-  patch = Vips::Image.black(2, 2, bands: 3) + [200, 50, 10]
+  base = gray_image(6, 6, Array.new(36, 10))
+  patch = gray_image(2, 2, Array.new(4, 200))
   out = base.insert(patch, 2, 2)
-  raise "unexpected dimensions" unless out.width == 6 && out.height == 6
-  puts "insert #{out.width}x#{out.height}"
+  raise "insert mismatch" unless gray_pixel(out, 1, 1) == 10 && gray_pixel(out, 2, 2) == 200 && gray_pixel(out, 3, 3) == 200
+  puts "insert #{gray_pixel(out, 1, 1)} #{gray_pixel(out, 2, 2)}"
 when "usage-ruby-vips-read-buffer-png"
-  image = Vips::Image.black(5, 4, bands: 3) + 90
+  image = gray_image(2, 2, [5, 15, 25, 35])
   data = image.write_to_buffer(".png")
   reload = Vips::Image.new_from_buffer(data, "")
-  raise "unexpected dimensions" unless reload.width == 5 && reload.height == 4
-  puts "buffer #{reload.width}x#{reload.height}"
+  actual = [
+    gray_pixel(reload, 0, 0),
+    gray_pixel(reload, 1, 0),
+    gray_pixel(reload, 0, 1),
+    gray_pixel(reload, 1, 1),
+  ]
+  raise "buffer roundtrip mismatch #{actual.inspect}" unless actual == [5, 15, 25, 35]
+  puts "buffer #{actual.join(',')}"
 when "usage-ruby-vips-extract-area-generated"
-  image = Vips::Image.black(8, 6, bands: 3) + 30
-  out = image.extract_area(1, 2, 3, 2)
-  raise "unexpected crop" unless out.width == 3 && out.height == 2
-  puts "extract #{out.width}x#{out.height}"
+  image = gray_image(4, 3, [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12])
+  out = image.extract_area(1, 1, 2, 2)
+  actual = [
+    gray_pixel(out, 0, 0),
+    gray_pixel(out, 1, 0),
+    gray_pixel(out, 0, 1),
+    gray_pixel(out, 1, 1),
+  ]
+  raise "extract mismatch #{actual.inspect}" unless actual == [6, 7, 10, 11]
+  puts "extract #{actual.join(',')}"
 when "usage-ruby-vips-bandmean-generated"
-  image = Vips::Image.black(4, 4, bands: 3) + [10, 20, 30]
+  image = multiband_image(1, 1, 3, [12, 24, 36])
   out = image.bandmean
-  raise "unexpected bands" unless out.bands == 1
+  raise "bandmean mismatch" unless (out.avg - 24.0).abs < 0.01
   puts "bandmean #{out.avg}"
 when "usage-ruby-vips-embed-generated"
-  image = Vips::Image.black(3, 2, bands: 3) + 120
+  image = gray_image(2, 1, [50, 60])
   out = image.embed(1, 2, 6, 5)
-  raise "unexpected dimensions" unless out.width == 6 && out.height == 5
-  puts "embed #{out.width}x#{out.height}"
+  raise "embed mismatch" unless gray_pixel(out, 0, 0) == 0 && gray_pixel(out, 1, 2) == 50 && gray_pixel(out, 2, 2) == 60
+  puts "embed #{gray_pixel(out, 0, 0)} #{gray_pixel(out, 1, 2)} #{gray_pixel(out, 2, 2)}"
 when "usage-ruby-vips-flatten-background"
-  image = Vips::Image.black(4, 4, bands: 4) + [10, 20, 30, 128]
+  image = multiband_image(1, 1, 4, [10, 20, 30, 128])
   out = image.flatten(background: [255, 255, 255])
-  raise "unexpected bands" unless out.bands == 3
-  puts "flatten #{out.bands}"
+  assert_close_rgb(out, 0, 0, [132, 137, 142])
+  puts "flatten #{pixel_values(out, 0, 0).join(',')}"
 when "usage-ruby-vips-png-file-output"
-  image = Vips::Image.black(7, 5, bands: 3) + 180
+  image = gray_image(2, 2, [90, 100, 110, 120])
   path = File.join(tmpdir, "out.png")
   image.write_to_file(path)
   reload = Vips::Image.new_from_file(path)
-  raise "unexpected png output" unless File.size(path) > 0 && reload.width == 7 && reload.height == 5
-  puts "png #{File.size(path)}"
+  actual = [
+    gray_pixel(reload, 0, 0),
+    gray_pixel(reload, 1, 0),
+    gray_pixel(reload, 0, 1),
+    gray_pixel(reload, 1, 1),
+  ]
+  raise "png reload mismatch #{actual.inspect}" unless actual == [90, 100, 110, 120]
+  puts "png #{actual.join(',')}"
 else
   raise "unknown libvips additional usage case: #{case_id}"
 end
