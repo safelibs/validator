@@ -21,18 +21,7 @@ for deb_name in "${deb_names[@]}"; do
 done
 
 echo "installing override packages from $override_deb_root"
-attempts=0
-max_attempts=5
-until apt-get update; do
-  attempts=$((attempts + 1))
-  if ((attempts >= max_attempts)); then
-    echo "apt-get update failed after ${attempts} attempts" >&2
-    exit 1
-  fi
-  echo "apt-get update failed (attempt ${attempts}); retrying"
-  sleep $((attempts * 5))
-done
-apt-get install -y --allow-downgrades "${debs[@]}"
+dpkg --install --force-downgrade "${debs[@]}"
 
 mkdir -p "$status_dir"
 : >"$status_dir/override-installed"
