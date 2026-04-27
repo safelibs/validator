@@ -15,6 +15,13 @@
         "xmlstarlet"
       ],
       "description": "xmlstarlet client exercised by usage testcases."
+    },
+    {
+      "name": "shared-mime-info",
+      "packages": [
+        "shared-mime-info"
+      ],
+      "description": "shared-mime-info update-mime-database parses the system MIME XML packages through libxml2."
     }
   ]
 }

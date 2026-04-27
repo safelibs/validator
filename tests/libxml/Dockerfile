@@ -10,6 +10,7 @@ RUN apt-get update \
       python3-libxml2 \
       python3-lxml \
       xmlstarlet \
+      shared-mime-info \
       bash \
       build-essential \
       ca-certificates \
