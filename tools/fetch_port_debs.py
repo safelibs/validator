@@ -512,6 +512,7 @@ def build_lock(
     if unknown_repos:
         raise ValidatorError(f"port repository inventory contains unknown libraries: {', '.join(unknown_repos)}")
 
+    output_root.mkdir(parents=True, exist_ok=True)
     lock_libraries = [
         resolve_library(
             repo=repos[str(entry["name"])],
