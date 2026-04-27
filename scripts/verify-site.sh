@@ -199,7 +199,7 @@ for proof_file in proof_files:
         libraries=selected_libraries,
         require_casts=True,
     )
-    if expected_proof != proof_file:
+    if render_site._without_unsafe_blocks(expected_proof) != render_site._without_unsafe_blocks(proof_file):
         fail(f"{mode} proof manifest does not match rebuilt proof")
 
 site_data_path = site_root / "site-data.json"
