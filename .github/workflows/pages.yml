@@ -128,8 +128,10 @@ jobs:
             --site-root "$SITE_ROOT"
 
       - uses: actions/configure-pages@v5
+        if: github.ref == 'refs/heads/main'
 
       - name: Upload Pages artifact
+        if: github.ref == 'refs/heads/main'
         uses: actions/upload-pages-artifact@v3
         with:
           path: site
@@ -145,6 +147,7 @@ jobs:
 
   deploy-pages:
     needs: full-matrix
+    if: github.ref == 'refs/heads/main'
     runs-on: ubuntu-24.04
     environment:
       name: github-pages
@@ -166,6 +169,7 @@ jobs:
           if [ "${{ needs.full-matrix.result }}" != "success" ]; then
             exit 1
           fi
-          if [ "${{ needs.deploy-pages.result }}" != "success" ]; then
+          deploy_result="${{ needs.deploy-pages.result }}"
+          if [ "$deploy_result" != "success" ] && [ "$deploy_result" != "skipped" ]; then
             exit 1
           fi
