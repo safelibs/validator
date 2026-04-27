@@ -15,6 +15,11 @@ import sys
 workload = sys.argv[1]
 tmpdir = Path(sys.argv[2])
 
+if workload.startswith("usage-readstat-"):
+    workload = workload[len("usage-readstat-"):]
+if workload.endswith("-roundtrip"):
+    workload = workload[: -len("-roundtrip")]
+
 def run(*args):
     subprocess.run(args, check=True, cwd=tmpdir)
 

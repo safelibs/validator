@@ -14,6 +14,11 @@ import libarchive
 workload = sys.argv[1]
 tmpdir = Path(sys.argv[2])
 
+if workload.startswith("usage-python-libarchive-c-"):
+    workload = workload[len("usage-python-libarchive-c-"):]
+if workload.endswith("-entry"):
+    workload = workload[: -len("-entry")]
+
 def read_entries(path):
     entries = []
     with libarchive.file_reader(str(path)) as archive:
