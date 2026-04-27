@@ -919,15 +919,15 @@ testcases:
   - usage
   - bzip2
   - integrity
-- id: usage-bzgrep-line-number-match
-  title: bzgrep line number
-  description: Searches compressed text with bzgrep -n and verifies the matched line number prefix in the output.
+- id: usage-bzgrep-list-matching-file
+  title: bzgrep list matching file
+  description: Searches compressed text with bzgrep -l and verifies the matching compressed filename is emitted.
   kind: usage
   client_application: bzip2
   command:
   - bash
   - /validator/tests/libbz2/tests/cases/usage/usage-expanded-client-behavior.sh
-  - usage-bzgrep-line-number
+  - usage-bzgrep-list-matching-file
   timeout_seconds: 180
   tags:
   - usage

@@ -36,15 +36,15 @@ print(value)
 PYCASE
     validator_assert_contains "$tmpdir/out" 'namespaced'
     ;;
-  usage-python3-lxml-tostring-pretty)
+  usage-python3-lxml-getpath-second-item)
     XML_PATH="$xml" python3 >"$tmpdir/out" <<'PYCASE'
 import os
 from lxml import etree
 tree = etree.parse(os.environ['XML_PATH'])
-text = etree.tostring(tree, pretty_print=True).decode('utf-8')
-print(text, end='')
+node = tree.xpath('/root/item[@id="b"]')[0]
+print(tree.getpath(node))
 PYCASE
-    validator_assert_contains "$tmpdir/out" '<item id="a">alpha</item>'
+    validator_assert_contains "$tmpdir/out" '/root/item[2]'
     ;;
   usage-python3-lxml-xpath-string-value)
     XML_PATH="$xml" python3 >"$tmpdir/out" <<'PYCASE'

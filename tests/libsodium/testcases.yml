@@ -885,15 +885,15 @@ testcases:
   timeout_seconds: 120
   tags:
   - usage
-- id: usage-python3-nacl-box-encrypt-roundtrip
-  title: PyNaCl Box roundtrip
-  description: Exchanges an encrypted payload with PyNaCl Box and verifies the decrypted round-trip plaintext.
+- id: usage-python3-nacl-sign-publickey-from-secretkey
+  title: PyNaCl signing key from secret bytes
+  description: Reconstructs a PyNaCl signing key from raw secret-key bytes and verifies the restored key can produce a signature accepted by the original verify key.
   kind: usage
   client_application: python3-nacl
   command:
   - bash
   - /validator/tests/libsodium/tests/cases/usage/usage-expanded-client-behavior.sh
-  - usage-python3-nacl-box-roundtrip
+  - usage-python3-nacl-sign-publickey-from-secretkey
   timeout_seconds: 120
   tags:
   - usage
@@ -921,15 +921,15 @@ testcases:
   timeout_seconds: 120
   tags:
   - usage
-- id: usage-php83-sodium-auth-verify-tag
-  title: PHP sodium auth verify
-  description: Computes and verifies a libsodium authentication tag in PHP and checks the emitted tag length.
+- id: usage-php83-sodium-sign-publickey-from-secretkey
+  title: PHP sodium sign public key from secret key
+  description: Derives a signing public key from a PHP libsodium secret key and verifies it matches the public key already stored in the keypair.
   kind: usage
   client_application: php8.3-cli
   command:
   - bash
   - /validator/tests/libsodium/tests/cases/usage/usage-expanded-client-behavior.sh
-  - usage-php83-sodium-auth-verify
+  - usage-php83-sodium-sign-publickey-from-secretkey
   timeout_seconds: 120
   tags:
   - usage
@@ -969,15 +969,15 @@ testcases:
   timeout_seconds: 120
   tags:
   - usage
-- id: usage-php83-sodium-pad-unpad-block
-  title: PHP sodium pad unpad
-  description: Pads and unpads a payload with PHP sodium helpers and verifies that the restored plaintext matches the original input.
+- id: usage-php83-sodium-stream-zero-xor
+  title: PHP sodium stream zero xor
+  description: Generates a PHP libsodium keystream and verifies it matches sodium_crypto_stream_xor applied to an all-zero plaintext buffer.
   kind: usage
   client_application: php8.3-cli
   command:
   - bash
   - /validator/tests/libsodium/tests/cases/usage/usage-expanded-client-behavior.sh
-  - usage-php83-sodium-pad-unpad
+  - usage-php83-sodium-stream-zero-xor
   timeout_seconds: 120
   tags:
   - usage

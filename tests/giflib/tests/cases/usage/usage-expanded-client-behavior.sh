@@ -17,9 +17,9 @@ case "$case_id" in
     giftext "$samples/fire.gif" | tee "$tmpdir/out"
     validator_assert_contains "$tmpdir/out" 'Screen Size'
     ;;
-  usage-giflib-tools-giftext-fire-color-resolution)
-    giftext "$samples/fire.gif" | tee "$tmpdir/out"
-    validator_assert_contains "$tmpdir/out" 'ColorResolution'
+  usage-giflib-tools-giftext-fire-colormap-row)
+    giftext -c "$samples/fire.gif" | tee "$tmpdir/out"
+    grep -Eq '^[[:space:]]*0:' "$tmpdir/out"
     ;;
   usage-giflib-tools-giftext-grid-bits-per-pixel)
     giftext "$samples/gifgrid.gif" | tee "$tmpdir/out"

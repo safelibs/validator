@@ -895,15 +895,15 @@ testcases:
   - usage
   - xml
   - python
-- id: usage-python3-lxml-tostring-pretty-print
-  title: lxml tostring pretty
-  description: Pretty-prints XML through python3-lxml and verifies the emitted text contains the expected item element.
+- id: usage-python3-lxml-getpath-second-item
+  title: lxml getpath second item
+  description: Locates the second item through python3-lxml and verifies that ElementTree.getpath reports the expected absolute path.
   kind: usage
   client_application: python3-lxml
   command:
   - bash
   - /validator/tests/libxml/tests/cases/usage/usage-expanded-client-behavior.sh
-  - usage-python3-lxml-tostring-pretty
+  - usage-python3-lxml-getpath-second-item
   timeout_seconds: 180
   tags:
   - usage

@@ -37,21 +37,26 @@ when 'usage-ruby-vips-rot90-generated'
   out = image.rot90
   raise 'rot90 mismatch' unless out.width == 1 && out.height == 2
   puts "#{out.width}x#{out.height}"
-when 'usage-ruby-vips-embed-generated'
-  image = gray_image(2, 1, [10, 20])
-  out = image.embed(1, 1, 4, 3, extend: :copy)
-  raise 'embed mismatch' unless out.width == 4 && out.height == 3
+when 'usage-ruby-vips-join-vertical-generated'
+  top = gray_image(2, 1, [10, 20])
+  bottom = gray_image(2, 1, [30, 40])
+  out = top.join(bottom, :vertical)
+  raise 'join vertical mismatch' unless out.width == 2 && out.height == 2
+  raise 'join vertical payload mismatch' unless out.write_to_memory.bytes == [10, 20, 30, 40]
   puts "#{out.width}x#{out.height}"
-when 'usage-ruby-vips-extract-area-generated'
-  image = gray_image(3, 2, [1, 2, 3, 4, 5, 6])
-  out = image.extract_area(1, 0, 1, 2)
-  raise 'extract area mismatch' unless out.write_to_memory.bytes == [2, 5]
-  puts out.height
-when 'usage-ruby-vips-bandmean-generated'
-  image = multiband_image(2, 1, 3, [10, 20, 30, 40, 50, 60])
-  out = image.bandmean.cast(:uchar)
-  raise 'bandmean mismatch' unless out.write_to_memory.bytes == [20, 50]
-  puts out.width
+when 'usage-ruby-vips-copy-resolution-generated'
+  image = gray_image(2, 3, [1, 2, 3, 4, 5, 6])
+  out = image.copy(xres: 2.0, yres: 3.0)
+  raise 'copy resolution mismatch' unless (out.xres - 2.0).abs < 0.01 && (out.yres - 3.0).abs < 0.01
+  puts "#{out.xres}:#{out.yres}"
+when 'usage-ruby-vips-bandjoin-image-generated'
+  left = gray_image(2, 1, [10, 20])
+  right = gray_image(2, 1, [30, 40])
+  out = left.bandjoin(right)
+  first = out.extract_band(0).write_to_memory.bytes
+  second = out.extract_band(1).write_to_memory.bytes
+  raise 'bandjoin image mismatch' unless out.bands == 2 && first == [10, 20] && second == [30, 40]
+  puts out.bands
 when 'usage-ruby-vips-extract-band-generated'
   image = multiband_image(2, 1, 3, [10, 20, 30, 40, 50, 60])
   out = image.extract_band(1)
@@ -67,10 +72,12 @@ when 'usage-ruby-vips-divide-constant-generated'
   out = (image / 2).cast(:uchar)
   raise 'divide mismatch' unless out.write_to_memory.bytes == [10, 20]
   puts out.write_to_memory.bytes.last
-when 'usage-ruby-vips-avg-generated'
-  image = gray_image(2, 2, [10, 20, 30, 40])
-  raise 'avg mismatch' unless image.avg == 25
-  puts image.avg
+when 'usage-ruby-vips-add-image-generated'
+  left = gray_image(2, 1, [5, 15])
+  right = gray_image(2, 1, [2, 3])
+  out = (left + right).cast(:uchar)
+  raise 'add image mismatch' unless out.write_to_memory.bytes == [7, 18]
+  puts out.write_to_memory.bytes.last
 else
   raise "unknown libvips expanded usage case: #{case_id}"
 end

@@ -38,15 +38,15 @@ case "$case_id" in
     bzip2 -tvv "$tmpdir/input.txt.bz2" >"$tmpdir/out" 2>&1
     validator_assert_contains "$tmpdir/out" 'ok'
     ;;
-  usage-bzgrep-line-number)
+  usage-bzgrep-list-matching-file)
     cat >"$tmpdir/input.txt" <<'EOF'
 alpha
 beta
 gamma
 EOF
     bzip2 -zk "$tmpdir/input.txt"
-    bzgrep -n 'beta' "$tmpdir/input.txt.bz2" >"$tmpdir/out"
-    validator_assert_contains "$tmpdir/out" '2:beta'
+    bzgrep -l '^beta$' "$tmpdir/input.txt.bz2" >"$tmpdir/out"
+    validator_assert_contains "$tmpdir/out" 'input.txt.bz2'
     ;;
   usage-bzgrep-count-lines)
     cat >"$tmpdir/input.txt" <<'EOF'

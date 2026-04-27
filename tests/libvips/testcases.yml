@@ -897,39 +897,39 @@ testcases:
   timeout_seconds: 120
   tags:
   - usage
-- id: usage-ruby-vips-embed-canvas-generated
-  title: ruby-vips generated embed
-  description: Embeds a generated image into a larger canvas with ruby-vips and verifies the expanded output dimensions.
+- id: usage-ruby-vips-join-vertical-generated
+  title: ruby-vips generated vertical join
+  description: Joins two generated images vertically with ruby-vips and verifies the stacked pixel payload and output dimensions.
   kind: usage
   client_application: ruby-vips
   command:
   - bash
   - /validator/tests/libvips/tests/cases/usage/usage-expanded-client-behavior.sh
-  - usage-ruby-vips-embed-generated
+  - usage-ruby-vips-join-vertical-generated
   timeout_seconds: 120
   tags:
   - usage
-- id: usage-ruby-vips-extract-area-slice-generated
-  title: ruby-vips generated extract area
-  description: Extracts a sub-area from a generated image with ruby-vips and verifies the selected pixel payload.
+- id: usage-ruby-vips-copy-resolution-generated
+  title: ruby-vips generated copy resolution
+  description: Copies a generated image with ruby-vips while overriding its resolution metadata and verifies the new xres and yres values.
   kind: usage
   client_application: ruby-vips
   command:
   - bash
   - /validator/tests/libvips/tests/cases/usage/usage-expanded-client-behavior.sh
-  - usage-ruby-vips-extract-area-generated
+  - usage-ruby-vips-copy-resolution-generated
   timeout_seconds: 120
   tags:
   - usage
-- id: usage-ruby-vips-bandmean-reduce-generated
-  title: ruby-vips generated bandmean
-  description: Computes the per-pixel band mean of a generated multiband image with ruby-vips and verifies the reduced grayscale payload.
+- id: usage-ruby-vips-bandjoin-image-generated
+  title: ruby-vips generated bandjoin image
+  description: Bandjoins two generated grayscale images with ruby-vips and verifies the resulting multiband channel payload.
   kind: usage
   client_application: ruby-vips
   command:
   - bash
   - /validator/tests/libvips/tests/cases/usage/usage-expanded-client-behavior.sh
-  - usage-ruby-vips-bandmean-generated
+  - usage-ruby-vips-bandjoin-image-generated
   timeout_seconds: 120
   tags:
   - usage
@@ -969,15 +969,15 @@ testcases:
   timeout_seconds: 120
   tags:
   - usage
-- id: usage-ruby-vips-avg-scalar-generated
-  title: ruby-vips generated avg
-  description: Computes the average pixel value of a generated image with ruby-vips and verifies the scalar average result.
+- id: usage-ruby-vips-add-image-generated
+  title: ruby-vips generated add image
+  description: Adds two generated images with ruby-vips and verifies the resulting per-pixel summed payload.
   kind: usage
   client_application: ruby-vips
   command:
   - bash
   - /validator/tests/libvips/tests/cases/usage/usage-expanded-client-behavior.sh
-  - usage-ruby-vips-avg-generated
+  - usage-ruby-vips-add-image-generated
   timeout_seconds: 120
   tags:
   - usage

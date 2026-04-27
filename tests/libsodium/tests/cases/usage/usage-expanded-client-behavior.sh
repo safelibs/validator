@@ -23,17 +23,17 @@ assert len(value) == 12
 print(len(value))
 PYCASE
     ;;
-  usage-python3-nacl-box-roundtrip)
+  usage-python3-nacl-sign-publickey-from-secretkey)
     python3 - <<'PYCASE'
-from nacl.public import Box, PrivateKey
-alice = PrivateKey.generate()
-bob = PrivateKey.generate()
-box = Box(alice, bob.public_key)
-reply = Box(bob, alice.public_key)
-cipher = box.encrypt(b'box payload')
-plain = reply.decrypt(cipher)
-assert plain == b'box payload'
-print(plain.decode())
+from nacl.signing import SigningKey
+signing_key = SigningKey.generate()
+secret_bytes = signing_key.encode()
+restored = SigningKey(secret_bytes)
+message = b'secretkey payload'
+signed = restored.sign(message)
+plain = signing_key.verify_key.verify(signed)
+assert plain == message
+print(secret_bytes[:8].hex())
 PYCASE
     ;;
   usage-python3-nacl-secretbox-empty-message)
@@ -58,13 +58,15 @@ assert restored == message
 print(signed[:16].decode())
 PYCASE
     ;;
-  usage-php83-sodium-auth-verify)
+  usage-php83-sodium-sign-publickey-from-secretkey)
     php <<'PHP'
 <?php
-$key = str_repeat("\x01", SODIUM_CRYPTO_AUTH_KEYBYTES);
-$tag = sodium_crypto_auth('payload', $key);
-if (!sodium_crypto_auth_verify($tag, 'payload', $key)) { exit(1); }
-echo strlen($tag), PHP_EOL;
+$pair = sodium_crypto_sign_keypair();
+$secret = sodium_crypto_sign_secretkey($pair);
+$public = sodium_crypto_sign_publickey($pair);
+$derived = sodium_crypto_sign_publickey_from_secretkey($secret);
+if ($derived !== $public) { exit(1); }
+echo strlen($derived), PHP_EOL;
 PHP
     ;;
   usage-php83-sodium-bin2hex-roundtrip)
@@ -96,13 +98,15 @@ if (ord($value[0]) !== 0 || ord($value[1]) !== 1) { exit(1); }
 echo ord($value[0]), ':', ord($value[1]), PHP_EOL;
 PHP
     ;;
-  usage-php83-sodium-pad-unpad)
+  usage-php83-sodium-stream-zero-xor)
     php <<'PHP'
 <?php
-$padded = sodium_pad('payload', 16);
-$plain = sodium_unpad($padded, 16);
-if ($plain !== 'payload') { exit(1); }
-echo strlen($padded), PHP_EOL;
+$key = random_bytes(SODIUM_CRYPTO_STREAM_KEYBYTES);
+$nonce = random_bytes(SODIUM_CRYPTO_STREAM_NONCEBYTES);
+$stream = sodium_crypto_stream(24, $nonce, $key);
+$xor = sodium_crypto_stream_xor(str_repeat("\x00", 24), $nonce, $key);
+if ($stream !== $xor) { exit(1); }
+echo strlen($stream), PHP_EOL;
 PHP
     ;;
   *)

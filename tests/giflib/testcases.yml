@@ -884,15 +884,15 @@ testcases:
   - usage
   - gif
   - giftext
-- id: usage-giflib-tools-giftext-fire-color-resolution-field
-  title: giftext fire color resolution
-  description: Reads the fire.gif fixture with giftext and verifies that color-resolution metadata is emitted.
+- id: usage-giflib-tools-giftext-fire-colormap-row
+  title: giftext fire color map row
+  description: Prints the fire.gif color map with giftext -c and verifies that at least one numeric palette row is emitted.
   kind: usage
   client_application: giflib-tools
   command:
   - bash
   - /validator/tests/giflib/tests/cases/usage/usage-expanded-client-behavior.sh
-  - usage-giflib-tools-giftext-fire-color-resolution
+  - usage-giflib-tools-giftext-fire-colormap-row
   timeout_seconds: 180
   tags:
   - usage
