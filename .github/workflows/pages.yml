@@ -15,16 +15,10 @@ permissions:
   id-token: write
 
 jobs:
-  full-matrix:
+  preflight:
     runs-on: ubuntu-24.04
-    env:
-      ARTIFACT_ROOT: .work/pages-artifacts
-      SITE_ROOT: site
-      PORT_DEB_ROOT: .work/pages-artifacts/debs/port-04-test
-      PORT_LOCK_PATH: .work/pages-artifacts/proof/port-04-test-debs-lock.json
-      PORT_SRC_ROOT: .work/pages-artifacts/sources/port-04-test
-      ORIGINAL_PROOF_PATH: .work/pages-artifacts/proof/original-validation-proof.json
-      PORT_PROOF_PATH: .work/pages-artifacts/proof/port-04-test-validation-proof.json
+    outputs:
+      libraries: ${{ steps.libs.outputs.libraries }}
     steps:
       - uses: actions/checkout@v4
 
@@ -39,6 +33,38 @@ jobs:
       - name: Check testcase manifests
         run: python3 tools/testcases.py --config repositories.yml --tests-root tests --check --min-source-cases 120 --min-usage-cases 963 --min-cases 1083
 
+      - id: libs
+        name: Enumerate libraries
+        run: |
+          python3 - <<'PY' >> "$GITHUB_OUTPUT"
+          import json
+          import yaml
+          manifest = yaml.safe_load(open('repositories.yml'))
+          libraries = [entry['name'] for entry in manifest['libraries']]
+          print('libraries=' + json.dumps(libraries))
+          PY
+
+  validate:
+    needs: preflight
+    runs-on: ubuntu-24.04
+    strategy:
+      fail-fast: false
+      max-parallel: 24
+      matrix:
+        library: ${{ fromJSON(needs.preflight.outputs.libraries) }}
+    env:
+      ARTIFACT_ROOT: .work/pages-artifacts
+      PORT_DEB_ROOT: .work/pages-artifacts/debs/port-04-test
+      PORT_LOCK_PATH: .work/pages-artifacts/proof/port-04-test-debs-lock.json
+      PORT_SRC_ROOT: .work/pages-artifacts/sources/port-04-test
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install host dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y --no-install-recommends python3-yaml
+
       - name: Fetch port debs
         env:
           VALIDATOR_REPO_TOKEN: ${{ secrets.VALIDATOR_REPO_TOKEN }}
@@ -47,7 +73,8 @@ jobs:
             --config repositories.yml \
             --port-repos inventory/github-port-repos.json \
             --output-root "$PORT_DEB_ROOT" \
-            --lock-output "$PORT_LOCK_PATH"
+            --lock-output "$PORT_LOCK_PATH" \
+            --library ${{ matrix.library }}
 
       - name: Fetch port sources
         env:
@@ -55,10 +82,10 @@ jobs:
         run: |
           python3 tools/fetch_port_sources.py \
             --port-deb-lock "$PORT_LOCK_PATH" \
-            --output-root "$PORT_SRC_ROOT"
+            --output-root "$PORT_SRC_ROOT" \
+            --library ${{ matrix.library }}
 
-      - name: Run full matrices
-        id: matrix
+      - name: Run library matrices
         run: |
           set +e
           bash test.sh \
@@ -66,8 +93,9 @@ jobs:
             --tests-root tests \
             --artifact-root "$ARTIFACT_ROOT" \
             --mode original \
-            --record-casts
-          original_matrix_exit=$?
+            --record-casts \
+            --library ${{ matrix.library }}
+          original_exit=$?
           bash test.sh \
             --config repositories.yml \
             --tests-root tests \
@@ -75,11 +103,71 @@ jobs:
             --mode port-04-test \
             --override-deb-root "$PORT_DEB_ROOT" \
             --port-deb-lock "$PORT_LOCK_PATH" \
-            --record-casts
-          port_matrix_exit=$?
+            --record-casts \
+            --library ${{ matrix.library }}
+          port_exit=$?
           set -e
-          echo "original_matrix_exit=$original_matrix_exit" >> "$GITHUB_OUTPUT"
-          echo "port_matrix_exit=$port_matrix_exit" >> "$GITHUB_OUTPUT"
+          mkdir -p "$ARTIFACT_ROOT/proof/library-status"
+          python3 -c "import json,sys; json.dump({'library':sys.argv[1],'original_exit':int(sys.argv[2]),'port_exit':int(sys.argv[3])}, open(sys.argv[4],'w'))" \
+            "${{ matrix.library }}" "$original_exit" "$port_exit" \
+            "$ARTIFACT_ROOT/proof/library-status/${{ matrix.library }}.json"
+
+      - name: Upload library artifacts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: lib-${{ matrix.library }}
+          path: |
+            .work/pages-artifacts/results
+            .work/pages-artifacts/logs
+            .work/pages-artifacts/casts
+            .work/pages-artifacts/port-04-test
+            .work/pages-artifacts/sources
+            .work/pages-artifacts/proof/library-status
+          retention-days: 14
+          if-no-files-found: ignore
+
+  collect:
+    needs:
+      - preflight
+      - validate
+    if: always() && needs.preflight.result == 'success'
+    runs-on: ubuntu-24.04
+    env:
+      ARTIFACT_ROOT: .work/pages-artifacts
+      SITE_ROOT: site
+      PORT_SRC_ROOT: .work/pages-artifacts/sources/port-04-test
+      ORIGINAL_PROOF_PATH: .work/pages-artifacts/proof/original-validation-proof.json
+      PORT_PROOF_PATH: .work/pages-artifacts/proof/port-04-test-validation-proof.json
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install host dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y --no-install-recommends python3-yaml
+
+      - name: Download per-library artifacts
+        uses: actions/download-artifact@v4
+        with:
+          path: .work/pages-artifacts
+          pattern: lib-*
+          merge-multiple: true
+
+      - name: Aggregate matrix exits
+        id: matrix
+        run: |
+          original_max=0
+          port_max=0
+          shopt -s nullglob
+          for f in "$ARTIFACT_ROOT"/proof/library-status/*.json; do
+            o=$(python3 -c "import json,sys; print(json.load(open(sys.argv[1]))['original_exit'])" "$f")
+            p=$(python3 -c "import json,sys; print(json.load(open(sys.argv[1]))['port_exit'])" "$f")
+            (( o > original_max )) && original_max=$o
+            (( p > port_max )) && port_max=$p
+          done
+          echo "original_matrix_exit=$original_max" >> "$GITHUB_OUTPUT"
+          echo "port_matrix_exit=$port_max" >> "$GITHUB_OUTPUT"
 
       - name: Generate proofs
         run: |
@@ -147,7 +235,7 @@ jobs:
             --port-proof-path "$PORT_PROOF_PATH"
 
   deploy-pages:
-    needs: full-matrix
+    needs: collect
     if: github.ref == 'refs/heads/main'
     runs-on: ubuntu-24.04
     environment:
@@ -160,14 +248,14 @@ jobs:
 
   report-status:
     needs:
-      - full-matrix
+      - collect
       - deploy-pages
     if: always()
     runs-on: ubuntu-24.04
     steps:
       - name: Report matrix status
         run: |
-          if [ "${{ needs.full-matrix.result }}" != "success" ]; then
+          if [ "${{ needs.collect.result }}" != "success" ]; then
             exit 1
           fi
           deploy_result="${{ needs.deploy-pages.result }}"
