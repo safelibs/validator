@@ -16,6 +16,9 @@ LIBRARIES ?= $(LIBRARY)
 MIN_SOURCE_CASES ?= 0
 MIN_USAGE_CASES ?= 0
 MIN_CASES ?= 0
+REPO_MIN_SOURCE_CASES ?= 120
+REPO_MIN_USAGE_CASES ?= 1683
+REPO_MIN_CASES ?= 1803
 LIBRARY_ARGS = $(foreach library,$(LIBRARIES),--library $(library))
 
 .PHONY: unit check-testcases fetch-port-debs matrix matrix-original matrix-port matrix-dual matrix-smoke proof proof-original proof-port proof-dual site site-dual verify-site verify-site-dual clean
@@ -24,7 +27,7 @@ unit:
 	$(PYTHON) -m unittest discover -s unit -v
 
 check-testcases:
-	$(PYTHON) tools/testcases.py --config $(CONFIG) --tests-root $(TESTS_ROOT) --check --min-source-cases 120 --min-usage-cases 1443 --min-cases 1563
+	$(PYTHON) tools/testcases.py --config $(CONFIG) --tests-root $(TESTS_ROOT) --check --min-source-cases $(REPO_MIN_SOURCE_CASES) --min-usage-cases $(REPO_MIN_USAGE_CASES) --min-cases $(REPO_MIN_CASES)
 
 fetch-port-debs:
 	$(PYTHON) tools/fetch_port_debs.py --config $(CONFIG) --port-repos $(PORT_REPOS) --output-root $(PORT_DEB_ROOT) --lock-output $(PORT_LOCK_PATH) $(LIBRARY_ARGS)
