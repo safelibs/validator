@@ -863,123 +863,123 @@ testcases:
   timeout_seconds: 120
   tags:
   - usage
-- id: usage-python3-pil-flip-left-right-tiff
-  title: Pillow flip left-right TIFF
-  description: Mirrors a generated TIFF with Pillow and verifies the horizontal pixel positions swap before save.
+- id: usage-python3-pil-transverse-generated-tiff
+  title: Pillow transverse generated TIFF
+  description: Applies Pillow transverse transpose to a generated TIFF and verifies both the swapped dimensions and mapped corner pixels before round-tripping.
   kind: usage
   client_application: python3-pil
   command:
   - bash
   - /validator/tests/libtiff/tests/cases/usage/usage-expanded-client-behavior.sh
-  - usage-python3-pil-flip-left-right-tiff
+  - usage-python3-pil-transverse-generated-tiff
   timeout_seconds: 120
   tags:
   - usage
-- id: usage-python3-pil-flip-top-bottom-tiff
-  title: Pillow flip top-bottom TIFF
-  description: Flips a generated TIFF vertically with Pillow and verifies the vertical pixel positions swap before save.
+- id: usage-python3-pil-blend-mirror-tiff
+  title: Pillow blend mirror TIFF
+  description: Blends a generated TIFF with its mirrored copy in Pillow and verifies the blended pixel average before round-tripping.
   kind: usage
   client_application: python3-pil
   command:
   - bash
   - /validator/tests/libtiff/tests/cases/usage/usage-expanded-client-behavior.sh
-  - usage-python3-pil-flip-top-bottom-tiff
+  - usage-python3-pil-blend-mirror-tiff
   timeout_seconds: 120
   tags:
   - usage
-- id: usage-python3-pil-autocontrast-generated-tiff
-  title: Pillow autocontrast TIFF
-  description: Applies Pillow autocontrast to a generated TIFF and verifies the transformed image retains the original dimensions.
+- id: usage-python3-pil-composite-halves-tiff
+  title: Pillow composite halves TIFF
+  description: Composites a generated TIFF with its mirrored copy through a half-image mask in Pillow and verifies left and right pixels come from different sources.
   kind: usage
   client_application: python3-pil
   command:
   - bash
   - /validator/tests/libtiff/tests/cases/usage/usage-expanded-client-behavior.sh
-  - usage-python3-pil-autocontrast-tiff
+  - usage-python3-pil-composite-halves-tiff
   timeout_seconds: 120
   tags:
   - usage
-- id: usage-python3-pil-solarize-tiff
-  title: Pillow solarize TIFF
-  description: Applies Pillow solarize to a generated TIFF and verifies the transformed image can still be emitted as TIFF.
+- id: usage-python3-pil-darker-mirror-tiff
+  title: Pillow darker mirror TIFF
+  description: Uses Pillow ImageChops.darker on a generated TIFF and its mirrored copy and verifies the per-channel minima before round-tripping.
   kind: usage
   client_application: python3-pil
   command:
   - bash
   - /validator/tests/libtiff/tests/cases/usage/usage-expanded-client-behavior.sh
-  - usage-python3-pil-solarize-tiff
+  - usage-python3-pil-darker-mirror-tiff
   timeout_seconds: 120
   tags:
   - usage
-- id: usage-python3-pil-posterize-tiff
-  title: Pillow posterize TIFF
-  description: Applies Pillow posterize to a generated TIFF and verifies the transformed image stays in RGB mode.
+- id: usage-python3-pil-lighter-mirror-tiff
+  title: Pillow lighter mirror TIFF
+  description: Uses Pillow ImageChops.lighter on a generated TIFF and its mirrored copy and verifies the per-channel maxima before round-tripping.
   kind: usage
   client_application: python3-pil
   command:
   - bash
   - /validator/tests/libtiff/tests/cases/usage/usage-expanded-client-behavior.sh
-  - usage-python3-pil-posterize-tiff
+  - usage-python3-pil-lighter-mirror-tiff
   timeout_seconds: 120
   tags:
   - usage
-- id: usage-python3-pil-blue-channel-tiff
-  title: Pillow blue channel TIFF
-  description: Extracts the blue channel from a generated TIFF with Pillow and verifies the channel value for a selected pixel.
+- id: usage-python3-pil-multiply-mirror-tiff
+  title: Pillow multiply mirror TIFF
+  description: Uses Pillow ImageChops.multiply on a generated TIFF and its mirrored copy and verifies the multiplied pixel values before round-tripping.
   kind: usage
   client_application: python3-pil
   command:
   - bash
   - /validator/tests/libtiff/tests/cases/usage/usage-expanded-client-behavior.sh
-  - usage-python3-pil-blue-channel-tiff
+  - usage-python3-pil-multiply-mirror-tiff
   timeout_seconds: 120
   tags:
   - usage
-- id: usage-python3-pil-getbbox-generated-tiff
-  title: Pillow getbbox TIFF
-  description: Computes the bounding box of a generated TIFF with Pillow and verifies the box spans the full image area.
+- id: usage-python3-pil-add-mirror-tiff
+  title: Pillow add mirror TIFF
+  description: Uses Pillow ImageChops.add on a generated TIFF and its mirrored copy and verifies the summed pixel values before round-tripping.
   kind: usage
   client_application: python3-pil
   command:
   - bash
   - /validator/tests/libtiff/tests/cases/usage/usage-expanded-client-behavior.sh
-  - usage-python3-pil-getbbox-tiff
+  - usage-python3-pil-add-mirror-tiff
   timeout_seconds: 120
   tags:
   - usage
-- id: usage-python3-pil-resize-bicubic-tiff
-  title: Pillow resize bicubic TIFF
-  description: Resizes a generated TIFF with bicubic resampling in Pillow and verifies the new image dimensions.
+- id: usage-python3-pil-subtract-mirror-tiff
+  title: Pillow subtract mirror TIFF
+  description: Uses Pillow ImageChops.subtract on mirrored and original generated TIFFs and verifies the non-negative channel differences before round-tripping.
   kind: usage
   client_application: python3-pil
   command:
   - bash
   - /validator/tests/libtiff/tests/cases/usage/usage-expanded-client-behavior.sh
-  - usage-python3-pil-resize-bicubic-tiff
+  - usage-python3-pil-subtract-mirror-tiff
   timeout_seconds: 120
   tags:
   - usage
-- id: usage-python3-pil-histogram-length-tiff
-  title: Pillow histogram length TIFF
-  description: Computes a generated TIFF histogram with Pillow and verifies the expected RGB histogram bin count.
+- id: usage-python3-pil-screen-mirror-tiff
+  title: Pillow screen mirror TIFF
+  description: Uses Pillow ImageChops.screen on a generated TIFF and its mirrored copy and verifies the screened pixel values before round-tripping.
   kind: usage
   client_application: python3-pil
   command:
   - bash
   - /validator/tests/libtiff/tests/cases/usage/usage-expanded-client-behavior.sh
-  - usage-python3-pil-histogram-length-tiff
+  - usage-python3-pil-screen-mirror-tiff
   timeout_seconds: 120
   tags:
   - usage
-- id: usage-python3-pil-crop-center-tiff
-  title: Pillow crop center TIFF
-  description: Crops the center of a generated TIFF with Pillow and verifies the resulting cropped image dimensions.
+- id: usage-python3-pil-invert-generated-tiff
+  title: Pillow invert generated TIFF
+  description: Uses Pillow ImageOps.invert on a generated TIFF and verifies the inverted channel values before round-tripping.
   kind: usage
   client_application: python3-pil
   command:
   - bash
   - /validator/tests/libtiff/tests/cases/usage/usage-expanded-client-behavior.sh
-  - usage-python3-pil-crop-center-tiff
+  - usage-python3-pil-invert-generated-tiff
   timeout_seconds: 120
   tags:
   - usage

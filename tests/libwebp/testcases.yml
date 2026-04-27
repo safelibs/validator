@@ -872,123 +872,123 @@ testcases:
   timeout_seconds: 120
   tags:
   - usage
-- id: usage-python3-pil-flip-left-right-webp
-  title: Pillow flip left-right WebP
-  description: Mirrors a generated WebP with Pillow and verifies the horizontal pixel positions swap before save.
+- id: usage-python3-pil-transverse-generated-webp
+  title: Pillow transverse generated WebP
+  description: Applies Pillow transverse transpose to a generated WebP and verifies both the swapped dimensions and mapped corner pixels before round-tripping.
   kind: usage
   client_application: python3-pil
   command:
   - bash
   - /validator/tests/libwebp/tests/cases/usage/usage-expanded-client-behavior.sh
-  - usage-python3-pil-flip-left-right-webp
+  - usage-python3-pil-transverse-generated-webp
   timeout_seconds: 120
   tags:
   - usage
-- id: usage-python3-pil-flip-top-bottom-webp
-  title: Pillow flip top-bottom WebP
-  description: Flips a generated WebP vertically with Pillow and verifies the vertical pixel positions swap before save.
+- id: usage-python3-pil-blend-mirror-webp
+  title: Pillow blend mirror WebP
+  description: Blends a generated WebP with its mirrored copy in Pillow and verifies the blended pixel average before round-tripping.
   kind: usage
   client_application: python3-pil
   command:
   - bash
   - /validator/tests/libwebp/tests/cases/usage/usage-expanded-client-behavior.sh
-  - usage-python3-pil-flip-top-bottom-webp
+  - usage-python3-pil-blend-mirror-webp
   timeout_seconds: 120
   tags:
   - usage
-- id: usage-python3-pil-autocontrast-generated-webp
-  title: Pillow autocontrast WebP
-  description: Applies Pillow autocontrast to a generated WebP and verifies the transformed image retains the original dimensions.
+- id: usage-python3-pil-composite-halves-webp
+  title: Pillow composite halves WebP
+  description: Composites a generated WebP with its mirrored copy through a half-image mask in Pillow and verifies left and right pixels come from different sources.
   kind: usage
   client_application: python3-pil
   command:
   - bash
   - /validator/tests/libwebp/tests/cases/usage/usage-expanded-client-behavior.sh
-  - usage-python3-pil-autocontrast-webp
+  - usage-python3-pil-composite-halves-webp
   timeout_seconds: 120
   tags:
   - usage
-- id: usage-python3-pil-solarize-generated-webp
-  title: Pillow solarize WebP
-  description: Applies Pillow solarize to a generated WebP and verifies the transformed image can still be emitted as WebP.
+- id: usage-python3-pil-darker-mirror-webp
+  title: Pillow darker mirror WebP
+  description: Uses Pillow ImageChops.darker on a generated WebP and its mirrored copy and verifies the per-channel minima before round-tripping.
   kind: usage
   client_application: python3-pil
   command:
   - bash
   - /validator/tests/libwebp/tests/cases/usage/usage-expanded-client-behavior.sh
-  - usage-python3-pil-solarize-webp
+  - usage-python3-pil-darker-mirror-webp
   timeout_seconds: 120
   tags:
   - usage
-- id: usage-python3-pil-posterize-generated-webp
-  title: Pillow posterize WebP
-  description: Applies Pillow posterize to a generated WebP and verifies the transformed image stays in RGB mode.
+- id: usage-python3-pil-lighter-mirror-webp
+  title: Pillow lighter mirror WebP
+  description: Uses Pillow ImageChops.lighter on a generated WebP and its mirrored copy and verifies the per-channel maxima before round-tripping.
   kind: usage
   client_application: python3-pil
   command:
   - bash
   - /validator/tests/libwebp/tests/cases/usage/usage-expanded-client-behavior.sh
-  - usage-python3-pil-posterize-webp
+  - usage-python3-pil-lighter-mirror-webp
   timeout_seconds: 120
   tags:
   - usage
-- id: usage-python3-pil-blue-channel-webp
-  title: Pillow blue channel WebP
-  description: Extracts the blue channel from a generated WebP with Pillow and verifies the channel value for a selected pixel.
+- id: usage-python3-pil-multiply-mirror-webp
+  title: Pillow multiply mirror WebP
+  description: Uses Pillow ImageChops.multiply on a generated WebP and its mirrored copy and verifies the multiplied pixel values before round-tripping.
   kind: usage
   client_application: python3-pil
   command:
   - bash
   - /validator/tests/libwebp/tests/cases/usage/usage-expanded-client-behavior.sh
-  - usage-python3-pil-blue-channel-webp
+  - usage-python3-pil-multiply-mirror-webp
   timeout_seconds: 120
   tags:
   - usage
-- id: usage-python3-pil-getbbox-webp
-  title: Pillow getbbox WebP
-  description: Computes the bounding box of a generated WebP with Pillow and verifies the box spans the full image area.
+- id: usage-python3-pil-add-mirror-webp
+  title: Pillow add mirror WebP
+  description: Uses Pillow ImageChops.add on a generated WebP and its mirrored copy and verifies the summed pixel values before round-tripping.
   kind: usage
   client_application: python3-pil
   command:
   - bash
   - /validator/tests/libwebp/tests/cases/usage/usage-expanded-client-behavior.sh
-  - usage-python3-pil-getbbox-webp
+  - usage-python3-pil-add-mirror-webp
   timeout_seconds: 120
   tags:
   - usage
-- id: usage-python3-pil-resize-bicubic-webp
-  title: Pillow resize bicubic WebP
-  description: Resizes a generated WebP with bicubic resampling in Pillow and verifies the new image dimensions.
+- id: usage-python3-pil-subtract-mirror-webp
+  title: Pillow subtract mirror WebP
+  description: Uses Pillow ImageChops.subtract on mirrored and original generated WebPs and verifies the non-negative channel differences before round-tripping.
   kind: usage
   client_application: python3-pil
   command:
   - bash
   - /validator/tests/libwebp/tests/cases/usage/usage-expanded-client-behavior.sh
-  - usage-python3-pil-resize-bicubic-webp
+  - usage-python3-pil-subtract-mirror-webp
   timeout_seconds: 120
   tags:
   - usage
-- id: usage-python3-pil-histogram-length-webp
-  title: Pillow histogram length WebP
-  description: Computes a generated WebP histogram with Pillow and verifies the expected RGB histogram bin count.
+- id: usage-python3-pil-screen-mirror-webp
+  title: Pillow screen mirror WebP
+  description: Uses Pillow ImageChops.screen on a generated WebP and its mirrored copy and verifies the screened pixel values before round-tripping.
   kind: usage
   client_application: python3-pil
   command:
   - bash
   - /validator/tests/libwebp/tests/cases/usage/usage-expanded-client-behavior.sh
-  - usage-python3-pil-histogram-length-webp
+  - usage-python3-pil-screen-mirror-webp
   timeout_seconds: 120
   tags:
   - usage
-- id: usage-python3-pil-crop-center-webp
-  title: Pillow crop center WebP
-  description: Crops the center of a generated WebP with Pillow and verifies the resulting cropped image dimensions.
+- id: usage-python3-pil-invert-generated-webp
+  title: Pillow invert generated WebP
+  description: Uses Pillow ImageOps.invert on a generated WebP and verifies the inverted channel values before round-tripping.
   kind: usage
   client_application: python3-pil
   command:
   - bash
   - /validator/tests/libwebp/tests/cases/usage/usage-expanded-client-behavior.sh
-  - usage-python3-pil-crop-center-webp
+  - usage-python3-pil-invert-generated-webp
   timeout_seconds: 120
   tags:
   - usage

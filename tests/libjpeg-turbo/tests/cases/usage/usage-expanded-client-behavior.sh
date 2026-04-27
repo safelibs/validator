@@ -8,12 +8,13 @@ trap 'rm -rf "$tmpdir"' EXIT
 
 python3 - <<'PYCASE' "$case_id" "$tmpdir"
 from pathlib import Path
-from PIL import Image, ImageOps
+from PIL import Image, ImageChops, ImageOps
 import sys
 
 case_id = sys.argv[1]
 tmpdir = Path(sys.argv[2])
 source = tmpdir / 'input.jpg'
+output = tmpdir / 'out.jpg'
 base = Image.new('RGB', (4, 3))
 base.putdata([
     (10, 20, 30), (40, 50, 60), (70, 80, 90), (100, 110, 120),
@@ -21,57 +22,87 @@ base.putdata([
     (15, 200, 100), (220, 30, 180), (90, 160, 10), (250, 250, 250),
 ])
 base.save(source, 'JPEG', quality=100, subsampling=0)
-resampling = getattr(Image, 'Resampling', Image)
+
+def round_trip(image):
+    image.save(output, 'JPEG', quality=100, subsampling=0)
+    with Image.open(output) as written:
+        assert written.mode == image.mode
+        assert written.size == image.size
+
+def left_half_mask(size):
+    mask = Image.new('L', size, 0)
+    for x in range(size[0] // 2):
+        for y in range(size[1]):
+            mask.putpixel((x, y), 255)
+    return mask
 
 with Image.open(source) as opened:
-    if case_id == 'usage-python3-pil-flip-left-right-jpeg':
-        out = ImageOps.mirror(opened)
-        assert out.getpixel((0, 0)) == opened.getpixel((3, 0))
-        out.save(tmpdir / 'out.jpg', 'JPEG')
+    mirror = ImageOps.mirror(opened)
+    first = opened.getpixel((0, 0))
+    mirrored_first = mirror.getpixel((0, 0))
+
+    if case_id == 'usage-python3-pil-transverse-generated-jpeg':
+        out = opened.transpose(Image.Transpose.TRANSVERSE)
+        assert out.size == (3, 4)
+        assert out.getpixel((0, 0)) == opened.getpixel((3, 2))
+        assert out.getpixel((2, 3)) == opened.getpixel((0, 0))
+        round_trip(out)
         print(out.size)
-    elif case_id == 'usage-python3-pil-flip-top-bottom-jpeg':
-        out = ImageOps.flip(opened)
-        assert out.getpixel((0, 0)) == opened.getpixel((0, 2))
-        out.save(tmpdir / 'out.jpg', 'JPEG')
-        print(out.size)
-    elif case_id == 'usage-python3-pil-autocontrast-jpeg':
-        out = ImageOps.autocontrast(opened)
-        assert out.size == opened.size
-        out.save(tmpdir / 'out.jpg', 'JPEG')
-        print(out.size)
-    elif case_id == 'usage-python3-pil-solarize-jpeg':
-        out = ImageOps.solarize(opened, threshold=100)
-        assert out.getpixel((0, 0)) == opened.getpixel((0, 0))
-        out.save(tmpdir / 'out.jpg', 'JPEG')
-        print(out.size)
-    elif case_id == 'usage-python3-pil-posterize-jpeg':
-        out = ImageOps.posterize(opened, bits=3)
-        assert out.mode == 'RGB'
-        out.save(tmpdir / 'out.jpg', 'JPEG')
-        print(out.mode)
-    elif case_id == 'usage-python3-pil-green-channel-jpeg':
-        out = opened.getchannel('G')
-        assert out.getpixel((1, 1)) == opened.getpixel((1, 1))[1]
-        out.save(tmpdir / 'out.jpg', 'JPEG')
-        print(out.mode)
-    elif case_id == 'usage-python3-pil-getbbox-jpeg':
-        bbox = opened.getbbox()
-        assert bbox == (0, 0, 4, 3)
-        print(bbox)
-    elif case_id == 'usage-python3-pil-resize-bicubic-jpeg':
-        out = opened.resize((8, 6), resampling.BICUBIC)
-        assert out.size == (8, 6)
-        out.save(tmpdir / 'out.jpg', 'JPEG')
-        print(out.size)
-    elif case_id == 'usage-python3-pil-histogram-length-jpeg':
-        hist = opened.histogram()
-        assert len(hist) == 768
-        print(len(hist))
-    elif case_id == 'usage-python3-pil-crop-center-jpeg':
-        out = opened.crop((1, 1, 3, 3))
-        assert out.size == (2, 2)
-        out.save(tmpdir / 'out.jpg', 'JPEG')
-        print(out.size)
+    elif case_id == 'usage-python3-pil-blend-mirror-jpeg':
+        out = Image.blend(opened, mirror, 0.5)
+        expected = tuple((left + right) // 2 for left, right in zip(first, mirrored_first))
+        assert out.getpixel((0, 0)) == expected
+        round_trip(out)
+        print(expected)
+    elif case_id == 'usage-python3-pil-composite-halves-jpeg':
+        out = Image.composite(opened, mirror, left_half_mask(opened.size))
+        assert out.getpixel((0, 1)) == opened.getpixel((0, 1))
+        assert out.getpixel((3, 1)) == opened.getpixel((0, 1))
+        assert out.getpixel((3, 1)) != opened.getpixel((3, 1))
+        round_trip(out)
+        print(out.getpixel((3, 1)))
+    elif case_id == 'usage-python3-pil-darker-mirror-jpeg':
+        out = ImageChops.darker(opened, mirror)
+        expected = tuple(min(left, right) for left, right in zip(first, mirrored_first))
+        assert out.getpixel((0, 0)) == expected
+        round_trip(out)
+        print(expected)
+    elif case_id == 'usage-python3-pil-lighter-mirror-jpeg':
+        out = ImageChops.lighter(opened, mirror)
+        expected = tuple(max(left, right) for left, right in zip(first, mirrored_first))
+        assert out.getpixel((0, 0)) == expected
+        round_trip(out)
+        print(expected)
+    elif case_id == 'usage-python3-pil-multiply-mirror-jpeg':
+        out = ImageChops.multiply(opened, mirror)
+        expected = tuple((left * right) // 255 for left, right in zip(first, mirrored_first))
+        assert out.getpixel((0, 0)) == expected
+        round_trip(out)
+        print(expected)
+    elif case_id == 'usage-python3-pil-add-mirror-jpeg':
+        out = ImageChops.add(opened, mirror)
+        expected = tuple(min(255, left + right) for left, right in zip(first, mirrored_first))
+        assert out.getpixel((0, 0)) == expected
+        round_trip(out)
+        print(expected)
+    elif case_id == 'usage-python3-pil-subtract-mirror-jpeg':
+        out = ImageChops.subtract(mirror, opened)
+        expected = tuple(max(0, right - left) for left, right in zip(first, mirrored_first))
+        assert out.getpixel((0, 0)) == expected
+        round_trip(out)
+        print(expected)
+    elif case_id == 'usage-python3-pil-screen-mirror-jpeg':
+        out = ImageChops.screen(opened, mirror)
+        expected = tuple(255 - ((255 - left) * (255 - right) // 255) for left, right in zip(first, mirrored_first))
+        assert out.getpixel((0, 0)) == expected
+        round_trip(out)
+        print(expected)
+    elif case_id == 'usage-python3-pil-invert-generated-jpeg':
+        out = ImageOps.invert(opened)
+        expected = tuple(255 - channel for channel in first)
+        assert out.getpixel((0, 0)) == expected
+        round_trip(out)
+        print(expected)
     else:
         raise SystemExit(f'unknown libjpeg-turbo expanded usage case: {case_id}')
 PYCASE
