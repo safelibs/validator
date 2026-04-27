@@ -9,6 +9,7 @@ from typing import Any
 
 from tools import ValidatorError, select_libraries
 from tools.testcases import Testcase, TestcaseManifest, load_manifests
+from tools.unsafe_blocks import aggregate_counts, count_library
 
 
 VALID_MODES = {"original", "port-04-test"}
@@ -708,11 +709,16 @@ def build_proof(
     min_source_cases: int = 0,
     min_usage_cases: int = 0,
     require_casts: bool = False,
+    ports_root: Path | None = None,
 ) -> dict[str, Any]:
     if mode not in VALID_MODES:
         raise ValidatorError("mode must be original or port-04-test")
     if min_cases < 0 or min_source_cases < 0 or min_usage_cases < 0:
         raise ValidatorError("case thresholds must be non-negative")
+    if ports_root is not None:
+        ports_root = ports_root.resolve(strict=False)
+        if not ports_root.is_dir():
+            raise ValidatorError(f"--ports-root must be an existing directory: {ports_root}")
 
     selected_entries = select_libraries(manifest, libraries)
     selected_manifest = dict(manifest)
@@ -786,6 +792,11 @@ def build_proof(
             if port_library_metadata is None:
                 raise ValidatorError(f"missing port provenance for {library}")
             library_proof.update(port_library_metadata)
+        if ports_root is not None:
+            counts = count_library(ports_root, library)
+            if counts is None:
+                raise ValidatorError(f"missing safe/ tree for {library} under {ports_root}")
+            library_proof["unsafe_blocks"] = counts
         library_proof["testcases"] = case_rows
         proof_libraries.append(library_proof)
         totals["libraries"] += 1
@@ -799,10 +810,15 @@ def build_proof(
     if min_usage_cases and totals["usage_cases"] < min_usage_cases:
         raise ValidatorError(f"usage case threshold not met: {totals['usage_cases']} < {min_usage_cases}")
 
-    return {
+    proof: dict[str, Any] = {
         "proof_version": 2,
         "mode": mode,
         "suite": _suite_from_manifest(manifest),
         "totals": totals,
         "libraries": proof_libraries,
     }
+    if ports_root is not None:
+        proof["unsafe_blocks"] = aggregate_counts(
+            {entry["library"]: entry["unsafe_blocks"] for entry in proof_libraries}
+        )
+    return proof

@@ -24,6 +24,13 @@ def build_parser() -> argparse.ArgumentParser:
     parser.add_argument("--min-cases", type=int, default=0)
     parser.add_argument("--min-source-cases", type=int, default=0)
     parser.add_argument("--min-usage-cases", type=int, default=0)
+    parser.add_argument(
+        "--ports-root",
+        type=Path,
+        default=None,
+        help="path to safelibs ports tree; when set, per-library and aggregate "
+        "unsafe-block counts are added to the proof JSON",
+    )
     return parser
 
 
@@ -89,6 +96,7 @@ def main(argv: list[str] | None = None) -> int:
         min_source_cases=args.min_source_cases,
         min_usage_cases=args.min_usage_cases,
         require_casts=args.require_casts,
+        ports_root=args.ports_root,
     )
     write_json(proof_output, proof)
     return 0

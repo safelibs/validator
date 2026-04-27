@@ -148,6 +148,19 @@ def selected_libraries_from_proof(proof_data: dict[str, Any]) -> list[str]:
     return [str(entry["library"]) for entry in _proof_libraries(proof_data)]
 
 
+def _without_unsafe_blocks(proof_data: dict[str, Any]) -> dict[str, Any]:
+    stripped = {k: v for k, v in proof_data.items() if k != "unsafe_blocks"}
+    libraries = stripped.get("libraries")
+    if isinstance(libraries, list):
+        stripped["libraries"] = [
+            {k: v for k, v in entry.items() if k != "unsafe_blocks"}
+            if isinstance(entry, dict)
+            else entry
+            for entry in libraries
+        ]
+    return stripped
+
+
 def validate_proof_matches_artifacts(
     proof_data: dict[str, Any],
     *,
@@ -166,7 +179,7 @@ def validate_proof_matches_artifacts(
         libraries=selected_libraries,
         require_casts=False,
     )
-    if expected_proof != proof_data:
+    if _without_unsafe_blocks(expected_proof) != _without_unsafe_blocks(proof_data):
         raise ValidatorError("proof manifest does not match rebuilt proof")
 
 
