@@ -999,3 +999,143 @@ testcases:
   - usage
   - json
   - iperf3
+- id: usage-iperf3-json-end-cpu-host-total-field
+  title: iperf3 JSON end host CPU total
+  description: Reads end.cpu_utilization_percent.host_total from the iperf3 JSON summary so the cjson serializer must encode the host CPU utilization metric.
+  kind: usage
+  client_application: iperf3
+  command:
+  - bash
+  - /validator/tests/cjson/tests/cases/usage/usage-tenth-batch-behavior.sh
+  - usage-iperf3-json-end-cpu-host-total-field
+  timeout_seconds: 180
+  tags:
+  - usage
+  - json
+  - iperf3
+- id: usage-iperf3-json-end-cpu-remote-total-field
+  title: iperf3 JSON end remote CPU total
+  description: Reads end.cpu_utilization_percent.remote_total from the iperf3 JSON summary so cjson must serialize the server-side CPU utilization metric.
+  kind: usage
+  client_application: iperf3
+  command:
+  - bash
+  - /validator/tests/cjson/tests/cases/usage/usage-tenth-batch-behavior.sh
+  - usage-iperf3-json-end-cpu-remote-total-field
+  timeout_seconds: 180
+  tags:
+  - usage
+  - json
+  - iperf3
+- id: usage-iperf3-json-end-sum-sent-bytes-positive
+  title: iperf3 JSON end sum sent bytes
+  description: Verifies end.sum_sent.bytes in the iperf3 JSON summary reports the requested 64K transfer so cjson serializes the sent byte total.
+  kind: usage
+  client_application: iperf3
+  command:
+  - bash
+  - /validator/tests/cjson/tests/cases/usage/usage-tenth-batch-behavior.sh
+  - usage-iperf3-json-end-sum-sent-bytes-positive
+  timeout_seconds: 180
+  tags:
+  - usage
+  - json
+  - iperf3
+- id: usage-iperf3-json-end-sum-received-bytes-positive
+  title: iperf3 JSON end sum received bytes
+  description: Verifies end.sum_received.bytes in the iperf3 JSON summary is positive so cjson serializes the receiver-side byte accounting.
+  kind: usage
+  client_application: iperf3
+  command:
+  - bash
+  - /validator/tests/cjson/tests/cases/usage/usage-tenth-batch-behavior.sh
+  - usage-iperf3-json-end-sum-received-bytes-positive
+  timeout_seconds: 180
+  tags:
+  - usage
+  - json
+  - iperf3
+- id: usage-iperf3-json-end-streams-sender-bytes
+  title: iperf3 JSON end streams sender bytes
+  description: Reads end.streams[0].sender.bytes from the iperf3 JSON summary so cjson must serialize the per-stream sender byte counter.
+  kind: usage
+  client_application: iperf3
+  command:
+  - bash
+  - /validator/tests/cjson/tests/cases/usage/usage-tenth-batch-behavior.sh
+  - usage-iperf3-json-end-streams-sender-bytes
+  timeout_seconds: 180
+  tags:
+  - usage
+  - json
+  - iperf3
+- id: usage-iperf3-json-end-streams-receiver-bytes
+  title: iperf3 JSON end streams receiver bytes
+  description: Reads end.streams[0].receiver.bytes from the iperf3 JSON summary so cjson must serialize the per-stream receiver byte counter.
+  kind: usage
+  client_application: iperf3
+  command:
+  - bash
+  - /validator/tests/cjson/tests/cases/usage/usage-tenth-batch-behavior.sh
+  - usage-iperf3-json-end-streams-receiver-bytes
+  timeout_seconds: 180
+  tags:
+  - usage
+  - json
+  - iperf3
+- id: usage-iperf3-json-bytes-1m-fixed-field
+  title: iperf3 JSON one megabyte fixed transfer
+  description: Runs a 1 MiB iperf3 transfer with -n 1M and verifies start.test_start.bytes equals 1048576 so cjson encodes the requested byte budget.
+  kind: usage
+  client_application: iperf3
+  command:
+  - bash
+  - /validator/tests/cjson/tests/cases/usage/usage-tenth-batch-behavior.sh
+  - usage-iperf3-json-bytes-1m-fixed-field
+  timeout_seconds: 180
+  tags:
+  - usage
+  - json
+  - iperf3
+- id: usage-iperf3-json-format-megabytes-flag
+  title: iperf3 JSON megabyte format flag
+  description: Runs an iperf3 transfer with -f M and verifies the JSON summary still emits the TCP protocol field so cjson encodes the protocol under the alternate format.
+  kind: usage
+  client_application: iperf3
+  command:
+  - bash
+  - /validator/tests/cjson/tests/cases/usage/usage-tenth-batch-behavior.sh
+  - usage-iperf3-json-format-megabytes-flag
+  timeout_seconds: 180
+  tags:
+  - usage
+  - json
+  - iperf3
+- id: usage-iperf3-json-length-2k-blksize
+  title: iperf3 JSON two kilobyte blksize
+  description: Runs an iperf3 transfer with -l 2K and verifies start.test_start.blksize is 2048 so cjson serializes the user-specified block size.
+  kind: usage
+  client_application: iperf3
+  command:
+  - bash
+  - /validator/tests/cjson/tests/cases/usage/usage-tenth-batch-behavior.sh
+  - usage-iperf3-json-length-2k-blksize
+  timeout_seconds: 180
+  tags:
+  - usage
+  - json
+  - iperf3
+- id: usage-iperf3-json-blockcount-three-blocks
+  title: iperf3 JSON three block count
+  description: Runs an iperf3 transfer with -k 3 and verifies start.test_start.blockcount equals 3 so cjson serializes the requested block count.
+  kind: usage
+  client_application: iperf3
+  command:
+  - bash
+  - /validator/tests/cjson/tests/cases/usage/usage-tenth-batch-behavior.sh
+  - usage-iperf3-json-blockcount-three-blocks
+  timeout_seconds: 180
+  tags:
+  - usage
+  - json
+  - iperf3
