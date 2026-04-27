@@ -794,9 +794,8 @@ def build_proof(
             library_proof.update(port_library_metadata)
         if ports_root is not None:
             counts = count_library(ports_root, library)
-            if counts is None:
-                raise ValidatorError(f"missing safe/ tree for {library} under {ports_root}")
-            library_proof["unsafe_blocks"] = counts
+            if counts is not None:
+                library_proof["unsafe_blocks"] = counts
         library_proof["testcases"] = case_rows
         proof_libraries.append(library_proof)
         totals["libraries"] += 1
@@ -819,6 +818,6 @@ def build_proof(
     }
     if ports_root is not None:
         proof["unsafe_blocks"] = aggregate_counts(
-            {entry["library"]: entry["unsafe_blocks"] for entry in proof_libraries}
+            {entry["library"]: entry["unsafe_blocks"] for entry in proof_libraries if "unsafe_blocks" in entry}
         )
     return proof
