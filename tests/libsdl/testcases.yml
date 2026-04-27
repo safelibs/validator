@@ -860,3 +860,123 @@ testcases:
   timeout_seconds: 120
   tags:
   - usage
+- id: usage-python3-pygame-surface-alpha
+  title: pygame surface alpha
+  description: Sets a per-surface alpha value in pygame and verifies the stored alpha can be read back.
+  kind: usage
+  client_application: python3-pygame
+  command:
+  - bash
+  - /validator/tests/libsdl/tests/cases/usage/usage-expanded-client-behavior.sh
+  - usage-python3-pygame-surface-alpha
+  timeout_seconds: 120
+  tags:
+  - usage
+- id: usage-python3-pygame-transform-flip-horizontal
+  title: pygame transform flip horizontal
+  description: Flips a pygame surface horizontally and verifies that the left and right pixel positions swap.
+  kind: usage
+  client_application: python3-pygame
+  command:
+  - bash
+  - /validator/tests/libsdl/tests/cases/usage/usage-expanded-client-behavior.sh
+  - usage-python3-pygame-transform-flip-horizontal
+  timeout_seconds: 120
+  tags:
+  - usage
+- id: usage-python3-pygame-transform-flip-vertical
+  title: pygame transform flip vertical
+  description: Flips a pygame surface vertically and verifies that the top and bottom pixel positions swap.
+  kind: usage
+  client_application: python3-pygame
+  command:
+  - bash
+  - /validator/tests/libsdl/tests/cases/usage/usage-expanded-client-behavior.sh
+  - usage-python3-pygame-transform-flip-vertical
+  timeout_seconds: 120
+  tags:
+  - usage
+- id: usage-python3-pygame-draw-circle-center
+  title: pygame draw circle
+  description: Draws a filled circle on a pygame surface and verifies the center pixel changes color.
+  kind: usage
+  client_application: python3-pygame
+  command:
+  - bash
+  - /validator/tests/libsdl/tests/cases/usage/usage-expanded-client-behavior.sh
+  - usage-python3-pygame-draw-circle-center
+  timeout_seconds: 120
+  tags:
+  - usage
+- id: usage-python3-pygame-clock-tick-delta
+  title: pygame clock tick
+  description: Ticks a pygame Clock instance and verifies that the returned frame delta is a non-negative integer.
+  kind: usage
+  client_application: python3-pygame
+  command:
+  - bash
+  - /validator/tests/libsdl/tests/cases/usage/usage-expanded-client-behavior.sh
+  - usage-python3-pygame-clock-tick-delta
+  timeout_seconds: 120
+  tags:
+  - usage
+- id: usage-python3-pygame-rect-clamp-inside
+  title: pygame rect clamp
+  description: Clamps a rectangle into a bounding rectangle in pygame and verifies the clamped rectangle stays inside the area.
+  kind: usage
+  client_application: python3-pygame
+  command:
+  - bash
+  - /validator/tests/libsdl/tests/cases/usage/usage-expanded-client-behavior.sh
+  - usage-python3-pygame-rect-clamp-inside
+  timeout_seconds: 120
+  tags:
+  - usage
+- id: usage-python3-pygame-vector2-length-value
+  title: pygame Vector2 length
+  description: Computes the Euclidean length of a pygame Vector2 and verifies the expected floating-point magnitude.
+  kind: usage
+  client_application: python3-pygame
+  command:
+  - bash
+  - /validator/tests/libsdl/tests/cases/usage/usage-expanded-client-behavior.sh
+  - usage-python3-pygame-vector2-length-value
+  timeout_seconds: 120
+  tags:
+  - usage
+- id: usage-python3-pygame-mask-count-opaque
+  title: pygame mask count
+  description: Builds a mask from a pygame surface and verifies the reported number of opaque pixels.
+  kind: usage
+  client_application: python3-pygame
+  command:
+  - bash
+  - /validator/tests/libsdl/tests/cases/usage/usage-expanded-client-behavior.sh
+  - usage-python3-pygame-mask-count-opaque
+  timeout_seconds: 120
+  tags:
+  - usage
+- id: usage-python3-pygame-font-render-size
+  title: pygame font render
+  description: Renders text to a pygame surface and verifies the resulting surface has non-zero dimensions.
+  kind: usage
+  client_application: python3-pygame
+  command:
+  - bash
+  - /validator/tests/libsdl/tests/cases/usage/usage-expanded-client-behavior.sh
+  - usage-python3-pygame-font-render-size
+  timeout_seconds: 120
+  tags:
+  - usage
+- id: usage-python3-pygame-event-post-custom
+  title: pygame event post custom
+  description: Posts a custom pygame event and verifies the event queue returns the payload unchanged.
+  kind: usage
+  client_application: python3-pygame
+  command:
+  - bash
+  - /validator/tests/libsdl/tests/cases/usage/usage-expanded-client-behavior.sh
+  - usage-python3-pygame-event-post-custom
+  timeout_seconds: 120
+  tags:
+  - usage

@@ -860,3 +860,143 @@ testcases:
   - usage
   - archive
   - python
+- id: usage-python-libarchive-c-tar-empty-file
+  title: python-libarchive-c tar empty file
+  description: Writes and reads an empty tar file entry through python-libarchive-c and verifies zero-byte archive member metadata.
+  kind: usage
+  client_application: python3-libarchive-c
+  command:
+  - bash
+  - /validator/tests/libarchive/tests/cases/usage/usage-expanded-client-behavior.sh
+  - tar-empty-file
+  timeout_seconds: 180
+  tags:
+  - usage
+  - archive
+  - python
+- id: usage-python-libarchive-c-tar-space-path
+  title: python-libarchive-c tar space path
+  description: Writes and reads a tar archive path containing spaces through python-libarchive-c and verifies the stored pathname and payload.
+  kind: usage
+  client_application: python3-libarchive-c
+  command:
+  - bash
+  - /validator/tests/libarchive/tests/cases/usage/usage-expanded-client-behavior.sh
+  - tar-space-path
+  timeout_seconds: 180
+  tags:
+  - usage
+  - archive
+  - python
+- id: usage-python-libarchive-c-tar-gzip-memory-reader
+  title: python-libarchive-c tar gzip memory reader
+  description: Reads a gzip-compressed tar archive from memory through python-libarchive-c and verifies the member order.
+  kind: usage
+  client_application: python3-libarchive-c
+  command:
+  - bash
+  - /validator/tests/libarchive/tests/cases/usage/usage-expanded-client-behavior.sh
+  - tar-gzip-memory-reader
+  timeout_seconds: 180
+  tags:
+  - usage
+  - archive
+  - python
+- id: usage-python-libarchive-c-zip-empty-file-entry
+  title: python-libarchive-c zip empty file
+  description: Writes and reads an empty zip entry through python-libarchive-c and verifies the zero-byte member metadata.
+  kind: usage
+  client_application: python3-libarchive-c
+  command:
+  - bash
+  - /validator/tests/libarchive/tests/cases/usage/usage-expanded-client-behavior.sh
+  - zip-empty-file
+  timeout_seconds: 180
+  tags:
+  - usage
+  - archive
+  - python
+- id: usage-python-libarchive-c-zip-many-files-count
+  title: python-libarchive-c zip many files count
+  description: Writes a zip archive containing several files through python-libarchive-c and verifies the expected member count.
+  kind: usage
+  client_application: python3-libarchive-c
+  command:
+  - bash
+  - /validator/tests/libarchive/tests/cases/usage/usage-expanded-client-behavior.sh
+  - zip-many-files-count
+  timeout_seconds: 180
+  tags:
+  - usage
+  - archive
+  - python
+- id: usage-python-libarchive-c-pax-space-directory
+  title: python-libarchive-c pax space directory
+  description: Writes a pax archive containing a directory path with spaces through python-libarchive-c and verifies both directory and file members.
+  kind: usage
+  client_application: python3-libarchive-c
+  command:
+  - bash
+  - /validator/tests/libarchive/tests/cases/usage/usage-expanded-client-behavior.sh
+  - pax-space-directory
+  timeout_seconds: 180
+  tags:
+  - usage
+  - archive
+  - python
+- id: usage-python-libarchive-c-cpio-nested-file
+  title: python-libarchive-c cpio nested file
+  description: Writes a nested file path into a cpio archive through python-libarchive-c and verifies the stored payload on readback.
+  kind: usage
+  client_application: python3-libarchive-c
+  command:
+  - bash
+  - /validator/tests/libarchive/tests/cases/usage/usage-expanded-client-behavior.sh
+  - cpio-nested-file
+  timeout_seconds: 180
+  tags:
+  - usage
+  - archive
+  - python
+- id: usage-python-libarchive-c-tar-repeated-read
+  title: python-libarchive-c tar repeated read
+  description: Reads the same tar archive twice through python-libarchive-c and verifies both passes return the same member order.
+  kind: usage
+  client_application: python3-libarchive-c
+  command:
+  - bash
+  - /validator/tests/libarchive/tests/cases/usage/usage-expanded-client-behavior.sh
+  - tar-repeated-read
+  timeout_seconds: 180
+  tags:
+  - usage
+  - archive
+  - python
+- id: usage-python-libarchive-c-zip-memory-reader-names
+  title: python-libarchive-c zip memory reader names
+  description: Reads a zip archive from memory through python-libarchive-c and verifies the expected member names.
+  kind: usage
+  client_application: python3-libarchive-c
+  command:
+  - bash
+  - /validator/tests/libarchive/tests/cases/usage/usage-expanded-client-behavior.sh
+  - zip-memory-reader-names
+  timeout_seconds: 180
+  tags:
+  - usage
+  - archive
+  - python
+- id: usage-python-libarchive-c-tar-long-name
+  title: python-libarchive-c tar long name
+  description: Writes a long tar pathname through python-libarchive-c and verifies the full path survives archive round trip.
+  kind: usage
+  client_application: python3-libarchive-c
+  command:
+  - bash
+  - /validator/tests/libarchive/tests/cases/usage/usage-expanded-client-behavior.sh
+  - tar-long-name
+  timeout_seconds: 180
+  tags:
+  - usage
+  - archive
+  - python

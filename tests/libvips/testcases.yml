@@ -861,3 +861,123 @@ testcases:
   timeout_seconds: 120
   tags:
   - usage
+- id: usage-ruby-vips-flip-horizontal-generated
+  title: ruby-vips generated flip horizontal
+  description: Flips a generated image horizontally with ruby-vips and verifies the reversed pixel order.
+  kind: usage
+  client_application: ruby-vips
+  command:
+  - bash
+  - /validator/tests/libvips/tests/cases/usage/usage-expanded-client-behavior.sh
+  - usage-ruby-vips-flip-horizontal-generated
+  timeout_seconds: 120
+  tags:
+  - usage
+- id: usage-ruby-vips-flip-vertical-generated
+  title: ruby-vips generated flip vertical
+  description: Flips a generated image vertically with ruby-vips and verifies the reversed pixel order.
+  kind: usage
+  client_application: ruby-vips
+  command:
+  - bash
+  - /validator/tests/libvips/tests/cases/usage/usage-expanded-client-behavior.sh
+  - usage-ruby-vips-flip-vertical-generated
+  timeout_seconds: 120
+  tags:
+  - usage
+- id: usage-ruby-vips-rot90-generated
+  title: ruby-vips generated rot90
+  description: Rotates a generated image 90 degrees with ruby-vips and verifies the rotated dimensions.
+  kind: usage
+  client_application: ruby-vips
+  command:
+  - bash
+  - /validator/tests/libvips/tests/cases/usage/usage-expanded-client-behavior.sh
+  - usage-ruby-vips-rot90-generated
+  timeout_seconds: 120
+  tags:
+  - usage
+- id: usage-ruby-vips-embed-canvas-generated
+  title: ruby-vips generated embed
+  description: Embeds a generated image into a larger canvas with ruby-vips and verifies the expanded output dimensions.
+  kind: usage
+  client_application: ruby-vips
+  command:
+  - bash
+  - /validator/tests/libvips/tests/cases/usage/usage-expanded-client-behavior.sh
+  - usage-ruby-vips-embed-generated
+  timeout_seconds: 120
+  tags:
+  - usage
+- id: usage-ruby-vips-extract-area-slice-generated
+  title: ruby-vips generated extract area
+  description: Extracts a sub-area from a generated image with ruby-vips and verifies the selected pixel payload.
+  kind: usage
+  client_application: ruby-vips
+  command:
+  - bash
+  - /validator/tests/libvips/tests/cases/usage/usage-expanded-client-behavior.sh
+  - usage-ruby-vips-extract-area-generated
+  timeout_seconds: 120
+  tags:
+  - usage
+- id: usage-ruby-vips-bandmean-reduce-generated
+  title: ruby-vips generated bandmean
+  description: Computes the per-pixel band mean of a generated multiband image with ruby-vips and verifies the reduced grayscale payload.
+  kind: usage
+  client_application: ruby-vips
+  command:
+  - bash
+  - /validator/tests/libvips/tests/cases/usage/usage-expanded-client-behavior.sh
+  - usage-ruby-vips-bandmean-generated
+  timeout_seconds: 120
+  tags:
+  - usage
+- id: usage-ruby-vips-extract-band-generated
+  title: ruby-vips generated extract band
+  description: Extracts a selected band from a generated multiband image with ruby-vips and verifies the resulting grayscale payload.
+  kind: usage
+  client_application: ruby-vips
+  command:
+  - bash
+  - /validator/tests/libvips/tests/cases/usage/usage-expanded-client-behavior.sh
+  - usage-ruby-vips-extract-band-generated
+  timeout_seconds: 120
+  tags:
+  - usage
+- id: usage-ruby-vips-subtract-constant-generated
+  title: ruby-vips generated subtract constant
+  description: Subtracts a scalar constant from a generated image with ruby-vips and verifies the resulting pixel values.
+  kind: usage
+  client_application: ruby-vips
+  command:
+  - bash
+  - /validator/tests/libvips/tests/cases/usage/usage-expanded-client-behavior.sh
+  - usage-ruby-vips-subtract-constant-generated
+  timeout_seconds: 120
+  tags:
+  - usage
+- id: usage-ruby-vips-divide-constant-generated
+  title: ruby-vips generated divide constant
+  description: Divides a generated image by a scalar constant with ruby-vips and verifies the resulting pixel values.
+  kind: usage
+  client_application: ruby-vips
+  command:
+  - bash
+  - /validator/tests/libvips/tests/cases/usage/usage-expanded-client-behavior.sh
+  - usage-ruby-vips-divide-constant-generated
+  timeout_seconds: 120
+  tags:
+  - usage
+- id: usage-ruby-vips-avg-scalar-generated
+  title: ruby-vips generated avg
+  description: Computes the average pixel value of a generated image with ruby-vips and verifies the scalar average result.
+  kind: usage
+  client_application: ruby-vips
+  command:
+  - bash
+  - /validator/tests/libvips/tests/cases/usage/usage-expanded-client-behavior.sh
+  - usage-ruby-vips-avg-generated
+  timeout_seconds: 120
+  tags:
+  - usage

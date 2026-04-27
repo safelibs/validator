@@ -859,3 +859,143 @@ testcases:
   - usage
   - json
   - iperf3
+- id: usage-iperf3-json-cport-local-port-25001
+  title: iperf3 JSON cport local port
+  description: Runs iperf3 with an explicit client port and verifies the recorded local port in the JSON connection metadata.
+  kind: usage
+  client_application: iperf3
+  command:
+  - bash
+  - /validator/tests/cjson/tests/cases/usage/usage-expanded-client-behavior.sh
+  - usage-iperf3-json-cport-local-port-25001
+  timeout_seconds: 180
+  tags:
+  - usage
+  - json
+  - iperf3
+- id: usage-iperf3-json-parallel-three-streams-count
+  title: iperf3 JSON parallel three streams
+  description: Runs a three-stream iperf3 transfer and verifies the JSON metadata records the requested stream count.
+  kind: usage
+  client_application: iperf3
+  command:
+  - bash
+  - /validator/tests/cjson/tests/cases/usage/usage-expanded-client-behavior.sh
+  - usage-iperf3-json-parallel-three-streams-count
+  timeout_seconds: 180
+  tags:
+  - usage
+  - json
+  - iperf3
+- id: usage-iperf3-json-reverse-two-streams-count
+  title: iperf3 JSON reverse two streams
+  description: Runs a reverse two-stream iperf3 transfer and verifies the reverse flag and stream count in the JSON metadata.
+  kind: usage
+  client_application: iperf3
+  command:
+  - bash
+  - /validator/tests/cjson/tests/cases/usage/usage-expanded-client-behavior.sh
+  - usage-iperf3-json-reverse-two-streams-count
+  timeout_seconds: 180
+  tags:
+  - usage
+  - json
+  - iperf3
+- id: usage-iperf3-json-udp-blksize-1400-field
+  title: iperf3 JSON UDP blksize 1400
+  description: Runs a UDP iperf3 transfer with a 1400-byte block size and verifies the JSON test metadata records the block size.
+  kind: usage
+  client_application: iperf3
+  command:
+  - bash
+  - /validator/tests/cjson/tests/cases/usage/usage-expanded-client-behavior.sh
+  - usage-iperf3-json-udp-blksize-1400-field
+  timeout_seconds: 180
+  tags:
+  - usage
+  - json
+  - iperf3
+- id: usage-iperf3-json-udp-parallel-three-count
+  title: iperf3 JSON UDP parallel three streams
+  description: Runs a three-stream UDP iperf3 transfer and verifies the JSON metadata records both the UDP protocol and stream count.
+  kind: usage
+  client_application: iperf3
+  command:
+  - bash
+  - /validator/tests/cjson/tests/cases/usage/usage-expanded-client-behavior.sh
+  - usage-iperf3-json-udp-parallel-three-count
+  timeout_seconds: 180
+  tags:
+  - usage
+  - json
+  - iperf3
+- id: usage-iperf3-json-fixed-48k-bytes
+  title: iperf3 JSON fixed 48K bytes
+  description: Runs a fixed-byte iperf3 transfer and verifies the JSON test metadata stores the requested 48K byte count.
+  kind: usage
+  client_application: iperf3
+  command:
+  - bash
+  - /validator/tests/cjson/tests/cases/usage/usage-expanded-client-behavior.sh
+  - usage-iperf3-json-fixed-48k-bytes
+  timeout_seconds: 180
+  tags:
+  - usage
+  - json
+  - iperf3
+- id: usage-iperf3-json-duration-two-seconds
+  title: iperf3 JSON duration two seconds
+  description: Runs a time-based iperf3 transfer and verifies the JSON metadata records a two-second duration.
+  kind: usage
+  client_application: iperf3
+  command:
+  - bash
+  - /validator/tests/cjson/tests/cases/usage/usage-expanded-client-behavior.sh
+  - usage-iperf3-json-duration-two-seconds
+  timeout_seconds: 180
+  tags:
+  - usage
+  - json
+  - iperf3
+- id: usage-iperf3-json-omit-one-second-flag
+  title: iperf3 JSON omit one second
+  description: Runs an iperf3 transfer with a one-second omitted warmup interval and verifies the JSON omit setting.
+  kind: usage
+  client_application: iperf3
+  command:
+  - bash
+  - /validator/tests/cjson/tests/cases/usage/usage-expanded-client-behavior.sh
+  - usage-iperf3-json-omit-one-second-flag
+  timeout_seconds: 180
+  tags:
+  - usage
+  - json
+  - iperf3
+- id: usage-iperf3-json-target-bitrate-256k
+  title: iperf3 JSON target bitrate 256K
+  description: Runs a UDP iperf3 transfer with an explicit target bitrate and verifies the JSON metadata records a positive target bitrate.
+  kind: usage
+  client_application: iperf3
+  command:
+  - bash
+  - /validator/tests/cjson/tests/cases/usage/usage-expanded-client-behavior.sh
+  - usage-iperf3-json-target-bitrate-256k
+  timeout_seconds: 180
+  tags:
+  - usage
+  - json
+  - iperf3
+- id: usage-iperf3-json-udp-cport-local-port-25002
+  title: iperf3 JSON UDP cport local port
+  description: Runs a UDP iperf3 transfer with an explicit client port and verifies the JSON connection metadata records that local port.
+  kind: usage
+  client_application: iperf3
+  command:
+  - bash
+  - /validator/tests/cjson/tests/cases/usage/usage-expanded-client-behavior.sh
+  - usage-iperf3-json-udp-cport-local-port-25002
+  timeout_seconds: 180
+  tags:
+  - usage
+  - json
+  - iperf3

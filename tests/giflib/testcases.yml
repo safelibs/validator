@@ -870,3 +870,143 @@ testcases:
   - usage
   - gif
   - gifclrmp
+- id: usage-giflib-tools-giftext-fire-screen-size
+  title: giftext fire screen size
+  description: Reads the fire.gif fixture with giftext and verifies that screen-size metadata is emitted.
+  kind: usage
+  client_application: giflib-tools
+  command:
+  - bash
+  - /validator/tests/giflib/tests/cases/usage/usage-expanded-client-behavior.sh
+  - usage-giflib-tools-giftext-fire-screen-size
+  timeout_seconds: 180
+  tags:
+  - usage
+  - gif
+  - giftext
+- id: usage-giflib-tools-giftext-fire-color-resolution-field
+  title: giftext fire color resolution
+  description: Reads the fire.gif fixture with giftext and verifies that color-resolution metadata is emitted.
+  kind: usage
+  client_application: giflib-tools
+  command:
+  - bash
+  - /validator/tests/giflib/tests/cases/usage/usage-expanded-client-behavior.sh
+  - usage-giflib-tools-giftext-fire-color-resolution
+  timeout_seconds: 180
+  tags:
+  - usage
+  - gif
+  - giftext
+- id: usage-giflib-tools-giftext-grid-bits-per-pixel
+  title: giftext grid bits per pixel
+  description: Reads the gifgrid fixture with giftext and verifies that the bits-per-pixel metadata line is emitted.
+  kind: usage
+  client_application: giflib-tools
+  command:
+  - bash
+  - /validator/tests/giflib/tests/cases/usage/usage-expanded-client-behavior.sh
+  - usage-giflib-tools-giftext-grid-bits-per-pixel
+  timeout_seconds: 180
+  tags:
+  - usage
+  - gif
+  - giftext
+- id: usage-giflib-tools-gif2rgb-fire-rgb-bytes
+  title: gif2rgb fire RGB bytes
+  description: Converts the fire.gif fixture to an RGB byte stream with gif2rgb and verifies that non-empty RGB output is produced.
+  kind: usage
+  client_application: giflib-tools
+  command:
+  - bash
+  - /validator/tests/giflib/tests/cases/usage/usage-expanded-client-behavior.sh
+  - usage-giflib-tools-gif2rgb-fire-rgb-bytes
+  timeout_seconds: 180
+  tags:
+  - usage
+  - gif
+  - gif2rgb
+- id: usage-giflib-tools-gif2rgb-interlaced-rgb-bytes
+  title: gif2rgb interlaced RGB bytes
+  description: Converts the interlaced treescap fixture to an RGB byte stream with gif2rgb and verifies that non-empty RGB output is produced.
+  kind: usage
+  client_application: giflib-tools
+  command:
+  - bash
+  - /validator/tests/giflib/tests/cases/usage/usage-expanded-client-behavior.sh
+  - usage-giflib-tools-gif2rgb-interlaced-rgb-bytes
+  timeout_seconds: 180
+  tags:
+  - usage
+  - gif
+  - gif2rgb
+- id: usage-giflib-tools-gifbuild-grid-roundtrip-screen
+  title: gifbuild grid roundtrip screen
+  description: Dumps gifgrid.gif to gifbuild text, rebuilds it, and verifies screen metadata from the rebuilt GIF.
+  kind: usage
+  client_application: giflib-tools
+  command:
+  - bash
+  - /validator/tests/giflib/tests/cases/usage/usage-expanded-client-behavior.sh
+  - usage-giflib-tools-gifbuild-grid-roundtrip-screen
+  timeout_seconds: 180
+  tags:
+  - usage
+  - gif
+  - gifbuild
+- id: usage-giflib-tools-gifbuild-treescap-roundtrip-screen
+  title: gifbuild treescap roundtrip screen
+  description: Dumps treescap.gif to gifbuild text, rebuilds it, and verifies screen metadata from the rebuilt GIF.
+  kind: usage
+  client_application: giflib-tools
+  command:
+  - bash
+  - /validator/tests/giflib/tests/cases/usage/usage-expanded-client-behavior.sh
+  - usage-giflib-tools-gifbuild-treescap-roundtrip-screen
+  timeout_seconds: 180
+  tags:
+  - usage
+  - gif
+  - gifbuild
+- id: usage-giflib-tools-giffix-treescap-screen-size
+  title: giffix treescap screen size
+  description: Repairs the treescap.gif fixture with giffix and verifies that giftext can still read screen metadata from the result.
+  kind: usage
+  client_application: giflib-tools
+  command:
+  - bash
+  - /validator/tests/giflib/tests/cases/usage/usage-expanded-client-behavior.sh
+  - usage-giflib-tools-giffix-treescap-screen-size
+  timeout_seconds: 180
+  tags:
+  - usage
+  - gif
+  - giffix
+- id: usage-giflib-tools-gifclrmp-fire-palette-row
+  title: gifclrmp fire palette row
+  description: Prints the fire.gif color map with gifclrmp and verifies that at least one palette row is emitted.
+  kind: usage
+  client_application: giflib-tools
+  command:
+  - bash
+  - /validator/tests/giflib/tests/cases/usage/usage-expanded-client-behavior.sh
+  - usage-giflib-tools-gifclrmp-fire-palette-row
+  timeout_seconds: 180
+  tags:
+  - usage
+  - gif
+  - gifclrmp
+- id: usage-giflib-tools-giftext-interlaced-screen-size
+  title: giftext interlaced screen size
+  description: Reads the interlaced treescap fixture with giftext and verifies that screen-size metadata is emitted.
+  kind: usage
+  client_application: giflib-tools
+  command:
+  - bash
+  - /validator/tests/giflib/tests/cases/usage/usage-expanded-client-behavior.sh
+  - usage-giflib-tools-giftext-interlaced-screen-size
+  timeout_seconds: 180
+  tags:
+  - usage
+  - gif
+  - giftext

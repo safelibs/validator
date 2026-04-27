@@ -863,3 +863,123 @@ testcases:
   timeout_seconds: 120
   tags:
   - usage
+- id: usage-python3-pil-flip-left-right-tiff
+  title: Pillow flip left-right TIFF
+  description: Mirrors a generated TIFF with Pillow and verifies the horizontal pixel positions swap before save.
+  kind: usage
+  client_application: python3-pil
+  command:
+  - bash
+  - /validator/tests/libtiff/tests/cases/usage/usage-expanded-client-behavior.sh
+  - usage-python3-pil-flip-left-right-tiff
+  timeout_seconds: 120
+  tags:
+  - usage
+- id: usage-python3-pil-flip-top-bottom-tiff
+  title: Pillow flip top-bottom TIFF
+  description: Flips a generated TIFF vertically with Pillow and verifies the vertical pixel positions swap before save.
+  kind: usage
+  client_application: python3-pil
+  command:
+  - bash
+  - /validator/tests/libtiff/tests/cases/usage/usage-expanded-client-behavior.sh
+  - usage-python3-pil-flip-top-bottom-tiff
+  timeout_seconds: 120
+  tags:
+  - usage
+- id: usage-python3-pil-autocontrast-generated-tiff
+  title: Pillow autocontrast TIFF
+  description: Applies Pillow autocontrast to a generated TIFF and verifies the transformed image retains the original dimensions.
+  kind: usage
+  client_application: python3-pil
+  command:
+  - bash
+  - /validator/tests/libtiff/tests/cases/usage/usage-expanded-client-behavior.sh
+  - usage-python3-pil-autocontrast-tiff
+  timeout_seconds: 120
+  tags:
+  - usage
+- id: usage-python3-pil-solarize-tiff
+  title: Pillow solarize TIFF
+  description: Applies Pillow solarize to a generated TIFF and verifies the transformed image can still be emitted as TIFF.
+  kind: usage
+  client_application: python3-pil
+  command:
+  - bash
+  - /validator/tests/libtiff/tests/cases/usage/usage-expanded-client-behavior.sh
+  - usage-python3-pil-solarize-tiff
+  timeout_seconds: 120
+  tags:
+  - usage
+- id: usage-python3-pil-posterize-tiff
+  title: Pillow posterize TIFF
+  description: Applies Pillow posterize to a generated TIFF and verifies the transformed image stays in RGB mode.
+  kind: usage
+  client_application: python3-pil
+  command:
+  - bash
+  - /validator/tests/libtiff/tests/cases/usage/usage-expanded-client-behavior.sh
+  - usage-python3-pil-posterize-tiff
+  timeout_seconds: 120
+  tags:
+  - usage
+- id: usage-python3-pil-blue-channel-tiff
+  title: Pillow blue channel TIFF
+  description: Extracts the blue channel from a generated TIFF with Pillow and verifies the channel value for a selected pixel.
+  kind: usage
+  client_application: python3-pil
+  command:
+  - bash
+  - /validator/tests/libtiff/tests/cases/usage/usage-expanded-client-behavior.sh
+  - usage-python3-pil-blue-channel-tiff
+  timeout_seconds: 120
+  tags:
+  - usage
+- id: usage-python3-pil-getbbox-generated-tiff
+  title: Pillow getbbox TIFF
+  description: Computes the bounding box of a generated TIFF with Pillow and verifies the box spans the full image area.
+  kind: usage
+  client_application: python3-pil
+  command:
+  - bash
+  - /validator/tests/libtiff/tests/cases/usage/usage-expanded-client-behavior.sh
+  - usage-python3-pil-getbbox-tiff
+  timeout_seconds: 120
+  tags:
+  - usage
+- id: usage-python3-pil-resize-bicubic-tiff
+  title: Pillow resize bicubic TIFF
+  description: Resizes a generated TIFF with bicubic resampling in Pillow and verifies the new image dimensions.
+  kind: usage
+  client_application: python3-pil
+  command:
+  - bash
+  - /validator/tests/libtiff/tests/cases/usage/usage-expanded-client-behavior.sh
+  - usage-python3-pil-resize-bicubic-tiff
+  timeout_seconds: 120
+  tags:
+  - usage
+- id: usage-python3-pil-histogram-length-tiff
+  title: Pillow histogram length TIFF
+  description: Computes a generated TIFF histogram with Pillow and verifies the expected RGB histogram bin count.
+  kind: usage
+  client_application: python3-pil
+  command:
+  - bash
+  - /validator/tests/libtiff/tests/cases/usage/usage-expanded-client-behavior.sh
+  - usage-python3-pil-histogram-length-tiff
+  timeout_seconds: 120
+  tags:
+  - usage
+- id: usage-python3-pil-crop-center-tiff
+  title: Pillow crop center TIFF
+  description: Crops the center of a generated TIFF with Pillow and verifies the resulting cropped image dimensions.
+  kind: usage
+  client_application: python3-pil
+  command:
+  - bash
+  - /validator/tests/libtiff/tests/cases/usage/usage-expanded-client-behavior.sh
+  - usage-python3-pil-crop-center-tiff
+  timeout_seconds: 120
+  tags:
+  - usage

@@ -863,3 +863,123 @@ testcases:
   timeout_seconds: 120
   tags:
   - usage
+- id: usage-python3-pil-flip-left-right-jpeg
+  title: Pillow flip left-right JPEG
+  description: Mirrors a generated JPEG with Pillow and verifies the horizontal pixel positions swap before save.
+  kind: usage
+  client_application: python3-pil
+  command:
+  - bash
+  - /validator/tests/libjpeg-turbo/tests/cases/usage/usage-expanded-client-behavior.sh
+  - usage-python3-pil-flip-left-right-jpeg
+  timeout_seconds: 120
+  tags:
+  - usage
+- id: usage-python3-pil-flip-top-bottom-jpeg
+  title: Pillow flip top-bottom JPEG
+  description: Flips a generated JPEG vertically with Pillow and verifies the vertical pixel positions swap before save.
+  kind: usage
+  client_application: python3-pil
+  command:
+  - bash
+  - /validator/tests/libjpeg-turbo/tests/cases/usage/usage-expanded-client-behavior.sh
+  - usage-python3-pil-flip-top-bottom-jpeg
+  timeout_seconds: 120
+  tags:
+  - usage
+- id: usage-python3-pil-autocontrast-generated-jpeg
+  title: Pillow autocontrast JPEG
+  description: Applies Pillow autocontrast to a generated JPEG and verifies the transformed image retains the original dimensions.
+  kind: usage
+  client_application: python3-pil
+  command:
+  - bash
+  - /validator/tests/libjpeg-turbo/tests/cases/usage/usage-expanded-client-behavior.sh
+  - usage-python3-pil-autocontrast-jpeg
+  timeout_seconds: 120
+  tags:
+  - usage
+- id: usage-python3-pil-solarize-generated-jpeg
+  title: Pillow solarize JPEG
+  description: Applies Pillow solarize to a generated JPEG and verifies the transformed image can still be emitted as JPEG.
+  kind: usage
+  client_application: python3-pil
+  command:
+  - bash
+  - /validator/tests/libjpeg-turbo/tests/cases/usage/usage-expanded-client-behavior.sh
+  - usage-python3-pil-solarize-jpeg
+  timeout_seconds: 120
+  tags:
+  - usage
+- id: usage-python3-pil-posterize-generated-jpeg
+  title: Pillow posterize JPEG
+  description: Applies Pillow posterize to a generated JPEG and verifies the transformed image stays in RGB mode.
+  kind: usage
+  client_application: python3-pil
+  command:
+  - bash
+  - /validator/tests/libjpeg-turbo/tests/cases/usage/usage-expanded-client-behavior.sh
+  - usage-python3-pil-posterize-jpeg
+  timeout_seconds: 120
+  tags:
+  - usage
+- id: usage-python3-pil-green-channel-jpeg
+  title: Pillow green channel JPEG
+  description: Extracts the green channel from a generated JPEG with Pillow and verifies the channel value for a selected pixel.
+  kind: usage
+  client_application: python3-pil
+  command:
+  - bash
+  - /validator/tests/libjpeg-turbo/tests/cases/usage/usage-expanded-client-behavior.sh
+  - usage-python3-pil-green-channel-jpeg
+  timeout_seconds: 120
+  tags:
+  - usage
+- id: usage-python3-pil-getbbox-jpeg
+  title: Pillow getbbox JPEG
+  description: Computes the bounding box of a generated JPEG with Pillow and verifies the box spans the full image area.
+  kind: usage
+  client_application: python3-pil
+  command:
+  - bash
+  - /validator/tests/libjpeg-turbo/tests/cases/usage/usage-expanded-client-behavior.sh
+  - usage-python3-pil-getbbox-jpeg
+  timeout_seconds: 120
+  tags:
+  - usage
+- id: usage-python3-pil-resize-bicubic-jpeg
+  title: Pillow resize bicubic JPEG
+  description: Resizes a generated JPEG with bicubic resampling in Pillow and verifies the new image dimensions.
+  kind: usage
+  client_application: python3-pil
+  command:
+  - bash
+  - /validator/tests/libjpeg-turbo/tests/cases/usage/usage-expanded-client-behavior.sh
+  - usage-python3-pil-resize-bicubic-jpeg
+  timeout_seconds: 120
+  tags:
+  - usage
+- id: usage-python3-pil-histogram-length-jpeg
+  title: Pillow histogram length JPEG
+  description: Computes a generated JPEG histogram with Pillow and verifies the expected RGB histogram bin count.
+  kind: usage
+  client_application: python3-pil
+  command:
+  - bash
+  - /validator/tests/libjpeg-turbo/tests/cases/usage/usage-expanded-client-behavior.sh
+  - usage-python3-pil-histogram-length-jpeg
+  timeout_seconds: 120
+  tags:
+  - usage
+- id: usage-python3-pil-crop-center-jpeg
+  title: Pillow crop center JPEG
+  description: Crops the center of a generated JPEG with Pillow and verifies the resulting cropped image dimensions.
+  kind: usage
+  client_application: python3-pil
+  command:
+  - bash
+  - /validator/tests/libjpeg-turbo/tests/cases/usage/usage-expanded-client-behavior.sh
+  - usage-python3-pil-crop-center-jpeg
+  timeout_seconds: 120
+  tags:
+  - usage

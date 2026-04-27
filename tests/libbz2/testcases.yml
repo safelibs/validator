@@ -849,3 +849,143 @@ testcases:
   - usage
   - bzip2
   - stream
+- id: usage-bzip2-best-compress-roundtrip
+  title: bzip2 best compress roundtrip
+  description: Compresses a file with bzip2 -9, decompresses it again, and verifies the restored plaintext payload.
+  kind: usage
+  client_application: bzip2
+  command:
+  - bash
+  - /validator/tests/libbz2/tests/cases/usage/usage-expanded-client-behavior.sh
+  - usage-bzip2-best-compress-roundtrip
+  timeout_seconds: 180
+  tags:
+  - usage
+  - bzip2
+  - compression
+- id: usage-bzip2-fast-compress-roundtrip
+  title: bzip2 fast compress roundtrip
+  description: Compresses a file with bzip2 -1, decompresses it again, and verifies the restored plaintext payload.
+  kind: usage
+  client_application: bzip2
+  command:
+  - bash
+  - /validator/tests/libbz2/tests/cases/usage/usage-expanded-client-behavior.sh
+  - usage-bzip2-fast-compress-roundtrip
+  timeout_seconds: 180
+  tags:
+  - usage
+  - bzip2
+  - compression
+- id: usage-bzip2-stdout-keep-input
+  title: bzip2 stdout keep input
+  description: Compresses a file to stdout with bzip2 -k, keeps the original input, and verifies both original and restored output content.
+  kind: usage
+  client_application: bzip2
+  command:
+  - bash
+  - /validator/tests/libbz2/tests/cases/usage/usage-expanded-client-behavior.sh
+  - usage-bzip2-stdout-keep-input
+  timeout_seconds: 180
+  tags:
+  - usage
+  - bzip2
+  - stream
+- id: usage-bunzip2-stdout-roundtrip
+  title: bunzip2 stdout roundtrip
+  description: Decompresses a bzip2 stream to stdout with bunzip2 -c and verifies the restored plaintext payload.
+  kind: usage
+  client_application: bzip2
+  command:
+  - bash
+  - /validator/tests/libbz2/tests/cases/usage/usage-expanded-client-behavior.sh
+  - usage-bunzip2-stdout-roundtrip
+  timeout_seconds: 180
+  tags:
+  - usage
+  - bzip2
+  - stream
+- id: usage-bzip2-test-verbose
+  title: bzip2 test verbose
+  description: Runs bzip2 test mode with verbose output and verifies the integrity check reports success.
+  kind: usage
+  client_application: bzip2
+  command:
+  - bash
+  - /validator/tests/libbz2/tests/cases/usage/usage-expanded-client-behavior.sh
+  - usage-bzip2-test-verbose
+  timeout_seconds: 180
+  tags:
+  - usage
+  - bzip2
+  - integrity
+- id: usage-bzgrep-line-number-match
+  title: bzgrep line number
+  description: Searches compressed text with bzgrep -n and verifies the matched line number prefix in the output.
+  kind: usage
+  client_application: bzip2
+  command:
+  - bash
+  - /validator/tests/libbz2/tests/cases/usage/usage-expanded-client-behavior.sh
+  - usage-bzgrep-line-number
+  timeout_seconds: 180
+  tags:
+  - usage
+  - bzip2
+  - text
+- id: usage-bzgrep-count-lines
+  title: bzgrep count lines
+  description: Counts matching lines in compressed text with bzgrep -c and verifies the reported match total.
+  kind: usage
+  client_application: bzip2
+  command:
+  - bash
+  - /validator/tests/libbz2/tests/cases/usage/usage-expanded-client-behavior.sh
+  - usage-bzgrep-count-lines
+  timeout_seconds: 180
+  tags:
+  - usage
+  - bzip2
+  - text
+- id: usage-bzcat-two-files
+  title: bzcat two files
+  description: Concatenates two compressed files with bzcat and verifies both decompressed payloads appear in the output.
+  kind: usage
+  client_application: bzip2
+  command:
+  - bash
+  - /validator/tests/libbz2/tests/cases/usage/usage-expanded-client-behavior.sh
+  - usage-bzcat-two-files
+  timeout_seconds: 180
+  tags:
+  - usage
+  - bzip2
+  - stream
+- id: usage-bzip2-stdin-roundtrip
+  title: bzip2 stdin roundtrip
+  description: Compresses stdin with bzip2, decompresses the resulting stream, and verifies the restored plaintext payload.
+  kind: usage
+  client_application: bzip2
+  command:
+  - bash
+  - /validator/tests/libbz2/tests/cases/usage/usage-expanded-client-behavior.sh
+  - usage-bzip2-stdin-roundtrip
+  timeout_seconds: 180
+  tags:
+  - usage
+  - bzip2
+  - stream
+- id: usage-bzip2-empty-file-roundtrip
+  title: bzip2 empty file roundtrip
+  description: Compresses and decompresses an empty file with bzip2 and verifies that the restored output remains empty.
+  kind: usage
+  client_application: bzip2
+  command:
+  - bash
+  - /validator/tests/libbz2/tests/cases/usage/usage-expanded-client-behavior.sh
+  - usage-bzip2-empty-file-roundtrip
+  timeout_seconds: 180
+  tags:
+  - usage
+  - bzip2
+  - compression

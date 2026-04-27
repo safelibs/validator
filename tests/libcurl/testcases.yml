@@ -871,3 +871,143 @@ testcases:
   - usage
   - curl
   - http
+- id: usage-curl-head-follow-redirect
+  title: curl head follow redirect
+  description: Sends a HEAD request with redirect following and verifies the final successful response headers.
+  kind: usage
+  client_application: curl
+  command:
+  - bash
+  - /validator/tests/libcurl/tests/cases/usage/usage-expanded-client-behavior.sh
+  - usage-curl-head-follow-redirect
+  timeout_seconds: 180
+  tags:
+  - usage
+  - curl
+  - http
+- id: usage-curl-dump-headers-file
+  title: curl dump headers file
+  description: Saves HTTP response headers to a file with curl and verifies the content-type header is recorded.
+  kind: usage
+  client_application: curl
+  command:
+  - bash
+  - /validator/tests/libcurl/tests/cases/usage/usage-expanded-client-behavior.sh
+  - usage-curl-dump-headers-file
+  timeout_seconds: 180
+  tags:
+  - usage
+  - curl
+  - http
+- id: usage-curl-data-urlencoded-post
+  title: curl data urlencoded post
+  description: Posts urlencoded form data with curl and verifies the encoded request body echoed by the server.
+  kind: usage
+  client_application: curl
+  command:
+  - bash
+  - /validator/tests/libcurl/tests/cases/usage/usage-expanded-client-behavior.sh
+  - usage-curl-data-urlencoded-post
+  timeout_seconds: 180
+  tags:
+  - usage
+  - curl
+  - http
+- id: usage-curl-cookie-jar-save
+  title: curl cookie jar save
+  description: Stores a response cookie in a curl cookie jar file and verifies the saved cookie entry.
+  kind: usage
+  client_application: curl
+  command:
+  - bash
+  - /validator/tests/libcurl/tests/cases/usage/usage-expanded-client-behavior.sh
+  - usage-curl-cookie-jar-save
+  timeout_seconds: 180
+  tags:
+  - usage
+  - curl
+  - http
+- id: usage-curl-cookie-jar-send
+  title: curl cookie jar send
+  description: Replays a saved cookie jar with curl and verifies the cookie header reaches the server.
+  kind: usage
+  client_application: curl
+  command:
+  - bash
+  - /validator/tests/libcurl/tests/cases/usage/usage-expanded-client-behavior.sh
+  - usage-curl-cookie-jar-send
+  timeout_seconds: 180
+  tags:
+  - usage
+  - curl
+  - http
+- id: usage-curl-basic-auth-header
+  title: curl basic auth header
+  description: Sends HTTP basic authentication with curl and verifies the server receives an Authorization header.
+  kind: usage
+  client_application: curl
+  command:
+  - bash
+  - /validator/tests/libcurl/tests/cases/usage/usage-expanded-client-behavior.sh
+  - usage-curl-basic-auth-header
+  timeout_seconds: 180
+  tags:
+  - usage
+  - curl
+  - http
+- id: usage-curl-referer-header-echo
+  title: curl referer header
+  description: Sends an explicit Referer header with curl and verifies the server receives the configured value.
+  kind: usage
+  client_application: curl
+  command:
+  - bash
+  - /validator/tests/libcurl/tests/cases/usage/usage-expanded-client-behavior.sh
+  - usage-curl-referer-header-echo
+  timeout_seconds: 180
+  tags:
+  - usage
+  - curl
+  - http
+- id: usage-curl-form-post-multipart
+  title: curl form post
+  description: Uploads multipart form data with curl -F and verifies the request body contains the submitted field payload.
+  kind: usage
+  client_application: curl
+  command:
+  - bash
+  - /validator/tests/libcurl/tests/cases/usage/usage-expanded-client-behavior.sh
+  - usage-curl-form-post-multipart
+  timeout_seconds: 180
+  tags:
+  - usage
+  - curl
+  - http
+- id: usage-curl-get-query-string
+  title: curl GET query string
+  description: Builds a query string with curl -G and verifies the encoded query reaches the server.
+  kind: usage
+  client_application: curl
+  command:
+  - bash
+  - /validator/tests/libcurl/tests/cases/usage/usage-expanded-client-behavior.sh
+  - usage-curl-get-query-string
+  timeout_seconds: 180
+  tags:
+  - usage
+  - curl
+  - http
+- id: usage-curl-if-none-match-header
+  title: curl if none match header
+  description: Sends an If-None-Match request header with curl and verifies the server returns a 304 response.
+  kind: usage
+  client_application: curl
+  command:
+  - bash
+  - /validator/tests/libcurl/tests/cases/usage/usage-expanded-client-behavior.sh
+  - usage-curl-if-none-match-header
+  timeout_seconds: 180
+  tags:
+  - usage
+  - curl
+  - http

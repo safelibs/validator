@@ -869,3 +869,143 @@ testcases:
   - usage
   - yaml
   - python
+- id: usage-python3-yaml-safe-load-folded-scalar
+  title: PyYAML safe load folded scalar
+  description: Loads a folded block scalar with PyYAML and verifies line folding into a single space-separated string.
+  kind: usage
+  client_application: python3-yaml
+  command:
+  - bash
+  - /validator/tests/libyaml/tests/cases/usage/usage-expanded-client-behavior.sh
+  - usage-python3-yaml-safe-load-folded-scalar
+  timeout_seconds: 180
+  tags:
+  - usage
+  - yaml
+  - python
+- id: usage-python3-yaml-safe-load-literal-scalar
+  title: PyYAML safe load literal scalar
+  description: Loads a literal block scalar with PyYAML and verifies that newline characters remain in the resulting string.
+  kind: usage
+  client_application: python3-yaml
+  command:
+  - bash
+  - /validator/tests/libyaml/tests/cases/usage/usage-expanded-client-behavior.sh
+  - usage-python3-yaml-safe-load-literal-scalar
+  timeout_seconds: 180
+  tags:
+  - usage
+  - yaml
+  - python
+- id: usage-python3-yaml-safe-load-hex-int
+  title: PyYAML safe load hex int
+  description: Loads a hexadecimal integer with PyYAML and verifies the parsed decimal integer value.
+  kind: usage
+  client_application: python3-yaml
+  command:
+  - bash
+  - /validator/tests/libyaml/tests/cases/usage/usage-expanded-client-behavior.sh
+  - usage-python3-yaml-safe-load-hex-int
+  timeout_seconds: 180
+  tags:
+  - usage
+  - yaml
+  - python
+- id: usage-python3-yaml-safe-load-float-inf
+  title: PyYAML safe load float inf
+  description: Loads an infinite floating-point scalar with PyYAML and verifies the parsed value is infinite.
+  kind: usage
+  client_application: python3-yaml
+  command:
+  - bash
+  - /validator/tests/libyaml/tests/cases/usage/usage-expanded-client-behavior.sh
+  - usage-python3-yaml-safe-load-float-inf
+  timeout_seconds: 180
+  tags:
+  - usage
+  - yaml
+  - python
+- id: usage-python3-yaml-safe-dump-explicit-start
+  title: PyYAML safe dump explicit start
+  description: Dumps a document with an explicit YAML start marker and verifies the document header is emitted.
+  kind: usage
+  client_application: python3-yaml
+  command:
+  - bash
+  - /validator/tests/libyaml/tests/cases/usage/usage-expanded-client-behavior.sh
+  - usage-python3-yaml-safe-dump-explicit-start
+  timeout_seconds: 180
+  tags:
+  - usage
+  - yaml
+  - python
+- id: usage-python3-yaml-safe-dump-allow-unicode
+  title: PyYAML safe dump allow unicode
+  description: Dumps a mapping with allow_unicode enabled in PyYAML and verifies the expected scalar text is emitted.
+  kind: usage
+  client_application: python3-yaml
+  command:
+  - bash
+  - /validator/tests/libyaml/tests/cases/usage/usage-expanded-client-behavior.sh
+  - usage-python3-yaml-safe-dump-allow-unicode
+  timeout_seconds: 180
+  tags:
+  - usage
+  - yaml
+  - python
+- id: usage-python3-yaml-csafe-load-binary-bytes
+  title: PyYAML CSafeLoader binary bytes
+  description: Loads a binary scalar through the C-backed PyYAML loader and verifies the decoded byte string.
+  kind: usage
+  client_application: python3-yaml
+  command:
+  - bash
+  - /validator/tests/libyaml/tests/cases/usage/usage-expanded-client-behavior.sh
+  - usage-python3-yaml-csafe-load-binary-bytes
+  timeout_seconds: 180
+  tags:
+  - usage
+  - yaml
+  - python
+- id: usage-python3-yaml-compose-sequence-length
+  title: PyYAML compose sequence length
+  description: Composes a YAML sequence node with PyYAML and verifies the resulting node contains the expected number of items.
+  kind: usage
+  client_application: python3-yaml
+  command:
+  - bash
+  - /validator/tests/libyaml/tests/cases/usage/usage-expanded-client-behavior.sh
+  - usage-python3-yaml-compose-sequence-length
+  timeout_seconds: 180
+  tags:
+  - usage
+  - yaml
+  - python
+- id: usage-python3-yaml-parse-event-count
+  title: PyYAML parse event count
+  description: Parses YAML into events with PyYAML and verifies that a non-empty event stream is produced.
+  kind: usage
+  client_application: python3-yaml
+  command:
+  - bash
+  - /validator/tests/libyaml/tests/cases/usage/usage-expanded-client-behavior.sh
+  - usage-python3-yaml-parse-event-count
+  timeout_seconds: 180
+  tags:
+  - usage
+  - yaml
+  - python
+- id: usage-python3-yaml-safe-load-yes-bool
+  title: PyYAML safe load yes bool
+  description: Loads a YAML yes scalar with PyYAML and verifies the resolved boolean value is true.
+  kind: usage
+  client_application: python3-yaml
+  command:
+  - bash
+  - /validator/tests/libyaml/tests/cases/usage/usage-expanded-client-behavior.sh
+  - usage-python3-yaml-safe-load-yes-bool
+  timeout_seconds: 180
+  tags:
+  - usage
+  - yaml
+  - python

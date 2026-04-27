@@ -867,3 +867,138 @@ testcases:
   tags:
   - usage
   - xml
+- id: usage-python3-lxml-attribute-set
+  title: lxml attribute set
+  description: Sets a root attribute through python3-lxml and verifies the updated attribute value.
+  kind: usage
+  client_application: python3-lxml
+  command:
+  - bash
+  - /validator/tests/libxml/tests/cases/usage/usage-expanded-client-behavior.sh
+  - usage-python3-lxml-attribute-set
+  timeout_seconds: 180
+  tags:
+  - usage
+  - xml
+  - python
+- id: usage-python3-lxml-nsmap-lookup
+  title: lxml namespace map lookup
+  description: Runs a namespace-aware lookup through python3-lxml and verifies the selected namespaced text node.
+  kind: usage
+  client_application: python3-lxml
+  command:
+  - bash
+  - /validator/tests/libxml/tests/cases/usage/usage-expanded-client-behavior.sh
+  - usage-python3-lxml-nsmap-lookup
+  timeout_seconds: 180
+  tags:
+  - usage
+  - xml
+  - python
+- id: usage-python3-lxml-tostring-pretty-print
+  title: lxml tostring pretty
+  description: Pretty-prints XML through python3-lxml and verifies the emitted text contains the expected item element.
+  kind: usage
+  client_application: python3-lxml
+  command:
+  - bash
+  - /validator/tests/libxml/tests/cases/usage/usage-expanded-client-behavior.sh
+  - usage-python3-lxml-tostring-pretty
+  timeout_seconds: 180
+  tags:
+  - usage
+  - xml
+  - python
+- id: usage-python3-lxml-xpath-string-value
+  title: lxml XPath string value
+  description: Evaluates a string-valued XPath expression through python3-lxml and verifies the selected text node.
+  kind: usage
+  client_application: python3-lxml
+  command:
+  - bash
+  - /validator/tests/libxml/tests/cases/usage/usage-expanded-client-behavior.sh
+  - usage-python3-lxml-xpath-string-value
+  timeout_seconds: 180
+  tags:
+  - usage
+  - xml
+  - python
+- id: usage-python3-lxml-iterfind-count
+  title: lxml iterfind count
+  description: Iterates matching XML elements through python3-lxml and verifies the resulting element count.
+  kind: usage
+  client_application: python3-lxml
+  command:
+  - bash
+  - /validator/tests/libxml/tests/cases/usage/usage-expanded-client-behavior.sh
+  - usage-python3-lxml-iterfind-count
+  timeout_seconds: 180
+  tags:
+  - usage
+  - xml
+  - python
+- id: usage-xmlstarlet-edit-add-attribute
+  title: xmlstarlet edit add attribute
+  description: Adds an XML attribute with xmlstarlet ed and verifies the new attribute value in the updated document.
+  kind: usage
+  client_application: xmlstarlet
+  command:
+  - bash
+  - /validator/tests/libxml/tests/cases/usage/usage-expanded-client-behavior.sh
+  - usage-xmlstarlet-edit-add-attribute
+  timeout_seconds: 180
+  tags:
+  - usage
+  - xml
+- id: usage-xmlstarlet-edit-append-node
+  title: xmlstarlet edit append node
+  description: Appends a new element with xmlstarlet ed and verifies the inserted node text in the updated document.
+  kind: usage
+  client_application: xmlstarlet
+  command:
+  - bash
+  - /validator/tests/libxml/tests/cases/usage/usage-expanded-client-behavior.sh
+  - usage-xmlstarlet-edit-append-node
+  timeout_seconds: 180
+  tags:
+  - usage
+  - xml
+- id: usage-xmlstarlet-select-attribute-value
+  title: xmlstarlet select attribute value
+  description: Selects an XML attribute with xmlstarlet and verifies the emitted attribute value.
+  kind: usage
+  client_application: xmlstarlet
+  command:
+  - bash
+  - /validator/tests/libxml/tests/cases/usage/usage-expanded-client-behavior.sh
+  - usage-xmlstarlet-select-attribute-value
+  timeout_seconds: 180
+  tags:
+  - usage
+  - xml
+- id: usage-xmlstarlet-c14n-root
+  title: xmlstarlet c14n root
+  description: Canonicalizes XML with xmlstarlet c14n and verifies the canonical output retains the namespaced note element.
+  kind: usage
+  client_application: xmlstarlet
+  command:
+  - bash
+  - /validator/tests/libxml/tests/cases/usage/usage-expanded-client-behavior.sh
+  - usage-xmlstarlet-c14n-root
+  timeout_seconds: 180
+  tags:
+  - usage
+  - xml
+- id: usage-xmlstarlet-select-text-count
+  title: xmlstarlet select text count
+  description: Counts selected XML elements with xmlstarlet XPath evaluation and verifies the emitted count.
+  kind: usage
+  client_application: xmlstarlet
+  command:
+  - bash
+  - /validator/tests/libxml/tests/cases/usage/usage-expanded-client-behavior.sh
+  - usage-xmlstarlet-select-text-count
+  timeout_seconds: 180
+  tags:
+  - usage
+  - xml

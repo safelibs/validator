@@ -851,3 +851,123 @@ testcases:
   timeout_seconds: 120
   tags:
   - usage
+- id: usage-netpbm-pnmflip-leftright-png-generated
+  title: netpbm pnmflip leftright PNG generated
+  description: Flips a generated grayscale PNG left-to-right with netpbm and verifies the pixel order in the output image.
+  kind: usage
+  client_application: netpbm
+  command:
+  - bash
+  - /validator/tests/libpng/tests/cases/usage/usage-expanded-client-behavior.sh
+  - usage-netpbm-pnmflip-leftright-png-generated
+  timeout_seconds: 120
+  tags:
+  - usage
+- id: usage-netpbm-pnmflip-topbottom-png-generated
+  title: netpbm pnmflip topbottom PNG generated
+  description: Flips a generated grayscale PNG top-to-bottom with netpbm and verifies the pixel order in the output image.
+  kind: usage
+  client_application: netpbm
+  command:
+  - bash
+  - /validator/tests/libpng/tests/cases/usage/usage-expanded-client-behavior.sh
+  - usage-netpbm-pnmflip-topbottom-png-generated
+  timeout_seconds: 120
+  tags:
+  - usage
+- id: usage-netpbm-pamflip-cw-png-generated
+  title: netpbm pamflip cw PNG generated
+  description: Rotates a generated grayscale PNG clockwise with pamflip and verifies the rotated pixel order.
+  kind: usage
+  client_application: netpbm
+  command:
+  - bash
+  - /validator/tests/libpng/tests/cases/usage/usage-expanded-client-behavior.sh
+  - usage-netpbm-pamflip-cw-png-generated
+  timeout_seconds: 120
+  tags:
+  - usage
+- id: usage-netpbm-pamchannel-red-png-generated
+  title: netpbm pamchannel red PNG generated
+  description: Extracts the red channel from a generated RGB PNG with netpbm and verifies the grayscale channel values.
+  kind: usage
+  client_application: netpbm
+  command:
+  - bash
+  - /validator/tests/libpng/tests/cases/usage/usage-expanded-client-behavior.sh
+  - usage-netpbm-pamchannel-red-png-generated
+  timeout_seconds: 120
+  tags:
+  - usage
+- id: usage-netpbm-pnmdepth-15-png-generated
+  title: netpbm pnmdepth 15 PNG generated
+  description: Reduces a generated grayscale PNG depth with netpbm and verifies the resulting maxval header.
+  kind: usage
+  client_application: netpbm
+  command:
+  - bash
+  - /validator/tests/libpng/tests/cases/usage/usage-expanded-client-behavior.sh
+  - usage-netpbm-pnmdepth-15-png-generated
+  timeout_seconds: 120
+  tags:
+  - usage
+- id: usage-netpbm-pnminvert-png-generated
+  title: netpbm pnminvert PNG generated
+  description: Inverts a generated grayscale PNG with netpbm and verifies the inverted pixel values.
+  kind: usage
+  client_application: netpbm
+  command:
+  - bash
+  - /validator/tests/libpng/tests/cases/usage/usage-expanded-client-behavior.sh
+  - usage-netpbm-pnminvert-png-generated
+  timeout_seconds: 120
+  tags:
+  - usage
+- id: usage-netpbm-pnmscale-double-png-generated
+  title: netpbm pnmscale double PNG generated
+  description: Doubles a generated grayscale PNG with netpbm and verifies the scaled output dimensions and pixel values.
+  kind: usage
+  client_application: netpbm
+  command:
+  - bash
+  - /validator/tests/libpng/tests/cases/usage/usage-expanded-client-behavior.sh
+  - usage-netpbm-pnmscale-double-png-generated
+  timeout_seconds: 120
+  tags:
+  - usage
+- id: usage-pngquant-colors-eight-png-generated
+  title: pngquant colors eight PNG generated
+  description: Quantizes a generated PNG to eight colors with pngquant and verifies the resulting RGB palette size does not exceed eight colors.
+  kind: usage
+  client_application: pngquant
+  command:
+  - bash
+  - /validator/tests/libpng/tests/cases/usage/usage-expanded-client-behavior.sh
+  - usage-pngquant-colors-eight-png-generated
+  timeout_seconds: 120
+  tags:
+  - usage
+- id: usage-pngquant-speed-one-png-generated
+  title: pngquant speed one PNG generated
+  description: Quantizes a generated PNG with pngquant speed one and verifies the resulting RGB palette size does not exceed eight colors.
+  kind: usage
+  client_application: pngquant
+  command:
+  - bash
+  - /validator/tests/libpng/tests/cases/usage/usage-expanded-client-behavior.sh
+  - usage-pngquant-speed-one-png-generated
+  timeout_seconds: 120
+  tags:
+  - usage
+- id: usage-pngquant-quality-low-png-generated
+  title: pngquant quality low PNG generated
+  description: Quantizes a generated PNG with a low-quality window in pngquant and verifies the resulting RGB palette size remains bounded.
+  kind: usage
+  client_application: pngquant
+  command:
+  - bash
+  - /validator/tests/libpng/tests/cases/usage/usage-expanded-client-behavior.sh
+  - usage-pngquant-quality-low-png-generated
+  timeout_seconds: 120
+  tags:
+  - usage

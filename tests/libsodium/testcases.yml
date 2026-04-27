@@ -861,3 +861,123 @@ testcases:
   timeout_seconds: 120
   tags:
   - usage
+- id: usage-python3-nacl-sha512-digest-hex
+  title: PyNaCl SHA512 digest hex
+  description: Hashes a payload with PyNaCl SHA512 and verifies the emitted hexadecimal digest length.
+  kind: usage
+  client_application: python3-nacl
+  command:
+  - bash
+  - /validator/tests/libsodium/tests/cases/usage/usage-expanded-client-behavior.sh
+  - usage-python3-nacl-sha512-digest-hex
+  timeout_seconds: 120
+  tags:
+  - usage
+- id: usage-python3-nacl-random-bytes-length
+  title: PyNaCl random bytes length
+  description: Allocates random bytes with PyNaCl utilities and verifies the returned byte count.
+  kind: usage
+  client_application: python3-nacl
+  command:
+  - bash
+  - /validator/tests/libsodium/tests/cases/usage/usage-expanded-client-behavior.sh
+  - usage-python3-nacl-random-bytes-length
+  timeout_seconds: 120
+  tags:
+  - usage
+- id: usage-python3-nacl-box-encrypt-roundtrip
+  title: PyNaCl Box roundtrip
+  description: Exchanges an encrypted payload with PyNaCl Box and verifies the decrypted round-trip plaintext.
+  kind: usage
+  client_application: python3-nacl
+  command:
+  - bash
+  - /validator/tests/libsodium/tests/cases/usage/usage-expanded-client-behavior.sh
+  - usage-python3-nacl-box-roundtrip
+  timeout_seconds: 120
+  tags:
+  - usage
+- id: usage-python3-nacl-secretbox-empty-message
+  title: PyNaCl SecretBox empty message
+  description: Encrypts and decrypts an empty payload with PyNaCl SecretBox and verifies the empty plaintext round trip.
+  kind: usage
+  client_application: python3-nacl
+  command:
+  - bash
+  - /validator/tests/libsodium/tests/cases/usage/usage-expanded-client-behavior.sh
+  - usage-python3-nacl-secretbox-empty-message
+  timeout_seconds: 120
+  tags:
+  - usage
+- id: usage-python3-nacl-sign-verify-hex
+  title: PyNaCl sign verify hex
+  description: Signs and verifies a payload with hex encoding through PyNaCl and verifies the restored plaintext.
+  kind: usage
+  client_application: python3-nacl
+  command:
+  - bash
+  - /validator/tests/libsodium/tests/cases/usage/usage-expanded-client-behavior.sh
+  - usage-python3-nacl-sign-verify-hex
+  timeout_seconds: 120
+  tags:
+  - usage
+- id: usage-php83-sodium-auth-verify-tag
+  title: PHP sodium auth verify
+  description: Computes and verifies a libsodium authentication tag in PHP and checks the emitted tag length.
+  kind: usage
+  client_application: php8.3-cli
+  command:
+  - bash
+  - /validator/tests/libsodium/tests/cases/usage/usage-expanded-client-behavior.sh
+  - usage-php83-sodium-auth-verify
+  timeout_seconds: 120
+  tags:
+  - usage
+- id: usage-php83-sodium-bin2hex-roundtrip
+  title: PHP sodium bin2hex roundtrip
+  description: Converts binary data to hex and back with PHP sodium helpers and verifies the restored payload bytes.
+  kind: usage
+  client_application: php8.3-cli
+  command:
+  - bash
+  - /validator/tests/libsodium/tests/cases/usage/usage-expanded-client-behavior.sh
+  - usage-php83-sodium-bin2hex-roundtrip
+  timeout_seconds: 120
+  tags:
+  - usage
+- id: usage-php83-sodium-add
+  title: PHP sodium add
+  description: Adds two little-endian counters with PHP sodium_add and verifies the resulting counter byte value.
+  kind: usage
+  client_application: php8.3-cli
+  command:
+  - bash
+  - /validator/tests/libsodium/tests/cases/usage/usage-expanded-client-behavior.sh
+  - usage-php83-sodium-add
+  timeout_seconds: 120
+  tags:
+  - usage
+- id: usage-php83-sodium-add-carry
+  title: PHP sodium add carry
+  description: Adds little-endian counters with PHP sodium_add and verifies that carry propagation updates the next byte.
+  kind: usage
+  client_application: php8.3-cli
+  command:
+  - bash
+  - /validator/tests/libsodium/tests/cases/usage/usage-expanded-client-behavior.sh
+  - usage-php83-sodium-add-carry
+  timeout_seconds: 120
+  tags:
+  - usage
+- id: usage-php83-sodium-pad-unpad-block
+  title: PHP sodium pad unpad
+  description: Pads and unpads a payload with PHP sodium helpers and verifies that the restored plaintext matches the original input.
+  kind: usage
+  client_application: php8.3-cli
+  command:
+  - bash
+  - /validator/tests/libsodium/tests/cases/usage/usage-expanded-client-behavior.sh
+  - usage-php83-sodium-pad-unpad
+  timeout_seconds: 120
+  tags:
+  - usage

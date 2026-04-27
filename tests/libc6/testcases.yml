@@ -855,3 +855,143 @@ testcases:
   - usage
   - tar
   - archive
+- id: usage-bash-parameter-trim
+  title: bash parameter trim
+  description: Uses bash parameter expansion to trim a filename suffix and verifies the shortened value.
+  kind: usage
+  client_application: bash
+  command:
+  - bash
+  - /validator/tests/libc6/tests/cases/usage/usage-expanded-client-behavior.sh
+  - usage-bash-parameter-trim
+  timeout_seconds: 180
+  tags:
+  - usage
+  - bash
+  - shell
+- id: usage-bash-array-length
+  title: bash array length
+  description: Reads the number of elements in a bash array and verifies the reported array length.
+  kind: usage
+  client_application: bash
+  command:
+  - bash
+  - /validator/tests/libc6/tests/cases/usage/usage-expanded-client-behavior.sh
+  - usage-bash-array-length
+  timeout_seconds: 180
+  tags:
+  - usage
+  - bash
+  - shell
+- id: usage-coreutils-wc-bytes
+  title: coreutils wc bytes
+  description: Counts file bytes with wc and verifies the exact byte count emitted by the client.
+  kind: usage
+  client_application: coreutils
+  command:
+  - bash
+  - /validator/tests/libc6/tests/cases/usage/usage-expanded-client-behavior.sh
+  - usage-coreutils-wc-bytes
+  timeout_seconds: 180
+  tags:
+  - usage
+  - coreutils
+  - filesystem
+- id: usage-coreutils-sort-unique
+  title: coreutils sort unique
+  description: Sorts duplicated lines with sort -u and verifies the unique output rows remain.
+  kind: usage
+  client_application: coreutils
+  command:
+  - bash
+  - /validator/tests/libc6/tests/cases/usage/usage-expanded-client-behavior.sh
+  - usage-coreutils-sort-unique
+  timeout_seconds: 180
+  tags:
+  - usage
+  - coreutils
+  - text
+- id: usage-coreutils-cut-field
+  title: coreutils cut field
+  description: Extracts a CSV column with cut and verifies the selected field values are emitted.
+  kind: usage
+  client_application: coreutils
+  command:
+  - bash
+  - /validator/tests/libc6/tests/cases/usage/usage-expanded-client-behavior.sh
+  - usage-coreutils-cut-field
+  timeout_seconds: 180
+  tags:
+  - usage
+  - coreutils
+  - text
+- id: usage-grep-line-number
+  title: grep line number
+  description: Searches text with grep -n and verifies the matched line number prefix in the output.
+  kind: usage
+  client_application: grep
+  command:
+  - bash
+  - /validator/tests/libc6/tests/cases/usage/usage-expanded-client-behavior.sh
+  - usage-grep-line-number
+  timeout_seconds: 180
+  tags:
+  - usage
+  - grep
+  - text
+- id: usage-gawk-sum-column
+  title: gawk sum column
+  description: Sums a numeric CSV column with gawk and verifies the aggregated total.
+  kind: usage
+  client_application: gawk
+  command:
+  - bash
+  - /validator/tests/libc6/tests/cases/usage/usage-expanded-client-behavior.sh
+  - usage-gawk-sum-column
+  timeout_seconds: 180
+  tags:
+  - usage
+  - gawk
+  - text
+- id: usage-sed-global-replace-all
+  title: sed global replace
+  description: Replaces every matching token with sed and verifies the fully rewritten output line.
+  kind: usage
+  client_application: sed
+  command:
+  - bash
+  - /validator/tests/libc6/tests/cases/usage/usage-expanded-client-behavior.sh
+  - usage-sed-global-replace-all
+  timeout_seconds: 180
+  tags:
+  - usage
+  - sed
+  - text
+- id: usage-coreutils-basename-suffix
+  title: coreutils basename suffix
+  description: Strips a multi-extension suffix from a path with basename and verifies the shortened filename.
+  kind: usage
+  client_application: coreutils
+  command:
+  - bash
+  - /validator/tests/libc6/tests/cases/usage/usage-expanded-client-behavior.sh
+  - usage-coreutils-basename-suffix
+  timeout_seconds: 180
+  tags:
+  - usage
+  - coreutils
+  - path
+- id: usage-tar-create-list
+  title: tar create list
+  description: Creates a tar archive and verifies the member path is listed by the tar client afterward.
+  kind: usage
+  client_application: tar
+  command:
+  - bash
+  - /validator/tests/libc6/tests/cases/usage/usage-expanded-client-behavior.sh
+  - usage-tar-create-list
+  timeout_seconds: 180
+  tags:
+  - usage
+  - tar
+  - archive

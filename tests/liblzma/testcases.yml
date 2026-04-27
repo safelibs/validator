@@ -872,3 +872,143 @@ testcases:
   - usage
   - archive
   - xz
+- id: usage-libarchive-tools-xz-stdout-member-alpha
+  title: libarchive-tools xz stdout member alpha
+  description: Streams a single member from an xz-compressed tar archive with bsdtar -xOf and verifies the extracted payload.
+  kind: usage
+  client_application: libarchive-tools
+  command:
+  - bash
+  - /validator/tests/liblzma/tests/cases/usage/usage-expanded-client-behavior.sh
+  - usage-libarchive-tools-xz-stdout-member-alpha
+  timeout_seconds: 180
+  tags:
+  - usage
+  - archive
+  - xz
+- id: usage-libarchive-tools-xz-stdin-list-members
+  title: libarchive-tools xz stdin list members
+  description: Pipes an xz-compressed tar archive into bsdtar and verifies the listed member paths from stdin input.
+  kind: usage
+  client_application: libarchive-tools
+  command:
+  - bash
+  - /validator/tests/liblzma/tests/cases/usage/usage-expanded-client-behavior.sh
+  - usage-libarchive-tools-xz-stdin-list-members
+  timeout_seconds: 180
+  tags:
+  - usage
+  - archive
+  - xz
+- id: usage-libarchive-tools-xz-space-file-stdout
+  title: libarchive-tools xz space file stdout
+  description: Streams a spaced filename member from an xz-compressed tar archive with bsdtar -xOf and verifies the extracted payload.
+  kind: usage
+  client_application: libarchive-tools
+  command:
+  - bash
+  - /validator/tests/liblzma/tests/cases/usage/usage-expanded-client-behavior.sh
+  - usage-libarchive-tools-xz-space-file-stdout
+  timeout_seconds: 180
+  tags:
+  - usage
+  - archive
+  - xz
+- id: usage-libarchive-tools-xz-verbose-exec-list
+  title: libarchive-tools xz verbose exec list
+  description: Lists an xz-compressed tar archive verbosely and verifies executable permission metadata for a script member.
+  kind: usage
+  client_application: libarchive-tools
+  command:
+  - bash
+  - /validator/tests/liblzma/tests/cases/usage/usage-expanded-client-behavior.sh
+  - usage-libarchive-tools-xz-verbose-exec-list
+  timeout_seconds: 180
+  tags:
+  - usage
+  - archive
+  - xz
+- id: usage-libarchive-tools-xz-extract-specific-member
+  title: libarchive-tools xz extract specific member
+  description: Extracts a single named member from an xz-compressed tar archive and verifies the restored file payload.
+  kind: usage
+  client_application: libarchive-tools
+  command:
+  - bash
+  - /validator/tests/liblzma/tests/cases/usage/usage-expanded-client-behavior.sh
+  - usage-libarchive-tools-xz-extract-specific-member
+  timeout_seconds: 180
+  tags:
+  - usage
+  - archive
+  - xz
+- id: usage-libarchive-tools-xz-empty-file-size
+  title: libarchive-tools xz empty file size
+  description: Lists an xz-compressed tar archive verbosely and verifies that an empty member is reported with zero size.
+  kind: usage
+  client_application: libarchive-tools
+  command:
+  - bash
+  - /validator/tests/liblzma/tests/cases/usage/usage-expanded-client-behavior.sh
+  - usage-libarchive-tools-xz-empty-file-size
+  timeout_seconds: 180
+  tags:
+  - usage
+  - archive
+  - xz
+- id: usage-libarchive-tools-xz-two-space-files-list
+  title: libarchive-tools xz two space files list
+  description: Lists an xz-compressed tar archive containing a spaced filename and verifies the member path is preserved.
+  kind: usage
+  client_application: libarchive-tools
+  command:
+  - bash
+  - /validator/tests/liblzma/tests/cases/usage/usage-expanded-client-behavior.sh
+  - usage-libarchive-tools-xz-two-space-files-list
+  timeout_seconds: 180
+  tags:
+  - usage
+  - archive
+  - xz
+- id: usage-libarchive-tools-xz-member-count-three-plus
+  title: libarchive-tools xz member count three plus
+  description: Lists an xz-compressed tar archive and verifies that the archive contains multiple members beyond a minimal threshold.
+  kind: usage
+  client_application: libarchive-tools
+  command:
+  - bash
+  - /validator/tests/liblzma/tests/cases/usage/usage-expanded-client-behavior.sh
+  - usage-libarchive-tools-xz-member-count-three-plus
+  timeout_seconds: 180
+  tags:
+  - usage
+  - archive
+  - xz
+- id: usage-libarchive-tools-xz-dotfile-stdout
+  title: libarchive-tools xz dotfile stdout
+  description: Streams a hidden file member from an xz-compressed tar archive with bsdtar -xOf and verifies the extracted payload.
+  kind: usage
+  client_application: libarchive-tools
+  command:
+  - bash
+  - /validator/tests/liblzma/tests/cases/usage/usage-expanded-client-behavior.sh
+  - usage-libarchive-tools-xz-dotfile-stdout
+  timeout_seconds: 180
+  tags:
+  - usage
+  - archive
+  - xz
+- id: usage-libarchive-tools-xz-space-file-extract
+  title: libarchive-tools xz space file extract
+  description: Extracts a spaced filename from an xz-compressed tar archive and verifies the restored file payload.
+  kind: usage
+  client_application: libarchive-tools
+  command:
+  - bash
+  - /validator/tests/liblzma/tests/cases/usage/usage-expanded-client-behavior.sh
+  - usage-libarchive-tools-xz-space-file-extract
+  timeout_seconds: 180
+  tags:
+  - usage
+  - archive
+  - xz

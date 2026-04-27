@@ -844,3 +844,143 @@ testcases:
   - usage
   - json
   - jshon
+- id: usage-jshon-bool-false-type
+  title: jshon bool false type
+  description: Reads a false boolean field with jshon and verifies that the selected value reports the boolean type.
+  kind: usage
+  client_application: jshon
+  command:
+  - bash
+  - /validator/tests/libjansson/tests/cases/usage/usage-expanded-client-behavior.sh
+  - usage-jshon-bool-false-type
+  timeout_seconds: 180
+  tags:
+  - usage
+  - json
+  - jshon
+- id: usage-jshon-null-root-field-type
+  title: jshon null type
+  description: Reads a null field with jshon and verifies the selected value reports the null type.
+  kind: usage
+  client_application: jshon
+  command:
+  - bash
+  - /validator/tests/libjansson/tests/cases/usage/usage-expanded-client-behavior.sh
+  - usage-jshon-null-root-field-type
+  timeout_seconds: 180
+  tags:
+  - usage
+  - json
+  - jshon
+- id: usage-jshon-array-second-value
+  title: jshon array second value
+  description: Reads the second element from a JSON array with jshon and verifies the selected array value.
+  kind: usage
+  client_application: jshon
+  command:
+  - bash
+  - /validator/tests/libjansson/tests/cases/usage/usage-expanded-client-behavior.sh
+  - usage-jshon-array-second-value
+  timeout_seconds: 180
+  tags:
+  - usage
+  - json
+  - jshon
+- id: usage-jshon-nested-array-third-value
+  title: jshon nested array third value
+  description: Reads the third value from a nested JSON array with jshon and verifies the extracted numeric payload.
+  kind: usage
+  client_application: jshon
+  command:
+  - bash
+  - /validator/tests/libjansson/tests/cases/usage/usage-expanded-client-behavior.sh
+  - usage-jshon-nested-array-third-value
+  timeout_seconds: 180
+  tags:
+  - usage
+  - json
+  - jshon
+- id: usage-jshon-array-first-string-type-name
+  title: jshon array first string type
+  description: Parses a JSON array with jshon, selects the first string element, and verifies the reported element type is string.
+  kind: usage
+  client_application: jshon
+  command:
+  - bash
+  - /validator/tests/libjansson/tests/cases/usage/usage-expanded-client-behavior.sh
+  - usage-jshon-array-first-string-type-name
+  timeout_seconds: 180
+  tags:
+  - usage
+  - json
+  - jshon
+- id: usage-jshon-file-object-keys
+  title: jshon file object keys
+  description: Reads a JSON object from a file with jshon and verifies the emitted key list contains both object keys.
+  kind: usage
+  client_application: jshon
+  command:
+  - bash
+  - /validator/tests/libjansson/tests/cases/usage/usage-expanded-client-behavior.sh
+  - usage-jshon-file-object-keys
+  timeout_seconds: 180
+  tags:
+  - usage
+  - json
+  - jshon
+- id: usage-jshon-nested-object-key-list
+  title: jshon nested object key list
+  description: Lists keys from a nested JSON object with jshon and verifies the expected nested keys appear.
+  kind: usage
+  client_application: jshon
+  command:
+  - bash
+  - /validator/tests/libjansson/tests/cases/usage/usage-expanded-client-behavior.sh
+  - usage-jshon-nested-object-key-list
+  timeout_seconds: 180
+  tags:
+  - usage
+  - json
+  - jshon
+- id: usage-jshon-escaped-newline-string
+  title: jshon escaped newline string
+  description: Decodes an escaped newline string with jshon and verifies both decoded text lines are present in the output.
+  kind: usage
+  client_application: jshon
+  command:
+  - bash
+  - /validator/tests/libjansson/tests/cases/usage/usage-expanded-client-behavior.sh
+  - usage-jshon-escaped-newline-string
+  timeout_seconds: 180
+  tags:
+  - usage
+  - json
+  - jshon
+- id: usage-jshon-negative-number-value
+  title: jshon negative number value
+  description: Reads a negative JSON number with jshon and verifies the emitted numeric value is preserved.
+  kind: usage
+  client_application: jshon
+  command:
+  - bash
+  - /validator/tests/libjansson/tests/cases/usage/usage-expanded-client-behavior.sh
+  - usage-jshon-negative-number-value
+  timeout_seconds: 180
+  tags:
+  - usage
+  - json
+  - jshon
+- id: usage-jshon-file-array-length
+  title: jshon file array length
+  description: Reads a JSON array from a file with jshon and verifies the reported array length.
+  kind: usage
+  client_application: jshon
+  command:
+  - bash
+  - /validator/tests/libjansson/tests/cases/usage/usage-expanded-client-behavior.sh
+  - usage-jshon-file-array-length
+  timeout_seconds: 180
+  tags:
+  - usage
+  - json
+  - jshon

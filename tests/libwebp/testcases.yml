@@ -872,3 +872,123 @@ testcases:
   timeout_seconds: 120
   tags:
   - usage
+- id: usage-python3-pil-flip-left-right-webp
+  title: Pillow flip left-right WebP
+  description: Mirrors a generated WebP with Pillow and verifies the horizontal pixel positions swap before save.
+  kind: usage
+  client_application: python3-pil
+  command:
+  - bash
+  - /validator/tests/libwebp/tests/cases/usage/usage-expanded-client-behavior.sh
+  - usage-python3-pil-flip-left-right-webp
+  timeout_seconds: 120
+  tags:
+  - usage
+- id: usage-python3-pil-flip-top-bottom-webp
+  title: Pillow flip top-bottom WebP
+  description: Flips a generated WebP vertically with Pillow and verifies the vertical pixel positions swap before save.
+  kind: usage
+  client_application: python3-pil
+  command:
+  - bash
+  - /validator/tests/libwebp/tests/cases/usage/usage-expanded-client-behavior.sh
+  - usage-python3-pil-flip-top-bottom-webp
+  timeout_seconds: 120
+  tags:
+  - usage
+- id: usage-python3-pil-autocontrast-generated-webp
+  title: Pillow autocontrast WebP
+  description: Applies Pillow autocontrast to a generated WebP and verifies the transformed image retains the original dimensions.
+  kind: usage
+  client_application: python3-pil
+  command:
+  - bash
+  - /validator/tests/libwebp/tests/cases/usage/usage-expanded-client-behavior.sh
+  - usage-python3-pil-autocontrast-webp
+  timeout_seconds: 120
+  tags:
+  - usage
+- id: usage-python3-pil-solarize-generated-webp
+  title: Pillow solarize WebP
+  description: Applies Pillow solarize to a generated WebP and verifies the transformed image can still be emitted as WebP.
+  kind: usage
+  client_application: python3-pil
+  command:
+  - bash
+  - /validator/tests/libwebp/tests/cases/usage/usage-expanded-client-behavior.sh
+  - usage-python3-pil-solarize-webp
+  timeout_seconds: 120
+  tags:
+  - usage
+- id: usage-python3-pil-posterize-generated-webp
+  title: Pillow posterize WebP
+  description: Applies Pillow posterize to a generated WebP and verifies the transformed image stays in RGB mode.
+  kind: usage
+  client_application: python3-pil
+  command:
+  - bash
+  - /validator/tests/libwebp/tests/cases/usage/usage-expanded-client-behavior.sh
+  - usage-python3-pil-posterize-webp
+  timeout_seconds: 120
+  tags:
+  - usage
+- id: usage-python3-pil-blue-channel-webp
+  title: Pillow blue channel WebP
+  description: Extracts the blue channel from a generated WebP with Pillow and verifies the channel value for a selected pixel.
+  kind: usage
+  client_application: python3-pil
+  command:
+  - bash
+  - /validator/tests/libwebp/tests/cases/usage/usage-expanded-client-behavior.sh
+  - usage-python3-pil-blue-channel-webp
+  timeout_seconds: 120
+  tags:
+  - usage
+- id: usage-python3-pil-getbbox-webp
+  title: Pillow getbbox WebP
+  description: Computes the bounding box of a generated WebP with Pillow and verifies the box spans the full image area.
+  kind: usage
+  client_application: python3-pil
+  command:
+  - bash
+  - /validator/tests/libwebp/tests/cases/usage/usage-expanded-client-behavior.sh
+  - usage-python3-pil-getbbox-webp
+  timeout_seconds: 120
+  tags:
+  - usage
+- id: usage-python3-pil-resize-bicubic-webp
+  title: Pillow resize bicubic WebP
+  description: Resizes a generated WebP with bicubic resampling in Pillow and verifies the new image dimensions.
+  kind: usage
+  client_application: python3-pil
+  command:
+  - bash
+  - /validator/tests/libwebp/tests/cases/usage/usage-expanded-client-behavior.sh
+  - usage-python3-pil-resize-bicubic-webp
+  timeout_seconds: 120
+  tags:
+  - usage
+- id: usage-python3-pil-histogram-length-webp
+  title: Pillow histogram length WebP
+  description: Computes a generated WebP histogram with Pillow and verifies the expected RGB histogram bin count.
+  kind: usage
+  client_application: python3-pil
+  command:
+  - bash
+  - /validator/tests/libwebp/tests/cases/usage/usage-expanded-client-behavior.sh
+  - usage-python3-pil-histogram-length-webp
+  timeout_seconds: 120
+  tags:
+  - usage
+- id: usage-python3-pil-crop-center-webp
+  title: Pillow crop center WebP
+  description: Crops the center of a generated WebP with Pillow and verifies the resulting cropped image dimensions.
+  kind: usage
+  client_application: python3-pil
+  command:
+  - bash
+  - /validator/tests/libwebp/tests/cases/usage/usage-expanded-client-behavior.sh
+  - usage-python3-pil-crop-center-webp
+  timeout_seconds: 120
+  tags:
+  - usage

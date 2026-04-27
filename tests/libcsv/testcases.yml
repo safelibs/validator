@@ -831,3 +831,143 @@ testcases:
   - usage
   - csv
   - readstat
+- id: usage-readstat-dta-negative-number-roundtrip
+  title: readstat DTA negative number
+  description: Converts a CSV containing a negative numeric value to DTA with readstat and verifies the signed decimal in the round-tripped output.
+  kind: usage
+  client_application: readstat
+  command:
+  - bash
+  - /validator/tests/libcsv/tests/cases/usage/usage-expanded-client-behavior.sh
+  - dta-negative-number
+  timeout_seconds: 180
+  tags:
+  - usage
+  - csv
+  - readstat
+- id: usage-readstat-sav-negative-number-roundtrip
+  title: readstat SAV negative number
+  description: Converts a CSV containing a negative numeric value to SAV with readstat and verifies the signed decimal in the round-tripped output.
+  kind: usage
+  client_application: readstat
+  command:
+  - bash
+  - /validator/tests/libcsv/tests/cases/usage/usage-expanded-client-behavior.sh
+  - sav-negative-number
+  timeout_seconds: 180
+  tags:
+  - usage
+  - csv
+  - readstat
+- id: usage-readstat-dta-leading-zero-string-roundtrip
+  title: readstat DTA leading zero string
+  description: Converts a string column containing leading zeros to DTA with readstat and verifies the leading zeros survive round trip.
+  kind: usage
+  client_application: readstat
+  command:
+  - bash
+  - /validator/tests/libcsv/tests/cases/usage/usage-expanded-client-behavior.sh
+  - dta-leading-zero-string
+  timeout_seconds: 180
+  tags:
+  - usage
+  - csv
+  - readstat
+- id: usage-readstat-sav-leading-zero-string-roundtrip
+  title: readstat SAV leading zero string
+  description: Converts a string column containing leading zeros to SAV with readstat and verifies the leading zeros survive round trip.
+  kind: usage
+  client_application: readstat
+  command:
+  - bash
+  - /validator/tests/libcsv/tests/cases/usage/usage-expanded-client-behavior.sh
+  - sav-leading-zero-string
+  timeout_seconds: 180
+  tags:
+  - usage
+  - csv
+  - readstat
+- id: usage-readstat-dta-two-row-strings
+  title: readstat DTA two-row strings
+  description: Converts two string rows to DTA with readstat and verifies both rows survive round trip in the original order.
+  kind: usage
+  client_application: readstat
+  command:
+  - bash
+  - /validator/tests/libcsv/tests/cases/usage/usage-expanded-client-behavior.sh
+  - dta-two-row-strings
+  timeout_seconds: 180
+  tags:
+  - usage
+  - csv
+  - readstat
+- id: usage-readstat-sav-two-row-strings-roundtrip
+  title: readstat SAV two-row strings
+  description: Converts two string rows to SAV with readstat and verifies both rows survive round trip in the original order.
+  kind: usage
+  client_application: readstat
+  command:
+  - bash
+  - /validator/tests/libcsv/tests/cases/usage/usage-expanded-client-behavior.sh
+  - sav-two-row-strings
+  timeout_seconds: 180
+  tags:
+  - usage
+  - csv
+  - readstat
+- id: usage-readstat-dta-long-string-roundtrip
+  title: readstat DTA long string
+  description: Converts a long string field to DTA with readstat and verifies the string payload survives round trip.
+  kind: usage
+  client_application: readstat
+  command:
+  - bash
+  - /validator/tests/libcsv/tests/cases/usage/usage-expanded-client-behavior.sh
+  - dta-long-string
+  timeout_seconds: 180
+  tags:
+  - usage
+  - csv
+  - readstat
+- id: usage-readstat-sav-long-string-roundtrip
+  title: readstat SAV long string
+  description: Converts a long string field to SAV with readstat and verifies the string payload survives round trip.
+  kind: usage
+  client_application: readstat
+  command:
+  - bash
+  - /validator/tests/libcsv/tests/cases/usage/usage-expanded-client-behavior.sh
+  - sav-long-string
+  timeout_seconds: 180
+  tags:
+  - usage
+  - csv
+  - readstat
+- id: usage-readstat-dta-zero-number
+  title: readstat DTA zero number
+  description: Converts a zero-valued numeric column to DTA with readstat and verifies the zero survives round trip.
+  kind: usage
+  client_application: readstat
+  command:
+  - bash
+  - /validator/tests/libcsv/tests/cases/usage/usage-expanded-client-behavior.sh
+  - dta-zero-number
+  timeout_seconds: 180
+  tags:
+  - usage
+  - csv
+  - readstat
+- id: usage-readstat-sav-zero-number
+  title: readstat SAV zero number
+  description: Converts a zero-valued numeric column to SAV with readstat and verifies the zero survives round trip.
+  kind: usage
+  client_application: readstat
+  command:
+  - bash
+  - /validator/tests/libcsv/tests/cases/usage/usage-expanded-client-behavior.sh
+  - sav-zero-number
+  timeout_seconds: 180
+  tags:
+  - usage
+  - csv
+  - readstat

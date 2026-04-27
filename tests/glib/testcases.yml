@@ -883,3 +883,143 @@ testcases:
   - usage
   - python
   - variant
+- id: usage-gio-move-file-rename
+  title: gio moves file
+  description: Moves a local file with gio move and verifies the destination content and source removal.
+  kind: usage
+  client_application: gio
+  command:
+  - bash
+  - /validator/tests/glib/tests/cases/usage/usage-expanded-client-behavior.sh
+  - usage-gio-move-file-rename
+  timeout_seconds: 180
+  tags:
+  - usage
+  - gio
+  - filesystem
+- id: usage-gio-list-directory-names
+  title: gio lists directory
+  description: Lists directory entries with gio list and verifies the emitted filenames.
+  kind: usage
+  client_application: gio
+  command:
+  - bash
+  - /validator/tests/glib/tests/cases/usage/usage-expanded-client-behavior.sh
+  - usage-gio-list-directory-names
+  timeout_seconds: 180
+  tags:
+  - usage
+  - gio
+  - filesystem
+- id: usage-gio-make-directory
+  title: gio makes directory
+  description: Creates a directory with gio mkdir and verifies the target directory exists afterward.
+  kind: usage
+  client_application: gio
+  command:
+  - bash
+  - /validator/tests/glib/tests/cases/usage/usage-expanded-client-behavior.sh
+  - usage-gio-make-directory
+  timeout_seconds: 180
+  tags:
+  - usage
+  - gio
+  - filesystem
+- id: usage-python3-gi-bytes-size-payload
+  title: PyGObject GLib bytes size
+  description: Allocates a GLib Bytes object through PyGObject and verifies the exposed byte size.
+  kind: usage
+  client_application: python3-gi
+  command:
+  - bash
+  - /validator/tests/glib/tests/cases/usage/usage-expanded-client-behavior.sh
+  - usage-python3-gi-bytes-size-payload
+  timeout_seconds: 180
+  tags:
+  - usage
+  - python
+  - glib
+- id: usage-python3-gi-uri-parse-components
+  title: PyGObject GLib URI parse
+  description: Parses a URI with GLib through PyGObject and verifies the host and path components.
+  kind: usage
+  client_application: python3-gi
+  command:
+  - bash
+  - /validator/tests/glib/tests/cases/usage/usage-expanded-client-behavior.sh
+  - usage-python3-gi-uri-parse-components
+  timeout_seconds: 180
+  tags:
+  - usage
+  - python
+  - glib
+- id: usage-python3-gi-checksum-md5-string
+  title: PyGObject GLib MD5 checksum
+  description: Computes an MD5 checksum with GLib through PyGObject and verifies the digest string is emitted.
+  kind: usage
+  client_application: python3-gi
+  command:
+  - bash
+  - /validator/tests/glib/tests/cases/usage/usage-expanded-client-behavior.sh
+  - usage-python3-gi-checksum-md5-string
+  timeout_seconds: 180
+  tags:
+  - usage
+  - python
+  - glib
+- id: usage-python3-gi-memory-input-stream
+  title: PyGObject Gio memory input stream
+  description: Reads bytes from a Gio MemoryInputStream through PyGObject and verifies the restored payload.
+  kind: usage
+  client_application: python3-gi
+  command:
+  - bash
+  - /validator/tests/glib/tests/cases/usage/usage-expanded-client-behavior.sh
+  - usage-python3-gi-memory-input-stream
+  timeout_seconds: 180
+  tags:
+  - usage
+  - python
+  - gio
+- id: usage-python3-gi-file-enumerator-names
+  title: PyGObject Gio file enumerator
+  description: Enumerates directory entries through Gio with PyGObject and verifies both filenames are reported.
+  kind: usage
+  client_application: python3-gi
+  command:
+  - bash
+  - /validator/tests/glib/tests/cases/usage/usage-expanded-client-behavior.sh
+  - usage-python3-gi-file-enumerator-names
+  timeout_seconds: 180
+  tags:
+  - usage
+  - python
+  - gio
+- id: usage-python3-gi-idle-add
+  title: PyGObject GLib idle add
+  description: Runs a GLib idle callback through PyGObject and verifies the callback updates state before the loop exits.
+  kind: usage
+  client_application: python3-gi
+  command:
+  - bash
+  - /validator/tests/glib/tests/cases/usage/usage-expanded-client-behavior.sh
+  - usage-python3-gi-idle-add
+  timeout_seconds: 180
+  tags:
+  - usage
+  - python
+  - glib
+- id: usage-python3-gi-variant-dict-count
+  title: PyGObject GLib variant dict
+  description: Builds a GLib VariantDict through PyGObject and verifies a typed lookup returns the inserted integer.
+  kind: usage
+  client_application: python3-gi
+  command:
+  - bash
+  - /validator/tests/glib/tests/cases/usage/usage-expanded-client-behavior.sh
+  - usage-python3-gi-variant-dict-count
+  timeout_seconds: 180
+  tags:
+  - usage
+  - python
+  - variant

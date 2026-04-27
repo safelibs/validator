@@ -872,3 +872,143 @@ testcases:
   - usage
   - archive
   - zstd
+- id: usage-libarchive-tools-zstd-stdout-member-alpha
+  title: libarchive-tools zstd stdout member alpha
+  description: Streams a single member from a zstd-compressed tar archive with bsdtar -xOf and verifies the extracted payload.
+  kind: usage
+  client_application: libarchive-tools
+  command:
+  - bash
+  - /validator/tests/libzstd/tests/cases/usage/usage-expanded-client-behavior.sh
+  - usage-libarchive-tools-zstd-stdout-member-alpha
+  timeout_seconds: 180
+  tags:
+  - usage
+  - archive
+  - zstd
+- id: usage-libarchive-tools-zstd-stdin-list-members
+  title: libarchive-tools zstd stdin list members
+  description: Pipes a zstd-compressed tar archive into bsdtar and verifies the listed member paths from stdin input.
+  kind: usage
+  client_application: libarchive-tools
+  command:
+  - bash
+  - /validator/tests/libzstd/tests/cases/usage/usage-expanded-client-behavior.sh
+  - usage-libarchive-tools-zstd-stdin-list-members
+  timeout_seconds: 180
+  tags:
+  - usage
+  - archive
+  - zstd
+- id: usage-libarchive-tools-zstd-space-file-stdout
+  title: libarchive-tools zstd space file stdout
+  description: Streams a spaced filename member from a zstd-compressed tar archive with bsdtar -xOf and verifies the extracted payload.
+  kind: usage
+  client_application: libarchive-tools
+  command:
+  - bash
+  - /validator/tests/libzstd/tests/cases/usage/usage-expanded-client-behavior.sh
+  - usage-libarchive-tools-zstd-space-file-stdout
+  timeout_seconds: 180
+  tags:
+  - usage
+  - archive
+  - zstd
+- id: usage-libarchive-tools-zstd-verbose-exec-list
+  title: libarchive-tools zstd verbose exec list
+  description: Lists a zstd-compressed tar archive verbosely and verifies executable permission metadata for a script member.
+  kind: usage
+  client_application: libarchive-tools
+  command:
+  - bash
+  - /validator/tests/libzstd/tests/cases/usage/usage-expanded-client-behavior.sh
+  - usage-libarchive-tools-zstd-verbose-exec-list
+  timeout_seconds: 180
+  tags:
+  - usage
+  - archive
+  - zstd
+- id: usage-libarchive-tools-zstd-extract-specific-member
+  title: libarchive-tools zstd extract specific member
+  description: Extracts a single named member from a zstd-compressed tar archive and verifies the restored file payload.
+  kind: usage
+  client_application: libarchive-tools
+  command:
+  - bash
+  - /validator/tests/libzstd/tests/cases/usage/usage-expanded-client-behavior.sh
+  - usage-libarchive-tools-zstd-extract-specific-member
+  timeout_seconds: 180
+  tags:
+  - usage
+  - archive
+  - zstd
+- id: usage-libarchive-tools-zstd-empty-file-size
+  title: libarchive-tools zstd empty file size
+  description: Lists a zstd-compressed tar archive verbosely and verifies that an empty member is reported with zero size.
+  kind: usage
+  client_application: libarchive-tools
+  command:
+  - bash
+  - /validator/tests/libzstd/tests/cases/usage/usage-expanded-client-behavior.sh
+  - usage-libarchive-tools-zstd-empty-file-size
+  timeout_seconds: 180
+  tags:
+  - usage
+  - archive
+  - zstd
+- id: usage-libarchive-tools-zstd-two-space-files-list
+  title: libarchive-tools zstd two space files list
+  description: Lists a zstd-compressed tar archive containing a spaced filename and verifies the member path is preserved.
+  kind: usage
+  client_application: libarchive-tools
+  command:
+  - bash
+  - /validator/tests/libzstd/tests/cases/usage/usage-expanded-client-behavior.sh
+  - usage-libarchive-tools-zstd-two-space-files-list
+  timeout_seconds: 180
+  tags:
+  - usage
+  - archive
+  - zstd
+- id: usage-libarchive-tools-zstd-member-count-three-plus
+  title: libarchive-tools zstd member count three plus
+  description: Lists a zstd-compressed tar archive and verifies that the archive contains multiple members beyond a minimal threshold.
+  kind: usage
+  client_application: libarchive-tools
+  command:
+  - bash
+  - /validator/tests/libzstd/tests/cases/usage/usage-expanded-client-behavior.sh
+  - usage-libarchive-tools-zstd-member-count-three-plus
+  timeout_seconds: 180
+  tags:
+  - usage
+  - archive
+  - zstd
+- id: usage-libarchive-tools-zstd-dotfile-stdout
+  title: libarchive-tools zstd dotfile stdout
+  description: Streams a hidden file member from a zstd-compressed tar archive with bsdtar -xOf and verifies the extracted payload.
+  kind: usage
+  client_application: libarchive-tools
+  command:
+  - bash
+  - /validator/tests/libzstd/tests/cases/usage/usage-expanded-client-behavior.sh
+  - usage-libarchive-tools-zstd-dotfile-stdout
+  timeout_seconds: 180
+  tags:
+  - usage
+  - archive
+  - zstd
+- id: usage-libarchive-tools-zstd-space-file-extract
+  title: libarchive-tools zstd space file extract
+  description: Extracts a spaced filename from a zstd-compressed tar archive and verifies the restored file payload.
+  kind: usage
+  client_application: libarchive-tools
+  command:
+  - bash
+  - /validator/tests/libzstd/tests/cases/usage/usage-expanded-client-behavior.sh
+  - usage-libarchive-tools-zstd-space-file-extract
+  timeout_seconds: 180
+  tags:
+  - usage
+  - archive
+  - zstd

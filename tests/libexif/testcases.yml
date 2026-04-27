@@ -849,3 +849,123 @@ testcases:
   timeout_seconds: 120
   tags:
   - usage
+- id: usage-exif-cli-tag-flash-value
+  title: exif tag flash value
+  description: Reads the Flash EXIF tag with the exif client and verifies that the command emits a value line.
+  kind: usage
+  client_application: exif
+  command:
+  - bash
+  - /validator/tests/libexif/tests/cases/usage/usage-expanded-client-behavior.sh
+  - usage-exif-cli-tag-flash-value
+  timeout_seconds: 120
+  tags:
+  - usage
+- id: usage-exif-cli-tag-exposure-time-value
+  title: exif tag exposure time value
+  description: Reads the ExposureTime EXIF tag with the exif client and verifies that the command emits a value line.
+  kind: usage
+  client_application: exif
+  command:
+  - bash
+  - /validator/tests/libexif/tests/cases/usage/usage-expanded-client-behavior.sh
+  - usage-exif-cli-tag-exposure-time-value
+  timeout_seconds: 120
+  tags:
+  - usage
+- id: usage-exif-cli-tag-fnumber-value
+  title: exif tag FNumber value
+  description: Reads the FNumber EXIF tag with the exif client and verifies that the command emits a value line.
+  kind: usage
+  client_application: exif
+  command:
+  - bash
+  - /validator/tests/libexif/tests/cases/usage/usage-expanded-client-behavior.sh
+  - usage-exif-cli-tag-fnumber-value
+  timeout_seconds: 120
+  tags:
+  - usage
+- id: usage-exif-cli-tag-resolution-unit-value
+  title: exif tag resolution unit value
+  description: Reads the ResolutionUnit EXIF tag with the exif client and verifies that the command emits a value line.
+  kind: usage
+  client_application: exif
+  command:
+  - bash
+  - /validator/tests/libexif/tests/cases/usage/usage-expanded-client-behavior.sh
+  - usage-exif-cli-tag-resolution-unit-value
+  timeout_seconds: 120
+  tags:
+  - usage
+- id: usage-exif-cli-tag-exif-version-value
+  title: exif tag ExifVersion value
+  description: Reads the ExifVersion EXIF tag with the exif client and verifies that the command emits a value line.
+  kind: usage
+  client_application: exif
+  command:
+  - bash
+  - /validator/tests/libexif/tests/cases/usage/usage-expanded-client-behavior.sh
+  - usage-exif-cli-tag-exif-version-value
+  timeout_seconds: 120
+  tags:
+  - usage
+- id: usage-exif-cli-tag-flashpix-version-value
+  title: exif tag FlashPixVersion value
+  description: Reads the FlashPixVersion EXIF tag with the exif client and verifies that the command emits a value line.
+  kind: usage
+  client_application: exif
+  command:
+  - bash
+  - /validator/tests/libexif/tests/cases/usage/usage-expanded-client-behavior.sh
+  - usage-exif-cli-tag-flashpix-version-value
+  timeout_seconds: 120
+  tags:
+  - usage
+- id: usage-exif-cli-machine-readable-model-line
+  title: exif machine-readable model line
+  description: Emits machine-readable EXIF metadata and verifies that the Model row is present in the structured output.
+  kind: usage
+  client_application: exif
+  command:
+  - bash
+  - /validator/tests/libexif/tests/cases/usage/usage-expanded-client-behavior.sh
+  - usage-exif-cli-machine-readable-model-line
+  timeout_seconds: 120
+  tags:
+  - usage
+- id: usage-exif-cli-machine-readable-date-and-time-line
+  title: exif machine-readable date and time line
+  description: Emits machine-readable EXIF metadata and verifies that the Date and Time row is present in the structured output.
+  kind: usage
+  client_application: exif
+  command:
+  - bash
+  - /validator/tests/libexif/tests/cases/usage/usage-expanded-client-behavior.sh
+  - usage-exif-cli-machine-readable-date-and-time-line
+  timeout_seconds: 120
+  tags:
+  - usage
+- id: usage-exif-cli-xml-manufacturer-element
+  title: exif XML manufacturer element
+  description: Emits XML EXIF metadata and verifies that the Manufacturer element is present in the structured XML output.
+  kind: usage
+  client_application: exif
+  command:
+  - bash
+  - /validator/tests/libexif/tests/cases/usage/usage-expanded-client-behavior.sh
+  - usage-exif-cli-xml-manufacturer-element
+  timeout_seconds: 120
+  tags:
+  - usage
+- id: usage-exif-cli-xml-date-and-time-element
+  title: exif XML date and time element
+  description: Emits XML EXIF metadata and verifies that a Date and Time element is present in the structured XML output.
+  kind: usage
+  client_application: exif
+  command:
+  - bash
+  - /validator/tests/libexif/tests/cases/usage/usage-expanded-client-behavior.sh
+  - usage-exif-cli-xml-date-and-time-element
+  timeout_seconds: 120
+  tags:
+  - usage

@@ -873,3 +873,143 @@ testcases:
   - usage
   - gdal
   - raster
+- id: usage-gdal-ogrinfo-sql-sum-value
+  title: gdal ogrinfo SQL sum value
+  description: Runs an ogrinfo SQLite SQL query that sums feature values and verifies the aggregated total in the output.
+  kind: usage
+  client_application: gdal
+  command:
+  - bash
+  - /validator/tests/libjson/tests/cases/usage/usage-expanded-client-behavior.sh
+  - usage-gdal-ogrinfo-sql-sum-value
+  timeout_seconds: 180
+  tags:
+  - usage
+  - gdal
+  - sql
+- id: usage-gdal-ogr2ogr-sql-double-value
+  title: gdal ogr2ogr SQL double value
+  description: Runs an ogr2ogr SQLite SQL projection that doubles a numeric field and verifies the derived values in GeoJSON output.
+  kind: usage
+  client_application: gdal
+  command:
+  - bash
+  - /validator/tests/libjson/tests/cases/usage/usage-expanded-client-behavior.sh
+  - usage-gdal-ogr2ogr-sql-double-value
+  timeout_seconds: 180
+  tags:
+  - usage
+  - gdal
+  - sql
+- id: usage-gdal-ogr2ogr-field-type-string-integer
+  title: gdal ogr2ogr field type string integer
+  description: Converts integer fields to strings with ogr2ogr and verifies the resulting GeoJSON property type is string.
+  kind: usage
+  client_application: gdal
+  command:
+  - bash
+  - /validator/tests/libjson/tests/cases/usage/usage-expanded-client-behavior.sh
+  - usage-gdal-ogr2ogr-field-type-string-integer
+  timeout_seconds: 180
+  tags:
+  - usage
+  - gdal
+  - conversion
+- id: usage-gdal-ogr2ogr-gpkg-renamed-layer
+  title: gdal ogr2ogr GPKG renamed layer
+  description: Writes GeoJSON to a renamed GeoPackage layer with ogr2ogr and verifies the stored layer name through ogrinfo.
+  kind: usage
+  client_application: gdal
+  command:
+  - bash
+  - /validator/tests/libjson/tests/cases/usage/usage-expanded-client-behavior.sh
+  - usage-gdal-ogr2ogr-gpkg-renamed-layer
+  timeout_seconds: 180
+  tags:
+  - usage
+  - gdal
+  - conversion
+- id: usage-gdal-ogrinfo-json-so-fields
+  title: gdal ogrinfo JSON summary-only fields
+  description: Reads summary-only GeoJSON metadata with ogrinfo -json -so and verifies the feature count and field inventory.
+  kind: usage
+  client_application: gdal
+  command:
+  - bash
+  - /validator/tests/libjson/tests/cases/usage/usage-expanded-client-behavior.sh
+  - usage-gdal-ogrinfo-json-so-fields
+  timeout_seconds: 180
+  tags:
+  - usage
+  - gdal
+  - json
+- id: usage-gdal-gdalinfo-json-files-list
+  title: gdal gdalinfo JSON files list
+  description: Reads raster JSON metadata with gdalinfo and verifies that the reported backing files list is non-empty.
+  kind: usage
+  client_application: gdal
+  command:
+  - bash
+  - /validator/tests/libjson/tests/cases/usage/usage-expanded-client-behavior.sh
+  - usage-gdal-gdalinfo-json-files-list
+  timeout_seconds: 180
+  tags:
+  - usage
+  - gdal
+  - raster
+- id: usage-gdalsrsinfo-mapinfo-wgs84
+  title: gdalsrsinfo mapinfo WGS84
+  description: Emits a MapInfo coordinate system description with gdalsrsinfo and verifies the projection header text.
+  kind: usage
+  client_application: gdal
+  command:
+  - bash
+  - /validator/tests/libjson/tests/cases/usage/usage-expanded-client-behavior.sh
+  - usage-gdalsrsinfo-mapinfo-wgs84
+  timeout_seconds: 180
+  tags:
+  - usage
+  - gdal
+  - srs
+- id: usage-gdal-ogrinfo-sql-between-values
+  title: gdal ogrinfo SQL between values
+  description: Runs an ogrinfo SQLite SQL filter with a BETWEEN predicate and verifies both selected feature names in the output.
+  kind: usage
+  client_application: gdal
+  command:
+  - bash
+  - /validator/tests/libjson/tests/cases/usage/usage-expanded-client-behavior.sh
+  - usage-gdal-ogrinfo-sql-between-values
+  timeout_seconds: 180
+  tags:
+  - usage
+  - gdal
+  - sql
+- id: usage-gdal-ogr2ogr-csv-xy-headers
+  title: gdal ogr2ogr CSV XY headers
+  description: Exports GeoJSON to CSV with XY geometry columns and verifies the expected X and Y header names in the CSV output.
+  kind: usage
+  client_application: gdal
+  command:
+  - bash
+  - /validator/tests/libjson/tests/cases/usage/usage-expanded-client-behavior.sh
+  - usage-gdal-ogr2ogr-csv-xy-headers
+  timeout_seconds: 180
+  tags:
+  - usage
+  - gdal
+  - conversion
+- id: usage-gdal-ogrinfo-json-group-a-count
+  title: gdal ogrinfo JSON group a count
+  description: Reads filtered GeoJSON metadata with ogrinfo -json and verifies the group-a predicate leaves exactly one feature.
+  kind: usage
+  client_application: gdal
+  command:
+  - bash
+  - /validator/tests/libjson/tests/cases/usage/usage-expanded-client-behavior.sh
+  - usage-gdal-ogrinfo-json-group-a-count
+  timeout_seconds: 180
+  tags:
+  - usage
+  - gdal
+  - json

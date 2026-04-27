@@ -874,3 +874,143 @@ testcases:
   - usage
   - gpg
   - signature
+- id: usage-gpg-print-md-sha1-hex
+  title: gpg print-md SHA1
+  description: Computes a SHA1 digest with gpg --print-md and verifies a full hexadecimal digest is emitted.
+  kind: usage
+  client_application: gpg
+  command:
+  - bash
+  - /validator/tests/libgcrypt/tests/cases/usage/usage-expanded-client-behavior.sh
+  - usage-gpg-print-md-sha1-hex
+  timeout_seconds: 180
+  tags:
+  - usage
+  - gpg
+  - crypto
+- id: usage-gpg-print-md-ripemd160-hex
+  title: gpg print-md RIPEMD160
+  description: Computes a RIPEMD160 digest with gpg --print-md and verifies the grouped hexadecimal digest output is emitted.
+  kind: usage
+  client_application: gpg
+  command:
+  - bash
+  - /validator/tests/libgcrypt/tests/cases/usage/usage-expanded-client-behavior.sh
+  - usage-gpg-print-md-ripemd160-hex
+  timeout_seconds: 180
+  tags:
+  - usage
+  - gpg
+  - crypto
+- id: usage-gpg-enarmor-dearmor
+  title: gpg enarmor dearmor
+  description: Encodes a payload with gpg --enarmor, decodes it again, and verifies the original bytes round trip.
+  kind: usage
+  client_application: gpg
+  command:
+  - bash
+  - /validator/tests/libgcrypt/tests/cases/usage/usage-expanded-client-behavior.sh
+  - usage-gpg-enarmor-dearmor
+  timeout_seconds: 180
+  tags:
+  - usage
+  - gpg
+  - crypto
+- id: usage-gpg-symmetric-aes128-roundtrip
+  title: gpg symmetric AES128
+  description: Encrypts and decrypts a payload symmetrically with AES128 through gpg and verifies the restored plaintext.
+  kind: usage
+  client_application: gpg
+  command:
+  - bash
+  - /validator/tests/libgcrypt/tests/cases/usage/usage-expanded-client-behavior.sh
+  - usage-gpg-symmetric-aes128-roundtrip
+  timeout_seconds: 180
+  tags:
+  - usage
+  - gpg
+  - crypto
+- id: usage-gpg-symmetric-aes192-roundtrip
+  title: gpg symmetric AES192
+  description: Encrypts and decrypts a payload symmetrically with AES192 through gpg and verifies the restored plaintext.
+  kind: usage
+  client_application: gpg
+  command:
+  - bash
+  - /validator/tests/libgcrypt/tests/cases/usage/usage-expanded-client-behavior.sh
+  - usage-gpg-symmetric-aes192-roundtrip
+  timeout_seconds: 180
+  tags:
+  - usage
+  - gpg
+  - crypto
+- id: usage-gpg-gen-random-bytes
+  title: gpg generate random bytes
+  description: Generates a fixed number of random bytes with gpg and verifies the output byte count.
+  kind: usage
+  client_application: gpg
+  command:
+  - bash
+  - /validator/tests/libgcrypt/tests/cases/usage/usage-expanded-client-behavior.sh
+  - usage-gpg-gen-random-bytes
+  timeout_seconds: 180
+  tags:
+  - usage
+  - gpg
+  - crypto
+- id: usage-gpg-detached-sign-status-fd
+  title: gpg detached sign status-fd
+  description: Verifies a detached signature with gpg --status-fd and checks the machine-readable GOODSIG status output.
+  kind: usage
+  client_application: gpg
+  command:
+  - bash
+  - /validator/tests/libgcrypt/tests/cases/usage/usage-expanded-client-behavior.sh
+  - usage-gpg-detached-sign-status-fd
+  timeout_seconds: 180
+  tags:
+  - usage
+  - gpg
+  - signature
+- id: usage-gpg-list-packets-armored
+  title: gpg list packets armored
+  description: Lists packets from an armored encrypted message with gpg and verifies the symmetric packet summary appears.
+  kind: usage
+  client_application: gpg
+  command:
+  - bash
+  - /validator/tests/libgcrypt/tests/cases/usage/usage-expanded-client-behavior.sh
+  - usage-gpg-list-packets-armored
+  timeout_seconds: 180
+  tags:
+  - usage
+  - gpg
+  - crypto
+- id: usage-gpg-recipient-encrypt-armor
+  title: gpg recipient encrypt armor
+  description: Encrypts an armored message to a generated recipient key and verifies the decrypted plaintext round trip.
+  kind: usage
+  client_application: gpg
+  command:
+  - bash
+  - /validator/tests/libgcrypt/tests/cases/usage/usage-expanded-client-behavior.sh
+  - usage-gpg-recipient-encrypt-armor
+  timeout_seconds: 180
+  tags:
+  - usage
+  - gpg
+  - crypto
+- id: usage-gpg-list-secret-colons
+  title: gpg list secret colons
+  description: Lists generated secret keys in colon format with gpg and verifies the secret key record marker appears.
+  kind: usage
+  client_application: gpg
+  command:
+  - bash
+  - /validator/tests/libgcrypt/tests/cases/usage/usage-expanded-client-behavior.sh
+  - usage-gpg-list-secret-colons
+  timeout_seconds: 180
+  tags:
+  - usage
+  - gpg
+  - crypto

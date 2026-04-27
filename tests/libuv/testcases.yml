@@ -858,3 +858,143 @@ testcases:
   - usage
   - nodejs
   - timers
+- id: usage-nodejs-fs-promises-readfile
+  title: Node.js fs promises readFile
+  description: Reads file content with the fs.promises API and verifies the resolved text payload.
+  kind: usage
+  client_application: nodejs
+  command:
+  - bash
+  - /validator/tests/libuv/tests/cases/usage/usage-expanded-client-behavior.sh
+  - usage-nodejs-fs-promises-readfile
+  timeout_seconds: 180
+  tags:
+  - usage
+  - nodejs
+  - filesystem
+- id: usage-nodejs-fs-realpath-file
+  title: Node.js fs realpath
+  description: Resolves a file path with fs.realpath and verifies that the resolved path ends with the expected filename.
+  kind: usage
+  client_application: nodejs
+  command:
+  - bash
+  - /validator/tests/libuv/tests/cases/usage/usage-expanded-client-behavior.sh
+  - usage-nodejs-fs-realpath-file
+  timeout_seconds: 180
+  tags:
+  - usage
+  - nodejs
+  - filesystem
+- id: usage-nodejs-fs-readdir-dirents
+  title: Node.js fs readdir dirents
+  description: Lists directory entries with fs.readdir using Dirent objects and verifies both filenames are present.
+  kind: usage
+  client_application: nodejs
+  command:
+  - bash
+  - /validator/tests/libuv/tests/cases/usage/usage-expanded-client-behavior.sh
+  - usage-nodejs-fs-readdir-dirents
+  timeout_seconds: 180
+  tags:
+  - usage
+  - nodejs
+  - filesystem
+- id: usage-nodejs-child-process-spawnsync-bash
+  title: Node.js child process spawnSync
+  description: Runs a synchronous subprocess with child_process.spawnSync and verifies the captured stdout payload.
+  kind: usage
+  client_application: nodejs
+  command:
+  - bash
+  - /validator/tests/libuv/tests/cases/usage/usage-expanded-client-behavior.sh
+  - usage-nodejs-child-process-spawnsync-bash
+  timeout_seconds: 180
+  tags:
+  - usage
+  - nodejs
+  - child-process
+- id: usage-nodejs-stream-pipeline-pass-through
+  title: Node.js stream pipeline
+  description: Pipes data through a Node.js stream pipeline and verifies the sink receives the original payload.
+  kind: usage
+  client_application: nodejs
+  command:
+  - bash
+  - /validator/tests/libuv/tests/cases/usage/usage-expanded-client-behavior.sh
+  - usage-nodejs-stream-pipeline-pass-through
+  timeout_seconds: 180
+  tags:
+  - usage
+  - nodejs
+  - stream
+- id: usage-nodejs-zlib-gzip-roundtrip
+  title: Node.js zlib gzip roundtrip
+  description: Compresses and restores a payload with Node.js zlib gzip and verifies the decompressed text output.
+  kind: usage
+  client_application: nodejs
+  command:
+  - bash
+  - /validator/tests/libuv/tests/cases/usage/usage-expanded-client-behavior.sh
+  - usage-nodejs-zlib-gzip-roundtrip
+  timeout_seconds: 180
+  tags:
+  - usage
+  - nodejs
+  - zlib
+- id: usage-nodejs-crypto-randombytes
+  title: Node.js crypto randomBytes
+  description: Allocates random bytes through Node.js crypto and verifies the returned buffer length.
+  kind: usage
+  client_application: nodejs
+  command:
+  - bash
+  - /validator/tests/libuv/tests/cases/usage/usage-expanded-client-behavior.sh
+  - usage-nodejs-crypto-randombytes
+  timeout_seconds: 180
+  tags:
+  - usage
+  - nodejs
+  - crypto
+- id: usage-nodejs-net-server-address-loopback
+  title: Node.js net server address
+  description: Starts a TCP server with Node.js net and verifies the reported bound address metadata.
+  kind: usage
+  client_application: nodejs
+  command:
+  - bash
+  - /validator/tests/libuv/tests/cases/usage/usage-expanded-client-behavior.sh
+  - usage-nodejs-net-server-address-loopback
+  timeout_seconds: 180
+  tags:
+  - usage
+  - nodejs
+  - network
+- id: usage-nodejs-dgram-close-event
+  title: Node.js dgram close event
+  description: Opens and closes a UDP socket with Node.js dgram and verifies the close event is emitted.
+  kind: usage
+  client_application: nodejs
+  command:
+  - bash
+  - /validator/tests/libuv/tests/cases/usage/usage-expanded-client-behavior.sh
+  - usage-nodejs-dgram-close-event
+  timeout_seconds: 180
+  tags:
+  - usage
+  - nodejs
+  - network
+- id: usage-nodejs-timers-setinterval-twice
+  title: Node.js timers setInterval
+  description: Runs a repeating interval timer in Node.js and verifies the callback executes twice before clearing.
+  kind: usage
+  client_application: nodejs
+  command:
+  - bash
+  - /validator/tests/libuv/tests/cases/usage/usage-expanded-client-behavior.sh
+  - usage-nodejs-timers-setinterval-twice
+  timeout_seconds: 180
+  tags:
+  - usage
+  - nodejs
+  - timers
