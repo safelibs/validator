@@ -21,6 +21,7 @@ jobs:
       SITE_ROOT: site
       PORT_DEB_ROOT: .work/pages-artifacts/debs/port-04-test
       PORT_LOCK_PATH: .work/pages-artifacts/proof/port-04-test-debs-lock.json
+      PORT_SRC_ROOT: .work/pages-artifacts/sources/port-04-test
       ORIGINAL_PROOF_PATH: .work/pages-artifacts/proof/original-validation-proof.json
       PORT_PROOF_PATH: .work/pages-artifacts/proof/port-04-test-validation-proof.json
     steps:
@@ -35,7 +36,7 @@ jobs:
         run: python3 -m unittest discover -s unit -v
 
       - name: Check testcase manifests
-        run: python3 tools/testcases.py --config repositories.yml --tests-root tests --check --min-source-cases 120 --min-usage-cases 723 --min-cases 843
+        run: python3 tools/testcases.py --config repositories.yml --tests-root tests --check --min-source-cases 120 --min-usage-cases 963 --min-cases 1083
 
       - name: Fetch port debs
         env:
@@ -46,6 +47,14 @@ jobs:
             --port-repos inventory/github-port-repos.json \
             --output-root "$PORT_DEB_ROOT" \
             --lock-output "$PORT_LOCK_PATH"
+
+      - name: Fetch port sources
+        env:
+          VALIDATOR_REPO_TOKEN: ${{ secrets.VALIDATOR_REPO_TOKEN }}
+        run: |
+          python3 tools/fetch_port_sources.py \
+            --port-deb-lock "$PORT_LOCK_PATH" \
+            --output-root "$PORT_SRC_ROOT"
 
       - name: Run full matrices
         id: matrix
@@ -80,9 +89,10 @@ jobs:
             --proof-output "$ORIGINAL_PROOF_PATH" \
             --mode original \
             --min-source-cases 120 \
-            --min-usage-cases 723 \
-            --min-cases 843 \
-            --require-casts
+            --min-usage-cases 963 \
+            --min-cases 1083 \
+            --require-casts \
+            --ports-root "$PORT_SRC_ROOT"
           python3 tools/verify_proof_artifacts.py \
             --config repositories.yml \
             --tests-root tests \
@@ -90,9 +100,10 @@ jobs:
             --proof-output "$PORT_PROOF_PATH" \
             --mode port-04-test \
             --min-source-cases 120 \
-            --min-usage-cases 723 \
-            --min-cases 843 \
-            --require-casts
+            --min-usage-cases 963 \
+            --min-cases 1083 \
+            --require-casts \
+            --ports-root "$PORT_SRC_ROOT"
 
       - name: Render site
         if: always()

@@ -29,6 +29,7 @@ jobs:
       SITE_ROOT: .work/ci-smoke-site
       PORT_DEB_ROOT: .work/ci-smoke-artifacts/debs/port-04-test
       PORT_LOCK_PATH: .work/ci-smoke-artifacts/proof/port-04-test-debs-lock.json
+      PORT_SRC_ROOT: .work/ci-smoke-artifacts/sources/port-04-test
       ORIGINAL_PROOF_PATH: .work/ci-smoke-artifacts/proof/original-validation-proof.json
       PORT_PROOF_PATH: .work/ci-smoke-artifacts/proof/port-04-test-validation-proof.json
     steps:
@@ -52,6 +53,14 @@ jobs:
             --library libarchive \
             --library libuv \
             --library libwebp
+
+      - name: Fetch port sources
+        env:
+          VALIDATOR_REPO_TOKEN: ${{ secrets.VALIDATOR_REPO_TOKEN }}
+        run: |
+          python3 tools/fetch_port_sources.py \
+            --port-deb-lock "$PORT_LOCK_PATH" \
+            --output-root "$PORT_SRC_ROOT"
 
       - name: Run representative matrices
         run: |
@@ -99,7 +108,8 @@ jobs:
             --min-source-cases 20 \
             --min-usage-cases 41 \
             --min-cases 61 \
-            --require-casts
+            --require-casts \
+            --ports-root "$PORT_SRC_ROOT"
           python3 tools/verify_proof_artifacts.py \
             --config repositories.yml \
             --tests-root tests \
@@ -113,7 +123,8 @@ jobs:
             --min-source-cases 20 \
             --min-usage-cases 41 \
             --min-cases 61 \
-            --require-casts
+            --require-casts \
+            --ports-root "$PORT_SRC_ROOT"
 
       - name: Render site
         run: |
@@ -162,6 +173,7 @@ jobs:
       SITE_ROOT: .work/ci-full-site
       PORT_DEB_ROOT: .work/ci-full-artifacts/debs/port-04-test
       PORT_LOCK_PATH: .work/ci-full-artifacts/proof/port-04-test-debs-lock.json
+      PORT_SRC_ROOT: .work/ci-full-artifacts/sources/port-04-test
       ORIGINAL_PROOF_PATH: .work/ci-full-artifacts/proof/original-validation-proof.json
       PORT_PROOF_PATH: .work/ci-full-artifacts/proof/port-04-test-validation-proof.json
     steps:
@@ -181,6 +193,14 @@ jobs:
             --port-repos inventory/github-port-repos.json \
             --output-root "$PORT_DEB_ROOT" \
             --lock-output "$PORT_LOCK_PATH"
+
+      - name: Fetch port sources
+        env:
+          VALIDATOR_REPO_TOKEN: ${{ secrets.VALIDATOR_REPO_TOKEN }}
+        run: |
+          python3 tools/fetch_port_sources.py \
+            --port-deb-lock "$PORT_LOCK_PATH" \
+            --output-root "$PORT_SRC_ROOT"
 
       - name: Run full matrices
         run: |
@@ -216,7 +236,8 @@ jobs:
             --min-source-cases 120 \
             --min-usage-cases 963 \
             --min-cases 1083 \
-            --require-casts
+            --require-casts \
+            --ports-root "$PORT_SRC_ROOT"
           python3 tools/verify_proof_artifacts.py \
             --config repositories.yml \
             --tests-root tests \
@@ -226,7 +247,8 @@ jobs:
             --min-source-cases 120 \
             --min-usage-cases 963 \
             --min-cases 1083 \
-            --require-casts
+            --require-casts \
+            --ports-root "$PORT_SRC_ROOT"
 
       - name: Render site
         run: |
