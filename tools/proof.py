@@ -12,6 +12,31 @@ from tools.testcases import Testcase, TestcaseManifest, load_manifests
 
 
 VALID_MODES = {"original", "port-04-test"}
+RUNTIME_PACKAGE_SUFFIX_EXCLUDES = ("-dev", "-doc", "-tools", "-progs", "-utils", "-tests")
+RUNTIME_PACKAGE_PREFIX_EXCLUDES = ("gir1.2-", "python3-")
+
+
+def runtime_packages_from_apt_packages(apt_packages: list[str]) -> list[str]:
+    """Filter apt_packages down to the canonical runtime library subset.
+
+    The validator publishes this so apt and docker do not need to re-implement
+    the same shared-library classification heuristic. A package is treated as
+    runtime when it begins with ``lib`` and is not a development, doc, tooling,
+    binding, or test variant.
+    """
+
+    runtime: list[str] = []
+    for package in apt_packages:
+        if not isinstance(package, str) or not package:
+            continue
+        if not package.startswith("lib"):
+            continue
+        if any(package.endswith(suffix) for suffix in RUNTIME_PACKAGE_SUFFIX_EXCLUDES):
+            continue
+        if any(package.startswith(prefix) for prefix in RUNTIME_PACKAGE_PREFIX_EXCLUDES):
+            continue
+        runtime.append(package)
+    return runtime
 BASE_REQUIRED_RESULT_FIELDS = {
     "schema_version",
     "library",
@@ -750,9 +775,11 @@ def build_proof(
             )
 
         library_totals = _library_totals(case_rows)
+        apt_packages_list = list(testcase_manifest.apt_packages)
         library_proof: dict[str, Any] = {
             "library": library,
-            "apt_packages": list(testcase_manifest.apt_packages),
+            "apt_packages": apt_packages_list,
+            "runtime_packages": runtime_packages_from_apt_packages(apt_packages_list),
             "totals": library_totals,
         }
         if mode == "port-04-test":

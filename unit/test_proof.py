@@ -34,6 +34,44 @@ def original_demo_config() -> dict[str, object]:
     }
 
 
+class RuntimePackageHeuristicTests(unittest.TestCase):
+    def test_runtime_packages_keep_lib_so_packages_only(self) -> None:
+        apt_packages = [
+            "libfoo1",
+            "libfoo-dev",
+            "libfoo-doc",
+            "libfoo-tools",
+            "libfoo-progs",
+            "libfoo-utils",
+            "libfoo-tests",
+            "gir1.2-foo-1.0",
+            "python3-foo",
+            "foo",
+        ]
+        self.assertEqual(proof.runtime_packages_from_apt_packages(apt_packages), ["libfoo1"])
+
+    def test_runtime_packages_preserve_canonical_order_and_skip_blanks(self) -> None:
+        apt_packages = ["libb1", "liba1", "", "libb-dev", "liba1"]  # type: ignore[list-item]
+        # Empty entries are dropped; duplicates are preserved (matches apt_packages ordering).
+        self.assertEqual(
+            proof.runtime_packages_from_apt_packages(apt_packages),
+            ["libb1", "liba1", "liba1"],
+        )
+
+    def test_runtime_packages_match_real_libjpeg_turbo_subset(self) -> None:
+        apt_packages = [
+            "libjpeg-turbo8",
+            "libjpeg-turbo8-dev",
+            "libturbojpeg",
+            "libturbojpeg0-dev",
+            "libjpeg-turbo-progs",
+        ]
+        self.assertEqual(
+            proof.runtime_packages_from_apt_packages(apt_packages),
+            ["libjpeg-turbo8", "libturbojpeg"],
+        )
+
+
 class ProofTests(unittest.TestCase):
     def setUp(self) -> None:
         self.tempdir = tempfile.TemporaryDirectory()
@@ -222,6 +260,7 @@ class ProofTests(unittest.TestCase):
         library = result["libraries"][0]
         self.assertEqual(library["library"], "original-demo")
         self.assertEqual(library["apt_packages"], ["demo-runtime", "demo-dev"])
+        self.assertEqual(library["runtime_packages"], [])
         self.assertEqual(library["totals"]["cases"], 2)
         self.assertEqual(library["testcases"][0]["title"], "Source echo round trip")
         self.assertEqual(library["testcases"][0]["mode"], "original")
