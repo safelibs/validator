@@ -369,47 +369,86 @@ def _summary_cards(site_data: dict[str, Any], *, current_library: str | None = N
     )
 
 
-def _library_cards(site_data: dict[str, Any], *, page_depth: int) -> str:
-    cards: list[str] = []
+_LIBRARY_GROUP_ORDER = (
+    ("failing", "Failing"),
+    ("passing", "Passing"),
+    ("not-run", "Not run"),
+)
+
+
+def _library_card(
+    library: str,
+    rows: list[dict[str, Any]],
+    *,
+    page_depth: int,
+) -> tuple[str, str]:
+    inventory = _inventory_counts(rows)
+    ports = _port_counts(rows)
+    state = "not-run"
+    state_label = "Not run"
+    if ports["cases"] > 0:
+        state = "passing" if ports["failed"] == 0 else "failing"
+        state_label = "Passing" if ports["failed"] == 0 else "Failing"
+    href = _page_href(f"library/{library}.html", page_depth=page_depth)
+    assert href is not None
+    port_ratio = _ratio_text(ports["passed"], ports["cases"])
+    aria_label = f"{library}: {inventory['cases']} tests, {port_ratio} port tests passing"
+    card = "\n".join(
+        [
+            (
+                f'          <a class="library-card library-{html.escape(state)}" '
+                f'href="{html.escape(href)}" data-library-card="{html.escape(library)}" '
+                f'aria-label="{html.escape(aria_label)}">'
+            ),
+            '            <span class="library-card-heading">',
+            f"              <strong>{html.escape(library)}</strong>",
+            f'              <span class="library-state">{html.escape(state_label)}</span>',
+            "            </span>",
+            '            <dl class="library-stats">',
+            f'              <div><dt>Tests</dt><dd>{html.escape(str(inventory["cases"]))}</dd></div>',
+            f'              <div><dt>Source</dt><dd>{html.escape(str(inventory["source_cases"]))}</dd></div>',
+            f'              <div><dt>Usage</dt><dd>{html.escape(str(inventory["usage_cases"]))}</dd></div>',
+            f"              <div><dt>Port pass</dt><dd>{html.escape(port_ratio)}</dd></div>",
+            "            </dl>",
+            "          </a>",
+        ]
+    )
+    return state, card
+
+
+def _library_groups(site_data: dict[str, Any], *, page_depth: int) -> str:
     library_rows: dict[str, list[dict[str, Any]]] = {}
     for row in site_data["testcases"]:
         library_rows.setdefault(str(row["library"]), []).append(row)
+    grouped: dict[str, list[str]] = {state: [] for state, _ in _LIBRARY_GROUP_ORDER}
     for library in sorted(library_rows):
-        rows = library_rows[library]
-        inventory = _inventory_counts(rows)
-        ports = _port_counts(rows)
-        state = "not-run"
-        state_label = "Not run"
-        if ports["cases"] > 0:
-            state = "passing" if ports["failed"] == 0 else "failing"
-            state_label = "Passing" if ports["failed"] == 0 else "Failing"
-        href = _page_href(f"library/{library}.html", page_depth=page_depth)
-        assert href is not None
-        port_ratio = _ratio_text(ports["passed"], ports["cases"])
-        aria_label = f"{library}: {inventory['cases']} tests, {port_ratio} port tests passing"
-        cards.append(
+        state, card = _library_card(library, library_rows[library], page_depth=page_depth)
+        grouped[state].append(card)
+    sections: list[str] = []
+    for state, label in _LIBRARY_GROUP_ORDER:
+        cards = grouped[state]
+        if not cards:
+            continue
+        heading_id = f"library-group-{state}-heading"
+        sections.append(
             "\n".join(
                 [
                     (
-                        f'        <a class="library-card library-{html.escape(state)}" '
-                        f'href="{html.escape(href)}" data-library-card="{html.escape(library)}" '
-                        f'aria-label="{html.escape(aria_label)}">'
+                        f'        <div class="library-group library-group-{html.escape(state)}" '
+                        f'aria-labelledby="{html.escape(heading_id)}">'
                     ),
-                    '          <span class="library-card-heading">',
-                    f"            <strong>{html.escape(library)}</strong>",
-                    f'            <span class="library-state">{html.escape(state_label)}</span>',
-                    "          </span>",
-                    '          <dl class="library-stats">',
-                    f'            <div><dt>Tests</dt><dd>{html.escape(str(inventory["cases"]))}</dd></div>',
-                    f'            <div><dt>Source</dt><dd>{html.escape(str(inventory["source_cases"]))}</dd></div>',
-                    f'            <div><dt>Usage</dt><dd>{html.escape(str(inventory["usage_cases"]))}</dd></div>',
-                    f"            <div><dt>Port pass</dt><dd>{html.escape(port_ratio)}</dd></div>",
-                    "          </dl>",
-                    "        </a>",
+                    (
+                        f'          <h3 id="{html.escape(heading_id)}" class="library-group-heading">'
+                        f"{html.escape(label)} <span class=\"library-group-count\">{len(cards)}</span></h3>"
+                    ),
+                    '          <div class="library-grid">',
+                    *cards,
+                    "          </div>",
+                    "        </div>",
                 ]
             )
         )
-    return "\n".join(cards)
+    return "\n".join(sections)
 
 
 def _tag_list(tags: Any) -> str:
@@ -554,9 +593,7 @@ def render_page(
             [
                 '      <section class="library-overview" aria-labelledby="libraries-heading">',
                 '        <h2 id="libraries-heading">Libraries and Port Status</h2>',
-                '        <div class="library-grid">',
-                _library_cards(site_data, page_depth=page_depth),
-                "        </div>",
+                _library_groups(site_data, page_depth=page_depth),
                 "      </section>",
             ]
         )
@@ -791,6 +828,55 @@ h2 {
 .library-not-run .library-state {
   background: var(--warning-bg);
   color: var(--warning-text);
+}
+
+.library-group + .library-group {
+  margin-top: 20px;
+}
+
+.library-group-heading {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 0 0 10px;
+  font-size: 1rem;
+}
+
+.library-group-count {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 22px;
+  padding: 2px 8px;
+  border-radius: 999px;
+  background: var(--surface-muted);
+  color: var(--muted);
+  font-size: 0.78rem;
+  font-weight: 600;
+}
+
+.library-group-failing .library-group-heading {
+  color: var(--danger-text);
+}
+
+.library-group-failing .library-group-count {
+  background: var(--danger-bg);
+  color: var(--danger-text);
+}
+
+.library-group-passing .library-group-count {
+  background: var(--success-bg);
+  color: var(--success-text);
+}
+
+.library-group-not-run .library-group-count {
+  background: var(--warning-bg);
+  color: var(--warning-text);
+}
+
+.library-failing {
+  border-color: var(--danger-text);
+  box-shadow: inset 4px 0 0 var(--danger-text);
 }
 
 .library-stats,
