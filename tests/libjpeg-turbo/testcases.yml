@@ -983,3 +983,123 @@ testcases:
   timeout_seconds: 120
   tags:
   - usage
+- id: usage-python3-pil-difference-mirror-jpeg
+  title: Pillow difference mirror JPEG
+  description: Uses Pillow ImageChops.difference on a generated JPEG and its mirrored copy and verifies the absolute per-channel difference values before round-tripping.
+  kind: usage
+  client_application: python3-pil
+  command:
+  - bash
+  - /validator/tests/libjpeg-turbo/tests/cases/usage/usage-tenth-batch-behavior.sh
+  - usage-python3-pil-difference-mirror-jpeg
+  timeout_seconds: 120
+  tags:
+  - usage
+- id: usage-python3-pil-add-modulo-mirror-jpeg
+  title: Pillow add_modulo mirror JPEG
+  description: Uses Pillow ImageChops.add_modulo on a generated JPEG and its mirrored copy and verifies the modular per-channel sums before round-tripping.
+  kind: usage
+  client_application: python3-pil
+  command:
+  - bash
+  - /validator/tests/libjpeg-turbo/tests/cases/usage/usage-tenth-batch-behavior.sh
+  - usage-python3-pil-add-modulo-mirror-jpeg
+  timeout_seconds: 120
+  tags:
+  - usage
+- id: usage-python3-pil-subtract-modulo-mirror-jpeg
+  title: Pillow subtract_modulo mirror JPEG
+  description: Uses Pillow ImageChops.subtract_modulo on a generated JPEG and its mirrored copy and verifies the modular per-channel differences before round-tripping.
+  kind: usage
+  client_application: python3-pil
+  command:
+  - bash
+  - /validator/tests/libjpeg-turbo/tests/cases/usage/usage-tenth-batch-behavior.sh
+  - usage-python3-pil-subtract-modulo-mirror-jpeg
+  timeout_seconds: 120
+  tags:
+  - usage
+- id: usage-python3-pil-duplicate-darker-jpeg
+  title: Pillow duplicate darker JPEG
+  description: Uses Pillow ImageChops.darker on a generated JPEG against its own copy and verifies the result equals the original pixel values before round-tripping.
+  kind: usage
+  client_application: python3-pil
+  command:
+  - bash
+  - /validator/tests/libjpeg-turbo/tests/cases/usage/usage-tenth-batch-behavior.sh
+  - usage-python3-pil-duplicate-darker-jpeg
+  timeout_seconds: 120
+  tags:
+  - usage
+- id: usage-python3-pil-invert-mirror-mirror-jpeg
+  title: Pillow invert mirror lighter JPEG
+  description: Inverts a mirrored JPEG with ImageOps.invert and lighter-merges with the original, verifying the per-channel lighter pixel values before round-tripping.
+  kind: usage
+  client_application: python3-pil
+  command:
+  - bash
+  - /validator/tests/libjpeg-turbo/tests/cases/usage/usage-tenth-batch-behavior.sh
+  - usage-python3-pil-invert-mirror-mirror-jpeg
+  timeout_seconds: 120
+  tags:
+  - usage
+- id: usage-python3-pil-blend-zero-mirror-jpeg
+  title: Pillow blend alpha zero JPEG
+  description: Uses Pillow Image.blend with alpha zero on a generated JPEG and verifies the result equals the original image pixel-for-pixel before round-tripping.
+  kind: usage
+  client_application: python3-pil
+  command:
+  - bash
+  - /validator/tests/libjpeg-turbo/tests/cases/usage/usage-tenth-batch-behavior.sh
+  - usage-python3-pil-blend-zero-mirror-jpeg
+  timeout_seconds: 120
+  tags:
+  - usage
+- id: usage-python3-pil-flatten-l-mirror-jpeg
+  title: Pillow grayscale darker mirror JPEG
+  description: Converts a generated JPEG to L mode and darker-merges with its mirrored copy, verifying the minimum luminance value before round-tripping.
+  kind: usage
+  client_application: python3-pil
+  command:
+  - bash
+  - /validator/tests/libjpeg-turbo/tests/cases/usage/usage-tenth-batch-behavior.sh
+  - usage-python3-pil-flatten-l-mirror-jpeg
+  timeout_seconds: 120
+  tags:
+  - usage
+- id: usage-python3-pil-grayscale-add-jpeg
+  title: Pillow grayscale add JPEG
+  description: Converts a generated JPEG to L mode and adds its mirrored copy with ImageChops.add, verifying the saturated luminance sum before saving.
+  kind: usage
+  client_application: python3-pil
+  command:
+  - bash
+  - /validator/tests/libjpeg-turbo/tests/cases/usage/usage-tenth-batch-behavior.sh
+  - usage-python3-pil-grayscale-add-jpeg
+  timeout_seconds: 120
+  tags:
+  - usage
+- id: usage-python3-pil-mirror-twice-identity-jpeg
+  title: Pillow mirror twice identity JPEG
+  description: Mirrors a generated JPEG twice with ImageOps.mirror and verifies the result matches the original pixel-for-pixel before round-tripping.
+  kind: usage
+  client_application: python3-pil
+  command:
+  - bash
+  - /validator/tests/libjpeg-turbo/tests/cases/usage/usage-tenth-batch-behavior.sh
+  - usage-python3-pil-mirror-twice-identity-jpeg
+  timeout_seconds: 120
+  tags:
+  - usage
+- id: usage-python3-pil-flip-twice-identity-jpeg
+  title: Pillow flip twice identity JPEG
+  description: Flips a generated JPEG twice with ImageOps.flip and verifies the result matches the original pixel-for-pixel before round-tripping.
+  kind: usage
+  client_application: python3-pil
+  command:
+  - bash
+  - /validator/tests/libjpeg-turbo/tests/cases/usage/usage-tenth-batch-behavior.sh
+  - usage-python3-pil-flip-twice-identity-jpeg
+  timeout_seconds: 120
+  tags:
+  - usage

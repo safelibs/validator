@@ -998,3 +998,143 @@ testcases:
   - usage
   - nodejs
   - timers
+- id: usage-nodejs-fs-truncate-file
+  title: nodejs fs truncate
+  description: Truncates a file to eight bytes through Node fs.truncateSync and verifies the shortened content.
+  kind: usage
+  client_application: nodejs
+  command:
+  - bash
+  - /validator/tests/libuv/tests/cases/usage/usage-tenth-batch-behavior.sh
+  - usage-nodejs-fs-truncate-file
+  timeout_seconds: 180
+  tags:
+  - usage
+  - nodejs
+  - filesystem
+- id: usage-nodejs-fs-stat-isfile
+  title: nodejs fs stat isFile
+  description: Calls Node fs.statSync on a regular file and verifies isFile returns true.
+  kind: usage
+  client_application: nodejs
+  command:
+  - bash
+  - /validator/tests/libuv/tests/cases/usage/usage-tenth-batch-behavior.sh
+  - usage-nodejs-fs-stat-isfile
+  timeout_seconds: 180
+  tags:
+  - usage
+  - nodejs
+  - filesystem
+- id: usage-nodejs-buffer-from-hex
+  title: nodejs buffer from hex
+  description: Decodes a hex-encoded ASCII buffer through Node Buffer and verifies the restored UTF-8 string.
+  kind: usage
+  client_application: nodejs
+  command:
+  - bash
+  - /validator/tests/libuv/tests/cases/usage/usage-tenth-batch-behavior.sh
+  - usage-nodejs-buffer-from-hex
+  timeout_seconds: 180
+  tags:
+  - usage
+  - nodejs
+  - buffer
+- id: usage-nodejs-url-pathname-parse
+  title: nodejs URL pathname parse
+  description: Parses a URL through the global URL constructor and verifies pathname plus query parameter access.
+  kind: usage
+  client_application: nodejs
+  command:
+  - bash
+  - /validator/tests/libuv/tests/cases/usage/usage-tenth-batch-behavior.sh
+  - usage-nodejs-url-pathname-parse
+  timeout_seconds: 180
+  tags:
+  - usage
+  - nodejs
+  - url
+- id: usage-nodejs-os-tmpdir-defined
+  title: nodejs os.tmpdir defined
+  description: Reads the platform temporary directory through Node os.tmpdir and verifies a non-empty string is returned.
+  kind: usage
+  client_application: nodejs
+  command:
+  - bash
+  - /validator/tests/libuv/tests/cases/usage/usage-tenth-batch-behavior.sh
+  - usage-nodejs-os-tmpdir-defined
+  timeout_seconds: 180
+  tags:
+  - usage
+  - nodejs
+  - os
+- id: usage-nodejs-events-emit-listener
+  title: nodejs events emit listener
+  description: Registers an EventEmitter listener and verifies the callback receives the emitted argument value.
+  kind: usage
+  client_application: nodejs
+  command:
+  - bash
+  - /validator/tests/libuv/tests/cases/usage/usage-tenth-batch-behavior.sh
+  - usage-nodejs-events-emit-listener
+  timeout_seconds: 180
+  tags:
+  - usage
+  - nodejs
+  - events
+- id: usage-nodejs-fs-write-stream-end
+  title: nodejs fs write stream end
+  description: Writes through a Node fs.createWriteStream and verifies the end callback fires after the buffered payload is flushed.
+  kind: usage
+  client_application: nodejs
+  command:
+  - bash
+  - /validator/tests/libuv/tests/cases/usage/usage-tenth-batch-behavior.sh
+  - usage-nodejs-fs-write-stream-end
+  timeout_seconds: 180
+  tags:
+  - usage
+  - nodejs
+  - stream
+- id: usage-nodejs-crypto-sha256-hex
+  title: nodejs crypto sha256 hex
+  description: Computes a SHA-256 hex digest with Node crypto.createHash and verifies the deterministic digest of a known input.
+  kind: usage
+  client_application: nodejs
+  command:
+  - bash
+  - /validator/tests/libuv/tests/cases/usage/usage-tenth-batch-behavior.sh
+  - usage-nodejs-crypto-sha256-hex
+  timeout_seconds: 180
+  tags:
+  - usage
+  - nodejs
+  - crypto
+- id: usage-nodejs-zlib-deflatesync-roundtrip
+  title: nodejs zlib deflate roundtrip
+  description: Round-trips a payload through Node zlib.deflateSync and zlib.inflateSync and verifies the restored bytes.
+  kind: usage
+  client_application: nodejs
+  command:
+  - bash
+  - /validator/tests/libuv/tests/cases/usage/usage-tenth-batch-behavior.sh
+  - usage-nodejs-zlib-deflatesync-roundtrip
+  timeout_seconds: 180
+  tags:
+  - usage
+  - nodejs
+  - zlib
+- id: usage-nodejs-process-hrtime-bigint
+  title: nodejs hrtime bigint monotonic
+  description: Reads two consecutive process.hrtime.bigint samples through Node and verifies the second value is not earlier than the first.
+  kind: usage
+  client_application: nodejs
+  command:
+  - bash
+  - /validator/tests/libuv/tests/cases/usage/usage-tenth-batch-behavior.sh
+  - usage-nodejs-process-hrtime-bigint
+  timeout_seconds: 180
+  tags:
+  - usage
+  - nodejs
+  - process

@@ -1000,3 +1000,143 @@ testcases:
   - usage
   - archive
   - python
+- id: usage-python-libarchive-c-batch10-tar-gzip-roundtrip
+  title: python-libarchive-c tar gzip filter roundtrip
+  description: Writes a tar archive through the gzip filter via python-libarchive-c and verifies the entry payload survives a read-back.
+  kind: usage
+  client_application: python3-libarchive-c
+  command:
+  - bash
+  - /validator/tests/libarchive/tests/cases/usage/usage-tenth-batch-behavior.sh
+  - usage-python-libarchive-c-batch10-tar-gzip-roundtrip
+  timeout_seconds: 180
+  tags:
+  - usage
+  - archive
+  - python
+- id: usage-python-libarchive-c-batch10-zip-deep-path
+  title: python-libarchive-c zip deep nested path
+  description: Writes a six-segment nested pathname into a zip via python-libarchive-c and verifies the full path survives the round trip.
+  kind: usage
+  client_application: python3-libarchive-c
+  command:
+  - bash
+  - /validator/tests/libarchive/tests/cases/usage/usage-tenth-batch-behavior.sh
+  - usage-python-libarchive-c-batch10-zip-deep-path
+  timeout_seconds: 180
+  tags:
+  - usage
+  - archive
+  - python
+- id: usage-python-libarchive-c-batch10-tar-many-empties
+  title: python-libarchive-c tar seven empty files
+  description: Writes seven zero-byte files into a tar via python-libarchive-c and verifies all entries are read back with empty payloads.
+  kind: usage
+  client_application: python3-libarchive-c
+  command:
+  - bash
+  - /validator/tests/libarchive/tests/cases/usage/usage-tenth-batch-behavior.sh
+  - usage-python-libarchive-c-batch10-tar-many-empties
+  timeout_seconds: 180
+  tags:
+  - usage
+  - archive
+  - python
+- id: usage-python-libarchive-c-batch10-pax-binary-payload
+  title: python-libarchive-c pax binary payload
+  description: Writes a 64-byte binary payload into a pax archive via python-libarchive-c and verifies all bytes survive the round trip.
+  kind: usage
+  client_application: python3-libarchive-c
+  command:
+  - bash
+  - /validator/tests/libarchive/tests/cases/usage/usage-tenth-batch-behavior.sh
+  - usage-python-libarchive-c-batch10-pax-binary-payload
+  timeout_seconds: 180
+  tags:
+  - usage
+  - archive
+  - python
+- id: usage-python-libarchive-c-batch10-cpio-binary-roundtrip
+  title: python-libarchive-c cpio binary roundtrip
+  description: Writes a repeated binary payload into a cpio archive via python-libarchive-c and verifies the bytes match after read-back.
+  kind: usage
+  client_application: python3-libarchive-c
+  command:
+  - bash
+  - /validator/tests/libarchive/tests/cases/usage/usage-tenth-batch-behavior.sh
+  - usage-python-libarchive-c-batch10-cpio-binary-roundtrip
+  timeout_seconds: 180
+  tags:
+  - usage
+  - archive
+  - python
+- id: usage-python-libarchive-c-batch10-zip-bzip2-filter-fallback
+  title: python-libarchive-c bzip2 filter listing
+  description: Writes a tar through the bzip2 filter via python-libarchive-c and verifies the entry name appears in the listing.
+  kind: usage
+  client_application: python3-libarchive-c
+  command:
+  - bash
+  - /validator/tests/libarchive/tests/cases/usage/usage-tenth-batch-behavior.sh
+  - usage-python-libarchive-c-batch10-zip-bzip2-filter-fallback
+  timeout_seconds: 180
+  tags:
+  - usage
+  - archive
+  - python
+- id: usage-python-libarchive-c-batch10-tar-zstd-memory-reader
+  title: python-libarchive-c tar zstd memory reader
+  description: Writes a zstd-filtered tar via python-libarchive-c and verifies memory_reader returns both entries with their payloads.
+  kind: usage
+  client_application: python3-libarchive-c
+  command:
+  - bash
+  - /validator/tests/libarchive/tests/cases/usage/usage-tenth-batch-behavior.sh
+  - usage-python-libarchive-c-batch10-tar-zstd-memory-reader
+  timeout_seconds: 180
+  tags:
+  - usage
+  - archive
+  - python
+- id: usage-python-libarchive-c-batch10-zip-name-order-preserved
+  title: python-libarchive-c zip preserves write order
+  description: Writes three zip entries in non-alphabetical order via python-libarchive-c and verifies the reader returns them in the same insertion order.
+  kind: usage
+  client_application: python3-libarchive-c
+  command:
+  - bash
+  - /validator/tests/libarchive/tests/cases/usage/usage-tenth-batch-behavior.sh
+  - usage-python-libarchive-c-batch10-zip-name-order-preserved
+  timeout_seconds: 180
+  tags:
+  - usage
+  - archive
+  - python
+- id: usage-python-libarchive-c-batch10-tar-size-zero-mixed
+  title: python-libarchive-c tar mixed empty and non-empty
+  description: Writes a tar containing two empty and two four-byte entries via python-libarchive-c and verifies the metadata sizes match each entry.
+  kind: usage
+  client_application: python3-libarchive-c
+  command:
+  - bash
+  - /validator/tests/libarchive/tests/cases/usage/usage-tenth-batch-behavior.sh
+  - usage-python-libarchive-c-batch10-tar-size-zero-mixed
+  timeout_seconds: 180
+  tags:
+  - usage
+  - archive
+  - python
+- id: usage-python-libarchive-c-batch10-zip-large-payload
+  title: python-libarchive-c zip large payload
+  description: Writes a multi-kilobyte repeating payload into a zip via python-libarchive-c and verifies the read-back bytes match exactly.
+  kind: usage
+  client_application: python3-libarchive-c
+  command:
+  - bash
+  - /validator/tests/libarchive/tests/cases/usage/usage-tenth-batch-behavior.sh
+  - usage-python-libarchive-c-batch10-zip-large-payload
+  timeout_seconds: 180
+  tags:
+  - usage
+  - archive
+  - python

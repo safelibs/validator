@@ -1023,3 +1023,143 @@ testcases:
   - usage
   - python
   - variant
+- id: usage-glib-compile-schemas-string-array-list
+  title: glib-compile-schemas string array
+  description: Compiles a schema with a string array key and reads the list values back through gsettings.
+  kind: usage
+  client_application: gio
+  command:
+  - bash
+  - /validator/tests/glib/tests/cases/usage/usage-tenth-batch-behavior.sh
+  - usage-glib-compile-schemas-string-array-list
+  timeout_seconds: 180
+  tags:
+  - usage
+  - gsettings
+  - schema
+- id: usage-glib-compile-schemas-uint-default
+  title: glib-compile-schemas uint default
+  description: Compiles a schema with an unsigned integer key and verifies gsettings reads back the default uint value.
+  kind: usage
+  client_application: gio
+  command:
+  - bash
+  - /validator/tests/glib/tests/cases/usage/usage-tenth-batch-behavior.sh
+  - usage-glib-compile-schemas-uint-default
+  timeout_seconds: 180
+  tags:
+  - usage
+  - gsettings
+  - schema
+- id: usage-gio-cat-multiple-files
+  title: gio cat concatenates files
+  description: Concatenates two text files with gio cat and verifies both file contents appear in the merged output.
+  kind: usage
+  client_application: gio
+  command:
+  - bash
+  - /validator/tests/glib/tests/cases/usage/usage-tenth-batch-behavior.sh
+  - usage-gio-cat-multiple-files
+  timeout_seconds: 180
+  tags:
+  - usage
+  - gio
+  - filesystem
+- id: usage-gio-info-unix-mode-attribute
+  title: gio info reports unix mode
+  description: Queries the unix::mode file attribute through gio info and verifies the attribute label appears in the output.
+  kind: usage
+  client_application: gio
+  command:
+  - bash
+  - /validator/tests/glib/tests/cases/usage/usage-tenth-batch-behavior.sh
+  - usage-gio-info-unix-mode-attribute
+  timeout_seconds: 180
+  tags:
+  - usage
+  - gio
+  - attributes
+- id: usage-python3-gi-string-replace
+  title: PyGObject GLib uri escape
+  description: Escapes a URI component through GLib uri_escape_string from PyGObject and verifies the percent-encoded output.
+  kind: usage
+  client_application: python3-gi
+  command:
+  - bash
+  - /validator/tests/glib/tests/cases/usage/usage-tenth-batch-behavior.sh
+  - usage-python3-gi-string-replace
+  timeout_seconds: 180
+  tags:
+  - usage
+  - python
+  - glib
+- id: usage-python3-gi-checksum-sha256-string
+  title: PyGObject GLib SHA256 checksum
+  description: Computes a SHA256 digest of a string through GLib compute_checksum_for_string and verifies the hex digest from PyGObject.
+  kind: usage
+  client_application: python3-gi
+  command:
+  - bash
+  - /validator/tests/glib/tests/cases/usage/usage-tenth-batch-behavior.sh
+  - usage-python3-gi-checksum-sha256-string
+  timeout_seconds: 180
+  tags:
+  - usage
+  - python
+  - checksum
+- id: usage-python3-gi-base64-decode
+  title: PyGObject GLib base64 decode
+  description: Decodes a base64 string with GLib through PyGObject and verifies the restored payload bytes.
+  kind: usage
+  client_application: python3-gi
+  command:
+  - bash
+  - /validator/tests/glib/tests/cases/usage/usage-tenth-batch-behavior.sh
+  - usage-python3-gi-base64-decode
+  timeout_seconds: 180
+  tags:
+  - usage
+  - python
+  - glib
+- id: usage-python3-gi-keyfile-double
+  title: PyGObject GLib KeyFile double
+  description: Stores and reads a floating-point value through GLib KeyFile from PyGObject and verifies the round-tripped number.
+  kind: usage
+  client_application: python3-gi
+  command:
+  - bash
+  - /validator/tests/glib/tests/cases/usage/usage-tenth-batch-behavior.sh
+  - usage-python3-gi-keyfile-double
+  timeout_seconds: 180
+  tags:
+  - usage
+  - python
+  - keyfile
+- id: usage-python3-gi-variant-array-strings
+  title: PyGObject GLib string array variant
+  description: Builds a GLib string array variant through PyGObject and verifies child count and an indexed string element.
+  kind: usage
+  client_application: python3-gi
+  command:
+  - bash
+  - /validator/tests/glib/tests/cases/usage/usage-tenth-batch-behavior.sh
+  - usage-python3-gi-variant-array-strings
+  timeout_seconds: 180
+  tags:
+  - usage
+  - python
+  - variant
+- id: usage-python3-gi-datetime-iso-string
+  title: PyGObject GLib DateTime ISO 8601
+  description: Builds a UTC GLib DateTime through PyGObject and verifies the ISO 8601 format string.
+  kind: usage
+  client_application: python3-gi
+  command:
+  - bash
+  - /validator/tests/glib/tests/cases/usage/usage-tenth-batch-behavior.sh
+  - usage-python3-gi-datetime-iso-string
+  timeout_seconds: 180
+  tags:
+  - usage
+  - python
+  - datetime

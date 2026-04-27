@@ -1012,3 +1012,143 @@ testcases:
   - usage
   - archive
   - zstd
+- id: usage-libarchive-tools-zstd-batch10-stream-stdout-archive
+  title: libarchive-tools zstd archive to stdout
+  description: Streams a zstd-compressed tar to stdout via bsdtar -cf - then lists the resulting archive and verifies both members appear.
+  kind: usage
+  client_application: libarchive-tools
+  command:
+  - bash
+  - /validator/tests/libzstd/tests/cases/usage/usage-tenth-batch-behavior.sh
+  - usage-libarchive-tools-zstd-batch10-stream-stdout-archive
+  timeout_seconds: 180
+  tags:
+  - usage
+  - archive
+  - zstd
+- id: usage-libarchive-tools-zstd-batch10-extract-stdin-piped
+  title: libarchive-tools zstd extract from stdin pipe
+  description: Pipes a zstd archive into bsdtar -xf - via redirection and verifies a deeply nested member is extracted with its payload.
+  kind: usage
+  client_application: libarchive-tools
+  command:
+  - bash
+  - /validator/tests/libzstd/tests/cases/usage/usage-tenth-batch-behavior.sh
+  - usage-libarchive-tools-zstd-batch10-extract-stdin-piped
+  timeout_seconds: 180
+  tags:
+  - usage
+  - archive
+  - zstd
+- id: usage-libarchive-tools-zstd-batch10-exclude-multi
+  title: libarchive-tools zstd multiple exclude patterns
+  description: Builds a zstd tar with two --exclude patterns and verifies only the unmatched member appears in the listing.
+  kind: usage
+  client_application: libarchive-tools
+  command:
+  - bash
+  - /validator/tests/libzstd/tests/cases/usage/usage-tenth-batch-behavior.sh
+  - usage-libarchive-tools-zstd-batch10-exclude-multi
+  timeout_seconds: 180
+  tags:
+  - usage
+  - archive
+  - zstd
+- id: usage-libarchive-tools-zstd-batch10-roundtrip-checksum
+  title: libarchive-tools zstd nested member checksum
+  description: Round-trips a nested file through a zstd tar archive and verifies the SHA-256 of the extracted file matches the source.
+  kind: usage
+  client_application: libarchive-tools
+  command:
+  - bash
+  - /validator/tests/libzstd/tests/cases/usage/usage-tenth-batch-behavior.sh
+  - usage-libarchive-tools-zstd-batch10-roundtrip-checksum
+  timeout_seconds: 180
+  tags:
+  - usage
+  - archive
+  - zstd
+- id: usage-libarchive-tools-zstd-batch10-cwd-extract
+  title: libarchive-tools zstd extract in cwd
+  description: Extracts a zstd archive from the current working directory without -C and verifies the file lands relative to cwd.
+  kind: usage
+  client_application: libarchive-tools
+  command:
+  - bash
+  - /validator/tests/libzstd/tests/cases/usage/usage-tenth-batch-behavior.sh
+  - usage-libarchive-tools-zstd-batch10-cwd-extract
+  timeout_seconds: 180
+  tags:
+  - usage
+  - archive
+  - zstd
+- id: usage-libarchive-tools-zstd-batch10-multi-archive-list
+  title: libarchive-tools zstd two archives separately
+  description: Builds two independent zstd archives and verifies each listing contains only its own member.
+  kind: usage
+  client_application: libarchive-tools
+  command:
+  - bash
+  - /validator/tests/libzstd/tests/cases/usage/usage-tenth-batch-behavior.sh
+  - usage-libarchive-tools-zstd-batch10-multi-archive-list
+  timeout_seconds: 180
+  tags:
+  - usage
+  - archive
+  - zstd
+- id: usage-libarchive-tools-zstd-batch10-deep-nested-extract
+  title: libarchive-tools zstd deep nested extract
+  description: Round-trips a five-level nested file through a zstd tar and verifies the leaf path and payload survive extraction.
+  kind: usage
+  client_application: libarchive-tools
+  command:
+  - bash
+  - /validator/tests/libzstd/tests/cases/usage/usage-tenth-batch-behavior.sh
+  - usage-libarchive-tools-zstd-batch10-deep-nested-extract
+  timeout_seconds: 180
+  tags:
+  - usage
+  - archive
+  - zstd
+- id: usage-libarchive-tools-zstd-batch10-mixed-format-list
+  title: libarchive-tools zstd mixed listing exact count
+  description: Adds three members including a spaced filename to a zstd tar and verifies the listing reports exactly three entries.
+  kind: usage
+  client_application: libarchive-tools
+  command:
+  - bash
+  - /validator/tests/libzstd/tests/cases/usage/usage-tenth-batch-behavior.sh
+  - usage-libarchive-tools-zstd-batch10-mixed-format-list
+  timeout_seconds: 180
+  tags:
+  - usage
+  - archive
+  - zstd
+- id: usage-libarchive-tools-zstd-batch10-extract-multi-stdout
+  title: libarchive-tools zstd extract two members to stdout
+  description: Uses bsdtar -xOf to print two named members from a zstd archive and verifies both payloads appear on stdout.
+  kind: usage
+  client_application: libarchive-tools
+  command:
+  - bash
+  - /validator/tests/libzstd/tests/cases/usage/usage-tenth-batch-behavior.sh
+  - usage-libarchive-tools-zstd-batch10-extract-multi-stdout
+  timeout_seconds: 180
+  tags:
+  - usage
+  - archive
+  - zstd
+- id: usage-libarchive-tools-zstd-batch10-zstd-decompress-flag
+  title: libarchive-tools zstd extract with explicit --zstd
+  description: Extracts a zstd archive while passing --zstd to bsdtar -xf and verifies the restored file payload.
+  kind: usage
+  client_application: libarchive-tools
+  command:
+  - bash
+  - /validator/tests/libzstd/tests/cases/usage/usage-tenth-batch-behavior.sh
+  - usage-libarchive-tools-zstd-batch10-zstd-decompress-flag
+  timeout_seconds: 180
+  tags:
+  - usage
+  - archive
+  - zstd

@@ -1014,3 +1014,143 @@ testcases:
   - usage
   - gpg
   - crypto
+- id: usage-gpg-print-md-sha384-hex
+  title: gpg print-md SHA384 hex
+  description: Computes a SHA384 digest with gpg --print-md and verifies enough hex groups appear for a 384 bit output.
+  kind: usage
+  client_application: gpg
+  command:
+  - bash
+  - /validator/tests/libgcrypt/tests/cases/usage/usage-tenth-batch-behavior.sh
+  - usage-gpg-print-md-sha384-hex
+  timeout_seconds: 180
+  tags:
+  - usage
+  - gpg
+  - digest
+- id: usage-gpg-print-md-sha256-hex
+  title: gpg print-md SHA256 hex
+  description: Computes a SHA256 digest with gpg --print-md and verifies enough hex groups appear for a 256 bit output.
+  kind: usage
+  client_application: gpg
+  command:
+  - bash
+  - /validator/tests/libgcrypt/tests/cases/usage/usage-tenth-batch-behavior.sh
+  - usage-gpg-print-md-sha256-hex
+  timeout_seconds: 180
+  tags:
+  - usage
+  - gpg
+  - digest
+- id: usage-gpg-symmetric-aes256-roundtrip
+  title: gpg symmetric AES256 roundtrip
+  description: Encrypts and decrypts a payload with AES256 symmetric mode through gpg and verifies the recovered plaintext.
+  kind: usage
+  client_application: gpg
+  command:
+  - bash
+  - /validator/tests/libgcrypt/tests/cases/usage/usage-tenth-batch-behavior.sh
+  - usage-gpg-symmetric-aes256-roundtrip
+  timeout_seconds: 180
+  tags:
+  - usage
+  - gpg
+  - symmetric
+- id: usage-gpg-symmetric-armor-output
+  title: gpg symmetric armor output
+  description: Produces an ASCII-armored symmetric message through gpg --armor and verifies decryption restores the original body.
+  kind: usage
+  client_application: gpg
+  command:
+  - bash
+  - /validator/tests/libgcrypt/tests/cases/usage/usage-tenth-batch-behavior.sh
+  - usage-gpg-symmetric-armor-output
+  timeout_seconds: 180
+  tags:
+  - usage
+  - gpg
+  - armor
+- id: usage-gpg-clearsign-roundtrip-output
+  title: gpg clearsign output
+  description: Generates a clearsigned ASCII document with gpg --clearsign and verifies the message header and body line are preserved.
+  kind: usage
+  client_application: gpg
+  command:
+  - bash
+  - /validator/tests/libgcrypt/tests/cases/usage/usage-tenth-batch-behavior.sh
+  - usage-gpg-clearsign-roundtrip-output
+  timeout_seconds: 180
+  tags:
+  - usage
+  - gpg
+  - sign
+- id: usage-gpg-export-armor-block
+  title: gpg export armor block
+  description: Exports a generated public key in ASCII armor through gpg --armor --export and verifies the begin and end markers.
+  kind: usage
+  client_application: gpg
+  command:
+  - bash
+  - /validator/tests/libgcrypt/tests/cases/usage/usage-tenth-batch-behavior.sh
+  - usage-gpg-export-armor-block
+  timeout_seconds: 180
+  tags:
+  - usage
+  - gpg
+  - export
+- id: usage-gpg-list-keys-uid
+  title: gpg list keys uid
+  description: Lists keys for a generated identity with gpg --list-keys and verifies the user id string appears in the listing.
+  kind: usage
+  client_application: gpg
+  command:
+  - bash
+  - /validator/tests/libgcrypt/tests/cases/usage/usage-tenth-batch-behavior.sh
+  - usage-gpg-list-keys-uid
+  timeout_seconds: 180
+  tags:
+  - usage
+  - gpg
+  - keyring
+- id: usage-gpg-gen-random-zero-bytes
+  title: gpg gen-random 32 bytes
+  description: Requests 32 bytes from gpg --gen-random and verifies the output stream length matches the requested byte count.
+  kind: usage
+  client_application: gpg
+  command:
+  - bash
+  - /validator/tests/libgcrypt/tests/cases/usage/usage-tenth-batch-behavior.sh
+  - usage-gpg-gen-random-zero-bytes
+  timeout_seconds: 180
+  tags:
+  - usage
+  - gpg
+  - random
+- id: usage-gpg-symmetric-stdin-armor
+  title: gpg symmetric stdin armor
+  description: Encrypts payload from stdin with gpg armored symmetric output and verifies decryption restores the streamed body.
+  kind: usage
+  client_application: gpg
+  command:
+  - bash
+  - /validator/tests/libgcrypt/tests/cases/usage/usage-tenth-batch-behavior.sh
+  - usage-gpg-symmetric-stdin-armor
+  timeout_seconds: 180
+  tags:
+  - usage
+  - gpg
+  - stdin
+- id: usage-gpg-list-packets-clearsign
+  title: gpg list packets clearsign
+  description: Inspects a clearsigned message with gpg --list-packets and verifies a signature packet is reported.
+  kind: usage
+  client_application: gpg
+  command:
+  - bash
+  - /validator/tests/libgcrypt/tests/cases/usage/usage-tenth-batch-behavior.sh
+  - usage-gpg-list-packets-clearsign
+  timeout_seconds: 180
+  tags:
+  - usage
+  - gpg
+  - inspect

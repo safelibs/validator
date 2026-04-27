@@ -984,3 +984,143 @@ testcases:
   - usage
   - json
   - jshon
+- id: usage-jshon-bool-true-type
+  title: jshon bool true type
+  description: Reads a true boolean field with jshon and verifies that the selected value reports the boolean type.
+  kind: usage
+  client_application: jshon
+  command:
+  - bash
+  - /validator/tests/libjansson/tests/cases/usage/usage-tenth-batch-behavior.sh
+  - usage-jshon-bool-true-type
+  timeout_seconds: 180
+  tags:
+  - usage
+  - json
+  - jshon
+- id: usage-jshon-object-type-root
+  title: jshon object root type
+  description: Reads the top-level type of a JSON object with jshon and verifies the reported type is object.
+  kind: usage
+  client_application: jshon
+  command:
+  - bash
+  - /validator/tests/libjansson/tests/cases/usage/usage-tenth-batch-behavior.sh
+  - usage-jshon-object-type-root
+  timeout_seconds: 180
+  tags:
+  - usage
+  - json
+  - jshon
+- id: usage-jshon-array-type-root
+  title: jshon array root type
+  description: Reads the top-level type of a JSON array with jshon and verifies the reported type is array.
+  kind: usage
+  client_application: jshon
+  command:
+  - bash
+  - /validator/tests/libjansson/tests/cases/usage/usage-tenth-batch-behavior.sh
+  - usage-jshon-array-type-root
+  timeout_seconds: 180
+  tags:
+  - usage
+  - json
+  - jshon
+- id: usage-jshon-array-length-root
+  title: jshon array root length
+  description: Counts the elements of a six-item root JSON array with jshon and verifies the reported length.
+  kind: usage
+  client_application: jshon
+  command:
+  - bash
+  - /validator/tests/libjansson/tests/cases/usage/usage-tenth-batch-behavior.sh
+  - usage-jshon-array-length-root
+  timeout_seconds: 180
+  tags:
+  - usage
+  - json
+  - jshon
+- id: usage-jshon-object-length-root
+  title: jshon object root length
+  description: Counts the keys of a four-key root JSON object with jshon and verifies the reported length.
+  kind: usage
+  client_application: jshon
+  command:
+  - bash
+  - /validator/tests/libjansson/tests/cases/usage/usage-tenth-batch-behavior.sh
+  - usage-jshon-object-length-root
+  timeout_seconds: 180
+  tags:
+  - usage
+  - json
+  - jshon
+- id: usage-jshon-zero-number-value
+  title: jshon zero number value
+  description: Reads a zero JSON number field with jshon and verifies the emitted numeric value is zero.
+  kind: usage
+  client_application: jshon
+  command:
+  - bash
+  - /validator/tests/libjansson/tests/cases/usage/usage-tenth-batch-behavior.sh
+  - usage-jshon-zero-number-value
+  timeout_seconds: 180
+  tags:
+  - usage
+  - json
+  - jshon
+- id: usage-jshon-fractional-number-value
+  title: jshon fractional number value
+  description: Reads a fractional JSON number with jshon and verifies the emitted decimal value is preserved.
+  kind: usage
+  client_application: jshon
+  command:
+  - bash
+  - /validator/tests/libjansson/tests/cases/usage/usage-tenth-batch-behavior.sh
+  - usage-jshon-fractional-number-value
+  timeout_seconds: 180
+  tags:
+  - usage
+  - json
+  - jshon
+- id: usage-jshon-array-last-element
+  title: jshon array last element
+  description: Reads the fourth element from a JSON array with jshon and verifies the emitted string value.
+  kind: usage
+  client_application: jshon
+  command:
+  - bash
+  - /validator/tests/libjansson/tests/cases/usage/usage-tenth-batch-behavior.sh
+  - usage-jshon-array-last-element
+  timeout_seconds: 180
+  tags:
+  - usage
+  - json
+  - jshon
+- id: usage-jshon-file-nested-object-key
+  title: jshon file nested object key
+  description: Reads a deeply nested object value from a JSON file with jshon and verifies the selected label string.
+  kind: usage
+  client_application: jshon
+  command:
+  - bash
+  - /validator/tests/libjansson/tests/cases/usage/usage-tenth-batch-behavior.sh
+  - usage-jshon-file-nested-object-key
+  timeout_seconds: 180
+  tags:
+  - usage
+  - json
+  - jshon
+- id: usage-jshon-string-with-spaces-field
+  title: jshon string with spaces field
+  description: Reads a JSON string field containing whitespace with jshon and verifies the emitted phrase preserves the embedded space.
+  kind: usage
+  client_application: jshon
+  command:
+  - bash
+  - /validator/tests/libjansson/tests/cases/usage/usage-tenth-batch-behavior.sh
+  - usage-jshon-string-with-spaces-field
+  timeout_seconds: 180
+  tags:
+  - usage
+  - json
+  - jshon

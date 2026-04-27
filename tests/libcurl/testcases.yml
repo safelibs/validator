@@ -1011,3 +1011,143 @@ testcases:
   - usage
   - curl
   - http
+- id: usage-curl-writeout-size-download
+  title: curl writeout size download
+  description: Downloads a fixed-size response and verifies the size_download writeout reports the exact byte count.
+  kind: usage
+  client_application: curl
+  command:
+  - bash
+  - /validator/tests/libcurl/tests/cases/usage/usage-tenth-batch-behavior.sh
+  - usage-curl-writeout-size-download
+  timeout_seconds: 180
+  tags:
+  - usage
+  - curl
+  - http
+- id: usage-curl-writeout-num-headers
+  title: curl writeout num headers
+  description: Captures the num_headers writeout variable from curl and verifies a positive header count is reported.
+  kind: usage
+  client_application: curl
+  command:
+  - bash
+  - /validator/tests/libcurl/tests/cases/usage/usage-tenth-batch-behavior.sh
+  - usage-curl-writeout-num-headers
+  timeout_seconds: 180
+  tags:
+  - usage
+  - curl
+  - http
+- id: usage-curl-range-explicit-bytes
+  title: curl range explicit bytes
+  description: Issues an explicit bytes range request through curl -r and verifies the partial body matches the requested slice.
+  kind: usage
+  client_application: curl
+  command:
+  - bash
+  - /validator/tests/libcurl/tests/cases/usage/usage-tenth-batch-behavior.sh
+  - usage-curl-range-explicit-bytes
+  timeout_seconds: 180
+  tags:
+  - usage
+  - curl
+  - range
+- id: usage-curl-custom-host-header
+  title: curl custom host header
+  description: Overrides the Host header through curl -H and verifies the server echoes the supplied authority value.
+  kind: usage
+  client_application: curl
+  command:
+  - bash
+  - /validator/tests/libcurl/tests/cases/usage/usage-tenth-batch-behavior.sh
+  - usage-curl-custom-host-header
+  timeout_seconds: 180
+  tags:
+  - usage
+  - curl
+  - http
+- id: usage-curl-put-payload-echo
+  title: curl put payload echo
+  description: Uploads a file with curl -T using HTTP PUT and verifies the server response echoes the uploaded body.
+  kind: usage
+  client_application: curl
+  command:
+  - bash
+  - /validator/tests/libcurl/tests/cases/usage/usage-tenth-batch-behavior.sh
+  - usage-curl-put-payload-echo
+  timeout_seconds: 180
+  tags:
+  - usage
+  - curl
+  - upload
+- id: usage-curl-include-custom-header-response
+  title: curl include custom response header
+  description: Requests with curl -i and verifies a custom server response header X-Validator-Tenth is included alongside the body.
+  kind: usage
+  client_application: curl
+  command:
+  - bash
+  - /validator/tests/libcurl/tests/cases/usage/usage-tenth-batch-behavior.sh
+  - usage-curl-include-custom-header-response
+  timeout_seconds: 180
+  tags:
+  - usage
+  - curl
+  - headers
+- id: usage-curl-silent-fail-missing
+  title: curl silent fail missing
+  description: Confirms curl -f exits non-zero when the server returns 404 for a missing resource.
+  kind: usage
+  client_application: curl
+  command:
+  - bash
+  - /validator/tests/libcurl/tests/cases/usage/usage-tenth-batch-behavior.sh
+  - usage-curl-silent-fail-missing
+  timeout_seconds: 180
+  tags:
+  - usage
+  - curl
+  - error
+- id: usage-curl-stderr-verbose-info
+  title: curl verbose stderr trace
+  description: Runs curl with -v and verifies the verbose stderr stream contains both the request line and the response status header.
+  kind: usage
+  client_application: curl
+  command:
+  - bash
+  - /validator/tests/libcurl/tests/cases/usage/usage-tenth-batch-behavior.sh
+  - usage-curl-stderr-verbose-info
+  timeout_seconds: 180
+  tags:
+  - usage
+  - curl
+  - debug
+- id: usage-curl-output-trailing-newline
+  title: curl output file body
+  description: Downloads a response with curl -o and verifies the saved body file exists and contains the expected payload string.
+  kind: usage
+  client_application: curl
+  command:
+  - bash
+  - /validator/tests/libcurl/tests/cases/usage/usage-tenth-batch-behavior.sh
+  - usage-curl-output-trailing-newline
+  timeout_seconds: 180
+  tags:
+  - usage
+  - curl
+  - output
+- id: usage-curl-writeout-num-redirects-zero
+  title: curl writeout zero redirects
+  description: Verifies the num_redirects writeout reports zero when the server response does not redirect.
+  kind: usage
+  client_application: curl
+  command:
+  - bash
+  - /validator/tests/libcurl/tests/cases/usage/usage-tenth-batch-behavior.sh
+  - usage-curl-writeout-num-redirects-zero
+  timeout_seconds: 180
+  tags:
+  - usage
+  - curl
+  - http

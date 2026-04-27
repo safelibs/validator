@@ -969,3 +969,123 @@ testcases:
   timeout_seconds: 120
   tags:
   - usage
+- id: usage-exif-cli-machine-pixel-x-dimension
+  title: exif machine PixelXDimension
+  description: Reads PixelXDimension via exif --machine-readable and verifies the 640 pixel width is reported.
+  kind: usage
+  client_application: exif
+  command:
+  - bash
+  - /validator/tests/libexif/tests/cases/usage/usage-tenth-batch-behavior.sh
+  - usage-exif-cli-machine-pixel-x-dimension
+  timeout_seconds: 120
+  tags:
+  - usage
+- id: usage-exif-cli-machine-pixel-y-dimension
+  title: exif machine PixelYDimension
+  description: Reads PixelYDimension via exif --machine-readable and verifies the 480 pixel height is reported.
+  kind: usage
+  client_application: exif
+  command:
+  - bash
+  - /validator/tests/libexif/tests/cases/usage/usage-tenth-batch-behavior.sh
+  - usage-exif-cli-machine-pixel-y-dimension
+  timeout_seconds: 120
+  tags:
+  - usage
+- id: usage-exif-cli-machine-resolution-unit
+  title: exif machine ResolutionUnit
+  description: Reads ResolutionUnit via exif --machine-readable and verifies that inch units are reported for the sample image.
+  kind: usage
+  client_application: exif
+  command:
+  - bash
+  - /validator/tests/libexif/tests/cases/usage/usage-tenth-batch-behavior.sh
+  - usage-exif-cli-machine-resolution-unit
+  timeout_seconds: 120
+  tags:
+  - usage
+- id: usage-exif-cli-machine-exif-version
+  title: exif machine ExifVersion
+  description: Reads ExifVersion via exif --machine-readable and verifies that Exif Version 2.2 is reported.
+  kind: usage
+  client_application: exif
+  command:
+  - bash
+  - /validator/tests/libexif/tests/cases/usage/usage-tenth-batch-behavior.sh
+  - usage-exif-cli-machine-exif-version
+  timeout_seconds: 120
+  tags:
+  - usage
+- id: usage-exif-cli-machine-flashpix-version
+  title: exif machine FlashPixVersion
+  description: Reads FlashPixVersion via exif --machine-readable and verifies that FlashPix Version 1.0 is reported.
+  kind: usage
+  client_application: exif
+  command:
+  - bash
+  - /validator/tests/libexif/tests/cases/usage/usage-tenth-batch-behavior.sh
+  - usage-exif-cli-machine-flashpix-version
+  timeout_seconds: 120
+  tags:
+  - usage
+- id: usage-exif-cli-machine-related-image-width
+  title: exif machine RelatedImageWidth
+  description: Reads RelatedImageWidth via exif --machine-readable and verifies the 640 pixel width is reported for the sample image.
+  kind: usage
+  client_application: exif
+  command:
+  - bash
+  - /validator/tests/libexif/tests/cases/usage/usage-tenth-batch-behavior.sh
+  - usage-exif-cli-machine-related-image-width
+  timeout_seconds: 120
+  tags:
+  - usage
+- id: usage-exif-cli-machine-related-image-length
+  title: exif machine RelatedImageLength
+  description: Reads RelatedImageLength via exif --machine-readable and verifies the 480 pixel height is reported for the sample image.
+  kind: usage
+  client_application: exif
+  command:
+  - bash
+  - /validator/tests/libexif/tests/cases/usage/usage-tenth-batch-behavior.sh
+  - usage-exif-cli-machine-related-image-length
+  timeout_seconds: 120
+  tags:
+  - usage
+- id: usage-exif-cli-machine-metering-mode
+  title: exif machine MeteringMode
+  description: Reads MeteringMode via exif --machine-readable and verifies that the Pattern metering mode is reported.
+  kind: usage
+  client_application: exif
+  command:
+  - bash
+  - /validator/tests/libexif/tests/cases/usage/usage-tenth-batch-behavior.sh
+  - usage-exif-cli-machine-metering-mode
+  timeout_seconds: 120
+  tags:
+  - usage
+- id: usage-exif-cli-machine-scene-capture
+  title: exif machine SceneCaptureType
+  description: Reads SceneCaptureType via exif --machine-readable and verifies that the Landscape scene capture type is reported.
+  kind: usage
+  client_application: exif
+  command:
+  - bash
+  - /validator/tests/libexif/tests/cases/usage/usage-tenth-batch-behavior.sh
+  - usage-exif-cli-machine-scene-capture
+  timeout_seconds: 120
+  tags:
+  - usage
+- id: usage-exif-cli-extract-thumbnail-jpeg-magic
+  title: exif extracted thumbnail JPEG magic
+  description: Extracts the embedded thumbnail with exif --extract-thumbnail and verifies the output begins with the FFD8FF JPEG SOI marker.
+  kind: usage
+  client_application: exif
+  command:
+  - bash
+  - /validator/tests/libexif/tests/cases/usage/usage-tenth-batch-behavior.sh
+  - usage-exif-cli-extract-thumbnail-jpeg-magic
+  timeout_seconds: 120
+  tags:
+  - usage

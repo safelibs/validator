@@ -1013,3 +1013,143 @@ testcases:
   - usage
   - gdal
   - json
+- id: usage-gdal-ogrinfo-sql-min-value
+  title: gdal ogrinfo SQL min value
+  description: Runs an ogrinfo SQLite SQL query that selects MIN(value) and verifies the smallest feature value in the output.
+  kind: usage
+  client_application: gdal
+  command:
+  - bash
+  - /validator/tests/libjson/tests/cases/usage/usage-tenth-batch-behavior.sh
+  - usage-gdal-ogrinfo-sql-min-value
+  timeout_seconds: 180
+  tags:
+  - usage
+  - gdal
+  - sql
+- id: usage-gdal-ogrinfo-sql-max-feature-value
+  title: gdal ogrinfo SQL max feature value
+  description: Runs an ogrinfo SQLite SQL query that selects MAX(value) into an alias and verifies the largest feature value in the output.
+  kind: usage
+  client_application: gdal
+  command:
+  - bash
+  - /validator/tests/libjson/tests/cases/usage/usage-tenth-batch-behavior.sh
+  - usage-gdal-ogrinfo-sql-max-feature-value
+  timeout_seconds: 180
+  tags:
+  - usage
+  - gdal
+  - sql
+- id: usage-gdal-ogr2ogr-select-name-only
+  title: gdal ogr2ogr select name only
+  description: Restricts output fields with ogr2ogr -select name and verifies the resulting GeoJSON properties contain name but drop value.
+  kind: usage
+  client_application: gdal
+  command:
+  - bash
+  - /validator/tests/libjson/tests/cases/usage/usage-tenth-batch-behavior.sh
+  - usage-gdal-ogr2ogr-select-name-only
+  timeout_seconds: 180
+  tags:
+  - usage
+  - gdal
+  - geojson
+- id: usage-gdal-ogr2ogr-limit-two-features
+  title: gdal ogr2ogr limit two features
+  description: Caps GeoJSON output with ogr2ogr -limit 2 and verifies the resulting feature collection contains exactly two features.
+  kind: usage
+  client_application: gdal
+  command:
+  - bash
+  - /validator/tests/libjson/tests/cases/usage/usage-tenth-batch-behavior.sh
+  - usage-gdal-ogr2ogr-limit-two-features
+  timeout_seconds: 180
+  tags:
+  - usage
+  - gdal
+  - geojson
+- id: usage-gdal-ogrinfo-json-feature-coords
+  title: gdal ogrinfo JSON feature coords
+  description: Reads GeoJSON layer features with ogrinfo -json -al and verifies the second feature reports the expected point coordinates.
+  kind: usage
+  client_application: gdal
+  command:
+  - bash
+  - /validator/tests/libjson/tests/cases/usage/usage-tenth-batch-behavior.sh
+  - usage-gdal-ogrinfo-json-feature-coords
+  timeout_seconds: 180
+  tags:
+  - usage
+  - gdal
+  - json
+- id: usage-gdal-ogr2ogr-where-name-equality
+  title: gdal ogr2ogr where name equality
+  description: Filters GeoJSON output with ogr2ogr -where on a name equality predicate and verifies only the matching feature is retained.
+  kind: usage
+  client_application: gdal
+  command:
+  - bash
+  - /validator/tests/libjson/tests/cases/usage/usage-tenth-batch-behavior.sh
+  - usage-gdal-ogr2ogr-where-name-equality
+  timeout_seconds: 180
+  tags:
+  - usage
+  - gdal
+  - geojson
+- id: usage-gdal-ogrinfo-json-extent-bounds
+  title: gdal ogrinfo JSON extent bounds
+  description: Reads GeoJSON layer metadata with ogrinfo -json -al and verifies the geometry extent bounds match the input coordinates.
+  kind: usage
+  client_application: gdal
+  command:
+  - bash
+  - /validator/tests/libjson/tests/cases/usage/usage-tenth-batch-behavior.sh
+  - usage-gdal-ogrinfo-json-extent-bounds
+  timeout_seconds: 180
+  tags:
+  - usage
+  - gdal
+  - json
+- id: usage-gdal-gdalsrsinfo-wkt-wgs84
+  title: gdal gdalsrsinfo WKT WGS84
+  description: Renders EPSG:4326 as WKT with gdalsrsinfo and verifies the WGS 84 datum label is emitted.
+  kind: usage
+  client_application: gdal
+  command:
+  - bash
+  - /validator/tests/libjson/tests/cases/usage/usage-tenth-batch-behavior.sh
+  - usage-gdal-gdalsrsinfo-wkt-wgs84
+  timeout_seconds: 180
+  tags:
+  - usage
+  - gdal
+  - srs
+- id: usage-gdal-gdalinfo-json-driver-png
+  title: gdal gdalinfo JSON driver PNG
+  description: Reads raster JSON metadata with gdalinfo and verifies the driverShortName is reported as PNG.
+  kind: usage
+  client_application: gdal
+  command:
+  - bash
+  - /validator/tests/libjson/tests/cases/usage/usage-tenth-batch-behavior.sh
+  - usage-gdal-gdalinfo-json-driver-png
+  timeout_seconds: 180
+  tags:
+  - usage
+  - gdal
+  - raster
+- id: usage-gdal-ogr2ogr-sql-order-desc
+  title: gdal ogr2ogr SQL order desc
+  description: Runs an ogr2ogr SQLite SQL projection with ORDER BY value DESC and verifies the GeoJSON feature ordering is reversed.
+  kind: usage
+  client_application: gdal
+  command:
+  - bash
+  - /validator/tests/libjson/tests/cases/usage/usage-tenth-batch-behavior.sh
+  - usage-gdal-ogr2ogr-sql-order-desc
+  timeout_seconds: 180
+  tags:
+  - usage
+  - gdal
+  - sql

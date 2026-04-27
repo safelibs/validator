@@ -992,3 +992,123 @@ testcases:
   timeout_seconds: 120
   tags:
   - usage
+- id: usage-python3-pil-webp-getbbox
+  title: Pillow WebP getbbox
+  description: Opens a WebP fixture with Pillow and verifies getbbox returns a bounding box that fits within the source image dimensions.
+  kind: usage
+  client_application: python3-pil
+  command:
+  - bash
+  - /validator/tests/libwebp/tests/cases/usage/usage-tenth-batch-behavior.sh
+  - usage-python3-pil-webp-getbbox
+  timeout_seconds: 120
+  tags:
+  - usage
+- id: usage-python3-pil-webp-tobytes-length
+  title: Pillow WebP tobytes length
+  description: Opens a WebP fixture with Pillow, converts to RGB, and verifies tobytes returns width times height times three bytes.
+  kind: usage
+  client_application: python3-pil
+  command:
+  - bash
+  - /validator/tests/libwebp/tests/cases/usage/usage-tenth-batch-behavior.sh
+  - usage-python3-pil-webp-tobytes-length
+  timeout_seconds: 120
+  tags:
+  - usage
+- id: usage-python3-pil-webp-histogram-length
+  title: Pillow WebP histogram length
+  description: Opens a WebP fixture with Pillow and verifies the RGB histogram has 768 bins summing to width times height times three.
+  kind: usage
+  client_application: python3-pil
+  command:
+  - bash
+  - /validator/tests/libwebp/tests/cases/usage/usage-tenth-batch-behavior.sh
+  - usage-python3-pil-webp-histogram-length
+  timeout_seconds: 120
+  tags:
+  - usage
+- id: usage-python3-pil-webp-split-bands
+  title: Pillow WebP split bands
+  description: Splits a WebP fixture into RGB bands with Pillow and verifies three single-channel L-mode bands matching the source size.
+  kind: usage
+  client_application: python3-pil
+  command:
+  - bash
+  - /validator/tests/libwebp/tests/cases/usage/usage-tenth-batch-behavior.sh
+  - usage-python3-pil-webp-split-bands
+  timeout_seconds: 120
+  tags:
+  - usage
+- id: usage-python3-pil-webp-paste-corner
+  title: Pillow WebP paste corner
+  description: Pastes a WebP fixture into the right half of a black canvas with Pillow and verifies the unpasted left corner stays black after a WebP round trip.
+  kind: usage
+  client_application: python3-pil
+  command:
+  - bash
+  - /validator/tests/libwebp/tests/cases/usage/usage-tenth-batch-behavior.sh
+  - usage-python3-pil-webp-paste-corner
+  timeout_seconds: 120
+  tags:
+  - usage
+- id: usage-python3-pil-webp-grayscale-mode
+  title: Pillow WebP grayscale mode
+  description: Converts a WebP fixture through Pillow grayscale L mode, saves as WebP, and verifies the reopened pixel has equal R, G, and B channels.
+  kind: usage
+  client_application: python3-pil
+  command:
+  - bash
+  - /validator/tests/libwebp/tests/cases/usage/usage-tenth-batch-behavior.sh
+  - usage-python3-pil-webp-grayscale-mode
+  timeout_seconds: 120
+  tags:
+  - usage
+- id: usage-vips-webp-extract-area-header
+  title: vips WebP extract_area header
+  description: Extracts a 3x2 area from a WebP fixture with vips and verifies vipsheader reports the cropped dimensions on the resulting PNG.
+  kind: usage
+  client_application: vips
+  command:
+  - bash
+  - /validator/tests/libwebp/tests/cases/usage/usage-tenth-batch-behavior.sh
+  - usage-vips-webp-extract-area-header
+  timeout_seconds: 120
+  tags:
+  - usage
+- id: usage-vips-webp-embed-canvas
+  title: vips WebP embed canvas
+  description: Embeds a WebP fixture into an 8x6 canvas with vips embed and verifies vipsheader reports the enlarged canvas dimensions.
+  kind: usage
+  client_application: vips
+  command:
+  - bash
+  - /validator/tests/libwebp/tests/cases/usage/usage-tenth-batch-behavior.sh
+  - usage-vips-webp-embed-canvas
+  timeout_seconds: 120
+  tags:
+  - usage
+- id: usage-ffmpeg-webp-pgm-output
+  title: ffmpeg WebP PGM output
+  description: Decodes a WebP fixture with ffmpeg using gray pixel format and verifies the resulting PGM file begins with the P5 magic header.
+  kind: usage
+  client_application: ffmpeg
+  command:
+  - bash
+  - /validator/tests/libwebp/tests/cases/usage/usage-tenth-batch-behavior.sh
+  - usage-ffmpeg-webp-pgm-output
+  timeout_seconds: 120
+  tags:
+  - usage
+- id: usage-ffmpeg-webp-tiff-output
+  title: ffmpeg WebP TIFF output
+  description: Decodes a WebP fixture with ffmpeg to a TIFF and verifies file reports the result as TIFF image data.
+  kind: usage
+  client_application: ffmpeg
+  command:
+  - bash
+  - /validator/tests/libwebp/tests/cases/usage/usage-tenth-batch-behavior.sh
+  - usage-ffmpeg-webp-tiff-output
+  timeout_seconds: 120
+  tags:
+  - usage

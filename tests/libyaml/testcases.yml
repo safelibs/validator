@@ -1009,3 +1009,143 @@ testcases:
   - usage
   - yaml
   - python
+- id: usage-python3-yaml-safe-load-octal-int
+  title: PyYAML safe load octal int
+  description: Loads an octal integer with PyYAML and verifies the parsed decimal integer value.
+  kind: usage
+  client_application: python3-yaml
+  command:
+  - bash
+  - /validator/tests/libyaml/tests/cases/usage/usage-tenth-batch-behavior.sh
+  - usage-python3-yaml-safe-load-octal-int
+  timeout_seconds: 180
+  tags:
+  - usage
+  - yaml
+  - python
+- id: usage-python3-yaml-safe-load-negative-float
+  title: PyYAML safe load negative float
+  description: Loads a negative floating-point scalar with PyYAML and verifies the parsed numeric value.
+  kind: usage
+  client_application: python3-yaml
+  command:
+  - bash
+  - /validator/tests/libyaml/tests/cases/usage/usage-tenth-batch-behavior.sh
+  - usage-python3-yaml-safe-load-negative-float
+  timeout_seconds: 180
+  tags:
+  - usage
+  - yaml
+  - python
+- id: usage-python3-yaml-safe-load-flow-mapping
+  title: PyYAML safe load flow mapping
+  description: Loads a flow-style YAML mapping with PyYAML and verifies the resolved key values.
+  kind: usage
+  client_application: python3-yaml
+  command:
+  - bash
+  - /validator/tests/libyaml/tests/cases/usage/usage-tenth-batch-behavior.sh
+  - usage-python3-yaml-safe-load-flow-mapping
+  timeout_seconds: 180
+  tags:
+  - usage
+  - yaml
+  - python
+- id: usage-python3-yaml-safe-load-no-bool
+  title: PyYAML safe load no bool
+  description: Loads a YAML no scalar with PyYAML and verifies the resolved boolean value is false.
+  kind: usage
+  client_application: python3-yaml
+  command:
+  - bash
+  - /validator/tests/libyaml/tests/cases/usage/usage-tenth-batch-behavior.sh
+  - usage-python3-yaml-safe-load-no-bool
+  timeout_seconds: 180
+  tags:
+  - usage
+  - yaml
+  - python
+- id: usage-python3-yaml-safe-load-nested-list
+  title: PyYAML safe load nested list
+  description: Loads a nested YAML sequence with PyYAML and verifies the inner list element values.
+  kind: usage
+  client_application: python3-yaml
+  command:
+  - bash
+  - /validator/tests/libyaml/tests/cases/usage/usage-tenth-batch-behavior.sh
+  - usage-python3-yaml-safe-load-nested-list
+  timeout_seconds: 180
+  tags:
+  - usage
+  - yaml
+  - python
+- id: usage-python3-yaml-safe-dump-flow-style
+  title: PyYAML safe dump flow style
+  description: Dumps a sequence with default_flow_style enabled in PyYAML and verifies the inline flow array is emitted.
+  kind: usage
+  client_application: python3-yaml
+  command:
+  - bash
+  - /validator/tests/libyaml/tests/cases/usage/usage-tenth-batch-behavior.sh
+  - usage-python3-yaml-safe-dump-flow-style
+  timeout_seconds: 180
+  tags:
+  - usage
+  - yaml
+  - python
+- id: usage-python3-yaml-safe-dump-multiline-indent
+  title: PyYAML safe dump multiline indent
+  description: Dumps a nested mapping with indent=4 in PyYAML and verifies the nested key is emitted with the configured indentation.
+  kind: usage
+  client_application: python3-yaml
+  command:
+  - bash
+  - /validator/tests/libyaml/tests/cases/usage/usage-tenth-batch-behavior.sh
+  - usage-python3-yaml-safe-dump-multiline-indent
+  timeout_seconds: 180
+  tags:
+  - usage
+  - yaml
+  - python
+- id: usage-python3-yaml-csafe-load-anchor-alias
+  title: PyYAML CSafeLoader anchor alias
+  description: Loads an anchored scalar and its alias through the C-backed PyYAML loader and verifies both keys resolve to the same value.
+  kind: usage
+  client_application: python3-yaml
+  command:
+  - bash
+  - /validator/tests/libyaml/tests/cases/usage/usage-tenth-batch-behavior.sh
+  - usage-python3-yaml-csafe-load-anchor-alias
+  timeout_seconds: 180
+  tags:
+  - usage
+  - yaml
+  - python
+- id: usage-python3-yaml-safe-load-all-three-docs
+  title: PyYAML safe load all three docs
+  description: Loads a stream of three YAML documents with safe_load_all and verifies each document scalar appears in stream order.
+  kind: usage
+  client_application: python3-yaml
+  command:
+  - bash
+  - /validator/tests/libyaml/tests/cases/usage/usage-tenth-batch-behavior.sh
+  - usage-python3-yaml-safe-load-all-three-docs
+  timeout_seconds: 180
+  tags:
+  - usage
+  - yaml
+  - python
+- id: usage-python3-yaml-scan-token-types
+  title: PyYAML scan token types
+  description: Scans YAML into low-level tokens with PyYAML and verifies the stream-start and scalar token classes are produced.
+  kind: usage
+  client_application: python3-yaml
+  command:
+  - bash
+  - /validator/tests/libyaml/tests/cases/usage/usage-tenth-batch-behavior.sh
+  - usage-python3-yaml-scan-token-types
+  timeout_seconds: 180
+  tags:
+  - usage
+  - yaml
+  - python

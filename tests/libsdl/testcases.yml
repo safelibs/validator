@@ -980,3 +980,123 @@ testcases:
   timeout_seconds: 120
   tags:
   - usage
+- id: usage-python3-pygame-rect-inflate-ip
+  title: pygame rect inflate_ip
+  description: Calls pygame Rect.inflate_ip with positive deltas and verifies the rectangle grows around its center while preserving the center point.
+  kind: usage
+  client_application: python3-pygame
+  command:
+  - bash
+  - /validator/tests/libsdl/tests/cases/usage/usage-tenth-batch-behavior.sh
+  - usage-python3-pygame-rect-inflate-ip
+  timeout_seconds: 120
+  tags:
+  - usage
+- id: usage-python3-pygame-rect-clamp-ip
+  title: pygame rect clamp_ip
+  description: Clamps a pygame Rect that pokes past an outer rectangle and verifies the clamped rectangle stays within the outer bounds.
+  kind: usage
+  client_application: python3-pygame
+  command:
+  - bash
+  - /validator/tests/libsdl/tests/cases/usage/usage-tenth-batch-behavior.sh
+  - usage-python3-pygame-rect-clamp-ip
+  timeout_seconds: 120
+  tags:
+  - usage
+- id: usage-python3-pygame-rect-contains
+  title: pygame rect contains
+  description: Calls pygame Rect.contains with a fully enclosed rectangle and verifies the outer reports containment while the inner does not contain the outer.
+  kind: usage
+  client_application: python3-pygame
+  command:
+  - bash
+  - /validator/tests/libsdl/tests/cases/usage/usage-tenth-batch-behavior.sh
+  - usage-python3-pygame-rect-contains
+  timeout_seconds: 120
+  tags:
+  - usage
+- id: usage-python3-pygame-vector2-magnitude
+  title: pygame Vector2 magnitude
+  description: Computes the magnitude and length of a pygame Vector2(3, 4) and verifies both methods return five.
+  kind: usage
+  client_application: python3-pygame
+  command:
+  - bash
+  - /validator/tests/libsdl/tests/cases/usage/usage-tenth-batch-behavior.sh
+  - usage-python3-pygame-vector2-magnitude
+  timeout_seconds: 120
+  tags:
+  - usage
+- id: usage-python3-pygame-vector3-cross
+  title: pygame Vector3 cross product
+  description: Computes the pygame Vector3 cross product of unit X and unit Y and verifies the result equals the unit Z basis vector.
+  kind: usage
+  client_application: python3-pygame
+  command:
+  - bash
+  - /validator/tests/libsdl/tests/cases/usage/usage-tenth-batch-behavior.sh
+  - usage-python3-pygame-vector3-cross
+  timeout_seconds: 120
+  tags:
+  - usage
+- id: usage-python3-pygame-mask-count-tenth
+  title: pygame mask count tenth
+  description: Sets two pixels on a pygame mask in the tenth batch and verifies mask.count returns the exact number of set bits.
+  kind: usage
+  client_application: python3-pygame
+  command:
+  - bash
+  - /validator/tests/libsdl/tests/cases/usage/usage-tenth-batch-behavior.sh
+  - usage-python3-pygame-mask-count-tenth
+  timeout_seconds: 120
+  tags:
+  - usage
+- id: usage-python3-pygame-mask-bounding-rects
+  title: pygame mask bounding rects
+  description: Builds a pygame mask with a small connected region and verifies get_bounding_rects returns at least one bounding rectangle of nonzero width.
+  kind: usage
+  client_application: python3-pygame
+  command:
+  - bash
+  - /validator/tests/libsdl/tests/cases/usage/usage-tenth-batch-behavior.sh
+  - usage-python3-pygame-mask-bounding-rects
+  timeout_seconds: 120
+  tags:
+  - usage
+- id: usage-python3-pygame-surface-subsurface
+  title: pygame surface subsurface
+  description: Creates a pygame subsurface and verifies the subregion preserves the parent fill color and reports the requested smaller size.
+  kind: usage
+  client_application: python3-pygame
+  command:
+  - bash
+  - /validator/tests/libsdl/tests/cases/usage/usage-tenth-batch-behavior.sh
+  - usage-python3-pygame-surface-subsurface
+  timeout_seconds: 120
+  tags:
+  - usage
+- id: usage-python3-pygame-surface-set-colorkey
+  title: pygame surface set_colorkey
+  description: Configures a colorkey on a pygame surface and verifies get_colorkey returns the same RGB triple that was set.
+  kind: usage
+  client_application: python3-pygame
+  command:
+  - bash
+  - /validator/tests/libsdl/tests/cases/usage/usage-tenth-batch-behavior.sh
+  - usage-python3-pygame-surface-set-colorkey
+  timeout_seconds: 120
+  tags:
+  - usage
+- id: usage-python3-pygame-image-save-bmp
+  title: pygame image save BMP
+  description: Saves a pygame surface as BMP, verifies the file begins with the BM magic bytes, and reloads it to confirm the original dimensions.
+  kind: usage
+  client_application: python3-pygame
+  command:
+  - bash
+  - /validator/tests/libsdl/tests/cases/usage/usage-tenth-batch-behavior.sh
+  - usage-python3-pygame-image-save-bmp
+  timeout_seconds: 120
+  tags:
+  - usage

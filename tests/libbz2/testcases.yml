@@ -989,3 +989,143 @@ testcases:
   - usage
   - bzip2
   - compression
+- id: usage-bzip2-block-six-roundtrip
+  title: bzip2 block size six roundtrip
+  description: Compresses a multi-line payload with bzip2 -6, decompresses it through bzip2 -dc, and verifies byte-for-byte equality with the source.
+  kind: usage
+  client_application: bzip2
+  command:
+  - bash
+  - /validator/tests/libbz2/tests/cases/usage/usage-tenth-batch-behavior.sh
+  - usage-bzip2-block-six-roundtrip
+  timeout_seconds: 180
+  tags:
+  - usage
+  - bzip2
+  - compression
+- id: usage-bzip2-decompress-quiet-stdin
+  title: bzip2 quiet decompress stdin
+  description: Decompresses a bzip2 stream from stdin with bzip2 -dcq and verifies the restored payload is written to stdout.
+  kind: usage
+  client_application: bzip2
+  command:
+  - bash
+  - /validator/tests/libbz2/tests/cases/usage/usage-tenth-batch-behavior.sh
+  - usage-bzip2-decompress-quiet-stdin
+  timeout_seconds: 180
+  tags:
+  - usage
+  - bzip2
+  - stream
+- id: usage-bzip2-force-decompress-suffix
+  title: bzip2 force decompress over existing file
+  description: Uses bzip2 -df to overwrite a pre-existing file when decompressing a .bz2 archive and verifies the restored content.
+  kind: usage
+  client_application: bzip2
+  command:
+  - bash
+  - /validator/tests/libbz2/tests/cases/usage/usage-tenth-batch-behavior.sh
+  - usage-bzip2-force-decompress-suffix
+  timeout_seconds: 180
+  tags:
+  - usage
+  - bzip2
+  - compression
+- id: usage-bzip2-test-multi-files
+  title: bzip2 test multiple files
+  description: Runs bzip2 -t on two compressed files in a single invocation and verifies both pass the integrity check.
+  kind: usage
+  client_application: bzip2
+  command:
+  - bash
+  - /validator/tests/libbz2/tests/cases/usage/usage-tenth-batch-behavior.sh
+  - usage-bzip2-test-multi-files
+  timeout_seconds: 180
+  tags:
+  - usage
+  - bzip2
+  - integrity
+- id: usage-bzcat-stdin-input
+  title: bzcat stdin input
+  description: Pipes a bzip2 stream into bzcat from stdin and verifies the decompressed payload appears on stdout.
+  kind: usage
+  client_application: bzip2
+  command:
+  - bash
+  - /validator/tests/libbz2/tests/cases/usage/usage-tenth-batch-behavior.sh
+  - usage-bzcat-stdin-input
+  timeout_seconds: 180
+  tags:
+  - usage
+  - bzip2
+  - stream
+- id: usage-bzgrep-invert-match
+  title: bzgrep invert match
+  description: Uses bzgrep -v on a compressed text stream and verifies non-matching lines appear while the excluded line is omitted.
+  kind: usage
+  client_application: bzip2
+  command:
+  - bash
+  - /validator/tests/libbz2/tests/cases/usage/usage-tenth-batch-behavior.sh
+  - usage-bzgrep-invert-match
+  timeout_seconds: 180
+  tags:
+  - usage
+  - bzip2
+  - search
+- id: usage-bzgrep-extended-regexp
+  title: bzgrep extended regexp alternation
+  description: Searches a compressed text stream with bzgrep -E and verifies both alternation branches produce matching lines.
+  kind: usage
+  client_application: bzip2
+  command:
+  - bash
+  - /validator/tests/libbz2/tests/cases/usage/usage-tenth-batch-behavior.sh
+  - usage-bzgrep-extended-regexp
+  timeout_seconds: 180
+  tags:
+  - usage
+  - bzip2
+  - search
+- id: usage-bzip2-stdin-pipe-roundtrip
+  title: bzip2 pipeline roundtrip
+  description: Pipes bzip2 -c output directly into bzip2 -dc and verifies the round-tripped payload matches the source byte-for-byte.
+  kind: usage
+  client_application: bzip2
+  command:
+  - bash
+  - /validator/tests/libbz2/tests/cases/usage/usage-tenth-batch-behavior.sh
+  - usage-bzip2-stdin-pipe-roundtrip
+  timeout_seconds: 180
+  tags:
+  - usage
+  - bzip2
+  - stream
+- id: usage-bzip2-decompress-replace-input
+  title: bzip2 decompress replaces compressed file
+  description: Compresses a file with bzip2, decompresses it with bzip2 -d, and verifies the .bz2 file is removed and the plaintext restored.
+  kind: usage
+  client_application: bzip2
+  command:
+  - bash
+  - /validator/tests/libbz2/tests/cases/usage/usage-tenth-batch-behavior.sh
+  - usage-bzip2-decompress-replace-input
+  timeout_seconds: 180
+  tags:
+  - usage
+  - bzip2
+  - compression
+- id: usage-bzip2-three-stream-concat
+  title: bzip2 three concatenated streams
+  description: Appends three bzip2 streams into a single file and verifies bzip2 -dc emits all three plaintext payloads in order.
+  kind: usage
+  client_application: bzip2
+  command:
+  - bash
+  - /validator/tests/libbz2/tests/cases/usage/usage-tenth-batch-behavior.sh
+  - usage-bzip2-three-stream-concat
+  timeout_seconds: 180
+  tags:
+  - usage
+  - bzip2
+  - stream

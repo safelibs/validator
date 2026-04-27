@@ -981,3 +981,123 @@ testcases:
   timeout_seconds: 120
   tags:
   - usage
+- id: usage-ruby-vips-multiply-constant-tenth
+  title: ruby-vips generated multiply constant tenth
+  description: Multiplies a generated image by a scalar constant with ruby-vips in the tenth batch and verifies each output pixel equals the input scaled by the constant.
+  kind: usage
+  client_application: ruby-vips
+  command:
+  - bash
+  - /validator/tests/libvips/tests/cases/usage/usage-tenth-batch-behavior.sh
+  - usage-ruby-vips-multiply-constant-tenth
+  timeout_seconds: 120
+  tags:
+  - usage
+- id: usage-ruby-vips-add-constant-tenth
+  title: ruby-vips generated add constant tenth
+  description: Adds a scalar constant to a generated image with ruby-vips in the tenth batch and verifies each output pixel equals the input plus the constant.
+  kind: usage
+  client_application: ruby-vips
+  command:
+  - bash
+  - /validator/tests/libvips/tests/cases/usage/usage-tenth-batch-behavior.sh
+  - usage-ruby-vips-add-constant-tenth
+  timeout_seconds: 120
+  tags:
+  - usage
+- id: usage-ruby-vips-max-scalar-generated
+  title: ruby-vips generated max scalar
+  description: Computes the scalar max of a generated three-pixel image with ruby-vips and verifies it returns the largest pixel value.
+  kind: usage
+  client_application: ruby-vips
+  command:
+  - bash
+  - /validator/tests/libvips/tests/cases/usage/usage-tenth-batch-behavior.sh
+  - usage-ruby-vips-max-scalar-generated
+  timeout_seconds: 120
+  tags:
+  - usage
+- id: usage-ruby-vips-min-scalar-generated
+  title: ruby-vips generated min scalar
+  description: Computes the scalar min of a generated three-pixel image with ruby-vips and verifies it returns the smallest pixel value.
+  kind: usage
+  client_application: ruby-vips
+  command:
+  - bash
+  - /validator/tests/libvips/tests/cases/usage/usage-tenth-batch-behavior.sh
+  - usage-ruby-vips-min-scalar-generated
+  timeout_seconds: 120
+  tags:
+  - usage
+- id: usage-ruby-vips-avg-scalar-generated
+  title: ruby-vips generated avg scalar
+  description: Computes the scalar avg of a generated image with ruby-vips and verifies the mean matches the arithmetic average of the pixel values.
+  kind: usage
+  client_application: ruby-vips
+  command:
+  - bash
+  - /validator/tests/libvips/tests/cases/usage/usage-tenth-batch-behavior.sh
+  - usage-ruby-vips-avg-scalar-generated
+  timeout_seconds: 120
+  tags:
+  - usage
+- id: usage-ruby-vips-deviate-zero-generated
+  title: ruby-vips generated deviate zero
+  description: Computes the deviate (standard deviation) of a uniform generated image with ruby-vips and verifies the result is essentially zero.
+  kind: usage
+  client_application: ruby-vips
+  command:
+  - bash
+  - /validator/tests/libvips/tests/cases/usage/usage-tenth-batch-behavior.sh
+  - usage-ruby-vips-deviate-zero-generated
+  timeout_seconds: 120
+  tags:
+  - usage
+- id: usage-ruby-vips-bandsplit-three-generated
+  title: ruby-vips generated bandsplit three
+  description: Calls bandsplit on a generated three-band image with ruby-vips and verifies it returns three single-band images with the original per-channel values.
+  kind: usage
+  client_application: ruby-vips
+  command:
+  - bash
+  - /validator/tests/libvips/tests/cases/usage/usage-tenth-batch-behavior.sh
+  - usage-ruby-vips-bandsplit-three-generated
+  timeout_seconds: 120
+  tags:
+  - usage
+- id: usage-ruby-vips-cast-int-generated
+  title: ruby-vips generated cast int
+  description: Casts a generated uchar image to int format with ruby-vips and verifies the resulting image reports the int pixel format.
+  kind: usage
+  client_application: ruby-vips
+  command:
+  - bash
+  - /validator/tests/libvips/tests/cases/usage/usage-tenth-batch-behavior.sh
+  - usage-ruby-vips-cast-int-generated
+  timeout_seconds: 120
+  tags:
+  - usage
+- id: usage-ruby-vips-bandbool-and-generated
+  title: ruby-vips generated bitwise and
+  description: Combines two generated images with ruby-vips bitwise AND and verifies the per-pixel bitwise minimum payload.
+  kind: usage
+  client_application: ruby-vips
+  command:
+  - bash
+  - /validator/tests/libvips/tests/cases/usage/usage-tenth-batch-behavior.sh
+  - usage-ruby-vips-bandbool-and-generated
+  timeout_seconds: 120
+  tags:
+  - usage
+- id: usage-ruby-vips-bandor-generated
+  title: ruby-vips generated bitwise or
+  description: Combines two generated images with ruby-vips bitwise OR and verifies the per-pixel bitwise union payload.
+  kind: usage
+  client_application: ruby-vips
+  command:
+  - bash
+  - /validator/tests/libvips/tests/cases/usage/usage-tenth-batch-behavior.sh
+  - usage-ruby-vips-bandor-generated
+  timeout_seconds: 120
+  tags:
+  - usage

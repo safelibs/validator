@@ -983,3 +983,123 @@ testcases:
   timeout_seconds: 120
   tags:
   - usage
+- id: usage-python3-pil-difference-mirror-tiff
+  title: Pillow difference mirror TIFF
+  description: Uses Pillow ImageChops.difference on a generated TIFF and its mirrored copy and verifies the absolute per-channel difference values before round-tripping.
+  kind: usage
+  client_application: python3-pil
+  command:
+  - bash
+  - /validator/tests/libtiff/tests/cases/usage/usage-tenth-batch-behavior.sh
+  - usage-python3-pil-difference-mirror-tiff
+  timeout_seconds: 120
+  tags:
+  - usage
+- id: usage-python3-pil-add-modulo-mirror-tiff
+  title: Pillow add_modulo mirror TIFF
+  description: Uses Pillow ImageChops.add_modulo on a generated TIFF and its mirrored copy and verifies the modular per-channel sums before round-tripping.
+  kind: usage
+  client_application: python3-pil
+  command:
+  - bash
+  - /validator/tests/libtiff/tests/cases/usage/usage-tenth-batch-behavior.sh
+  - usage-python3-pil-add-modulo-mirror-tiff
+  timeout_seconds: 120
+  tags:
+  - usage
+- id: usage-python3-pil-subtract-modulo-mirror-tiff
+  title: Pillow subtract_modulo mirror TIFF
+  description: Uses Pillow ImageChops.subtract_modulo on a generated TIFF and its mirrored copy and verifies the modular per-channel differences before round-tripping.
+  kind: usage
+  client_application: python3-pil
+  command:
+  - bash
+  - /validator/tests/libtiff/tests/cases/usage/usage-tenth-batch-behavior.sh
+  - usage-python3-pil-subtract-modulo-mirror-tiff
+  timeout_seconds: 120
+  tags:
+  - usage
+- id: usage-python3-pil-duplicate-darker-tiff
+  title: Pillow duplicate darker TIFF
+  description: Uses Pillow ImageChops.darker on a generated TIFF against its own copy and verifies every pixel matches the original before round-tripping.
+  kind: usage
+  client_application: python3-pil
+  command:
+  - bash
+  - /validator/tests/libtiff/tests/cases/usage/usage-tenth-batch-behavior.sh
+  - usage-python3-pil-duplicate-darker-tiff
+  timeout_seconds: 120
+  tags:
+  - usage
+- id: usage-python3-pil-invert-mirror-mirror-tiff
+  title: Pillow invert mirror lighter TIFF
+  description: Inverts a mirrored TIFF with ImageOps.invert and lighter-merges with the original, verifying the per-channel lighter pixel values before round-tripping.
+  kind: usage
+  client_application: python3-pil
+  command:
+  - bash
+  - /validator/tests/libtiff/tests/cases/usage/usage-tenth-batch-behavior.sh
+  - usage-python3-pil-invert-mirror-mirror-tiff
+  timeout_seconds: 120
+  tags:
+  - usage
+- id: usage-python3-pil-blend-zero-mirror-tiff
+  title: Pillow blend alpha zero TIFF
+  description: Uses Pillow Image.blend with alpha zero on a generated TIFF and verifies the result equals the original image pixel-for-pixel before round-tripping.
+  kind: usage
+  client_application: python3-pil
+  command:
+  - bash
+  - /validator/tests/libtiff/tests/cases/usage/usage-tenth-batch-behavior.sh
+  - usage-python3-pil-blend-zero-mirror-tiff
+  timeout_seconds: 120
+  tags:
+  - usage
+- id: usage-python3-pil-blend-one-mirror-tiff
+  title: Pillow blend alpha one TIFF
+  description: Uses Pillow Image.blend with alpha one on a generated TIFF and verifies the result equals the mirrored image pixel-for-pixel before round-tripping.
+  kind: usage
+  client_application: python3-pil
+  command:
+  - bash
+  - /validator/tests/libtiff/tests/cases/usage/usage-tenth-batch-behavior.sh
+  - usage-python3-pil-blend-one-mirror-tiff
+  timeout_seconds: 120
+  tags:
+  - usage
+- id: usage-python3-pil-grayscale-add-tiff
+  title: Pillow grayscale add TIFF
+  description: Converts a generated TIFF to L mode and adds its mirrored copy with ImageChops.add, verifying the saturated luminance sum before saving.
+  kind: usage
+  client_application: python3-pil
+  command:
+  - bash
+  - /validator/tests/libtiff/tests/cases/usage/usage-tenth-batch-behavior.sh
+  - usage-python3-pil-grayscale-add-tiff
+  timeout_seconds: 120
+  tags:
+  - usage
+- id: usage-python3-pil-mirror-twice-identity-tiff
+  title: Pillow mirror twice identity TIFF
+  description: Mirrors a generated TIFF twice with ImageOps.mirror and verifies the result matches the original pixel-for-pixel before round-tripping.
+  kind: usage
+  client_application: python3-pil
+  command:
+  - bash
+  - /validator/tests/libtiff/tests/cases/usage/usage-tenth-batch-behavior.sh
+  - usage-python3-pil-mirror-twice-identity-tiff
+  timeout_seconds: 120
+  tags:
+  - usage
+- id: usage-python3-pil-flip-twice-identity-tiff
+  title: Pillow flip twice identity TIFF
+  description: Flips a generated TIFF twice with ImageOps.flip and verifies the result matches the original pixel-for-pixel before round-tripping.
+  kind: usage
+  client_application: python3-pil
+  command:
+  - bash
+  - /validator/tests/libtiff/tests/cases/usage/usage-tenth-batch-behavior.sh
+  - usage-python3-pil-flip-twice-identity-tiff
+  timeout_seconds: 120
+  tags:
+  - usage

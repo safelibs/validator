@@ -1016,3 +1016,139 @@ testcases:
   - xml
   - mime
   - abi-canary
+- id: usage-python3-lxml-xpath-last-item-text
+  title: lxml XPath last item text
+  description: Selects the last item element with python3-lxml's last() XPath function and verifies the trailing item text.
+  kind: usage
+  client_application: python3-lxml
+  command:
+  - bash
+  - /validator/tests/libxml/tests/cases/usage/usage-tenth-batch-behavior.sh
+  - usage-python3-lxml-xpath-last-item-text
+  timeout_seconds: 180
+  tags:
+  - usage
+  - xml
+  - python
+- id: usage-python3-lxml-xpath-sum-weight
+  title: lxml XPath sum weight
+  description: Sums the weight attribute across item elements with python3-lxml and verifies the aggregated total.
+  kind: usage
+  client_application: python3-lxml
+  command:
+  - bash
+  - /validator/tests/libxml/tests/cases/usage/usage-tenth-batch-behavior.sh
+  - usage-python3-lxml-xpath-sum-weight
+  timeout_seconds: 180
+  tags:
+  - usage
+  - xml
+  - python
+- id: usage-python3-lxml-getroottree-tag
+  title: lxml getroottree tag
+  description: Walks back to the document root with python3-lxml's getroottree and verifies the root element tag name.
+  kind: usage
+  client_application: python3-lxml
+  command:
+  - bash
+  - /validator/tests/libxml/tests/cases/usage/usage-tenth-batch-behavior.sh
+  - usage-python3-lxml-getroottree-tag
+  timeout_seconds: 180
+  tags:
+  - usage
+  - xml
+  - python
+- id: usage-python3-lxml-deepcopy-text
+  title: lxml deepcopy text
+  description: Deep-copies an XML tree with python3-lxml and verifies that mutating the clone leaves the original element text intact.
+  kind: usage
+  client_application: python3-lxml
+  command:
+  - bash
+  - /validator/tests/libxml/tests/cases/usage/usage-tenth-batch-behavior.sh
+  - usage-python3-lxml-deepcopy-text
+  timeout_seconds: 180
+  tags:
+  - usage
+  - xml
+  - python
+- id: usage-python3-lxml-attrib-items-list
+  title: lxml attrib items list
+  description: Iterates the attribute mapping with python3-lxml's attrib.items and verifies the emitted attribute name-value pairs.
+  kind: usage
+  client_application: python3-lxml
+  command:
+  - bash
+  - /validator/tests/libxml/tests/cases/usage/usage-tenth-batch-behavior.sh
+  - usage-python3-lxml-attrib-items-list
+  timeout_seconds: 180
+  tags:
+  - usage
+  - xml
+  - python
+- id: usage-python3-lxml-canonicalize-c14n
+  title: lxml canonicalize c14n
+  description: Canonicalizes XML with python3-lxml's etree.canonicalize and verifies the attributes are reordered alphabetically.
+  kind: usage
+  client_application: python3-lxml
+  command:
+  - bash
+  - /validator/tests/libxml/tests/cases/usage/usage-tenth-batch-behavior.sh
+  - usage-python3-lxml-canonicalize-c14n
+  timeout_seconds: 180
+  tags:
+  - usage
+  - xml
+  - python
+- id: usage-xmlstarlet-pyx-output
+  title: xmlstarlet pyx output
+  description: Converts XML to PYX line-oriented form with xmlstarlet pyx and verifies element and text records appear in the output.
+  kind: usage
+  client_application: xmlstarlet
+  command:
+  - bash
+  - /validator/tests/libxml/tests/cases/usage/usage-tenth-batch-behavior.sh
+  - usage-xmlstarlet-pyx-output
+  timeout_seconds: 180
+  tags:
+  - usage
+  - xml
+- id: usage-xmlstarlet-validate-well-formed
+  title: xmlstarlet validate well-formed
+  description: Runs the xmlstarlet val -w well-formedness check on a document and verifies it reports the file as valid.
+  kind: usage
+  client_application: xmlstarlet
+  command:
+  - bash
+  - /validator/tests/libxml/tests/cases/usage/usage-tenth-batch-behavior.sh
+  - usage-xmlstarlet-validate-well-formed
+  timeout_seconds: 180
+  tags:
+  - usage
+  - xml
+- id: usage-xmlstarlet-edit-rename-item
+  title: xmlstarlet rename item element
+  description: Renames an element with xmlstarlet ed -r and verifies the new tag is emitted while the original tag no longer appears.
+  kind: usage
+  client_application: xmlstarlet
+  command:
+  - bash
+  - /validator/tests/libxml/tests/cases/usage/usage-tenth-batch-behavior.sh
+  - usage-xmlstarlet-edit-rename-item
+  timeout_seconds: 180
+  tags:
+  - usage
+  - xml
+- id: usage-xmlstarlet-select-namespaced-tag
+  title: xmlstarlet namespaced tag select
+  description: Reads a namespaced element with xmlstarlet sel and a registered namespace prefix and verifies the selected text.
+  kind: usage
+  client_application: xmlstarlet
+  command:
+  - bash
+  - /validator/tests/libxml/tests/cases/usage/usage-tenth-batch-behavior.sh
+  - usage-xmlstarlet-select-namespaced-tag
+  timeout_seconds: 180
+  tags:
+  - usage
+  - xml

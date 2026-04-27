@@ -971,3 +971,123 @@ testcases:
   timeout_seconds: 120
   tags:
   - usage
+- id: usage-netpbm-pnminvert-rgb-png-roundtrip
+  title: netpbm pnminvert RGB PNG roundtrip
+  description: Inverts a generated RGB PNG with pnminvert and verifies the inverted per-channel pixel values after a PNG roundtrip.
+  kind: usage
+  client_application: netpbm
+  command:
+  - bash
+  - /validator/tests/libpng/tests/cases/usage/usage-tenth-batch-behavior.sh
+  - usage-netpbm-pnminvert-rgb-png-roundtrip
+  timeout_seconds: 120
+  tags:
+  - usage
+- id: usage-netpbm-pnmflip-rotate180-rgb-png
+  title: netpbm pnmflip rotate180 RGB PNG
+  description: Rotates a generated RGB PNG 180 degrees with pnmflip and verifies the reordered pixel values.
+  kind: usage
+  client_application: netpbm
+  command:
+  - bash
+  - /validator/tests/libpng/tests/cases/usage/usage-tenth-batch-behavior.sh
+  - usage-netpbm-pnmflip-rotate180-rgb-png
+  timeout_seconds: 120
+  tags:
+  - usage
+- id: usage-netpbm-pamflip-ccw-grayscale-png
+  title: netpbm pamflip ccw grayscale PNG
+  description: Rotates a generated grayscale PNG counter-clockwise with pamflip and verifies the rotated pixel order.
+  kind: usage
+  client_application: netpbm
+  command:
+  - bash
+  - /validator/tests/libpng/tests/cases/usage/usage-tenth-batch-behavior.sh
+  - usage-netpbm-pamflip-ccw-grayscale-png
+  timeout_seconds: 120
+  tags:
+  - usage
+- id: usage-netpbm-pnmcat-leftright-png-generated
+  title: netpbm pnmcat leftright PNG generated
+  description: Concatenates two generated grayscale PNGs side-by-side with pnmcat and verifies the combined pixel row.
+  kind: usage
+  client_application: netpbm
+  command:
+  - bash
+  - /validator/tests/libpng/tests/cases/usage/usage-tenth-batch-behavior.sh
+  - usage-netpbm-pnmcat-leftright-png-generated
+  timeout_seconds: 120
+  tags:
+  - usage
+- id: usage-netpbm-pnmcat-topbottom-png-generated
+  title: netpbm pnmcat topbottom PNG generated
+  description: Stacks two generated grayscale PNGs vertically with pnmcat and verifies the combined pixel column.
+  kind: usage
+  client_application: netpbm
+  command:
+  - bash
+  - /validator/tests/libpng/tests/cases/usage/usage-tenth-batch-behavior.sh
+  - usage-netpbm-pnmcat-topbottom-png-generated
+  timeout_seconds: 120
+  tags:
+  - usage
+- id: usage-netpbm-pnmscale-half-png-generated
+  title: netpbm pnmscale half PNG generated
+  description: Scales a generated grayscale PNG to half size with pnmscale and verifies the resulting one-by-one shape.
+  kind: usage
+  client_application: netpbm
+  command:
+  - bash
+  - /validator/tests/libpng/tests/cases/usage/usage-tenth-batch-behavior.sh
+  - usage-netpbm-pnmscale-half-png-generated
+  timeout_seconds: 120
+  tags:
+  - usage
+- id: usage-netpbm-pamchannel-green-png-generated
+  title: netpbm pamchannel green PNG generated
+  description: Extracts the green channel from a generated RGB PNG with pamchannel and verifies the resulting grayscale values.
+  kind: usage
+  client_application: netpbm
+  command:
+  - bash
+  - /validator/tests/libpng/tests/cases/usage/usage-tenth-batch-behavior.sh
+  - usage-netpbm-pamchannel-green-png-generated
+  timeout_seconds: 120
+  tags:
+  - usage
+- id: usage-netpbm-pnmdepth-63-png-generated
+  title: netpbm pnmdepth 63 PNG generated
+  description: Reduces a generated grayscale PNG depth to 63 with pnmdepth and verifies the resulting maxval header.
+  kind: usage
+  client_application: netpbm
+  command:
+  - bash
+  - /validator/tests/libpng/tests/cases/usage/usage-tenth-batch-behavior.sh
+  - usage-netpbm-pnmdepth-63-png-generated
+  timeout_seconds: 120
+  tags:
+  - usage
+- id: usage-pngquant-colors-four-png-generated
+  title: pngquant colors four PNG generated
+  description: Quantizes a generated RGB PNG to four colors with pngquant and verifies the resulting palette stays within four unique colors.
+  kind: usage
+  client_application: pngquant
+  command:
+  - bash
+  - /validator/tests/libpng/tests/cases/usage/usage-tenth-batch-behavior.sh
+  - usage-pngquant-colors-four-png-generated
+  timeout_seconds: 120
+  tags:
+  - usage
+- id: usage-pngquant-nofs-png-generated
+  title: pngquant nofs PNG generated
+  description: Quantizes a generated RGB PNG with pngquant nofs dithering disabled and verifies the resulting palette stays within eight unique colors.
+  kind: usage
+  client_application: pngquant
+  command:
+  - bash
+  - /validator/tests/libpng/tests/cases/usage/usage-tenth-batch-behavior.sh
+  - usage-pngquant-nofs-png-generated
+  timeout_seconds: 120
+  tags:
+  - usage

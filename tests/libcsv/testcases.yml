@@ -971,3 +971,143 @@ testcases:
   - usage
   - csv
   - readstat
+- id: usage-readstat-dta-three-row-numbers
+  title: readstat DTA three row numbers
+  description: Converts three numeric rows to DTA with readstat and verifies all three formatted decimal values appear in the output CSV.
+  kind: usage
+  client_application: readstat
+  command:
+  - bash
+  - /validator/tests/libcsv/tests/cases/usage/usage-tenth-batch-behavior.sh
+  - usage-readstat-dta-three-row-numbers
+  timeout_seconds: 180
+  tags:
+  - usage
+  - csv
+  - readstat
+- id: usage-readstat-sav-three-row-numbers
+  title: readstat SAV three row numbers
+  description: Converts three numeric rows to SAV with readstat and verifies all three formatted decimal values appear in the output CSV.
+  kind: usage
+  client_application: readstat
+  command:
+  - bash
+  - /validator/tests/libcsv/tests/cases/usage/usage-tenth-batch-behavior.sh
+  - usage-readstat-sav-three-row-numbers
+  timeout_seconds: 180
+  tags:
+  - usage
+  - csv
+  - readstat
+- id: usage-readstat-dta-two-column-summary
+  title: readstat DTA two-column summary
+  description: Converts a two-column CSV to DTA with readstat and verifies the summary reports two columns.
+  kind: usage
+  client_application: readstat
+  command:
+  - bash
+  - /validator/tests/libcsv/tests/cases/usage/usage-tenth-batch-behavior.sh
+  - usage-readstat-dta-two-column-summary
+  timeout_seconds: 180
+  tags:
+  - usage
+  - csv
+  - readstat
+- id: usage-readstat-sav-two-column-summary
+  title: readstat SAV two-column summary
+  description: Converts a two-column CSV to SAV with readstat and verifies the summary reports two columns.
+  kind: usage
+  client_application: readstat
+  command:
+  - bash
+  - /validator/tests/libcsv/tests/cases/usage/usage-tenth-batch-behavior.sh
+  - usage-readstat-sav-two-column-summary
+  timeout_seconds: 180
+  tags:
+  - usage
+  - csv
+  - readstat
+- id: usage-readstat-dta-quoted-comma-string
+  title: readstat DTA quoted comma string
+  description: Converts a quoted CSV field containing a comma to DTA with readstat and verifies the embedded comma survives the round trip.
+  kind: usage
+  client_application: readstat
+  command:
+  - bash
+  - /validator/tests/libcsv/tests/cases/usage/usage-tenth-batch-behavior.sh
+  - usage-readstat-dta-quoted-comma-string
+  timeout_seconds: 180
+  tags:
+  - usage
+  - csv
+  - readstat
+- id: usage-readstat-sav-quoted-comma-string
+  title: readstat SAV quoted comma string
+  description: Converts a quoted CSV field containing a comma to SAV with readstat and verifies the embedded comma survives the round trip.
+  kind: usage
+  client_application: readstat
+  command:
+  - bash
+  - /validator/tests/libcsv/tests/cases/usage/usage-tenth-batch-behavior.sh
+  - usage-readstat-sav-quoted-comma-string
+  timeout_seconds: 180
+  tags:
+  - usage
+  - csv
+  - readstat
+- id: usage-readstat-dta-large-positive-number
+  title: readstat DTA large positive number
+  description: Converts a six-digit positive integer to DTA with readstat and verifies the formatted decimal value in the output CSV.
+  kind: usage
+  client_application: readstat
+  command:
+  - bash
+  - /validator/tests/libcsv/tests/cases/usage/usage-tenth-batch-behavior.sh
+  - usage-readstat-dta-large-positive-number
+  timeout_seconds: 180
+  tags:
+  - usage
+  - csv
+  - readstat
+- id: usage-readstat-sav-large-positive-number
+  title: readstat SAV large positive number
+  description: Converts a six-digit positive integer to SAV with readstat and verifies the formatted decimal value in the output CSV.
+  kind: usage
+  client_application: readstat
+  command:
+  - bash
+  - /validator/tests/libcsv/tests/cases/usage/usage-tenth-batch-behavior.sh
+  - usage-readstat-sav-large-positive-number
+  timeout_seconds: 180
+  tags:
+  - usage
+  - csv
+  - readstat
+- id: usage-readstat-dta-empty-string-row
+  title: readstat DTA empty string row
+  description: Converts a CSV row containing an empty quoted string to DTA with readstat and verifies the summary still reports a single column.
+  kind: usage
+  client_application: readstat
+  command:
+  - bash
+  - /validator/tests/libcsv/tests/cases/usage/usage-tenth-batch-behavior.sh
+  - usage-readstat-dta-empty-string-row
+  timeout_seconds: 180
+  tags:
+  - usage
+  - csv
+  - readstat
+- id: usage-readstat-sav-empty-string-row
+  title: readstat SAV empty string row
+  description: Converts a CSV row containing an empty quoted string to SAV with readstat and verifies the summary still reports a single column.
+  kind: usage
+  client_application: readstat
+  command:
+  - bash
+  - /validator/tests/libcsv/tests/cases/usage/usage-tenth-batch-behavior.sh
+  - usage-readstat-sav-empty-string-row
+  timeout_seconds: 180
+  tags:
+  - usage
+  - csv
+  - readstat

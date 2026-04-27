@@ -19,7 +19,7 @@ jobs:
         run: python3 -m unittest discover -s unit -v
 
       - name: Check testcase manifests
-        run: python3 tools/testcases.py --config repositories.yml --tests-root tests --check --min-source-cases 120 --min-usage-cases 723 --min-cases 843
+        run: python3 tools/testcases.py --config repositories.yml --tests-root tests --check --min-source-cases 120 --min-usage-cases 963 --min-cases 1083
 
   matrix-smoke:
     needs: preflight
@@ -214,8 +214,8 @@ jobs:
             --proof-output "$ORIGINAL_PROOF_PATH" \
             --mode original \
             --min-source-cases 120 \
-            --min-usage-cases 723 \
-            --min-cases 843 \
+            --min-usage-cases 963 \
+            --min-cases 1083 \
             --require-casts
           python3 tools/verify_proof_artifacts.py \
             --config repositories.yml \
@@ -224,8 +224,8 @@ jobs:
             --proof-output "$PORT_PROOF_PATH" \
             --mode port-04-test \
             --min-source-cases 120 \
-            --min-usage-cases 723 \
-            --min-cases 843 \
+            --min-usage-cases 963 \
+            --min-cases 1083 \
             --require-casts
 
       - name: Render site

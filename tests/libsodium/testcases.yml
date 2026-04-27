@@ -981,3 +981,143 @@ testcases:
   timeout_seconds: 120
   tags:
   - usage
+- id: usage-python3-nacl-blake2b-personal
+  title: python3 nacl blake2b personalised
+  description: Computes a personalised BLAKE2b digest twice through PyNaCl and verifies the personalisation argument produces a stable digest.
+  kind: usage
+  client_application: python3-nacl
+  command:
+  - bash
+  - /validator/tests/libsodium/tests/cases/usage/usage-tenth-batch-behavior.sh
+  - usage-python3-nacl-blake2b-personal
+  timeout_seconds: 180
+  tags:
+  - usage
+  - python
+  - hash
+- id: usage-python3-nacl-secretbox-key-size
+  title: python3 nacl secretbox key size
+  description: Reads the SecretBox.KEY_SIZE constant exposed by PyNaCl and verifies the 32-byte key length.
+  kind: usage
+  client_application: python3-nacl
+  command:
+  - bash
+  - /validator/tests/libsodium/tests/cases/usage/usage-tenth-batch-behavior.sh
+  - usage-python3-nacl-secretbox-key-size
+  timeout_seconds: 180
+  tags:
+  - usage
+  - python
+  - secretbox
+- id: usage-python3-nacl-utils-random-large
+  title: python3 nacl random 64 bytes
+  description: Requests 64 random bytes through PyNaCl utils.random and verifies the returned buffer length.
+  kind: usage
+  client_application: python3-nacl
+  command:
+  - bash
+  - /validator/tests/libsodium/tests/cases/usage/usage-tenth-batch-behavior.sh
+  - usage-python3-nacl-utils-random-large
+  timeout_seconds: 180
+  tags:
+  - usage
+  - python
+  - random
+- id: usage-python3-nacl-public-key-hex-roundtrip
+  title: python3 nacl public key hex
+  description: Encodes a PyNaCl public key with the HexEncoder and verifies the 64-character hex representation.
+  kind: usage
+  client_application: python3-nacl
+  command:
+  - bash
+  - /validator/tests/libsodium/tests/cases/usage/usage-tenth-batch-behavior.sh
+  - usage-python3-nacl-public-key-hex-roundtrip
+  timeout_seconds: 180
+  tags:
+  - usage
+  - python
+  - public-key
+- id: usage-python3-nacl-signing-deterministic
+  title: python3 nacl deterministic signing
+  description: Signs the same payload twice from a fixed seed through PyNaCl SigningKey and verifies the deterministic Ed25519 signatures match.
+  kind: usage
+  client_application: python3-nacl
+  command:
+  - bash
+  - /validator/tests/libsodium/tests/cases/usage/usage-tenth-batch-behavior.sh
+  - usage-python3-nacl-signing-deterministic
+  timeout_seconds: 180
+  tags:
+  - usage
+  - python
+  - signing
+- id: usage-php83-sodium-generichash-length
+  title: php83 sodium generichash length
+  description: Computes a generic hash through PHP sodium_crypto_generichash and verifies the digest matches the GENERICHASH_BYTES constant.
+  kind: usage
+  client_application: php8.3-cli
+  command:
+  - bash
+  - /validator/tests/libsodium/tests/cases/usage/usage-tenth-batch-behavior.sh
+  - usage-php83-sodium-generichash-length
+  timeout_seconds: 180
+  tags:
+  - usage
+  - php
+  - hash
+- id: usage-php83-sodium-shorthash-length
+  title: php83 sodium shorthash length
+  description: Calls PHP sodium_crypto_shorthash with a 16 byte key and verifies the SHORTHASH_BYTES output length.
+  kind: usage
+  client_application: php8.3-cli
+  command:
+  - bash
+  - /validator/tests/libsodium/tests/cases/usage/usage-tenth-batch-behavior.sh
+  - usage-php83-sodium-shorthash-length
+  timeout_seconds: 180
+  tags:
+  - usage
+  - php
+  - hash
+- id: usage-php83-sodium-secretbox-detached-roundtrip
+  title: php83 sodium secretbox roundtrip
+  description: Encrypts a payload with sodium_crypto_secretbox in PHP and verifies the open call decrypts back to the original message.
+  kind: usage
+  client_application: php8.3-cli
+  command:
+  - bash
+  - /validator/tests/libsodium/tests/cases/usage/usage-tenth-batch-behavior.sh
+  - usage-php83-sodium-secretbox-detached-roundtrip
+  timeout_seconds: 180
+  tags:
+  - usage
+  - php
+  - secretbox
+- id: usage-php83-sodium-sign-keypair-bytes
+  title: php83 sodium sign keypair bytes
+  description: Generates a sign keypair through PHP sodium_crypto_sign_keypair and verifies the buffer length matches the KEYPAIRBYTES constant.
+  kind: usage
+  client_application: php8.3-cli
+  command:
+  - bash
+  - /validator/tests/libsodium/tests/cases/usage/usage-tenth-batch-behavior.sh
+  - usage-php83-sodium-sign-keypair-bytes
+  timeout_seconds: 180
+  tags:
+  - usage
+  - php
+  - sign
+- id: usage-minisign-pubkey-format
+  title: minisign public key format
+  description: Generates a passwordless minisign keypair and verifies the public key file carries the minisign public key comment marker.
+  kind: usage
+  client_application: minisign
+  command:
+  - bash
+  - /validator/tests/libsodium/tests/cases/usage/usage-tenth-batch-behavior.sh
+  - usage-minisign-pubkey-format
+  timeout_seconds: 180
+  tags:
+  - usage
+  - minisign
+  - keygen

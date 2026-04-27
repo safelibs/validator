@@ -1010,3 +1010,143 @@ testcases:
   - usage
   - gif
   - giftext
+- id: usage-giflib-tools-giftext-grid-color-map
+  title: giftext grid Global Color Map
+  description: Prints the gifgrid.gif color map with giftext -c and verifies that the Global Color Map heading is emitted.
+  kind: usage
+  client_application: giflib-tools
+  command:
+  - bash
+  - /validator/tests/giflib/tests/cases/usage/usage-tenth-batch-behavior.sh
+  - usage-giflib-tools-giftext-grid-color-map
+  timeout_seconds: 180
+  tags:
+  - usage
+  - gif
+  - giftext
+- id: usage-giflib-tools-giftext-fire-bits-per-pixel
+  title: giftext fire bits per pixel
+  description: Reads fire.gif with giftext and verifies that the BitsPerPixel header field is emitted.
+  kind: usage
+  client_application: giflib-tools
+  command:
+  - bash
+  - /validator/tests/giflib/tests/cases/usage/usage-tenth-batch-behavior.sh
+  - usage-giflib-tools-giftext-fire-bits-per-pixel
+  timeout_seconds: 180
+  tags:
+  - usage
+  - gif
+  - giftext
+- id: usage-giflib-tools-giftext-treescap-bits-per-pixel
+  title: giftext treescap bits per pixel
+  description: Reads treescap.gif with giftext and verifies that the BitsPerPixel header field is emitted.
+  kind: usage
+  client_application: giflib-tools
+  command:
+  - bash
+  - /validator/tests/giflib/tests/cases/usage/usage-tenth-batch-behavior.sh
+  - usage-giflib-tools-giftext-treescap-bits-per-pixel
+  timeout_seconds: 180
+  tags:
+  - usage
+  - gif
+  - giftext
+- id: usage-giflib-tools-giftext-interlaced-bits-per-pixel
+  title: giftext interlaced bits per pixel
+  description: Reads treescap-interlaced.gif with giftext and verifies that the BitsPerPixel header field is emitted.
+  kind: usage
+  client_application: giflib-tools
+  command:
+  - bash
+  - /validator/tests/giflib/tests/cases/usage/usage-tenth-batch-behavior.sh
+  - usage-giflib-tools-giftext-interlaced-bits-per-pixel
+  timeout_seconds: 180
+  tags:
+  - usage
+  - gif
+  - giftext
+- id: usage-giflib-tools-gif2rgb-grid-planar-equal-channels
+  title: gif2rgb grid planar equal channels
+  description: Decodes gifgrid.gif with gif2rgb planar output and verifies that the R, G, and B planes have equal nonzero byte sizes.
+  kind: usage
+  client_application: giflib-tools
+  command:
+  - bash
+  - /validator/tests/giflib/tests/cases/usage/usage-tenth-batch-behavior.sh
+  - usage-giflib-tools-gif2rgb-grid-planar-equal-channels
+  timeout_seconds: 180
+  tags:
+  - usage
+  - gif
+  - gif2rgb
+- id: usage-giflib-tools-gif2rgb-treescap-rgb-compare
+  title: gif2rgb treescap interlaced rgb compare
+  description: Decodes treescap-interlaced.gif with gif2rgb -1 and verifies the RGB output bytes match the recorded fixture.
+  kind: usage
+  client_application: giflib-tools
+  command:
+  - bash
+  - /validator/tests/giflib/tests/cases/usage/usage-tenth-batch-behavior.sh
+  - usage-giflib-tools-gif2rgb-treescap-rgb-compare
+  timeout_seconds: 180
+  tags:
+  - usage
+  - gif
+  - gif2rgb
+- id: usage-giflib-tools-gifbuild-fire-roundtrip-screen-size
+  title: gifbuild fire roundtrip screen size
+  description: Roundtrips fire.gif through gifbuild dump and rebuild, then verifies that the rebuilt giftext output reports Screen Size.
+  kind: usage
+  client_application: giflib-tools
+  command:
+  - bash
+  - /validator/tests/giflib/tests/cases/usage/usage-tenth-batch-behavior.sh
+  - usage-giflib-tools-gifbuild-fire-roundtrip-screen-size
+  timeout_seconds: 180
+  tags:
+  - usage
+  - gif
+  - gifbuild
+- id: usage-giflib-tools-gifbuild-treescap-roundtrip-colormap
+  title: gifbuild treescap roundtrip color map
+  description: Roundtrips treescap.gif through gifbuild dump and rebuild, then verifies that gifclrmp on the rebuilt gif emits a palette row.
+  kind: usage
+  client_application: giflib-tools
+  command:
+  - bash
+  - /validator/tests/giflib/tests/cases/usage/usage-tenth-batch-behavior.sh
+  - usage-giflib-tools-gifbuild-treescap-roundtrip-colormap
+  timeout_seconds: 180
+  tags:
+  - usage
+  - gif
+  - gifbuild
+- id: usage-giflib-tools-giffix-fire-screen-size
+  title: giffix fire screen size
+  description: Repairs fire.gif with giffix and verifies that giftext on the fixed gif still reports Screen Size.
+  kind: usage
+  client_application: giflib-tools
+  command:
+  - bash
+  - /validator/tests/giflib/tests/cases/usage/usage-tenth-batch-behavior.sh
+  - usage-giflib-tools-giffix-fire-screen-size
+  timeout_seconds: 180
+  tags:
+  - usage
+  - gif
+  - giffix
+- id: usage-giflib-tools-gifclrmp-grid-palette-row
+  title: gifclrmp grid palette row
+  description: Prints the gifgrid.gif color map with gifclrmp and verifies that at least one palette row is emitted.
+  kind: usage
+  client_application: giflib-tools
+  command:
+  - bash
+  - /validator/tests/giflib/tests/cases/usage/usage-tenth-batch-behavior.sh
+  - usage-giflib-tools-gifclrmp-grid-palette-row
+  timeout_seconds: 180
+  tags:
+  - usage
+  - gif
+  - gifclrmp
