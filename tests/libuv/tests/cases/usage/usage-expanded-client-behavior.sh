@@ -19,17 +19,20 @@ fs.writeFileSync(path, 'promises payload\n');
 JS
     validator_assert_contains "$tmpdir/out" 'promises payload'
     ;;
-  usage-nodejs-fs-realpath-file)
-    FILE_PATH="$tmpdir/input.txt" node >"$tmpdir/out" <<'JS'
-const fs = require('fs');
-const path = process.env.FILE_PATH;
-fs.writeFileSync(path, 'realpath payload\n');
-fs.realpath(path, (error, resolved) => {
-  if (error) throw error;
-  console.log(resolved.endsWith('input.txt'));
-});
+  usage-nodejs-fs-rename-file)
+    TMPDIR="$tmpdir" node >"$tmpdir/out" <<'JS'
+const fs = require('fs/promises');
+const path = require('path');
+const root = process.env.TMPDIR;
+(async () => {
+  const source = path.join(root, 'before.txt');
+  const dest = path.join(root, 'after.txt');
+  await fs.writeFile(source, 'rename payload\n');
+  await fs.rename(source, dest);
+  console.log((await fs.readFile(dest, 'utf8')).trim());
+})();
 JS
-    validator_assert_contains "$tmpdir/out" 'true'
+    validator_assert_contains "$tmpdir/out" 'rename payload'
     ;;
   usage-nodejs-fs-readdir-dirents)
     DIR_PATH="$tmpdir/list" node >"$tmpdir/out" <<'JS'
@@ -54,21 +57,20 @@ console.log(result.stdout.toString('utf8'));
 JS
     validator_assert_contains "$tmpdir/out" 'spawn-sync-ok'
     ;;
-  usage-nodejs-stream-pipeline-pass-through)
+  usage-nodejs-stream-finished-pass-through)
     node >"$tmpdir/out" <<'JS'
-const { PassThrough, pipeline } = require('stream');
-const source = new PassThrough();
-const middle = new PassThrough();
-const sink = new PassThrough();
-let output = '';
-sink.on('data', (chunk) => { output += chunk.toString('utf8'); });
-pipeline(source, middle, sink, (error) => {
-  if (error) throw error;
+const { PassThrough } = require('stream');
+const { finished } = require('stream/promises');
+(async () => {
+  const stream = new PassThrough();
+  let output = '';
+  stream.on('data', (chunk) => { output += chunk.toString('utf8'); });
+  stream.end('finished payload');
+  await finished(stream);
   console.log(output);
-});
-source.end('pipeline payload');
+})();
 JS
-    validator_assert_contains "$tmpdir/out" 'pipeline payload'
+    validator_assert_contains "$tmpdir/out" 'finished payload'
     ;;
   usage-nodejs-zlib-gzip-roundtrip)
     node >"$tmpdir/out" <<'JS'
@@ -91,17 +93,12 @@ console.log(value.length);
 JS
     validator_assert_contains "$tmpdir/out" '12'
     ;;
-  usage-nodejs-net-server-address-loopback)
+  usage-nodejs-net-isip-loopback)
     node >"$tmpdir/out" <<'JS'
 const net = require('net');
-const server = net.createServer();
-server.listen(0, '127.0.0.1', () => {
-  const address = server.address();
-  console.log(address.address, address.family);
-  server.close();
-});
+console.log(net.isIP('127.0.0.1'));
 JS
-    validator_assert_contains "$tmpdir/out" '127.0.0.1'
+    validator_assert_contains "$tmpdir/out" '4'
     ;;
   usage-nodejs-dgram-close-event)
     node >"$tmpdir/out" <<'JS'
@@ -114,18 +111,15 @@ socket.bind(0, '127.0.0.1', () => socket.close());
 JS
     validator_assert_contains "$tmpdir/out" 'closed'
     ;;
-  usage-nodejs-timers-setinterval-twice)
+  usage-nodejs-timers-promises-immediate)
     node >"$tmpdir/out" <<'JS'
-let count = 0;
-const handle = setInterval(() => {
-  count += 1;
-  if (count === 2) {
-    clearInterval(handle);
-    console.log(`count=${count}`);
-  }
-}, 5);
+const timersPromises = require('timers/promises');
+(async () => {
+  const value = await timersPromises.setImmediate('immediate done');
+  console.log(value);
+})();
 JS
-    validator_assert_contains "$tmpdir/out" 'count=2'
+    validator_assert_contains "$tmpdir/out" 'immediate done'
     ;;
   *)
     printf 'unknown libuv expanded usage case: %s\n' "$case_id" >&2

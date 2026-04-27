@@ -24,76 +24,76 @@ def capture(*args):
 def write_csv(text):
     (tmpdir / "in.csv").write_text(text)
 
-def write_metadata(variables):
-    (tmpdir / "meta.json").write_text(json.dumps({"type": "SPSS", "variables": variables}))
+def metadata_type(kind):
+    return "Stata" if kind == "dta" else "SPSS"
 
-def roundtrip(kind):
+def write_metadata(kind, variables):
+    (tmpdir / "meta.json").write_text(json.dumps({"type": metadata_type(kind), "variables": variables}))
+
+def roundtrip(kind, variables):
+    write_metadata(kind, variables)
     write_target = tmpdir / f"out.{kind}"
     run("readstat", str(tmpdir / "in.csv"), str(tmpdir / "meta.json"), str(write_target))
     return capture("readstat", str(write_target), "-")
 
-if workload == "dta-negative-number":
-    write_csv("name,delta\nalpha,-3.5\n")
-    write_metadata([{"type": "STRING", "name": "name"}, {"type": "NUMERIC", "name": "delta"}])
-    out = roundtrip("dta")
-    assert '"alpha",-3.500000' in out
+if workload == "dta-mixed-case-header":
+    write_csv("CodeValue\nalpha\n")
+    out = roundtrip("dta", [{"type": "STRING", "name": "CodeValue"}])
+    assert out.splitlines()[0] == '"CodeValue"'
+    assert '"alpha"' in out
     print(out.strip())
-elif workload == "sav-negative-number":
-    write_csv("name,delta\nalpha,-3.5\n")
-    write_metadata([{"type": "STRING", "name": "name"}, {"type": "NUMERIC", "name": "delta"}])
-    out = roundtrip("sav")
-    assert '"alpha",-3.500000' in out
+elif workload == "sav-mixed-case-header":
+    write_csv("CodeValue\nalpha\n")
+    out = roundtrip("sav", [{"type": "STRING", "name": "CodeValue"}])
+    assert out.splitlines()[0] == '"CodeValue"'
+    assert '"alpha"' in out
     print(out.strip())
-elif workload == "dta-leading-zero-string":
-    write_csv("code\n0012\n")
-    write_metadata([{"type": "STRING", "name": "code"}])
-    out = roundtrip("dta")
-    assert '"0012"' in out
+elif workload == "dta-numeric-string":
+    write_csv("code\n3.50\n")
+    out = roundtrip("dta", [{"type": "STRING", "name": "code"}])
+    assert '"3.50"' in out
     print(out.strip())
-elif workload == "sav-leading-zero-string":
-    write_csv("code\n0012\n")
-    write_metadata([{"type": "STRING", "name": "code"}])
-    out = roundtrip("sav")
-    assert '"0012"' in out
+elif workload == "sav-numeric-string":
+    write_csv("code\n3.50\n")
+    out = roundtrip("sav", [{"type": "STRING", "name": "code"}])
+    assert '"3.50"' in out
     print(out.strip())
 elif workload == "dta-two-row-strings":
     write_csv("name\nalpha\nbeta\n")
-    write_metadata([{"type": "STRING", "name": "name"}])
-    out = roundtrip("dta")
+    out = roundtrip("dta", [{"type": "STRING", "name": "name"}])
     assert '"alpha"' in out
     assert '"beta"' in out
     assert out.index('"alpha"') < out.index('"beta"')
     print(out.strip())
 elif workload == "sav-two-row-strings":
     write_csv("name\nalpha\nbeta\n")
-    write_metadata([{"type": "STRING", "name": "name"}])
-    out = roundtrip("sav")
+    out = roundtrip("sav", [{"type": "STRING", "name": "name"}])
     assert '"alpha"' in out
     assert '"beta"' in out
     assert out.index('"alpha"') < out.index('"beta"')
     print(out.strip())
-elif workload == "dta-long-string":
-    write_csv("name\nvalidator-long-string-value\n")
-    write_metadata([{"type": "STRING", "name": "name"}])
-    out = roundtrip("dta")
-    assert 'validator-long-string-value' in out
+elif workload == "dta-multiline-note":
+    write_csv('note\n"line one\nline two"\n')
+    out = roundtrip("dta", [{"type": "STRING", "name": "note"}])
+    assert 'line one' in out
+    assert 'line two' in out
+    assert out.index('line one') < out.index('line two')
     print(out.strip())
-elif workload == "sav-long-string":
-    write_csv("name\nvalidator-long-string-value\n")
-    write_metadata([{"type": "STRING", "name": "name"}])
-    out = roundtrip("sav")
-    assert 'validator-long-string-value' in out
+elif workload == "sav-multiline-note":
+    write_csv('note\n"line one\nline two"\n')
+    out = roundtrip("sav", [{"type": "STRING", "name": "note"}])
+    assert 'line one' in out
+    assert 'line two' in out
+    assert out.index('line one') < out.index('line two')
     print(out.strip())
 elif workload == "dta-zero-number":
     write_csv("score\n0\n")
-    write_metadata([{"type": "NUMERIC", "name": "score"}])
-    out = roundtrip("dta")
+    out = roundtrip("dta", [{"type": "NUMERIC", "name": "score"}])
     assert '0.000000' in out
     print(out.strip())
 elif workload == "sav-zero-number":
     write_csv("score\n0\n")
-    write_metadata([{"type": "NUMERIC", "name": "score"}])
-    out = roundtrip("sav")
+    out = roundtrip("sav", [{"type": "NUMERIC", "name": "score"}])
     assert '0.000000' in out
     print(out.strip())
 else:

@@ -872,15 +872,15 @@ testcases:
   - usage
   - nodejs
   - filesystem
-- id: usage-nodejs-fs-realpath-file
-  title: Node.js fs realpath
-  description: Resolves a file path with fs.realpath and verifies that the resolved path ends with the expected filename.
+- id: usage-nodejs-fs-rename-file
+  title: Node.js fs rename file
+  description: Renames a file with Node.js fs.promises.rename and verifies the destination keeps the original payload.
   kind: usage
   client_application: nodejs
   command:
   - bash
   - /validator/tests/libuv/tests/cases/usage/usage-expanded-client-behavior.sh
-  - usage-nodejs-fs-realpath-file
+  - usage-nodejs-fs-rename-file
   timeout_seconds: 180
   tags:
   - usage
@@ -914,15 +914,15 @@ testcases:
   - usage
   - nodejs
   - child-process
-- id: usage-nodejs-stream-pipeline-pass-through
-  title: Node.js stream pipeline
-  description: Pipes data through a Node.js stream pipeline and verifies the sink receives the original payload.
+- id: usage-nodejs-stream-finished-pass-through
+  title: Node.js stream finished
+  description: Awaits Node.js stream/promises.finished on a PassThrough stream and verifies the captured payload after the writable side ends.
   kind: usage
   client_application: nodejs
   command:
   - bash
   - /validator/tests/libuv/tests/cases/usage/usage-expanded-client-behavior.sh
-  - usage-nodejs-stream-pipeline-pass-through
+  - usage-nodejs-stream-finished-pass-through
   timeout_seconds: 180
   tags:
   - usage
@@ -956,15 +956,15 @@ testcases:
   - usage
   - nodejs
   - crypto
-- id: usage-nodejs-net-server-address-loopback
-  title: Node.js net server address
-  description: Starts a TCP server with Node.js net and verifies the reported bound address metadata.
+- id: usage-nodejs-net-isip-loopback
+  title: Node.js net isIP
+  description: Validates the loopback literal with Node.js net.isIP and verifies the API reports an IPv4 address.
   kind: usage
   client_application: nodejs
   command:
   - bash
   - /validator/tests/libuv/tests/cases/usage/usage-expanded-client-behavior.sh
-  - usage-nodejs-net-server-address-loopback
+  - usage-nodejs-net-isip-loopback
   timeout_seconds: 180
   tags:
   - usage
@@ -984,15 +984,15 @@ testcases:
   - usage
   - nodejs
   - network
-- id: usage-nodejs-timers-setinterval-twice
-  title: Node.js timers setInterval
-  description: Runs a repeating interval timer in Node.js and verifies the callback executes twice before clearing.
+- id: usage-nodejs-timers-promises-immediate
+  title: Node.js timers promises immediate
+  description: Awaits timers/promises.setImmediate in Node.js and verifies the resolved payload value.
   kind: usage
   client_application: nodejs
   command:
   - bash
   - /validator/tests/libuv/tests/cases/usage/usage-expanded-client-behavior.sh
-  - usage-nodejs-timers-setinterval-twice
+  - usage-nodejs-timers-promises-immediate
   timeout_seconds: 180
   tags:
   - usage

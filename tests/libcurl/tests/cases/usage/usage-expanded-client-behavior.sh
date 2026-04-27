@@ -125,11 +125,11 @@ case "$case_id" in
     curl -fsS -u demo:secret "http://127.0.0.1:$port/auth" >"$tmpdir/out"
     validator_assert_contains "$tmpdir/out" 'authorization=Basic '
     ;;
-  usage-curl-referer-header-echo)
+  usage-curl-write-out-status)
     port=18107
     start_custom_server "$port"
-    curl -fsS -e 'https://example.invalid/from' "http://127.0.0.1:$port/headers" >"$tmpdir/out"
-    validator_assert_contains "$tmpdir/out" 'referer=https://example.invalid/from'
+    curl -fsS -o /dev/null -w '%{http_code} %{content_type}\n' "http://127.0.0.1:$port/plain.txt" >"$tmpdir/out"
+    validator_assert_contains "$tmpdir/out" '200 text/plain'
     ;;
   usage-curl-form-post-multipart)
     port=18108

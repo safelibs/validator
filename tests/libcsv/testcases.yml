@@ -831,57 +831,57 @@ testcases:
   - usage
   - csv
   - readstat
-- id: usage-readstat-dta-negative-number-roundtrip
-  title: readstat DTA negative number
-  description: Converts a CSV containing a negative numeric value to DTA with readstat and verifies the signed decimal in the round-tripped output.
+- id: usage-readstat-dta-mixed-case-header-roundtrip
+  title: readstat DTA mixed-case header
+  description: Converts a mixed-case CSV header to DTA with readstat and verifies the round-tripped header preserves the original column casing.
   kind: usage
   client_application: readstat
   command:
   - bash
   - /validator/tests/libcsv/tests/cases/usage/usage-expanded-client-behavior.sh
-  - dta-negative-number
+  - dta-mixed-case-header
   timeout_seconds: 180
   tags:
   - usage
   - csv
   - readstat
-- id: usage-readstat-sav-negative-number-roundtrip
-  title: readstat SAV negative number
-  description: Converts a CSV containing a negative numeric value to SAV with readstat and verifies the signed decimal in the round-tripped output.
+- id: usage-readstat-sav-mixed-case-header-roundtrip
+  title: readstat SAV mixed-case header
+  description: Converts a mixed-case CSV header to SAV with readstat and verifies the round-tripped header preserves the original column casing.
   kind: usage
   client_application: readstat
   command:
   - bash
   - /validator/tests/libcsv/tests/cases/usage/usage-expanded-client-behavior.sh
-  - sav-negative-number
+  - sav-mixed-case-header
   timeout_seconds: 180
   tags:
   - usage
   - csv
   - readstat
-- id: usage-readstat-dta-leading-zero-string-roundtrip
-  title: readstat DTA leading zero string
-  description: Converts a string column containing leading zeros to DTA with readstat and verifies the leading zeros survive round trip.
+- id: usage-readstat-dta-numeric-string-roundtrip
+  title: readstat DTA numeric-looking string
+  description: Converts a decimal-looking string column to DTA with readstat and verifies the round-tripped output still preserves the quoted text form.
   kind: usage
   client_application: readstat
   command:
   - bash
   - /validator/tests/libcsv/tests/cases/usage/usage-expanded-client-behavior.sh
-  - dta-leading-zero-string
+  - dta-numeric-string
   timeout_seconds: 180
   tags:
   - usage
   - csv
   - readstat
-- id: usage-readstat-sav-leading-zero-string-roundtrip
-  title: readstat SAV leading zero string
-  description: Converts a string column containing leading zeros to SAV with readstat and verifies the leading zeros survive round trip.
+- id: usage-readstat-sav-numeric-string-roundtrip
+  title: readstat SAV numeric-looking string
+  description: Converts a decimal-looking string column to SAV with readstat and verifies the round-tripped output still preserves the quoted text form.
   kind: usage
   client_application: readstat
   command:
   - bash
   - /validator/tests/libcsv/tests/cases/usage/usage-expanded-client-behavior.sh
-  - sav-leading-zero-string
+  - sav-numeric-string
   timeout_seconds: 180
   tags:
   - usage
@@ -915,29 +915,29 @@ testcases:
   - usage
   - csv
   - readstat
-- id: usage-readstat-dta-long-string-roundtrip
-  title: readstat DTA long string
-  description: Converts a long string field to DTA with readstat and verifies the string payload survives round trip.
+- id: usage-readstat-dta-multiline-note-roundtrip
+  title: readstat DTA multiline note
+  description: Converts a quoted multiline CSV field to DTA with readstat and verifies both lines survive the round-tripped output.
   kind: usage
   client_application: readstat
   command:
   - bash
   - /validator/tests/libcsv/tests/cases/usage/usage-expanded-client-behavior.sh
-  - dta-long-string
+  - dta-multiline-note
   timeout_seconds: 180
   tags:
   - usage
   - csv
   - readstat
-- id: usage-readstat-sav-long-string-roundtrip
-  title: readstat SAV long string
-  description: Converts a long string field to SAV with readstat and verifies the string payload survives round trip.
+- id: usage-readstat-sav-multiline-note-roundtrip
+  title: readstat SAV multiline note
+  description: Converts a quoted multiline CSV field to SAV with readstat and verifies both lines survive the round-tripped output.
   kind: usage
   client_application: readstat
   command:
   - bash
   - /validator/tests/libcsv/tests/cases/usage/usage-expanded-client-behavior.sh
-  - sav-long-string
+  - sav-multiline-note
   timeout_seconds: 180
   tags:
   - usage

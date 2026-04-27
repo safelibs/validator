@@ -955,15 +955,15 @@ testcases:
   - usage
   - curl
   - http
-- id: usage-curl-referer-header-echo
-  title: curl referer header
-  description: Sends an explicit Referer header with curl and verifies the server receives the configured value.
+- id: usage-curl-write-out-status
+  title: curl write-out status
+  description: Requests a text response with curl --write-out and verifies the reported status code and content type summary.
   kind: usage
   client_application: curl
   command:
   - bash
   - /validator/tests/libcurl/tests/cases/usage/usage-expanded-client-behavior.sh
-  - usage-curl-referer-header-echo
+  - usage-curl-write-out-status
   timeout_seconds: 180
   tags:
   - usage
