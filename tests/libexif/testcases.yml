@@ -849,123 +849,123 @@ testcases:
   timeout_seconds: 120
   tags:
   - usage
-- id: usage-exif-cli-tag-flash-value
-  title: exif tag flash value
-  description: Reads the Flash EXIF tag with the exif client and verifies that the command emits a value line.
+- id: usage-exif-cli-tag-compression-jpeg
+  title: exif tag compression JPEG
+  description: Reads the Compression EXIF tag with the exif client and verifies that JPEG compression is reported for the sample image.
   kind: usage
   client_application: exif
   command:
   - bash
   - /validator/tests/libexif/tests/cases/usage/usage-expanded-client-behavior.sh
-  - usage-exif-cli-tag-flash-value
+  - usage-exif-cli-tag-compression-jpeg
   timeout_seconds: 120
   tags:
   - usage
-- id: usage-exif-cli-tag-exposure-time-value
-  title: exif tag exposure time value
-  description: Reads the ExposureTime EXIF tag with the exif client and verifies that the command emits a value line.
+- id: usage-exif-cli-tag-resolution-unit-inch
+  title: exif tag resolution unit inch
+  description: Reads the ResolutionUnit EXIF tag with the exif client and verifies that inch units are reported.
   kind: usage
   client_application: exif
   command:
   - bash
   - /validator/tests/libexif/tests/cases/usage/usage-expanded-client-behavior.sh
-  - usage-exif-cli-tag-exposure-time-value
+  - usage-exif-cli-tag-resolution-unit-inch
   timeout_seconds: 120
   tags:
   - usage
-- id: usage-exif-cli-tag-fnumber-value
-  title: exif tag FNumber value
-  description: Reads the FNumber EXIF tag with the exif client and verifies that the command emits a value line.
+- id: usage-exif-cli-tag-exif-version-22
+  title: exif tag ExifVersion 2.2
+  description: Reads the ExifVersion EXIF tag with the exif client and verifies that Exif Version 2.2 is reported.
   kind: usage
   client_application: exif
   command:
   - bash
   - /validator/tests/libexif/tests/cases/usage/usage-expanded-client-behavior.sh
-  - usage-exif-cli-tag-fnumber-value
+  - usage-exif-cli-tag-exif-version-22
   timeout_seconds: 120
   tags:
   - usage
-- id: usage-exif-cli-tag-resolution-unit-value
-  title: exif tag resolution unit value
-  description: Reads the ResolutionUnit EXIF tag with the exif client and verifies that the command emits a value line.
+- id: usage-exif-cli-tag-flashpix-version-10
+  title: exif tag FlashPixVersion 1.0
+  description: Reads the FlashPixVersion EXIF tag with the exif client and verifies that FlashPix Version 1.0 is reported.
   kind: usage
   client_application: exif
   command:
   - bash
   - /validator/tests/libexif/tests/cases/usage/usage-expanded-client-behavior.sh
-  - usage-exif-cli-tag-resolution-unit-value
+  - usage-exif-cli-tag-flashpix-version-10
   timeout_seconds: 120
   tags:
   - usage
-- id: usage-exif-cli-tag-exif-version-value
-  title: exif tag ExifVersion value
-  description: Reads the ExifVersion EXIF tag with the exif client and verifies that the command emits a value line.
+- id: usage-exif-cli-tag-components-configuration
+  title: exif tag components configuration
+  description: Reads the ComponentsConfiguration EXIF tag with the exif client and verifies that the expected Y Cb Cr channel order is reported.
   kind: usage
   client_application: exif
   command:
   - bash
   - /validator/tests/libexif/tests/cases/usage/usage-expanded-client-behavior.sh
-  - usage-exif-cli-tag-exif-version-value
+  - usage-exif-cli-tag-components-configuration
   timeout_seconds: 120
   tags:
   - usage
-- id: usage-exif-cli-tag-flashpix-version-value
-  title: exif tag FlashPixVersion value
-  description: Reads the FlashPixVersion EXIF tag with the exif client and verifies that the command emits a value line.
+- id: usage-exif-cli-tag-digital-zoom-ratio
+  title: exif tag digital zoom ratio
+  description: Reads the DigitalZoomRatio EXIF tag with the exif client and verifies that the expected 1.0000 ratio is reported.
   kind: usage
   client_application: exif
   command:
   - bash
   - /validator/tests/libexif/tests/cases/usage/usage-expanded-client-behavior.sh
-  - usage-exif-cli-tag-flashpix-version-value
+  - usage-exif-cli-tag-digital-zoom-ratio
   timeout_seconds: 120
   tags:
   - usage
-- id: usage-exif-cli-machine-readable-model-line
-  title: exif machine-readable model line
-  description: Emits machine-readable EXIF metadata and verifies that the Model row is present in the structured output.
+- id: usage-exif-cli-tag-interoperability-index
+  title: exif tag interoperability index
+  description: Reads the InteroperabilityIndex EXIF tag with the exif client and verifies that the R98 marker is reported.
   kind: usage
   client_application: exif
   command:
   - bash
   - /validator/tests/libexif/tests/cases/usage/usage-expanded-client-behavior.sh
-  - usage-exif-cli-machine-readable-model-line
+  - usage-exif-cli-tag-interoperability-index
   timeout_seconds: 120
   tags:
   - usage
-- id: usage-exif-cli-machine-readable-date-and-time-line
-  title: exif machine-readable date and time line
-  description: Emits machine-readable EXIF metadata and verifies that the Date and Time row is present in the structured output.
+- id: usage-exif-cli-tag-interoperability-version
+  title: exif tag interoperability version
+  description: Reads the InteroperabilityVersion EXIF tag with the exif client and verifies that the expected 0100 version string is reported.
   kind: usage
   client_application: exif
   command:
   - bash
   - /validator/tests/libexif/tests/cases/usage/usage-expanded-client-behavior.sh
-  - usage-exif-cli-machine-readable-date-and-time-line
+  - usage-exif-cli-tag-interoperability-version
   timeout_seconds: 120
   tags:
   - usage
-- id: usage-exif-cli-xml-manufacturer-element
-  title: exif XML manufacturer element
-  description: Emits XML EXIF metadata and verifies that the Manufacturer element is present in the structured XML output.
+- id: usage-exif-cli-tag-sensing-method
+  title: exif tag sensing method
+  description: Reads the SensingMethod EXIF tag with the exif client and verifies that the expected sensor type is reported.
   kind: usage
   client_application: exif
   command:
   - bash
   - /validator/tests/libexif/tests/cases/usage/usage-expanded-client-behavior.sh
-  - usage-exif-cli-xml-manufacturer-element
+  - usage-exif-cli-tag-sensing-method
   timeout_seconds: 120
   tags:
   - usage
-- id: usage-exif-cli-xml-date-and-time-element
-  title: exif XML date and time element
-  description: Emits XML EXIF metadata and verifies that a Date and Time element is present in the structured XML output.
+- id: usage-exif-cli-tag-file-source
+  title: exif tag file source
+  description: Reads the FileSource EXIF tag with the exif client and verifies that the DSC source marker is reported.
   kind: usage
   client_application: exif
   command:
   - bash
   - /validator/tests/libexif/tests/cases/usage/usage-expanded-client-behavior.sh
-  - usage-exif-cli-xml-date-and-time-element
+  - usage-exif-cli-tag-file-source
   timeout_seconds: 120
   tags:
   - usage
