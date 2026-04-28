@@ -65,6 +65,20 @@ jobs:
           sudo apt-get update
           sudo apt-get install -y --no-install-recommends python3-yaml
 
+      - name: Pre-warm docker base image
+        run: |
+          attempts=0
+          max_attempts=5
+          until docker pull ubuntu:24.04; do
+            attempts=$((attempts + 1))
+            if ((attempts >= max_attempts)); then
+              echo "docker pull ubuntu:24.04 failed after ${attempts} attempts" >&2
+              exit 1
+            fi
+            echo "docker pull ubuntu:24.04 failed (attempt ${attempts}); retrying"
+            sleep $((attempts * 10))
+          done
+
       - name: Fetch port debs
         env:
           VALIDATOR_REPO_TOKEN: ${{ secrets.VALIDATOR_REPO_TOKEN }}
