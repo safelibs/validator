@@ -313,6 +313,24 @@ class RenderSiteTests(unittest.TestCase):
         self.assertIn("<span>Tests</span>", html_text)
         self.assertIn("<span>Port tests passing</span>", html_text)
         self.assertIn("<strong>95 / 95</strong>", html_text)
+        self.assertNotIn("port-provenance", html_text)
+
+        library_html = (self.site_root / "library" / "cjson.html").read_text()
+        self.assertIn('class="port-provenance"', library_html)
+        self.assertIn("https://github.com/safelibs/port-cjson", library_html)
+        self.assertIn(
+            "https://github.com/safelibs/port-cjson/commit/abcdef1234567890abcdef1234567890abcdef12",
+            library_html,
+        )
+        self.assertIn("<code>abcdef123456</code>", library_html)
+        self.assertIn(
+            "https://github.com/safelibs/port-cjson/releases/tag/cjson/04-test",
+            library_html,
+        )
+        self.assertIn(
+            "https://github.com/safelibs/port-cjson/releases/tag/build-abcdef123456",
+            library_html,
+        )
 
         completed = subprocess.run(
             [

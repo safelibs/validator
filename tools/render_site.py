@@ -389,6 +389,60 @@ _LIBRARY_GROUP_ORDER = (
 )
 
 
+def _port_library_entry(site_data: dict[str, Any], library: str) -> dict[str, Any] | None:
+    for proof_data in site_data["proofs"]:
+        if proof_data.get("mode") != "port-04-test":
+            continue
+        for entry in _proof_libraries(proof_data):
+            if str(entry.get("library")) == library:
+                return entry
+    return None
+
+
+def _strip_tag_ref(tag_ref: str) -> str:
+    prefix = "refs/tags/"
+    return tag_ref[len(prefix):] if tag_ref.startswith(prefix) else tag_ref
+
+
+def _port_provenance_block(site_data: dict[str, Any], library: str) -> str:
+    entry = _port_library_entry(site_data, library)
+    if entry is None:
+        return ""
+    repository = entry.get("port_repository")
+    if not isinstance(repository, str) or not repository:
+        return ""
+    repo_url = f"https://github.com/{repository}"
+    unavailable = entry.get("port_unavailable_reason")
+    if isinstance(unavailable, str) and unavailable:
+        return "\n".join(
+            [
+                '        <p class="port-provenance port-provenance-unavailable">',
+                f"          Port unavailable for <a href=\"{html.escape(repo_url)}\">{html.escape(repository)}</a>: "
+                f"{html.escape(unavailable)}",
+                "        </p>",
+            ]
+        )
+    commit = entry.get("port_commit")
+    tag_ref = entry.get("port_tag_ref")
+    release_tag = entry.get("port_release_tag")
+    if not (isinstance(commit, str) and isinstance(tag_ref, str) and isinstance(release_tag, str)):
+        return ""
+    tag_name = _strip_tag_ref(tag_ref)
+    commit_url = f"{repo_url}/commit/{commit}"
+    tag_url = f"{repo_url}/releases/tag/{tag_name}"
+    release_url = f"{repo_url}/releases/tag/{release_tag}"
+    return "\n".join(
+        [
+            '        <p class="port-provenance">',
+            f"          Port build from <a href=\"{html.escape(repo_url)}\">{html.escape(repository)}</a>"
+            f" at commit <a href=\"{html.escape(commit_url)}\"><code>{html.escape(commit[:12])}</code></a>"
+            f" (phase tag <a href=\"{html.escape(tag_url)}\"><code>{html.escape(tag_name)}</code></a>,"
+            f" release <a href=\"{html.escape(release_url)}\"><code>{html.escape(release_tag)}</code></a>)",
+            "        </p>",
+        ]
+    )
+
+
 def _library_card(
     library: str,
     rows: list[dict[str, Any]],
@@ -633,6 +687,11 @@ def render_page(
             breadcrumb,
             '      <section class="dashboard" aria-labelledby="dashboard-heading">',
             f'        <h1 id="dashboard-heading">{html.escape(title)}</h1>',
+            *(
+                [_port_provenance_block(site_data, current_library)]
+                if current_library is not None
+                else []
+            ),
             '        <div class="metric-grid">',
             _summary_cards(site_data, current_library=current_library),
             "        </div>",
@@ -739,6 +798,23 @@ h2 {
 .dashboard {
   padding: 14px 0 24px;
   border-bottom: 1px solid var(--border);
+}
+
+.port-provenance {
+  margin: 4px 0 16px;
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+.port-provenance code {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  background: var(--surface-muted);
+  padding: 1px 4px;
+  border-radius: 3px;
+}
+
+.port-provenance-unavailable {
+  color: var(--danger-text);
 }
 
 .metric-grid {
