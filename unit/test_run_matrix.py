@@ -63,9 +63,9 @@ def write_port_debs_and_lock(root: Path) -> tuple[Path, Path]:
                 "library": "original-demo",
                 "repository": "safelibs/port-original-demo",
                 "url": "https://github.com/safelibs/port-original-demo",
-                "tag_ref": "refs/tags/original-demo/04-test",
+                "tag_ref": "refs/tags/v1.2.3",
                 "commit": "abcdef1234567890abcdef1234567890abcdef12",
-                "release_tag": "build-abcdef123456",
+                "release_tag": "v1.2.3",
                 "debs": debs,
                 "unported_original_packages": [],
             }
@@ -90,12 +90,12 @@ def write_unavailable_port_lock(root: Path) -> tuple[Path, Path]:
                 "library": "original-demo",
                 "repository": "safelibs/port-original-demo",
                 "url": "https://github.com/safelibs/port-original-demo",
-                "tag_ref": "refs/tags/original-demo/04-test",
+                "tag_ref": None,
                 "commit": None,
                 "release_tag": None,
                 "debs": [],
                 "unported_original_packages": ["demo-runtime", "demo-dev"],
-                "port_unavailable_reason": "no qualifying release",
+                "port_unavailable_reason": "no published release",
             }
         ],
     }
@@ -374,7 +374,7 @@ class RunMatrixTests(unittest.TestCase):
         self.assertEqual(result["cast_path"], "port-04-test/casts/original-demo/source-echo-roundtrip.cast")
         self.assertTrue(result["override_debs_installed"])
         self.assertEqual(result["port_repository"], "safelibs/port-original-demo")
-        self.assertEqual(result["port_release_tag"], "build-abcdef123456")
+        self.assertEqual(result["port_release_tag"], "v1.2.3")
         self.assertEqual([deb["package"] for deb in result["port_debs"]], ["demo-runtime", "demo-dev"])
         self.assertEqual(result["unported_original_packages"], [])
         self.assertEqual(
@@ -420,7 +420,7 @@ class RunMatrixTests(unittest.TestCase):
         self.assertFalse(result["override_debs_installed"])
         self.assertEqual(result["port_debs"], [])
         self.assertEqual(result["override_installed_packages"], [])
-        self.assertEqual(result["port_unavailable_reason"], "no qualifying release")
+        self.assertEqual(result["port_unavailable_reason"], "no published release")
         summary = json.loads(
             (artifact_root / "port-04-test" / "results" / "original-demo" / "summary.json").read_text()
         )

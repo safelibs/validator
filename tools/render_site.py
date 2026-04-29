@@ -399,11 +399,6 @@ def _port_library_entry(site_data: dict[str, Any], library: str) -> dict[str, An
     return None
 
 
-def _strip_tag_ref(tag_ref: str) -> str:
-    prefix = "refs/tags/"
-    return tag_ref[len(prefix):] if tag_ref.startswith(prefix) else tag_ref
-
-
 def _port_provenance_block(site_data: dict[str, Any], library: str) -> str:
     entry = _port_library_entry(site_data, library)
     if entry is None:
@@ -427,17 +422,14 @@ def _port_provenance_block(site_data: dict[str, Any], library: str) -> str:
     release_tag = entry.get("port_release_tag")
     if not (isinstance(commit, str) and isinstance(tag_ref, str) and isinstance(release_tag, str)):
         return ""
-    tag_name = _strip_tag_ref(tag_ref)
     commit_url = f"{repo_url}/commit/{commit}"
-    tag_url = f"{repo_url}/releases/tag/{tag_name}"
     release_url = f"{repo_url}/releases/tag/{release_tag}"
     return "\n".join(
         [
             '        <p class="port-provenance">',
             f"          Port build from <a href=\"{html.escape(repo_url)}\">{html.escape(repository)}</a>"
             f" at commit <a href=\"{html.escape(commit_url)}\"><code>{html.escape(commit[:12])}</code></a>"
-            f" (phase tag <a href=\"{html.escape(tag_url)}\"><code>{html.escape(tag_name)}</code></a>,"
-            f" release <a href=\"{html.escape(release_url)}\"><code>{html.escape(release_tag)}</code></a>)",
+            f" (release <a href=\"{html.escape(release_url)}\"><code>{html.escape(release_tag)}</code></a>)",
             "        </p>",
         ]
     )

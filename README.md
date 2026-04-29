@@ -26,7 +26,8 @@ checkout.
 - `scripts/verify-site.sh`: deterministic site verification.
 - `unit/`: unit tests for the tooling.
 - `inventory/github-port-repos.json`: authoritative safelibs port repository
-  list for resolving port `04-test` debs.
+  list. Each entry pins the library to a port repo; the runner fetches the
+  repo's GitHub latest release to pick port debs.
 - `inventory/`: retained historical discovery snapshots; other normal
   validation commands do not read them.
 - `artifacts/`: generated matrix logs, casts, results, and proof.
@@ -174,18 +175,20 @@ LIBRARIES="cjson libarchive libuv libwebp" \
 ## Override Packages
 
 The official port flow resolves repositories from
-`inventory/github-port-repos.json`. For each selected library it resolves
-`refs/tags/<library>/04-test`, derives release tag `build-<sha12>` from that
-commit hash, downloads available native `amd64` or `all` `.deb` assets matching
-the canonical `apt_packages`, and records omitted canonical packages as
-`unported_original_packages` in
-`artifacts/proof/port-04-test-debs-lock.json`.
+`inventory/github-port-repos.json`. For each selected library it fetches the
+GitHub *latest release* (`/releases/latest`), resolves the tag the release
+points at to a commit, downloads available native `amd64` or `all` `.deb`
+assets matching the canonical `apt_packages`, and records omitted canonical
+packages as `unported_original_packages` in
+`artifacts/proof/port-04-test-debs-lock.json`. The lock records the resolved
+`tag_ref` (`refs/tags/<release.tag_name>`), `commit`, and `release_tag`
+(equal to `release.tag_name`).
 
-If a port has no qualifying `04-test` release or no native canonical deb assets,
-the lock records `port_unavailable_reason`, no debs, and all canonical packages
-as unported. The port matrix records every testcase for that library as failed
-without building a container, which makes the port show 0 passing while keeping
-the original Ubuntu package results as the source of truth.
+If a port has no published release or no native canonical deb assets, the
+lock records `port_unavailable_reason`, no debs, and all canonical packages
+as unported. The port matrix records every testcase for that library as
+failed without building a container, which makes the port show 0 passing
+while keeping the original Ubuntu package results as the source of truth.
 
 Port repositories and releases can be private. Authentication is read from
 `GH_TOKEN`, `VALIDATOR_REPO_TOKEN`, or `gh auth token`.

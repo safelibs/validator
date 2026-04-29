@@ -202,9 +202,9 @@ class ProofTests(unittest.TestCase):
             "apt_packages": list(self.case_manifest.apt_packages),
             "override_debs_installed": True,
             "port_repository": "safelibs/port-original-demo",
-            "port_tag_ref": "refs/tags/original-demo/04-test",
+            "port_tag_ref": "refs/tags/v1.2.3",
             "port_commit": "abcdef1234567890abcdef1234567890abcdef12",
-            "port_release_tag": "build-abcdef123456",
+            "port_release_tag": "v1.2.3",
             "port_debs": port_debs,
             "unported_original_packages": ["demo-dev"],
             "override_installed_packages": [
@@ -275,9 +275,9 @@ class ProofTests(unittest.TestCase):
         self.assertEqual(result["mode"], "port-04-test")
         library = result["libraries"][0]
         self.assertEqual(library["port_repository"], "safelibs/port-original-demo")
-        self.assertEqual(library["port_tag_ref"], "refs/tags/original-demo/04-test")
+        self.assertEqual(library["port_tag_ref"], "refs/tags/v1.2.3")
         self.assertEqual(library["port_commit"], "abcdef1234567890abcdef1234567890abcdef12")
-        self.assertEqual(library["port_release_tag"], "build-abcdef123456")
+        self.assertEqual(library["port_release_tag"], "v1.2.3")
         self.assertEqual([deb["package"] for deb in library["port_debs"]], ["demo-runtime"])
         self.assertEqual(library["unported_original_packages"], ["demo-dev"])
         testcase = library["testcases"][0]
@@ -297,6 +297,7 @@ class ProofTests(unittest.TestCase):
             "status": "failed",
             "exit_code": 1,
             "override_debs_installed": False,
+            "port_tag_ref": None,
             "port_commit": None,
             "port_release_tag": None,
             "port_debs": [],
@@ -334,7 +335,7 @@ class ProofTests(unittest.TestCase):
     def test_port_proof_rejects_bad_provenance_and_paths(self) -> None:
         cases = [
             ({"override_debs_installed": False}, "must be true"),
-            ({"port_release_tag": "build-wrong"}, "port_release_tag"),
+            ({"port_release_tag": "v9.9.9"}, "port_tag_ref must equal"),
             ({"port_debs": []}, "port_debs"),
             ({"unported_original_packages": []}, "canonical apt_packages"),
             ({"result_path": "results/original-demo/source-echo-roundtrip.json"}, "result_path must equal"),
@@ -365,8 +366,9 @@ class ProofTests(unittest.TestCase):
         self.write_port_result(
             "usage-client-echo",
             updates={
+                "port_tag_ref": "refs/tags/v9.9.9",
                 "port_commit": "bbbbbb1234567890abcdef1234567890abcdef12",
-                "port_release_tag": "build-bbbbbb123456",
+                "port_release_tag": "v9.9.9",
             },
         )
         with self.assertRaisesRegex(ValidatorError, "inconsistent port provenance"):

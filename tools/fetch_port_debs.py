@@ -25,7 +25,6 @@ from tools.inventory import load_manifest
 
 
 COMMIT_RE = re.compile(r"^[0-9a-f]{40}$")
-PHASE_TAG_RE = re.compile(r"^(?P<number>[0-9]+)-(?P<name>[A-Za-z0-9][A-Za-z0-9._-]*)$")
 NATIVE_ARCHITECTURES = {"amd64", "all"}
 LOCK_GENERATED_AT = "1970-01-01T00:00:00Z"
 
@@ -36,7 +35,6 @@ class PortRepo:
     name_with_owner: str
     url: str
     default_branch: str
-    tag_ref: str
 
 
 @dataclass(frozen=True)
@@ -53,14 +51,6 @@ class ResolvedPortDeb:
     size: int
     asset_url: str | None
     browser_download_url: str | None
-
-
-@dataclass(frozen=True)
-class ResolvedPortRef:
-    tag_ref: str
-    commit: str
-    minimum_tag_ref: str
-    minimum_commit: str
 
 
 class PortDebUnavailable(ValidatorError):
@@ -84,10 +74,16 @@ def load_port_repos(path: Path) -> list[PortRepo]:
         raise ValidatorError(f"port repository inventory must be a JSON list: {path}")
 
     repos: list[PortRepo] = []
+    allowed_fields = {"library", "nameWithOwner", "url", "default_branch"}
     for index, entry in enumerate(payload, start=1):
         if not isinstance(entry, dict):
             raise ValidatorError(f"port repository entry #{index} must be an object")
         context = f"port repository entry #{index}"
+        unexpected = sorted(set(entry) - allowed_fields)
+        if unexpected:
+            raise ValidatorError(
+                f"{context} contains unsupported fields: {', '.join(unexpected)}"
+            )
         repos.append(
             PortRepo(
                 library=_require_string(entry.get("library"), field_name="library", context=context),
@@ -102,7 +98,6 @@ def load_port_repos(path: Path) -> list[PortRepo]:
                     field_name="default_branch",
                     context=context,
                 ),
-                tag_ref=_require_string(entry.get("tag_ref"), field_name="tag_ref", context=context),
             )
         )
     return repos
@@ -119,7 +114,6 @@ def port_repos_by_library(repos: list[PortRepo]) -> dict[str, PortRepo]:
 def validate_port_repo(repo: PortRepo) -> None:
     expected_repository = f"safelibs/port-{repo.library}"
     expected_url = f"https://github.com/{expected_repository}"
-    expected_minimum_tag_ref = f"refs/tags/{repo.library}/04-test"
     if repo.name_with_owner != expected_repository:
         raise ValidatorError(
             f"port repository for {repo.library} must be {expected_repository!r}, "
@@ -127,11 +121,6 @@ def validate_port_repo(repo: PortRepo) -> None:
         )
     if repo.url != expected_url:
         raise ValidatorError(f"port repository URL for {repo.library} must be {expected_url!r}")
-    if repo.tag_ref != expected_minimum_tag_ref:
-        raise ValidatorError(
-            f"port repository tag_ref for {repo.library} must be {expected_minimum_tag_ref!r}, "
-            f"got {repo.tag_ref!r}"
-        )
 
 
 def parse_ls_remote_refs(stdout: str) -> dict[str, str]:
@@ -153,8 +142,7 @@ def require_commit(value: str | None, *, description: str) -> str:
     return value
 
 
-def resolve_tag_commit(repo: PortRepo, tag_ref: str | None = None) -> str:
-    tag_ref = tag_ref or repo.tag_ref
+def resolve_tag_commit(repo: PortRepo, tag_ref: str) -> str:
     git_url = github_git_url(repo.name_with_owner)
     completed = run(
         ["git", "ls-remote", git_url, tag_ref, f"{tag_ref}^{{}}"],
@@ -164,60 +152,6 @@ def resolve_tag_commit(repo: PortRepo, tag_ref: str | None = None) -> str:
     refs = parse_ls_remote_refs(completed.stdout)
     commit = refs.get(f"{tag_ref}^{{}}") or refs.get(tag_ref)
     return require_commit(commit, description=f"tag {tag_ref} in {repo.name_with_owner}")
-
-
-def release_tag_for_commit(commit: str) -> str:
-    if COMMIT_RE.fullmatch(commit) is None:
-        raise ValidatorError(f"invalid commit hash: {commit!r}")
-    return f"build-{commit[:12]}"
-
-
-def phase_tag_sort_key(repo: PortRepo, tag_ref: str) -> tuple[int, str] | None:
-    prefix = f"refs/tags/{repo.library}/"
-    if not tag_ref.startswith(prefix) or tag_ref.endswith("^{}"):
-        return None
-    tag_name = tag_ref.removeprefix(prefix)
-    match = PHASE_TAG_RE.fullmatch(tag_name)
-    if match is None:
-        return None
-    return int(match.group("number")), tag_name
-
-
-def latest_qualifying_phase_tag_ref(repo: PortRepo) -> str:
-    minimum_key = phase_tag_sort_key(repo, repo.tag_ref)
-    if minimum_key is None:
-        raise ValidatorError(f"port repository tag_ref for {repo.library} must be a phase tag")
-
-    git_url = github_git_url(repo.name_with_owner)
-    completed = run(
-        ["git", "ls-remote", "--tags", git_url, f"refs/tags/{repo.library}/*"],
-        env=git_env(),
-        capture_output=True,
-    )
-    refs = parse_ls_remote_refs(completed.stdout)
-    minimum_phase = minimum_key[0]
-    candidates = [
-        (key, tag_ref)
-        for tag_ref in refs
-        if (key := phase_tag_sort_key(repo, tag_ref)) is not None and key[0] >= minimum_phase
-    ]
-    if not candidates:
-        raise PortDebUnavailable(
-            f"no phase tags at or after {repo.tag_ref} were found in {repo.name_with_owner}"
-        )
-    return max(candidates, key=lambda item: item[0])[1]
-
-
-def resolve_port_ref(repo: PortRepo) -> ResolvedPortRef:
-    selected_tag_ref = latest_qualifying_phase_tag_ref(repo)
-    selected_commit = resolve_tag_commit(repo, selected_tag_ref)
-    minimum_commit = selected_commit if selected_tag_ref == repo.tag_ref else resolve_tag_commit(repo)
-    return ResolvedPortRef(
-        tag_ref=selected_tag_ref,
-        commit=selected_commit,
-        minimum_tag_ref=repo.tag_ref,
-        minimum_commit=minimum_commit,
-    )
 
 
 def github_headers(*, accept: str, include_auth: bool = True) -> dict[str, str]:
@@ -255,6 +189,11 @@ def github_api_json(url: str) -> dict[str, Any]:
 
 def load_release(repo: PortRepo, release_tag: str) -> dict[str, Any]:
     url = f"https://api.github.com/repos/{repo.name_with_owner}/releases/tags/{release_tag}"
+    return github_api_json(url)
+
+
+def latest_release(repo: PortRepo) -> dict[str, Any]:
+    url = f"https://api.github.com/repos/{repo.name_with_owner}/releases/latest"
     return github_api_json(url)
 
 
@@ -417,9 +356,14 @@ def resolve_library(
 ) -> dict[str, Any]:
     validate_port_repo(repo)
     try:
-        resolved_ref = resolve_port_ref(repo)
-        release_tag = release_tag_for_commit(resolved_ref.commit)
-        release = load_release(repo, release_tag)
+        release = latest_release(repo)
+        release_tag = _require_string(
+            release.get("tag_name"),
+            field_name="tag_name",
+            context=f"latest release for {repo.library}",
+        )
+        tag_ref = f"refs/tags/{release_tag}"
+        commit = resolve_tag_commit(repo, tag_ref)
         assets, unported = selected_assets(
             release=release,
             canonical_packages=canonical_packages,
@@ -430,7 +374,7 @@ def resolve_library(
             "library": repo.library,
             "repository": repo.name_with_owner,
             "url": repo.url,
-            "tag_ref": repo.tag_ref,
+            "tag_ref": None,
             "commit": None,
             "release_tag": None,
             "debs": [],
@@ -468,8 +412,8 @@ def resolve_library(
             ResolvedPortDeb(
                 library=repo.library,
                 repository=repo.name_with_owner,
-                tag_ref=resolved_ref.tag_ref,
-                commit=resolved_ref.commit,
+                tag_ref=tag_ref,
+                commit=commit,
                 release_tag=release_tag,
                 package=parsed_package,
                 filename=filename,
@@ -485,8 +429,8 @@ def resolve_library(
         "library": repo.library,
         "repository": repo.name_with_owner,
         "url": repo.url,
-        "tag_ref": resolved_ref.tag_ref,
-        "commit": resolved_ref.commit,
+        "tag_ref": tag_ref,
+        "commit": commit,
         "release_tag": release_tag,
         "debs": [deb_lock_entry(deb) for deb in selected_debs],
         "unported_original_packages": unported,

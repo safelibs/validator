@@ -291,12 +291,12 @@ def validate_port_result_metadata(
     source_path: Path,
 ) -> dict[str, Any]:
     port_repository = _require_string(payload.get("port_repository"), field_name="port_repository", source_path=source_path)
-    port_tag_ref = _require_string(payload.get("port_tag_ref"), field_name="port_tag_ref", source_path=source_path)
     unavailable_reason = _require_optional_string(
         payload.get(PORT_UNAVAILABLE_FIELD),
         field_name=PORT_UNAVAILABLE_FIELD,
         source_path=source_path,
     )
+    port_tag_ref = _require_optional_string(payload.get("port_tag_ref"), field_name="port_tag_ref", source_path=source_path)
     port_commit = _require_optional_string(payload.get("port_commit"), field_name="port_commit", source_path=source_path)
     port_release_tag = _require_optional_string(
         payload.get("port_release_tag"),
@@ -304,12 +304,18 @@ def validate_port_result_metadata(
         source_path=source_path,
     )
     if unavailable_reason is None:
+        if port_tag_ref is None:
+            raise ValidatorError(f"port_tag_ref must be a non-empty string in {source_path}")
         if port_commit is None or COMMIT_RE.fullmatch(port_commit) is None:
             raise ValidatorError(f"port_commit must be a 40-character lowercase hex commit in {source_path}")
-        if port_release_tag is None or port_release_tag != f"build-{port_commit[:12]}":
-            raise ValidatorError(f"port_release_tag must equal build-<commit[:12]> in {source_path}")
-    elif port_commit is not None or port_release_tag is not None:
-        raise ValidatorError(f"unavailable port results must not define commit or release tag in {source_path}")
+        if port_release_tag is None:
+            raise ValidatorError(f"port_release_tag must be a non-empty string in {source_path}")
+        if port_tag_ref != f"refs/tags/{port_release_tag}":
+            raise ValidatorError(
+                f"port_tag_ref must equal refs/tags/<port_release_tag> in {source_path}"
+            )
+    elif port_commit is not None or port_release_tag is not None or port_tag_ref is not None:
+        raise ValidatorError(f"unavailable port results must not define commit, tag, or release fields in {source_path}")
     port_debs = _require_port_debs(
         payload.get("port_debs"),
         source_path=source_path,

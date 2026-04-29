@@ -495,7 +495,7 @@ def _validate_port_lock_entry(
     if entry.get("library") != library:
         raise ValidatorError(f"port lock library order mismatch: expected {library!r}")
     repository = _require_string(entry.get("repository"), field_name="repository", context=context)
-    tag_ref = _require_string(entry.get("tag_ref"), field_name="tag_ref", context=context)
+    tag_ref = _require_optional_string(entry.get("tag_ref"), field_name="tag_ref", context=context)
     commit = _require_optional_string(entry.get("commit"), field_name="commit", context=context)
     release_tag = _require_optional_string(entry.get("release_tag"), field_name="release_tag", context=context)
     unavailable_reason = _require_optional_string(
@@ -504,12 +504,16 @@ def _validate_port_lock_entry(
         context=context,
     )
     if unavailable_reason is None:
+        if tag_ref is None:
+            raise ValidatorError(f"tag_ref must be a non-empty string in {context}")
         if commit is None:
             raise ValidatorError(f"commit must be a non-empty string in {context}")
         if release_tag is None:
             raise ValidatorError(f"release_tag must be a non-empty string in {context}")
-        if release_tag != f"build-{commit[:12]}":
-            raise ValidatorError(f"port lock release_tag must equal build-<commit[:12]> in {context}")
+        if tag_ref != f"refs/tags/{release_tag}":
+            raise ValidatorError(
+                f"port lock tag_ref must equal refs/tags/<release_tag> in {context}"
+            )
 
     raw_debs = _require_list(entry.get("debs"), field_name="debs", context=context)
     if unavailable_reason is None and not raw_debs:

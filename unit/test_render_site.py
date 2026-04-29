@@ -132,9 +132,9 @@ class RenderSiteTests(unittest.TestCase):
                 "apt_packages": list(testcase_manifest.apt_packages),
                 "override_debs_installed": True,
                 "port_repository": f"safelibs/port-{library}",
-                "port_tag_ref": f"refs/tags/{library}/04-test",
+                "port_tag_ref": "refs/tags/v1.2.3",
                 "port_commit": "abcdef1234567890abcdef1234567890abcdef12",
-                "port_release_tag": "build-abcdef123456",
+                "port_release_tag": "v1.2.3",
                 "port_debs": port_debs,
                 "unported_original_packages": unported,
                 "override_installed_packages": [
@@ -324,11 +324,7 @@ class RenderSiteTests(unittest.TestCase):
         )
         self.assertIn("<code>abcdef123456</code>", library_html)
         self.assertIn(
-            "https://github.com/safelibs/port-cjson/releases/tag/cjson/04-test",
-            library_html,
-        )
-        self.assertIn(
-            "https://github.com/safelibs/port-cjson/releases/tag/build-abcdef123456",
+            "https://github.com/safelibs/port-cjson/releases/tag/v1.2.3",
             library_html,
         )
 

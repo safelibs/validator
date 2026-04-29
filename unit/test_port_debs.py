@@ -27,6 +27,15 @@ def demo_manifest() -> dict[str, object]:
     }
 
 
+def demo_repo() -> fetch_port_debs.PortRepo:
+    return fetch_port_debs.PortRepo(
+        library="original-demo",
+        name_with_owner="safelibs/port-original-demo",
+        url="https://github.com/safelibs/port-original-demo",
+        default_branch="main",
+    )
+
+
 class PortDebTests(unittest.TestCase):
     def run_root(self) -> Path:
         tempdir = tempfile.TemporaryDirectory()
@@ -35,6 +44,7 @@ class PortDebTests(unittest.TestCase):
 
     def fake_release(self) -> dict[str, object]:
         return {
+            "tag_name": "v1.2.3",
             "assets": [
                 {
                     "name": "demo-runtime_1.0_amd64.deb",
@@ -60,26 +70,20 @@ class PortDebTests(unittest.TestCase):
                     "browser_download_url": "https://github.com/download/notes.txt",
                     "size": 10,
                 },
-            ]
+            ],
         }
 
     def patch_network(self, release: dict[str, object] | None = None):
         release = release or self.fake_release()
         commit = "abcdef1234567890abcdef1234567890abcdef12"
-        resolved_ref = fetch_port_debs.ResolvedPortRef(
-            tag_ref="refs/tags/original-demo/05-verify",
-            commit=commit,
-            minimum_tag_ref="refs/tags/original-demo/04-test",
-            minimum_commit="1111111111111111111111111111111111111111",
-        )
 
         def fake_download(asset_url: str, target: Path, browser_download_url: str | None = None) -> None:
             target.write_bytes(f"deb from {asset_url}\n".encode("utf-8"))
 
         patches = [
             mock.patch("tools.fetch_port_debs.load_manifest", return_value=demo_manifest()),
-            mock.patch("tools.fetch_port_debs.resolve_port_ref", return_value=resolved_ref),
-            mock.patch("tools.fetch_port_debs.load_release", return_value=release),
+            mock.patch("tools.fetch_port_debs.latest_release", return_value=release),
+            mock.patch("tools.fetch_port_debs.resolve_tag_commit", return_value=commit),
             mock.patch("tools.fetch_port_debs.download_asset", side_effect=fake_download),
             mock.patch("tools.fetch_port_debs.verify_deb_fields"),
         ]
@@ -87,87 +91,19 @@ class PortDebTests(unittest.TestCase):
             patcher.start()
             self.addCleanup(patcher.stop)
 
-    def test_tag_peeling_and_release_derivation(self) -> None:
-        repo = fetch_port_debs.PortRepo(
-            library="original-demo",
-            name_with_owner="safelibs/port-original-demo",
-            url="https://github.com/safelibs/port-original-demo",
-            default_branch="main",
-            tag_ref="refs/tags/original-demo/04-test",
-        )
+    def test_resolve_tag_commit_picks_peeled_commit(self) -> None:
+        repo = demo_repo()
         stdout = (
-            "1111111111111111111111111111111111111111\trefs/tags/original-demo/04-test\n"
-            "2222222222222222222222222222222222222222\trefs/tags/original-demo/04-test^{}\n"
+            "1111111111111111111111111111111111111111\trefs/tags/v1.2.3\n"
+            "2222222222222222222222222222222222222222\trefs/tags/v1.2.3^{}\n"
         )
         with mock.patch(
             "tools.fetch_port_debs.run",
             return_value=mock.Mock(stdout=stdout),
         ):
-            commit = fetch_port_debs.resolve_tag_commit(repo)
+            commit = fetch_port_debs.resolve_tag_commit(repo, "refs/tags/v1.2.3")
 
         self.assertEqual(commit, "2222222222222222222222222222222222222222")
-        self.assertEqual(fetch_port_debs.release_tag_for_commit(commit), "build-222222222222")
-
-    def test_resolves_latest_phase_tag_at_or_after_minimum_stage(self) -> None:
-        repo = fetch_port_debs.PortRepo(
-            library="original-demo",
-            name_with_owner="safelibs/port-original-demo",
-            url="https://github.com/safelibs/port-original-demo",
-            default_branch="main",
-            tag_ref="refs/tags/original-demo/04-test",
-        )
-        phase_stdout = (
-            "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\trefs/tags/original-demo/01-recon\n"
-            "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb\trefs/tags/original-demo/03-port\n"
-            "1111111111111111111111111111111111111111\trefs/tags/original-demo/04-test\n"
-            "abcdef1234567890abcdef1234567890abcdef12\trefs/tags/original-demo/05-verify\n"
-        )
-        selected_stdout = "abcdef1234567890abcdef1234567890abcdef12\trefs/tags/original-demo/05-verify\n"
-        minimum_stdout = (
-            "1111111111111111111111111111111111111111\trefs/tags/original-demo/04-test\n"
-            "2222222222222222222222222222222222222222\trefs/tags/original-demo/04-test^{}\n"
-        )
-        with mock.patch(
-            "tools.fetch_port_debs.run",
-            side_effect=[
-                mock.Mock(stdout=phase_stdout),
-                mock.Mock(stdout=selected_stdout),
-                mock.Mock(stdout=minimum_stdout),
-            ],
-        ):
-            resolved = fetch_port_debs.resolve_port_ref(repo)
-
-        self.assertEqual(resolved.minimum_tag_ref, "refs/tags/original-demo/04-test")
-        self.assertEqual(resolved.minimum_commit, "2222222222222222222222222222222222222222")
-        self.assertEqual(resolved.tag_ref, "refs/tags/original-demo/05-verify")
-        self.assertEqual(resolved.commit, "abcdef1234567890abcdef1234567890abcdef12")
-
-    def test_resolves_minimum_phase_tag_when_no_higher_phase_exists(self) -> None:
-        repo = fetch_port_debs.PortRepo(
-            library="original-demo",
-            name_with_owner="safelibs/port-original-demo",
-            url="https://github.com/safelibs/port-original-demo",
-            default_branch="main",
-            tag_ref="refs/tags/original-demo/04-test",
-        )
-        phase_stdout = (
-            "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\trefs/tags/original-demo/01-recon\n"
-            "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb\trefs/tags/original-demo/03-port\n"
-            "2222222222222222222222222222222222222222\trefs/tags/original-demo/04-test\n"
-        )
-        minimum_stdout = "2222222222222222222222222222222222222222\trefs/tags/original-demo/04-test\n"
-        with mock.patch(
-            "tools.fetch_port_debs.run",
-            side_effect=[
-                mock.Mock(stdout=phase_stdout),
-                mock.Mock(stdout=minimum_stdout),
-                mock.Mock(stdout=minimum_stdout),
-            ],
-        ):
-            resolved = fetch_port_debs.resolve_port_ref(repo)
-
-        self.assertEqual(resolved.tag_ref, "refs/tags/original-demo/04-test")
-        self.assertEqual(resolved.commit, "2222222222222222222222222222222222222222")
 
     def test_filters_assets_and_writes_deterministic_lock(self) -> None:
         root = self.run_root()
@@ -192,8 +128,9 @@ class PortDebTests(unittest.TestCase):
         self.assertEqual(lock["mode"], "port-04-test")
         self.assertEqual(lock["generated_at"], "1970-01-01T00:00:00Z")
         library = lock["libraries"][0]
-        self.assertEqual(library["tag_ref"], "refs/tags/original-demo/05-verify")
-        self.assertEqual(library["release_tag"], "build-abcdef123456")
+        self.assertEqual(library["tag_ref"], "refs/tags/v1.2.3")
+        self.assertEqual(library["release_tag"], "v1.2.3")
+        self.assertEqual(library["commit"], "abcdef1234567890abcdef1234567890abcdef12")
         self.assertEqual([deb["package"] for deb in library["debs"]], ["demo-runtime"])
         self.assertEqual(library["debs"][0]["architecture"], "amd64")
         self.assertEqual(library["unported_original_packages"], ["demo-dev"])
@@ -211,8 +148,8 @@ class PortDebTests(unittest.TestCase):
     def test_unavailable_port_writes_zero_deb_lock_entry(self) -> None:
         root = self.run_root()
         with mock.patch("tools.fetch_port_debs.load_manifest", return_value=demo_manifest()), mock.patch(
-            "tools.fetch_port_debs.resolve_port_ref",
-            side_effect=fetch_port_debs.PortDebUnavailable("no qualifying release"),
+            "tools.fetch_port_debs.latest_release",
+            side_effect=fetch_port_debs.PortDebUnavailable("no published release"),
         ):
             lock = fetch_port_debs.build_lock(
                 config_path=Path("repositories.yml"),
@@ -224,9 +161,10 @@ class PortDebTests(unittest.TestCase):
         library = lock["libraries"][0]
         self.assertEqual(library["debs"], [])
         self.assertEqual(library["unported_original_packages"], ["demo-runtime", "demo-dev"])
+        self.assertEqual(library["tag_ref"], None)
         self.assertEqual(library["commit"], None)
         self.assertEqual(library["release_tag"], None)
-        self.assertEqual(library["port_unavailable_reason"], "no qualifying release")
+        self.assertEqual(library["port_unavailable_reason"], "no published release")
         self.assertFalse((root / "debs" / "original-demo").exists())
 
     def test_duplicate_native_package_assets_are_rejected(self) -> None:
@@ -257,24 +195,36 @@ class PortDebTests(unittest.TestCase):
             name_with_owner="safelibs/port-wrong",
             url="https://github.com/safelibs/port-original-demo",
             default_branch="main",
-            tag_ref="refs/tags/original-demo/04-test",
         )
         with self.assertRaisesRegex(ValidatorError, "must be 'safelibs/port-original-demo'"):
             fetch_port_debs.validate_port_repo(repo)
 
+    def test_inventory_validation_rejects_unsupported_fields(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            path = Path(tmp) / "port-repos.json"
+            path.write_text(
+                json.dumps(
+                    [
+                        {
+                            "library": "original-demo",
+                            "nameWithOwner": "safelibs/port-original-demo",
+                            "url": "https://github.com/safelibs/port-original-demo",
+                            "default_branch": "main",
+                            "tag_ref": "refs/tags/original-demo/04-test",
+                        }
+                    ]
+                )
+            )
+            with self.assertRaisesRegex(ValidatorError, "unsupported fields: tag_ref"):
+                fetch_port_debs.load_port_repos(path)
+
     def test_token_is_redacted_from_git_errors(self) -> None:
-        repo = fetch_port_debs.PortRepo(
-            library="original-demo",
-            name_with_owner="safelibs/port-original-demo",
-            url="https://github.com/safelibs/port-original-demo",
-            default_branch="main",
-            tag_ref="refs/tags/original-demo/04-test",
-        )
+        repo = demo_repo()
         with mock.patch.dict("os.environ", {"GH_TOKEN": "secret-token"}):
             with mock.patch("tools.fetch_port_debs.github_git_url", return_value="https://x-access-token:secret-token@github.com/safelibs/port-original-demo.git"):
                 with mock.patch("tools.fetch_port_debs.run", side_effect=ValidatorError("https://REDACTED@github.com/ failed")):
                     with self.assertRaisesRegex(ValidatorError, "REDACTED") as context:
-                        fetch_port_debs.resolve_tag_commit(repo)
+                        fetch_port_debs.resolve_tag_commit(repo, "refs/tags/v1.2.3")
         self.assertNotIn("secret-token", str(context.exception))
 
     def test_download_asset_prefers_browser_url_without_token(self) -> None:
