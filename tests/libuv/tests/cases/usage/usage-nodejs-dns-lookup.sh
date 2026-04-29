@@ -1,4 +1,11 @@
 #!/usr/bin/env bash
+# @testcase: usage-nodejs-dns-lookup
+# @title: Node.js dns lookup
+# @description: Runs Node.js dns lookup behavior to exercise libuv.
+# @timeout: 180
+# @tags: usage, event-loop
+# @client: nodejs
+
 set -euo pipefail
 source /validator/tests/_shared/runtime_helpers.sh
 

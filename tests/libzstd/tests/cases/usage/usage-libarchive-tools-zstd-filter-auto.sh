@@ -1,4 +1,11 @@
 #!/usr/bin/env bash
+# @testcase: usage-libarchive-tools-zstd-filter-auto
+# @title: libarchive-tools zstd filter auto
+# @description: Runs bsdtar filter auto on a zstd-compressed archive through libzstd.
+# @timeout: 180
+# @tags: usage, archive, compression
+# @client: libarchive-tools
+
 set -euo pipefail
 source /validator/tests/_shared/runtime_helpers.sh
 

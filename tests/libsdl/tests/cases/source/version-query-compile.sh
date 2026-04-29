@@ -1,4 +1,10 @@
 #!/usr/bin/env bash
+# @testcase: version-query-compile
+# @title: SDL version query compile
+# @description: Compiles a small SDL program that reports version and platform details.
+# @timeout: 120
+# @tags: api, compile
+
 set -euo pipefail
 source /validator/tests/_shared/runtime_helpers.sh
 

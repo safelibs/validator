@@ -1,4 +1,10 @@
 #!/usr/bin/env bash
+# @testcase: bsdtar-tar-zip-roundtrip
+# @title: bsdtar tar and zip round trip
+# @description: Creates tar and zip archives then extracts both with bsdtar.
+# @timeout: 120
+# @tags: cli, archive
+
 set -euo pipefail
 source /validator/tests/_shared/runtime_helpers.sh
 

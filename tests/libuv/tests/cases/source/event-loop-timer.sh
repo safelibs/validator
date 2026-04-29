@@ -1,4 +1,10 @@
 #!/usr/bin/env bash
+# @testcase: event-loop-timer
+# @title: libuv event loop timer
+# @description: Compiles a libuv timer program and runs the event loop.
+# @timeout: 120
+# @tags: api, event
+
 set -euo pipefail
 source /validator/tests/_shared/runtime_helpers.sh
 

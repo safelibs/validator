@@ -1,4 +1,11 @@
 #!/usr/bin/env bash
+# @testcase: usage-python3-pygame-key-event
+# @title: Pygame key event dispatch
+# @description: Posts a Pygame keydown event and verifies the SDL-backed queue returns the same key.
+# @timeout: 180
+# @tags: usage, headless, python
+# @client: python3-pygame
+
 set -euo pipefail
 source /validator/tests/_shared/runtime_helpers.sh
 

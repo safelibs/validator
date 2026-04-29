@@ -1,4 +1,10 @@
 #!/usr/bin/env bash
+# @testcase: tiffinfo-metadata
+# @title: tiffinfo metadata inspection
+# @description: Runs tiffinfo on a checked-in TIFF image and inspects dimensions.
+# @timeout: 120
+# @tags: cli, metadata
+
 set -euo pipefail
 source /validator/tests/_shared/runtime_helpers.sh
 

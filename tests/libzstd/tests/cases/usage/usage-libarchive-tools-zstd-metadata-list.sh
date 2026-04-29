@@ -1,4 +1,11 @@
 #!/usr/bin/env bash
+# @testcase: usage-libarchive-tools-zstd-metadata-list
+# @title: libarchive-tools zstd metadata list
+# @description: Runs bsdtar verbose listing on a zstd archive and verifies executable metadata.
+# @timeout: 180
+# @tags: usage, archive, compression, metadata
+# @client: libarchive-tools
+
 set -euo pipefail
 source /validator/tests/_shared/runtime_helpers.sh
 

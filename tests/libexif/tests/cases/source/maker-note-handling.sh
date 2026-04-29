@@ -1,4 +1,10 @@
 #!/usr/bin/env bash
+# @testcase: maker-note-handling
+# @title: Maker note data handling
+# @description: Finds maker-note bytes in a JPEG fixture through libexif metadata APIs.
+# @timeout: 120
+# @tags: api, metadata
+
 set -euo pipefail
 source /validator/tests/_shared/runtime_helpers.sh
 

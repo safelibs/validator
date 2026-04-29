@@ -1,4 +1,10 @@
 #!/usr/bin/env bash
+# @testcase: installed-test-binary
+# @title: Installed SDL test binary
+# @description: Runs one packaged SDL installed test binary under dummy drivers.
+# @timeout: 120
+# @tags: cli, installed-test
+
 set -euo pipefail
 source /validator/tests/_shared/runtime_helpers.sh
 

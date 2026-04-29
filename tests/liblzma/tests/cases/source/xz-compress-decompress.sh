@@ -1,4 +1,10 @@
 #!/usr/bin/env bash
+# @testcase: xz-compress-decompress
+# @title: xz command round trip
+# @description: Compresses and decompresses text with xz command line tools.
+# @timeout: 120
+# @tags: cli, roundtrip
+
 set -euo pipefail
 source /validator/tests/_shared/runtime_helpers.sh
 

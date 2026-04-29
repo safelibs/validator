@@ -1,4 +1,10 @@
 #!/usr/bin/env bash
+# @testcase: parser-emitter-roundtrip
+# @title: YAML parser emitter round trip
+# @description: Loads YAML into a document and emits it back through libyaml.
+# @timeout: 120
+# @tags: api, roundtrip
+
 set -euo pipefail
 source /validator/tests/_shared/runtime_helpers.sh
 

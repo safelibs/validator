@@ -1,4 +1,11 @@
 #!/usr/bin/env bash
+# @testcase: usage-bzip2-recover-listing
+# @title: bzip2 recover listing
+# @description: Runs bzip2 client recover listing behavior through libbz2.
+# @timeout: 180
+# @tags: usage, compression
+# @client: bzip2
+
 set -euo pipefail
 source /validator/tests/_shared/runtime_helpers.sh
 

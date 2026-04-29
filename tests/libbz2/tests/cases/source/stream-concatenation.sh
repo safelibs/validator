@@ -1,4 +1,10 @@
 #!/usr/bin/env bash
+# @testcase: stream-concatenation
+# @title: bzip2 stream concatenation
+# @description: Concatenates independent bzip2 streams and verifies continuous decompression output.
+# @timeout: 120
+# @tags: cli, stream
+
 set -euo pipefail
 source /validator/tests/_shared/runtime_helpers.sh
 

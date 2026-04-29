@@ -1,4 +1,11 @@
 #!/usr/bin/env bash
+# @testcase: usage-pngquant-posterize-png
+# @title: pngquant posterize PNG
+# @description: Posterizes a PNG fixture with pngquant and verifies PNG output is produced.
+# @timeout: 180
+# @tags: usage, image, compression
+# @client: pngquant
+
 set -euo pipefail
 source /validator/tests/_shared/runtime_helpers.sh
 

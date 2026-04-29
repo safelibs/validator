@@ -1,4 +1,11 @@
 #!/usr/bin/env bash
+# @testcase: usage-python3-pil-multipage-tiff
+# @title: Pillow multipage tiff
+# @description: Uses Pillow to run TIFF multipage tiff behavior through libtiff.
+# @timeout: 180
+# @tags: usage, image, python
+# @client: python3-pil
+
 set -euo pipefail
 source /validator/tests/_shared/runtime_helpers.sh
 

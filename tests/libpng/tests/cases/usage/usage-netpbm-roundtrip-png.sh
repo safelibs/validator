@@ -1,4 +1,11 @@
 #!/usr/bin/env bash
+# @testcase: usage-netpbm-roundtrip-png
+# @title: netpbm roundtrip png
+# @description: Runs netpbm roundtrip png through libpng on a PNG fixture.
+# @timeout: 180
+# @tags: usage, image
+# @client: netpbm
+
 set -euo pipefail
 source /validator/tests/_shared/runtime_helpers.sh
 

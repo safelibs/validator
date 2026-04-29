@@ -1,4 +1,11 @@
 #!/usr/bin/env bash
+# @testcase: usage-xmlstarlet-format-xml
+# @title: xmlstarlet format xml
+# @description: Runs xmlstarlet format xml behavior through libxml2.
+# @timeout: 180
+# @tags: usage, xml, cli
+# @client: xmlstarlet
+
 set -euo pipefail
 source /validator/tests/_shared/runtime_helpers.sh
 

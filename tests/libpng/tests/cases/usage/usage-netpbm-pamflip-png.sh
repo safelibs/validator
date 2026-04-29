@@ -1,4 +1,11 @@
 #!/usr/bin/env bash
+# @testcase: usage-netpbm-pamflip-png
+# @title: netpbm rotate PNG
+# @description: Rotates a PNG fixture through netpbm PAM tools and verifies the resulting PNG dimensions.
+# @timeout: 180
+# @tags: usage, image
+# @client: netpbm
+
 set -euo pipefail
 source /validator/tests/_shared/runtime_helpers.sh
 

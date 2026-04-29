@@ -1,4 +1,11 @@
 #!/usr/bin/env bash
+# @testcase: usage-libarchive-tools-xz-preserve-permissions
+# @title: libarchive-tools xz preserve permissions
+# @description: Runs bsdtar xz archive extraction and verifies executable permissions survive.
+# @timeout: 180
+# @tags: usage, archive, compression, metadata
+# @client: libarchive-tools
+
 set -euo pipefail
 source /validator/tests/_shared/runtime_helpers.sh
 

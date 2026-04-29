@@ -1,4 +1,10 @@
 #!/usr/bin/env bash
+# @testcase: dns-getaddrinfo
+# @title: libuv DNS getaddrinfo
+# @description: Resolves localhost through libuv getaddrinfo request handling APIs.
+# @timeout: 120
+# @tags: api, dns
+
 set -euo pipefail
 source /validator/tests/_shared/runtime_helpers.sh
 

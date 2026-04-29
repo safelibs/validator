@@ -1,4 +1,11 @@
 #!/usr/bin/env bash
+# @testcase: usage-libarchive-tools-xz-copy-mode
+# @title: libarchive-tools xz copy mode
+# @description: Runs bsdtar copy mode on a xz-compressed archive through liblzma.
+# @timeout: 180
+# @tags: usage, archive, compression
+# @client: libarchive-tools
+
 set -euo pipefail
 source /validator/tests/_shared/runtime_helpers.sh
 

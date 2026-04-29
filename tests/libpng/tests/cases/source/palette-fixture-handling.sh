@@ -1,4 +1,10 @@
 #!/usr/bin/env bash
+# @testcase: palette-fixture-handling
+# @title: Palette PNG fixture handling
+# @description: Checks palette color type handling on a PNGSuite palette fixture.
+# @timeout: 120
+# @tags: api, palette
+
 set -euo pipefail
 source /validator/tests/_shared/runtime_helpers.sh
 

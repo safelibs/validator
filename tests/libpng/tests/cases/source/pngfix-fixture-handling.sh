@@ -1,4 +1,10 @@
 #!/usr/bin/env bash
+# @testcase: pngfix-fixture-handling
+# @title: pngfix fixture handling
+# @description: Runs pngfix against a checked-in PNGSuite fixture and validates output.
+# @timeout: 120
+# @tags: cli, media
+
 set -euo pipefail
 source /validator/tests/_shared/runtime_helpers.sh
 

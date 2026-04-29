@@ -1,4 +1,10 @@
 #!/usr/bin/env bash
+# @testcase: multi-frame-behavior
+# @title: zstd multi frame behavior
+# @description: Concatenates independent zstd frames and verifies continuous decompression.
+# @timeout: 120
+# @tags: cli, stream
+
 set -euo pipefail
 source /validator/tests/_shared/runtime_helpers.sh
 

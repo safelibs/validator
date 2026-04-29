@@ -1,4 +1,11 @@
 #!/usr/bin/env bash
+# @testcase: usage-bzip2-large-block
+# @title: bzip2 large block
+# @description: Runs bzip2 client large block behavior through libbz2.
+# @timeout: 180
+# @tags: usage, compression
+# @client: bzip2
+
 set -euo pipefail
 source /validator/tests/_shared/runtime_helpers.sh
 

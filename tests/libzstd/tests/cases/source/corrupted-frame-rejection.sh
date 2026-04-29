@@ -1,4 +1,10 @@
 #!/usr/bin/env bash
+# @testcase: corrupted-frame-rejection
+# @title: zstd corrupted frame rejection
+# @description: Requires zstd test mode to fail on a corrupted frame.
+# @timeout: 120
+# @tags: cli, negative
+
 set -euo pipefail
 source /validator/tests/_shared/runtime_helpers.sh
 

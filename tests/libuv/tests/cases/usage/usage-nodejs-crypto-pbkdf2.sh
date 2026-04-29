@@ -1,4 +1,11 @@
 #!/usr/bin/env bash
+# @testcase: usage-nodejs-crypto-pbkdf2
+# @title: Node.js asynchronous PBKDF2
+# @description: Runs Node.js crypto.pbkdf2 through libuv threadpool work and verifies callback completion.
+# @timeout: 180
+# @tags: usage, event-loop, crypto
+# @client: nodejs
+
 set -euo pipefail
 source /validator/tests/_shared/runtime_helpers.sh
 

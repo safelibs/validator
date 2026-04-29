@@ -1,4 +1,10 @@
 #!/usr/bin/env bash
+# @testcase: parse-print-roundtrip
+# @title: Parse and print JSON round trip
+# @description: Parses and prints representative JSON while preserving expected structure.
+# @timeout: 120
+# @tags: api, roundtrip
+
 set -euo pipefail
 source /validator/tests/_shared/runtime_helpers.sh
 

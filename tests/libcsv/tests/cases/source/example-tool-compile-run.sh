@@ -1,4 +1,10 @@
 #!/usr/bin/env bash
+# @testcase: example-tool-compile-run
+# @title: Example tool compile and run
+# @description: Builds an upstream example tool and runs it against a fixture CSV.
+# @timeout: 120
+# @tags: api, example
+
 set -euo pipefail
 source /validator/tests/_shared/runtime_helpers.sh
 

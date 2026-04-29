@@ -1,4 +1,10 @@
 #!/usr/bin/env bash
+# @testcase: corrupted-stream-rejection
+# @title: xz corrupted stream rejection
+# @description: Requires xz test mode to fail on a corrupted stream.
+# @timeout: 120
+# @tags: cli, negative
+
 set -euo pipefail
 source /validator/tests/_shared/runtime_helpers.sh
 

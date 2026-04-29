@@ -1,4 +1,10 @@
 #!/usr/bin/env bash
+# @testcase: parser-callback-behavior
+# @title: Parser callback behavior
+# @description: Compiles a parser callback program and checks fields and rows.
+# @timeout: 120
+# @tags: api, parser
+
 set -euo pipefail
 source /validator/tests/_shared/runtime_helpers.sh
 

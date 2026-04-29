@@ -1,4 +1,11 @@
 #!/usr/bin/env bash
+# @testcase: usage-vips-webp-header
+# @title: vips webp header
+# @description: Reads WebP image metadata with vips through libwebp.
+# @timeout: 180
+# @tags: usage, image
+# @client: vips
+
 set -euo pipefail
 source /validator/tests/_shared/runtime_helpers.sh
 

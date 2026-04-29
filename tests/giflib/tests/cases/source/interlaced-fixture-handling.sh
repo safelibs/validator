@@ -1,4 +1,10 @@
 #!/usr/bin/env bash
+# @testcase: interlaced-fixture-handling
+# @title: Interlaced GIF fixture handling
+# @description: Converts an interlaced GIF fixture and compares the expected RGB output.
+# @timeout: 120
+# @tags: cli, media
+
 set -euo pipefail
 source /validator/tests/_shared/runtime_helpers.sh
 

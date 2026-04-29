@@ -1,4 +1,11 @@
 #!/usr/bin/env bash
+# @testcase: usage-bzip2-version-query
+# @title: bzip2 version query
+# @description: Runs bzip2 client version query behavior through libbz2.
+# @timeout: 180
+# @tags: usage, compression
+# @client: bzip2
+
 set -euo pipefail
 source /validator/tests/_shared/runtime_helpers.sh
 

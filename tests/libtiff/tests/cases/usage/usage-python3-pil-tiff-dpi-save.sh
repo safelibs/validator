@@ -1,4 +1,11 @@
 #!/usr/bin/env bash
+# @testcase: usage-python3-pil-tiff-dpi-save
+# @title: Pillow TIFF DPI save
+# @description: Saves TIFF resolution metadata with Pillow and verifies the reloaded DPI tags.
+# @timeout: 180
+# @tags: usage, image, python, metadata
+# @client: python3-pil
+
 set -euo pipefail
 source /validator/tests/_shared/runtime_helpers.sh
 

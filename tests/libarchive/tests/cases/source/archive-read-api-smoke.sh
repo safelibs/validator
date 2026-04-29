@@ -1,4 +1,10 @@
 #!/usr/bin/env bash
+# @testcase: archive-read-api-smoke
+# @title: archive read API smoke
+# @description: Compiles and runs a libarchive archive_read API listing program.
+# @timeout: 120
+# @tags: api, compile
+
 set -euo pipefail
 source /validator/tests/_shared/runtime_helpers.sh
 

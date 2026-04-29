@@ -1,4 +1,10 @@
 #!/usr/bin/env bash
+# @testcase: sign-verify
+# @title: libsodium sign verify
+# @description: Signs a message and verifies the detached signature.
+# @timeout: 120
+# @tags: api, crypto
+
 set -euo pipefail
 source /validator/tests/_shared/runtime_helpers.sh
 

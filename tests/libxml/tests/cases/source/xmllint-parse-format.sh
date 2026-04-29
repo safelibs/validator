@@ -1,4 +1,10 @@
 #!/usr/bin/env bash
+# @testcase: xmllint-parse-format
+# @title: xmllint parse and format
+# @description: Parses and formats XML using the installed xmllint command.
+# @timeout: 120
+# @tags: cli, xml
+
 set -euo pipefail
 source /validator/tests/_shared/runtime_helpers.sh
 

@@ -1,4 +1,11 @@
 #!/usr/bin/env bash
+# @testcase: usage-ruby-vips-create-image
+# @title: ruby-vips create image
+# @description: Uses ruby-vips to run libvips create image behavior.
+# @timeout: 180
+# @tags: usage, ruby, image
+# @client: ruby-vips
+
 set -euo pipefail
 source /validator/tests/_shared/runtime_helpers.sh
 

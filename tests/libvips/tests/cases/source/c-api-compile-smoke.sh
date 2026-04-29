@@ -1,4 +1,10 @@
 #!/usr/bin/env bash
+# @testcase: c-api-compile-smoke
+# @title: libvips C API compile smoke
+# @description: Compiles a libvips program that creates and writes an image.
+# @timeout: 120
+# @tags: api, compile
+
 set -euo pipefail
 source /validator/tests/_shared/runtime_helpers.sh
 

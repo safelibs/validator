@@ -1,4 +1,11 @@
 #!/usr/bin/env bash
+# @testcase: usage-ffmpeg-webp-probe
+# @title: ffmpeg webp probe
+# @description: Probes a WebP fixture with FFmpeg to read stream metadata through libwebp.
+# @timeout: 180
+# @tags: usage, image
+# @client: ffmpeg
+
 set -euo pipefail
 source /validator/tests/_shared/runtime_helpers.sh
 

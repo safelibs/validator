@@ -1,4 +1,11 @@
 #!/usr/bin/env bash
+# @testcase: usage-python3-pygame-image-save
+# @title: Pygame image save
+# @description: Uses Pygame to run SDL image save behavior.
+# @timeout: 180
+# @tags: usage, headless, python
+# @client: python3-pygame
+
 set -euo pipefail
 source /validator/tests/_shared/runtime_helpers.sh
 

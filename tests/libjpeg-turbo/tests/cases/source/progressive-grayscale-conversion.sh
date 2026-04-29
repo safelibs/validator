@@ -1,4 +1,10 @@
 #!/usr/bin/env bash
+# @testcase: progressive-grayscale-conversion
+# @title: Progressive grayscale conversion
+# @description: Creates a progressive JPEG and decodes it through grayscale conversion.
+# @timeout: 120
+# @tags: cli, colorspace
+
 set -euo pipefail
 source /validator/tests/_shared/runtime_helpers.sh
 

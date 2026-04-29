@@ -1,4 +1,10 @@
 #!/usr/bin/env bash
+# @testcase: malformed-number-rejection
+# @title: Malformed number rejection
+# @description: Requires cJSON to reject incomplete exponent notation in a number token.
+# @timeout: 120
+# @tags: api, negative
+
 set -euo pipefail
 source /validator/tests/_shared/runtime_helpers.sh
 

@@ -1,7 +1,9 @@
 from __future__ import annotations
 
 import json
+import stat
 import tempfile
+import textwrap
 import unittest
 from pathlib import Path
 
@@ -24,6 +26,55 @@ def original_demo_config() -> dict[str, object]:
             }
         ]
     }
+
+
+def _write_executable(path: Path, contents: str) -> None:
+    path.parent.mkdir(parents=True, exist_ok=True)
+    path.write_text(contents)
+    path.chmod(path.stat().st_mode | stat.S_IXUSR | stat.S_IXGRP | stat.S_IXOTH)
+
+
+def _source_script(case_id: str = "source-demo", *, extra_directives: str = "") -> str:
+    body = textwrap.dedent(
+        f"""\
+        #!/usr/bin/env bash
+        # @testcase: {case_id}
+        # @title: Demo title
+        # @description: Demo description that exercises the source surface.
+        # @timeout: 30
+        # @tags: smoke
+        {extra_directives}
+        set -euo pipefail
+        echo demo
+        """
+    )
+    return body
+
+
+def _usage_script(
+    case_id: str = "usage-known-client",
+    *,
+    client: str = "known-client",
+    title: str = "Known client smoke",
+    description: str = "Runs known-client against a small fixture and verifies output.",
+    timeout: int = 30,
+    tags: str = "client",
+) -> str:
+    body = textwrap.dedent(
+        f"""\
+        #!/usr/bin/env bash
+        # @testcase: {case_id}
+        # @title: {title}
+        # @description: {description}
+        # @timeout: {timeout}
+        # @tags: {tags}
+        # @client: {client}
+
+        set -euo pipefail
+        echo {case_id}
+        """
+    )
+    return body
 
 
 class TestcaseManifestTests(unittest.TestCase):
@@ -58,6 +109,7 @@ class TestcaseManifestTests(unittest.TestCase):
             ({"extra_packages": ["demo-runtime"]}, "forbidden package-list field"),
             ({"archive": {}}, "forbidden schema field"),
             ({"unexpected": True}, "unsupported fields"),
+            ({"testcases": []}, "unsupported fields"),
         ]
 
         with tempfile.TemporaryDirectory() as tmp:
@@ -77,7 +129,6 @@ class TestcaseManifestTests(unittest.TestCase):
                     "schema_version": 1,
                     "library": "demo",
                     "apt_packages": ["demo-runtime"],
-                    "testcases": [],
                     **update,
                 }
                 manifest_path.write_text(yaml.safe_dump(payload, sort_keys=False))
@@ -96,7 +147,6 @@ class TestcaseManifestTests(unittest.TestCase):
                         "schema_version": 1,
                         "library": "empty-lib",
                         "apt_packages": ["empty-runtime"],
-                        "testcases": [],
                     },
                     sort_keys=False,
                 )
@@ -118,144 +168,99 @@ class TestcaseManifestTests(unittest.TestCase):
             loaded = testcases.load_manifests(config, tests_root=root, require_testcases=False)
             self.assertEqual(loaded["empty-lib"].testcases, ())
 
-    def test_rejects_invalid_case_ids_and_unsafe_commands(self) -> None:
-        repo_root = Path(__file__).resolve().parents[1]
+    def test_rejects_invalid_case_ids_and_missing_directives(self) -> None:
         cases = [
-            ({"id": "BadID"}, "testcase id"),
-            ({"command": ["bash", "/validator/tests/other/tests/run.sh"]}, "must stay under"),
-            ({"command": ["bash", "../run.sh"]}, "path segments"),
-            ({"command": ["bash", ".."]}, "path segments"),
-            ({"command": ["bash", "-lc", "exec /validator/tests/other/tests/run.sh"]}, "must stay under"),
             (
-                {"command": ["bash", "LD_LIBRARY_PATH=/validator/tests/demo/lib:/validator/tests/other/lib"]},
-                "must stay under",
+                "#!/usr/bin/env bash\n# @testcase: BadID\n# @title: t\n# @description: d\n# @timeout: 1\n# @tags:\nset -e\n",
+                "testcase id must match",
             ),
             (
-                {
-                    "command": [
-                        "bash",
-                        "-lc",
-                        "LD_LIBRARY_PATH=/validator/tests/demo/lib:/validator/tests/other/lib true",
-                    ]
-                },
-                "must stay under",
+                "#!/usr/bin/env bash\n# @testcase: source-demo\n# @title: t\n# @description: d\n# @timeout: 1\nset -e\n",
+                "missing directives",
             ),
-            ({"command": ["bash", "-lc", "cd ../other && true"]}, "path segments"),
-            ({"command": ["bash", "PATH=/validator/tests/demo/bin:../bin"]}, "path segments"),
-            ({"command": ["bash", "-lc", f"printf x >{repo_root / 'out'}"]}, "repository-host"),
-            ({"command": ["relative/script.sh"]}, "first element"),
+            (
+                "#!/usr/bin/env bash\n# @testcase: source-demo\n# @title: t\n# @description: d\n# @timeout: not-a-number\n# @tags:\nset -e\n",
+                "@timeout must be an integer",
+            ),
+            (
+                "#!/usr/bin/env bash\n# @testcase: source-demo\n# @title: t\n# @description: d\n# @timeout: 99999\n# @tags:\nset -e\n",
+                "@timeout must be between",
+            ),
+            (
+                "#!/usr/bin/env bash\n# @testcase: source-demo\n# @title: t\n# @description: d\n# @timeout: 1\n# @tags: ,\nset -e\n",
+                "@tags entries must be non-empty",
+            ),
+            (
+                "#!/usr/bin/env bash\n# @testcase: source-demo\n# @title: t\n# @description: d\n# @timeout: 1\n# @tags:\n# @bogus: x\nset -e\n",
+                "unknown @bogus directive",
+            ),
+            (
+                "#!/usr/bin/env bash\n# @testcase: source-demo\n# @title: t\n# @description: d\n# @timeout: 1\n# @tags:\n# @client: anything\nset -e\n",
+                "must not define @client",
+            ),
         ]
-
-        base = {
-            "id": "source-valid-case",
-            "title": "Valid title",
-            "description": "Valid description text",
-            "kind": "source",
-            "command": ["bash", "/validator/tests/demo/tests/run.sh"],
-            "timeout_seconds": 1,
-            "tags": [],
-        }
         with tempfile.TemporaryDirectory() as tmp:
-            root = Path(tmp) / "demo"
-            root.mkdir(parents=True)
-            for update, message in cases:
-                payload = {
-                    "schema_version": 1,
-                    "library": "demo",
-                    "apt_packages": ["demo-runtime"],
-                    "testcases": [dict(base, **update)],
-                }
-                path = root / "testcases.yml"
-                path.write_text(yaml.safe_dump(payload, sort_keys=False))
-                with self.subTest(update=update):
-                    with self.assertRaisesRegex(ValidatorError, message):
-                        testcases.load_testcase_manifest(path, library="demo")
-
-    def test_allows_colon_path_lists_under_selected_library(self) -> None:
-        with tempfile.TemporaryDirectory() as tmp:
-            root = Path(tmp) / "demo"
-            root.mkdir(parents=True)
-            path = root / "testcases.yml"
-            path.write_text(
-                yaml.safe_dump(
-                    {
-                        "schema_version": 1,
-                        "library": "demo",
-                        "apt_packages": ["demo-runtime"],
-                        "testcases": [
-                            {
-                                "id": "source-valid-case",
-                                "title": "Valid title",
-                                "description": "Valid description text",
-                                "kind": "source",
-                                "command": [
-                                    "bash",
-                                    "LD_LIBRARY_PATH=/validator/tests/demo/lib:/validator/tests/demo/lib64",
-                                ],
-                                "timeout_seconds": 1,
-                                "tags": [],
-                            }
-                        ],
-                    },
-                    sort_keys=False,
-                )
-            )
-
-            manifest = testcases.load_testcase_manifest(path, library="demo")
-
-        self.assertEqual(
-            manifest.testcases[0].command[1],
-            "LD_LIBRARY_PATH=/validator/tests/demo/lib:/validator/tests/demo/lib64",
-        )
-
-    def test_usage_cases_must_reference_dependent_identifier(self) -> None:
-        with tempfile.TemporaryDirectory() as tmp:
-            root = Path(tmp) / "demo"
-            fixture_root = root / "tests" / "fixtures"
-            fixture_root.mkdir(parents=True)
-            (fixture_root / "dependents.json").write_text(json.dumps({"dependents": [{"name": "known-client"}]}))
-            manifest_path = root / "testcases.yml"
+            library_root = Path(tmp) / "demo"
+            (library_root / "tests" / "cases" / "source").mkdir(parents=True)
+            manifest_path = library_root / "testcases.yml"
             manifest_path.write_text(
                 yaml.safe_dump(
                     {
                         "schema_version": 1,
                         "library": "demo",
                         "apt_packages": ["demo-runtime"],
-                        "testcases": [
-                            {
-                                "id": "usage-known-client",
-                                "title": "Usage title",
-                                "description": "Usage description",
-                                "kind": "usage",
-                                "client_application": "missing-client",
-                                "command": ["bash", "/validator/tests/demo/tests/run.sh"],
-                                "timeout_seconds": 1,
-                                "tags": [],
-                            }
-                        ],
+                    },
+                    sort_keys=False,
+                )
+            )
+            script_path = library_root / "tests" / "cases" / "source" / "demo.sh"
+            for body, message in cases:
+                _write_executable(script_path, body)
+                with self.subTest(message=message):
+                    with self.assertRaisesRegex(ValidatorError, message):
+                        testcases.load_testcase_manifest(manifest_path, library="demo")
+
+    def test_usage_cases_must_reference_dependent_identifier(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            library_root = Path(tmp) / "demo"
+            (library_root / "tests" / "fixtures").mkdir(parents=True)
+            (library_root / "tests" / "fixtures" / "dependents.json").write_text(
+                json.dumps({"dependents": [{"name": "known-client"}]})
+            )
+            _write_executable(
+                library_root / "tests" / "cases" / "usage" / "usage-missing-client.sh",
+                _usage_script("usage-missing-client", client="missing-client"),
+            )
+            (library_root / "testcases.yml").write_text(
+                yaml.safe_dump(
+                    {
+                        "schema_version": 1,
+                        "library": "demo",
+                        "apt_packages": ["demo-runtime"],
                     },
                     sort_keys=False,
                 )
             )
 
-            with self.assertRaisesRegex(ValidatorError, "client_application"):
-                testcases.load_testcase_manifest(manifest_path, library="demo")
+            with self.assertRaisesRegex(ValidatorError, "@client"):
+                testcases.load_testcase_manifest(library_root / "testcases.yml", library="demo")
 
     def test_validate_usage_case_artifacts_accepts_compact_dependent_fixture(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:
             tests_root = Path(tmp)
-            root = tests_root / "demo"
-            usage_root = root / "tests" / "cases" / "usage"
-            fixture_root = root / "tests" / "fixtures"
+            library_root = tests_root / "demo"
+            usage_root = library_root / "tests" / "cases" / "usage"
+            fixture_root = library_root / "tests" / "fixtures"
             usage_root.mkdir(parents=True)
             fixture_root.mkdir(parents=True)
-            script_path = usage_root / "usage-known-client.sh"
-            script_path.write_text("#!/usr/bin/env bash\nset -euo pipefail\necho known\n")
-            script_path.chmod(0o755)
-            (root / "Dockerfile").write_text(
+            _write_executable(
+                usage_root / "usage-known-client.sh",
+                _usage_script("usage-known-client"),
+            )
+            (library_root / "Dockerfile").write_text(
                 "FROM scratch\nRUN apt-get install -y --no-install-recommends known-client\n"
             )
-            (fixture_root / "dependents.json").write_text(
+            fixture_root.joinpath("dependents.json").write_text(
                 json.dumps(
                     {
                         "schema_version": 1,
@@ -270,25 +275,13 @@ class TestcaseManifestTests(unittest.TestCase):
                     }
                 )
             )
-            manifest_path = root / "testcases.yml"
+            manifest_path = library_root / "testcases.yml"
             manifest_path.write_text(
                 yaml.safe_dump(
                     {
                         "schema_version": 1,
                         "library": "demo",
                         "apt_packages": ["demo-runtime"],
-                        "testcases": [
-                            {
-                                "id": "usage-known-client",
-                                "title": "Known client behavior",
-                                "description": "Runs known-client against a small fixture.",
-                                "kind": "usage",
-                                "client_application": "known-client",
-                                "command": ["bash", "/validator/tests/demo/tests/cases/usage/usage-known-client.sh"],
-                                "timeout_seconds": 1,
-                                "tags": [],
-                            }
-                        ],
                     },
                     sort_keys=False,
                 )
@@ -309,16 +302,17 @@ class TestcaseManifestTests(unittest.TestCase):
     def test_validate_usage_case_artifacts_rejects_missing_docker_dependency(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:
             tests_root = Path(tmp)
-            root = tests_root / "demo"
-            usage_root = root / "tests" / "cases" / "usage"
-            fixture_root = root / "tests" / "fixtures"
+            library_root = tests_root / "demo"
+            usage_root = library_root / "tests" / "cases" / "usage"
+            fixture_root = library_root / "tests" / "fixtures"
             usage_root.mkdir(parents=True)
             fixture_root.mkdir(parents=True)
-            script_path = usage_root / "usage-known-client.sh"
-            script_path.write_text("#!/usr/bin/env bash\nset -euo pipefail\necho known\n")
-            script_path.chmod(0o755)
-            (root / "Dockerfile").write_text("FROM scratch\n")
-            (fixture_root / "dependents.json").write_text(
+            _write_executable(
+                usage_root / "usage-known-client.sh",
+                _usage_script("usage-known-client"),
+            )
+            (library_root / "Dockerfile").write_text("FROM scratch\n")
+            fixture_root.joinpath("dependents.json").write_text(
                 json.dumps(
                     {
                         "schema_version": 1,
@@ -333,25 +327,13 @@ class TestcaseManifestTests(unittest.TestCase):
                     }
                 )
             )
-            manifest_path = root / "testcases.yml"
+            manifest_path = library_root / "testcases.yml"
             manifest_path.write_text(
                 yaml.safe_dump(
                     {
                         "schema_version": 1,
                         "library": "demo",
                         "apt_packages": ["demo-runtime"],
-                        "testcases": [
-                            {
-                                "id": "usage-known-client",
-                                "title": "Known client behavior",
-                                "description": "Runs known-client against a small fixture.",
-                                "kind": "usage",
-                                "client_application": "known-client",
-                                "command": ["bash", "/validator/tests/demo/tests/cases/usage/usage-known-client.sh"],
-                                "timeout_seconds": 1,
-                                "tags": [],
-                            }
-                        ],
                     },
                     sort_keys=False,
                 )

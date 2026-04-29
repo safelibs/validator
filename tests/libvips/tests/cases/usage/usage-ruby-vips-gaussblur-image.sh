@@ -1,4 +1,11 @@
 #!/usr/bin/env bash
+# @testcase: usage-ruby-vips-gaussblur-image
+# @title: ruby-vips Gaussian blur image
+# @description: Applies a Gaussian blur with ruby-vips and verifies image dimensions and pixel average.
+# @timeout: 180
+# @tags: usage, ruby, image
+# @client: ruby-vips
+
 set -euo pipefail
 source /validator/tests/_shared/runtime_helpers.sh
 

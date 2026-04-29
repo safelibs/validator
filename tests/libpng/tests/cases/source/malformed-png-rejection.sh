@@ -1,4 +1,10 @@
 #!/usr/bin/env bash
+# @testcase: malformed-png-rejection
+# @title: Malformed PNG rejection
+# @description: Requires pngfix to reject bytes that are not a valid PNG file.
+# @timeout: 120
+# @tags: cli, negative
+
 set -euo pipefail
 source /validator/tests/_shared/runtime_helpers.sh
 

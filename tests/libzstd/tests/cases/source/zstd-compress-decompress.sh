@@ -1,4 +1,10 @@
 #!/usr/bin/env bash
+# @testcase: zstd-compress-decompress
+# @title: zstd command round trip
+# @description: Compresses and decompresses text through the zstd command line.
+# @timeout: 120
+# @tags: cli, roundtrip
+
 set -euo pipefail
 source /validator/tests/_shared/runtime_helpers.sh
 

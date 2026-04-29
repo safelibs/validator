@@ -1,4 +1,10 @@
 #!/usr/bin/env bash
+# @testcase: malformed-jpeg-handling
+# @title: Malformed JPEG input handling
+# @description: Requires djpeg to return failure for non-JPEG input bytes.
+# @timeout: 120
+# @tags: cli, negative
+
 set -euo pipefail
 source /validator/tests/_shared/runtime_helpers.sh
 

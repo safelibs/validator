@@ -1,4 +1,11 @@
 #!/usr/bin/env bash
+# @testcase: usage-libsdl2-image-load-webp
+# @title: SDL2_image loads WebP
+# @description: Loads a WebP fixture with SDL2_image to exercise libwebp-backed image loading.
+# @timeout: 180
+# @tags: usage, image, compile
+# @client: libsdl2-image
+
 set -euo pipefail
 source /validator/tests/_shared/runtime_helpers.sh
 

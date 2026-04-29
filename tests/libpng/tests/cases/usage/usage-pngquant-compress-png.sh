@@ -1,4 +1,11 @@
 #!/usr/bin/env bash
+# @testcase: usage-pngquant-compress-png
+# @title: pngquant compress png
+# @description: Runs pngquant compress png through libpng on a PNG fixture.
+# @timeout: 180
+# @tags: usage, image
+# @client: pngquant
+
 set -euo pipefail
 source /validator/tests/_shared/runtime_helpers.sh
 

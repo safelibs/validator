@@ -1,4 +1,10 @@
 #!/usr/bin/env bash
+# @testcase: strict-quote-error
+# @title: Strict quote error behavior
+# @description: Uses strict parser options to reject an unterminated quoted field.
+# @timeout: 120
+# @tags: api, negative
+
 set -euo pipefail
 source /validator/tests/_shared/runtime_helpers.sh
 

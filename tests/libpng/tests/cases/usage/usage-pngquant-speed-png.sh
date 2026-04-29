@@ -1,4 +1,11 @@
 #!/usr/bin/env bash
+# @testcase: usage-pngquant-speed-png
+# @title: pngquant speed png
+# @description: Runs pngquant speed png through libpng on a PNG fixture.
+# @timeout: 180
+# @tags: usage, image
+# @client: pngquant
+
 set -euo pipefail
 source /validator/tests/_shared/runtime_helpers.sh
 

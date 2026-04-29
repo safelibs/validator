@@ -1,4 +1,11 @@
 #!/usr/bin/env bash
+# @testcase: usage-python3-pil-deflate-tiff
+# @title: Pillow Deflate TIFF save
+# @description: Saves a Deflate-compressed TIFF with Pillow and verifies libtiff-backed reload behavior.
+# @timeout: 180
+# @tags: usage, image, python, compression
+# @client: python3-pil
+
 set -euo pipefail
 source /validator/tests/_shared/runtime_helpers.sh
 

@@ -1,4 +1,10 @@
 #!/usr/bin/env bash
+# @testcase: gif2rgb-conversion
+# @title: gif2rgb RGB conversion
+# @description: Converts a sample GIF to raw RGB bytes and compares the fixture length.
+# @timeout: 120
+# @tags: cli, media
+
 set -euo pipefail
 source /validator/tests/_shared/runtime_helpers.sh
 

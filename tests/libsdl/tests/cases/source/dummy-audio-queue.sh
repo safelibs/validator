@@ -1,4 +1,10 @@
 #!/usr/bin/env bash
+# @testcase: dummy-audio-queue
+# @title: Dummy audio queue behavior
+# @description: Opens the SDL dummy audio driver and queues sample bytes.
+# @timeout: 120
+# @tags: api, audio
+
 set -euo pipefail
 source /validator/tests/_shared/runtime_helpers.sh
 

@@ -1,4 +1,10 @@
 #!/usr/bin/env bash
+# @testcase: xmlcatalog-lookup
+# @title: xmlcatalog lookup behavior
+# @description: Resolves a public identifier from a local XML catalog file.
+# @timeout: 120
+# @tags: cli, catalog
+
 set -euo pipefail
 source /validator/tests/_shared/runtime_helpers.sh
 

@@ -1,4 +1,11 @@
 #!/usr/bin/env bash
+# @testcase: usage-xmlstarlet-transform-xml
+# @title: xmlstarlet transform XML
+# @description: Runs xmlstarlet XSLT transformation and verifies the selected XML value is emitted.
+# @timeout: 180
+# @tags: usage, xml, cli
+# @client: xmlstarlet
+
 set -euo pipefail
 source /validator/tests/_shared/runtime_helpers.sh
 

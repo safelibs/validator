@@ -1,4 +1,11 @@
 #!/usr/bin/env bash
+# @testcase: usage-python3-pil-save-webp
+# @title: Pillow save webp
+# @description: Writes a WebP image with Pillow through libwebp encoding.
+# @timeout: 180
+# @tags: usage, image, python
+# @client: python3-pil
+
 set -euo pipefail
 source /validator/tests/_shared/runtime_helpers.sh
 

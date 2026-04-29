@@ -1,4 +1,11 @@
 #!/usr/bin/env bash
+# @testcase: usage-python3-pygame-mask-collision
+# @title: Pygame mask collision
+# @description: Builds Pygame surface masks and checks the SDL-backed overlap result for intersecting sprites.
+# @timeout: 180
+# @tags: usage, headless, python
+# @client: python3-pygame
+
 set -euo pipefail
 source /validator/tests/_shared/runtime_helpers.sh
 

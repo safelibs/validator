@@ -1,4 +1,10 @@
 #!/usr/bin/env bash
+# @testcase: gifbuild-roundtrip
+# @title: gifbuild textual round trip
+# @description: Dumps a GIF to textual form and rebuilds an equivalent GIF stream.
+# @timeout: 120
+# @tags: cli, roundtrip
+
 set -euo pipefail
 source /validator/tests/_shared/runtime_helpers.sh
 

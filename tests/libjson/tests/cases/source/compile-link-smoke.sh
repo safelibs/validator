@@ -1,4 +1,10 @@
 #!/usr/bin/env bash
+# @testcase: compile-link-smoke
+# @title: json-c compile link smoke
+# @description: Compiles a small program against json-c headers and library.
+# @timeout: 120
+# @tags: api, compile
+
 set -euo pipefail
 source /validator/tests/_shared/runtime_helpers.sh
 

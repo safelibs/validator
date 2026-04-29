@@ -1,4 +1,10 @@
 #!/usr/bin/env bash
+# @testcase: c-api-read-write
+# @title: libtiff C API read write
+# @description: Compiles a libtiff program that writes and reads a small TIFF image.
+# @timeout: 120
+# @tags: api, compile
+
 set -euo pipefail
 source /validator/tests/_shared/runtime_helpers.sh
 

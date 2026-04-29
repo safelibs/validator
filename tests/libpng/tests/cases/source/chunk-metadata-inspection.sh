@@ -1,4 +1,10 @@
 #!/usr/bin/env bash
+# @testcase: chunk-metadata-inspection
+# @title: PNG chunk metadata inspection
+# @description: Reads IHDR metadata from a PNG fixture through libpng APIs.
+# @timeout: 120
+# @tags: api, metadata
+
 set -euo pipefail
 source /validator/tests/_shared/runtime_helpers.sh
 

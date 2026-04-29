@@ -1,4 +1,10 @@
 #!/usr/bin/env bash
+# @testcase: surface-blit-pixel-format
+# @title: Surface pixel format blit
+# @description: Creates RGB surfaces, fills pixels, and blits under SDL software surfaces.
+# @timeout: 120
+# @tags: api, surface
+
 set -euo pipefail
 source /validator/tests/_shared/runtime_helpers.sh
 

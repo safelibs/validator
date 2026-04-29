@@ -1,4 +1,10 @@
 #!/usr/bin/env bash
+# @testcase: refcount-object-mutation
+# @title: Refcount and object mutation
+# @description: Exercises json-c reference counting while mutating object members.
+# @timeout: 120
+# @tags: api, refcount
+
 set -euo pipefail
 source /validator/tests/_shared/runtime_helpers.sh
 

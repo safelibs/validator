@@ -1,4 +1,11 @@
 #!/usr/bin/env bash
+# @testcase: usage-vips-thumbnail-jpeg
+# @title: vips thumbnail jpeg
+# @description: Runs vipsthumbnail on a JPEG fixture through libjpeg-turbo.
+# @timeout: 180
+# @tags: usage, image, cli
+# @client: vips
+
 set -euo pipefail
 source /validator/tests/_shared/runtime_helpers.sh
 

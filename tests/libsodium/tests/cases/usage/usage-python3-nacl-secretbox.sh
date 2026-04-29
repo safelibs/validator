@@ -1,4 +1,11 @@
 #!/usr/bin/env bash
+# @testcase: usage-python3-nacl-secretbox
+# @title: python3-nacl secretbox
+# @description: Runs python3-nacl secretbox cryptography through libsodium.
+# @timeout: 180
+# @tags: usage, crypto
+# @client: python3-nacl
+
 set -euo pipefail
 source /validator/tests/_shared/runtime_helpers.sh
 

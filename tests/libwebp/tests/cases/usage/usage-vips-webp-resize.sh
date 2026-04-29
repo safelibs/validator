@@ -1,4 +1,11 @@
 #!/usr/bin/env bash
+# @testcase: usage-vips-webp-resize
+# @title: vips webp resize
+# @description: Resizes a WebP fixture with vips through libwebp decoding.
+# @timeout: 180
+# @tags: usage, image
+# @client: vips
+
 set -euo pipefail
 source /validator/tests/_shared/runtime_helpers.sh
 

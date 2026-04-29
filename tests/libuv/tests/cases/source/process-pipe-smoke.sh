@@ -1,4 +1,10 @@
 #!/usr/bin/env bash
+# @testcase: process-pipe-smoke
+# @title: libuv process pipe smoke
+# @description: Spawns a process with libuv and reads stdout through a pipe.
+# @timeout: 120
+# @tags: api, process
+
 set -euo pipefail
 source /validator/tests/_shared/runtime_helpers.sh
 

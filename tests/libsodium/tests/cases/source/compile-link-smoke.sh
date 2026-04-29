@@ -1,4 +1,10 @@
 #!/usr/bin/env bash
+# @testcase: compile-link-smoke
+# @title: libsodium compile link smoke
+# @description: Compiles a libsodium program and reports the installed library version.
+# @timeout: 120
+# @tags: api, compile
+
 set -euo pipefail
 source /validator/tests/_shared/runtime_helpers.sh
 

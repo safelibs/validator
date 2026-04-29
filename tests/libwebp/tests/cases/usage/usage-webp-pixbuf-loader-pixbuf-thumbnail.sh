@@ -1,4 +1,11 @@
 #!/usr/bin/env bash
+# @testcase: usage-webp-pixbuf-loader-pixbuf-thumbnail
+# @title: webp-pixbuf-loader pixbuf thumbnail
+# @description: Creates a GDK Pixbuf thumbnail from a WebP fixture through webp-pixbuf-loader.
+# @timeout: 180
+# @tags: usage, image
+# @client: webp-pixbuf-loader
+
 set -euo pipefail
 source /validator/tests/_shared/runtime_helpers.sh
 

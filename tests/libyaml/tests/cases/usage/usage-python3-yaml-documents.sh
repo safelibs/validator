@@ -1,4 +1,11 @@
 #!/usr/bin/env bash
+# @testcase: usage-python3-yaml-documents
+# @title: PyYAML documents
+# @description: Runs PyYAML documents behavior through libyaml.
+# @timeout: 180
+# @tags: usage, yaml, python
+# @client: python3-yaml
+
 set -euo pipefail
 source /validator/tests/_shared/runtime_helpers.sh
 

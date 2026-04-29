@@ -1,0 +1,34 @@
+#!/usr/bin/env bash
+# @testcase: usage-libarchive-tools-zstd-verbose-exec-list
+# @title: libarchive-tools zstd verbose exec list
+# @description: Lists a zstd-compressed tar archive verbosely and verifies executable permission metadata for a script member.
+# @timeout: 180
+# @tags: usage, archive, zstd
+# @client: libarchive-tools
+
+set -euo pipefail
+source /validator/tests/_shared/runtime_helpers.sh
+
+case_id="usage-libarchive-tools-zstd-verbose-exec-list"
+tmpdir=$(mktemp -d)
+trap 'rm -rf "$tmpdir"' EXIT
+
+archive="$tmpdir/archive.tar.zst"
+
+build_archive() {
+  rm -rf "$tmpdir/src" "$tmpdir/out" "$archive"
+  mkdir -p "$tmpdir/src/dir"
+  printf 'alpha payload\n' >"$tmpdir/src/alpha.txt"
+  printf 'beta payload\n' >"$tmpdir/src/dir/beta.txt"
+  printf 'hidden payload\n' >"$tmpdir/src/.hidden"
+  printf 'space payload\n' >"$tmpdir/src/dir/space name.txt"
+  : >"$tmpdir/src/empty.txt"
+  printf '#!/usr/bin/env bash\nexit 0\n' >"$tmpdir/src/run.sh"
+  chmod 755 "$tmpdir/src/run.sh"
+  bsdtar -acf "$archive" -C "$tmpdir/src" .
+}
+
+build_archive
+bsdtar -tvf "$archive" >"$tmpdir/out"
+validator_assert_contains "$tmpdir/out" 'run.sh'
+validator_assert_contains "$tmpdir/out" 'rwxr-xr-x'

@@ -1,4 +1,10 @@
 #!/usr/bin/env bash
+# @testcase: jpegtran-transform
+# @title: jpegtran image transform
+# @description: Rotates a JPEG with jpegtran and decodes the transformed image.
+# @timeout: 120
+# @tags: cli, transform
+
 set -euo pipefail
 source /validator/tests/_shared/runtime_helpers.sh
 

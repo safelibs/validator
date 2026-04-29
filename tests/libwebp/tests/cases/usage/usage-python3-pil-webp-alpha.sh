@@ -1,4 +1,11 @@
 #!/usr/bin/env bash
+# @testcase: usage-python3-pil-webp-alpha
+# @title: Pillow WebP alpha channel
+# @description: Saves an RGBA WebP with Pillow and verifies alpha channel preservation through libwebp.
+# @timeout: 180
+# @tags: usage, image, python
+# @client: python3-pil
+
 set -euo pipefail
 source /validator/tests/_shared/runtime_helpers.sh
 

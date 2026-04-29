@@ -1,4 +1,11 @@
 #!/usr/bin/env bash
+# @testcase: usage-giflib-tools-giftext-colormap
+# @title: giflib-tools giftext color map
+# @description: Uses giftext to dump the GIF color map from a fixture and verifies color table output is present.
+# @timeout: 180
+# @tags: usage, cli, image
+# @client: giflib-tools
+
 set -euo pipefail
 source /validator/tests/_shared/runtime_helpers.sh
 

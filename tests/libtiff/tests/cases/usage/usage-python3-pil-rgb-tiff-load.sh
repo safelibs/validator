@@ -1,4 +1,11 @@
 #!/usr/bin/env bash
+# @testcase: usage-python3-pil-rgb-tiff-load
+# @title: Pillow RGB tiff load
+# @description: Opens an RGB TIFF fixture with Pillow to exercise libtiff-backed image decoding.
+# @timeout: 180
+# @tags: usage, image, python
+# @client: python3-pil
+
 set -euo pipefail
 source /validator/tests/_shared/runtime_helpers.sh
 

@@ -1,4 +1,11 @@
 #!/usr/bin/env bash
+# @testcase: usage-php83-sodium-sign-detached
+# @title: PHP sodium detached signatures
+# @description: Signs a message with PHP sodium and verifies the detached signature through libsodium.
+# @timeout: 180
+# @tags: usage, crypto
+# @client: php8.3-cli
+
 set -euo pipefail
 source /validator/tests/_shared/runtime_helpers.sh
 

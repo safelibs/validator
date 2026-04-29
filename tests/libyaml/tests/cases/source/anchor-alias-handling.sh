@@ -1,4 +1,10 @@
 #!/usr/bin/env bash
+# @testcase: anchor-alias-handling
+# @title: YAML anchor alias handling
+# @description: Parses YAML events and confirms alias events are reported.
+# @timeout: 120
+# @tags: api, alias
+
 set -euo pipefail
 source /validator/tests/_shared/runtime_helpers.sh
 

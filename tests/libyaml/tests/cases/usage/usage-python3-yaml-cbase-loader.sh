@@ -1,4 +1,11 @@
 #!/usr/bin/env bash
+# @testcase: usage-python3-yaml-cbase-loader
+# @title: PyYAML CBaseLoader scalar parsing
+# @description: Runs PyYAML CBaseLoader on nested YAML and verifies BaseLoader string scalar behavior.
+# @timeout: 180
+# @tags: usage, yaml, python
+# @client: python3-yaml
+
 set -euo pipefail
 source /validator/tests/_shared/runtime_helpers.sh
 

@@ -1,4 +1,11 @@
 #!/usr/bin/env bash
+# @testcase: usage-python3-nacl-public-box
+# @title: python3-nacl public box round trip
+# @description: Encrypts and decrypts a message with PyNaCl public-key boxes through libsodium.
+# @timeout: 180
+# @tags: usage, crypto
+# @client: python3-nacl
+
 set -euo pipefail
 source /validator/tests/_shared/runtime_helpers.sh
 

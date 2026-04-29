@@ -1,4 +1,10 @@
 #!/usr/bin/env bash
+# @testcase: invalid-yaml-rejection
+# @title: Invalid YAML rejection
+# @description: Requires libyaml parser load to fail on malformed YAML input.
+# @timeout: 120
+# @tags: api, negative
+
 set -euo pipefail
 source /validator/tests/_shared/runtime_helpers.sh
 

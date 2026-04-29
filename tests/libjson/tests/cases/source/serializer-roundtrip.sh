@@ -1,4 +1,10 @@
 #!/usr/bin/env bash
+# @testcase: serializer-roundtrip
+# @title: json-c serializer round trip
+# @description: Serializes an object then parses it again through json-c.
+# @timeout: 120
+# @tags: api, roundtrip
+
 set -euo pipefail
 source /validator/tests/_shared/runtime_helpers.sh
 

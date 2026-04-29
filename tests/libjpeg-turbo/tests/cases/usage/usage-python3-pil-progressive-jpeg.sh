@@ -1,4 +1,11 @@
 #!/usr/bin/env bash
+# @testcase: usage-python3-pil-progressive-jpeg
+# @title: Pillow progressive JPEG load
+# @description: Opens a progressive JPEG with Pillow and verifies libjpeg-turbo-backed image metadata.
+# @timeout: 180
+# @tags: usage, image, python, compression
+# @client: python3-pil
+
 set -euo pipefail
 source /validator/tests/_shared/runtime_helpers.sh
 

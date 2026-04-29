@@ -5,7 +5,7 @@ import json
 import re
 import sys
 from dataclasses import dataclass
-from pathlib import Path, PurePosixPath
+from pathlib import Path
 from typing import Any
 
 import yaml
@@ -42,9 +42,7 @@ DEPENDENT_LIST_KEYS = (
     "packages",
     "selected_applications",
 )
-COMMAND_PATH_TOKEN_SEPARATORS_RE = re.compile(r"""[\s'"`;$|&(){}\[\]<>,]+""")
-VALIDATOR_PATH_RE = re.compile(r"""/validator(?:/[^\s'"`;$|&(){}\[\]<>,]*)?""")
-ALLOWED_TESTCASE_MANIFEST_FIELDS = {"schema_version", "library", "apt_packages", "testcases"}
+ALLOWED_TESTCASE_MANIFEST_FIELDS = {"schema_version", "library", "apt_packages"}
 SANITIZED_DEPENDENT_TOP_LEVEL_FIELDS = {"schema_version", "library", "dependents"}
 SANITIZED_DEPENDENT_FIELDS = {
     "name",
@@ -59,6 +57,11 @@ GENERIC_USAGE_DESCRIPTION_RE = re.compile(
     re.IGNORECASE,
 )
 APT_PACKAGE_TOKEN_CHARS = r"A-Za-z0-9.+-"
+
+CASE_KINDS = ("source", "usage")
+HEADER_DIRECTIVE_RE = re.compile(r"^#\s*@([a-z][a-z_-]*)\s*:\s*(.*)$")
+REQUIRED_HEADER_FIELDS = {"title", "description", "timeout", "tags"}
+ALLOWED_HEADER_FIELDS = REQUIRED_HEADER_FIELDS | {"testcase", "client"}
 
 
 @dataclass(frozen=True)
@@ -134,55 +137,6 @@ def _reject_unexpected_manifest_fields(payload: dict[str, Any], *, path: Path) -
     raise ValidatorError(f"{path} testcase manifest contains unsupported fields: {', '.join(unexpected)}")
 
 
-def _has_path_segment(value: str, segment: str) -> bool:
-    return segment in PurePosixPath(value).parts
-
-
-def _iter_command_path_candidates(value: str) -> list[str]:
-    candidates: list[str] = []
-    for token in COMMAND_PATH_TOKEN_SEPARATORS_RE.split(value):
-        if not token:
-            continue
-        for assignment_part in token.split("="):
-            candidates.extend(part for part in assignment_part.split(":") if part)
-    for match in VALIDATOR_PATH_RE.finditer(value):
-        candidates.extend(part for part in match.group(0).split(":") if part)
-    return candidates
-
-
-def _validate_command_element(value: str, *, path: Path, library: str) -> None:
-    if "\0" in value:
-        raise ValidatorError(f"command entries must not contain NUL bytes in {path}")
-    if "\\" in value:
-        raise ValidatorError(f"command entries must not contain backslashes in {path}: {value!r}")
-
-    repo_root = Path(__file__).resolve().parents[1]
-    repo_root_text = str(repo_root.resolve(strict=False))
-
-    for candidate in _iter_command_path_candidates(value):
-        if _has_path_segment(candidate, ".."):
-            raise ValidatorError(f"command entries must not contain '..' path segments in {path}: {value!r}")
-        if repo_root_text in candidate:
-            raise ValidatorError(f"command entries must not use repository-host absolute paths in {path}: {value!r}")
-        if candidate == "/validator" or candidate.startswith("/validator/"):
-            allowed_prefix = f"/validator/tests/{library}/"
-            if candidate.startswith(allowed_prefix):
-                continue
-            raise ValidatorError(
-                f"/validator command paths must stay under /validator/tests/{library}/ in {path}: {value!r}"
-            )
-
-
-def _validate_command(value: Any, *, path: Path, library: str) -> list[str]:
-    command = _require_string_list(value, field_name="command", path=path, non_empty=True)
-    first = command[0]
-    if "/" in first and not PurePosixPath(first).is_absolute():
-        raise ValidatorError(f"command first element must be an executable name or absolute path in {path}: {first!r}")
-    for item in command:
-        _validate_command_element(item, path=path, library=library)
-    return command
-
-
 def _collect_string(target: set[str], value: Any) -> None:
     if isinstance(value, str):
         stripped = value.strip()
@@ -244,65 +198,116 @@ def load_dependent_identifiers(path: Path) -> set[str]:
     return extract_dependent_identifiers(payload)
 
 
-def _validate_testcase(
-    payload: Any,
+def _parse_header_blocks(script_path: Path) -> list[dict[str, str]]:
+    blocks: list[dict[str, str]] = []
+    current: dict[str, str] | None = None
+    text = script_path.read_text()
+    for raw_line in text.splitlines():
+        line = raw_line.rstrip()
+        if line.startswith("#!"):
+            continue
+        if not line:
+            break
+        if not line.startswith("#"):
+            break
+        match = HEADER_DIRECTIVE_RE.match(line)
+        if match is None:
+            # bare `#` (or other comment) inside header zone: separator only
+            continue
+        key, value = match.group(1), match.group(2).strip()
+        if key not in ALLOWED_HEADER_FIELDS:
+            raise ValidatorError(
+                f"unknown @{key} directive in {script_path}; allowed: {sorted(ALLOWED_HEADER_FIELDS)}"
+            )
+        if key == "testcase":
+            if current is not None:
+                blocks.append(current)
+            current = {"testcase": value}
+            continue
+        if current is None:
+            raise ValidatorError(
+                f"@{key} directive precedes @testcase in {script_path}"
+            )
+        if key in current:
+            raise ValidatorError(
+                f"duplicate @{key} directive for testcase {current.get('testcase')!r} in {script_path}"
+            )
+        current[key] = value
+    if current is not None:
+        blocks.append(current)
+    return blocks
+
+
+def _validate_header_block(
+    block: dict[str, str],
     *,
-    path: Path,
+    script_path: Path,
     library: str,
+    kind: str,
     dependent_identifiers: set[str] | None,
 ) -> Testcase:
-    if not isinstance(payload, dict):
-        raise ValidatorError(f"testcase entries must be mappings in {path}")
+    case_id = validate_case_id(block.get("testcase", ""))
 
-    case_id = validate_case_id(_require_non_empty_string(payload.get("id"), field_name="id", path=path))
-    title = _require_non_empty_string(payload.get("title"), field_name="title", path=path)
-    description = _require_non_empty_string(
-        payload.get("description"),
-        field_name="description",
-        path=path,
-    )
-    kind = _require_non_empty_string(payload.get("kind"), field_name="kind", path=path)
-    if kind not in {"source", "usage"}:
-        raise ValidatorError(f"kind must be source or usage in {path}: {case_id}")
+    missing = REQUIRED_HEADER_FIELDS - block.keys()
+    if missing:
+        raise ValidatorError(
+            f"testcase {case_id} in {script_path} is missing directives: {sorted(missing)}"
+        )
 
-    command = _validate_command(payload.get("command"), path=path, library=library)
-    timeout_seconds = payload.get("timeout_seconds")
-    if isinstance(timeout_seconds, bool) or not isinstance(timeout_seconds, int):
-        raise ValidatorError(f"timeout_seconds must be an integer in {path}: {case_id}")
+    title = block["title"].strip()
+    if not title:
+        raise ValidatorError(f"@title must be non-empty for {case_id} in {script_path}")
+    description = block["description"].strip()
+    if not description:
+        raise ValidatorError(f"@description must be non-empty for {case_id} in {script_path}")
+
+    timeout_text = block["timeout"].strip()
+    try:
+        timeout_seconds = int(timeout_text, 10)
+    except ValueError as exc:
+        raise ValidatorError(
+            f"@timeout must be an integer for {case_id} in {script_path}: {timeout_text!r}"
+        ) from exc
     if timeout_seconds < 1 or timeout_seconds > 7200:
-        raise ValidatorError(f"timeout_seconds must be between 1 and 7200 in {path}: {case_id}")
+        raise ValidatorError(
+            f"@timeout must be between 1 and 7200 for {case_id} in {script_path}"
+        )
 
-    tags = tuple(_require_string_list(payload.get("tags", []), field_name="tags", path=path))
-    requires = tuple(_require_string_list(payload.get("requires", []), field_name="requires", path=path))
-    client_application_raw = payload.get("client_application")
-    client_application = (
-        None
-        if client_application_raw is None
-        else _require_non_empty_string(client_application_raw, field_name="client_application", path=path)
-    )
+    tags_text = block["tags"].strip()
+    tags: tuple[str, ...] = ()
+    if tags_text:
+        parsed_tags = []
+        for raw in tags_text.split(","):
+            tag = raw.strip()
+            if not tag:
+                raise ValidatorError(
+                    f"@tags entries must be non-empty for {case_id} in {script_path}"
+                )
+            parsed_tags.append(tag)
+        tags = tuple(parsed_tags)
+
+    client_text = block.get("client", "").strip()
+    client_application: str | None = client_text or None
 
     if kind == "source" and client_application is not None:
-        raise ValidatorError(f"source testcase must not define client_application in {path}: {case_id}")
+        raise ValidatorError(
+            f"source testcase must not define @client for {case_id} in {script_path}"
+        )
     if kind == "usage":
         if client_application is None:
-            raise ValidatorError(f"usage testcase must define client_application in {path}: {case_id}")
-        for field_name, value in (
-            ("id", case_id),
-            ("title", title),
-            ("description", description),
-        ):
+            raise ValidatorError(
+                f"usage testcase must define @client for {case_id} in {script_path}"
+            )
+        for field_name, value in (("id", case_id), ("title", title), ("description", description)):
             if GENERIC_USAGE_DESCRIPTION_RE.search(value):
                 raise ValidatorError(
-                    f"usage testcase {field_name} must describe client behavior without generic migration wording "
-                    f"in {path}: {case_id}"
+                    f"usage testcase {field_name} must describe client behavior without "
+                    f"generic migration wording for {case_id} in {script_path}"
                 )
-        if dependent_identifiers is None:
-            dependent_path = path.parent / "tests" / "fixtures" / "dependents.json"
-            dependent_identifiers = load_dependent_identifiers(dependent_path)
-        if client_application not in dependent_identifiers:
+        if dependent_identifiers is not None and client_application not in dependent_identifiers:
             raise ValidatorError(
-                f"client_application {client_application!r} is not present in dependent fixture identifiers "
-                f"for {library}: {path}"
+                f"@client {client_application!r} is not present in dependent fixture identifiers "
+                f"for {library}: {script_path}"
             )
 
     return Testcase(
@@ -310,12 +315,63 @@ def _validate_testcase(
         title=title,
         description=description,
         kind=kind,
-        command=command,
+        command=[],  # filled in by caller once it knows the container path
         timeout_seconds=timeout_seconds,
         tags=tags,
         client_application=client_application,
-        requires=requires,
     )
+
+
+def _container_script_path(library: str, kind: str, script_path: Path, library_root: Path) -> str:
+    rel = script_path.relative_to(library_root)
+    return f"/validator/tests/{library}/{rel.as_posix()}"
+
+
+def _discover_testcases(
+    *,
+    library: str,
+    library_root: Path,
+    dependent_identifiers: set[str] | None,
+) -> list[Testcase]:
+    cases: list[Testcase] = []
+    for kind in CASE_KINDS:
+        kind_dir = library_root / "tests" / "cases" / kind
+        if not kind_dir.is_dir():
+            continue
+        for script_path in sorted(kind_dir.glob("*.sh")):
+            if not script_path.is_file():
+                continue
+            blocks = _parse_header_blocks(script_path)
+            if not blocks:
+                raise ValidatorError(
+                    f"testcase script has no @testcase header block: {script_path}"
+                )
+            container_path = _container_script_path(library, kind, script_path, library_root)
+            for block in blocks:
+                case = _validate_header_block(
+                    block,
+                    script_path=script_path,
+                    library=library,
+                    kind=kind,
+                    dependent_identifiers=dependent_identifiers,
+                )
+                command = ["bash", container_path]
+                if len(blocks) > 1:
+                    command.append(case.id)
+                cases.append(
+                    Testcase(
+                        id=case.id,
+                        title=case.title,
+                        description=case.description,
+                        kind=case.kind,
+                        command=command,
+                        timeout_seconds=case.timeout_seconds,
+                        tags=case.tags,
+                        client_application=case.client_application,
+                        requires=case.requires,
+                    )
+                )
+    return cases
 
 
 def load_testcase_manifest(path: Path, *, library: str) -> TestcaseManifest:
@@ -337,27 +393,23 @@ def load_testcase_manifest(path: Path, *, library: str) -> TestcaseManifest:
         )
     )
 
-    raw_cases = payload.get("testcases")
-    if not isinstance(raw_cases, list):
-        raise ValidatorError(f"testcases must be a list in {path}")
+    library_root = path.parent
+    dependent_path = library_root / "tests" / "fixtures" / "dependents.json"
+    dependent_identifiers: set[str] | None = (
+        load_dependent_identifiers(dependent_path) if dependent_path.is_file() else None
+    )
 
-    dependent_identifiers: set[str] | None = None
-    if any(isinstance(item, dict) and item.get("kind") == "usage" for item in raw_cases):
-        dependent_identifiers = load_dependent_identifiers(path.parent / "tests" / "fixtures" / "dependents.json")
+    cases = _discover_testcases(
+        library=library,
+        library_root=library_root,
+        dependent_identifiers=dependent_identifiers,
+    )
 
-    cases: list[Testcase] = []
     seen_ids: set[str] = set()
-    for raw_case in raw_cases:
-        testcase = _validate_testcase(
-            raw_case,
-            path=path,
-            library=library,
-            dependent_identifiers=dependent_identifiers,
-        )
-        if testcase.id in seen_ids:
-            raise ValidatorError(f"duplicate testcase id for {library}: {testcase.id}")
-        seen_ids.add(testcase.id)
-        cases.append(testcase)
+    for case in cases:
+        if case.id in seen_ids:
+            raise ValidatorError(f"duplicate testcase id for {library}: {case.id}")
+        seen_ids.add(case.id)
 
     return TestcaseManifest(
         library=library,
@@ -417,16 +469,6 @@ def load_manifests(
     return loaded
 
 
-def _container_path_to_host_path(value: str, *, tests_root: Path, library: str) -> Path | None:
-    prefix = f"/validator/tests/{library}/"
-    if not value.startswith(prefix):
-        return None
-    relative = PurePosixPath(value.removeprefix(prefix))
-    if relative.is_absolute() or _has_path_segment(relative.as_posix(), ".."):
-        raise ValidatorError(f"container testcase path escapes library root for {library}: {value}")
-    return tests_root / library / Path(*relative.parts)
-
-
 def _validate_case_scripts(
     manifests: dict[str, TestcaseManifest],
     *,
@@ -434,44 +476,35 @@ def _validate_case_scripts(
     kind: str,
 ) -> None:
     for library, manifest in manifests.items():
+        seen: set[Path] = set()
         for testcase in manifest.testcases:
             if testcase.kind != kind:
                 continue
-
-            scripts: list[Path] = []
-            for command_item in testcase.command:
-                for candidate in _iter_command_path_candidates(command_item):
-                    host_path = _container_path_to_host_path(
-                        candidate,
-                        tests_root=tests_root,
-                        library=library,
-                    )
-                    if host_path is None:
-                        continue
-                    if f"/tests/cases/{kind}/" in candidate and candidate.endswith(".sh"):
-                        scripts.append(host_path)
-
-            if not scripts:
+            container_path = next((c for c in testcase.command if c.endswith(".sh")), None)
+            if container_path is None or not container_path.startswith(f"/validator/tests/{library}/"):
                 raise ValidatorError(
                     f"{kind} testcase must execute a script under tests/cases/{kind}: "
                     f"{library}/{testcase.id}"
                 )
-
-            for script_path in scripts:
-                try:
-                    resolved = script_path.resolve(strict=True)
-                except FileNotFoundError as exc:
-                    raise ValidatorError(
-                        f"missing {kind} testcase script for {library}/{testcase.id}: {script_path}"
-                    ) from exc
-                if not resolved.is_file():
-                    raise ValidatorError(
-                        f"{kind} testcase script must be a file for {library}/{testcase.id}: {script_path}"
-                    )
-                if not resolved.stat().st_mode & 0o111:
-                    raise ValidatorError(
-                        f"{kind} testcase script must be executable for {library}/{testcase.id}: {script_path}"
-                    )
+            relative = container_path[len(f"/validator/tests/{library}/"):]
+            host_path = tests_root / library / relative
+            if host_path in seen:
+                continue
+            seen.add(host_path)
+            try:
+                resolved = host_path.resolve(strict=True)
+            except FileNotFoundError as exc:
+                raise ValidatorError(
+                    f"missing {kind} testcase script for {library}/{testcase.id}: {host_path}"
+                ) from exc
+            if not resolved.is_file():
+                raise ValidatorError(
+                    f"{kind} testcase script must be a file for {library}/{testcase.id}: {host_path}"
+                )
+            if not resolved.stat().st_mode & 0o111:
+                raise ValidatorError(
+                    f"{kind} testcase script must be executable for {library}/{testcase.id}: {host_path}"
+                )
 
 
 def validate_source_case_artifacts(

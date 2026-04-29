@@ -1,4 +1,10 @@
 #!/usr/bin/env bash
+# @testcase: jpeg-exif-c-api-parse
+# @title: JPEG EXIF C API parse
+# @description: Parses representative JPEG EXIF metadata and reads make and model tags.
+# @timeout: 120
+# @tags: api, metadata
+
 set -euo pipefail
 source /validator/tests/_shared/runtime_helpers.sh
 

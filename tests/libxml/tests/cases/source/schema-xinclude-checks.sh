@@ -1,4 +1,10 @@
 #!/usr/bin/env bash
+# @testcase: schema-xinclude-checks
+# @title: Schema and XInclude checks
+# @description: Validates XML against a schema and expands an XInclude document.
+# @timeout: 120
+# @tags: cli, schema
+
 set -euo pipefail
 source /validator/tests/_shared/runtime_helpers.sh
 

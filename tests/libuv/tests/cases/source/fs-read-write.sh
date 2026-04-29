@@ -1,4 +1,10 @@
 #!/usr/bin/env bash
+# @testcase: fs-read-write
+# @title: libuv fs read write
+# @description: Uses synchronous libuv fs requests to write and read a file.
+# @timeout: 120
+# @tags: api, fs
+
 set -euo pipefail
 source /validator/tests/_shared/runtime_helpers.sh
 

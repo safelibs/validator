@@ -1,4 +1,11 @@
 #!/usr/bin/env bash
+# @testcase: usage-php83-sodium-secretbox
+# @title: PHP sodium secretbox
+# @description: Runs PHP sodium secretbox cryptography through libsodium.
+# @timeout: 180
+# @tags: usage, crypto
+# @client: php8.3-cli
+
 set -euo pipefail
 source /validator/tests/_shared/runtime_helpers.sh
 

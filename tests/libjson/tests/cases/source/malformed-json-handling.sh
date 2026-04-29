@@ -1,4 +1,10 @@
 #!/usr/bin/env bash
+# @testcase: malformed-json-handling
+# @title: Malformed JSON handling
+# @description: Requires json-c tokener to report an error for malformed JSON.
+# @timeout: 120
+# @tags: api, negative
+
 set -euo pipefail
 source /validator/tests/_shared/runtime_helpers.sh
 

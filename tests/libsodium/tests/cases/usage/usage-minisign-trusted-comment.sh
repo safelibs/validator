@@ -1,4 +1,11 @@
 #!/usr/bin/env bash
+# @testcase: usage-minisign-trusted-comment
+# @title: minisign trusted comment
+# @description: Signs a payload with a trusted minisign comment and verifies the signed metadata.
+# @timeout: 180
+# @tags: usage, crypto
+# @client: minisign
+
 set -euo pipefail
 source /validator/tests/_shared/runtime_helpers.sh
 

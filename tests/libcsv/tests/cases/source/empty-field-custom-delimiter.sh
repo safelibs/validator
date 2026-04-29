@@ -1,4 +1,10 @@
 #!/usr/bin/env bash
+# @testcase: empty-field-custom-delimiter
+# @title: Empty fields and custom delimiter
+# @description: Checks empty field callbacks while parsing semicolon delimited data.
+# @timeout: 120
+# @tags: api, delimiter
+
 set -euo pipefail
 source /validator/tests/_shared/runtime_helpers.sh
 

@@ -1,4 +1,11 @@
 #!/usr/bin/env bash
+# @testcase: usage-python3-lxml-xinclude-xml
+# @title: python3-lxml XInclude XML expansion
+# @description: Runs lxml XInclude expansion and verifies included XML element text is visible to the client.
+# @timeout: 180
+# @tags: usage, xml
+# @client: python3-lxml
+
 set -euo pipefail
 source /validator/tests/_shared/runtime_helpers.sh
 

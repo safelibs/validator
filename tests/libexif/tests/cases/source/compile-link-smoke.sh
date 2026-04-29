@@ -1,4 +1,10 @@
 #!/usr/bin/env bash
+# @testcase: compile-link-smoke
+# @title: libexif compile link smoke
+# @description: Compiles and runs a small program against the public libexif headers.
+# @timeout: 120
+# @tags: api, compile
+
 set -euo pipefail
 source /validator/tests/_shared/runtime_helpers.sh
 

@@ -1,4 +1,11 @@
 #!/usr/bin/env bash
+# @testcase: usage-ffmpeg-webp-scale-filter
+# @title: FFmpeg WebP scale filter
+# @description: Scales a WebP image with FFmpeg and verifies the PNG output stream dimensions.
+# @timeout: 180
+# @tags: usage, image
+# @client: ffmpeg
+
 set -euo pipefail
 source /validator/tests/_shared/runtime_helpers.sh
 

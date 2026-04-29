@@ -1,4 +1,10 @@
 #!/usr/bin/env bash
+# @testcase: thumbnail-behavior
+# @title: vipsthumbnail behavior
+# @description: Creates a thumbnail from a sample image and inspects its header.
+# @timeout: 120
+# @tags: cli, thumbnail
+
 set -euo pipefail
 source /validator/tests/_shared/runtime_helpers.sh
 

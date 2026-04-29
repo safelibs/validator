@@ -1,4 +1,11 @@
 #!/usr/bin/env bash
+# @testcase: usage-nodejs-stat-call
+# @title: Node.js stat call
+# @description: Runs Node.js stat call behavior to exercise libuv.
+# @timeout: 180
+# @tags: usage, event-loop
+# @client: nodejs
+
 set -euo pipefail
 source /validator/tests/_shared/runtime_helpers.sh
 

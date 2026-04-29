@@ -1,4 +1,10 @@
 #!/usr/bin/env bash
+# @testcase: giftext-metadata
+# @title: giftext metadata inspection
+# @description: Inspects GIF metadata from an upstream sample with the giftext tool.
+# @timeout: 120
+# @tags: cli, metadata
+
 set -euo pipefail
 source /validator/tests/_shared/runtime_helpers.sh
 

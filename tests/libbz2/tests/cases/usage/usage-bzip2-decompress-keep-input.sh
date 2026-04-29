@@ -1,4 +1,11 @@
 #!/usr/bin/env bash
+# @testcase: usage-bzip2-decompress-keep-input
+# @title: bzip2 decompress keep input
+# @description: Runs bunzip2 keep-input decompression and verifies the compressed file remains.
+# @timeout: 180
+# @tags: usage, compression
+# @client: bzip2
+
 set -euo pipefail
 source /validator/tests/_shared/runtime_helpers.sh
 

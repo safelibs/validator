@@ -1,4 +1,20 @@
 #!/usr/bin/env bash
-set -euo pipefail
+# @testcase: usage-exif-cli-tag-make
+# @title: exif CLI make tag
+# @description: Runs the exif CLI to read the camera Make tag from a JPEG fixture.
+# @timeout: 180
+# @tags: usage, metadata
+# @client: exif
 
-/validator/tests/libexif/tests/cases/usage/usage-exif-cli-common.sh tag-make
+set -euo pipefail
+source /validator/tests/_shared/runtime_helpers.sh
+
+workload="tag-make"
+tmpdir=$(mktemp -d)
+trap 'rm -rf "$tmpdir"' EXIT
+
+img="$VALIDATOR_SAMPLE_ROOT/test/testdata/canon_makernote_variant_1.jpg"
+validator_require_file "$img"
+
+exif --tag=Make "$img" | tee "$tmpdir/out"
+validator_assert_contains "$tmpdir/out" 'Value: Canon'

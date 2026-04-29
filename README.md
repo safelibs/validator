@@ -11,9 +11,12 @@ checkout.
 
 - `repositories.yml`: canonical v2 manifest for the 24 supported libraries.
 - `tests/<library>/Dockerfile`: Ubuntu 24.04 harness image for one library.
-- `tests/<library>/testcases.yml`: source and usage testcase manifest.
-- `tests/<library>/tests/cases/source/*.sh`: source-facing testcase scripts.
-- `tests/<library>/tests/cases/usage/*.sh`: dependent-client testcase scripts.
+- `tests/<library>/testcases.yml`: library-level metadata (apt packages and
+  schema). Per-testcase metadata lives in the script files themselves.
+- `tests/<library>/tests/cases/source/<id>.sh`: one source-facing testcase per
+  file, self-describing via `@testcase` header directives.
+- `tests/<library>/tests/cases/usage/<id>.sh`: one dependent-client testcase
+  per file, self-describing via `@testcase` header directives.
 - `tests/<library>/tests/fixtures/dependents.json`: compact dependent-client
   fixture data used by usage testcases.
 - `tests/<library>/tests/fixtures/samples/`: small non-source sample inputs
@@ -37,18 +40,36 @@ checkout.
 - `libraries`: fixed-order entries with `name`, canonical `apt_packages`,
   `testcases`, and `fixtures.dependents`.
 
-Each `tests/<library>/testcases.yml` uses `schema_version: 1` and contains:
+Each `tests/<library>/testcases.yml` uses `schema_version: 1` and contains
+only library-level fields:
 
 - `library`: the library name, matching `repositories.yml`.
 - `apt_packages`: the exact canonical package list for that library.
-- `testcases`: entries with `id`, `title`, `description`, `kind`, `command`,
-  `timeout_seconds`, `tags`, optional `requires`, and `client_application` for
-  usage cases.
 
-`kind` is either `source` or `usage`. Source cases must run a script under
-`tests/<library>/tests/cases/source/`; usage cases must run a script under
-`tests/<library>/tests/cases/usage/` and name a client present in
-`tests/<library>/tests/fixtures/dependents.json`.
+Per-testcase metadata is discovered from the filesystem. Each script under
+`tests/<library>/tests/cases/source/<id>.sh` or
+`tests/<library>/tests/cases/usage/<id>.sh` declares its own metadata in a
+header block of `# @<key>: <value>` directives placed immediately after the
+shebang. The `id` is taken from the filename and the `kind` (`source` /
+`usage`) from the parent directory.
+
+```bash
+#!/usr/bin/env bash
+# @testcase: pngfix-fixture-handling
+# @title: pngfix fixture handling
+# @description: Runs pngfix against a checked-in PNGSuite fixture and validates output.
+# @timeout: 120
+# @tags: cli, media
+
+set -euo pipefail
+...
+```
+
+Required directives are `@testcase`, `@title`, `@description`, `@timeout`
+(integer seconds, 1..7200), and `@tags` (comma-separated, may be empty).
+Usage testcases must additionally declare `@client: <client-application>`,
+naming a client present in `tests/<library>/tests/fixtures/dependents.json`;
+source testcases must not.
 
 Dependent fixtures use `schema_version: 1`, `library`, and a non-empty
 `dependents` list. Entries may include `name`, `source_package`, `package`,

@@ -1,4 +1,11 @@
 #!/usr/bin/env bash
+# @testcase: usage-minisign-sign-verify
+# @title: minisign signs and verifies
+# @description: Signs a payload with minisign and verifies it through libsodium-backed signatures.
+# @timeout: 180
+# @tags: usage, crypto
+# @client: minisign
+
 set -euo pipefail
 source /validator/tests/_shared/runtime_helpers.sh
 

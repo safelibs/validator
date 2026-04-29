@@ -1,4 +1,10 @@
 #!/usr/bin/env bash
+# @testcase: c-api-buffer-roundtrip
+# @title: libbz2 C API round trip
+# @description: Compiles a libbz2 buffer compression and decompression round trip.
+# @timeout: 120
+# @tags: api, compile
+
 set -euo pipefail
 source /validator/tests/_shared/runtime_helpers.sh
 

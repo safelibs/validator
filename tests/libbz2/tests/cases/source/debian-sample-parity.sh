@@ -1,4 +1,10 @@
 #!/usr/bin/env bash
+# @testcase: debian-sample-parity
+# @title: Debian sample fixture parity
+# @description: Decompresses packaged sample streams and compares them to reference fixtures.
+# @timeout: 120
+# @tags: cli, fixture
+
 set -euo pipefail
 source /validator/tests/_shared/runtime_helpers.sh
 

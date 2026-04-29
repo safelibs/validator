@@ -1,4 +1,10 @@
 #!/usr/bin/env bash
+# @testcase: streaming-c-api-smoke
+# @title: libzstd streaming C API smoke
+# @description: Compiles and runs a Zstandard streaming compression smoke program.
+# @timeout: 120
+# @tags: api, compile
+
 set -euo pipefail
 source /validator/tests/_shared/runtime_helpers.sh
 

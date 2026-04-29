@@ -1,4 +1,10 @@
 #!/usr/bin/env bash
+# @testcase: multi-stream-behavior
+# @title: xz multi stream behavior
+# @description: Concatenates xz streams and verifies decompression preserves both payloads.
+# @timeout: 120
+# @tags: cli, stream
+
 set -euo pipefail
 source /validator/tests/_shared/runtime_helpers.sh
 

@@ -1,4 +1,10 @@
 #!/usr/bin/env bash
+# @testcase: corrupted-stream-rejection
+# @title: bzip2 corrupted stream rejection
+# @description: Requires the decompressor to return failure for a corrupted stream.
+# @timeout: 120
+# @tags: cli, negative
+
 set -euo pipefail
 source /validator/tests/_shared/runtime_helpers.sh
 

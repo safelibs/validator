@@ -1,4 +1,10 @@
 #!/usr/bin/env bash
+# @testcase: malformed-tiff-rejection
+# @title: Malformed TIFF rejection
+# @description: Requires tiffinfo to fail on bytes that are not a TIFF file.
+# @timeout: 120
+# @tags: cli, negative
+
 set -euo pipefail
 source /validator/tests/_shared/runtime_helpers.sh
 

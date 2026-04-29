@@ -1,4 +1,11 @@
 #!/usr/bin/env bash
+# @testcase: usage-ffmpeg-webp-decode
+# @title: ffmpeg webp decode
+# @description: Decodes a WebP fixture to PNG with FFmpeg through libwebp.
+# @timeout: 180
+# @tags: usage, image
+# @client: ffmpeg
+
 set -euo pipefail
 source /validator/tests/_shared/runtime_helpers.sh
 

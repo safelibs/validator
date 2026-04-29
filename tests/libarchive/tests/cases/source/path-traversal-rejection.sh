@@ -1,4 +1,10 @@
 #!/usr/bin/env bash
+# @testcase: path-traversal-rejection
+# @title: Path traversal rejection
+# @description: Verifies bsdtar rejects archive entries that would escape extraction.
+# @timeout: 120
+# @tags: cli, negative
+
 set -euo pipefail
 source /validator/tests/_shared/runtime_helpers.sh
 

@@ -1,4 +1,10 @@
 #!/usr/bin/env bash
+# @testcase: allocator-hooks-edge
+# @title: Allocator hook edge behavior
+# @description: Installs custom allocator hooks and verifies allocation accounting around deletion.
+# @timeout: 120
+# @tags: api, allocator
+
 set -euo pipefail
 source /validator/tests/_shared/runtime_helpers.sh
 

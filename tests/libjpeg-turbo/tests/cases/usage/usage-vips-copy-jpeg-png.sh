@@ -1,4 +1,11 @@
 #!/usr/bin/env bash
+# @testcase: usage-vips-copy-jpeg-png
+# @title: vips copy jpeg png
+# @description: Runs vips copy jpeg png on a JPEG fixture through libjpeg-turbo.
+# @timeout: 180
+# @tags: usage, image, cli
+# @client: vips
+
 set -euo pipefail
 source /validator/tests/_shared/runtime_helpers.sh
 

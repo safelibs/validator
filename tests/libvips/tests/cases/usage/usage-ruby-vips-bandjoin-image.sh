@@ -1,4 +1,11 @@
 #!/usr/bin/env bash
+# @testcase: usage-ruby-vips-bandjoin-image
+# @title: ruby-vips bandjoin image
+# @description: Uses ruby-vips to run libvips bandjoin image behavior.
+# @timeout: 180
+# @tags: usage, ruby, image
+# @client: ruby-vips
+
 set -euo pipefail
 source /validator/tests/_shared/runtime_helpers.sh
 

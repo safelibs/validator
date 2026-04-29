@@ -1,4 +1,10 @@
 #!/usr/bin/env bash
+# @testcase: malformed-gif-rejection
+# @title: Malformed GIF rejection
+# @description: Confirms truncated GIF input is rejected by an installed giflib tool.
+# @timeout: 120
+# @tags: cli, negative
+
 set -euo pipefail
 source /validator/tests/_shared/runtime_helpers.sh
 

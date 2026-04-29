@@ -1,4 +1,10 @@
 #!/usr/bin/env bash
+# @testcase: archive-metadata-listing
+# @title: Archive metadata listing behavior
+# @description: Lists archive metadata including modes and symbolic link entries.
+# @timeout: 120
+# @tags: cli, metadata
+
 set -euo pipefail
 source /validator/tests/_shared/runtime_helpers.sh
 

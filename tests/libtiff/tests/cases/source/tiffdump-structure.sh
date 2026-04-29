@@ -1,4 +1,10 @@
 #!/usr/bin/env bash
+# @testcase: tiffdump-structure
+# @title: tiffdump structure inspection
+# @description: Runs tiffdump and checks expected TIFF structural tags are present.
+# @timeout: 120
+# @tags: cli, metadata
+
 set -euo pipefail
 source /validator/tests/_shared/runtime_helpers.sh
 

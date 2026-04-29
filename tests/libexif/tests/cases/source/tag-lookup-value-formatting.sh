@@ -1,4 +1,10 @@
 #!/usr/bin/env bash
+# @testcase: tag-lookup-value-formatting
+# @title: Tag lookup and value formatting
+# @description: Looks up EXIF tag names and formats initialized entry values.
+# @timeout: 120
+# @tags: api, format
+
 set -euo pipefail
 source /validator/tests/_shared/runtime_helpers.sh
 

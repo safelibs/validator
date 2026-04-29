@@ -1,4 +1,11 @@
 #!/usr/bin/env bash
+# @testcase: usage-python3-pygame-xvfb-display
+# @title: Pygame xvfb display
+# @description: Uses Pygame to run SDL xvfb display behavior.
+# @timeout: 180
+# @tags: usage, gui, python
+# @client: python3-pygame
+
 set -euo pipefail
 source /validator/tests/_shared/runtime_helpers.sh
 

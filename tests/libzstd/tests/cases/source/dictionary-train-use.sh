@@ -1,4 +1,10 @@
 #!/usr/bin/env bash
+# @testcase: dictionary-train-use
+# @title: zstd dictionary train use
+# @description: Trains a small dictionary, compresses with it, and decompresses with it.
+# @timeout: 120
+# @tags: cli, dictionary
+
 set -euo pipefail
 source /validator/tests/_shared/runtime_helpers.sh
 

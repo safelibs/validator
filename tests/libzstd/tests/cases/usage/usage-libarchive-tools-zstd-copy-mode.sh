@@ -1,4 +1,11 @@
 #!/usr/bin/env bash
+# @testcase: usage-libarchive-tools-zstd-copy-mode
+# @title: libarchive-tools zstd copy mode
+# @description: Runs bsdtar copy mode on a zstd-compressed archive through libzstd.
+# @timeout: 180
+# @tags: usage, archive, compression
+# @client: libarchive-tools
+
 set -euo pipefail
 source /validator/tests/_shared/runtime_helpers.sh
 

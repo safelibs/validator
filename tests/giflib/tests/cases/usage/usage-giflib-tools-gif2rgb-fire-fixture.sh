@@ -1,4 +1,11 @@
 #!/usr/bin/env bash
+# @testcase: usage-giflib-tools-gif2rgb-fire-fixture
+# @title: giflib-tools gif2rgb fire fixture
+# @description: Converts the fire GIF fixture with gif2rgb and verifies the exact RGB byte stream.
+# @timeout: 180
+# @tags: usage, cli, image
+# @client: giflib-tools
+
 set -euo pipefail
 source /validator/tests/_shared/runtime_helpers.sh
 

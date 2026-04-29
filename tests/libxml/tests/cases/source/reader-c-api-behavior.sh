@@ -1,4 +1,10 @@
 #!/usr/bin/env bash
+# @testcase: reader-c-api-behavior
+# @title: libxml reader C API behavior
+# @description: Compiles a program using xmlTextReader to stream element names.
+# @timeout: 120
+# @tags: api, reader
+
 set -euo pipefail
 source /validator/tests/_shared/runtime_helpers.sh
 

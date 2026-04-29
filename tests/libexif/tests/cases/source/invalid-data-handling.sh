@@ -1,4 +1,10 @@
 #!/usr/bin/env bash
+# @testcase: invalid-data-handling
+# @title: Invalid EXIF data handling
+# @description: Feeds invalid bytes through ExifLoader and confirms graceful empty handling.
+# @timeout: 120
+# @tags: api, negative
+
 set -euo pipefail
 source /validator/tests/_shared/runtime_helpers.sh
 

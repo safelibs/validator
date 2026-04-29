@@ -1,4 +1,11 @@
 #!/usr/bin/env bash
+# @testcase: usage-python3-pil-open-jpeg
+# @title: Pillow open jpeg
+# @description: Uses Pillow to open jpeg through libjpeg-turbo.
+# @timeout: 180
+# @tags: usage, image, python
+# @client: python3-pil
+
 set -euo pipefail
 source /validator/tests/_shared/runtime_helpers.sh
 

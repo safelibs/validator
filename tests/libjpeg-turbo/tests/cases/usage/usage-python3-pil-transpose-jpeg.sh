@@ -1,4 +1,11 @@
 #!/usr/bin/env bash
+# @testcase: usage-python3-pil-transpose-jpeg
+# @title: Pillow transpose jpeg
+# @description: Uses Pillow to transpose jpeg through libjpeg-turbo.
+# @timeout: 180
+# @tags: usage, image, python
+# @client: python3-pil
+
 set -euo pipefail
 source /validator/tests/_shared/runtime_helpers.sh
 

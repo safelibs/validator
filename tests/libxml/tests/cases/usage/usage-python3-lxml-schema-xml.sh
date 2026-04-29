@@ -1,4 +1,11 @@
 #!/usr/bin/env bash
+# @testcase: usage-python3-lxml-schema-xml
+# @title: python3-lxml schema xml
+# @description: Runs python3-lxml schema xml behavior through libxml2.
+# @timeout: 180
+# @tags: usage, xml
+# @client: python3-lxml
+
 set -euo pipefail
 source /validator/tests/_shared/runtime_helpers.sh
 

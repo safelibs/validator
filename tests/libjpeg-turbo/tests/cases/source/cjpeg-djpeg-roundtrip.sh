@@ -1,4 +1,10 @@
 #!/usr/bin/env bash
+# @testcase: cjpeg-djpeg-roundtrip
+# @title: cjpeg and djpeg round trip
+# @description: Encodes a generated PPM image and decodes it back to PPM.
+# @timeout: 120
+# @tags: cli, media
+
 set -euo pipefail
 source /validator/tests/_shared/runtime_helpers.sh
 

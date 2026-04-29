@@ -1,4 +1,11 @@
 #!/usr/bin/env bash
+# @testcase: usage-giflib-tools-giftext-headers
+# @title: giflib-tools giftext headers
+# @description: Runs giflib-tools giftext headers on a GIF fixture and checks image metadata.
+# @timeout: 180
+# @tags: usage, cli, image
+# @client: giflib-tools
+
 set -euo pipefail
 source /validator/tests/_shared/runtime_helpers.sh
 

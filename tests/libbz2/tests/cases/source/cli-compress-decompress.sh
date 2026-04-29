@@ -1,4 +1,10 @@
 #!/usr/bin/env bash
+# @testcase: cli-compress-decompress
+# @title: bzip2 command round trip
+# @description: Compresses and decompresses text through the installed bzip2 commands.
+# @timeout: 120
+# @tags: cli, roundtrip
+
 set -euo pipefail
 source /validator/tests/_shared/runtime_helpers.sh
 

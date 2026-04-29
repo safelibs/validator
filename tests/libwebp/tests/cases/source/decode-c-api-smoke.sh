@@ -1,4 +1,10 @@
 #!/usr/bin/env bash
+# @testcase: decode-c-api-smoke
+# @title: libwebp C API decode smoke
+# @description: Compiles and runs a WebP decode API program against a fixture.
+# @timeout: 120
+# @tags: api, compile
+
 set -euo pipefail
 source /validator/tests/_shared/runtime_helpers.sh
 

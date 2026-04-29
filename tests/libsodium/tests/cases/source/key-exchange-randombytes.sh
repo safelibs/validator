@@ -1,4 +1,10 @@
 #!/usr/bin/env bash
+# @testcase: key-exchange-randombytes
+# @title: libsodium key exchange randombytes
+# @description: Creates deterministic keypairs and derives matching key exchange sessions.
+# @timeout: 120
+# @tags: api, crypto
+
 set -euo pipefail
 source /validator/tests/_shared/runtime_helpers.sh
 

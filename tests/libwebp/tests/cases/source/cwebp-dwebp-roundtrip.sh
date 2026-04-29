@@ -1,4 +1,10 @@
 #!/usr/bin/env bash
+# @testcase: cwebp-dwebp-roundtrip
+# @title: cwebp dwebp round trip
+# @description: Encodes a generated PPM image to WebP and decodes it.
+# @timeout: 120
+# @tags: cli, media
+
 set -euo pipefail
 source /validator/tests/_shared/runtime_helpers.sh
 

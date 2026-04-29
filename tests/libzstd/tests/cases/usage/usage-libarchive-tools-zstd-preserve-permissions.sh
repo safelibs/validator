@@ -1,4 +1,11 @@
 #!/usr/bin/env bash
+# @testcase: usage-libarchive-tools-zstd-preserve-permissions
+# @title: libarchive-tools zstd preserve permissions
+# @description: Runs bsdtar zstd archive extraction and verifies executable permissions survive.
+# @timeout: 180
+# @tags: usage, archive, compression, metadata
+# @client: libarchive-tools
+
 set -euo pipefail
 source /validator/tests/_shared/runtime_helpers.sh
 

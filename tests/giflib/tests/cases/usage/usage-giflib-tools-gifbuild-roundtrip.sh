@@ -1,4 +1,11 @@
 #!/usr/bin/env bash
+# @testcase: usage-giflib-tools-gifbuild-roundtrip
+# @title: giflib-tools gifbuild roundtrip
+# @description: Dumps a GIF fixture to gifbuild text and rebuilds it to verify the client can round trip image structure.
+# @timeout: 180
+# @tags: usage, cli, image
+# @client: giflib-tools
+
 set -euo pipefail
 source /validator/tests/_shared/runtime_helpers.sh
 

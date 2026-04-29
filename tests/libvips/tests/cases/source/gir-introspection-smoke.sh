@@ -1,4 +1,10 @@
 #!/usr/bin/env bash
+# @testcase: gir-introspection-smoke
+# @title: Vips introspection smoke
+# @description: Queries the installed Vips GObject introspection namespace metadata.
+# @timeout: 120
+# @tags: introspection, metadata
+
 set -euo pipefail
 source /validator/tests/_shared/runtime_helpers.sh
 

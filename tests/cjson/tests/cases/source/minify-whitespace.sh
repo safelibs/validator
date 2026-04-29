@@ -1,4 +1,10 @@
 #!/usr/bin/env bash
+# @testcase: minify-whitespace
+# @title: Minify JSON whitespace behavior
+# @description: Checks cJSON minification removes layout whitespace without altering string data.
+# @timeout: 120
+# @tags: api, minify
+
 set -euo pipefail
 source /validator/tests/_shared/runtime_helpers.sh
 

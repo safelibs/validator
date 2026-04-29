@@ -1,4 +1,11 @@
 #!/usr/bin/env bash
+# @testcase: usage-libarchive-tools-xz-symlink
+# @title: libarchive-tools xz symlink
+# @description: Runs bsdtar symlink on a xz-compressed archive through liblzma.
+# @timeout: 180
+# @tags: usage, archive, compression
+# @client: libarchive-tools
+
 set -euo pipefail
 source /validator/tests/_shared/runtime_helpers.sh
 

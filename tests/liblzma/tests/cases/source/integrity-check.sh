@@ -1,4 +1,10 @@
 #!/usr/bin/env bash
+# @testcase: integrity-check
+# @title: xz integrity check
+# @description: Creates a CRC64 checked stream and verifies it with xz test mode.
+# @timeout: 120
+# @tags: cli, integrity
+
 set -euo pipefail
 source /validator/tests/_shared/runtime_helpers.sh
 

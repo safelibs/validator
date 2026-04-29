@@ -1,4 +1,10 @@
 #!/usr/bin/env bash
+# @testcase: metadata-header-checks
+# @title: vips metadata header checks
+# @description: Inspects detailed image metadata using vipsheader on a PNG fixture.
+# @timeout: 120
+# @tags: cli, metadata
+
 set -euo pipefail
 source /validator/tests/_shared/runtime_helpers.sh
 

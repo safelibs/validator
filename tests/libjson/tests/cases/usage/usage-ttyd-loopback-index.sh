@@ -1,4 +1,11 @@
 #!/usr/bin/env bash
+# @testcase: usage-ttyd-loopback-index
+# @title: ttyd loopback web session
+# @description: Starts ttyd on loopback and requests its web page to exercise json-c through a service-style client.
+# @timeout: 180
+# @tags: usage, service, json
+# @client: ttyd
+
 set -euo pipefail
 source /validator/tests/_shared/runtime_helpers.sh
 

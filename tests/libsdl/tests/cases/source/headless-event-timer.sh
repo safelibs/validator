@@ -1,4 +1,10 @@
 #!/usr/bin/env bash
+# @testcase: headless-event-timer
+# @title: Headless event timer behavior
+# @description: Runs SDL timer and event APIs under dummy video settings.
+# @timeout: 120
+# @tags: api, event
+
 set -euo pipefail
 source /validator/tests/_shared/runtime_helpers.sh
 

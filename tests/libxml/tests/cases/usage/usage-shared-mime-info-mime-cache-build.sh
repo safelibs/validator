@@ -1,4 +1,11 @@
 #!/usr/bin/env bash
+# @testcase: usage-shared-mime-info-mime-cache-build
+# @title: shared-mime-info mime cache build
+# @description: Runs update-mime-database against the staged freedesktop MIME packages and verifies the rebuilt mime.cache plus globs2 entries for text/plain and application/xml, exercising libxml2 SAX parsing through shared-mime-info.
+# @timeout: 180
+# @tags: usage, xml, mime, abi-canary
+# @client: shared-mime-info
+
 set -euo pipefail
 source /validator/tests/_shared/runtime_helpers.sh
 

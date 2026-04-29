@@ -1,4 +1,11 @@
 #!/usr/bin/env bash
+# @testcase: usage-libzmq5-curve-capability
+# @title: ZeroMQ reports CURVE capability
+# @description: Compiles a ZeroMQ capability check that queries libsodium-backed CURVE support.
+# @timeout: 180
+# @tags: usage, compile
+# @client: libzmq5
+
 set -euo pipefail
 source /validator/tests/_shared/runtime_helpers.sh
 

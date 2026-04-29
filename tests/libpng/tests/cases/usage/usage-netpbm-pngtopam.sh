@@ -1,4 +1,11 @@
 #!/usr/bin/env bash
+# @testcase: usage-netpbm-pngtopam
+# @title: netpbm pngtopam
+# @description: Runs netpbm pngtopam through libpng on a PNG fixture.
+# @timeout: 180
+# @tags: usage, image
+# @client: netpbm
+
 set -euo pipefail
 source /validator/tests/_shared/runtime_helpers.sh
 

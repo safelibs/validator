@@ -1,4 +1,11 @@
 #!/usr/bin/env bash
+# @testcase: usage-python3-pil-thumbnail-jpeg
+# @title: Pillow thumbnail jpeg
+# @description: Uses Pillow to thumbnail jpeg through libjpeg-turbo.
+# @timeout: 180
+# @tags: usage, image, python
+# @client: python3-pil
+
 set -euo pipefail
 source /validator/tests/_shared/runtime_helpers.sh
 

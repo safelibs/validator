@@ -1,4 +1,10 @@
 #!/usr/bin/env bash
+# @testcase: secretbox-roundtrip
+# @title: libsodium secretbox round trip
+# @description: Encrypts and decrypts a message with crypto_secretbox_easy public APIs.
+# @timeout: 120
+# @tags: api, crypto
+
 set -euo pipefail
 source /validator/tests/_shared/runtime_helpers.sh
 

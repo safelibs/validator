@@ -1,4 +1,10 @@
 #!/usr/bin/env bash
+# @testcase: utils-patch-pointer
+# @title: JSON pointer patch behavior
+# @description: Applies a JSON patch and resolves the changed value through cJSON utilities.
+# @timeout: 120
+# @tags: api, patch
+
 set -euo pipefail
 source /validator/tests/_shared/runtime_helpers.sh
 

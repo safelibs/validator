@@ -1,4 +1,10 @@
 #!/usr/bin/env bash
+# @testcase: tiffcp-copy
+# @title: tiffcp copy behavior
+# @description: Copies a TIFF fixture and confirms the copied image remains readable.
+# @timeout: 120
+# @tags: cli, media
+
 set -euo pipefail
 source /validator/tests/_shared/runtime_helpers.sh
 

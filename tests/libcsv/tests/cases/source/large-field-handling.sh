@@ -1,4 +1,10 @@
 #!/usr/bin/env bash
+# @testcase: large-field-handling
+# @title: Large field handling
+# @description: Parses a large field and confirms the callback receives all bytes.
+# @timeout: 120
+# @tags: api, large-field
+
 set -euo pipefail
 source /validator/tests/_shared/runtime_helpers.sh
 

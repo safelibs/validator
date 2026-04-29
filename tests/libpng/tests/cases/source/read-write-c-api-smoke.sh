@@ -1,4 +1,10 @@
 #!/usr/bin/env bash
+# @testcase: read-write-c-api-smoke
+# @title: libpng read write C API smoke
+# @description: Compiles a libpng program that writes and reads a PNG image.
+# @timeout: 120
+# @tags: api, compile
+
 set -euo pipefail
 source /validator/tests/_shared/runtime_helpers.sh
 

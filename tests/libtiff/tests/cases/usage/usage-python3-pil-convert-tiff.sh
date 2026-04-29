@@ -1,4 +1,11 @@
 #!/usr/bin/env bash
+# @testcase: usage-python3-pil-convert-tiff
+# @title: Pillow convert tiff
+# @description: Uses Pillow to run TIFF convert tiff behavior through libtiff.
+# @timeout: 180
+# @tags: usage, image, python
+# @client: python3-pil
+
 set -euo pipefail
 source /validator/tests/_shared/runtime_helpers.sh
 

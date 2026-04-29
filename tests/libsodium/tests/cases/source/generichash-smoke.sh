@@ -1,4 +1,10 @@
 #!/usr/bin/env bash
+# @testcase: generichash-smoke
+# @title: libsodium hash behavior
+# @description: Computes a libsodium generic hash and prints the digest prefix.
+# @timeout: 120
+# @tags: api, crypto
+
 set -euo pipefail
 source /validator/tests/_shared/runtime_helpers.sh
 

@@ -1,4 +1,11 @@
 #!/usr/bin/env bash
+# @testcase: usage-vips-extract-band-jpeg
+# @title: vips extract JPEG band
+# @description: Extracts a JPEG color band with vips and verifies the single-band image output.
+# @timeout: 180
+# @tags: usage, image, cli
+# @client: vips
+
 set -euo pipefail
 source /validator/tests/_shared/runtime_helpers.sh
 

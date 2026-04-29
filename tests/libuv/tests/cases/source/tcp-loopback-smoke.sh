@@ -1,4 +1,10 @@
 #!/usr/bin/env bash
+# @testcase: tcp-loopback-smoke
+# @title: libuv TCP loopback smoke
+# @description: Creates a loopback TCP server and client through libuv APIs.
+# @timeout: 120
+# @tags: api, tcp
+
 set -euo pipefail
 source /validator/tests/_shared/runtime_helpers.sh
 

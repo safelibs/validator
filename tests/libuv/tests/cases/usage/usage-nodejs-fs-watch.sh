@@ -1,4 +1,11 @@
 #!/usr/bin/env bash
+# @testcase: usage-nodejs-fs-watch
+# @title: Node.js fs.watch change event
+# @description: Runs Node.js fs.watch on a temporary file and verifies a change event arrives through the event loop.
+# @timeout: 180
+# @tags: usage, event-loop, fs
+# @client: nodejs
+
 set -euo pipefail
 source /validator/tests/_shared/runtime_helpers.sh
 

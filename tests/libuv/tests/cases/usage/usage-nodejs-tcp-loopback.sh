@@ -1,4 +1,11 @@
 #!/usr/bin/env bash
+# @testcase: usage-nodejs-tcp-loopback
+# @title: Node.js tcp loopback
+# @description: Runs Node.js tcp loopback behavior to exercise libuv.
+# @timeout: 180
+# @tags: usage, event-loop
+# @client: nodejs
+
 set -euo pipefail
 source /validator/tests/_shared/runtime_helpers.sh
 

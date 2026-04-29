@@ -1,4 +1,10 @@
 #!/usr/bin/env bash
+# @testcase: loader-dumper-cases
+# @title: YAML loader dumper cases
+# @description: Loads multiple YAML documents and counts them through libyaml.
+# @timeout: 120
+# @tags: api, parser
+
 set -euo pipefail
 source /validator/tests/_shared/runtime_helpers.sh
 

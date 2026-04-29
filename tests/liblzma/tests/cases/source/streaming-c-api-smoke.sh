@@ -1,4 +1,10 @@
 #!/usr/bin/env bash
+# @testcase: streaming-c-api-smoke
+# @title: liblzma streaming C API smoke
+# @description: Compiles and runs a liblzma streaming encoder smoke program.
+# @timeout: 120
+# @tags: api, compile
+
 set -euo pipefail
 source /validator/tests/_shared/runtime_helpers.sh
 

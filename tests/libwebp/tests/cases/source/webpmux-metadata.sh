@@ -1,4 +1,10 @@
 #!/usr/bin/env bash
+# @testcase: webpmux-metadata
+# @title: webpmux metadata behavior
+# @description: Adds EXIF metadata to a WebP file and reads mux information.
+# @timeout: 120
+# @tags: cli, metadata
+
 set -euo pipefail
 source /validator/tests/_shared/runtime_helpers.sh
 

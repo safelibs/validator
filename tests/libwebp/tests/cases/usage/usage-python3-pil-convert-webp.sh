@@ -1,4 +1,11 @@
 #!/usr/bin/env bash
+# @testcase: usage-python3-pil-convert-webp
+# @title: Pillow convert webp
+# @description: Converts a WebP fixture to PNG with Pillow through libwebp decoding.
+# @timeout: 180
+# @tags: usage, image, python
+# @client: python3-pil
+
 set -euo pipefail
 source /validator/tests/_shared/runtime_helpers.sh
 

@@ -1,4 +1,11 @@
 #!/usr/bin/env bash
+# @testcase: usage-giflib-tools-giftext-interlaced-fixture
+# @title: giflib-tools giftext interlaced fixture
+# @description: Inspects an interlaced GIF fixture with giftext and verifies image metadata output.
+# @timeout: 180
+# @tags: usage, cli, image
+# @client: giflib-tools
+
 set -euo pipefail
 source /validator/tests/_shared/runtime_helpers.sh
 

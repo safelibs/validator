@@ -1,4 +1,11 @@
 #!/usr/bin/env bash
+# @testcase: usage-ruby-vips-average-image
+# @title: ruby-vips average image
+# @description: Uses ruby-vips to run libvips average image behavior.
+# @timeout: 180
+# @tags: usage, ruby, image
+# @client: ruby-vips
+
 set -euo pipefail
 source /validator/tests/_shared/runtime_helpers.sh
 

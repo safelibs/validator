@@ -1,4 +1,10 @@
 #!/usr/bin/env bash
+# @testcase: tokener-parse
+# @title: json-c tokener parse
+# @description: Parses nested JSON through json-c tokener APIs and reads fields.
+# @timeout: 120
+# @tags: api, parser
+
 set -euo pipefail
 source /validator/tests/_shared/runtime_helpers.sh
 
