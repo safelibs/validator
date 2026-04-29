@@ -18,7 +18,7 @@
   "duration_seconds": 0.0,
   "result_path": "results/libjpeg-turbo/progressive-grayscale-conversion.json",
   "log_path": "logs/libjpeg-turbo/progressive-grayscale-conversion.log",
-  "cast_path": "casts/libjpeg-turbo/progressive-grayscale-conversion.cast",
+  "cast_path": null,
   "exit_code": 0,
   "command": [
     "bash",

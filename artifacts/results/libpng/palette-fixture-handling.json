@@ -18,7 +18,7 @@
   "duration_seconds": 0.0,
   "result_path": "results/libpng/palette-fixture-handling.json",
   "log_path": "logs/libpng/palette-fixture-handling.log",
-  "cast_path": "casts/libpng/palette-fixture-handling.cast",
+  "cast_path": null,
   "exit_code": 0,
   "command": [
     "bash",

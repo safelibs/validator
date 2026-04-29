@@ -18,7 +18,7 @@
   "duration_seconds": 0.0,
   "result_path": "results/giflib/giftext-metadata.json",
   "log_path": "logs/giflib/giftext-metadata.log",
-  "cast_path": "casts/giflib/giftext-metadata.cast",
+  "cast_path": null,
   "exit_code": 0,
   "command": [
     "bash",

@@ -18,7 +18,7 @@
   "duration_seconds": 0.0,
   "result_path": "results/libpng/malformed-png-rejection.json",
   "log_path": "logs/libpng/malformed-png-rejection.log",
-  "cast_path": "casts/libpng/malformed-png-rejection.cast",
+  "cast_path": null,
   "exit_code": 0,
   "command": [
     "bash",

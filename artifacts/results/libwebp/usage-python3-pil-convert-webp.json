@@ -19,7 +19,7 @@
   "duration_seconds": 0.0,
   "result_path": "results/libwebp/usage-python3-pil-convert-webp.json",
   "log_path": "logs/libwebp/usage-python3-pil-convert-webp.log",
-  "cast_path": "casts/libwebp/usage-python3-pil-convert-webp.cast",
+  "cast_path": null,
   "exit_code": 0,
   "command": [
     "bash",

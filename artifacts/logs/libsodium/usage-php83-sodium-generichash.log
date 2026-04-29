@@ -1,5 +1,5 @@
-$ docker run --rm -t --mount type=bind,src=/tmp/validator-status-libsodium-usage-php83-sodium-generichash,dst=/validator/status validator-libsodium-shared bash -lc 'set -euo pipefail
+$ docker run --rm --mount type=bind,src=/tmp/validator-status-libsodium-usage-php83-sodium-generichash,dst=/validator/status validator-libsodium-shared bash -lc 'set -euo pipefail
 /validator/tests/_shared/install_override_debs.sh
-exec /validator/tests/_shared/run_library_tests.sh "$@"' validator-testcase libsodium usage-php83-sodium-generichash -- bash -c 'PS4=$1; shift; set -x; source "$@"' validator-xtrace '__VALIDATOR_XTRACE__ ' /validator/tests/libsodium/tests/cases/usage/usage-php83-sodium-generichash.sh
-no override packages found; continuing with apt originals
-3cf2d09da453bbdd6b68d8a1acd5f15ba23ba46d4ff087592b3d319432500a50
+exec /validator/tests/_shared/run_library_tests.sh "$@"' validator-testcase libsodium usage-php83-sodium-generichash -- bash /validator/tests/libsodium/tests/cases/usage/usage-php83-sodium-generichash.sh
+no override packages found; continuing with apt originals
+3cf2d09da453bbdd6b68d8a1acd5f15ba23ba46d4ff087592b3d319432500a50

@@ -19,7 +19,7 @@
   "duration_seconds": 0.0,
   "result_path": "results/libpng/usage-pngquant-posterize-png.json",
   "log_path": "logs/libpng/usage-pngquant-posterize-png.log",
-  "cast_path": "casts/libpng/usage-pngquant-posterize-png.cast",
+  "cast_path": null,
   "exit_code": 0,
   "command": [
     "bash",

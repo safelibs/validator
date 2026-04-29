@@ -18,7 +18,7 @@
   "duration_seconds": 0.0,
   "result_path": "results/libarchive/usage-python-libarchive-c-directory-entry.json",
   "log_path": "logs/libarchive/usage-python-libarchive-c-directory-entry.log",
-  "cast_path": "casts/libarchive/usage-python-libarchive-c-directory-entry.cast",
+  "cast_path": null,
   "exit_code": 0,
   "command": [
     "bash",

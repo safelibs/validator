@@ -18,7 +18,7 @@
   "duration_seconds": 0.0,
   "result_path": "results/libc6/usage-coreutils-sort.json",
   "log_path": "logs/libc6/usage-coreutils-sort.log",
-  "cast_path": "casts/libc6/usage-coreutils-sort.cast",
+  "cast_path": null,
   "exit_code": 0,
   "command": [
     "bash",

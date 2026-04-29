@@ -1,2 +1,0 @@
-$ docker build --tag validator-liblzma-shared --file /tmp/validator-run-matrix-liblzma/liblzma/Dockerfile /tmp/validator-run-matrix-liblzma
-docker build completed

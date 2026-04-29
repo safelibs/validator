@@ -18,7 +18,7 @@
   "duration_seconds": 0.0,
   "result_path": "results/libsdl/installed-test-binary.json",
   "log_path": "logs/libsdl/installed-test-binary.log",
-  "cast_path": "casts/libsdl/installed-test-binary.cast",
+  "cast_path": null,
   "exit_code": 0,
   "command": [
     "bash",

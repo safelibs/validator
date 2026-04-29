@@ -18,7 +18,7 @@
   "duration_seconds": 0.0,
   "result_path": "results/liblzma/streaming-c-api-smoke.json",
   "log_path": "logs/liblzma/streaming-c-api-smoke.log",
-  "cast_path": "casts/liblzma/streaming-c-api-smoke.cast",
+  "cast_path": null,
   "exit_code": 0,
   "command": [
     "bash",

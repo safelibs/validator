@@ -18,7 +18,7 @@
   "duration_seconds": 0.0,
   "result_path": "results/libsodium/usage-php83-sodium-generichash.json",
   "log_path": "logs/libsodium/usage-php83-sodium-generichash.log",
-  "cast_path": "casts/libsodium/usage-php83-sodium-generichash.cast",
+  "cast_path": null,
   "exit_code": 0,
   "command": [
     "bash",

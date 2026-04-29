@@ -1,11 +1,11 @@
-$ docker run --rm -t --mount type=bind,src=/tmp/validator-status-libcsv-parser-callback-behavior,dst=/validator/status validator-libcsv-shared bash -lc 'set -euo pipefail
+$ docker run --rm --mount type=bind,src=/tmp/validator-status-libcsv-parser-callback-behavior,dst=/validator/status validator-libcsv-shared bash -lc 'set -euo pipefail
 /validator/tests/_shared/install_override_debs.sh
-exec /validator/tests/_shared/run_library_tests.sh "$@"' validator-testcase libcsv parser-callback-behavior -- bash -c 'PS4=$1; shift; set -x; source "$@"' validator-xtrace '__VALIDATOR_XTRACE__ ' /validator/tests/libcsv/tests/cases/source/parser-callback-behavior.sh
-no override packages found; continuing with apt originals
-field:name
-field:score
-row
-field:alpha
-field:42
-row
-fields=4 rows=2
+exec /validator/tests/_shared/run_library_tests.sh "$@"' validator-testcase libcsv parser-callback-behavior -- bash /validator/tests/libcsv/tests/cases/source/parser-callback-behavior.sh
+no override packages found; continuing with apt originals
+field:name
+field:score
+row
+field:alpha
+field:42
+row
+fields=4 rows=2

@@ -18,7 +18,7 @@
   "duration_seconds": 0.0,
   "result_path": "results/libjson/refcount-object-mutation.json",
   "log_path": "logs/libjson/refcount-object-mutation.log",
-  "cast_path": "casts/libjson/refcount-object-mutation.cast",
+  "cast_path": null,
   "exit_code": 0,
   "command": [
     "bash",

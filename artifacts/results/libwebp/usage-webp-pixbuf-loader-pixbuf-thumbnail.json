@@ -18,7 +18,7 @@
   "duration_seconds": 0.0,
   "result_path": "results/libwebp/usage-webp-pixbuf-loader-pixbuf-thumbnail.json",
   "log_path": "logs/libwebp/usage-webp-pixbuf-loader-pixbuf-thumbnail.log",
-  "cast_path": "casts/libwebp/usage-webp-pixbuf-loader-pixbuf-thumbnail.cast",
+  "cast_path": null,
   "exit_code": 0,
   "command": [
     "bash",

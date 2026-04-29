@@ -20,7 +20,7 @@
   "duration_seconds": 0.0,
   "result_path": "results/libtiff/usage-python3-pil-deflate-tiff.json",
   "log_path": "logs/libtiff/usage-python3-pil-deflate-tiff.log",
-  "cast_path": "casts/libtiff/usage-python3-pil-deflate-tiff.cast",
+  "cast_path": null,
   "exit_code": 0,
   "command": [
     "bash",

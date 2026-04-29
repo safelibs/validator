@@ -18,7 +18,7 @@
   "duration_seconds": 0.0,
   "result_path": "results/libzstd/multi-frame-behavior.json",
   "log_path": "logs/libzstd/multi-frame-behavior.log",
-  "cast_path": "casts/libzstd/multi-frame-behavior.cast",
+  "cast_path": null,
   "exit_code": 0,
   "command": [
     "bash",

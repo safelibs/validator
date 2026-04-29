@@ -1,8 +1,8 @@
-$ docker run --rm -t --mount type=bind,src=/tmp/validator-status-libjpeg-turbo-cjpeg-djpeg-roundtrip,dst=/validator/status validator-libjpeg-turbo-shared bash -lc 'set -euo pipefail
+$ docker run --rm --mount type=bind,src=/tmp/validator-status-libjpeg-turbo-cjpeg-djpeg-roundtrip,dst=/validator/status validator-libjpeg-turbo-shared bash -lc 'set -euo pipefail
 /validator/tests/_shared/install_override_debs.sh
-exec /validator/tests/_shared/run_library_tests.sh "$@"' validator-testcase libjpeg-turbo cjpeg-djpeg-roundtrip -- bash -c 'PS4=$1; shift; set -x; source "$@"' validator-xtrace '__VALIDATOR_XTRACE__ ' /validator/tests/libjpeg-turbo/tests/cases/source/cjpeg-djpeg-roundtrip.sh
-no override packages found; continuing with apt originals
-P6
-2 2
-255
-/tmp/validator-tmp/a.jpg: JPEG image data, JFIF standard 1.01, aspect ratio, density 1x1, segment length 16, baseline, precision 8, 2x2, components 3
+exec /validator/tests/_shared/run_library_tests.sh "$@"' validator-testcase libjpeg-turbo cjpeg-djpeg-roundtrip -- bash /validator/tests/libjpeg-turbo/tests/cases/source/cjpeg-djpeg-roundtrip.sh
+no override packages found; continuing with apt originals
+P6
+2 2
+255
+/tmp/validator-tmp/a.jpg: JPEG image data, JFIF standard 1.01, aspect ratio, density 1x1, segment length 16, baseline, precision 8, 2x2, components 3

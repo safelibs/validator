@@ -1,5 +1,5 @@
-$ docker run --rm -t --mount type=bind,src=/tmp/validator-status-libuv-usage-nodejs-stat-call,dst=/validator/status validator-libuv-shared bash -lc 'set -euo pipefail
+$ docker run --rm --mount type=bind,src=/tmp/validator-status-libuv-usage-nodejs-stat-call,dst=/validator/status validator-libuv-shared bash -lc 'set -euo pipefail
 /validator/tests/_shared/install_override_debs.sh
-exec /validator/tests/_shared/run_library_tests.sh "$@"' validator-testcase libuv usage-nodejs-stat-call -- bash -c 'PS4=$1; shift; set -x; source "$@"' validator-xtrace '__VALIDATOR_XTRACE__ ' /validator/tests/libuv/tests/cases/usage/usage-nodejs-stat-call.sh
-no override packages found; continuing with apt originals
-size=5
+exec /validator/tests/_shared/run_library_tests.sh "$@"' validator-testcase libuv usage-nodejs-stat-call -- bash /validator/tests/libuv/tests/cases/usage/usage-nodejs-stat-call.sh
+no override packages found; continuing with apt originals
+size=5

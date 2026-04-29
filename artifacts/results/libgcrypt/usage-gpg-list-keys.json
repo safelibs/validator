@@ -18,7 +18,7 @@
   "duration_seconds": 0.0,
   "result_path": "results/libgcrypt/usage-gpg-list-keys.json",
   "log_path": "logs/libgcrypt/usage-gpg-list-keys.log",
-  "cast_path": "casts/libgcrypt/usage-gpg-list-keys.cast",
+  "cast_path": null,
   "exit_code": 0,
   "command": [
     "bash",

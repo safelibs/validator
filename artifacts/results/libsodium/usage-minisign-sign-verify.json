@@ -18,7 +18,7 @@
   "duration_seconds": 0.0,
   "result_path": "results/libsodium/usage-minisign-sign-verify.json",
   "log_path": "logs/libsodium/usage-minisign-sign-verify.log",
-  "cast_path": "casts/libsodium/usage-minisign-sign-verify.cast",
+  "cast_path": null,
   "exit_code": 0,
   "command": [
     "bash",

@@ -19,7 +19,7 @@
   "duration_seconds": 0.0,
   "result_path": "results/libzstd/usage-libarchive-tools-zstd-filter-auto.json",
   "log_path": "logs/libzstd/usage-libarchive-tools-zstd-filter-auto.log",
-  "cast_path": "casts/libzstd/usage-libarchive-tools-zstd-filter-auto.cast",
+  "cast_path": null,
   "exit_code": 0,
   "command": [
     "bash",

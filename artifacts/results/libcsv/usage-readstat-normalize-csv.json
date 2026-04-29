@@ -18,7 +18,7 @@
   "duration_seconds": 0.0,
   "result_path": "results/libcsv/usage-readstat-normalize-csv.json",
   "log_path": "logs/libcsv/usage-readstat-normalize-csv.log",
-  "cast_path": "casts/libcsv/usage-readstat-normalize-csv.cast",
+  "cast_path": null,
   "exit_code": 0,
   "command": [
     "bash",

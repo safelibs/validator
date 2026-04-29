@@ -1,2 +1,0 @@
-$ docker build --tag validator-libxml-shared --file /tmp/validator-run-matrix-libxml/libxml/Dockerfile /tmp/validator-run-matrix-libxml
-docker build completed

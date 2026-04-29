@@ -18,7 +18,7 @@
   "duration_seconds": 0.0,
   "result_path": "results/libcurl/usage-curl-version-features.json",
   "log_path": "logs/libcurl/usage-curl-version-features.log",
-  "cast_path": "casts/libcurl/usage-curl-version-features.cast",
+  "cast_path": null,
   "exit_code": 0,
   "command": [
     "bash",

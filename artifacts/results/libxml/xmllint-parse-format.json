@@ -18,7 +18,7 @@
   "duration_seconds": 0.0,
   "result_path": "results/libxml/xmllint-parse-format.json",
   "log_path": "logs/libxml/xmllint-parse-format.log",
-  "cast_path": "casts/libxml/xmllint-parse-format.cast",
+  "cast_path": null,
   "exit_code": 0,
   "command": [
     "bash",

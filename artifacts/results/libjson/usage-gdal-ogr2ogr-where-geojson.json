@@ -18,7 +18,7 @@
   "duration_seconds": 0.0,
   "result_path": "results/libjson/usage-gdal-ogr2ogr-where-geojson.json",
   "log_path": "logs/libjson/usage-gdal-ogr2ogr-where-geojson.log",
-  "cast_path": "casts/libjson/usage-gdal-ogr2ogr-where-geojson.cast",
+  "cast_path": null,
   "exit_code": 0,
   "command": [
     "bash",

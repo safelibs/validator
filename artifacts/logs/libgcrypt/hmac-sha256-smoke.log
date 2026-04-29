@@ -1,4 +1,4 @@
-$ docker run --rm -t --mount type=bind,src=/tmp/validator-status-libgcrypt-hmac-sha256-smoke,dst=/validator/status validator-libgcrypt-shared bash -lc 'set -euo pipefail
+$ docker run --rm --mount type=bind,src=/tmp/validator-status-libgcrypt-hmac-sha256-smoke,dst=/validator/status validator-libgcrypt-shared bash -lc 'set -euo pipefail
 /validator/tests/_shared/install_override_debs.sh
-exec /validator/tests/_shared/run_library_tests.sh "$@"' validator-testcase libgcrypt hmac-sha256-smoke -- bash -c 'PS4=$1; shift; set -x; source "$@"' validator-xtrace '__VALIDATOR_XTRACE__ ' /validator/tests/libgcrypt/tests/cases/source/run.sh hmac-sha256-smoke
+exec /validator/tests/_shared/run_library_tests.sh "$@"' validator-testcase libgcrypt hmac-sha256-smoke -- bash /validator/tests/libgcrypt/tests/cases/source/run.sh hmac-sha256-smoke
 no override packages found; continuing with apt originals

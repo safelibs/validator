@@ -1,5 +1,5 @@
-$ docker run --rm -t --mount type=bind,src=/tmp/validator-status-libjpeg-turbo-usage-vips-thumbnail-jpeg,dst=/validator/status validator-libjpeg-turbo-shared bash -lc 'set -euo pipefail
+$ docker run --rm --mount type=bind,src=/tmp/validator-status-libjpeg-turbo-usage-vips-thumbnail-jpeg,dst=/validator/status validator-libjpeg-turbo-shared bash -lc 'set -euo pipefail
 /validator/tests/_shared/install_override_debs.sh
-exec /validator/tests/_shared/run_library_tests.sh "$@"' validator-testcase libjpeg-turbo usage-vips-thumbnail-jpeg -- bash -c 'PS4=$1; shift; set -x; source "$@"' validator-xtrace '__VALIDATOR_XTRACE__ ' /validator/tests/libjpeg-turbo/tests/cases/usage/usage-vips-thumbnail-jpeg.sh
-no override packages found; continuing with apt originals
-/tmp/validator-tmp/thumb.jpg: 2x2 uchar, 3 bands, srgb, jpegload
+exec /validator/tests/_shared/run_library_tests.sh "$@"' validator-testcase libjpeg-turbo usage-vips-thumbnail-jpeg -- bash /validator/tests/libjpeg-turbo/tests/cases/usage/usage-vips-thumbnail-jpeg.sh
+no override packages found; continuing with apt originals
+/tmp/validator-tmp/thumb.jpg: 2x2 uchar, 3 bands, srgb, jpegload

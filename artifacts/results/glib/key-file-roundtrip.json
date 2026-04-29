@@ -18,7 +18,7 @@
   "duration_seconds": 0.0,
   "result_path": "results/glib/key-file-roundtrip.json",
   "log_path": "logs/glib/key-file-roundtrip.log",
-  "cast_path": "casts/glib/key-file-roundtrip.cast",
+  "cast_path": null,
   "exit_code": 0,
   "command": [
     "bash",

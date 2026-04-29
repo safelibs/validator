@@ -18,7 +18,7 @@
   "duration_seconds": 0.0,
   "result_path": "results/libarchive/path-traversal-rejection.json",
   "log_path": "logs/libarchive/path-traversal-rejection.log",
-  "cast_path": "casts/libarchive/path-traversal-rejection.cast",
+  "cast_path": null,
   "exit_code": 0,
   "command": [
     "bash",

@@ -1,4 +1,4 @@
-$ docker run --rm -t --mount type=bind,src=/tmp/validator-status-libc6-locale-collation,dst=/validator/status validator-libc6-shared bash -lc 'set -euo pipefail
+$ docker run --rm --mount type=bind,src=/tmp/validator-status-libc6-locale-collation,dst=/validator/status validator-libc6-shared bash -lc 'set -euo pipefail
 /validator/tests/_shared/install_override_debs.sh
-exec /validator/tests/_shared/run_library_tests.sh "$@"' validator-testcase libc6 locale-collation -- bash -c 'PS4=$1; shift; set -x; source "$@"' validator-xtrace '__VALIDATOR_XTRACE__ ' /validator/tests/libc6/tests/cases/source/run.sh locale-collation
+exec /validator/tests/_shared/run_library_tests.sh "$@"' validator-testcase libc6 locale-collation -- bash /validator/tests/libc6/tests/cases/source/run.sh locale-collation
 no override packages found; continuing with apt originals

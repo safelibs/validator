@@ -18,7 +18,7 @@
   "duration_seconds": 0.0,
   "result_path": "results/libcsv/usage-readstat-escaped-quotes-csv.json",
   "log_path": "logs/libcsv/usage-readstat-escaped-quotes-csv.log",
-  "cast_path": "casts/libcsv/usage-readstat-escaped-quotes-csv.cast",
+  "cast_path": null,
   "exit_code": 0,
   "command": [
     "bash",

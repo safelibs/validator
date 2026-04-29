@@ -1,5 +1,5 @@
-$ docker run --rm -t --mount type=bind,src=/tmp/validator-status-libsodium-usage-python3-nacl-public-box,dst=/validator/status validator-libsodium-shared bash -lc 'set -euo pipefail
+$ docker run --rm --mount type=bind,src=/tmp/validator-status-libsodium-usage-python3-nacl-public-box,dst=/validator/status validator-libsodium-shared bash -lc 'set -euo pipefail
 /validator/tests/_shared/install_override_debs.sh
-exec /validator/tests/_shared/run_library_tests.sh "$@"' validator-testcase libsodium usage-python3-nacl-public-box -- bash -c 'PS4=$1; shift; set -x; source "$@"' validator-xtrace '__VALIDATOR_XTRACE__ ' /validator/tests/libsodium/tests/cases/usage/usage-python3-nacl-public-box.sh
-no override packages found; continuing with apt originals
-public box payload
+exec /validator/tests/_shared/run_library_tests.sh "$@"' validator-testcase libsodium usage-python3-nacl-public-box -- bash /validator/tests/libsodium/tests/cases/usage/usage-python3-nacl-public-box.sh
+no override packages found; continuing with apt originals
+public box payload

@@ -18,7 +18,7 @@
   "duration_seconds": 0.0,
   "result_path": "results/libuv/fs-read-write.json",
   "log_path": "logs/libuv/fs-read-write.log",
-  "cast_path": "casts/libuv/fs-read-write.cast",
+  "cast_path": null,
   "exit_code": 0,
   "command": [
     "bash",

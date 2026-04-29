@@ -18,7 +18,7 @@
   "duration_seconds": 0.0,
   "result_path": "results/libjansson/usage-jshon-array-values.json",
   "log_path": "logs/libjansson/usage-jshon-array-values.log",
-  "cast_path": "casts/libjansson/usage-jshon-array-values.cast",
+  "cast_path": null,
   "exit_code": 0,
   "command": [
     "bash",

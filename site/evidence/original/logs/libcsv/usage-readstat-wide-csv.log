@@ -1,16 +1,16 @@
-$ docker run --rm -t --mount type=bind,src=/tmp/validator-status-libcsv-usage-readstat-wide-csv,dst=/validator/status validator-libcsv-shared bash -lc 'set -euo pipefail
+$ docker run --rm --mount type=bind,src=/tmp/validator-status-libcsv-usage-readstat-wide-csv,dst=/validator/status validator-libcsv-shared bash -lc 'set -euo pipefail
 /validator/tests/_shared/install_override_debs.sh
-exec /validator/tests/_shared/run_library_tests.sh "$@"' validator-testcase libcsv usage-readstat-wide-csv -- bash -c 'PS4=$1; shift; set -x; source "$@"' validator-xtrace '__VALIDATOR_XTRACE__ ' /validator/tests/libcsv/tests/cases/usage/usage-readstat-wide-csv.sh
-no override packages found; continuing with apt originals
-Converted 4 variables and 2 rows in 0.00 seconds
-Format: Stata binary file (DTA)
-Columns: 4
-Rows: 2
-Table label: (null)
-Format version: 118
-Byte order: little-endian
-Timestamp: 01 Jan 1970 00:00
-Converted 4 variables and 2 rows in 0.00 seconds
-"name","score","group","note"
-"alpha",42.000000,"A","first-row"
-"beta",7.000000,"B","fourth-column"
+exec /validator/tests/_shared/run_library_tests.sh "$@"' validator-testcase libcsv usage-readstat-wide-csv -- bash /validator/tests/libcsv/tests/cases/usage/usage-readstat-wide-csv.sh
+no override packages found; continuing with apt originals
+Converted 4 variables and 2 rows in 0.00 seconds
+Format: Stata binary file (DTA)
+Columns: 4
+Rows: 2
+Table label: (null)
+Format version: 118
+Byte order: little-endian
+Timestamp: 01 Jan 1970 00:00
+Converted 4 variables and 2 rows in 0.00 seconds
+"name","score","group","note"
+"alpha",42.000000,"A","first-row"
+"beta",7.000000,"B","fourth-column"

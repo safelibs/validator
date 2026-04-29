@@ -18,7 +18,7 @@
   "duration_seconds": 0.0,
   "result_path": "results/libcurl/slist-header-build.json",
   "log_path": "logs/libcurl/slist-header-build.log",
-  "cast_path": "casts/libcurl/slist-header-build.cast",
+  "cast_path": null,
   "exit_code": 0,
   "command": [
     "bash",

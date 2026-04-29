@@ -1,2 +1,0 @@
-$ docker build --tag validator-libjson-shared --file /tmp/validator-run-matrix-libjson/libjson/Dockerfile /tmp/validator-run-matrix-libjson
-docker build completed

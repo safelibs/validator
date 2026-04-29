@@ -18,7 +18,7 @@
   "duration_seconds": 0.0,
   "result_path": "results/libwebp/usage-ffmpeg-webp-scale-filter.json",
   "log_path": "logs/libwebp/usage-ffmpeg-webp-scale-filter.log",
-  "cast_path": "casts/libwebp/usage-ffmpeg-webp-scale-filter.cast",
+  "cast_path": null,
   "exit_code": 0,
   "command": [
     "bash",

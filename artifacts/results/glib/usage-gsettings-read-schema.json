@@ -18,7 +18,7 @@
   "duration_seconds": 0.0,
   "result_path": "results/glib/usage-gsettings-read-schema.json",
   "log_path": "logs/glib/usage-gsettings-read-schema.log",
-  "cast_path": "casts/glib/usage-gsettings-read-schema.cast",
+  "cast_path": null,
   "exit_code": 0,
   "command": [
     "bash",

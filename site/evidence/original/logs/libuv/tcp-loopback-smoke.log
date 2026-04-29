@@ -1,5 +1,5 @@
-$ docker run --rm -t --mount type=bind,src=/tmp/validator-status-libuv-tcp-loopback-smoke,dst=/validator/status validator-libuv-shared bash -lc 'set -euo pipefail
+$ docker run --rm --mount type=bind,src=/tmp/validator-status-libuv-tcp-loopback-smoke,dst=/validator/status validator-libuv-shared bash -lc 'set -euo pipefail
 /validator/tests/_shared/install_override_debs.sh
-exec /validator/tests/_shared/run_library_tests.sh "$@"' validator-testcase libuv tcp-loopback-smoke -- bash -c 'PS4=$1; shift; set -x; source "$@"' validator-xtrace '__VALIDATOR_XTRACE__ ' /validator/tests/libuv/tests/cases/source/tcp-loopback-smoke.sh
-no override packages found; continuing with apt originals
-server-read=ping
+exec /validator/tests/_shared/run_library_tests.sh "$@"' validator-testcase libuv tcp-loopback-smoke -- bash /validator/tests/libuv/tests/cases/source/tcp-loopback-smoke.sh
+no override packages found; continuing with apt originals
+server-read=ping

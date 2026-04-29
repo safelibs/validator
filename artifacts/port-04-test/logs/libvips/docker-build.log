@@ -1,2 +1,0 @@
-$ docker build --tag validator-libvips-shared --file /tmp/validator-run-matrix-libvips/libvips/Dockerfile /tmp/validator-run-matrix-libvips
-docker build completed

@@ -18,7 +18,7 @@
   "duration_seconds": 0.0,
   "result_path": "results/libarchive/archive-read-api-smoke.json",
   "log_path": "logs/libarchive/archive-read-api-smoke.log",
-  "cast_path": "casts/libarchive/archive-read-api-smoke.cast",
+  "cast_path": null,
   "exit_code": 0,
   "command": [
     "bash",

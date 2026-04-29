@@ -1,19 +1,19 @@
-$ docker run --rm -t --mount type=bind,src=/tmp/validator-status-giflib-usage-giflib-tools-giftext-interlaced-fixture,dst=/validator/status validator-giflib-shared bash -lc 'set -euo pipefail
+$ docker run --rm --mount type=bind,src=/tmp/validator-status-giflib-usage-giflib-tools-giftext-interlaced-fixture,dst=/validator/status validator-giflib-shared bash -lc 'set -euo pipefail
 /validator/tests/_shared/install_override_debs.sh
-exec /validator/tests/_shared/run_library_tests.sh "$@"' validator-testcase giflib usage-giflib-tools-giftext-interlaced-fixture -- bash -c 'PS4=$1; shift; set -x; source "$@"' validator-xtrace '__VALIDATOR_XTRACE__ ' /validator/tests/giflib/tests/cases/usage/usage-giflib-tools-giftext-interlaced-fixture.sh
-no override packages found; continuing with apt originals
-
-/validator/tests/giflib/tests/fixtures/samples/pic/treescap-interlaced.gif:
-
-	Screen Size - Width = 40, Height = 40.
-	ColorResolution = 7, BitsPerPixel = 4, BackGround = 0, Aspect = 0.
-	Has Global Color Map.
-
-
-Image #1:
-
-	Image Size - Left = 0, Top = 0, Width = 40, Height = 40.
-	Image is Interlaced.
-	No Image Color Map.
-
-GIF file terminated normally.
+exec /validator/tests/_shared/run_library_tests.sh "$@"' validator-testcase giflib usage-giflib-tools-giftext-interlaced-fixture -- bash /validator/tests/giflib/tests/cases/usage/usage-giflib-tools-giftext-interlaced-fixture.sh
+no override packages found; continuing with apt originals
+
+/validator/tests/giflib/tests/fixtures/samples/pic/treescap-interlaced.gif:
+
+	Screen Size - Width = 40, Height = 40.
+	ColorResolution = 7, BitsPerPixel = 4, BackGround = 0, Aspect = 0.
+	Has Global Color Map.
+
+
+Image #1:
+
+	Image Size - Left = 0, Top = 0, Width = 40, Height = 40.
+	Image is Interlaced.
+	No Image Color Map.
+
+GIF file terminated normally.

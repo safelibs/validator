@@ -1,40 +1,40 @@
-$ docker run --rm -t --mount type=bind,src=/tmp/validator-status-libexif-usage-exif-cli-ifd-exif,dst=/validator/status validator-libexif-shared bash -lc 'set -euo pipefail
+$ docker run --rm --mount type=bind,src=/tmp/validator-status-libexif-usage-exif-cli-ifd-exif,dst=/validator/status validator-libexif-shared bash -lc 'set -euo pipefail
 /validator/tests/_shared/install_override_debs.sh
-exec /validator/tests/_shared/run_library_tests.sh "$@"' validator-testcase libexif usage-exif-cli-ifd-exif -- bash -c 'PS4=$1; shift; set -x; source "$@"' validator-xtrace '__VALIDATOR_XTRACE__ ' /validator/tests/libexif/tests/cases/usage/usage-exif-cli-ifd-exif.sh
-no override packages found; continuing with apt originals
-EXIF tags in '/validator/tests/libexif/tests/fixtures/samples/test/testdata/canon_makernote_variant_1.jpg' ('Intel' byte order):
---------------------+----------------------------------------------------------
-Tag                 |Value
---------------------+----------------------------------------------------------
-Exposure Time       |1 sec.
-F-Number            |f/2.8
-Exif Version        |Exif Version 2.2
-Date and Time (Origi|2009:10:10 16:42:32
-Date and Time (Digit|2009:10:10 16:42:32
-Components Configura|Y Cb Cr -
-Compressed Bits per | 5
-Shutter Speed       |0.00 EV (1 sec.)
-Aperture            |2.97 EV (f/2.8)
-Exposure Bias       |0.00 EV
-Maximum Aperture Val|2.97 EV (f/2.8)
-Metering Mode       |Pattern
-Flash               |Flash did not fire, compulsory flash mode
-Focal Length        |5.8 mm
-Maker Note          |904 bytes undefined data
-User Comment        |
-FlashPixVersion     |FlashPix Version 1.0
-Color Space         |sRGB
-Pixel X Dimension   |640
-Pixel Y Dimension   |480
-Focal Plane X-Resolu|2253.521
-Focal Plane Y-Resolu|2253.521
-Focal Plane Resoluti|Inch
-Sensing Method      |One-chip color area sensor
-File Source         |DSC
-Custom Rendered     |Normal process
-Exposure Mode       |Auto exposure
-White Balance       |Auto white balance
-Digital Zoom Ratio  |1.0000
-Scene Capture Type  |Landscape
---------------------+----------------------------------------------------------
-EXIF data contains a thumbnail (4 bytes).
+exec /validator/tests/_shared/run_library_tests.sh "$@"' validator-testcase libexif usage-exif-cli-ifd-exif -- bash /validator/tests/libexif/tests/cases/usage/usage-exif-cli-ifd-exif.sh
+no override packages found; continuing with apt originals
+EXIF tags in '/validator/tests/libexif/tests/fixtures/samples/test/testdata/canon_makernote_variant_1.jpg' ('Intel' byte order):
+--------------------+----------------------------------------------------------
+Tag                 |Value
+--------------------+----------------------------------------------------------
+Exposure Time       |1 sec.
+F-Number            |f/2.8
+Exif Version        |Exif Version 2.2
+Date and Time (Origi|2009:10:10 16:42:32
+Date and Time (Digit|2009:10:10 16:42:32
+Components Configura|Y Cb Cr -
+Compressed Bits per | 5
+Shutter Speed       |0.00 EV (1 sec.)
+Aperture            |2.97 EV (f/2.8)
+Exposure Bias       |0.00 EV
+Maximum Aperture Val|2.97 EV (f/2.8)
+Metering Mode       |Pattern
+Flash               |Flash did not fire, compulsory flash mode
+Focal Length        |5.8 mm
+Maker Note          |904 bytes undefined data
+User Comment        |
+FlashPixVersion     |FlashPix Version 1.0
+Color Space         |sRGB
+Pixel X Dimension   |640
+Pixel Y Dimension   |480
+Focal Plane X-Resolu|2253.521
+Focal Plane Y-Resolu|2253.521
+Focal Plane Resoluti|Inch
+Sensing Method      |One-chip color area sensor
+File Source         |DSC
+Custom Rendered     |Normal process
+Exposure Mode       |Auto exposure
+White Balance       |Auto white balance
+Digital Zoom Ratio  |1.0000
+Scene Capture Type  |Landscape
+--------------------+----------------------------------------------------------
+EXIF data contains a thumbnail (4 bytes).

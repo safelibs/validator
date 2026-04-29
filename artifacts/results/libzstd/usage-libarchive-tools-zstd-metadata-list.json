@@ -20,7 +20,7 @@
   "duration_seconds": 0.0,
   "result_path": "results/libzstd/usage-libarchive-tools-zstd-metadata-list.json",
   "log_path": "logs/libzstd/usage-libarchive-tools-zstd-metadata-list.log",
-  "cast_path": "casts/libzstd/usage-libarchive-tools-zstd-metadata-list.cast",
+  "cast_path": null,
   "exit_code": 0,
   "command": [
     "bash",

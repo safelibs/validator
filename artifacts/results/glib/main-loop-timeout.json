@@ -18,7 +18,7 @@
   "duration_seconds": 0.0,
   "result_path": "results/glib/main-loop-timeout.json",
   "log_path": "logs/glib/main-loop-timeout.log",
-  "cast_path": "casts/glib/main-loop-timeout.cast",
+  "cast_path": null,
   "exit_code": 0,
   "command": [
     "bash",

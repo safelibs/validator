@@ -1,5 +1,5 @@
-$ docker run --rm -t --mount type=bind,src=/tmp/validator-status-libwebp-decode-c-api-smoke,dst=/validator/status validator-libwebp-shared bash -lc 'set -euo pipefail
+$ docker run --rm --mount type=bind,src=/tmp/validator-status-libwebp-decode-c-api-smoke,dst=/validator/status validator-libwebp-shared bash -lc 'set -euo pipefail
 /validator/tests/_shared/install_override_debs.sh
-exec /validator/tests/_shared/run_library_tests.sh "$@"' validator-testcase libwebp decode-c-api-smoke -- bash -c 'PS4=$1; shift; set -x; source "$@"' validator-xtrace '__VALIDATOR_XTRACE__ ' /validator/tests/libwebp/tests/cases/source/decode-c-api-smoke.sh
-no override packages found; continuing with apt originals
-width=128 height=128
+exec /validator/tests/_shared/run_library_tests.sh "$@"' validator-testcase libwebp decode-c-api-smoke -- bash /validator/tests/libwebp/tests/cases/source/decode-c-api-smoke.sh
+no override packages found; continuing with apt originals
+width=128 height=128

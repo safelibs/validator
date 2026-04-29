@@ -1,6 +1,0 @@
-{"version": 2, "width": 120, "height": 40, "timestamp": 0, "env": {"TERM": "xterm-256color", "SHELL": "/bin/bash"}}
-[0.0, "o", "no override packages found; continuing with apt originals\n"]
-[0.001, "o", "/tmp/validator-tmp/valid.xml validates\n"]
-[0.002, "o", "<?xml version=\"1.0\"?>\n"]
-[0.003, "o", "<root xmlns:xi=\"http://www.w3.org/2001/XInclude\"><included>text</included></root>\n"]
-[0.004, "o", "<root xmlns:xi=\"http://www.w3.org/2001/XInclude\"><included>text</included></root>\n"]

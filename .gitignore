@@ -7,11 +7,5 @@ __pycache__/
 *.pyc
 .playwright-mcp/
 phase08-*
-artifacts/.workspace/
-artifacts/proof/
-artifacts/casts/
-artifacts/logs/
-artifacts/results/
-artifacts/downstream/
-artifacts/debs/
-site/
+artifacts/**
+site/**

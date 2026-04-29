@@ -1,14 +1,14 @@
-$ docker run --rm -t --mount type=bind,src=/tmp/validator-status-libzstd-zstd-compress-decompress,dst=/validator/status validator-libzstd-shared bash -lc 'set -euo pipefail
+$ docker run --rm --mount type=bind,src=/tmp/validator-status-libzstd-zstd-compress-decompress,dst=/validator/status validator-libzstd-shared bash -lc 'set -euo pipefail
 /validator/tests/_shared/install_override_debs.sh
-exec /validator/tests/_shared/run_library_tests.sh "$@"' validator-testcase libzstd zstd-compress-decompress -- bash -c 'PS4=$1; shift; set -x; source "$@"' validator-xtrace '__VALIDATOR_XTRACE__ ' /validator/tests/libzstd/tests/cases/source/zstd-compress-decompress.sh
-no override packages found; continuing with apt originals
-*** Zstandard CLI (64-bit) v1.5.5, by Yann Collet ***
-/tmp/validator-tmp/plain.zst 
-# Zstandard Frames: 1
-DictID: 0
-Window Size: 13 B (13 B)
-Compressed Size: 26 B (26 B)
-Decompressed Size: 13 B (13 B)
-Ratio: 0.5000
-Check: XXH64 ddbf013d
-
+exec /validator/tests/_shared/run_library_tests.sh "$@"' validator-testcase libzstd zstd-compress-decompress -- bash /validator/tests/libzstd/tests/cases/source/zstd-compress-decompress.sh
+no override packages found; continuing with apt originals
+/tmp/validator-tmp/plain.zst 
+# Zstandard Frames: 1
+DictID: 0
+Window Size: 13 B (13 B)
+Compressed Size: 26 B (26 B)
+Decompressed Size: 13 B (13 B)
+Ratio: 0.5000
+Check: XXH64 ddbf013d
+
+*** Zstandard CLI (64-bit) v1.5.5, by Yann Collet ***

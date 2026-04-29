@@ -18,7 +18,7 @@
   "duration_seconds": 0.0,
   "result_path": "results/libxml/python-binding-smoke.json",
   "log_path": "logs/libxml/python-binding-smoke.log",
-  "cast_path": "casts/libxml/python-binding-smoke.cast",
+  "cast_path": null,
   "exit_code": 0,
   "command": [
     "bash",

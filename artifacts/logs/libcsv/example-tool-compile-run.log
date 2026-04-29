@@ -1,6 +1,6 @@
-$ docker run --rm -t --mount type=bind,src=/tmp/validator-status-libcsv-example-tool-compile-run,dst=/validator/status validator-libcsv-shared bash -lc 'set -euo pipefail
+$ docker run --rm --mount type=bind,src=/tmp/validator-status-libcsv-example-tool-compile-run,dst=/validator/status validator-libcsv-shared bash -lc 'set -euo pipefail
 /validator/tests/_shared/install_override_debs.sh
-exec /validator/tests/_shared/run_library_tests.sh "$@"' validator-testcase libcsv example-tool-compile-run -- bash -c 'PS4=$1; shift; set -x; source "$@"' validator-xtrace '__VALIDATOR_XTRACE__ ' /validator/tests/libcsv/tests/cases/source/example-tool-compile-run.sh
-no override packages found; continuing with apt originals
-1,2,3,4,5
-1,2,3,4,5
+exec /validator/tests/_shared/run_library_tests.sh "$@"' validator-testcase libcsv example-tool-compile-run -- bash /validator/tests/libcsv/tests/cases/source/example-tool-compile-run.sh
+no override packages found; continuing with apt originals
+1,2,3,4,5
+1,2,3,4,5

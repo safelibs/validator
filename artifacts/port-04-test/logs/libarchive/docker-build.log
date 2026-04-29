@@ -1,2 +1,0 @@
-$ docker build --tag validator-libarchive-shared --file /tmp/validator-run-matrix-libarchive/libarchive/Dockerfile /tmp/validator-run-matrix-libarchive
-docker build completed

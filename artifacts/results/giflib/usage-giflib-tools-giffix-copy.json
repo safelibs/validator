@@ -19,7 +19,7 @@
   "duration_seconds": 0.0,
   "result_path": "results/giflib/usage-giflib-tools-giffix-copy.json",
   "log_path": "logs/giflib/usage-giflib-tools-giffix-copy.log",
-  "cast_path": "casts/giflib/usage-giflib-tools-giffix-copy.cast",
+  "cast_path": null,
   "exit_code": 0,
   "command": [
     "bash",

@@ -1,2 +1,0 @@
-$ docker build --tag validator-libcsv-shared --file /tmp/validator-run-matrix-libcsv/libcsv/Dockerfile /tmp/validator-run-matrix-libcsv
-docker build completed

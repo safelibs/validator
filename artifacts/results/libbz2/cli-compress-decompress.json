@@ -18,7 +18,7 @@
   "duration_seconds": 0.0,
   "result_path": "results/libbz2/cli-compress-decompress.json",
   "log_path": "logs/libbz2/cli-compress-decompress.log",
-  "cast_path": "casts/libbz2/cli-compress-decompress.cast",
+  "cast_path": null,
   "exit_code": 0,
   "command": [
     "bash",

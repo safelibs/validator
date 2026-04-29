@@ -1,2 +1,0 @@
-$ docker build --tag validator-cjson-shared --file /tmp/validator-run-matrix-cjson/cjson/Dockerfile /tmp/validator-run-matrix-cjson
-docker build completed

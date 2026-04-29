@@ -18,7 +18,7 @@
   "duration_seconds": 0.0,
   "result_path": "results/libvips/metadata-header-checks.json",
   "log_path": "logs/libvips/metadata-header-checks.log",
-  "cast_path": "casts/libvips/metadata-header-checks.cast",
+  "cast_path": null,
   "exit_code": 0,
   "command": [
     "bash",

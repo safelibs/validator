@@ -1,2 +1,0 @@
-$ docker build --tag validator-libsdl-shared --file /tmp/validator-run-matrix-libsdl/libsdl/Dockerfile /tmp/validator-run-matrix-libsdl
-docker build completed

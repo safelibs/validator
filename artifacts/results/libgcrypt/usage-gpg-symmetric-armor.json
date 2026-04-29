@@ -18,7 +18,7 @@
   "duration_seconds": 0.0,
   "result_path": "results/libgcrypt/usage-gpg-symmetric-armor.json",
   "log_path": "logs/libgcrypt/usage-gpg-symmetric-armor.log",
-  "cast_path": "casts/libgcrypt/usage-gpg-symmetric-armor.cast",
+  "cast_path": null,
   "exit_code": 0,
   "command": [
     "bash",

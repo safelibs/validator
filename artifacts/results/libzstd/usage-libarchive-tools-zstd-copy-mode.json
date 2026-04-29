@@ -19,7 +19,7 @@
   "duration_seconds": 0.0,
   "result_path": "results/libzstd/usage-libarchive-tools-zstd-copy-mode.json",
   "log_path": "logs/libzstd/usage-libarchive-tools-zstd-copy-mode.log",
-  "cast_path": "casts/libzstd/usage-libarchive-tools-zstd-copy-mode.cast",
+  "cast_path": null,
   "exit_code": 0,
   "command": [
     "bash",

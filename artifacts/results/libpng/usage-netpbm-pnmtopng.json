@@ -18,7 +18,7 @@
   "duration_seconds": 0.0,
   "result_path": "results/libpng/usage-netpbm-pnmtopng.json",
   "log_path": "logs/libpng/usage-netpbm-pnmtopng.log",
-  "cast_path": "casts/libpng/usage-netpbm-pnmtopng.cast",
+  "cast_path": null,
   "exit_code": 0,
   "command": [
     "bash",

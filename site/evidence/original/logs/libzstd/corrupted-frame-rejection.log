@@ -1,5 +1,5 @@
-$ docker run --rm -t --mount type=bind,src=/tmp/validator-status-libzstd-corrupted-frame-rejection,dst=/validator/status validator-libzstd-shared bash -lc 'set -euo pipefail
+$ docker run --rm --mount type=bind,src=/tmp/validator-status-libzstd-corrupted-frame-rejection,dst=/validator/status validator-libzstd-shared bash -lc 'set -euo pipefail
 /validator/tests/_shared/install_override_debs.sh
-exec /validator/tests/_shared/run_library_tests.sh "$@"' validator-testcase libzstd corrupted-frame-rejection -- bash -c 'PS4=$1; shift; set -x; source "$@"' validator-xtrace '__VALIDATOR_XTRACE__ ' /validator/tests/libzstd/tests/cases/source/corrupted-frame-rejection.sh
-no override packages found; continuing with apt originals
-zstd: /tmp/validator-tmp/bad.zst: unsupported format 
+exec /validator/tests/_shared/run_library_tests.sh "$@"' validator-testcase libzstd corrupted-frame-rejection -- bash /validator/tests/libzstd/tests/cases/source/corrupted-frame-rejection.sh
+no override packages found; continuing with apt originals
+zstd: /tmp/validator-tmp/bad.zst: unsupported format 

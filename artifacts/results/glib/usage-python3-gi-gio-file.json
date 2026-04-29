@@ -18,7 +18,7 @@
   "duration_seconds": 0.0,
   "result_path": "results/glib/usage-python3-gi-gio-file.json",
   "log_path": "logs/glib/usage-python3-gi-gio-file.log",
-  "cast_path": "casts/glib/usage-python3-gi-gio-file.cast",
+  "cast_path": null,
   "exit_code": 0,
   "command": [
     "bash",

@@ -18,7 +18,7 @@
   "duration_seconds": 0.0,
   "result_path": "results/libtiff/tiffcp-copy.json",
   "log_path": "logs/libtiff/tiffcp-copy.log",
-  "cast_path": "casts/libtiff/tiffcp-copy.cast",
+  "cast_path": null,
   "exit_code": 0,
   "command": [
     "bash",

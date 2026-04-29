@@ -18,7 +18,7 @@
   "duration_seconds": 0.0,
   "result_path": "results/libgcrypt/usage-gpg-recipient-encrypt.json",
   "log_path": "logs/libgcrypt/usage-gpg-recipient-encrypt.log",
-  "cast_path": "casts/libgcrypt/usage-gpg-recipient-encrypt.cast",
+  "cast_path": null,
   "exit_code": 0,
   "command": [
     "bash",

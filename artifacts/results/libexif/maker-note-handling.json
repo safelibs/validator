@@ -18,7 +18,7 @@
   "duration_seconds": 0.0,
   "result_path": "results/libexif/maker-note-handling.json",
   "log_path": "logs/libexif/maker-note-handling.log",
-  "cast_path": "casts/libexif/maker-note-handling.cast",
+  "cast_path": null,
   "exit_code": 0,
   "command": [
     "bash",

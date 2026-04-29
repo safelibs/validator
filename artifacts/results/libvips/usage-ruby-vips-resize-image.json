@@ -19,7 +19,7 @@
   "duration_seconds": 0.0,
   "result_path": "results/libvips/usage-ruby-vips-resize-image.json",
   "log_path": "logs/libvips/usage-ruby-vips-resize-image.log",
-  "cast_path": "casts/libvips/usage-ruby-vips-resize-image.cast",
+  "cast_path": null,
   "exit_code": 0,
   "command": [
     "bash",

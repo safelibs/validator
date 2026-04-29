@@ -19,7 +19,7 @@
   "duration_seconds": 0.0,
   "result_path": "results/giflib/usage-giflib-tools-giftext-headers.json",
   "log_path": "logs/giflib/usage-giflib-tools-giftext-headers.log",
-  "cast_path": "casts/giflib/usage-giflib-tools-giftext-headers.cast",
+  "cast_path": null,
   "exit_code": 0,
   "command": [
     "bash",

@@ -18,7 +18,7 @@
   "duration_seconds": 0.0,
   "result_path": "results/libcurl/usage-curl-post-echo.json",
   "log_path": "logs/libcurl/usage-curl-post-echo.log",
-  "cast_path": "casts/libcurl/usage-curl-post-echo.cast",
+  "cast_path": null,
   "exit_code": 0,
   "command": [
     "bash",

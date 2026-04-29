@@ -18,7 +18,7 @@
   "duration_seconds": 0.0,
   "result_path": "results/libcurl/easy-file-read.json",
   "log_path": "logs/libcurl/easy-file-read.log",
-  "cast_path": "casts/libcurl/easy-file-read.cast",
+  "cast_path": null,
   "exit_code": 0,
   "command": [
     "bash",

@@ -18,7 +18,7 @@
   "duration_seconds": 0.0,
   "result_path": "results/libexif/usage-exif-cli-tag-model.json",
   "log_path": "logs/libexif/usage-exif-cli-tag-model.log",
-  "cast_path": "casts/libexif/usage-exif-cli-tag-model.cast",
+  "cast_path": null,
   "exit_code": 0,
   "command": [
     "bash",

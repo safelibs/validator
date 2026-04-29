@@ -18,7 +18,7 @@
   "duration_seconds": 0.0,
   "result_path": "results/libgcrypt/digest-sha256-smoke.json",
   "log_path": "logs/libgcrypt/digest-sha256-smoke.log",
-  "cast_path": "casts/libgcrypt/digest-sha256-smoke.cast",
+  "cast_path": null,
   "exit_code": 0,
   "command": [
     "bash",

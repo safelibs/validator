@@ -19,7 +19,7 @@
   "duration_seconds": 0.0,
   "result_path": "results/libsdl/usage-python3-pygame-event-queue.json",
   "log_path": "logs/libsdl/usage-python3-pygame-event-queue.log",
-  "cast_path": "casts/libsdl/usage-python3-pygame-event-queue.cast",
+  "cast_path": null,
   "exit_code": 0,
   "command": [
     "bash",

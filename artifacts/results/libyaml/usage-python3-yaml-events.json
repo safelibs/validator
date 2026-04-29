@@ -19,7 +19,7 @@
   "duration_seconds": 0.0,
   "result_path": "results/libyaml/usage-python3-yaml-events.json",
   "log_path": "logs/libyaml/usage-python3-yaml-events.log",
-  "cast_path": "casts/libyaml/usage-python3-yaml-events.cast",
+  "cast_path": null,
   "exit_code": 0,
   "command": [
     "bash",

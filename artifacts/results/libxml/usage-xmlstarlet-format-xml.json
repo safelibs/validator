@@ -19,7 +19,7 @@
   "duration_seconds": 0.0,
   "result_path": "results/libxml/usage-xmlstarlet-format-xml.json",
   "log_path": "logs/libxml/usage-xmlstarlet-format-xml.log",
-  "cast_path": "casts/libxml/usage-xmlstarlet-format-xml.cast",
+  "cast_path": null,
   "exit_code": 0,
   "command": [
     "bash",

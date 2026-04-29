@@ -1,5 +1,5 @@
-$ docker run --rm -t --mount type=bind,src=/tmp/validator-status-libyaml-loader-dumper-cases,dst=/validator/status validator-libyaml-shared bash -lc 'set -euo pipefail
+$ docker run --rm --mount type=bind,src=/tmp/validator-status-libyaml-loader-dumper-cases,dst=/validator/status validator-libyaml-shared bash -lc 'set -euo pipefail
 /validator/tests/_shared/install_override_debs.sh
-exec /validator/tests/_shared/run_library_tests.sh "$@"' validator-testcase libyaml loader-dumper-cases -- bash -c 'PS4=$1; shift; set -x; source "$@"' validator-xtrace '__VALIDATOR_XTRACE__ ' /validator/tests/libyaml/tests/cases/source/loader-dumper-cases.sh
-no override packages found; continuing with apt originals
-documents=2
+exec /validator/tests/_shared/run_library_tests.sh "$@"' validator-testcase libyaml loader-dumper-cases -- bash /validator/tests/libyaml/tests/cases/source/loader-dumper-cases.sh
+no override packages found; continuing with apt originals
+documents=2

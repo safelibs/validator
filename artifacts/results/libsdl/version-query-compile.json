@@ -18,7 +18,7 @@
   "duration_seconds": 0.0,
   "result_path": "results/libsdl/version-query-compile.json",
   "log_path": "logs/libsdl/version-query-compile.log",
-  "cast_path": "casts/libsdl/version-query-compile.cast",
+  "cast_path": null,
   "exit_code": 0,
   "command": [
     "bash",

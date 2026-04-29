@@ -1,26 +1,26 @@
-$ docker run --rm -t --mount type=bind,src=/tmp/validator-status-giflib-gifbuild-roundtrip,dst=/validator/status validator-giflib-shared bash -lc 'set -euo pipefail
+$ docker run --rm --mount type=bind,src=/tmp/validator-status-giflib-gifbuild-roundtrip,dst=/validator/status validator-giflib-shared bash -lc 'set -euo pipefail
 /validator/tests/_shared/install_override_debs.sh
-exec /validator/tests/_shared/run_library_tests.sh "$@"' validator-testcase giflib gifbuild-roundtrip -- bash -c 'PS4=$1; shift; set -x; source "$@"' validator-xtrace '__VALIDATOR_XTRACE__ ' /validator/tests/giflib/tests/cases/source/gifbuild-roundtrip.sh
-no override packages found; continuing with apt originals
-
-/tmp/validator-tmp/rebuilt.gif:
-
-	Screen Size - Width = 100, Height = 100.
-	ColorResolution = 3, BitsPerPixel = 3, BackGround = 0, Aspect = 0.
-	Has Global Color Map.
-
-
-GIF89 graphics control (Ext Code = 249 [ ]):
-	Disposal Mode: 0
-	User Input Flag: 0
-	Transparency on: no
-	DelayTime: 0
-	Transparent Index: -1
-
-Image #1:
-
-	Image Size - Left = 0, Top = 0, Width = 100, Height = 100.
-	Image is Non Interlaced.
-	No Image Color Map.
-
-GIF file terminated normally.
+exec /validator/tests/_shared/run_library_tests.sh "$@"' validator-testcase giflib gifbuild-roundtrip -- bash /validator/tests/giflib/tests/cases/source/gifbuild-roundtrip.sh
+no override packages found; continuing with apt originals
+
+/tmp/validator-tmp/rebuilt.gif:
+
+	Screen Size - Width = 100, Height = 100.
+	ColorResolution = 3, BitsPerPixel = 3, BackGround = 0, Aspect = 0.
+	Has Global Color Map.
+
+
+GIF89 graphics control (Ext Code = 249 [ ]):
+	Disposal Mode: 0
+	User Input Flag: 0
+	Transparency on: no
+	DelayTime: 0
+	Transparent Index: -1
+
+Image #1:
+
+	Image Size - Left = 0, Top = 0, Width = 100, Height = 100.
+	Image is Non Interlaced.
+	No Image Color Map.
+
+GIF file terminated normally.

@@ -1,6 +1,6 @@
-$ docker run --rm -t --mount type=bind,src=/tmp/validator-status-libgcrypt-usage-gpg-recipient-encrypt,dst=/validator/status validator-libgcrypt-shared bash -lc 'set -euo pipefail
+$ docker run --rm --mount type=bind,src=/tmp/validator-status-libgcrypt-usage-gpg-recipient-encrypt,dst=/validator/status validator-libgcrypt-shared bash -lc 'set -euo pipefail
 /validator/tests/_shared/install_override_debs.sh
-exec /validator/tests/_shared/run_library_tests.sh "$@"' validator-testcase libgcrypt usage-gpg-recipient-encrypt -- bash -c 'PS4=$1; shift; set -x; source "$@"' validator-xtrace '__VALIDATOR_XTRACE__ ' /validator/tests/libgcrypt/tests/cases/usage/run.sh usage-gpg-recipient-encrypt
+exec /validator/tests/_shared/run_library_tests.sh "$@"' validator-testcase libgcrypt usage-gpg-recipient-encrypt -- bash /validator/tests/libgcrypt/tests/cases/usage/run.sh usage-gpg-recipient-encrypt
 no override packages found; continuing with apt originals
-gpg: encrypted with rsa2048 key, ID 6D2A6AE1EDE7806E, created 2026-04-22
+gpg: encrypted with rsa2048 key, ID C28DC96C8BACA029, created 2026-04-27
       "Validator User <validator@example.invalid>"

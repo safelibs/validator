@@ -18,7 +18,7 @@
   "duration_seconds": 0.0,
   "result_path": "results/cjson/usage-iperf3-json-omit-warmup.json",
   "log_path": "logs/cjson/usage-iperf3-json-omit-warmup.log",
-  "cast_path": "casts/cjson/usage-iperf3-json-omit-warmup.cast",
+  "cast_path": null,
   "exit_code": 0,
   "command": [
     "bash",

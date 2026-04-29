@@ -18,7 +18,7 @@
   "duration_seconds": 0.0,
   "result_path": "results/libtiff/c-api-read-write.json",
   "log_path": "logs/libtiff/c-api-read-write.log",
-  "cast_path": "casts/libtiff/c-api-read-write.cast",
+  "cast_path": null,
   "exit_code": 0,
   "command": [
     "bash",

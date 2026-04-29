@@ -1,7 +1,4 @@
 {"version": 2, "width": 120, "height": 40, "timestamp": 0, "env": {"TERM": "xterm-256color", "SHELL": "/bin/bash"}}
-[0.0, "o", "no override packages found; continuing with apt originals\r"]
-[0.001, "o", "\r\n"]
-[0.002, "o", "Decoding of /tmp/validator-tmp/bad.webp failed.\r"]
-[0.003, "o", "\r\n"]
-[0.004, "o", "Status: 7(NOT_ENOUGH_DATA)\r"]
-[0.005, "o", "\r\n"]
+[0.0, "o", "no override packages found; continuing with apt originals\n"]
+[0.001, "o", "Decoding of /tmp/validator-tmp/bad.webp failed.\n"]
+[0.002, "o", "Status: 7(NOT_ENOUGH_DATA)\n"]

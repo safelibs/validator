@@ -1,2 +1,0 @@
-$ docker build --tag validator-libsodium-shared --file /tmp/validator-run-matrix-libsodium/libsodium/Dockerfile /tmp/validator-run-matrix-libsodium
-docker build completed

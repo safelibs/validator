@@ -18,7 +18,7 @@
   "duration_seconds": 0.0,
   "result_path": "results/libexif/tag-lookup-value-formatting.json",
   "log_path": "logs/libexif/tag-lookup-value-formatting.log",
-  "cast_path": "casts/libexif/tag-lookup-value-formatting.cast",
+  "cast_path": null,
   "exit_code": 0,
   "command": [
     "bash",

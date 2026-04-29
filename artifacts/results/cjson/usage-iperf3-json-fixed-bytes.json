@@ -18,7 +18,7 @@
   "duration_seconds": 0.0,
   "result_path": "results/cjson/usage-iperf3-json-fixed-bytes.json",
   "log_path": "logs/cjson/usage-iperf3-json-fixed-bytes.log",
-  "cast_path": "casts/cjson/usage-iperf3-json-fixed-bytes.cast",
+  "cast_path": null,
   "exit_code": 0,
   "command": [
     "bash",

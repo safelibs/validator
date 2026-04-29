@@ -1,5 +1,5 @@
-$ docker run --rm -t --mount type=bind,src=/tmp/validator-status-libbz2-cli-compress-decompress,dst=/validator/status validator-libbz2-shared bash -lc 'set -euo pipefail
+$ docker run --rm --mount type=bind,src=/tmp/validator-status-libbz2-cli-compress-decompress,dst=/validator/status validator-libbz2-shared bash -lc 'set -euo pipefail
 /validator/tests/_shared/install_override_debs.sh
-exec /validator/tests/_shared/run_library_tests.sh "$@"' validator-testcase libbz2 cli-compress-decompress -- bash -c 'PS4=$1; shift; set -x; source "$@"' validator-xtrace '__VALIDATOR_XTRACE__ ' /validator/tests/libbz2/tests/cases/source/cli-compress-decompress.sh
-no override packages found; continuing with apt originals
--rw-r--r-- 1 root root 58 Jan 01 00:00 /tmp/validator-tmp/plain.bz2
+exec /validator/tests/_shared/run_library_tests.sh "$@"' validator-testcase libbz2 cli-compress-decompress -- bash /validator/tests/libbz2/tests/cases/source/cli-compress-decompress.sh
+no override packages found; continuing with apt originals
+-rw-r--r-- 1 root root 58 Jan 01 00:00 /tmp/validator-tmp/plain.bz2

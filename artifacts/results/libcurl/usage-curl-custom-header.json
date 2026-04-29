@@ -18,7 +18,7 @@
   "duration_seconds": 0.0,
   "result_path": "results/libcurl/usage-curl-custom-header.json",
   "log_path": "logs/libcurl/usage-curl-custom-header.log",
-  "cast_path": "casts/libcurl/usage-curl-custom-header.cast",
+  "cast_path": null,
   "exit_code": 0,
   "command": [
     "bash",

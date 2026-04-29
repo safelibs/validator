@@ -2,11 +2,11 @@
   "schema_version": 2,
   "library": "cjson",
   "mode": "original",
-  "cases": 15,
+  "cases": 95,
   "source_cases": 5,
-  "usage_cases": 10,
-  "passed": 15,
+  "usage_cases": 90,
+  "passed": 95,
   "failed": 0,
-  "casts": 15,
+  "casts": 0,
   "duration_seconds": 0.0
 }

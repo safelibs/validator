@@ -20,7 +20,7 @@
   "duration_seconds": 0.0,
   "result_path": "results/liblzma/usage-libarchive-tools-xz-preserve-permissions.json",
   "log_path": "logs/liblzma/usage-libarchive-tools-xz-preserve-permissions.log",
-  "cast_path": "casts/liblzma/usage-libarchive-tools-xz-preserve-permissions.cast",
+  "cast_path": null,
   "exit_code": 0,
   "command": [
     "bash",

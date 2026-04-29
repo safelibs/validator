@@ -19,7 +19,7 @@
   "duration_seconds": 0.0,
   "result_path": "results/giflib/usage-giflib-tools-gifclrmp-map.json",
   "log_path": "logs/giflib/usage-giflib-tools-gifclrmp-map.log",
-  "cast_path": "casts/giflib/usage-giflib-tools-gifclrmp-map.cast",
+  "cast_path": null,
   "exit_code": 0,
   "command": [
     "bash",

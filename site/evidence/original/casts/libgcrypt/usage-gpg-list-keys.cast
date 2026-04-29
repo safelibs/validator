@@ -1,6 +1,0 @@
-{"version": 2, "width": 120, "height": 40, "timestamp": 0, "env": {"TERM": "xterm-256color", "SHELL": "/bin/bash"}}
-[0.0, "o", "no override packages found; continuing with apt originals\n"]
-[0.001, "o", "gpg: checking the trustdb\n"]
-[0.002, "o", "gpg: marginals needed: 3  completes needed: 1  trust model: pgp\n"]
-[0.003, "o", "gpg: depth: 0  valid:   1  signed:   0  trust: 0-, 0q, 0n, 0m, 0f, 1u\n"]
-[0.004, "o", "gpg: next trustdb check due at 2026-04-23\n"]

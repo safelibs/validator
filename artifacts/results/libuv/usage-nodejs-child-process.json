@@ -18,7 +18,7 @@
   "duration_seconds": 0.0,
   "result_path": "results/libuv/usage-nodejs-child-process.json",
   "log_path": "logs/libuv/usage-nodejs-child-process.log",
-  "cast_path": "casts/libuv/usage-nodejs-child-process.cast",
+  "cast_path": null,
   "exit_code": 0,
   "command": [
     "bash",
