@@ -59,99 +59,70 @@ assert_values() { python3 "$tmpdir/pnm_assert.py" values "$1" "$2" "$3" "$4" "$5
 assert_shape() { python3 "$tmpdir/pnm_assert.py" shape "$1" "$2" "$3" "$4"; }
 
 case "$case_id" in
-  usage-netpbm-batch11-pnminvert-gray)
-    cat >"$tmpdir/input.pgm" <<'EOF'
-P2
-2 1
-255
-0 200
-EOF
+  usage-netpbm-batch11-pngtopam-pamfile)
+    printf 'P2\n2 2\n255\n0 255\n128 64\n' >"$tmpdir/input.pgm"
     pnmtopng "$tmpdir/input.pgm" >"$tmpdir/input.png"
-    pngtopnm "$tmpdir/input.png" | pnminvert >"$tmpdir/out.pgm"
-    assert_values "$tmpdir/out.pgm" 2 1 1 '[255, 55]'
+    pngtopam "$tmpdir/input.png" >"$tmpdir/out.pam"
+    pamfile "$tmpdir/out.pam" >"$tmpdir/out"
+    validator_assert_contains "$tmpdir/out" 'PGM raw, 2 by 2'
     ;;
-  usage-netpbm-batch11-pnmflip-left-right)
-    cat >"$tmpdir/input.ppm" <<'EOF'
-P3
-2 1
-255
-10 20 30  40 50 60
-EOF
-    pnmtopng "$tmpdir/input.ppm" >"$tmpdir/input.png"
-    pngtopnm "$tmpdir/input.png" | pnmflip -leftright >"$tmpdir/out.ppm"
-    assert_values "$tmpdir/out.ppm" 2 1 3 '[40, 50, 60, 10, 20, 30]'
+  usage-netpbm-batch11-pamdice-tiles)
+    printf 'P2\n2 2\n255\n0 50\n100 150\n' >"$tmpdir/input.pgm"
+    mkdir "$tmpdir/tiles"
+    pamdice -width=1 -height=1 -outstem="$tmpdir/tiles/tile" "$tmpdir/input.pgm"
+    test -f "$tmpdir/tiles/tile_0_0.pgm"
+    test -f "$tmpdir/tiles/tile_0_1.pgm"
+    test -f "$tmpdir/tiles/tile_1_0.pgm"
+    test -f "$tmpdir/tiles/tile_1_1.pgm"
     ;;
-  usage-netpbm-batch11-pamflip-top-bottom)
-    cat >"$tmpdir/input.pgm" <<'EOF'
-P2
-1 2
-255
-25
-75
-EOF
+  usage-netpbm-batch11-pamdeinterlace-height)
+    printf 'P2\n2 2\n255\n10 20\n30 40\n' >"$tmpdir/input.pgm"
     pnmtopng "$tmpdir/input.pgm" >"$tmpdir/input.png"
-    pngtopnm "$tmpdir/input.png" | pamflip -tb >"$tmpdir/out.pgm"
-    assert_values "$tmpdir/out.pgm" 1 2 1 '[75, 25]'
+    pngtopnm "$tmpdir/input.png" | pamdeinterlace >"$tmpdir/out.pgm"
+    assert_shape "$tmpdir/out.pgm" 2 1 1
     ;;
-  usage-netpbm-batch11-pnmcat-three-wide)
-    printf 'P2\n1 1\n255\n10\n' >"$tmpdir/a.pgm"
-    printf 'P2\n1 1\n255\n20\n' >"$tmpdir/b.pgm"
-    printf 'P2\n1 1\n255\n30\n' >"$tmpdir/c.pgm"
-    pnmcat -lr "$tmpdir/a.pgm" "$tmpdir/b.pgm" "$tmpdir/c.pgm" >"$tmpdir/out.pgm"
-    assert_values "$tmpdir/out.pgm" 3 1 1 '[10, 20, 30]'
+  usage-netpbm-batch11-pnmarith-add)
+    printf 'P2\n2 1\n255\n0 100\n' >"$tmpdir/a.pgm"
+    printf 'P2\n2 1\n255\n10 20\n' >"$tmpdir/b.pgm"
+    pnmarith -add "$tmpdir/a.pgm" "$tmpdir/b.pgm" >"$tmpdir/out.pgm"
+    assert_values "$tmpdir/out.pgm" 2 1 1 '[10, 120]'
     ;;
-  usage-netpbm-batch11-pnmscale-xysize)
-    cat >"$tmpdir/input.pgm" <<'EOF'
-P2
-2 2
-255
-80 80
-80 80
-EOF
+  usage-netpbm-batch11-pnmgamma-shape)
+    printf 'P2\n2 1\n255\n64 128\n' >"$tmpdir/input.pgm"
     pnmtopng "$tmpdir/input.pgm" >"$tmpdir/input.png"
-    pngtopnm "$tmpdir/input.png" | pnmscale -xysize 4 2 >"$tmpdir/out.pgm"
+    pngtopnm "$tmpdir/input.png" | pnmgamma 2.0 >"$tmpdir/out.pgm"
+    assert_shape "$tmpdir/out.pgm" 2 1 1
+    ;;
+  usage-netpbm-batch11-pamthreshold-bw)
+    printf 'P2\n2 1\n255\n0 255\n' >"$tmpdir/input.pgm"
+    pnmtopng "$tmpdir/input.pgm" >"$tmpdir/input.png"
+    pngtopnm "$tmpdir/input.png" | pamthreshold >"$tmpdir/out.pam"
+    pamfile "$tmpdir/out.pam" >"$tmpdir/out"
+    validator_assert_contains "$tmpdir/out" 'BLACKANDWHITE'
+    ;;
+  usage-netpbm-batch11-pnmnorm-shape)
+    printf 'P2\n2 2\n255\n0 255\n128 64\n' >"$tmpdir/input.pgm"
+    pnmtopng "$tmpdir/input.pgm" >"$tmpdir/input.png"
+    pngtopnm "$tmpdir/input.png" | pnmnorm -bpercent 0 -wpercent 0 >"$tmpdir/out.pgm"
     assert_shape "$tmpdir/out.pgm" 2 2 1
     ;;
-  usage-netpbm-batch11-pamchannel-blue)
-    cat >"$tmpdir/input.ppm" <<'EOF'
-P3
-2 1
-255
-10 40 70  20 50 80
-EOF
-    pnmtopng "$tmpdir/input.ppm" >"$tmpdir/input.png"
-    pngtopnm "$tmpdir/input.png" | pamchannel 2 | pamtopnm -assume >"$tmpdir/out.pgm"
-    assert_values "$tmpdir/out.pgm" 2 1 1 '[70, 80]'
-    ;;
-  usage-netpbm-batch11-pnmdepth-31)
-    printf 'P2\n1 1\n255\n255\n' >"$tmpdir/input.pgm"
+  usage-netpbm-batch11-pnmrotate-right-angle)
+    printf 'P2\n2 1\n255\n0 255\n' >"$tmpdir/input.pgm"
     pnmtopng "$tmpdir/input.pgm" >"$tmpdir/input.png"
-    pngtopnm "$tmpdir/input.png" | pnmdepth 31 >"$tmpdir/out.pgm"
-    python3 "$tmpdir/pnm_assert.py" maxval "$tmpdir/out.pgm" 31
+    pngtopnm "$tmpdir/input.png" | pnmrotate 90 >"$tmpdir/out.pgm"
+    assert_shape "$tmpdir/out.pgm" 5 2 1
     ;;
-  usage-netpbm-batch11-pnmcut-region)
-    cat >"$tmpdir/input.pgm" <<'EOF'
-P2
-3 1
-255
-10 20 30
-EOF
+  usage-netpbm-batch11-pnmshear-width)
+    printf 'P2\n2 1\n255\n0 255\n' >"$tmpdir/input.pgm"
     pnmtopng "$tmpdir/input.pgm" >"$tmpdir/input.png"
-    pngtopnm "$tmpdir/input.png" | pnmcut 1 0 2 1 >"$tmpdir/out.pgm"
-    assert_values "$tmpdir/out.pgm" 2 1 1 '[20, 30]'
+    pngtopnm "$tmpdir/input.png" | pnmshear 10 >"$tmpdir/out.pgm"
+    assert_shape "$tmpdir/out.pgm" 3 1 1
     ;;
-  usage-netpbm-batch11-pnmcat-three-tall)
-    printf 'P2\n1 1\n255\n5\n' >"$tmpdir/a.pgm"
-    printf 'P2\n1 1\n255\n15\n' >"$tmpdir/b.pgm"
-    printf 'P2\n1 1\n255\n25\n' >"$tmpdir/c.pgm"
-    pnmcat -tb "$tmpdir/a.pgm" "$tmpdir/b.pgm" "$tmpdir/c.pgm" >"$tmpdir/out.pgm"
-    assert_values "$tmpdir/out.pgm" 1 3 1 '[5, 15, 25]'
-    ;;
-  usage-netpbm-batch11-pnmscale-double)
-    printf 'P2\n1 1\n255\n99\n' >"$tmpdir/input.pgm"
+  usage-netpbm-batch11-pamstretch-double)
+    printf 'P2\n2 2\n255\n0 50\n100 150\n' >"$tmpdir/input.pgm"
     pnmtopng "$tmpdir/input.pgm" >"$tmpdir/input.png"
-    pngtopnm "$tmpdir/input.png" | pnmscale 2 >"$tmpdir/out.pgm"
-    assert_shape "$tmpdir/out.pgm" 2 2 1
+    pngtopnm "$tmpdir/input.png" | pamstretch 2 >"$tmpdir/out.pgm"
+    assert_shape "$tmpdir/out.pgm" 4 4 1
     ;;
   *)
     printf 'unknown libpng eleventh-batch usage case: %s\n' "$case_id" >&2

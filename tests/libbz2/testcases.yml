@@ -1157,15 +1157,15 @@ testcases:
   - usage
   - compression
   - cli
-- id: usage-bzip2-batch11-bzgrep-extended-regexp
-  title: bzgrep extended regexp
-  description: Searches a compressed file with bzgrep extended regular expressions.
+- id: usage-bzip2-batch11-bzgrep-after-context
+  title: bzgrep after context
+  description: Searches compressed text with bzgrep -A and verifies a following context line is emitted.
   kind: usage
   client_application: bzip2
   command:
   - bash
   - /validator/tests/libbz2/tests/cases/usage/usage-eleventh-batch-behavior.sh
-  - usage-bzip2-batch11-bzgrep-extended-regexp
+  - usage-bzip2-batch11-bzgrep-after-context
   timeout_seconds: 180
   tags:
   - usage
@@ -1199,57 +1199,57 @@ testcases:
   - usage
   - compression
   - cli
-- id: usage-bzip2-batch11-test-quiet
-  title: bzip2 quiet integrity check
-  description: Runs a quiet bzip2 integrity check on a generated stream.
+- id: usage-bzip2-batch11-bzgrep-quiet-match
+  title: bzgrep quiet match
+  description: Searches compressed text with bzgrep -q and verifies the match is reported by exit status only.
   kind: usage
   client_application: bzip2
   command:
   - bash
   - /validator/tests/libbz2/tests/cases/usage/usage-eleventh-batch-behavior.sh
-  - usage-bzip2-batch11-test-quiet
+  - usage-bzip2-batch11-bzgrep-quiet-match
   timeout_seconds: 180
   tags:
   - usage
   - compression
   - cli
-- id: usage-bzip2-batch11-fast-stdout-roundtrip
-  title: bzip2 fast stdout roundtrip
-  description: Roundtrips data through fast bzip2 stdout compression.
+- id: usage-bzip2-batch11-bzmore-pager-cat
+  title: bzmore pager cat
+  description: Reads a compressed file through bzmore with cat as the pager and verifies the decompressed text.
   kind: usage
   client_application: bzip2
   command:
   - bash
   - /validator/tests/libbz2/tests/cases/usage/usage-eleventh-batch-behavior.sh
-  - usage-bzip2-batch11-fast-stdout-roundtrip
+  - usage-bzip2-batch11-bzmore-pager-cat
   timeout_seconds: 180
   tags:
   - usage
   - compression
   - cli
-- id: usage-bzip2-batch11-best-stdout-roundtrip
-  title: bzip2 best stdout roundtrip
-  description: Roundtrips data through best bzip2 stdout compression.
+- id: usage-bzip2-batch11-bzgrep-before-context
+  title: bzgrep before context
+  description: Searches compressed text with bzgrep -B and verifies a preceding context line is emitted.
   kind: usage
   client_application: bzip2
   command:
   - bash
   - /validator/tests/libbz2/tests/cases/usage/usage-eleventh-batch-behavior.sh
-  - usage-bzip2-batch11-best-stdout-roundtrip
+  - usage-bzip2-batch11-bzgrep-before-context
   timeout_seconds: 180
   tags:
   - usage
   - compression
   - cli
-- id: usage-bzip2-batch11-decompress-replace
-  title: bunzip2 replace input
-  description: Decompresses a generated file in place and verifies restored content.
+- id: usage-bzip2-batch11-bzgrep-nonmatching-file
+  title: bzgrep nonmatching file
+  description: Searches compressed files with bzgrep -L and verifies the nonmatching compressed filename is emitted.
   kind: usage
   client_application: bzip2
   command:
   - bash
   - /validator/tests/libbz2/tests/cases/usage/usage-eleventh-batch-behavior.sh
-  - usage-bzip2-batch11-decompress-replace
+  - usage-bzip2-batch11-bzgrep-nonmatching-file
   timeout_seconds: 180
   tags:
   - usage

@@ -1154,29 +1154,29 @@ testcases:
   - usage
   - gpg
   - inspect
-- id: usage-gpg-print-md-sha1-batch11
-  title: gpg SHA1 digest
-  description: Prints a SHA1 digest through gpg digest handling.
+- id: usage-gpg-list-config-ciphername-batch11
+  title: gpg list config cipher names
+  description: Lists configured cipher algorithm names with gpg and checks TWOFISH support is reported.
   kind: usage
   client_application: gpg
   command:
   - bash
   - /validator/tests/libgcrypt/tests/cases/usage/usage-eleventh-batch-behavior.sh
-  - usage-gpg-print-md-sha1-batch11
+  - usage-gpg-list-config-ciphername-batch11
   timeout_seconds: 180
   tags:
   - usage
   - gpg
   - crypto
-- id: usage-gpg-print-md-md5-batch11
-  title: gpg MD5 digest
-  description: Prints an MD5 digest through gpg digest handling.
+- id: usage-gpg-list-config-digestname-batch11
+  title: gpg list config digest names
+  description: Lists configured digest algorithm names with gpg and checks SHA512 support is reported.
   kind: usage
   client_application: gpg
   command:
   - bash
   - /validator/tests/libgcrypt/tests/cases/usage/usage-eleventh-batch-behavior.sh
-  - usage-gpg-print-md-md5-batch11
+  - usage-gpg-list-config-digestname-batch11
   timeout_seconds: 180
   tags:
   - usage
@@ -1196,85 +1196,85 @@ testcases:
   - usage
   - gpg
   - crypto
-- id: usage-gpg-enarmor-dearmor-batch11
-  title: gpg enarmor dearmor
-  description: Armors and dearmors raw bytes with gpg and compares the restored payload.
+- id: usage-gpg-list-config-compressname-batch11
+  title: gpg list config compression names
+  description: Lists configured compression algorithm names with gpg and checks BZIP2 support is reported.
   kind: usage
   client_application: gpg
   command:
   - bash
   - /validator/tests/libgcrypt/tests/cases/usage/usage-eleventh-batch-behavior.sh
-  - usage-gpg-enarmor-dearmor-batch11
+  - usage-gpg-list-config-compressname-batch11
   timeout_seconds: 180
   tags:
   - usage
   - gpg
   - crypto
-- id: usage-gpg-symmetric-aes128-batch11
-  title: gpg AES128 symmetric
-  description: Encrypts and decrypts a payload with gpg AES128 symmetric encryption.
+- id: usage-gpg-symmetric-twofish-batch11
+  title: gpg TWOFISH symmetric
+  description: Encrypts and decrypts a payload with gpg TWOFISH symmetric encryption.
   kind: usage
   client_application: gpg
   command:
   - bash
   - /validator/tests/libgcrypt/tests/cases/usage/usage-eleventh-batch-behavior.sh
-  - usage-gpg-symmetric-aes128-batch11
+  - usage-gpg-symmetric-twofish-batch11
   timeout_seconds: 180
   tags:
   - usage
   - gpg
   - crypto
-- id: usage-gpg-symmetric-aes192-batch11
-  title: gpg AES192 symmetric
-  description: Encrypts and decrypts a payload with gpg AES192 symmetric encryption.
+- id: usage-gpg-symmetric-camellia256-batch11
+  title: gpg CAMELLIA256 symmetric
+  description: Encrypts and decrypts a payload with gpg CAMELLIA256 symmetric encryption.
   kind: usage
   client_application: gpg
   command:
   - bash
   - /validator/tests/libgcrypt/tests/cases/usage/usage-eleventh-batch-behavior.sh
-  - usage-gpg-symmetric-aes192-batch11
+  - usage-gpg-symmetric-camellia256-batch11
   timeout_seconds: 180
   tags:
   - usage
   - gpg
   - crypto
-- id: usage-gpg-detached-binary-sign-batch11
-  title: gpg binary detached sign
-  description: Creates and verifies a binary detached signature with gpg.
+- id: usage-gpg-clearsign-verify-batch11
+  title: gpg clearsign verify
+  description: Creates and verifies a cleartext signature with gpg.
   kind: usage
   client_application: gpg
   command:
   - bash
   - /validator/tests/libgcrypt/tests/cases/usage/usage-eleventh-batch-behavior.sh
-  - usage-gpg-detached-binary-sign-batch11
+  - usage-gpg-clearsign-verify-batch11
   timeout_seconds: 240
   tags:
   - usage
   - gpg
   - crypto
-- id: usage-gpg-recipient-armor-encrypt-batch11
-  title: gpg armored recipient encrypt
-  description: Encrypts to a generated recipient with ASCII armor and decrypts the message.
+- id: usage-gpg-hidden-recipient-encrypt-batch11
+  title: gpg hidden recipient encrypt
+  description: Encrypts to a generated hidden recipient and decrypts the message.
   kind: usage
   client_application: gpg
   command:
   - bash
   - /validator/tests/libgcrypt/tests/cases/usage/usage-eleventh-batch-behavior.sh
-  - usage-gpg-recipient-armor-encrypt-batch11
+  - usage-gpg-hidden-recipient-encrypt-batch11
   timeout_seconds: 240
   tags:
   - usage
   - gpg
   - crypto
-- id: usage-gpg-symmetric-list-packets-cipher-batch11
-  title: gpg symmetric packet cipher
-  description: Lists packets from a symmetric encrypted file and checks encrypted data metadata.
+- id: usage-gpg-store-compressed-packet-batch11
+  title: gpg stored compressed packet
+  description: Stores a compressed OpenPGP packet and checks packet metadata with gpg.
   kind: usage
   client_application: gpg
   command:
   - bash
   - /validator/tests/libgcrypt/tests/cases/usage/usage-eleventh-batch-behavior.sh
-  - usage-gpg-symmetric-list-packets-cipher-batch11
+  - usage-gpg-store-compressed-packet-batch11
   timeout_seconds: 180
   tags:
   - usage

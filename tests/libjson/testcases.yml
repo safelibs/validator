@@ -1223,15 +1223,15 @@ testcases:
   - usage
   - gdal
   - json
-- id: usage-gdal-batch11-ogrinfo-sql-count
-  title: GDAL ogrinfo SQL count
-  description: Runs a SQLite dialect count query over a GeoJSON layer.
+- id: usage-gdal-batch11-ogrinfo-sql-distinct-kind
+  title: GDAL ogrinfo SQL distinct kind
+  description: Runs a SQLite DISTINCT query over a GeoJSON layer and checks the emitted kind values.
   kind: usage
   client_application: gdal
   command:
   - bash
   - /validator/tests/libjson/tests/cases/usage/usage-eleventh-batch-behavior.sh
-  - usage-gdal-batch11-ogrinfo-sql-count
+  - usage-gdal-batch11-ogrinfo-sql-distinct-kind
   timeout_seconds: 180
   tags:
   - usage

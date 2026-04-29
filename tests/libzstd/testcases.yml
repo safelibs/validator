@@ -1152,141 +1152,141 @@ testcases:
   - usage
   - archive
   - zstd
-- id: usage-libarchive-tools-zstd-batch11-list-nested
-  title: bsdtar zstd list nested
-  description: Lists a nested member from a zstd-compressed tar archive with bsdtar.
+- id: usage-libarchive-tools-zstd-batch11-filelist-create
+  title: bsdtar zstd file list create
+  description: Creates a zstd archive from a newline-delimited file list and verifies the selected members.
   kind: usage
   client_application: libarchive-tools
   command:
   - bash
   - /validator/tests/libzstd/tests/cases/usage/usage-eleventh-batch-behavior.sh
-  - usage-libarchive-tools-zstd-batch11-list-nested
+  - usage-libarchive-tools-zstd-batch11-filelist-create
   timeout_seconds: 180
   tags:
   - usage
   - archive
   - zstd
-- id: usage-libarchive-tools-zstd-batch11-stdout-alpha
-  title: bsdtar zstd stdout alpha
-  description: Extracts one zstd-compressed tar member to stdout with bsdtar.
+- id: usage-libarchive-tools-zstd-batch11-null-filelist
+  title: bsdtar zstd null file list
+  description: Creates a zstd archive from a null-delimited file list with bsdtar.
   kind: usage
   client_application: libarchive-tools
   command:
   - bash
   - /validator/tests/libzstd/tests/cases/usage/usage-eleventh-batch-behavior.sh
-  - usage-libarchive-tools-zstd-batch11-stdout-alpha
+  - usage-libarchive-tools-zstd-batch11-null-filelist
   timeout_seconds: 180
   tags:
   - usage
   - archive
   - zstd
-- id: usage-libarchive-tools-zstd-batch11-extract-specific
-  title: bsdtar zstd extract specific
-  description: Extracts a specific nested member from a zstd-compressed tar archive.
+- id: usage-libarchive-tools-zstd-batch11-empty-directory
+  title: bsdtar zstd empty directory
+  description: Archives and extracts an empty directory inside a zstd-compressed tar archive.
   kind: usage
   client_application: libarchive-tools
   command:
   - bash
   - /validator/tests/libzstd/tests/cases/usage/usage-eleventh-batch-behavior.sh
-  - usage-libarchive-tools-zstd-batch11-extract-specific
+  - usage-libarchive-tools-zstd-batch11-empty-directory
   timeout_seconds: 180
   tags:
   - usage
   - archive
   - zstd
-- id: usage-libarchive-tools-zstd-batch11-exclude-temp
-  title: bsdtar zstd exclude temp
-  description: Extracts a zstd-compressed tar archive while excluding temporary files.
+- id: usage-libarchive-tools-zstd-batch11-mode-preserved
+  title: bsdtar zstd mode preserved
+  description: Round-trips executable mode bits through a zstd-compressed tar archive.
   kind: usage
   client_application: libarchive-tools
   command:
   - bash
   - /validator/tests/libzstd/tests/cases/usage/usage-eleventh-batch-behavior.sh
-  - usage-libarchive-tools-zstd-batch11-exclude-temp
+  - usage-libarchive-tools-zstd-batch11-mode-preserved
   timeout_seconds: 180
   tags:
   - usage
   - archive
   - zstd
-- id: usage-libarchive-tools-zstd-batch11-strip-components
-  title: bsdtar zstd strip components
-  description: Extracts a zstd-compressed tar member with stripped path components.
+- id: usage-libarchive-tools-zstd-batch11-mtime-preserved
+  title: bsdtar zstd mtime preserved
+  description: Round-trips a fixed modification time through a zstd-compressed tar archive.
   kind: usage
   client_application: libarchive-tools
   command:
   - bash
   - /validator/tests/libzstd/tests/cases/usage/usage-eleventh-batch-behavior.sh
-  - usage-libarchive-tools-zstd-batch11-strip-components
+  - usage-libarchive-tools-zstd-batch11-mtime-preserved
   timeout_seconds: 180
   tags:
   - usage
   - archive
   - zstd
-- id: usage-libarchive-tools-zstd-batch11-stdin-list
-  title: bsdtar zstd stdin list
-  description: Lists a zstd-compressed tar archive supplied on stdin.
+- id: usage-libarchive-tools-zstd-batch11-transform-name
+  title: bsdtar zstd transform name
+  description: Uses bsdtar path substitution while creating a zstd-compressed tar archive.
   kind: usage
   client_application: libarchive-tools
   command:
   - bash
   - /validator/tests/libzstd/tests/cases/usage/usage-eleventh-batch-behavior.sh
-  - usage-libarchive-tools-zstd-batch11-stdin-list
+  - usage-libarchive-tools-zstd-batch11-transform-name
   timeout_seconds: 180
   tags:
   - usage
   - archive
   - zstd
-- id: usage-libarchive-tools-zstd-batch11-space-name-stdout
-  title: bsdtar zstd space name stdout
-  description: Extracts a space-containing filename from a zstd-compressed tar archive to stdout.
+- id: usage-libarchive-tools-zstd-batch11-newer-mtime
+  title: bsdtar zstd newer mtime filter
+  description: Creates a zstd archive using a newer-than mtime filter and verifies older files are skipped.
   kind: usage
   client_application: libarchive-tools
   command:
   - bash
   - /validator/tests/libzstd/tests/cases/usage/usage-eleventh-batch-behavior.sh
-  - usage-libarchive-tools-zstd-batch11-space-name-stdout
+  - usage-libarchive-tools-zstd-batch11-newer-mtime
   timeout_seconds: 180
   tags:
   - usage
   - archive
   - zstd
-- id: usage-libarchive-tools-zstd-batch11-checksum-compare
-  title: bsdtar zstd checksum compare
-  description: Compares a checksum before and after extracting a zstd-compressed tar member.
+- id: usage-libarchive-tools-zstd-batch11-owner-labels
+  title: bsdtar zstd owner labels
+  description: Writes custom owner labels into a zstd-compressed tar archive and verifies verbose listing output.
   kind: usage
   client_application: libarchive-tools
   command:
   - bash
   - /validator/tests/libzstd/tests/cases/usage/usage-eleventh-batch-behavior.sh
-  - usage-libarchive-tools-zstd-batch11-checksum-compare
+  - usage-libarchive-tools-zstd-batch11-owner-labels
   timeout_seconds: 180
   tags:
   - usage
   - archive
   - zstd
-- id: usage-libarchive-tools-zstd-batch11-verbose-list
-  title: bsdtar zstd verbose list
-  description: Runs a verbose listing of a zstd-compressed tar archive.
+- id: usage-libarchive-tools-zstd-batch11-exclude-vcs
+  title: bsdtar zstd exclude VCS
+  description: Creates a zstd archive with VCS metadata excluded by bsdtar.
   kind: usage
   client_application: libarchive-tools
   command:
   - bash
   - /validator/tests/libzstd/tests/cases/usage/usage-eleventh-batch-behavior.sh
-  - usage-libarchive-tools-zstd-batch11-verbose-list
+  - usage-libarchive-tools-zstd-batch11-exclude-vcs
   timeout_seconds: 180
   tags:
   - usage
   - archive
   - zstd
-- id: usage-libarchive-tools-zstd-batch11-copy-archive-file
-  title: bsdtar zstd copied archive
-  description: Lists a copied zstd-compressed tar archive with bsdtar.
+- id: usage-libarchive-tools-zstd-batch11-ustar-format
+  title: bsdtar zstd ustar format
+  description: Creates a zstd-compressed archive using the ustar tar format option.
   kind: usage
   client_application: libarchive-tools
   command:
   - bash
   - /validator/tests/libzstd/tests/cases/usage/usage-eleventh-batch-behavior.sh
-  - usage-libarchive-tools-zstd-batch11-copy-archive-file
+  - usage-libarchive-tools-zstd-batch11-ustar-format
   timeout_seconds: 180
   tags:
   - usage

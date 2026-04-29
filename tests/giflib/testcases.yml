@@ -1192,29 +1192,29 @@ testcases:
   - usage
   - gif
   - cli
-- id: usage-giflib-tools-batch11-grid-rgb-nonempty
-  title: gif2rgb grid RGB output
-  description: Converts the grid fixture to packed RGB and checks bytes are produced.
+- id: usage-giflib-tools-batch11-grid-rgb-byte-count
+  title: gif2rgb grid RGB byte count
+  description: Converts the grid fixture to packed RGB and checks the byte count is channel-aligned.
   kind: usage
   client_application: giflib-tools
   command:
   - bash
   - /validator/tests/giflib/tests/cases/usage/usage-eleventh-batch-behavior.sh
-  - usage-giflib-tools-batch11-grid-rgb-nonempty
+  - usage-giflib-tools-batch11-grid-rgb-byte-count
   timeout_seconds: 180
   tags:
   - usage
   - gif
   - cli
-- id: usage-giflib-tools-batch11-fire-planar-same-size
-  title: gif2rgb fire planar sizes
+- id: usage-giflib-tools-batch11-fire-planar-equal-channels
+  title: gif2rgb fire equal planar channels
   description: Converts the fire fixture to planar RGB and checks equal channel sizes.
   kind: usage
   client_application: giflib-tools
   command:
   - bash
   - /validator/tests/giflib/tests/cases/usage/usage-eleventh-batch-behavior.sh
-  - usage-giflib-tools-batch11-fire-planar-same-size
+  - usage-giflib-tools-batch11-fire-planar-equal-channels
   timeout_seconds: 180
   tags:
   - usage

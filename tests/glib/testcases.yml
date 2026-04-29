@@ -1233,15 +1233,15 @@ testcases:
   - usage
   - python
   - glib
-- id: usage-python3-gi-markup-escape-batch11
-  title: PyGObject GLib markup escape
-  description: Calls GLib markup escaping through PyGObject.
+- id: usage-python3-gi-shell-parse-argv-batch11
+  title: PyGObject GLib shell parse argv
+  description: Parses a quoted command line into argv entries with GLib through PyGObject.
   kind: usage
   client_application: python3-gi
   command:
   - bash
   - /validator/tests/glib/tests/cases/usage/usage-eleventh-batch-behavior.sh
-  - usage-python3-gi-markup-escape-batch11
+  - usage-python3-gi-shell-parse-argv-batch11
   timeout_seconds: 180
   tags:
   - usage

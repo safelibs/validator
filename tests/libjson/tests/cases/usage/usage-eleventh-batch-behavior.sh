@@ -38,9 +38,10 @@ case "$case_id" in
     ogr2ogr -f GeoJSON "$tmpdir/webm.geojson" "$tmpdir/places.geojson" -t_srs EPSG:3857
     validator_assert_contains "$tmpdir/webm.geojson" 'FeatureCollection'
     ;;
-  usage-gdal-batch11-ogrinfo-sql-count)
-    ogrinfo -ro "$tmpdir/places.geojson" -dialect SQLite -sql 'SELECT COUNT(*) AS n FROM places' >"$tmpdir/out"
-    validator_assert_contains "$tmpdir/out" 'n (Integer) = 3'
+  usage-gdal-batch11-ogrinfo-sql-distinct-kind)
+    ogrinfo -ro "$tmpdir/places.geojson" -dialect SQLite -sql 'SELECT DISTINCT kind FROM places ORDER BY kind' >"$tmpdir/out"
+    validator_assert_contains "$tmpdir/out" 'kind (String) = park'
+    validator_assert_contains "$tmpdir/out" 'kind (String) = road'
     ;;
   usage-gdal-batch11-ogr2ogr-where-value)
     ogr2ogr -f GeoJSON "$tmpdir/filtered.geojson" "$tmpdir/places.geojson" -where 'value >= 2'

@@ -1091,141 +1091,141 @@ testcases:
   timeout_seconds: 120
   tags:
   - usage
-- id: usage-netpbm-batch11-pnminvert-gray
-  title: netpbm pnminvert gray
-  description: Converts a PNG to PGM and inverts grayscale pixels with pnminvert.
+- id: usage-netpbm-batch11-pngtopam-pamfile
+  title: netpbm pngtopam pamfile
+  description: Converts a PNG through pngtopam and verifies PAM metadata with pamfile.
   kind: usage
   client_application: netpbm
   command:
   - bash
   - /validator/tests/libpng/tests/cases/usage/usage-eleventh-batch-behavior.sh
-  - usage-netpbm-batch11-pnminvert-gray
+  - usage-netpbm-batch11-pngtopam-pamfile
   timeout_seconds: 180
   tags:
   - usage
   - png
   - netpbm
-- id: usage-netpbm-batch11-pnmflip-left-right
-  title: netpbm pnmflip left right
-  description: Converts a PNG to PPM and flips RGB pixels left to right with pnmflip.
+- id: usage-netpbm-batch11-pamdice-tiles
+  title: netpbm pamdice tiles
+  description: Slices a grayscale image into one-pixel tiles with pamdice.
   kind: usage
   client_application: netpbm
   command:
   - bash
   - /validator/tests/libpng/tests/cases/usage/usage-eleventh-batch-behavior.sh
-  - usage-netpbm-batch11-pnmflip-left-right
+  - usage-netpbm-batch11-pamdice-tiles
   timeout_seconds: 180
   tags:
   - usage
   - png
   - netpbm
-- id: usage-netpbm-batch11-pamflip-top-bottom
-  title: netpbm pamflip top bottom
-  description: Converts a PNG to PGM and flips rows top to bottom with pamflip.
+- id: usage-netpbm-batch11-pamdeinterlace-height
+  title: netpbm pamdeinterlace height
+  description: Deinterlaces a PNG-derived grayscale image and verifies the reduced field height.
   kind: usage
   client_application: netpbm
   command:
   - bash
   - /validator/tests/libpng/tests/cases/usage/usage-eleventh-batch-behavior.sh
-  - usage-netpbm-batch11-pamflip-top-bottom
+  - usage-netpbm-batch11-pamdeinterlace-height
   timeout_seconds: 180
   tags:
   - usage
   - png
   - netpbm
-- id: usage-netpbm-batch11-pnmcat-three-wide
-  title: netpbm pnmcat three wide
-  description: Concatenates three grayscale images left to right with pnmcat.
+- id: usage-netpbm-batch11-pnmarith-add
+  title: netpbm pnmarith add
+  description: Adds two grayscale images with pnmarith and checks the resulting sample values.
   kind: usage
   client_application: netpbm
   command:
   - bash
   - /validator/tests/libpng/tests/cases/usage/usage-eleventh-batch-behavior.sh
-  - usage-netpbm-batch11-pnmcat-three-wide
+  - usage-netpbm-batch11-pnmarith-add
   timeout_seconds: 180
   tags:
   - usage
   - png
   - netpbm
-- id: usage-netpbm-batch11-pnmscale-xysize
-  title: netpbm pnmscale xysize
-  description: Scales a PNG-derived PGM image within an xysize bound with pnmscale.
+- id: usage-netpbm-batch11-pnmgamma-shape
+  title: netpbm pnmgamma shape
+  description: Applies gamma correction to a PNG-derived grayscale image with pnmgamma.
   kind: usage
   client_application: netpbm
   command:
   - bash
   - /validator/tests/libpng/tests/cases/usage/usage-eleventh-batch-behavior.sh
-  - usage-netpbm-batch11-pnmscale-xysize
+  - usage-netpbm-batch11-pnmgamma-shape
   timeout_seconds: 180
   tags:
   - usage
   - png
   - netpbm
-- id: usage-netpbm-batch11-pamchannel-blue
-  title: netpbm pamchannel blue
-  description: Extracts the blue channel from a PNG-derived PPM image with pamchannel.
+- id: usage-netpbm-batch11-pamthreshold-bw
+  title: netpbm pamthreshold black white
+  description: Thresholds a PNG-derived grayscale image to a black-and-white PAM.
   kind: usage
   client_application: netpbm
   command:
   - bash
   - /validator/tests/libpng/tests/cases/usage/usage-eleventh-batch-behavior.sh
-  - usage-netpbm-batch11-pamchannel-blue
+  - usage-netpbm-batch11-pamthreshold-bw
   timeout_seconds: 180
   tags:
   - usage
   - png
   - netpbm
-- id: usage-netpbm-batch11-pnmdepth-31
-  title: netpbm pnmdepth 31
-  description: Changes PNG-derived PGM depth to max value 31 with pnmdepth.
+- id: usage-netpbm-batch11-pnmnorm-shape
+  title: netpbm pnmnorm shape
+  description: Normalizes a PNG-derived grayscale image with pnmnorm and verifies its dimensions.
   kind: usage
   client_application: netpbm
   command:
   - bash
   - /validator/tests/libpng/tests/cases/usage/usage-eleventh-batch-behavior.sh
-  - usage-netpbm-batch11-pnmdepth-31
+  - usage-netpbm-batch11-pnmnorm-shape
   timeout_seconds: 180
   tags:
   - usage
   - png
   - netpbm
-- id: usage-netpbm-batch11-pnmcut-region
-  title: netpbm pnmcut region
-  description: Cuts a region from a PNG-derived PGM image with pnmcut.
+- id: usage-netpbm-batch11-pnmrotate-right-angle
+  title: netpbm pnmrotate right angle
+  description: Rotates a PNG-derived grayscale image with pnmrotate and checks the expanded canvas shape.
   kind: usage
   client_application: netpbm
   command:
   - bash
   - /validator/tests/libpng/tests/cases/usage/usage-eleventh-batch-behavior.sh
-  - usage-netpbm-batch11-pnmcut-region
+  - usage-netpbm-batch11-pnmrotate-right-angle
   timeout_seconds: 180
   tags:
   - usage
   - png
   - netpbm
-- id: usage-netpbm-batch11-pnmcat-three-tall
-  title: netpbm pnmcat three tall
-  description: Concatenates three grayscale images top to bottom with pnmcat.
+- id: usage-netpbm-batch11-pnmshear-width
+  title: netpbm pnmshear width
+  description: Shears a PNG-derived grayscale image with pnmshear and verifies the expanded width.
   kind: usage
   client_application: netpbm
   command:
   - bash
   - /validator/tests/libpng/tests/cases/usage/usage-eleventh-batch-behavior.sh
-  - usage-netpbm-batch11-pnmcat-three-tall
+  - usage-netpbm-batch11-pnmshear-width
   timeout_seconds: 180
   tags:
   - usage
   - png
   - netpbm
-- id: usage-netpbm-batch11-pnmscale-double
-  title: netpbm pnmscale double
-  description: Scales a PNG-derived PGM image by a factor of two with pnmscale.
+- id: usage-netpbm-batch11-pamstretch-double
+  title: netpbm pamstretch double
+  description: Stretches a PNG-derived grayscale image with pamstretch and verifies doubled dimensions.
   kind: usage
   client_application: netpbm
   command:
   - bash
   - /validator/tests/libpng/tests/cases/usage/usage-eleventh-batch-behavior.sh
-  - usage-netpbm-batch11-pnmscale-double
+  - usage-netpbm-batch11-pamstretch-double
   timeout_seconds: 180
   tags:
   - usage

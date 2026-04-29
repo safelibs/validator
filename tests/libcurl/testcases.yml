@@ -1193,15 +1193,15 @@ testcases:
   - usage
   - curl
   - http
-- id: usage-curl-basic-auth-header-batch11
-  title: curl basic auth header
-  description: Sends HTTP basic credentials with curl to a loopback server.
+- id: usage-curl-netrc-auth-header-batch11
+  title: curl netrc auth header
+  description: Sends HTTP basic credentials loaded from a netrc file with curl.
   kind: usage
   client_application: curl
   command:
   - bash
   - /validator/tests/libcurl/tests/cases/usage/usage-eleventh-batch-behavior.sh
-  - usage-curl-basic-auth-header-batch11
+  - usage-curl-netrc-auth-header-batch11
   timeout_seconds: 180
   tags:
   - usage

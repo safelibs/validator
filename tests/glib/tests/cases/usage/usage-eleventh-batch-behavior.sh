@@ -37,12 +37,16 @@ print(GLib.shell_quote('alpha beta'))
 PYCASE
     validator_assert_contains "$tmpdir/out" "'alpha beta'"
     ;;
-  usage-python3-gi-markup-escape-batch11)
+  usage-python3-gi-shell-parse-argv-batch11)
     python3 >"$tmpdir/out" <<'PYCASE'
 from gi.repository import GLib
-print(GLib.markup_escape_text('<tag>&value'))
+ok, argv = GLib.shell_parse_argv('cmd "two words"')
+assert ok
+print(argv[0])
+print(argv[1])
 PYCASE
-    validator_assert_contains "$tmpdir/out" '&lt;tag&gt;&amp;value'
+    validator_assert_contains "$tmpdir/out" 'cmd'
+    validator_assert_contains "$tmpdir/out" 'two words'
     ;;
   usage-python3-gi-uri-unescape-batch11)
     python3 >"$tmpdir/out" <<'PYCASE'

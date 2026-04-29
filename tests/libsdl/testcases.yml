@@ -1114,15 +1114,15 @@ testcases:
   - usage
   - pygame
   - sdl
-- id: usage-python3-pygame-surface-map-rgb-batch11
-  title: pygame surface map RGB
-  description: Maps and unmaps an RGB color through a pygame Surface.
+- id: usage-python3-pygame-surface-lock-state-batch11
+  title: pygame surface lock state
+  description: Locks and unlocks a pygame Surface and verifies the lock state transitions.
   kind: usage
   client_application: python3-pygame
   command:
   - bash
   - /validator/tests/libsdl/tests/cases/usage/usage-eleventh-batch-behavior.sh
-  - usage-python3-pygame-surface-map-rgb-batch11
+  - usage-python3-pygame-surface-lock-state-batch11
   timeout_seconds: 180
   tags:
   - usage
@@ -1170,15 +1170,15 @@ testcases:
   - usage
   - pygame
   - sdl
-- id: usage-python3-pygame-time-clock-tick-batch11
-  title: pygame clock tick
-  description: Ticks a pygame Clock under the dummy SDL drivers.
+- id: usage-python3-pygame-time-busy-loop-batch11
+  title: pygame clock busy loop
+  description: Ticks a pygame Clock with tick_busy_loop under the dummy SDL drivers.
   kind: usage
   client_application: python3-pygame
   command:
   - bash
   - /validator/tests/libsdl/tests/cases/usage/usage-eleventh-batch-behavior.sh
-  - usage-python3-pygame-time-clock-tick-batch11
+  - usage-python3-pygame-time-busy-loop-batch11
   timeout_seconds: 180
   tags:
   - usage
@@ -1212,15 +1212,15 @@ testcases:
   - usage
   - pygame
   - sdl
-- id: usage-python3-pygame-mask-overlap-area-batch11
-  title: pygame mask overlap area
-  description: Computes overlap area between pygame masks.
+- id: usage-python3-pygame-mask-connected-components-batch11
+  title: pygame mask connected components
+  description: Splits separated set pixels into connected components with pygame mask helpers.
   kind: usage
   client_application: python3-pygame
   command:
   - bash
   - /validator/tests/libsdl/tests/cases/usage/usage-eleventh-batch-behavior.sh
-  - usage-python3-pygame-mask-overlap-area-batch11
+  - usage-python3-pygame-mask-connected-components-batch11
   timeout_seconds: 180
   tags:
   - usage

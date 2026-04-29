@@ -42,14 +42,13 @@ case "$case_id" in
     exif --machine-readable --tag=YCbCrPositioning "$img" >"$tmpdir/out"
     test "$(wc -c <"$tmpdir/out")" -gt 0
     ;;
-  usage-exif-cli-show-mnote-byte-order-batch11)
+  usage-exif-cli-show-mnote-firmware-batch11)
     exif --show-mnote "$img" >"$tmpdir/out"
     validator_assert_contains "$tmpdir/out" 'Firmware Version'
     ;;
-  usage-exif-cli-thumbnail-nonempty-batch11)
-    exif --extract-thumbnail --output="$tmpdir/thumb.jpg" "$img"
-    validator_require_file "$tmpdir/thumb.jpg"
-    test "$(wc -c <"$tmpdir/thumb.jpg")" -gt 0
+  usage-exif-cli-machine-focal-plane-x-resolution-batch11)
+    exif --machine-readable --tag=FocalPlaneXResolution "$img" >"$tmpdir/out"
+    validator_assert_contains "$tmpdir/out" '2253'
     ;;
   *)
     printf 'unknown libexif eleventh-batch usage case: %s\n' "$case_id" >&2

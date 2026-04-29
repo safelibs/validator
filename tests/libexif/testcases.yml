@@ -1203,7 +1203,7 @@ testcases:
   - usage
   - exif
   - metadata
-- id: usage-exif-cli-show-mnote-byte-order-batch11
+- id: usage-exif-cli-show-mnote-firmware-batch11
   title: exif maker note firmware
   description: Shows maker-note details and checks firmware reporting.
   kind: usage
@@ -1211,21 +1211,21 @@ testcases:
   command:
   - bash
   - /validator/tests/libexif/tests/cases/usage/usage-eleventh-batch-behavior.sh
-  - usage-exif-cli-show-mnote-byte-order-batch11
+  - usage-exif-cli-show-mnote-firmware-batch11
   timeout_seconds: 180
   tags:
   - usage
   - exif
   - metadata
-- id: usage-exif-cli-thumbnail-nonempty-batch11
-  title: exif thumbnail nonempty
-  description: Extracts an embedded thumbnail and checks it has nontrivial length.
+- id: usage-exif-cli-machine-focal-plane-x-resolution-batch11
+  title: exif machine focal plane X resolution
+  description: Reads the focal-plane X resolution tag in machine-readable form with exif.
   kind: usage
   client_application: exif
   command:
   - bash
   - /validator/tests/libexif/tests/cases/usage/usage-eleventh-batch-behavior.sh
-  - usage-exif-cli-thumbnail-nonempty-batch11
+  - usage-exif-cli-machine-focal-plane-x-resolution-batch11
   timeout_seconds: 180
   tags:
   - usage

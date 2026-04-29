@@ -22,58 +22,58 @@ make_encryption_key() {
 }
 
 case "$case_id" in
-  usage-gpg-print-md-sha1-batch11)
-    printf 'sha1 payload\n' >"$tmpdir/plain.txt"
-    gpg --print-md SHA1 "$tmpdir/plain.txt" >"$tmpdir/out"
-    test "$(wc -c <"$tmpdir/out")" -gt 20
+  usage-gpg-list-config-ciphername-batch11)
+    gpg --with-colons --list-config >"$tmpdir/out"
+    validator_assert_contains "$tmpdir/out" 'cfg:ciphername:'
+    validator_assert_contains "$tmpdir/out" 'TWOFISH'
     ;;
-  usage-gpg-print-md-md5-batch11)
-    printf 'md5 payload\n' >"$tmpdir/plain.txt"
-    gpg --print-md MD5 "$tmpdir/plain.txt" >"$tmpdir/out"
-    test "$(wc -c <"$tmpdir/out")" -gt 20
+  usage-gpg-list-config-digestname-batch11)
+    gpg --with-colons --list-config >"$tmpdir/out"
+    validator_assert_contains "$tmpdir/out" 'cfg:digestname:'
+    validator_assert_contains "$tmpdir/out" 'SHA512'
     ;;
   usage-gpg-gen-random-length-batch11)
     gpg --gen-random 1 16 >"$tmpdir/random.bin"
     test "$(wc -c <"$tmpdir/random.bin")" -eq 16
     ;;
-  usage-gpg-enarmor-dearmor-batch11)
-    printf 'armor payload\n' >"$tmpdir/plain.bin"
-    gpg --enarmor <"$tmpdir/plain.bin" >"$tmpdir/plain.asc"
-    gpg --dearmor <"$tmpdir/plain.asc" >"$tmpdir/restored.bin"
-    cmp "$tmpdir/plain.bin" "$tmpdir/restored.bin"
+  usage-gpg-list-config-compressname-batch11)
+    gpg --with-colons --list-config >"$tmpdir/out"
+    validator_assert_contains "$tmpdir/out" 'cfg:compressname:'
+    validator_assert_contains "$tmpdir/out" 'BZIP2'
     ;;
-  usage-gpg-symmetric-aes128-batch11)
-    printf 'aes128 payload\n' >"$tmpdir/plain.txt"
-    "${gpg_batch[@]}" --cipher-algo AES128 --passphrase "$passphrase" --symmetric -o "$tmpdir/plain.gpg" "$tmpdir/plain.txt"
+  usage-gpg-symmetric-twofish-batch11)
+    printf 'twofish payload\n' >"$tmpdir/plain.txt"
+    "${gpg_batch[@]}" --cipher-algo TWOFISH --passphrase "$passphrase" --symmetric -o "$tmpdir/plain.gpg" "$tmpdir/plain.txt"
     "${gpg_batch[@]}" --passphrase "$passphrase" --decrypt -o "$tmpdir/out" "$tmpdir/plain.gpg"
-    validator_assert_contains "$tmpdir/out" 'aes128 payload'
+    validator_assert_contains "$tmpdir/out" 'twofish payload'
     ;;
-  usage-gpg-symmetric-aes192-batch11)
-    printf 'aes192 payload\n' >"$tmpdir/plain.txt"
-    "${gpg_batch[@]}" --cipher-algo AES192 --passphrase "$passphrase" --symmetric -o "$tmpdir/plain.gpg" "$tmpdir/plain.txt"
+  usage-gpg-symmetric-camellia256-batch11)
+    printf 'camellia payload\n' >"$tmpdir/plain.txt"
+    "${gpg_batch[@]}" --cipher-algo CAMELLIA256 --passphrase "$passphrase" --symmetric -o "$tmpdir/plain.gpg" "$tmpdir/plain.txt"
     "${gpg_batch[@]}" --passphrase "$passphrase" --decrypt -o "$tmpdir/out" "$tmpdir/plain.gpg"
-    validator_assert_contains "$tmpdir/out" 'aes192 payload'
+    validator_assert_contains "$tmpdir/out" 'camellia payload'
     ;;
-  usage-gpg-detached-binary-sign-batch11)
+  usage-gpg-clearsign-verify-batch11)
     make_signing_key
-    printf 'binary signature payload\n' >"$tmpdir/plain.txt"
-    "${gpg_batch[@]}" --detach-sign -o "$tmpdir/plain.sig" "$tmpdir/plain.txt"
-    gpg --verify "$tmpdir/plain.sig" "$tmpdir/plain.txt" >"$tmpdir/out" 2>&1
+    printf 'clear signature payload\n' >"$tmpdir/plain.txt"
+    "${gpg_batch[@]}" --clearsign -o "$tmpdir/plain.asc" "$tmpdir/plain.txt"
+    gpg --verify "$tmpdir/plain.asc" >"$tmpdir/out" 2>&1
     validator_assert_contains "$tmpdir/out" 'Good signature'
     ;;
-  usage-gpg-recipient-armor-encrypt-batch11)
+  usage-gpg-hidden-recipient-encrypt-batch11)
     make_encryption_key
-    printf 'armored recipient payload\n' >"$tmpdir/plain.txt"
-    "${gpg_batch[@]}" --armor --trust-model always --encrypt -r "$uid" -o "$tmpdir/plain.asc" "$tmpdir/plain.txt"
-    validator_assert_contains "$tmpdir/plain.asc" 'BEGIN PGP MESSAGE'
-    "${gpg_batch[@]}" --decrypt -o "$tmpdir/out" "$tmpdir/plain.asc"
-    validator_assert_contains "$tmpdir/out" 'armored recipient payload'
+    printf 'hidden recipient payload\n' >"$tmpdir/plain.txt"
+    "${gpg_batch[@]}" --trust-model always --hidden-recipient "$uid" --encrypt -o "$tmpdir/plain.gpg" "$tmpdir/plain.txt"
+    "${gpg_batch[@]}" --decrypt -o "$tmpdir/out" "$tmpdir/plain.gpg"
+    validator_assert_contains "$tmpdir/out" 'hidden recipient payload'
     ;;
-  usage-gpg-symmetric-list-packets-cipher-batch11)
-    printf 'packet cipher payload\n' >"$tmpdir/plain.txt"
-    "${gpg_batch[@]}" --passphrase "$passphrase" --symmetric -o "$tmpdir/plain.gpg" "$tmpdir/plain.txt"
-    "${gpg_batch[@]}" --passphrase "$passphrase" --list-packets "$tmpdir/plain.gpg" >"$tmpdir/out"
-    validator_assert_contains "$tmpdir/out" 'encrypted data packet'
+  usage-gpg-store-compressed-packet-batch11)
+    for _ in $(seq 1 40); do
+      printf 'compressed packet payload\n'
+    done >"$tmpdir/plain.txt"
+    "${gpg_batch[@]}" --compress-algo ZIP --store -o "$tmpdir/plain.gpg" "$tmpdir/plain.txt"
+    gpg --list-packets "$tmpdir/plain.gpg" >"$tmpdir/out"
+    validator_assert_contains "$tmpdir/out" 'compressed packet'
     ;;
   usage-gpg-public-key-packet-batch11)
     make_signing_key

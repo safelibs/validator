@@ -24,11 +24,14 @@ try:
         h, s, l, a = color.hsla
         assert int(h) == 0 and int(s) == 100 and int(l) == 50 and int(a) == 100
         print('hsla', color.hsla)
-    elif case_id == 'usage-python3-pygame-surface-map-rgb-batch11':
-        surface = pygame.Surface((2, 2), depth=32)
-        mapped = surface.map_rgb((10, 20, 30))
-        assert surface.unmap_rgb(mapped)[:3] == (10, 20, 30)
-        print('map', mapped)
+    elif case_id == 'usage-python3-pygame-surface-lock-state-batch11':
+        surface = pygame.Surface((2, 2))
+        assert not surface.get_locked()
+        surface.lock()
+        assert surface.get_locked()
+        surface.unlock()
+        assert not surface.get_locked()
+        print('lock-state')
     elif case_id == 'usage-python3-pygame-transform-flip-batch11':
         surface = pygame.Surface((2, 1))
         surface.set_at((0, 0), (10, 20, 30))
@@ -48,11 +51,11 @@ try:
         events = pygame.event.get(event_type)
         assert len(events) == 1 and events[0].payload == 'ok'
         print('event', event_type)
-    elif case_id == 'usage-python3-pygame-time-clock-tick-batch11':
+    elif case_id == 'usage-python3-pygame-time-busy-loop-batch11':
         clock = pygame.time.Clock()
-        elapsed = clock.tick(60)
+        elapsed = clock.tick_busy_loop(120)
         assert elapsed >= 0
-        print('tick', elapsed)
+        print('busy', elapsed)
     elif case_id == 'usage-python3-pygame-font-render-size-batch11':
         pygame.font.init()
         font = pygame.font.Font(None, 18)
@@ -64,13 +67,14 @@ try:
         b = pygame.sprite.Sprite(); b.rect = pygame.Rect(5, 5, 3, 3)
         assert pygame.sprite.collide_rect(a, b)
         print('collide')
-    elif case_id == 'usage-python3-pygame-mask-overlap-area-batch11':
-        a = pygame.mask.Mask((4, 4), fill=True)
-        b = pygame.mask.Mask((4, 4), fill=False)
-        b.set_at((1, 1), 1)
-        b.set_at((2, 1), 1)
-        assert a.overlap_area(b, (0, 0)) == 2
-        print('overlap')
+    elif case_id == 'usage-python3-pygame-mask-connected-components-batch11':
+        mask = pygame.mask.Mask((4, 4), fill=False)
+        mask.set_at((1, 1), 1)
+        mask.set_at((3, 3), 1)
+        components = mask.connected_components()
+        assert len(components) == 2
+        assert sorted(component.count() for component in components) == [1, 1]
+        print('mask-components')
     elif case_id == 'usage-python3-pygame-image-roundtrip-png-batch11':
         path = os.path.join(tmpdir, 'roundtrip.png')
         surface = pygame.Surface((3, 3))

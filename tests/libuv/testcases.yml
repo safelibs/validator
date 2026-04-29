@@ -1180,15 +1180,15 @@ testcases:
   - usage
   - nodejs
   - libuv
-- id: usage-nodejs-net-server-address-batch11
-  title: Node.js net server address
-  description: Starts a loopback Node.js TCP server and checks its bound address.
+- id: usage-nodejs-fs-watchfile-batch11
+  title: Node.js fs watchFile
+  description: Watches a local file with fs.watchFile and verifies the change callback fires.
   kind: usage
   client_application: nodejs
   command:
   - bash
   - /validator/tests/libuv/tests/cases/usage/usage-eleventh-batch-behavior.sh
-  - usage-nodejs-net-server-address-batch11
+  - usage-nodejs-fs-watchfile-batch11
   timeout_seconds: 180
   tags:
   - usage

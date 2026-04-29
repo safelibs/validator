@@ -26,11 +26,13 @@ case "$case_id" in
     gif2rgb -1 -o "$tmpdir/tree.rgb" "$samples/treescap.gif"
     require_nonempty "$tmpdir/tree.rgb"
     ;;
-  usage-giflib-tools-batch11-grid-rgb-nonempty)
+  usage-giflib-tools-batch11-grid-rgb-byte-count)
     gif2rgb -1 -o "$tmpdir/grid.rgb" "$samples/gifgrid.gif"
-    require_nonempty "$tmpdir/grid.rgb"
+    size=$(wc -c <"$tmpdir/grid.rgb")
+    test "$size" -gt 1000
+    test $((size % 3)) -eq 0
     ;;
-  usage-giflib-tools-batch11-fire-planar-same-size)
+  usage-giflib-tools-batch11-fire-planar-equal-channels)
     gif2rgb -o "$tmpdir/fire" "$samples/fire.gif"
     size_r=$(wc -c <"$tmpdir/fire.R")
     size_g=$(wc -c <"$tmpdir/fire.G")

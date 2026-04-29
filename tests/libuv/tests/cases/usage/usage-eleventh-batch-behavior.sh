@@ -35,17 +35,25 @@ const timers = require('timers/promises');
 JS
     validator_assert_contains "$tmpdir/out" 'timer-ok'
     ;;
-  usage-nodejs-net-server-address-batch11)
-    node >"$tmpdir/out" <<'JS'
-const net = require('net');
-const server = net.createServer(socket => socket.end('ok'));
-server.listen(0, '127.0.0.1', () => {
-  const address = server.address();
-  console.log(address.address + ':' + (address.port > 0));
-  server.close();
+  usage-nodejs-fs-watchfile-batch11)
+    FILE_PATH="$tmpdir/watchfile.txt" node >"$tmpdir/out" <<'JS'
+const fs = require('fs');
+const path = process.env.FILE_PATH;
+fs.writeFileSync(path, 'before');
+const timeout = setTimeout(() => {
+  fs.unwatchFile(path);
+  throw new Error('watchFile timeout');
+}, 1000);
+fs.watchFile(path, { interval: 20 }, (curr, prev) => {
+  if (curr.mtimeMs !== prev.mtimeMs) {
+    clearTimeout(timeout);
+    fs.unwatchFile(path);
+    console.log('watchfile-change');
+  }
 });
+setTimeout(() => fs.writeFileSync(path, 'after'), 50);
 JS
-    validator_assert_contains "$tmpdir/out" '127.0.0.1:true'
+    validator_assert_contains "$tmpdir/out" 'watchfile-change'
     ;;
   usage-nodejs-dgram-buffer-message-batch11)
     node >"$tmpdir/out" <<'JS'

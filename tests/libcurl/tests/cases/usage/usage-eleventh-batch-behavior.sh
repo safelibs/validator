@@ -83,8 +83,10 @@ case "$case_id" in
     curl --noproxy '*' -fsS -b 'session=abc123' "$base/cookie" >"$tmpdir/out"
     validator_assert_contains "$tmpdir/out" 'session=abc123'
     ;;
-  usage-curl-basic-auth-header-batch11)
-    curl --noproxy '*' -fsS -u 'user:pass' "$base/auth" >"$tmpdir/out"
+  usage-curl-netrc-auth-header-batch11)
+    printf 'machine 127.0.0.1 login user password pass\n' >"$tmpdir/netrc"
+    chmod 600 "$tmpdir/netrc"
+    curl --noproxy '*' -fsS --netrc-file "$tmpdir/netrc" "$base/auth" >"$tmpdir/out"
     validator_assert_contains "$tmpdir/out" 'Basic'
     ;;
   usage-curl-compressed-gzip-response-batch11)
