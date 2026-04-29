@@ -1149,3 +1149,143 @@ testcases:
   - usage
   - yaml
   - python
+- id: usage-python3-yaml-flow-sequence-nested-batch11
+  title: PyYAML nested flow sequence
+  description: Loads a nested flow sequence through PyYAML safe_load.
+  kind: usage
+  client_application: python3-yaml
+  command:
+  - bash
+  - /validator/tests/libyaml/tests/cases/usage/usage-eleventh-batch-behavior.sh
+  - usage-python3-yaml-flow-sequence-nested-batch11
+  timeout_seconds: 180
+  tags:
+  - usage
+  - yaml
+  - python
+- id: usage-python3-yaml-dump-sort-keys-false-batch11
+  title: PyYAML dump sort keys false
+  description: Dumps a mapping through PyYAML while preserving insertion order.
+  kind: usage
+  client_application: python3-yaml
+  command:
+  - bash
+  - /validator/tests/libyaml/tests/cases/usage/usage-eleventh-batch-behavior.sh
+  - usage-python3-yaml-dump-sort-keys-false-batch11
+  timeout_seconds: 180
+  tags:
+  - usage
+  - yaml
+  - python
+- id: usage-python3-yaml-quoted-colon-string-batch11
+  title: PyYAML quoted colon string
+  description: Loads a quoted scalar containing a colon through PyYAML.
+  kind: usage
+  client_application: python3-yaml
+  command:
+  - bash
+  - /validator/tests/libyaml/tests/cases/usage/usage-eleventh-batch-behavior.sh
+  - usage-python3-yaml-quoted-colon-string-batch11
+  timeout_seconds: 180
+  tags:
+  - usage
+  - yaml
+  - python
+- id: usage-python3-yaml-block-chomp-strip-batch11
+  title: PyYAML block chomp strip
+  description: Loads a literal block scalar with strip chomping through PyYAML.
+  kind: usage
+  client_application: python3-yaml
+  command:
+  - bash
+  - /validator/tests/libyaml/tests/cases/usage/usage-eleventh-batch-behavior.sh
+  - usage-python3-yaml-block-chomp-strip-batch11
+  timeout_seconds: 180
+  tags:
+  - usage
+  - yaml
+  - python
+- id: usage-python3-yaml-csafe-flow-set-batch11
+  title: PyYAML CSafeLoader flow set
+  description: Loads a YAML set with CSafeLoader through PyYAML.
+  kind: usage
+  client_application: python3-yaml
+  command:
+  - bash
+  - /validator/tests/libyaml/tests/cases/usage/usage-eleventh-batch-behavior.sh
+  - usage-python3-yaml-csafe-flow-set-batch11
+  timeout_seconds: 180
+  tags:
+  - usage
+  - yaml
+  - python
+- id: usage-python3-yaml-compose-document-tag-batch11
+  title: PyYAML compose document tag
+  description: Composes a YAML document and inspects the root node tag.
+  kind: usage
+  client_application: python3-yaml
+  command:
+  - bash
+  - /validator/tests/libyaml/tests/cases/usage/usage-eleventh-batch-behavior.sh
+  - usage-python3-yaml-compose-document-tag-batch11
+  timeout_seconds: 180
+  tags:
+  - usage
+  - yaml
+  - python
+- id: usage-python3-yaml-scan-stream-tokens-batch11
+  title: PyYAML scan stream tokens
+  description: Scans YAML tokens and checks stream start and end tokens.
+  kind: usage
+  client_application: python3-yaml
+  command:
+  - bash
+  - /validator/tests/libyaml/tests/cases/usage/usage-eleventh-batch-behavior.sh
+  - usage-python3-yaml-scan-stream-tokens-batch11
+  timeout_seconds: 180
+  tags:
+  - usage
+  - yaml
+  - python
+- id: usage-python3-yaml-parse-event-order-batch11
+  title: PyYAML parse event order
+  description: Parses YAML events and checks stream and sequence events.
+  kind: usage
+  client_application: python3-yaml
+  command:
+  - bash
+  - /validator/tests/libyaml/tests/cases/usage/usage-eleventh-batch-behavior.sh
+  - usage-python3-yaml-parse-event-order-batch11
+  timeout_seconds: 180
+  tags:
+  - usage
+  - yaml
+  - python
+- id: usage-python3-yaml-safe-dump-all-three-batch11
+  title: PyYAML dump all three documents
+  description: Dumps three explicit YAML documents through PyYAML.
+  kind: usage
+  client_application: python3-yaml
+  command:
+  - bash
+  - /validator/tests/libyaml/tests/cases/usage/usage-eleventh-batch-behavior.sh
+  - usage-python3-yaml-safe-dump-all-three-batch11
+  timeout_seconds: 180
+  tags:
+  - usage
+  - yaml
+  - python
+- id: usage-python3-yaml-custom-dice-resolver-batch11
+  title: PyYAML custom dice resolver
+  description: Adds a custom implicit resolver and constructor to PyYAML.
+  kind: usage
+  client_application: python3-yaml
+  command:
+  - bash
+  - /validator/tests/libyaml/tests/cases/usage/usage-eleventh-batch-behavior.sh
+  - usage-python3-yaml-custom-dice-resolver-batch11
+  timeout_seconds: 180
+  tags:
+  - usage
+  - yaml
+  - python

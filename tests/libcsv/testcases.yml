@@ -1111,3 +1111,143 @@ testcases:
   - usage
   - csv
   - readstat
+- id: usage-readstat-dta-double-quote-string-batch11
+  title: readstat DTA double quote string
+  description: Roundtrips an escaped double quote string through readstat DTA conversion.
+  kind: usage
+  client_application: readstat
+  command:
+  - bash
+  - /validator/tests/libcsv/tests/cases/usage/usage-eleventh-batch-behavior.sh
+  - usage-readstat-dta-double-quote-string-batch11
+  timeout_seconds: 180
+  tags:
+  - usage
+  - csv
+  - readstat
+- id: usage-readstat-sav-double-quote-string-batch11
+  title: readstat SAV double quote string
+  description: Roundtrips an escaped double quote string through readstat SAV conversion.
+  kind: usage
+  client_application: readstat
+  command:
+  - bash
+  - /validator/tests/libcsv/tests/cases/usage/usage-eleventh-batch-behavior.sh
+  - usage-readstat-sav-double-quote-string-batch11
+  timeout_seconds: 180
+  tags:
+  - usage
+  - csv
+  - readstat
+- id: usage-readstat-dta-date-string-batch11
+  title: readstat DTA date string
+  description: Preserves a date-like string through readstat DTA conversion.
+  kind: usage
+  client_application: readstat
+  command:
+  - bash
+  - /validator/tests/libcsv/tests/cases/usage/usage-eleventh-batch-behavior.sh
+  - usage-readstat-dta-date-string-batch11
+  timeout_seconds: 180
+  tags:
+  - usage
+  - csv
+  - readstat
+- id: usage-readstat-sav-date-string-batch11
+  title: readstat SAV date string
+  description: Preserves a date-like string through readstat SAV conversion.
+  kind: usage
+  client_application: readstat
+  command:
+  - bash
+  - /validator/tests/libcsv/tests/cases/usage/usage-eleventh-batch-behavior.sh
+  - usage-readstat-sav-date-string-batch11
+  timeout_seconds: 180
+  tags:
+  - usage
+  - csv
+  - readstat
+- id: usage-readstat-dta-small-decimal-batch11
+  title: readstat DTA small decimal
+  description: Roundtrips a small decimal through readstat DTA conversion.
+  kind: usage
+  client_application: readstat
+  command:
+  - bash
+  - /validator/tests/libcsv/tests/cases/usage/usage-eleventh-batch-behavior.sh
+  - usage-readstat-dta-small-decimal-batch11
+  timeout_seconds: 180
+  tags:
+  - usage
+  - csv
+  - readstat
+- id: usage-readstat-sav-small-decimal-batch11
+  title: readstat SAV small decimal
+  description: Roundtrips a small decimal through readstat SAV conversion.
+  kind: usage
+  client_application: readstat
+  command:
+  - bash
+  - /validator/tests/libcsv/tests/cases/usage/usage-eleventh-batch-behavior.sh
+  - usage-readstat-sav-small-decimal-batch11
+  timeout_seconds: 180
+  tags:
+  - usage
+  - csv
+  - readstat
+- id: usage-readstat-dta-underscore-header-batch11
+  title: readstat DTA underscore header
+  description: Writes a DTA file from a CSV column with an underscore header.
+  kind: usage
+  client_application: readstat
+  command:
+  - bash
+  - /validator/tests/libcsv/tests/cases/usage/usage-eleventh-batch-behavior.sh
+  - usage-readstat-dta-underscore-header-batch11
+  timeout_seconds: 180
+  tags:
+  - usage
+  - csv
+  - readstat
+- id: usage-readstat-sav-underscore-header-batch11
+  title: readstat SAV underscore header
+  description: Writes a SAV file from a CSV column with an underscore header.
+  kind: usage
+  client_application: readstat
+  command:
+  - bash
+  - /validator/tests/libcsv/tests/cases/usage/usage-eleventh-batch-behavior.sh
+  - usage-readstat-sav-underscore-header-batch11
+  timeout_seconds: 180
+  tags:
+  - usage
+  - csv
+  - readstat
+- id: usage-readstat-dta-two-string-columns-batch11
+  title: readstat DTA two string columns
+  description: Roundtrips two string columns through readstat DTA conversion.
+  kind: usage
+  client_application: readstat
+  command:
+  - bash
+  - /validator/tests/libcsv/tests/cases/usage/usage-eleventh-batch-behavior.sh
+  - usage-readstat-dta-two-string-columns-batch11
+  timeout_seconds: 180
+  tags:
+  - usage
+  - csv
+  - readstat
+- id: usage-readstat-sav-two-string-columns-batch11
+  title: readstat SAV two string columns
+  description: Roundtrips two string columns through readstat SAV conversion.
+  kind: usage
+  client_application: readstat
+  command:
+  - bash
+  - /validator/tests/libcsv/tests/cases/usage/usage-eleventh-batch-behavior.sh
+  - usage-readstat-sav-two-string-columns-batch11
+  timeout_seconds: 180
+  tags:
+  - usage
+  - csv
+  - readstat

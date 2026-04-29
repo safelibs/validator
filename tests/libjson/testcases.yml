@@ -1153,3 +1153,143 @@ testcases:
   - usage
   - gdal
   - sql
+- id: usage-gdal-batch11-ogrinfo-feature-count
+  title: GDAL ogrinfo feature count
+  description: Reads a GeoJSON layer with ogrinfo and checks the feature count.
+  kind: usage
+  client_application: gdal
+  command:
+  - bash
+  - /validator/tests/libjson/tests/cases/usage/usage-eleventh-batch-behavior.sh
+  - usage-gdal-batch11-ogrinfo-feature-count
+  timeout_seconds: 180
+  tags:
+  - usage
+  - gdal
+  - json
+- id: usage-gdal-batch11-ogrinfo-where-park
+  title: GDAL ogrinfo park filter
+  description: Applies an ogrinfo attribute filter to a GeoJSON layer.
+  kind: usage
+  client_application: gdal
+  command:
+  - bash
+  - /validator/tests/libjson/tests/cases/usage/usage-eleventh-batch-behavior.sh
+  - usage-gdal-batch11-ogrinfo-where-park
+  timeout_seconds: 180
+  tags:
+  - usage
+  - gdal
+  - json
+- id: usage-gdal-batch11-ogr2ogr-select-name
+  title: GDAL ogr2ogr select name
+  description: Copies a GeoJSON layer while selecting only the name field.
+  kind: usage
+  client_application: gdal
+  command:
+  - bash
+  - /validator/tests/libjson/tests/cases/usage/usage-eleventh-batch-behavior.sh
+  - usage-gdal-batch11-ogr2ogr-select-name
+  timeout_seconds: 180
+  tags:
+  - usage
+  - gdal
+  - json
+- id: usage-gdal-batch11-ogr2ogr-csv-wkt
+  title: GDAL ogr2ogr CSV WKT
+  description: Converts GeoJSON to CSV with WKT geometry output.
+  kind: usage
+  client_application: gdal
+  command:
+  - bash
+  - /validator/tests/libjson/tests/cases/usage/usage-eleventh-batch-behavior.sh
+  - usage-gdal-batch11-ogr2ogr-csv-wkt
+  timeout_seconds: 180
+  tags:
+  - usage
+  - gdal
+  - json
+- id: usage-gdal-batch11-ogr2ogr-webmercator
+  title: GDAL ogr2ogr Web Mercator
+  description: Reprojects GeoJSON features to EPSG:3857 with ogr2ogr.
+  kind: usage
+  client_application: gdal
+  command:
+  - bash
+  - /validator/tests/libjson/tests/cases/usage/usage-eleventh-batch-behavior.sh
+  - usage-gdal-batch11-ogr2ogr-webmercator
+  timeout_seconds: 180
+  tags:
+  - usage
+  - gdal
+  - json
+- id: usage-gdal-batch11-ogrinfo-sql-count
+  title: GDAL ogrinfo SQL count
+  description: Runs a SQLite dialect count query over a GeoJSON layer.
+  kind: usage
+  client_application: gdal
+  command:
+  - bash
+  - /validator/tests/libjson/tests/cases/usage/usage-eleventh-batch-behavior.sh
+  - usage-gdal-batch11-ogrinfo-sql-count
+  timeout_seconds: 180
+  tags:
+  - usage
+  - gdal
+  - json
+- id: usage-gdal-batch11-ogr2ogr-where-value
+  title: GDAL ogr2ogr value filter
+  description: Filters GeoJSON features by numeric value with ogr2ogr.
+  kind: usage
+  client_application: gdal
+  command:
+  - bash
+  - /validator/tests/libjson/tests/cases/usage/usage-eleventh-batch-behavior.sh
+  - usage-gdal-batch11-ogr2ogr-where-value
+  timeout_seconds: 180
+  tags:
+  - usage
+  - gdal
+  - json
+- id: usage-gdal-batch11-ogr2ogr-geojsonseq
+  title: GDAL ogr2ogr GeoJSONSeq
+  description: Converts GeoJSON features to GeoJSONSeq with ogr2ogr.
+  kind: usage
+  client_application: gdal
+  command:
+  - bash
+  - /validator/tests/libjson/tests/cases/usage/usage-eleventh-batch-behavior.sh
+  - usage-gdal-batch11-ogr2ogr-geojsonseq
+  timeout_seconds: 180
+  tags:
+  - usage
+  - gdal
+  - json
+- id: usage-gdal-batch11-ogr2ogr-gml-output
+  title: GDAL ogr2ogr GML output
+  description: Converts GeoJSON to GML with ogr2ogr.
+  kind: usage
+  client_application: gdal
+  command:
+  - bash
+  - /validator/tests/libjson/tests/cases/usage/usage-eleventh-batch-behavior.sh
+  - usage-gdal-batch11-ogr2ogr-gml-output
+  timeout_seconds: 180
+  tags:
+  - usage
+  - gdal
+  - json
+- id: usage-gdal-batch11-ogr2ogr-sql-order-asc
+  title: GDAL ogr2ogr SQL order asc
+  description: Orders GeoJSON features through a SQLite dialect ogr2ogr query.
+  kind: usage
+  client_application: gdal
+  command:
+  - bash
+  - /validator/tests/libjson/tests/cases/usage/usage-eleventh-batch-behavior.sh
+  - usage-gdal-batch11-ogr2ogr-sql-order-asc
+  timeout_seconds: 180
+  tags:
+  - usage
+  - gdal
+  - json

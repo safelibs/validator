@@ -1129,3 +1129,143 @@ testcases:
   - usage
   - bzip2
   - stream
+- id: usage-bzip2-batch11-decompress-c-flag
+  title: bzip2 decompress c flag
+  description: Decompresses a bzip2 stream to stdout with the combined -dc flags.
+  kind: usage
+  client_application: bzip2
+  command:
+  - bash
+  - /validator/tests/libbz2/tests/cases/usage/usage-eleventh-batch-behavior.sh
+  - usage-bzip2-batch11-decompress-c-flag
+  timeout_seconds: 180
+  tags:
+  - usage
+  - compression
+  - cli
+- id: usage-bzip2-batch11-compress-c-flag
+  title: bzip2 compress c flag
+  description: Compresses a file to stdout with -c and verifies decompression.
+  kind: usage
+  client_application: bzip2
+  command:
+  - bash
+  - /validator/tests/libbz2/tests/cases/usage/usage-eleventh-batch-behavior.sh
+  - usage-bzip2-batch11-compress-c-flag
+  timeout_seconds: 180
+  tags:
+  - usage
+  - compression
+  - cli
+- id: usage-bzip2-batch11-bzgrep-extended-regexp
+  title: bzgrep extended regexp
+  description: Searches a compressed file with bzgrep extended regular expressions.
+  kind: usage
+  client_application: bzip2
+  command:
+  - bash
+  - /validator/tests/libbz2/tests/cases/usage/usage-eleventh-batch-behavior.sh
+  - usage-bzip2-batch11-bzgrep-extended-regexp
+  timeout_seconds: 180
+  tags:
+  - usage
+  - compression
+  - cli
+- id: usage-bzip2-batch11-bzgrep-no-filename
+  title: bzgrep no filename
+  description: Searches a single compressed file with bzgrep -h and checks bare matching lines.
+  kind: usage
+  client_application: bzip2
+  command:
+  - bash
+  - /validator/tests/libbz2/tests/cases/usage/usage-eleventh-batch-behavior.sh
+  - usage-bzip2-batch11-bzgrep-no-filename
+  timeout_seconds: 180
+  tags:
+  - usage
+  - compression
+  - cli
+- id: usage-bzip2-batch11-bzcat-numbered-pipe
+  title: bzcat numbered pipe
+  description: Streams bzcat output through a numbering pipeline and checks decompressed lines.
+  kind: usage
+  client_application: bzip2
+  command:
+  - bash
+  - /validator/tests/libbz2/tests/cases/usage/usage-eleventh-batch-behavior.sh
+  - usage-bzip2-batch11-bzcat-numbered-pipe
+  timeout_seconds: 180
+  tags:
+  - usage
+  - compression
+  - cli
+- id: usage-bzip2-batch11-test-quiet
+  title: bzip2 quiet integrity check
+  description: Runs a quiet bzip2 integrity check on a generated stream.
+  kind: usage
+  client_application: bzip2
+  command:
+  - bash
+  - /validator/tests/libbz2/tests/cases/usage/usage-eleventh-batch-behavior.sh
+  - usage-bzip2-batch11-test-quiet
+  timeout_seconds: 180
+  tags:
+  - usage
+  - compression
+  - cli
+- id: usage-bzip2-batch11-fast-stdout-roundtrip
+  title: bzip2 fast stdout roundtrip
+  description: Roundtrips data through fast bzip2 stdout compression.
+  kind: usage
+  client_application: bzip2
+  command:
+  - bash
+  - /validator/tests/libbz2/tests/cases/usage/usage-eleventh-batch-behavior.sh
+  - usage-bzip2-batch11-fast-stdout-roundtrip
+  timeout_seconds: 180
+  tags:
+  - usage
+  - compression
+  - cli
+- id: usage-bzip2-batch11-best-stdout-roundtrip
+  title: bzip2 best stdout roundtrip
+  description: Roundtrips data through best bzip2 stdout compression.
+  kind: usage
+  client_application: bzip2
+  command:
+  - bash
+  - /validator/tests/libbz2/tests/cases/usage/usage-eleventh-batch-behavior.sh
+  - usage-bzip2-batch11-best-stdout-roundtrip
+  timeout_seconds: 180
+  tags:
+  - usage
+  - compression
+  - cli
+- id: usage-bzip2-batch11-decompress-replace
+  title: bunzip2 replace input
+  description: Decompresses a generated file in place and verifies restored content.
+  kind: usage
+  client_application: bzip2
+  command:
+  - bash
+  - /validator/tests/libbz2/tests/cases/usage/usage-eleventh-batch-behavior.sh
+  - usage-bzip2-batch11-decompress-replace
+  timeout_seconds: 180
+  tags:
+  - usage
+  - compression
+  - cli
+- id: usage-bzip2-batch11-bzgrep-fixed-brackets
+  title: bzgrep fixed brackets
+  description: Searches literal bracket text in a compressed file with bzgrep -F.
+  kind: usage
+  client_application: bzip2
+  command:
+  - bash
+  - /validator/tests/libbz2/tests/cases/usage/usage-eleventh-batch-behavior.sh
+  - usage-bzip2-batch11-bzgrep-fixed-brackets
+  timeout_seconds: 180
+  tags:
+  - usage
+  - compression
+  - cli

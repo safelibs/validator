@@ -1100,3 +1100,143 @@ testcases:
   timeout_seconds: 120
   tags:
   - usage
+- id: usage-python3-pygame-color-hsla-batch11
+  title: pygame color HSLA
+  description: Reads HSLA components from a pygame Color value.
+  kind: usage
+  client_application: python3-pygame
+  command:
+  - bash
+  - /validator/tests/libsdl/tests/cases/usage/usage-eleventh-batch-behavior.sh
+  - usage-python3-pygame-color-hsla-batch11
+  timeout_seconds: 180
+  tags:
+  - usage
+  - pygame
+  - sdl
+- id: usage-python3-pygame-surface-map-rgb-batch11
+  title: pygame surface map RGB
+  description: Maps and unmaps an RGB color through a pygame Surface.
+  kind: usage
+  client_application: python3-pygame
+  command:
+  - bash
+  - /validator/tests/libsdl/tests/cases/usage/usage-eleventh-batch-behavior.sh
+  - usage-python3-pygame-surface-map-rgb-batch11
+  timeout_seconds: 180
+  tags:
+  - usage
+  - pygame
+  - sdl
+- id: usage-python3-pygame-transform-flip-batch11
+  title: pygame transform flip
+  description: Flips a pygame Surface horizontally and checks pixel placement.
+  kind: usage
+  client_application: python3-pygame
+  command:
+  - bash
+  - /validator/tests/libsdl/tests/cases/usage/usage-eleventh-batch-behavior.sh
+  - usage-python3-pygame-transform-flip-batch11
+  timeout_seconds: 180
+  tags:
+  - usage
+  - pygame
+  - sdl
+- id: usage-python3-pygame-draw-circle-batch11
+  title: pygame draw circle
+  description: Draws a circle on a pygame Surface and checks the affected rectangle.
+  kind: usage
+  client_application: python3-pygame
+  command:
+  - bash
+  - /validator/tests/libsdl/tests/cases/usage/usage-eleventh-batch-behavior.sh
+  - usage-python3-pygame-draw-circle-batch11
+  timeout_seconds: 180
+  tags:
+  - usage
+  - pygame
+  - sdl
+- id: usage-python3-pygame-event-custom-type-batch11
+  title: pygame custom event type
+  description: Posts and reads a custom pygame event type.
+  kind: usage
+  client_application: python3-pygame
+  command:
+  - bash
+  - /validator/tests/libsdl/tests/cases/usage/usage-eleventh-batch-behavior.sh
+  - usage-python3-pygame-event-custom-type-batch11
+  timeout_seconds: 180
+  tags:
+  - usage
+  - pygame
+  - sdl
+- id: usage-python3-pygame-time-clock-tick-batch11
+  title: pygame clock tick
+  description: Ticks a pygame Clock under the dummy SDL drivers.
+  kind: usage
+  client_application: python3-pygame
+  command:
+  - bash
+  - /validator/tests/libsdl/tests/cases/usage/usage-eleventh-batch-behavior.sh
+  - usage-python3-pygame-time-clock-tick-batch11
+  timeout_seconds: 180
+  tags:
+  - usage
+  - pygame
+  - sdl
+- id: usage-python3-pygame-font-render-size-batch11
+  title: pygame font render size
+  description: Renders text through pygame font support and checks surface dimensions.
+  kind: usage
+  client_application: python3-pygame
+  command:
+  - bash
+  - /validator/tests/libsdl/tests/cases/usage/usage-eleventh-batch-behavior.sh
+  - usage-python3-pygame-font-render-size-batch11
+  timeout_seconds: 180
+  tags:
+  - usage
+  - pygame
+  - sdl
+- id: usage-python3-pygame-sprite-collide-rect-batch11
+  title: pygame sprite collide rect
+  description: Checks rectangle collision between two pygame Sprite instances.
+  kind: usage
+  client_application: python3-pygame
+  command:
+  - bash
+  - /validator/tests/libsdl/tests/cases/usage/usage-eleventh-batch-behavior.sh
+  - usage-python3-pygame-sprite-collide-rect-batch11
+  timeout_seconds: 180
+  tags:
+  - usage
+  - pygame
+  - sdl
+- id: usage-python3-pygame-mask-overlap-area-batch11
+  title: pygame mask overlap area
+  description: Computes overlap area between pygame masks.
+  kind: usage
+  client_application: python3-pygame
+  command:
+  - bash
+  - /validator/tests/libsdl/tests/cases/usage/usage-eleventh-batch-behavior.sh
+  - usage-python3-pygame-mask-overlap-area-batch11
+  timeout_seconds: 180
+  tags:
+  - usage
+  - pygame
+  - sdl
+- id: usage-python3-pygame-image-roundtrip-png-batch11
+  title: pygame image PNG roundtrip
+  description: Saves and reloads a PNG image through pygame image APIs.
+  kind: usage
+  client_application: python3-pygame
+  command:
+  - bash
+  - /validator/tests/libsdl/tests/cases/usage/usage-eleventh-batch-behavior.sh
+  - usage-python3-pygame-image-roundtrip-png-batch11
+  timeout_seconds: 180
+  tags:
+  - usage
+  - pygame
+  - sdl

@@ -1139,3 +1139,145 @@ testcases:
   - usage
   - json
   - iperf3
+- id: usage-iperf3-json-start-connected-socket
+  title: iperf3 JSON connected socket
+  description: Checks iperf3 JSON exposes the connected socket descriptor from a loopback transfer.
+  kind: usage
+  client_application: iperf3
+  command:
+  - bash
+  - /validator/tests/cjson/tests/cases/usage/usage-eleventh-batch-behavior.sh
+  - usage-iperf3-json-start-connected-socket
+  timeout_seconds: 180
+  tags:
+  - usage
+  - json
+  - network
+- id: usage-iperf3-json-cookie-length-check
+  title: iperf3 JSON cookie length
+  description: Checks iperf3 JSON carries a nontrivial session cookie string from a loopback transfer.
+  kind: usage
+  client_application: iperf3
+  command:
+  - bash
+  - /validator/tests/cjson/tests/cases/usage/usage-eleventh-batch-behavior.sh
+  - usage-iperf3-json-cookie-length-check
+  timeout_seconds: 180
+  tags:
+  - usage
+  - json
+  - network
+- id: usage-iperf3-json-timestamp-timesecs-positive
+  title: iperf3 JSON timestamp seconds
+  description: Checks iperf3 JSON timestamp seconds are populated for a loopback transfer.
+  kind: usage
+  client_application: iperf3
+  command:
+  - bash
+  - /validator/tests/cjson/tests/cases/usage/usage-eleventh-batch-behavior.sh
+  - usage-iperf3-json-timestamp-timesecs-positive
+  timeout_seconds: 180
+  tags:
+  - usage
+  - json
+  - network
+- id: usage-iperf3-json-sum-sent-seconds-positive
+  title: iperf3 JSON sent duration
+  description: Checks iperf3 JSON reports a positive sent-side duration.
+  kind: usage
+  client_application: iperf3
+  command:
+  - bash
+  - /validator/tests/cjson/tests/cases/usage/usage-eleventh-batch-behavior.sh
+  - usage-iperf3-json-sum-sent-seconds-positive
+  timeout_seconds: 180
+  tags:
+  - usage
+  - json
+  - network
+- id: usage-iperf3-json-sum-received-seconds-positive
+  title: iperf3 JSON received duration
+  description: Checks iperf3 JSON reports a positive receive-side duration.
+  kind: usage
+  client_application: iperf3
+  command:
+  - bash
+  - /validator/tests/cjson/tests/cases/usage/usage-eleventh-batch-behavior.sh
+  - usage-iperf3-json-sum-received-seconds-positive
+  timeout_seconds: 180
+  tags:
+  - usage
+  - json
+  - network
+- id: usage-iperf3-json-sum-sent-sender-true
+  title: iperf3 JSON sent sender flag
+  description: Checks iperf3 JSON marks the sent summary as the sender side.
+  kind: usage
+  client_application: iperf3
+  command:
+  - bash
+  - /validator/tests/cjson/tests/cases/usage/usage-eleventh-batch-behavior.sh
+  - usage-iperf3-json-sum-sent-sender-true
+  timeout_seconds: 180
+  tags:
+  - usage
+  - json
+  - network
+- id: usage-iperf3-json-sum-received-sender-boolean
+  title: iperf3 JSON received sender flag
+  description: Checks iperf3 JSON emits the received summary sender flag as a boolean.
+  kind: usage
+  client_application: iperf3
+  command:
+  - bash
+  - /validator/tests/cjson/tests/cases/usage/usage-eleventh-batch-behavior.sh
+  - usage-iperf3-json-sum-received-sender-boolean
+  timeout_seconds: 180
+  tags:
+  - usage
+  - json
+  - network
+- id: usage-iperf3-json-interval-retransmits-field
+  title: iperf3 JSON retransmits field
+  description: Checks iperf3 JSON interval stream retransmit accounting exists for TCP.
+  kind: usage
+  client_application: iperf3
+  command:
+  - bash
+  - /validator/tests/cjson/tests/cases/usage/usage-eleventh-batch-behavior.sh
+  - usage-iperf3-json-interval-retransmits-field
+  timeout_seconds: 180
+  tags:
+  - usage
+  - json
+  - network
+- id: usage-iperf3-json-udp-end-jitter-nonnegative
+  title: iperf3 JSON UDP jitter
+  description: Checks iperf3 JSON UDP summary reports nonnegative jitter.
+  kind: usage
+  client_application: iperf3
+  command:
+  - bash
+  - /validator/tests/cjson/tests/cases/usage/usage-eleventh-batch-behavior.sh
+  - usage-iperf3-json-udp-end-jitter-nonnegative
+  timeout_seconds: 180
+  tags:
+  - usage
+  - json
+  - network
+  - udp
+- id: usage-iperf3-json-udp-end-packets-positive
+  title: iperf3 JSON UDP packets
+  description: Checks iperf3 JSON UDP summary reports transmitted packets.
+  kind: usage
+  client_application: iperf3
+  command:
+  - bash
+  - /validator/tests/cjson/tests/cases/usage/usage-eleventh-batch-behavior.sh
+  - usage-iperf3-json-udp-end-packets-positive
+  timeout_seconds: 180
+  tags:
+  - usage
+  - json
+  - network
+  - udp

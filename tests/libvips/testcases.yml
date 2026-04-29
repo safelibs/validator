@@ -1101,3 +1101,143 @@ testcases:
   timeout_seconds: 120
   tags:
   - usage
+- id: usage-ruby-vips-black-dimensions-batch11
+  title: ruby-vips black dimensions
+  description: Creates a black image with ruby-vips and checks dimensions.
+  kind: usage
+  client_application: ruby-vips
+  command:
+  - bash
+  - /validator/tests/libvips/tests/cases/usage/usage-eleventh-batch-behavior.sh
+  - usage-ruby-vips-black-dimensions-batch11
+  timeout_seconds: 180
+  tags:
+  - usage
+  - vips
+  - ruby
+- id: usage-ruby-vips-xyz-bands-batch11
+  title: ruby-vips xyz bands
+  description: Creates an xyz image with ruby-vips and checks its band count.
+  kind: usage
+  client_application: ruby-vips
+  command:
+  - bash
+  - /validator/tests/libvips/tests/cases/usage/usage-eleventh-batch-behavior.sh
+  - usage-ruby-vips-xyz-bands-batch11
+  timeout_seconds: 180
+  tags:
+  - usage
+  - vips
+  - ruby
+- id: usage-ruby-vips-linear-offset-batch11
+  title: ruby-vips linear offset
+  description: Applies a linear transform with scale and offset through ruby-vips.
+  kind: usage
+  client_application: ruby-vips
+  command:
+  - bash
+  - /validator/tests/libvips/tests/cases/usage/usage-eleventh-batch-behavior.sh
+  - usage-ruby-vips-linear-offset-batch11
+  timeout_seconds: 180
+  tags:
+  - usage
+  - vips
+  - ruby
+- id: usage-ruby-vips-memory-png-roundtrip-batch11
+  title: ruby-vips PNG memory roundtrip
+  description: Writes a PNG to memory and reloads it with ruby-vips.
+  kind: usage
+  client_application: ruby-vips
+  command:
+  - bash
+  - /validator/tests/libvips/tests/cases/usage/usage-eleventh-batch-behavior.sh
+  - usage-ruby-vips-memory-png-roundtrip-batch11
+  timeout_seconds: 180
+  tags:
+  - usage
+  - vips
+  - ruby
+- id: usage-ruby-vips-memory-ppm-roundtrip-batch11
+  title: ruby-vips PPM memory roundtrip
+  description: Writes a PPM image to memory and reloads it with ruby-vips.
+  kind: usage
+  client_application: ruby-vips
+  command:
+  - bash
+  - /validator/tests/libvips/tests/cases/usage/usage-eleventh-batch-behavior.sh
+  - usage-ruby-vips-memory-ppm-roundtrip-batch11
+  timeout_seconds: 180
+  tags:
+  - usage
+  - vips
+  - ruby
+- id: usage-ruby-vips-insert-corner-batch11
+  title: ruby-vips insert corner
+  description: Inserts a one-pixel patch at the lower corner with ruby-vips.
+  kind: usage
+  client_application: ruby-vips
+  command:
+  - bash
+  - /validator/tests/libvips/tests/cases/usage/usage-eleventh-batch-behavior.sh
+  - usage-ruby-vips-insert-corner-batch11
+  timeout_seconds: 180
+  tags:
+  - usage
+  - vips
+  - ruby
+- id: usage-ruby-vips-embed-background-batch11
+  title: ruby-vips embed background
+  description: Embeds an image on a background canvas with ruby-vips.
+  kind: usage
+  client_application: ruby-vips
+  command:
+  - bash
+  - /validator/tests/libvips/tests/cases/usage/usage-eleventh-batch-behavior.sh
+  - usage-ruby-vips-embed-background-batch11
+  timeout_seconds: 180
+  tags:
+  - usage
+  - vips
+  - ruby
+- id: usage-ruby-vips-bandmean-rgb-batch11
+  title: ruby-vips RGB bandmean
+  description: Computes the band mean for an RGB pixel with ruby-vips.
+  kind: usage
+  client_application: ruby-vips
+  command:
+  - bash
+  - /validator/tests/libvips/tests/cases/usage/usage-eleventh-batch-behavior.sh
+  - usage-ruby-vips-bandmean-rgb-batch11
+  timeout_seconds: 180
+  tags:
+  - usage
+  - vips
+  - ruby
+- id: usage-ruby-vips-flatten-white-batch11
+  title: ruby-vips flatten white
+  description: Flattens an alpha pixel over a white background with ruby-vips.
+  kind: usage
+  client_application: ruby-vips
+  command:
+  - bash
+  - /validator/tests/libvips/tests/cases/usage/usage-eleventh-batch-behavior.sh
+  - usage-ruby-vips-flatten-white-batch11
+  timeout_seconds: 180
+  tags:
+  - usage
+  - vips
+  - ruby
+- id: usage-ruby-vips-extract-corner-batch11
+  title: ruby-vips extract corner
+  description: Extracts a lower-corner region from an image with ruby-vips.
+  kind: usage
+  client_application: ruby-vips
+  command:
+  - bash
+  - /validator/tests/libvips/tests/cases/usage/usage-eleventh-batch-behavior.sh
+  - usage-ruby-vips-extract-corner-batch11
+  timeout_seconds: 180
+  tags:
+  - usage
+  - vips
+  - ruby

@@ -1151,3 +1151,143 @@ testcases:
   - usage
   - curl
   - http
+- id: usage-curl-put-echo-batch11
+  title: curl PUT echo
+  description: Sends a PUT body with curl to a loopback server and checks the echoed body.
+  kind: usage
+  client_application: curl
+  command:
+  - bash
+  - /validator/tests/libcurl/tests/cases/usage/usage-eleventh-batch-behavior.sh
+  - usage-curl-put-echo-batch11
+  timeout_seconds: 180
+  tags:
+  - usage
+  - curl
+  - http
+- id: usage-curl-user-agent-header-batch11
+  title: curl user agent header
+  description: Sends a custom User-Agent header with curl to a loopback server.
+  kind: usage
+  client_application: curl
+  command:
+  - bash
+  - /validator/tests/libcurl/tests/cases/usage/usage-eleventh-batch-behavior.sh
+  - usage-curl-user-agent-header-batch11
+  timeout_seconds: 180
+  tags:
+  - usage
+  - curl
+  - http
+- id: usage-curl-cookie-header-batch11
+  title: curl cookie header
+  description: Sends a cookie header with curl to a loopback server.
+  kind: usage
+  client_application: curl
+  command:
+  - bash
+  - /validator/tests/libcurl/tests/cases/usage/usage-eleventh-batch-behavior.sh
+  - usage-curl-cookie-header-batch11
+  timeout_seconds: 180
+  tags:
+  - usage
+  - curl
+  - http
+- id: usage-curl-basic-auth-header-batch11
+  title: curl basic auth header
+  description: Sends HTTP basic credentials with curl to a loopback server.
+  kind: usage
+  client_application: curl
+  command:
+  - bash
+  - /validator/tests/libcurl/tests/cases/usage/usage-eleventh-batch-behavior.sh
+  - usage-curl-basic-auth-header-batch11
+  timeout_seconds: 180
+  tags:
+  - usage
+  - curl
+  - http
+- id: usage-curl-compressed-gzip-response-batch11
+  title: curl compressed gzip response
+  description: Downloads and decompresses a gzip-encoded HTTP response with curl.
+  kind: usage
+  client_application: curl
+  command:
+  - bash
+  - /validator/tests/libcurl/tests/cases/usage/usage-eleventh-batch-behavior.sh
+  - usage-curl-compressed-gzip-response-batch11
+  timeout_seconds: 180
+  tags:
+  - usage
+  - curl
+  - http
+- id: usage-curl-resolve-loopback-host-batch11
+  title: curl resolve loopback host
+  description: Uses curl --resolve to direct a named host to a loopback server.
+  kind: usage
+  client_application: curl
+  command:
+  - bash
+  - /validator/tests/libcurl/tests/cases/usage/usage-eleventh-batch-behavior.sh
+  - usage-curl-resolve-loopback-host-batch11
+  timeout_seconds: 180
+  tags:
+  - usage
+  - curl
+  - http
+- id: usage-curl-query-data-urlencode-batch11
+  title: curl data urlencode query
+  description: Builds an encoded query string with curl --data-urlencode.
+  kind: usage
+  client_application: curl
+  command:
+  - bash
+  - /validator/tests/libcurl/tests/cases/usage/usage-eleventh-batch-behavior.sh
+  - usage-curl-query-data-urlencode-batch11
+  timeout_seconds: 180
+  tags:
+  - usage
+  - curl
+  - http
+- id: usage-curl-etag-header-output-batch11
+  title: curl ETag header output
+  description: Captures response headers with curl and checks an ETag value.
+  kind: usage
+  client_application: curl
+  command:
+  - bash
+  - /validator/tests/libcurl/tests/cases/usage/usage-eleventh-batch-behavior.sh
+  - usage-curl-etag-header-output-batch11
+  timeout_seconds: 180
+  tags:
+  - usage
+  - curl
+  - http
+- id: usage-curl-content-disposition-remote-name-batch11
+  title: curl content disposition remote name
+  description: Downloads a named attachment with curl -OJ.
+  kind: usage
+  client_application: curl
+  command:
+  - bash
+  - /validator/tests/libcurl/tests/cases/usage/usage-eleventh-batch-behavior.sh
+  - usage-curl-content-disposition-remote-name-batch11
+  timeout_seconds: 180
+  tags:
+  - usage
+  - curl
+  - http
+- id: usage-curl-max-time-success-batch11
+  title: curl max time success
+  description: Completes a loopback transfer while curl --max-time is active.
+  kind: usage
+  client_application: curl
+  command:
+  - bash
+  - /validator/tests/libcurl/tests/cases/usage/usage-eleventh-batch-behavior.sh
+  - usage-curl-max-time-success-batch11
+  timeout_seconds: 180
+  tags:
+  - usage
+  - curl
+  - http

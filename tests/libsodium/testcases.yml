@@ -1121,3 +1121,143 @@ testcases:
   - usage
   - minisign
   - keygen
+- id: usage-python3-nacl-secretbox-wrong-key-fails-batch11
+  title: PyNaCl SecretBox wrong key failure
+  description: Encrypts with SecretBox and checks decryption with a different key fails.
+  kind: usage
+  client_application: python3-nacl
+  command:
+  - bash
+  - /validator/tests/libsodium/tests/cases/usage/usage-eleventh-batch-behavior.sh
+  - usage-python3-nacl-secretbox-wrong-key-fails-batch11
+  timeout_seconds: 180
+  tags:
+  - usage
+  - sodium
+  - python
+- id: usage-python3-nacl-signature-tamper-fails-batch11
+  title: PyNaCl signature tamper failure
+  description: Signs a message with PyNaCl and checks a tampered signature fails verification.
+  kind: usage
+  client_application: python3-nacl
+  command:
+  - bash
+  - /validator/tests/libsodium/tests/cases/usage/usage-eleventh-batch-behavior.sh
+  - usage-python3-nacl-signature-tamper-fails-batch11
+  timeout_seconds: 180
+  tags:
+  - usage
+  - sodium
+  - python
+- id: usage-python3-nacl-public-box-wrong-key-fails-batch11
+  title: PyNaCl public Box wrong key failure
+  description: Encrypts with a public Box and checks a mismatched private key cannot decrypt it.
+  kind: usage
+  client_application: python3-nacl
+  command:
+  - bash
+  - /validator/tests/libsodium/tests/cases/usage/usage-eleventh-batch-behavior.sh
+  - usage-python3-nacl-public-box-wrong-key-fails-batch11
+  timeout_seconds: 180
+  tags:
+  - usage
+  - sodium
+  - python
+- id: usage-python3-nacl-aead-xchacha-roundtrip-batch11
+  title: PyNaCl XChaCha AEAD roundtrip
+  description: Encrypts and decrypts data with XChaCha20-Poly1305 bindings through PyNaCl.
+  kind: usage
+  client_application: python3-nacl
+  command:
+  - bash
+  - /validator/tests/libsodium/tests/cases/usage/usage-eleventh-batch-behavior.sh
+  - usage-python3-nacl-aead-xchacha-roundtrip-batch11
+  timeout_seconds: 180
+  tags:
+  - usage
+  - sodium
+  - python
+- id: usage-python3-nacl-pwhash-str-roundtrip-batch11
+  title: PyNaCl password hash string
+  description: Creates and verifies an Argon2id password hash string through PyNaCl.
+  kind: usage
+  client_application: python3-nacl
+  command:
+  - bash
+  - /validator/tests/libsodium/tests/cases/usage/usage-eleventh-batch-behavior.sh
+  - usage-python3-nacl-pwhash-str-roundtrip-batch11
+  timeout_seconds: 180
+  tags:
+  - usage
+  - sodium
+  - python
+- id: usage-python3-nacl-blake2b-keyed-length-batch11
+  title: PyNaCl keyed BLAKE2b length
+  description: Computes a keyed BLAKE2b digest through PyNaCl and checks the hex length.
+  kind: usage
+  client_application: python3-nacl
+  command:
+  - bash
+  - /validator/tests/libsodium/tests/cases/usage/usage-eleventh-batch-behavior.sh
+  - usage-python3-nacl-blake2b-keyed-length-batch11
+  timeout_seconds: 180
+  tags:
+  - usage
+  - sodium
+  - python
+- id: usage-python3-nacl-hex-encoder-roundtrip-batch11
+  title: PyNaCl hex encoder roundtrip
+  description: Encodes and decodes bytes through the PyNaCl HexEncoder.
+  kind: usage
+  client_application: python3-nacl
+  command:
+  - bash
+  - /validator/tests/libsodium/tests/cases/usage/usage-eleventh-batch-behavior.sh
+  - usage-python3-nacl-hex-encoder-roundtrip-batch11
+  timeout_seconds: 180
+  tags:
+  - usage
+  - sodium
+  - python
+- id: usage-python3-nacl-seeded-signing-deterministic-batch11
+  title: PyNaCl seeded signing deterministic
+  description: Constructs signing keys from a fixed seed and checks deterministic public keys.
+  kind: usage
+  client_application: python3-nacl
+  command:
+  - bash
+  - /validator/tests/libsodium/tests/cases/usage/usage-eleventh-batch-behavior.sh
+  - usage-python3-nacl-seeded-signing-deterministic-batch11
+  timeout_seconds: 180
+  tags:
+  - usage
+  - sodium
+  - python
+- id: usage-python3-nacl-public-key-hex-construct-batch11
+  title: PyNaCl public key hex construct
+  description: Reconstructs a public key from a hex encoding through PyNaCl.
+  kind: usage
+  client_application: python3-nacl
+  command:
+  - bash
+  - /validator/tests/libsodium/tests/cases/usage/usage-eleventh-batch-behavior.sh
+  - usage-python3-nacl-public-key-hex-construct-batch11
+  timeout_seconds: 180
+  tags:
+  - usage
+  - sodium
+  - python
+- id: usage-python3-nacl-bindings-constant-sizes-batch11
+  title: PyNaCl binding constant sizes
+  description: Reads libsodium secretbox size constants through PyNaCl bindings.
+  kind: usage
+  client_application: python3-nacl
+  command:
+  - bash
+  - /validator/tests/libsodium/tests/cases/usage/usage-eleventh-batch-behavior.sh
+  - usage-python3-nacl-bindings-constant-sizes-batch11
+  timeout_seconds: 180
+  tags:
+  - usage
+  - sodium
+  - python

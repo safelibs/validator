@@ -1124,3 +1124,143 @@ testcases:
   - usage
   - json
   - jshon
+- id: usage-jshon-batch11-nested-bool-unstring
+  title: jshon nested bool unstring
+  description: Reads a nested boolean value with jshon and emits it unquoted.
+  kind: usage
+  client_application: jshon
+  command:
+  - bash
+  - /validator/tests/libjansson/tests/cases/usage/usage-eleventh-batch-behavior.sh
+  - usage-jshon-batch11-nested-bool-unstring
+  timeout_seconds: 180
+  tags:
+  - usage
+  - json
+  - cli
+- id: usage-jshon-batch11-nested-null-type
+  title: jshon nested null type
+  description: Reads a nested null field with jshon and checks its reported type.
+  kind: usage
+  client_application: jshon
+  command:
+  - bash
+  - /validator/tests/libjansson/tests/cases/usage/usage-eleventh-batch-behavior.sh
+  - usage-jshon-batch11-nested-null-type
+  timeout_seconds: 180
+  tags:
+  - usage
+  - json
+  - cli
+- id: usage-jshon-batch11-slash-string
+  title: jshon slash string
+  description: Reads a JSON string containing a slash and a space with jshon.
+  kind: usage
+  client_application: jshon
+  command:
+  - bash
+  - /validator/tests/libjansson/tests/cases/usage/usage-eleventh-batch-behavior.sh
+  - usage-jshon-batch11-slash-string
+  timeout_seconds: 180
+  tags:
+  - usage
+  - json
+  - cli
+- id: usage-jshon-batch11-array-object-second-name
+  title: jshon array object second name
+  description: Selects the second object from an array and reads its name with jshon.
+  kind: usage
+  client_application: jshon
+  command:
+  - bash
+  - /validator/tests/libjansson/tests/cases/usage/usage-eleventh-batch-behavior.sh
+  - usage-jshon-batch11-array-object-second-name
+  timeout_seconds: 180
+  tags:
+  - usage
+  - json
+  - cli
+- id: usage-jshon-batch11-file-nested-number
+  title: jshon file nested number
+  description: Reads a nested numeric field from a JSON file with jshon.
+  kind: usage
+  client_application: jshon
+  command:
+  - bash
+  - /validator/tests/libjansson/tests/cases/usage/usage-eleventh-batch-behavior.sh
+  - usage-jshon-batch11-file-nested-number
+  timeout_seconds: 180
+  tags:
+  - usage
+  - json
+  - cli
+- id: usage-jshon-batch11-root-array-object-field
+  title: jshon root array object field
+  description: Reads an object field from a root JSON array with jshon.
+  kind: usage
+  client_application: jshon
+  command:
+  - bash
+  - /validator/tests/libjansson/tests/cases/usage/usage-eleventh-batch-behavior.sh
+  - usage-jshon-batch11-root-array-object-field
+  timeout_seconds: 180
+  tags:
+  - usage
+  - json
+  - cli
+- id: usage-jshon-batch11-hyphen-key-field
+  title: jshon hyphen key field
+  description: Reads an object key containing a hyphen with jshon.
+  kind: usage
+  client_application: jshon
+  command:
+  - bash
+  - /validator/tests/libjansson/tests/cases/usage/usage-eleventh-batch-behavior.sh
+  - usage-jshon-batch11-hyphen-key-field
+  timeout_seconds: 180
+  tags:
+  - usage
+  - json
+  - cli
+- id: usage-jshon-batch11-negative-number
+  title: jshon negative number
+  description: Reads a negative fractional number with jshon.
+  kind: usage
+  client_application: jshon
+  command:
+  - bash
+  - /validator/tests/libjansson/tests/cases/usage/usage-eleventh-batch-behavior.sh
+  - usage-jshon-batch11-negative-number
+  timeout_seconds: 180
+  tags:
+  - usage
+  - json
+  - cli
+- id: usage-jshon-batch11-matrix-row-length
+  title: jshon matrix row length
+  description: Checks the length of a nested matrix row with jshon.
+  kind: usage
+  client_application: jshon
+  command:
+  - bash
+  - /validator/tests/libjansson/tests/cases/usage/usage-eleventh-batch-behavior.sh
+  - usage-jshon-batch11-matrix-row-length
+  timeout_seconds: 180
+  tags:
+  - usage
+  - json
+  - cli
+- id: usage-jshon-batch11-matrix-value
+  title: jshon matrix value
+  description: Reads a nested matrix element with jshon.
+  kind: usage
+  client_application: jshon
+  command:
+  - bash
+  - /validator/tests/libjansson/tests/cases/usage/usage-eleventh-batch-behavior.sh
+  - usage-jshon-batch11-matrix-value
+  timeout_seconds: 180
+  tags:
+  - usage
+  - json
+  - cli

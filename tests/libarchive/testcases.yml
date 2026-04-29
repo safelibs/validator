@@ -1140,3 +1140,143 @@ testcases:
   - usage
   - archive
   - python
+- id: usage-python-libarchive-c-batch11-memory-empty-tar
+  title: libarchive memory empty tar
+  description: Reads an empty tar member through python-libarchive-c memory_reader.
+  kind: usage
+  client_application: python3-libarchive-c
+  command:
+  - bash
+  - /validator/tests/libarchive/tests/cases/usage/usage-eleventh-batch-behavior.sh
+  - usage-python-libarchive-c-batch11-memory-empty-tar
+  timeout_seconds: 180
+  tags:
+  - usage
+  - python
+  - archive
+- id: usage-python-libarchive-c-batch11-tar-large-blocks
+  title: libarchive tar large blocks
+  description: Writes and reads a large tar member through python-libarchive-c.
+  kind: usage
+  client_application: python3-libarchive-c
+  command:
+  - bash
+  - /validator/tests/libarchive/tests/cases/usage/usage-eleventh-batch-behavior.sh
+  - usage-python-libarchive-c-batch11-tar-large-blocks
+  timeout_seconds: 180
+  tags:
+  - usage
+  - python
+  - archive
+- id: usage-python-libarchive-c-batch11-zip-crlf-payload
+  title: libarchive zip CRLF payload
+  description: Preserves CRLF text bytes in a zip archive through python-libarchive-c.
+  kind: usage
+  client_application: python3-libarchive-c
+  command:
+  - bash
+  - /validator/tests/libarchive/tests/cases/usage/usage-eleventh-batch-behavior.sh
+  - usage-python-libarchive-c-batch11-zip-crlf-payload
+  timeout_seconds: 180
+  tags:
+  - usage
+  - python
+  - archive
+- id: usage-python-libarchive-c-batch11-cpio-name-order
+  title: libarchive cpio name order
+  description: Reads cpio member names in insertion order through python-libarchive-c.
+  kind: usage
+  client_application: python3-libarchive-c
+  command:
+  - bash
+  - /validator/tests/libarchive/tests/cases/usage/usage-eleventh-batch-behavior.sh
+  - usage-python-libarchive-c-batch11-cpio-name-order
+  timeout_seconds: 180
+  tags:
+  - usage
+  - python
+  - archive
+- id: usage-python-libarchive-c-batch11-pax-size-map
+  title: libarchive pax size map
+  description: Reads pax member sizes through python-libarchive-c.
+  kind: usage
+  client_application: python3-libarchive-c
+  command:
+  - bash
+  - /validator/tests/libarchive/tests/cases/usage/usage-eleventh-batch-behavior.sh
+  - usage-python-libarchive-c-batch11-pax-size-map
+  timeout_seconds: 180
+  tags:
+  - usage
+  - python
+  - archive
+- id: usage-python-libarchive-c-batch11-tar-leading-dir
+  title: libarchive tar leading directory
+  description: Roundtrips a leading directory path through python-libarchive-c.
+  kind: usage
+  client_application: python3-libarchive-c
+  command:
+  - bash
+  - /validator/tests/libarchive/tests/cases/usage/usage-eleventh-batch-behavior.sh
+  - usage-python-libarchive-c-batch11-tar-leading-dir
+  timeout_seconds: 180
+  tags:
+  - usage
+  - python
+  - archive
+- id: usage-python-libarchive-c-batch11-zip-json-payload
+  title: libarchive zip JSON payload
+  description: Roundtrips a JSON byte payload in a zip archive through python-libarchive-c.
+  kind: usage
+  client_application: python3-libarchive-c
+  command:
+  - bash
+  - /validator/tests/libarchive/tests/cases/usage/usage-eleventh-batch-behavior.sh
+  - usage-python-libarchive-c-batch11-zip-json-payload
+  timeout_seconds: 180
+  tags:
+  - usage
+  - python
+  - archive
+- id: usage-python-libarchive-c-batch11-gzip-two-entries
+  title: libarchive gzip two entries
+  description: Reads two gzip-filtered tar entries through python-libarchive-c.
+  kind: usage
+  client_application: python3-libarchive-c
+  command:
+  - bash
+  - /validator/tests/libarchive/tests/cases/usage/usage-eleventh-batch-behavior.sh
+  - usage-python-libarchive-c-batch11-gzip-two-entries
+  timeout_seconds: 180
+  tags:
+  - usage
+  - python
+  - archive
+- id: usage-python-libarchive-c-batch11-bzip2-memory-reader
+  title: libarchive bzip2 memory reader
+  description: Reads a bzip2-filtered tar archive from memory through python-libarchive-c.
+  kind: usage
+  client_application: python3-libarchive-c
+  command:
+  - bash
+  - /validator/tests/libarchive/tests/cases/usage/usage-eleventh-batch-behavior.sh
+  - usage-python-libarchive-c-batch11-bzip2-memory-reader
+  timeout_seconds: 180
+  tags:
+  - usage
+  - python
+  - archive
+- id: usage-python-libarchive-c-batch11-zstd-size-check
+  title: libarchive zstd size check
+  description: Checks zstd-filtered member size metadata through python-libarchive-c.
+  kind: usage
+  client_application: python3-libarchive-c
+  command:
+  - bash
+  - /validator/tests/libarchive/tests/cases/usage/usage-eleventh-batch-behavior.sh
+  - usage-python-libarchive-c-batch11-zstd-size-check
+  timeout_seconds: 180
+  tags:
+  - usage
+  - python
+  - archive

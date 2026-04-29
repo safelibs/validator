@@ -1103,3 +1103,143 @@ testcases:
   timeout_seconds: 120
   tags:
   - usage
+- id: usage-python3-pil-tiff-description-tag-batch11
+  title: Pillow TIFF description tag
+  description: Saves a TIFF ImageDescription tag through Pillow and reads it back.
+  kind: usage
+  client_application: python3-pil
+  command:
+  - bash
+  - /validator/tests/libtiff/tests/cases/usage/usage-eleventh-batch-behavior.sh
+  - usage-python3-pil-tiff-description-tag-batch11
+  timeout_seconds: 180
+  tags:
+  - usage
+  - tiff
+  - python
+- id: usage-python3-pil-tiff-dpi-info-batch11
+  title: Pillow TIFF DPI info
+  description: Saves a TIFF with DPI information through Pillow and checks it after reopening.
+  kind: usage
+  client_application: python3-pil
+  command:
+  - bash
+  - /validator/tests/libtiff/tests/cases/usage/usage-eleventh-batch-behavior.sh
+  - usage-python3-pil-tiff-dpi-info-batch11
+  timeout_seconds: 180
+  tags:
+  - usage
+  - tiff
+  - python
+- id: usage-python3-pil-tiff-16bit-pixel-batch11
+  title: Pillow TIFF 16-bit pixel
+  description: Saves and reopens a 16-bit TIFF pixel value through Pillow.
+  kind: usage
+  client_application: python3-pil
+  command:
+  - bash
+  - /validator/tests/libtiff/tests/cases/usage/usage-eleventh-batch-behavior.sh
+  - usage-python3-pil-tiff-16bit-pixel-batch11
+  timeout_seconds: 180
+  tags:
+  - usage
+  - tiff
+  - python
+- id: usage-python3-pil-tiff-multipage-seek-third-batch11
+  title: Pillow TIFF multipage seek third
+  description: Writes a three-page TIFF and seeks to the third frame with Pillow.
+  kind: usage
+  client_application: python3-pil
+  command:
+  - bash
+  - /validator/tests/libtiff/tests/cases/usage/usage-eleventh-batch-behavior.sh
+  - usage-python3-pil-tiff-multipage-seek-third-batch11
+  timeout_seconds: 180
+  tags:
+  - usage
+  - tiff
+  - python
+- id: usage-python3-pil-tiff-tobytes-length-batch11
+  title: Pillow TIFF tobytes length
+  description: Reads TIFF pixel bytes through Pillow and checks the expected byte length.
+  kind: usage
+  client_application: python3-pil
+  command:
+  - bash
+  - /validator/tests/libtiff/tests/cases/usage/usage-eleventh-batch-behavior.sh
+  - usage-python3-pil-tiff-tobytes-length-batch11
+  timeout_seconds: 180
+  tags:
+  - usage
+  - tiff
+  - python
+- id: usage-python3-pil-tiff-getbands-batch11
+  title: Pillow TIFF bands
+  description: Opens a TIFF through Pillow and checks RGB band names.
+  kind: usage
+  client_application: python3-pil
+  command:
+  - bash
+  - /validator/tests/libtiff/tests/cases/usage/usage-eleventh-batch-behavior.sh
+  - usage-python3-pil-tiff-getbands-batch11
+  timeout_seconds: 180
+  tags:
+  - usage
+  - tiff
+  - python
+- id: usage-python3-pil-tiff-expand-border-batch11
+  title: Pillow TIFF expand border
+  description: Expands a TIFF canvas with a border through Pillow and verifies the result.
+  kind: usage
+  client_application: python3-pil
+  command:
+  - bash
+  - /validator/tests/libtiff/tests/cases/usage/usage-eleventh-batch-behavior.sh
+  - usage-python3-pil-tiff-expand-border-batch11
+  timeout_seconds: 180
+  tags:
+  - usage
+  - tiff
+  - python
+- id: usage-python3-pil-tiff-invert-l-mode-batch11
+  title: Pillow TIFF invert L mode
+  description: Inverts grayscale TIFF pixels through Pillow and checks values.
+  kind: usage
+  client_application: python3-pil
+  command:
+  - bash
+  - /validator/tests/libtiff/tests/cases/usage/usage-eleventh-batch-behavior.sh
+  - usage-python3-pil-tiff-invert-l-mode-batch11
+  timeout_seconds: 180
+  tags:
+  - usage
+  - tiff
+  - python
+- id: usage-python3-pil-tiff-sequence-sum-batch11
+  title: Pillow TIFF sequence sum
+  description: Iterates multi-page TIFF frames with Pillow and sums their pixel values.
+  kind: usage
+  client_application: python3-pil
+  command:
+  - bash
+  - /validator/tests/libtiff/tests/cases/usage/usage-eleventh-batch-behavior.sh
+  - usage-python3-pil-tiff-sequence-sum-batch11
+  timeout_seconds: 180
+  tags:
+  - usage
+  - tiff
+  - python
+- id: usage-python3-pil-tiff-bytesio-open-batch11
+  title: Pillow TIFF BytesIO open
+  description: Saves a TIFF to memory and reopens it from a BytesIO object.
+  kind: usage
+  client_application: python3-pil
+  command:
+  - bash
+  - /validator/tests/libtiff/tests/cases/usage/usage-eleventh-batch-behavior.sh
+  - usage-python3-pil-tiff-bytesio-open-batch11
+  timeout_seconds: 180
+  tags:
+  - usage
+  - tiff
+  - python

@@ -1152,3 +1152,143 @@ testcases:
   tags:
   - usage
   - xml
+- id: usage-python3-lxml-remove-comments-parser-batch11
+  title: lxml remove comments parser
+  description: Parses XML with lxml while removing comment nodes.
+  kind: usage
+  client_application: python3-lxml
+  command:
+  - bash
+  - /validator/tests/libxml/tests/cases/usage/usage-eleventh-batch-behavior.sh
+  - usage-python3-lxml-remove-comments-parser-batch11
+  timeout_seconds: 180
+  tags:
+  - usage
+  - xml
+  - python
+- id: usage-python3-lxml-processing-instruction-batch11
+  title: lxml processing instruction
+  description: Reads a processing instruction target and text through lxml.
+  kind: usage
+  client_application: python3-lxml
+  command:
+  - bash
+  - /validator/tests/libxml/tests/cases/usage/usage-eleventh-batch-behavior.sh
+  - usage-python3-lxml-processing-instruction-batch11
+  timeout_seconds: 180
+  tags:
+  - usage
+  - xml
+  - python
+- id: usage-python3-lxml-xpath-variable-batch11
+  title: lxml XPath variable
+  description: Evaluates an XPath expression with a variable through lxml.
+  kind: usage
+  client_application: python3-lxml
+  command:
+  - bash
+  - /validator/tests/libxml/tests/cases/usage/usage-eleventh-batch-behavior.sh
+  - usage-python3-lxml-xpath-variable-batch11
+  timeout_seconds: 180
+  tags:
+  - usage
+  - xml
+  - python
+- id: usage-python3-lxml-xslt-text-output-batch11
+  title: lxml XSLT text output
+  description: Runs an lxml XSLT transform that emits text output.
+  kind: usage
+  client_application: python3-lxml
+  command:
+  - bash
+  - /validator/tests/libxml/tests/cases/usage/usage-eleventh-batch-behavior.sh
+  - usage-python3-lxml-xslt-text-output-batch11
+  timeout_seconds: 180
+  tags:
+  - usage
+  - xml
+  - python
+- id: usage-python3-lxml-objectify-attribute-batch11
+  title: lxml objectify attribute
+  description: Reads an XML attribute through lxml.objectify.
+  kind: usage
+  client_application: python3-lxml
+  command:
+  - bash
+  - /validator/tests/libxml/tests/cases/usage/usage-eleventh-batch-behavior.sh
+  - usage-python3-lxml-objectify-attribute-batch11
+  timeout_seconds: 180
+  tags:
+  - usage
+  - xml
+  - python
+- id: usage-xmlstarlet-elements-list-batch11
+  title: xmlstarlet elements list
+  description: Lists XML element paths with xmlstarlet el.
+  kind: usage
+  client_application: xmlstarlet
+  command:
+  - bash
+  - /validator/tests/libxml/tests/cases/usage/usage-eleventh-batch-behavior.sh
+  - usage-xmlstarlet-elements-list-batch11
+  timeout_seconds: 180
+  tags:
+  - usage
+  - xml
+  - cli
+- id: usage-xmlstarlet-select-if-batch11
+  title: xmlstarlet select if
+  description: Selects XML nodes by numeric attribute comparison with xmlstarlet.
+  kind: usage
+  client_application: xmlstarlet
+  command:
+  - bash
+  - /validator/tests/libxml/tests/cases/usage/usage-eleventh-batch-behavior.sh
+  - usage-xmlstarlet-select-if-batch11
+  timeout_seconds: 180
+  tags:
+  - usage
+  - xml
+  - cli
+- id: usage-xmlstarlet-edit-subnode-batch11
+  title: xmlstarlet edit subnode
+  description: Adds a subnode to XML with xmlstarlet edit.
+  kind: usage
+  client_application: xmlstarlet
+  command:
+  - bash
+  - /validator/tests/libxml/tests/cases/usage/usage-eleventh-batch-behavior.sh
+  - usage-xmlstarlet-edit-subnode-batch11
+  timeout_seconds: 180
+  tags:
+  - usage
+  - xml
+  - cli
+- id: usage-xmlstarlet-format-indent-batch11
+  title: xmlstarlet format indent
+  description: Formats XML with a two-space indent through xmlstarlet.
+  kind: usage
+  client_application: xmlstarlet
+  command:
+  - bash
+  - /validator/tests/libxml/tests/cases/usage/usage-eleventh-batch-behavior.sh
+  - usage-xmlstarlet-format-indent-batch11
+  timeout_seconds: 180
+  tags:
+  - usage
+  - xml
+  - cli
+- id: usage-xmlstarlet-c14n-with-comments-batch11
+  title: xmlstarlet c14n with comments
+  description: Canonicalizes XML with comments preserved through xmlstarlet.
+  kind: usage
+  client_application: xmlstarlet
+  command:
+  - bash
+  - /validator/tests/libxml/tests/cases/usage/usage-eleventh-batch-behavior.sh
+  - usage-xmlstarlet-c14n-with-comments-batch11
+  timeout_seconds: 180
+  tags:
+  - usage
+  - xml
+  - cli

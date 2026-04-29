@@ -1112,3 +1112,143 @@ testcases:
   timeout_seconds: 120
   tags:
   - usage
+- id: usage-python3-pil-webp-animated-frame-count-batch11
+  title: Pillow WebP animated frame count
+  description: Saves an animated WebP through Pillow and checks the frame count.
+  kind: usage
+  client_application: python3-pil
+  command:
+  - bash
+  - /validator/tests/libwebp/tests/cases/usage/usage-eleventh-batch-behavior.sh
+  - usage-python3-pil-webp-animated-frame-count-batch11
+  timeout_seconds: 180
+  tags:
+  - usage
+  - webp
+  - python
+- id: usage-python3-pil-webp-animated-seek-second-batch11
+  title: Pillow WebP animated seek second
+  description: Seeks to the second frame of an animated WebP through Pillow.
+  kind: usage
+  client_application: python3-pil
+  command:
+  - bash
+  - /validator/tests/libwebp/tests/cases/usage/usage-eleventh-batch-behavior.sh
+  - usage-python3-pil-webp-animated-seek-second-batch11
+  timeout_seconds: 180
+  tags:
+  - usage
+  - webp
+  - python
+- id: usage-python3-pil-webp-rgba-alpha-extrema-batch11
+  title: Pillow WebP RGBA alpha extrema
+  description: Saves RGBA WebP data and checks alpha extrema after reopening.
+  kind: usage
+  client_application: python3-pil
+  command:
+  - bash
+  - /validator/tests/libwebp/tests/cases/usage/usage-eleventh-batch-behavior.sh
+  - usage-python3-pil-webp-rgba-alpha-extrema-batch11
+  timeout_seconds: 180
+  tags:
+  - usage
+  - webp
+  - python
+- id: usage-python3-pil-webp-lossless-rgb-mode-batch11
+  title: Pillow WebP lossless RGB mode
+  description: Saves a lossless RGB WebP through Pillow and checks mode and size.
+  kind: usage
+  client_application: python3-pil
+  command:
+  - bash
+  - /validator/tests/libwebp/tests/cases/usage/usage-eleventh-batch-behavior.sh
+  - usage-python3-pil-webp-lossless-rgb-mode-batch11
+  timeout_seconds: 180
+  tags:
+  - usage
+  - webp
+  - python
+- id: usage-python3-pil-webp-method-six-save-batch11
+  title: Pillow WebP method six save
+  description: Saves a WebP with encoder method 6 and verifies it reopens.
+  kind: usage
+  client_application: python3-pil
+  command:
+  - bash
+  - /validator/tests/libwebp/tests/cases/usage/usage-eleventh-batch-behavior.sh
+  - usage-python3-pil-webp-method-six-save-batch11
+  timeout_seconds: 180
+  tags:
+  - usage
+  - webp
+  - python
+- id: usage-python3-pil-webp-bytesio-open-batch11
+  title: Pillow WebP BytesIO open
+  description: Saves WebP data to memory and reopens it from a BytesIO object.
+  kind: usage
+  client_application: python3-pil
+  command:
+  - bash
+  - /validator/tests/libwebp/tests/cases/usage/usage-eleventh-batch-behavior.sh
+  - usage-python3-pil-webp-bytesio-open-batch11
+  timeout_seconds: 180
+  tags:
+  - usage
+  - webp
+  - python
+- id: usage-python3-pil-webp-contain-size-batch11
+  title: Pillow WebP contain size
+  description: Resizes an image with contain and saves it as WebP through Pillow.
+  kind: usage
+  client_application: python3-pil
+  command:
+  - bash
+  - /validator/tests/libwebp/tests/cases/usage/usage-eleventh-batch-behavior.sh
+  - usage-python3-pil-webp-contain-size-batch11
+  timeout_seconds: 180
+  tags:
+  - usage
+  - webp
+  - python
+- id: usage-python3-pil-webp-feature-check-batch11
+  title: Pillow WebP feature check
+  description: Checks Pillow reports WebP feature support.
+  kind: usage
+  client_application: python3-pil
+  command:
+  - bash
+  - /validator/tests/libwebp/tests/cases/usage/usage-eleventh-batch-behavior.sh
+  - usage-python3-pil-webp-feature-check-batch11
+  timeout_seconds: 180
+  tags:
+  - usage
+  - webp
+  - python
+- id: usage-python3-pil-webp-exif-empty-roundtrip-batch11
+  title: Pillow WebP EXIF roundtrip
+  description: Saves a WebP with an EXIF orientation tag and reads it back.
+  kind: usage
+  client_application: python3-pil
+  command:
+  - bash
+  - /validator/tests/libwebp/tests/cases/usage/usage-eleventh-batch-behavior.sh
+  - usage-python3-pil-webp-exif-empty-roundtrip-batch11
+  timeout_seconds: 180
+  tags:
+  - usage
+  - webp
+  - python
+- id: usage-python3-pil-webp-palette-convert-batch11
+  title: Pillow WebP palette convert
+  description: Converts an image through a palette and saves the result as WebP.
+  kind: usage
+  client_application: python3-pil
+  command:
+  - bash
+  - /validator/tests/libwebp/tests/cases/usage/usage-eleventh-batch-behavior.sh
+  - usage-python3-pil-webp-palette-convert-batch11
+  timeout_seconds: 180
+  tags:
+  - usage
+  - webp
+  - python

@@ -1163,3 +1163,143 @@ testcases:
   - usage
   - python
   - datetime
+- id: usage-gio-copy-local-file-batch11
+  title: gio local file copy
+  description: Copies a local file through gio and verifies the copied content.
+  kind: usage
+  client_application: gio
+  command:
+  - bash
+  - /validator/tests/glib/tests/cases/usage/usage-eleventh-batch-behavior.sh
+  - usage-gio-copy-local-file-batch11
+  timeout_seconds: 180
+  tags:
+  - usage
+  - gio
+  - filesystem
+- id: usage-gio-mkdir-list-batch11
+  title: gio mkdir and list
+  description: Creates a directory through gio and lists a file inside it.
+  kind: usage
+  client_application: gio
+  command:
+  - bash
+  - /validator/tests/glib/tests/cases/usage/usage-eleventh-batch-behavior.sh
+  - usage-gio-mkdir-list-batch11
+  timeout_seconds: 180
+  tags:
+  - usage
+  - gio
+  - filesystem
+- id: usage-gio-info-size-batch11
+  title: gio info standard size
+  description: Reads the standard size attribute for a local file through gio.
+  kind: usage
+  client_application: gio
+  command:
+  - bash
+  - /validator/tests/glib/tests/cases/usage/usage-eleventh-batch-behavior.sh
+  - usage-gio-info-size-batch11
+  timeout_seconds: 180
+  tags:
+  - usage
+  - gio
+  - filesystem
+- id: usage-python3-gi-path-basename-batch11
+  title: PyGObject GLib basename
+  description: Calls GLib path basename handling through PyGObject.
+  kind: usage
+  client_application: python3-gi
+  command:
+  - bash
+  - /validator/tests/glib/tests/cases/usage/usage-eleventh-batch-behavior.sh
+  - usage-python3-gi-path-basename-batch11
+  timeout_seconds: 180
+  tags:
+  - usage
+  - python
+  - glib
+- id: usage-python3-gi-shell-quote-batch11
+  title: PyGObject GLib shell quote
+  description: Calls GLib shell quoting through PyGObject.
+  kind: usage
+  client_application: python3-gi
+  command:
+  - bash
+  - /validator/tests/glib/tests/cases/usage/usage-eleventh-batch-behavior.sh
+  - usage-python3-gi-shell-quote-batch11
+  timeout_seconds: 180
+  tags:
+  - usage
+  - python
+  - glib
+- id: usage-python3-gi-markup-escape-batch11
+  title: PyGObject GLib markup escape
+  description: Calls GLib markup escaping through PyGObject.
+  kind: usage
+  client_application: python3-gi
+  command:
+  - bash
+  - /validator/tests/glib/tests/cases/usage/usage-eleventh-batch-behavior.sh
+  - usage-python3-gi-markup-escape-batch11
+  timeout_seconds: 180
+  tags:
+  - usage
+  - python
+  - glib
+- id: usage-python3-gi-uri-unescape-batch11
+  title: PyGObject GLib URI unescape
+  description: Calls GLib URI unescaping through PyGObject.
+  kind: usage
+  client_application: python3-gi
+  command:
+  - bash
+  - /validator/tests/glib/tests/cases/usage/usage-eleventh-batch-behavior.sh
+  - usage-python3-gi-uri-unescape-batch11
+  timeout_seconds: 180
+  tags:
+  - usage
+  - python
+  - glib
+- id: usage-python3-gi-uuid-random-batch11
+  title: PyGObject GLib random UUID
+  description: Generates a GLib random UUID through PyGObject.
+  kind: usage
+  client_application: python3-gi
+  command:
+  - bash
+  - /validator/tests/glib/tests/cases/usage/usage-eleventh-batch-behavior.sh
+  - usage-python3-gi-uuid-random-batch11
+  timeout_seconds: 180
+  tags:
+  - usage
+  - python
+  - glib
+- id: usage-python3-gi-variant-int-array-batch11
+  title: PyGObject GLib int array variant
+  description: Creates and inspects a GLib integer array variant through PyGObject.
+  kind: usage
+  client_application: python3-gi
+  command:
+  - bash
+  - /validator/tests/glib/tests/cases/usage/usage-eleventh-batch-behavior.sh
+  - usage-python3-gi-variant-int-array-batch11
+  timeout_seconds: 180
+  tags:
+  - usage
+  - python
+  - glib
+- id: usage-python3-gi-unix-epoch-year-batch11
+  title: PyGObject GLib Unix epoch date
+  description: Formats a GLib UTC DateTime created from the Unix epoch.
+  kind: usage
+  client_application: python3-gi
+  command:
+  - bash
+  - /validator/tests/glib/tests/cases/usage/usage-eleventh-batch-behavior.sh
+  - usage-python3-gi-unix-epoch-year-batch11
+  timeout_seconds: 180
+  tags:
+  - usage
+  - python
+  - glib

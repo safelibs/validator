@@ -1135,3 +1135,143 @@ testcases:
   - usage
   - gzip
   - archive
+- id: usage-bash-readarray-lines-batch11
+  title: bash readarray lines
+  description: Reads lines with bash readarray and verifies array indexing.
+  kind: usage
+  client_application: bash
+  command:
+  - bash
+  - /validator/tests/libc6/tests/cases/usage/usage-eleventh-batch-behavior.sh
+  - usage-bash-readarray-lines-batch11
+  timeout_seconds: 180
+  tags:
+  - usage
+  - shell
+  - libc
+- id: usage-coreutils-stat-size-format-batch11
+  title: coreutils stat size format
+  description: Formats a file size through coreutils stat.
+  kind: usage
+  client_application: coreutils
+  command:
+  - bash
+  - /validator/tests/libc6/tests/cases/usage/usage-eleventh-batch-behavior.sh
+  - usage-coreutils-stat-size-format-batch11
+  timeout_seconds: 180
+  tags:
+  - usage
+  - coreutils
+  - filesystem
+- id: usage-coreutils-sort-version-batch11
+  title: coreutils version sort
+  description: Sorts version-like strings through coreutils sort -V.
+  kind: usage
+  client_application: coreutils
+  command:
+  - bash
+  - /validator/tests/libc6/tests/cases/usage/usage-eleventh-batch-behavior.sh
+  - usage-coreutils-sort-version-batch11
+  timeout_seconds: 180
+  tags:
+  - usage
+  - coreutils
+  - locale
+- id: usage-grep-extended-alternation-batch11
+  title: grep extended alternation
+  description: Matches anchored alternatives with grep extended regular expressions.
+  kind: usage
+  client_application: grep
+  command:
+  - bash
+  - /validator/tests/libc6/tests/cases/usage/usage-eleventh-batch-behavior.sh
+  - usage-grep-extended-alternation-batch11
+  timeout_seconds: 180
+  tags:
+  - usage
+  - grep
+  - regex
+- id: usage-gawk-strftime-epoch-batch11
+  title: gawk strftime epoch
+  description: Formats the Unix epoch through gawk strftime using libc time handling.
+  kind: usage
+  client_application: gawk
+  command:
+  - bash
+  - /validator/tests/libc6/tests/cases/usage/usage-eleventh-batch-behavior.sh
+  - usage-gawk-strftime-epoch-batch11
+  timeout_seconds: 180
+  tags:
+  - usage
+  - gawk
+  - time
+- id: usage-sed-transliterate-batch11
+  title: sed transliterate
+  description: Transforms a stream with sed transliteration.
+  kind: usage
+  client_application: sed
+  command:
+  - bash
+  - /validator/tests/libc6/tests/cases/usage/usage-eleventh-batch-behavior.sh
+  - usage-sed-transliterate-batch11
+  timeout_seconds: 180
+  tags:
+  - usage
+  - sed
+  - stream
+- id: usage-python3-minimal-os-strerror-batch11
+  title: Python os strerror
+  description: Formats a platform errno string through Python on libc.
+  kind: usage
+  client_application: python3-minimal
+  command:
+  - bash
+  - /validator/tests/libc6/tests/cases/usage/usage-eleventh-batch-behavior.sh
+  - usage-python3-minimal-os-strerror-batch11
+  timeout_seconds: 180
+  tags:
+  - usage
+  - python
+  - libc
+- id: usage-findutils-prune-name-batch11
+  title: find prune name
+  description: Traverses a tree with find while pruning a named directory.
+  kind: usage
+  client_application: findutils
+  command:
+  - bash
+  - /validator/tests/libc6/tests/cases/usage/usage-eleventh-batch-behavior.sh
+  - usage-findutils-prune-name-batch11
+  timeout_seconds: 180
+  tags:
+  - usage
+  - find
+  - filesystem
+- id: usage-tar-to-stdout-member-batch11
+  title: tar extract member to stdout
+  description: Extracts a single tar member directly to stdout.
+  kind: usage
+  client_application: tar
+  command:
+  - bash
+  - /validator/tests/libc6/tests/cases/usage/usage-eleventh-batch-behavior.sh
+  - usage-tar-to-stdout-member-batch11
+  timeout_seconds: 180
+  tags:
+  - usage
+  - tar
+  - filesystem
+- id: usage-gzip-list-compressed-size-batch11
+  title: gzip list compressed size
+  description: Lists gzip compressed and uncompressed size columns.
+  kind: usage
+  client_application: gzip
+  command:
+  - bash
+  - /validator/tests/libc6/tests/cases/usage/usage-eleventh-batch-behavior.sh
+  - usage-gzip-list-compressed-size-batch11
+  timeout_seconds: 180
+  tags:
+  - usage
+  - gzip
+  - compression

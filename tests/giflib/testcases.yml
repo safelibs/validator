@@ -1150,3 +1150,143 @@ testcases:
   - usage
   - gif
   - gifclrmp
+- id: usage-giflib-tools-batch11-fire-image-marker
+  title: giftext fire image marker
+  description: Runs giftext on the fire fixture and checks image markers are emitted.
+  kind: usage
+  client_application: giflib-tools
+  command:
+  - bash
+  - /validator/tests/giflib/tests/cases/usage/usage-eleventh-batch-behavior.sh
+  - usage-giflib-tools-batch11-fire-image-marker
+  timeout_seconds: 180
+  tags:
+  - usage
+  - gif
+  - cli
+- id: usage-giflib-tools-batch11-grid-screen-size
+  title: giftext grid screen size
+  description: Runs giftext on the grid fixture and checks screen size metadata is present.
+  kind: usage
+  client_application: giflib-tools
+  command:
+  - bash
+  - /validator/tests/giflib/tests/cases/usage/usage-eleventh-batch-behavior.sh
+  - usage-giflib-tools-batch11-grid-screen-size
+  timeout_seconds: 180
+  tags:
+  - usage
+  - gif
+  - cli
+- id: usage-giflib-tools-batch11-treescap-rgb-nonempty
+  title: gif2rgb treescap RGB output
+  description: Converts the treescap fixture to packed RGB and checks bytes are produced.
+  kind: usage
+  client_application: giflib-tools
+  command:
+  - bash
+  - /validator/tests/giflib/tests/cases/usage/usage-eleventh-batch-behavior.sh
+  - usage-giflib-tools-batch11-treescap-rgb-nonempty
+  timeout_seconds: 180
+  tags:
+  - usage
+  - gif
+  - cli
+- id: usage-giflib-tools-batch11-grid-rgb-nonempty
+  title: gif2rgb grid RGB output
+  description: Converts the grid fixture to packed RGB and checks bytes are produced.
+  kind: usage
+  client_application: giflib-tools
+  command:
+  - bash
+  - /validator/tests/giflib/tests/cases/usage/usage-eleventh-batch-behavior.sh
+  - usage-giflib-tools-batch11-grid-rgb-nonempty
+  timeout_seconds: 180
+  tags:
+  - usage
+  - gif
+  - cli
+- id: usage-giflib-tools-batch11-fire-planar-same-size
+  title: gif2rgb fire planar sizes
+  description: Converts the fire fixture to planar RGB and checks equal channel sizes.
+  kind: usage
+  client_application: giflib-tools
+  command:
+  - bash
+  - /validator/tests/giflib/tests/cases/usage/usage-eleventh-batch-behavior.sh
+  - usage-giflib-tools-batch11-fire-planar-same-size
+  timeout_seconds: 180
+  tags:
+  - usage
+  - gif
+  - cli
+- id: usage-giflib-tools-batch11-gifbuild-fire-rgb-compare
+  title: gifbuild fire RGB parity
+  description: Rebuilds the fire fixture from gifbuild text and compares the RGB output.
+  kind: usage
+  client_application: giflib-tools
+  command:
+  - bash
+  - /validator/tests/giflib/tests/cases/usage/usage-eleventh-batch-behavior.sh
+  - usage-giflib-tools-batch11-gifbuild-fire-rgb-compare
+  timeout_seconds: 180
+  tags:
+  - usage
+  - gif
+  - cli
+- id: usage-giflib-tools-batch11-giffix-grid-rgb-output
+  title: giffix grid RGB output
+  description: Repairs the grid fixture with giffix and checks RGB conversion still produces data.
+  kind: usage
+  client_application: giflib-tools
+  command:
+  - bash
+  - /validator/tests/giflib/tests/cases/usage/usage-eleventh-batch-behavior.sh
+  - usage-giflib-tools-batch11-giffix-grid-rgb-output
+  timeout_seconds: 180
+  tags:
+  - usage
+  - gif
+  - cli
+- id: usage-giflib-tools-batch11-gifclrmp-treescap-row-count
+  title: gifclrmp treescap rows
+  description: Lists the treescap color map and checks multiple color rows are emitted.
+  kind: usage
+  client_application: giflib-tools
+  command:
+  - bash
+  - /validator/tests/giflib/tests/cases/usage/usage-eleventh-batch-behavior.sh
+  - usage-giflib-tools-batch11-gifclrmp-treescap-row-count
+  timeout_seconds: 180
+  tags:
+  - usage
+  - gif
+  - cli
+- id: usage-giflib-tools-batch11-interlaced-image-marker
+  title: giftext interlaced image marker
+  description: Runs giftext on the interlaced fixture and checks image markers are emitted.
+  kind: usage
+  client_application: giflib-tools
+  command:
+  - bash
+  - /validator/tests/giflib/tests/cases/usage/usage-eleventh-batch-behavior.sh
+  - usage-giflib-tools-batch11-interlaced-image-marker
+  timeout_seconds: 180
+  tags:
+  - usage
+  - gif
+  - cli
+- id: usage-giflib-tools-batch11-grid-build-dump-size
+  title: gifbuild grid dump size
+  description: Dumps the grid fixture with gifbuild and checks textual screen data is produced.
+  kind: usage
+  client_application: giflib-tools
+  command:
+  - bash
+  - /validator/tests/giflib/tests/cases/usage/usage-eleventh-batch-behavior.sh
+  - usage-giflib-tools-batch11-grid-build-dump-size
+  timeout_seconds: 180
+  tags:
+  - usage
+  - gif
+  - cli

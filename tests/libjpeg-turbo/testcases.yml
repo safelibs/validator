@@ -1103,3 +1103,143 @@ testcases:
   timeout_seconds: 120
   tags:
   - usage
+- id: usage-python3-pil-jpeg-dpi-roundtrip-batch11
+  title: Pillow JPEG DPI roundtrip
+  description: Saves a JPEG with DPI metadata through Pillow and checks it after reopening.
+  kind: usage
+  client_application: python3-pil
+  command:
+  - bash
+  - /validator/tests/libjpeg-turbo/tests/cases/usage/usage-eleventh-batch-behavior.sh
+  - usage-python3-pil-jpeg-dpi-roundtrip-batch11
+  timeout_seconds: 180
+  tags:
+  - usage
+  - jpeg
+  - python
+- id: usage-python3-pil-jpeg-progressive-info-batch11
+  title: Pillow progressive JPEG info
+  description: Saves a progressive JPEG through Pillow and checks progressive metadata.
+  kind: usage
+  client_application: python3-pil
+  command:
+  - bash
+  - /validator/tests/libjpeg-turbo/tests/cases/usage/usage-eleventh-batch-behavior.sh
+  - usage-python3-pil-jpeg-progressive-info-batch11
+  timeout_seconds: 180
+  tags:
+  - usage
+  - jpeg
+  - python
+- id: usage-python3-pil-jpeg-quantization-table-batch11
+  title: Pillow JPEG quantization table
+  description: Opens a JPEG with Pillow and checks quantization tables are exposed.
+  kind: usage
+  client_application: python3-pil
+  command:
+  - bash
+  - /validator/tests/libjpeg-turbo/tests/cases/usage/usage-eleventh-batch-behavior.sh
+  - usage-python3-pil-jpeg-quantization-table-batch11
+  timeout_seconds: 180
+  tags:
+  - usage
+  - jpeg
+  - python
+- id: usage-python3-pil-jpeg-cmyk-roundtrip-batch11
+  title: Pillow CMYK JPEG roundtrip
+  description: Saves and reopens a CMYK JPEG through Pillow.
+  kind: usage
+  client_application: python3-pil
+  command:
+  - bash
+  - /validator/tests/libjpeg-turbo/tests/cases/usage/usage-eleventh-batch-behavior.sh
+  - usage-python3-pil-jpeg-cmyk-roundtrip-batch11
+  timeout_seconds: 180
+  tags:
+  - usage
+  - jpeg
+  - python
+- id: usage-python3-pil-jpeg-exif-orientation-batch11
+  title: Pillow JPEG EXIF orientation
+  description: Saves a JPEG with an EXIF orientation tag through Pillow and reads it back.
+  kind: usage
+  client_application: python3-pil
+  command:
+  - bash
+  - /validator/tests/libjpeg-turbo/tests/cases/usage/usage-eleventh-batch-behavior.sh
+  - usage-python3-pil-jpeg-exif-orientation-batch11
+  timeout_seconds: 180
+  tags:
+  - usage
+  - jpeg
+  - python
+- id: usage-python3-pil-jpeg-l-mode-roundtrip-batch11
+  title: Pillow grayscale JPEG roundtrip
+  description: Saves and reopens a grayscale JPEG through Pillow.
+  kind: usage
+  client_application: python3-pil
+  command:
+  - bash
+  - /validator/tests/libjpeg-turbo/tests/cases/usage/usage-eleventh-batch-behavior.sh
+  - usage-python3-pil-jpeg-l-mode-roundtrip-batch11
+  timeout_seconds: 180
+  tags:
+  - usage
+  - jpeg
+  - python
+- id: usage-python3-pil-jpeg-bytesio-open-batch11
+  title: Pillow JPEG BytesIO open
+  description: Saves a JPEG to memory and reopens it from a BytesIO object.
+  kind: usage
+  client_application: python3-pil
+  command:
+  - bash
+  - /validator/tests/libjpeg-turbo/tests/cases/usage/usage-eleventh-batch-behavior.sh
+  - usage-python3-pil-jpeg-bytesio-open-batch11
+  timeout_seconds: 180
+  tags:
+  - usage
+  - jpeg
+  - python
+- id: usage-python3-pil-jpeg-draft-load-batch11
+  title: Pillow JPEG draft load
+  description: Requests draft decoding for a JPEG and checks the decoded dimensions.
+  kind: usage
+  client_application: python3-pil
+  command:
+  - bash
+  - /validator/tests/libjpeg-turbo/tests/cases/usage/usage-eleventh-batch-behavior.sh
+  - usage-python3-pil-jpeg-draft-load-batch11
+  timeout_seconds: 180
+  tags:
+  - usage
+  - jpeg
+  - python
+- id: usage-python3-pil-jpeg-getbands-batch11
+  title: Pillow JPEG bands
+  description: Opens a JPEG through Pillow and checks the RGB band tuple.
+  kind: usage
+  client_application: python3-pil
+  command:
+  - bash
+  - /validator/tests/libjpeg-turbo/tests/cases/usage/usage-eleventh-batch-behavior.sh
+  - usage-python3-pil-jpeg-getbands-batch11
+  timeout_seconds: 180
+  tags:
+  - usage
+  - jpeg
+  - python
+- id: usage-python3-pil-jpeg-optimize-save-batch11
+  title: Pillow optimized JPEG save
+  description: Saves an optimized JPEG through Pillow and verifies it reopens.
+  kind: usage
+  client_application: python3-pil
+  command:
+  - bash
+  - /validator/tests/libjpeg-turbo/tests/cases/usage/usage-eleventh-batch-behavior.sh
+  - usage-python3-pil-jpeg-optimize-save-batch11
+  timeout_seconds: 180
+  tags:
+  - usage
+  - jpeg
+  - python

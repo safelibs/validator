@@ -1138,3 +1138,143 @@ testcases:
   - usage
   - nodejs
   - process
+- id: usage-nodejs-fs-promises-mkdtemp-batch11
+  title: Node.js fs promises mkdtemp
+  description: Creates a temporary directory through Node.js fs.promises backed by libuv.
+  kind: usage
+  client_application: nodejs
+  command:
+  - bash
+  - /validator/tests/libuv/tests/cases/usage/usage-eleventh-batch-behavior.sh
+  - usage-nodejs-fs-promises-mkdtemp-batch11
+  timeout_seconds: 180
+  tags:
+  - usage
+  - nodejs
+  - libuv
+- id: usage-nodejs-fs-realpath-native-batch11
+  title: Node.js realpath native
+  description: Resolves a native realpath through Node.js filesystem bindings.
+  kind: usage
+  client_application: nodejs
+  command:
+  - bash
+  - /validator/tests/libuv/tests/cases/usage/usage-eleventh-batch-behavior.sh
+  - usage-nodejs-fs-realpath-native-batch11
+  timeout_seconds: 180
+  tags:
+  - usage
+  - nodejs
+  - libuv
+- id: usage-nodejs-timers-promises-timeout-batch11
+  title: Node.js timers promises timeout
+  description: Awaits a timers/promises timeout through the Node.js event loop.
+  kind: usage
+  client_application: nodejs
+  command:
+  - bash
+  - /validator/tests/libuv/tests/cases/usage/usage-eleventh-batch-behavior.sh
+  - usage-nodejs-timers-promises-timeout-batch11
+  timeout_seconds: 180
+  tags:
+  - usage
+  - nodejs
+  - libuv
+- id: usage-nodejs-net-server-address-batch11
+  title: Node.js net server address
+  description: Starts a loopback Node.js TCP server and checks its bound address.
+  kind: usage
+  client_application: nodejs
+  command:
+  - bash
+  - /validator/tests/libuv/tests/cases/usage/usage-eleventh-batch-behavior.sh
+  - usage-nodejs-net-server-address-batch11
+  timeout_seconds: 180
+  tags:
+  - usage
+  - nodejs
+  - libuv
+- id: usage-nodejs-dgram-buffer-message-batch11
+  title: Node.js dgram buffer message
+  description: Sends a UDP datagram Buffer between Node.js sockets.
+  kind: usage
+  client_application: nodejs
+  command:
+  - bash
+  - /validator/tests/libuv/tests/cases/usage/usage-eleventh-batch-behavior.sh
+  - usage-nodejs-dgram-buffer-message-batch11
+  timeout_seconds: 180
+  tags:
+  - usage
+  - nodejs
+  - libuv
+- id: usage-nodejs-worker-thread-message-batch11
+  title: Node.js worker thread message
+  description: Passes a message from a Node.js worker thread to the parent event loop.
+  kind: usage
+  client_application: nodejs
+  command:
+  - bash
+  - /validator/tests/libuv/tests/cases/usage/usage-eleventh-batch-behavior.sh
+  - usage-nodejs-worker-thread-message-batch11
+  timeout_seconds: 180
+  tags:
+  - usage
+  - nodejs
+  - libuv
+- id: usage-nodejs-readline-async-iterator-batch11
+  title: Node.js readline async iterator
+  description: Reads stream lines through Node.js readline async iteration.
+  kind: usage
+  client_application: nodejs
+  command:
+  - bash
+  - /validator/tests/libuv/tests/cases/usage/usage-eleventh-batch-behavior.sh
+  - usage-nodejs-readline-async-iterator-batch11
+  timeout_seconds: 180
+  tags:
+  - usage
+  - nodejs
+  - libuv
+- id: usage-nodejs-stream-finished-promise-batch11
+  title: Node.js stream finished promise
+  description: Waits for a Node.js writable stream to finish through stream promises.
+  kind: usage
+  client_application: nodejs
+  command:
+  - bash
+  - /validator/tests/libuv/tests/cases/usage/usage-eleventh-batch-behavior.sh
+  - usage-nodejs-stream-finished-promise-batch11
+  timeout_seconds: 180
+  tags:
+  - usage
+  - nodejs
+  - libuv
+- id: usage-nodejs-dns-promises-lookup-batch11
+  title: Node.js DNS promises lookup
+  description: Looks up localhost through Node.js dns.promises.
+  kind: usage
+  client_application: nodejs
+  command:
+  - bash
+  - /validator/tests/libuv/tests/cases/usage/usage-eleventh-batch-behavior.sh
+  - usage-nodejs-dns-promises-lookup-batch11
+  timeout_seconds: 180
+  tags:
+  - usage
+  - nodejs
+  - libuv
+- id: usage-nodejs-crypto-randombytes-async-batch11
+  title: Node.js randomBytes async
+  description: Generates random bytes through the asynchronous Node.js crypto callback.
+  kind: usage
+  client_application: nodejs
+  command:
+  - bash
+  - /validator/tests/libuv/tests/cases/usage/usage-eleventh-batch-behavior.sh
+  - usage-nodejs-crypto-randombytes-async-batch11
+  timeout_seconds: 180
+  tags:
+  - usage
+  - nodejs
+  - libuv
