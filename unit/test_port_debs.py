@@ -125,7 +125,7 @@ class PortDebTests(unittest.TestCase):
             list(lock),
             ["schema_version", "mode", "generated_at", "source_config", "source_inventory", "libraries"],
         )
-        self.assertEqual(lock["mode"], "port-04-test")
+        self.assertEqual(lock["mode"], "port")
         self.assertEqual(lock["generated_at"], "1970-01-01T00:00:00Z")
         library = lock["libraries"][0]
         self.assertEqual(library["tag_ref"], "refs/tags/v1.2.3")

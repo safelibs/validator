@@ -44,7 +44,7 @@ class ReportCiStatusTests(unittest.TestCase):
         original_proof = root / "original.json"
         port_proof = root / "port.json"
         write_proof(original_proof, mode="original", failed=0)
-        write_proof(port_proof, mode="port-04-test", failed=7)
+        write_proof(port_proof, mode="port", failed=7)
 
         exit_code = report_ci_status.main(
             [
@@ -66,7 +66,7 @@ class ReportCiStatusTests(unittest.TestCase):
         original_proof = root / "original.json"
         port_proof = root / "port.json"
         write_proof(original_proof, mode="original", failed=1)
-        write_proof(port_proof, mode="port-04-test", failed=0)
+        write_proof(port_proof, mode="port", failed=0)
 
         exit_code = report_ci_status.main(
             [
@@ -88,7 +88,7 @@ class ReportCiStatusTests(unittest.TestCase):
         original_proof = root / "original.json"
         port_proof = root / "port.json"
         write_proof(original_proof, mode="original", failed=0)
-        write_proof(port_proof, mode="port-04-test", failed=0)
+        write_proof(port_proof, mode="port", failed=0)
 
         exit_code = report_ci_status.main(
             [

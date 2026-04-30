@@ -18,7 +18,7 @@ def build_parser() -> argparse.ArgumentParser:
     parser.add_argument("--tests-root", type=Path, default=Path(__file__).resolve().parents[1] / "tests")
     parser.add_argument("--artifact-root", required=True, type=Path)
     parser.add_argument("--proof-output", required=True)
-    parser.add_argument("--mode", choices=("original", "port-04-test"), default="original")
+    parser.add_argument("--mode", choices=("original", "port"), default="original")
     parser.add_argument("--library", action="append")
     parser.add_argument("--require-casts", action="store_true")
     parser.add_argument("--min-cases", type=int, default=0)

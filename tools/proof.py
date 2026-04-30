@@ -12,7 +12,7 @@ from tools.testcases import Testcase, TestcaseManifest, load_manifests
 from tools.unsafe_blocks import aggregate_counts, count_library
 
 
-VALID_MODES = {"original", "port-04-test"}
+VALID_MODES = {"original", "port"}
 RUNTIME_PACKAGE_SUFFIX_EXCLUDES = ("-dev", "-doc", "-tools", "-progs", "-utils", "-tests")
 RUNTIME_PACKAGE_PREFIX_EXCLUDES = ("gir1.2-", "python3-")
 
@@ -211,7 +211,7 @@ def _require_string_list(value: Any, *, field_name: str, source_path: Path) -> l
 def _require_mode(value: Any, *, source_path: Path) -> str:
     mode = _require_string(value, field_name="mode", source_path=source_path)
     if mode not in VALID_MODES:
-        raise ValidatorError(f"mode must be original or port-04-test in {source_path}")
+        raise ValidatorError(f"mode must be original or port in {source_path}")
     return mode
 
 
@@ -446,13 +446,13 @@ def load_result(
     if result_mode != mode:
         raise ValidatorError(f"mode must be {mode} in {path}")
     required_fields = set(BASE_REQUIRED_RESULT_FIELDS)
-    if mode == "port-04-test":
+    if mode == "port":
         required_fields.update(PORT_REQUIRED_RESULT_FIELDS)
         missing_port = sorted(PORT_REQUIRED_RESULT_FIELDS - set(payload))
         if missing_port:
             raise ValidatorError(f"port result schema mismatch in {path}: missing {', '.join(missing_port)}")
     optional_fields = set(OPTIONAL_RESULT_FIELDS)
-    if mode == "port-04-test":
+    if mode == "port":
         optional_fields.add(PORT_UNAVAILABLE_FIELD)
     extras = sorted(set(payload) - required_fields - optional_fields)
     if extras:
@@ -503,9 +503,9 @@ def load_result(
     )
     if mode == "original" and override_debs_installed:
         raise ValidatorError(f"override_debs_installed must be false for proof generation in {path}")
-    if mode == "port-04-test" and port_unavailable_reason is None and not override_debs_installed:
+    if mode == "port" and port_unavailable_reason is None and not override_debs_installed:
         raise ValidatorError(f"override_debs_installed must be true for port proof generation in {path}")
-    if mode == "port-04-test" and port_unavailable_reason is not None and override_debs_installed:
+    if mode == "port" and port_unavailable_reason is not None and override_debs_installed:
         raise ValidatorError(f"override_debs_installed must be false for unavailable port proof generation in {path}")
     if port_unavailable_reason is not None:
         if payload.get("status") != "failed":
@@ -514,7 +514,7 @@ def load_result(
             raise ValidatorError(f"unavailable port results must have non-zero exit_code in {path}")
         if payload.get("cast_path") is not None:
             raise ValidatorError(f"unavailable port results must not define cast_path in {path}")
-    if mode == "port-04-test":
+    if mode == "port":
         validate_port_result_metadata(payload, apt_packages=apt_packages, source_path=path)
 
     prefix = "" if mode == "original" else f"{mode}/"
@@ -718,7 +718,7 @@ def build_proof(
     ports_root: Path | None = None,
 ) -> dict[str, Any]:
     if mode not in VALID_MODES:
-        raise ValidatorError("mode must be original or port-04-test")
+        raise ValidatorError("mode must be original or port")
     if min_cases < 0 or min_source_cases < 0 or min_usage_cases < 0:
         raise ValidatorError("case thresholds must be non-negative")
     if ports_root is not None:
@@ -767,7 +767,7 @@ def build_proof(
                 mode=mode,
                 result_path=result_path,
             )
-            if mode == "port-04-test":
+            if mode == "port":
                 metadata = validate_port_result_metadata(
                     result,
                     apt_packages=list(testcase_manifest.apt_packages),
@@ -794,7 +794,7 @@ def build_proof(
             "runtime_packages": runtime_packages_from_apt_packages(apt_packages_list),
             "totals": library_totals,
         }
-        if mode == "port-04-test":
+        if mode == "port":
             if port_library_metadata is None:
                 raise ValidatorError(f"missing port provenance for {library}")
             library_proof.update(port_library_metadata)

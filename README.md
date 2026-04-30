@@ -2,7 +2,8 @@
 
 This repository validates Ubuntu 24.04 library behavior in two modes: the
 original Ubuntu apt packages, and the same reference tests with native `.deb`
-assets from the safelibs port `04-test` releases installed as overrides. It
+assets from the GitHub latest release of each safelibs port repo installed as
+overrides. It
 keeps Docker harnesses, testcase manifests, proof tooling, and a static evidence
 site together so both package behaviors can be rerun and reviewed from one
 checkout.
@@ -91,8 +92,8 @@ Run the full original-package matrix with terminal casts:
 RECORD_CASTS=1 make matrix-original
 ```
 
-Fetch current port `04-test` debs, then run the same testcase matrix against
-the override packages:
+Fetch current port debs, then run the same testcase matrix against the
+override packages:
 
 ```bash
 make fetch-port-debs
@@ -128,8 +129,8 @@ python3 tools/verify_proof_artifacts.py \
   --config repositories.yml \
   --tests-root tests \
   --artifact-root artifacts \
-  --proof-output artifacts/proof/port-04-test-validation-proof.json \
-  --mode port-04-test \
+  --proof-output artifacts/proof/port-validation-proof.json \
+  --mode port \
   --min-source-cases 120 \
   --min-usage-cases 1683 \
   --min-cases 1803 \
@@ -140,7 +141,7 @@ python3 tools/render_site.py \
   --tests-root tests \
   --artifact-root artifacts \
   --proof-path artifacts/proof/original-validation-proof.json \
-  --proof-path artifacts/proof/port-04-test-validation-proof.json \
+  --proof-path artifacts/proof/port-validation-proof.json \
   --output-root site
 
 bash scripts/verify-site.sh \
@@ -148,7 +149,7 @@ bash scripts/verify-site.sh \
   --tests-root tests \
   --artifacts-root artifacts \
   --proof-path artifacts/proof/original-validation-proof.json \
-  --proof-path artifacts/proof/port-04-test-validation-proof.json \
+  --proof-path artifacts/proof/port-validation-proof.json \
   --site-root site
 ```
 
@@ -180,7 +181,7 @@ GitHub *latest release* (`/releases/latest`), resolves the tag the release
 points at to a commit, downloads available native `amd64` or `all` `.deb`
 assets matching the canonical `apt_packages`, and records omitted canonical
 packages as `unported_original_packages` in
-`artifacts/proof/port-04-test-debs-lock.json`. The lock records the resolved
+`artifacts/proof/port-debs-lock.json`. The lock records the resolved
 `tag_ref` (`refs/tags/<release.tag_name>`), `commit`, and `release_tag`
 (equal to `release.tag_name`).
 
@@ -193,7 +194,7 @@ while keeping the original Ubuntu package results as the source of truth.
 Port repositories and releases can be private. Authentication is read from
 `GH_TOKEN`, `VALIDATOR_REPO_TOKEN`, or `gh auth token`.
 
-Downloaded debs are cached under `artifacts/debs/port-04-test/` and are ignored
+Downloaded debs are cached under `artifacts/debs/port/` and are ignored
 by git. The lock, port proof, and rendered site evidence are reproducibility
 artifacts.
 
@@ -231,7 +232,7 @@ validation findings and do not by themselves fail the workflows.
 - `PROOF_PATH`: full proof path shared by proof, site, and site verification
   targets, defaults to `$(ARTIFACT_ROOT)/$(PROOF_OUTPUT)`.
 - `PORT_REPOS`: port repo inventory, defaults to `inventory/github-port-repos.json`.
-- `PORT_MODE`: port validation mode, defaults to `port-04-test`.
+- `PORT_MODE`: port validation mode, defaults to `port`.
 - `PORT_DEB_ROOT`: downloaded port deb root, defaults to
   `$(ARTIFACT_ROOT)/debs/$(PORT_MODE)`.
 - `PORT_LOCK_PATH`: port deb lock path, defaults to

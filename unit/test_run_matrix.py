@@ -54,7 +54,7 @@ def write_port_debs_and_lock(root: Path) -> tuple[Path, Path]:
     lock_path = root / "port-lock.json"
     lock = {
         "schema_version": 1,
-        "mode": "port-04-test",
+        "mode": "port",
         "generated_at": "1970-01-01T00:00:00Z",
         "source_config": "repositories.yml",
         "source_inventory": "inventory/github-port-repos.json",
@@ -81,7 +81,7 @@ def write_unavailable_port_lock(root: Path) -> tuple[Path, Path]:
     lock_path = root / "port-lock.json"
     lock = {
         "schema_version": 1,
-        "mode": "port-04-test",
+        "mode": "port",
         "generated_at": "1970-01-01T00:00:00Z",
         "source_config": "repositories.yml",
         "source_inventory": "inventory/github-port-repos.json",
@@ -165,20 +165,20 @@ class RunMatrixTests(unittest.TestCase):
         )
         for extra_args in invalid_mode_args:
             with self.subTest(extra_args=extra_args):
-                with self.assertRaisesRegex(ValidatorError, "original.*port-04-test"):
+                with self.assertRaisesRegex(ValidatorError, "original.*port"):
                     run_matrix.parse_args(["--config", "repositories.yml", *extra_args])
 
         args = run_matrix.parse_args(["--config", "repositories.yml"])
         self.assertEqual(args.mode, "original")
         with self.assertRaisesRegex(ValidatorError, "--override-deb-root"):
-            run_matrix.parse_args(["--config", "repositories.yml", "--mode", "port-04-test"])
+            run_matrix.parse_args(["--config", "repositories.yml", "--mode", "port"])
         with self.assertRaisesRegex(ValidatorError, "--port-deb-lock"):
             run_matrix.parse_args(
                 [
                     "--config",
                     "repositories.yml",
                     "--mode",
-                    "port-04-test",
+                    "port",
                     "--override-deb-root",
                     "debs",
                 ]
@@ -188,14 +188,14 @@ class RunMatrixTests(unittest.TestCase):
                 "--config",
                 "repositories.yml",
                 "--mode",
-                "port-04-test",
+                "port",
                 "--override-deb-root",
                 "debs",
                 "--port-deb-lock",
                 "lock.json",
             ]
         )
-        self.assertEqual(args.mode, "port-04-test")
+        self.assertEqual(args.mode, "port")
         self.assertEqual(args.port_deb_lock, Path("lock.json"))
 
     def test_writes_per_case_results_logs_casts_and_summary(self) -> None:
@@ -356,7 +356,7 @@ class RunMatrixTests(unittest.TestCase):
                     "--artifact-root",
                     str(artifact_root),
                     "--mode",
-                    "port-04-test",
+                    "port",
                     "--override-deb-root",
                     str(deb_root),
                     "--port-deb-lock",
@@ -366,12 +366,12 @@ class RunMatrixTests(unittest.TestCase):
             )
 
         self.assertEqual(exit_code, 0)
-        result_path = artifact_root / "port-04-test" / "results" / "original-demo" / "source-echo-roundtrip.json"
+        result_path = artifact_root / "port" / "results" / "original-demo" / "source-echo-roundtrip.json"
         result = json.loads(result_path.read_text())
-        self.assertEqual(result["mode"], "port-04-test")
-        self.assertEqual(result["result_path"], "port-04-test/results/original-demo/source-echo-roundtrip.json")
-        self.assertEqual(result["log_path"], "port-04-test/logs/original-demo/source-echo-roundtrip.log")
-        self.assertEqual(result["cast_path"], "port-04-test/casts/original-demo/source-echo-roundtrip.cast")
+        self.assertEqual(result["mode"], "port")
+        self.assertEqual(result["result_path"], "port/results/original-demo/source-echo-roundtrip.json")
+        self.assertEqual(result["log_path"], "port/logs/original-demo/source-echo-roundtrip.log")
+        self.assertEqual(result["cast_path"], "port/casts/original-demo/source-echo-roundtrip.cast")
         self.assertTrue(result["override_debs_installed"])
         self.assertEqual(result["port_repository"], "safelibs/port-original-demo")
         self.assertEqual(result["port_release_tag"], "v1.2.3")
@@ -382,9 +382,9 @@ class RunMatrixTests(unittest.TestCase):
             ["demo-runtime", "demo-dev"],
         )
         summary = json.loads(
-            (artifact_root / "port-04-test" / "results" / "original-demo" / "summary.json").read_text()
+            (artifact_root / "port" / "results" / "original-demo" / "summary.json").read_text()
         )
-        self.assertEqual(summary["mode"], "port-04-test")
+        self.assertEqual(summary["mode"], "port")
 
     def test_port_mode_marks_unavailable_ports_failed_without_container_run(self) -> None:
         root = self.run_root()
@@ -403,7 +403,7 @@ class RunMatrixTests(unittest.TestCase):
                     "--artifact-root",
                     str(artifact_root),
                     "--mode",
-                    "port-04-test",
+                    "port",
                     "--override-deb-root",
                     str(deb_root),
                     "--port-deb-lock",
@@ -414,7 +414,7 @@ class RunMatrixTests(unittest.TestCase):
         self.assertEqual(exit_code, 0)
         ensure_image.assert_not_called()
         result = json.loads(
-            (artifact_root / "port-04-test" / "results" / "original-demo" / "source-echo-roundtrip.json").read_text()
+            (artifact_root / "port" / "results" / "original-demo" / "source-echo-roundtrip.json").read_text()
         )
         self.assertEqual(result["status"], "failed")
         self.assertFalse(result["override_debs_installed"])
@@ -422,7 +422,7 @@ class RunMatrixTests(unittest.TestCase):
         self.assertEqual(result["override_installed_packages"], [])
         self.assertEqual(result["port_unavailable_reason"], "no published release")
         summary = json.loads(
-            (artifact_root / "port-04-test" / "results" / "original-demo" / "summary.json").read_text()
+            (artifact_root / "port" / "results" / "original-demo" / "summary.json").read_text()
         )
         self.assertEqual(summary["passed"], 0)
         self.assertEqual(summary["failed"], 2)
@@ -443,7 +443,7 @@ class RunMatrixTests(unittest.TestCase):
                         "--artifact-root",
                         str(root / "artifacts"),
                         "--mode",
-                        "port-04-test",
+                        "port",
                         "--override-deb-root",
                         str(deb_root),
                         "--port-deb-lock",
@@ -465,7 +465,7 @@ class RunMatrixTests(unittest.TestCase):
                         "--artifact-root",
                         str(root / "artifacts"),
                         "--mode",
-                        "port-04-test",
+                        "port",
                         "--override-deb-root",
                         str(deb_root),
                         "--port-deb-lock",
@@ -502,7 +502,7 @@ class RunMatrixTests(unittest.TestCase):
                     "--artifact-root",
                     str(artifact_root),
                     "--mode",
-                    "port-04-test",
+                    "port",
                     "--override-deb-root",
                     str(deb_root),
                     "--port-deb-lock",
@@ -512,7 +512,7 @@ class RunMatrixTests(unittest.TestCase):
 
         self.assertNotEqual(exit_code, 0)
         result = json.loads(
-            (artifact_root / "port-04-test" / "results" / "original-demo" / "source-echo-roundtrip.json").read_text()
+            (artifact_root / "port" / "results" / "original-demo" / "source-echo-roundtrip.json").read_text()
         )
         self.assertEqual(result["status"], "failed")
         self.assertIn("package status file is missing", result["error"])

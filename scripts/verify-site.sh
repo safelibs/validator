@@ -156,8 +156,8 @@ for proof_file in proof_files:
     if proof_file.get("proof_version") != 2:
         fail("proof manifest must use proof_version 2")
     mode = proof_file.get("mode")
-    if mode not in {"original", "port-04-test"}:
-        fail("proof manifest mode must be original or port-04-test")
+    if mode not in {"original", "port"}:
+        fail("proof manifest mode must be original or port")
     proof_modes.append(str(mode))
 reject_duplicates(proof_modes, field_name="proof modes")
 

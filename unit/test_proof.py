@@ -156,9 +156,9 @@ class ProofTests(unittest.TestCase):
     ) -> None:
         cases = {case.id: case for case in self.case_manifest.testcases}
         testcase = cases[case_id]
-        result_path = self.artifacts_root / "port-04-test" / "results" / "original-demo" / f"{case_id}.json"
-        log_path = self.artifacts_root / "port-04-test" / "logs" / "original-demo" / f"{case_id}.log"
-        cast_path = self.artifacts_root / "port-04-test" / "casts" / "original-demo" / f"{case_id}.cast"
+        result_path = self.artifacts_root / "port" / "results" / "original-demo" / f"{case_id}.json"
+        log_path = self.artifacts_root / "port" / "logs" / "original-demo" / f"{case_id}.log"
+        cast_path = self.artifacts_root / "port" / "casts" / "original-demo" / f"{case_id}.cast"
         result_path.parent.mkdir(parents=True, exist_ok=True)
         log_path.parent.mkdir(parents=True, exist_ok=True)
         log_path.write_text(f"port log for {case_id}\n")
@@ -169,7 +169,7 @@ class ProofTests(unittest.TestCase):
                 '{"version": 2, "width": 120, "height": 40}\n'
                 f'[0.1, "o", "{case_id}\\n"]\n'
             )
-            cast_value = f"port-04-test/casts/original-demo/{case_id}.cast"
+            cast_value = f"port/casts/original-demo/{case_id}.cast"
         port_debs = [
             {
                 "package": "demo-runtime",
@@ -182,7 +182,7 @@ class ProofTests(unittest.TestCase):
         payload: dict[str, object] = {
             "schema_version": 2,
             "library": "original-demo",
-            "mode": "port-04-test",
+            "mode": "port",
             "testcase_id": testcase.id,
             "title": testcase.title,
             "description": testcase.description,
@@ -194,8 +194,8 @@ class ProofTests(unittest.TestCase):
             "started_at": "2026-04-18T00:00:00Z",
             "finished_at": "2026-04-18T00:00:01Z",
             "duration_seconds": 1.0,
-            "result_path": f"port-04-test/results/original-demo/{case_id}.json",
-            "log_path": f"port-04-test/logs/original-demo/{case_id}.log",
+            "result_path": f"port/results/original-demo/{case_id}.json",
+            "log_path": f"port/logs/original-demo/{case_id}.log",
             "cast_path": cast_value,
             "exit_code": 0 if status == "passed" else 1,
             "command": list(testcase.command),
@@ -270,9 +270,9 @@ class ProofTests(unittest.TestCase):
     def test_valid_port_proof_generation_requires_install_status(self) -> None:
         self.write_port_library()
 
-        result = self.build(mode="port-04-test", require_casts=True)
+        result = self.build(mode="port", require_casts=True)
 
-        self.assertEqual(result["mode"], "port-04-test")
+        self.assertEqual(result["mode"], "port")
         library = result["libraries"][0]
         self.assertEqual(library["port_repository"], "safelibs/port-original-demo")
         self.assertEqual(library["port_tag_ref"], "refs/tags/v1.2.3")
@@ -281,16 +281,16 @@ class ProofTests(unittest.TestCase):
         self.assertEqual([deb["package"] for deb in library["port_debs"]], ["demo-runtime"])
         self.assertEqual(library["unported_original_packages"], ["demo-dev"])
         testcase = library["testcases"][0]
-        self.assertEqual(testcase["mode"], "port-04-test")
-        self.assertEqual(testcase["result_path"], "port-04-test/results/original-demo/source-echo-roundtrip.json")
-        self.assertEqual(testcase["log_path"], "port-04-test/logs/original-demo/source-echo-roundtrip.log")
+        self.assertEqual(testcase["mode"], "port")
+        self.assertEqual(testcase["result_path"], "port/results/original-demo/source-echo-roundtrip.json")
+        self.assertEqual(testcase["log_path"], "port/logs/original-demo/source-echo-roundtrip.log")
 
         self.tempdir.cleanup()
         self.setUp()
         self.write_port_library()
         self.write_port_result("source-echo-roundtrip", updates={"override_installed_packages": []})
         with self.assertRaisesRegex(ValidatorError, "override_installed_packages"):
-            self.build(mode="port-04-test")
+            self.build(mode="port")
 
     def test_valid_unavailable_port_proof_generation(self) -> None:
         unavailable = {
@@ -309,7 +309,7 @@ class ProofTests(unittest.TestCase):
         for testcase in self.case_manifest.testcases:
             self.write_port_result(testcase.id, status="failed", cast=False, updates=unavailable)
 
-        result = self.build(mode="port-04-test", require_casts=True)
+        result = self.build(mode="port", require_casts=True)
 
         self.assertEqual(result["totals"]["passed"], 0)
         self.assertEqual(result["totals"]["failed"], 2)
@@ -323,14 +323,14 @@ class ProofTests(unittest.TestCase):
         self.write_port_result("source-echo-roundtrip", cast=False, updates=unavailable | {"status": "passed"})
         self.write_port_result("usage-client-echo", status="failed", cast=False, updates=unavailable)
         with self.assertRaisesRegex(ValidatorError, "unavailable port results must be failed"):
-            self.build(mode="port-04-test")
+            self.build(mode="port")
 
         self.tempdir.cleanup()
         self.setUp()
         self.write_port_result("source-echo-roundtrip", status="failed", updates=unavailable)
         self.write_port_result("usage-client-echo", status="failed", cast=False, updates=unavailable)
         with self.assertRaisesRegex(ValidatorError, "must not define cast_path"):
-            self.build(mode="port-04-test")
+            self.build(mode="port")
 
     def test_port_proof_rejects_bad_provenance_and_paths(self) -> None:
         cases = [
@@ -358,7 +358,7 @@ class ProofTests(unittest.TestCase):
                 self.write_port_library()
                 self.write_port_result("source-echo-roundtrip", updates=updates)
                 with self.assertRaisesRegex(ValidatorError, message):
-                    self.build(mode="port-04-test")
+                    self.build(mode="port")
                 self.tempdir.cleanup()
                 self.setUp()
 
@@ -372,7 +372,7 @@ class ProofTests(unittest.TestCase):
             },
         )
         with self.assertRaisesRegex(ValidatorError, "inconsistent port provenance"):
-            self.build(mode="port-04-test")
+            self.build(mode="port")
 
     def test_result_status_must_be_passed_or_failed(self) -> None:
         for status in ("skipped", "warned", "excluded", None, "", "errored"):

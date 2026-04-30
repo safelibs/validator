@@ -54,9 +54,9 @@ jobs:
         library: ${{ fromJSON(needs.preflight.outputs.libraries) }}
     env:
       ARTIFACT_ROOT: .work/pages-artifacts
-      PORT_DEB_ROOT: .work/pages-artifacts/debs/port-04-test
-      PORT_LOCK_PATH: .work/pages-artifacts/proof/port-04-test-debs-lock.json
-      PORT_SRC_ROOT: .work/pages-artifacts/sources/port-04-test
+      PORT_DEB_ROOT: .work/pages-artifacts/debs/port
+      PORT_LOCK_PATH: .work/pages-artifacts/proof/port-debs-lock.json
+      PORT_SRC_ROOT: .work/pages-artifacts/sources/port
     steps:
       - uses: actions/checkout@v4
 
@@ -114,7 +114,7 @@ jobs:
             --config repositories.yml \
             --tests-root tests \
             --artifact-root "$ARTIFACT_ROOT" \
-            --mode port-04-test \
+            --mode port \
             --override-deb-root "$PORT_DEB_ROOT" \
             --port-deb-lock "$PORT_LOCK_PATH" \
             --record-casts \
@@ -135,7 +135,7 @@ jobs:
             .work/pages-artifacts/results
             .work/pages-artifacts/logs
             .work/pages-artifacts/casts
-            .work/pages-artifacts/port-04-test
+            .work/pages-artifacts/port
             .work/pages-artifacts/sources
             .work/pages-artifacts/proof/library-status
           retention-days: 14
@@ -150,9 +150,9 @@ jobs:
     env:
       ARTIFACT_ROOT: .work/pages-artifacts
       SITE_ROOT: site
-      PORT_SRC_ROOT: .work/pages-artifacts/sources/port-04-test
+      PORT_SRC_ROOT: .work/pages-artifacts/sources/port
       ORIGINAL_PROOF_PATH: .work/pages-artifacts/proof/original-validation-proof.json
-      PORT_PROOF_PATH: .work/pages-artifacts/proof/port-04-test-validation-proof.json
+      PORT_PROOF_PATH: .work/pages-artifacts/proof/port-validation-proof.json
     steps:
       - uses: actions/checkout@v4
 
@@ -201,7 +201,7 @@ jobs:
             --tests-root tests \
             --artifact-root "$ARTIFACT_ROOT" \
             --proof-output "$PORT_PROOF_PATH" \
-            --mode port-04-test \
+            --mode port \
             --min-source-cases 115 \
             --min-usage-cases 963 \
             --min-cases 1083 \

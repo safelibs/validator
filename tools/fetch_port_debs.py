@@ -467,7 +467,7 @@ def build_lock(
     ]
     return {
         "schema_version": 1,
-        "mode": "port-04-test",
+        "mode": "port",
         "generated_at": LOCK_GENERATED_AT,
         "source_config": config_path.as_posix(),
         "source_inventory": port_repos_path.as_posix(),

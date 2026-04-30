@@ -61,7 +61,7 @@ def main(argv: list[str] | None = None) -> int:
         return args.port_matrix_exit
 
     original_failed = _failed_count(args.original_proof_path, expected_mode="original")
-    port_failed = _failed_count(args.port_proof_path, expected_mode="port-04-test")
+    port_failed = _failed_count(args.port_proof_path, expected_mode="port")
 
     print(f"original proof failed cases: {original_failed}")
     print(f"port proof failed cases: {port_failed} (non-blocking)")

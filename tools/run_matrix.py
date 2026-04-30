@@ -31,7 +31,7 @@ from tools.inventory import load_manifest
 from tools.testcases import Testcase, TestcaseManifest, load_manifests
 
 
-VALID_MODES = {"original", "port-04-test"}
+VALID_MODES = {"original", "port"}
 CAST_COLUMNS = 120
 CAST_ROWS = 40
 CAST_HEADER_TIMESTAMP = 0
@@ -127,8 +127,8 @@ def artifact_path(artifact_root: Path, *parts: str) -> Path:
 def mode_artifact_parts(mode: str) -> tuple[str, ...]:
     if mode == "original":
         return ()
-    if mode == "port-04-test":
-        return ("port-04-test",)
+    if mode == "port":
+        return ("port",)
     raise ValidatorError(f"unsupported mode: {mode}")
 
 
@@ -595,8 +595,8 @@ def load_port_deb_lock(
     lock = _load_json_object(lock_path, description="port deb lock")
     if lock.get("schema_version") != 1:
         raise ValidatorError("port deb lock schema_version must be 1")
-    if lock.get("mode") != "port-04-test":
-        raise ValidatorError("port deb lock mode must be port-04-test")
+    if lock.get("mode") != "port":
+        raise ValidatorError("port deb lock mode must be port")
     raw_libraries = _require_list(lock.get("libraries"), field_name="libraries", context="port deb lock")
     lock_by_library: dict[str, object] = {}
     for entry in raw_libraries:
@@ -884,9 +884,9 @@ def _result_payload(
         "apt_packages": list(testcase_manifest.apt_packages),
         "override_debs_installed": override_debs_installed,
     }
-    if mode == "port-04-test":
+    if mode == "port":
         if port_metadata is None:
-            raise ValidatorError("port metadata is required for port-04-test result payloads")
+            raise ValidatorError("port metadata is required for port result payloads")
         payload.update(
             {
                 "port_repository": port_metadata["repository"],
@@ -1043,7 +1043,7 @@ def run_testcase(
             error = f"testcase command exited with status {outcome.exit_code}"
     finally:
         override_debs_installed = (status_dir / "override-installed").is_file()
-        if mode == "port-04-test":
+        if mode == "port":
             if not override_debs_installed:
                 status_error = "port override debs were not installed"
                 append_log(log_path, f"{status_error}\n")
@@ -1237,11 +1237,11 @@ def parse_args(argv: list[str] | None = None) -> MatrixArgs:
     namespace = build_parser().parse_args(argv)
     mode = str(namespace.mode)
     if mode not in VALID_MODES:
-        raise ValidatorError("--mode accepts only 'original' or 'port-04-test'")
-    if mode == "port-04-test" and namespace.override_deb_root is None:
-        raise ValidatorError("--override-deb-root is required for --mode port-04-test")
-    if mode == "port-04-test" and namespace.port_deb_lock is None:
-        raise ValidatorError("--port-deb-lock is required for --mode port-04-test")
+        raise ValidatorError("--mode accepts only 'original' or 'port'")
+    if mode == "port" and namespace.override_deb_root is None:
+        raise ValidatorError("--override-deb-root is required for --mode port")
+    if mode == "port" and namespace.port_deb_lock is None:
+        raise ValidatorError("--port-deb-lock is required for --mode port")
     return MatrixArgs(
         config=namespace.config,
         tests_root=namespace.tests_root,
@@ -1271,7 +1271,7 @@ def main(argv: list[str] | None = None) -> int:
     testcase_manifests = load_manifests(selected_manifest, tests_root=args.tests_root)
 
     port_lock: dict[str, dict[str, object]] = {}
-    if args.mode == "port-04-test":
+    if args.mode == "port":
         assert args.port_deb_lock is not None
         port_lock = load_port_deb_lock(args.port_deb_lock, selected_entries=selected)
 
@@ -1280,11 +1280,11 @@ def main(argv: list[str] | None = None) -> int:
         validate_matrix_override_deb_root(args.override_deb_root)
         override_deb_dirs = {}
         for library in libraries:
-            if args.mode == "port-04-test" and port_lock[library].get("port_unavailable_reason"):
+            if args.mode == "port" and port_lock[library].get("port_unavailable_reason"):
                 override_deb_dirs[library] = None
             else:
                 override_deb_dirs[library] = resolve_override_deb_dir(args.override_deb_root, library)
-        if args.mode == "port-04-test":
+        if args.mode == "port":
             for library in libraries:
                 if port_lock[library].get("port_unavailable_reason"):
                     continue
@@ -1315,7 +1315,7 @@ def main(argv: list[str] | None = None) -> int:
             for result in results:
                 if result.get("status") == "passed":
                     continue
-                if args.mode == "port-04-test" and failed_port_result_is_test_failure(result):
+                if args.mode == "port" and failed_port_result_is_test_failure(result):
                     continue
                 any_failed = True
     finally:

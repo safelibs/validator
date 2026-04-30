@@ -125,8 +125,8 @@ def load_proof(proof_path: Path, *, artifact_root: Path) -> dict[str, Any]:
     proof_data = _load_json_object(proof_path, description="proof manifest")
     if proof_data.get("proof_version") != 2:
         raise ValidatorError(f"proof manifest must use proof_version 2: {proof_path}")
-    if proof_data.get("mode") not in {"original", "port-04-test"}:
-        raise ValidatorError(f"proof manifest mode must be original or port-04-test: {proof_path}")
+    if proof_data.get("mode") not in {"original", "port"}:
+        raise ValidatorError(f"proof manifest mode must be original or port: {proof_path}")
     return proof_data
 
 
@@ -294,7 +294,7 @@ def _format_duration(value: Any) -> str:
 def _mode_label(mode: str) -> str:
     return {
         "original": "Original",
-        "port-04-test": "Port",
+        "port": "Port",
     }.get(mode, mode)
 
 
@@ -322,7 +322,7 @@ def _inventory_counts(rows: list[dict[str, Any]]) -> dict[str, int]:
 
 
 def _port_counts(rows: list[dict[str, Any]]) -> dict[str, int]:
-    port_rows = [row for row in rows if row["mode"] == "port-04-test"]
+    port_rows = [row for row in rows if row["mode"] == "port"]
     by_library: dict[str, list[dict[str, Any]]] = {}
     for row in port_rows:
         by_library.setdefault(str(row["library"]), []).append(row)
@@ -391,7 +391,7 @@ _LIBRARY_GROUP_ORDER = (
 
 def _port_library_entry(site_data: dict[str, Any], library: str) -> dict[str, Any] | None:
     for proof_data in site_data["proofs"]:
-        if proof_data.get("mode") != "port-04-test":
+        if proof_data.get("mode") != "port":
             continue
         for entry in _proof_libraries(proof_data):
             if str(entry.get("library")) == library:

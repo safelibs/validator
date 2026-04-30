@@ -95,9 +95,9 @@ class RenderSiteTests(unittest.TestCase):
         ]
         unported = list(testcase_manifest.apt_packages[1:])
         for index, testcase in enumerate(testcase_manifest.testcases, start=1):
-            log_path = self.artifacts_root / "port-04-test" / "logs" / library / f"{testcase.id}.log"
-            result_path = self.artifacts_root / "port-04-test" / "results" / library / f"{testcase.id}.json"
-            cast_path = self.artifacts_root / "port-04-test" / "casts" / library / f"{testcase.id}.cast"
+            log_path = self.artifacts_root / "port" / "logs" / library / f"{testcase.id}.log"
+            result_path = self.artifacts_root / "port" / "results" / library / f"{testcase.id}.json"
+            cast_path = self.artifacts_root / "port" / "casts" / library / f"{testcase.id}.cast"
             log_path.parent.mkdir(parents=True, exist_ok=True)
             result_path.parent.mkdir(parents=True, exist_ok=True)
             log_path.write_text(f"port log for {library}/{testcase.id}\n")
@@ -108,11 +108,11 @@ class RenderSiteTests(unittest.TestCase):
                     '{"version": 2, "width": 120, "height": 40}\n'
                     f'[{index / 10:.1f}, "o", "port {library} {testcase.id}\\n"]\n'
                 )
-                cast_value = f"port-04-test/casts/{library}/{testcase.id}.cast"
+                cast_value = f"port/casts/{library}/{testcase.id}.cast"
             payload: dict[str, object] = {
                 "schema_version": 2,
                 "library": library,
-                "mode": "port-04-test",
+                "mode": "port",
                 "testcase_id": testcase.id,
                 "title": testcase.title,
                 "description": testcase.description,
@@ -124,8 +124,8 @@ class RenderSiteTests(unittest.TestCase):
                 "started_at": "2026-04-19T00:00:00Z",
                 "finished_at": "2026-04-19T00:00:01Z",
                 "duration_seconds": float(index),
-                "result_path": f"port-04-test/results/{library}/{testcase.id}.json",
-                "log_path": f"port-04-test/logs/{library}/{testcase.id}.log",
+                "result_path": f"port/results/{library}/{testcase.id}.json",
+                "log_path": f"port/logs/{library}/{testcase.id}.log",
                 "cast_path": cast_value,
                 "exit_code": 0,
                 "command": list(testcase.command),
@@ -165,11 +165,11 @@ class RenderSiteTests(unittest.TestCase):
             self.manifest,
             artifact_root=self.artifacts_root,
             tests_root=self.tests_root,
-            mode="port-04-test",
+            mode="port",
             libraries=libraries,
             require_casts=require_casts,
         )
-        proof_path = self.artifacts_root / "proof" / "port-04-test-validation-proof.json"
+        proof_path = self.artifacts_root / "proof" / "port-validation-proof.json"
         write_json(proof_path, proof_data)
         return proof_path
 
@@ -299,17 +299,17 @@ class RenderSiteTests(unittest.TestCase):
 
         site_data = json.loads((self.site_root / "site-data.json").read_text())
         self.assertEqual(site_data["schema_version"], 2)
-        self.assertEqual([proof["mode"] for proof in site_data["proofs"]], ["original", "port-04-test"])
+        self.assertEqual([proof["mode"] for proof in site_data["proofs"]], ["original", "port"])
         modes = {row["mode"] for row in site_data["testcases"]}
-        self.assertEqual(modes, {"original", "port-04-test"})
+        self.assertEqual(modes, {"original", "port"})
         first_original = next(row for row in site_data["testcases"] if row["mode"] == "original")
-        first_port = next(row for row in site_data["testcases"] if row["mode"] == "port-04-test")
+        first_port = next(row for row in site_data["testcases"] if row["mode"] == "port")
         self.assertIn("evidence/original/logs/cjson/", first_original["log_href"])
-        self.assertIn("evidence/port-04-test/logs/cjson/", first_port["log_href"])
+        self.assertIn("evidence/port/logs/cjson/", first_port["log_href"])
         self.assertNotEqual(first_original["cast_href"], first_port["cast_href"])
         html_text = (self.site_root / "index.html").read_text()
         self.assertIn('data-mode="original"', html_text)
-        self.assertIn('data-mode="port-04-test"', html_text)
+        self.assertIn('data-mode="port"', html_text)
         self.assertIn("<span>Tests</span>", html_text)
         self.assertIn("<span>Port tests passing</span>", html_text)
         self.assertIn("<strong>95 / 95</strong>", html_text)

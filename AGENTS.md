@@ -10,8 +10,8 @@ Validates Ubuntu 24.04 library behavior in two modes:
 
 1. `original` — stock Ubuntu apt packages from the suite declared in
    `repositories.yml`.
-2. `port-04-test` — the same testcases against native `.deb` assets from the
-   safelibs port `04-test` releases, installed as overrides.
+2. `port` — the same testcases against native `.deb` assets from the
+   GitHub latest release of each safelibs port repo, installed as overrides.
 
 Both modes reuse identical testcases, harnesses, proof tooling, and the static
 evidence site, so the two package behaviors are directly comparable.
@@ -24,7 +24,7 @@ Testcases encode known-good Ubuntu 24.04 behavior, so:
 
 - **`original` must always pass.** A failure there means the testcase is
   broken or the harness has regressed — fix it, do not paper over it.
-- **`port-04-test` is allowed to fail.** Port failures are the signal the
+- **`port` is allowed to fail.** Port failures are the signal the
   matrix exists to surface: a port that diverges from the Ubuntu baseline
   shows up as a red cell in the dual-mode site. Do not "fix" a testcase by
   weakening it to make the port pass.
@@ -151,7 +151,7 @@ Common entry points (see `README.md` for the full list):
 make unit                  # python tooling tests
 make check-testcases       # manifest + header lint
 make matrix-original       # full original-package matrix
-make fetch-port-debs       # download port 04-test debs
+make fetch-port-debs       # download port debs
 make matrix-port           # port matrix against fetched debs
 make proof-dual            # generate both proofs
 make site-dual             # render the dual-mode site
@@ -175,5 +175,5 @@ Set `RECORD_CASTS=1` to record asciinema casts during matrix runs;
   original results remain the source of truth.
 - Authentication for private port repos: `GH_TOKEN`, `VALIDATOR_REPO_TOKEN`,
   or `gh auth token`, in that order.
-- `artifacts/debs/port-04-test/` is gitignored; the lock, proofs, and rendered
+- `artifacts/debs/port/` is gitignored; the lock, proofs, and rendered
   site are reproducibility artifacts and are tracked.
