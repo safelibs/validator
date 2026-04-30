@@ -67,7 +67,37 @@ def read_image(path):
 
 
 command = sys.argv[1]
-raise SystemExit(f"unknown netpbm assertion command: {command}")
+if command == "values":
+    path = sys.argv[2]
+    width = int(sys.argv[3])
+    height = int(sys.argv[4])
+    channels = int(sys.argv[5])
+    expected = ast.literal_eval(sys.argv[6])
+    actual = read_image(path)
+    if actual[:3] != (width, height, channels):
+        raise SystemExit(f"unexpected image shape: {actual[:3]} != {(width, height, channels)}")
+    if actual[3] != expected:
+        raise SystemExit(f"unexpected payload: {actual[3]} != {expected}")
+elif command == "unique-rgb-max":
+    path = sys.argv[2]
+    max_colors = int(sys.argv[3])
+    width, height, channels, payload = read_image(path)
+    if channels not in (1, 3):
+        raise SystemExit(f"expected grayscale or RGB image, found {channels} channels")
+    colors = {tuple(payload[index:index + channels]) for index in range(0, len(payload), channels)}
+    if len(colors) > max_colors:
+        raise SystemExit(f"too many colors: {len(colors)} > {max_colors}")
+elif command == "unique-gray-max":
+    path = sys.argv[2]
+    max_values = int(sys.argv[3])
+    width, height, channels, payload = read_image(path)
+    if channels != 1:
+        raise SystemExit(f"expected grayscale image, found {channels} channels")
+    values = set(payload)
+    if len(values) > max_values:
+        raise SystemExit(f"too many grayscale values: {len(values)} > {max_values}")
+else:
+    raise SystemExit(f"unknown netpbm assertion command: {command}")
 PY
 
 assert_values() {
