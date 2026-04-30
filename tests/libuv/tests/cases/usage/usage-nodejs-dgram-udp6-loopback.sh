@@ -19,12 +19,20 @@ const dgram = require('dgram');
 const payload = Buffer.from('udp6 loopback payload');
 
 const server = dgram.createSocket('udp6');
+let done = false;
 
 function skip(reason) {
+  if (done) return;
+  done = true;
   console.log('OK udp6 skipped reason=%s', reason);
   try { server.close(); } catch (_) { /* ignore */ }
   process.exit(0);
 }
+
+// Watchdog: GitHub-hosted runners may bind ::1 successfully but silently
+// drop loopback IPv6 datagrams (no kernel IPv6 stack). Bail out in that case.
+const watchdog = setTimeout(() => skip('TIMEOUT'), 15000);
+watchdog.unref();
 
 server.on('error', (err) => {
   if (err && (err.code === 'EAFNOSUPPORT' || err.code === 'EADDRNOTAVAIL' || err.code === 'EINVAL')) {
