@@ -18,6 +18,21 @@ evidence site, so the two package behaviors are directly comparable.
 
 24 libraries are in scope. The list and order are fixed in `repositories.yml`.
 
+## The pass/fail contract
+
+Testcases encode known-good Ubuntu 24.04 behavior, so:
+
+- **`original` must always pass.** A failure there means the testcase is
+  broken or the harness has regressed — fix it, do not paper over it.
+- **`port-04-test` is allowed to fail.** Port failures are the signal the
+  matrix exists to surface: a port that diverges from the Ubuntu baseline
+  shows up as a red cell in the dual-mode site. Do not "fix" a testcase by
+  weakening it to make the port pass.
+
+When adding or changing a testcase, validate it against `original` first.
+If you find yourself loosening assertions to keep the port green, stop —
+that is a finding, not a test bug.
+
 ## Repository layout
 
 ```
