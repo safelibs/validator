@@ -7,6 +7,7 @@ RUN apt-get update \
       libxml2 \
       libxml2-dev \
       libxml2-utils \
+      python3-cssselect \
       python3-libxml2 \
       python3-lxml \
       xmlstarlet \
