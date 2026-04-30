@@ -52,7 +52,26 @@ def read_image(path):
     return width, height, channels, payload
 
 cmd = sys.argv[1]
-raise SystemExit(f'unknown command {cmd}')
+if cmd == 'values':
+    width, height, channels, payload = read_image(sys.argv[2])
+    expected = ast.literal_eval(sys.argv[6])
+    if (width, height, channels) != (int(sys.argv[3]), int(sys.argv[4]), int(sys.argv[5])):
+        raise SystemExit('unexpected shape')
+    if payload != expected:
+        raise SystemExit(f'unexpected payload {payload} != {expected}')
+elif cmd == 'unique-rgb-max':
+    width, height, channels, payload = read_image(sys.argv[2])
+    colors = {tuple(payload[i:i+channels]) for i in range(0, len(payload), channels)}
+    if len(colors) > int(sys.argv[3]):
+        raise SystemExit(f'too many colors: {len(colors)}')
+elif cmd == 'unique-gray-max':
+    width, height, channels, payload = read_image(sys.argv[2])
+    if channels != 1:
+        raise SystemExit('expected grayscale image')
+    if len(set(payload)) > int(sys.argv[3]):
+        raise SystemExit('too many grayscale values')
+else:
+    raise SystemExit(f'unknown command {cmd}')
 PY
 
 assert_values() {

@@ -47,7 +47,19 @@ def read_image(path):
     return width, height, channels, maxval, list(data[idx:])
 
 cmd = sys.argv[1]
-raise SystemExit(cmd)
+if cmd == 'values':
+    width, height, channels, maxval, payload = read_image(sys.argv[2])
+    expected = ast.literal_eval(sys.argv[6])
+    assert (width, height, channels) == (int(sys.argv[3]), int(sys.argv[4]), int(sys.argv[5]))
+    assert payload == expected, payload
+elif cmd == 'shape':
+    width, height, channels, maxval, payload = read_image(sys.argv[2])
+    assert (width, height, channels) == (int(sys.argv[3]), int(sys.argv[4]), int(sys.argv[5]))
+elif cmd == 'maxval':
+    width, height, channels, maxval, payload = read_image(sys.argv[2])
+    assert maxval == int(sys.argv[3]), maxval
+else:
+    raise SystemExit(cmd)
 PYCASE
 
 assert_values() { python3 "$tmpdir/pnm_assert.py" values "$1" "$2" "$3" "$4" "$5"; }

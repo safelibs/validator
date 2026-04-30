@@ -48,5 +48,66 @@ def roundtrip(kind, variables):
     run("readstat", str(tmpdir / "in.csv"), str(tmpdir / "meta.json"), str(write_target))
     return capture("readstat", str(write_target), "-")
 
-raise SystemExit(f"unknown readstat expanded workload: {workload}")
+if workload == "dta-mixed-case-header":
+    write_csv("CodeValue\nalpha\n")
+    out = roundtrip("dta", [{"type": "STRING", "name": "CodeValue"}])
+    assert out.splitlines()[0] == '"CodeValue"'
+    assert '"alpha"' in out
+    print(out.strip())
+elif workload == "sav-mixed-case-header":
+    write_csv("CodeValue\nalpha\n")
+    out = roundtrip("sav", [{"type": "STRING", "name": "CodeValue"}])
+    assert out.splitlines()[0] == '"CodeValue"'
+    assert '"alpha"' in out
+    print(out.strip())
+elif workload == "dta-numeric-string":
+    write_csv("code\n3.50\n")
+    out = roundtrip("dta", [{"type": "STRING", "name": "code"}])
+    assert '"3.50"' in out
+    print(out.strip())
+elif workload == "sav-numeric-string":
+    write_csv("code\n3.50\n")
+    out = roundtrip("sav", [{"type": "STRING", "name": "code"}])
+    assert '"3.50"' in out
+    print(out.strip())
+elif workload == "dta-two-row-strings":
+    write_csv("name\nalpha\nbeta\n")
+    out = roundtrip("dta", [{"type": "STRING", "name": "name"}])
+    assert '"alpha"' in out
+    assert '"beta"' in out
+    assert out.index('"alpha"') < out.index('"beta"')
+    print(out.strip())
+elif workload == "sav-two-row-strings":
+    write_csv("name\nalpha\nbeta\n")
+    out = roundtrip("sav", [{"type": "STRING", "name": "name"}])
+    assert '"alpha"' in out
+    assert '"beta"' in out
+    assert out.index('"alpha"') < out.index('"beta"')
+    print(out.strip())
+elif workload == "dta-multiline-note":
+    write_csv('note\n"line one\nline two"\n')
+    out = roundtrip("dta", [{"type": "STRING", "name": "note"}])
+    assert 'line one' in out
+    assert 'line two' in out
+    assert out.index('line one') < out.index('line two')
+    print(out.strip())
+elif workload == "sav-multiline-note":
+    write_csv('note\n"line one\nline two"\n')
+    out = roundtrip("sav", [{"type": "STRING", "name": "note"}])
+    assert 'line one' in out
+    assert 'line two' in out
+    assert out.index('line one') < out.index('line two')
+    print(out.strip())
+elif workload == "dta-zero-number":
+    write_csv("score\n0\n")
+    out = roundtrip("dta", [{"type": "NUMERIC", "name": "score"}])
+    assert '0.000000' in out
+    print(out.strip())
+elif workload == "sav-zero-number":
+    write_csv("score\n0\n")
+    out = roundtrip("sav", [{"type": "NUMERIC", "name": "score"}])
+    assert '0.000000' in out
+    print(out.strip())
+else:
+    raise SystemExit(f"unknown readstat expanded workload: {workload}")
 PYCASE

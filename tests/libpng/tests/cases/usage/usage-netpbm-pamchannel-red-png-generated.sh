@@ -50,7 +50,24 @@ def read_image(path):
     return magic, width, height, channels, maxval, payload
 
 cmd = sys.argv[1]
-raise SystemExit(f'unknown command {cmd}')
+if cmd == 'values':
+    magic, width, height, channels, maxval, payload = read_image(sys.argv[2])
+    expected = ast.literal_eval(sys.argv[6])
+    if (width, height, channels) != (int(sys.argv[3]), int(sys.argv[4]), int(sys.argv[5])):
+        raise SystemExit('unexpected shape')
+    if payload != expected:
+        raise SystemExit(f'unexpected payload {payload} != {expected}')
+elif cmd == 'maxval':
+    magic, width, height, channels, maxval, payload = read_image(sys.argv[2])
+    if maxval != int(sys.argv[3]):
+        raise SystemExit(f'unexpected maxval {maxval}')
+elif cmd == 'unique-rgb-max':
+    magic, width, height, channels, maxval, payload = read_image(sys.argv[2])
+    colors = {tuple(payload[i:i+channels]) for i in range(0, len(payload), channels)}
+    if len(colors) > int(sys.argv[3]):
+        raise SystemExit(f'too many colors: {len(colors)}')
+else:
+    raise SystemExit(f'unknown command {cmd}')
 PYCASE
 
 assert_values() {
