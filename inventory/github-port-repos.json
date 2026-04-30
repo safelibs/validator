@@ -54,12 +54,6 @@
     "default_branch": "main"
   },
   {
-    "library": "libgcrypt",
-    "nameWithOwner": "safelibs/port-libgcrypt",
-    "url": "https://github.com/safelibs/port-libgcrypt",
-    "default_branch": "main"
-  },
-  {
     "library": "libjansson",
     "nameWithOwner": "safelibs/port-libjansson",
     "url": "https://github.com/safelibs/port-libjansson",
