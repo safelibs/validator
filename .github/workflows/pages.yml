@@ -276,3 +276,19 @@ jobs:
           if [ "$deploy_result" != "success" ] && [ "$deploy_result" != "skipped" ]; then
             exit 1
           fi
+
+  trigger-downstream:
+    needs: deploy-pages
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-24.04
+    env:
+      GH_TOKEN: ${{ secrets.SAFELIBS_DISPATCH_TOKEN }}
+    steps:
+      - name: Dispatch docker CI
+        run: gh workflow run ci.yml --repo safelibs/docker --ref main --field push_images=true
+
+      - name: Dispatch apt pages
+        run: gh workflow run pages.yml --repo safelibs/apt --ref main
+
+      - name: Dispatch website deploy
+        run: gh workflow run deploy.yml --repo safelibs/safelibs.github.io --ref main
