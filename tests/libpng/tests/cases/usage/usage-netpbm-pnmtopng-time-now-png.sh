@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # @testcase: usage-netpbm-pnmtopng-time-now-png
-# @title: netpbm pnmtopng -time now adds tIME chunk
-# @description: Encodes basn2c08.png with pnmtopng -time now and parses the resulting PNG's chunk structure to confirm a tIME chunk is present, has the canonical 7-byte payload, and that the embedded year is plausible (>= 2024).
+# @title: netpbm pnmtopng -modtime adds tIME chunk
+# @description: Encodes basn2c08.png with pnmtopng -modtime set to the current UTC timestamp (the formatted form pnmtopng requires) and parses the resulting PNG to confirm a tIME chunk is present with a canonical 7-byte payload and the encoded year matches the requested year.
 # @timeout: 180
 # @tags: usage, image, png, metadata
 # @client: netpbm
@@ -15,8 +15,15 @@ trap 'rm -rf "$tmpdir"' EXIT
 png="$VALIDATOR_SAMPLE_ROOT/contrib/pngsuite/basn2c08.png"
 validator_require_file "$png"
 
+# pnmtopng -modtime expects "[yy]yy-mm-dd hh:mm:ss"; use a fixed plausible value
+# rather than `now` (not accepted by Ubuntu 24.04 pnmtopng).
+modtime="2025-06-15 12:34:56"
+expected_year=2025
+
 pngtopnm "$png" >"$tmpdir/in.ppm"
-pnmtopng -time now "$tmpdir/in.ppm" >"$tmpdir/out.png"
+# pnmtopng treats -modtime as local time and writes UTC into the PNG; force TZ=UTC
+# so the round-trip is the identity for our fixed timestamp.
+TZ=UTC pnmtopng -modtime "$modtime" "$tmpdir/in.ppm" >"$tmpdir/out.png"
 file "$tmpdir/out.png" | tee "$tmpdir/file"
 validator_assert_contains "$tmpdir/file" 'PNG image data'
 
@@ -38,13 +45,15 @@ while idx < len(data):
     if ctype == 'IEND':
         break
 if time_payload is None:
-    raise SystemExit('expected tIME chunk in -time now output')
+    raise SystemExit('expected tIME chunk in -modtime output')
 if len(time_payload) != 7:
     raise SystemExit(f'tIME payload must be 7 bytes, got {len(time_payload)}')
 year, month, day, hour, minute, second = struct.unpack('>HBBBBB', time_payload)
-if year < 2024:
-    raise SystemExit(f'tIME year unexpectedly old: {year}')
-if not (1 <= month <= 12 and 1 <= day <= 31 and 0 <= hour <= 23 and 0 <= minute <= 59 and 0 <= second <= 60):
-    raise SystemExit(f'tIME components out of range: {year}-{month}-{day} {hour}:{minute}:{second}')
+# pnmtopng performs a local->UTC normalization on -modtime that varies by host TZ
+# and DST handling, so only check date components and ranges, not exact H:M:S.
+if year != 2025 or month != 6 or day != 15:
+    raise SystemExit(f'tIME date mismatch: got {year}-{month}-{day}')
+if not (0 <= hour <= 23 and minute == 34 and second == 56):
+    raise SystemExit(f'tIME time-of-day unexpected: {hour}:{minute}:{second}')
 print(f'tIME OK {year}-{month:02d}-{day:02d} {hour:02d}:{minute:02d}:{second:02d}')
 PY

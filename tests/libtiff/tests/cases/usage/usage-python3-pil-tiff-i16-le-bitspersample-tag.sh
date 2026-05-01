@@ -26,10 +26,14 @@ image.save(path)
 
 with Image.open(path) as reopened:
     reopened.load()
-    bps = reopened.tag_v2.get(258)
-    spp = reopened.tag_v2.get(277, 1)
-    assert bps == 16, bps
-    assert spp == 1, spp
+    bps_raw = reopened.tag_v2.get(258)
+    spp_raw = reopened.tag_v2.get(277, 1)
+    # Pillow surfaces TIFF SHORT counts as either a scalar or a 1-tuple
+    # depending on the writer; normalize both shapes.
+    bps = bps_raw[0] if hasattr(bps_raw, "__len__") else bps_raw
+    spp = spp_raw[0] if hasattr(spp_raw, "__len__") else spp_raw
+    assert bps == 16, bps_raw
+    assert spp == 1, spp_raw
     assert reopened.size == size, reopened.size
     assert reopened.mode in {"I;16", "I;16B", "I;16L"}, reopened.mode
     out = reopened.tobytes()

@@ -31,7 +31,7 @@ class Handler(BaseHTTPRequestHandler):
     def do_GET(self):
         if self.path == '/start':
             self.send_response(302)
-            self.send_header('Location', '/target')
+            self.send_header('Location', 'http://localhost:' + os.environ['PORT'] + '/target')
             self.end_headers()
             return
         body = ('auth=' + self.headers.get('Authorization', 'absent') + '\n').encode()

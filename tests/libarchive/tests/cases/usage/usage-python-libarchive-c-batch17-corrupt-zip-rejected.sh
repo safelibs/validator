@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # @testcase: usage-python-libarchive-c-batch17-corrupt-zip-rejected
 # @title: python-libarchive-c truncated zip raises ArchiveError
-# @description: Writes a valid zip archive, truncates it before the end-of-central-directory record, and feeds the truncated bytes through libarchive.memory_reader. Asserts that iteration raises libarchive.exception.ArchiveError rather than yielding silent garbage, exercising the error-propagation path for a recoverable-format-but-corrupt-stream input.
+# @description: Writes a valid zip archive, truncates it to roughly half its length and zeros out a chunk of the deflate payload, then feeds the corrupt bytes through libarchive.memory_reader. Asserts that iteration raises libarchive.exception.ArchiveError rather than yielding silent garbage, exercising the error-propagation path for a recoverable-format-but-corrupt-stream input.
 # @timeout: 180
 # @tags: usage, archive, python
 # @client: python3-libarchive-c
@@ -39,20 +39,23 @@ with libarchive.memory_reader(raw) as archive:
         baseline[entry.pathname] = b"".join(entry.get_blocks())
 assert baseline == expected, sorted(baseline.keys())
 
-# Drop the final 32 bytes so the EOCD record is missing, plus blank out an
-# in-stream local file header signature to guarantee the parser fails.
-truncated = bytearray(raw[:-32])
-sig = b"PK\x03\x04"
-idx = truncated.find(sig, 64)
-assert idx > 0, idx
-truncated[idx:idx + 4] = b"XXXX"
+# Truncate to roughly half the archive AND zero out a 200-byte stretch in the
+# middle of the deflate payload. That removes the EOCD record and reliably
+# breaks deflate decompression so libarchive must raise rather than yield bytes.
+half = len(raw) // 2
+truncated = bytearray(raw[:half])
+zero_start = min(64, len(truncated) - 1)
+zero_end = min(zero_start + 80, len(truncated))
+for i in range(zero_start, zero_end):
+    truncated[i] = 0
 truncated_bytes = bytes(truncated)
 
 raised = False
 try:
     with libarchive.memory_reader(truncated_bytes) as archive:
-        for _ in archive:
-            pass
+        for entry in archive:
+            # force payload decode so deflate failures surface
+            b"".join(entry.get_blocks())
 except ArchiveError as exc:
     raised = True
     msg = str(exc)

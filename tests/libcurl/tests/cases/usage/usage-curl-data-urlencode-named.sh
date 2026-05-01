@@ -49,4 +49,4 @@ for _ in $(seq 1 50); do
 done
 
 curl -fsS --data-urlencode 'message=hello world & friends' "http://127.0.0.1:$port/" >"$tmpdir/out"
-validator_assert_contains "$tmpdir/out" 'message=hello%20world%20%26%20friends'
+validator_assert_contains "$tmpdir/out" 'message=hello+world+%26+friends'

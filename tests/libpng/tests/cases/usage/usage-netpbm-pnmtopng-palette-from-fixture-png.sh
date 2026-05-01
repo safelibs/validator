@@ -17,7 +17,9 @@ validator_require_file "$png"
 
 pngtopnm "$png" >"$tmpdir/in.ppm"
 pnmquant 16 "$tmpdir/in.ppm" >"$tmpdir/q16.ppm"
-pnmcolormap 16 "$tmpdir/in.ppm" >"$tmpdir/palette.ppm"
+# pnmtopng -palette requires the palette size to match the existing image colormap
+# exactly. Derive the palette from the quantized image so the two stay in sync.
+pnmcolormap all "$tmpdir/q16.ppm" >"$tmpdir/palette.ppm"
 
 pnmtopng -palette "$tmpdir/palette.ppm" "$tmpdir/q16.ppm" >"$tmpdir/out.png"
 file "$tmpdir/out.png" | tee "$tmpdir/file"

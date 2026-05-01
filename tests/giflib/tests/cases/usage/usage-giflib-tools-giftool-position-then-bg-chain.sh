@@ -21,12 +21,12 @@ giftool -b 2   <"$tmpdir/positioned.gif" >"$tmpdir/final.gif"
 file "$tmpdir/final.gif" | grep -q 'GIF image data'
 
 gifbuild -d "$tmpdir/final.gif" >"$tmpdir/dump.txt"
-grep -qE '^[[:space:]]+image left 4$'  "$tmpdir/dump.txt" || {
+grep -qE '^[[:space:]]*image left 4$'  "$tmpdir/dump.txt" || {
   printf 'expected "image left 4" in gifbuild dump after -p 4,5\n' >&2
   sed -n '1,40p' "$tmpdir/dump.txt" >&2
   exit 1
 }
-grep -qE '^[[:space:]]+image top 5$'   "$tmpdir/dump.txt" || {
+grep -qE '^[[:space:]]*image top 5$'   "$tmpdir/dump.txt" || {
   printf 'expected "image top 5" in gifbuild dump after -p 4,5\n' >&2
   sed -n '1,40p' "$tmpdir/dump.txt" >&2
   exit 1

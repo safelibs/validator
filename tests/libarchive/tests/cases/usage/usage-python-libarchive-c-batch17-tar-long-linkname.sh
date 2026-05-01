@@ -21,13 +21,15 @@ from pathlib import Path
 import libarchive
 from libarchive.entry import ArchiveEntry, new_archive_entry
 from libarchive.ffi import (
-    SYMBOLIC_LINK,
     entry_set_filetype,
     entry_set_perm,
     entry_set_size,
     write_finish_entry,
     write_header,
 )
+
+# AE_IFLNK / S_IFLNK — symbolic-link filetype bits in libarchive's entry mode.
+SYMBOLIC_LINK = 0o120000
 
 case_id = sys.argv[1]
 tmpdir = Path(sys.argv[2])

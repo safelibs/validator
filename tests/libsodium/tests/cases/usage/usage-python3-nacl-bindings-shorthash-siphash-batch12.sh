@@ -12,20 +12,20 @@ source /validator/tests/_shared/runtime_helpers.sh
 python3 - <<'PY'
 import nacl.bindings as nb
 
-key_a = bytes([0x11]) * nb.crypto_shorthash_KEYBYTES
-key_b = bytes([0x22]) * nb.crypto_shorthash_KEYBYTES
+key_a = bytes([0x11]) * nb.crypto_shorthash_siphash24_KEYBYTES
+key_b = bytes([0x22]) * nb.crypto_shorthash_siphash24_KEYBYTES
 msg = b"validator-shorthash-input"
 
-h1 = nb.crypto_shorthash(msg, key_a)
-assert len(h1) == nb.crypto_shorthash_BYTES == 8, len(h1)
+h1 = nb.crypto_shorthash_siphash24(msg, key_a)
+assert len(h1) == nb.crypto_shorthash_siphash24_BYTES == 8, len(h1)
 
-h1_again = nb.crypto_shorthash(msg, key_a)
+h1_again = nb.crypto_shorthash_siphash24(msg, key_a)
 assert h1_again == h1, "siphash not deterministic under same key"
 
-h_other_key = nb.crypto_shorthash(msg, key_b)
+h_other_key = nb.crypto_shorthash_siphash24(msg, key_b)
 assert h_other_key != h1, "different key produced same digest"
 
-h_other_msg = nb.crypto_shorthash(msg + b"!", key_a)
+h_other_msg = nb.crypto_shorthash_siphash24(msg + b"!", key_a)
 assert h_other_msg != h1, "different message produced same digest"
 
 print("ok", h1.hex())

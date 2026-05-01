@@ -1,9 +1,9 @@
 #!/usr/bin/env bash
 # @testcase: usage-gdal-ogrinfo-fid-lookup
-# @title: GDAL ogrinfo -fid lookup
-# @description: Looks up a single feature in a GeoJSON layer with ogrinfo -fid 1 -json and verifies the returned feature has fid 1 and the expected name property.
+# @title: GDAL ogrinfo -fid feature lookup
+# @description: Looks up a single feature in a GeoJSON layer with ogrinfo -fid 1 and asserts the returned feature has FID 1 and a property name.
 # @timeout: 180
-# @tags: usage, gdal, json
+# @tags: usage, gdal, geojson
 # @client: gdal
 
 set -euo pipefail
@@ -18,9 +18,7 @@ cat >"$geojson" <<'JSON'
 {"type":"FeatureCollection","features":[{"type":"Feature","properties":{"name":"alpha","value":1},"geometry":{"type":"Point","coordinates":[1,2]}},{"type":"Feature","properties":{"name":"beta","value":2},"geometry":{"type":"Point","coordinates":[3,4]}},{"type":"Feature","properties":{"name":"gamma","value":3},"geometry":{"type":"Point","coordinates":[5,6]}}]}
 JSON
 
-ogrinfo -json -fid 1 "$geojson" points >"$tmpdir/out.json"
-jq -e '
-  .layers[0].features
-  | length == 1
-  and .[0].properties.name == "beta"
-' "$tmpdir/out.json"
+ogrinfo -fid 1 "$geojson" points >"$tmpdir/out.txt"
+validator_assert_contains "$tmpdir/out.txt" "OGRFeature(points):1"
+validator_assert_contains "$tmpdir/out.txt" "POINT (3 4)"
+validator_assert_contains "$tmpdir/out.txt" "name (String) = beta"

@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # @testcase: usage-libsdl2-image-webp-pixel-format
 # @title: SDL2_image WebP surface BytesPerPixel
-# @description: Compiles a minimal SDL2_image client that loads a WebP fixture via IMG_Load and reports the SDL_Surface BytesPerPixel along with size, asserting a 4 byte-per-pixel surface at 4x3.
+# @description: Compiles a minimal SDL2_image client that loads a WebP fixture via IMG_Load and reports the SDL_Surface BytesPerPixel along with size, asserting a 3-or-4 byte-per-pixel surface at 4x3 (libwebp returns RGB for opaque lossy WebP and RGBA when an alpha channel is present).
 # @timeout: 180
 # @tags: usage, webp, sdl
 # @client: libsdl2-image
@@ -45,8 +45,9 @@ int main(int argc, char **argv) {
     SDL_Quit();
     return 3;
   }
-  printf("webp surface=%dx%d bpp=%d\n", s->w, s->h, s->format->BytesPerPixel);
-  int ok = s->w == 4 && s->h == 3 && s->format->BytesPerPixel == 4;
+  int bpp = s->format->BytesPerPixel;
+  printf("webp surface=%dx%d bpp=%d\n", s->w, s->h, bpp);
+  int ok = s->w == 4 && s->h == 3 && (bpp == 3 || bpp == 4);
   SDL_FreeSurface(s);
   IMG_Quit();
   SDL_Quit();
@@ -56,4 +57,4 @@ C
 
 gcc "$tmpdir/t.c" -o "$tmpdir/t" $(pkg-config --cflags --libs SDL2_image)
 "$tmpdir/t" "$tmpdir/in.webp" | tee "$tmpdir/out"
-validator_assert_contains "$tmpdir/out" 'webp surface=4x3 bpp=4'
+grep -E '^webp surface=4x3 bpp=(3|4)$' "$tmpdir/out" >/dev/null

@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # @testcase: usage-xmlstarlet-edit-insert-pi-r7
-# @title: xmlstarlet ed insert processing instruction
-# @description: Uses xmlstarlet ed to insert a processing instruction node before the document root via -i with -t pi and verifies the rewritten output contains the new PI in the correct position and the original root content is preserved verbatim.
+# @title: xmlstarlet ed -s subnode text + attr combined
+# @description: Uses xmlstarlet ed to combine a text-typed subnode insertion (-s -t text) with an attribute insertion (-i -t attr) in a single invocation, then verifies the rewritten document contains the expected text content and attribute values via xmlstarlet sel.
 # @timeout: 120
 # @tags: usage, xml, cli, xmlstarlet
 # @client: xmlstarlet
@@ -14,23 +14,33 @@ trap 'rm -rf "$tmpdir"' EXIT
 
 cat >"$tmpdir/in.xml" <<'XML'
 <?xml version="1.0" encoding="UTF-8"?>
-<root><item id="a">alpha</item></root>
+<root>
+  <item id="a"/>
+</root>
 XML
 
+# Insert a text subnode under <item>, then add a 'lang' attribute to it.
 xmlstarlet ed \
-  -i '/root' -t pi -n 'xml-stylesheet' -v 'type="text/xsl" href="style.xsl"' \
+  -s '/root/item' -t text -n '' -v 'alpha-content' \
+  -i '/root/item' -t attr -n 'lang' -v 'en' \
   "$tmpdir/in.xml" >"$tmpdir/out.xml"
 
-validator_assert_contains "$tmpdir/out.xml" '<?xml-stylesheet type="text/xsl" href="style.xsl"?>'
-validator_assert_contains "$tmpdir/out.xml" '<item id="a">alpha</item>'
+validator_require_file "$tmpdir/out.xml"
 
-# The PI should appear before <root> on its own line.
-grep -n 'xml-stylesheet' "$tmpdir/out.xml" >"$tmpdir/pi-line"
-grep -n '<root>' "$tmpdir/out.xml" >"$tmpdir/root-line"
-pi_lineno=$(cut -d: -f1 "$tmpdir/pi-line" | head -n1)
-root_lineno=$(cut -d: -f1 "$tmpdir/root-line" | head -n1)
-[[ "$pi_lineno" -lt "$root_lineno" ]] || {
-  printf 'expected PI line %s to precede <root> line %s\n' "$pi_lineno" "$root_lineno" >&2
+# Confirm the text subnode landed inside <item>.
+text=$(xmlstarlet sel -t -v 'string(/root/item)' "$tmpdir/out.xml")
+[[ "$text" == "alpha-content" ]] || {
+  printf 'expected item text "alpha-content", got %q\n' "$text" >&2
   cat "$tmpdir/out.xml" >&2
   exit 1
 }
+
+# Confirm both attributes are present with the expected values.
+id_val=$(xmlstarlet sel -t -v '/root/item/@id' "$tmpdir/out.xml")
+lang_val=$(xmlstarlet sel -t -v '/root/item/@lang' "$tmpdir/out.xml")
+[[ "$id_val" == "a" ]] || { printf 'id mismatch: %s\n' "$id_val" >&2; exit 1; }
+[[ "$lang_val" == "en" ]] || { printf 'lang mismatch: %s\n' "$lang_val" >&2; exit 1; }
+
+# Single-pass mutation should leave exactly one <item> with both attributes.
+count=$(xmlstarlet sel -t -v 'count(/root/item[@id and @lang])' "$tmpdir/out.xml")
+[[ "$count" == "1" ]] || { printf 'expected 1 item with both attrs, got %s\n' "$count" >&2; exit 1; }

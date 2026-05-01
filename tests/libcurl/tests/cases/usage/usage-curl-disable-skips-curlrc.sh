@@ -56,5 +56,5 @@ EOF
 HOME="$tmpdir/home" curl -fsS "http://127.0.0.1:$port/" >"$tmpdir/with-rc"
 validator_assert_contains "$tmpdir/with-rc" 'FromRc=should-not-appear'
 
-HOME="$tmpdir/home" curl -fsS -q "http://127.0.0.1:$port/" >"$tmpdir/without-rc"
+HOME="$tmpdir/home" curl -q -fsS "http://127.0.0.1:$port/" >"$tmpdir/without-rc"
 validator_assert_contains "$tmpdir/without-rc" 'FromRc=absent'

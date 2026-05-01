@@ -24,8 +24,8 @@ Path(sys.argv[1]).write_bytes(f"P6\n{W} {H}\n255\n".encode() + bytes(pixels))
 PY
 
 cjpeg "$tmpdir/in.ppm" >"$tmpdir/in.jpg"
-vips jpegsave "$tmpdir/in.jpg" "$tmpdir/plain.jpg"     --Q 85 --no-optimize-coding
-vips jpegsave "$tmpdir/in.jpg" "$tmpdir/optimal.jpg"   --Q 85 --optimize-coding
+vips jpegsave "$tmpdir/in.jpg" "$tmpdir/plain.jpg"   --Q 85 --optimize-coding=false
+vips jpegsave "$tmpdir/in.jpg" "$tmpdir/optimal.jpg" --Q 85 --optimize-coding=true
 
 plain_size=$(wc -c <"$tmpdir/plain.jpg")
 opt_size=$(wc -c <"$tmpdir/optimal.jpg")

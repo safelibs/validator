@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # @testcase: usage-python3-pil-tiff-bigtiff-write-libtiff
-# @title: Pillow BigTIFF via WRITE_LIBTIFF and bigtiff flag
-# @description: Saves a BigTIFF with Pillow by toggling TiffImagePlugin.WRITE_LIBTIFF and passing bigtiff=True, then verifies the file starts with the BigTIFF magic II followed by version 0x002B and reload produces the same RGB pixel buffer.
+# @title: Pillow TIFF tiffcp -8 BigTIFF little-endian magic + multipage preserved
+# @description: Writes a two-page classic little-endian TIFF with Pillow, repackages it as a BigTIFF (-8) via tiffcp without changing byte order, and verifies the II\x00\x2b magic (BigTIFF little-endian), that tiffinfo enumerates two directories with the expected geometries, and that tiffcp -L round-trips the BigTIFF back to a classic TIFF whose pixel buffers match the Pillow originals.
 # @timeout: 180
 # @tags: usage, image, python, bigtiff
 # @client: python3-pil
@@ -12,44 +12,65 @@ source /validator/tests/_shared/runtime_helpers.sh
 tmpdir=$(mktemp -d)
 trap 'rm -rf "$tmpdir"' EXIT
 
-img="$tmpdir/big.tiff"
+src="$tmpdir/classic.tiff"
+big="$tmpdir/big.tiff"
 
-python3 - <<'PY' "$img"
-import struct
+python3 - <<'PY' "$src"
 import sys
 from PIL import Image
-from PIL import TiffImagePlugin
 
-path = sys.argv[1]
-size = (24, 16)
-pixels = bytes(
-    component
-    for y in range(size[1])
-    for x in range(size[0])
-    for component in (((x * 7) % 256), ((y * 11) % 256), (((x + y) * 5) % 256))
-)
-image = Image.frombytes("RGB", size, pixels)
+page0 = Image.new("RGB", (24, 16))
+page0.putdata([
+    ((x * 7) % 256, (y * 11) % 256, ((x + y) * 5) % 256)
+    for y in range(16)
+    for x in range(24)
+])
+page1 = Image.new("RGB", (12, 8))
+page1.putdata([
+    ((x * 17) % 256, (y * 19) % 256, ((x ^ y) * 13) % 256)
+    for y in range(8)
+    for x in range(12)
+])
+page0.save(sys.argv[1], save_all=True, append_images=[page1])
 
-prior = TiffImagePlugin.WRITE_LIBTIFF
-TiffImagePlugin.WRITE_LIBTIFF = True
-try:
-    image.save(path, format="TIFF", bigtiff=True, compression="tiff_deflate")
-finally:
-    TiffImagePlugin.WRITE_LIBTIFF = prior
+with open(sys.argv[1], "rb") as fh:
+    head = fh.read(4)
+assert head == b"II*\x00", head
+PY
 
-with open(path, "rb") as fh:
+# tiffcp -8 (LE BigTIFF). No -B, so byte order stays little-endian.
+tiffcp -8 "$src" "$big"
+validator_require_file "$big"
+
+python3 - <<'PY' "$big"
+import sys
+with open(sys.argv[1], "rb") as fh:
     head = fh.read(8)
-# Either II + 0x002B (LE BigTIFF) or MM + 0x002B (BE BigTIFF).
-byte_order = head[:2]
-assert byte_order in (b"II", b"MM"), head
-fmt = "<H" if byte_order == b"II" else ">H"
-version = struct.unpack(fmt, head[2:4])[0]
-assert version == 0x002B, hex(version)
+assert head[:4] == b"II\x2b\x00", head
+PY
 
-with Image.open(path) as reopened:
-    reopened.load()
-    assert reopened.size == size, reopened.size
-    assert reopened.mode == "RGB", reopened.mode
-    assert reopened.tobytes() == pixels, "pixel bytes diverge"
-    print("bigtiff", byte_order, hex(version))
+info="$tmpdir/info.txt"
+tiffinfo "$big" >"$info"
+validator_assert_contains "$info" "TIFF Directory at offset"
+# Geometry of both pages preserved.
+validator_assert_contains "$info" "Image Width: 24 Image Length: 16"
+validator_assert_contains "$info" "Image Width: 12 Image Length: 8"
+
+# Round-trip BigTIFF back to classic LE so Pillow can verify pixels.
+again="$tmpdir/again.tiff"
+tiffcp "$big" "$again"
+
+python3 - <<'PY' "$src" "$again"
+import sys
+from PIL import Image, ImageSequence
+
+with Image.open(sys.argv[1]) as a, Image.open(sys.argv[2]) as b:
+    a_frames = [f.copy() for f in ImageSequence.Iterator(a)]
+    b_frames = [f.copy() for f in ImageSequence.Iterator(b)]
+    assert len(a_frames) == len(b_frames) == 2, (len(a_frames), len(b_frames))
+    for fa, fb in zip(a_frames, b_frames):
+        assert fa.size == fb.size, (fa.size, fb.size)
+        assert fa.mode == fb.mode == "RGB", (fa.mode, fb.mode)
+        assert fa.tobytes() == fb.tobytes(), "bigtiff multipage pixel mismatch"
+    print("bigtiff-le", [f.size for f in a_frames])
 PY

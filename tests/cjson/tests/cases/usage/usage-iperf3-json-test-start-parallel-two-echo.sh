@@ -44,4 +44,4 @@ if [[ "$ok" != 1 ]]; then
 fi
 
 validator_assert_contains "$tmpdir/client.json" '"test_start"'
-jq -e '(.start.test_start | has("parallel")) and ((.start.test_start.parallel | type) == "number") and (.start.test_start.parallel == 2)' "$tmpdir/client.json"
+jq -e '(.start.test_start | has("num_streams")) and ((.start.test_start.num_streams | type) == "number") and (.start.test_start.num_streams == 2)' "$tmpdir/client.json"

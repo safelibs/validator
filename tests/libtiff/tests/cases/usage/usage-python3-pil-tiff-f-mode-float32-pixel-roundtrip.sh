@@ -28,9 +28,10 @@ with Image.open(path) as reopened:
     reopened.load()
     assert reopened.mode == "F", reopened.mode
     assert reopened.size == size, reopened.size
-    bps = reopened.tag_v2.get(258)
+    bps_raw = reopened.tag_v2.get(258)
     sf = reopened.tag_v2.get(339)
-    assert bps == 32, bps
+    bps = bps_raw[0] if hasattr(bps_raw, "__len__") else bps_raw
+    assert bps == 32, bps_raw
     sf_val = sf[0] if hasattr(sf, "__len__") else sf
     assert sf_val == 3, sf  # 3 = IEEE floating point
     for y in range(size[1]):
