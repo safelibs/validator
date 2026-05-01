@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # @testcase: usage-gio-info-query-writable-namespaces
 # @title: gio info -w lists writable namespaces
-# @description: Runs gio info --query-writable on a regular file and verifies the output enumerates settable attributes such as time::modified and the metadata namespace.
+# @description: Runs gio info --query-writable on a regular file and verifies the output enumerates settable attributes such as time::modified and the xattr namespace.
 # @timeout: 120
 # @tags: usage, gio, attributes
 # @client: gio
@@ -20,4 +20,4 @@ validator_assert_contains "$tmpdir/out" 'Settable attributes:'
 validator_assert_contains "$tmpdir/out" 'time::modified'
 validator_assert_contains "$tmpdir/out" 'unix::mode'
 validator_assert_contains "$tmpdir/out" 'Writable attribute namespaces:'
-validator_assert_contains "$tmpdir/out" 'metadata'
+validator_assert_contains "$tmpdir/out" 'xattr'

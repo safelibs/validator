@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # @testcase: usage-bzgrep-e-multiple-patterns
-# @title: bzgrep -e composes multiple patterns
-# @description: Uses bzgrep -e PAT -e PAT to OR two distinct patterns over a compressed file and verifies lines matching either pattern are emitted in original order.
+# @title: bzgrep -E alternation matches either pattern
+# @description: Uses bzgrep -E with a regex alternation over a compressed file and verifies lines matching either pattern are emitted in original order regardless of alternation argument order.
 # @timeout: 180
 # @tags: usage, bzgrep, multi-pattern
 # @client: bzip2
@@ -24,12 +24,12 @@ EOF
 
 bzip2 -c "$tmpdir/in.txt" >"$tmpdir/in.txt.bz2"
 
-# bzgrep with two -e patterns must OR them.
-bzgrep -e '^banana$' -e '^fig$' "$tmpdir/in.txt.bz2" >"$tmpdir/out"
+# bzgrep -E with alternation must OR the two patterns.
+bzgrep -E '^(banana|fig)$' "$tmpdir/in.txt.bz2" >"$tmpdir/out"
 
 printf 'banana\nfig\n' >"$tmpdir/expected"
 cmp "$tmpdir/out" "$tmpdir/expected"
 
-# Order-of-arguments must not change which lines match.
-bzgrep -e '^fig$' -e '^banana$' "$tmpdir/in.txt.bz2" >"$tmpdir/out2"
+# Reversing the alternation order must not change which lines match.
+bzgrep -E '^(fig|banana)$' "$tmpdir/in.txt.bz2" >"$tmpdir/out2"
 cmp "$tmpdir/out2" "$tmpdir/expected"

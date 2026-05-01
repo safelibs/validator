@@ -38,8 +38,10 @@ bzdiff -q "$tmpdir/left.txt.bz2" "$tmpdir/right.txt.bz2" \
   printf 'expected exit 1 for differing inputs, got %s\n' "$status" >&2
   exit 1
 }
-validator_assert_contains "$tmpdir/diff.out" "left.txt.bz2"
-validator_assert_contains "$tmpdir/diff.out" "right.txt.bz2"
+# bzdiff -q decompresses to temp files, so the output names refer to the
+# pipeline (e.g. "Files - and /tmp/bzdiff.XXXX differ"). Just confirm the
+# brief mode reports a difference.
+validator_assert_contains "$tmpdir/diff.out" "differ"
 
 # Brief mode must NOT include full diff hunks (no leading '<' or '>' lines, no '---').
 if grep -qE '^[<>] ' "$tmpdir/diff.out"; then
