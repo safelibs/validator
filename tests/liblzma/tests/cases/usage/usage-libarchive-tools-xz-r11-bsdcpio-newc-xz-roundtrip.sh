@@ -28,7 +28,7 @@ listing=$(cat "$tmpdir/listing.txt")
 test "$listing" = "payload.txt"
 
 (cd "$tmpdir/out" && xz -dc "$tmpdir/payload.cpio.xz" \
-   | bsdcpio --quiet -i --no-absolute-filenames)
+   | bsdcpio --quiet -i)
 
 out_sha=$(sha256sum "$tmpdir/out/payload.txt" | awk '{print $1}')
 test "$src_sha" = "$out_sha"
