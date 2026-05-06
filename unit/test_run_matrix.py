@@ -261,6 +261,7 @@ class RunMatrixTests(unittest.TestCase):
             record_casts=True,
             status_dir=root / "status",
             override_deb_dir=None,
+            container_name="validator-demo-test",
         )
 
         separator = command.index("--")
@@ -287,6 +288,7 @@ class RunMatrixTests(unittest.TestCase):
             record_casts=True,
             status_dir=root / "status",
             override_deb_dir=None,
+            container_name="validator-demo-test",
         )
 
         separator = command.index("--")
@@ -301,6 +303,32 @@ class RunMatrixTests(unittest.TestCase):
                 "/validator/tests/demo/tests/run.sh",
             ],
         )
+
+    def test_container_command_includes_name_for_force_removal(self) -> None:
+        root = self.run_root()
+        testcase = self.make_testcase(["bash", "/validator/tests/demo/tests/run.sh"])
+
+        command = run_matrix._container_command(
+            image_tag="validator-demo",
+            library="demo",
+            testcase=testcase,
+            record_casts=False,
+            status_dir=root / "status",
+            override_deb_dir=None,
+            container_name="validator-demo-case-1234",
+        )
+
+        self.assertIn("--name", command)
+        self.assertEqual(
+            command[command.index("--name") + 1],
+            "validator-demo-case-1234",
+        )
+
+    def test_container_name_sanitizes_unsafe_chars(self) -> None:
+        testcase = self.make_testcase(["bash", "/validator/tests/demo/tests/run.sh"])
+        name = run_matrix._container_name("lib/odd", testcase)
+        self.assertRegex(name, r"^[A-Za-z0-9_.-]+$")
+        self.assertTrue(name.startswith("validator-lib-odd-"))
 
     def test_override_root_layout_and_installed_marker(self) -> None:
         root = self.run_root()

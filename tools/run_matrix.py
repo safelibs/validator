@@ -797,6 +797,28 @@ def _testcase_command_for_run(testcase: Testcase, *, record_casts: bool) -> list
     ]
 
 
+_CONTAINER_NAME_INVALID = re.compile(r"[^A-Za-z0-9_.-]+")
+
+
+def _container_name(library: str, testcase: Testcase) -> str:
+    raw = f"validator-{library}-{testcase.id}-{os.getpid()}"
+    sanitized = _CONTAINER_NAME_INVALID.sub("-", raw)
+    return sanitized[:200]
+
+
+def _force_remove_container(name: str) -> None:
+    try:
+        subprocess.run(
+            ["docker", "rm", "-f", name],
+            check=False,
+            stdout=subprocess.DEVNULL,
+            stderr=subprocess.DEVNULL,
+            timeout=30,
+        )
+    except (OSError, subprocess.SubprocessError):
+        pass
+
+
 def _container_command(
     *,
     image_tag: str,
@@ -805,8 +827,9 @@ def _container_command(
     record_casts: bool,
     status_dir: Path,
     override_deb_dir: Path | None,
+    container_name: str,
 ) -> list[str]:
-    command = ["docker", "run", "--rm"]
+    command = ["docker", "run", "--rm", "--name", container_name]
     if record_casts:
         command.append("-t")
     command.extend(
@@ -1013,6 +1036,8 @@ def run_testcase(
             path.unlink()
 
     status_dir = Path(tempfile.mkdtemp(prefix=f"validator-status-{library}-{testcase.id}-"))
+    container_name = _container_name(library, testcase)
+    _force_remove_container(container_name)
     started_at = iso_utc_now()
     outcome = RunOutcome(1)
     error: str | None = None
@@ -1025,6 +1050,7 @@ def run_testcase(
             record_casts=record_casts,
             status_dir=status_dir,
             override_deb_dir=override_deb_dir,
+            container_name=container_name,
         )
         outcome = run_logged(
             command,
@@ -1042,6 +1068,7 @@ def run_testcase(
         elif outcome.exit_code != 0:
             error = f"testcase command exited with status {outcome.exit_code}"
     finally:
+        _force_remove_container(container_name)
         override_debs_installed = (status_dir / "override-installed").is_file()
         if mode == "port":
             if not override_debs_installed:
