@@ -19,9 +19,11 @@ src = Image.new('RGBA', (16, 12), (10, 200, 60, 128))
 src.save(sys.argv[1], 'WEBP', lossless=True)
 PY
 
-# gdk-pixbuf-query-loaders must list the WebP loader so update-mime cache picks it.
-gdk-pixbuf-query-loaders >"$tmpdir/loaders.txt"
-grep -Eqi '(WebP|webp)' "$tmpdir/loaders.txt"
+# The shipped pixbuf loader cache must register a webp loader (proves the
+# webp-pixbuf-loader package is wired into gdk-pixbuf).
+loaders_cache="/usr/lib/$(gcc -print-multiarch)/gdk-pixbuf-2.0/2.10.0/loaders.cache"
+validator_require_file "$loaders_cache"
+grep -Eqi '(WebP|webp)' "$loaders_cache"
 
 # gdk-pixbuf-pixdata exercises the loader: it must decode the WebP and emit
 # a GdkPixdata stream that begins with the well-known 'GdkP' magic.

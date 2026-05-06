@@ -24,8 +24,9 @@ PY
 
 cwebp -quiet "$tmpdir/in.ppm" -o "$tmpdir/in.webp"
 
-gdk-pixbuf-query-loaders >"$tmpdir/loaders.txt"
-grep -Eqi '(WebP|webp)' "$tmpdir/loaders.txt"
+loaders_cache="/usr/lib/$(gcc -print-multiarch)/gdk-pixbuf-2.0/2.10.0/loaders.cache"
+validator_require_file "$loaders_cache"
+grep -Eqi '(WebP|webp)' "$loaders_cache"
 
 gdk-pixbuf-pixdata "$tmpdir/in.webp" "$tmpdir/out.gdkp"
 [[ -s "$tmpdir/out.gdkp" ]]
