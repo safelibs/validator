@@ -12,15 +12,15 @@ source /validator/tests/_shared/runtime_helpers.sh
 tmpdir=$(mktemp -d)
 trap 'rm -rf "$tmpdir"' EXIT
 
-cat >"$tmpdir/in.geojson" <<'JSON'
+cat >"$tmpdir/labels.geojson" <<'JSON'
 {"type":"FeatureCollection","features":[
 {"type":"Feature","properties":{"label":"42"},"geometry":{"type":"Point","coordinates":[0,0]}},
 {"type":"Feature","properties":{"label":"7"},"geometry":{"type":"Point","coordinates":[1,1]}}
 ]}
 JSON
 
-ogr2ogr -f GeoJSON "$tmpdir/out.geojson" "$tmpdir/in.geojson" \
-  -sql "select CAST(label AS integer) as num from in"
+ogr2ogr -f GeoJSON "$tmpdir/out.geojson" "$tmpdir/labels.geojson" \
+  -sql 'select CAST(label AS integer) as num from labels'
 
 python3 - "$tmpdir/out.geojson" <<'PY'
 import json, sys

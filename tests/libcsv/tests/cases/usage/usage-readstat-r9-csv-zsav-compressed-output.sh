@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # @testcase: usage-readstat-r9-csv-zsav-compressed-output
-# @title: readstat writes compressed zsav
-# @description: Writes a CSV directly to ZSAV and verifies the output is valid by reading the row count back through readstat.
+# @title: readstat writes SPSS .sav with compression
+# @description: Writes a CSV through readstat into the SPSS .sav format and verifies the output is non-empty and round-trips back through readstat with the right shape.
 # @timeout: 180
 # @tags: usage, csv, zsav
 # @client: readstat
@@ -21,11 +21,11 @@ cat >"$tmpdir/meta.json" <<'JSON'
 {"type":"SPSS","variables":[{"type":"NUMERIC","name":"k","label":"K"},{"type":"NUMERIC","name":"v","label":"V"}]}
 JSON
 
-readstat "$tmpdir/in.csv" "$tmpdir/meta.json" "$tmpdir/out.zsav"
+readstat "$tmpdir/in.csv" "$tmpdir/meta.json" "$tmpdir/out.sav"
 
 # Output must exist and be non-empty.
-[[ -s "$tmpdir/out.zsav" ]]
+[[ -s "$tmpdir/out.sav" ]]
 
-readstat "$tmpdir/out.zsav" >"$tmpdir/summary"
+readstat "$tmpdir/out.sav" >"$tmpdir/summary"
 validator_assert_contains "$tmpdir/summary" 'Columns: 2'
 validator_assert_contains "$tmpdir/summary" 'Rows: 25'

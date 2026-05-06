@@ -12,7 +12,7 @@ source /validator/tests/_shared/runtime_helpers.sh
 tmpdir=$(mktemp -d)
 trap 'rm -rf "$tmpdir"' EXIT
 
-printf 'a\tb\tc\n1\t2\t3\n4\t5\t6\n' >"$tmpdir/in.csv"
+printf 'row\n1\t2\t3\n4\t5\t6\n' >"$tmpdir/in.csv"
 
 cat >"$tmpdir/meta.json" <<'JSON'
 {"type":"Stata","variables":[{"type":"STRING","name":"row","label":"R"}]}

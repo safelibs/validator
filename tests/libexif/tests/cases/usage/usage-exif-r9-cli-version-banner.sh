@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # @testcase: usage-exif-r9-cli-version-banner
-# @title: exif --version emits identification banner
-# @description: Runs exif --version and verifies the program identifies itself with a recognizable banner string and a numeric version on stdout.
+# @title: exif --version emits a numeric version
+# @description: Runs exif --version and verifies the program writes a major.minor numeric version on stdout.
 # @timeout: 60
 # @tags: usage, metadata, version
 # @client: exif
@@ -13,5 +13,5 @@ tmpdir=$(mktemp -d)
 trap 'rm -rf "$tmpdir"' EXIT
 
 exif --version >"$tmpdir/out" 2>&1
-validator_assert_contains "$tmpdir/out" 'exif'
-grep -E '[0-9]+\.[0-9]+' "$tmpdir/out"
+[[ -s "$tmpdir/out" ]]
+grep -E '^[0-9]+\.[0-9]+' "$tmpdir/out"

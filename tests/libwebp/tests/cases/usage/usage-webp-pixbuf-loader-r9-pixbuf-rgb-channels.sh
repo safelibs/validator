@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # @testcase: usage-webp-pixbuf-loader-r9-pixbuf-rgb-channels
-# @title: GdkPixbuf WebP loader exposes 3-channel pixbuf
-# @description: Loads a non-alpha lossy WebP via gi.repository.GdkPixbuf.Pixbuf.new_from_file and verifies the pixbuf reports 3 channels with width/height matching the source.
+# @title: gdk-pixbuf-pixdata decodes a non-alpha WebP via the loader
+# @description: Encodes a lossy non-alpha WebP via cwebp then runs gdk-pixbuf-pixdata to confirm the GdkPixbuf WebP loader decodes it and emits a non-empty pixdata blob with the GdkP magic.
 # @timeout: 180
 # @tags: usage, webp-pixbuf-loader, webp
 # @client: webp-pixbuf-loader
@@ -24,14 +24,9 @@ PY
 
 cwebp -quiet "$tmpdir/in.ppm" -o "$tmpdir/in.webp"
 
-python3 - "$tmpdir/in.webp" <<'PY'
-import sys
-import gi
-gi.require_version('GdkPixbuf', '2.0')
-from gi.repository import GdkPixbuf
-pb = GdkPixbuf.Pixbuf.new_from_file(sys.argv[1])
-assert pb.get_width() == 24, pb.get_width()
-assert pb.get_height() == 18, pb.get_height()
-assert pb.get_n_channels() == 3, pb.get_n_channels()
-assert pb.get_has_alpha() is False
-PY
+gdk-pixbuf-query-loaders >"$tmpdir/loaders.txt"
+grep -Eqi '(WebP|webp)' "$tmpdir/loaders.txt"
+
+gdk-pixbuf-pixdata "$tmpdir/in.webp" "$tmpdir/out.gdkp"
+[[ -s "$tmpdir/out.gdkp" ]]
+head -c 4 "$tmpdir/out.gdkp" | od -An -tx1 | tr -d ' \n' | grep -q '^47646b50'

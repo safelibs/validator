@@ -12,11 +12,12 @@ source /validator/tests/_shared/runtime_helpers.sh
 tmpdir=$(mktemp -d)
 trap 'rm -rf "$tmpdir"' EXIT
 
-printf '1234567890' >"$tmpdir/a.txt"   # 10 bytes
-: >"$tmpdir/b.empty"                   # 0 bytes
-printf 'XYZ' >"$tmpdir/c.txt"          # 3 bytes
+mkdir "$tmpdir/in"
+printf '1234567890' >"$tmpdir/in/a.txt"   # 10 bytes
+: >"$tmpdir/in/b.empty"                   # 0 bytes
+printf 'XYZ' >"$tmpdir/in/c.txt"          # 3 bytes
 
-find "$tmpdir" -maxdepth 1 -type f -printf '%f %s\n' | sort >"$tmpdir/got.txt"
+find "$tmpdir/in" -maxdepth 1 -type f -printf '%f %s\n' | sort >"$tmpdir/got.txt"
 
 cat >"$tmpdir/expected.txt" <<'EOF'
 a.txt 10

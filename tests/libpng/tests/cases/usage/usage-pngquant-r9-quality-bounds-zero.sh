@@ -12,15 +12,16 @@ source /validator/tests/_shared/runtime_helpers.sh
 tmpdir=$(mktemp -d)
 trap 'rm -rf "$tmpdir"' EXIT
 
-python3 - "$tmpdir/in.png" <<'PY'
+python3 - "$tmpdir/in.ppm" <<'PY'
 import sys
-from PIL import Image
-img = Image.new("RGBA", (32, 32))
-for y in range(32):
-    for x in range(32):
-        img.putpixel((x, y), ((x * 8) & 0xff, (y * 8) & 0xff, (x ^ y) & 0xff, 255))
-img.save(sys.argv[1], "PNG")
+W, H = 32, 32
+b = bytearray()
+for y in range(H):
+    for x in range(W):
+        b += bytes(((x * 8) & 0xff, (y * 8) & 0xff, (x ^ y) & 0xff))
+open(sys.argv[1], 'wb').write(f'P6\n{W} {H}\n255\n'.encode() + b)
 PY
+pnmtopng "$tmpdir/in.ppm" >"$tmpdir/in.png"
 
 pngquant --quality=0-100 --force --output "$tmpdir/out.png" 256 "$tmpdir/in.png"
 file "$tmpdir/out.png" >"$tmpdir/file.txt"

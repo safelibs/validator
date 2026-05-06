@@ -17,9 +17,9 @@ printf 'numeric-owner\n' >"$tmpdir/in/file.txt"
 ( cd "$tmpdir/in" && bsdtar -cJf "$tmpdir/a.tar.xz" file.txt )
 
 bsdtar -tvf "$tmpdir/a.tar.xz" --numeric-owner >"$tmpdir/list.txt"
-# Owner field is the third whitespace-separated token. With --numeric-owner the
-# entry should be of the form "numericuid/numericgid" (digits and a slash).
-awk '{print $3}' "$tmpdir/list.txt" >"$tmpdir/own.txt"
-grep -Eq '^[0-9]+/[0-9]+$' "$tmpdir/own.txt" || {
+# bsdtar --numeric-owner prints "<perm> <links> <uid> <gid> <size> <date> <name>".
+# Verify both the uid (column 3) and the gid (column 4) are decimal integers.
+awk 'NR==1 {print $3, $4}' "$tmpdir/list.txt" >"$tmpdir/own.txt"
+grep -Eq '^[0-9]+ [0-9]+$' "$tmpdir/own.txt" || {
   printf 'unexpected owner field:\n' >&2; cat "$tmpdir/list.txt" >&2; exit 1;
 }

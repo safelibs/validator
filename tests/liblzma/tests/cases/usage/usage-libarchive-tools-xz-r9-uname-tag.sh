@@ -17,4 +17,5 @@ printf 'uname tag\n' >"$tmpdir/in/file.txt"
 ( cd "$tmpdir/in" && bsdtar --uname=customuser --gname=customgrp -cJf "$tmpdir/a.tar.xz" file.txt )
 
 bsdtar -tvf "$tmpdir/a.tar.xz" >"$tmpdir/list.txt"
-validator_assert_contains "$tmpdir/list.txt" 'customuser/customgrp'
+validator_assert_contains "$tmpdir/list.txt" 'customuser'
+validator_assert_contains "$tmpdir/list.txt" 'customgrp'

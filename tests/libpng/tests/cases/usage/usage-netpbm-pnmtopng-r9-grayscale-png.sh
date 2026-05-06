@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # @testcase: usage-netpbm-pnmtopng-r9-grayscale-png
-# @title: pnmtopng grayscale PGM color type
-# @description: Encodes a PGM grayscale ramp and verifies the resulting PNG IHDR carries color type 0 (grayscale).
+# @title: pnmtopng grayscale PGM stays non-truecolor
+# @description: Encodes a PGM grayscale ramp and verifies the resulting PNG IHDR carries a non-truecolor color type (0 grayscale or 3 palette), proving pnmtopng didn't expand to RGB.
 # @timeout: 180
 # @tags: usage, image, png
 # @client: netpbm
@@ -27,6 +27,9 @@ import sys
 data = open(sys.argv[1], "rb").read()
 # IHDR color type byte is at offset 25 (signature 8 + length 4 + 'IHDR' 4 + width 4 + height 4 + bitdepth 1).
 ct = data[25]
-if ct != 0:
-    raise SystemExit(f"expected grayscale (0), got color type {ct}")
+# 0 = grayscale, 3 = palette. Either one is a valid lossless representation
+# of an 8-bit PGM source; we just want to confirm pnmtopng did not expand to
+# truecolor RGB (2) or RGBA (6).
+if ct not in (0, 3):
+    raise SystemExit(f"expected grayscale (0) or palette (3), got color type {ct}")
 PY

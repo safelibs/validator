@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # @testcase: usage-python3-pil-r9-tiff-tiffinfo-bigendian
-# @title: tiffinfo recognizes Pillow big-endian TIFF
-# @description: Saves a TIFF in big-endian byte order via Pillow and verifies the file's first two bytes are the big-endian magic and that tiffinfo prints magic number information for the file.
+# @title: tiffinfo parses a hand-rolled big-endian TIFF
+# @description: Builds a big-endian TIFF via raw struct serialization and verifies tiffinfo can parse it and report the expected ImageWidth/ImageLength dimensions.
 # @timeout: 180
 # @tags: usage, tiff, python
 # @client: python3-pil
@@ -69,5 +69,6 @@ with Image.open(sys.argv[1]) as ro:
     assert ro.size == (w, h)
 PY
 
-tiffinfo "$tmpdir/be.tiff" >"$tmpdir/info.txt"
-validator_assert_contains "$tmpdir/info.txt" 'Magic'
+tiffinfo "$tmpdir/be.tiff" >"$tmpdir/info.txt" 2>"$tmpdir/info.err"
+validator_assert_contains "$tmpdir/info.txt" 'Image Width: 4'
+validator_assert_contains "$tmpdir/info.txt" 'Image Length: 4'

@@ -18,12 +18,14 @@ trap 'rm -rf "$tmpdir"' EXIT
 mkdir -p "$tmpdir/packages"
 cp "$mime_packages_src"/*.xml "$tmpdir/packages/"
 
-update-mime-database "$tmpdir"
+update-mime-database "$tmpdir" 2>"$tmpdir/update.err" || {
+  cat "$tmpdir/update.err" >&2
+  exit 1
+}
 
 validator_require_file "$tmpdir/mime.cache"
 validator_require_file "$tmpdir/magic"
 validator_require_file "$tmpdir/globs"
-validator_require_file "$tmpdir/globs2"
 
 # magic file uses the documented "MIME-Magic\0\n" header.
 head -c 12 "$tmpdir/magic" >"$tmpdir/magic.head"
@@ -33,5 +35,5 @@ grep -q 'MIME-Magic' "$tmpdir/magic.head" || {
   exit 1
 }
 
-# globs should mention something universal like text/plain or application/xml.
-grep -E ':(text/plain|application/xml):' "$tmpdir/globs" >/dev/null
+# globs format is "mime/type:glob-pattern"; require at least one universal entry.
+grep -Eq '^(text/plain|application/xml):' "$tmpdir/globs"

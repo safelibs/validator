@@ -18,9 +18,10 @@ printf 'numeric owner test\n' >"$tmpdir/in/file.txt"
 bsdtar --zstd -cf "$tmpdir/a.tar.zst" -C "$tmpdir/in" file.txt
 bsdtar -tvf "$tmpdir/a.tar.zst" --numeric-owner >"$tmpdir/list"
 
-# Owner column (3rd whitespace field) should look like uid/gid with digits.
-awk '{print $3}' "$tmpdir/list" >"$tmpdir/owner"
-grep -Eq '^[0-9]+/[0-9]+$' "$tmpdir/owner" || {
+# bsdtar prints "<perm> <links> <uid> <gid> <size> <date> <name>". Verify both
+# the uid (column 3) and gid (column 4) are decimal integers under --numeric-owner.
+awk 'NR==1 {print $3, $4}' "$tmpdir/list" >"$tmpdir/owner"
+grep -Eq '^[0-9]+ [0-9]+$' "$tmpdir/owner" || {
   echo "owner field not numeric:" >&2
   cat "$tmpdir/list" >&2
   exit 1

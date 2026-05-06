@@ -23,7 +23,8 @@ with open(sys.argv[1], "wb") as f:
         bytes([x*30 % 256, y*30 % 256, (x+y) % 256]) for y in range(h) for x in range(w)))
 PY
 
-pnmtopng -filter up "$tmpdir/in.ppm" >"$tmpdir/out.png"
+# pnmtopng's -filter accepts the libpng filter index: 0=NONE, 1=SUB, 2=UP, ...
+pnmtopng -filter 2 "$tmpdir/in.ppm" >"$tmpdir/out.png"
 file "$tmpdir/out.png" >"$tmpdir/file.txt"
 validator_assert_contains "$tmpdir/file.txt" 'PNG image data'
 

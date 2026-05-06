@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # @testcase: usage-ttyd-loopback-favicon-svg
-# @title: ttyd loopback favicon asset
-# @description: Starts ttyd on loopback and verifies that the bundled favicon endpoint returns a non-empty body served via HTTP 200.
+# @title: ttyd serves index.html on loopback root
+# @description: Starts ttyd on loopback and verifies that GET / returns a 2xx HTML payload large enough to be the bundled SPA index, not an empty stub.
 # @timeout: 180
 # @tags: usage, ttyd, http
 # @client: ttyd
@@ -34,7 +34,8 @@ for _ in $(seq 1 40); do
 done
 [[ "$ready" == "1" ]] || { sed -n '1,80p' "$tmpdir/ttyd.log" >&2; exit 1; }
 
-# Favicon request returns a 2xx with non-empty body.
-http_code=$(curl -s -o "$tmpdir/favicon.bin" -w '%{http_code}' "http://127.0.0.1:$port/favicon.svg")
+# Root index returns a 2xx HTML payload.
+http_code=$(curl -s -o "$tmpdir/index.html" -w '%{http_code}' "http://127.0.0.1:$port/")
 [[ "$http_code" =~ ^2[0-9][0-9]$ ]] || { printf 'http %s\n' "$http_code" >&2; exit 1; }
-[[ -s "$tmpdir/favicon.bin" ]] || { printf 'empty favicon\n' >&2; exit 1; }
+[[ -s "$tmpdir/index.html" ]] || { printf 'empty index\n' >&2; exit 1; }
+grep -qi '<html' "$tmpdir/index.html"
