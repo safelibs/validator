@@ -24,6 +24,9 @@ printf 's2k digest probe payload\n' >"$tmpdir/plain.txt"
   --s2k-digest-algo SHA256 --s2k-mode 3 --cipher-algo AES256 \
   --symmetric -o "$tmpdir/plain.gpg" "$tmpdir/plain.txt"
 
-gpg --list-packets "$tmpdir/plain.gpg" >"$tmpdir/packets" 2>&1
+# list-packets exits non-zero on symmetric blobs (no passphrase to decrypt the
+# inner payload) but still emits the symkey enc packet line we need.
+gpg --list-packets "$tmpdir/plain.gpg" >"$tmpdir/packets" 2>&1 || true
 validator_assert_contains "$tmpdir/packets" 'symkey enc packet'
-grep -Eqi 'sha256|digest 8' "$tmpdir/packets"
+# gpg labels the s2k digest field "hash <n>"; SHA-256 is digest id 8.
+grep -Eqi 'sha256|hash 8' "$tmpdir/packets"

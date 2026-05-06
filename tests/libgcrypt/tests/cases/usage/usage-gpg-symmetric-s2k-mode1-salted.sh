@@ -26,8 +26,11 @@ plain_sha=$(sha256sum "$tmpdir/plain.txt" | awk '{print $1}')
   --s2k-mode 1 --cipher-algo AES256 --s2k-digest-algo SHA256 \
   --symmetric -o "$tmpdir/plain.gpg" "$tmpdir/plain.txt"
 
-gpg --list-packets "$tmpdir/plain.gpg" >"$tmpdir/packets" 2>&1
-grep -Eqi 'mode 1|salted' "$tmpdir/packets"
+# list-packets exits non-zero on symmetric blobs (no passphrase to decrypt the
+# inner payload) but still emits the symkey enc packet line we need. gpg
+# encodes s2k mode 1 (salted-only) as "s2k 1" in the symkey packet line.
+gpg --list-packets "$tmpdir/plain.gpg" >"$tmpdir/packets" 2>&1 || true
+grep -Eqi 's2k 1|mode 1|salted' "$tmpdir/packets"
 
 "${gpg_batch[@]}" --passphrase 'test' --decrypt \
   -o "$tmpdir/out.txt" "$tmpdir/plain.gpg"

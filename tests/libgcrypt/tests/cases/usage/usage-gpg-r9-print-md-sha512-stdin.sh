@@ -13,8 +13,9 @@ tmpdir=$(mktemp -d)
 trap 'rm -rf "$tmpdir"' EXIT
 
 # SHA-512 of "abc" (with no newline) is the canonical NIST KAT.
-expected_first='DDAF35A193617ABA'
+expected='DDAF35A193617ABACC417349AE20413112E6FA4E89A97EA20A9EEEE64B55D39A2192992A274FC1A836BA3C23A3FEEBBD454D4423643CE80E2A9AC94FA54CA49F'
 
 printf 'abc' | gpg --batch --print-md SHA512 >"$tmpdir/out" 2>&1
-# gpg renders the digest in 16-byte groups separated by spaces; first group must match.
-validator_assert_contains "$tmpdir/out" "$expected_first"
+# gpg renders the digest as space-separated 4-byte hex groups; strip whitespace and match the full digest.
+tr -d '[:space:]' <"$tmpdir/out" >"$tmpdir/joined"
+validator_assert_contains "$tmpdir/joined" "$expected"

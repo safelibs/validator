@@ -19,8 +19,9 @@ chmod 700 "$GNUPGHOME"
 
 gpg_batch=(gpg --batch --yes --pinentry-mode loopback)
 
-# 16 KiB of repeating bytes is highly compressible.
-yes 'AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA' | head -c 16384 >"$tmpdir/plain.txt"
+# 16 KiB of repeating bytes is highly compressible. Use perl so the producer
+# does not get SIGPIPE'd by `head`, which would trip pipefail.
+perl -e 'print "A" x 16384' >"$tmpdir/plain.txt"
 plain_size=$(wc -c <"$tmpdir/plain.txt")
 plain_sha=$(sha256sum "$tmpdir/plain.txt" | awk '{print $1}')
 

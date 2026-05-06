@@ -25,6 +25,7 @@ LIBRARY_ORDER = (
     "libcsv",
     "libcurl",
     "libexif",
+    "libgcrypt",
     "libjansson",
     "libjpeg-turbo",
     "libjson",
@@ -63,6 +64,7 @@ CANONICAL_APT_PACKAGES: dict[str, tuple[str, ...]] = {
     "libcsv": ("libcsv3", "libcsv-dev"),
     "libcurl": ("curl", "libcurl4t64", "libcurl4-openssl-dev"),
     "libexif": ("libexif12", "libexif-dev"),
+    "libgcrypt": ("libgcrypt20", "libgcrypt20-dev"),
     "libjansson": ("libjansson4", "libjansson-dev"),
     "libjpeg-turbo": (
         "libjpeg-turbo8",

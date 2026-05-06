@@ -12,5 +12,5 @@ source /validator/tests/_shared/runtime_helpers.sh
 tmpdir=$(mktemp -d)
 trap 'rm -rf "$tmpdir"' EXIT
 
-gpg --list-config curve >"$tmpdir/out" 2>&1
+gpg --with-colons --list-config curve >"$tmpdir/out" 2>&1
 validator_assert_contains "$tmpdir/out" 'nistp256'

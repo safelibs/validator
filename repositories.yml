@@ -84,6 +84,13 @@ libraries:
     testcases: tests/libexif/testcases.yml
     fixtures:
       dependents: tests/libexif/tests/fixtures/dependents.json
+  - name: libgcrypt
+    apt_packages:
+      - libgcrypt20
+      - libgcrypt20-dev
+    testcases: tests/libgcrypt/testcases.yml
+    fixtures:
+      dependents: tests/libgcrypt/tests/fixtures/dependents.json
   - name: libjansson
     apt_packages:
       - libjansson4

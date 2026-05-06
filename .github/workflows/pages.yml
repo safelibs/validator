@@ -31,7 +31,7 @@ jobs:
         run: python3 -m unittest discover -s unit -v
 
       - name: Check testcase manifests
-        run: python3 tools/testcases.py --config repositories.yml --tests-root tests --check --min-source-cases 115 --min-usage-cases 963 --min-cases 1083
+        run: python3 tools/testcases.py --config repositories.yml --tests-root tests --check --min-source-cases 120 --min-usage-cases 963 --min-cases 1083
 
       - id: libs
         name: Enumerate libraries
@@ -191,7 +191,7 @@ jobs:
             --artifact-root "$ARTIFACT_ROOT" \
             --proof-output "$ORIGINAL_PROOF_PATH" \
             --mode original \
-            --min-source-cases 115 \
+            --min-source-cases 120 \
             --min-usage-cases 963 \
             --min-cases 1083 \
             --require-casts \
@@ -202,7 +202,7 @@ jobs:
             --artifact-root "$ARTIFACT_ROOT" \
             --proof-output "$PORT_PROOF_PATH" \
             --mode port \
-            --min-source-cases 115 \
+            --min-source-cases 120 \
             --min-usage-cases 963 \
             --min-cases 1083 \
             --require-casts \

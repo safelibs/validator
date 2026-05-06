@@ -25,7 +25,10 @@ plain_sha=$(sha256sum "$tmpdir/plain.txt" | awk '{print $1}')
 "${gpg_batch[@]}" --passphrase 'test' --cipher-algo CAMELLIA128 \
   --symmetric -o "$tmpdir/plain.gpg" "$tmpdir/plain.txt"
 
-gpg --list-packets "$tmpdir/plain.gpg" >"$tmpdir/packets" 2>&1
+# gpg --list-packets exits non-zero on symmetric blobs (no passphrase to decrypt
+# the inner data) but still emits the packet structure on stdout — we only need
+# the symkey enc packet line.
+gpg --list-packets "$tmpdir/plain.gpg" >"$tmpdir/packets" 2>&1 || true
 grep -Eqi 'cipher 11|camellia128|CAMELLIA128' "$tmpdir/packets"
 
 "${gpg_batch[@]}" --passphrase 'test' --decrypt \
