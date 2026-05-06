@@ -19,7 +19,7 @@ cat >"$tmpdir/in.xml" <<'XML'
 XML
 
 xmlstarlet sel -t -v 'string-length(/root/name)' "$tmpdir/in.xml" >"$tmpdir/out"
-read -r value <"$tmpdir/out"
+value=$(cat "$tmpdir/out")
 [[ "$value" == "6" ]] || {
   echo "expected 6, got: $value" >&2
   exit 1

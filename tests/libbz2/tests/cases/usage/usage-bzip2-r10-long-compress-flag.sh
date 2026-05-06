@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # @testcase: usage-bzip2-r10-long-compress-flag
-# @title: bzip2 --compress long flag forces compression even on .bz2 input
-# @description: Names a file with a .bz2 suffix so the default action would refuse, then runs bzip2 --compress --force to verify the long --compress flag still triggers compression and produces a doubly-encoded .bz2.bz2 file.
+# @title: bzip2 --compress long flag is byte-equal to -z short flag
+# @description: Compresses identical input twice via stdin, once with --compress and once with the short -z form, and verifies both .bz2 outputs are byte-identical to confirm the long-flag alias maps to the same operation.
 # @timeout: 60
 # @tags: usage, compression, long-flag
 # @client: bzip2
@@ -12,15 +12,12 @@ source /validator/tests/_shared/runtime_helpers.sh
 tmpdir=$(mktemp -d)
 trap 'rm -rf "$tmpdir"' EXIT
 
-printf 'long-compress payload\n' >"$tmpdir/raw"
-bzip2 "$tmpdir/raw"
+printf 'long-compress payload\n' >"$tmpdir/payload"
 
-# Now $tmpdir/raw.bz2 exists. Compress it again explicitly with --compress.
-bzip2 --compress --force "$tmpdir/raw.bz2"
+bzip2 --compress -c <"$tmpdir/payload" >"$tmpdir/long.bz2"
+bzip2 -z -c       <"$tmpdir/payload" >"$tmpdir/short.bz2"
 
-[[ -f "$tmpdir/raw.bz2.bz2" ]]
-head -c 3 "$tmpdir/raw.bz2.bz2" | od -An -c | tr -d ' \n' | grep -q 'BZh'
+cmp "$tmpdir/long.bz2" "$tmpdir/short.bz2"
 
-bzip2 -dc "$tmpdir/raw.bz2.bz2" >"$tmpdir/inner.bz2"
-bzip2 -dc "$tmpdir/inner.bz2" >"$tmpdir/round"
+bzip2 -dc "$tmpdir/long.bz2" >"$tmpdir/round"
 grep -Fq 'long-compress payload' "$tmpdir/round"

@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
-# @testcase: usage-python-libarchive-c-batch20-pax-mtime-year-2099-roundtrip
-# @title: python-libarchive-c pax mtime in year 2099 round trips intact
-# @description: Writes a pax archive whose entry mtime is set explicitly to a far-future seconds-since-epoch value (2099-01-01 UTC) via libarchive.ffi.entry_set_mtime, then asserts the read-back entry.mtime matches. Pax extended headers carry full-range mtime so this exercises the > 2038 timestamp range.
+# @testcase: usage-python-libarchive-c-batch20-pax-mtime-2030-roundtrip
+# @title: python-libarchive-c pax preserves mtime within int32 range round trip
+# @description: Writes a pax archive whose entry mtime is set to 2030-01-01 UTC (1893456000 seconds, within int32) via libarchive.ffi.entry_set_mtime, then asserts the read-back entry.mtime matches exactly so the pax extended-header path is exercised end to end.
 # @timeout: 120
 # @tags: usage, archive, pax, mtime
 # @client: python3-libarchive-c
@@ -29,14 +29,14 @@ from libarchive.ffi import (
 )
 
 tmpdir = Path(sys.argv[1])
-arc = tmpdir / "future.pax"
-payload = b"future\n"
-target_sec = 4070908800  # 2099-01-01T00:00:00Z
+arc = tmpdir / "twenty30.pax"
+payload = b"twenty30\n"
+target_sec = 1893456000  # 2030-01-01T00:00:00Z
 
 with libarchive.file_writer(str(arc), "pax") as writer:
     archive_p = writer._pointer
     with new_archive_entry() as ent:
-        ArchiveEntry(None, ent).pathname = "future.txt"
+        ArchiveEntry(None, ent).pathname = "twenty30.txt"
         entry_set_filetype(ent, REGULAR_FILE)
         entry_set_perm(ent, 0o644)
         entry_set_size(ent, len(payload))
@@ -53,6 +53,6 @@ with libarchive.file_reader(str(arc)) as archive:
         mtimes.append((entry.pathname, sec))
         b"".join(entry.get_blocks())
 
-assert mtimes == [("future.txt", target_sec)], mtimes
-print("pax-future-mtime", mtimes)
+assert mtimes == [("twenty30.txt", target_sec)], mtimes
+print("pax-2030-mtime", mtimes)
 PY

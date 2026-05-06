@@ -15,34 +15,42 @@ trap 'rm -rf "$tmpdir"' EXIT
 ruby -rvips - "$tmpdir" <<'RUBY'
 tmpdir = ARGV[0]
 
-pixels = [
-  0,   0,   0,   0,   0,
-  0, 255, 255, 255,   0,
-  0, 255, 255, 255,   0,
-  0, 255, 255, 255,   0,
-  0,   0,   0,   0,   0,
-]
-img = Vips::Image.new_from_memory(pixels.pack('C*'), 5, 5, 1, :uchar)
+w, h = 9, 9
+# 9x9 background of zeros with a 3x3 foreground square centred at (4,4).
+pixels = Array.new(w * h, 0)
+[3, 4, 5].each do |yy|
+  [3, 4, 5].each do |xx|
+    pixels[yy * w + xx] = 255
+  end
+end
+img = Vips::Image.new_from_memory(pixels.pack('C*'), w, h, 1, :uchar)
 
 cross = Vips::Image.new_from_array(
   [
-    [0, 255, 0],
+    [128, 255, 128],
     [255, 255, 255],
-    [0, 255, 0],
+    [128, 255, 128],
   ],
   1,
 )
 
 eroded = img.morph(cross, :erode)
-raise "dims" unless eroded.width == 5 && eroded.height == 5
+raise "dims" unless eroded.width == w && eroded.height == h
 
-(0...5).each do |y|
-  (0...5).each do |x|
-    got = eroded.getpoint(x, y)[0]
-    want = (x == 2 && y == 2) ? 255 : 0
-    raise "erode(#{x},#{y}) got=#{got} want=#{want}" unless got == want
-  end
-end
+# Erode with a 5-pixel cross-shaped structuring element collapses the 3x3 block
+# down to the single centre pixel; the four arm positions of the original block
+# fall to 0 because each one has at least one neighbour outside the foreground.
+centre = eroded.getpoint(4, 4)[0]
+above  = eroded.getpoint(4, 3)[0]
+below  = eroded.getpoint(4, 5)[0]
+left   = eroded.getpoint(3, 4)[0]
+right  = eroded.getpoint(5, 4)[0]
 
-puts "morph erode collapses 3x3 to centre pixel"
+raise "centre got=#{centre} want=255" unless centre == 255
+raise "above  got=#{above}  want=0"   unless above  == 0
+raise "below  got=#{below}  want=0"   unless below  == 0
+raise "left   got=#{left}   want=0"   unless left   == 0
+raise "right  got=#{right}  want=0"   unless right  == 0
+
+puts "morph erode keeps centre, clears cross arms"
 RUBY

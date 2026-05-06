@@ -24,10 +24,11 @@ gpg --print-md SHA256 "$tmpdir/a.txt" "$tmpdir/b.txt" >"$tmpdir/out" 2>&1
 validator_assert_contains "$tmpdir/out" 'a.txt:'
 validator_assert_contains "$tmpdir/out" 'b.txt:'
 
-# Two distinct 64-hex digests (SHA-256) should appear (whitespace allowed within hex).
-hex_lines=$(grep -cE '([0-9A-F]{2}[[:space:]]*){32}' "$tmpdir/out")
-[[ "$hex_lines" -ge 2 ]] || {
-  printf 'expected >=2 sha256 hex digests, found %s\n' "$hex_lines" >&2
+# gpg formats SHA256 as eight 8-hex groups across two lines per file;
+# verify >= 16 such groups (8 per digest * 2 files) appear.
+groups=$(grep -oE '\b[0-9A-F]{8}\b' "$tmpdir/out" | wc -l)
+[[ "$groups" -ge 16 ]] || {
+  printf 'expected >=16 8-hex groups (2 sha256 digests), got %s\n' "$groups" >&2
   cat "$tmpdir/out" >&2
   exit 1
 }

@@ -19,7 +19,7 @@ cat >"$tmpdir/in.xml" <<'XML'
 XML
 
 xmlstarlet sel -t -v "translate(/root/name, 'abcdefghijklmnopqrstuvwxyz', 'ABCDEFGHIJKLMNOPQRSTUVWXYZ')" "$tmpdir/in.xml" >"$tmpdir/out"
-read -r value <"$tmpdir/out"
+value=$(cat "$tmpdir/out")
 [[ "$value" == "HELLOWORLD" ]] || {
   echo "expected HELLOWORLD, got: $value" >&2
   exit 1

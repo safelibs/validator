@@ -6,22 +6,20 @@
 # @tags: usage, worker, nodejs
 # @client: nodejs
 
-set -euo pipefail
-source /validator/tests/_shared/runtime_helpers.sh
+tmpdir=$(mktemp -d)
+trap 'rm -rf "$tmpdir"' EXIT
 
-node - <<'JS'
+cat >"$tmpdir/worker.js" <<'JS'
 const { Worker, isMainThread, parentPort } = require('worker_threads');
 const assert = require('assert');
 
 if (isMainThread) {
   const buf = new ArrayBuffer(2048);
-  // Fill with a pattern so the worker can checksum it.
   new Uint8Array(buf).fill(0x5a);
   const w = new Worker(__filename);
   w.once('message', (msg) => {
     assert.strictEqual(msg.byteLength, 2048);
     assert.strictEqual(msg.firstByte, 0x5a);
-    // After transfer, the parent-side buffer must be detached.
     assert.strictEqual(buf.byteLength, 0, 'parent ArrayBuffer should be detached after transfer');
     w.terminate();
   });
@@ -34,3 +32,5 @@ if (isMainThread) {
   });
 }
 JS
+
+node "$tmpdir/worker.js"

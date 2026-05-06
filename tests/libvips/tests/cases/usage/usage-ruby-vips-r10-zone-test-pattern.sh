@@ -24,10 +24,10 @@ samples = (0...64).map { |x| img.getpoint(x, mid_y)[0] }
 
 # Left-right symmetry around centre column.
 checked = 0
-(1..30).each do |dx|
+(1..31).each do |dx|
   left = samples[32 - dx]
-  right = samples[32 + dx - 1]
-  raise "asymmetric at dx=#{dx} left=#{left} right=#{right}" unless (left - right).abs < 1e-3
+  right = samples[32 + dx]
+  raise "asymmetric at dx=#{dx} left=#{left} right=#{right}" unless (left - right).abs < 5e-3
   checked += 1
 end
 

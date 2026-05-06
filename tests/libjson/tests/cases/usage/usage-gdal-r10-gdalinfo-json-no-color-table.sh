@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # @testcase: usage-gdal-r10-gdalinfo-json-no-color-table
-# @title: GDAL gdalinfo JSON omits color table for greyscale tiff
-# @description: Converts the bundled gdalicon raster into a single-band Byte GeoTIFF via gdal_translate -b 1 and verifies that gdalinfo -json (json-c serialised) reports a single Gray-interpretation band with no colorTable key.
+# @title: GDAL gdalinfo JSON omits color table for single-band Byte tiff
+# @description: Converts the bundled gdalicon raster into a single-band Byte GeoTIFF via gdal_translate -b 1 and verifies that gdalinfo -json (json-c serialised) reports a single Red-interpretation band (band 1 of the source RGB) with no colorTable key.
 # @timeout: 180
 # @tags: usage, gdal, json
 # @client: gdal
@@ -22,6 +22,6 @@ validator_require_file "$tmpdir/gray.tif"
 gdalinfo -json "$tmpdir/gray.tif" >"$tmpdir/out.json"
 jq -e '
   ((.bands | length) == 1)
-  and (.bands[0].colorInterpretation == "Gray")
+  and (.bands[0].colorInterpretation == "Red")
   and ((.bands[0] | has("colorTable")) | not)
 ' "$tmpdir/out.json"

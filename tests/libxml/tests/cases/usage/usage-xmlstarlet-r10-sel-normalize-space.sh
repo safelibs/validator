@@ -19,7 +19,7 @@ cat >"$tmpdir/in.xml" <<'XML'
 XML
 
 xmlstarlet sel -t -v 'normalize-space(/root/msg)' "$tmpdir/in.xml" >"$tmpdir/out"
-read -r value <"$tmpdir/out"
+value=$(cat "$tmpdir/out")
 [[ "$value" == "alpha beta gamma" ]] || {
   echo "expected 'alpha beta gamma', got: '$value'" >&2
   exit 1

@@ -15,7 +15,7 @@ trap 'rm -rf "$tmpdir"' EXIT
 python3 - "$tmpdir/in.ppm" <<'PY'
 import sys
 w, h = 48, 24
-data = bytes([(x * 5 + y * 3) & 0xFF for x in range(w * h * 3)])
+data = bytes([(i * 5) & 0xFF for i in range(w * h * 3)])
 open(sys.argv[1], "wb").write(f"P6\n{w} {h}\n255\n".encode() + data)
 PY
 

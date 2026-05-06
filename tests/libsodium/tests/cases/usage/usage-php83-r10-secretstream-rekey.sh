@@ -12,7 +12,7 @@ source /validator/tests/_shared/runtime_helpers.sh
 php <<'PHP'
 <?php
 $key = sodium_crypto_secretstream_xchacha20poly1305_keygen();
-[$header, $push_state] = sodium_crypto_secretstream_xchacha20poly1305_init_push($key);
+[$push_state, $header] = sodium_crypto_secretstream_xchacha20poly1305_init_push($key);
 
 $msg1 = "secretstream r10 part one";
 $msg2 = "secretstream r10 part two";
