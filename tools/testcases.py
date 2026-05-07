@@ -58,10 +58,12 @@ GENERIC_USAGE_DESCRIPTION_RE = re.compile(
 )
 APT_PACKAGE_TOKEN_CHARS = r"A-Za-z0-9.+-"
 
-CASE_KINDS = ("source", "usage")
+CASE_KINDS = ("source", "usage", "regression")
 HEADER_DIRECTIVE_RE = re.compile(r"^#\s*@([a-z][a-z_-]*)\s*:\s*(.*)$")
 REQUIRED_HEADER_FIELDS = {"title", "description", "timeout", "tags"}
-ALLOWED_HEADER_FIELDS = REQUIRED_HEADER_FIELDS | {"testcase", "client"}
+ALLOWED_HEADER_FIELDS = REQUIRED_HEADER_FIELDS | {"testcase", "client", "cve"}
+REGRESSION_REQUIRED_HEADER_FIELDS = REQUIRED_HEADER_FIELDS | {"cve"}
+CVE_ID_RE = re.compile(r"^CVE-\d{4}-\d{4,}$")
 
 
 @dataclass(frozen=True)
@@ -75,6 +77,7 @@ class Testcase:
     tags: tuple[str, ...]
     client_application: str | None = None
     requires: tuple[str, ...] = ()
+    cve_id: str | None = None
 
 
 @dataclass(frozen=True)
@@ -248,7 +251,10 @@ def _validate_header_block(
 ) -> Testcase:
     case_id = validate_case_id(block.get("testcase", ""))
 
-    missing = REQUIRED_HEADER_FIELDS - block.keys()
+    required_fields = (
+        REGRESSION_REQUIRED_HEADER_FIELDS if kind == "regression" else REQUIRED_HEADER_FIELDS
+    )
+    missing = required_fields - block.keys()
     if missing:
         raise ValidatorError(
             f"testcase {case_id} in {script_path} is missing directives: {sorted(missing)}"
@@ -289,6 +295,9 @@ def _validate_header_block(
     client_text = block.get("client", "").strip()
     client_application: str | None = client_text or None
 
+    cve_text = block.get("cve", "").strip()
+    cve_id: str | None = cve_text or None
+
     if kind == "source" and client_application is not None:
         raise ValidatorError(
             f"source testcase must not define @client for {case_id} in {script_path}"
@@ -309,6 +318,24 @@ def _validate_header_block(
                 f"@client {client_application!r} is not present in dependent fixture identifiers "
                 f"for {library}: {script_path}"
             )
+    if kind == "regression":
+        if client_application is not None:
+            raise ValidatorError(
+                f"regression testcase must not define @client for {case_id} in {script_path}"
+            )
+        if cve_id is None:
+            raise ValidatorError(
+                f"regression testcase must define @cve for {case_id} in {script_path}"
+            )
+        if not CVE_ID_RE.fullmatch(cve_id):
+            raise ValidatorError(
+                f"@cve must match ^CVE-\\d{{4}}-\\d{{4,}}$ for {case_id} in {script_path}: {cve_id!r}"
+            )
+    else:
+        if cve_id is not None:
+            raise ValidatorError(
+                f"@cve directive is only allowed for regression testcases for {case_id} in {script_path}"
+            )
 
     return Testcase(
         id=case_id,
@@ -319,6 +346,7 @@ def _validate_header_block(
         timeout_seconds=timeout_seconds,
         tags=tags,
         client_application=client_application,
+        cve_id=cve_id,
     )
 
 
@@ -369,6 +397,7 @@ def _discover_testcases(
                         tags=case.tags,
                         client_application=case.client_application,
                         requires=case.requires,
+                        cve_id=case.cve_id,
                     )
                 )
     return cases
@@ -688,11 +717,13 @@ def summarize_manifests(manifests: dict[str, TestcaseManifest]) -> list[dict[str
         manifest = manifests[library]
         source_cases = sum(1 for testcase in manifest.testcases if testcase.kind == "source")
         usage_cases = sum(1 for testcase in manifest.testcases if testcase.kind == "usage")
+        regression_cases = sum(1 for testcase in manifest.testcases if testcase.kind == "regression")
         rows.append(
             {
                 "library": library,
                 "source_cases": source_cases,
                 "usage_cases": usage_cases,
+                "regression_cases": regression_cases,
                 "total_cases": len(manifest.testcases),
             }
         )
@@ -701,13 +732,17 @@ def summarize_manifests(manifests: dict[str, TestcaseManifest]) -> list[dict[str
 
 def print_manifest_summary(manifests: dict[str, TestcaseManifest]) -> None:
     rows = summarize_manifests(manifests)
-    print("library source usage total")
+    print("library source usage regression total")
     for row in rows:
-        print(f"{row['library']} {row['source_cases']} {row['usage_cases']} {row['total_cases']}")
+        print(
+            f"{row['library']} {row['source_cases']} {row['usage_cases']} "
+            f"{row['regression_cases']} {row['total_cases']}"
+        )
     print(
         "TOTAL "
         f"{sum(row['source_cases'] for row in rows)} "
         f"{sum(row['usage_cases'] for row in rows)} "
+        f"{sum(row['regression_cases'] for row in rows)} "
         f"{sum(row['total_cases'] for row in rows)}"
     )
 
@@ -723,6 +758,7 @@ def build_parser() -> argparse.ArgumentParser:
     parser.add_argument("--list-summary", action="store_true")
     parser.add_argument("--min-source-cases", type=int, default=0)
     parser.add_argument("--min-usage-cases", type=int, default=0)
+    parser.add_argument("--min-regression-cases", type=int, default=0)
     parser.add_argument("--min-cases", type=int, default=0)
     return parser
 
@@ -736,7 +772,12 @@ def main(argv: list[str] | None = None) -> int:
     selected = select_libraries(config, args.library)
     selected_config = dict(config)
     selected_config["libraries"] = selected
-    if args.min_source_cases < 0 or args.min_usage_cases < 0 or args.min_cases < 0:
+    if (
+        args.min_source_cases < 0
+        or args.min_usage_cases < 0
+        or args.min_regression_cases < 0
+        or args.min_cases < 0
+    ):
         raise ValidatorError("case thresholds must be non-negative")
 
     if args.check or args.list_summary:
@@ -753,6 +794,12 @@ def main(argv: list[str] | None = None) -> int:
             for testcase in manifest.testcases
             if testcase.kind == "usage"
         )
+        regression_cases = sum(
+            1
+            for manifest in manifests.values()
+            for testcase in manifest.testcases
+            if testcase.kind == "regression"
+        )
         total_cases = sum(len(manifest.testcases) for manifest in manifests.values())
         if args.list_summary:
             print_manifest_summary(manifests)
@@ -764,6 +811,10 @@ def main(argv: list[str] | None = None) -> int:
             raise ValidatorError(f"source case threshold not met: {source_cases} < {args.min_source_cases}")
         if args.min_usage_cases and usage_cases < args.min_usage_cases:
             raise ValidatorError(f"usage case threshold not met: {usage_cases} < {args.min_usage_cases}")
+        if args.min_regression_cases and regression_cases < args.min_regression_cases:
+            raise ValidatorError(
+                f"regression case threshold not met: {regression_cases} < {args.min_regression_cases}"
+            )
         if args.min_cases and total_cases < args.min_cases:
             raise ValidatorError(f"case threshold not met: {total_cases} < {args.min_cases}")
         return 0

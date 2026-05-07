@@ -1,0 +1,179 @@
+{
+  "source_file": "/home/yans/safelibs/port-glib/all_cves.json",
+  "analysis_scope": "Non-memory-corruption CVEs from all_cves.json whose root cause could plausibly survive a Rust reimplementation of GLib.",
+  "selection_criteria": [
+    "Included when the CVE is primarily about logic, permissions, privilege boundaries, origin/authentication, deserialization validation, algorithmic complexity, or numeric/API semantics rather than buffer corruption or use-after-free.",
+    "Excluded when the CVE is primarily a memory-corruption or memory-safety defect that Rust safe code would likely eliminate outright.",
+    "Excluded when the issue is only in bundled third-party code or downstream applications rather than GLib behavior that a Rust port would need to reproduce."
+  ],
+  "counts": {
+    "total_cves_reviewed": 47,
+    "relevant_non_memory_corruption_cves": 15
+  },
+  "relevant_cves": [
+    {
+      "id": "CVE-2009-3289",
+      "category": "filesystem_permissions",
+      "description": "The g_file_copy function in glib 2.0 sets the permissions of a target file to the permissions of a symbolic link (777), which allows user-assisted local users to modify files of other users, as demonstrated by using Nautilus to modify the permissions of the user home directory.",
+      "why_relevant_to_rust_port": "File-copy permission semantics are independent of memory safety. A Rust port must preserve secure handling of symlinks and destination modes during copy operations.",
+      "porting_focus": [
+        "avoid inheriting 0777 from symlinks",
+        "apply destination permissions atomically and intentionally"
+      ],
+      "debian_notes": "[etch] - glib2.0 <no-dsa> (Minor issue)"
+    },
+    {
+      "id": "CVE-2012-0039",
+      "category": "algorithmic_complexity",
+      "description": "GLib 2.31.8 and earlier, when the g_str_hash function is used, computes hash values without restricting the ability to trigger hash collisions predictably, which allows context-dependent attackers to cause a denial of service (CPU consumption) via crafted input to an application that maintains a hash table. NOTE: this issue may be disputed by the vendor; the existence of the g_str_hash function is not a vulnerability in the library, because callers of g_hash_table_new and g_hash_table_new_full can specify an arbitrary hash function that is appropriate for the application.",
+      "why_relevant_to_rust_port": "Predictable hash collisions can still cause CPU denial of service in Rust if default string hashing for GLib-style hash tables is deterministic or attacker-controlled.",
+      "porting_focus": [
+        "consider keyed/salted hashing",
+        "document when callers must supply custom hashers for adversarial input"
+      ]
+    },
+    {
+      "id": "CVE-2018-16428",
+      "category": "parser_state_handling",
+      "description": "In GNOME GLib 2.56.1, g_markup_parse_context_end_parse() in gmarkup.c has a NULL pointer dereference.",
+      "why_relevant_to_rust_port": "The core issue is parser end-state handling on malformed markup. Rust removes NULL dereferences in safe code, but equivalent panic-or-crash behavior is still possible if parser state transitions are wrong.",
+      "porting_focus": [
+        "make parser finalization total over all states",
+        "return structured errors for malformed input instead of panicking"
+      ],
+      "debian_notes": "https://gitlab.gnome.org/GNOME/glib/commit/fccef3cc822af74699cca84cd202719ae61ca3b9 https://gitlab.gnome.org/GNOME/glib/issues/1364"
+    },
+    {
+      "id": "CVE-2019-12450",
+      "category": "filesystem_permissions",
+      "description": "file_copy_fallback in gio/gfile.c in GNOME GLib 2.15.0 through 2.61.1 does not properly restrict file permissions while a copy operation is in progress. Instead, default permissions are used.",
+      "why_relevant_to_rust_port": "Temporary exposure of permissive modes during file copy is a semantic security bug, not a memory bug. A Rust port must control intermediate and final permissions carefully.",
+      "porting_focus": [
+        "create copies with restrictive permissions first",
+        "widen permissions only after the copy is complete if needed"
+      ],
+      "debian_notes": "https://gitlab.gnome.org/GNOME/glib/commit/d8f8f4d637ce43f8699ba94c9b7648beda0ca174"
+    },
+    {
+      "id": "CVE-2019-13012",
+      "category": "filesystem_permissions",
+      "description": "The keyfile settings backend in GNOME GLib (aka glib2.0) before 2.60.0 creates directories using g_file_make_directory_with_parents (kfsb->dir, NULL, NULL) and files using g_file_replace_contents (kfsb->file, contents, length, NULL, FALSE, G_FILE_CREATE_REPLACE_DESTINATION, NULL, NULL, NULL). Consequently, it does not properly restrict directory (and file) permissions. Instead, for directories, 0777 permissions are used; for files, default file permissions are used. This is similar to CVE-2019-12450.",
+      "why_relevant_to_rust_port": "Creating configuration directories and files with overly broad default permissions remains a risk in any language.",
+      "porting_focus": [
+        "use least-privilege modes for settings backends",
+        "avoid relying on process umask for sensitive paths"
+      ],
+      "debian_notes": "https://gitlab.gnome.org/GNOME/glib/issues/1658 https://gitlab.gnome.org/GNOME/glib/merge_requests/450 https://gitlab.gnome.org/GNOME/glib/commit/5e4da714f00f6bfb2ccd6d73d61329c6f3a08429"
+    },
+    {
+      "id": "CVE-2020-6750",
+      "category": "network_policy_bypass",
+      "description": "GSocketClient in GNOME GLib through 2.62.4 may occasionally connect directly to a target address instead of connecting via a proxy server when configured to do so, because the proxy_addr field is mishandled. This bug is timing-dependent and may occur only sporadically depending on network delays. The greatest security relevance is in use cases where a proxy is used to help with privacy/anonymity, even though there is no technical barrier to a direct connection. NOTE: versions before 2.60 are unaffected.",
+      "why_relevant_to_rust_port": "Proxy-bypass behavior is a logic bug in connection orchestration. Rust ownership does not prevent accidentally falling back to direct connections.",
+      "porting_focus": [
+        "make proxy-vs-direct routing explicit in the state machine",
+        "test timing-sensitive proxy paths"
+      ],
+      "debian_notes": "[buster] - glib2.0 <not-affected> (Vulnerable code introduced later, regreession from 2.60.0) [stretch] - glib2.0 <not-affected> (Vulnerable code introduced later, regreession from 2.60.0) [jessie] - glib2.0 <not-affected> (Vulnerable code introduced later, regreession from 2.60.0) https://gitlab.gnome.org/GNOME/glib/issues/1989"
+    },
+    {
+      "id": "CVE-2021-3800",
+      "category": "environment_and_privilege_boundary",
+      "description": "A flaw was found in glib before version 2.63.6. Due to random charset alias, pkexec can leak content from files owned by privileged users to unprivileged ones under the right condition.",
+      "why_relevant_to_rust_port": "Charset alias and environment handling across privilege boundaries can leak data regardless of implementation language.",
+      "porting_focus": [
+        "treat environment-driven charset resolution as untrusted in privileged contexts",
+        "avoid unsafe alias-directory overrides across privilege boundaries"
+      ],
+      "debian_notes": "https://gitlab.gnome.org/GNOME/glib/-/commit/3529bb4450a519959a5d9cb787404296322618a1 (2.63.6) https://www.openwall.com/lists/oss-security/2017/06/23/8"
+    },
+    {
+      "id": "CVE-2021-27218",
+      "category": "api_contract_numeric_semantics",
+      "description": "An issue was discovered in GNOME GLib before 2.66.7 and 2.67.x before 2.67.4. If g_byte_array_new_take() was called with a buffer of 4GB or more on a 64-bit platform, the length would be truncated modulo 2**32, causing unintended length truncation.",
+      "why_relevant_to_rust_port": "Length truncation is a numeric/API-contract bug rather than memory corruption. A Rust port can still reproduce it if it preserves 32-bit length semantics or performs unchecked narrowing conversions.",
+      "porting_focus": [
+        "use checked conversions at ABI boundaries",
+        "define behavior for inputs larger than 4 GiB explicitly"
+      ],
+      "debian_notes": "https://gitlab.gnome.org/GNOME/glib/-/merge_requests/1942 Test case depends on CVE-2021-27219 fix"
+    },
+    {
+      "id": "CVE-2021-28153",
+      "category": "filesystem_symlink_semantics",
+      "description": "An issue was discovered in GNOME GLib before 2.66.8. When g_file_replace() is used with G_FILE_CREATE_REPLACE_DESTINATION to replace a path that is a dangling symlink, it incorrectly also creates the target of the symlink as an empty file, which could conceivably have security relevance if the symlink is attacker-controlled. (If the path is a symlink to a file that already exists, then the contents of that file correctly remain unchanged.)",
+      "why_relevant_to_rust_port": "Dangling-symlink replacement semantics are a filesystem logic issue that remains relevant in Rust.",
+      "porting_focus": [
+        "treat symlink replacement as a security-sensitive operation",
+        "ensure replace-destination does not materialize attacker-chosen targets"
+      ],
+      "debian_notes": "https://gitlab.gnome.org/GNOME/glib/-/issues/2325"
+    },
+    {
+      "id": "CVE-2023-29499",
+      "category": "deserialization_validation",
+      "description": "A flaw was found in GLib. GVariant deserialization fails to validate that the input conforms to the expected format, leading to denial of service.",
+      "why_relevant_to_rust_port": "Insufficient validation during GVariant deserialization can lead to denial of service even in memory-safe code.",
+      "porting_focus": [
+        "fully validate serialized layouts before deeper traversal",
+        "separate validation from decoding"
+      ],
+      "debian_notes": "https://gitlab.gnome.org/GNOME/glib/-/issues/2794 https://gitlab.gnome.org/GNOME/glib/-/merge_requests/3125 https://gitlab.gnome.org/GNOME/glib/-/merge_requests/3126 (2.74, 3125 backport) Merge commit for glib-2-74: https://gitlab.gnome.org/GNOME/glib/-/commit/e16fb83755e08a4c2da2b0a8ea0fc2e27b1154bf (2.74.4) Be careful. Original fix introduces new bugs, resulting in CVE-2023-32643 and CVE-2023-32636 https://gitlab.gnome.org/GNOME/glib/-/issues/2840 (CVE-2023-32643) https://gitlab.gnome.org/GNOME/glib/-/issues/2841 (CVE-2023-32636)"
+    },
+    {
+      "id": "CVE-2023-32611",
+      "category": "algorithmic_complexity",
+      "description": "A flaw was found in GLib. GVariant deserialization is vulnerable to a slowdown issue where a crafted GVariant can cause excessive processing, leading to denial of service.",
+      "why_relevant_to_rust_port": "Crafted GVariant inputs causing excessive processing are a pure complexity issue that Rust does not solve automatically.",
+      "porting_focus": [
+        "bound work during deserialization",
+        "measure worst-case behavior on adversarial inputs"
+      ],
+      "debian_notes": "https://gitlab.gnome.org/GNOME/glib/-/issues/2797 https://gitlab.gnome.org/GNOME/glib/-/merge_requests/3125 https://gitlab.gnome.org/GNOME/glib/-/merge_requests/3126 (2.74, 3125 backport) Merge commit for glib-2-74: https://gitlab.gnome.org/GNOME/glib/-/commit/e16fb83755e08a4c2da2b0a8ea0fc2e27b1154bf (2.74.4) Be careful. Original fix introduces new bugs, resulting in CVE-2023-32643 and CVE-2023-32636 https://gitlab.gnome.org/GNOME/glib/-/issues/2840 (CVE-2023-32643) https://gitlab.gnome.org/GNOME/glib/-/issues/2841 (CVE-2023-32636)"
+    },
+    {
+      "id": "CVE-2023-32636",
+      "category": "algorithmic_complexity",
+      "description": "A flaw was found in glib, where the gvariant deserialization code is vulnerable to a denial of service introduced by additional input validation added to resolve CVE-2023-29499. The offset table validation may be very slow. This bug does not affect any released version of glib but does affect glib distributors who followed the guidance of glib developers to backport the initial fix for CVE-2023-29499.",
+      "why_relevant_to_rust_port": "A fix-induced slow validation path is still relevant to a Rust rewrite because defensive validation can itself become a denial-of-service vector.",
+      "porting_focus": [
+        "review validation algorithms for worst-case complexity",
+        "treat security fixes as candidates for performance regression tests"
+      ],
+      "debian_notes": "- glib2.0 <not-affected> (Incomplete fixes for CVE-2023-29499, CVE-2023-32611 and CVE-2023-32665 not applied) https://gitlab.gnome.org/GNOME/glib/-/issues/2841"
+    },
+    {
+      "id": "CVE-2023-32665",
+      "category": "algorithmic_complexity",
+      "description": "A flaw was found in GLib. GVariant deserialization is vulnerable to an exponential blowup issue where a crafted GVariant can cause excessive processing, leading to denial of service.",
+      "why_relevant_to_rust_port": "Exponential blowup in deserialization is language-agnostic and must be addressed by parser design.",
+      "porting_focus": [
+        "avoid recursive or repeated work that scales exponentially",
+        "add adversarial complexity tests for nested GVariant inputs"
+      ],
+      "debian_notes": "https://gitlab.gnome.org/GNOME/glib/-/issues/2121 https://gitlab.gnome.org/GNOME/glib/-/merge_requests/3125 https://gitlab.gnome.org/GNOME/glib/-/merge_requests/3126 (2.74, 3125 backport) Merge commit for glib-2-74: https://gitlab.gnome.org/GNOME/glib/-/commit/e16fb83755e08a4c2da2b0a8ea0fc2e27b1154bf (2.74.4) Be careful. Original fix introduces new bugs, resulting in CVE-2023-32643 and CVE-2023-32636 https://gitlab.gnome.org/GNOME/glib/-/issues/2840 (CVE-2023-32643) https://gitlab.gnome.org/GNOME/glib/-/issues/2841 (CVE-2023-32636)"
+    },
+    {
+      "id": "CVE-2024-34397",
+      "category": "origin_authentication",
+      "description": "An issue was discovered in GNOME GLib before 2.78.5, and 2.79.x and 2.80.x before 2.80.1. When a GDBus-based client subscribes to signals from a trusted system service such as NetworkManager on a shared computer, other users of the same computer can send spoofed D-Bus signals that the GDBus-based client will wrongly interpret as having been sent by the trusted system service. This could lead to the GDBus-based client behaving incorrectly, with an application-dependent impact.",
+      "why_relevant_to_rust_port": "Accepting spoofed D-Bus signals from untrusted local senders is an origin-validation flaw, not a memory issue.",
+      "porting_focus": [
+        "bind subscriptions to authenticated sender identity",
+        "model trust boundaries explicitly in signal dispatch"
+      ],
+      "debian_notes": "https://gitlab.gnome.org/GNOME/glib/-/issues/3268 Fixes: https://gitlab.gnome.org/GNOME/glib/-/issues/3268#fixes Requires regression fix for src:gnome-shell: https://gitlab.gnome.org/GNOME/gnome-shell/-/commit/50a011a19dcc6997ea6173c07bb80b2d9888d363"
+    },
+    {
+      "id": "CVE-2025-4056",
+      "category": "platform_specific_dos",
+      "description": "A flaw was found in GLib. A denial of service on Windows platforms may occur if an application attempts to spawn a program using long command lines.",
+      "why_relevant_to_rust_port": "Windows command-line spawning behavior can still fail catastrophically in Rust if long command lines are mishandled.",
+      "porting_focus": [
+        "bound or preflight Windows command-line construction",
+        "test spawn paths with oversized argument vectors"
+      ],
+      "debian_notes": "- glib2.0 <not-affected> (Only affects Glib on Windows) https://bugzilla.redhat.com/show_bug.cgi?id=2362826 https://gitlab.gnome.org/GNOME/glib/-/issues/3668 https://gitlab.gnome.org/GNOME/glib/-/merge_requests/4570 Fixed by: https://gitlab.gnome.org/GNOME/glib/-/commit/f1a498e178709dcd5c26303a5b54ae5007733fc5 (2.84.1)"
+    }
+  ]
+}

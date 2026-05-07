@@ -15,9 +15,11 @@ SMOKE_LIBRARIES ?= cjson libarchive libuv libwebp
 LIBRARIES ?= $(LIBRARY)
 MIN_SOURCE_CASES ?= 0
 MIN_USAGE_CASES ?= 0
+MIN_REGRESSION_CASES ?= 0
 MIN_CASES ?= 0
 REPO_MIN_SOURCE_CASES ?= 120
 REPO_MIN_USAGE_CASES ?= 1683
+REPO_MIN_REGRESSION_CASES ?= 0
 REPO_MIN_CASES ?= 1803
 LIBRARY_ARGS = $(foreach library,$(LIBRARIES),--library $(library))
 
@@ -27,7 +29,7 @@ unit:
 	$(PYTHON) -m unittest discover -s unit -v
 
 check-testcases:
-	$(PYTHON) tools/testcases.py --config $(CONFIG) --tests-root $(TESTS_ROOT) --check --min-source-cases $(REPO_MIN_SOURCE_CASES) --min-usage-cases $(REPO_MIN_USAGE_CASES) --min-cases $(REPO_MIN_CASES)
+	$(PYTHON) tools/testcases.py --config $(CONFIG) --tests-root $(TESTS_ROOT) --check --min-source-cases $(REPO_MIN_SOURCE_CASES) --min-usage-cases $(REPO_MIN_USAGE_CASES) --min-regression-cases $(REPO_MIN_REGRESSION_CASES) --min-cases $(REPO_MIN_CASES)
 
 fetch-port-debs:
 	$(PYTHON) tools/fetch_port_debs.py --config $(CONFIG) --port-repos $(PORT_REPOS) --output-root $(PORT_DEB_ROOT) --lock-output $(PORT_LOCK_PATH) $(LIBRARY_ARGS)
@@ -48,10 +50,10 @@ matrix-smoke:
 proof: proof-original
 
 proof-original:
-	$(PYTHON) tools/verify_proof_artifacts.py --config $(CONFIG) --tests-root $(TESTS_ROOT) --artifact-root $(ARTIFACT_ROOT) --proof-output $(PROOF_PATH) --mode original $(LIBRARY_ARGS) $(if $(or $(REQUIRE_CASTS),$(RECORD_CASTS)),--require-casts,) --min-source-cases $(MIN_SOURCE_CASES) --min-usage-cases $(MIN_USAGE_CASES) --min-cases $(MIN_CASES)
+	$(PYTHON) tools/verify_proof_artifacts.py --config $(CONFIG) --tests-root $(TESTS_ROOT) --artifact-root $(ARTIFACT_ROOT) --proof-output $(PROOF_PATH) --mode original $(LIBRARY_ARGS) $(if $(or $(REQUIRE_CASTS),$(RECORD_CASTS)),--require-casts,) --min-source-cases $(MIN_SOURCE_CASES) --min-usage-cases $(MIN_USAGE_CASES) --min-regression-cases $(MIN_REGRESSION_CASES) --min-cases $(MIN_CASES)
 
 proof-port:
-	$(PYTHON) tools/verify_proof_artifacts.py --config $(CONFIG) --tests-root $(TESTS_ROOT) --artifact-root $(ARTIFACT_ROOT) --proof-output $(PORT_PROOF_PATH) --mode $(PORT_MODE) $(LIBRARY_ARGS) $(if $(or $(REQUIRE_CASTS),$(RECORD_CASTS)),--require-casts,) --min-source-cases $(MIN_SOURCE_CASES) --min-usage-cases $(MIN_USAGE_CASES) --min-cases $(MIN_CASES)
+	$(PYTHON) tools/verify_proof_artifacts.py --config $(CONFIG) --tests-root $(TESTS_ROOT) --artifact-root $(ARTIFACT_ROOT) --proof-output $(PORT_PROOF_PATH) --mode $(PORT_MODE) $(LIBRARY_ARGS) $(if $(or $(REQUIRE_CASTS),$(RECORD_CASTS)),--require-casts,) --min-source-cases $(MIN_SOURCE_CASES) --min-usage-cases $(MIN_USAGE_CASES) --min-regression-cases $(MIN_REGRESSION_CASES) --min-cases $(MIN_CASES)
 
 proof-dual: proof-original proof-port
 

@@ -24,6 +24,7 @@ def build_parser() -> argparse.ArgumentParser:
     parser.add_argument("--min-cases", type=int, default=0)
     parser.add_argument("--min-source-cases", type=int, default=0)
     parser.add_argument("--min-usage-cases", type=int, default=0)
+    parser.add_argument("--min-regression-cases", type=int, default=0)
     parser.add_argument(
         "--ports-root",
         type=Path,
@@ -75,7 +76,12 @@ def _validate_proof_output_path(raw_path: str, *, artifact_root: Path) -> Path:
 
 def main(argv: list[str] | None = None) -> int:
     args = build_parser().parse_args(argv)
-    if args.min_cases < 0 or args.min_source_cases < 0 or args.min_usage_cases < 0:
+    if (
+        args.min_cases < 0
+        or args.min_source_cases < 0
+        or args.min_usage_cases < 0
+        or args.min_regression_cases < 0
+    ):
         raise ValidatorError("case thresholds must be non-negative")
 
     libraries = args.library or None
@@ -95,6 +101,7 @@ def main(argv: list[str] | None = None) -> int:
         min_cases=args.min_cases,
         min_source_cases=args.min_source_cases,
         min_usage_cases=args.min_usage_cases,
+        min_regression_cases=args.min_regression_cases,
         require_casts=args.require_casts,
         ports_root=args.ports_root,
     )

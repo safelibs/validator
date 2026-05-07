@@ -318,6 +318,7 @@ def _inventory_counts(rows: list[dict[str, Any]]) -> dict[str, int]:
         "cases": len(testcases),
         "source_cases": sum(1 for row in testcases.values() if row["kind"] == "source"),
         "usage_cases": sum(1 for row in testcases.values() if row["kind"] == "usage"),
+        "regression_cases": sum(1 for row in testcases.values() if row["kind"] == "regression"),
     }
 
 
@@ -357,6 +358,7 @@ def _summary_cards(site_data: dict[str, Any], *, current_library: str | None = N
         "cases": inventory["cases"],
         "source_cases": inventory["source_cases"],
         "usage_cases": inventory["usage_cases"],
+        "regression_cases": inventory["regression_cases"],
         "passed": ports["passed"],
         "failed": ports["failed"],
         "casts": cast_total,
@@ -366,6 +368,7 @@ def _summary_cards(site_data: dict[str, Any], *, current_library: str | None = N
         ("cases", "Tests", totals["cases"]),
         ("source_cases", "Source tests", totals["source_cases"]),
         ("usage_cases", "Usage tests", totals["usage_cases"]),
+        ("regression_cases", "Regression tests", totals["regression_cases"]),
         ("passed", "Port tests passing", _ratio_text(ports["passed"], ports["cases"])),
         ("failed", "Port tests failing", ports["failed"] if ports["cases"] else "Not run"),
         ("casts", "Evidence casts", f"{cast_total} ({cast_coverage})"),
@@ -467,6 +470,7 @@ def _library_card(
             f'              <div><dt>Tests</dt><dd>{html.escape(str(inventory["cases"]))}</dd></div>',
             f'              <div><dt>Source</dt><dd>{html.escape(str(inventory["source_cases"]))}</dd></div>',
             f'              <div><dt>Usage</dt><dd>{html.escape(str(inventory["usage_cases"]))}</dd></div>',
+            f'              <div><dt>Regression</dt><dd>{html.escape(str(inventory["regression_cases"]))}</dd></div>',
             f"              <div><dt>Port pass</dt><dd>{html.escape(port_ratio)}</dd></div>",
             "            </dl>",
             "          </a>",
@@ -624,7 +628,7 @@ def _filters(site_data: dict[str, Any]) -> str:
             '        <label class="search-label">Search <input id="search-input" type="search" autocomplete="off" name="search"></label>',
             f'        <label>Run mode <select id="mode-filter" name="mode">{"".join(mode_options)}</select></label>',
             '        <label>Status <select id="status-filter"><option value="all">All</option><option value="passed">Passed</option><option value="failed">Failed</option></select></label>',
-            '        <label>Kind <select id="kind-filter"><option value="all">All</option><option value="source">Source</option><option value="usage">Usage</option></select></label>',
+            '        <label>Kind <select id="kind-filter"><option value="all">All</option><option value="source">Source</option><option value="usage">Usage</option><option value="regression">Regression</option></select></label>',
             "      </section>",
         ]
     )

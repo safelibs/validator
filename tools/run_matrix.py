@@ -1131,6 +1131,7 @@ def write_library_summary(
         "cases": len(results),
         "source_cases": sum(1 for result in results if result.get("kind") == "source"),
         "usage_cases": sum(1 for result in results if result.get("kind") == "usage"),
+        "regression_cases": sum(1 for result in results if result.get("kind") == "regression"),
         "passed": sum(1 for result in results if result.get("status") == "passed"),
         "failed": sum(1 for result in results if result.get("status") == "failed"),
         "casts": sum(1 for result in results if result.get("cast_path") is not None),

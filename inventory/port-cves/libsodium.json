@@ -1,0 +1,50 @@
+{
+  "generated_from": "all_cves.json",
+  "analysis_date": "2026-04-02",
+  "selection_rule": "Keep only CVEs that directly affect libsodium and are not fundamentally memory-corruption issues, so they could still recur in a Rust reimplementation.",
+  "summary": {
+    "direct_libsodium_cves_reviewed": 1,
+    "relevant_non_memory_corruption_cves": 1,
+    "notes": [
+      "The source dataset contains one direct libsodium CVE as of 2026-04-02: CVE-2025-69277.",
+      "That CVE is a cryptographic validation logic flaw rather than a memory-safety flaw, so Rust does not remove the risk by itself."
+    ]
+  },
+  "relevant_cves": [
+    {
+      "cve_id": "CVE-2025-69277",
+      "relevant_to_rust_reimplementation": true,
+      "memory_corruption": false,
+      "issue_class": "Cryptographic point-validation logic flaw",
+      "cwe": [
+        "CWE-184"
+      ],
+      "affected_component": {
+        "public_api": "crypto_core_ed25519_is_valid_point",
+        "internal_function": "ge25519_is_on_main_subgroup",
+        "upstream_fix_commit": "ad3004ec8731730e93fcfbbc824e67eadc1c1bae",
+        "upstream_fix_summary": "core_ed25519_is_valid_point: check Y==Z in addition to X==0"
+      },
+      "affected_versions_summary": [
+        "The MITRE CVE record marks git versions before ad3004ec8731730e93fcfbbc824e67eadc1c1bae as affected.",
+        "The upstream disclosure says point releases <= 1.0.20 or versions released before 2025-12-30 are affected in atypical use cases involving crypto_core_ed25519_is_valid_point."
+      ],
+      "root_cause": "After multiplying a candidate Edwards25519 point by the subgroup order, the old implementation only checked X == 0 and omitted the required identity condition Y == Z. That let some non-main-subgroup points pass validation.",
+      "why_it_matters_for_rust": [
+        "This is a semantic correctness bug in elliptic-curve validation, not a bug caused by unsafe memory access.",
+        "A faithful Rust port of the old behavior would still accept invalid mixed-order points.",
+        "Rust's ownership and bounds checks do not prove subgroup-membership logic or cryptographic invariants."
+      ],
+      "porting_actions": [
+        "Implement main-subgroup validation so the multiplied point is accepted only when both X == 0 and Y == Z hold.",
+        "Carry forward regression coverage for the previously accepted invalid cases, including the point exercised by the upstream not_main_subgroup_p test vector.",
+        "Review every Rust entry point that accepts untrusted Ed25519 points for low-level operations such as validation, addition, subtraction, or scalar multiplication."
+      ],
+      "repo_evidence": {
+        "fixed_function_path": "original/src/libsodium/crypto_core/ed25519/ref10/ed25519_ref10.c:992",
+        "regression_test_path": "original/test/default/core_ed25519.c:125",
+        "debian_patch_path": "original/debian/patches/CVE-2025-69277.patch"
+      }
+    }
+  ]
+}

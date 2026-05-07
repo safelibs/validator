@@ -246,9 +246,78 @@ class RunMatrixTests(unittest.TestCase):
         self.assertEqual(summary["cases"], 2)
         self.assertEqual(summary["source_cases"], 1)
         self.assertEqual(summary["usage_cases"], 1)
+        self.assertEqual(summary["regression_cases"], 0)
         self.assertEqual(summary["passed"], 2)
         self.assertEqual(summary["failed"], 0)
         self.assertEqual(summary["casts"], 2)
+
+    def test_summary_aggregates_regression_cases(self) -> None:
+        root = self.run_root()
+        tests_root = root / "tests"
+        library_root = tests_root / "regression-demo"
+        regression_dir = library_root / "tests" / "cases" / "regression"
+        regression_dir.mkdir(parents=True)
+        manifest_path = library_root / "testcases.yml"
+        manifest_path.write_text(
+            "schema_version: 1\n"
+            "library: regression-demo\n"
+            "apt_packages:\n  - demo-runtime\n"
+        )
+        regression_script = regression_dir / "regression-cve-demo.sh"
+        regression_script.write_text(
+            "#!/usr/bin/env bash\n"
+            "# @testcase: regression-cve-demo\n"
+            "# @title: Regression demo\n"
+            "# @description: Regression case driven by a CVE id.\n"
+            "# @timeout: 30\n"
+            "# @tags: regression\n"
+            "# @cve: CVE-2024-12345\n"
+            "set -euo pipefail\n"
+            "echo regression\n"
+        )
+        regression_script.chmod(0o755)
+
+        config = {
+            "libraries": [
+                {
+                    "name": "regression-demo",
+                    "apt_packages": ["demo-runtime"],
+                    "testcases": str(manifest_path),
+                }
+            ]
+        }
+
+        artifact_root = root / "artifacts"
+        with mock.patch("tools.run_matrix.load_manifest", return_value=config), mock.patch(
+            "tools.run_matrix.ensure_library_image",
+            return_value="validator-regression-demo",
+        ), mock.patch(
+            "tools.run_matrix.run_logged",
+            side_effect=self.fake_logged_run(),
+        ):
+            exit_code = run_matrix.main(
+                [
+                    "--config",
+                    str(manifest_path),
+                    "--tests-root",
+                    str(tests_root),
+                    "--artifact-root",
+                    str(artifact_root),
+                ]
+            )
+
+        self.assertEqual(exit_code, 0)
+        result = json.loads(
+            (artifact_root / "results" / "regression-demo" / "regression-cve-demo.json").read_text()
+        )
+        summary = json.loads(
+            (artifact_root / "results" / "regression-demo" / "summary.json").read_text()
+        )
+        self.assertEqual(result["kind"], "regression")
+        self.assertEqual(summary["cases"], 1)
+        self.assertEqual(summary["source_cases"], 0)
+        self.assertEqual(summary["usage_cases"], 0)
+        self.assertEqual(summary["regression_cases"], 1)
 
     def test_record_casts_runs_bash_testcase_with_xtrace(self) -> None:
         root = self.run_root()

@@ -51,6 +51,32 @@ def _source_script(case_id: str = "source-demo", *, extra_directives: str = "") 
     return body
 
 
+def _regression_script(
+    case_id: str = "regression-cve-demo",
+    *,
+    cve: str | None = "CVE-2024-12345",
+    extra_directives: str = "",
+) -> str:
+    cve_line = f"# @cve: {cve}\n" if cve is not None else ""
+    body = textwrap.dedent(
+        f"""\
+        #!/usr/bin/env bash
+        # @testcase: {case_id}
+        # @title: Regression demo
+        # @description: Exercises a known CVE regression on the original baseline.
+        # @timeout: 30
+        # @tags: regression
+        """
+    ) + cve_line + extra_directives + textwrap.dedent(
+        """\
+
+        set -euo pipefail
+        echo regression
+        """
+    )
+    return body
+
+
 def _usage_script(
     case_id: str = "usage-known-client",
     *,
@@ -373,6 +399,69 @@ class TestcaseManifestTests(unittest.TestCase):
                     used_clients={"known-client"},
                 )
 
+    def test_regression_testcase_requires_cve_and_rejects_client(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            library_root = Path(tmp) / "demo"
+            (library_root / "tests" / "cases" / "regression").mkdir(parents=True)
+            manifest_path = library_root / "testcases.yml"
+            manifest_path.write_text(
+                yaml.safe_dump(
+                    {
+                        "schema_version": 1,
+                        "library": "demo",
+                        "apt_packages": ["demo-runtime"],
+                    },
+                    sort_keys=False,
+                )
+            )
+            script_path = library_root / "tests" / "cases" / "regression" / "regression-cve-demo.sh"
+
+            _write_executable(script_path, _regression_script())
+            manifest = testcases.load_testcase_manifest(manifest_path, library="demo")
+            (case,) = manifest.testcases
+            self.assertEqual(case.kind, "regression")
+            self.assertEqual(case.cve_id, "CVE-2024-12345")
+            self.assertIsNone(case.client_application)
+
+            _write_executable(script_path, _regression_script(cve=None))
+            with self.assertRaisesRegex(ValidatorError, "missing directives"):
+                testcases.load_testcase_manifest(manifest_path, library="demo")
+
+            _write_executable(
+                script_path,
+                _regression_script(extra_directives="# @client: anything\n"),
+            )
+            with self.assertRaisesRegex(ValidatorError, "must not define @client"):
+                testcases.load_testcase_manifest(manifest_path, library="demo")
+
+            for bad_cve in ("not-a-cve", "CVE-12-345", "cve-2024-1234", "CVE-2024-123"):
+                _write_executable(script_path, _regression_script(cve=bad_cve))
+                with self.subTest(bad_cve=bad_cve):
+                    with self.assertRaisesRegex(ValidatorError, "@cve must match"):
+                        testcases.load_testcase_manifest(manifest_path, library="demo")
+
+    def test_cve_directive_rejected_for_non_regression_kinds(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            library_root = Path(tmp) / "demo"
+            (library_root / "tests" / "cases" / "source").mkdir(parents=True)
+            manifest_path = library_root / "testcases.yml"
+            manifest_path.write_text(
+                yaml.safe_dump(
+                    {
+                        "schema_version": 1,
+                        "library": "demo",
+                        "apt_packages": ["demo-runtime"],
+                    },
+                    sort_keys=False,
+                )
+            )
+            _write_executable(
+                library_root / "tests" / "cases" / "source" / "source-demo.sh",
+                _source_script(extra_directives="# @cve: CVE-2024-12345\n"),
+            )
+            with self.assertRaisesRegex(ValidatorError, "only allowed for regression"):
+                testcases.load_testcase_manifest(manifest_path, library="demo")
+
     def test_summarize_manifests_counts_usage_cases(self) -> None:
         manifest = testcases.TestcaseManifest(
             library="demo",
@@ -403,7 +492,15 @@ class TestcaseManifestTests(unittest.TestCase):
 
         self.assertEqual(
             testcases.summarize_manifests({"demo": manifest}),
-            [{"library": "demo", "source_cases": 1, "usage_cases": 1, "total_cases": 2}],
+            [
+                {
+                    "library": "demo",
+                    "source_cases": 1,
+                    "usage_cases": 1,
+                    "regression_cases": 0,
+                    "total_cases": 2,
+                }
+            ],
         )
 
     def test_extract_dependent_identifiers_supports_existing_fixture_shapes(self) -> None:

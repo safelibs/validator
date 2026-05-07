@@ -1,0 +1,525 @@
+{
+  "schema_version": 1,
+  "generated_at": "2026-04-02T00:01:53Z",
+  "source_file": "/home/yans/code/safelibs/ported/libxml/all_cves.json",
+  "package": {
+    "name": "libxml2",
+    "target_language": "Rust"
+  },
+  "selection_criteria": {
+    "include": [
+      "Published libxml2 CVEs whose primary issue is not memory corruption",
+      "Issues whose root cause can survive a memory-safe Rust rewrite, especially entity-expansion policy bugs, XXE exposure, uncontrolled recursion, algorithmic denial of service, decompression-resource bugs, and parser/XPath/schema logic or invariant failures"
+    ],
+    "exclude": [
+      "C-only memory-corruption issues whose security impact depends on raw pointer misuse, manual buffer sizing, or use-after-free",
+      "Wrapper-specific or tool-only issues that do not reflect the core libxml2 library semantics being ported",
+      "Disputed or too-vague records where the public description does not establish a concrete porting-relevant bug class"
+    ]
+  },
+  "summary": {
+    "published_cves_reviewed": 138,
+    "relevant_non_memory_corruption_cves": 34,
+    "notes": [
+      "The selected set is intentionally narrower than all non-memory bugs in the corpus.",
+      "The dominant Rust-port risks are unsafe XML feature defaults, missing expansion and recursion limits, algorithmic denial of service, decompression loop/resource handling, and logic bugs that would become panic-or-error-propagation failures in Rust."
+    ]
+  },
+  "porting_themes": [
+    {
+      "theme": "Entity Expansion And External Entity Policy",
+      "guidance": [
+        "Make external entity, DTD, network, file, and catalog resolution explicit opt-in behavior.",
+        "Apply depth, breadth, and total-expanded-byte budgets across all entity-processing paths, including attribute values, reader mode, SAX mode, and recovery mode.",
+        "Add regression tests for billion-laughs, parameter-entity recursion, reader/XEE constant-memory regressions, and XXE bypass variants."
+      ]
+    },
+    {
+      "theme": "Recursion And Stack Exhaustion",
+      "guidance": [
+        "Centralize recursion-depth accounting for parser, XPath, schema, RelaxNG, and catalog evaluation code.",
+        "Do not reset depth counters during recursive re-entry; treat over-limit conditions as normal parse errors.",
+        "Prefer iterative traversal where practical, and keep the same limits enabled in recovery and compatibility modes."
+      ]
+    },
+    {
+      "theme": "Compression And Resource Budgets",
+      "guidance": [
+        "Bound decompressor memory, total output size, and loop iterations when handling compressed input.",
+        "Treat decompressor memlimit and format errors as terminal failures, not retryable states.",
+        "Test malformed and truncated XZ/LZMA inputs for hang-free and panic-free behavior."
+      ]
+    },
+    {
+      "theme": "Logic And Invariant Handling",
+      "guidance": [
+        "Treat attacker-controlled invalid states in XPath, schema, and parser internals as recoverable `Result` errors.",
+        "Avoid `panic!`, `unwrap()`, `expect()`, and `unreachable!` on parser states that malformed input can influence.",
+        "Fuzz invalid XPath, XSD, mixed-content, and entity-decoding cases specifically for crash-free error handling."
+      ]
+    },
+    {
+      "theme": "Algorithmic Complexity And Hashing",
+      "guidance": [
+        "Use randomized or collision-resistant hashing for attacker-controlled names and dictionary keys.",
+        "Cap symbol-table growth and worst-case lookup behavior per document or parsing context."
+      ]
+    }
+  ],
+  "relevant_cves": [
+    {
+      "cve_id": "CVE-2003-1564",
+      "affected_surface": "Entity expansion",
+      "primary_impact": "Denial of service via CPU and memory exhaustion from nested entity expansion",
+      "root_cause_class": "Missing recursion and expansion limits for entity substitution",
+      "why_relevant_to_rust": "Rust does not change XML entity-expansion semantics; a Rust port still needs explicit recursion and total-expansion budgets.",
+      "source_urls": [
+        "https://www.cve.org/CVERecord?id=CVE-2003-1564",
+        "https://nvd.nist.gov/vuln/detail/CVE-2003-1564"
+      ]
+    },
+    {
+      "cve_id": "CVE-2007-6284",
+      "affected_surface": "Character decoding",
+      "primary_impact": "Denial of service via infinite loop on invalid UTF-8 input",
+      "root_cause_class": "Parser progress bug on malformed multibyte sequences",
+      "why_relevant_to_rust": "Memory safety does not prevent non-terminating decode loops; the Rust port must guarantee forward progress or fail fast on malformed encodings.",
+      "local_repo_evidence": "original/debian/changelog:1272 notes the xmlCurrentChar infinite-loop fix",
+      "source_urls": [
+        "https://www.cve.org/CVERecord?id=CVE-2007-6284",
+        "https://nvd.nist.gov/vuln/detail/CVE-2007-6284"
+      ]
+    },
+    {
+      "cve_id": "CVE-2008-3281",
+      "affected_surface": "Attribute-value entity expansion",
+      "primary_impact": "Denial of service via CPU and memory exhaustion from recursive entity expansion in attributes",
+      "root_cause_class": "Missing recursion and expansion limits in a secondary entity-processing path",
+      "why_relevant_to_rust": "A Rust rewrite can still miss expansion checks in less common parser paths such as attribute decoding.",
+      "local_repo_evidence": "original/debian/changelog:1213 records the upstream fix for this attribute-expansion case",
+      "source_urls": [
+        "https://www.cve.org/CVERecord?id=CVE-2008-3281",
+        "https://nvd.nist.gov/vuln/detail/CVE-2008-3281"
+      ]
+    },
+    {
+      "cve_id": "CVE-2008-4409",
+      "affected_surface": "Entity definition handling",
+      "primary_impact": "Denial of service via crafted predefined-entity definitions causing unbounded memory use",
+      "root_cause_class": "Entity-processing logic bug distinct from the classic billion-laughs cases",
+      "why_relevant_to_rust": "A memory-safe implementation can still preserve incorrect entity semantics and allow unbounded expansion or allocation.",
+      "source_urls": [
+        "https://www.cve.org/CVERecord?id=CVE-2008-4409",
+        "https://nvd.nist.gov/vuln/detail/CVE-2008-4409"
+      ]
+    },
+    {
+      "cve_id": "CVE-2009-2414",
+      "affected_surface": "DTD parsing",
+      "primary_impact": "Denial of service via stack exhaustion from deeply nested element declarations",
+      "root_cause_class": "Unbounded recursion on attacker-controlled DTD structure",
+      "why_relevant_to_rust": "Safe Rust still allows attacker-driven recursion and stack overflow unless the port tracks and limits nesting depth.",
+      "local_repo_evidence": "original/debian/changelog:1162 mentions the deep DTD declaration fix",
+      "source_urls": [
+        "https://www.cve.org/CVERecord?id=CVE-2009-2414",
+        "https://nvd.nist.gov/vuln/detail/CVE-2009-2414"
+      ]
+    },
+    {
+      "cve_id": "CVE-2012-0841",
+      "affected_surface": "Dictionary and name hashing",
+      "primary_impact": "Denial of service via predictable hash-collision CPU exhaustion",
+      "root_cause_class": "Deterministic hashing for attacker-controlled keys",
+      "why_relevant_to_rust": "A Rust port remains exposed if it keeps libxml2-style deterministic hashing instead of randomized or collision-resistant hashing for untrusted names.",
+      "local_repo_evidence": "original/debian/changelog:956 explicitly says dictionaries were changed to mitigate hash DoS",
+      "source_urls": [
+        "https://www.cve.org/CVERecord?id=CVE-2012-0841",
+        "https://nvd.nist.gov/vuln/detail/CVE-2012-0841"
+      ]
+    },
+    {
+      "cve_id": "CVE-2013-0338",
+      "affected_surface": "Internal entity expansion",
+      "primary_impact": "Denial of service via linear-complexity internal entity expansion",
+      "root_cause_class": "Entity replacement cost was attacker-amplifiable even without classic exponential recursion",
+      "why_relevant_to_rust": "Entity expansion remains a semantic problem in any implementation language, so the Rust port needs explicit work and size budgets.",
+      "source_urls": [
+        "https://www.cve.org/CVERecord?id=CVE-2013-0338",
+        "https://nvd.nist.gov/vuln/detail/CVE-2013-0338"
+      ]
+    },
+    {
+      "cve_id": "CVE-2013-0339",
+      "affected_surface": "External entity resolution",
+      "primary_impact": "XXE leading to file disclosure, SSRF-style outbound requests, and resource exhaustion",
+      "root_cause_class": "Insecure default behavior and API ergonomics around external entities",
+      "why_relevant_to_rust": "A Rust port can reproduce the same insecure defaults unless external entity loading is disabled by default and dangerous APIs are hard to use accidentally.",
+      "source_urls": [
+        "https://www.cve.org/CVERecord?id=CVE-2013-0339",
+        "https://nvd.nist.gov/vuln/detail/CVE-2013-0339"
+      ]
+    },
+    {
+      "cve_id": "CVE-2014-0191",
+      "affected_surface": "External parameter entities",
+      "primary_impact": "Unwanted external fetches and resource consumption despite parser flags",
+      "root_cause_class": "Flag interaction bug that fetched external parameter entities when the caller expected them disabled",
+      "why_relevant_to_rust": "Safe Rust does not help if parser configuration is interpreted incorrectly; the port needs a single authoritative policy gate for all external-resource loads.",
+      "local_repo_evidence": "original/doc/news.html:961 says the fix was to stop fetching external parameter entities",
+      "source_urls": [
+        "https://www.cve.org/CVERecord?id=CVE-2014-0191",
+        "https://nvd.nist.gov/vuln/detail/CVE-2014-0191"
+      ]
+    },
+    {
+      "cve_id": "CVE-2014-3660",
+      "affected_surface": "Entity substitution controls",
+      "primary_impact": "Billion-laughs-style denial of service even when entity substitution was disabled",
+      "root_cause_class": "Protection bypass in entity-expansion gating",
+      "why_relevant_to_rust": "A Rust port can still get the enable/disable semantics wrong and silently re-open expansion paths the caller believes are blocked.",
+      "local_repo_evidence": "original/doc/news.html:960 describes this as a billion-laughs variant; original/doc/news.html:939 notes a follow-up regression fix",
+      "source_urls": [
+        "https://www.cve.org/CVERecord?id=CVE-2014-3660",
+        "https://nvd.nist.gov/vuln/detail/CVE-2014-3660"
+      ]
+    },
+    {
+      "cve_id": "CVE-2015-1819",
+      "affected_surface": "xmlReader streaming API",
+      "primary_impact": "Denial of service via entity expansion breaking constant-memory behavior",
+      "root_cause_class": "Streaming API failed to preserve its resource-usage guarantees under crafted input",
+      "why_relevant_to_rust": "A Rust streaming parser can still lose its intended memory bounds if entity expansion and buffering rules are not enforced consistently.",
+      "local_repo_evidence": "original/doc/news.html:899 says the fix was to enforce constant-memory behavior in the reader",
+      "source_urls": [
+        "https://www.cve.org/CVERecord?id=CVE-2015-1819",
+        "https://nvd.nist.gov/vuln/detail/CVE-2015-1819"
+      ]
+    },
+    {
+      "cve_id": "CVE-2015-5312",
+      "affected_surface": "Entity decoding",
+      "primary_impact": "Denial of service via another entity-expansion bypass",
+      "root_cause_class": "Expansion limits were incomplete in xmlStringLenDecodeEntities",
+      "why_relevant_to_rust": "Entity safety checks must be centralized; otherwise a Rust port can fix one expansion path and leave another equivalent helper function exposed.",
+      "local_repo_evidence": "original/doc/news.html:893 labels this as another entity-expansion issue",
+      "source_urls": [
+        "https://www.cve.org/CVERecord?id=CVE-2015-5312",
+        "https://nvd.nist.gov/vuln/detail/CVE-2015-5312"
+      ]
+    },
+    {
+      "cve_id": "CVE-2015-8035",
+      "affected_surface": "XZ decompression support",
+      "primary_impact": "Denial of service via process hang on crafted compressed input",
+      "root_cause_class": "Decompression error handling loop failed to terminate",
+      "why_relevant_to_rust": "Rust memory safety does not prevent decompressor state machines from spinning forever when error conditions are mishandled.",
+      "local_repo_evidence": "original/doc/news.html:896 says the XZ compression support loop was fixed",
+      "source_urls": [
+        "https://www.cve.org/CVERecord?id=CVE-2015-8035",
+        "https://nvd.nist.gov/vuln/detail/CVE-2015-8035"
+      ]
+    },
+    {
+      "cve_id": "CVE-2016-3627",
+      "affected_surface": "Recovery-mode parsing",
+      "primary_impact": "Denial of service via infinite recursion and stack exhaustion",
+      "root_cause_class": "Recursive entity construction remained possible in recovery mode",
+      "why_relevant_to_rust": "Compatibility and recovery modes need the same recursion limits as strict parsing; otherwise a Rust port can reintroduce stack-exhaustion bugs on its error-tolerant paths.",
+      "local_repo_evidence": "original/debian/changelog:722 says the fix was to avoid building recursive entities",
+      "source_urls": [
+        "https://www.cve.org/CVERecord?id=CVE-2016-3627",
+        "https://nvd.nist.gov/vuln/detail/CVE-2016-3627"
+      ]
+    },
+    {
+      "cve_id": "CVE-2016-3705",
+      "affected_surface": "Entity recursion checks",
+      "primary_impact": "Denial of service via stack exhaustion from nested entity references",
+      "root_cause_class": "Recursion-depth accounting bug in entity-related parser functions",
+      "why_relevant_to_rust": "A Rust port still needs correct shared depth accounting across mutually recursive parsing helpers.",
+      "local_repo_evidence": "original/debian/changelog:707 records the upstream security fix for this recursion-depth issue",
+      "source_urls": [
+        "https://www.cve.org/CVERecord?id=CVE-2016-3705",
+        "https://nvd.nist.gov/vuln/detail/CVE-2016-3705"
+      ]
+    },
+    {
+      "cve_id": "CVE-2016-4449",
+      "affected_surface": "Entity decoding outside validating mode",
+      "primary_impact": "XXE-based file disclosure and resource exhaustion",
+      "root_cause_class": "Entity content was fetched even when the parsing mode should have avoided external data access",
+      "why_relevant_to_rust": "A Rust port can repeat the same policy bypass if entity decoding helpers are allowed to resolve external content without a central permission check.",
+      "local_repo_evidence": "original/debian/changelog:716 calls this an inappropriate fetch of entity content",
+      "source_urls": [
+        "https://www.cve.org/CVERecord?id=CVE-2016-4449",
+        "https://nvd.nist.gov/vuln/detail/CVE-2016-4449"
+      ]
+    },
+    {
+      "cve_id": "CVE-2016-9318",
+      "affected_surface": "API design for external-resource loading",
+      "primary_impact": "Makes XXE prevention harder by lacking a same-document-only policy control",
+      "root_cause_class": "Insufficient security-relevant parser option surface",
+      "why_relevant_to_rust": "This is directly a Rust API-design concern: the port should expose safe-by-default resolution policies instead of forcing callers to choose between too-broad options.",
+      "local_repo_evidence": "original/debian/changelog:459 describes this as an XXE fix",
+      "source_urls": [
+        "https://www.cve.org/CVERecord?id=CVE-2016-9318",
+        "https://nvd.nist.gov/vuln/detail/CVE-2016-9318"
+      ]
+    },
+    {
+      "cve_id": "CVE-2017-7375",
+      "affected_surface": "Default parser flags",
+      "primary_impact": "XML entity inclusion with local-file and network exposure under default-like settings",
+      "root_cause_class": "Insecure default or unexpectedly reachable external-entity behavior",
+      "why_relevant_to_rust": "A memory-safe port can still ship the wrong defaults; external resolution should be opt-in and auditable.",
+      "local_repo_evidence": "original/debian/changelog:589 says the fix prevents unwanted external entity references",
+      "source_urls": [
+        "https://www.cve.org/CVERecord?id=CVE-2017-7375",
+        "https://nvd.nist.gov/vuln/detail/CVE-2017-7375"
+      ]
+    },
+    {
+      "cve_id": "CVE-2017-16932",
+      "affected_surface": "Parameter entities",
+      "primary_impact": "Denial of service via infinite recursion",
+      "root_cause_class": "Missing recursion limit for parameter-entity expansion",
+      "why_relevant_to_rust": "Parameter entities are a separate expansion surface that needs the same recursion accounting as general entities in a Rust port.",
+      "local_repo_evidence": "original/debian/changelog:478 records the parameter-entity recursion fix",
+      "source_urls": [
+        "https://www.cve.org/CVERecord?id=CVE-2017-16932",
+        "https://nvd.nist.gov/vuln/detail/CVE-2017-16932"
+      ]
+    },
+    {
+      "cve_id": "CVE-2017-18258",
+      "affected_surface": "LZMA/XZ input handling",
+      "primary_impact": "Denial of service via excessive memory allocation",
+      "root_cause_class": "No decompressor memory limit matched to legitimate input needs",
+      "why_relevant_to_rust": "Rust does not automatically bound attacker-driven allocation in decompression code; the port still needs explicit memory budgets.",
+      "local_repo_evidence": "original/debian/changelog:480 says a memory limit was added for LZMA decompression",
+      "source_urls": [
+        "https://www.cve.org/CVERecord?id=CVE-2017-18258",
+        "https://nvd.nist.gov/vuln/detail/CVE-2017-18258"
+      ]
+    },
+    {
+      "cve_id": "CVE-2018-9251",
+      "affected_surface": "LZMA decompression",
+      "primary_impact": "Denial of service via infinite loop after LZMA memlimit errors",
+      "root_cause_class": "Compressed-input error state did not terminate parsing",
+      "why_relevant_to_rust": "The Rust port needs explicit error-state transitions for compressed streams; safe code can still loop forever on malformed data.",
+      "local_repo_evidence": "original/doc/news.html:504 groups this with a fix for infinite loops in LZMA decompression",
+      "source_urls": [
+        "https://www.cve.org/CVERecord?id=CVE-2018-9251",
+        "https://nvd.nist.gov/vuln/detail/CVE-2018-9251"
+      ]
+    },
+    {
+      "cve_id": "CVE-2018-14567",
+      "affected_surface": "LZMA decompression",
+      "primary_impact": "Denial of service via a second infinite-loop variant after LZMA memlimit errors",
+      "root_cause_class": "Another compressed-input control-flow bug in the same feature area",
+      "why_relevant_to_rust": "This shows the need for systematic decompressor-state testing, not just one targeted fix, in a Rust port.",
+      "local_repo_evidence": "original/doc/news.html:504 groups this with CVE-2018-9251 under infinite-loop fixes",
+      "source_urls": [
+        "https://www.cve.org/CVERecord?id=CVE-2018-14567",
+        "https://nvd.nist.gov/vuln/detail/CVE-2018-14567"
+      ]
+    },
+    {
+      "cve_id": "CVE-2018-14404",
+      "affected_surface": "XPath evaluation",
+      "primary_impact": "Denial of service via crash on invalid XPath logical expressions",
+      "root_cause_class": "Logic and invariant bug in XPath operand handling",
+      "why_relevant_to_rust": "In Rust this bug class would likely become a panic or aborted evaluation if invalid intermediate states are treated as impossible rather than as parse errors.",
+      "local_repo_evidence": "original/doc/news.html:505 says the fix addressed a nullptr deref in XPath logic ops",
+      "source_urls": [
+        "https://www.cve.org/CVERecord?id=CVE-2018-14404",
+        "https://nvd.nist.gov/vuln/detail/CVE-2018-14404"
+      ]
+    },
+    {
+      "cve_id": "CVE-2020-7595",
+      "affected_surface": "Entity decoding at EOF",
+      "primary_impact": "Denial of service via infinite loop on crafted end-of-file conditions",
+      "root_cause_class": "Parser progress bug in xmlStringLenDecodeEntities",
+      "why_relevant_to_rust": "Forward-progress bugs are language-agnostic; the Rust port must ensure every malformed-input path either consumes input or terminates with an error.",
+      "local_repo_evidence": "original/debian/changelog:399 records the infinite-loop fix in xmlStringLenDecodeEntities",
+      "source_urls": [
+        "https://www.cve.org/CVERecord?id=CVE-2020-7595",
+        "https://nvd.nist.gov/vuln/detail/CVE-2020-7595"
+      ]
+    },
+    {
+      "cve_id": "CVE-2021-3537",
+      "affected_surface": "Mixed-content parsing and validation",
+      "primary_impact": "Denial of service via crash after parser errors were not propagated",
+      "root_cause_class": "Error-propagation bug leading to invalid internal state",
+      "why_relevant_to_rust": "A Rust port can reproduce this as `unwrap()` or `expect()` failures if it does not carry parser errors through later validation stages.",
+      "local_repo_evidence": "original/debian/changelog:298 says the fix was to propagate the parser error",
+      "source_urls": [
+        "https://www.cve.org/CVERecord?id=CVE-2021-3537",
+        "https://nvd.nist.gov/vuln/detail/CVE-2021-3537"
+      ]
+    },
+    {
+      "cve_id": "CVE-2021-3541",
+      "affected_surface": "Entity-expansion protections",
+      "primary_impact": "Denial of service via bypass of existing exponential-entity-expansion protections",
+      "root_cause_class": "Incomplete protection logic for hostile entity graphs",
+      "why_relevant_to_rust": "It is not enough to port one anti-expansion check; the Rust implementation needs defense-in-depth against variants that bypass the original guard rails.",
+      "local_repo_evidence": "original/NEWS and original/doc/news.html both record a dedicated patch for this security issue",
+      "source_urls": [
+        "https://www.cve.org/CVERecord?id=CVE-2021-3541",
+        "https://nvd.nist.gov/vuln/detail/CVE-2021-3541"
+      ]
+    },
+    {
+      "cve_id": "CVE-2023-28484",
+      "affected_surface": "XSD schema parsing",
+      "primary_impact": "Denial of service via crash on invalid schema fixup",
+      "root_cause_class": "Nullability and invariant bug in schema post-processing",
+      "why_relevant_to_rust": "A Rust port can still panic on invalid schema states if schema fixup code assumes earlier passes established stronger invariants than they actually did.",
+      "local_repo_evidence": "original/debian/changelog:166 and the Debian patch both describe a null-deref fix in xmlSchemaFixupComplexType",
+      "source_urls": [
+        "https://www.cve.org/CVERecord?id=CVE-2023-28484",
+        "https://nvd.nist.gov/vuln/detail/CVE-2023-28484"
+      ]
+    },
+    {
+      "cve_id": "CVE-2024-40896",
+      "affected_surface": "SAX external entity callbacks",
+      "primary_impact": "Classic XXE despite custom SAX handlers trying to suppress external entity content",
+      "root_cause_class": "Callback contract and entity-resolution semantics were inconsistent",
+      "why_relevant_to_rust": "A Rust SAX API can repeat this if callback-side suppression is advisory instead of enforced by the parser's actual entity-resolution path.",
+      "source_urls": [
+        "https://www.cve.org/CVERecord?id=CVE-2024-40896",
+        "https://nvd.nist.gov/vuln/detail/CVE-2024-40896"
+      ]
+    },
+    {
+      "cve_id": "CVE-2025-9714",
+      "affected_surface": "XPath evaluation and compilation",
+      "primary_impact": "Denial of service via stack exhaustion from uncontrolled recursion",
+      "root_cause_class": "Recursion-depth counter was reset during recursive XPath calls",
+      "why_relevant_to_rust": "Recursive evaluators in Rust need stable shared depth accounting across re-entry; otherwise safe code still overflows the stack.",
+      "local_repo_evidence": "original/debian/changelog:42 says the patch makes the XPath depth check work with recursive calls",
+      "source_urls": [
+        "https://www.cve.org/CVERecord?id=CVE-2025-9714",
+        "https://nvd.nist.gov/vuln/detail/CVE-2025-9714"
+      ]
+    },
+    {
+      "cve_id": "CVE-2025-27113",
+      "affected_surface": "Pattern matching",
+      "primary_impact": "Denial of service via null-dereference crash in xmlPatMatch",
+      "root_cause_class": "Input-triggered invalid-state handling bug in pattern evaluation",
+      "why_relevant_to_rust": "The public description is sparse, but this still looks like a core parser-logic nullability bug that could become a Rust panic if invalid states are not modeled explicitly.",
+      "source_urls": [
+        "https://www.cve.org/CVERecord?id=CVE-2025-27113",
+        "https://nvd.nist.gov/vuln/detail/CVE-2025-27113"
+      ]
+    },
+    {
+      "cve_id": "CVE-2025-49795",
+      "affected_surface": "XPath expression handling",
+      "primary_impact": "Denial of service via null-dereference crash on crafted XPath-bearing input",
+      "root_cause_class": "Input-triggered logic bug in XPath evaluation",
+      "why_relevant_to_rust": "Even without memory-unsafety, XPath evaluators can still panic or abort on malformed expressions if absence and error states are not propagated carefully.",
+      "source_urls": [
+        "https://www.cve.org/CVERecord?id=CVE-2025-49795",
+        "https://nvd.nist.gov/vuln/detail/CVE-2025-49795"
+      ]
+    },
+    {
+      "cve_id": "CVE-2026-0989",
+      "affected_surface": "RelaxNG include processing",
+      "primary_impact": "Denial of service via excessive recursion and stack exhaustion",
+      "root_cause_class": "No inclusion-depth limit for nested RelaxNG `<include>` chains",
+      "why_relevant_to_rust": "Schema inclusion depth is a semantic budget the Rust port must enforce explicitly; safe stack frames still exhaust.",
+      "local_repo_evidence": "original/debian/changelog:10 says the patch added an inclusion limit helper in RelaxNG parsing",
+      "source_urls": [
+        "https://www.cve.org/CVERecord?id=CVE-2026-0989",
+        "https://nvd.nist.gov/vuln/detail/CVE-2026-0989"
+      ]
+    },
+    {
+      "cve_id": "CVE-2026-0990",
+      "affected_surface": "XML catalog resolution",
+      "primary_impact": "Denial of service via self-referential catalog delegate recursion",
+      "root_cause_class": "Catalog traversal lacked depth checks and cycle resistance",
+      "why_relevant_to_rust": "Rust code still needs explicit cycle and depth detection when walking attacker-controlled catalog graphs.",
+      "local_repo_evidence": "original/debian/changelog:20 says the patch added MAX_CATAL_DEPTH and related checks",
+      "source_urls": [
+        "https://www.cve.org/CVERecord?id=CVE-2026-0990",
+        "https://nvd.nist.gov/vuln/detail/CVE-2026-0990"
+      ]
+    },
+    {
+      "cve_id": "CVE-2026-0992",
+      "affected_surface": "XML catalog chaining",
+      "primary_impact": "Denial of service via excessive CPU consumption from repeated `nextCatalog` traversal",
+      "root_cause_class": "Resource-consumption bug caused by duplicate or cyclical catalog traversal",
+      "why_relevant_to_rust": "Catalog processing remains vulnerable to algorithmic blowups unless the Rust port deduplicates and budgets downstream traversals.",
+      "local_repo_evidence": "original/debian/changelog:24 says the patch added catalog duplication checks",
+      "source_urls": [
+        "https://www.cve.org/CVERecord?id=CVE-2026-0992",
+        "https://nvd.nist.gov/vuln/detail/CVE-2026-0992"
+      ]
+    }
+  ],
+  "notable_excluded_non_memory_cves": [
+    {
+      "cve_ids": [
+        "CVE-2015-6837",
+        "CVE-2015-6838"
+      ],
+      "reason": "These are PHP `xsl_ext_function_php` wrapper bugs, not core libxml2 parser or library-semantics bugs."
+    },
+    {
+      "cve_ids": [
+        "CVE-2016-9596",
+        "CVE-2016-9597"
+      ],
+      "reason": "These are downstream regression or packaging issues around previously known recursion bugs rather than distinct upstream bug classes to carry into the Rust port."
+    },
+    {
+      "cve_ids": [
+        "CVE-2017-16931"
+      ],
+      "reason": "The public record says parameter-entity references were mishandled but does not describe a concrete impact or bug class precisely enough to map into Rust porting guidance."
+    },
+    {
+      "cve_ids": [
+        "CVE-2017-5969"
+      ],
+      "reason": "Recover-mode-only null dereference in a manual-recovery path; included in the corpus but lower-priority and partly disputed by the maintainer."
+    },
+    {
+      "cve_ids": [
+        "CVE-2019-19956",
+        "CVE-2019-20388"
+      ],
+      "reason": "These are memory leaks from missed release paths. They matter operationally but are more tied to C lifetime management than to a likely semantic bug class in a safe Rust rewrite."
+    },
+    {
+      "cve_ids": [
+        "CVE-2022-2309"
+      ],
+      "reason": "This record applies to `lxml` code paths that combine libxml2 with wrapper logic, not to libxml2 alone."
+    },
+    {
+      "cve_ids": [
+        "CVE-2025-8732"
+      ],
+      "reason": "Disputed, local-only SGML catalog recursion in `xmlcatalog`; low-confidence and low-relevance for the planned core library port."
+    },
+    {
+      "cve_ids": [
+        "CVE-2026-1757"
+      ],
+      "reason": "Whitespace-triggered memory leak in the interactive `xmllint` shell; tool-only and not representative of core library semantics."
+    }
+  ]
+}

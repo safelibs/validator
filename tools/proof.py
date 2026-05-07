@@ -461,8 +461,8 @@ def load_result(
     _require_string(payload.get("title"), field_name="title", source_path=path)
     _require_string(payload.get("description"), field_name="description", source_path=path)
     kind = _require_string(payload.get("kind"), field_name="kind", source_path=path)
-    if kind not in {"source", "usage"}:
-        raise ValidatorError(f"kind must be source or usage in {path}")
+    if kind not in {"source", "usage", "regression"}:
+        raise ValidatorError(f"kind must be source, usage, or regression in {path}")
     client_application = _require_optional_string(
         payload.get("client_application"),
         field_name="client_application",
@@ -470,6 +470,8 @@ def load_result(
     )
     if kind == "source" and client_application is not None:
         raise ValidatorError(f"source result client_application must be null in {path}")
+    if kind == "regression" and client_application is not None:
+        raise ValidatorError(f"regression result client_application must be null in {path}")
     if kind == "usage" and client_application is None:
         raise ValidatorError(f"usage result client_application must be non-empty in {path}")
 
@@ -698,6 +700,7 @@ def _library_totals(testcases: list[dict[str, Any]]) -> dict[str, int]:
         "cases": len(testcases),
         "source_cases": sum(1 for result in testcases if result["kind"] == "source"),
         "usage_cases": sum(1 for result in testcases if result["kind"] == "usage"),
+        "regression_cases": sum(1 for result in testcases if result["kind"] == "regression"),
         "passed": sum(1 for result in testcases if result["status"] == "passed"),
         "failed": sum(1 for result in testcases if result["status"] == "failed"),
         "casts": sum(1 for result in testcases if result["cast_path"] is not None),
@@ -714,12 +717,18 @@ def build_proof(
     min_cases: int = 0,
     min_source_cases: int = 0,
     min_usage_cases: int = 0,
+    min_regression_cases: int = 0,
     require_casts: bool = False,
     ports_root: Path | None = None,
 ) -> dict[str, Any]:
     if mode not in VALID_MODES:
         raise ValidatorError("mode must be original or port")
-    if min_cases < 0 or min_source_cases < 0 or min_usage_cases < 0:
+    if (
+        min_cases < 0
+        or min_source_cases < 0
+        or min_usage_cases < 0
+        or min_regression_cases < 0
+    ):
         raise ValidatorError("case thresholds must be non-negative")
     if ports_root is not None:
         ports_root = ports_root.resolve(strict=False)
@@ -738,6 +747,7 @@ def build_proof(
         "cases": 0,
         "source_cases": 0,
         "usage_cases": 0,
+        "regression_cases": 0,
         "passed": 0,
         "failed": 0,
         "casts": 0,
@@ -805,7 +815,15 @@ def build_proof(
         library_proof["testcases"] = case_rows
         proof_libraries.append(library_proof)
         totals["libraries"] += 1
-        for field_name in ("cases", "source_cases", "usage_cases", "passed", "failed", "casts"):
+        for field_name in (
+            "cases",
+            "source_cases",
+            "usage_cases",
+            "regression_cases",
+            "passed",
+            "failed",
+            "casts",
+        ):
             totals[field_name] += library_totals[field_name]
 
     if min_cases and totals["cases"] < min_cases:
@@ -814,6 +832,10 @@ def build_proof(
         raise ValidatorError(f"source case threshold not met: {totals['source_cases']} < {min_source_cases}")
     if min_usage_cases and totals["usage_cases"] < min_usage_cases:
         raise ValidatorError(f"usage case threshold not met: {totals['usage_cases']} < {min_usage_cases}")
+    if min_regression_cases and totals["regression_cases"] < min_regression_cases:
+        raise ValidatorError(
+            f"regression case threshold not met: {totals['regression_cases']} < {min_regression_cases}"
+        )
 
     proof: dict[str, Any] = {
         "proof_version": 2,

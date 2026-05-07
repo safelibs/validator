@@ -252,6 +252,7 @@ class ProofTests(unittest.TestCase):
                 "cases": 2,
                 "source_cases": 1,
                 "usage_cases": 1,
+                "regression_cases": 0,
                 "passed": 2,
                 "failed": 0,
                 "casts": 2,
