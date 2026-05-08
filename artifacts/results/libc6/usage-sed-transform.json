@@ -18,12 +18,11 @@
   "duration_seconds": 0.0,
   "result_path": "results/libc6/usage-sed-transform.json",
   "log_path": "logs/libc6/usage-sed-transform.log",
-  "cast_path": null,
+  "cast_path": "casts/libc6/usage-sed-transform.cast",
   "exit_code": 0,
   "command": [
     "bash",
-    "/validator/tests/libc6/tests/cases/usage/run.sh",
-    "usage-sed-transform"
+    "/validator/tests/libc6/tests/cases/usage/usage-sed-transform.sh"
   ],
   "apt_packages": [
     "libc6",

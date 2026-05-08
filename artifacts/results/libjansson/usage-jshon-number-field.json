@@ -18,12 +18,11 @@
   "duration_seconds": 0.0,
   "result_path": "results/libjansson/usage-jshon-number-field.json",
   "log_path": "logs/libjansson/usage-jshon-number-field.log",
-  "cast_path": null,
+  "cast_path": "casts/libjansson/usage-jshon-number-field.cast",
   "exit_code": 0,
   "command": [
     "bash",
-    "/validator/tests/libjansson/tests/cases/usage/run.sh",
-    "usage-jshon-number-field"
+    "/validator/tests/libjansson/tests/cases/usage/usage-jshon-number-field.sh"
   ],
   "apt_packages": [
     "libjansson4",

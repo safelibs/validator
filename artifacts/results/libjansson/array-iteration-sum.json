@@ -18,12 +18,11 @@
   "duration_seconds": 0.0,
   "result_path": "results/libjansson/array-iteration-sum.json",
   "log_path": "logs/libjansson/array-iteration-sum.log",
-  "cast_path": null,
+  "cast_path": "casts/libjansson/array-iteration-sum.cast",
   "exit_code": 0,
   "command": [
     "bash",
-    "/validator/tests/libjansson/tests/cases/source/run.sh",
-    "array-iteration-sum"
+    "/validator/tests/libjansson/tests/cases/source/array-iteration-sum.sh"
   ],
   "apt_packages": [
     "libjansson4",

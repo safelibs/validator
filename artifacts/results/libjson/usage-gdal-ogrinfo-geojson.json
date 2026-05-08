@@ -19,7 +19,7 @@
   "duration_seconds": 0.0,
   "result_path": "results/libjson/usage-gdal-ogrinfo-geojson.json",
   "log_path": "logs/libjson/usage-gdal-ogrinfo-geojson.log",
-  "cast_path": null,
+  "cast_path": "casts/libjson/usage-gdal-ogrinfo-geojson.cast",
   "exit_code": 0,
   "command": [
     "bash",

@@ -2,11 +2,12 @@
   "schema_version": 2,
   "library": "libxml",
   "mode": "original",
-  "cases": 96,
+  "cases": 264,
   "source_cases": 5,
-  "usage_cases": 91,
-  "passed": 96,
+  "usage_cases": 241,
+  "regression_cases": 18,
+  "passed": 264,
   "failed": 0,
-  "casts": 0,
+  "casts": 264,
   "duration_seconds": 0.0
 }

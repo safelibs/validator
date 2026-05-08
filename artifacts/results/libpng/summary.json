@@ -2,11 +2,12 @@
   "schema_version": 2,
   "library": "libpng",
   "mode": "original",
-  "cases": 95,
+  "cases": 254,
   "source_cases": 5,
-  "usage_cases": 90,
-  "passed": 95,
+  "usage_cases": 240,
+  "regression_cases": 9,
+  "passed": 254,
   "failed": 0,
-  "casts": 0,
+  "casts": 254,
   "duration_seconds": 0.0
 }

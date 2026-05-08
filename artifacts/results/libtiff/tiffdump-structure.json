@@ -18,7 +18,7 @@
   "duration_seconds": 0.0,
   "result_path": "results/libtiff/tiffdump-structure.json",
   "log_path": "logs/libtiff/tiffdump-structure.log",
-  "cast_path": null,
+  "cast_path": "casts/libtiff/tiffdump-structure.cast",
   "exit_code": 0,
   "command": [
     "bash",

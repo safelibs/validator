@@ -18,12 +18,11 @@
   "duration_seconds": 0.0,
   "result_path": "results/libcurl/usage-curl-post-echo.json",
   "log_path": "logs/libcurl/usage-curl-post-echo.log",
-  "cast_path": null,
+  "cast_path": "casts/libcurl/usage-curl-post-echo.cast",
   "exit_code": 0,
   "command": [
     "bash",
-    "/validator/tests/libcurl/tests/cases/usage/run.sh",
-    "usage-curl-post-echo"
+    "/validator/tests/libcurl/tests/cases/usage/usage-curl-post-echo.sh"
   ],
   "apt_packages": [
     "curl",

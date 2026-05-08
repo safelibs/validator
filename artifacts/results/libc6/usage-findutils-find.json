@@ -18,12 +18,11 @@
   "duration_seconds": 0.0,
   "result_path": "results/libc6/usage-findutils-find.json",
   "log_path": "logs/libc6/usage-findutils-find.log",
-  "cast_path": null,
+  "cast_path": "casts/libc6/usage-findutils-find.cast",
   "exit_code": 0,
   "command": [
     "bash",
-    "/validator/tests/libc6/tests/cases/usage/run.sh",
-    "usage-findutils-find"
+    "/validator/tests/libc6/tests/cases/usage/usage-findutils-find.sh"
   ],
   "apt_packages": [
     "libc6",

@@ -18,7 +18,7 @@
   "duration_seconds": 0.0,
   "result_path": "results/libjson/serializer-roundtrip.json",
   "log_path": "logs/libjson/serializer-roundtrip.log",
-  "cast_path": null,
+  "cast_path": "casts/libjson/serializer-roundtrip.cast",
   "exit_code": 0,
   "command": [
     "bash",

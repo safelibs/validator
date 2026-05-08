@@ -18,6 +18,9 @@ checkout.
   file, self-describing via `@testcase` header directives.
 - `tests/<library>/tests/cases/usage/<id>.sh`: one dependent-client testcase
   per file, self-describing via `@testcase` header directives.
+- `tests/<library>/tests/cases/regression/<id>.sh`: one CVE regression
+  testcase per file, self-describing via `@testcase` header directives and
+  pinned to a specific CVE via `@cve`.
 - `tests/<library>/tests/fixtures/dependents.json`: compact dependent-client
   fixture data used by usage testcases.
 - `tests/<library>/tests/fixtures/samples/`: small non-source sample inputs
@@ -49,11 +52,12 @@ only library-level fields:
 - `apt_packages`: the exact canonical package list for that library.
 
 Per-testcase metadata is discovered from the filesystem. Each script under
-`tests/<library>/tests/cases/source/<id>.sh` or
-`tests/<library>/tests/cases/usage/<id>.sh` declares its own metadata in a
-header block of `# @<key>: <value>` directives placed immediately after the
-shebang. The `id` is taken from the filename and the `kind` (`source` /
-`usage`) from the parent directory.
+`tests/<library>/tests/cases/source/<id>.sh`,
+`tests/<library>/tests/cases/usage/<id>.sh`, or
+`tests/<library>/tests/cases/regression/<id>.sh` declares its own metadata
+in a header block of `# @<key>: <value>` directives placed immediately
+after the shebang. The `id` is taken from the filename and the `kind`
+(`source` / `usage` / `regression`) from the parent directory.
 
 ```bash
 #!/usr/bin/env bash
@@ -71,7 +75,9 @@ Required directives are `@testcase`, `@title`, `@description`, `@timeout`
 (integer seconds, 1..7200), and `@tags` (comma-separated, may be empty).
 Usage testcases must additionally declare `@client: <client-application>`,
 naming a client present in `tests/<library>/tests/fixtures/dependents.json`;
-source testcases must not.
+source testcases must not. Regression testcases must additionally declare
+`@cve: <CVE-ID>`, pinning the script to a specific CVE tracked under
+`inventory/port-cves/<library>.json`; source and usage testcases must not.
 
 Dependent fixtures use `schema_version: 1`, `library`, and a non-empty
 `dependents` list. Entries may include `name`, `source_package`, `package`,
@@ -160,6 +166,20 @@ REQUIRE_CASTS=1 MIN_SOURCE_CASES=120 MIN_USAGE_CASES=1683 MIN_CASES=1803 make pr
 make site-dual
 make verify-site-dual
 ```
+
+### Regression Vulnerability Testcases
+
+The `regression` kind covers offline reproducers for historical CVEs that
+the Ubuntu 24.04 baseline already patches. Each script lives under
+`tests/<library>/tests/cases/regression/<id>.sh` and pins itself to a
+specific CVE via the `@cve` header directive. Per-library CVE inventory
+is tracked in `inventory/port-cves/<library>.json` (with a roll-up at
+`inventory/port-cves/index.json`). CVEs that the noble baseline does not
+patch, or for which an offline reproducer is impractical, are recorded
+in [`UNPATCHED_CVEs.md`](UNPATCHED_CVEs.md) instead of being authored as
+regression scripts. Like every other case, regression scripts must pass
+under `original` — a regression failure on `original` means the script
+or the harness is broken, not the baseline.
 
 For a faster local representative run:
 

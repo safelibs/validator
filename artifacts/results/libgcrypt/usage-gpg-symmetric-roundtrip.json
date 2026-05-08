@@ -18,12 +18,11 @@
   "duration_seconds": 0.0,
   "result_path": "results/libgcrypt/usage-gpg-symmetric-roundtrip.json",
   "log_path": "logs/libgcrypt/usage-gpg-symmetric-roundtrip.log",
-  "cast_path": null,
+  "cast_path": "casts/libgcrypt/usage-gpg-symmetric-roundtrip.cast",
   "exit_code": 0,
   "command": [
     "bash",
-    "/validator/tests/libgcrypt/tests/cases/usage/run.sh",
-    "usage-gpg-symmetric-roundtrip"
+    "/validator/tests/libgcrypt/tests/cases/usage/usage-gpg-symmetric-roundtrip.sh"
   ],
   "apt_packages": [
     "libgcrypt20",

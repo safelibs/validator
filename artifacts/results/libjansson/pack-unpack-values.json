@@ -18,12 +18,11 @@
   "duration_seconds": 0.0,
   "result_path": "results/libjansson/pack-unpack-values.json",
   "log_path": "logs/libjansson/pack-unpack-values.log",
-  "cast_path": null,
+  "cast_path": "casts/libjansson/pack-unpack-values.cast",
   "exit_code": 0,
   "command": [
     "bash",
-    "/validator/tests/libjansson/tests/cases/source/run.sh",
-    "pack-unpack-values"
+    "/validator/tests/libjansson/tests/cases/source/pack-unpack-values.sh"
   ],
   "apt_packages": [
     "libjansson4",

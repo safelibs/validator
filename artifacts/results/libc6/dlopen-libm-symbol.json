@@ -18,12 +18,11 @@
   "duration_seconds": 0.0,
   "result_path": "results/libc6/dlopen-libm-symbol.json",
   "log_path": "logs/libc6/dlopen-libm-symbol.log",
-  "cast_path": null,
+  "cast_path": "casts/libc6/dlopen-libm-symbol.cast",
   "exit_code": 0,
   "command": [
     "bash",
-    "/validator/tests/libc6/tests/cases/source/run.sh",
-    "dlopen-libm-symbol"
+    "/validator/tests/libc6/tests/cases/source/dlopen-libm-symbol.sh"
   ],
   "apt_packages": [
     "libc6",

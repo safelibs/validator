@@ -18,12 +18,11 @@
   "duration_seconds": 0.0,
   "result_path": "results/libcurl/escape-unescape-roundtrip.json",
   "log_path": "logs/libcurl/escape-unescape-roundtrip.log",
-  "cast_path": null,
+  "cast_path": "casts/libcurl/escape-unescape-roundtrip.cast",
   "exit_code": 0,
   "command": [
     "bash",
-    "/validator/tests/libcurl/tests/cases/source/run.sh",
-    "escape-unescape-roundtrip"
+    "/validator/tests/libcurl/tests/cases/source/escape-unescape-roundtrip.sh"
   ],
   "apt_packages": [
     "curl",

@@ -18,12 +18,11 @@
   "duration_seconds": 0.0,
   "result_path": "results/libc6/usage-grep-regex.json",
   "log_path": "logs/libc6/usage-grep-regex.log",
-  "cast_path": null,
+  "cast_path": "casts/libc6/usage-grep-regex.cast",
   "exit_code": 0,
   "command": [
     "bash",
-    "/validator/tests/libc6/tests/cases/usage/run.sh",
-    "usage-grep-regex"
+    "/validator/tests/libc6/tests/cases/usage/usage-grep-regex.sh"
   ],
   "apt_packages": [
     "libc6",

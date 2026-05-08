@@ -18,12 +18,11 @@
   "duration_seconds": 0.0,
   "result_path": "results/libjansson/object-dump-roundtrip.json",
   "log_path": "logs/libjansson/object-dump-roundtrip.log",
-  "cast_path": null,
+  "cast_path": "casts/libjansson/object-dump-roundtrip.cast",
   "exit_code": 0,
   "command": [
     "bash",
-    "/validator/tests/libjansson/tests/cases/source/run.sh",
-    "object-dump-roundtrip"
+    "/validator/tests/libjansson/tests/cases/source/object-dump-roundtrip.sh"
   ],
   "apt_packages": [
     "libjansson4",

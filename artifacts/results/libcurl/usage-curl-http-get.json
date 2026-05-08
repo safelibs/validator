@@ -18,12 +18,11 @@
   "duration_seconds": 0.0,
   "result_path": "results/libcurl/usage-curl-http-get.json",
   "log_path": "logs/libcurl/usage-curl-http-get.log",
-  "cast_path": null,
+  "cast_path": "casts/libcurl/usage-curl-http-get.cast",
   "exit_code": 0,
   "command": [
     "bash",
-    "/validator/tests/libcurl/tests/cases/usage/run.sh",
-    "usage-curl-http-get"
+    "/validator/tests/libcurl/tests/cases/usage/usage-curl-http-get.sh"
   ],
   "apt_packages": [
     "curl",

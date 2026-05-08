@@ -18,12 +18,11 @@
   "duration_seconds": 0.0,
   "result_path": "results/libc6/usage-coreutils-date.json",
   "log_path": "logs/libc6/usage-coreutils-date.log",
-  "cast_path": null,
+  "cast_path": "casts/libc6/usage-coreutils-date.cast",
   "exit_code": 0,
   "command": [
     "bash",
-    "/validator/tests/libc6/tests/cases/usage/run.sh",
-    "usage-coreutils-date"
+    "/validator/tests/libc6/tests/cases/usage/usage-coreutils-date.sh"
   ],
   "apt_packages": [
     "libc6",

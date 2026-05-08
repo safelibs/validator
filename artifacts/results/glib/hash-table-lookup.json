@@ -18,12 +18,11 @@
   "duration_seconds": 0.0,
   "result_path": "results/glib/hash-table-lookup.json",
   "log_path": "logs/glib/hash-table-lookup.log",
-  "cast_path": null,
+  "cast_path": "casts/glib/hash-table-lookup.cast",
   "exit_code": 0,
   "command": [
     "bash",
-    "/validator/tests/glib/tests/cases/source/run.sh",
-    "hash-table-lookup"
+    "/validator/tests/glib/tests/cases/source/hash-table-lookup.sh"
   ],
   "apt_packages": [
     "libglib2.0-0t64",

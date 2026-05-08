@@ -2,11 +2,12 @@
   "schema_version": 2,
   "library": "libcurl",
   "mode": "original",
-  "cases": 95,
+  "cases": 248,
   "source_cases": 5,
-  "usage_cases": 90,
-  "passed": 95,
+  "usage_cases": 240,
+  "regression_cases": 3,
+  "passed": 248,
   "failed": 0,
-  "casts": 0,
+  "casts": 248,
   "duration_seconds": 0.0
 }

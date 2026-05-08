@@ -18,12 +18,11 @@
   "duration_seconds": 0.0,
   "result_path": "results/libgcrypt/usage-gpg-list-packets.json",
   "log_path": "logs/libgcrypt/usage-gpg-list-packets.log",
-  "cast_path": null,
+  "cast_path": "casts/libgcrypt/usage-gpg-list-packets.cast",
   "exit_code": 0,
   "command": [
     "bash",
-    "/validator/tests/libgcrypt/tests/cases/usage/run.sh",
-    "usage-gpg-list-packets"
+    "/validator/tests/libgcrypt/tests/cases/usage/usage-gpg-list-packets.sh"
   ],
   "apt_packages": [
     "libgcrypt20",

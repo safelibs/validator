@@ -18,12 +18,11 @@
   "duration_seconds": 0.0,
   "result_path": "results/glib/variant-tuple-roundtrip.json",
   "log_path": "logs/glib/variant-tuple-roundtrip.log",
-  "cast_path": null,
+  "cast_path": "casts/glib/variant-tuple-roundtrip.cast",
   "exit_code": 0,
   "command": [
     "bash",
-    "/validator/tests/glib/tests/cases/source/run.sh",
-    "variant-tuple-roundtrip"
+    "/validator/tests/glib/tests/cases/source/variant-tuple-roundtrip.sh"
   ],
   "apt_packages": [
     "libglib2.0-0t64",

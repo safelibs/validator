@@ -18,12 +18,11 @@
   "duration_seconds": 0.0,
   "result_path": "results/libc6/usage-python3-runtime.json",
   "log_path": "logs/libc6/usage-python3-runtime.log",
-  "cast_path": null,
+  "cast_path": "casts/libc6/usage-python3-runtime.cast",
   "exit_code": 0,
   "command": [
     "bash",
-    "/validator/tests/libc6/tests/cases/usage/run.sh",
-    "usage-python3-runtime"
+    "/validator/tests/libc6/tests/cases/usage/usage-python3-runtime.sh"
   ],
   "apt_packages": [
     "libc6",

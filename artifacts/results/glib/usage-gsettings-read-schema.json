@@ -18,12 +18,11 @@
   "duration_seconds": 0.0,
   "result_path": "results/glib/usage-gsettings-read-schema.json",
   "log_path": "logs/glib/usage-gsettings-read-schema.log",
-  "cast_path": null,
+  "cast_path": "casts/glib/usage-gsettings-read-schema.cast",
   "exit_code": 0,
   "command": [
     "bash",
-    "/validator/tests/glib/tests/cases/usage/run.sh",
-    "usage-gsettings-read-schema"
+    "/validator/tests/glib/tests/cases/usage/usage-gsettings-read-schema.sh"
   ],
   "apt_packages": [
     "libglib2.0-0t64",

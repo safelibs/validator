@@ -2,11 +2,12 @@
   "schema_version": 2,
   "library": "libarchive",
   "mode": "original",
-  "cases": 95,
+  "cases": 252,
   "source_cases": 5,
-  "usage_cases": 90,
-  "passed": 95,
+  "usage_cases": 233,
+  "regression_cases": 14,
+  "passed": 252,
   "failed": 0,
-  "casts": 0,
+  "casts": 252,
   "duration_seconds": 0.0
 }

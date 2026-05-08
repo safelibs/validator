@@ -87,6 +87,23 @@ h2 {
   border-bottom: 1px solid var(--border);
 }
 
+.port-provenance {
+  margin: 4px 0 16px;
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+.port-provenance code {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  background: var(--surface-muted);
+  padding: 1px 4px;
+  border-radius: 3px;
+}
+
+.port-provenance-unavailable {
+  color: var(--danger-text);
+}
+
 .metric-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
@@ -187,6 +204,55 @@ h2 {
 .library-not-run .library-state {
   background: var(--warning-bg);
   color: var(--warning-text);
+}
+
+.library-group + .library-group {
+  margin-top: 20px;
+}
+
+.library-group-heading {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 0 0 10px;
+  font-size: 1rem;
+}
+
+.library-group-count {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 22px;
+  padding: 2px 8px;
+  border-radius: 999px;
+  background: var(--surface-muted);
+  color: var(--muted);
+  font-size: 0.78rem;
+  font-weight: 600;
+}
+
+.library-group-failing .library-group-heading {
+  color: var(--danger-text);
+}
+
+.library-group-failing .library-group-count {
+  background: var(--danger-bg);
+  color: var(--danger-text);
+}
+
+.library-group-passing .library-group-count {
+  background: var(--success-bg);
+  color: var(--success-text);
+}
+
+.library-group-not-run .library-group-count {
+  background: var(--warning-bg);
+  color: var(--warning-text);
+}
+
+.library-failing {
+  border-color: var(--danger-text);
+  box-shadow: inset 4px 0 0 var(--danger-text);
 }
 
 .library-stats,

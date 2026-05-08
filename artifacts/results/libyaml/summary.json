@@ -2,11 +2,12 @@
   "schema_version": 2,
   "library": "libyaml",
   "mode": "original",
-  "cases": 95,
+  "cases": 245,
   "source_cases": 5,
-  "usage_cases": 90,
-  "passed": 95,
+  "usage_cases": 239,
+  "regression_cases": 1,
+  "passed": 245,
   "failed": 0,
-  "casts": 0,
+  "casts": 245,
   "duration_seconds": 0.0
 }

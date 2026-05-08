@@ -18,12 +18,11 @@
   "duration_seconds": 0.0,
   "result_path": "results/libjansson/usage-jshon-file-input.json",
   "log_path": "logs/libjansson/usage-jshon-file-input.log",
-  "cast_path": null,
+  "cast_path": "casts/libjansson/usage-jshon-file-input.cast",
   "exit_code": 0,
   "command": [
     "bash",
-    "/validator/tests/libjansson/tests/cases/usage/run.sh",
-    "usage-jshon-file-input"
+    "/validator/tests/libjansson/tests/cases/usage/usage-jshon-file-input.sh"
   ],
   "apt_packages": [
     "libjansson4",

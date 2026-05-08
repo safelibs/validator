@@ -1,7 +1,8 @@
-$ docker run --rm --mount type=bind,src=/tmp/validator-status-libsodium-usage-minisign-trusted-comment,dst=/validator/status validator-libsodium-shared bash -lc 'set -euo pipefail
+$ docker run --rm --name validator-libsodium-usage-minisign-trusted-comment-1092867 -t --mount type=bind,src=/tmp/validator-status-libsodium-usage-minisign-trusted-comment,dst=/validator/status validator-libsodium-shared bash -lc 'set -euo pipefail
 /validator/tests/_shared/install_override_debs.sh
-exec /validator/tests/_shared/run_library_tests.sh "$@"' validator-testcase libsodium usage-minisign-trusted-comment -- bash /validator/tests/libsodium/tests/cases/usage/usage-minisign-trusted-comment.sh
+exec /validator/tests/_shared/run_library_tests.sh "$@"' validator-testcase libsodium usage-minisign-trusted-comment -- bash -c 'PS4=$1; shift; set -x; source "$@"' validator-xtrace '__VALIDATOR_XTRACE__ ' /validator/tests/libsodium/tests/cases/usage/usage-minisign-trusted-comment.sh
 no override packages found; continuing with apt originals
+'
 The secret key was saved as /tmp/validator-tmp/minisign.sec - Keep it secret!
 The public key was saved as /tmp/validator-tmp/minisign.pub - That one can be public.
 

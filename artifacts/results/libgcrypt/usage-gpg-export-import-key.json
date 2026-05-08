@@ -18,12 +18,11 @@
   "duration_seconds": 0.0,
   "result_path": "results/libgcrypt/usage-gpg-export-import-key.json",
   "log_path": "logs/libgcrypt/usage-gpg-export-import-key.log",
-  "cast_path": null,
+  "cast_path": "casts/libgcrypt/usage-gpg-export-import-key.cast",
   "exit_code": 0,
   "command": [
     "bash",
-    "/validator/tests/libgcrypt/tests/cases/usage/run.sh",
-    "usage-gpg-export-import-key"
+    "/validator/tests/libgcrypt/tests/cases/usage/usage-gpg-export-import-key.sh"
   ],
   "apt_packages": [
     "libgcrypt20",

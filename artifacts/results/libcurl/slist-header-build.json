@@ -18,12 +18,11 @@
   "duration_seconds": 0.0,
   "result_path": "results/libcurl/slist-header-build.json",
   "log_path": "logs/libcurl/slist-header-build.log",
-  "cast_path": null,
+  "cast_path": "casts/libcurl/slist-header-build.cast",
   "exit_code": 0,
   "command": [
     "bash",
-    "/validator/tests/libcurl/tests/cases/source/run.sh",
-    "slist-header-build"
+    "/validator/tests/libcurl/tests/cases/source/slist-header-build.sh"
   ],
   "apt_packages": [
     "curl",

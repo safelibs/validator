@@ -18,12 +18,11 @@
   "duration_seconds": 0.0,
   "result_path": "results/libcurl/usage-curl-fail-status.json",
   "log_path": "logs/libcurl/usage-curl-fail-status.log",
-  "cast_path": null,
+  "cast_path": "casts/libcurl/usage-curl-fail-status.cast",
   "exit_code": 0,
   "command": [
     "bash",
-    "/validator/tests/libcurl/tests/cases/usage/run.sh",
-    "usage-curl-fail-status"
+    "/validator/tests/libcurl/tests/cases/usage/usage-curl-fail-status.sh"
   ],
   "apt_packages": [
     "curl",

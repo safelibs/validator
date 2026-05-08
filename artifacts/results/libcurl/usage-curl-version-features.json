@@ -18,12 +18,11 @@
   "duration_seconds": 0.0,
   "result_path": "results/libcurl/usage-curl-version-features.json",
   "log_path": "logs/libcurl/usage-curl-version-features.log",
-  "cast_path": null,
+  "cast_path": "casts/libcurl/usage-curl-version-features.cast",
   "exit_code": 0,
   "command": [
     "bash",
-    "/validator/tests/libcurl/tests/cases/usage/run.sh",
-    "usage-curl-version-features"
+    "/validator/tests/libcurl/tests/cases/usage/usage-curl-version-features.sh"
   ],
   "apt_packages": [
     "curl",

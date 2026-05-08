@@ -19,7 +19,7 @@
   "duration_seconds": 0.0,
   "result_path": "results/libwebp/usage-libsdl2-image-load-webp.json",
   "log_path": "logs/libwebp/usage-libsdl2-image-load-webp.log",
-  "cast_path": null,
+  "cast_path": "casts/libwebp/usage-libsdl2-image-load-webp.cast",
   "exit_code": 0,
   "command": [
     "bash",

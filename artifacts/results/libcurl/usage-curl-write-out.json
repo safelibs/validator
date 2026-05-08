@@ -18,12 +18,11 @@
   "duration_seconds": 0.0,
   "result_path": "results/libcurl/usage-curl-write-out.json",
   "log_path": "logs/libcurl/usage-curl-write-out.log",
-  "cast_path": null,
+  "cast_path": "casts/libcurl/usage-curl-write-out.cast",
   "exit_code": 0,
   "command": [
     "bash",
-    "/validator/tests/libcurl/tests/cases/usage/run.sh",
-    "usage-curl-write-out"
+    "/validator/tests/libcurl/tests/cases/usage/usage-curl-write-out.sh"
   ],
   "apt_packages": [
     "curl",

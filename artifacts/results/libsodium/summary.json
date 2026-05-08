@@ -2,11 +2,12 @@
   "schema_version": 2,
   "library": "libsodium",
   "mode": "original",
-  "cases": 96,
+  "cases": 246,
   "source_cases": 5,
-  "usage_cases": 91,
-  "passed": 96,
+  "usage_cases": 240,
+  "regression_cases": 1,
+  "passed": 246,
   "failed": 0,
-  "casts": 0,
+  "casts": 246,
   "duration_seconds": 0.0
 }

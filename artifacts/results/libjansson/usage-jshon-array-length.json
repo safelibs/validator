@@ -18,12 +18,11 @@
   "duration_seconds": 0.0,
   "result_path": "results/libjansson/usage-jshon-array-length.json",
   "log_path": "logs/libjansson/usage-jshon-array-length.log",
-  "cast_path": null,
+  "cast_path": "casts/libjansson/usage-jshon-array-length.cast",
   "exit_code": 0,
   "command": [
     "bash",
-    "/validator/tests/libjansson/tests/cases/usage/run.sh",
-    "usage-jshon-array-length"
+    "/validator/tests/libjansson/tests/cases/usage/usage-jshon-array-length.sh"
   ],
   "apt_packages": [
     "libjansson4",

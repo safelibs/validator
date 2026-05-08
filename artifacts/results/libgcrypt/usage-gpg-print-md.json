@@ -18,12 +18,11 @@
   "duration_seconds": 0.0,
   "result_path": "results/libgcrypt/usage-gpg-print-md.json",
   "log_path": "logs/libgcrypt/usage-gpg-print-md.log",
-  "cast_path": null,
+  "cast_path": "casts/libgcrypt/usage-gpg-print-md.cast",
   "exit_code": 0,
   "command": [
     "bash",
-    "/validator/tests/libgcrypt/tests/cases/usage/run.sh",
-    "usage-gpg-print-md"
+    "/validator/tests/libgcrypt/tests/cases/usage/usage-gpg-print-md.sh"
   ],
   "apt_packages": [
     "libgcrypt20",

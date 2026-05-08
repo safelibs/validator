@@ -18,12 +18,11 @@
   "duration_seconds": 0.0,
   "result_path": "results/libjansson/usage-jshon-type-check.json",
   "log_path": "logs/libjansson/usage-jshon-type-check.log",
-  "cast_path": null,
+  "cast_path": "casts/libjansson/usage-jshon-type-check.cast",
   "exit_code": 0,
   "command": [
     "bash",
-    "/validator/tests/libjansson/tests/cases/usage/run.sh",
-    "usage-jshon-type-check"
+    "/validator/tests/libjansson/tests/cases/usage/usage-jshon-type-check.sh"
   ],
   "apt_packages": [
     "libjansson4",

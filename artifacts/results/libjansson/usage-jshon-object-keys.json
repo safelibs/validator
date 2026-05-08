@@ -18,12 +18,11 @@
   "duration_seconds": 0.0,
   "result_path": "results/libjansson/usage-jshon-object-keys.json",
   "log_path": "logs/libjansson/usage-jshon-object-keys.log",
-  "cast_path": null,
+  "cast_path": "casts/libjansson/usage-jshon-object-keys.cast",
   "exit_code": 0,
   "command": [
     "bash",
-    "/validator/tests/libjansson/tests/cases/usage/run.sh",
-    "usage-jshon-object-keys"
+    "/validator/tests/libjansson/tests/cases/usage/usage-jshon-object-keys.sh"
   ],
   "apt_packages": [
     "libjansson4",

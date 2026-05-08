@@ -18,12 +18,11 @@
   "duration_seconds": 0.0,
   "result_path": "results/libgcrypt/usage-gpg-clearsign-verify.json",
   "log_path": "logs/libgcrypt/usage-gpg-clearsign-verify.log",
-  "cast_path": null,
+  "cast_path": "casts/libgcrypt/usage-gpg-clearsign-verify.cast",
   "exit_code": 0,
   "command": [
     "bash",
-    "/validator/tests/libgcrypt/tests/cases/usage/run.sh",
-    "usage-gpg-clearsign-verify"
+    "/validator/tests/libgcrypt/tests/cases/usage/usage-gpg-clearsign-verify.sh"
   ],
   "apt_packages": [
     "libgcrypt20",

@@ -2,11 +2,12 @@
   "schema_version": 2,
   "library": "glib",
   "mode": "original",
-  "cases": 95,
+  "cases": 249,
   "source_cases": 5,
-  "usage_cases": 90,
-  "passed": 95,
+  "usage_cases": 239,
+  "regression_cases": 5,
+  "passed": 249,
   "failed": 0,
-  "casts": 0,
+  "casts": 249,
   "duration_seconds": 0.0
 }

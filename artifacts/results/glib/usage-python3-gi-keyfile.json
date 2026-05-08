@@ -18,12 +18,11 @@
   "duration_seconds": 0.0,
   "result_path": "results/glib/usage-python3-gi-keyfile.json",
   "log_path": "logs/glib/usage-python3-gi-keyfile.log",
-  "cast_path": null,
+  "cast_path": "casts/glib/usage-python3-gi-keyfile.cast",
   "exit_code": 0,
   "command": [
     "bash",
-    "/validator/tests/glib/tests/cases/usage/run.sh",
-    "usage-python3-gi-keyfile"
+    "/validator/tests/glib/tests/cases/usage/usage-python3-gi-keyfile.sh"
   ],
   "apt_packages": [
     "libglib2.0-0t64",

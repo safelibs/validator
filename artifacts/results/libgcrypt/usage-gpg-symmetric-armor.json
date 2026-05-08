@@ -18,12 +18,11 @@
   "duration_seconds": 0.0,
   "result_path": "results/libgcrypt/usage-gpg-symmetric-armor.json",
   "log_path": "logs/libgcrypt/usage-gpg-symmetric-armor.log",
-  "cast_path": null,
+  "cast_path": "casts/libgcrypt/usage-gpg-symmetric-armor.cast",
   "exit_code": 0,
   "command": [
     "bash",
-    "/validator/tests/libgcrypt/tests/cases/usage/run.sh",
-    "usage-gpg-symmetric-armor"
+    "/validator/tests/libgcrypt/tests/cases/usage/usage-gpg-symmetric-armor.sh"
   ],
   "apt_packages": [
     "libgcrypt20",

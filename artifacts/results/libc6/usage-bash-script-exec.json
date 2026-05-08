@@ -18,12 +18,11 @@
   "duration_seconds": 0.0,
   "result_path": "results/libc6/usage-bash-script-exec.json",
   "log_path": "logs/libc6/usage-bash-script-exec.log",
-  "cast_path": null,
+  "cast_path": "casts/libc6/usage-bash-script-exec.cast",
   "exit_code": 0,
   "command": [
     "bash",
-    "/validator/tests/libc6/tests/cases/usage/run.sh",
-    "usage-bash-script-exec"
+    "/validator/tests/libc6/tests/cases/usage/usage-bash-script-exec.sh"
   ],
   "apt_packages": [
     "libc6",

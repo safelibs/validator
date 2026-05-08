@@ -2,11 +2,12 @@
   "schema_version": 2,
   "library": "liblzma",
   "mode": "original",
-  "cases": 95,
+  "cases": 246,
   "source_cases": 5,
-  "usage_cases": 90,
-  "passed": 95,
+  "usage_cases": 241,
+  "regression_cases": 0,
+  "passed": 246,
   "failed": 0,
-  "casts": 0,
+  "casts": 246,
   "duration_seconds": 0.0
 }

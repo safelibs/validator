@@ -1,3 +1,7 @@
 {"version": 2, "width": 120, "height": 40, "timestamp": 0, "env": {"TERM": "xterm-256color", "SHELL": "/bin/bash"}}
 [0.0, "o", "no override packages found; continuing with apt originals\n"]
-[0.001, "o", "\u001b[0;39mtrue\u001b[0m\n"]
+[0.001, "o", "  .type == \"FeatureCollection\"\n"]
+[0.002, "o", "  and (.features | length) > 0\n"]
+[0.003, "o", "  and any(.features[]; (.geometry.coordinates | length) > 0)\n"]
+[0.004, "o", "' /tmp/validator-tmp/reprojected.geojson\n"]
+[0.005, "o", "\u001b[0;39mtrue\u001b[0m\n"]

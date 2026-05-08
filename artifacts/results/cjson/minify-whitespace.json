@@ -18,7 +18,7 @@
   "duration_seconds": 0.0,
   "result_path": "results/cjson/minify-whitespace.json",
   "log_path": "logs/cjson/minify-whitespace.log",
-  "cast_path": null,
+  "cast_path": "casts/cjson/minify-whitespace.cast",
   "exit_code": 0,
   "command": [
     "bash",

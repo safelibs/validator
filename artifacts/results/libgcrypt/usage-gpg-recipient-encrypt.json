@@ -18,12 +18,11 @@
   "duration_seconds": 0.0,
   "result_path": "results/libgcrypt/usage-gpg-recipient-encrypt.json",
   "log_path": "logs/libgcrypt/usage-gpg-recipient-encrypt.log",
-  "cast_path": null,
+  "cast_path": "casts/libgcrypt/usage-gpg-recipient-encrypt.cast",
   "exit_code": 0,
   "command": [
     "bash",
-    "/validator/tests/libgcrypt/tests/cases/usage/run.sh",
-    "usage-gpg-recipient-encrypt"
+    "/validator/tests/libgcrypt/tests/cases/usage/usage-gpg-recipient-encrypt.sh"
   ],
   "apt_packages": [
     "libgcrypt20",
