@@ -21,8 +21,13 @@ cleanup() {
 }
 trap cleanup EXIT
 
-server_port=$((32000 + RANDOM % 90))
 client_port=32007
+# Pick a server port in 32000-32099 that is not the pinned client port,
+# otherwise the server binds it first and the client cannot reuse it via --cport.
+while :; do
+  server_port=$((32000 + RANDOM % 100))
+  [[ "$server_port" != "$client_port" ]] && break
+done
 
 iperf3 -s -1 -p "$server_port" >"$tmpdir/server.log" 2>&1 &
 pid=$!
