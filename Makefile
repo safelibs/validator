@@ -18,9 +18,9 @@ MIN_USAGE_CASES ?= 0
 MIN_REGRESSION_CASES ?= 0
 MIN_CASES ?= 0
 REPO_MIN_SOURCE_CASES ?= 120
-REPO_MIN_USAGE_CASES ?= 1683
+REPO_MIN_USAGE_CASES ?= 5772
 REPO_MIN_REGRESSION_CASES ?= 99
-REPO_MIN_CASES ?= 1902
+REPO_MIN_CASES ?= 5991
 LIBRARY_ARGS = $(foreach library,$(LIBRARIES),--library $(library))
 
 .PHONY: unit check-testcases fetch-port-debs matrix matrix-original matrix-port matrix-dual matrix-smoke proof proof-original proof-port proof-dual site site-dual verify-site verify-site-dual clean

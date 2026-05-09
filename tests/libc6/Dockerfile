@@ -19,6 +19,7 @@ RUN apt-get update \
       grep \
       gzip \
       python3-minimal \
+      python3 \
       sed \
       tar \
  && rm -rf /var/lib/apt/lists/*

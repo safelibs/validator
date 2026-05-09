@@ -51,6 +51,14 @@
       "description": "Python starts an interpreter and calls libc through the platform runtime."
     },
     {
+      "name": "python3",
+      "package": "python3",
+      "packages": [
+        "python3"
+      ],
+      "description": "Python (full) brings ctypes and other stdlib modules that bind directly into libc."
+    },
+    {
       "name": "findutils",
       "package": "findutils",
       "packages": [

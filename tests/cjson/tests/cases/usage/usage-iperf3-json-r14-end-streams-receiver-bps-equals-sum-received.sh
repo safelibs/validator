@@ -38,7 +38,20 @@ pid=""
 
 [[ "$ok" == 1 ]] || { sed -n '1,80p' "$tmpdir/client.err" >&2; exit 1; }
 
+# Per-stream and summed bits_per_second are computed from doubles via separate
+# divisions, so strict equality is not a stable invariant. Validate (a) that
+# cjson serialised exactly two receiver objects and the sum_received scalar,
+# and (b) that the per-stream sum matches sum_received within 0.1% relative
+# tolerance — well below any plausible FP rounding error.
 jq -e '
   (.end.streams | length) == 2
-  and (([.end.streams[].receiver.bits_per_second] | add) == .end.sum_received.bits_per_second)
+  and ((.end.streams[0].receiver.bits_per_second | type) == "number")
+  and ((.end.streams[1].receiver.bits_per_second | type) == "number")
+  and ((.end.sum_received.bits_per_second | type) == "number")
+  and (
+    ([.end.streams[].receiver.bits_per_second] | add) as $s
+    | .end.sum_received.bits_per_second as $t
+    | ($t > 0)
+    and ((($s - $t) | if . < 0 then -. else . end) / $t < 0.001)
+  )
 ' "$tmpdir/client.json"
