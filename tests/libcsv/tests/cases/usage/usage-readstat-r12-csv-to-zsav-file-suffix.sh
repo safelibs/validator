@@ -28,8 +28,9 @@ validator_require_file "$tmpdir/out.sav"
 readstat "$tmpdir/out.sav" >"$tmpdir/summary"
 
 validator_assert_contains "$tmpdir/summary" 'SPSS binary file'
-grep -Eq '2 vars' "$tmpdir/summary" || grep -Eq '^Variables: 2$' "$tmpdir/summary" || {
-  printf 'expected 2 variables in summary\n' >&2
+# readstat reports column count under "Columns: N".
+grep -Eq '^Columns: 2$' "$tmpdir/summary" || {
+  printf 'expected Columns: 2 in summary\n' >&2
   cat "$tmpdir/summary" >&2
   exit 1
 }

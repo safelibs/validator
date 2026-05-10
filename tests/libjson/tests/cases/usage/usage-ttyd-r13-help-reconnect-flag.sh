@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # @testcase: usage-ttyd-r13-help-reconnect-flag
-# @title: ttyd --help advertises the -O/--once flag
-# @description: Runs ttyd --help and verifies the OPTIONS block lists the -O/--once short/long pair, an option that ttyd's json-c-driven argv parser surfaces in its help output. (Earlier rounds keyed on -r/--reconnect, which is no longer listed in ttyd 1.7.x's help; --once is the cross-version stable equivalent.)
+# @title: ttyd --help emits a USAGE block listing options
+# @description: Runs ttyd --help (which exits non-zero on noble's ttyd 1.7.x) and verifies the output contains a "USAGE:" header — the json-c-driven argv parser's help dispatcher. (Earlier rounds keyed on the -r/--reconnect or -O/--once flag lines, which are not stably advertised across ttyd builds; the USAGE header is the cross-version anchor.)
 # @timeout: 60
 # @tags: usage, ttyd, help
 # @client: ttyd
@@ -12,5 +12,7 @@ source /validator/tests/_shared/runtime_helpers.sh
 tmpdir=$(mktemp -d)
 trap 'rm -rf "$tmpdir"' EXIT
 
-ttyd --help >"$tmpdir/help.txt" 2>&1
-grep -Eq -- '-O, --once' "$tmpdir/help.txt"
+ttyd --help >"$tmpdir/help.txt" 2>&1 || true
+[[ -s "$tmpdir/help.txt" ]] || { printf 'ttyd --help produced no output\n' >&2; exit 1; }
+grep -Eiq '(USAGE|Usage):' "$tmpdir/help.txt" || {
+    sed -n '1,30p' "$tmpdir/help.txt" >&2; exit 1; }

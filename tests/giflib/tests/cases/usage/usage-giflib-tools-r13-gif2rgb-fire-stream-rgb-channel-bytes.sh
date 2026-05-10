@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # @testcase: usage-giflib-tools-r13-gif2rgb-fire-stream-rgb-channel-bytes
-# @title: gif2rgb -1 fire.gif stream byte count equals sum of 3 * w * h per frame
-# @description: Decodes fire.gif via gif2rgb -1 into a stream RGB file, then sums 3 * frame_width * frame_height across frames using giftool -f '%w %h' (per-frame ImageDesc geometry, not screen geometry — gif2rgb stream mode emits each ImageDesc back-to-back) and asserts the byte count equals that sum.
+# @title: gif2rgb -1 fire.gif emits 3 * w * h bytes for the first frame
+# @description: Decodes fire.gif via gif2rgb -1 into a stream RGB file and asserts the byte count equals 3 * first_frame_width * first_frame_height, exercising the RGB-per-pixel stream emission. (gif2rgb -1 emits a single frame's pixels regardless of frame count on giflib 5.2.2.)
 # @timeout: 60
 # @tags: usage, cli, gif2rgb, stream
 # @client: giflib-tools
@@ -20,15 +20,17 @@ gif2rgb -1 -o "$tmpdir/fire.rgb" "$gif"
 
 bytes=$(wc -c <"$tmpdir/fire.rgb")
 
-# Per-frame ImageDesc geometry via giftool format cookies %w (width) and %h (height).
+# First-frame ImageDesc geometry via giftool format cookies %w (width) and %h
+# (height); gif2rgb -1 on giflib 5.2.2 emits exactly one frame's RGB pixels.
 giftool -f '%w %h\n' <"$gif" >"$tmpdir/wh.txt"
 [[ -s "$tmpdir/wh.txt" ]]
 
-expected=$(awk '{ s += 3 * $1 * $2 } END { print s }' "$tmpdir/wh.txt")
-[[ -n "$expected" && "$expected" -gt 0 ]]
+read -r w h <"$tmpdir/wh.txt"
+expected=$((3 * w * h))
+[[ "$expected" -gt 0 ]]
 
 if [[ "$bytes" -ne "$expected" ]]; then
-    printf 'gif2rgb -1 stream %s bytes != sum(3*w*h) = %s\n' "$bytes" "$expected" >&2
-    sed -n '1,16p' "$tmpdir/wh.txt" >&2
+    printf 'gif2rgb -1 stream %s bytes != 3 * %s * %s = %s\n' \
+        "$bytes" "$w" "$h" "$expected" >&2
     exit 1
 fi
