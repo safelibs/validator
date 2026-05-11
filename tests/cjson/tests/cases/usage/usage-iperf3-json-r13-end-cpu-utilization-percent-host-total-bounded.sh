@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # @testcase: usage-iperf3-json-r13-end-cpu-utilization-percent-host-total-bounded
-# @title: iperf3 -J end.cpu_utilization_percent.host_total is in the [0,100] range
-# @description: Runs a 1-second loopback TCP transfer and verifies the cjson-serialised end.cpu_utilization_percent.host_total field is a number in the closed range [0, 100], the documented percentage bound for host CPU utilisation.
+# @title: iperf3 -J end.cpu_utilization_percent.host_total is a non-negative number
+# @description: Runs a 1-second loopback TCP transfer and verifies the cjson-serialised end.cpu_utilization_percent.host_total field is a finite non-negative number. (iperf3 reports host_total as a sum across CPUs, so on multi-core runners the value can exceed 100; the documented invariant is non-negativity, not the [0,100] bound the original assertion assumed.)
 # @timeout: 180
 # @tags: usage, json, cpu
 # @client: iperf3
@@ -39,7 +39,6 @@ pid=""
 [[ "$ok" == 1 ]] || { sed -n '1,80p' "$tmpdir/client.err" >&2; exit 1; }
 
 jq -e '
-  (.end.cpu_utilization_percent.host_total | type == "number")
+  ((.end.cpu_utilization_percent.host_total | type) == "number")
   and (.end.cpu_utilization_percent.host_total >= 0)
-  and (.end.cpu_utilization_percent.host_total <= 100)
 ' "$tmpdir/client.json"

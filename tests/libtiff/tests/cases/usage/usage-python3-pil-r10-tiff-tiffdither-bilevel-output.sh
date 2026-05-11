@@ -30,6 +30,15 @@ tiffcp -c lzw "$src" "$dst"
 validator_require_file "$dst"
 
 tiffinfo "$dst" >"$tmpdir/info.out"
-grep -Eq 'Bits/Sample: 1' "$tmpdir/info.out"
 grep -Eq 'Image Width: 32 Image Length: 16' "$tmpdir/info.out"
 grep -Eiq 'Compression Scheme: LZW' "$tmpdir/info.out"
+# tiffinfo omits the Bits/Sample line when it equals 1 (the default); confirm
+# the file is still 1-bit by reopening with Pillow.
+python3 - "$dst" <<'PY'
+import sys
+from PIL import Image
+with Image.open(sys.argv[1]) as im:
+    im.load()
+    assert im.mode == "1", ("mode", im.mode)
+    assert im.size == (32, 16), im.size
+PY
