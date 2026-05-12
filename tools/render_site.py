@@ -650,20 +650,55 @@ def render_page(
     assert css_href is not None and js_href is not None and data_href is not None
     index_href = _page_href("index.html", page_depth=page_depth)
 
-    library_section = ""
-    if current_library is None:
-        library_section = "\n".join(
+    is_index = current_library is None
+    skip_target = "#libraries-heading" if is_index else "#tests-heading"
+
+    body_sections: list[str] = []
+    if not is_index:
+        assert index_href is not None
+        body_sections.append(
+            f'      <nav class="breadcrumb" aria-label="Breadcrumb"><a href="{html.escape(index_href)}">All libraries</a></nav>'
+        )
+    body_sections.append(
+        "\n".join(
             [
-                '      <section class="library-overview" aria-labelledby="libraries-heading">',
-                '        <h2 id="libraries-heading">Libraries and Port Status</h2>',
-                _library_groups(site_data, page_depth=page_depth),
+                '      <section class="dashboard" aria-labelledby="dashboard-heading">',
+                f'        <h1 id="dashboard-heading">{html.escape(title)}</h1>',
+                *(
+                    [_port_provenance_block(site_data, current_library)]
+                    if not is_index
+                    else []
+                ),
+                '        <div class="metric-grid">',
+                _summary_cards(site_data, current_library=current_library),
+                "        </div>",
                 "      </section>",
             ]
         )
-    breadcrumb = ""
-    if current_library is not None:
-        assert index_href is not None
-        breadcrumb = f'      <nav class="breadcrumb" aria-label="Breadcrumb"><a href="{html.escape(index_href)}">All libraries</a></nav>'
+    )
+    if is_index:
+        body_sections.append(
+            "\n".join(
+                [
+                    '      <section class="library-overview" aria-labelledby="libraries-heading">',
+                    '        <h2 id="libraries-heading">Libraries and Port Status</h2>',
+                    _library_groups(site_data, page_depth=page_depth),
+                    "      </section>",
+                ]
+            )
+        )
+    else:
+        body_sections.append(_filters(site_data))
+        body_sections.append(
+            "\n".join(
+                [
+                    '      <section id="testcases" class="testcases" aria-labelledby="tests-heading">',
+                    '        <h2 id="tests-heading">Tests</h2>',
+                    _case_details(rows, page_depth=page_depth),
+                    "      </section>",
+                ]
+            )
+        )
 
     return "\n".join(
         [
@@ -678,26 +713,9 @@ def render_page(
             f'    <script defer src="{html.escape(js_href)}"></script>',
             "  </head>",
             f'  <body data-site-data="{html.escape(data_href)}">',
-            '    <a class="skip-link" href="#tests-heading">Skip to tests</a>',
+            f'    <a class="skip-link" href="{skip_target}">Skip to content</a>',
             "    <main>",
-            breadcrumb,
-            '      <section class="dashboard" aria-labelledby="dashboard-heading">',
-            f'        <h1 id="dashboard-heading">{html.escape(title)}</h1>',
-            *(
-                [_port_provenance_block(site_data, current_library)]
-                if current_library is not None
-                else []
-            ),
-            '        <div class="metric-grid">',
-            _summary_cards(site_data, current_library=current_library),
-            "        </div>",
-            "      </section>",
-            library_section,
-            _filters(site_data),
-            '      <section id="testcases" class="testcases" aria-labelledby="tests-heading">',
-            '        <h2 id="tests-heading">Tests</h2>',
-            _case_details(rows, page_depth=page_depth),
-            "      </section>",
+            *body_sections,
             "    </main>",
             "  </body>",
             "</html>",

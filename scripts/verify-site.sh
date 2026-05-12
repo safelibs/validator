@@ -298,7 +298,8 @@ for row in expected_rows:
     escaped_library = html.escape(str(row["library"]))
     escaped_case = html.escape(str(row["testcase_id"]))
     escaped_mode = html.escape(str(row["mode"]))
-    escaped_cast = html.escape(str(row["cast_href"] or ""))
+    cast_href = row["cast_href"]
+    escaped_cast = html.escape("../" + cast_href) if cast_href else ""
     pattern = (
         rf'data-library="{re.escape(escaped_library)}"'
         rf'[^>]*data-testcase-id="{re.escape(escaped_case)}"'

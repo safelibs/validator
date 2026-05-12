@@ -260,19 +260,27 @@ class RenderSiteTests(unittest.TestCase):
         self.assertTrue((self.site_root / "assets" / "site.css").is_file())
         self.assertTrue((self.site_root / "library" / "cjson.html").is_file())
 
-        html_text = (self.site_root / "index.html").read_text()
-        self.assertIn("Library Validation Matrix", html_text)
-        self.assertIn('rel="icon" href="data:,"', html_text)
-        self.assertIn('data-library="cjson"', html_text)
-        self.assertIn('data-mode="original"', html_text)
-        self.assertIn('data-player-cast="evidence/original/casts/cjson/', html_text)
-        self.assertIn('id="search-input"', html_text)
-        self.assertIn('id="mode-filter"', html_text)
-        self.assertIn("js-player-pause", html_text)
-        self.assertNotIn('data-library="None"', html_text)
-        self.assertNotIn("None /", html_text)
-        self.assertNotIn("Safe", html_text)
-        self.assertNotIn("safe workload", html_text.lower())
+        index_html = (self.site_root / "index.html").read_text()
+        self.assertIn("Library Validation Matrix", index_html)
+        self.assertIn('rel="icon" href="data:,"', index_html)
+        self.assertIn('data-library-card="cjson"', index_html)
+        self.assertNotIn('data-library="cjson"', index_html)
+        self.assertNotIn('data-mode="original"', index_html)
+        self.assertNotIn('id="search-input"', index_html)
+        self.assertNotIn('id="mode-filter"', index_html)
+        self.assertNotIn("js-player-pause", index_html)
+        self.assertNotIn("Safe", index_html)
+        self.assertNotIn("safe workload", index_html.lower())
+
+        library_html = (self.site_root / "library" / "cjson.html").read_text()
+        self.assertIn('data-library="cjson"', library_html)
+        self.assertIn('data-mode="original"', library_html)
+        self.assertIn('data-player-cast="../evidence/original/casts/cjson/', library_html)
+        self.assertIn('id="search-input"', library_html)
+        self.assertIn('id="mode-filter"', library_html)
+        self.assertIn("js-player-pause", library_html)
+        self.assertNotIn('data-library="None"', library_html)
+        self.assertNotIn("None /", library_html)
 
     def test_render_site_with_original_and_port_proofs_uses_mode_evidence_hrefs(self) -> None:
         self.write_library_artifacts("cjson")
@@ -307,15 +315,17 @@ class RenderSiteTests(unittest.TestCase):
         self.assertIn("evidence/original/logs/cjson/", first_original["log_href"])
         self.assertIn("evidence/port/logs/cjson/", first_port["log_href"])
         self.assertNotEqual(first_original["cast_href"], first_port["cast_href"])
-        html_text = (self.site_root / "index.html").read_text()
-        self.assertIn('data-mode="original"', html_text)
-        self.assertIn('data-mode="port"', html_text)
-        self.assertIn("<span>Tests</span>", html_text)
-        self.assertIn("<span>Port tests passing</span>", html_text)
-        self.assertIn("<strong>247 / 247</strong>", html_text)
-        self.assertNotIn("port-provenance", html_text)
+        index_html = (self.site_root / "index.html").read_text()
+        self.assertNotIn('data-mode="original"', index_html)
+        self.assertNotIn('data-mode="port"', index_html)
+        self.assertIn("<span>Tests</span>", index_html)
+        self.assertIn("<span>Port tests passing</span>", index_html)
+        self.assertIn("<strong>247 / 247</strong>", index_html)
+        self.assertNotIn("port-provenance", index_html)
 
         library_html = (self.site_root / "library" / "cjson.html").read_text()
+        self.assertIn('data-mode="original"', library_html)
+        self.assertIn('data-mode="port"', library_html)
         self.assertIn('class="port-provenance"', library_html)
         self.assertIn("https://github.com/safelibs/port-cjson", library_html)
         self.assertIn(
@@ -451,12 +461,12 @@ class RenderSiteTests(unittest.TestCase):
             ],
         }
 
-        html_text = render_site.render_page(site_data)
+        html_text = render_site.render_page(site_data, page_depth=1, current_library="demo")
 
         self.assertIn("&lt;script&gt;alert(1)&lt;/script&gt;", html_text)
         self.assertNotIn("<script>alert(1)</script>", html_text)
         self.assertIn("data-mode=\"original\"", html_text)
-        self.assertIn("data-player-cast=\"evidence/original/casts/demo/source-demo-case.cast\"", html_text)
+        self.assertIn("data-player-cast=\"../evidence/original/casts/demo/source-demo-case.cast\"", html_text)
         self.assertIn("js-player-restart", html_text)
         self.assertIn("js-player-scrub", html_text)
 
@@ -476,9 +486,9 @@ class RenderSiteTests(unittest.TestCase):
         proof_path = self.write_proof(["cjson"])
         self.render(proof_path)
 
-        html_text = (self.site_root / "index.html").read_text()
-        self.assertIn('data-status="failed"', html_text)
-        self.assertIn("Failed", html_text)
+        library_html = (self.site_root / "library" / "cjson.html").read_text()
+        self.assertIn('data-status="failed"', library_html)
+        self.assertIn("Failed", library_html)
         completed = self.run_verify_site(proof_path)
         self.assertEqual(completed.returncode, 0, completed.stderr + completed.stdout)
 
@@ -520,8 +530,8 @@ class RenderSiteTests(unittest.TestCase):
         proof_path = self.write_proof(["cjson"])
         self.render(proof_path)
 
-        index_path = self.site_root / "index.html"
-        index_path.write_text(index_path.read_text().replace('data-player-cast="', 'data-player-cast-missing="', 1))
+        library_path = self.site_root / "library" / "cjson.html"
+        library_path.write_text(library_path.read_text().replace('data-player-cast="', 'data-player-cast-missing="', 1))
         completed = self.run_verify_site(proof_path)
         self.assertNotEqual(completed.returncode, 0)
         self.assertIn("missing testcase HTML row", completed.stderr + completed.stdout)
