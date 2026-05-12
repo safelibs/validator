@@ -82,6 +82,7 @@ jobs:
       - name: Fetch port debs
         env:
           VALIDATOR_REPO_TOKEN: ${{ secrets.VALIDATOR_REPO_TOKEN }}
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           python3 tools/fetch_port_debs.py \
             --config repositories.yml \
@@ -93,6 +94,7 @@ jobs:
       - name: Fetch port sources
         env:
           VALIDATOR_REPO_TOKEN: ${{ secrets.VALIDATOR_REPO_TOKEN }}
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           python3 tools/fetch_port_sources.py \
             --port-deb-lock "$PORT_LOCK_PATH" \
