@@ -20,10 +20,18 @@ chmod 700 "$GNUPGHOME"
 
 gpg --batch --print-mds "$tmpdir/empty.bin" >"$tmpdir/out" 2>"$tmpdir/err"
 
-# Pull the MD5 row and normalise hex (lowercase, no spaces/colons).
-md5_hex=$(LC_ALL=C awk -F'=' '/[[:space:]]MD5[[:space:]]*=/ {
-  hex=$2; gsub(/[[:space:][:cntrl:]:]/, "", hex); print tolower(hex); exit
-}' "$tmpdir/out")
+# gpg --print-mds wraps long digests across multiple continuation lines.
+# Capture from "MD5 =" up to (but not including) the next algorithm header
+# (SHA/RMD), then strip all non-hex characters.
+md5_hex=$(LC_ALL=C python3 - "$tmpdir/out" <<'PY'
+import re, sys
+data = open(sys.argv[1]).read()
+m = re.search(r"MD5\s*=\s*([0-9A-Fa-f][0-9A-Fa-f\s]*?)(?=\n[^ \t]|\n\s*(?:SHA|RMD)\b)", data, re.S)
+if not m:
+    sys.exit("MD5 row not found")
+print(re.sub(r"[^0-9A-Fa-f]", "", m.group(1)).lower())
+PY
+)
 expected='d41d8cd98f00b204e9800998ecf8427e'
 if [[ "$md5_hex" != "$expected" ]]; then
   printf 'expected MD5(empty)=%s, got %s\n' "$expected" "$md5_hex" >&2

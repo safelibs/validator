@@ -17,7 +17,9 @@ printf 'no match here\nplain content\n' >"$tmpdir/b.txt"
 printf 'pre\nNEEDLE-r16 hit-C\npost\n' >"$tmpdir/c.txt"
 for n in a b c; do bzip2 -c "$tmpdir/$n.txt" >"$tmpdir/$n.bz2"; done
 
-bzgrep -F 'NEEDLE-r16' "$tmpdir/a.bz2" "$tmpdir/b.bz2" "$tmpdir/c.bz2" >"$tmpdir/hits"
+# bzgrep exits 1 when at least one file has no matches; tolerate that and
+# validate the output content instead of the exit status.
+bzgrep -F 'NEEDLE-r16' "$tmpdir/a.bz2" "$tmpdir/b.bz2" "$tmpdir/c.bz2" >"$tmpdir/hits" || [[ $? -eq 1 ]]
 
 validator_assert_contains "$tmpdir/hits" 'hit-A'
 validator_assert_contains "$tmpdir/hits" 'hit-C'

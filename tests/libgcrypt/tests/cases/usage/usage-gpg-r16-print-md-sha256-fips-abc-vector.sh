@@ -20,8 +20,14 @@ printf 'abc' >"$tmpdir/in.bin"
 
 gpg --print-md SHA256 "$tmpdir/in.bin" >"$tmpdir/out" 2>"$tmpdir/err"
 
-# The digest line is prefixed with the file path; extract just the hex.
-digest=$(LC_ALL=C awk -F: '/in\.bin:/ {hex=$2; gsub(/[[:space:]]/, "", hex); print tolower(hex); exit}' "$tmpdir/out")
+# gpg --print-md wraps long digests across multiple lines. The first line
+# is prefixed by the file path (which may contain hex-like letters), so we
+# drop the prefix up to and including the first colon-then-space, then strip
+# everything except hex characters from the remainder.
+digest=$(LC_ALL=C sed -e 's/^[^:]*:[[:space:]]*//' "$tmpdir/out" \
+  | LC_ALL=C tr -cd '0-9A-Fa-f' \
+  | LC_ALL=C tr 'A-F' 'a-f')
+digest=${digest:0:64}
 expected='ba7816bf8f01cfea414140de5dae2223b00361a396177a9cb410ff61f20015ad'
 if [[ "$digest" != "$expected" ]]; then
   printf 'expected SHA256(abc)=%s, got %s\n' "$expected" "$digest" >&2

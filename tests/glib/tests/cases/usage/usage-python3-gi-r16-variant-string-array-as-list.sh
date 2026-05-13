@@ -16,7 +16,9 @@ python3 >"$tmpdir/out" <<'PY'
 from gi.repository import GLib
 v = GLib.Variant("as", ["alpha", "beta", "gamma"])
 print("type=" + v.get_type_string())
-print("n=" + str(v.get_n_children()))
+# GLib.Variant on PyGObject 3.48 exposes n_children() but the deprecated
+# get_n_children alias was removed; call the current name explicitly.
+print("n=" + str(v.n_children()))
 print("unpacked=" + ",".join(v.unpack()))
 PY
 

@@ -16,7 +16,7 @@ export GNUPGHOME="$tmpdir/gnupg"
 mkdir -p "$GNUPGHOME"
 chmod 700 "$GNUPGHOME"
 
-gpg --list-config >"$tmpdir/out" 2>"$tmpdir/err"
+gpg --list-config --with-colons >"$tmpdir/out" 2>"$tmpdir/err"
 
 LC_ALL=C grep -E '^cfg:ciphername:' "$tmpdir/out" >"$tmpdir/cipher.row" || {
   echo 'no ciphername row in --list-config output' >&2

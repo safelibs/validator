@@ -12,15 +12,20 @@ source /validator/tests/_shared/runtime_helpers.sh
 tmpdir=$(mktemp -d)
 trap 'rm -rf "$tmpdir"' EXIT
 
-touch "$tmpdir/old.txt"
-touch -t 200001010000 "$tmpdir/old.txt"
+# Search directory and output file are kept disjoint so the output file does
+# not accidentally satisfy its own -newer predicate.
+search="$tmpdir/search"
+mkdir "$search"
 
-touch "$tmpdir/reference"
+touch "$search/old.txt"
+touch -t 200001010000 "$search/old.txt"
+
+touch "$search/reference"
 # Ensure mtime resolution gap.
 sleep 1
-touch "$tmpdir/new.txt"
+touch "$search/new.txt"
 
-find "$tmpdir" -type f -newer "$tmpdir/reference" -printf '%f\n' | sort >"$tmpdir/hits"
+find "$search" -type f -newer "$search/reference" -printf '%f\n' | sort >"$tmpdir/hits"
 
 # Reference itself is not strictly newer than itself; only new.txt qualifies.
 mapfile -t lines <"$tmpdir/hits"

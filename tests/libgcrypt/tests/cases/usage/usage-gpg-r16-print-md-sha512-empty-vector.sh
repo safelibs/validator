@@ -21,7 +21,14 @@ chmod 700 "$GNUPGHOME"
 
 gpg --print-md SHA512 "$tmpdir/empty.bin" >"$tmpdir/out" 2>"$tmpdir/err"
 
-digest=$(LC_ALL=C awk -F: '/empty\.bin:/ {hex=$2; gsub(/[[:space:]]/, "", hex); print tolower(hex); exit}' "$tmpdir/out")
+# gpg --print-md wraps long digests across multiple lines. The first line
+# is prefixed by the file path (which may contain hex-like letters), so we
+# drop the prefix up to and including the first colon-then-space, then strip
+# everything except hex characters from the remainder.
+digest=$(LC_ALL=C sed -e 's/^[^:]*:[[:space:]]*//' "$tmpdir/out" \
+  | LC_ALL=C tr -cd '0-9A-Fa-f' \
+  | LC_ALL=C tr 'A-F' 'a-f')
+digest=${digest:0:128}
 expected='cf83e1357eefb8bdf1542850d66d8007d620e4050b5715dc83f4a921d36ce9ce47d0d13c5d85f2b0ff8318d2877eec2f63b931bd47417a81a538327af927da3e'
 if [[ "$digest" != "$expected" ]]; then
   printf 'expected SHA512(empty)=%s, got %s\n' "$expected" "$digest" >&2

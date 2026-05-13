@@ -12,14 +12,16 @@ source /validator/tests/_shared/runtime_helpers.sh
 tmpdir=$(mktemp -d)
 trap 'rm -rf "$tmpdir"' EXIT
 
-# Generate substantial input so the .bz2 contains at least one full block.
-python3 -c "import sys; [sys.stdout.write(f'line {i} alpha bravo charlie\n') for i in range(2000)]" \
+# Generate enough input so the .bz2 contains many small blocks (bzip2 -1 uses
+# a 100KB block size; we want multiple blocks even at half-truncation so
+# bzip2recover writes at least one rec00001 fragment).
+python3 -c "import sys; [sys.stdout.write(f'line {i} alpha bravo charlie delta echo foxtrot golf hotel\n') for i in range(80000)]" \
     >"$tmpdir/payload.txt"
-bzip2 -c "$tmpdir/payload.txt" >"$tmpdir/payload.bz2"
+bzip2 -1 -c "$tmpdir/payload.txt" >"$tmpdir/payload.bz2"
 
 orig=$(stat -c %s "$tmpdir/payload.bz2")
 half=$((orig / 2))
-[[ "$half" -gt 64 ]]
+[[ "$half" -gt 4096 ]]
 dd if="$tmpdir/payload.bz2" of="$tmpdir/truncated.bz2" bs=1 count="$half" status=none
 
 cd "$tmpdir"
