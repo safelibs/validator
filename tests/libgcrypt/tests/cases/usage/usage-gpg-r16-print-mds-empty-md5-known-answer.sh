@@ -21,17 +21,18 @@ chmod 700 "$GNUPGHOME"
 gpg --batch --print-mds "$tmpdir/empty.bin" >"$tmpdir/out" 2>"$tmpdir/err"
 
 # gpg --print-mds wraps long digests across multiple continuation lines.
-# Capture from "MD5 =" up to (but not including) the next algorithm header
-# (SHA/RMD), then strip all non-hex characters.
-md5_hex=$(LC_ALL=C python3 - "$tmpdir/out" <<'PY'
-import re, sys
-data = open(sys.argv[1]).read()
-m = re.search(r"MD5\s*=\s*([0-9A-Fa-f][0-9A-Fa-f\s]*?)(?=\n[^ \t]|\n\s*(?:SHA|RMD)\b)", data, re.S)
-if not m:
-    sys.exit("MD5 row not found")
-print(re.sub(r"[^0-9A-Fa-f]", "", m.group(1)).lower())
-PY
-)
+# Use perl (always present via build-essential) to slurp the whole output,
+# capture from "MD5 =" up to the next algorithm header (SHA/RMD) or end,
+# then strip all non-hex characters.
+md5_hex=$(LC_ALL=C perl -0777 -ne '
+  if (/MD5\s*=\s*(.+?)\n\s*(?:SHA|RMD)/s) {
+    my $h = $1;
+    $h =~ s/[^0-9A-Fa-f]//g;
+    print lc $h;
+  } else {
+    exit 2;
+  }
+' "$tmpdir/out")
 expected='d41d8cd98f00b204e9800998ecf8427e'
 if [[ "$md5_hex" != "$expected" ]]; then
   printf 'expected MD5(empty)=%s, got %s\n' "$expected" "$md5_hex" >&2
