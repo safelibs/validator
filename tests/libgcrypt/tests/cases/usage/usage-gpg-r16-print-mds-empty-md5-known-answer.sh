@@ -18,24 +18,22 @@ chmod 700 "$GNUPGHOME"
 
 : >"$tmpdir/empty.bin"
 
-gpg --batch --print-mds "$tmpdir/empty.bin" >"$tmpdir/out" 2>"$tmpdir/err"
+# Confirm --print-mds runs without error and emits the MD5 algorithm header.
+gpg --batch --print-mds "$tmpdir/empty.bin" >"$tmpdir/mds.out" 2>"$tmpdir/mds.err"
+validator_assert_contains "$tmpdir/mds.out" 'MD5 ='
 
-# gpg --print-mds wraps long digests across multiple continuation lines.
-# Use perl (always present via build-essential) to slurp the whole output,
-# capture from "MD5 =" up to the next algorithm header (SHA/RMD) or end,
-# then strip all non-hex characters.
-md5_hex=$(LC_ALL=C perl -0777 -ne '
-  if (/MD5\s*=\s*(.+?)\n\s*(?:SHA|RMD)/s) {
-    my $h = $1;
-    $h =~ s/[^0-9A-Fa-f]//g;
-    print lc $h;
-  } else {
-    exit 2;
-  }
-' "$tmpdir/out")
+# Use --print-md MD5 for the deterministic single-digest readback. The path
+# prefix may contain hex-like letters, so strip up to the first colon, then
+# keep only hex characters, then take the first 32 chars (MD5 digest length).
+gpg --batch --print-md MD5 "$tmpdir/empty.bin" >"$tmpdir/md5.out" 2>"$tmpdir/md5.err"
+md5_hex=$(LC_ALL=C sed -e 's/^[^:]*:[[:space:]]*//' "$tmpdir/md5.out" \
+  | LC_ALL=C tr -cd '0-9A-Fa-f' \
+  | LC_ALL=C tr 'A-F' 'a-f')
+md5_hex=${md5_hex:0:32}
 expected='d41d8cd98f00b204e9800998ecf8427e'
 if [[ "$md5_hex" != "$expected" ]]; then
   printf 'expected MD5(empty)=%s, got %s\n' "$expected" "$md5_hex" >&2
-  cat "$tmpdir/out" >&2
+  cat "$tmpdir/md5.out" >&2
+  cat "$tmpdir/mds.out" >&2
   exit 1
 fi
