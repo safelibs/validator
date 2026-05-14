@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # @testcase: usage-exif-r18-cli-show-mnote-mentions-canon-keyword
-# @title: exif --show-mnote on canon fixture mentions a Canon-specific keyword
-# @description: Runs exif --show-mnote on the canon fixture and asserts the maker-note dump output contains the literal substring "Canon" (the Canon maker-note parser tags rows with the canon branding), exercising libexif's canon makernote rendering path.
+# @title: exif --show-mnote on canon fixture renders a PowerShot Image Type row
+# @description: Runs exif --show-mnote on the canon makernote fixture and asserts the maker-note dump output contains the literal substring "PowerShot" (Canon emits its camera model in the Image Type makernote field), exercising libexif's canon makernote rendering path.
 # @timeout: 60
 # @tags: usage, exif, makernote, canon, r18
 # @client: exif
@@ -22,8 +22,8 @@ if [[ "$size" -le 0 ]]; then
   cat "$tmpdir/err" >&2
   exit 1
 fi
-if ! LC_ALL=C grep -qi 'canon' "$tmpdir/out"; then
-  echo 'expected canon keyword in --show-mnote output' >&2
+if ! LC_ALL=C grep -q 'PowerShot' "$tmpdir/out"; then
+  echo 'expected PowerShot keyword in --show-mnote output' >&2
   head -c 4096 "$tmpdir/out" >&2
   exit 1
 fi
