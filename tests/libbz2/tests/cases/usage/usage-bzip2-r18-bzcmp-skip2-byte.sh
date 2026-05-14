@@ -22,8 +22,8 @@ rc=$?
 set -e
 
 [[ "$rc" -eq 1 ]] || { printf 'expected rc=1 for differing files, got %s\n' "$rc" >&2; cat "$tmpdir/diff" >&2; exit 1; }
-grep -E 'differ: byte [0-9]+' "$tmpdir/diff" >/dev/null || {
-    printf 'diff line missing differ: byte N\n' >&2
+grep -E 'differ: (byte|char) [0-9]+' "$tmpdir/diff" >/dev/null || {
+    printf 'diff line missing differ: byte/char N\n' >&2
     cat "$tmpdir/diff" >&2
     exit 1
 }

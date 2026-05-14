@@ -16,7 +16,12 @@ printf 'hello world\nanother line\n' >"$tmpdir/hit.txt"
 printf 'nothing of interest here\n' >"$tmpdir/miss.txt"
 bzip2 "$tmpdir/hit.txt" "$tmpdir/miss.txt"
 
+set +e
 bzgrep -l 'hello' "$tmpdir/hit.txt.bz2" "$tmpdir/miss.txt.bz2" >"$tmpdir/out"
+rc=$?
+set -e
+
+[[ "$rc" -eq 0 || "$rc" -eq 1 ]] || { printf 'unexpected bzgrep -l rc=%s\n' "$rc" >&2; exit 1; }
 
 grep -F 'hit.txt.bz2' "$tmpdir/out" >/dev/null || {
     printf 'expected hit.txt.bz2 in listing\n' >&2

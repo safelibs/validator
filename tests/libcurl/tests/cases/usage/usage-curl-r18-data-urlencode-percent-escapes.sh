@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # @testcase: usage-curl-r18-data-urlencode-percent-escapes
-# @title: curl --data-urlencode percent-escapes a reserved character before sending
-# @description: Stands up a python loopback http.server that echoes the POST body verbatim, then issues curl with --data-urlencode 'k=a b&c' and asserts the echoed body equals "k=a%20b%26c" — locking in curl's client-side percent-encoding of space and ampersand.
+# @title: curl --data-urlencode percent-escapes reserved characters before sending
+# @description: Stands up a python loopback http.server that echoes the POST body verbatim, then issues curl with --data-urlencode 'k=a b&c' and asserts the echoed body equals "k=a+b%26c" — locking in curl's application/x-www-form-urlencoded encoding of space (as +) and ampersand (as %26).
 # @timeout: 90
 # @tags: usage, curl, data-urlencode, r18
 # @client: curl
@@ -47,7 +47,7 @@ curl --noproxy '*' -fsS --max-time 5 \
     "http://127.0.0.1:$port/echo" -o "$tmpdir/got.txt"
 
 got=$(cat "$tmpdir/got.txt")
-want='k=a%20b%26c'
+want='k=a+b%26c'
 [[ "$got" == "$want" ]] || {
     printf 'urlencode mismatch: want=%q got=%q\n' "$want" "$got" >&2
     exit 1
