@@ -20,6 +20,12 @@ ordered: !!omap
 """
 data = yaml.safe_load(doc)
 pairs = data['ordered']
-keys = [list(p.keys())[0] for p in pairs]
+keys = []
+for p in pairs:
+    if isinstance(p, dict):
+        keys.append(list(p.keys())[0])
+    else:
+        keys.append(p[0])
 assert keys == ['c', 'a', 'b'], keys
+print('ok keys=', keys)
 PY

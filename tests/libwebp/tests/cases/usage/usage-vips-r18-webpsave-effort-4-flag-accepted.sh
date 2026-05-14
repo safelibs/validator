@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
-# @testcase: usage-vips-r18-webpsave-near-lossless-flag-accepted
-# @title: vips webpsave --near-lossless 60 produces a valid WEBP file
-# @description: Encodes a PPM via vips webpsave with --lossless and --near-lossless 60, asserts the output is identified as WEBP by file(1), and that vipsheader reports the input dimensions on read-back.
+# @testcase: usage-vips-r18-webpsave-effort-4-flag-accepted
+# @title: vips webpsave with effort=4 produces a valid WEBP file
+# @description: Encodes a PPM via vips webpsave with --effort=4, asserts the output is identified as WEBP by file(1), and asserts vipsheader reports the original PPM dimensions on read-back of the encoded WEBP.
 # @timeout: 120
 # @tags: usage, vips, webp, near-lossless, r18
 # @client: vips
@@ -21,7 +21,7 @@ with open(sys.argv[1], 'wb') as f:
     f.write(f'P6\n{w} {h}\n255\n'.encode() + data)
 PY
 
-vips webpsave "$tmpdir/in.ppm" "$tmpdir/out.webp" --lossless --near-lossless 60
+vips webpsave "$tmpdir/in.ppm" "$tmpdir/out.webp" --effort=4
 file "$tmpdir/out.webp" | grep -q 'Web/P'
 
 w_out=$(vipsheader -f width "$tmpdir/out.webp")

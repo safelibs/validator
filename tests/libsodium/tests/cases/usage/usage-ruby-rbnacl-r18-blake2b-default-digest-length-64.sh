@@ -10,9 +10,9 @@ set -euo pipefail
 source /validator/tests/_shared/runtime_helpers.sh
 
 ruby -rrbnacl -e '
-a1 = RbNaCl::Hash::Blake2b.digest("r18 rbnacl blake2b input")
-a2 = RbNaCl::Hash::Blake2b.digest("r18 rbnacl blake2b input")
-b  = RbNaCl::Hash::Blake2b.digest("r18 rbnacl blake2b different")
+a1 = RbNaCl::Hash.blake2b("r18 rbnacl blake2b input")
+a2 = RbNaCl::Hash.blake2b("r18 rbnacl blake2b input")
+b  = RbNaCl::Hash.blake2b("r18 rbnacl blake2b different")
 raise "len_a1=#{a1.bytesize}" unless a1.bytesize == 64
 raise "len_a2=#{a2.bytesize}" unless a2.bytesize == 64
 raise "len_b=#{b.bytesize}"   unless b.bytesize == 64
