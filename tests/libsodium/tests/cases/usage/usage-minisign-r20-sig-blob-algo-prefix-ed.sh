@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # @testcase: usage-minisign-r20-sig-blob-algo-prefix-ed
 # @title: minisign signature line2 base64 blob decodes to >= 64 bytes containing the algorithm prefix
-# @description: Generates a passwordless keypair and signs a payload, base64-decodes line 2 of the resulting .minisig file with python3 base64, asserts the decoded blob length is at least 64 bytes (signature algorithm tag + Ed25519 signature material), and asserts the first two bytes are the ASCII pair "Ed" (signature algorithm tag prefix Ed25519/EdDSA), confirming libsodium-backed minisign sig payload structure.
+# @description: Generates a passwordless keypair and signs a payload, base64-decodes line 2 of the resulting .minisig file with python3 base64, asserts the decoded blob length is at least 64 bytes (signature algorithm tag + Ed25519 signature material), and asserts the first two bytes are the ASCII pair "ED" (prehashed Ed25519 signature algorithm tag, which is the minisign default on Ubuntu 24.04), confirming libsodium-backed minisign sig payload structure.
 # @timeout: 60
 # @tags: usage, minisign, sig, algorithm, r20
 # @client: minisign
@@ -25,6 +25,6 @@ import sys, base64
 raw = base64.b64decode(sys.argv[1])
 assert len(raw) >= 64, ("len", len(raw))
 prefix = raw[:2]
-assert prefix == b'Ed', ('prefix', prefix)
+assert prefix == b'ED', ('prefix', prefix)
 print('ok algo prefix=%r len=%d' % (prefix, len(raw)))
 PY
