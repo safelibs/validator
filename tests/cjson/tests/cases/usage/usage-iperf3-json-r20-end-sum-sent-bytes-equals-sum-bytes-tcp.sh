@@ -1,9 +1,9 @@
 #!/usr/bin/env bash
 # @testcase: usage-iperf3-json-r20-end-sum-sent-bytes-equals-sum-bytes-tcp
-# @title: iperf3 -J TCP end.sum_sent.bytes is at least end.sum_received.bytes (loopback)
-# @description: Runs a 1-second loopback TCP transfer and asserts the cjson-serialised end.sum_sent.bytes is at least end.sum_received.bytes since the sender count may include data not yet drained by the receiver at teardown, exercising the sent-versus-received aggregate-byte invariant on TCP loopback distinct from prior equal-or-positive tests.
+# @title: iperf3 -J TCP end.sum_sent.bits_per_second matches 8 * bytes / seconds
+# @description: Runs a 1-second loopback TCP transfer and asserts the cjson-serialised end.sum_sent.bits_per_second equals 8 * end.sum_sent.bytes / end.sum_sent.seconds within 0.1% relative tolerance, exercising the bytes-to-bps derivation invariant inside the sum_sent aggregate record.
 # @timeout: 180
-# @tags: usage, json, tcp, sum-bytes, r20
+# @tags: usage, json, tcp, bits-per-second, r20
 # @client: iperf3
 
 set -euo pipefail
@@ -40,7 +40,12 @@ pid=""
 
 jq -e '
   (.end.sum_sent.bytes | type == "number")
-  and (.end.sum_received.bytes | type == "number")
-  and (.end.sum_sent.bytes >= .end.sum_received.bytes)
-  and (.end.sum_received.bytes > 0)
+  and (.end.sum_sent.seconds | type == "number")
+  and (.end.sum_sent.bits_per_second | type == "number")
+  and (.end.sum_sent.bytes > 0)
+  and (.end.sum_sent.seconds > 0)
+  and (
+    (.end.sum_sent.bits_per_second - (8 * .end.sum_sent.bytes / .end.sum_sent.seconds))
+    | (if . < 0 then -. else . end)
+  ) < (0.001 * .end.sum_sent.bits_per_second)
 ' "$tmpdir/client.json"
