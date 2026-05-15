@@ -320,7 +320,7 @@ class RenderSiteTests(unittest.TestCase):
         self.assertNotIn('data-mode="port"', index_html)
         self.assertIn("<span>Tests</span>", index_html)
         self.assertIn("<span>Port tests passing</span>", index_html)
-        self.assertIn("<strong>283 / 283</strong>", index_html)
+        self.assertIn("<strong>293 / 293</strong>", index_html)
         self.assertNotIn("port-provenance", index_html)
 
         library_html = (self.site_root / "library" / "cjson.html").read_text()
