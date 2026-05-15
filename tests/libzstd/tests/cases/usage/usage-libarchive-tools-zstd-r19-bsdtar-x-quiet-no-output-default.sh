@@ -15,11 +15,11 @@ trap 'rm -rf "$tmpdir"' EXIT
 src="$tmpdir/src"
 mkdir -p "$src"
 printf 'r19 quiet payload\n' >"$src/payload.txt"
-(cd "$src" && bsdtar --zstd -cf "$tmpdir/archive.tar.zst" payload.txt)
+bsdtar --zstd -cf "$tmpdir/archive.tar.zst" -C "$src" payload.txt
 
 dest="$tmpdir/dest"
 mkdir -p "$dest"
-(cd "$dest" && bsdtar -xf "$tmpdir/archive.tar.zst") >"$tmpdir/out.log" 2>"$tmpdir/err.log"
+bsdtar -xf "$tmpdir/archive.tar.zst" -C "$dest" >"$tmpdir/out.log" 2>"$tmpdir/err.log"
 
 [[ ! -s "$tmpdir/out.log" ]] || { echo "expected empty stdout"; cat "$tmpdir/out.log" >&2; exit 1; }
 [[ ! -s "$tmpdir/err.log" ]] || { echo "expected empty stderr"; cat "$tmpdir/err.log" >&2; exit 1; }
