@@ -1,0 +1,62 @@
+#!/usr/bin/env bash
+# @testcase: usage-python-libarchive-c-r21-tar-gname-explicit-roundtrip
+# @title: python-libarchive-c pax entry with gname "wheel" survives roundtrip via ctypes setter
+# @description: Writes a pax entry whose group name is set to "wheel" via archive_entry_set_gname reached through ctypes (python-libarchive-c does not expose a gname kwarg setter), then reads back the entry.gname through archive_entry_gname and asserts byte equality, exercising the pax gname-roundtrip with a different group-name value distinct from the existing batch21 pax-gname-ctypes-roundtrip test that used "staff".
+# @timeout: 60
+# @tags: usage, archive, pax, gname, r21
+# @client: python3-libarchive-c
+
+set -euo pipefail
+source /validator/tests/_shared/runtime_helpers.sh
+
+tmpdir=$(mktemp -d)
+trap 'rm -rf "$tmpdir"' EXIT
+
+python3 - <<'PY' "$tmpdir"
+import ctypes
+import sys
+from pathlib import Path
+
+import libarchive
+from libarchive.entry import ArchiveEntry, new_archive_entry
+from libarchive.ffi import (
+    REGULAR_FILE,
+    entry_set_filetype,
+    entry_set_perm,
+    entry_set_size,
+    write_finish_entry,
+    write_header,
+)
+
+tmpdir = Path(sys.argv[1])
+
+so = ctypes.CDLL("libarchive.so.13")
+set_gname = so.archive_entry_set_gname
+set_gname.argtypes = [ctypes.c_void_p, ctypes.c_char_p]
+set_gname.restype = None
+get_gname = so.archive_entry_gname
+get_gname.argtypes = [ctypes.c_void_p]
+get_gname.restype = ctypes.c_char_p
+
+arc = tmpdir / "gname.pax"
+target_gname = b"wheel"
+
+with libarchive.file_writer(str(arc), "pax") as writer:
+    archive_p = writer._pointer
+    with new_archive_entry() as ent:
+        ArchiveEntry(None, ent).pathname = "g.txt"
+        entry_set_filetype(ent, REGULAR_FILE)
+        entry_set_perm(ent, 0o644)
+        entry_set_size(ent, 0)
+        set_gname(ent, target_gname)
+        write_header(archive_p, ent)
+        write_finish_entry(archive_p)
+
+seen = []
+with libarchive.file_reader(str(arc)) as archive:
+    for entry in archive:
+        seen.append((entry.pathname, get_gname(entry._entry_p)))
+
+assert seen == [("g.txt", target_gname)], seen
+print("pax-gname-wheel-ok", seen)
+PY
