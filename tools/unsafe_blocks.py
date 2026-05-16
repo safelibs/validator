@@ -6,11 +6,15 @@ sources that ship in the safelibs override deb. For each library we walk
 
   * ``total``                — every ``unsafe { ... }`` expression block.
   * ``abi_shaped``           — block whose enclosing fn is shaped by the C
-                               ABI (raw-pointer signature, ``extern``, or
-                               ``unsafe fn``). Forced by drop-in compat.
-  * ``voluntary``            — block whose enclosing fn has a fully safe Rust
-                               signature (or no enclosing fn at all). The
-                               block exists for reasons other than C-ABI
+                               ABI: ``extern`` or a raw-pointer parameter.
+                               Forced by drop-in compat. The ``unsafe`` fn
+                               keyword by itself is *not* an ABI shape — a
+                               ``pub unsafe fn foo(x: &[u8])`` carries no
+                               C-ABI constraint, so blocks inside it count
+                               as voluntary.
+  * ``voluntary``            — block whose enclosing fn has a signature with
+                               no C-ABI shape (or no enclosing fn at all).
+                               The block exists for reasons other than C-ABI
                                interop shape.
   * ``no_enclosing``         — subset of ``voluntary`` where the block sits
                                in a static initializer / module body.
@@ -268,7 +272,6 @@ def analyze_file(src: str) -> dict[str, Any]:
             {
                 "body_open": body_open,
                 "body_close": body_close,
-                "unsafe_fn": bool(re.search(r"\bunsafe\b", modifiers)),
                 "extern": bool(re.search(r"\bextern\b", modifiers)),
                 "sig_raw_ptr": bool(_RAW_PTR_IN_SIG_RE.search(sig_text)),
             }
@@ -337,7 +340,7 @@ def analyze_file(src: str) -> dict[str, Any]:
             if any_op:
                 blocks_voluntary_with_any_op += 1
             continue
-        if encl["unsafe_fn"] or encl["extern"] or encl["sig_raw_ptr"]:
+        if encl["extern"] or encl["sig_raw_ptr"]:
             abi_shaped += 1
             abi_shaped_loc += block_lines
         else:

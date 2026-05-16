@@ -52,6 +52,24 @@ class AnalyzeFileTests(unittest.TestCase):
         self.assertEqual(counts["abi_shaped"], 2)
         self.assertEqual(counts["voluntary"], 0)
 
+    def test_unsafe_fn_with_safe_signature_yields_voluntary_block(self) -> None:
+        # `unsafe fn` alone is a contract on callers, not an ABI shape. A
+        # function with a fully safe Rust signature whose only unsafe marker
+        # is the `unsafe` keyword should have its inner blocks counted as
+        # voluntary, not abi_shaped.
+        src = dedent(
+            """\
+            pub unsafe fn parse(input: &[u8]) -> usize {
+                let n = unsafe { std::mem::transmute::<u8, u8>(input[0]) };
+                n as usize
+            }
+            """
+        )
+        counts = analyze_file(src)
+        self.assertEqual(counts["total"], 1)
+        self.assertEqual(counts["voluntary"], 1)
+        self.assertEqual(counts["abi_shaped"], 0)
+
     def test_module_level_block_counts_as_voluntary_and_no_enclosing(self) -> None:
         src = dedent(
             """\
